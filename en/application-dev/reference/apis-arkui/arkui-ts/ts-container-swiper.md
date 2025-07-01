@@ -568,12 +568,6 @@ Controller of the **Swiper** component. You can bind this object to the **Swiper
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Objects to Import
-
-```ts
-let controller: SwiperController = new SwiperController()
-```
-
 ### constructor
 
 constructor()
@@ -800,6 +794,27 @@ Sets the position of the navigation indicator relative to the bottom edge of the
 | Name| Type                        | Mandatory| Description                                                        |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | Yes  | Position of the navigation indicator relative to the bottom edge of the **Swiper** component.<br>If neither **top** nor **bottom** is set, the navigation indicator is aligned at the bottom along the cross axis based on its own size and the size of the **Swiper** component, which is the same effect as setting **bottom=0**.<br>If the value specified is **0**, the navigation indicator is placed at the position 0.<br>Priority: lower than the **top** property<br>Value range: [0, Swiper height - Navigation indicator area height]. Values outside this range are adjusted to the nearest boundary.|
+
+
+### bottom<sup>18+</sup>
+
+bottom(bottom: LengthMetrics | Length, ignoreSize: boolean): T
+
+Sets the position of the navigation indicator relative to the bottom edge of the **Swiper** component. You can also choose to ignore the size of the navigation indicator using the **ignoreSize** property.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+
+| Name| Type                        | Mandatory| Description                                                        |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| bottom  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Length](ts-types.md#length)| Yes  | Position of the navigation indicator relative to the bottom edge of the **Swiper** component.<br>If neither **top** nor **bottom** is set, the navigation indicator is aligned at the bottom along the cross axis based on its own size and the size of the **Swiper** component, which is the same effect as setting **bottom=0**.<br>If the value specified is **0**, the navigation indicator is placed at the position 0.<br>Priority: lower than the **top** property<br>Value range: [0, Swiper height - Navigation indicator area height]. Values outside this range are adjusted to the nearest boundary.|
+| ignoreSize  | boolean | Yes  | Whether to ignore the size of the navigation indicator.<br>Ddefault value: **false**<br>The value **true** allows the navigation indicator to be positioned closer to the bottom edge of the **Swiper** component.<br> **NOTE**<br>The **ignoreSize** property for the number-style navigation indicator is ineffective in the following scenarios:<br> &bull;  [vertical](#vertical) is set to **false** and the value of **bottom** is greater than 0.<br>  &bull;  When [vertical](#vertical) is set to **true**:<br>1. The value of **bottom** is greater than 0.<br> 2. The value of **bottom** is **undefined**.<br> 3. **isSidebarMiddle** is set to **false**.|
 
 ### start<sup>12+</sup>
 
@@ -1054,6 +1069,30 @@ In a separate navigation indicator controller, this attribute has effect only wh
 | Name         | Type  | Mandatory| Description                                                        |
 | --------------- | ------ | ---- | ------------------------------------------------------------ |
 | maxDisplayCount | number | Yes  | Maximum number of navigation dots in the dot-style navigation indicator. If the actual number of navigation dots exceeds this limit, the overflow effect is activated, as shown in Example 5.<br>This parameter has no default value. If an invalid value is set, no overflow effect is applied.<br>Value range: 6–9<br>**NOTE**<br>In scenarios involving overflow display:<br>1. Interactive features, such as gestures and mouse operations, are not supported.<br>2. The position of the selected navigation dot corresponding to the middle page is not strictly fixed; it depends on the sequence of previous page-turning operations.<br>3. Currently, only scenarios with **displayCount** set to **1** are supported.|
+
+**Return value**
+
+| Type                           | Description        |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | Dot-style navigation indicator.|
+
+### space<sup>18+</sup>
+
+space(space: LengthMetrics): DotIndicator
+
+Sets the spacing between the dots in a dot-style navigation indicator for the **Swiper** component. Note that percentage values are not supported.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                                                        |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| space  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | Yes  | Spacing between the dots in the dot-style navigation indicator. Percentage values are not supported.<br>Default value: **8**<br>Unit: vp|
 
 **Return value**
 
@@ -1590,7 +1629,7 @@ Implements the proxy object returned during the execution of the custom switchin
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | --- | ---- | --- |
@@ -1625,18 +1664,18 @@ This example demonstrates how to use the **changeIndex** API with **SwiperAnimat
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -1649,15 +1688,15 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list: number[] = []
+    let list: number[] = [];
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -1679,7 +1718,9 @@ struct SwiperExample {
       .loop(true)
       .indicatorInteractive(true)
       .duration(1000)
-      .itemSpace(0)
+      .itemSpace(5)
+      .prevMargin(35)
+      .nextMargin(35)
       .indicator( // Set the style of the navigation indicator.
         new DotIndicator()
           .itemWidth(15)
@@ -1698,46 +1739,46 @@ struct SwiperExample {
       }, false)
       .curve(Curve.Linear)
       .onChange((index: number) => {
-        console.info(index.toString())
+        console.info(index.toString());
       })
       .onGestureSwipe((index: number, extraInfo: SwiperAnimationEvent) => {
-        console.info("index: " + index)
-        console.info("current offset: " + extraInfo.currentOffset)
+        console.info("index: " + index);
+        console.info("current offset: " + extraInfo.currentOffset);
       })
       .onAnimationStart((index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => {
-        console.info("index: " + index)
-        console.info("targetIndex: " + targetIndex)
-        console.info("current offset: " + extraInfo.currentOffset)
-        console.info("target offset: " + extraInfo.targetOffset)
-        console.info("velocity: " + extraInfo.velocity)
+        console.info("index: " + index);
+        console.info("targetIndex: " + targetIndex);
+        console.info("current offset: " + extraInfo.currentOffset);
+        console.info("target offset: " + extraInfo.targetOffset);
+        console.info("velocity: " + extraInfo.velocity);
       })
       .onAnimationEnd((index: number, extraInfo: SwiperAnimationEvent) => {
-        console.info("index: " + index)
-        console.info("current offset: " + extraInfo.currentOffset)
+        console.info("index: " + index);
+        console.info("current offset: " + extraInfo.currentOffset);
       })
 
       Row({ space: 12 }) {
-        Button('showNext')
-          .onClick(() => {
-            this.swiperController.showNext()
-          })
         Button('showPrevious')
           .onClick(() => {
-            this.swiperController.showPrevious()
+            this.swiperController.showPrevious();
+          })
+        Button('showNext')
+          .onClick(() => {
+            this.swiperController.showNext();
           })
       }.margin(5)
       Row({ space: 5 }) {
         Button('FAST 0')
           .onClick(() => {
-            this.swiperController.changeIndex(0, SwiperAnimationMode.FAST_ANIMATION)
+            this.swiperController.changeIndex(0, SwiperAnimationMode.FAST_ANIMATION);
           })
         Button('FAST 3')
           .onClick(() => {
-            this.swiperController.changeIndex(3, SwiperAnimationMode.FAST_ANIMATION)
+            this.swiperController.changeIndex(3, SwiperAnimationMode.FAST_ANIMATION);
           })
         Button('FAST ' + 9)
           .onClick(() => {
-            this.swiperController.changeIndex(9, SwiperAnimationMode.FAST_ANIMATION)
+            this.swiperController.changeIndex(9, SwiperAnimationMode.FAST_ANIMATION);
           })
       }.margin(5)
     }.width('100%')
@@ -1755,18 +1796,18 @@ This example showcases how to implement a digit indicator using the **DigitIndic
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -1779,15 +1820,15 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list: number[] = []
+    let list: number[] = [];
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -1820,11 +1861,11 @@ struct SwiperExample {
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {
-            this.swiperController.showNext()
+            this.swiperController.showNext();
           })
         Button('showPrevious')
           .onClick(() => {
-            this.swiperController.showPrevious()
+            this.swiperController.showPrevious();
           })
       }.margin(5)
     }.width('100%')
@@ -1841,18 +1882,18 @@ This example illustrates the group page-turning effect using the **displayCount*
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -1865,15 +1906,15 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list: number[] = []
+    let list: number[] = [];
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -1906,11 +1947,11 @@ struct SwiperExample {
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {
-            this.swiperController.showNext()
+            this.swiperController.showNext();
           })
         Button('showPrevious')
           .onClick(() => {
-            this.swiperController.showPrevious()
+            this.swiperController.showPrevious();
           })
       }.margin(5)
     }.width('100%')
@@ -1924,26 +1965,28 @@ struct SwiperExample {
 
 This example presents how to implement a custom page turning animation for the **Swiper** component through the **customContentTransition** API.
 
+<!--code_no_check-->
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct SwiperCustomAnimationExample {
-  private DISPLAY_COUNT: number = 2
-  private MIN_SCALE: number = 0.75
+  private DISPLAY_COUNT: number = 2;
+  private MIN_SCALE: number = 0.75;
 
-  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange]
-  @State opacityList: number[] = []
-  @State scaleList: number[] = []
-  @State translateList: number[] = []
-  @State zIndexList: number[] = []
+  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange];
+  @State opacityList: number[] = [];
+  @State scaleList: number[] = [];
+  @State translateList: number[] = [];
+  @State zIndexList: number[] = [];
 
   aboutToAppear(): void {
     for (let i = 0; i < this.backgroundColors.length; i++) {
-      this.opacityList.push(1.0)
-      this.scaleList.push(1.0)
-      this.translateList.push(0.0)
-      this.zIndexList.push(0)
+      this.opacityList.push(1.0);
+      this.scaleList.push(1.0);
+      this.translateList.push(0.0);
+      this.zIndexList.push(0);
     }
   }
 
@@ -1968,22 +2011,25 @@ struct SwiperCustomAnimationExample {
         timeout: 1000,
         // Called on a frame-by-frame basis for all pages in the viewport. You can change the values of attributes such as opacity, scale, translate, and zIndex in the callback to implement a custom animation.
         transition: (proxy: SwiperContentTransitionProxy) => {
-          if (proxy.position <= proxy.index % this.DISPLAY_COUNT || proxy.position >= this.DISPLAY_COUNT + proxy.index % this.DISPLAY_COUNT) {
-            // Reset the attribute values when a page in the same group is swiped left or is swiped right to be completely out of the viewport.
-            this.opacityList[proxy.index] = 1.0
-            this.scaleList[proxy.index] = 1.0
-            this.translateList[proxy.index] = 0.0
-            this.zIndexList[proxy.index] = 0
-          } else {
-            // When a page in the same group is swiped right but is still within the viewport, the attribute values of the left and right pages in the same group are changed frame by frame based on the position. The changes implement the custom switching animation in which the two pages move close to the middle of the <Swiper> and are transparently scaled in or out.
-            if (proxy.index % this.DISPLAY_COUNT === 0) {
-              this.opacityList[proxy.index] = 1 - proxy.position / this.DISPLAY_COUNT
-              this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - proxy.position / this.DISPLAY_COUNT)
-              this.translateList[proxy.index] = - proxy.position * proxy.mainAxisLength + (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0
+          if (!CommonUtil.getIsRTL()) {
+            if (proxy.position <= proxy.index % this.DISPLAY_COUNT || proxy.position >= this.DISPLAY_COUNT + proxy.index % this.DISPLAY_COUNT) {
+              // Reset the attribute values when a page in the same group is swiped left or is swiped right to be completely out of the viewport.
+              this.opacityList[proxy.index] = 1.0;
+              this.scaleList[proxy.index] = 1.0;
+              this.translateList[proxy.index] = 0.0;
+              this.zIndexList[proxy.index] = 0;
             } else {
-              this.opacityList[proxy.index] = 1 - (proxy.position - 1) / this.DISPLAY_COUNT
-              this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - (proxy.position - 1) / this.DISPLAY_COUNT)
-              this.translateList[proxy.index] = - (proxy.position - 1) * proxy.mainAxisLength - (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0
+              // When a page in the same group is swiped right but is still within the viewport, the attribute values of the left and right pages in the same group are changed frame by frame based on the position. The changes implement the custom switching animation in which the two pages move close to the middle of the Swiper and are transparently scaled in or out.
+              if (proxy.index % this.DISPLAY_COUNT === 0) {
+                this.opacityList[proxy.index] = 1 - proxy.position / this.DISPLAY_COUNT;
+                this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - proxy.position / this.DISPLAY_COUNT);
+                this.translateList[proxy.index] = -proxy.position * proxy.mainAxisLength + (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0;
+              } else {
+                this.opacityList[proxy.index] = 1 - (proxy.position - 1) / this.DISPLAY_COUNT;
+                this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - (proxy.position - 1) / this.DISPLAY_COUNT);
+                this.translateList[proxy.index] = -(proxy.position - 1) * proxy.mainAxisLength - (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0;
+              }
+              this.zIndexList[proxy.index] = -1;
             }
             this.zIndexList[proxy.index] = -1
           }
@@ -2005,18 +2051,18 @@ This example illustrates the activation of the overflow effect when the number o
 
 ```ts
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -2029,15 +2075,15 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct Index {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list: number[] = []
+    let list: number[] = [];
     for (let i = 1; i <= 15; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -2080,11 +2126,11 @@ struct Index {
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {
-            this.swiperController.showNext()
+            this.swiperController.showNext();
           })
         Button('showPrevious')
           .onClick(() => {
-            this.swiperController.showPrevious()
+            this.swiperController.showPrevious();
           })
       }.margin(5)
     }.width('100%')
@@ -2101,14 +2147,14 @@ This example shows how to use the **preloadItems** API to preload specified chil
 
 ```ts
 // xxx.ets
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct SwiperPreloadItems {
-  @State currentIndex: number = 1
-  private swiperController: SwiperController = new SwiperController()
-  @State arr: string[] = ["0", "1", "2", "3", "4", "5"]
+  @State currentIndex: number = 1;
+  private swiperController: SwiperController = new SwiperController();
+  @State arr: string[] = ["0", "1", "2", "3", "4", "5"];
 
   build() {
     Column() {
@@ -2129,13 +2175,13 @@ struct SwiperPreloadItems {
           try {
             this.swiperController.preloadItems([2, 3])
               .then(() => {
-                console.info('preloadItems [2, 3] success.')
+                console.info('preloadItems [2, 3] success.');
               })
               .catch((error: BusinessError) => {
-                console.error('preloadItems [2, 3] failed, error code: ' + error.code + ', error message: ' + error.message)
+                console.error('preloadItems [2, 3] failed, error code: ' + error.code + ', error message: ' + error.message);
               })
           } catch (error) {
-            console.error('preloadItems [2, 3] failed, error code: ' + error.code + ', error message: ' + error.message)
+            console.error('preloadItems [2, 3] failed, error code: ' + error.code + ', error message: ' + error.message);
           }
 
         })
@@ -2147,14 +2193,14 @@ struct SwiperPreloadItems {
 
 @Component
 struct MyComponent {
-  private txt: string = ""
+  private txt: string = "";
 
   aboutToAppear(): void {
-    console.info('aboutToAppear txt:' + this.txt)
+    console.info('aboutToAppear txt:' + this.txt);
   }
 
   aboutToDisappear(): void {
-    console.info('aboutToDisappear txt:' + this.txt)
+    console.info('aboutToDisappear txt:' + this.txt);
   }
 
   build() {
@@ -2174,18 +2220,18 @@ This example shows how to implement synchronized switching between the **Tabs** 
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -2198,19 +2244,19 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct TabsSwiperExample {
-  @State fontColor: string = '#182431'
-  @State selectedFontColor: string = '#007DFF'
-  @State currentIndex: number = 0
-  private list: number[] = []
-  private tabsController: TabsController = new TabsController()
-  private swiperController: SwiperController = new SwiperController()
-  private swiperData: MyDataSource = new MyDataSource([])
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  @State currentIndex: number = 0;
+  private list: number[] = [];
+  private tabsController: TabsController = new TabsController();
+  private swiperController: SwiperController = new SwiperController();
+  private swiperData: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
     for (let i = 0; i <= 9; i++) {
       this.list.push(i);
     }
-    this.swiperData = new MyDataSource(this.list)
+    this.swiperData = new MyDataSource(this.list);
   }
 
   @Builder tabBuilder(index: number, name: string) {
@@ -2236,8 +2282,8 @@ struct TabsSwiperExample {
         })
       }
       .onTabBarClick((index: number) => {
-        this.currentIndex = index
-        this.swiperController.changeIndex(index, true)
+        this.currentIndex = index;
+        this.swiperController.changeIndex(index, true);
       })
       .barMode(BarMode.Scrollable)
       .backgroundColor('#F1F3F5')
@@ -2248,10 +2294,10 @@ struct TabsSwiperExample {
         LazyForEach(this.swiperData, (item: string) => {
           Text(item.toString())
             .onAppear(()=>{
-              console.info('onAppear ' + item.toString())
+              console.info('onAppear ' + item.toString());
             })
             .onDisAppear(()=>{
-              console.info('onDisAppear ' + item.toString())
+              console.info('onDisAppear ' + item.toString());
             })
             .width('100%')
             .height('40%')
@@ -2262,9 +2308,9 @@ struct TabsSwiperExample {
       }
       .loop(false)
       .onSelected((index: number) => {
-        console.info("onSelected:" + index)
+        console.info("onSelected:" + index);
         this.currentIndex = index;
-        this.tabsController.changeIndex(index)
+        this.tabsController.changeIndex(index);
       })
     }
   }
@@ -2278,6 +2324,91 @@ This example demonstrates how to use the **onContentWillScroll** event to allow 
 
 ```ts
 // xxx.ets
+class MyDataSource implements IDataSource {
+  private list: number[] = [];
+
+  constructor(list: number[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): number {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener() {
+  }
+}
+
+@Entry
+@Component
+struct SwiperExample {
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource = new MyDataSource([]);
+  private currentIndex: number = 4;
+
+  aboutToAppear(): void {
+    let list: number[] = [];
+    for (let i = 1; i <= 10; i++) {
+      list.push(i);
+    }
+    this.data = new MyDataSource(list);
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Swiper(this.swiperController) {
+        LazyForEach(this.data, (item: string) => {
+          Text(item.toString())
+            .width('90%')
+            .height(160)
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, (item: string) => item)
+      }
+      .index(this.currentIndex)
+      .loop(false)
+      .onChange((index: number) => {
+        this.currentIndex = index;
+      })
+      .onContentWillScroll((result: SwiperContentWillScrollResult) => {
+        if (result.comingIndex > this.currentIndex) {
+          return false;
+        }
+        return true;
+      })
+
+      Row({ space: 12 }) {
+        Button('showNext')
+          .onClick(() => {
+            this.swiperController.showNext();
+          })
+        Button('showPrevious')
+          .onClick(() => {
+            this.swiperController.showPrevious();
+          })
+      }.margin(5)
+    }.width('100%')
+    .margin({ top: 5 })
+  }
+}
+```
+
+### Example 9: Using the space and bottom APIs on the Navigation Indicator
+
+This example demonstrates how to use the **bottom** and **space** APIs to set the spacing between the dots in a dot-style navigation indicator and the bottom margin of the **Swiper** component.
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI'
+
+// MyDataSource.ets
 class MyDataSource implements IDataSource {
   private list: number[] = []
 
@@ -2300,57 +2431,75 @@ class MyDataSource implements IDataSource {
   }
 }
 
+// SwiperExample.ets
 @Entry
 @Component
 struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
-  private currentIndex: number = 4
+
+  @State space: LengthMetrics = LengthMetrics.vp(0)
+  @State spacePool: LengthMetrics[] = [LengthMetrics.vp(0), LengthMetrics.px(3), LengthMetrics.vp(10)]
+  @State spaceIndex: number = 0
+
+  @State ignoreSize: boolean = false
+  @State ignoreSizePool: boolean[] = [false, true]
+  @State ignoreSizeIndex: number = 0
+
+  private swiperController1: SwiperController = new SwiperController()
+  private data1: MyDataSource = new MyDataSource([])
 
   aboutToAppear(): void {
-    let list: number[] = []
+    let list1: number[] = []
     for (let i = 1; i <= 10; i++) {
-      list.push(i);
+      list1.push(i);
     }
-    this.data = new MyDataSource(list)
+    this.data1 = new MyDataSource(list1)
   }
 
   build() {
-    Column({ space: 5 }) {
-      Swiper(this.swiperController) {
-        LazyForEach(this.data, (item: string) => {
-          Text(item.toString())
-            .width('90%')
-            .height(160)
-            .backgroundColor(0xAFEEEE)
-            .textAlign(TextAlign.Center)
-            .fontSize(30)
-        }, (item: string) => item)
-      }
-      .index(this.currentIndex)
-      .loop(false)
-      .onChange((index: number) => {
-        this.currentIndex = index
-      })
-      .onContentWillScroll((result: SwiperContentWillScrollResult) => {
-        if (result.comingIndex > this.currentIndex) {
-          return false;
+    Scroll() {
+      Column({ space: 20 }) {
+        Swiper(this.swiperController1) {
+          LazyForEach(this.data1, (item: string) => {
+            Text(item.toString())
+              .width('90%')
+              .height(120)
+              .backgroundColor(0xAFEEEE)
+              .textAlign(TextAlign.Center)
+              .fontSize(30)
+          }, (item: string) => item)
         }
-        return true;
-      })
+        .indicator(new DotIndicator()
+          .space(this.space)
+          .bottom(LengthMetrics.vp(0), this.ignoreSize)
+          .itemWidth(15)
+          .itemHeight(15)
+          .selectedItemWidth(15)
+          .selectedItemHeight(15)
+          .color(Color.Gray)
+          .selectedColor(Color.Blue))
+        .displayArrow({
+          showBackground: true,
+          isSidebarMiddle: true,
+          backgroundSize: 24,
+          backgroundColor: Color.White,
+          arrowSize: 18,
+          arrowColor: Color.Blue
+        }, false)
+        
+        Column({ space: 4 }) {
+          Button('spaceIndex:' + this.spaceIndex).onClick(() => {
+            this.spaceIndex = (this.spaceIndex + 1) % this.spacePool.length;
+            this.space = this.spacePool[this.spaceIndex];
+          }).margin(10)
 
-      Row({ space: 12 }) {
-        Button('showNext')
-          .onClick(() => {
-            this.swiperController.showNext()
-          })
-        Button('showPrevious')
-          .onClick(() => {
-            this.swiperController.showPrevious()
-          })
-      }.margin(5)
-    }.width('100%')
-    .margin({ top: 5 })
+          Button('ignoreSizeIndex:' + this.ignoreSizeIndex).onClick(() => {
+            this.ignoreSizeIndex = (this.ignoreSizeIndex + 1) % this.ignoreSizePool.length;
+            this.ignoreSize = this.ignoreSizePool[this.ignoreSizeIndex];
+          }).margin(10)
+        }.margin(2)
+      }.width('100%')
+    }
   }
 }
 ```
+![swiper](figures/indicator_space.gif)

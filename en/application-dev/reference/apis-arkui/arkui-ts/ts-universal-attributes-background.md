@@ -8,7 +8,7 @@ You can set the background for a component.
 
 ## background<sup>10+</sup>
 
-background(builder: CustomBuilder, options?: { align?: Alignment })
+background(builder: CustomBuilder, options?: { align?: Alignment }): T
 
 Sets the background color of the component.
 
@@ -23,13 +23,19 @@ Sets the background color of the component.
 | builder | [CustomBuilder](ts-types.md#custombuilder8)          | Yes  | Custom background.                                                |
 | options | {align?:[Alignment](ts-appendix-enums.md#alignment)} | No  | Alignment mode between the custom background and the component.<br>If **background**, **backgroundColor**, and **backgroundImage** are set at the same time, they will all take effect, with **background** at the top layer.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
 >  **NOTE**
 >
 >  The custom background takes some time to render, during which it cannot respond to events, or be dynamically updated. This attribute cannot be nested or be previewed in DevEco Studio Previewer.
 
 ## backgroundColor
 
-backgroundColor(value: ResourceColor)
+backgroundColor(value: ResourceColor): T
 
 Sets the background color of the component.
 
@@ -45,9 +51,15 @@ Sets the background color of the component.
 | ------ | ------------------------------------------ | ---- | ------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the component.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
 ## backgroundColor<sup>18+</sup>
 
-backgroundColor(color: Optional\<ResourceColor>)
+backgroundColor(color: Optional\<ResourceColor>): T
 
 Sets the background color of the component. Compared to [backgroundColor](#backgroundcolor), this API supports the **undefined** type for the **color** parameter.
 
@@ -63,13 +75,19 @@ Sets the background color of the component. Compared to [backgroundColor](#backg
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | color  | Optional\<[ResourceColor](ts-types.md#resourcecolor)> | Yes  | Background color of the component.<br>If **color** is **undefined**, the background color reverts to the default transparent color.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
 >  **NOTE**
 >
 >  If the background color is specified through **inactiveColor** in [backgroundBlurStyle](#backgroundblurstyle9), avoid setting the background color again using **backgroundColor**.
 
 ## backgroundImage
 
-backgroundImage(src: ResourceStr | PixelMap, repeat?: ImageRepeat)
+backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, repeat?: ImageRepeat): T
 
 Sets the background image of the component.
 
@@ -86,9 +104,15 @@ Sets the background image of the component.
 | src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap<sup>12+</sup>](../../apis-image-kit/js-apis-image.md#pixelmap7)          | Yes  | Image address, which can be the address of an online or local image, a Base64 encoded string, or a pixel map. SVG images are not supported.|
 | repeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | No  | Whether the background image is repeated. By default, the background image is not repeated. If the set image has a transparent background and **backgroundColor** is set, the image is overlaid on the background color.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
 ## backgroundImage<sup>18+</sup>
 
-backgroundImage(src: ResourceStr | PixelMap, options?: BackgroundImageOptions)
+backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, options?: BackgroundImageOptions): T
 
 Sets the background image of the component. Compared to [backgroundImage](#backgroundimage), this API supports the **BackgroundImageOptions** type, but not the **ImageRepeat** type.
 
@@ -105,9 +129,15 @@ Sets the background image of the component. Compared to [backgroundImage](#backg
 | src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)          | Yes  | Image address, which can be the address of an online or local image, a Base64 encoded string, or a pixel map. SVG images are not supported.|
 | options | [BackgroundImageOptions](ts-universal-attributes-image-effect.md#backgroundimageoptions18) | No  | Background image loading mode.<br> **NOTE**<br>By default, the image is loaded asynchronously.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
 ## backgroundImageSize
 
-backgroundImageSize(value: SizeOptions | ImageSize)
+backgroundImageSize(value: SizeOptions | ImageSize): T
 
 Sets the width and height of the component background image.
 
@@ -122,6 +152,12 @@ Sets the width and height of the component background image.
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [SizeOptions](ts-universal-attributes-size.md#sizeoptions) \| [ImageSize](ts-appendix-enums.md#imagesize) | Yes  | Width and height of the background image. If the input is a **{width: Length, height: Length}** object and only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged.<br>The value range of **width** and **height** is [0, +∞).<br>Default value: **ImageSize.Auto**<br>**NOTE**<br>If both **width** and **height** are set to values less than or equal to 0, they are treated as 0. If either **width** or **height** is unset or set to a value less than or equal to 0, the other one is adjusted based on the original aspect ratio of the image.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## backgroundImagePosition
 
@@ -140,6 +176,12 @@ Sets the position of the component background image.
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [Position](ts-types.md#position) \| [Alignment](ts-appendix-enums.md#alignment) | Yes  | Position of the background image in the component, that is, the coordinates relative to the upper left corner of the component.<br>Default value:<br>{<br>x: 0,<br>y: 0<br>} <br> When **x** and **y** are set in percentage, the offset is calculated based on the width and height of the component.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## BlurStyle<sup>9+</sup>
 
@@ -163,13 +205,13 @@ Sets the position of the component background image.
 | COMPONENT_THICK<sup>11+</sup> | Component thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | COMPONENT_ULTRA_THICK<sup>11+</sup> | Component ultra-thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
-## SystemAdaptiveOptions<sup>18+</sup>
+## SystemAdaptiveOptions<sup>19+</sup>
 
 Defines the system adaptive adjustment options.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+**Widget capability**: This API can be used in ArkTS widgets since API version 19.
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -196,6 +238,12 @@ Defines the blur style to apply between the background and content of a componen
 | value                 | [BlurStyle](#blurstyle9)                                     | Yes  | Settings of the background blur style, including the blur radius, mask color, mask opacity, saturation, and brightness.|
 | options<sup>10+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10)| No  | Background blur options.                                              |
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
 ## backgroundBlurStyle<sup>18+</sup>
 
 backgroundBlurStyle(style: Optional\<BlurStyle>, options?: BackgroundBlurStyleOptions, sysOptions?: SystemAdaptiveOptions)
@@ -214,7 +262,7 @@ Defines the blur style to apply between the background and content of a componen
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | style                 | Optional\<[BlurStyle](#blurstyle9)>                          | Yes  | Settings of the background blur style, including the blur radius, mask color, mask opacity, saturation, and brightness.<br>If **style** is **undefined**, the background blur reverts to its default state (that is, no blur).|
 | options<sup>16+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10)| No  | Background blur options.                                              |
-| sysOptions<sup>18+</sup>   |  [SystemAdaptiveOptions](#systemadaptiveoptions18)    |   No  |  System adaptive adjustment options.<br>Default value: **{ disableSystemAdaptation: false }**   |
+| sysOptions<sup>18+</sup>   |  [SystemAdaptiveOptions](#systemadaptiveoptions19)    |   No  |  System adaptive adjustment options.<br>Default value: **{ disableSystemAdaptation: false }**   |
 
 >  **NOTE**
 >
@@ -222,7 +270,7 @@ Defines the blur style to apply between the background and content of a componen
 
 ## backdropBlur
 
-backdropBlur(value: number, options?: BlurOptions)
+backdropBlur(value: number, options?: BlurOptions): T
 
 Applies a background blur effect to the component. You can customize the blur radius and grayscale parameters.
 
@@ -239,15 +287,21 @@ Applies a background blur effect to the component. You can customize the blur ra
 | value                 | number                                                       | Yes  | Background blur effect to apply to the component. The input parameter is the blur radius. The larger the radius is, the more blurred the background is. If the value is **0**, the background is not blurred.|
 | options<sup>11+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | No  | Grayscale parameters.                                                |
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
 ## backdropBlur<sup>18+</sup>
 
-backdropBlur(radius: Optional\<number>, options?: BlurOptions, sysOptions?: SystemAdaptiveOptions)
+backdropBlur(radius: Optional\<number>, options?: BlurOptions, sysOptions?: SystemAdaptiveOptions): T
 
 Applies a background blur effect to the component. You can customize the blur radius and grayscale parameters. Compared to [backdropBlur](#backdropblur), this API supports the **undefined** type for the **radius** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -257,7 +311,13 @@ Applies a background blur effect to the component. You can customize the blur ra
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | radius                | Optional\<number>                                            | Yes  | Background blur effect to apply to the component. The input parameter is the blur radius. The larger the radius is, the more blurred the background is. If the value is **0**, the background is not blurred.<br>If **radius** is **undefined**, the background blur reverts to its default state (that is, no blur).|
 | options<sup>16+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | No  | Grayscale parameters.                                                |
-| sysOptions<sup>18+</sup>   |  [SystemAdaptiveOptions](#systemadaptiveoptions18)    |   No  |  System adaptive adjustment options.<br>Default value: **{ disableSystemAdaptation: false }**   |
+| sysOptions<sup>18+</sup>   |  [SystemAdaptiveOptions](#systemadaptiveoptions19)    |   No  |  System adaptive adjustment options.<br>Default value: **{ disableSystemAdaptation: false }**   |
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 >  **NOTE**
 >
@@ -265,7 +325,7 @@ Applies a background blur effect to the component. You can customize the blur ra
 
 ## backgroundEffect<sup>11+</sup> 
 
-backgroundEffect(options: BackgroundEffectOptions)
+backgroundEffect(options: BackgroundEffectOptions): T
 
 Sets the background effect of the component, including the blur radius, brightness, saturation, and color.
 
@@ -278,6 +338,12 @@ Sets the background effect of the component, including the blur radius, brightne
 | Name | Type                                                 | Mandatory| Description                                      |
 | ------- | ----------------------------------------------------- | ---- | ------------------------------------------ |
 | options | [BackgroundEffectOptions](#backgroundeffectoptions11) | Yes  | Background effect, including saturation, brightness, and color.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## backgroundEffect<sup>18+</sup> 
 
@@ -294,7 +360,7 @@ Sets the background effect of the component, including the blur radius, brightne
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | options | Optional\<[BackgroundEffectOptions](#backgroundeffectoptions11)> | Yes  | Background effect, including saturation, brightness, and color.<br>If **options** is **undefined**, the background reverts to its default state with no effect.|
-| sysOptions<sup>18+</sup>   |  [SystemAdaptiveOptions](#systemadaptiveoptions18)    |   No  |  System adaptive adjustment options.<br>Default value: **{ disableSystemAdaptation: false }**   |
+| sysOptions<sup>18+</sup>   |  [SystemAdaptiveOptions](#systemadaptiveoptions19)    |   No  |  System adaptive adjustment options.<br>Default value: **{ disableSystemAdaptation: false }**   |
 
 ## BackgroundEffectOptions<sup>11+</sup>
 Describes the background effect.
