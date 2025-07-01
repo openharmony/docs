@@ -263,6 +263,78 @@ RichEditor(this.options)
 
 ![max Length](figures/RichEditor_maxLength.gif)
 
+### 设置装饰线
+- 通过[decoration](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md#decoration)设置富文本文本装饰线的样式、颜色和粗细。
+
+  ```ts
+  private controller: RichEditorController = new RichEditorController();
+  RichEditor({ controller: this.controller })
+    .onReady(() => {
+      this.controller.addTextSpan('一段预置的文本', {
+        style: {
+          fontSize: 25,
+          decoration: {
+            type: TextDecorationType.LineThrough,
+            color:Color.Blue,
+            // 设置装饰线粗细比例为6
+            thicknessScale: 6
+          }
+        }
+      })
+    })
+  ```
+
+  ![RichEditor_decoration](figures/RichEditor_decoration.jpg)
+
+- 从API version 20开始，支持开启多装饰线，比如同时设置下划线，中划线。
+
+  ```ts
+  RichEditor({ controller: this.styledStringController })
+  Button('多装饰线文本')
+    .fontSize(20)
+    .onClick(() => {
+      let mutString: MutableStyledString = new MutableStyledString('设置富文本多装饰线', [
+        {
+          start: 0,
+          length: 9,
+          styledKey: StyledStringKey.FONT,
+          styledValue: new TextStyle({ fontSize: LengthMetrics.vp(25) })
+        },
+        {
+          start: 0,
+          length: 5,
+          styledKey: StyledStringKey.DECORATION,
+          styledValue: new DecorationStyle(
+            {
+              type: TextDecorationType.Underline,
+            },
+            {
+              // 开启多装饰线
+              enableMultiType: true
+            }
+          )
+        },
+        {
+          start: 2,
+          length: 4,
+          styledKey: StyledStringKey.DECORATION,
+          styledValue: new DecorationStyle(
+           {
+              type: TextDecorationType.LineThrough,
+            },
+            {
+              // 开启多装饰线
+              enableMultiType: true
+            }
+          )
+        },
+      ])
+      this.styledStringController.setStyledString(mutString);
+    })
+  ```
+
+  ![RichEditor_decoration_multi_type](figures/RichEditor_decoration_multi_type.jpg)
+
 ### 默认选中菜单
 富文本中的文字被选中时会弹出包含剪切、复制、翻译、分享的菜单。
 

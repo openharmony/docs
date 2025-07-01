@@ -56,8 +56,8 @@
   @Component
   struct styled_string_demo2 {
     textStyleAttrs: TextStyle =
-      new TextStyle({ fontWeight: FontWeight.Bolder, fontSize: LengthMetrics.vp(24), fontStyle: FontStyle.Italic });
-    mutableStyledString: MutableStyledString = new MutableStyledString("运动35分钟 目标达成", [
+      new TextStyle({ fontWeight: FontWeight.Bolder, fontSize: LengthMetrics.vp(24), fontStyle: FontStyle.Italic, strokeWidth: LengthMetrics.px(5), strokeColor: Color.Green });
+    mutableStyledString: MutableStyledString = new MutableStyledString("运动45分钟 目标达成", [
       {
         start: 2,
         length: 2,
@@ -68,7 +68,8 @@
         start: 7,
         length: 4,
         styledKey: StyledStringKey.FONT,
-        styledValue: new TextStyle({ fontColor: Color.Orange, fontSize: LengthMetrics.vp(12) })
+        styledValue: new TextStyle({ fontColor: Color.Orange, fontSize: LengthMetrics.vp(12),
+        superscript: SuperscriptStyle.SUPERSCRIPT })
       }
     ]);
     controller: TextController = new TextController();
@@ -139,8 +140,21 @@
         start: 0,
         length: 3,
         styledKey: StyledStringKey.DECORATION,
-        styledValue: new DecorationStyle({ type: TextDecorationType.LineThrough, color: Color.Red })
-      }
+        styledValue: new DecorationStyle({ type: TextDecorationType.LineThrough, color: Color.Red, thicknessScale: 3 })
+      },
+      {
+        start: 4,
+        length: 2,
+        styledKey: StyledStringKey.DECORATION,
+        styledValue: new DecorationStyle(
+          {
+            type: TextDecorationType.LineThrough,
+          },
+          {
+            enableMultiType: true
+          }
+        )
+      },
     ]);
     controller: TextController = new TextController();
 
@@ -157,7 +171,7 @@
     }
   }
   ```
-  ![StyledString_Decoration](figures/styled_string_decoration.png)
+  ![StyledString_Decoration](figures/styled_string_decoration.jpg)
 
 - 创建及应用文本基线偏移量对象（BaselineOffsetStyle）
 
@@ -617,9 +631,9 @@
 
 ## 格式转换
 
-可以通过[toHtml](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#tohtml14)、[fromHtml](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#fromhtml)接口实现属性字符串与HTML格式字符串的相关转换，当前支持转换的HTML标签范围：\<p>、\<span>、\<img>。
+可以通过[toHtml](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#tohtml14)、[fromHtml](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#fromhtml)接口实现属性字符串与HTML格式字符串的相关转换，当前支持转换的HTML标签范围：\<p>、\<span>、\<img>、\<br>、\<strong>、\<b>、\<a>、\<i>、\<em>、\<s>、\<u>、\<del>、\<sup>、\<sub>。
 
-以下示例展示了如何将属性字符串转换成HTML格式，并展示了如何从HTML格式转换回属性字符串。
+- 以下示例展示了如何将属性字符串转换成HTML格式，并展示了如何从HTML格式转换回属性字符串。
 ```ts
 // xxx.ets
 import { image } from '@kit.ImageKit';
@@ -693,6 +707,71 @@ struct styled_string_demo8 {
 
 ![](figures/styled_string_html.gif)
 
+- 将HTML中\<strong>、\<b>、\<a>、\<i>、\<em>、\<s>、\<u>、\<del>、\<sup>、\<sub>标签及其style属性中的background-color转换为属性字符串并转回HTML。
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct HtmlSpanStringDemo {
+    @State html: string =
+      "<p>This is <b>b</b> <strong>strong</strong> <em>em</em> <i>i</i> <u>u</u> <del>del</del> <s>s</s> <span style =   \"foreground-color:blue\"> <a href='https://www.example.com'>www.example</a> </span> <span   style=\"background-color: red;\">red span</span> <sup>superscript</sup> and <sub>subscript</sub></p>";
+    @State spanString: StyledString | undefined = undefined;
+    @State resultText: string = ""; // 保存结果文本的状态
+    controller: TextController = new TextController;
+  
+    build() {
+      Column() {
+        // 显示转换后的spanString
+        Text(undefined, { controller: this.controller }).height(100)
+  
+        // TextArea显示每个步骤的结果
+        TextArea({ text: this.html })
+          .width("100%")
+          .height(100)
+          .margin(5)
+  
+        // 按钮1:将HTML转换为SpanString
+        Button("Converted HTML to SpanString").onClick(async () => {
+          this.spanString = await StyledString.fromHtml(this.html);
+          this.controller.setStyledString(this.spanString);
+          this.resultText = "Converted HTML to SpanString successfully.";
+        }).margin(5)
+  
+        // 按钮2:将SpanString转换为HTML
+        Button("Converted SpanString to HTML").onClick(() => {
+          if (this.spanString) {
+            // 将spanString转换为HTML并替换当前的HTML状态
+            const newHtml = StyledString.toHtml(this.spanString);
+            if (newHtml !== this.html) { // 通过检查内容是否已经相同来防止重复
+              this.html = newHtml;
+            }
+            this.resultText = "Converted SpanString to HTML successfully.";
+          } else {
+            this.resultText = "SpanString is undefined.";
+          }
+        }).margin(5)
+  
+        // 按钮3:将HTML转换回SpanString
+        Button("Converted HTML back to SpanString").onClick(async () => {
+          this.spanString = await StyledString.fromHtml(this.html);
+          this.controller.setStyledString(this.spanString);
+          this.resultText = "Converted HTML back to SpanString successfully.";
+        }).margin(5)
+  
+        // 重置：重置HTML和SpanString
+        Button("Reset").onClick(() => {
+          this.html =
+            "<p>This is <b>b</b> <strong>strong</strong> <em>em</em> <i>i</i> <u>u</u> <del>del</del> <s>s</s> <span   style = \"foreground-color:blue\"> <a href='https://www.example.com'>www.example</a> </span> <span   style=\"background-color: red;\">red span</span> <sup>superscript</sup> and <sub>subscript</sub></p>";
+          this.spanString = undefined;
+          this.controller.setStyledString(new StyledString("")); // 使用空的StyledString实例
+          this.resultText = "Reset HTML and SpanString successfully.";
+        }).margin(5)
+      }.width("100%").padding(20)
+    }
+  }
+  ```
+
+  ![styled_string_html_2](figures/styled_string_html_2.gif)
 
 ## 场景示例
 
