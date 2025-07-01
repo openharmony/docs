@@ -2984,7 +2984,11 @@
       - ArkTS APIs<!--arkweb-arkts-->
         - [@ohos.web.webview (Webview)](reference/apis-arkweb/js-apis-webview.md)
           - [Class (WebviewController)](reference/apis-arkweb/js-apis-webview-WebviewController.md)
+          - [Class (GeolocationPermissions)](reference/apis-arkweb/js-apis-webview-GeolocationPermissions.md)
+          - [Class (WebCookieManager)](reference/apis-arkweb/js-apis-webview-WebCookieManager.md)
+          - [Class (WebDataBase)](reference/apis-arkweb/js-apis-webview-WebDataBase.md)
           - [Class (WebMessageExt)](reference/apis-arkweb/js-apis-webview-WebMessageExt.md)
+          - [Class (WebStorage)](reference/apis-arkweb/js-apis-webview-WebStorage.md)
           - [Interface (BackForwardList)](reference/apis-arkweb/js-apis-webview-BackForwardList.md)
           - [Interface (WebMessagePort)](reference/apis-arkweb/js-apis-webview-WebMessagePort.md)
           - [Interfaces (Others)](reference/apis-arkweb/js-apis-webview-i.md)
