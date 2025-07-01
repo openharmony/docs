@@ -601,8 +601,7 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 
 onTouchTestDone(callback: TouchTestDoneCallback): T
 
-提供在触摸测试结束后，指定手势识别器是否参与后续处理的能力。
-
+提供在[触摸测试](../../../ui/arkts-interaction-basic-principles.md#触摸测试)结束后，指定手势识别器是否参与后续处理的能力。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -612,7 +611,7 @@ onTouchTestDone(callback: TouchTestDoneCallback): T
 
 | 参数名        | 类型                    | 必填  | 说明                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | [TouchTestDoneCallback](#touchtestdonecallback20) | 是   |  回调函数，用于指定手势识别器是否参与后续处理。在触摸测试结束后，开始识别用户手势之前，会触发该回调来动态指定手势识别器是否参与手势处理。 |
+| callback      | [TouchTestDoneCallback](#touchtestdonecallback20) | 是   |  回调函数，用于指定手势识别器是否参与后续处理。在[触摸测试](../../../ui/arkts-interaction-basic-principles.md#触摸测试)结束后，开始识别用户手势之前，会触发该回调来动态指定手势识别器是否参与后续处理。 |
 
 **返回值：**
 
@@ -634,8 +633,8 @@ type TouchTestDoneCallback = (event: BaseGestureEvent, recognizers: Array\<Gestu
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| event | [BaseGestureEvent](./ts-gesture-customize-judge.md#basegestureevent对象说明) | 是   | 当前基础手势事件信息。 |
-| recognizers | Array\<[GestureRecognizer](#gesturerecognizer)\> | 是   | 触摸测试结束后，所有手势识别器对象。 |
+| event | [BaseGestureEvent](./ts-gesture-customize-judge.md#basegestureevent对象说明) | 是   | [触摸测试](../../../ui/arkts-interaction-basic-principles.md#触摸测试)结束后的基础手势事件的信息。 <br/>**说明：** <br/>仅包含BaseGestureEvent的信息，不包含其子类拓展信息。<br/>axisHorizontal和axisVertical的值为0。 |
+| recognizers | Array\<[GestureRecognizer](#gesturerecognizer)\> | 是   | [触摸测试](../../../ui/arkts-interaction-basic-principles.md#触摸测试)结束后，所有手势识别器对象。 |
 
 ## 示例
 
@@ -1248,6 +1247,7 @@ struct TouchTestDoneExample {
       .gesture(TapGesture().tag('Tap1').onAction(() => {
         this.textValue = 'Tap1';
       }))
+      // 绑定onTouchTestDone，通过调用手势识别器的preventBegin()方法来自定义手势识别器是否参与后续手势处理
       .onTouchTestDone((event, recognizers) => {
         console.info('event is ' + JSON.stringify(event));
         for (let i = 0; i < recognizers.length; i++) {
