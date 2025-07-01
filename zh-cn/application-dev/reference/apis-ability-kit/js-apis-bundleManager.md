@@ -1479,7 +1479,7 @@ type Metadata = _Metadata
 
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
-| [_Metadata](js-apis-bundleManager-metadata.md#metadata) | 元数据信息。 |
+| [_Metadata](js-apis-bundleManager-metadata.md#metadata-1) | 元数据信息。 |
 
 ## BundleInfo
 
@@ -1493,7 +1493,7 @@ type BundleInfo = _BundleInfo.BundleInfo
 
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
-| [_BundleInfo.BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo) | 应用包信息。 |
+| [_BundleInfo.BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1) | 应用包信息。 |
 
 
 ## UsedScene
