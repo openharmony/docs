@@ -3277,7 +3277,7 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup><a name="singlekvstore_getresultset"></a>
+### getResultSet<sup>8+</sup>
 
 getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
@@ -3494,7 +3494,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
-关闭由[SingleKvStore.getResultSet](#singlekvstore_getresultset)返回的KvStoreResultSet对象，使用callback异步回调。
+关闭由[SingleKvStore.getResultSet](#getresultset8)返回的KvStoreResultSet对象，使用callback异步回调。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3528,7 +3528,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
-关闭由[SingleKvStore.getResultSet](#singlekvstore_getresultset)返回的KvStoreResultSet对象，使用Promise异步回调。
+关闭由[SingleKvStore.getResultSet](#getresultset8)返回的KvStoreResultSet对象，使用Promise异步回调。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4523,7 +4523,7 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup><a name="devicekvstore_getresultset"></a>
+### getResultSet<sup>8+</sup>
 
 getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
@@ -4856,7 +4856,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
-关闭由[DeviceKVStore.getResultSet](#devicekvstore_getresultset)返回的KvStoreResultSet对象，使用callback异步回调。
+关闭由[DeviceKVStore.getResultSet](#getresultset8-4)返回的KvStoreResultSet对象，使用callback异步回调。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4864,7 +4864,7 @@ closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#getresultset8)  | 是    |指示要关闭的KvStoreResultSet对象。   |
+| resultSet  |[KvStoreResultSet](#kvstoreresultset8)  | 是    |指示要关闭的KvStoreResultSet对象。   |
 | callback   |AsyncCallback&lt;void&gt;                 | 是    |回调函数。    |
 
 **示例：**
@@ -4891,7 +4891,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
-关闭由[DeviceKVStore.getResultSet](#devicekvstore_getresultset)返回的KvStoreResultSet对象，使用Promise异步回调。
+关闭由[DeviceKVStore.getResultSet](#getresultset8-4)返回的KvStoreResultSet对象，使用Promise异步回调。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4899,7 +4899,7 @@ closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| resultSet  |[KvStoreResultSet](#getresultset8)  | 是    |指示要关闭的KvStoreResultSet对象。   |
+| resultSet  |[KvStoreResultSet](#kvstoreresultset8)  | 是    |指示要关闭的KvStoreResultSet对象。   |
 
 **返回值：**
 
