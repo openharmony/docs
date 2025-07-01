@@ -22,13 +22,13 @@ _r(id: number, type: number, bundleName: string, moduleName: string, ...params: 
 
 **参数：**
 
-| 参数名     | 类型     | 必填 | 说明                   |
-| ---------- | -------- | ---- | ---------------------- |
-| id         | number   | 是   | 资源ID。               |
-| type       | number   | 是   | 资源类型。             |
-| bundleName | string   | 是   | 资源所在包名。         |
-| moduleName | string   | 是   | 资源所在模块名。       |
-| ...params  | Object[] | 否   | 开发者传入的剩余参数。 |
+| 参数名     | 类型     | 必填 | 说明                                  |
+| ---------- | -------- | ---- | ------------------------------------- |
+| id         | number   | 是   | 资源ID。<br>取值范围：[-1,+∞)的整数。 |
+| type       | number   | 是   | 资源类型。<br>取值范围：[0,+∞)的整数。  |
+| bundleName | string   | 是   | 资源所在包名。                        |
+| moduleName | string   | 是   | 资源所在模块名。                      |
+| ...params  | Object[] | 否   | 开发者传入的剩余参数。                |
 
 **返回值：**
 
@@ -48,13 +48,13 @@ _rawfile(id: number, type: number, bundleName: string, moduleName: string, ...pa
 
 **参数：**
 
-| 参数名     | 类型     | 必填 | 说明                   |
-| ---------- | -------- | ---- | ---------------------- |
-| id         | number   | 是   | 资源ID。               |
-| type       | number   | 是   | 资源类型。             |
-| bundleName | string   | 是   | 资源所在包名。         |
-| moduleName | string   | 是   | 资源所在模块名。       |
-| ...params     | Object[] | 否   | 开发者传入的剩余参数。 |
+| 参数名     | 类型     | 必填 | 说明                                  |
+| ---------- | -------- | ---- | ------------------------------------- |
+| id         | number   | 是   | 资源ID。<br>取值范围：[-1,+∞)的整数。 |
+| type       | number   | 是   | 资源类型。<br>取值范围：[0,+∞)的整数。  |
+| bundleName | string   | 是   | 资源所在包名。                        |
+| moduleName | string   | 是   | 资源所在模块名。                      |
+| ...params  | Object[] | 否   | 开发者传入的剩余参数。                |
 
 **返回值：**
 
