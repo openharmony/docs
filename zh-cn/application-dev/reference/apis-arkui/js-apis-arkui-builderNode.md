@@ -1711,7 +1711,7 @@ class Params {
   }
 }
 
-@Builder
+@Builder // builder组件
 function buildText(params: Params) {
 
   Column() {
@@ -1727,10 +1727,10 @@ class TextNodeController extends NodeController {
   makeNode(context: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(context);
     this.textNode = new BuilderNode(context, { selfIdealSize: { width: 150, height: 150 } });
-    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.count));
-    this.textNode.inheritFreezeOptions(true); //设置BuilderNode的冻结继承状态为True
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.count)); // 创建BuilderNode节点
+    this.textNode.inheritFreezeOptions(true); // 设置BuilderNode的冻结继承状态为True
     if (this.rootNode !== null) {
-      this.rootNode.appendChild(this.textNode.getFrameNode()); //将BuilderNode上树
+      this.rootNode.appendChild(this.textNode.getFrameNode()); // 将BuilderNode上树
     }
     return this.rootNode;
   }
@@ -1738,7 +1738,7 @@ class TextNodeController extends NodeController {
   update(): void {
     if (this.textNode !== null) {
       this.count += 1;
-      this.textNode.update(new Params(this.count)); //更新BuilderNode中的数据，可以触发Log
+      this.textNode.update(new Params(this.count)); // 更新BuilderNode中的数据，可以触发Log
     }
 
   }
@@ -1764,7 +1764,7 @@ struct MyNavigationTestStack {
 
   build() {
     Column() {
-      Button('update builderNode') //点击更新BuildrNode
+      Button('update builderNode') // 点击更新BuildrNode
         .onClick(() => {
           textNodeController.update();
         })
@@ -1775,7 +1775,7 @@ struct MyNavigationTestStack {
             .height(40)
             .margin(20)
             .onClick(() => {
-              this.pageInfo.pushPath({ name: 'pageOne' }); //将name指定的NavDestination页面信息入栈
+              this.pageInfo.pushPath({ name: 'pageOne' }); // 将name指定的NavDestination页面信息入栈
             })
         }
       }.title('NavIndex')
@@ -1786,7 +1786,7 @@ struct MyNavigationTestStack {
 }
 
 @Component
-struct pageOneStack {
+struct pageOneStack { // 页面一
   @Consume('pageInfo') pageInfo: NavPathStack;
   @State index: number = 1;
   @Link message: number;
@@ -1796,14 +1796,14 @@ struct pageOneStack {
     NavDestination() {
       Column() {
         NavigationContentMsgStack({ message: this.message, index: this.index, logNumber: this.logNumber })
-        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule }) // 切换至页面二
           .width('80%')
           .height(40)
           .margin(20)
           .onClick(() => {
             this.pageInfo.pushPathByName('pageTwo', null);
           })
-        Button('Back Page', { stateEffect: true, type: ButtonType.Capsule })
+        Button('Back Page', { stateEffect: true, type: ButtonType.Capsule }) // 返回主页面
           .width('80%')
           .height(40)
           .margin(20)
@@ -1820,7 +1820,7 @@ struct pageOneStack {
 }
 
 @Component
-struct pageTwoStack {
+struct pageTwoStack { // 页面二
   @Consume('pageInfo') pageInfo: NavPathStack;
   @State index: number = 2;
   @Link message: number;
@@ -1833,7 +1833,7 @@ struct pageTwoStack {
         Text('BuilderNode处于冻结')
           .fontWeight(FontWeight.Bold)
           .margin({ top: 48, bottom: 48 })
-        Button('Back Page', { stateEffect: true, type: ButtonType.Capsule })
+        Button('Back Page', { stateEffect: true, type: ButtonType.Capsule }) // 返回至页面一
           .width('80%')
           .height(40)
           .margin(20)
@@ -1869,7 +1869,7 @@ struct TextBuilder {
   @Prop @Watch("info") message: number = 0;
 
   info() {
-    console.info(`freeze-test TextBuilder message callback ${this.message}`); //根据message内容变化来打印日志来判断是否冻结
+    console.info(`freeze-test TextBuilder message callback ${this.message}`); // 根据message内容变化来打印日志来判断是否冻结
   }
 
   build() {
