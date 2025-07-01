@@ -23,7 +23,7 @@ You can enable or disable a component to control whether it responds to user int
 
 ## enabled
 
-enabled(value: boolean)
+enabled(value: boolean): T
 
 Sets whether the component responds to user interactions.
 

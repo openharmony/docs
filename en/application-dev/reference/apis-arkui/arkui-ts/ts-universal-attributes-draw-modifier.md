@@ -4,11 +4,11 @@ If the drawn content of some components does not meet the requirements, you can 
 
 >  **NOTE**
 >
->  This feature is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## drawModifier
 
-drawModifier(modifier: DrawModifier | undefined)
+drawModifier(modifier: DrawModifier | undefined): T
 
 Creates a drawing modifier.
 
@@ -26,6 +26,12 @@ AlphabetIndexer, Badge, Blank, Button, CalendarPicker, Checkbox, CheckboxGroup, 
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | modifier  |  [DrawModifier](#drawmodifier-1) \| undefined | Yes  | Custom drawing modifier, which defines the logic of custom drawing.<br> Default value: **undefined**<br>**NOTE**<br> A custom modifier applies only to the FrameNode of the currently bound component, not to its subnodes.|
 
+**Return value**
+
+| Type| Description|
+| --- | --- |
+| T | Current component.|
+
 ## DrawModifier
 
 Implements a **DrawModifier** instance for using the **drawFront**, **drawContent**, and **drawBehind** methods for custom drawing as well as the **invalidate** method for redrawing. Each **DrawModifier** instance can be set for only one component. Repeated setting is not allowed.
@@ -38,7 +44,7 @@ Implements a **DrawModifier** instance for using the **drawFront**, **drawConten
 
 drawFront?(drawContext: DrawContext): void
 
-Draws the foreground. This method can be overloaded for custom foreground drawing.
+Draws the content foreground. Override this method to implement custom content foreground drawing.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -54,7 +60,7 @@ Draws the foreground. This method can be overloaded for custom foreground drawin
 
 drawContent?(drawContext: DrawContext): void
 
-Draws the content. This method can be overloaded for custom content drawing. The overloaded method will replace the original content drawing function of the component.
+Draws the content. Override this method to implement custom content drawing, which will replace the component's default content drawing function.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -70,7 +76,7 @@ Draws the content. This method can be overloaded for custom content drawing. The
 
 drawBehind?(drawContext: DrawContext): void
 
-Draws the background. This method can be overloaded for custom background drawing.
+Draws the background. Override this method to implement custom background drawing.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -95,7 +101,7 @@ Triggers redrawing of the bound component. No overloading is allowed or needed.
 
 ## Example
 
-This example shows how to customize the drawing of a **Text** component using **DrawModifier**.
+This example shows how to implement custom drawing for a **Text** component using **DrawModifier**.
 
 ```ts
 // xxx.ets
@@ -105,6 +111,12 @@ import { AnimatorResult } from '@kit.ArkUI';
 class MyFullDrawModifier extends DrawModifier {
   public scaleX: number = 1;
   public scaleY: number = 1;
+  uiContext: UIContext;
+
+  constructor(uiContext: UIContext) {
+    super();
+    this.uiContext = uiContext;
+  }
 
   drawBehind(context: DrawContext): void {
     const brush = new drawing.Brush();
@@ -118,10 +130,10 @@ class MyFullDrawModifier extends DrawModifier {
     const halfWidth = context.size.width / 2;
     const halfHeight = context.size.width / 2;
     context.canvas.drawRect({
-      left: vp2px(halfWidth - 50 * this.scaleX),
-      top: vp2px(halfHeight - 50 * this.scaleY),
-      right: vp2px(halfWidth + 50 * this.scaleX),
-      bottom: vp2px(halfHeight + 50 * this.scaleY)
+      left: this.uiContext.vp2px(halfWidth - 50 * this.scaleX),
+      top: this.uiContext.vp2px(halfHeight - 50 * this.scaleY),
+      right: this.uiContext.vp2px(halfWidth + 50 * this.scaleX),
+      bottom: this.uiContext.vp2px(halfHeight + 50 * this.scaleY)
     });
   }
 
@@ -137,10 +149,10 @@ class MyFullDrawModifier extends DrawModifier {
     const halfWidth = context.size.width / 2;
     const halfHeight = context.size.width / 2;
     context.canvas.drawRect({
-      left: vp2px(halfWidth - 30 * this.scaleX),
-      top: vp2px(halfHeight - 30 * this.scaleY),
-      right: vp2px(halfWidth + 30 * this.scaleX),
-      bottom: vp2px(halfHeight + 30 * this.scaleY)
+      left: this.uiContext.vp2px(halfWidth - 30 * this.scaleX),
+      top: this.uiContext.vp2px(halfHeight - 30 * this.scaleY),
+      right: this.uiContext.vp2px(halfWidth + 30 * this.scaleX),
+      bottom: this.uiContext.vp2px(halfHeight + 30 * this.scaleY)
     });
   }
 
@@ -156,13 +168,19 @@ class MyFullDrawModifier extends DrawModifier {
     const halfWidth = context.size.width / 2;
     const halfHeight = context.size.width / 2;
     const radiusScale = (this.scaleX + this.scaleY) / 2;
-    context.canvas.drawCircle(vp2px(halfWidth), vp2px(halfHeight), vp2px(20 * radiusScale));
+    context.canvas.drawCircle(this.uiContext.vp2px(halfWidth), this.uiContext.vp2px(halfHeight), this.uiContext.vp2px(20 * radiusScale));
   }
 }
 
 class MyFrontDrawModifier extends DrawModifier {
   public scaleX: number = 1;
   public scaleY: number = 1;
+  uiContext: UIContext;
+
+  constructor(uiContext: UIContext) {
+    super();
+    this.uiContext = uiContext;
+  }
 
   drawFront(context: DrawContext): void {
     const brush = new drawing.Brush();
@@ -176,17 +194,17 @@ class MyFrontDrawModifier extends DrawModifier {
     const halfWidth = context.size.width / 2;
     const halfHeight = context.size.width / 2;
     const radiusScale = (this.scaleX + this.scaleY) / 2;
-    context.canvas.drawCircle(vp2px(halfWidth), vp2px(halfHeight), vp2px(20 * radiusScale));
+    context.canvas.drawCircle(this.uiContext.vp2px(halfWidth), this.uiContext.vp2px(halfHeight), this.uiContext.vp2px(20 * radiusScale));
   }
 }
 
 @Entry
 @Component
 struct DrawModifierExample {
-  private fullModifier: MyFullDrawModifier = new MyFullDrawModifier();
-  private frontModifier: MyFrontDrawModifier = new MyFrontDrawModifier();
+  private fullModifier: MyFullDrawModifier = new MyFullDrawModifier(this.getUIContext());
+  private frontModifier: MyFrontDrawModifier = new MyFrontDrawModifier(this.getUIContext());
   private drawAnimator: AnimatorResult | undefined = undefined;
-  @State modifier: DrawModifier = new MyFrontDrawModifier();
+  @State modifier: DrawModifier = new MyFrontDrawModifier(this.getUIContext());
   private count = 0;
 
   create() {

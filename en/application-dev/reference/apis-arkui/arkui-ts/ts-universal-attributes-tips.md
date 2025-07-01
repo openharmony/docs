@@ -26,7 +26,7 @@ Binds a tooltip to the component.
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | message|  [TipsMessageType](#tipsmessagetype)                                                     | Yes  | Content of the tooltip message.|
-| options  | [TipsOptions](#tipsoptions) | No  | Parameters of the tooltip.<br>Default value:<br>{<br>appearingTime: 700,<br>disappearingTime: 300,<br>appearingTimeWithContinuousOperation: 300,<br>disappearingTimeWithContinuousOperation: 0, enableArrow: true,<br>arrowPointPosition: ArrowPointPosition.CENTER,<br>arrowWidth: 16,arrowHeight: 8vp,<br>showAtAnchor: TipsAnchorType.TARGET<br>} |
+| options  | [TipsOptions](#tipsoptions) | No  | Parameters of the tooltip.<br>Default value:<br>{<br>appearingTime: 700,<br>disappearingTime: 300,<br>appearingTimeWithContinuousOperation: 300,<br>disappearingTimeWithContinuousOperation: 0, enableArrow: true,<br>arrowPointPosition: ArrowPointPosition.CENTER,<br>arrowWidth: 16,arrowHeight: 8vp<br>} |
 
 **Return value**
 
