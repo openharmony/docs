@@ -1127,7 +1127,7 @@ LazyForEach场景下，由于存在节点的销毁重建，对于重建的节点
 
 | 类型                                                           | 说明                                                                                                             |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [UICommonEvent](./arkui-ts/ts-uicommonevent.md#设置事件回调) | UICommonEvent对象，用于设置基础事件。 |
+| [UICommonEvent](./arkui-ts/ts-uicommonevent.md) | UICommonEvent对象，用于设置基础事件。 |
 
 **示例：**
 
@@ -1147,7 +1147,7 @@ get gestureEvent(): UIGestureEvent
 
 | 类型                                                           | 说明                                                                                                             |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [UIGestureEvent](./arkui-ts/ts-uigestureevent.md#设置组件绑定的手势) | UIGestureEvent对象，用于设置组件绑定的手势。 |
+| [UIGestureEvent](./arkui-ts/ts-uigestureevent.md) | UIGestureEvent对象，用于设置组件绑定的手势。 |
 
 **示例：**
 
@@ -1345,7 +1345,7 @@ addComponentContent\<T>(content: ComponentContent\<T>): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| content | [ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent)\<T> | 是   | FrameNode节点中显示的组件内容。 |
+| content | [ComponentContent](./js-apis-arkui-ComponentContent.md)\<T> | 是   | FrameNode节点中显示的组件内容。 |
 
 **错误码：**
 

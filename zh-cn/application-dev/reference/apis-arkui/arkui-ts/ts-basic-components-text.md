@@ -29,7 +29,7 @@ Text(content?: string | Resource , value?: TextOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | 否 | 文本内容。包含子组件Span且未设置[属性字符串](ts-universal-styled-string.md#属性字符串)时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>默认值：' ' |
+| content | string \| [Resource](ts-types.md#resource) | 否 | 文本内容。包含子组件Span且未设置[属性字符串](ts-universal-styled-string.md)时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>默认值：' ' |
 | value<sup>11+</sup> | [TextOptions](#textoptions11) | 否 | 文本组件初始化选项。|
 
 ## 属性
