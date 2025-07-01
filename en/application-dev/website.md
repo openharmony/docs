@@ -3248,17 +3248,17 @@
           <!--DelEnd-->
         - C APIs<!--asset-store-c-->
           - Modules<!--asset-store-module-->
-            - [AssetApi](reference/apis-asset-store-kit/capi-assetapi.md)
-            - [AssetType](reference/apis-asset-store-kit/capi-assettype.md)
+            - [AssetApi](reference/apis-asset-store-kit/_asset_api.md)
+            - [AssetType](reference/apis-asset-store-kit/_asset_type.md)
           - Header Files<!--asset-store-headerfile-->
-            - [asset_api.h](reference/apis-asset-store-kit/capi-asset-api-h.md)
-            - [asset_type.h](reference/apis-asset-store-kit/capi-asset-type-h.md)
+            - [asset_api.h](reference/apis-asset-store-kit/asset__api_8h.md)
+            - [asset_type.h](reference/apis-asset-store-kit/asset__type_8h.md)
           - Structs<!--asset-store-struct-->
-            - [Asset_Blob](reference/apis-asset-store-kit/capi-asset-blob.md)
-            - [Asset_Value](reference/apis-asset-store-kit/capi-asset-value.md)
-            - [Asset_Attr](reference/apis-asset-store-kit/capi-asset-attr.md)
-            - [Asset_Result](reference/apis-asset-store-kit/capi-asset-result.md)
-            - [Asset_ResultSet](reference/apis-asset-store-kit/capi-asset-resultset.md)
+            - [Asset_Attr](reference/apis-asset-store-kit/_asset___attr.md)
+            - [Asset_Blob](reference/apis-asset-store-kit/_asset___blob.md)
+            - [Asset_Result](reference/apis-asset-store-kit/_asset___result.md)
+            - [Asset_ResultSet](reference/apis-asset-store-kit/_asset___result_set.md)
+            - [Asset_Value](reference/apis-asset-store-kit/union_asset___value.md)
         - Error Codes<!--asset-store-arkts-errcode-->
           - [Asset Store Service Error Code](reference/apis-asset-store-kit/errorcode-asset.md)
       - Crypto Architecture Kit<!--crypto-architecture-api-->
@@ -3268,32 +3268,21 @@
             - [@system.cipher (Cipher Algorithm)](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)
         - C APIs<!--crypto-architecture-c-->
           - Modules<!--crypto-architecture-module-->
-            - [CryptoArchitectureKit](reference/apis-crypto-architecture-kit/capi-cryptoarchitecturekit.md)
-            - [CryptoAsymKeyApi](reference/apis-crypto-architecture-kit/capi-cryptoasymkeyapi.md)
-            - [CryptoCommonApi](reference/apis-crypto-architecture-kit/capi-cryptocommonapi.md)
-            - [CryptoDigestApi](reference/apis-crypto-architecture-kit/capi-cryptodigestapi.md)
-            - [CryptoSignatureApi](reference/apis-crypto-architecture-kit/capi-cryptosignatureapi.md)
-            - [CryptoSymCipherApi](reference/apis-crypto-architecture-kit/capi-cryptosymcipherapi.md)
-            - [CryptoSymKeyApi](reference/apis-crypto-architecture-kit/capi-cryptosymkeyapi.md)
+            - [CryptoAsymKeyApi](reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md)
+            - [CryptoCommonApi](reference/apis-crypto-architecture-kit/_crypto_common_api.md)
+            - [CryptoDigestApi](reference/apis-crypto-architecture-kit/_crypto_digest_api.md)
+            - [CryptoSignatureApi](reference/apis-crypto-architecture-kit/_crypto_signature_api.md)
+            - [CryptoSymCipherApi](reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md)
+            - [CryptoSymKeyApi](reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md)
           - Header Files<!--crypto-architecture-headerfile-->
-            - [crypto_architecture_kit.h](reference/apis-crypto-architecture-kit/capi-crypto-architecture-kit-h.md)
-            - [crypto_asym_key.h](reference/apis-crypto-architecture-kit/capi-crypto-asym-key-h.md)
-            - [crypto_common.h](reference/apis-crypto-architecture-kit/capi-crypto-common-h.md)
-            - [crypto_digest.h](reference/apis-crypto-architecture-kit/capi-crypto-digest-h.md)
-            - [crypto_signature.h](reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md)
-            - [crypto_sym_cipher.h](reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md)
-            - [crypto_sym_key.h](reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md)
+            - [crypto_asym_key.h](reference/apis-crypto-architecture-kit/crypto__asym__key_8h.md)
+            - [crypto_common.h](reference/apis-crypto-architecture-kit/crypto__common_8h.md)
+            - [crypto_digest.h](reference/apis-crypto-architecture-kit/crypto__digest_8h.md)
+            - [crypto_signature.h](reference/apis-crypto-architecture-kit/crypto__signature_8h.md)
+            - [crypto_sym_cipher.h](reference/apis-crypto-architecture-kit/crypto__sym__cipher_8h.md)
+            - [crypto_sym_key.h](reference/apis-crypto-architecture-kit/crypto__sym__key_8h.md)
           - Structs<!--crypto-architecture-struct-->
-            - [Crypto_DataBlob](reference/apis-crypto-architecture-kit/capi-crypto-datablob.md)
-            - [OH_CryptoKeyPair](reference/apis-crypto-architecture-kit/capi-oh-cryptokeypair.md)
-            - [OH_CryptoPubKey](reference/apis-crypto-architecture-kit/capi-oh-cryptopubkey.md)
-            - [OH_CryptoAsymKeyGenerator](reference/apis-crypto-architecture-kit/capi-oh-cryptoasymkeygenerator.md)
-            - [OH_CryptoDigest](reference/apis-crypto-architecture-kit/capi-oh-cryptodigest.md)
-            - [OH_CryptoVerify](reference/apis-crypto-architecture-kit/capi-oh-cryptoverify.md)
-            - [OH_CryptoSymCipher](reference/apis-crypto-architecture-kit/capi-oh-cryptosymcipher.md)
-            - [OH_CryptoSymCipherParams](reference/apis-crypto-architecture-kit/capi-oh-cryptosymcipherparams.md)
-            - [OH_CryptoSymKey](reference/apis-crypto-architecture-kit/capi-oh-cryptosymkey.md)
-            - [OH_CryptoSymKeyGenerator](reference/apis-crypto-architecture-kit/capi-oh-cryptosymkeygenerator.md)
+            - [Crypto_DataBlob](reference/apis-crypto-architecture-kit/_crypto___data_blob.md)
         - Error Codes<!--crypto-architecture-arkts-errcode-->
           - [Crypto Framework Error Codes](reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md)
       - Data Protection Kit<!--data-protection-api-->
@@ -3304,9 +3293,9 @@
           <!--DelEnd-->
         - C APIs<!--data-protection-c-->
           - Modules<!--data-protection-module-->
-            - [DlpPermissionApi](reference/apis-data-protection-kit/capi-dlppermissionapi.md)
+            - [DlpPermissionApi](reference/apis-data-protection-kit/_dlp_permission_api.md)
           - Header Files<!--data-protection-headerfile-->
-            - [dlp_permission_api.h](reference/apis-data-protection-kit/capi-dlp-permission-api-h.md)
+            - [dlp_permission_api.h](reference/apis-data-protection-kit/dlp__permission__api_8h.md)
         - Error Codes<!--data-protection-arkts-errcode-->
           - [DLP Service Error Codes](reference/apis-data-protection-kit/errorcode-dlp.md)
       - Device Certificate Kit<!--device-certificate-api-->
