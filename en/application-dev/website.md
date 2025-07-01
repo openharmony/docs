@@ -2466,6 +2466,7 @@
           - [ArcSwiper](reference/apis-arkui/arkui-ts/ts-container-arcswiper.md)
           - [WaterFlow](reference/apis-arkui/arkui-ts/ts-container-waterflow.md)
           - [FlowItem](reference/apis-arkui/arkui-ts/ts-container-flowitem.md)
+          - [LazyVGridLayout](reference/apis-arkui/arkui-ts/ts-container-lazyvgridlayout.md)
           - [ScrollBar](reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md)
           - [Refresh](reference/apis-arkui/arkui-ts/ts-container-refresh.md)
           - [ArcScrollBar](reference/apis-arkui/arkui-ts/ts-basic-components-arcscrollbar.md)
