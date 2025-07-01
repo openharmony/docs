@@ -673,7 +673,7 @@ try {
 ```ts
 // 取消注册所有回调函数
 function callbackOn(data: cooperate.MouseLocation) {
-  console.log('Register mouse location listener');
+  console.info('Register mouse location listener');
 }
 try {
   let networkId: string = 'Default';
