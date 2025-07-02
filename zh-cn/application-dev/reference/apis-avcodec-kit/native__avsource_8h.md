@@ -7,6 +7,8 @@
 
 **库：** libnative_media_avsource.so
 
+**引用文件：** <multimedia/player_framework/native_avsource.h>
+
 **起始版本：** 10
 
 **相关模块：**[AVSource](_a_v_source.md)

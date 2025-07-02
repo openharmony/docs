@@ -7,6 +7,8 @@
 
 **库：** libnative_media_codecbase.so
 
+**引用文件：** <multimedia/player_framework/native_avcodec_base.h>
+
 **起始版本：** 9
 
 **相关模块：**[CodecBase](_codec_base.md)
