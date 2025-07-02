@@ -7,6 +7,8 @@
 
 **库：** libnative_media_codecbase.so
 
+**引用文件：** <multimedia/player_framework/native_avcapability.h>
+
 **起始版本：** 10
 
 **相关模块：**[AVCapability](_a_v_capability.md)
