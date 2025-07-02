@@ -1147,7 +1147,7 @@ get gestureEvent(): UIGestureEvent
 
 | 类型                                                           | 说明                                                                                                             |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [UIGestureEvent](./arkui-ts/ts-uigestureevent.md) | UIGestureEvent对象，用于设置组件绑定的手势。 |
+| [UIGestureEvent](./arkui-ts/ts-uigestureevent.md#uigestureevent) | UIGestureEvent对象，用于设置组件绑定的手势。 |
 
 **示例：**
 
