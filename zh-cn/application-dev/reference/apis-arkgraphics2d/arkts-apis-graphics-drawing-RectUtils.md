@@ -79,7 +79,7 @@ let rect = drawing.RectUtils.makeLtrb(10, 10, 20, 20);
 
 ### makeCopy<sup>20+</sup>
 
-static makeCopy(src: common2D.Rect): common2D.Rect;
+static makeCopy(src: common2D.Rect): common2D.Rect
 
 拷贝一个矩形。
 
