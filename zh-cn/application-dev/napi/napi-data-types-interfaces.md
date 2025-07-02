@@ -145,7 +145,7 @@ typedef struct {
 
 #### napi_async_cleanup_hook_handle
 
-napi_async_cleanup_hook_handle是Node-API中用于管理异步资源生命周期的一种机制。它允许注册一个清理钩子（cleanup hook），该钩子仅在当前napi_env环境生命周期结束时被调用。通过使用 napi_async_cleanup_hook_handle，可以确保某些异步资源在环境销毁前得到妥善释放，从而避免资源泄漏。此外，在Node-API实现中，只要该结构未被释放，会延迟整个 napi_env 环境的销毁。在OpenHarmony中，该接口的行为基本等同于env生命周期相关的清理钩子，除了支持重复注册相同的上下文数据（data）外，其余行为与标准的env清理钩子一致。。
+napi_async_cleanup_hook_handle是Node-API中用于管理异步资源生命周期的一种机制。它允许注册一个清理钩子（cleanup hook），该钩子仅在当前napi_env环境生命周期结束时被调用。通过使用 napi_async_cleanup_hook_handle，可以确保某些异步资源在环境销毁前得到妥善释放，从而避免资源泄漏。此外，在Node-API实现中，只要该结构未被释放，会延迟整个 napi_env 环境的销毁。在OpenHarmony中，该接口的行为基本等同于env生命周期相关的清理钩子，除了支持重复注册相同的上下文数据（data）外，其余行为与标准的env清理钩子一致。
 
 ### 回调类型
 
@@ -157,7 +157,7 @@ Native侧获取JS侧参数信息，传递给napi_get_cb_info，用于获取JS侧
 
 ##### napi_callback
 
-表示用户定义的Native函数，暴露给ArkTS/JS，即ArkTS/JS侧调用的接口；一般不需要callback中创建handle或者callback scope。
+表示用户定义的Native函数，暴露给ArkTS/JS，即ArkTS/JS侧调用的接口；一般不需要在callback中创建handle或者callback scope。
 
 基本用法如下：
 
@@ -167,7 +167,7 @@ typedef napi_value (*napi_callback)(napi_env, napi_callback_info);
 
 ##### napi_finalize
 
-函数指针，用于传入napi_create_threadsafe_function、napi_set_instance_data、napi_wrap、 napi_add_finalizer等接口。napi_finalize在对象被回收时会被调用。
+函数指针，用于传入napi_create_threadsafe_function、napi_set_instance_data、napi_wrap、napi_add_finalizer等接口。napi_finalize在对象被回收时会被调用。
 
 ##### napi_async_execute_callback
 
