@@ -112,7 +112,7 @@ Authentication service is busy.
 
 **错误信息**
 
-Parameter verification failed.
+The parameter is out of range.
 
 **错误描述**
 

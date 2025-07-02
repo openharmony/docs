@@ -390,7 +390,7 @@ queryReusableAuthResult(authParam: AuthParam): Uint8Array
 | 201      | Permission verification failed.         |
 | 202      | The caller is not a system application. |
 | 12500002 | General operation error.                |
-| 12500008 | Parameter verification failed.          |
+| 12500008 | The parameter is out of range.          |
 | 12500017 | Failed to reuse authentication result.       |
 
 **示例：**
