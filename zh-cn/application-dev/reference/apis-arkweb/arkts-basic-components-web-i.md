@@ -377,6 +377,7 @@ Web同层渲染的配置。
 | referrer   | string                            | 是    | referrer url地址。           |
 | isFatalError   | boolean                       | 是    | 是否是致命错误。<br>true表示致命错误，false表示非致命错误。           |
 | isMainFrame   | boolean                        | 是    | 是否是主资源。<br>true表示主资源，false表示非主资源。           |
+| certChainData<sup>20+</sup>   | Array<Uint8Array\>           | 否 | 证书链数据。           |
 
 ## OnClientAuthenticationEvent<sup>12+</sup>
 
