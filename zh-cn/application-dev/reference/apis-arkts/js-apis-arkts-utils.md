@@ -14,6 +14,46 @@
 import { ArkTSUtils } from '@kit.ArkTS'
 ```
 
+## ArkTSUtils.isSendable
+
+isSendable(value: Object | null | undefined): boolean
+
+该方法用于判断value是否为Sendable数据类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | Object \| null \| undefined  | 是 | 待校验的对象。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | value是否为Sendable数据类型，true表示value是Sendable数据类型，否则为false。|
+
+**示例：**
+
+```ts
+import { ArkTSUtils } from '@kit.ArkTS';
+
+@Sendable
+function sendableFunc() {
+  console.info("sendableFunc");
+}
+
+if (ArkTSUtils.isSendable(sendableFunc)) {
+  console.info("sendableFunc is Sendable");
+} else {
+  console.info("sendableFunc is not Sendable");
+}
+// 期望输出: 'SendableFunc is Sendable'
+```
+
 ## ArkTSUtils.locks
 
 为了解决多并发实例间的数据竞争问题，ArkTS语言基础库引入了异步锁能力。为了开发者的开发效率，AsyncLock对象支持跨并发实例引用传递。
@@ -853,46 +893,6 @@ sendableSet.add("set");
 let str6 = ArkTSUtils.ASON.stringify(sendableSet);
 console.info(str6);
 //期望输出：'["send","able","set"]'
-```
-
-### isSendable
-
-isSendable(value: Object | null | undefined): boolean
-
-该方法用于判断value是否为Sendable数据类型。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| value | Object \| null \| undefined  | 是 | 待校验的对象。|
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | value是否为Sendable数据类型，true表示value是Sendable数据类型，否则为false。|
-
-**示例：**
-
-```ts
-import { ArkTSUtils } from '@kit.ArkTS';
-
-@Sendable
-function sendableFunc() {
-  console.info("sendableFunc");
-}
-
-if (ArkTSUtils.isSendable(sendableFunc)) {
-  console.info("sendableFunc is Sendable");
-} else {
-  console.info("sendableFunc is not Sendable");
-}
-// 期望输出: 'SendableFunc is Sendable'
 ```
 
 ## SendableLruCache<K, V><sup>18+</sup>
