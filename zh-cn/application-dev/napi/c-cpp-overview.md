@@ -94,7 +94,7 @@ symbol-version是libc在**动态链接-符号重定位**阶段的符号检索机
 | 13   | SIGPIPE   |  管道损坏         | 36   | MUSL_SIGNAL_HOOK (SIGRTMIN + 1)            | 系统自留                  |
 | 14   | SIGALRM   |  定时器信号       | 37   | MUSL_SIGNAL_UNHOOK (SIGRTMIN + 2)          | 系统自留                  |
 | 15   | SIGTERM   |  程序终止请求     | 38   | MUSL_SIGNAL_NATIVE_LOCAL (SIGRTMIN + 3)    | 系统自留                  |
-| 16   | SIGSTKFLT |  协处理器栈错误    | 39  |MUSL_SIGNAL_JSHEAP (SIGRTMIN + 4)           | 系统自留                  |
+| 16   | SIGSTKFLT |  协处理器栈错误    | 39  | MUSL_SIGNAL_JSHEAP (SIGRTMIN + 4)           | 系统自留                  |
 | 17   | SIGCHLD   |  子进程退出/停止   | 40  | MUSL_SIGNAL_JSHEAP_PRIV (SIGRTMIN + 5)     | 系统自留                  |
 | 18   | SIGCONT   |  继续执行         | 41   | MUSL_SIGNAL_SAMPLE_STACK (SIGRTMIN + 6)    | 系统自留                  |
 | 19   | SIGSTOP   |  强制停止         | 42   | MUSL_SIGNAL_LEAK_STACK (SIGRTMIN + 7)      | 系统自留                  |
