@@ -68,7 +68,7 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 >
 > 从API version 7开始支持，从API version 9开始废弃。建议使用[zlib.decompressFile](#zlibdecompressfile9)。
 >
-> 传入的压缩包内部文件或者文件夹名称不能包含“..”或者以“/”为开头。
+> 传入的压缩包内部文件或者文件夹名称不能包含“..”或者以“/”为开头，否则会返回-1错误码。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
