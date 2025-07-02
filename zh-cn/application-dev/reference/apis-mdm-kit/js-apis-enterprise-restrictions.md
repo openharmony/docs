@@ -371,7 +371,7 @@ try {
 
 setUserRestriction(admin: Want, settingsItem: string, restricted: boolean): void
 
-设置限制用户行为策略。
+设置用户行为的限制规则。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_USER_RESTRICTION
 
@@ -382,8 +382,8 @@ setUserRestriction(admin: Want, settingsItem: string, restricted: boolean): void
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
-| settingsItem  | string                                                  | 是   | 设置项名称。<br/>- setApn：APN设置项，当前仅支持手机、平板使用。<br/>- powerLongPress：长按电源键设置项，当前仅支持手机、平板使用。 |
-| restricted | boolean                                                 | 是   | 是否限制更改。true表示限制更改，false表示允许更改。                       |
+| settingsItem  | string                                                  | 是   | 行为名称。<br/>- setApn：APN设置，当前仅支持手机、平板使用。<br/>- powerLongPress：长按电源键打开电源菜单，当前仅支持手机、平板使用。 |
+| restricted | boolean                                                 | 是   | 是否限制行为。true表示限制，false表示允许。                       |
 
 **错误码**：
 
