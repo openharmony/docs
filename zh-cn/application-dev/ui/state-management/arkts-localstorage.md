@@ -894,7 +894,7 @@ struct NavigationContentMsgStack {
 
 ```ts
 @Component
-struct LocalStorLink {
+struct LocalStorageLinkComponent {
   @LocalStorageLink("LinkA") LinkA: number | null = null;
   @LocalStorageLink("LinkB") LinkB: number | undefined = undefined;
 
@@ -914,7 +914,7 @@ struct LocalStorLink {
 }
 
 @Component
-struct LocalStorProp {
+struct LocalStoragePropComponent {
   @LocalStorageProp("PropA") PropA: number | null = null;
   @LocalStorageProp("PropB") PropB: number | undefined = undefined;
 
@@ -941,8 +941,8 @@ struct Index {
   build() {
     Row() {
       Column() {
-        LocalStorLink()
-        LocalStorProp()
+        LocalStorageLinkComponent()
+        LocalStoragePropComponent()
       }
       .width('100%')
     }
