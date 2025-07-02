@@ -3043,6 +3043,8 @@ let componentUtils: ComponentUtils = uiContext.getComponentUtils();
 let modePosition = componentUtils.getRectangleById("onClick");
 let localOffsetWidth = modePosition.size.width;
 let localOffsetHeight = modePosition.size.height;
+let localOffsetX = modePosition.localOffset.x;// 获取组件相对于父组件的x轴偏移
+let localOffsetY = modePosition.localOffset.y;// 获取组件相对于父组件的y轴偏移
 ```
 
 ## UIInspector
