@@ -555,6 +555,7 @@
           - [支持焦点处理](ui/arkts-common-events-focus-event.md)
         - 使用自定义能力<!--arkts-user-defined-capabilities-->
           - [自定义能力概述](ui/arkts-user-defined.md)
+          - [自定义组合](ui/arkts-user-defined-composition.md)
           - 自定义节点<!--arkts-nodes-->
             - [自定义节点概述](ui/arkts-user-defined-node.md)
             - [自定义占位节点](ui/arkts-user-defined-place-holder.md)
