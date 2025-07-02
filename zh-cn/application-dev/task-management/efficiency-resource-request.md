@@ -99,7 +99,6 @@
      isPersist: true,
      isProcess: false, // 在应用级别释放资源
    };
-   
    try {
      backgroundTaskManager.applyEfficiencyResources(request);
      console.info("Succeeded in invoking applyEfficiencyResources.");
