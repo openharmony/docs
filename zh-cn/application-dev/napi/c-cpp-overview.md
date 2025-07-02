@@ -70,8 +70,35 @@ symbol-version是libc在**动态链接-符号重定位**阶段的符号检索机
 ### fdsan功能
 [fdsan使用指导](./fdsan.md)可以帮助检测文件的重复关闭和关闭后使用问题。
 
-## 3. 信号使用约定说明
+## 3. 信号使用
 为避免与系统保留信号冲突，开发者在使用信号时需遵循以下规则：
 - 信号编号 1～34：为系统内部保留信号，禁止使用；
 - 信号编号 35～45：系统模块（如中间件、运行时、系统服务等）已使用，避免使用这些信号，以防与系统内部模块产生冲突，导致未知结果；
-- 推荐使用的信号编号范围：46 及以上（可视项目实际使用需求分配）；
+
+鸿蒙内部信号使用统计如下：
+
+| 编号 | 名称      | 备注             | 编号 | 名称         | 备注                      |
+|------|-----------|-----------------|------|-------------|---------------------------|
+| 1    | SIGHUP    |  控制终端挂起    | 24   | SIGXCPU     | 超出 CPU 时间限制          | 
+| 2    | SIGINT    |  中断           | 25   | SIGXFSZ     | 文件超出大小限制            |
+| 3    | SIGQUIT   |  键盘退出        | 26   | SIGVTALRM   | 虚拟定时器                 |
+| 4    | SIGILL    |  非法指令        | 27   | SIGPROF     | profiling 计时器到期       |
+| 5    | SIGTRAP   |  调试断点/跟踪陷阱| 28   | SIGWINCH    | 终端窗口大小变化           |
+| 6    | SIGABRT   |  中止信号        | 29   | SIGIO       | I/O 可用通知（4.2BSD）     |
+| 7    | SIGBUS    |  总线错误        | 30   | SIGPWR      | 电源故障（System V）       |
+| 8    | SIGFPE    |  算术异常        | 31   | SIGSYS      | 非法系统调用               |
+| 9    | SIGKILL   |  强制终止        | 32   | SIGRTMIN    | musl自留                  |
+| 10   | SIGUSR1   |  用户自定义信号 1 | 33   | SIGRTMIN+1  | musl自留                  |
+| 11   | SIGSEGV   |  无效内存访问     | 34   | SIGRTMIN+2  | musl自留                  |
+| 12   | SIGUSR2   |  用户自定义信号 2 | 35   | SIGRTMIN+3  | 系统自留                   |
+| 13   | SIGPIPE   |  管道破裂        | 36   | SIGRTMIN+4   | 系统自留                  |
+| 14   | SIGALRM   |  定时器          | 37   | SIGRTMIN+5   | 系统自留                  |
+| 15   | SIGTERM   |  程序终止请求     | 38   | SIGRTMIN+6   | 系统自留                  |
+| 16   | SIGSTKFLT |  协处理器栈错误    | 39  | SIGRTMIN+7   | 系统自留                  |
+| 17   | SIGCHLD   |  子进程退出/停止   | 40  | SIGRTMIN+8   | 系统自留                  |
+| 18   | SIGCONT   |  继续执行         | 41   | SIGRTMIN+9   | 系统自留                  |
+| 19   | SIGSTOP   |  强制停止         | 42   | SIGRTMIN+10  | 系统自留                  |
+| 20   | SIGTSTP   |  用户暂停         | 43   | SIGRTMIN+11  | 系统自留                  |
+| 21   | SIGTTIN   |  后台读终端       | 44   | SIGRTMIN+12  | 系统自留                  |
+| 22   | SIGTTOU   |  后台写终端       | 45   | SIGRTMIN+13  | 系统自留                  |
+| 23   | SIGURG    |  套接字有紧急数据  |      |              |                          |
