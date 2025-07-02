@@ -97,7 +97,7 @@
   
    function cancelSuspendDelay() {
      try {
-      backgroundTaskManager.cancelSuspendDelay(id);
+       backgroundTaskManager.cancelSuspendDelay(id);
      } catch (error) {
        console.error(`Operation cancelSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
      }
