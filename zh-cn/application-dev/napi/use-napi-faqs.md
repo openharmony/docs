@@ -1,17 +1,17 @@
 # Node-API常见问题
 
-## 一.稳定性  
+## 稳定性  
 1. [应用运行过程中出现高概率闪退，出现cppcrash栈，栈顶为系统库libark_jsruntime.so，崩溃栈前几帧也有libace_napi.z.so，怎么进行定位解决](napi-faq-about-stability.md#应用运行过程中出现高概率闪退怎么进行定位解决)  
 2. [c++线程池中并发调用ArkTS方法（c++多线程调用ArkTS方法），如何处理线程安全问题？](napi-faq-about-stability.md#线程池中并发调用ArkTS方法如何处理线程安全问题)   
 3. [【napi_value非预期】napi_value内容产生变化，napi_value创建时类型是napi_function，保存一段时间后napi_value类型发生变化](napi-faq-about-stability.md#napi_value内容产生变化)  
 4. [是否存在获取最新napi_env的方法？](napi-faq-about-stability.md#是否存在获取最新napi_env的方法)  
 5. [napi_add_env_cleanup_hook/napi_remove_env_cleanup_hook调用报错，该如何处理？](napi-faq-about-stability.md#napi_add_env_cleanup_hook调用报错该如何处理)  
-## 二.内存泄漏  
+## 内存泄漏  
 1. [napi_create_reference可以创建对js对象的引用，保持js对象不释放，正常来说使用完需要使用napi_delete_reference进行释放，但怕漏delete导致js对象内存泄漏，请问当前是否有机制来检查/测试是否有泄漏的napi_reference？](napi-faq-about-memory-leak.md#请问当前是否有机制来检查是否有泄漏的napi_ref)  
 2. [napi开发过程中，遇见内存泄漏问题，要怎么定位解决？](napi-faq-about-memory-leak.md#napi开发过程中遇见内存泄漏问题要怎么定位解决)    
 3. [参数泄漏问题参考napi_open_handle_scope、napi_close_handle_scope](use-napi-life-cycle.md)         
 4. [napi_threadsafe_function内存泄漏，应该如何处理？](napi-faq-about-memory-leak.md#napi_threadsafe_function内存泄漏应该如何处理)     
-## 三.常见基本功能问题
+## 常见基本功能问题
 1. [模块加载失败，Error message: is not callable NativeModule调用报错？](napi-faq-about-common-basic.md)    
 2. [是否有保序的线程通信推荐写法？](napi-faq-about-common-basic.md#在大量需要调用ArkTS方法进行通信的场景如何保证异步任务的有序性)   
 3. [是否存在便捷的NAPI回调arkts的方式？](napi-faq-about-common-basic.md#是否存在便捷的回调ArkTS的方式)   
