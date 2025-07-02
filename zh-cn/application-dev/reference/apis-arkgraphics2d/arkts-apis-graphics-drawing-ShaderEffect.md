@@ -147,8 +147,7 @@ let shaderEffect = drawing.ShaderEffect.createColorShader(0xFFFF0000);
 
 ### createLinearGradient<sup>12+</sup>
 
-static createLinearGradient(startPt: common2D.Point, endPt: common2D.Point, colors: Array
-\<number>, mode: TileMode, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect
+static createLinearGradient(startPt: common2D.Point, endPt: common2D.Point, colors: Array\<number>, mode: TileMode, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect
 
 创建着色器，在两个指定点之间生成线性渐变。
 
