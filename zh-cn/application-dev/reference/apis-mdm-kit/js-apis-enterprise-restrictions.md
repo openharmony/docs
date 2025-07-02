@@ -366,3 +366,50 @@ try {
   console.error(`Failed to query disallowed list for account. Code is ${err.code}, message is ${err.message}`);
 }
 ```
+
+## restrictions.setUserRestriction<sup>20+</sup>
+
+setUserRestriction(admin: Want, settingsItem: string, restricted: boolean): void
+
+设置用户行为的限制规则。
+
+**需要权限：** ohos.permission.ENTERPRISE_SET_USER_RESTRICTION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
+| settingsItem  | string                                                  | 是   | 行为名称。<br/>- setApn：APN设置，当前仅支持手机、平板使用。<br/>- powerLongPress：长按电源键打开电源菜单，当前仅支持手机、平板使用。 |
+| restricted | boolean                                                 | 是   | 是否限制行为。true表示限制，false表示允许。                       |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |                    |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { restrictions } from '@kit.MDMKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  restrictions.setUserRestriction(wantTemp, 'setApn', true);
+  console.info('Succeeded in restricting from setting apn');
+} catch (err) {
+  console.error(`Failed to restrict from setting apn. Code is ${err.code}, message is ${err.message}`);
+}
+```
