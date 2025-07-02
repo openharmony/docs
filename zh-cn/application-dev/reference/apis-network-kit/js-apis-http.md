@@ -891,7 +891,7 @@ on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataReceive'。 |
-| callback | AsyncCallback\<ArrayBuffer\> | 是   | 回调函数。                        |
+| callback | Callback\<ArrayBuffer\> | 是   | 回调函数。当订阅成功时，error为undefined，data为获取到的HTTP流式数据接收数据，类型为ArrayBuffer；否则为错误对象。 |
 
 **示例：**
 
@@ -910,6 +910,8 @@ httpRequest.off("dataReceive");
 off(type: "dataReceive", callback?: Callback\<ArrayBuffer\>): void
 
 取消订阅HTTP流式响应数据接收事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -952,7 +954,7 @@ on(type: "dataEnd", callback: Callback\<void\>): void
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataEnd'。 |
-| callback | AsyncCallback\<void\>   | 是   | 回调函数。                        |
+| callback | Callback\<void\>   | 是   | 回调函数。当订阅成功时，err为undefined，否则为错误对象。                        |
 
 **示例：**
 
@@ -1013,7 +1015,7 @@ on(type: 'dataReceiveProgress', callback: Callback\<DataReceiveProgressInfo\>): 
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataReceiveProgress'。 |
-| callback | AsyncCallback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | 是   | 回调函数。返回数据接收进度信息。 |
+| callback | Callback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | 是   | 回调函数。当订阅成功时，回调内容是[DataReceiveProgressInfo](#datareceiveprogressinfo11)，订阅失败时为undefined。 |
 
 **示例：**
 
@@ -1074,7 +1076,7 @@ on(type: 'dataSendProgress', callback: Callback\<DataSendProgressInfo\>): void
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataSendProgress'。 |
-| callback | AsyncCallback\<[DataSendProgressInfo](#datasendprogressinfo11)\>   | 是   | 回调函数。返回数据发送进度信息。|
+| callback | Callback\<[DataSendProgressInfo](#datasendprogressinfo11)\>   | 是   | 回调函数。当订阅成功时，回调内容是[DataSendProgressInfo](#datasendprogressinfo11)，订阅失败时为undefined。|
 
 **示例：**
 
