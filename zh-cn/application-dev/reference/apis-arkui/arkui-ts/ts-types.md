@@ -278,6 +278,8 @@
 
 ## ResourceColor
 
+type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Resource](#resource)
+
 颜色类型，用于描述资源颜色类型。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
