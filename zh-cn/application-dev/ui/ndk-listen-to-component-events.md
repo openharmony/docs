@@ -132,6 +132,45 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
   nodeAPI->unregisterNodeEvent(button, NODE_ON_CLICK);
   ```
 
+
+- 深浅色变更事件
+
+  ArkUI开发框架在NDK接口提供了以组件为注册单位的系统深浅色变更事件，系统通过在深浅色变更时通知注册在组件上的回调，实现NDK侧的深浅色变更能力。
+
+  > **说明：**
+  > - 一个回调内可以自行设计多个组件的深浅色变更。
+  > - 同一组件仅能注册一个系统深浅变更回调。
+  > - 建议注册在页面内不会被销毁的节点，防止因节点销毁导致的回调失效。
+
+    ```cpp
+    struct ColorModeInfo {
+        const char* lightMsg;
+        const char* darkMsg;
+    };
+
+    //注册回调函数
+    void onColorModeChange(ArkUI_SystemColorMode colorMode, void *userData)
+    {
+        ColorModeInfo* info = static_cast<ColorModeInfo*>(userData);
+        if (colorMode == ARKUI_SYSTEM_COLOR_MODE_LIGHT) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Light mode: ", info->lightMsg);
+        } else if (colorMode == ARKUI_SYSTEM_COLOR_MODE_DARK) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "Dark mode: ", info->darkMsg);
+        }
+    }
+
+    ArkUI_NodeHandle testColorModeChange(ArkUI_NativeNodeAPI_1 *nodeAPI) {
+        ArkUI_NodeHandle text = nodeAPI->createNode(ARKUI_NODE_TEXT);
+        static ColorModeInfo info = {"现在是浅色模式", "现在是深色模式"};
+        OH_ArkUI_RegisterSystemColorModeChangeEvent(text, &info, onColorModeChange);
+
+        ArkUI_AttributeItem itemstring = {nullptr, 0, ("人生得意须尽欢")};
+        nodeAPI->setAttribute(text, NODE_TEXT_CONTENT, &itemstring);
+
+        return text;
+    }
+    ```
+
 **完整示例：**
 
 1. 在ArkUINode基类对象中实现通用事件注册逻辑。

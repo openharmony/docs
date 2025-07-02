@@ -668,7 +668,7 @@ let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.forEach((value: string, index?: number) => {
-  console.log("value:" + value, "index:" + index);
+  console.info("value:" + value, "index:" + index);
 });
 ```
 ```ts
@@ -717,8 +717,8 @@ plainArray.add(2, "sparrow");
 let iter = plainArray[Symbol.iterator]();
 let temp: IteratorResult<Object[]> = iter.next();
 while(!temp.done) {
-  console.log("key:" + temp.value[0]);
-  console.log("value:" + temp.value[1]);
+  console.info("key:" + temp.value[0]);
+  console.info("value:" + temp.value[1]);
   temp = iter.next();
 }
 ```

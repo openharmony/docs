@@ -89,7 +89,7 @@ struct Page {
         this.showFullNameRequestCount = this.fullNameRequestCount;
       })
     }
-  }，
+  }
 }
 ```
 

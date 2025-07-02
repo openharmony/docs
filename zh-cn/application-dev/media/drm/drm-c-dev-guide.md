@@ -8,7 +8,7 @@ DRM Kit提供MediaKeySystem实现DRM证书管理、DRM许可证管理功能，�
 
 ## 开发步骤
 
-详细的API说明请参考[DRM API](../../reference/apis-drm-kit/_drm.md)。
+详细的API说明请参考[DRM API](../../reference/apis-drm-kit/capi-drm.md)。
 
 1. 导入DRM Kit接口。
 

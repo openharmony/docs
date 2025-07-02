@@ -30,6 +30,9 @@
   - Image Receiving<!--image-receiving-c-->
     - [Using Image_NativeModule to Receive Images](image-receiver-c.md)
     - [Using Image_NativeModule to Process Image Information](image-info-c.md)
+- FAQs About Image Kit<!--image-faqs-->
+  - [Handling HEIF Images](image-faqs/heif-adapter-faq.md)
+  - [Obtaining the Rotation Angle of an Image](image-faqs/image-rotate-faq.md)
 - Not Recommended<!--imagekit-not-recommended-->
   - Image Development (Dependent on JS Objects) (C/C++)<!--image-native-js-objects-->
     - [Image Decoding](image-decoding-native.md)

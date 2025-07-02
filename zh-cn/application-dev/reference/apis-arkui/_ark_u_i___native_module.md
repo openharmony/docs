@@ -3711,8 +3711,8 @@ enum ArkUI_NodeAttributeType
 | NODE_TEXT_CONTENT_WITH_STYLED_STRING  | text组件使用格式化字符串对象设置文本内容属性，支持属性设置，属性重置，属性获取接口。 配置自定义**OH_Drawing_Typography**对象到text组件，会跳过文本控件的布局测算阶段，需要注意：<br/>1、需要保证**OH_ArkUI_StyledString**对象、**OH_Drawing_Typography**对象的生命周期跟随Text 组件生命周期，Text组件析构时重置**OH_ArkUI_StyledString**对象，否则会导致应用出现空指针崩溃。<br/>2、保证**OH_Drawing_TypographyLayout**方法调用时序在Text组件的布局测算之前。<br/>3、释放**OH_ArkUI_StyledString**对象、**OH_Drawing_Typography**对象时，需要同步调用Text 组件的reset方法，否则会导致应用出现空指针崩溃。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object 表示 ArkUI_StyledString 格式化字符串数据，参数类型为[ArkUI_StyledString](#arkui_styledstring)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object 表示 ArkUI_StyledString 格式化字符串数据，参数类型为[ArkUI_StyledString](#arkui_styledstring)。 |
 | NODE_TEXT_HALF_LEADING  | text组件设置文本纵向居中显示。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：文本是否纵向居中显示，默认值false。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：文本是否纵向居中显示。 |
 | NODE_IMMUTABLE_FONT_WEIGHT  | 组件字体粗细属性，支持属性设置，属性重置和属性获取接口。通过此接口设置的文字粗细属性不会跟随系统字体粗细而变化。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：字体粗细样式[ArkUI_FontWeight](#arkui_fontweight)，默认值为ARKUI_FONT_WEIGHT_NORMAL；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：字体粗细样式[ArkUI_FontWeight](#arkui_fontweight)； |
-| NODE_TEXT_LINEAR_GRADIENT  | 设置文本颜色渐变效果，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：线性渐变的起始角度。当direction属性设置为ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，angle属性生效；否则，以direction属性为主要布局方式，0点方向顺时针旋转为正向角度。<br/>默认值：180<br/>.value[1].i32：线性渐变的方向[ArkUI_LinearGradientDirection](#arkui_lineargradientdirection)。设置除ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM之外的线性渐变方向后，angle不生效。<br/>.value[2].i32：为渐变的颜色重复着色。<br/>默认值：false<br/>.object: 参数类型为[ArkUI_ColorStop](_ark_u_i___color_stop.md)。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过。<br/>colors：渐变色颜色颜色。<br/>stops：渐变位置。<br/>size：颜色个数。| 
-| NODE_TEXT_RADIAL_GRADIENT  | 设置文本径向渐变渐变效果，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0]?.f32：为径向渐变的中心点，即相对于当前文本左上角的X轴坐标。<br/>.value[1]?.f32：为径向渐变的中心点，即相对于当前文本左上角的Y轴坐标。<br/>.value[2]?.f32：径向渐变的半径，默认值为0。<br/>.value[3]?.i32：为渐变的颜色重复着色，0表示不重复着色，1表示重复着色。<br/>.object：参数类型为[ArkUI_ColorStop](_ark_u_i___color_stop.md)。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过：<br/>colors：渐变色颜色颜色。<br/>stops：渐变位置。<br/>size：颜色个数。<br/>**起始版本：** 20| 
+| NODE_TEXT_LINEAR_GRADIENT  | 设置文本线性渐变效果，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：线性渐变的起始角度。当direction属性设置为ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，angle属性生效；否则，以direction属性为主要布局方式，0点方向顺时针旋转为正向角度。<br/>默认值：180<br/>.value[1].i32：线性渐变的方向[ArkUI_LinearGradientDirection](#arkui_lineargradientdirection)。设置除ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM之外的线性渐变方向后，angle不生效。<br/>默认值：ARKUI_LINEAR_GRADIENT_DIRECTION_LEFT_BOTTOM<br/>.value[2].i32：为渐变的颜色重复着色，false表示不重复着色，true表示重复着色。<br/>默认值：false<br/>.object：参数类型为[ArkUI_ColorStop](_ark_u_i___color_stop.md)。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过：<br/>colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。<br/>stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。想要实现多个颜色渐变效果时，数组元素建议递增设置，如后一个数组元素比前一个数组元素小的话，按照等于前一个数组元素的值处理。<br/>size：颜色个数，若小于colors数组长度则仅生效前size个颜色，不建议设置大于colors数组长度或小于等于0的值以及异常值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：线性渐变的起始角度。当为ARKUI_LINEAR_GRADIENT_DIRECTION_CUSTOM时，angle为设置值，其他情况均为默认值0。<br/>.value[1].i32：线性渐变的方向[ArkUI_LinearGradientDirection](#arkui_lineargradientdirection)。<br/>.value[2].i32：为渐变的颜色重复着色，0表示不重复着色，1表示重复着色。<br/>默认值：0<br/>.object：参数类型为[ArkUI_ColorStop](_ark_u_i___color_stop.md)。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过：<br/>colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。<br/>stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。<br/>size：生效后渐变色的颜色个数。<br/>**起始版本：** 20| 
+| NODE_TEXT_RADIAL_GRADIENT  | 设置文本径向渐变效果，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0]?.f32：为径向渐变的中心点，即相对于当前文本框左上角的X轴坐标。<br/>.value[1]?.f32：为径向渐变的中心点，即相对于当前文本框左上角的Y轴坐标。<br/>文本框左上角的坐标为[0,0]。<br/>.value[2]?.f32：径向渐变的半径，默认值为0。<br/>.value[3]?.i32：为渐变的颜色重复着色，false表示不重复着色，true表示重复着色。<br/>默认值：false<br/>.object：参数类型为[ArkUI_ColorStop](_ark_u_i___color_stop.md)。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过：<br/>colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。<br/>stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。想要实现多个颜色渐变效果时，数组元素建议递增设置，如后一个数组元素比前一个数组元素小的话，按照等于前一个数组元素的值处理。<br/>size：颜色个数，若小于colors数组长度则仅生效前size个颜色，不建议设置大于colors数组长度或小于等于0的值以及异常值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：为径向渐变的中心点，即相对于当前文本框左上角的X轴坐标。<br/>.value[1].f32：为径向渐变的中心点，即相对于当前文本框左上角的Y轴坐标。<br/>文本框左上角的坐标为[0,0]。<br/>.value[2].f32：径向渐变的半径，默认值0。<br/>.value[3].i32：为渐变的颜色重复着色，0表示不重复着色，1表示重复着色。<br/>默认值：0<br/>.object：参数类型为[ArkUI_ColorStop](_ark_u_i___color_stop.md)。指定某百分比位置处的渐变色颜色，设置非法颜色直接跳过：<br/>colors：渐变色颜色数组，数组元素为0xargb格式，形如0xFFFF0000表示红色。<br/>stops：stops表示指定颜色所处位置的数组，数组元素取值范围为[0,1.0]，0表示需要设置渐变色的容器的开始处，1.0表示容器的结尾处。<br/>size：生效后渐变色的颜色个数。<br/>**起始版本：** 20| 
 | NODE_TEXT_LINE_COUNT  | 文本行数属性，支持属性获取。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：文本的行数。<br/>**起始版本：** 20  |
 | NODE_TEXT_OPTIMIZE_TRAILING_SPACE | Text组件设置是否优化每行末尾的空格。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否优化每行末尾的空格，默认值false。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否优化每行末尾的空格。<br/>**起始版本：** 20  |
 | NODE_TEXT_VERTICAL_ALIGN | 设置文本内容垂直对齐方式，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：文本内容垂直对齐方式[ArkUI_TextVerticalAlignment](#arkui_textverticalalignment)，默认值：ARKUI_TEXT_VERTICAL_ALIGNMENT_BASELINE<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：文本内容垂直对齐方式[ArkUI_TextVerticalAlignment](#arkui_textverticalalignment)。<br/>**起始版本：** 20  |
@@ -8405,7 +8405,7 @@ int32_t OH_ArkUI_NodeUtils_GetNodeUniqueId(ArkUI_NodeHandle node, int32_t* uniqu
 | 名称 | 描述 |
 | -------- | -------- |
 | node | ArkUI节点指针。 |
-| uniqueId | 目标节点的uniqueId，默认为-1。 |
+| uniqueId | 目标节点的uniqueId。组件标识ID只读，且进程内唯一，若该节点存在，返回该节点的Uniqueld值；否则返回-1。 |
 
 **返回：**
 
@@ -15578,7 +15578,7 @@ int32_t OH_ArkUI_RegisterSystemColorModeChangeEvent (ArkUI_NodeHandle node, void
 ```
 **描述：**
 
-注册系统深浅色变更事件。同一组件仅能注册一个系统深浅变更回调。
+注册系统深浅色变更事件。同一组件仅能注册一个系统深浅变更回调。示例请参考：[监听组件事件](../../ui/ndk-listen-to-component-events.md)。
 
 **起始版本：** 12
 
@@ -17996,7 +17996,7 @@ ArkUI_ErrorCode OH_ArkUI_InitModuleForArkTSEnv(napi_env env)
 ```
 **描述：**
 
-初始化指定虚拟机环境下的ArkUI相关接口。本函数不允许在非UI线程中调用。如果检测到在非UI线程中调用，程序将主动终止。
+初始化指定虚拟机环境下的ArkUI相关接口。本函数不允许在非UI线程中调用。如果检测到在非UI线程中调用，程序将主动终止。每个虚拟机环境的创建和初始化都会带来一定的内存开销，且其内存占用还会随着加载页面内容的复杂度而增加。因此，多虚拟机环境更适合用于加载结构简单、内容不复杂的UI场景，不建议在指定虚拟机环境中加载过于复杂的UI内容，以避免不必要的资源消耗。
 
 **起始版本：** 20
 
@@ -18155,7 +18155,7 @@ int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, v
 ```
 **描述：**
 
-在UIContext作用域内运行自定义函数。示例请参考：[在NDK中保证多实例场景功能正常](../../ui/ndk-scope-task.md)。
+在目标UI上下文中执行传入的自定义回调函数。示例请参考：[在NDK中保证多实例场景功能正常](../../ui/ndk-scope-task.md)。
 
 **起始版本：** 20
 
@@ -18163,9 +18163,9 @@ int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, v
 
 | 名称 | 描述 |
 | -------- | -------- |
-| uiContext | 表示目标UIContext的指针。  |
-| userData | 表示指定自定义数据的指针。 |
-| callback | 自定义函数。 |
+| uiContext | 表示目标UI上下文的指针。  |
+| userData | 开发者自定义数据指针，以便在回调函数中处理自定义数据，开发者需自行保证自定义函数被执行时的数据有效性。 |
+| callback | 开发者自定义回调函数。 |
 
 **返回：**
 

@@ -540,6 +540,29 @@ suffix(content: ComponentContent, options?: SliderSuffixOptions)
 | content | [ComponentContent](../js-apis-arkui-ComponentContent.md)    | 是   | 自定义组件内容，用于定义滑块后缀的可视化内容，该内容会显示在滑块的结束位置。 |
 | options | [SliderSuffixOptions](#slidersuffixoptions20) | 否   | 滑块后缀的配置选项，用于设置与无障碍功能相关的属性。 |
 
+### showSteps<sup>20+</sup>
+
+showSteps(value: boolean, options?: SliderShowStepOptions)
+
+设置当前是否显示步长刻度值。
+
+支持设置每个刻度点的无障碍文本信息，不设置时默认使用当前刻度点的值作为无障碍文本信息。
+
+当显示步长时，设置的刻度点无障碍文本信息生效。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型                                                         | 必填 | 说明                                                    |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
+| value | boolean | 是 | 当前是否显示步长刻度值。值为true时显示刻度值，值为false时不显示刻度值。<br />默认值：false |
+| options | [SliderShowStepOptions](#slidershowstepoptions20) | 否 | 刻度点无障碍文本的配置选项，用于设置与无障碍功能相关的属性。<br/>默认值：null |
+
 ## SliderCustomContentOptions<sup>20+</sup>
 
 Slider前后缀组件无障碍信息参数。
@@ -574,6 +597,30 @@ Slider后缀组件无障碍信息参数。
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 提供后缀组件的无障碍信息，继承自[SliderCustomContentOptions](#slidercustomcontentoptions20)。
+
+## SliderStepItemAccessibility<sup>20+</sup>
+
+Slider刻度点的无障碍文本信息。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                     | 类型        | 必填 | 说明                                                         |
+| ------------------------ | ----------- | ---- | ------------------------------------------------------------ |
+| text | [ResourceStr](ts-types.md#resourcestr) | 否 | 用于提供辅助功能的文本，供屏幕阅读器等工具读取，增强无障碍功能。 <br/>默认值："" |
+
+## SliderShowStepOptions<sup>20+</sup>
+
+Slider刻度点的无障碍文本信息映射集。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                     | 类型        | 必填 | 说明                                                         |
+| ------------------------ | ----------- | ---- | ------------------------------------------------------------ |
+| stepsAccessibility | Map<number, [SliderStepItemAccessibility](#sliderstepitemaccessibility20)> | 否 | 用于设置刻度点提供辅助功能文本，供屏幕阅读器等工具读取，增强无障碍功能。 <br/>Key取值范围：[0, INT32_MAX]，当Key设定为负数和小数时，设定项不生效。 <br/>默认值：{} |
 
 ## SliderBlockStyle<sup>10+</sup>对象说明
 
@@ -1374,3 +1421,72 @@ struct SliderExample {
 ```
 
 ![slider_5](figures/slider_5.jpeg)
+
+
+### 示例6（滑动条设置刻度点无障碍文本）
+
+该示例实现了Slider组件通过showSteps属性设置刻度点的无障碍文本信息。设置后，屏幕阅读器将以设置的无障碍内容进行朗读。
+
+```ts
+
+class SliderBlockBorderColorModifier1 implements AttributeModifier<SliderAttribute>{
+  optionMaps:Map<number, SliderStepItemAccessibility> = new Map()
+    .set(1, {text : "123123"})
+    .set(2, {text : "Slider无障碍文本"})
+    .set(3, {text : $r('app.string.stepItemText')})
+    .set(4, {text : "!@#$%^&*()"});
+  applyNormalAttribute(instance: SliderAttribute): void {
+    instance.showSteps(true, {stepsAccessibility: this.optionMaps})
+  }
+}
+@Entry
+@Component
+struct SliderExample {
+  @State show: boolean = true;
+  @State optionMaps:Map<number, SliderStepItemAccessibility> = new Map();
+  private  sliderModifier: SliderBlockBorderColorModifier1 =new SliderBlockBorderColorModifier1()
+  aboutToAppear(){
+    this.optionMaps.set(1, {text : "123123"})
+    this.optionMaps.set(2, {text : "Slider无障碍文本"})
+    this.optionMaps.set(3, {text : $r('app.string.app_name')})
+    this.optionMaps.set(4, {text : "!@#$%^&*()"})
+    this.show = true;
+  }
+  build() {
+    Column({ space: 8 }) {
+      Text("show steps").fontSize(12).fontColor(0xCCCCCC).margin(15).width('90%')
+      Row() {
+        Slider({
+          style: SliderStyle.InSet,
+          value: 20,
+          step: 10,
+          max: 50,
+          min: 0,
+          direction: Axis.Horizontal
+        })
+          .stepSize(8)
+          .stepColor(Color.Yellow)
+          .showSteps(true, {stepsAccessibility: this.optionMaps})
+      } .width('80%').height(300)
+      Divider()
+      Text("modifier").fontSize(12).fontColor(0xCCCCCC).margin(15).width('90%')
+      Row() {
+        Slider({
+          style: SliderStyle.InSet,
+          value: 20,
+          step: 10,
+          max: 50,
+          min: 0,
+          direction: Axis.Horizontal
+        })
+          .stepSize(8)
+          .stepColor(Color.Yellow)
+          .attributeModifier(this.sliderModifier)
+      } .width('80%').height(300)
+      Divider()
+    }
+  }
+}
+
+```
+![slider_step_options](figures/slider_step_options.png)

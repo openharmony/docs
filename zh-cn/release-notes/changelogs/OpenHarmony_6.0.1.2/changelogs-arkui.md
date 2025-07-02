@@ -1,87 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 通用属性drawModifier接口变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-当drawModifier接口参数从DrawModifier对象变为undefined时，实际生效的仍是原来的DrawModifier对象。开发者无法重置其值，这与通用属性接口的规范不符。
-
-**变更影响**
-
-此变更涉及应用适配。
-
-- 变更前： drawModifier接口参数从DrawModifier对象变为undefined后，生效的仍旧是原来的DrawModifier对象。
-  
-- 变更后：drawModifier接口参数从DrawModifier对象变为undefined后，会将原来设置的值重置为undefined。
-
-**起始API Level**
-
-12
-
-**变更发生版本**
-
-从OpenHarmony SDK 6.0.1.2开始。
-
-**适配指导**
-
-变更前，this.modifier = undefined;不会清除组件上生效的DrawModifier对象，而变更后则会完成清除。因此，若想保持行为不变，需要注释或删除这一行代码。
-
-```ts
-import { drawing } from '@kit.ArkGraphics2D';
-
-class MyFrontDrawModifier extends DrawModifier {
-  public scaleX: number = 1;
-  public scaleY: number = 1;
-
-  drawFront(context: DrawContext): void {
-    const brush = new drawing.Brush();
-    brush.setColor({
-      alpha: 255,
-      red: 0,
-      green: 0,
-      blue: 255
-    });
-    context.canvas.attachBrush(brush);
-    const halfWidth = context.size.width / 2;
-    const halfHeight = context.size.width / 2;
-    const radiusScale = (this.scaleX + this.scaleY) / 2;
-    context.canvas.drawCircle(vp2px(halfWidth), vp2px(halfHeight), vp2px(20 * radiusScale));
-  }
-}
-
-@Entry
-@Component
-struct DrawModifierExample {
-  @State modifier: DrawModifier | undefined = new MyFrontDrawModifier();
-
-  build() {
-    Column() {
-      Button("清除modifier").onClick(() => {
-        // 变更前：下面代码不生效，Text组件仍旧绑定原本的modifier
-        this.modifier = undefined;
-        // 规避方法：变更前若想清空Text组件的自定义绘制效果，可将其绑定的变量变为基类对象
-        this.modifier = new DrawModifier();
-        // 变更后：若开发者期望行为和变更前保持一致，即下面代码不生效的话，只需要注释掉这一行即可
-        // this.modifier = undefined;
-      })
-      Row() {
-        Text()
-          .width(100)
-          .height(100)
-          .margin(10)
-          .backgroundColor(Color.Gray)
-          .drawModifier(this.modifier)
-      }
-    }
-  }
-}
-```
-
-## cl.arkui.2 默认深浅色切换流程变更
+## cl.arkui.1 默认深浅色切换流程变更
 
 **访问级别**
 
@@ -197,99 +116,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.3 drawModifier接口通过取消多余重绘达实现性能优化
-
-**访问级别**
-
-公开
-
-**变更原因**
-
-当前实现中，若组件设置了drawModifier属性，则默认会在生命周期的布局阶段之后触发重绘。对于绘制内容和尺寸均未发生变化的场景，这将导致多余的重绘，造成性能损耗。因此，调整设置drawModifier的节点的重绘规则，默认仅执行过测量过程的节点才进行重绘。
-
-**变更影响**
-
-此变更涉及应用适配
-
-- 变更前：任何组件，只要设置了drawModifier属性，即使跳过测量，也会触发重绘
-  
-- 变更后：若容器组件设置了drawModifier属性，则当其跳过测量时，不执行重绘。其他组件的重绘触发机制与是否使用drawModifier属性无关。
-
-**起始API Level**
-
-12
-
-**变更发生版本**
-
-从OpenHarmony SDK 6.0.1.2开始。
-
-**变更的接口/组件**
-
- drawModifier
-
-**适配指导**
-
-若开发者的自定义绘制内容变化逻辑受到本次变更影响，在受影响属性变化的代码后加入invalidate以主动触发重绘，即可完成适配。具体适配方案可参考下文示例。
-
-```ts
-// index.ets
-import { drawing } from '@kit.ArkGraphics2D';
-
-class MyFontDrawModifier extends DrawModifier {
-  public scaleX: number = 1;
-  public scaleY: number = 1;
-
-  drawFront(context: DrawContext): void {
-    const brush = new drawing.Brush();
-    brush.setColor({
-      alpha: 255,
-      red: 0,
-      green: 0,
-      blue: 255
-    });
-    context.canvas.attachBrush(brush);
-    const halfWidth = context.size.width / 2;
-    const halfHeight = context.size.width / 2;
-    const radiusScale = (this.scaleX + this.scaleY) / 2;
-    context.canvas.drawCircle(vp2px(halfWidth), vp2px(halfHeight), vp2px(20 * radiusScale));
-  }
-}
-
-@Entry
-@Component
-struct DrawModifierExample {
-  private fontModifier: MyFontDrawModifier = new MyFontDrawModifier();
-  @State testWidth: number = 100;
-
-  build() {
-    Column() {
-      Button('changeModifier')
-        .onClick(() => {
-          this.testWidth++;
-          this.fontModifier.scaleX += 0.1;
-          this.fontModifier.scaleY += 0.1;
-          // 适配手动调用invalidate方法
-          this.fontModifier.invalidate();
-        })
-      Column() {
-        Row()
-          .width(50)
-          .height(50)
-          .drawModifier(this.fontModifier)
-        Row() {
-          Text("hello word")
-            .width(this.testWidth)
-            .height(100)
-        }
-      }
-      .width(100)
-      .height(100)
-    }
-  }
-}
-```
-
-## cl.arkui.4 WithTheme组件设置colorMode后效果异常问题修复
+## cl.arkui.2 WithTheme组件设置colorMode后效果异常问题修复
 
 **访问级别**
 
@@ -360,7 +187,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.5 ListItem组件创建行为变更
+## cl.arkui.3 ListItem组件创建行为变更
 **访问级别**
 
 公开接口
@@ -415,7 +242,7 @@ ListItem组件。
 
 需要排查ListItem属性方法中是否有调用函数获取属性值，排查函数调用次数是否对业务有影响，如果有影响需要根据实际业务场景适配。
 
-## cl.arkui.6 FullScreenLaunchComponent嵌入式运行元服务内容区避让系统安全区行为变更
+## cl.arkui.4 FullScreenLaunchComponent嵌入式运行元服务内容区避让系统安全区行为变更
 **访问级别**
 
 公开接口

@@ -183,6 +183,7 @@
 | [int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent)](#oh_input_injecttouchevent) | - | 注入触屏事件。 |
 | [int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent)](#oh_input_injectmouseevent) | - | 注入鼠标事件。 |
 | [int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayid) | - | 获取鼠标事件的屏幕Id。 |
+| [Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count)](#oh_input_querymaxtouchpoints) | - | 查询设备支持的最大触屏报点数。 |
 
 ## 枚举类型说明
 
@@ -3770,3 +3771,27 @@ int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEven
 | 类型 | 说明 |
 | -- | -- |
 | int32_t | 若获取鼠标事件的屏幕Id成功，则返回鼠标事件的屏幕Id；若mouseEvent为NULL，则返回-1。 |
+
+### OH_Input_QueryMaxTouchPoints()
+
+```
+Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count)
+```
+
+**描述**
+
+查询设备支持的最大触屏报点数。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| int32_t *count | 设备支持的最大触屏报点数，count取值范围为0-10，-1表示未知数量。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Input_Result](capi-oh-input-manager-h.md#input_result) | [INPUT_SUCCESS](#input_result) 表示查询成功。<br> [INPUT_PARAMETER_ERROR](capi-oh-input-manager-h.md#input_result) 表示参数错误。 |
