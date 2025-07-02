@@ -29,5 +29,5 @@
 15. [napi_value和napi_ref的生命周期有何区别](napi-faq-about-common-basic.md#napi_value和napi_ref的生命周期有何区别)  
 16. [Node-API接口返回值不是napi_ok时，如何排查定位](napi-faq-about-common-basic.md#node-api接口返回值不是napi_ok时如何排查定位)   
 17. [napi_wrap如何保证被wrap的对象按期望顺序析构？](napi-faq-about-common-basic.md#napi_wrap如何保证被wrap的对象按期望顺序析构)
-18. 
+
 
