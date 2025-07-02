@@ -3035,8 +3035,8 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.drawImage(this.img,0,0,130,130)
-            let imagedata = this.context.getImageData(50,50,130,130)
-            this.context.putImageData(imagedata,150,150)
+            let imageData = this.context.getImageData(50,50,130,130)
+            this.context.putImageData(imageData,150,150)
           })
       }
       .width('100%')

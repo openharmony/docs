@@ -3154,8 +3154,8 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
           .onReady(() =>{
             let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.drawImage(this.img,0,0,130,130)
-            let imagedata = offContext.getImageData(50,50,130,130)
-            offContext.putImageData(imagedata,150,150)
+            let imageData = offContext.getImageData(50,50,130,130)
+            offContext.putImageData(imageData,150,150)
             let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
