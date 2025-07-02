@@ -1722,9 +1722,9 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
-### GetIndexConstructProgress<sup>12+</sup>
+### getIndexConstructProgress<sup>12+</sup>
 
-GetIndexConstructProgress(): Promise&lt;string&gt;
+getIndexConstructProgress(): Promise&lt;string&gt;
 
 获取索引构建进度。使用Promise异步回调。
 
@@ -1779,9 +1779,9 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
-### GetDataAnalysisProgress<sup>12+</sup>
+### getDataAnalysisProgress<sup>12+</sup>
 
-GetDataAnalysisProgress(analysisType: AnalysisType): Promise&lt;string&gt;
+getDataAnalysisProgress(analysisType: AnalysisType): Promise&lt;string&gt;
 
 获取资产的分析进度。使用Promise异步回调。
 
@@ -1821,13 +1821,13 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-a
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
-    console.info('GetDataAnalysisProgress test start');
+    console.info('getDataAnalysisProgress test start');
 
-    let result: string = await phAccessHelper.GetDataAnalysisProgress(photoAccessHelper.AnalysisType.ANALYSIS_FACE);
-    console.info('GetDataAnalysisProgress:' + result);
+    let result: string = await phAccessHelper.getDataAnalysisProgress(photoAccessHelper.AnalysisType.ANALYSIS_FACE);
+    console.info('getDataAnalysisProgress:' + result);
 
   } catch (err) {
-    console.error(`GetDataAnalysisProgress failed, error: ${err.code}, ${err.message}`);
+    console.error(`getDataAnalysisProgress failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
