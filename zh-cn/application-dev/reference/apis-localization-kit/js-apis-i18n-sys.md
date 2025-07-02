@@ -898,12 +898,12 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称            | 类型            |  必填   |  说明                                   |
-| --------------- | --------------- | ------ | --------------------------------------- |
-| id              | string          |   是   | 语言代码或国家地区代码，如"zh"、"CN"。    |
-| suggestionType  | [SuggestionType](#suggestiontype10)  |   是  | 语言或国家地区推荐类型。                  |
-| displayName     | string          |  是   | id在SystemLocaleManager的指定区域下的表示。|
-| localName       | string          |  否   | id的本地名称。                           |
+| 名称            | 类型            | 只读 | 可选   |  说明                                   |
+| --------------- | --------------- | ------ | ------ | --------------------------------------- |
+| id              | string          |   否   |   否   | 语言代码或国家地区代码，如"zh"、"CN"。    |
+| suggestionType  | [SuggestionType](#suggestiontype10)  |   否   |   否  | 语言或国家地区推荐类型。                  |
+| displayName     | string          |   否   |  否   | id在SystemLocaleManager的指定区域下的表示。|
+| localName       | string          |   否   |  是   | id的本地名称。只有在表示语言相关信息时才存在该选项。      |
 
 ## TimeZoneCityItem<sup>10+</sup>
 
@@ -913,14 +913,14 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称            | 类型             |  必填   |  说明                                   |
-| --------------- | --------------- | ------  | --------------------------------------- |
-| zoneId          | string          |   是    | 时区ID，例如Asia/Shanghai。              |
-| cityId          | string          |   是    | 城市ID，例如Shanghai。                   |
-| cityDisplayName | string          |   是    | 城市ID在系统区域下显示的名称。          |
-| offset          | int             |   是    | 时区ID的偏移量。                         |
-| zoneDisplayName | string          |   是    | 时区ID在系统区域下显示的名称。          |
-| rawOffset       | int             |   否    | 时区ID的固定偏移量。                       |
+| 名称            | 类型             |  只读   |  可选   |  说明                                   |
+| --------------- | --------------- | ------  | ------  | --------------------------------------- |
+| zoneId          | string          |   否    |   否    | 时区ID，例如Asia/Shanghai。              |
+| cityId          | string          |   否    |   否    | 城市ID，例如Shanghai。                   |
+| cityDisplayName | string          |   否    |   否    | 城市ID在系统区域下显示的名称。          |
+| offset          | number             |   否    |   否    | 时区ID的偏移量。                         |
+| zoneDisplayName | string          |   否    |   否    | 时区ID在系统区域下显示的名称。          |
+| rawOffset       | number             |   否    |   是    | 时区ID的固定偏移量。                       |
 
 
 ## SuggestionType<sup>10+</sup>
@@ -946,8 +946,8 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称            | 类型            |  必填 |   说明                                 |
-| --------------- | --------------- | ---- | --------------------------------------- |
-| locale          | string          |  否  | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如"zh-Hans-CN"。<br>默认值：系统当前区域ID。    |
-| isUseLocalName  | boolean         |  否  | true表示使用本地名称进行排序，false表示不使用本地名称进行排序。<br>若调用方法为getLanguageInfoArray，isUseLocalName属性默认值为true。<br>若调用方法为getRegionInfoArray，isUseLocalName属性默认值为false。                |
-| isSuggestedFirst | boolean        |  否  | true表示将推荐语言或国家地区在排序结果中置顶，false表示不将推荐语言或国家地区在排序结果中置顶。<br>默认值：true。  |
+| 名称            | 类型            |  只读 |  可选 |   说明                                 |
+| --------------- | --------------- | ---- | ---- | --------------------------------------- |
+| locale          | string          |  否  |  是  | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如"zh-Hans-CN"。<br>默认值：系统当前区域ID。    |
+| isUseLocalName  | boolean         |  否  |  是  | true表示使用本地名称进行排序，false表示不使用本地名称进行排序。<br>若调用方法为getLanguageInfoArray，isUseLocalName属性默认值为true。<br>若调用方法为getRegionInfoArray，isUseLocalName属性默认值为false。                |
+| isSuggestedFirst | boolean        |  否  |  是  | true表示将推荐语言或国家地区在排序结果中置顶，false表示不将推荐语言或国家地区在排序结果中置顶。<br>默认值：true。  |
