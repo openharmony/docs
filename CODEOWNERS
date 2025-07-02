@@ -206,28 +206,28 @@ zh-cn/application-dev/ui/arkts-popup-overview.md			@li-xinlei007	@HelloCrease @z
 zh-cn/application-dev/ui/arkts-dialog-overview.md			@li-xinlei007	@HelloCrease @zhanghaibo0
 zh-cn/application-dev/ui/arkts-routing.md	@raulnaruto_admin		@HelloCrease
 zh-cn/application-dev/ui/arkts-navigation-navigation.md	@jiangdayuan	@raulnaruto_admin	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/ui/arkts-navigation-tabs.md	@yan-shuifeng	@rongshao-Z	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/ui/arkts-navigation-tabs.md	@yan-shuifeng	@rongshao-Z	@fredyuan0912	@HelloCrease @yangfan229 @H-xinwei
 zh-cn/application-dev/ui/arkts-graphics-display.md	@lexiaoyao2		@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-geometric-shape-drawing.md	@keerecles	@seaside_wu		@HelloCrease
 zh-cn/application-dev/ui/arkts-drawing-customization-on-canvas.md	@keerecles	@ZhangYu-Home		@HelloCrease
-zh-cn/application-dev/ui/arkts-animation.md	@hehongyang9 @lightningHo	@huaweimaxuchu		@HelloCrease
-zh-cn/application-dev/ui/arkts-attribute-animation-overview.md	@hehongyang9 @lightningHo	@huaweimaxuchu		@HelloCrease
-zh-cn/application-dev/ui/arkts-attribute-animation-apis.md	@hehongyang9 @lightningHo	@huaweimaxuchu		@HelloCrease
-zh-cn/application-dev/ui/arkts-custom-attribute-animation.md	@hehongyang9 @lightningHo	@huaweimaxuchu		@HelloCrease
-zh-cn/application-dev/ui/arkts-transition-overview.md	@hehongyang9 @lightningHo	@huaweimaxuchu		@HelloCrease
-zh-cn/application-dev/ui/arkts-enter-exit-transition.md	@hehongyang9 @lightningHo	@huaweimaxuchu		@HelloCrease
+zh-cn/application-dev/ui/arkts-animation.md	@hehongyang9 @yangfan229 @H-xinwei @huaweimaxuchu		@HelloCrease
+zh-cn/application-dev/ui/arkts-attribute-animation-overview.md	@hehongyang9 @yangfan229 @H-xinwei	@huaweimaxuchu		@HelloCrease
+zh-cn/application-dev/ui/arkts-attribute-animation-apis.md	@hehongyang9 @yangfan229 @H-xinwei	@huaweimaxuchu		@HelloCrease
+zh-cn/application-dev/ui/arkts-custom-attribute-animation.md	@hehongyang9 @yangfan229 @H-xinwei	@huaweimaxuchu		@HelloCrease
+zh-cn/application-dev/ui/arkts-transition-overview.md	@hehongyang9 @yangfan229 @H-xinwei	@huaweimaxuchu		@HelloCrease
+zh-cn/application-dev/ui/arkts-enter-exit-transition.md	@hehongyang9 @yangfan229 @H-xinwei	@huaweimaxuchu		@HelloCrease
 zh-cn/application-dev/ui/arkts-navigation-transition.md	@lightningHo	@huaweimaxuchu		@HelloCrease
 zh-cn/application-dev/ui/arkts-modal-transition.md	@lightningHo	@huaweimaxuchu		@HelloCrease
-zh-cn/application-dev/ui/arkts-shared-element-transition.md	@hehongyang9 @lightningHo	@huaweimaxuchu		@HelloCrease
-zh-cn/application-dev/ui/arkts-page-transition-animation.md	@hehongyang9 @lightningHo	@huaweimaxuchu		@HelloCrease
-zh-cn/application-dev/ui/arkts-component-animation.md	@hehongyang9 @lightningHo	@huaweimaxuchu		@HelloCrease
-zh-cn/application-dev/ui/arkts-curve-overview.md	@hehongyang9 @lightningHo	@huaweimaxuchu		@HelloCrease
-zh-cn/application-dev/ui/arkts-traditional-curve.md	@hehongyang9 @lightningHo	@huaweimaxuchu		@HelloCrease
-zh-cn/application-dev/ui/arkts-spring-curve.md	@hehongyang9 @lightningHo	@huaweimaxuchu		@HelloCrease
-zh-cn/application-dev/ui/arkts-animation-smoothing.md	@hehongyang9 @lightningHo	@huaweimaxuchu		@HelloCrease
-zh-cn/application-dev/ui/arkts-blur-effect.md	@hehongyang9 @lightningHo	@huaweimaxuchu		@HelloCrease
-zh-cn/application-dev/ui/arkts-shadow-effect.md	@hehongyang9 @lightningHo	@huaweimaxuchu		@HelloCrease
-zh-cn/application-dev/ui/arkts-color-effect.md	@hehongyang9 @lightningHo			@HelloCrease
+zh-cn/application-dev/ui/arkts-shared-element-transition.md	@hehongyang9 @yangfan229 @H-xinwei	@huaweimaxuchu		@HelloCrease
+zh-cn/application-dev/ui/arkts-page-transition-animation.md	@hehongyang9 @yangfan229 @H-xinwei	@huaweimaxuchu		@HelloCrease
+zh-cn/application-dev/ui/arkts-component-animation.md	@hehongyang9 @yangfan229 @H-xinwei	@huaweimaxuchu		@HelloCrease
+zh-cn/application-dev/ui/arkts-curve-overview.md	@hehongyang9 @yangfan229 @H-xinwei	@huaweimaxuchu		@HelloCrease
+zh-cn/application-dev/ui/arkts-traditional-curve.md	@hehongyang9 @yangfan229 @H-xinwei	@huaweimaxuchu		@HelloCrease
+zh-cn/application-dev/ui/arkts-spring-curve.md	@hehongyang9 @yangfan229 @H-xinwei	@huaweimaxuchu		@HelloCrease
+zh-cn/application-dev/ui/arkts-animation-smoothing.md	@hehongyang9 @yangfan229 @H-xinwei	@huaweimaxuchu		@HelloCrease
+zh-cn/application-dev/ui/arkts-blur-effect.md	@hehongyang9 @yangfan229 @H-xinwei	@huaweimaxuchu		@HelloCrease
+zh-cn/application-dev/ui/arkts-shadow-effect.md	@hehongyang9 @yangfan229 @H-xinwei	@huaweimaxuchu		@HelloCrease
+zh-cn/application-dev/ui/arkts-color-effect.md	@hehongyang9 @yangfan229 @H-xinwei			@HelloCrease
 zh-cn/application-dev/ui/arkts-event-overview.md	@piggyguy	@jiangtao92		@HelloCrease
 zh-cn/application-dev/ui/arkts-common-events-touch-screen-event.md	@piggyguy	@jiangtao92		@HelloCrease
 zh-cn/application-dev/ui/arkts-common-events-device-input-event.md	@piggyguy	@jiangtao92		@HelloCrease
@@ -245,7 +245,7 @@ zh-cn/application-dev/ui/ndk-build-ui-overview.md @yan-shuifeng @fredyuan0912 @H
 zh-cn/application-dev/ui/ndk-access-the-arkts-page.md  @yan-shuifeng @fredyuan0912 @HelloCrease
 zh-cn/application-dev/ui/ndk-listen-to-component-events.md  @yan-shuifeng @fredyuan0912 @HelloCrease
 zh-cn/application-dev/ui/ndk-bind-gesture-events.md  @yan-shuifeng @fredyuan0912 @HelloCrease
-zh-cn/application-dev/ui/ndk-use-animation.md @hehongyang9 @yan-shuifeng @fredyuan0912 @HelloCrease
+zh-cn/application-dev/ui/ndk-use-animation.md @hehongyang9 @yangfan229 @H-xinwei @yan-shuifeng @fredyuan0912 @HelloCrease
 zh-cn/application-dev/ui/ndk-loading-long-list.md @yan-shuifeng @fredyuan0912 @HelloCrease
 zh-cn/application-dev/ui/ndk-build-pop-up-window.md @yan-shuifeng @fredyuan0912 @HelloCrease
 zh-cn/application-dev/ui/ndk-build-custom-components.md @yan-shuifeng @fredyuan0912 @HelloCrease
@@ -254,9 +254,9 @@ zh-cn/application-dev/ui/arkts-dialog-overview.md @li-xinlei007	@HelloCrease @zh
 zh-cn/application-dev/ui/arkts-base-dialog-overview.md @li-xinlei007	@HelloCrease @zhanghaibo0
 zh-cn/application-dev/ui/arkts-uicontext-custom-dialog.md @li-xinlei007	@HelloCrease @zhanghaibo0
 zh-cn/application-dev/ui/arkts-fixes-style-dialog.md @li-xinlei007	@HelloCrease @zhanghaibo0
-zh-cn/application-dev/ui/arkts-modal-overview.md @li-xinlei007	@HelloCrease @cheng-feiwang
-zh-cn/application-dev/ui/arkts-sheet-page.md 	@HelloCrease @cheng-feiwang
-zh-cn/application-dev/ui/arkts-contentcover-page.md 	@HelloCrease @cheng-feiwang
+zh-cn/application-dev/ui/arkts-modal-overview.md @li-xinlei007	@HelloCrease @cheng-feiwang @yangfan229 @H-xinwei
+zh-cn/application-dev/ui/arkts-sheet-page.md 	@HelloCrease @cheng-feiwang @yangfan229 @H-xinwei
+zh-cn/application-dev/ui/arkts-contentcover-page.md 	@HelloCrease @cheng-feiwang @yangfan229 @H-xinwei
 zh-cn/application-dev/ui/arkts-create-toast.md @li-xinlei007	@HelloCrease @zhanghaibo0
 zh-cn/application-dev/ui/arkts-create-overlaymanager.md @li-xinlei007	@HelloCrease @zhanghaibo0
 zh-cn/application-dev/ui/arkts-advanced-components-arcbutton.md @li-xinlei007	@HelloCrease
@@ -611,16 +611,16 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-flex
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md	@laigerendaqiu	@crazyracing0726		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-border-image.md		@crazyracing0726		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md	@jiangtao92	@sunfei2021		@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-opacity.md		@hehongyang9 @lightningHo		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-opacity.md		@hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md	@jiangtao92	@sunfei2021	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md	@jiangtao92	@piggyguy	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md	@jiangtao92	@benb365	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-z-order.md	@jiangtao92	@sunfei2021	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md		@hehongyang9 @lightningHo		@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md		@hehongyang9 @lightningHo		@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md		@hehongyang9 @lightningHo		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md		@hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md		@hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md		@hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-grid.md	 @laigerendaqiu	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-gradient-color.md		@hehongyang9 @lightningHo		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-gradient-color.md		@hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md		@zhanghaibo0	@li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md			@li-xinlei007	@HelloCrease @zhanghaibo0
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md	@benb365	@fredyuan0912	@HelloCrease
@@ -628,24 +628,24 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-hove
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-component-id.md	@jiangtao92	@sunfei2021	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md	@jiangtao92	@piggyguy	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md	@jiangtao92	@sunfei2021	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-color.md		@hehongyang9 @lightningHo		@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style.md		@hehongyang9 @lightningHo		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-color.md		@hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style.md		@hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-click-effect.md		@lightningHo		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md	@lmleon			@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md @harmony_zhangjian	@sunfei2021	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-outline.md @hehongyang9 	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-outline.md @hehongyang9 @yangfan229 @H-xinwei	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md	@jiangtao92	@piggyguy	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md	@jiangtao92	@piggyguy	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md	@raulnaruto_admin	@cheng-feiwang		@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md	@raulnaruto_admin	@cheng-feiwang		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md	@raulnaruto_admin	@cheng-feiwang	@yangfan229 @H-xinwei	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md	@raulnaruto_admin	@cheng-feiwang	@yangfan229 @H-xinwei	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-obscured.md	@jiangtao92	@sunfei2021	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-text-style.md	@jyj-0306	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md	@jiangtao92	@piggyguy	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md		@laigerendaqiu @fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-renderfit.md		@hehongyang9 @lightningHo		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-renderfit.md		@hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-monopolize-events.md  @piggyguy	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-cursor.md @piggyguy	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-use-effect-sys.md		@hehongyang9 @lightningHo		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-use-effect-sys.md		@hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect-sys.md @lightningHo		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-background-sys.md @lightningHo		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style-sys.md @lightningHo		@HelloCrease
@@ -659,7 +659,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-gestures-swipegestu
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-combined-gestures.md	@jiangtao92	@piggyguy	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md @jiangtao92	@piggyguy	@fredyuan0912	@HelloCrease
 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md	@rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md	@yeyinglong_admin @yangfan229 @H-xinwei	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-blank.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-button.md		@liyi0309	@li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-calendarpicker.md	@jinweiliu	@lexiaoyao2	@li-xinlei007	@HelloCrease
@@ -741,8 +741,8 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-scroll.md	@rong
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md	@raulnaruto_admin	@jiangdayuan	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-stack.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-swiper.md	@huangxiaolinabc123	@jiangdayuan	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md	@zcdqs	@lihaoyn @yangfan229 @H-xinwei	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md	@zcdqs	@lihaoyn	@HelloCrease @yangfan229 @H-xinwei
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-waterflow.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-list-sys.md @rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
@@ -790,16 +790,16 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ToolBar.
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-TreeView.md    @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md  @dutie123 @HelloCrease
 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-animatorproperty.md		@hehongyang9 @lightningHo		@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-explicit-animation.md		@hehongyang9 @lightningHo		@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-keyframeAnimateTo.md      @hehongyang9 @lightningHo		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-animatorproperty.md		@hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-explicit-animation.md		@hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-keyframeAnimateTo.md      @hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-page-transition-animation.md		@lightningHo		@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-transition-animation-component.md		@hehongyang9 @lightningHo		@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md	@hehongyang9 @lightningHo	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-transition-animation-geometrytransition.md			@hehongyang9 @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-motion-path-animation.md		@hehongyang9 @lightningHo		@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-particle-animation.md      @hehongyang9 @lightningHo		@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately-sys.md    @hehongyang9 @lightningHo		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-transition-animation-component.md		@hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md	@hehongyang9 @yangfan229 @H-xinwei	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-transition-animation-geometrytransition.md			@hehongyang9 @yangfan229 @H-xinwei @HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-motion-path-animation.md		@hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-particle-animation.md      @hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately-sys.md    @hehongyang9 @yangfan229 @H-xinwei		@HelloCrease
 
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md			@li-xinlei007	@HelloCrease @houguobiao
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-action-sheet.md			@li-xinlei007	@HelloCrease @houguobiao
@@ -835,7 +835,7 @@ zh-cn/application-dev/ui/state-management/arkts-rendering-control-ifelse.md @jiy
 
  
 [API参考-ArkUI-ArkTS]
-zh-cn/application-dev/reference/apis-arkui/js-apis-animator.md     @hehongyang9 @lightningHo  	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-animator.md     @hehongyang9 @yangfan229 @H-xinwei  	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-componentSnapshot.md    @piggyguy  @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-componentUtils.md    @piggyguy  @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-dragController.md    @piggyguy  @fredyuan0912	@HelloCrease
@@ -844,9 +844,9 @@ zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-inspector.md  @HelloCre
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-node.md  @lightningHo  @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-observer.md   @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md  @sunfei2021   @fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/js-apis-curve.md   @hehongyang9 @lightningHo  	@HelloCrease 
+zh-cn/application-dev/reference/apis-arkui/js-apis-curve.md   @hehongyang9 @yangfan229 @H-xinwei  	@HelloCrease 
 zh-cn/application-dev/reference/apis-arkui/js-apis-font.md   @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/js-apis-matrix4.md   @hehongyang9 @lightningHo  	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-matrix4.md   @hehongyang9 @yangfan229 @H-xinwei  	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-measure.md   @jyj-0306  @fredyuan0912 @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-mediaquery.md     @laigerendaqiu  @fredyuan0912 @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-plugincomponent.md  @fredyuan0912	@HelloCrease
