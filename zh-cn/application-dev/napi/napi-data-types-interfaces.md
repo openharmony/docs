@@ -139,7 +139,7 @@ typedef struct {
 
 - 存储了两个无符号64位整数的128位值，用它来标记ArkTS/JS对象，确保它们属于某种类型。
 
-- 比napi_instanceof更强的类型检查，如果对象的原型被操纵，napi_instanceof可能会存在语病。
+- 比napi_instanceof更强的类型检查，如果对象的原型被操纵，napi_instanceof可能会存在误报。
 
 - type_tag与napi_wrap结合非常有用，因为它确保从包装对象检索的指针可以安全地转换为与先前应用于JavaScript对象的类型标记相对应的Native类型。
 
