@@ -641,7 +641,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
+that.parseXml(options);
 console.log(str);
 // key:0 value:1 key:2 value:45 key:4 value:50 key:3 value:57 key:1 value:57
 ```
@@ -685,7 +685,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
+that.parseXml(options);
 console.log(str);
 // key:0 value:0 key:2 value:1 key:2 value:2 key:4 value:2 key:3 value:2 key:3 value:1 key:1 value:0
 ```
@@ -721,7 +721,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
+that.parseXml(options);
 console.log(str);
 // key:0 value:1 key:2 value:1 key:4 value:1 key:3 value:1 key:1 value:1
 ```
@@ -757,7 +757,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
+that.parseXml(options);
 console.log(str);
 // key:0 value: key:2 value:note key:4 value: key:3 value:note key:1 value:
 ```
@@ -796,7 +796,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:false, tokenValueCallbackFunction:func}
-that.parse(options);
+that.parseXml(options);
 console.log(str);
 // key:0 value: key:2 value: key:2 value:http://www.w3.org key:4 value: key:3 value:http://www.w3.org key:3 value: key:1 value:
 ```
@@ -835,7 +835,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:false, tokenValueCallbackFunction:func}
-that.parse(options);
+that.parseXml(options);
 console.log(str);
 // key:0 value: key:2 value: key:2 value:h key:4 value: key:3 value:h key:3 value: key:1 value:
 ```
@@ -871,7 +871,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
+that.parseXml(options);
 console.log(str);
 // key:0 value: key:2 value: key:4 value:Happy key:3 value: key:1 value:
 ```
@@ -910,7 +910,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
+that.parseXml(options);
 console.log(str);
 // key:0 value:false key:2 value:false key:2 value:true key:3 value:false key:3 value:false key:1 value:false
 ```
@@ -949,7 +949,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
+that.parseXml(options);
 console.log(str);
 // key:0 value:true key:2 value:false key:2 value:true key:10 value:true key:3 value:true key:3 value:true key:1 value:true
 ```
@@ -983,7 +983,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
+that.parseXml(options);
 console.log(str);
 // key:0 value:0 key:2 value:2 key:3 value:2 key:1 value:0
 ```
