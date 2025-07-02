@@ -975,7 +975,7 @@ for (let index = 0; index < fontBounds.length; index++) {
 
 ### getTextPath<sup>18+</sup>
 
-getTextPath(text: string, byteLength: number, x: number, y: number): Path;
+getTextPath(text: string, byteLength: number, x: number, y: number): Path
 
 获取文字的轮廓路径。
 
