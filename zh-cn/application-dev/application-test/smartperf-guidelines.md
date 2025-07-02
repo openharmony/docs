@@ -741,7 +741,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     $
   ```
 
-- 全量采集示例2，设置进程ID并采集指定应用信息，包括cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图
+- 全量采集示例3，设置进程ID并采集指定应用信息，包括cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图
  
   ```
     $ SP_daemon -N 10 -PID 18847 -c -g -t -f -r -d -net -snapshot -threads
@@ -828,7 +828,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 ##### 使用示例
   
-- 启停采集
+- 启停采集整机CPU大中小核频率、各核使用率
 
    ```
    # 开始采集
@@ -849,7 +849,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    $
    ```
 
-- 启停打印采集
+- 启停采集并打印整机CPU大中小核频率、各核使用率
 
    ```
     # 开始采集
@@ -907,17 +907,15 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    ```
    >**说明**
    >
-   >- 启停采集cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图示例：
+   >- 开始采集示例1（采整机cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图）：SP_daemon -start -c -g -t -r -d -net -snapshot。
    >
-   >- 开始采集示例1（采整机）：SP_daemon -start -c -g -t -r -d -net -snapshot。
+   >- 开始采集示例2（采整机和进程cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot -threads -fd。
    >
-   >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot -threads -fd。
+   >- 开始采集示例3（采整机和进程cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符）：SP_daemon -start -PID 18847 -c -g -t -f -r -d -net -snapshot -threads -fd。
    >
-   >- 开始采集示例3（采整机和进程）：SP_daemon -start -PID 18847 -c -g -t -f -r -d -net -snapshot -threads -fd。
+   >- 开始采集示例4（采整机cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符并且打印采集信息）：SP_daemon -start -c -g -t -r -d -net -snapshot -threads -fd -print。
    >
-   >- 开始采集示例4（采整机以及打印信息）：SP_daemon -start -c -g -t -r -d -net -snapshot -threads -fd -print。
-   >
-   >- 开始采集示例5（采整机，进程以及打印采集信息）：SP_daemon -start -PID 18847 -c -g -t -f -r -d -net -snapshot -threads -fd -print。
+   >- 开始采集示例5（采整机，进程cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符并且打印采集信息）：SP_daemon -start -PID 18847 -c -g -t -f -r -d -net -snapshot -threads -fd -print。
    >
    >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告。具体请参考[查看csv采集结果](#查看csv采集结果)。
 
