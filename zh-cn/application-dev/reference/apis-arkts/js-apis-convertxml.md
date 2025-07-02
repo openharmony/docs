@@ -70,9 +70,9 @@ try {
     nameKey: "_name", elementsKey: "_elements"
   }
   let result = JSON.stringify(conv.fastConvertToJSObject(xml, options));
-  console.log(result);
+  console.info(result);
 } catch (e) {
-  console.log((e as Object).toString());
+  console.error((e as Object).toString());
 }
 // 输出(宽泛型)
 // {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note","_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title","_elements":[{"_type":"text","_text":"Hello\nWorld"}]},{"_type":"element","_name":"todo","_elements":[{"_type":"cdata","_cdata":"Work\n"}]}]}]}
@@ -134,9 +134,9 @@ try {
     nameKey: "_name", elementsKey: "_elements"
   }
   let result = JSON.stringify(conv.convertToJSObject(xml, options));
-  console.log(result);
+  console.info(result);
 } catch (e) {
-  console.log((e as Object).toString());
+  console.error((e as Object).toString());
 }
 // 输出(宽泛型)
 // {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note","_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title","_elements":[{"_type":"text","_text":"Happy"}]},{"_type":"element","_name":"todo","_elements":[{"_type":"text","_text":"Work"}]},{"_type":"element","_name":"todo","_elements":[{"_type":"text","_text":"Play"}]}]}]}
@@ -184,7 +184,7 @@ let options: convertxml.ConvertOptions = {trim : false, declarationKey:"_declara
   commentKey : "_comment", parentKey : "_parent", typeKey : "_type",
   nameKey : "_name", elementsKey : "_elements"}
 let result = JSON.stringify(conv.convert(xml, options));
-console.log(result);
+console.info(result);
 // 输出(宽泛型)
 // {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note","_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title","_elements":[{"_type":"text","_text":"Happy"}]},{"_type":"element","_name":"todo","_elements":[{"_type":"text","_text":"Work"}]},{"_type":"element","_name":"todo","_elements":[{"_type":"text","_text":"Play"}]}]}]}
 ```
