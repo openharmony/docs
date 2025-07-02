@@ -276,7 +276,7 @@ function destroy() : void {
 ### onFinished
 onFinished(callback: Callback\<void>): void
 
-动画播放结束时执行的的回调函数，动画播放完成或者finish操作会触发这个回调。
+动画播放结束时执行的回调函数，动画播放完成或者finish操作会触发这个回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
