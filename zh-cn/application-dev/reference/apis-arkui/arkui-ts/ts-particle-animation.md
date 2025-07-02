@@ -153,13 +153,6 @@ interface EmitterOptions<PARTICLE extends ParticleType> {
 
 ## ParticleConfigs
 
-```typescript
-interface ParticleConfigs { 
-  [ParticleType.POINT]: PointParticleParameters;
-  [ParticleType.IMAGE]: ImageParticleParameters;
-}
-```
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -170,11 +163,6 @@ interface ParticleConfigs {
 | [ParticleType.IMAGE]      | [ImageParticleParameters](#imageparticleparameters) | 是    | 图片粒子配置。 |
 
 ## PointParticleParameters
-```typescript
-interface PointParticleParameters {
-  radius: VP;
-}
-```
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -185,13 +173,6 @@ interface PointParticleParameters {
 | radius      | [VP](ts-types.md#vp10)| 是    | 粒子半径。 |
 
 ## ImageParticleParameters
-```typescript
-interface ImageParticleParameters {
-  src: ResourceStr;
-  size: ParticleTuple<Dimension, Dimension>;
-  objectFit?: ImageFit;
-}
-```
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -223,13 +204,6 @@ interface ParticleColorPropertyOptions<UPDATER extends ParticleUpdater> {
 
 
 ## ParticleColorPropertyUpdaterConfigs
-```typescript
-interface ParticleColorPropertyUpdaterConfigs {
-  [ParticleUpdater.NONE]: void;
-  [ParticleUpdater.RANDOM]: ParticleColorOptions;
-  [ParticleUpdater.CURVE]: Array<ParticlePropertyAnimation<ResourceColor>>;
-}
-```
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -303,76 +277,53 @@ interface ParticlePropertyAnimation<T> {
 
 
 ## ParticleType
-```typescript
-enum ParticleType {
-  POINT = 'point',
-  IMAGE = 'image',
-}
-```
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 描述 |
-| -------- |  -------- | 
-POINT |点状粒子|
-IMAGE | 图片粒子|
+| 名称  |  值  | 说明 |
+| -------- | -------- | -------- | 
+| POINT | 'point' | 点状粒子 |
+| IMAGE | 'image' | 图片粒子 |
 
 
 
 ## ParticleEmitterShape
-```typescript
-enum ParticleEmitterShape {
-  RECTANGLE = 'rectangle',
-  CIRCLE = 'circle',
-  ELLIPSE = 'ellipse',
-  ANNULUS = 'annulus',
-}
-```
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称  | 描述 |
-| -------- |  -------- | 
-RECTANGLE |粒子发射器为矩形。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-CIRCLE | 粒子发射器为圆形。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-ELLIPSE |粒子发射器为椭圆形。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-ANNULUS<sup>20+</sup> |粒子发射器为环形。<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
-
-## DistributionType<sup>12+<sup>
-```typescript
-enum DistributionType {
-  UNIFORM = 0,
-  GAUSSIAN = 1,
-}
-```
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称  | 描述 |
-| -------- |  -------- | 
-| UNIFORM |初始颜色随机值分布为均匀分布。|
-| GAUSSIAN | 初始颜色随机值分布为高斯分布。|
-
-## ParticleUpdater
-```typescript
-enum ParticleUpdater {
-  NONE = 'none',
-  RANDOM = 'random',
-  CURVE = 'curve',
-}
-```
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 描述 |
-| -------- |  -------- | 
-|NONE |无变化|
-|RANDOM | 随机变化|
-|CURVE |动画曲线变化|
+| 名称  |  值  | 说明 |
+| -------- | -------- | -------- | 
+| RECTANGLE | 'rectangle' | 粒子发射器为矩形。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| CIRCLE | 'circle' | 粒子发射器为圆形。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| ELLIPSE | 'ellipse' | 粒子发射器为椭圆形。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| ANNULUS<sup>20+</sup> | 'annulus' | 粒子发射器为环形。<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+
+## DistributionType<sup>12+<sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  |  值  | 说明 |
+| -------- | -------- | -------- | 
+| UNIFORM | 0 | 初始颜色随机值分布为均匀分布。|
+| GAUSSIAN | 1 | 初始颜色随机值分布为高斯分布。|
+
+## ParticleUpdater
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  |  值  | 说明 |
+| -------- | -------- | -------- | 
+|NONE | 'none' | 无变化|
+|RANDOM | 'random' | 随机变化|
+|CURVE | 'curve' | 动画曲线变化|
 
 ## DisturbanceFieldOptions<sup>12+</sup>
 
@@ -404,6 +355,8 @@ enum ParticleUpdater {
 | ELLIPSE | 椭圆。     |
 
 ## EmitterProperty<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -471,18 +424,13 @@ interface Particles<
 
 ## VelocityOptions<sup>18+</sup>
 
-```typescript
-declare interface VelocityOptions {
-  speed: ParticleTuple<number, number>;
-  angle: ParticleTuple<number, number>;
-}
-```
-
 粒子速度配置。
 
 > **说明：**
 >
 > 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -509,6 +457,8 @@ declare interface AccelerationOptions<
 >
 > 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 类型                                                | 必填 | 说明                                                       |
@@ -533,6 +483,8 @@ interface EmitterParticleOptions<PARTICLE extends ParticleType> {
 > **说明：**
 >
 > 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -559,6 +511,8 @@ interface ParticleUpdaterOptions<TYPE, UPDATER extends ParticleUpdater> {
 >
 > 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 类型                                                | 必填 | 说明                                                       |
@@ -581,6 +535,8 @@ interface ParticleColorUpdaterOptions<UPDATER extends ParticleUpdater> {
 >
 > 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 类型                                                | 必填 | 说明                                                       |
@@ -590,20 +546,13 @@ interface ParticleColorUpdaterOptions<UPDATER extends ParticleUpdater> {
 
 ## ParticleColorOptions<sup>18+</sup>
 
-```typescript
-interface ParticleColorOptions {
-  r: ParticleTuple<number, number>;
-  g: ParticleTuple<number, number>;
-  b: ParticleTuple<number, number>;
-  a: ParticleTuple<number, number>;
-}
-```
-
 颜色变化方式为均匀变化的时候，在区间内随机生成一个差值。r、g、b、a四个颜色通道每秒分别使用差值叠加当前颜色值，生成目标颜色值。实现颜色随机变化的效果。
 
 > **说明：**
 >
 > 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
