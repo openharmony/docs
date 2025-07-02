@@ -73,7 +73,8 @@ symbol-version是libc在**动态链接-符号重定位**阶段的符号检索机
 ## 3. 信号使用
 为避免与系统保留信号冲突，开发者在使用信号时需遵循以下规则：
 - 信号编号 1～34：为系统内部保留信号，禁止使用；
-- 信号编号 35～45：系统模块（如中间件、运行时、系统服务等）已使用，避免使用这些信号，以防与系统内部模块产生冲突，导致未知结果；
+- 信号编号 35～45：系统模块（如内存、DFX、运行时、系统服务等）已使用，避免使用这些信号，以防与系统内部模块产生冲突，导致未知结果；
+- SIGRTMIN和__libc_current_sigrtmin的值是35, 不包含系统模块的占用
 
 鸿蒙内部信号使用统计如下：
 
@@ -87,9 +88,9 @@ symbol-version是libc在**动态链接-符号重定位**阶段的符号检索机
 | 6    | SIGABRT   |  中止信号        | 29   | SIGIO                                      | I/O 可用通知               |
 | 7    | SIGBUS    |  总线错误        | 30   | SIGPWR                                     | 电源故障                   |
 | 8    | SIGFPE    |  算术异常        | 31   | SIGSYS                                     | 非法系统调用               |
-| 9    | SIGKILL   |  强制终止        | 32   | SIGTIMER                                   | musl自留                  |
-| 10   | SIGUSR1   |  用户自定义信号 1 | 33   | SIGCANCEL                                  | musl自留                  |
-| 11   | SIGSEGV   |  无效内存访问     | 34   | SIGSYNCCALL                                | musl自留                  |
+| 9    | SIGKILL   |  强制终止        | 32   | SIGTIMER                                   | 定时器定时信号             |
+| 10   | SIGUSR1   |  用户自定义信号 1 | 33   | SIGCANCEL                                  | 线程取消信号               |
+| 11   | SIGSEGV   |  无效内存访问     | 34   | SIGSYNCCALL                                | 同步调用信号               |
 | 12   | SIGUSR2   |  用户自定义信号 2 | 35   | MUSL_SIGNAL_NATIVE_REMOTE (SIGRTMIN + 0)   | 系统自留                   |
 | 13   | SIGPIPE   |  管道损坏         | 36   | MUSL_SIGNAL_HOOK (SIGRTMIN + 1)            | 系统自留                  |
 | 14   | SIGALRM   |  定时器信号       | 37   | MUSL_SIGNAL_UNHOOK (SIGRTMIN + 2)          | 系统自留                  |
