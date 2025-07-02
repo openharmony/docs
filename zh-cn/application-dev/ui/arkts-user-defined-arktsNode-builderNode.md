@@ -1088,6 +1088,22 @@ ArkUI支持[自定义组件冻结](./state-management/arkts-custom-components-fr
 
 从API version 20开始，BuilderNode节点可以通过[inheritFreezeOptions](../reference/apis-arkui/js-apis-arkui-builderNode.md#inheritfreezeoptions20)接口继承父自定义组件（即从该BuilderNode节点向上查找的第一个自定义组件）的冻结策略。当BuilderNode节点继承父自定义组件的冻结策略时，若父自定义组件的冻结策略设置为开启组件冻结（即[freezeWhenInactive](./state-management/arkts-create-custom-components.md#freezewheninactive11)选项设为true），则BuilderNode节点在不活跃时将会冻结，当切换至活跃状态时解冻，并使用缓存的数据更新节点。
 
+BuilderNode节点只有通过以下方式上下树时，才会根据该节点是否继承父自定义组件的冻结策略，来更新自己的冻结策略：
+
+| 类 | 接口 |
+| -------- | -------- |
+| [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md) | [appendChild](../reference/apis-arkui/js-apis-arkui-frameNode.md#appendchild12)、[insertChildAfter](../reference/apis-arkui/js-apis-arkui-frameNode.md#insertchildafter12)、[removeChild](../reference/apis-arkui/js-apis-arkui-frameNode.md#removechild12)、[clearChildren](../reference/apis-arkui/js-apis-arkui-frameNode.md#clearchildren12)、[addComponentContent](../reference/apis-arkui/js-apis-arkui-frameNode.md#addcomponentcontent12) |
+| [NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md) | [addFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#addframenode12)、[removeFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#removeframenode12) |
+| [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md) | [makeNode](../reference/apis-arkui/js-apis-arkui-nodeController.md#makenode) |
+| [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md) | [appendChild](../reference/apis-arkui/js-apis-arkui-renderNode.md#appendchild)、[insertChildAfter](../reference/apis-arkui/js-apis-arkui-renderNode.md#insertchildafter)、[removeChild](../reference/apis-arkui/js-apis-arkui-renderNode.md#removechild)、[clearChildren](../reference/apis-arkui/js-apis-arkui-renderNode.md#clearchildren) |
+| [NodeAdaper](../reference/apis-arkui/js-apis-arkui-frameNode.md#nodeadapter12) | 节点通过[懒加载](../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)方式上下树时 |
+
+> **说明：**
+>
+> 当BuilderNode节点设置为继承父自定义组件的冻结策略时，BuilderNode节点的冻结策略将与其上层最近的自定义组件或BuilderNode节点的冻结策略保持一致。
+>
+> 当BuilderNode节点被冻结时，调用[update](../reference/apis-arkui/js-apis-arkui-builderNode.md#update)接口不会触发节点的更新，等其被解冻时再更新节点。
+
 ```ts
 
 import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
@@ -1117,9 +1133,9 @@ class TextNodeController extends NodeController {
     this.rootNode = new FrameNode(context);
     this.textNode = new BuilderNode(context, { selfIdealSize: { width: 150, height: 150 } });
     this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.count));
-    this.textNode.inheritFreezeOptions(true); //设置BuilderNode的冻结继承状态为true
+    this.textNode.inheritFreezeOptions(true); // 设置BuilderNode的冻结继承状态为true
     if (this.rootNode !== null) {
-      this.rootNode.appendChild(this.textNode.getFrameNode()); //将BuilderNode上树
+      this.rootNode.appendChild(this.textNode.getFrameNode()); // 将BuilderNode上树
     }
     return this.rootNode;
   }
@@ -1127,7 +1143,7 @@ class TextNodeController extends NodeController {
   update(): void {
     if (this.textNode !== null) {
       this.count += 1;
-      this.textNode.update(new Params(this.count)); //更新BuilderNode中的数据，可以触发Log
+      this.textNode.update(new Params(this.count)); // 更新BuilderNode中的数据，可以触发Log
     }
 
   }
@@ -1153,7 +1169,7 @@ struct MyNavigationTestStack {
 
   build() {
     Column() {
-      Button('update builderNode') //点击更新BuildrNode
+      Button('update builderNode') // 点击更新BuildrNode
         .onClick(() => {
           textNodeController.update();
         })
@@ -1164,7 +1180,7 @@ struct MyNavigationTestStack {
             .height(40)
             .margin(20)
             .onClick(() => {
-              this.pageInfo.pushPath({ name: 'pageOne' }); //将name指定的NavDestination页面信息入栈
+              this.pageInfo.pushPath({ name: 'pageOne' }); // 将name指定的NavDestination页面信息入栈
             })
         }
       }.title('NavIndex')
@@ -1258,7 +1274,7 @@ struct TextBuilder {
   @Prop @Watch("info") message: number = 0;
 
   info() {
-    console.info(`freeze-test TextBuilder message callback ${this.message}`); //根据message内容变化来打印日志来判断是否冻结
+    console.info(`freeze-test TextBuilder message callback ${this.message}`); // 根据message内容变化来打印日志来判断是否冻结
   }
 
   build() {
