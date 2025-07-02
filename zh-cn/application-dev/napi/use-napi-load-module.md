@@ -77,7 +77,7 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
     //./src/main/ets/Test.ets
     let value = 123;
     function test() {
-      console.log("Hello OpenHarmony");
+      console.info("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -132,7 +132,7 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
     //./src/main/ets/Test.ets
     let value = 123;
     function test() {
-      console.log("Hello OpenHarmony");
+      console.info("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -188,7 +188,7 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
     //library Index.ets
     let value = 123;
     function test() {
-      console.log("Hello OpenHarmony");
+      console.info("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -254,7 +254,7 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
     //sharedlibrary Index.ets
     let value = 123;
     function test() {
-      console.log("Hello OpenHarmony");
+      console.info("Hello OpenHarmony");
     }
     export {value, test};
     ```
@@ -480,7 +480,7 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
     //har2 Index.ets
     let value = 123;
     function test() {
-      console.log("Hello OpenHarmony");
+      console.info("Hello OpenHarmony");
     }
     export {value, test};
     ```
