@@ -119,15 +119,15 @@ console.info(uriObj6.encodedAuthority); // username:my+name@host:8080
 console.info(uriObj6.encodedSSP); // //username:my+name@host:8080/directory/my+file?foo=1&bar=2
 
 let uriObj7 = new uri.URI("www.abc.com:8080/directory/file?ab=pppppp#qwer=da");
-console.log(uriObj7.scheme); // www.abc.com
-console.log(uriObj7.host); // null
-console.log(uriObj7.port); // -1
-console.log(uriObj7.path); // null
-console.log(uriObj7.query); // null
-console.log(uriObj7.authority); // null
-console.log(uriObj7.fragment); // qwer=da
-console.log(uriObj7.ssp); // 8080/directory/file?ab=pppppp
-console.log("result:", uriObj7.checkIsAbsolute()); // result: true
+console.info(uriObj7.scheme); // www.abc.com
+console.info(uriObj7.host); // null
+console.info(uriObj7.port); // -1
+console.info(uriObj7.path); // null
+console.info(uriObj7.query); // null
+console.info(uriObj7.authority); // null
+console.info(uriObj7.fragment); // qwer=da
+console.info(uriObj7.ssp); // 8080/directory/file?ab=pppppp
+console.info("result:", uriObj7.checkIsAbsolute()); // result: true
 ```
 
 ### constructor
@@ -289,10 +289,10 @@ console.info(uriInstance.path); // /path/path1/../path2/./path3
 let uriInstance1 = uriInstance.normalize();
 console.info(uriInstance1.path); // /path/path2/path3
 let uri1 = new uri.URI('http://www.test.com/../../patch/path1/../path2/path3/./path4/../');
-console.log(uri1.path); // /../../patch/path1/../path2/path3/./path4/../
+console.info(uri1.path); // /../../patch/path1/../path2/path3/./path4/../
 // 如果路径规范化后以 ..（双点）段开头，这表明之前没有足够的非 .. 段可以移除，因此路径将以 .. 段开始。
 let uri2 = uri1.normalize();
-console.log(uri2.path); // /../../patch/path2/path3
+console.info(uri2.path); // /../../patch/path2/path3
 ```
 
 ### checkRelative<sup>12+</sup>

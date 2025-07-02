@@ -31,7 +31,7 @@ ArkTS应用开发过程中，可以选择TaskPool或Worker线程进行多任务�
    
              // 2. 接收Worker返回的结果
              myWorker.onmessage = (e) => {
-               console.log('主线程收到最终结果:', e.data.result);
+               console.info('主线程收到最终结果:', e.data.result);
                myWorker.terminate(); // 销毁Worker
              };
    
@@ -61,7 +61,7 @@ ArkTS应用开发过程中，可以选择TaskPool或Worker线程进行多任务�
        // 调用TaskPool执行并发任务
        const task = new taskpool.Task(parallelTask, processedData);
        const result = await taskpool.execute(task);
-       console.log('Worker线程返回结果: ', result);
+       console.info('Worker线程返回结果: ', result);
    
        // 将最终结果返回主线程
        workerPort.postMessage({
@@ -85,7 +85,7 @@ ArkTS应用开发过程中，可以选择TaskPool或Worker线程进行多任务�
      for (let i = 0; i < base; i++) {
        total += i % 2 === 0 ? i : -i;
      }
-     console.log('TaskPool线程计算结果: ', total);
+     console.info('TaskPool线程计算结果: ', total);
      return total;
    }
    ```

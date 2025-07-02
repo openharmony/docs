@@ -82,7 +82,7 @@ treeSet.add("d");
 treeSet.add("b");
 let numbers = Array.from(treeSet.values());
 for (let item of numbers) {
-  console.log("TreeSet:" + item);
+  console.info("TreeSet:" + item);
 }
 ```
 
@@ -100,7 +100,7 @@ let entry2: TestEntry = {
 }
 ts1.add(entry1);
 ts1.add(entry2);
-console.log("treeSet: ", ts1.length);
+console.info("treeSet: ", ts1.length);
 ```
 
 
@@ -534,7 +534,7 @@ treeSet.add("sparrow");
 let it = treeSet.values();
 let t: IteratorResult<string> = it.next();
 while(!t.done) {
-  console.log("TreeSet: " + t.value);
+  console.info("TreeSet: " + t.value);
   t = it.next()
 }
 ```
@@ -580,7 +580,7 @@ let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("sparrow");
 treeSet.add("gull");
 treeSet.forEach((value ?: string, key ?: string) :void => {
-  console.log("value:" + value, "key:" + key);
+  console.info("value:" + value, "key:" + key);
 });
 ```
 ```ts
@@ -627,7 +627,7 @@ treeSet.add("sparrow");
 let it = treeSet.entries();
 let t: IteratorResult<Object[]> = it.next();
 while(!t.done) {
-  console.log("TreeSet: " + t.value);
+  console.info("TreeSet: " + t.value);
   t = it.next()
 }
 ```
@@ -675,13 +675,13 @@ treeSet.add("sparrow");
 let numbers = Array.from(treeSet.values());
 // 使用方法一：
 for (let item of numbers) {
-  console.log("value:" + item);
+  console.info("value:" + item);
 }
 // 使用方法二：
 let iter = treeSet[Symbol.iterator]();
 let temp: IteratorResult<string> = iter.next().value;
 while(temp != undefined) {
-  console.log("value:" + temp);
+  console.info("value:" + temp);
   temp = iter.next().value;
 }
 ```
