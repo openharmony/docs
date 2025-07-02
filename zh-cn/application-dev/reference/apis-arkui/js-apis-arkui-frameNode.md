@@ -877,11 +877,11 @@ getInspectorInfo(): Object
 以查询Button组件节点为例获取到的Object结果部分值如下所示
 ```json
 {
-    "$type": "Button",
-    "$ID": 44,
-    "type": "build-in",
-    "$rect": "[498.00, 468.00],[718.00,598.00]",
-    "$debugLine": "",
+    "$type": "Button", // 组件类型
+    "$ID": 44, // 组件id
+    "type": "build-in", // build-in为系统组件，custom为自定义组件
+    "$rect": "[498.00, 468.00],[718.00,598.00]", // 组件框左上角坐标和右下角坐标
+    "$debugLine": "", // 组件对应源码的调试信息，包括源码路径和组件所在的行号。
     "$attrs": {
         "borderStyle": "BorderStyle.Solid",
         "borderColor": "#FF000000",
