@@ -56,6 +56,7 @@ class MyFullDrawModifier extends DrawModifier {
     this.uiContext = uiContext;
   }
 
+  // 重载drawBehind方法，实现自定义绘制内容背景。
   drawBehind(context: DrawContext): void {
     const brush = new drawing.Brush();
     brush.setColor({
@@ -75,6 +76,7 @@ class MyFullDrawModifier extends DrawModifier {
     });
   }
 
+  // 重载drawContent方法，实现自定义绘制内容。
   drawContent(context: DrawContext): void {
     const brush = new drawing.Brush();
     brush.setColor({
@@ -94,6 +96,7 @@ class MyFullDrawModifier extends DrawModifier {
     });
   }
 
+  // 重载drawFront方法，实现自定义绘制内容前景。
   drawFront(context: DrawContext): void {
     const brush = new drawing.Brush();
     brush.setColor({
@@ -120,6 +123,7 @@ class MyFrontDrawModifier extends DrawModifier {
     this.uiContext = uiContext;
   }
 
+  // 重载drawFront方法，实现自定义绘制内容前景。
   drawFront(context: DrawContext): void {
     const brush = new drawing.Brush();
     brush.setColor({
@@ -139,6 +143,7 @@ class MyFrontDrawModifier extends DrawModifier {
 @Entry
 @Component
 struct DrawModifierExample {
+  // 将自定义绘制前景的类实例化，传入UIContext实例。
   private fullModifier: MyFullDrawModifier = new MyFullDrawModifier(this.getUIContext());
   private frontModifier: MyFrontDrawModifier = new MyFrontDrawModifier(this.getUIContext());
   private drawAnimator: AnimatorResult | undefined = undefined;
@@ -146,6 +151,7 @@ struct DrawModifierExample {
   private count = 0;
 
   create() {
+    // 设置绘制动画
     let self = this;
     this.drawAnimator = this.getUIContext().createAnimator({
       duration: 1000,
@@ -175,10 +181,12 @@ struct DrawModifierExample {
           .margin(10)
           .backgroundColor(Color.Gray)
           .onClick(() => {
+            // 修改当前绘制大小
             const tempModifier = this.modifier as MyFullDrawModifier | MyFrontDrawModifier;
             tempModifier.scaleX -= 0.1;
             tempModifier.scaleY -= 0.1;
           })
+          // 调用此接口并传入自定义绘制的类实例，即可实现自定义绘制。
           .drawModifier(this.modifier)
       }
 
@@ -189,6 +197,7 @@ struct DrawModifierExample {
           .margin(10)
           .backgroundColor(0xFF2787D9)
           .onClick(() => {
+            // 创建动画
             this.create();
           })
         Button('play')
@@ -197,6 +206,7 @@ struct DrawModifierExample {
           .margin(10)
           .backgroundColor(0xFF2787D9)
           .onClick(() => {
+            // 播放动画
             if (this.drawAnimator) {
               this.drawAnimator.play();
             }
@@ -207,6 +217,7 @@ struct DrawModifierExample {
           .margin(10)
           .backgroundColor(0xFF2787D9)
           .onClick(() => {
+            // 切换modifier
             this.count += 1;
             if (this.count % 2 === 1) {
               console.log('change to full modifier');
@@ -244,6 +255,7 @@ class MyForegroundDrawModifier extends DrawModifier {
     this.uiContext = uiContext;
   }
 
+  // 重载drawForeground方法，实现自定义绘制前景。
   drawForeground(context: DrawContext): void {
     const brush = new drawing.Brush();
     brush.setColor({
@@ -267,6 +279,7 @@ class MyForegroundDrawModifier extends DrawModifier {
 @Entry
 @Component
 struct DrawModifierExample {
+  // 将自定义绘制前景的类实例化，传入UIContext实例。
   private foregroundModifier: MyForegroundDrawModifier = new MyForegroundDrawModifier(this.getUIContext());
 
   build() {
@@ -277,12 +290,13 @@ struct DrawModifierExample {
         .height('100%')
         .textAlign(TextAlign.Center)
     }
-    .margin(100)
+    .margin(50)
+    .width(280)
     .height(300)
     .backgroundColor(0x87CEEB)
+    // 调用此接口并传入自定义绘制前景的类实例，即可实现自定义绘制前景。
     .drawModifier(this.foregroundModifier)
   }
 }
-
 ```
 ![drawForeground.png](figures/drawForeground.png)
