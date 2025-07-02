@@ -4766,6 +4766,8 @@ pop(): number
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型   | 说明                                       |
@@ -4780,6 +4782,37 @@ pop(): number
 | -------- | ------------------------------- |
 | 10200011 | The pop method cannot be bound. |
 | 10200201 | Concurrent modification error.  |
+
+**示例：**
+
+```ts
+let bitVector: collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+let res = bitVector.pop(); // bitVector: [0, 1, 0, 1]
+console.info("bitVector pop:", res); // 0
+```
+
+### pop<sup>20+</sup>
+
+pop(): number \| undefined
+
+弹出[BitVector](#collectionsbitvector)尾部的元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number \| undefined | 弹出BitVector尾部的元素，其值为对应bit值，弹出失败返回undefined。 |
 
 **示例：**
 
@@ -5292,6 +5325,8 @@ while (!temp.done) {
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型                      | 说明             |
@@ -5305,6 +5340,39 @@ while (!temp.done) {
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
+
+**示例：**
+
+```ts
+let bitVector: collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+
+for (let item of bitVector) {
+  console.info("value: " + item);
+}
+```
+
+### $_iterator<sup>20+</sup>
+
+\$_iterator\(): IterableIterator&lt;number&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型                      | 说明             |
+| ------------------------- | ---------------- |
+| IterableIterator&lt;number&gt; | 返回一个迭代器。 |
 
 **示例：**
 
