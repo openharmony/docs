@@ -1320,7 +1320,7 @@ struct HomeBody {
 
 ### 示例4（NavDestination配置页面方向和对应状态栏、导航条显隐）
 
-以下示例主要演示每个NavDestination可以配置指定的页面方向和状态栏，导航栏显隐状态
+以下示例主要演示每个NavDestination可以配置指定的页面方向和状态栏，导航条显隐状态。
 
 ```ts
 import { window } from '@kit.ArkUI';
