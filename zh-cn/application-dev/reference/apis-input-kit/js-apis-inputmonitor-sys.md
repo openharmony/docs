@@ -1276,7 +1276,7 @@ queryTouchEvents(count: number): Promise&lt;Array&lt;TouchEvent&gt;&gt;
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
-**系统能力：** SystemCapability.MultimodalInput.Input.Core
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
 
 **参数：**
 
@@ -1298,7 +1298,6 @@ queryTouchEvents(count: number): Promise&lt;Array&lt;TouchEvent&gt;&gt;
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 202      | Permission denied, non-system app called system api.         |
-| 3800001  | System internal error.                                       |
 
 **示例：**
 
