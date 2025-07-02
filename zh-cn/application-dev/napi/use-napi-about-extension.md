@@ -87,7 +87,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
     napi_module_register(&demoModule);
 }
 ```
-<!-- @[node_api_module_add](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[node_api_module_add](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -95,7 +95,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 // index.d.ts
 export const add: (a: number, b: number) => number;
 ```
-<!-- @[node_api_module_add_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[node_api_module_add_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -105,7 +105,7 @@ import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API 2 + 3 = %{public}d', testNapi.add(2, 3));
 ```
-<!-- @[ark_node_api_module_add](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_node_api_module_add](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 ## ArkTS Object相关
 
@@ -146,7 +146,7 @@ static napi_value CreateObjectWithProperties(napi_env env, napi_callback_info in
     }
 }
 ```
-<!-- @[node_api_module_create_object_properties](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[node_api_module_create_object_properties](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -154,7 +154,7 @@ static napi_value CreateObjectWithProperties(napi_env env, napi_callback_info in
 // index.d.ts
 export const createObjectWithProperties: (data: string) => Object;
 ```
-<!-- @[node_api_module_create_object_properties_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[node_api_module_create_object_properties_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -165,7 +165,7 @@ import testNapi from 'libentry.so';
 let value = testNapi.createObjectWithProperties('createObject');
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_properties:%{public}s', JSON.stringify(value));
 ```
-<!-- @[ark_node_api_module_create_object_properties](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_node_api_module_create_object_properties](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 #### napi_create_object_with_named_properties
 
@@ -199,7 +199,7 @@ static napi_value CreateObjectWithNameProperties(napi_env env, napi_callback_inf
     return obj;
 }
 ```
-<!-- @[node_api_module_create_object_name_properties](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[node_api_module_create_object_name_properties](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -207,7 +207,7 @@ static napi_value CreateObjectWithNameProperties(napi_env env, napi_callback_inf
 // index.d.ts
 export const createObjectWithNameProperties: (data: string) => string | { name: string };
 ```
-<!-- @[node_api_module_create_object_name_properties_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[node_api_module_create_object_name_properties_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -218,7 +218,7 @@ import testNapi from 'libentry.so';
 let value = testNapi.createObjectWithNameProperties('ls');
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_named_properties:%{public}s', JSON.stringify(value));
 ```
-<!-- @[ark_node_api_module_create_object_name_properties](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_node_api_module_create_object_name_properties](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 ## 运行指定abc文件
 
@@ -256,7 +256,7 @@ static napi_value RunScriptPath(napi_env env, napi_callback_info info)
     return returnValue;
 }
 ```
-<!-- @[node_api_module_run_script_path](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[node_api_module_run_script_path](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -264,7 +264,7 @@ static napi_value RunScriptPath(napi_env env, napi_callback_info info)
 // index.d.ts
 export const runScriptPath: () => boolean;
 ```
-<!-- @[node_api_module_run_script_path_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[node_api_module_run_script_path_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -279,7 +279,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_run_script_path errorMessage: %{public}s', error.message);
 }
 ```
-<!-- @[ark_node_api_module_run_script_path](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_node_api_module_run_script_path](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 test.js代码，将js代码编成.abc文件，步骤如下：
 
@@ -545,7 +545,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
     napi_module_register(&demoModule);
 }
 ```
-<!-- @[napi_coerce_to_native_binding_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_coerce_to_native_binding_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -557,7 +557,7 @@ export const store: (a: number) => void;
 export const erase: (a: number) => void;
 export const clear: () => void;
 ```
-<!-- @[napi_coerce_to_native_binding_object_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_coerce_to_native_binding_object_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -626,7 +626,7 @@ async function test01(): Promise<void> {
 
 test01();
 ```
-<!-- @[ark_napi_coerce_to_native_binding_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_coerce_to_native_binding_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 **注意事项**
 
@@ -720,7 +720,7 @@ static napi_value AboutSerialize(napi_env env, napi_callback_info info)
     return number;
 }
 ```
-<!-- @[napi_serialize_deserialize_delete_serialization_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_serialize_deserialize_delete_serialization_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -728,7 +728,7 @@ static napi_value AboutSerialize(napi_env env, napi_callback_info info)
 // index.d.ts
 export const aboutSerialize: (obj: Object) => number;
 ```
-<!-- @[napi_serialize_deserialize_delete_serialization_data_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_serialize_deserialize_delete_serialization_data_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -741,7 +741,7 @@ class Obj {
 let obj: Obj = { numKey: 500 };
 hilog.info(0x0000, 'testTag', ' Node-API aboutSerialize: %{public}d', testNapi.aboutSerialize(obj));
 ```
-<!-- @[ark_napi_serialize_deserialize_delete_serialization_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_serialize_deserialize_delete_serialization_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 ## 根据任务指定的优先级和入队方式进行处理异步线程向ArkTS线程投递的任务
 
@@ -797,7 +797,7 @@ static napi_value IsSendable(napi_env env, napi_callback_info info) {
     return result;
 }
 ```
-<!-- @[napi_is_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_is_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -805,7 +805,7 @@ static napi_value IsSendable(napi_env env, napi_callback_info info) {
 // index.d.ts
 export const isSendable: <T>(a: T) => boolean;
 ```
-<!-- @[napi_is_sendable_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_is_sendable_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -816,7 +816,7 @@ import testNapi from 'libentry.so';
 let value = testNapi.isSendable('createObject');
 hilog.info(0x0000, 'testTag', 'Node-API napi_is_sendable: %{public}s', JSON.stringify(value));
 ```
-<!-- @[ark_napi_is_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_is_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 #### napi_define_sendable_class
 
@@ -893,7 +893,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
     napi_module_register(&demoModule);
 }
 ```
-<!-- @[napi_define_sendable_class](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_define_sendable_class](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -907,7 +907,7 @@ export class SendableClass {
   func(): string;
 }
 ```
-<!-- @[napi_define_sendable_class_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_define_sendable_class_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -918,7 +918,7 @@ import testNapi from 'libentry.so';
 let value = new testNapi.SendableClass();
 hilog.info(0x0000, 'testTag', 'Node-API napi_define_sendable_class: %{public}s', value.str);
 ```
-<!-- @[ark_napi_define_sendable_class](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_define_sendable_class](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 #### napi_create_sendable_object_with_properties
 
@@ -940,7 +940,7 @@ static napi_value GetSendableObject(napi_env env, napi_callback_info info) {
     return obj;
 }
 ```
-<!-- @[napi_create_sendable_object_with_properties](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_sendable_object_with_properties](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -948,7 +948,7 @@ static napi_value GetSendableObject(napi_env env, napi_callback_info info) {
 // index.d.ts
 export const getSendableObject: () => { x: true };
 ```
-<!-- @[napi_create_sendable_object_with_properties_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_sendable_object_with_properties_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -959,7 +959,7 @@ import testNapi from 'libentry.so';
 let value = testNapi.getSendableObject();
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_object_with_properties: %{public}s', JSON.stringify(value));
 ```
-<!-- @[ark_napi_create_sendable_object_with_properties](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_sendable_object_with_properties](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 #### napi_create_sendable_array
 
@@ -976,7 +976,7 @@ static napi_value GetSendableArray(napi_env env, napi_callback_info info) {
     return result;
 }
 ```
-<!-- @[napi_create_sendable_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_sendable_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -984,7 +984,7 @@ static napi_value GetSendableArray(napi_env env, napi_callback_info info) {
 // index.d.ts
 export const getSendableArray: () => [];
 ```
-<!-- @[napi_create_sendable_array_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_sendable_array_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -995,7 +995,7 @@ import testNapi from 'libentry.so';
 let value = testNapi.getSendableArray();
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_array: %{public}s', JSON.stringify(value));
 ```
-<!-- @[ark_napi_create_sendable_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_sendable_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 #### napi_create_sendable_array_with_length
 
@@ -1010,7 +1010,7 @@ static napi_value GetSendableArrayWithLength(napi_env env, napi_callback_info in
     return result;
 }
 ```
-<!-- @[napi_create_sendable_array_with_length](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_sendable_array_with_length](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -1018,7 +1018,7 @@ static napi_value GetSendableArrayWithLength(napi_env env, napi_callback_info in
 // index.d.ts
 export const getSendableArrayWithLength: () => [];
 ```
-<!-- @[napi_create_sendable_array_with_length_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_sendable_array_with_length_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -1029,7 +1029,7 @@ import testNapi from 'libentry.so';
 let value = testNapi.getSendableArrayWithLength();
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_array_with_length: %{public}s', JSON.stringify(value.length));
 ```
-<!-- @[ark_napi_create_sendable_array_with_length](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_sendable_array_with_length](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 #### napi_create_sendable_arraybuffer
 
@@ -1052,7 +1052,7 @@ static napi_value GetSendableArrayBuffer(napi_env env, napi_callback_info info) 
     return result;
 }
 ```
-<!-- @[napi_create_sendable_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_sendable_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -1060,7 +1060,7 @@ static napi_value GetSendableArrayBuffer(napi_env env, napi_callback_info info) 
 // index.d.ts
 export const getSendableArrayBuffer: () => void;
 ```
-<!-- @[napi_create_sendable_arraybuffer_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_sendable_arraybuffer_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -1070,7 +1070,7 @@ import testNapi from 'libentry.so';
 
 testNapi.getSendableArrayBuffer();
 ```
-<!-- @[ark_napi_create_sendable_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_sendable_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 #### napi_create_sendable_typedarray
 
@@ -1097,7 +1097,7 @@ static napi_value GetSendableTypedArray(napi_env env, napi_callback_info info) {
     return result;
 }
 ```
-<!-- @[napi_create_sendable_typed_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_sendable_typed_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -1105,7 +1105,7 @@ static napi_value GetSendableTypedArray(napi_env env, napi_callback_info info) {
 // index.d.ts
 export const getSendableTypedArray: () => void;
 ```
-<!-- @[napi_create_sendable_typed_array_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_sendable_typed_array_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -1115,7 +1115,7 @@ import testNapi from 'libentry.so';
 
 testNapi.getSendableTypedArray();
 ```
-<!-- @[ark_napi_create_sendable_typed_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_sendable_typed_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 #### napi_wrap_sendable
 
@@ -1141,7 +1141,7 @@ static napi_value WrapSendable(napi_env env, napi_callback_info info) {
     return nullptr;
 }
 ```
-<!-- @[napi_wrap_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_wrap_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -1149,7 +1149,7 @@ static napi_value WrapSendable(napi_env env, napi_callback_info info) {
 // index.d.ts
 export const wrapSendable: () => void;
 ```
-<!-- @[napi_wrap_sendable_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_wrap_sendable_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -1159,7 +1159,7 @@ import testNapi from 'libentry.so';
 
 testNapi.wrapSendable();
 ```
-<!-- @[ark_napi_wrap_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_wrap_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 #### napi_wrap_sendable_with_size
 
@@ -1185,7 +1185,7 @@ static napi_value WrapSendableWithSize(napi_env env, napi_callback_info info) {
     return nullptr;
 }
 ```
-<!-- @[napi_wrap_sendable_with_size](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_wrap_sendable_with_size](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -1193,7 +1193,7 @@ static napi_value WrapSendableWithSize(napi_env env, napi_callback_info info) {
 // index.d.ts
 export const wrapSendableWithSize: () => void;
 ```
-<!-- @[napi_wrap_sendable_with_size_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_wrap_sendable_with_size_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -1203,7 +1203,7 @@ import testNapi from 'libentry.so';
 
 testNapi.wrapSendableWithSize();
 ```
-<!-- @[ark_napi_wrap_sendable_with_size](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_wrap_sendable_with_size](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 #### napi_unwrap_sendable
 
@@ -1233,7 +1233,7 @@ static napi_value UnwrapSendable(napi_env env, napi_callback_info info) {
     return nullptr;
 }
 ```
-<!-- @[napi_unwrap_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_unwrap_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -1241,7 +1241,7 @@ static napi_value UnwrapSendable(napi_env env, napi_callback_info info) {
 // index.d.ts
 export const unwrapSendable: () => void;
 ```
-<!-- @[napi_unwrap_sendable_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_unwrap_sendable_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -1251,7 +1251,7 @@ import testNapi from 'libentry.so';
 
 testNapi.unwrapSendable();
 ```
-<!-- @[ark_napi_unwrap_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_unwrap_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 #### napi_remove_wrap_sendable
 
@@ -1281,7 +1281,7 @@ static napi_value RemoveWrapSendable(napi_env env, napi_callback_info info) {
     return nullptr;
 }
 ```
-<!-- @[napi_remove_wrap_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_remove_wrap_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -1289,7 +1289,7 @@ static napi_value RemoveWrapSendable(napi_env env, napi_callback_info info) {
 // index.d.ts
 export const removeWrapSendable: () => void;
 ```
-<!-- @[napi_remove_wrap_sendable_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_remove_wrap_sendable_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -1299,7 +1299,7 @@ import testNapi from 'libentry.so';
 
 testNapi.removeWrapSendable();
 ```
-<!-- @[ark_napi_remove_wrap_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_remove_wrap_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIExtendCapabilities/entry/src/main/ets/pages/Index.ets) -->
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 

@@ -59,7 +59,7 @@ static napi_value GetPropertyNames(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_get_property_names](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_property_names](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -67,7 +67,7 @@ static napi_value GetPropertyNames(napi_env env, napi_callback_info info)
 // index.d.ts
 export const getPropertyNames: (obj: Object) => Array<string> | void;
 ```
-<!-- @[napi_get_property_names_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_property_names_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -89,7 +89,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_get_property_names error: %{public}s', error.message);
 }
 ```
-<!-- @[ark_napi_get_property_names](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_property_names](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_set_property
 
@@ -121,7 +121,7 @@ static napi_value SetProperty(napi_env env, napi_callback_info info)
     return args[0];
 }
 ```
-<!-- @[napi_set_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_set_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -129,7 +129,7 @@ static napi_value SetProperty(napi_env env, napi_callback_info info)
 // index.d.ts
 export const setProperty: (obj: Object, key: String, value: string) => Object | void;
 ```
-<!-- @[napi_set_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_set_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -148,7 +148,7 @@ try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_property error: %{public}s', error.message);
 }
 ```
-<!-- @[ark_napi_set_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_set_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_property
 
@@ -175,7 +175,7 @@ static napi_value GetProperty(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_get_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -183,7 +183,7 @@ static napi_value GetProperty(napi_env env, napi_callback_info info)
 // index.d.ts
 export const getProperty: (obj: Object, key: string) => string | void;
 ```
-<!-- @[napi_get_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -201,7 +201,7 @@ try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_property error: %{public}s', error.message);
 }
 ```
-<!-- @[ark_napi_get_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_has_property
 
@@ -233,7 +233,7 @@ static napi_value HasProperty(napi_env env, napi_callback_info info)
     return returnResult;
 }
 ```
-<!-- @[napi_has_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_has_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -241,7 +241,7 @@ static napi_value HasProperty(napi_env env, napi_callback_info info)
 // index.d.ts
 export const hasProperty: (obj: Object, key: number | string) => boolean | void;
 ```
-<!-- @[napi_has_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_has_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -262,7 +262,7 @@ try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_property error: %{public}s', error.message);
 }
 ```
-<!-- @[ark_napi_has_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_has_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_delete_property
 
@@ -301,7 +301,7 @@ static napi_value DeleteProperty(napi_env env, napi_callback_info info)
     return ret;
 }
 ```
-<!-- @[napi_delete_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_delete_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -309,7 +309,7 @@ static napi_value DeleteProperty(napi_env env, napi_callback_info info)
 // index.d.ts
 export const deleteProperty: (obj: Object, key:string) => boolean;
 ```
-<!-- @[napi_delete_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_delete_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -329,7 +329,7 @@ Object.defineProperty(obj, 'config', {
 })
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_delete_property config: %{public}s', testNapi.deleteProperty(obj, 'config'));
 ```
-<!-- @[ark_napi_delete_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/ets/pages/napiDeleteProperty.ts) -->
+<!-- @[ark_napi_delete_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/napiDeleteProperty.ts) -->
 
 ### napi_has_own_property
 
@@ -373,7 +373,7 @@ static napi_value NapiHasOwnProperty(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_has_own_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_has_own_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -381,7 +381,7 @@ static napi_value NapiHasOwnProperty(napi_env env, napi_callback_info info)
 // index.d.ts
 export const napiHasOwnProperty: (obj: Object, key:string) => boolean | void;
 ```
-<!-- @[napi_has_own_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_has_own_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -396,7 +396,7 @@ Object.setPrototypeOf(myObj, inheritedObj);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_own_property my: %{public}s', testNapi.napiHasOwnProperty(myObj, 'myProperty'));
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_own_property inherited: %{public}s', testNapi.napiHasOwnProperty(myObj, 'inheritedProperty'));
 ```
-<!-- @[ark_napi_has_own_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/ets/pages/napiHasOwnProperty.ts) -->
+<!-- @[ark_napi_has_own_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/napiHasOwnProperty.ts) -->
 
 ### napi_set_named_property
 
@@ -435,7 +435,7 @@ static napi_value NapiSetNamedProperty(napi_env env, napi_callback_info info)
     return newObj;
 }
 ```
-<!-- @[napi_set_named_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_set_named_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -443,7 +443,7 @@ static napi_value NapiSetNamedProperty(napi_env env, napi_callback_info info)
 // index.d.ts
 export const napiSetNamedProperty: (key: string) => Object | void;
 ```
-<!-- @[napi_set_named_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_set_named_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -455,7 +455,7 @@ let obj = testNapi.napiSetNamedProperty('myProperty');
 let objAsString = JSON.stringify(obj);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_named_property: %{public}s', objAsString);
 ```
-<!-- @[ark_napi_set_named_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_set_named_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_named_property
 
@@ -488,7 +488,7 @@ static napi_value NapiGetNamedProperty(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_get_named_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_named_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -496,7 +496,7 @@ static napi_value NapiGetNamedProperty(napi_env env, napi_callback_info info)
 // index.d.ts
 export const napiGetNamedProperty: (obj: Object, key:string) => boolean | number | string | Object | void;
 ```
-<!-- @[napi_get_named_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_named_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -524,7 +524,7 @@ let objAsString = JSON.stringify(nestedObj);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_named_property : %{public}s', objAsString);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_named_property : %{public}s', testNapi.napiGetNamedProperty(obj, 'null'));
 ```
-<!-- @[ark_napi_get_named_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_named_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_has_named_property
 
@@ -559,7 +559,7 @@ static napi_value NapiHasNamedProperty(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_has_named_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_has_named_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -567,7 +567,7 @@ static napi_value NapiHasNamedProperty(napi_env env, napi_callback_info info)
 // index.d.ts
 export const napiHasNamedProperty: (obj: Object, key:string) => boolean | void;
 ```
-<!-- @[napi_has_named_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_has_named_property_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -590,7 +590,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_named_property : %{public}
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_named_property : %{public}s', testNapi.napiHasNamedProperty(obj, 'nestedStr'));
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_named_property : %{public}s', testNapi.napiHasNamedProperty(obj, 'bol'));
 ```
-<!-- @[ark_napi_has_named_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_has_named_property](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_define_properties
 
@@ -679,7 +679,7 @@ static napi_value CreateStringWithGetterSetter(napi_env env, napi_callback_info 
     return obj;
 }
 ```
-<!-- @[napi_define_properties](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_define_properties](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -699,7 +699,7 @@ export const defineMethodProperties: () => DefineMethodObj;
 export const defineStringProperties: () => DefineStringObj;
 export const createStringWithGetterSetter: () => DefineGetterSetterObj;
 ```
-<!-- @[napi_define_properties_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_define_properties_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -718,7 +718,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API get::%{public}s ', testNapi.createS
 hilog.info(0x0000, 'testTag', 'Test Node-API setter::%{public}s ', testNapi.createStringWithGetterSetter()
   .setterCallback('set data'));
 ```
-<!-- @[ark_napi_define_properties](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_define_properties](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_all_property_names
 
@@ -749,7 +749,7 @@ static napi_value GetAllPropertyNames(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_get_all_property_names](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_all_property_names](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -757,7 +757,7 @@ static napi_value GetAllPropertyNames(napi_env env, napi_callback_info info)
 // index.d.ts
 export const getAllPropertyNames : (obj: Object) => Array<string> | void;
 ```
-<!-- @[napi_get_all_property_names_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_all_property_names_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -776,7 +776,7 @@ try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_all_property_names error: %{public}s', error.message);
 }
 ```
-<!-- @[ark_napi_get_all_property_names](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_all_property_names](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIProperty/entry/src/main/ets/pages/Index.ets) -->
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 
