@@ -200,7 +200,7 @@ accessibilitySelected(isSelect: boolean)
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| isSelect | boolean | 是   | 用于表示组件是否被选中。<br/>支持的值为：<br/>true：当前组件被选中。<br/>false：当前组件未被选中。<br/>undefined：由组件自行确定选中状态。<br/>默认值：undefined <br/>**说明：**<br/>1. checked代表组件是多选模式，而selected代表组件是单选模式，组件不能同时存在两种选择模式，会造成无障碍状态冲突，导致屏幕朗读等无障碍辅助应用无法正确识别选中状态。如使用当前接口设置组件为单选模式（true、false），则需要保证未使用[accessibilityChecked](ts-universal-attributes-accessibility.md#accessibilityChecked13)，或者使用accessibilityChecked设置checked属性为undefined模式。 |
+| isSelect | boolean | 是   | 用于表示组件是否被选中。<br/>支持的值为：<br/>true：当前组件被选中。<br/>false：当前组件未被选中。<br/>undefined：由组件自行确定选中状态。<br/>默认值：undefined <br/>**说明：**<br/>1. checked代表组件是多选模式，而selected代表组件是单选模式，组件不能同时存在两种选择模式，会造成无障碍状态冲突，导致屏幕朗读等无障碍辅助应用无法正确识别选中状态。如使用当前接口设置组件为单选模式（true、false），则需要保证未使用[accessibilityChecked](ts-universal-attributes-accessibility.md#accessibilitychecked13)，或者使用accessibilityChecked设置checked属性为undefined模式。 |
 
 ## accessibilityRole<sup>18+</sup>
 
