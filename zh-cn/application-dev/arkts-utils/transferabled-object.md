@@ -49,7 +49,7 @@ struct Index {
       taskpool.execute(loadPixelMap, rawFileDescriptor).then(pixelMap => {
         if (pixelMap) {
           this.pixelMap = pixelMap as PixelMap;
-          console.log('Succeeded in creating pixelMap.');
+          console.info('Succeeded in creating pixelMap.');
           // 主线程释放pixelMap。由于子线程返回pixelMap时已调用setTransferDetached，所以此处能够立即释放pixelMap。
           this.pixelMap.release();
         } else {
