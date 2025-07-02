@@ -183,7 +183,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
     当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第4步)后，通过此接口进行解密配置。
 
-    DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
+    DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/capi-drm.md)。
 
     此接口需在Prepare前调用。
 
