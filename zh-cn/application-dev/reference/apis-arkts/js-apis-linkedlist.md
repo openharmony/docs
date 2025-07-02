@@ -685,7 +685,7 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 linkedList.forEach((value: number, index?: number) => {
-  console.log("value:" + value, "index:" + index);
+  console.info("value:" + value, "index:" + index);
 });
 ```
 
@@ -902,14 +902,14 @@ linkedList.add(4);
 // 使用方法一：
 let items = Array.from(linkedList);
 for (let item of items) {
-  console.log("value:" + item);
+  console.info("value:" + item);
 }
 
 // 使用方法二：
 let iter = linkedList[Symbol.iterator]();
 let temp: IteratorResult<number> = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:" + temp.value);
   temp = iter.next();
 }
 ```

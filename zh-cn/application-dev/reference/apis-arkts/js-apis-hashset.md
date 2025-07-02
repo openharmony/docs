@@ -282,7 +282,7 @@ hashSet.add("sparrow");
 let iter = hashSet.values();
 let temp = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:" + temp.value);
   temp = iter.next();
 }
 ```
@@ -328,7 +328,7 @@ let hashSet: HashSet<string> = new HashSet();
 hashSet.add("sparrow");
 hashSet.add("squirrel");
 hashSet.forEach((value?: string, key?: string): void => {
-  console.log("value:" + value, "key:" + key);
+  console.info("value:" + value, "key:" + key);
 });
 ```
 ```ts
@@ -374,8 +374,8 @@ hashSet.add("sparrow");
 let iter = hashSet.entries();
 let temp: IteratorResult<[string, string]> = iter.next();
 while(!temp.done) {
-  console.log("key:" + temp.value[0]);
-  console.log("value:" + temp.value[1]);
+  console.info("key:" + temp.value[0]);
+  console.info("value:" + temp.value[1]);
   temp = iter.next();
 }
 ```
@@ -424,14 +424,14 @@ hashSet.add("sparrow");
 // 使用方法一：
 let val: Array<string> = Array.from(hashSet.values());
 for (let item of val) {
-  console.log("value: " + item);
+  console.info("value: " + item);
 }
 
 // 使用方法二：
 let iter = hashSet[Symbol.iterator]();
 let temp: IteratorResult<string> = iter.next();
 while(!temp.done) {
-  console.log("value: " + temp.value);
+  console.info("value: " + temp.value);
   temp = iter.next();
 }
 ```

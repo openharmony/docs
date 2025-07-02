@@ -89,8 +89,7 @@ class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbilit
       this.context.startAbility(want, (error: BusinessError) => {
         if (error) {
           // 处理业务逻辑错误
-          console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-            ' error.message: ' + JSON.stringify(error.message));
+          console.error(`startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}.`);
           return;
         }
         // 执行正常业务
@@ -100,8 +99,7 @@ class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbilit
       // 处理入参错误异常
       let code = (paramError as BusinessError).code;
       let message = (paramError as BusinessError).message;
-      console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
-        ' error.message: ' + JSON.stringify(message));
+      console.error(`startAbility failed, error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}.`);
     }
   }
 }
@@ -178,15 +176,13 @@ class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbilit
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
-          console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-            ' error.message: ' + JSON.stringify(error.message));
+          console.log(`startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}.`);
         });
     } catch (paramError) {
       // 处理入参错误异常
       let code = (paramError as BusinessError).code;
       let message = (paramError as BusinessError).message;
-      console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
-        ' error.message: ' + JSON.stringify(message));
+      console.log(`startAbility failed, error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}.`);
     }
   }
 }

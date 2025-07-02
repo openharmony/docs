@@ -15,7 +15,7 @@ import backup from '@ohos.file.backup';
 
 ## FileMeta
 
-文件的元数据，包含一个应用名称以及文件uri。FileMeta在执行备份/恢复时是不可缺少的对象。
+文件的元数据，包含一个应用名称以及文件URI。FileMeta在执行备份/恢复时是不可缺少的对象。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 

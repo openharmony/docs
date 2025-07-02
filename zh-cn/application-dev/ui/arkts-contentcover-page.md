@@ -30,17 +30,17 @@ import { curves } from '@kit.ArkUI';
 
 interface PersonList {
   name: string,
-  cardnum: string
+  cardNum: string
 }
 
 @Entry
 @Component
 struct BindContentCoverDemo {
   private personList: Array<PersonList> = [
-    { name: '王**', cardnum: '1234***********789' },
-    { name: '宋*', cardnum: '2345***********789' },
-    { name: '许**', cardnum: '3456***********789' },
-    { name: '唐*', cardnum: '4567***********789' }
+    { name: '王**', cardNum: '1234***********789' },
+    { name: '宋*', cardNum: '2345***********789' },
+    { name: '许**', cardNum: '3456***********789' },
+    { name: '唐*', cardNum: '4567***********789' }
   ];
   // 半模态转场控制变量
   @State isSheetShow: boolean = false;
@@ -95,7 +95,7 @@ struct BindContentCoverDemo {
               Text(item.name)
                 .fontColor(0x333333)
                 .fontSize(18)
-              Text(item.cardnum)
+              Text(item.cardNum)
                 .fontColor(0x666666)
                 .fontSize(14)
             }

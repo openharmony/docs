@@ -259,7 +259,7 @@ stack.push(4);
 stack.push(5);
 stack.push(4);
 stack.forEach((value : number, index ?: number) :void => {
-  console.log("value:" + value, "index:" + index);
+  console.info("value:" + value, "index:" + index);
 });
 /**
  * value:2 index:0
@@ -340,14 +340,14 @@ stack.push(4);
 while(!stack.isEmpty()) {
   // 业务逻辑
   let item = stack.pop();
-  console.log("value:" + item);
+  console.info("value:" + item);
 }
 
 // 使用方法二：
 let iter = stack[Symbol.iterator]();
 let temp: IteratorResult<number> = iter.next().value;
 while(temp != undefined) {
-  console.log("value:" + temp);
+  console.info("value:" + temp);
   temp = iter.next().value;
 }
 ```

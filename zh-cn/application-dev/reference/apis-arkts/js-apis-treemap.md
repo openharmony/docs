@@ -370,7 +370,7 @@ let map : TreeMap<string, number> = new TreeMap();
 map.set("demo", 12);
 map.setAll(treeMap); // 将treeMap中的所有元素添加到map中
 map.forEach((value ?: number, key ?: string) : void => {
-  console.log("value: " + value, "key: " + key); 
+  console.info("value: " + value, "key: " + key); 
 })
 // 输出结果:
 // value: 12 key: demo
