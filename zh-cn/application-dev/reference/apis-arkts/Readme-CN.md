@@ -4,7 +4,7 @@
   - [@arkts.collections (ArkTS容器集)](js-apis-arkts-collections.md)
   - [@arkts.lang (ArkTS语言基础能力)](js-apis-arkts-lang.md)
   - [@arkts.math.Decimal (高精度数学库Decimal)](js-apis-arkts-decimal.md)
-  - [@arkts.utils (ArkTS工具库)]<!--js-apis-arkts-utils-->
+  - @arkts.utils (ArkTS工具库)<!--js-apis-arkts-utils-->
     - [模块描述](arkts-apis-arkts-utils.md)
     - [Functions](arkts-apis-arkts-utils-f.md)
     - [ArkTSUtils.locks](arkts-apis-arkts-utils-locks.md)
