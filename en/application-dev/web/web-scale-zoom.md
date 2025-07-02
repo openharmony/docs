@@ -8,7 +8,7 @@ ArkWeb supports gesture zoom, mouse wheel zoom, and keyboard zoom, allowing user
 
 You can use the [zoomAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#zoomaccess) attribute to set the web page zoom functionality. When this attribute is set to **false**, the web page cannot be zoomed in or out using gestures.
 
-When **<meta name="viewport" id="viewport" content="user-scalable=no">** is set for the HTML web page, the web page cannot be zoomed in or out using gestures.
+When `<meta name="viewport" id="viewport" content="user-scalable=no">` is set for the HTML web page, the web page cannot be zoomed in or out using gestures.
 
 Gestures can be used to zoom in or out only when both the **zoomAccess** and **viewport** tags are set to allow zooming.
 
