@@ -2517,7 +2517,7 @@
         - [@arkts.collections (ArkTS容器集)](reference/apis-arkts/js-apis-arkts-collections.md)
         - [@arkts.lang (ArkTS语言基础能力)](reference/apis-arkts/js-apis-arkts-lang.md)
         - [@arkts.math.Decimal (高精度数学库Decimal)](reference/apis-arkts/js-apis-arkts-decimal.md)
-        - [@arkts.utils (ArkTS工具库)]<!--js-apis-arkts-utils-->
+        - @arkts.utils (ArkTS工具库)<!--js-apis-arkts-utils-->
           - [模块描述](reference/apis-arkts/arkts-apis-arkts-utils.md)
           - [Functions](reference/apis-arkts/arkts-apis-arkts-utils-f.md)
           - [ArkTSUtils.locks](reference/apis-arkts/arkts-apis-arkts-utils-locks.md)
