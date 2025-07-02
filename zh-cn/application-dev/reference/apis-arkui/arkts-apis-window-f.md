@@ -498,9 +498,9 @@ shiftAppWindowTouchEvent(sourceWindowId: number, targetWindowId: number, fingerI
 
 | 参数名          | 类型   | 必填  | 说明                    |
 | -------------- | ------ | ----- | ----------------------- |
-| sourceWindowId | number | 是    | 源窗口id。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。            |
-| targetWindowId | number | 是    | 目标窗口id。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。             |
-| fingerId | number | 是    | 触屏事件的fingerId。推荐使用[touchEvent](arkui-ts/ts-universal-events-touch.md#touchevent对象说明)事件中[touches](arkui-ts/ts-universal-events-touch.md#touchobject对象说明)属性获取id。             |
+| sourceWindowId | number | 是    | 源窗口id。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。该参数应为大于0的整数，小于等于0时会返回错误码1300016。            |
+| targetWindowId | number | 是    | 目标窗口id。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。该参数应为大于0的整数，小于等于0时会返回错误码1300016。             |
+| fingerId | number | 是    | 触屏事件的fingerId。推荐使用[touchEvent](arkui-ts/ts-universal-events-touch.md#touchevent对象说明)事件中[touches](arkui-ts/ts-universal-events-touch.md#touchobject对象说明)属性获取id。该参数应为大于等于0的整数，小于0时会返回错误码1300016。             |
 
 **返回值：**
 
