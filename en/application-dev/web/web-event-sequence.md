@@ -20,19 +20,17 @@ The states of a **Web** component: binding controller to the **Web** component, 
 
 - [onLoadIntercept](../reference/apis-arkweb/ts-basic-components-web-events.md#onloadintercept10) : This callback is triggered before the **Web** component loads a URL, which is used to determine whether to block the access. By default, the loading is allowed.
 
-- [onOverrideUrlLoading](../reference/apis-arkweb/ts-basic-components-web-events.md#onoverrideurlloading12): This callback is triggered when a URL is to be loaded to the web. By using this callback, the host application can obtain the control right. If the callback returns **true**, the web stops loading the URL. If the callback returns **false**, the web continues to load the URL. The behavior of **onLoadIntercept()** is different from that of the **onOverrideUrlLoading()** and they are triggered in different timing. Therefore, the two APIs are used in different scenarios. When **LoadUrl** and **iframe** (HTML tag, indicating the HTML inline framework element, which is used to embed another page into the current page) are loaded, **onLoadIntercept()** is triggered, but **onOverrideUrlLoading()** is not triggered when **LoadUrl** is loaded and when the **iframe** loads the HTTP(s) protocol or **about:blank**. For details, see [onLoadIntercept](../reference/apis-arkweb/ts-basic-components-web-events.md#onloadintercept10) and [onOverrideUrlLoading](../reference/apis-arkweb/ts-basic-components-web-events.md#onoverrideurlloading12).
-
 - [onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web-events.md#oninterceptrequest9): This callback is triggered before the **Web** component loads the URL, which is used to intercept the URL and return response data.
 
 - [onPageBegin](../reference/apis-arkweb/ts-basic-components-web-events.md#onpagebegin): This callback is triggered when a web page starts to be loaded and is triggered only in the main frame (an HTML element used to display the HTML page). This callback is not triggered when the content of an **iframe** or **frameset** (an HTML tag used to include frames) is loaded. Multi-frame pages may start to be loaded at the same time. Even if the main frame is already loaded, the sub-frames may start to be loaded or continue to be loaded. This callback is not triggered for navigation (such as segment and historical status) on the same page, navigation that fails before submission, or navigation that is canceled.
 
 - [onProgressChange](../reference/apis-arkweb/ts-basic-components-web-events.md#onprogresschange): This callback is triggered to notify the loading progress of the page. Multi-frame pages or sub-frames may continue to be loaded while the main frame is already loaded. Therefore, this callback event may still be received after [onPageEnd](../reference/apis-arkweb/ts-basic-components-web-events.md#onpageend) event.
 
-- [onPageEnd](../reference/apis-arkweb/ts-basic-components-web-events.md#onpageend): This callback is triggered only in the main frame when a web page is already loaded. Multi-frame pages may start to be loaded at the same time. Even if the main frame is already loaded, the sub-frames may start to be loaded or continue to be loaded. This callback is not triggered for navigation (such as segment and historical status) on the same page, navigation that fails before submission, or navigation that is canceled. You are advised to execute the JavaScript script [loadUrl](../reference/apis-arkweb/js-apis-webview.md#loadurl) in this callback. Note that receiving this callback does not guarantee that the next frame of drawn by the **Web** will reflect the current DOM status.
+- [onPageEnd](../reference/apis-arkweb/ts-basic-components-web-events.md#onpageend): This callback is triggered only in the main frame when a web page is already loaded. Multi-frame pages may start to be loaded at the same time. Even if the main frame is already loaded, the sub-frames may start to be loaded or continue to be loaded. This callback is not triggered for navigation (such as segment and historical status) on the same page, navigation that fails before submission, or navigation that is canceled. You are advised to execute the JavaScript script in this callback. Note that receiving this callback does not guarantee that the next frame of drawn by the **Web** will reflect the current DOM status.
 
 - [onPageVisible](../reference/apis-arkweb/ts-basic-components-web-events.md#onpagevisible9): Web callback event, which is triggered when the body of an HTTP response starts to be loaded and a new page is about to be visible in the rendering process. In this case, the document loading is still in the early stage, so the linked resources such as online CSS and images may not be available.
 
-- [onRenderExited](../reference/apis-arkweb/ts-basic-components-web-events.md#onrenderexited9): This callback is triggered when an application rendering process exits abnormally. You can release system resources and save data in this callback. If you want to recover the application, call the [loadUrl](../reference/apis-arkweb/js-apis-webview.md#loadurl) API to reload the page.
+- [onRenderExited](../reference/apis-arkweb/ts-basic-components-web-events.md#onrenderexited9): This callback is triggered when an application rendering process exits abnormally. You can release system resources and save data in this callback. If you want to recover the application, call the [loadUrl](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl) API to reload the page.
 
 - [onDisAppear](../reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear): This callback is triggered when a component is uninstalled from the component tree, which is a common event.
 
@@ -42,7 +40,6 @@ Codes on the application side:
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { promptAction } from '@kit.ArkUI';
 
   @Entry
   @Component
@@ -84,7 +81,7 @@ Codes on the application side:
               console.log('isRequestGesture:' + event.data.isRequestGesture())
             }
             // If true is returned, the loading is blocked. Otherwise, the loading is allowed.
-            return true
+            return false;
           })
           .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {
             if (webResourceRequest && webResourceRequest.getRequestUrl() == "about:blank") {
@@ -106,6 +103,7 @@ Codes on the application side:
             }
             let length = this.heads.push(head1);
             length = this.heads.push(head2);
+            console.log('The response header result length is :' + length);
             this.responseWeb.setResponseHeader(this.heads);
             this.responseWeb.setResponseData(this.webData);
             this.responseWeb.setResponseEncoding('utf-8');
