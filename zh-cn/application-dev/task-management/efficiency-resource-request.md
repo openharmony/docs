@@ -58,6 +58,7 @@
 
    ```ts
    import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 申请能效资源。
