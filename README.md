@@ -17,12 +17,14 @@ This repository stores device and application development documents provided by 
 ### Latest Versions
 
  - master: the latest version.
+ 
+ - OpenHarmony 5.0.1 (API Level 13). [Learn more](en/release-notes/OpenHarmony-v5.0.1-release.md)
 
- - OpenHarmony 4.1 Release. [Learn more](en/release-notes/OpenHarmony-v4.1-release.md)
+ - OpenHarmony 4.1 Release (API Level 11). [Learn more](en/release-notes/OpenHarmony-v4.1-release.md)
 
- - OpenHarmony 4.0 Release. [Learn more](en/release-notes/OpenHarmony-v4.0-release.md)
+ - OpenHarmony 4.0 Release (API Level 10). [Learn more](en/release-notes/OpenHarmony-v4.0-release.md)
 
- - OpenHarmony 3.2 Release. [Learn more](en/release-notes/OpenHarmony-v3.2-release.md)
+ - OpenHarmony 3.2 Release (API Level 9). [Learn more](en/release-notes/OpenHarmony-v3.2-release.md)
    
    This version is upgraded to OpenHarmony 3.2.3 Release. [Learn more](en/release-notes/OpenHarmony-v3.2.3-release.md)
 
