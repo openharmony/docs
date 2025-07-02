@@ -15578,7 +15578,7 @@ int32_t OH_ArkUI_RegisterSystemColorModeChangeEvent (ArkUI_NodeHandle node, void
 ```
 **描述：**
 
-注册系统深浅色变更事件。同一组件仅能注册一个系统深浅变更回调。
+注册系统深浅色变更事件。同一组件仅能注册一个系统深浅变更回调。示例请参考：[监听组件事件](../../ui/ndk-listen-to-component-events.md)。
 
 **起始版本：** 12
 
@@ -18155,7 +18155,7 @@ int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, v
 ```
 **描述：**
 
-在UIContext作用域内运行自定义函数。示例请参考：[在NDK中保证多实例场景功能正常](../../ui/ndk-scope-task.md)。
+在目标UI上下文中执行传入的自定义回调函数。示例请参考：[在NDK中保证多实例场景功能正常](../../ui/ndk-scope-task.md)。
 
 **起始版本：** 20
 
@@ -18163,9 +18163,9 @@ int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, v
 
 | 名称 | 描述 |
 | -------- | -------- |
-| uiContext | 表示目标UIContext的指针。  |
-| userData | 表示指定自定义数据的指针。 |
-| callback | 自定义函数。 |
+| uiContext | 表示目标UI上下文的指针。  |
+| userData | 开发者自定义数据指针，以便在回调函数中处理自定义数据，开发者需自行保证自定义函数被执行时的数据有效性。 |
+| callback | 开发者自定义回调函数。 |
 
 **返回：**
 
