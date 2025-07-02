@@ -410,7 +410,7 @@ When both **baseUrl** and **historyUrl** are empty, if **encoding** is not base6
 >
 > - If the rich text in HTML contains special characters such as hash (#), you are advised to set the values of **baseUrl** and **historyUrl** to spaces.
 >
-> - To load texts, you need to set **<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">** to avoid inconsistent font sizes.
+> - To load texts, you need to set `<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">` to avoid inconsistent font sizes.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4109,7 +4109,7 @@ struct WebComponent {
 
 ## getCertificate<sup>10+</sup>
 
-getCertificate(): Promise<Array<cert.X509Cert>>
+getCertificate(): Promise\<Array\<cert.X509Cert>>
 
 Obtains the certificate information of this website. When the **Web** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses a promise to return the [X.509 certificate](../apis-device-certificate-kit/js-apis-cert.md#x509cert) of the current website.
 
@@ -4270,7 +4270,7 @@ struct Index {
 
 ## getCertificate<sup>10+</sup>
 
-getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
+getCertificate(callback: AsyncCallback\<Array\<cert.X509Cert>>): void
 
 Obtains the certificate information of this website. When the **Web** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses an asynchronous callback to return the [X.509 certificate](../apis-device-certificate-kit/js-apis-cert.md#x509cert) of the current website.
 
@@ -4674,7 +4674,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 
 | ID | Error Message                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.                                                 |
+| 17100002 | URL error. The web page corresponding to the URL is invalid, or the URL length exceeds 2048.                                                |
 | 17100013 | The number of preconnect sockets is invalid.                                                 |
 
 **Example**
