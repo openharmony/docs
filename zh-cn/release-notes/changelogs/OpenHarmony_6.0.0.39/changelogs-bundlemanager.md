@@ -114,3 +114,50 @@
 **适配指导**
 
 应用需要捕获新增的错误码17700307并进行处理。
+
+
+## cl.bundlemanager.4 Ability Kit相关公共事件行为变更，增加管控
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+Ability Kit部分公共事件中包含应用信息，存在信息泄露的安全风险，需要增加管控。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+对于公共事件[COMMON_EVENT_PACKAGE_ADDED](../../../application-dev/reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_package_added)、[COMMON_EVENT_PACKAGE_REMOVED](../../../application-dev/reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_package_removed)、[COMMON_EVENT_PACKAGE_CHANGED](../../../application-dev/reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_package_changed)、[COMMON_EVENT_PACKAGE_RESTARTED](../../../application-dev/reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_package_restarted)、[COMMON_EVENT_PACKAGE_DATA_CLEARED](../../../application-dev/reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_package_data_cleared)、[COMMON_EVENT_PACKAGE_CACHE_CLEARED](../../../application-dev/reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_package_cache_cleared)、[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](../../../application-dev/reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_apply_result)的订阅方增加了管控。
+
+变更前，系统应用和三方应用都可以监听到相关事件。
+
+变更后，系统应用可以监听自身应用和其他应用的相关事件，而三方应用只能监听到自身应用的相关事件。
+
+**起始 API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 6.0.0.39版本开始。
+
+**变更的接口/组件**
+
+变更的公共事件列表：
+| 事件名称 | 描述 |
+| -------- | -------- |
+| [COMMON_EVENT_PACKAGE_ADDED](../../../application-dev/reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_package_added) | 应用安装完成的事件。 |
+| [COMMON_EVENT_PACKAGE_REMOVED](../../../application-dev/reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_package_removed) | 应用卸载完成的事件。 |
+| [COMMON_EVENT_PACKAGE_CHANGED](../../../application-dev/reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_package_changed) | 应用更新完成的事件。 |
+| [COMMON_EVENT_PACKAGE_RESTARTED](../../../application-dev/reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_package_restarted) | 应用重新启动的事件。 |
+| [COMMON_EVENT_PACKAGE_DATA_CLEARED](../../../application-dev/reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_package_data_cleared) | 应用数据清理完成的事件。 |
+| [COMMON_EVENT_PACKAGE_CACHE_CLEARED](../../../application-dev/reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_package_cache_cleared) | 应用缓存数据清理完成的事件。 |
+| [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](../../../application-dev/reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_apply_result) | 应用使能快速修复包完成的事件。 |
+
+
+**适配指导**
+
+如果使用上述公共事件判断应用是否安装，请改用[canOpenLink](../../../application-dev/reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagercanopenlink12)接口来查询应用是否存在。
