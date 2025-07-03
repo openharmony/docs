@@ -2508,7 +2508,7 @@ struct ffrt_fiber_t;
 
 #### Description
 
-`Ffrt_fiber_t 'is a fiber storage entity type used to store and restore execution context.
+`Ffrt_fiber_t` is a fiber storage entity type used to store and restore execution context.
 
 #### Method
 
@@ -2524,7 +2524,7 @@ Parameters
 
 - `fiber`: Fiber pointer.
 - `func`: The function pointer entry at fiber startup.
-- ` arg `: Function parameter at fiber startup.
+- `arg`: Function parameter at fiber startup.
 - `stack`: The starting address of the stack space used by the fiber during runtime.
 - `stack_size`: The size of the fiber stack, measured in bytes.
 
