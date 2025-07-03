@@ -503,15 +503,3 @@
 **支持设备**：PC/2in1
 
 **起始版本**：20
-
-## ohos.permission.WINDOW_TRANSPARENT
-
-允许应用设置主窗容器透明和去除主窗外边框阴影。
-
-**权限级别**：normal
-
-**授权方式**：系统授权（system_grant）
-
-**支持设备**：PC/2in1
-
-**起始版本**：20
