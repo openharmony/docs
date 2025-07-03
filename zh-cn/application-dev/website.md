@@ -1540,6 +1540,7 @@
         - [典型场景的视频编码配置](media/avcodec/video-encoding-configuration-typical-scenarios.md)
         - [ROI视频编码](media/avcodec/video-encoding-ROI.md)
         - [视频解码](media/avcodec/video-decoding.md)
+        - [视频解码同步模式](media/avcodec/synchronous-video-decoding.md)
         - [创建视频解码器和NativeWindow初始化并行](media/avcodec/parallel-decoding-nativeWindow.md)
         - [视频可变帧率](media/avcodec/video-variable-refreshrate.md)
       - 媒体数据封装与解析<!--file-muxing-demuxing-->
