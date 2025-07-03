@@ -1282,7 +1282,7 @@ Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -
     }
   
     // 处理BEGIN状态
-    handleBeginState(context: dragController.SpringLoadingContext): boolean {
+    handleBeginState(context: SpringLoadingContext): boolean {
       // 检查用户所拖拽的数据类型是否自己能够处理的
       if (this.checkDataType(context?.dragInfos?.dataSummary)) {
         return true;
@@ -1293,16 +1293,16 @@ Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -
     }
   
     // Spring Loading处理入口
-    handleSpringLoading(context: dragController.SpringLoadingContext) {
+    handleSpringLoading(context: SpringLoadingContext) {
       // BEGIN 状态时检查拖拽数据类型
-      if (context.state == dragController?.DragSpringLoadingState.BEGIN) {
+      if (context.state == dragController.DragSpringLoadingState.BEGIN) {
         if (this.handleBeginState(context)) {
           // 我们已经在onDragEnter时刷新了提醒色，进入Spring Loading状态时，恢复UI，提醒用户继续保持不动
           this.buttonBackgroundColor = this.normalColor;
         }
         return;
       }
-      if (context.state == dragController?.DragSpringLoadingState.UPDATE) {
+      if (context.state == dragController.DragSpringLoadingState.UPDATE) {
         // 奇数次UPDATE通知刷新提醒UI，偶数次复原UI
         if (context.currentNotifySequence % 2 != 0) {
           this.buttonBackgroundColor = this.reminderColor;
@@ -1312,12 +1312,12 @@ Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -
         return;
       }
       // 处理Spring Loading结束，触发视图切换
-      if (context.state == dragController?.DragSpringLoadingState.END) {
+      if (context.state == dragController.DragSpringLoadingState.END) {
         this.isShowSheet = true;
         return;
       }
       // 处理CANCEL状态，复原UI
-      if (context.state == dragController?.DragSpringLoadingState.CANCEL) {
+      if (context.state == dragController.DragSpringLoadingState.CANCEL) {
         this.buttonBackgroundColor = this.normalColor;
         return;
       }
@@ -1347,7 +1347,7 @@ Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -
             // 当用户拖拽离开按钮范围，恢复UI
             this.buttonBackgroundColor = this.normalColor
           })
-          .onDragSpringLoading((context: dragController.SpringLoadingContext)=>{
+          .onDragSpringLoading((context: SpringLoadingContext)=>{
             this.handleSpringLoading(context);
           })
       }.width('100%').height('100%')
