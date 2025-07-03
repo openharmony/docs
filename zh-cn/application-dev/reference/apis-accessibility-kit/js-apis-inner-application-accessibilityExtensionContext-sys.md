@@ -26,7 +26,7 @@ class EntryAbility extends AccessibilityExtensionAbility {
 ## Parameter<sup>20+</sup>
 
 无障碍节点元素执行特定操作时，为操作提供具体设置的参数值。
-详见[无障碍节点元素可执行的操作](./js-apis-accessibility-sys.md#accessibilityaction)
+详见[无障碍节点元素可执行的操作](./js-apis-accessibility-sys.md#accessibilityaction)。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
@@ -40,11 +40,11 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | spanId              | string | 否   |是 |对SPAN文本进行点击操作时文本id。                |
 | scrollType          | string | 否   | 是|组件滚动类型，包括SCROLL_FORWARD（向前滚动）和SCROLL_BACKWARD（向后滚动）。 |
 
-例如：针对action: AccessibilityAction.SET_SELECTION, executeAction方法的第二个参数如下：
+例如：选中文本输入框中index从0到7的字符时，executeAction(AccessibilityAction.SET_SELECTION, parameter)方法设置的参数如下:
 ```ts
 let p : Parameter = { selectTextBegin: '0', selectTextEnd: '8', selectTextInForWard: true }
 ```
-可以选中文本输入框中index从0到7的字符
+
 
 ## startAbility<sup>12+</sup>
 
@@ -68,7 +68,7 @@ startAbility(want: Want): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -114,7 +114,7 @@ getElements(windowId: number, elementId?: number): Promise<Array&lt;Accessibilit
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -159,7 +159,7 @@ getDefaultFocusedElementIds(windowId: number): Promise<Array&lt;number&gt;>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -194,7 +194,7 @@ holdRunningLockSync(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -226,7 +226,7 @@ unholdRunningLockSync(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -267,7 +267,7 @@ on(type: 'preDisconnect', callback: Callback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -308,7 +308,7 @@ off(type: 'preDisconnect', callback?: Callback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -344,7 +344,7 @@ notifyDisconnect(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -380,7 +380,7 @@ getAccessibilityFocusedElement(): Promise\<AccessibilityElement>;
 | Promise\<[AccessibilityElement](#accessibilityelement12)>| 异步返回函数结果.|
 
 **错误码:**
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -422,7 +422,7 @@ getRootInActiveWindow(windowId ?: number): Promise\<[AccessibilityElement](#acce
 | Promise\<[AccessibilityElement](#accessibilityelement12)>| Promise used to return the result.|
 
 **错误码:**
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
 | 201 | Permission verification failed.The application does not have the permission required to call the API. |
@@ -459,14 +459,14 @@ getAccessibilityWindowsSync(displayId?: number): Array\<[AccessibilityElement](#
 | -------- | -------- | -------- | -------- |
 | displayId | number | No | 显示ID。如果未提供此参数，则表示默认displayId。 |
 
-**返回值：**
+**返回值：**s
 
 | 类型                                 | 描述                    |
 | ----------------------------------- | ---------------------- |
 | Array\<[AccessibilityElement](#accessibilityelement12)> | 窗口列表。|
 
 **错误码:**
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
 | 201 | Permission verification failed.The application does not have the permission required to call the API. |
@@ -601,7 +601,7 @@ enableScreenCurtain(isEnable: boolean): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -695,7 +695,7 @@ findElement(type: 'textType', condition: string): Promise\<Array\<AccessibilityE
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
@@ -799,7 +799,7 @@ executeAction(action: AccessibilityAction, parameters?: Parameter): Promise\<voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -875,7 +875,7 @@ rootElement.executeAction(AccessibilityAction.SET_CURSOR_POSITION, p).then(() =>
 
 getParent(): Promise\<AccessibilityElement>;
 
-获取元素的父元素。
+获取无障碍节点元素的父元素。
 
 **权限**: ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
@@ -889,7 +889,7 @@ getParent(): Promise\<AccessibilityElement>;
 
 **错误码：**
 
-有关错误码的详细信息，请参阅[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
@@ -920,7 +920,7 @@ getChildren(): Promise\<Array\<AccessibilityElement>>;
 
 获取元素的子元素列表。
 
-**权限：**: ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+**权限**: ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
 **系统能力**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -932,7 +932,7 @@ getChildren(): Promise\<Array\<AccessibilityElement>>;
 
 **错误码：**
 
-有关错误码的详细信息，请参阅[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
@@ -975,7 +975,7 @@ getRoot(): Promise\<AccessibilityElement>;
 
 **错误码：**
 
-有关错误码的详细信息，请参阅[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
@@ -999,7 +999,7 @@ for (let window of windows) {
 }
 ```
 
-### findElementByContent
+### findElementByContent<sup>20+</sup>
 
 findElementByContent(content: string): Promise\<Array\<AccessibilityElement>>;
 
@@ -1023,7 +1023,7 @@ findElementByContent(content: string): Promise\<Array\<AccessibilityElement>>;
 
 **错误码：**
 
-有关错误码的详细信息，请参阅[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
@@ -1058,7 +1058,7 @@ axContext.getRootInActiveWindow(windowId)..then((root: AccessibilityElement) => 
 })
 ```
 
-### findElementByFocusDirection
+### findElementByFocusDirection<sup>20+</sup>
 
 findElementByFocusDirection(direction: FocusDirection): Promise\<AccessibilityElement>;
 
@@ -1082,7 +1082,7 @@ findElementByFocusDirection(direction: FocusDirection): Promise\<AccessibilityEl
 
 **错误码：**
 
-有关错误码的详细信息，请参阅[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
@@ -1120,7 +1120,7 @@ axContext.getAccessibilityFocusedElement().then((focus: AccessibilityElement) =>
 })
 ```
 
-### findElementByAccessibilityHintText
+### findElementByAccessibilityHintText<sup>20+</sup>
 
 findElementsByAccessibilityHintText(hintText: string): Promise\<Array\<AccessibilityElement>>;
 
@@ -1144,7 +1144,7 @@ findElementsByAccessibilityHintText(hintText: string): Promise\<Array\<Accessibi
 
 **错误码：**
 
-有关错误码的详细信息，请参阅[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
@@ -1184,7 +1184,7 @@ axContext.getRootInActiveWindow(windowId).then((root: AccessibilityElement) => {
 })
 ```
 
-### findElementById
+### findElementById<sup>20+</sup>
 
 findElementById(elementId: number): Promise\<AccessibilityElement>;
 
@@ -1208,7 +1208,7 @@ findElementById(elementId: number): Promise\<AccessibilityElement>;
 
 **错误码：**
 
-有关错误码的详细信息，请参阅[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
