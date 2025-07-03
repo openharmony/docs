@@ -24,9 +24,9 @@ import fileAccess from '@ohos.file.fileAccess';
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-| 名称 | 类型                        | 只读 | 可选 | 说明                                                      |
-| ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
-| DEVICES_URI<sup>11+</sup>  | string | 否   | 否   | 监听设备上线，下线通知，作为注册监听的URI。                    |
+| 名称 | 类型                        | 值  | 说明                                                      |
+| ---- | --------------------------- | ----  | --------------------------------------------------------- |
+| DEVICES_URI<sup>11+</sup>  | string | 'file://doc'  | 监听设备上线，下线通知，作为注册监听的URI。                    |
 
 ## fileAccess.getFileAccessAbilityInfo
 
