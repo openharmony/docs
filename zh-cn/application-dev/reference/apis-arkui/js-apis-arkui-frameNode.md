@@ -520,6 +520,67 @@ getPositionToWindow(): Position
 
 **示例：**
 
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToWindow() {
+    let positionToWindow = this.rootNode?.getPositionToWindow();
+    console.info(TEST_TAG + JSON.stringify(positionToWindow));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("getPositionToWindow")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToWindow();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+  }
+}
+
+```
+
 请参考[节点操作示例](#节点操作示例)。
 
 
@@ -541,6 +602,68 @@ getPositionToParent(): Position
 
 **示例：**
 
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToParent() {
+    let positionToParent = this.rootNode?.getPositionToParent();
+    console.info(TEST_TAG + JSON.stringify(positionToParent));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("getPositionToParent")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToParent();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+  }
+}
+
+```
+
 请参考[节点操作示例](#节点操作示例)。
 
 ### getPositionToScreen<sup>12+</sup> 
@@ -560,6 +683,68 @@ getPositionToScreen(): Position
 | [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移，单位为VP。 |
 
 **示例：**
+
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToScreen() {
+    let positionToScreen = this.rootNode?.getPositionToScreen();
+    console.info(TEST_TAG + JSON.stringify(positionToScreen));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("getPositionToScreen")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToScreen();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+  }
+}
+
+```
 
 请参考[节点操作示例](#节点操作示例)。
 
@@ -582,6 +767,67 @@ getPositionToParentWithTransform(): Position
 
 **示例：**
 
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToParentWithTransform() {
+    let positionToParentWithTransform = this.rootNode?.getPositionToParentWithTransform();
+    console.info(TEST_TAG + JSON.stringify(positionToParentWithTransform));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("getPositionToParentWithTransform")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToParentWithTransform();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+  }
+}
+```
+
 请参考[节点操作示例](#节点操作示例)。
 
 ### getPositionToWindowWithTransform<sup>12+</sup>
@@ -602,6 +848,66 @@ getPositionToWindowWithTransform(): Position
 
 **示例：**
 
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToWindowWithTransform() {
+    let positionToWindowWithTransform = this.rootNode?.getPositionToWindowWithTransform();
+    console.info(TEST_TAG + JSON.stringify(positionToWindowWithTransform));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+        Button("getPositionToWindowWithTransform")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToWindowWithTransform();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+  }
+}
+```
+
 请参考[节点操作示例](#节点操作示例)。
 
 ### getPositionToScreenWithTransform<sup>12+</sup>
@@ -621,6 +927,67 @@ getPositionToScreenWithTransform(): Position
 | [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移，单位为VP。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
 
 **示例：**
+
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToScreenWithTransform() {
+    let positionToScreenWithTransform = this.rootNode?.getPositionToScreenWithTransform();
+    console.info(TEST_TAG + JSON.stringify(positionToScreenWithTransform));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("getPositionToScreenWithTransform")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToScreenWithTransform();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+  }
+}
+```
 
 请参考[节点操作示例](#节点操作示例)。
 
