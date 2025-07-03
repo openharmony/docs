@@ -773,7 +773,7 @@ OH_AVErrCode OH_VideoDecoder_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t
 
 查询下一个可用输入缓冲区的索引。
 
-调用此接口后需要接着调用OH_VideoDecoder_GetInputBuffer接口获取缓冲区实例，并通过OH_VideoDecoder_PushInputBuffer接口传递给解码器。
+调用此接口后需要接着调用[OH_VideoDecoder_GetInputBuffer](#oh_videodecoder_getinputbuffer)接口获取缓冲区实例，并通过[OH_VideoDecoder_PushInputBuffer](#oh_videodecoder_pushinputbuffer)接口传递给解码器。
 
 需要注意的是，上述操作仅在同步模式下支持。
 
@@ -830,7 +830,7 @@ OH_AVBuffer *OH_VideoDecoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t i
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  |
-| index | 输入buffer对应的索引值，可通过OH_VideoDecoder_QueryInputBuffer接口获取。| 
+| index | 输入buffer对应的索引值，可通过[OH_VideoDecoder_QueryInputBuffer](#oh_videodecoder_queryinputbuffer)接口获取。| 
 
 **返回：**
 
@@ -846,10 +846,10 @@ OH_AVErrCode OH_VideoDecoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_
 
 查询下一个可用输出缓冲区的索引。
 
-通过OH_VideoDecoder_GetOutputBuffer接口获取的缓冲区实例可以通过执行以下操作来显示或释放解码帧：
-1. 通过OH_VideoDecoder_FreeOutputBuffer接口将处理后的输出缓冲区返回到解码器。
-2. 通过OH_VideoDecoder_RenderOutputBuffer在输出surface上渲染。
-3. 通过OH_VideoDecoder_RenderOutputBufferAtTime在指定时间内完成输出surface上渲染。
+通过[OH_VideoDecoder_GetOutputBuffer](#oh_videodecoder_getoutputbuffer)接口获取的缓冲区实例可以通过执行以下操作来显示或释放解码帧：
+1. 通过[OH_VideoDecoder_FreeOutputBuffer](#oh_videodecoder_freeoutputbuffer)接口将处理后的输出缓冲区返回到解码器。
+2. 通过[OH_VideoDecoder_RenderOutputBuffer](#oh_videodecoder_renderoutputbuffer)在输出surface上渲染。
+3. 通过[OH_VideoDecoder_RenderOutputBufferAtTime](#oh_videodecoder_renderoutputbufferattime)在指定时间内完成输出surface上渲染。
 
 需要注意的是，上述操作仅在同步模式下支持。
 
@@ -908,7 +908,7 @@ OH_AVBuffer *OH_VideoDecoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t 
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  |
-| index | 输出buffer对应的索引值，可通过OH_VideoDecoder_QueryOutputBuffer接口获取。| 
+| index | 输出buffer对应的索引值，可通过[OH_VideoDecoder_QueryOutputBuffer](#oh_videodecoder_queryoutputbuffer)接口获取。| 
 
 **返回：**
 

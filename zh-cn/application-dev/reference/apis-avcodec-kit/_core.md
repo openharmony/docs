@@ -486,7 +486,7 @@ enum OH_AVErrCode
 | AV_ERR_DRM_DECRYPT_FAILED  | DRM解密失败。<br/>**起始版本：** 12 | 
 | AV_ERR_VIDEO_BASE   | 视频起始错误码。<br/>**起始版本：** 12 |
 | AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION   | 视频不支持色彩空间转换。<br/>**起始版本：** 12 |
-| AV_ERR_STREAM_CHANGED | 同步模式下流格式发生变更。可以通过调用GetOutputDescription接口来获取更新后流的配置信息。<br/>**起始版本：** 20 |
+| AV_ERR_STREAM_CHANGED | 同步模式下流格式发生变更。可以通过调用接口[OH_VideoEncoder_GetOutputDescription](_video_encoder.md#oh_videoencoder_getoutputdescription)（视频编码）、[OH_VideoDecoder_GetOutputDescription](_video_decoder.md#oh_videodecoder_getoutputdescription)（视频解码）、[OH_AudioCodec_GetOutputDescription](_audio_codec.md#oh_audiocodec_getoutputdescription)（音频编解码）来获取更新后流的配置信息。<br/>**起始版本：** 20 |
 | AV_ERR_TRY_AGAIN_LATER  | 同步模式下临时缓冲区查询失败，建议等待短暂间隔后重试操作。<br/>**起始版本：** 20 |
 
 ### OH_AVPixelFormat

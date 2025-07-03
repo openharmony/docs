@@ -846,7 +846,7 @@ OH_AVErrCode OH_VideoEncoder_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t
 
 查询下一个可用输入缓冲区的索引。
 
-调用此接口后需要接着调用OH_VideoEncoder_GetInputBuffer接口获取缓冲区实例，并通过OH_VideoEncoder_PushInputBuffer接口传递给编码器。
+调用此接口后需要接着调用[OH_VideoEncoder_GetInputBuffer](#oh_videoencoder_getinputbuffer)接口获取缓冲区实例，并通过[OH_VideoEncoder_PushInputBuffer](#oh_videoencoder_pushinputbuffer)接口传递给编码器。
 
 需要注意的是，上述操作仅在同步模式下支持。
 
@@ -903,7 +903,7 @@ OH_AVBuffer *OH_VideoEncoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t i
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频编码实例的指针。  |
-| index | 输入buffer对应的索引值，可通过OH_VideoEncoder_QueryInputBuffer接口获取。| 
+| index | 输入buffer对应的索引值，可通过[OH_VideoEncoder_QueryInputBuffer](#oh_videoencoder_queryinputbuffer)接口获取。| 
 
 **返回：**
 
@@ -919,7 +919,7 @@ OH_AVErrCode OH_VideoEncoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_
 
 查询下一个可用输出缓冲区的索引。
 
-通过OH_VideoEncoder_GetOutputBuffer接口获取的缓冲区实例可以通过OH_VideoEncoder_FreeOutputBuffer接口将处理后的输出缓冲区返回到编码器。
+通过[OH_VideoEncoder_GetOutputBuffer](#oh_videoencoder_getoutputbuffer)接口获取的缓冲区实例可以通过[OH_VideoEncoder_FreeOutputBuffer](#oh_videoencoder_freeoutputbuffer)接口将处理后的输出缓冲区返回到编码器。
 
 需要注意的是，上述操作仅在同步模式下支持。
 
@@ -978,7 +978,7 @@ OH_AVBuffer *OH_VideoEncoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t 
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频编码实例的指针。  |
-| index | 输出buffer对应的索引值，可通过OH_VideoEncoder_QueryOutputBuffer接口获取。| 
+| index | 输出buffer对应的索引值，可通过[OH_VideoEncoder_QueryOutputBuffer](#oh_videoencoder_queryoutputbuffer)接口获取。| 
 
 **返回：**
 
