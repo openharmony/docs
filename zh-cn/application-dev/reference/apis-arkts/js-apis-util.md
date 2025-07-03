@@ -286,7 +286,7 @@ generateRandomUUID(entropyCache?: boolean): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| entropyCache | boolean | 否 | 是否使用已缓存的UUID， 默认true。 |
+| entropyCache | boolean | 否 | 是否使用已缓存的UUID。true表示使用缓存的UUID，false表示不使用缓存的UUID。默认值为true。 |
 
 **返回值：**
 
@@ -324,7 +324,7 @@ generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| entropyCache | boolean | 否 | 是否使用已缓存的UUID， 默认true。 |
+| entropyCache | boolean | 否 | 是否使用已缓存的UUID。true表示使用缓存的UUID，false表示不使用缓存的UUID。默认值为true。 |
 
 **返回值：**
 
@@ -541,8 +541,8 @@ console.info('result2 is ' + result2);
 
 | 名称      | 类型 | 必填 | 说明               |
 | --------- | -------- | ---- | ------------------ |
-| fatal     | boolean  | 否   | 是否显示致命错误，默认值是false。 |
-| ignoreBOM | boolean  | 否   | 是否忽略BOM标记，默认值是false。  |
+| fatal     | boolean  | 否   | 是否显示致命错误。true表示显示致命错误，false表示不显示致命错误。默认值是false。 |
+| ignoreBOM | boolean  | 否   | 是否忽略BOM标记，true表示忽略待解码数据的BOM标记，false表示不忽略待解码数据的BOM标记并对其进行解码，默认值是false。  |
 
 ## DecodeToStringOptions<sup>12+</sup>
 
@@ -823,10 +823,10 @@ TextDecoder用于将字节数组解码为字符串，可以处理多种编码格
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | encoding | string | 是 | 否 | 编码格式。<br/>-&nbsp;支持格式：utf-8、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、x-mac-cyrillic、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、utf-16be、utf-16le、UTF-8、GBK、GB2312、gb2312、GB18030、iso-8859-1。 |
-| fatal | boolean | 是 | 否 | 是否显示致命错误。 |
+| fatal | boolean | 是 | 否 | 是否显示致命错误。true表示显示致命错误，false表示不显示致命错误。 |
 | ignoreBOM | boolean | 是 | 否 | 是否忽略BOM（byte&nbsp;order&nbsp;marker）标记，默认值为false&nbsp;，表示解码结果包含BOM标记。 |
 
 ### constructor<sup>9+</sup>
@@ -1023,8 +1023,8 @@ TextDecoder的构造函数。
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fatal | boolean | 否 | 是否显示致命错误，默认值是false。 |
-| ignoreBOM | boolean | 否 | 是否忽略BOM标记，默认值是false。 |
+| fatal | boolean | 否 | 是否显示致命错误。true表示显示致命错误，false表示不显示致命错误。默认值是false。 |
+| ignoreBOM | boolean | 否 | 是否忽略BOM标记。true表示忽略待解码数据的BOM标记，false表示不忽略待解码数据的BOM标记并对其进行解码。默认值是false。 |
 
 **示例：**
 
@@ -1084,16 +1084,33 @@ console.info("retStr = " + retStr);
 
 ## EncodeIntoUint8ArrayInfo<sup>11+</sup>
 
-**系统能力：** SystemCapability.Utils.Lang
-
-编码后的文本。
+编码后的文本，类型为number。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 类型 | 可读  |可写  | 说明               |
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
+| 名称      | 类型 | 只读  | 可选  | 说明               |
 | --------- | -------- | -------- |-------- |------------------ |
-| read     | ArkTS1.1: number <br>ArkTS1.2: int | 是 | 否 |表示已读取的字符数。 |
-| written | ArkTS1.1: number <br>ArkTS1.2: int | 是 |否 |表示已写入的字节数。  |
+| read     | number | 是 | 否 |表示已读取的字符数。 |
+| written | number | 是 |否 |表示已写入的字节数。  |
+
+## EncodeIntoUint8ArrayInfo<sup>20+</sup>
+
+编码后的文本，类型为int。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+| 名称      | 类型 | 只读  | 可选  | 说明               |
+| --------- | -------- | -------- |-------- |------------------ |
+| read     | int  | 是 | 否 |表示已读取的字符数。 |
+| written | int   | 是 |否 |表示已写入的字节数。  |
 
 
 ## TextEncoder
@@ -1107,7 +1124,7 @@ TextEncoder用于将字符串编码为字节数组，支持多种编码格式。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | encoding | string | 是 | 否 |  编码格式。<br/>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-1、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。 <br/>-&nbsp; 默认值是：'utf-8'。 |
 
@@ -2818,6 +2835,8 @@ compareTo(other: ScopeComparable): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明           |
@@ -2852,6 +2871,32 @@ class Temperature{
 }
 ```
 
+## ScopeComparable&lt;T&gt;<sup>20+</sup>
+
+### compareTo<sup>20+</sup>
+
+compareTo(other: T): boolean
+
+比较两个值的大小，返回一个布尔值，T表示可以使用多种参数类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明           |
+| ------ | ---- | ---- | -------------- |
+| other  | T | 是  | 表示要比较的值。 |
+
+**返回值：**
+
+| 类型 | 说明               |
+| ---- | ------------------ |
+| boolean | 调用compareTo的值大于等于传入的值返回true，否则返回false。|
+
 ## ScopeType<sup>8+</sup>
 
 type ScopeType = ScopeComparable | number
@@ -2862,10 +2907,28 @@ type ScopeType = ScopeComparable | number
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 表示值的类型为数字。 |
-| [ScopeComparable](#scopecomparable8) | 表示值的类型为ScopeComparable。|
+| number | 表示值的类型为数字，可取任意值。 |
+| [ScopeComparable](#scopecomparable8) | 表示值的类型为ScopeComparable，可取任意值。|
+
+## ScopeType&lt;T&gt; <sup>20+</sup>
+
+type ScopeType&lt;T&gt; = ScopeComparable&lt;T&gt;
+
+用于表示范围中的值的类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [ScopeComparable&lt;T&gt;](#scopecomparablet20) | 表示值的类型为ScopeComparable&lt;T&gt;，可取任意值。|
 
 ## ScopeHelper<sup>9+</sup>
 
@@ -2880,6 +2943,8 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -2968,11 +3033,13 @@ console.info("result = " + result);
 
 intersect(range: ScopeHelper): ScopeHelper
 
-获取给定范围和当前范围的交集。
+获取给定范围和当前范围的交集。当交集为空集时，抛出异常。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -3031,6 +3098,8 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):ScopeHelper
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -3092,6 +3161,8 @@ getUpper(): ScopeType
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型                     | 说明                   |
@@ -3135,6 +3206,8 @@ getLower(): ScopeType
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型                     | 说明                   |
@@ -3177,6 +3250,8 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): ScopeHelper
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -3238,6 +3313,8 @@ expand(range: ScopeHelper): ScopeHelper
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型                         | 必填 | 说明               |
@@ -3298,6 +3375,8 @@ expand(value: ScopeType): ScopeHelper
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型                     | 必填 | 说明             |
@@ -3356,6 +3435,8 @@ contains(value: ScopeType): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型                     | 必填 | 说明             |
@@ -3413,6 +3494,8 @@ contains(range: ScopeHelper): boolean
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -3474,6 +3557,8 @@ clamp(value: ScopeType): ScopeType
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型                     | 必填 | 说明           |
@@ -3520,6 +3605,551 @@ let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.clamp(tempMiDF);
 console.info("result = " + result);
 // 输出结果：result = 35
+```
+
+## ScopeHelper&lt;T extends ScopeComparable&lt;T&gt;&gt;<sup>20+</sup>
+
+ScopeHelper&lt;T extends ScopeComparable&lt;T&gt;&gt; 接口用于描述一个字段的有效范围。ScopeHelper&lt;T extends ScopeComparable&lt;T&gt;&gt; 实例的构造函数用于创建具有指定下限和上限的对象，并要求这些对象必须具有可比性。
+
+类型T继承自[ ScopeComparable&lt;T&gt; ](#scopecomparablet20)
+
+### constructor<sup>20+</sup>
+
+constructor(lowerObj: T, upperObj: T)
+
+用于创建指定下限和上限的作用域实例的构造函数，返回一个ScopeHelper对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                   |
+| -------- | ------------------------ | ---- | ---------------------- |
+| lowerObj | T | 是   | 指定作用域实例的下限。 |
+| upperObj | T | 是   | 指定作用域实例的上限。 |
+
+### toString<sup>20+</sup>
+
+toString(): string
+
+该字符串化方法返回一个包含当前范围的字符串表示形式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型   | 说明                                   |
+| ------ | -------------------------------------- |
+| string | 返回包含当前范围对象的字符串表示形式。 |
+
+**示例：**
+
+```ts
+class Temperature implements util.ScopeType<Temperature>{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
+  }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return `${this._temp}`
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper<Temperature>(tempLower, tempUpper);
+let result = range.toString();
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
+```
+
+### intersect<sup>20+</sup>
+
+intersect(range: ScopeHelper&lt;T&gt;): ScopeHelper&lt;T&gt;
+
+获取给定范围和当前范围的交集。当交集为空集时，抛出异常。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型                         | 必填 | 说明               |
+| ------ | ---------------------------- | ---- | ------------------ |
+| range  | [ ScopeHelper&lt;T&gt; ](#scopehelpert-extends-scopecomparablet20) | 是   | 传入一个给定范围。 |
+
+**返回值：**
+
+| 类型                           | 说明                           |
+| ------------------------------ | ------------------------------ |
+| [ ScopeHelper&lt;T&gt; ](#scopehelpert-extends-scopecomparablet20) | 返回给定范围和当前范围的交集。 |
+
+**示例：**
+
+```ts
+class NumberType implements util.ScopeType<NumberType> {
+  n: number
+  constructor(n: number) {
+    this.n = n
+  }
+  
+  compareTo(other: NumberType): boolean {
+    return this.n >= other.n
+  }
+  
+  toString(): string {
+    return `${this.n}`
+  }
+}
+
+// 注：下文中示例代码使用的createScopeHelper()函数，其定义与此处相同。
+function createScopeHelper(a: number, b: number): util.ScopeHelper<NumberType> {
+  let a1 = new NumberType(a)
+  let a2 = new NumberType(b)
+  return new util.ScopeHelper<NumberType>(a1, a2)
+}
+
+let sh = createScopeHelper(10, 30)
+
+let other = createScopeHelper(1, 11)
+console.info(sh.intersect(other).getLower().n)
+console.info(sh.intersect(other).getUpper().n)
+
+other = createScopeHelper(10, 20)
+console.info(sh.intersect(other).getLower().n)
+console.info(sh.intersect(other).getUpper().n)
+
+other = createScopeHelper(20, 300)
+console.info(sh.intersect(other).getLower().n)
+console.info(sh.intersect(other).getUpper().n)
+
+other = createScopeHelper(0, 300)
+console.info(sh.intersect(other).getLower().n)
+console.info(sh.intersect(other).getUpper().n)
+```
+
+### intersect<sup>20+</sup>
+
+intersect(lowerObj:T,upperObj:T):ScopeHelper&lt;T&gt;
+
+获取当前范围与给定下限和上限范围的交集。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明             |
+| -------- | ------------------------ | ---- | ---------------- |
+| lowerObj | T | 是   | 给定范围的下限。 |
+| upperObj | T | 是   | 给定范围的上限。 |
+
+**返回值：**
+
+| 类型                         | 说明                                     |
+| ---------------------------- | ---------------------------------------- |
+| [ ScopeHelper&lt;T&gt; ](#scopehelpert-extends-scopecomparablet20) | 返回当前范围与给定下限和上限范围的交集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+**示例：**
+
+```ts
+class NumberType implements util.ScopeType<NumberType> {
+  n: number
+  constructor(n: number) {
+    this.n = n
+  }
+  
+  compareTo(other: NumberType): boolean {
+      return this.n >= other.n
+  }
+  
+  toString(): string {
+      return `${this.n}`
+  }
+}
+
+let sh = new util.ScopeHelper<NumberType>(new NumberType(10), new NumberType(30))
+
+console.info(sh.intersect(new NumberType(5), new NumberType(25)).getLower().n)
+console.info(sh.intersect(new NumberType(5), new NumberType(25)).getUpper().n)
+```
+
+### getUpper<sup>20+</sup>
+
+getUpper(): T
+
+获取当前范围的上限。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型                     | 说明                   |
+| ------------------------ | ---------------------- |
+| T | 返回当前范围的上限值。 |
+
+**示例：**
+
+```ts
+// 注：createScopeHelper()的定义参见上文intersect章节。
+function testgetUpper() {
+    let sh = createScopeHelper(10, 30)
+
+    let other = createScopeHelper(1, 11)
+    console.info(sh.intersect(other).getUpper().n) // 11
+
+    other = createScopeHelper(10, 20)
+    console.info(sh.intersect(other).getUpper().n) // 20
+
+    other = createScopeHelper(20, 300)
+    console.info(sh.intersect(other).getUpper().n) // 30
+
+    other = createScopeHelper(0, 300)
+    console.info(sh.intersect(other).getUpper().n) // 30
+}
+```
+
+### getLower<sup>20+</sup>
+
+getLower(): T
+
+获取当前范围的下限。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型                     | 说明                   |
+| ------------------------ | ---------------------- |
+| T | 返回当前范围的下限值。 |
+
+**示例：**
+
+```ts
+// 注：createScopeHelper()的定义参见上文intersect章节。
+function testgetLower() {
+    let sh = createScopeHelper(10, 30)
+
+    let other = createScopeHelper(1, 11)
+    console.info(sh.intersect(other).getLower().n) // 10
+
+    other = createScopeHelper(10, 20)
+    console.info(sh.intersect(other).getLower().n) // 10
+
+    other = createScopeHelper(20, 300)
+    console.info(sh.intersect(other).getLower().n) // 20
+
+    other = createScopeHelper(0, 300)
+    console.info(sh.intersect(other).getLower().n) // 10
+}
+```
+
+### expand<sup>20+</sup>
+
+expand(lowerObj: T,upperObj: T): ScopeHelper&lt;T&gt;
+
+创建并返回包括当前范围和给定下限和上限的并集。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明             |
+| -------- | ------------------------ | ---- | ---------------- |
+| lowerObj | T | 是   | 给定范围的下限。 |
+| upperObj | T | 是   | 给定范围的上限。 |
+
+**返回值：**
+
+| 类型                         | 说明                                 |
+| ---------------------------- | ------------------------------------ |
+| [ ScopeHelper&lt;T&gt; ](#scopehelpert-extends-scopecomparablet20) | 返回当前范围和给定下限和上限的并集。 |
+
+**示例：**
+
+```ts
+  class NumberType implements util.ScopeType<NumberType> {
+    n: number
+    constructor(n: number) {
+      this.n = n
+    }
+    
+    compareTo(other: NumberType): boolean {
+        return this.n >= other.n
+    }
+    
+    toString(): string {
+        return `${this.n}`
+    }
+  }
+  let sh = new util.ScopeHelper<NumberType>(new NumberType(10), new NumberType(30))
+
+  let res = sh.expand(new NumberType(15), new NumberType(30))
+  console.info(res.getLower().n); // 10
+  console.info(res.getUpper().n); // 30
+
+  res = sh.expand(new NumberType(15), new NumberType(20))
+  console.info(res.getLower().n) // 10
+  console.info(res.getUpper().n) // 30
+
+  res = sh.expand(new NumberType(10), new NumberType(30))
+  console.info(res.getLower().n) // 10
+  console.info(res.getUpper().n) // 30
+
+  res = sh.expand(new NumberType(5), new NumberType(40))
+  console.info(res.getLower().n) // 5
+  console.info(res.getUpper().n) // 40
+```
+
+### expand<sup>20+</sup>
+
+expand(range: ScopeHelper&lt;T&gt;): ScopeHelper&lt;T&gt;
+
+创建并返回包括当前范围和给定范围的并集。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型                         | 必填 | 说明               |
+| ------ | ---------------------------- | ---- | ------------------ |
+| range  | [ ScopeHelper&lt;T&gt; ](#scopehelpert-extends-scopecomparablet20) | 是   | 传入一个给定范围。 |
+
+**返回值：**
+
+| 类型                         | 说明                               |
+| ---------------------------- | ---------------------------------- |
+| [ ScopeHelper&lt;T&gt; ](#scopehelpert-extends-scopecomparablet20) | 返回包括当前范围和给定范围的并集。 |
+
+**示例：**
+
+```ts
+// 注：createScopeHelper()的定义参见上文intersect章节。
+let sh = createScopeHelper(10, 30)
+
+let res = sh.expand(createScopeHelper(15, 30))
+console.info(res.getLower().n) // 10
+console.info(res.getUpper().n) // 30
+
+res = sh.expand(createScopeHelper(15, 20))
+console.info(res.getLower().n) // 10
+console.info(res.getUpper().n) // 30
+
+res = sh.expand(createScopeHelper(10, 30))
+console.info(res.getLower().n) // 10
+console.info(res.getUpper().n) // 30
+
+res = sh.expand(createScopeHelper(5, 40))
+console.info(res.getLower().n) // 5
+console.info(res.getUpper().n) // 40
+```
+
+### expand<sup>20+</sup>
+
+expand(value: T): ScopeHelper&lt;T&gt;
+
+创建并返回包括当前范围和给定值的并集。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型                     | 必填 | 说明             |
+| ------ | ------------------------ | ---- | ---------------- |
+| value  | T | 是   | 传入一个给定值。 |
+
+**返回值：**
+
+| 类型                         | 说明                             |
+| ---------------------------- | -------------------------------- |
+| [ ScopeHelper&lt;T&gt; ](#scopehelpert-extends-scopecomparablet20) | 返回包括当前范围和给定值的并集。 |
+
+**示例：**
+
+```ts
+  class NumberType implements util.ScopeType<NumberType> {
+    n: number
+    constructor(n: number) {
+      this.n = n
+    }
+    
+    compareTo(other: NumberType): boolean {
+        return this.n >= other.n
+    }
+    
+    toString(): string {
+        return `${this.n}`
+    }
+  }
+  let sh = new util.ScopeHelper<NumberType>(new NumberType(10), new NumberType(30))
+
+  let res = sh.expand(new NumberType(5))
+  console.info(res.getLower().n) // 5
+  console.info(res.getUpper().n) // 30
+
+  res = sh.expand(new NumberType(20))
+  console.info(res.getLower().n) // 10
+  console.info(res.getUpper().n) //30
+
+  res = sh.expand(new NumberType(30))
+  console.info(res.getLower().n) // 10
+  console.info(res.getUpper().n) // 30
+
+  res = sh.expand(new NumberType(40))
+  console.info(res.getLower().n) // 10
+  console.info(res.getUpper().n) // 40
+```
+
+### contains<sup>20+</sup>
+
+contains(value: ScopeType&lt;T&gt;): boolean
+
+检查给定value是否包含在当前范围内。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型                     | 必填 | 说明             |
+| ------ | ------------------------ | ---- | ---------------- |
+| value  | [ ScopeType&lt;T&gt; ](#scopetype20) | 是   | 传入一个给定值。 |
+
+**返回值：**
+
+| 类型    | 说明                                                |
+| ------- | --------------------------------------------------- |
+| boolean | 如果给定值包含在当前范围内返回true，否则返回false。 |
+
+**示例：**
+
+```ts
+let sh = createScopeHelper(10, 30)
+
+console.info(sh.contains(new NumberType(10))) // true
+console.info(sh.contains(new NumberType(23))) // true
+console.info(sh.contains(new NumberType(30))) // true
+console.info(sh.contains(new NumberType(40))) // false
+console.info(sh.contains(new NumberType(0))) // false
+```
+
+### contains<sup>20+</sup>
+
+contains(range: ScopeHelper&lt;T&gt;): boolean
+
+检查给定range是否在当前范围内。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型                         | 必填 | 说明               |
+| ------ | ---------------------------- | ---- | ------------------ |
+| range  | [ ScopeHelper&lt;T&gt; ](#scopehelpert-extends-scopecomparablet20) | 是   | 传入一个给定范围。 |
+
+**返回值：**
+
+| 类型    | 说明                                                  |
+| ------- | ----------------------------------------------------- |
+| boolean | 如果给定范围包含在当前范围内返回true，否则返回false。 |
+
+**示例：**
+
+```ts
+let sh = createScopeHelper(10, 30)
+
+console.info(sh.contains(createScopeHelper(10, 30))) // true
+console.info(sh.contains(createScopeHelper(10, 20))) // true
+console.info(sh.contains(createScopeHelper(15, 18))) // true
+console.info(sh.contains(createScopeHelper(10, 40))) // false
+console.info(sh.contains(createScopeHelper(1, 30))) // false
+```
+
+### clamp<sup>20+</sup>
+
+clamp(value: T): T
+
+将给定值限定到当前范围内。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型                     | 必填 | 说明           |
+| ------ | ------------------------ | ---- | -------------- |
+| value  | T | 是   | 传入的给定值。 |
+
+**返回值：**
+
+| 类型                     | 说明                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| T | 如果传入的value小于下限，则返回lowerObj；如果大于上限值则返回upperObj；如果在当前范围内，则返回value。 |
+
+**示例：**
+
+```ts
+let sh = createScopeHelper(10, 30)
+
+console.info(sh.clamp(new NumberType(5)).n) // 10
+console.info(sh.clamp(new NumberType(10)).n) // 10
+console.info(sh.clamp(new NumberType(23)).n) // 23
+console.info(sh.clamp(new NumberType(30)).n) // 30
+console.info(sh.clamp(new NumberType(1000)).n) // 30
 ```
 
 ## Base64Helper<sup>9+</sup>
@@ -3599,7 +4229,7 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 | 参数名 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
 | src    | Uint8Array | 是   | 待编码Uint8Array对象。 |
-| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE 和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME，表示Base64编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。 |
+| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE 和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME，表示使用Base64编码。如果返回值超过76个字符，则会在每76个字符处进行换行，并以'\r\n'结束每行。如果返回值少于76个字符，则会抛出异常。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。 |
 
 **返回值：**
 
@@ -3672,7 +4302,6 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
   输出结果：result = 77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101
   */
   ```
-
 
 ### encode<sup>9+</sup>
 
@@ -3808,7 +4437,7 @@ decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
     */
   })
   ```
-
+  
 ## StringDecoder<sup>12+</sup>
 
 提供将二进制流解码为字符串的能力。支持的编码类型包括：utf-8、iso-8859-2、koi8-r、macintosh、windows-1250、windows-1251、gbk、gb18030、big5、utf-16be、utf-16le等。
@@ -4427,7 +5056,7 @@ isGeneratorFunction(value: Object): boolean
 | boolean | 判断的结果，如果是内置包含的generator函数类型为true，反之为false。 |
 
 **示例：**
-
+<!--code_no_check-->
   ```ts
   // /entry/src/main/ets/pages/test.ts
   export function* foo() {}
@@ -4467,7 +5096,7 @@ isGeneratorObject(value: Object): boolean
 | boolean | 判断的结果，如果是内置包含的generator对象类型为true，反之为false。 |
 
 **示例：**
-
+<!--code_no_check-->
   ```ts
   // /entry/src/main/ets/pages/test.ts
   function* foo() {}
@@ -4950,7 +5579,7 @@ isSymbolObject(value: Object): boolean
 | boolean | 判断的结果，如果是内置包含的Symbol对象类型为true，反之为false。 |
 
 **示例：**
-
+<!--code_no_check-->
   ```ts
   // /entry/src/main/ets/pages/test.ts
   export const symbols = Symbol('foo');

@@ -25,6 +25,8 @@ URLParams的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -45,7 +47,8 @@ URLParams的构造函数。
 // 通过string[][]方式构造URLParams对象：
 let objectParams = new url.URLParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
 // 通过Record<string, string>方式构造URLParams对象：
-let objectParams1 = new url.URLParams({"fod" : '1' , "bard" : '2'});
+let r: Record<string, string> = {"fod" : '1' , "bard" : '2'}
+let objectParams1 = new url.URLParams(r);
 // 通过string方式构造URLParams对象：
 let objectParams2 = new url.URLParams('?fod=1&bard=2');
 // 通过url对象的search属性构造URLParams对象：
@@ -56,6 +59,48 @@ let urlObject1 = url.URL.parseURL('https://developer.mozilla.org/?fod=1&bard=2')
 let objectParams4 = urlObject1.params;
 ```
 
+### constructor<sup>20+</sup>
+
+constructor(init?: [string, string][] | Record&lt;string, string&gt; | string | URLParams)
+
+URLParams的构造函数。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| init | [string, string][] \| Record&lt;string, string&gt; \| string \| URLParams | 否 | 入参对象。<br/>- [string, string][]：字符串二维数组。<br/>- Record&lt;string, string&gt;：对象列表。<br/>- string：字符串。<br/>- URLParams：对象。<br/>- 默认值：null。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200002 | Parameter error. Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 通过string[][]方式构造URLParams对象：
+let objectParams = new url.URLParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
+// 通过Record<string, string>方式构造URLParams对象：
+let objectParams1 = new url.URLParams({"fod" : '1' , "bard" : '2'});
+// 通过string方式构造URLParams对象：
+let objectParams2 = new url.URLParams('?fod=1&bard=2');
+// 通过url对象的search属性构造URLParams对象：
+let urlObject = url.URL.parseURL('https://developer.mozilla.org/?fod=1&bard=2');
+let objectParams3 = new url.URLParams(urlObject.search);
+// 通过url对象的params属性获取URLParams对象：
+let urlObject1 = url.URL.parseURL('https://developer.mozilla.org/?fod=1&bard=2');
+let objectParams4 = urlObject1.params;
+```
 
 ### append<sup>9+</sup>
 
@@ -134,6 +179,8 @@ getAll(name: string): string[]
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -163,6 +210,37 @@ params.append('fod', '3'); // Add a second value for the fod parameter.
 console.log(params.getAll('fod').toString()) // Output ["1","3"].
 ```
 
+### getAll<sup>20+</sup>
+
+getAll(name: string): Array&lt;string&gt;
+
+获取指定名称的所有键对应值的集合。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| name | string | 是 | 指定的键值名称。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Array&lt;string&gt; | 返回指定名称的所有键对应值的集合。 |
+
+**示例：**
+
+```ts
+let params = new url.URLParams("key1=value1&key2=value2");
+params.append("key1", "AAA");
+console.info(params.getAll("key1").toString()) // value1,AAA
+```
 
 ### entries<sup>9+</sup>
 
@@ -182,6 +260,8 @@ entries(): IterableIterator<[string, string]>
 
 **示例：**
 
+以下用例适用于ArkTS1.1。
+
 ```ts
 let searchParamsObject = new url.URLParams("keyName1=valueName1&keyName2=valueName2");
 let pair:Iterable<Object[]> = searchParamsObject.entries();
@@ -191,6 +271,22 @@ for (let pair of arrayValue) { // Show keyName/valueName pairs
 }
 ```
 
+以下用例适用于ArkTS1.2。
+
+```ts
+let params = new url.URLParams("key1=value1&key2=value2");
+
+let i = 0;
+let arr = new Array<string>();
+for (let pair of params.entries()) {
+  arr.push(pair[0]);
+  i++;
+  arr.push(pair[1]);
+  i++;
+}
+
+console.info(arr[1]); // value1
+```
 
 ### forEach<sup>9+</sup>
 
@@ -201,6 +297,8 @@ forEach(callbackFn: (value: string, key: string, searchParams: URLParams) => voi
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -234,6 +332,39 @@ myURLObject.params.forEach((value, name, searchParams) => {
 });
 ```
 
+### forEach<sup>20+</sup>
+
+forEach(callbackFn: UrlCbFn): void
+
+通过回调函数来遍历URLSearchParams实例对象上的键值对。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | [UrlCbFn](#urlcbfn20) | 是 | 回调函数。 |
+
+**示例：**
+
+```ts
+let params = new url.URLParams("key1=value1&key2=value2")
+let arr = new Array<string>();
+let i = 0;
+let urlCB: url.UrlCbFn = (value: string, key: string, searchParams:url.URLParams) => {
+  arr.push(value + " " + key + " " + (params == searchParams));
+  i++
+}
+
+params.forEach(urlCB);
+
+console.info(arr[0]); // value1 key1 true
+```
 
 ### get<sup>9+</sup>
 
@@ -243,11 +374,13 @@ get(name: string): string | null
 
 > **说明：**
 >
-> 若查找一个不存在的键值对名称时返回值为undefined。
+> 若查找一个不存在的键值对名称时返回值为null。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -259,8 +392,7 @@ get(name: string): string | null
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回第一个值。 |
-| null | 如果没找到，返回 null。 |
+| string \| null | 返回第一个值, 未找到则返回null。 |
 
 **错误码：**
 
@@ -279,6 +411,40 @@ let age = paramsObject.get("age"); // is the string "18"
 let getObj = paramsObject.get("abc"); // undefined
 ```
 
+### get<sup>20+</sup>
+
+get(name: string): string | undefined
+
+获取指定名称对应的第一个值。
+
+> **说明：**
+>
+> 若查找一个不存在的键值对名称时返回值为undefined。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| name | string | 是 | 指定键值对的名称。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string \| undefined | 返回第一个值，未找到则返回undefined。 |
+
+**示例：**
+
+```ts
+let params = new url.URLParams("key1=value1&key2=value2");
+let result = params.get("1"); // undefined
+```
 
 ### has<sup>9+</sup>
 
@@ -376,7 +542,7 @@ console.log(searchParamsObject.toString()); // Display the sorted query string /
 
 keys(): IterableIterator&lt;string&gt;
 
-返回一个所有键值对的name的ES6迭代器。
+返回一个包含所有键值对的键的ES6迭代器。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -392,18 +558,17 @@ keys(): IterableIterator&lt;string&gt;
 
 ```ts
 let searchParamsObject = new url.URLParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
-let keys = Array.from(searchParamsObject.keys());
+let keys: Array<string> = Array.from(searchParamsObject.keys());
 for (let key of keys) { // Output key-value pairs
   console.log(key);
 }
 ```
 
-
 ### values<sup>9+</sup>
 
 values(): IterableIterator&lt;string&gt;
 
-返回一个所有键值对的value的ES6迭代器。
+返回一个包含所有键值对的值的ES6迭代器。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -419,7 +584,7 @@ values(): IterableIterator&lt;string&gt;
 
 ```ts
 let searchParams = new url.URLParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
-let values = Array.from(searchParams.values());
+let values: Array<string> = Array.from(searchParams.values());
 for (let value of values) {
   console.log(value);
 }
@@ -436,6 +601,8 @@ for (let value of values) {
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -447,6 +614,36 @@ for (let value of values) {
 ```ts
 const paramsObject = new url.URLParams('fod=bay&edg=bap');
 let iter: Iterable<Object[]> = paramsObject[Symbol.iterator]();
+let pairs = Array.from(iter);
+for (let pair of pairs) {
+  console.log(pair[0] + ', ' + pair[1]);
+}
+```
+
+
+### $_iterator()<sup>20+</sup>
+
+$_iterator(): IterableIterator&lt;[string, string]&gt;
+
+返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;[string, string]&gt; | 返回一个ES6的迭代器。 |
+
+**示例：**
+
+```ts
+let paramsObject = new url.URLParams('fod=bay&edg=bap');
+let iter = paramsObject[Symbol.iterator]();
 let pairs = Array.from(iter);
 for (let pair of pairs) {
   console.log(pair[0] + ', ' + pair[1]);
@@ -479,6 +676,42 @@ params.append('fod', '3');
 console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
 ```
 
+## UrlCbFn<sup>20+</sup>
+
+type UrlCbFn = (value: string, key: string, searchParams: URLParams) => void
+
+[forEach](#foreach20)函数所需的回调函数。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | string | 是 | 当前遍历到的键值。 |
+| key | string | 是 | 当前遍历到的键名。 |
+| searchParams | [URLParams](#urlparams9) | 是 | 当前调用[forEach](#foreach20)方法的实例对象。 |
+
+**示例：**
+
+```ts
+let params = new url.URLParams("key1=value1&key2=value2")
+let arr = new Array<string>();
+let i = 0;
+let urlCB: url.UrlCbFn = (value: string, key: string, searchParams:url.URLParams) => {
+  arr.push(value + " " + key + " " + (params == searchParams));
+  i++
+}
+
+params.forEach(urlCB);
+
+console.info(arr[0]); // value1 key1 true
+```
+
 ## URL
 
 用于解析、构造、规范、编码对应的URL字符串。
@@ -487,21 +720,21 @@ console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| hash | string | 是 | 是 | 获取和设置URL的片段部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| host | string | 是 | 是 | 获取和设置URL的主机部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| hostname | string | 是 | 是 | 获取和设置URL的主机名部分，不带端口。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| href | string | 是 | 是 | 获取和设置序列化的URL。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| origin | string | 是 | 否 | 获取URL源的只读序列化。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| password | string | 是 | 是 | 获取和设置URL的密码部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| pathname | string | 是 | 是 | 获取和设置URL的路径部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| port | string | 是 | 是 | 获取和设置URL的端口部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| protocol | string | 是 | 是 | 获取和设置URL的协议部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| search | string | 是 | 是 | 获取和设置URL的序列化查询部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。<br/>- **说明：** 此属性从API version 7开始支持，从API version 9开始被废弃。建议使用params<sup>9+</sup>替代。 |
-| params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| username | string | 是 | 是 | 获取和设置URL的用户名部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| hash | string | 否 | 否 | 获取和设置URL的片段部分。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| host | string | 否 | 否 | 获取和设置URL的主机部分。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| hostname | string | 否 | 否 | 获取和设置URL的主机名部分，不带端口。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| href | string | 否 | 否 | 获取和设置序列化的URL。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| origin | string | 是 | 否 | 获取URL源的只读序列化。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| password | string | 否 | 否 | 获取和设置URL的密码部分。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| pathname | string | 否 | 否 | 获取和设置URL的路径部分。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| port | string | 否 | 否 | 获取和设置URL的端口部分。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| protocol | string | 否 | 否 | 获取和设置URL的协议部分。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| search | string | 否 | 否 | 获取和设置URL的序列化查询部分。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。<br/>**ArkTS版本：** 该接口仅适用于ArkTS1.1。<br/>- **说明：** 此属性从API version 7开始支持，从API version 9开始被废弃。建议使用params<sup>9+</sup>替代。 |
+| params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| username | string | 否 | 否 | 获取和设置URL的用户名部分。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
@@ -533,6 +766,8 @@ constructor(url: string, base?: string | URL)
 URL的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -676,6 +911,8 @@ URLSearchParams的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -704,6 +941,8 @@ append(name: string, value: string): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -731,6 +970,8 @@ delete(name: string): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -756,6 +997,8 @@ getAll(name: string): string[]
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.getAll<sup>9+</sup>](#getall9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -790,6 +1033,8 @@ entries(): IterableIterator<[string, string]>
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -819,6 +1064,8 @@ forEach(callbackFn: (value: string, key: string, searchParams: URLSearchParams) 
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.forEach<sup>9+</sup>](#foreach9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -858,6 +1105,8 @@ get(name: string): string | null
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -893,6 +1142,8 @@ has(name: string): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -926,6 +1177,8 @@ set(name: string, value: string): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -954,6 +1207,8 @@ sort(): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **示例：**
 
 ```ts
@@ -974,6 +1229,8 @@ keys(): IterableIterator&lt;string&gt;
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.keys<sup>9+</sup>](#keys9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -1004,6 +1261,8 @@ values(): IterableIterator&lt;string&gt;
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -1033,6 +1292,8 @@ for (let value of values) {
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -1061,6 +1322,8 @@ toString(): string
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[URLParams.toString<sup>9+</sup>](#tostring9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
