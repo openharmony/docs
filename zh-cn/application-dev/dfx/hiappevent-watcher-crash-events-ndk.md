@@ -2,7 +2,7 @@
 
 ## 接口描述
 
-本文介绍如何使用HiAppEvent提供的C/C++接口订阅应用崩溃事件。接口的详细使用说明（参数限制、取值范围等）请参考[HiAppEvent功能说明文档](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent)。
+本文介绍如何使用HiAppEvent提供的C/C++接口订阅应用崩溃事件。接口的详细使用说明（参数限制、取值范围等）请参考[HiAppEvent功能说明文档](../reference/apis-performance-analysis-kit/_hi_app_event.md)。
 
 > **说明：**
 >
