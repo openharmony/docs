@@ -763,7 +763,7 @@ struct Index {
           SymbolGlyph(this.replaceFlag1 ? $r('sys.symbol.eye_slash') : $r('sys.symbol.eye'))
             .fontSize(96)
             .renderingStrategy(this.renderMode)
-            .symbolEffect(new DisableSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace1)
+            .symbolEffect(new DisableSymbolEffect(EffectScope.LAYER), this.triggerValueReplace1)
           Button('trigger')
             .onClick(() => {
               this.replaceFlag1 = !this.replaceFlag1;
@@ -787,9 +787,9 @@ struct Index {
           Text("阴影能力")
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
-            .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), !this.isActive)
+            .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), this.isActive)
             .symbolShadow(this.options)
-          Button(!this.isActive ? '关闭' : '播放')
+          Button(this.isActive ? '关闭' : '播放')
             .onClick(() => {
               this.isActive = !this.isActive;
             })
@@ -798,7 +798,7 @@ struct Index {
       }
     }
     .margin({
-      left: 60,
+      left: 45,
       top: 50
     })
   }
@@ -828,8 +828,8 @@ struct Index {
   };
 
   radialGradientOptions: RadialGradientOptions = {
-    center: [50, 50],
-    radius: 20,
+    center: [0.5, 0.5],
+    radius: "50%",
     colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
     repeating: true,
   };
@@ -898,7 +898,7 @@ struct Index {
       }
     }
     .margin({
-      left: 60,
+      left: 20,
       top: 50
     })
   }
