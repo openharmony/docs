@@ -67,7 +67,7 @@ TypeDescriptor是类（[Class](#class)）名称的格式，由`'L'`、`'_'`、`C
 | `foreign_size`      | `uint32_t`       | 外部区域的大小，以字节为单位。                               |
 | `num_classes`       | `uint32_t`       | [ClassIndex](#classindex)结构中元素的数量，即文件中定义的[Class](#class)的数量。 |
 | `class_idx_off`     | `uint32_t`       | 偏移量，指向[ClassIndex](#classindex)。 |
-| `num_lnps`          | `uint32_t`       | [LineNumberProgramIndex](#linenumberprogramindex)结构中元素的数量，即文件中定义的[Line number program](#line-number-program)的数量。 |
+| `num_lnps`          | `uint32_t`       | [LineNumberProgramIndex](#linenumberprogramindex)结构中元素的数量，即文件中定义的Line number program的数量。 |
 | `lnp_idx_off`       | `uint32_t`       | 偏移量，指向[LineNumberProgramIndex](#linenumberprogramindex)。 |
 | `reserved`          | `uint32_t`       | 方舟字节码文件内部使用的保留字段。                           |
 | `reserved`          | `uint32_t`       | 方舟字节码文件内部使用的保留字段。                           |
@@ -364,7 +364,7 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 
 
 ### LineNumberProgramIndex
-行号程序索引（LineNumberProgramIndex）结构是一个数组，便于使用更紧凑的索引访问行号程序（[Line number program](#line-number-program)）。
+行号程序索引（LineNumberProgramIndex）结构是一个数组，便于使用更紧凑的索引访问行号程序（Line number program）。
 
 - 对齐方式：4个字节。
 - 格式：
@@ -387,7 +387,7 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 | `parameters`              | `uleb128[]`      | 存放方法入参的名称的数组，数组长度是`num_parameters`。每一个元素的值是字符串的偏移量或者0，如果是0，则代表对应的参数不具有名称。 |
 | `constant_pool_size`      | `uleb128`        | 常量池的大小，以字节为单位。                                 |
 | `constant_pool`           | `uleb128[]`      | 存放常量池数据的数组，数组长度是`constant_pool_size`。         |
-| `line_number_program_idx` | `uleb128`        | 一个索引，指向一个在[LineNumberProgramIndex](#linenumberprogramindex)中的位置，该位置的值是一个指向[Line number program](#line-number-program)的偏移量。Line number program的长度可变，以`END_SEQUENCE`操作码结束。 |
+| `line_number_program_idx` | `uleb128`        | 一个索引，指向一个在[LineNumberProgramIndex](#linenumberprogramindex)中的位置，该位置的值是一个指向Line number program的偏移量。Line number program的长度可变，以`END_SEQUENCE`操作码结束。 |
 
 
 #### Constant pool
