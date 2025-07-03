@@ -14,7 +14,7 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 2. 初始化密钥属性集。
 
-3. 调用[OH_Huks_GenerateKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_generatekeyitem)生成密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
+3. 调用[OH_Huks_GenerateKeyItem](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_generatekeyitem)生成密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
 
 除此之外，开发者也可以参考[密钥导入](huks-key-import-overview.md)，导入已有的密钥。
 
@@ -24,11 +24,11 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 2. 获取待加密的数据。
 
-3. 调用[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset)指定算法参数配置。在下方示例中，使用算法AES进行加密时，必须要选择其对应分组模式以及填充模式，用例中选取的分组模式为CBC、填充模式为PKCS7，此时必须要填参数IV。
+3. 调用[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-param-h.md#oh_huks_initparamset)指定算法参数配置。在下方示例中，使用算法AES进行加密时，必须要选择其对应分组模式以及填充模式，用例中选取的分组模式为CBC、填充模式为PKCS7，此时必须要填参数IV。
 
-4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
+4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
 
-5. 调用[OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_finishsession)结束密钥会话，获取加密后的密文。
+5. 调用[OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_finishsession)结束密钥会话，获取加密后的密文。
 
 **解密**
 
@@ -36,11 +36,11 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 2. 获取待解密的密文。
 
-3. 调用[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset)指定算法参数配置。在下方示例中，使用算法AES进行解密时，必须要选择其对应分组模式以及填充模式，用例中选取的分组模式为CBC、填充模式为PKCS7，此时必须要填参数IV。
+3. 调用[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-param-h.md#oh_huks_initparamset)指定算法参数配置。在下方示例中，使用算法AES进行解密时，必须要选择其对应分组模式以及填充模式，用例中选取的分组模式为CBC、填充模式为PKCS7，此时必须要填参数IV。
 
-4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
+4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
 
-5. 调用[OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_finishsession)结束密钥会话，获取解密后的数据。
+5. 调用[OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_finishsession)结束密钥会话，获取解密后的数据。
 
 **删除密钥**
 

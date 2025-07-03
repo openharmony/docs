@@ -84,35 +84,206 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
 在确保网络与权限配置无误后，若仍出现白屏，则应利用DevTools工具调试前端页面以及监听Web相关错误上报接口，来定位具体报错类型。
 
 1. 查阅控制台的错误信息，定位具体的资源加载失败问题。资源加载失败会导致页面元素缺失，布局紊乱，图片和动画效果失效等，严重时可能导致渲染进程崩溃，页面呈现空白。如同所示，依次排查：<br>
-  1、元素是否完整，html元素、结构是否正确。<br> 2、控制台是否有报错。<br>3、网络里面是否有资源加载时间特别长等。
+  （1）元素是否完整，html元素、结构是否正确。<br> （2）控制台是否有报错。<br>（3）网络里面是否有资源加载时间特别长等。<br>
    ![web-white-devtools](figures/web-white-devtools.PNG)
 
-2. 检查控制台，确认是否存在因MixedContent策略或CORS策略导致的异常，或JS错误等。可参考[解决Web组件本地资源跨域问题](web-cross-origin.md)。跨域问题频现于Vue/React项目中，根源在于ArkWeb内核禁止使用file://或resource://协议加载跨域资源（例如Vue项目中的本地文件请求）。
+2. 检查控制台，确认是否存在因MixedContent策略或CORS策略导致的异常，或JS错误等。可参考[解决Web组件本地资源跨域问题](web-cross-origin.md)。为了提高安全性，ArkWeb内核禁止file协议和resource协议访问跨域请求。因此，在使用Web组件加载本地离线资源的时候，Web组件会拦截file协议和resource协议的跨域访问。Web组件无法访问本地跨域资源时，DevTools控制台会显示报错信息：
+    ```
+    Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes:   http, arkweb, data, chrome-extension, chrome, https, chrome-untrusted.
+    ```
+    有如下两种解决方法：
+  
+    方法一：
 
-    解决方案：
-    * 改用HTTP或HTTPS协议加载主页面（需本地服务器支持）。
-    * 若必需使用本地文件，通过[onInterceptRequest](../reference/apis-arkweb/arkts-basic-components-web-events.md#oninterceptrequest9)拦截资源请求并替换为本地资源。
-   ```c
-   // 在web组件中拦截请求并返回本地资源
-   Web({
-       src: 'http://your-domain/indexl.html',
-       controller: this.controller
-   })
-   .onInterceptRequest((event) => {
-       if (event.request.url.endWith('.js')) {
-           // 读取本地文件并返回响应
-           const data = fs.readSync('/path/to/local/file.js');
-           return {
-               responseCode: 200,
-               responseData: { data: data },
-               header: { 'Content-Type': 'application/javascript' }
-           };
-       }
-    return null;  //其他请求不拦截
-   })
-   ```
+      开发者应使用http或https协议替代file或resource协议，确保Web组件能够成功访问跨域资源。替代的URL域名应为自定义构造，仅限于个人或组织使用，以防止与互联网上的实际域名冲突。此外，开发者需要利用Web组件的[onInterceptRequest](../reference/apis-arkweb/arkts-basic-components-web-events.md#oninterceptrequest9)方法，对本地资源进行拦截和相应替换。
 
-3. 查看onErrorReceive、onHttpErrorReceive、onSslErrorEvent、onHttpAuthRequest、onClientAuthenticationRequest等错误上报接口是否有被调用。
+      以下结合示例说明如何使用http或者https等协议解决本地资源跨域访问失败的问题。其中，index.html和js/script.js文件置于工程的rawfile目录下。当使用resource协议访问index.html时，js/script.js文件因跨域而被拦截，无法加载。在示例中，使用https:\//www\.example.com/域名替换了原有的resource协议，同时利用onInterceptRequest接口替换资源，确保js/script.js文件可以成功加载，从而解决跨域拦截问题。
+    ```ts
+    // main/ets/pages/Index.ets
+    import { webview } from '@kit.ArkWeb';
+
+    @Entry
+    @Component
+    struct Index {
+      @State message: string = 'Hello World';
+      webviewController: webview.WebviewController = new webview.WebviewController();
+      // 构造域名和本地文件的映射表
+      schemeMap = new Map([
+        ["https://www.example.com/index.html", "index.html"],
+        ["https://www.example.com/js/script.js", "js/script.js"],
+      ])
+      // 构造本地文件和构造返回的格式mimeType
+      mimeTypeMap = new Map([
+        ["index.html", 'text/html'],
+        ["js/script.js", "text/javascript"]
+      ])
+
+      build() {
+        Row() {
+          Column() {
+            // 针对本地index.html,使用http或者https协议代替file协议或者resource协议，并且构造一个属于自己的域名。
+            // 本例中构造www.example.com为例。
+            Web({ src: "https://www.example.com/index.html", controller: this.webviewController })
+              .javaScriptAccess(true)
+              .fileAccess(true)
+              .domStorageAccess(true)
+              .geolocationAccess(true)
+              .width("100%")
+              .height("100%")
+              .onInterceptRequest((event) => {
+                if (!event) {
+                  return;
+                }
+                // 此处匹配自己想要加载的本地离线资源，进行资源拦截替换，绕过跨域
+                if (this.schemeMap.has(event.request.getRequestUrl())) {
+                  let rawfileName: string = this.schemeMap.get(event.request.getRequestUrl())!;
+                  let mimeType = this.mimeTypeMap.get(rawfileName);
+                  if (typeof mimeType === 'string') {
+                    let response = new WebResourceResponse();
+                    // 构造响应数据，如果本地文件在rawfile下，可以通过如下方式设置
+                    response.setResponseData($rawfile(rawfileName));
+                    response.setResponseEncoding('utf-8');
+                    response.setResponseMimeType(mimeType);
+                    response.setResponseCode(200);
+                    response.setReasonMessage('OK');
+                    response.setResponseIsReady(true);
+                    return response;
+                  }
+                }
+                return null;
+              })
+          }
+          .width('100%')
+        }
+        .height('100%')
+      }
+    }
+    ```
+
+    ```html
+    <!-- main/resources/rawfile/index.html -->
+    <html>
+    <head>
+  	  <meta name="viewport" content="width=device-width,initial-scale=1">
+    </head>
+    <body>
+    <script crossorigin src="./js/script.js"></script>
+    </body>
+    </html>
+    ```
+
+    ```js
+    // main/resources/rawfile/js/script.js
+    const body = document.body;
+    const element = document.createElement('div');
+    element.textContent = 'success';
+    body.appendChild(element);
+    ```
+
+    方法二：
+
+    通过[setPathAllowingUniversalAccess](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setpathallowinguniversalaccess12)设置一个路径列表。当使用file协议访问该列表中的资源时，允许进行跨域访问本地文件。此外，一旦设置了路径列表，file协议将仅限于访问列表内的资源(此时，[fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess)的行为将会被此接口行为覆盖)。路径列表中的路径应符合以下任一路径格式：
+
+    1.应用文件目录通过[Context.filesDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context)获取，其子目录示例如下：
+
+    * /data/storage/el2/base/files/example
+    * /data/storage/el2/base/haps/entry/files/example
+
+    2.应用资源目录通过[Context.resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context)获取，其子目录示例如下：
+
+    * /data/storage/el1/bundle/entry/resource/resfile
+    * /data/storage/el1/bundle/entry/resource/resfile/example
+
+    当路径列表中的任一路径不满足上述条件时，系统将抛出异常码401，并判定路径列表设置失败。如果路径列表设置为空，file协议的可访问范围将遵循[fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess)规则，具体示例如下。
+
+    ```ts
+    // main/ets/pages/Index.ets
+    import { webview } from '@kit.ArkWeb';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    @Entry
+    @Component
+    struct WebComponent {
+      controller: WebviewController = new webview.WebviewController();
+      uiContext: UIContext = this.getUIContext();
+
+      build() {
+        Row() {
+          Web({ src: "", controller: this.controller })
+            .onControllerAttached(() => {
+              try {
+                // 设置允许可以跨域访问的路径列表
+                this.controller.setPathAllowingUniversalAccess([
+                  this.uiContext.getHostContext()!.resourceDir,
+                  this.uiContext.getHostContext()!.filesDir + "/example"
+                ])
+                this.controller.loadUrl("file://" + this.uiContext.getHostContext()!.resourceDir + "/index.html")
+              } catch (error) {
+                console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
+              }
+            })
+            .javaScriptAccess(true)
+            .fileAccess(true)
+            .domStorageAccess(true)
+        }
+      }
+    }
+    ```
+
+    ```html
+    <!-- main/resources/resfile/index.html -->
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Demo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no,   viewport-fit=cover">
+        <script>
+  		  function getFile() {
+  			  var file = "file:///data/storage/el1/bundle/entry/resources/resfile/js/script.js";
+          // 使用file协议通过XMLHttpRequest跨域访问本地js文件。
+  			  var xmlHttpReq = new XMLHttpRequest();
+  			  xmlHttpReq.onreadystatechange = function(){
+  			      console.log("readyState:" + xmlHttpReq.readyState);
+  			      console.log("status:" + xmlHttpReq.status);
+  				  if(xmlHttpReq.readyState == 4){
+  				      if (xmlHttpReq.status == 200) {
+                    // 如果ets侧正确设置路径列表，则此处能正常获取资源
+  				          const element = document.getElementById('text');
+                            element.textContent = "load " + file + " success";
+  				      } else {
+                    // 如果ets侧不设置路径列表，则此处会触发CORS跨域检查错误
+  				          const element = document.getElementById('text');
+                            element.textContent = "load " + file + " failed";
+  				      }
+  				  }
+  			  }
+  			  xmlHttpReq.open("GET", file);
+  			  xmlHttpReq.send(null);
+  		  }
+        </script>
+    </head>
+
+    <body>
+    <div class="page">
+        <button id="example" onclick="getFile()">loadFile</button>
+    </div>
+    <div id="text"></div>
+    </body>
+
+    </html>
+    ```
+
+    ```javascript
+    // main/resources/resfile/js/script.js
+    const body = document.body;
+    const element = document.createElement('div');
+    element.textContent = 'success';
+    body.appendChild(element);
+    ```
+
+3. 查看onErrorReceive、onHttpErrorReceive、onSslErrorEvent、onHttpAuthRequest、onClientAuthenticationRequest等错误上报接口是否有被调用。请根据返回的错误码，对照p[网络协议栈错误列表](../reference/apis-arkweb/arkts-apis-netErrorList.md)进行排查。
 
     | 名称   | 说明  |                       
     | ----   | -------------------------------- |
@@ -124,12 +295,45 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
 
 
 ## 复杂的布局与渲染模式导致白屏
-若页面使用了复杂布局或渲染模式，需注意其应用场景和约束条件，不当使用可能导致布局混乱或白屏。比如使用[layoutMode](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#layoutmode11)：
+若页面使用了复杂布局或渲染模式，需注意其应用场景和约束条件，不当使用可能导致布局混乱或白屏。
+Web组件提供了两种渲染模式，能够根据不同的容器大小进行适配，从而满足使用场景中对容器尺寸的需求，详情见[Web组件渲染模式](web-render-mode.md)。在使用过程中需要注意以下几点：
+- 异步渲染模式下（renderMode: [RenderMode](../reference/apis-arkweb/arkts-basic-components-web-e.md#rendermode12).ASYNC_RENDER），Web组件的宽高不能超过7,680px（物理像素），超过会导致白屏。
+- 同步渲染模式下（renderMode: [RenderMode](../reference/apis-arkweb/arkts-basic-components-web-e.md#rendermode12).SYNC_RENDER），Web组件的宽高不能超过500,000px（物理像素），超过会导致白屏。
 
-- 配置同步渲染模式：webSetting({renderingMode: WebRenderingMode.SYNCHRONOUS})。
-- 关闭滚动效果：webSetting({overScrollMode: OverScrollMode.NEVER})。
+Web组件提供了自适应页面布局的能力，详情见[ Web组件大小自适应页面内容布局](web-fit-content.md)，使用时也需要注意以下约束条件：
+- 配置同步渲染模式：`webSetting({renderingMode: WebRenderingMode.SYNCHRONOUS})`。
+- 关闭滚动效果：`webSetting({overScrollMode: OverScrollMode.NEVER})`。
 - 此模式下不支持动态调整组件高度，确保页面高度固定。
 - 避免在FIT_CONTENT模式下启用键盘避让属性RESIZE_CONTENT，以免导致布局失效。
+- css样式`height：<number> vh`和Web组件大小自适应页面布局存在计算冲突，请检查`height：<number> vh`是否是由body节点而内的第一个高度css样式。如以下结构，id为2的dom节点高度将为0，导致白屏。
+
+  ```
+  <body>
+    <div id = "1">
+      <div id = "2" style = "height: 100vh">子dom</div>
+      <div id = "3" style = "height: 20px">子dom</div>
+    </div>
+  </body>
+  ```
+  解决此白屏问题的参考方案如下：
+  - 子dom使用具体高度样式撑开父元素。
+    ```
+    <body>
+      <div id = "1">
+        <div id = "2"><div style = "height: 20px"><div/></div>
+        <div id = "3" style = "height: 20px">子dom</div>
+      </div>
+    </body>
+    ```
+  - 父元素使用实际高度样式。
+    ```
+    <body>
+      <div id = "1">
+        <div id = "2" style = "height: 20px">子dom</div>
+        <div id = "3" style = "height: 20px">子dom</div>
+      </div>
+    </body>
+    ```
 
 ## 处理H5代码兼容性
 兼容性问题处理不当也会导致页面白屏。

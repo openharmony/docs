@@ -106,6 +106,7 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -117,6 +118,7 @@ let wantTemp: Want = {
 let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;
@@ -169,6 +171,7 @@ installUserCertificate(admin: Want, certificate: CertBlob, accountId: number): s
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common, Want } from '@kit.AbilityKit';
 
@@ -180,6 +183,7 @@ let certFileArray: Uint8Array = new Uint8Array();
 let accountId: number = 100;
 // The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;

@@ -19,12 +19,13 @@ import { systemSoundManager } from '@kit.AudioKit';
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
-| 名称                                      | 值   | 说明      |
-|------------------------------------------|-----|---------|
-| TONE_CATEGORY_RINGTONE<sup>12+</sup>     | 1   | 铃声类别。   |
-| TONE_CATEGORY_TEXT_MESSAGE<sup>12+</sup> | 2   | 短信铃声类别。 |
-| TONE_CATEGORY_NOTIFICATION<sup>12+</sup> | 4   | 通知铃声类别。 |
-| TONE_CATEGORY_ALARM<sup>12+</sup>        | 8   | 闹钟铃声类别。 |
+| 名称                                      | 类型 | 值   | 说明      |
+|------------------------------------------|---|-----|---------|
+| TONE_CATEGORY_RINGTONE<sup>12+</sup>     | number | 1   | 铃声类别。   |
+| TONE_CATEGORY_TEXT_MESSAGE<sup>12+</sup> | number | 2   | 短信铃声类别。 |
+| TONE_CATEGORY_NOTIFICATION<sup>12+</sup> | number | 4   | 通知铃声类别。 |
+| TONE_CATEGORY_ALARM<sup>12+</sup>        | number | 8   | 闹钟铃声类别。 |
+| TONE_CATEGORY_CONTACTS<sup>20+</sup>     | number | 16  | 联系人铃声类别。 |
 
 ## RingtoneType
 
@@ -329,6 +330,8 @@ toneAttrs.getCategory();
 type ToneAttrsArray = Array&lt;[ToneAttrs](#toneattrs12)&gt;
 
 铃音属性数组。
+
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -1566,7 +1569,7 @@ close(fd: number): Promise&lt;void&gt;
 
 关闭闹铃文件。使用Promise异步回调。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 

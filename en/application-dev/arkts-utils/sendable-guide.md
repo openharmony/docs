@@ -1,5 +1,5 @@
 # Use Scenarios of Sendable
-Sendable objects can be passed by reference between concurrent instances. This approach is more efficient than serialization and preserves methods carried in class instances. As a result, Sendable is particularly useful in two scenarios:
+Sendable objects are passed by reference between different concurrent instances by default. This approach is more efficient than serialization and preserves member methods carried by the class. Therefore, Sendable is particularly useful in two scenarios:
 
 - Transmitting a large amount of data (for example, data exceeding 100 KB) across concurrent instances
 
@@ -72,6 +72,7 @@ struct Index {
   }
 }
 ```
+<!-- @[across_concurrent_instance_transfer_large_data ](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/bigdata/src/main/ets/pages/Index.ets) -->
 
 ```ts
 // sendable.ets
@@ -102,12 +103,12 @@ export class Test {
   }
 }
 ```
+<!-- @[across_concurrent_instance_transfer_large_data ](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/bigdata/src/main/ets/pages/sendable.ets) -->
 
 
 ## Passing Class Instances Carrying Methods Across Concurrent Instances
 
 Methods are lost during serialization of instance objects. Therefore, in scenarios where instance methods must be called, passing objects by reference is essential. If data parsing is required during processing, the [ASON utility](ason-parsing-generation.md) can be used for data parsing.
-
 
 **Example**
 
@@ -166,6 +167,7 @@ struct Index {
   }
 }
 ```
+<!-- @[across_concurrent_instance_pass_class_method](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/crossconcurrency/src/main/ets/pages/Index.ets) -->
 
 ```ts
 // sendable.ets
@@ -199,3 +201,4 @@ export class SendableTestClass {
   }
 }
 ```
+<!-- @[across_concurrent_instance_pass_class_method](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/crossconcurrency/src/main/ets/pages/sendable.ets) -->

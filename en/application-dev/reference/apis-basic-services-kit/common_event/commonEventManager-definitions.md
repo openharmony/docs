@@ -3,8 +3,6 @@
 This document provides a list of common events defined by the system.
 Common event types are defined in [Support](../js-apis-commonEventManager.md#support) of the **ohos.commonEventManager** module.
 
-
-
 ## Ability Kit
 
 
@@ -16,7 +14,7 @@ When the specified user restarts the application and kills all its processes, th
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.PACKAGE_RESTARTED"
 
@@ -28,7 +26,7 @@ When the specified user clears the application package data on the device, the e
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.PACKAGE_DATA_CLEARED"
 
@@ -41,7 +39,7 @@ When the specified user applies a quick fix to the application on the device, th
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.QUICK_FIX_APPLY_RESULT"
 
@@ -53,7 +51,7 @@ When a quick fix to the application is revoked on the device, the event notifica
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.QUICK_FIX_REVOKE_RESULT"
 
@@ -65,7 +63,7 @@ When a new application is installed by a specified user on the device, the event
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.PACKAGE_ADDED"
 
@@ -78,7 +76,7 @@ When a specified application package is removed by a specified user on the devic
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.PACKAGE_REMOVED"
 
@@ -89,7 +87,7 @@ Indicates the common event that an installed bundle has been uninstalled from th
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.BUNDLE_REMOVED"
 
@@ -100,7 +98,7 @@ Indicates the common event that an installed application has been completely uni
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.PACKAGE_FULLY_REMOVED"
 
@@ -113,7 +111,7 @@ When an application package installed on the device is updated or an ability in 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.PACKAGE_CHANGED"
 
@@ -126,7 +124,7 @@ When the cache of an application package installed on the device is cleared, the
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.PACKAGE_CACHE_CLEARED"
 
@@ -137,7 +135,7 @@ Indicates the common event that application packages have been suspended.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.PACKAGES_SUSPENDED"
 
@@ -147,7 +145,7 @@ Sent to a package that has been suspended by the system.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.MY_PACKAGE_SUSPENDED"
 
@@ -158,7 +156,7 @@ Sent to a package that has been unsuspended by the system.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.MY_PACKAGE_UNSUSPENDED"
 
@@ -168,7 +166,7 @@ Notifies the low memory state and package management should be started.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.MANAGE_PACKAGE_STORAGE"
 
@@ -184,7 +182,7 @@ When the minor mode is enabled on the device, the event notification service is 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -198,7 +196,7 @@ When the minor mode is disabled on the device, the event notification service is
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -216,11 +214,11 @@ When any of the following actions is performed, the event notification service i
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.RECEIVER_SPLIT_SCREEN
+**Required permissions**: ohos.permission.RECEIVER_SPLIT_SCREEN
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-**Value**: usual.event.SPLIT_SCREEN"
+**Value**: "usual.event.SPLIT_SCREEN"
 
 
 
@@ -234,9 +232,7 @@ When any of the following actions is performed, the event notification service i
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.NOTIFICATION_CONTROLLER
-
-**System capability**: SystemCapability.Notification.CommonEvent
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **Value**: "usual.event.SLOT_CHANGE"
 
@@ -253,7 +249,7 @@ When the user does not use the device for the specified period of time and the s
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.DEVICE_IDLE_MODE_CHANGED"
 
@@ -270,7 +266,7 @@ When a USB device is connected to or disconnected from the device, the event not
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.hardware.usb.action.USB_STATE"
 
@@ -283,7 +279,7 @@ When the USB port state changes, the event notification service is triggered to 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.hardware.usb.action.USB_PORT_CHANGED"
 
@@ -296,7 +292,7 @@ When a USB device is attached, the event notification service is triggered to pu
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.hardware.usb.action.USB_DEVICE_ATTACHED"
 
@@ -309,7 +305,7 @@ When a USB device is detached, the event notification service is triggered to pu
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.hardware.usb.action.USB_DEVICE_DETACHED"
 
@@ -322,7 +318,7 @@ When the system time is set, the event notification service is triggered to publ
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.TIME_CHANGED"
 
@@ -335,7 +331,7 @@ When the system time in the unit of minute changes, the event notification servi
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.TIME_TICK"
 
@@ -348,7 +344,7 @@ When the system time zone changes, the event notification service is triggered t
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.TIMEZONE_CHANGED"
 
@@ -362,9 +358,7 @@ APIs related to this event: **setOsAccountName**, **setOsAccountProfilePhoto**, 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
-
-**System capability**: SystemCapability.Notification.CommonEvent
+**Required permissions**: none
 
 **Value**: "usual.event.USER_INFO_UPDATED"
 
@@ -377,9 +371,7 @@ When the device is unlocked with the lock screen password the first time after u
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
-
-**System capability**: SystemCapability.Notification.CommonEvent
+**Required permissions**: none
 
 **Value**: "usual.event.USER_UNLOCKED"
 
@@ -394,7 +386,7 @@ APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccoun
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -411,7 +403,7 @@ APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccoun
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -426,9 +418,9 @@ When the token of a distributed account is invalid, the event notification servi
 
 APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
 
-**Required subscriber permissions**: none
-
 **System capability**: SystemCapability.Notification.CommonEvent
+
+**Required permissions**: none
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -444,7 +436,7 @@ APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccoun
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -457,7 +449,7 @@ When the screen is locked, the event notification service is triggered to publis
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -470,7 +462,7 @@ When the screen is unlocked, the event notification service is triggered to publ
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -486,7 +478,7 @@ Indicates the action of a common event that the user unlocks the device.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.USER_PRESENT
 
@@ -499,7 +491,7 @@ When any of the following information changes, the event notification service is
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.BATTERY_CHANGED"
 
@@ -512,7 +504,7 @@ When the battery level drops to lower than the low battery level set for the dev
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.BATTERY_LOW"
 
@@ -526,7 +518,7 @@ When the battery level changes from the low level to normal level, the event not
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.BATTERY_OKAY"
 
@@ -539,7 +531,7 @@ When the device connects to an external charger, the event notification service 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.POWER_CONNECTED"
 
@@ -552,7 +544,7 @@ When the device is disconnected from the external power supply, the event notifi
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.POWER_DISCONNECTED"
 
@@ -565,7 +557,7 @@ When the system stops charging the battery, the event notification service is tr
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.DISCHARGING"
 
@@ -578,7 +570,7 @@ When the system starts charging the battery, the event notification service is t
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.CHARGING"
 
@@ -590,7 +582,7 @@ When the device starts charging in idle mode, and the temperature rise is accept
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.CHARGE_IDLE_MODE_CHANGED"
 
@@ -603,7 +595,7 @@ When the device is being shut down until it is powered off, the event notificati
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.SHUTDOWN"
 
@@ -616,7 +608,7 @@ When the device screen-off initiated by the power service is complete, the event
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.SCREEN_OFF"
 
@@ -629,20 +621,20 @@ When the device screen-on initiated by the power service is complete, the event 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.SCREEN_ON"
 
 
 ### COMMON_EVENT_POWER_SAVE_MODE_CHANGED
 
-Indicates that the system power saving mode has changed.
+Indicates that the system power-saving mode has changed.
 
 When the system power saving mode changes, the event notification service is triggered to publish this event.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.POWER_SAVE_MODE_CHANGED"
 
@@ -655,7 +647,7 @@ When the device's thermal level changes, the event notification service is trigg
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.THERMAL_LEVEL_CHANGED"
 
@@ -669,7 +661,7 @@ When the device is about to enter the forced sleep mode, the event notification 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.ENTER_FORCE_SLEEP"
 
@@ -682,7 +674,7 @@ When the device exits the forced sleep mode, the event notification service is t
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.EXIT_FORCE_SLEEP"
 
@@ -694,7 +686,7 @@ When the device is about to enter the hibernation mode, the event notification s
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.ENTER_HIBERNATE"
 
@@ -706,7 +698,7 @@ When the device exits the hibernation mode, the event notification service is tr
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.EXIT_HIBERNATE"
 
@@ -724,7 +716,7 @@ When the state of the device NFC adapter changes, the event notification service
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.nfc.action.ADAPTER_STATE_CHANGED"
 
@@ -737,7 +729,7 @@ When the NFC RF field becomes available, the event notification service is trigg
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.nfc.action.RF_FIELD_ON_DETECTED"
 
@@ -750,7 +742,7 @@ When the NFC RF field becomes unavailable, the event notification service is tri
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.nfc.action.RF_FIELD_OFF_DETECTED"
 
@@ -765,7 +757,7 @@ State values: **0** indicates that the Wi-Fi is being disabled; **1** indicates 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.wifi.POWER_STATE"
 
@@ -778,7 +770,7 @@ When a Wi-Fi access point is detected and proven to be available, the event noti
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION
 
 **Value**: "usual.event.wifi.SCAN_FINISHED"
 
@@ -791,32 +783,32 @@ When the Wi-Fi access point state changes, the event notification service is tri
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION
 
 **Value**: "usual.event.wifi.SCAN_STATE"
 
 ### COMMON_EVENT_WIFI_RSSI_VALUE
 
-  Indicates that the Wi-Fi signal strength (RSSI) has changed.
+Indicates that the Wi-Fi signal strength (RSSI) has changed.
 
-  When the Wi-Fi signal strength (RSSI) changes, the event notification service is triggered to publish this event.
+When the Wi-Fi signal strength (RSSI) changes, the event notification service is triggered to publish this event.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
 **Value**: "usual.event.wifi.RSSI_VALUE"
 
 ### COMMON_EVENT_WIFI_CONN_STATE
 
-  Indicates that the Wi-Fi connection state has changed.
+Indicates that the Wi-Fi connection state has changed.
 
-  When the Wi-Fi connection state changes, the event notification service is triggered to publish this event.
+When the Wi-Fi connection state changes, the event notification service is triggered to publish this event.
 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.wifi.CONN_STATE"
 
@@ -831,7 +823,7 @@ State values: **2** indicates that the AP is being enabled, **3** indicates that
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.wifi.HOTSPOT_STATE"
 
@@ -844,7 +836,7 @@ When a client joins the Wi-Fi hotspot of the current device, the event notificat
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
 **Value**: "usual.event.wifi.WIFI_HS_STA_JOIN"
 
@@ -858,7 +850,7 @@ When a client is disconnected from the Wi-Fi hotspot of the current device, the 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
 **Value**: "usual.event.wifi.WIFI_HS_STA_LEAVE"
 
@@ -867,12 +859,12 @@ When a client is disconnected from the Wi-Fi hotspot of the current device, the 
 
 Indicates that the state of MPLINK (an enhanced Wi-Fi feature) has changed.
 
-When the state of MPLINK (an enhanced Wi-Fi feature) changes, the event notification service is triggered to publish this event.
+When the state of MPLINK changes, the event notification service is triggered to publish this event (not supported yet).
 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.MPLINK_CHANGE_STATE
+**Required permissions**: none
 
 **Value**: "usual.event.wifi.mplink.STATE_CHANGE"
 
@@ -886,7 +878,7 @@ When the Wi-Fi P2P connection state changes, the event notification service is t
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
 
 **Value**: "usual.event.wifi.p2p.CONN_STATE_CHANGE"
 
@@ -901,7 +893,7 @@ State values: **2** indicates that the P2P is being enabled, **3** indicates tha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
 **Value**: "usual.event.wifi.p2p.STATE_CHANGE"
 
@@ -914,7 +906,7 @@ When the state of the Wi-Fi P2P peer device changes, the event notification serv
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
 **Value:** "usual.event.wifi.p2p.DEVICES_CHANGE"
 
@@ -927,7 +919,7 @@ When the Wi-Fi P2P discovery state changes, the event notification service is tr
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
 **Value**: "usual.event.wifi.p2p.PEER_DISCOVERY_STATE_CHANGE"
 
@@ -940,7 +932,7 @@ When the state of the Wi-Fi P2P local device changes, the event notification ser
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
 **Value**: "usual.event.wifi.p2p.CURRENT_DEVICE_CHANGE"
 
@@ -953,7 +945,7 @@ When the Wi-Fi P2P group information changes, the event notification service is 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
 **Value**: "usual.event.wifi.p2p.GROUP_STATE_CHANGED"
 
@@ -970,7 +962,7 @@ When the browser hosting policy changes, the event notification service is trigg
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.MANAGED_BROWSER_POLICY_CHANGED"
 
@@ -986,7 +978,7 @@ When the system language is set, the event notification service is triggered to 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.LOCALE_CHANGED
 
@@ -999,7 +991,7 @@ When the system language is set, the event notification service is triggered to 
 
 Indicates that the network connection state has changed.
 
-When the (Ethernet, Wi-Fi, or cellular) network connection state changes (to disconnected, connecting, or connected), the event notification service is triggered to publish this event.
+When the (Ethernet, Wi-Fi, or cellular) network connection state changes (disconnected, connecting, or connected), the event notification service is triggered to publish this event.
 The following table lists the enumerated values and their corresponding connection status.
 
 | Value |  Connection State |
@@ -1011,7 +1003,7 @@ The following table lists the enumerated values and their corresponding connecti
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1026,7 +1018,7 @@ When the airplane mode is enabled or disabled, the event notification service is
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.AIRPLANE_MODE
 
@@ -1039,7 +1031,7 @@ When the configuration information of the system global proxy or HTTP proxy on v
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.HTTP_PROXY_CHANGE
 
@@ -1057,7 +1049,7 @@ When there is a change in the SIM card status of the device, the event notificat
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.SIM_STATE_CHANGED
 
@@ -1069,7 +1061,7 @@ When the call state of the device is updated, the event notification service is 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.GET_TELEPHONY_STATE (for system apps only)
+**Required permissions**: ohos.permission.GET_TELEPHONY_STATE (for system apps only)
 
 **Value**: usual.event.CALL_STATE_CHANGED
 
@@ -1081,7 +1073,7 @@ When the network state of the device is updated, the event notification service 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.NETWORK_STATE_CHANGED
 
@@ -1094,11 +1086,9 @@ When the signal information of the device is updated, the event notification ser
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.SIGNAL_INFO_CHANGED
-
-**System capability**: SystemCapability.Notification.CommonEvent
 
 
 
@@ -1111,7 +1101,7 @@ When a user clicks **Agree** in a privacy dialog box, the event notification ser
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.PRIVACY_STATE_CHANGED"
 
@@ -1128,7 +1118,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.PACKAGE_FIRST_LAUNCH"
 
@@ -1139,7 +1129,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.PACKAGE_NEEDS_VERIFICATION"
 
@@ -1150,7 +1140,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.PACKAGE_VERIFIED"
 
@@ -1160,7 +1150,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.PACKAGE_REPLACED"
 
@@ -1171,7 +1161,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.MY_PACKAGE_REPLACED"
 
@@ -1182,7 +1172,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.PACKAGES_UNSUSPENDED"
 
@@ -1193,7 +1183,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.CLOSE_SYSTEM_DIALOGS"
 
@@ -1203,7 +1193,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.UID_REMOVED"
 
@@ -1214,7 +1204,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.EXTERNAL_APPLICATIONS_AVAILABLE"
 
@@ -1225,7 +1215,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.EXTERNAL_APPLICATIONS_UNAVAILABLE"
 
@@ -1236,7 +1226,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.CONFIGURATION_CHANGED"
 
@@ -1245,7 +1235,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "common.event.DRIVE_MODE"
 
@@ -1254,7 +1244,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "common.event.HOME_MODE"
 
@@ -1263,7 +1253,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "common.event.OFFICE_MODE"
 
@@ -1273,7 +1263,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.USER_STARTED"
 
@@ -1284,7 +1274,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.USER_BACKGROUND"
 
@@ -1294,7 +1284,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS (for system applications only)
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS (for system applications only)
 
 **Value**: "usual.event.USER_STARTING"
 
@@ -1303,7 +1293,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS (for system applications only)
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS (for system applications only)
 
 **Value**: "usual.event.USER_STOPPING"
 
@@ -1313,7 +1303,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.USER_STOPPED"
 
@@ -1324,7 +1314,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.STORAGE_MANAGER (for system applications only)
+**Required permissions**: ohos.permission.STORAGE_MANAGER (for system applications only)
 
 **Value**: "usual.event.data.DISK_BAD_REMOVAL"
 
@@ -1335,7 +1325,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.STORAGE_MANAGER (for system applications only)
+**Required permissions**: ohos.permission.STORAGE_MANAGER (for system applications only)
 
 **Value**: "usual.event.data.DISK_UNMOUNTABLE"
 
@@ -1346,7 +1336,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.STORAGE_MANAGER (for system applications only)
+**Required permissions**: ohos.permission.STORAGE_MANAGER (for system applications only)
 
 **Value**: "usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED"
 
@@ -1356,7 +1346,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.STORAGE_MANAGER (for system applications only)
+**Required permissions**: ohos.permission.STORAGE_MANAGER (for system applications only)
 
 **Value**: "usual.event.data.DISK_REMOVED"
 
@@ -1367,7 +1357,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.STORAGE_MANAGER (for system applications only)
+**Required permissions**: ohos.permission.STORAGE_MANAGER (for system applications only)
 
 **Value**: "usual.event.data.DISK_UNMOUNTED"
 
@@ -1378,7 +1368,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.STORAGE_MANAGER (for system applications only)
+**Required permissions**: ohos.permission.STORAGE_MANAGER (for system applications only)
 
 **Value**: "usual.event.data.DISK_EJECT"
 
@@ -1389,7 +1379,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.DATE_CHANGED
 
@@ -1399,7 +1389,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED"
 
@@ -1410,7 +1400,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.data.DISK_MOUNTED"
 
@@ -1419,7 +1409,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.handsfree.ag.CONNECT_STATE_UPDATE"
 
@@ -1428,7 +1418,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.handsfree.ag.CURRENT_DEVICE_UPDATE"
 
@@ -1438,7 +1428,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.handsfree.ag.AUDIO_STATE_UPDATE"
 
@@ -1448,7 +1438,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.a2dpsource.CONNECT_STATE_UPDATE"
 
@@ -1458,7 +1448,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.a2dpsource.CURRENT_DEVICE_UPDATE"
 
@@ -1467,7 +1457,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.a2dpsource.AVRCP_CONNECT_STATE_UPDATE"
 
@@ -1476,7 +1466,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.a2dpsource.PLAYING_STATE_UPDATE"
 
@@ -1485,7 +1475,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.a2dpsource.CODEC_VALUE_UPDATE"
 
@@ -1496,7 +1486,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.USER_FOREGROUND"
 
@@ -1506,7 +1496,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.LOCATION and ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.remotedevice.DISCOVERED"
 
@@ -1516,7 +1506,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.remotedevice.CLASS_VALUE_UPDATE"
 
@@ -1527,7 +1517,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.bluetooth.remotedevice.ACL_CONNECTED"
 
@@ -1537,7 +1527,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.remotedevice.ACL_DISCONNECTED"
 
@@ -1548,7 +1538,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.ACCESS_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.remotedevice.NAME_UPDATE"
 
@@ -1558,7 +1548,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.remotedevice.PAIR_STATE"
 
@@ -1567,7 +1557,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.remotedevice.BATTERY_VALUE_UPDATE"
 
@@ -1577,7 +1567,7 @@ Below are reserved common events that are not supported yet.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.bluetooth.remotedevice.SDP_RESULT"
 
@@ -1587,7 +1577,7 @@ Indicates the action of a common event about the UUID connection state of a remo
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.ACCESS_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.remotedevice.UUID_VALUE"
 
@@ -1597,7 +1587,7 @@ Indicates the action of a common event about the UUID connection state of a remo
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.DISCOVER_BLUETOOTH
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.remotedevice.PAIRING_REQ"
 
@@ -1607,7 +1597,7 @@ Indicates the action of a common event about the UUID connection state of a remo
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.bluetooth.remotedevice.PAIRING_CANCEL"
 
@@ -1617,7 +1607,7 @@ Indicates the action of a common event about the UUID connection state of a remo
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.bluetooth.remotedevice.CONNECT_REQ"
 
@@ -1627,7 +1617,7 @@ Indicates the action of a common event about the UUID connection state of a remo
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.bluetooth.remotedevice.CONNECT_REPLY"
 
@@ -1637,7 +1627,7 @@ Indicates the action of a common event about the UUID connection state of a remo
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.bluetooth.remotedevice.CONNECT_CANCEL"
 
@@ -1647,7 +1637,7 @@ Indicates the action of a common event about the UUID connection state of a remo
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.bluetooth.handsfreeunit.CONNECT_STATE_UPDATE"
 
@@ -1657,7 +1647,7 @@ Indicates the action of a common event about the UUID connection state of a remo
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.bluetooth.handsfreeunit.AUDIO_STATE_UPDATE"
 
@@ -1667,7 +1657,7 @@ Indicates the action of a common event about the UUID connection state of a remo
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.bluetooth.handsfreeunit.AG_COMMON_EVENT"
 
@@ -1677,7 +1667,7 @@ Indicates the action of a common event about the UUID connection state of a remo
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.bluetooth.handsfreeunit.AG_CALL_STATE_UPDATE"
 
@@ -1687,7 +1677,7 @@ Indicates the common event that the state of a Bluetooth adapter has been change
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.bluetooth.host.STATE_UPDATE"
 
@@ -1697,7 +1687,7 @@ Indicates the common event that the state of a Bluetooth adapter has been change
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.bluetooth.host.REQ_DISCOVERABLE"
 
@@ -1707,7 +1697,7 @@ Indicates the common event that the state of a Bluetooth adapter has been change
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.host.REQ_ENABLE"
 
@@ -1716,7 +1706,7 @@ Indicates the common event that the state of a Bluetooth adapter has been change
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.host.REQ_DISABLE"
 
@@ -1726,7 +1716,7 @@ Indicates the common event that the state of a Bluetooth adapter has been change
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.host.SCAN_MODE_UPDATE"
 
@@ -1736,7 +1726,7 @@ Indicates the common event that the Bluetooth scanning has been started on the d
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.ACCESS_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.host.DISCOVERY_STARTED"
 
@@ -1746,7 +1736,7 @@ Indicates the common event that the Bluetooth scanning is finished on the device
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.ACCESS_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.host.DISCOVERY_FINISHED"
 
@@ -1756,7 +1746,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.ACCESS_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.host.NAME_UPDATE"
 
@@ -1766,7 +1756,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.a2dpsink.CONNECT_STATE_UPDATE"
 
@@ -1775,7 +1765,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.a2dpsink.PLAYING_STATE_UPDATE"
 
@@ -1785,7 +1775,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.a2dpsink.AUDIO_STATE_UPDATE"
 
@@ -1795,7 +1785,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.LISTEN_BUNDLE_CHANGE
+**Required permissions**: ohos.permission.LISTEN_BUNDLE_CHANGE
 
 **Value**: "usual.event.ABILITY_ADDED"
 
@@ -1805,7 +1795,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.LISTEN_BUNDLE_CHANGE
+**Required permissions**: ohos.permission.LISTEN_BUNDLE_CHANGE
 
 **Value**: "usual.event.ABILITY_REMOVED"
 
@@ -1814,7 +1804,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.LISTEN_BUNDLE_CHANGE
+**Required permissions**: ohos.permission.LISTEN_BUNDLE_CHANGE
 
 **Value**: "usual.event.ABILITY_UPDATED"
 
@@ -1824,7 +1814,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.location.MODE_STATE_CHANGED"
 
@@ -1834,7 +1824,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "common.event.IVI_SLEEP"
 
@@ -1845,7 +1835,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "common.event.IVI_PAUSE"
 
@@ -1854,7 +1844,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "common.event.IVI_STANDBY"
 
@@ -1864,7 +1854,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "common.event.IVI_LASTMODE_SAVE"
 
@@ -1874,7 +1864,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "common.event.IVI_VOLTAGE_ABNORMAL"
 
@@ -1885,7 +1875,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "common.event.IVI_HIGH_TEMPERATURE"
 
@@ -1895,7 +1885,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "common.event.IVI_EXTREME_TEMPERATURE"
 
@@ -1905,7 +1895,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "common.event.IVI_TEMPERATURE_ABNORMAL"
 
@@ -1915,7 +1905,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "common.event.IVI_VOLTAGE_RECOVERY"
 
@@ -1925,7 +1915,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "common.event.IVI_TEMPERATURE_RECOVERY"
 
@@ -1935,7 +1925,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "common.event.IVI_ACTIVE"
 
@@ -1944,7 +1934,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.GET_APP_ACCOUNTS (for system applications only)
+**Required permissions**: ohos.permission.GET_APP_ACCOUNTS (for system applications only)
 
 **Value**: "usual.event.data.VISIBLE_ACCOUNTS_UPDATED"
 
@@ -1954,7 +1944,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS (for system applications only)
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS (for system applications only)
 
 **Value**: "usual.event.data.ACCOUNT_DELETED"
 
@@ -1963,7 +1953,7 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.RECEIVER_STARTUP_COMPLETED (for system applications only)
+**Required permissions**: ohos.permission.RECEIVER_STARTUP_COMPLETED (for system applications only)
 
 **Value**: "usual.event.data.FOUNDATION_READY"
 
@@ -1972,7 +1962,8 @@ Indicates the common event of that the SPN information had changed.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.SPN_INFO_CHANGED"
 
+ <!--no_check--> 

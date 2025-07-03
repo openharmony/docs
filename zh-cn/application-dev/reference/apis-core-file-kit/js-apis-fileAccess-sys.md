@@ -24,9 +24,9 @@ import fileAccess from '@ohos.file.fileAccess';
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-| 名称 | 类型                        | 只读 | 可选 | 说明                                                      |
-| ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
-| DEVICES_URI<sup>11+</sup>  | string | 否   | 否   | 监听设备上线，下线通知，作为注册监听的URI。                    |
+| 名称 | 类型                        | 值  | 说明                                                      |
+| ---- | --------------------------- | ----  | --------------------------------------------------------- |
+| DEVICES_URI<sup>11+</sup>  | string | 'file://doc'  | 监听设备上线，下线通知，作为注册监听的URI。                    |
 
 ## fileAccess.getFileAccessAbilityInfo
 
@@ -693,7 +693,7 @@ createFile(uri: string, displayName: string) : Promise&lt;string&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | -- |
-| uri | string | 是 | 表示需要创建文件的父目录的Uri。 |
+| uri | string | 是 | 表示需要创建文件的父目录的uri。 |
 | displayName | string | 是 | 待创建文件的名称。默认本地文件需要添加后缀。 |
 
 **返回值：**
@@ -749,7 +749,7 @@ createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&g
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | -- |
-| uri | string | 是 | 表示需要创建文件的父目录的Uri。 |
+| uri | string | 是 | 表示需要创建文件的父目录的uri。 |
 | displayName | string | 是 | 待创建文件的名称。默认本地文件需要添加后缀。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 新创建的文件的uri。 |
 
@@ -797,7 +797,7 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | -- |
-| parentUri | string | 是 | 表示需要创建文件夹的父目录的Uri。 |
+| parentUri | string | 是 | 表示需要创建文件夹的父目录的uri。 |
 | displayName | string | 是 | 待创建文件夹的名称。|
 
 **返回值：**
@@ -853,7 +853,7 @@ mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | -- |
-| parentUri | string | 是 | 表示需要创建文件夹的父目录的Uri。 |
+| parentUri | string | 是 | 表示需要创建文件夹的父目录的uri。 |
 | displayName | string | 是 | 待创建文件夹的名称。|
 | callback | AsyncCallback&lt;string&gt; | 是 | 新创建的文件夹的uri。 |
 

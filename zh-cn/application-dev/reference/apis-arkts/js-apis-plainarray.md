@@ -31,7 +31,7 @@ import { PlainArray } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | PlainArray的元素个数。 |
 
@@ -668,7 +668,7 @@ let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.forEach((value: string, index?: number) => {
-  console.log("value:" + value, "index:" + index);
+  console.info("value:" + value, "index:" + index);
 });
 ```
 ```ts
@@ -717,8 +717,8 @@ plainArray.add(2, "sparrow");
 let iter = plainArray[Symbol.iterator]();
 let temp: IteratorResult<Object[]> = iter.next();
 while(!temp.done) {
-  console.log("key:" + temp.value[0]);
-  console.log("value:" + temp.value[1]);
+  console.info("key:" + temp.value[0]);
+  console.info("value:" + temp.value[1]);
   temp = iter.next();
 }
 ```

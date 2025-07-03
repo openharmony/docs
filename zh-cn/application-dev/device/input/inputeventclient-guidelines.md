@@ -25,6 +25,8 @@ import { inputEventClient } from '@kit.InputKit';
 应用调用Home键返回桌面，调用[injectEvent](../../reference/apis-input-kit/js-apis-inputeventclient-sys.md#inputeventclientinjectevent)注入Home按键，查看应用中Home按键功能是否生效。
 
 ```js
+import { inputEventClient } from '@kit.InputKit';
+
 try {
   let backKeyDown: inputEventClient.KeyEvent = {
     isPressed: true,

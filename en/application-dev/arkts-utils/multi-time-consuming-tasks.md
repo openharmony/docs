@@ -1,6 +1,6 @@
 # Using TaskPool for Multiple Time-Consuming Tasks
 
-When multiple tasks are executed concurrently, their execution times can vary due to differences in complexity, and the timing of their completion is unpredictable. If the host thread requires the results of all tasks after they are completed, you can use the approach described in this topic.
+When multiple tasks are executed simultaneously, the execution time and the time to return data may vary due to differences in task complexity. If the host thread requires data from all tasks once they are completed, this can be achieved using [TaskGroup](../reference/apis-arkts/js-apis-taskpool.md#taskgroup10).
 
 Additionally, if the volume of data to be processed is large (for example, a list with 10,000 items), processing all the data in a single task can be time-consuming. Instead, you can split the original data into multiple sublists and assign each sublist to an independent task. After all tasks are completed, you can combine the results into a complete dataset. This approach can reduce processing time and enhance user experience.
 
@@ -20,12 +20,13 @@ This example uses image loading of multiple tasks to illustrate the process.
      }
    }
    ```
+   <!-- @[implement_child_thread_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IconItemSource.ets) -->
 
    ```ts
    // IndependentTask.ets
    import { IconItemSource } from './IconItemSource';
     
-   // Methods executed in the task must be decorated by @Concurrent. Otherwise, they cannot be called.
+   // Methods executed in the TaskPool thread must be decorated by @Concurrent. Otherwise, they cannot be called.
    @Concurrent
    export function loadPicture(count: number): IconItemSource[] {
      let iconItemSourceList: IconItemSource[] = [];
@@ -44,6 +45,7 @@ This example uses image loading of multiple tasks to illustrate the process.
      return iconItemSourceList;
    }
    ```
+   <!-- @[implement_child_thread_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/TaskSendDataUsage.ets) -->
 
 2. Add the tasks to a task group and execute them collectively. When all the tasks in the task group finish executing, their results are placed in an array and sent back to the host thread. In this way, the host thread can access the combined results of all tasks at once, rather than receiving results individually as each task completes.
 
@@ -68,3 +70,4 @@ This example uses image loading of multiple tasks to illustrate the process.
      }
    })
    ```
+   <!-- @[execute_task_group](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/MultiTask.ets) -->

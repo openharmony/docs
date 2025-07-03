@@ -4,6 +4,8 @@
 
 提供从媒体资源中获取元数据的API。
 
+根据实际的开发需求，参考对应的开发指南及样例[使用AVMetadataExtractor获取元数据](../../media/media/using-ndk-avmetadataextractor-for-media.md)。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
 **起始版本：** 18

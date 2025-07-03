@@ -6,6 +6,12 @@
 
 辅助图一般用于辅助主图进行特殊信息的展示，使图像包含更丰富的信息。辅助图图像类，用于读取或写入图像的辅助图数据以及获取图像的辅助图信息。在调用AuxiliaryPicture的方法前，需要先通过[createAuxiliaryPicture](arkts-apis-image-f.md#imagecreateauxiliarypicture13)创建一个AuxiliaryPicture实例。
 
+## 导入模块
+
+```ts
+import { image } from '@kit.ImageKit';
+```
+
 ## writePixelsFromBuffer<sup>13+</sup>
 
 writePixelsFromBuffer(data: ArrayBuffer): Promise\<void>
@@ -33,8 +39,6 @@ writePixelsFromBuffer(data: ArrayBuffer): Promise\<void>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 7600301  | Memory alloc failed.                                         |
-| 7600302  | Memory copy failed.                                          |
 
 **示例:**
 
@@ -74,15 +78,6 @@ readPixelsToBuffer(): Promise\<ArrayBuffer>
 | 类型                  | 说明                              |
 | --------------------- | --------------------------------- |
 | Promise\<ArrayBuffer> | Promise对象。返回辅助图像素数据。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
-
-| 错误码ID | 错误信息             |
-| -------- | -------------------- |
-| 7600301  | Memory alloc failed. |
-| 7600302  | Memory copy failed.  |
 
 **示例：**
 

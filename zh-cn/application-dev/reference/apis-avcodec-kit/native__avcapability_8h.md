@@ -7,9 +7,13 @@
 
 **库：** libnative_media_codecbase.so
 
+**引用文件：** <multimedia/player_framework/native_avcapability.h>
+
 **起始版本：** 10
 
 **相关模块：**[AVCapability](_a_v_capability.md)
+
+**相关示例：**[AVCodec](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
 
 
 ## 汇总

@@ -3092,3 +3092,106 @@ struct Index {
   }
 }
 ```
+#### AttributeUpdater
+
+将属性直接设置给组件，无需标记为状态变量即可直接触发UI更新。
+
+V1：
+
+在状态管理V1中，开发者希望通过修改`MyButtonModifier`的`flag`来改变绑定在Button上的属性。由于状态管理V1的\@State装饰器支持自身及第一层对象属性的观察能力，因此只需用\@State装饰`AttributeUpdater`，即可监听其变化并触发属性更新。
+
+```ts
+// xxx.ets
+import { AttributeUpdater } from '@kit.ArkUI';
+
+class MyButtonModifier extends AttributeUpdater<ButtonAttribute> {
+  flag: boolean = false;
+
+  initializeModifier(instance: ButtonAttribute): void {
+    instance.backgroundColor('#ff2787d9')
+      .width('50%')
+      .height(30)
+  }
+
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    if (this.flag) {
+      instance.borderWidth(2);
+    } else {
+      instance.borderWidth(10);
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State modifier: MyButtonModifier = new MyButtonModifier();
+
+  build() {
+    Row() {
+      Column() {
+        Button('Button')
+          .attributeModifier(this.modifier)
+        Button('Update')
+          .onClick(() => {
+            this.modifier.flag = !this.modifier.flag;
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+V2：
+
+与状态管理V1不同，状态管理V2的\@Local仅观察自身变化，因此`MyButtonModifier`需添加\@ObservedV2装饰器，`flag`需要被\@Trace装饰，并且需要在组件创建过程中读取`flag`以建立其与Button组件的联系。在`AttributeUpdater`场景中，需在`initializeModifier`中读取`flag`（如示例所示），否则无法建立关联。
+
+```ts
+// xxx.ets
+import { AttributeUpdater } from '@kit.ArkUI';
+
+@ObservedV2
+class MyButtonModifier extends AttributeUpdater<ButtonAttribute> {
+  @Trace flag: boolean = false;
+
+  initializeModifier(instance: ButtonAttribute): void {
+    // initializeModifier会在组件初始化阶段回调，需要在这个地方触发下flag的读，使其建立Button组件的关联。
+    this.flag;
+    instance.backgroundColor('#ff2787d9')
+      .width('50%')
+      .height(30)
+  }
+
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    if (this.flag) {
+      instance.borderWidth(2);
+    } else {
+      instance.borderWidth(10);
+    }
+  }
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  // 状态管理V2装饰器仅观察本层，即当前可以观察到modifier整体赋值的变化。
+  @Local modifier: MyButtonModifier = new MyButtonModifier();
+
+  build() {
+    Row() {
+      Column() {
+        Button('Button')
+          .attributeModifier(this.modifier)
+        Button('Update')
+          .onClick(() => {
+            this.modifier.flag = !this.modifier.flag;
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```

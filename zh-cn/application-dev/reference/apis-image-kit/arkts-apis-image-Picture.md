@@ -6,6 +6,12 @@
 
 一些包含特殊信息的图片可以解码为多图对象，多图对象一般包含主图、辅助图和元数据。其中主图包含图像的大部分信息，主要用于显示图像内容；辅助图用于存储与主图相关但不同的数据，展示图像更丰富的信息；元数据一般用来存储关于图像文件的信息。多图对象类用于读取或写入多图对象。在调用Picture的方法前，需要先通过[createPicture](arkts-apis-image-f.md#imagecreatepicture13)创建一个Picture实例。
 
+## 导入模块
+
+```ts
+import { image } from '@kit.ImageKit';
+```
+
 ## getMainPixelmap<sup>13+</sup>
 
 getMainPixelmap(): PixelMap

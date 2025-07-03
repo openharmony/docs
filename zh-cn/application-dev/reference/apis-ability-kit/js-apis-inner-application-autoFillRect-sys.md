@@ -12,9 +12,9 @@
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| 名称   | 类型   | 必填 | 说明                                     |
-| ------ | ------ | ---- | ---------------------------------------- |
-| left   | number | 是   | AutoFill表单或页面节点与页面左边界的距离。|
-| top    | number | 是   | AutoFill表单或页面节点与页面上边界的距离。|
-| height | number | 是   | AutoFill表单或页面节点的高度。            |
-| width  | number | 是   | AutoFill表单或页面节点的宽度。            |
+| 名称   | 类型   | 只读 | 可选 | 说明                                     |
+| ------ | ----- | ---- | ---- | ---------------------------------------- |
+| left   | number | 否   | 否   | AutoFill表单或页面节点与页面左边界的距离。|
+| top    | number | 否   | 否   | AutoFill表单或页面节点与页面上边界的距离。|
+| height | number | 否   | 否   | AutoFill表单或页面节点的高度。            |
+| width  | number | 否   | 否   | AutoFill表单或页面节点的宽度。            |

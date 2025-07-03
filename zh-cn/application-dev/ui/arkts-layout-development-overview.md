@@ -37,7 +37,7 @@
 
 - 组件内容区（黄色方块）：组件内容区大小为组件区域大小减去组件的[border](../reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md#border)值，组件内容区大小会作为组件内容（或者子组件）进行大小测算时的布局测算限制。
 
-- 组件内容（绿色方块）：组件内容本身占用的大小，比如文本内容占用的大小。组件内容和组件内容区不一定匹配，比如设置了固定的width和height，此时组件内容的大小就是设置的width和height减去padding和border值，但文本内容则是通过文本布局引擎测算后得到的大小，可能出现文本真实大小小于设置的组件内容区大小。当组件内容和组件内容区大小不一致时，[align](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#align)属性生效，定义组件内容在组件内容区的对齐方式，如居中对齐。
+- 组件内容（绿色方块）：组件内容本身占用的大小，比如文本内容占用的大小。组件内容和组件内容区不一定匹配，比如设置了固定的width和height，此时组件内容的大小就是设置的width和height减去padding和border值，但文本内容则是通过文本布局引擎测算后得到的大小，可能出现文本真实大小小于设置的组件内容区大小，也就是文本内容无法占满文本组件提供的内容区大小。当组件内容和组件内容区大小不一致时，[align](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#align)属性生效，定义组件内容在组件内容区的对齐方式，如居中对齐。
 
 - 组件布局边界（虚线部分）：组件通过[margin](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)属性设置外边距时，组件布局边界就是组件区域加上margin的大小。
 

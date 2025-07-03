@@ -11,6 +11,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
 
 开发HCE卡模拟相关应用时，需要在应用的属性配置文件中，声明与NFC相关的属性值，比如，在module.json5文件中，声明下面属性值：
 ```json
+// 适用于除轻量级智能穿戴产品之外其它设备
 {
   "module": {
     // 其他已声明的属性
@@ -46,15 +47,79 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
   }
 }
 ```
+```json
+// 轻量级智能穿戴设备
+{
+  "module": {
+    // 其他已声明的属性
+    "abilities": [
+      {
+        // 其他已声明的属性
+        "metadata": {
+          "customizeData": [
+            {
+              "name": "paymentAid",
+              "value": "A0000000041012"
+            },
+            {
+              "name": "otherAid",
+              "value": "A0000000041010"
+            }
+          ]
+        },
+        "skills": [
+          {
+            "entities": [
+              "ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
+            ],
+            "actions": [
+              "ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
+            ]
+          }
+        ]
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.NFC_CARD_EMULATION",
+        // 必须要添加reason: card_mulation_reason
+        "reason": "$string:card_emulation_reason",
+        "usedScene":{
+          "ability":[
+            "FormAbility"
+          ],
+          "when":"always"
+        }
+      },
+      {
+        "name": "ohos.permission.NFC_TAG",
+        // 必须要添加reason: card_mulation_reason
+        "reason": "$string:card_emulation_reason",
+        "usedScene":{
+          "ability":[
+            "FormAbility"
+          ],
+          "when":"always"
+        }
+      }
+    ]
+  }
+}
+```
 > **注意：**
 >1. 声明"actions"字段的内容填写，必须包含"ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"，不能更改。
 >2. 声明aid时，name必须为payment-aid，或者other-aid。填写错误会造成解析失败。
 >3. 声明权限时"requestPermissions"中的"name"字段的内容填写，必须是"ohos.permission.NFC_CARD_EMULATION"，不能更改。
+>4. 轻量级智能穿戴产品不同于其他设备，仅支持FA模型，属性配置和接口调用方式与其它设备有所区别，详见示例。
 
 ## 导入模块
 
 ```
+// 适用于除轻量级智能穿戴产品之外其它设备
 import { cardEmulation } from '@kit.ConnectivityKit';
+
+// 轻量级智能穿戴设备
+import cardEmulation from '@ohos.nfc.cardEmulation';
 ```
 
 ## FeatureType<sup>(deprecated)</sup>
@@ -113,9 +178,19 @@ isSupported(feature: number): boolean
 **示例：**
 
 ```js
+// 适用于除轻量级智能穿戴产品之外其它设备
 import { cardEmulation } from '@kit.ConnectivityKit';
 
 let isHceSupported: boolean = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
+if (!isHceSupported) {
+    console.log('this device is not supported for HCE, ignore it.');
+}
+```
+```js
+// 适用于轻量化智能穿戴设备
+import cardEmulation from '@ohos.nfc.cardEmulation';
+
+let isHceSupported = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
 if (!isHceSupported) {
     console.log('this device is not supported for HCE, ignore it.');
 }
@@ -151,9 +226,20 @@ hasHceCapability(): boolean
 **示例：**
 
 ```js
+// 适用于除轻量级智能穿戴产品之外其它设备
 import { cardEmulation } from '@kit.ConnectivityKit';
 
 let hasHceCap: boolean = cardEmulation.hasHceCapability();
+if (!hasHceCap) {
+    console.log('this device hasHceCapability false, ignore it.');
+}
+```
+
+```js
+// 适用于轻量化智能穿戴设备
+import cardEmulation from '@ohos.nfc.cardEmulation';
+
+let hasHceCap = cardEmulation.hasHceCapability();
 if (!hasHceCap) {
     console.log('this device hasHceCapability false, ignore it.');
 }
@@ -175,7 +261,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 
 | 参数名         | 类型                                       | 必填   | 说明                      |
 | ----------- | ---------------------------------------- | ---- |-------------------------|
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | 是    | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname-1) | 是    | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 | type        | [CardType](#cardtype9)                   | 是    | 卡模拟业务类型。目前只支持默认支付应用查询。   |
 
 **错误码：**
@@ -197,6 +283,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 
 **示例：**
 ```js
+// 适用于除轻量级智能穿戴产品之外其它设备
 import { cardEmulation } from '@kit.ConnectivityKit';
 import { bundleManager, Want } from '@kit.AbilityKit';
 
@@ -208,6 +295,14 @@ let elementName: bundleManager.ElementName = {
 };
 
 let isDefaultService: boolean = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
+```
+
+```js
+// 适用于轻量化智能穿戴设备
+import cardEmulation from '@ohos.nfc.cardEmulation';
+
+let appName = "com.example.testquestionlite";
+let isDefaultService = cardEmulation.isDefaultService(appName, cardEmulation.CardType.PAYMENT);
 ```
 
 ## HceService<sup>8+</sup>
@@ -241,7 +336,7 @@ startHCE(aidList: string[]): boolean
 
 ### start<sup>9+</sup>
 
-start(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname), aidList: string[]): void
+start(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname-1), aidList: string[]): void
 
 启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。
 
@@ -255,7 +350,7 @@ start(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-eleme
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname-1) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 | aidList | string[] | 是   | 动态注册卡模拟的AID列表，允许为空。 |
 
 **错误码：**
@@ -294,7 +389,7 @@ stopHCE(): boolean
 
 ### stop<sup>9+</sup>
 
-stop(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname)): void 
+stop(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname-1)): void 
 
 停止HCE业务功能。包括取消APDU数据接收的订阅，退出当前应用前台优先，释放动态注册的AID列表。应用程序需要在HCE卡模拟页面的onDestroy函数里调用该接口。
 
@@ -308,7 +403,7 @@ stop(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elemen
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname-1) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 
 **错误码：**
 
@@ -352,6 +447,7 @@ on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void
 
 **示例：**
 ```js
+// 适用于除轻量级智能穿戴产品之外其它设备
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { cardEmulation } from '@kit.ConnectivityKit';
 import { AsyncCallback } from '@kit.BasicServicesKit';
@@ -378,6 +474,47 @@ export default class EntryAbility extends UIAbility {
   onDestroy() {
     hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onDestroy');
     hceService.stop(element);
+  }
+  // 生命周期内的其它功能
+}
+```
+
+**示例：**
+```js
+// 适用于轻量级智能穿戴设备
+import cardEmulation from '@ohos.nfc.cardEmulation';
+
+let appName = "com.example.testquestionlite";
+
+export default {
+  data:{
+    fontSize: '30px',
+    fontClolor: '#50609f',
+    hide: 'show',
+    headCon: appName,
+    paymentAid: ["A0000000041010", "A0000000041012"]
+  },
+  onCreate() {
+    console.info('onCreate');
+  },
+  onReady() {
+    cardEmulation.hasHceCapability();
+    cardEmulation.isDefaultService(appName, cardEmulation.CardType.PAYMENT);
+    cardEmulation.isDefaultService(appName, cardEmulation.CardType.OTHER);
+    let hcesrv = new cardEmulation.HceService();
+
+    hcesrv.start(appName, this.paymentAid);
+    hcesrv.on("hceCmd", (data) => {
+      console.log('data:' + data);
+      // 应用程序实际想要发送的数据， 此处仅做为示例
+      let responseData = [0x1, 0x2];
+      hcesrv.transmit(responseData, () => {
+        console.log('sendResponse start');
+      });
+      console.log('sendResponse end');
+    });
+  },
+  onDestroy() {
   }
   // 生命周期内的其它功能
 }
@@ -413,6 +550,7 @@ off(type: 'hceCmd', callback?: AsyncCallback\<number[]>): void
 
 **示例：**
 ```js
+// 适用于除轻量级智能穿戴产品之外其它设备
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { cardEmulation } from '@kit.ConnectivityKit';
 import { AsyncCallback } from '@kit.BasicServicesKit';
@@ -505,6 +643,7 @@ transmit(response: number[]): Promise\<void>
 
 **示例：**
 ```js
+// 适用于除轻量级智能穿戴产品之外其它设备
 import { cardEmulation } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -518,6 +657,21 @@ hceService.transmit(responseData).then(() => {
 }).catch((err: BusinessError) => {
   console.error("transmit Promise error:", err);
 });
+```
+
+```js
+// 适用于轻量级智能穿戴设备
+import cardEmulation from '@ohos.nfc.cardEmulation';
+
+let hceService = new cardEmulation.HceService();
+
+// 应用程序实际想要发送的数据， 此处仅做为示例
+let responseData = [0x1, 0x2];
+hceService.transmit(responseData).then(() => {
+  // 处理 promise 的回调
+  console.log("transmit Promise success.");
+});
+console.log("transmit Promise end.");
 ```
 
 ### transmit<sup>9+</sup>
@@ -552,6 +706,7 @@ transmit(response: number[], callback: AsyncCallback\<void>): void
 
 **示例：**
 ```js
+// 适用于除轻量级智能穿戴产品之外其它设备
 import { cardEmulation } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -572,5 +727,18 @@ try {
   console.error(`transmit AsyncCallback catch Code: ${(error as BusinessError).code}, ` +
     `message: ${(error as BusinessError).message}`);
 }
+```
+```js
+// 适用于轻量级智能穿戴设备
+import cardEmulation from '@ohos.nfc.cardEmulation';
+
+let hceService = new cardEmulation.HceService();
+
+// 应用程序实际想要发送的数据， 此处仅做为示例
+let responseData = [0x1, 0x2];
+hceService.transmit(responseData, () => {
+  console.log("transmit Promise success.");
+});
+console.log("transmit Promise end.");
 ```
 

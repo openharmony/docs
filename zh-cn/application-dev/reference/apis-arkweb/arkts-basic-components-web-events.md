@@ -382,7 +382,7 @@ onConsole(callback: Callback\<OnConsoleEvent, boolean\>)
 
 | 参数名     | 类型                              | 必填   | 说明      |
 | ------- | --------------------------------- | ---- | --------- |
-| callback | Callback\<[OnConsoleEvent](./arkts-basic-components-web-i.md#onconsoleevent12), boolean\> | 是    | 网页收到JavaScript控制台消息时触发。<br>返回值boolean。当返回true时，该条消息将不会再打印至控制台，返回false时仍会打印至控制台。 |
+| callback | Callback\<[OnConsoleEvent](./arkts-basic-components-web-i.md#onconsoleevent12), boolean\> | 是    | 网页收到JavaScript控制台消息时触发。<br>返回值boolean。当返回true时，该条消息将不会再打印至hilog日志，返回false时仍会打印至hilog日志。 |
 
 **示例：**
 
@@ -798,6 +798,7 @@ onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
           .onTitleReceive((event) => {
             if (event) {
               console.log('title:' + event.title);
+              console.log('isRealTitle:' + event.isRealTitle);
             }
           })
       }
@@ -1453,6 +1454,48 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { cert } from '@kit.DeviceCertificateKit';
+
+  function LogCertInfo(certChainData : Array<Uint8Array> | undefined) {
+    if (!(certChainData instanceof Array)) {
+      console.log('failed, cert chain data type is not array');
+      return;
+    }
+
+    for (let i = 0; i < certChainData.length; i++) {
+      let encodeBlobData: cert.EncodingBlob = {
+        data: certChainData[i],
+        encodingFormat: cert.EncodingFormat.FORMAT_DER
+      }
+      cert.createX509Cert(encodeBlobData, (error, x509Cert) => {
+        if (error) {
+          console.error('Index : ' + i + ',createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+        } else {
+          console.log('createX509Cert success');
+          console.log(ParseX509CertInfo(x509Cert));
+        }
+      });
+    }
+    return;
+  }
+
+  function Uint8ArrayToString(dataArray: Uint8Array) {
+    let dataString = '';
+    for (let i = 0; i < dataArray.length; i++) {
+      dataString += String.fromCharCode(dataArray[i]);
+    }
+    return dataString;
+  }
+
+  function ParseX509CertInfo(x509Cert: cert.X509Cert) {
+    let res: string = 'getCertificate success, '
+      + 'issuer name = '
+      + Uint8ArrayToString(x509Cert.getIssuerName().data) + ', subject name = '
+      + Uint8ArrayToString(x509Cert.getSubjectName().data) + ', valid start = '
+      + x509Cert.getNotBeforeTime()
+      + ', valid end = ' + x509Cert.getNotAfterTime();
+    return res;
+  }
 
   @Entry
   @Component
@@ -1470,6 +1513,7 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
             console.log("onSslErrorEvent referrer: " + event.referrer);
             console.log("onSslErrorEvent isFatalError: " + event.isFatalError);
             console.log("onSslErrorEvent isMainFrame: " + event.isMainFrame);
+            LogCertInfo(event.certChainData);
             this.uiContext.showAlertDialog({
               title: 'onSslErrorEvent',
               message: 'text',

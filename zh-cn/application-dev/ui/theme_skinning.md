@@ -178,6 +178,8 @@
 > **说明：**
 >
 >如果setDefaultTheme的参数为undefined时，默认token值对应的色值参考[系统缺省token色值](#系统缺省token色值)。
+>
+>setDefaultTheme需要在ArkUI初始化后即windowStage.loadContent的完成时回调中使用。
 
 ## 设置应用局部页面自定义主题风格
 通过设置[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withtheme)，将自定义主题Theme的配色应用于内部组件的默认样式。在WithTheme的作用范围内，组件的配色会根据Theme的配色进行调整。

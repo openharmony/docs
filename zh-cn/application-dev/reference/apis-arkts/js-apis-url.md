@@ -160,7 +160,7 @@ getAll(name: string): string[]
 let urlObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new url.URLParams(urlObject.search.slice(1));
 params.append('fod', '3'); // Add a second value for the fod parameter.
-console.log(params.getAll('fod').toString()) // Output ["1","3"].
+console.info(params.getAll('fod').toString()) // Output ["1","3"].
 ```
 
 
@@ -187,7 +187,7 @@ let searchParamsObject = new url.URLParams("keyName1=valueName1&keyName2=valueNa
 let pair:Iterable<Object[]> = searchParamsObject.entries();
 let arrayValue = Array.from(pair);
 for (let pair of arrayValue) { // Show keyName/valueName pairs
-  console.log(pair[0]+ ', '+ pair[1]);
+  console.info(pair[0]+ ', '+ pair[1]);
 }
 ```
 
@@ -230,7 +230,7 @@ forEach(callbackFn: (value: string, key: string, searchParams: URLParams) => voi
 ```ts
 const myURLObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 myURLObject.params.forEach((value, name, searchParams) => {
-    console.log(name, value, myURLObject.params === searchParams);
+    console.info(name, value, myURLObject.params === searchParams);
 });
 ```
 
@@ -368,7 +368,7 @@ sort(): void
 ```ts
 let searchParamsObject = new url.URLParams("c=3&a=9&b=4&d=2"); // Create a test URLSearchParams object
 searchParamsObject.sort(); // Sort the key/value pairs
-console.log(searchParamsObject.toString()); // Display the sorted query string // Output a=9&b=4&c=3&d=2
+console.info(searchParamsObject.toString()); // Display the sorted query string // Output a=9&b=4&c=3&d=2
 ```
 
 
@@ -394,7 +394,7 @@ keys(): IterableIterator&lt;string&gt;
 let searchParamsObject = new url.URLParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
 let keys = Array.from(searchParamsObject.keys());
 for (let key of keys) { // Output key-value pairs
-  console.log(key);
+  console.info(key);
 }
 ```
 
@@ -421,7 +421,7 @@ values(): IterableIterator&lt;string&gt;
 let searchParams = new url.URLParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
 let values = Array.from(searchParams.values());
 for (let value of values) {
-  console.log(value);
+  console.info(value);
 }
 ```
 
@@ -449,7 +449,7 @@ const paramsObject = new url.URLParams('fod=bay&edg=bap');
 let iter: Iterable<Object[]> = paramsObject[Symbol.iterator]();
 let pairs = Array.from(iter);
 for (let pair of pairs) {
-  console.log(pair[0] + ', ' + pair[1]);
+  console.info(pair[0] + ', ' + pair[1]);
 }
 ```
 
@@ -476,7 +476,7 @@ toString(): string
 let urlObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new url.URLParams(urlObject.search.slice(1));
 params.append('fod', '3');
-console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
+console.info(params.toString()); // Output 'fod=1&bard=2&fod=3'
 ```
 
 ## URL
@@ -487,39 +487,39 @@ console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| hash | string | 是 | 是 | 获取和设置URL的片段部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| host | string | 是 | 是 | 获取和设置URL的主机部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| hostname | string | 是 | 是 | 获取和设置URL的主机名部分，不带端口。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| href | string | 是 | 是 | 获取和设置序列化的URL。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| hash | string | 否 | 否 | 获取和设置URL的片段部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| host | string | 否 | 否 | 获取和设置URL的主机部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| hostname | string | 否 | 否 | 获取和设置URL的主机名部分，不带端口。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| href | string | 否 | 否 | 获取和设置序列化的URL。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | origin | string | 是 | 否 | 获取URL源的只读序列化。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| password | string | 是 | 是 | 获取和设置URL的密码部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| pathname | string | 是 | 是 | 获取和设置URL的路径部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| port | string | 是 | 是 | 获取和设置URL的端口部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| protocol | string | 是 | 是 | 获取和设置URL的协议部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| search | string | 是 | 是 | 获取和设置URL的序列化查询部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| password | string | 否 | 否 | 获取和设置URL的密码部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| pathname | string | 否 | 否 | 获取和设置URL的路径部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| port | string | 否 | 否 | 获取和设置URL的端口部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| protocol | string | 否 | 否 | 获取和设置URL的协议部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| search | string | 否 | 否 | 获取和设置URL的序列化查询部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。<br/>- **说明：** 此属性从API version 7开始支持，从API version 9开始被废弃。建议使用params<sup>9+</sup>替代。 |
 | params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| username | string | 是 | 是 | 获取和设置URL的用户名部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| username | string | 否 | 否 | 获取和设置URL的用户名部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
 ```ts
 let that = url.URL.parseURL('http://username:password@host:8080/directory/file?foo=1&bar=2#fragment');
-console.log("hash " + that.hash); // hash #fragment
-console.log("host " + that.host); // host host:8080
-console.log("hostname " + that.hostname); // hostname host
-console.log("href " + that.href); // href http://username:password@host:8080/directory/file?foo=1&bar=2#fragment
-console.log("origin " + that.origin); // origin http://host:8080
-console.log("password " + that.password); // password password
-console.log("pathname " + that.pathname); // pathname /directory/file
-console.log("port " + that.port); // port 8080
-console.log("protocol " + that.protocol); // protocol http:
-console.log("search " + that.search); // search ?foo=1&bar=2
-console.log("username " + that.username); // username username
+console.info("hash " + that.hash); // hash #fragment
+console.info("host " + that.host); // host host:8080
+console.info("hostname " + that.hostname); // hostname host
+console.info("href " + that.href); // href http://username:password@host:8080/directory/file?foo=1&bar=2#fragment
+console.info("origin " + that.origin); // origin http://host:8080
+console.info("password " + that.password); // password password
+console.info("pathname " + that.pathname); // pathname /directory/file
+console.info("port " + that.port); // port 8080
+console.info("protocol " + that.protocol); // protocol http:
+console.info("search " + that.search); // search ?foo=1&bar=2
+console.info("username " + that.username); // username username
 // that.params 返回值为URLParams对象
-console.log("params: foo " + that.params.get("foo")); // params: foo 1
+console.info("params: foo " + that.params.get("foo")); // params: foo 1
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -584,6 +584,12 @@ URL静态成员函数。
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 一个表示绝对URL或相对URL的字符串。 <br/>如果 url 是相对URL，则需要指定 base，用于解析最终的URL。 <br/>如果 url 是绝对URL，则给定的 base 将不会生效。 |
 | base | string \| URL | 否 | 入参字符串或者对象，默认值是undefined。<br/>- string：字符串。当第一个参数是相对URL时，该参数需符合URL标准。<br/>- URL：URL对象。<br/>- 在url是相对URL时使用。 |
+
+**返回值：**
+
+| 类型 | 说明                                              |
+| ---- | ------------------------------------------------- |
+| [URL](#url)  | 返回创建的URL对象。 |
 
 > **说明：**
 >
@@ -775,7 +781,7 @@ getAll(name: string): string[]
 let urlObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new url.URLSearchParams(urlObject.search.slice(1));
 params.append('fod', '3'); // Add a second value for the fod parameter.
-console.log(params.getAll('fod').toString()) // Output ["1","3"].
+console.info(params.getAll('fod').toString()) // Output ["1","3"].
 ```
 
 ### entries<sup>(deprecated)</sup>
@@ -803,7 +809,7 @@ let searchParamsObject = new url.URLSearchParams("keyName1=valueName1&keyName2=v
 let iter: Iterable<Object[]> = searchParamsObject.entries();
 let pairs = Array.from(iter);
 for (let pair of pairs) { // Show keyName/valueName pairs
-  console.log(pair[0]+ ', '+ pair[1]);
+  console.info(pair[0]+ ', '+ pair[1]);
 }
 ```
 
@@ -840,7 +846,7 @@ forEach(callbackFn: (value: string, key: string, searchParams: URLSearchParams) 
 ```ts
 const myURLObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 myURLObject.searchParams.forEach((value, name, searchParams) => {
-    console.log(name, value, myURLObject.searchParams === searchParams);
+    console.info(name, value, myURLObject.searchParams === searchParams);
 });
 ```
 
@@ -959,7 +965,7 @@ sort(): void
 ```ts
 let searchParamsObject = new url.URLSearchParams("c=3&a=9&b=4&d=2"); // Create a test URLSearchParams object
 searchParamsObject.sort(); // Sort the key/value pairs
-console.log(searchParamsObject.toString()); // Display the sorted query string // Output a=9&b=4&c=3&d=2
+console.info(searchParamsObject.toString()); // Display the sorted query string // Output a=9&b=4&c=3&d=2
 ```
 
 
@@ -987,7 +993,7 @@ keys(): IterableIterator&lt;string&gt;
 let searchParamsObject = new url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
 let keys = Array.from(searchParamsObject.keys());
 for (let key of keys) { // Output key-value pairs
-  console.log(key);
+  console.info(key);
 }
 ```
 
@@ -1016,7 +1022,7 @@ values(): IterableIterator&lt;string&gt;
 let searchParams = new url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
 let values = Array.from(searchParams.values());
 for (let value of values) {
-  console.log(value);
+  console.info(value);
 }
 ```
 
@@ -1046,7 +1052,7 @@ const paramsObject = new url.URLSearchParams('fod=bay&edg=bap');
 let iter: Iterable<Object[]> = paramsObject[Symbol.iterator]();
 let pairs = Array.from(iter);
 for (let pair of pairs) {
-  console.log(pair[0] + ', ' + pair[1]);
+  console.info(pair[0] + ', ' + pair[1]);
 }
 ```
 
@@ -1074,6 +1080,6 @@ toString(): string
 let urlObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new url.URLSearchParams(urlObject.search.slice(1));
 params.append('fod', '3');
-console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
+console.info(params.toString()); // Output 'fod=1&bard=2&fod=3'
 ```
 <!--no_check-->

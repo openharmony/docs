@@ -61,6 +61,7 @@ static napi_value IsPromise(napi_env env, napi_callback_info info)
     return result;
 }
 ```
+<!-- @[napi_is_promise](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -68,6 +69,7 @@ static napi_value IsPromise(napi_env env, napi_callback_info info)
 // index.d.ts
 export const isPromise: <T>(value: T) => boolean;
 ```
+<!-- @[napi_is_promise_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -80,6 +82,7 @@ let value = Promise.resolve();
 hilog.info(0x0000, 'Node-API', 'napi_is_promise %{public}s', testNapi.isPromise(value));
 hilog.info(0x0000, 'Node-API', 'napi_is_promise string %{public}s', testNapi.isPromise(''));
 ```
+<!-- @[ark_napi_is_promise](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_promise
 
@@ -168,6 +171,7 @@ static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
     return promise;
 }
 ```
+<!-- @[napi_resolve_reject_deferred](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -176,6 +180,7 @@ static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
 export const createPromise: () => boolean | void;
 export const resolveRejectDeferred: (resolve: string, reject: string, status: boolean) => Promise<string> | void;
 ```
+<!-- @[napi_resolve_reject_deferred_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -201,6 +206,7 @@ promiseFail.then((res) => {
   hilog.info(0x0000, 'Node-API', 'get_resolve_deferred reject %{public}s', err)
 })
 ```
+<!-- @[ark_napi_resolve_reject_deferred](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPromise/entry/src/main/ets/pages/Index.ets) -->
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 

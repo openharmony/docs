@@ -21,11 +21,11 @@ Provides C interfaces for managing the token IDs, credentials, process IDs (PIDs
 
 | Name| Description| 
 | -------- | -------- |
-| void [OH_IPCSkeleton_JoinWorkThread](_o_h_i_p_c_skeleton.md#oh_ipcskeleton_joinworkthread) (void) | Joints this thread to the IPC worker thread pool.| 
+| void [OH_IPCSkeleton_JoinWorkThread](_o_h_i_p_c_skeleton.md#oh_ipcskeleton_joinworkthread) (void) | Joins this thread to the IPC worker thread pool.| 
 | void [OH_IPCSkeleton_StopWorkThread](_o_h_i_p_c_skeleton.md#oh_ipcskeleton_stopworkthread) (void) | Stops this thread.| 
 | uint64_t [OH_IPCSkeleton_GetCallingTokenId](_o_h_i_p_c_skeleton.md#oh_ipcskeleton_getcallingtokenid) (void) | Obtains the caller token ID. This API must be called in the IPC context. Otherwise, the token ID is returned.| 
-| uint64_t [OH_IPCSkeleton_GetFirstTokenId](_o_h_i_p_c_skeleton.md#oh_ipcskeleton_getfirsttokenid) (void) | Obtain the token ID of the first invoker.| 
-| uint64_t [OH_IPCSkeleton_GetSelfTokenId](_o_h_i_p_c_skeleton.md#oh_ipcskeleton_getselftokenid) (void) | Obtain the local token ID.| 
+| uint64_t [OH_IPCSkeleton_GetFirstTokenId](_o_h_i_p_c_skeleton.md#oh_ipcskeleton_getfirsttokenid) (void) | Obtains the token ID of the first invoker.| 
+| uint64_t [OH_IPCSkeleton_GetSelfTokenId](_o_h_i_p_c_skeleton.md#oh_ipcskeleton_getselftokenid) (void) | Obtains the local token ID.| 
 | uint64_t [OH_IPCSkeleton_GetCallingPid](_o_h_i_p_c_skeleton.md#oh_ipcskeleton_getcallingpid) (void) | Obtains the caller PID. This API must be called in the IPC context. Otherwise, the current PID is returned.| 
 | uint64_t [OH_IPCSkeleton_GetCallingUid](_o_h_i_p_c_skeleton.md#oh_ipcskeleton_getcallinguid) (void) | Obtains the caller UID. This API must be called in the IPC context. Otherwise, the current UID is returned.| 
 | int [OH_IPCSkeleton_IsLocalCalling](_o_h_i_p_c_skeleton.md#oh_ipcskeleton_islocalcalling) (void) | Checks whether a local calling is being made.| 

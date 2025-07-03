@@ -13,6 +13,8 @@ XComponent组件作为一种渲染组件，可用于EGL/OpenGLES和媒体数据�
 
 XComponent持有一个Surface，开发者能通过调用[NativeWindow](../graphics/native-window-guidelines.md)等接口，申请并提交Buffer至图形队列，以此方式将自绘制内容传送至该Surface。XComponent负责将此Surface整合进UI界面，其中展示的内容正是开发者传送的自绘制内容。Surface的默认位置与大小与XComponent组件一致，开发者可利用[setXComponentSurfaceRect](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#setxcomponentsurfacerect12)接口自定义调整Surface的位置和大小。
 
+XComponent组件负责创建Surface，并通过回调将Surface的相关信息告知应用。应用可以通过一系列接口设定Surface的属性。该组件本身不对所绘制的内容进行感知，亦不提供渲染绘制的接口。
+
 > **说明：** 
 >
 > 当开发者传输的绘制内容包含透明元素时，Surface区域的显示效果会与下方内容进行合成展示。例如，若传输的内容完全透明，且XComponent的背景色被设置为黑色，同时Surface保持默认的大小与位置，则最终显示的将是一片黑色区域。
@@ -759,6 +761,13 @@ Native侧
 
     ```c++
     // plugin_manager.cpp
+    std::unordered_map<std::string, ArkUI_NodeHandle> PluginManager::nodeHandleMap_;
+    std::unordered_map<void *, EGLRender *> PluginManager::renderMap_;
+    std::unordered_map<void *, OH_ArkUI_SurfaceCallback *> PluginManager::callbackMap_;
+    std::unordered_map<void *, OH_ArkUI_SurfaceHolder *> PluginManager::surfaceHolderMap_;
+    ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+
     std::string value2String(napi_env env, napi_value value) { // 将napi_value转化为string类型的变量
         size_t stringSize = 0;
         napi_get_value_string_utf8(env, value, nullptr, 0, &stringSize);
@@ -830,7 +839,7 @@ Native侧
         napi_get_value_int32(env, args[2], &max);
 
         int32_t expected = 0;
-        napi_get_value_int32(env, args[2], &expected);
+        napi_get_value_int32(env, args[3], &expected);
         OH_NativeXComponent_ExpectedRateRange range = {
             .min = min,
             .max = max,

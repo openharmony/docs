@@ -922,14 +922,14 @@ try {
 
  **系统接口：** 此接口为系统接口。
 
-| 名称      | 类型           | 可读 | 可写 | 说明                        |
+| 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| want | [Want](js-apis-app-ability-want.md)     | 是   | 是   | 指定应用被拦截时，跳转到的页面。 |
-| componentType | [ComponentType](#componenttype11)  | 是   | 是   | 拦截时将提升的能力的类型。 |
-| disposedType | [DisposedType](#disposedrule11) | 是 | 是 | 对应用的拦截规则。 |
-| controlType | [ControlType](#controltype11) | 是 | 是 | 拦截指定应用程序的不同策略。 |
-| elementList | Array\<[ElementName](js-apis-bundleManager-elementName.md)> | 是 | 是 | 拦截指定应用程序能力的列表。 |
-| priority | number | 是 | 是 | 拦截规则的优先级。 |
+| want | [Want](js-apis-app-ability-want.md)     | 否   | 否   | 指定应用被拦截时，跳转到的页面。 |
+| componentType | [ComponentType](#componenttype11)  | 否   | 否   | 拦截时将提升的能力的类型。 |
+| disposedType | [DisposedType](#disposedrule11) | 否   | 否 | 对应用的拦截规则。 |
+| controlType | [ControlType](#controltype11) | 否   | 否 | 拦截指定应用程序的不同策略。 |
+| elementList | Array\<[ElementName](js-apis-bundleManager-elementName.md)> | 否   | 否 | 拦截指定应用程序能力的列表。 |
+| priority | number | 否   | 否 | 拦截规则的优先级。 |
 
 ### ComponentType<sup>11+</sup>
 
@@ -979,11 +979,11 @@ try {
 
  **系统接口：** 此接口为系统接口。
 
-| 名称      | 类型           | 可读 | 可写 | 说明                        |
+| 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| want | [Want](js-apis-app-ability-want.md)     | 是   | 是   | 指定应用被拦截时，跳转到的页面。 |
-| UninstallComponentType | [UninstallComponentType](#uninstallcomponenttype15)  | 是   | 是   | 拦截时将拉起能力的类型。 |
-| priority | number | 是 | 是 | 拦截规则的优先级。 |
+| want | [Want](js-apis-app-ability-want.md)     | 否   | 否   | 指定应用被拦截时，跳转到的页面。 |
+| UninstallComponentType | [UninstallComponentType](#uninstallcomponenttype15)  | 否   | 否   | 拦截时将拉起能力的类型。 |
+| priority | number | 否 | 否 | 拦截规则的优先级。 |
 
 ### UninstallComponentType<sup>15+</sup>
 

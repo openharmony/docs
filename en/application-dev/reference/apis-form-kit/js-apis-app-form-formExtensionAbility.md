@@ -56,7 +56,7 @@ Called to notify the widget provider that a widget is being created.
 
 | Name| Type                                  | Mandatory| Description                                                        |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information of the widget. You can set the **parameters** field to one or more values enumerated in [widget parameters](./js-apis-app-form-formInfo.md#formparam), such as widget ID, widget name, and widget style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information of the widget. You can set the **parameters** field to one or more values enumerated in [widget parameters](./js-apis-app-form-formInfo.md#forminfoformparam), such as widget ID, widget name, and widget style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
 
 **Return value**
 
@@ -321,6 +321,12 @@ Called to notify the widget provider that the widget host is requesting the widg
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes| Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension.|
+
+**Return value**
+
+| Type                                                        | Description                                                       |
+| ------------------------------------------------------------ | ----------------------------------------------------------- |
+| [formInfo.FormState](js-apis-app-form-formInfo.md#forminfoformstate) | Enumerated values of the current widget status.|
 
 **Example**
 

@@ -33,10 +33,13 @@
 | -------- | -------- |
 | typedef uint32_t [ArkUI_GestureEventActionTypeMask](_ark_u_i___native_module.md#arkui_gestureeventactiontypemask) | 定义手势事件类型集合  | 
 | typedef uint32_t [ArkUI_GestureDirectionMask](_ark_u_i___native_module.md#arkui_gesturedirectionmask) | 定义滑动手势方向集合。  | 
+| typedef struct [ArkUI_GestureRecognizer](_ark_u_i___native_module.md#arkui_gesturerecognizer) [ArkUI_GestureRecognizer](_ark_u_i___native_module.md#arkui_gesturerecognizer) | 获取手势组件实例对象定义。 |
 | typedef ArkUI_GestureRecognizer \* [ArkUI_GestureRecognizerHandle](_ark_u_i___native_module.md#arkui_gesturerecognizerhandle) | 提供手势识别器句柄类型对象定义。  | 
 | typedef [ArkUI_GestureRecognizerHandle](_ark_u_i___native_module.md#arkui_gesturerecognizerhandle) \* [ArkUI_GestureRecognizerHandleArray](_ark_u_i___native_module.md#arkui_gesturerecognizerhandlearray) | 提供手势识别器句柄类型数组对象定义。  | 
+| typedef struct [ArkUI_TouchRecognizer](_ark_u_i___native_module.md#arkui_touchrecognizer) [ArkUI_TouchRecognizer](_ark_u_i___native_module.md#arkui_touchrecognizer) | 提供触摸识别器类型对象定义。 |
 | typedef ArkUI_TouchRecognizer \* [ArkUI_TouchRecognizerHandle](_ark_u_i___native_module.md#arkui_touchrecognizerhandle) | 提供触摸识别器句柄类型对象定义。  | 
 | typedef [ArkUI_TouchRecognizerHandle](_ark_u_i___native_module.md#arkui_touchrecognizerhandle) \* [ArkUI_TouchRecognizerHandleArray](_ark_u_i___native_module.md#arkui_touchrecognizerhandlearray) | 提供触摸识别器句柄类型数组对象定义。  | 
+| typedef struct [ArkUI_GestureEvent](_ark_u_i___native_module.md#arkui_gestureevent) [ArkUI_GestureEvent](_ark_u_i___native_module.md#arkui_gestureevent) | 获取手势事件数据类型对象定义。 |
 | typedef struct [ArkUI_GestureEventTargetInfo](_ark_u_i___native_module.md#arkui_gestureeventtargetinfo) [ArkUI_GestureEventTargetInfo](_ark_u_i___native_module.md#arkui_gestureeventtargetinfo) | 提供手势事件目标信息类型对象定义。  | 
 | typedef struct [ArkUI_ParallelInnerGestureEvent](_ark_u_i___native_module.md#arkui_parallelinnergestureevent) [ArkUI_ParallelInnerGestureEvent](_ark_u_i___native_module.md#arkui_parallelinnergestureevent) | 提供并行内部手势事件类型对象定义。  | 
 | typedef struct [ArkUI_GestureInterruptInfo](_ark_u_i___native_module.md#arkui_gestureinterruptinfo) [ArkUI_GestureInterruptInfo](_ark_u_i___native_module.md#arkui_gestureinterruptinfo) | 获取手势中断事件中的用户自定义数据。 |
@@ -112,3 +115,5 @@
 | int32_t [OH_ArkUI_GetGestureParam_distanceThreshold](_ark_u_i___native_module.md#oh_arkui_getgestureparam_distancethreshold) (ArkUI_GestureRecognizer \*recognizer, double \*distanceThreshold) | 获取手势识别器的手势移动阈值。  | 
 | ArkUI_ErrorCode [OH_ArkUI_PanGesture_SetDistanceMap](_ark_u_i___native_module.md#oh_arkui_pangesture_setdistancemap) (ArkUI_GestureRecognizer \*recognizer, int size, int\* toolTypeArray, double\* distanceArray) | 设置手势最小滑动阈值表。 |
 | ArkUI_ErrorCode [OH_ArkUI_PanGesture_GetDistanceByToolType](_ark_u_i___native_module.md#oh_arkui_pangesture_getdistancebytooltype) (ArkUI_GestureRecognizer \*recognizer, int toolType, double\* distance) | 获取手势识别器的手势移动阈值表。 |
+| ArkUI_ErrorCode [OH_ArkUI_PreventGestureRecognizerBegin](_ark_u_i___native_module.md#oh_arkui_preventgesturerecognizerbegin) (ArkUI_GestureRecognizer\* recognizer) |在手指全部抬起前阻止手势识别器参与当前手势识别。如果系统已确定该手势识别器的结果（无论成功与否），调用此接口将无效。 |
+| ArkUI_ErrorCode [OH_ArkUI_SetTouchTestDoneCallback](_ark_u_i___native_module.md#oh_arkui_settouchtestdonecallback) (ArkUI_NodeHandle node, void\* userData, void (\*touchTestDone)(ArkUI_GestureEvent\* event, ArkUI_GestureRecognizerHandleArray recognizers, int32_t count, void\* userData)) | 注册一个在所有手势识别器收集完成后执行的回调函数。当用户开始触摸屏幕时，系统会进行命中测试并根据触摸位置收集手势识别器。随后，在处理移动事件之前，组件可以使用此接口确定将参与识别并相互竞争的手势识别器。 |

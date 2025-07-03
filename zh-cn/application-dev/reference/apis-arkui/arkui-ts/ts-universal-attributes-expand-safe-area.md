@@ -102,9 +102,9 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 
 ## ignoreLayoutSafeArea<sup>20+</sup>
 
-ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;LayoutSafeAreaEdge&gt;)
+ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;LayoutSafeAreaEdge&gt;): T
 
-控制组件布局时延伸至安全区域。设置ignoreLayoutSafeArea属性可使组件的布局范围扩展至[组件级安全区（safeAreaPadding）](./ts-universal-attributes-size.md#safeareapadding14)和页面级安全区（状态栏、导航栏、挖孔区、软键盘）。依据safeAreaPadding功能，组件能够感知并利用向外累积的邻接可用安全区范围（详见[累计安全区延伸](./ts-universal-attributes-size.md#safeareapadding14)），通过ignoreLayoutSafeArea属性利用该范围进行布局。
+控制组件布局时延伸至安全区域。设置ignoreLayoutSafeArea属性可使组件的布局范围扩展至[组件级安全区（safeAreaPadding）](./ts-universal-attributes-size.md#safeareapadding14)和页面级安全区（状态栏、导航栏、挖孔区）。依据safeAreaPadding功能，组件能够感知并利用向外累积的邻接可用安全区范围（详见[累计安全区延伸](./ts-universal-attributes-size.md#safeareapadding14)），通过ignoreLayoutSafeArea属性利用该范围进行布局。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -117,6 +117,12 @@ ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;L
 | types  | Array <[LayoutSafeAreaType](ts-types.md#layoutsafeareatype12)> | 否   | 配置扩展布局安全区域的种类。<br />默认值：[LayoutSafeAreaType.SYSTEM]<br />扩展至系统默认非安全区域。<br />非法值：按默认值处理。 |
 | edges  | Array <[LayoutSafeAreaEdge](ts-types.md#layoutsafeareaedge12)> | 否   | 扩展布局安全区域的方向且支持[镜像能力](../../../ui/arkts-mirroring-display.md)。<br />默认值：[LayoutSafeAreaEdge.ALL]<br />扩展至所有方向。<br />非法值：按默认值处理。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
+
 >  **说明：**
 >
 > 设置ignoreLayoutSafeArea([], [])时，相当于参数为空数组，此时设置ignoreLayoutSafeArea属性的效果等同于未生效。
@@ -126,6 +132,8 @@ ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;L
 > 与[expandSafeArea](#expandsafearea)的区别在于：expandSafeArea仅扩展组件的渲染区域，后代组件不受当前组件expandSafeArea设置的影响；ignoreLayoutSafeArea扩展组件的布局区域，后代组件能够感知当前组件ignoreLayoutSafeArea设置的效果，即后代节点将基于当前组件经过ignoreLayoutSafeArea布局后的实际结果进行布局。具体对比可参考[示例10](#示例10expandsafearea与ignorelayoutsafearea的区别)。
 >
 > 组件使用ignoreLayoutSafeArea能力需依赖容器支持，当前支持子组件ignoreLayoutSafeArea的容器组件包括：[Flex](./ts-container-flex.md)、[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[Stack](./ts-container-stack.md)、[GridRow](./ts-container-gridrow.md)、[GridCol](./ts-container-gridcol.md)、[RowSplit](./ts-container-rowsplit.md)、[ColumnSplit](./ts-container-columnsplit.md)。
+>
+> 和expandSafeArea同时使用时，ignoreLayoutSafeArea的生效优先级高于expandSafeArea。
 
 ## 示例
 

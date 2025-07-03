@@ -19,7 +19,7 @@ Describes battery information.
 
 **System capability**: SystemCapability.PowerManager.BatteryManager.Core
 
-| Name     | Type       | Readable| Writable|  Description    |
+| Name     | Type       | Read-Only| Optional|  Description    |
 | --------------- | ------------------- | ---- | ---- | ---------------------|
 | batterySOC                                | number                                         | Yes  | No  | Battery state of charge (SoC) of the device, in unit of percentage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                          |
 | chargingStatus                            | [BatteryChargeState](#batterychargestate)      | Yes  | No  | Battery charging state of the current device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                              |
@@ -28,9 +28,9 @@ Describes battery information.
 | voltage                                   | number                                         | Yes  | No  | Battery voltage of the device, in unit of microvolt.                        |
 | technology                                | string                                         | Yes  | No  | Battery technology of the device.                              |
 | batteryTemperature                        | number                                         | Yes  | No  | Battery temperature of the device, in unit of 0.1°C.                   |
-| isBatteryPresent<sup>7+</sup>             | boolean                                        | Yes  | No  | Whether the battery is supported or present.                |
-| batteryCapacityLevel<sup>9+</sup>         | [BatteryCapacityLevel](#batterycapacitylevel9) | Yes  | No  | Battery level of the device.                                                 
-| nowCurrent<sup>12+</sup>                  | number                                         | Yes  | No  | Battery current of the device, in unit of mA.                       |         
+| isBatteryPresent<sup>7+</sup>             | boolean                                        | Yes  | No  | Whether the battery is supported or present. The value **true** means that the battery is supported or present; **false** means the opposite.<br>Default value: **false**.                |
+| batteryCapacityLevel<sup>9+</sup>         | [BatteryCapacityLevel](#batterycapacitylevel9) | Yes  | No  | Battery level of the device. |
+| nowCurrent<sup>12+</sup>                  | number                                         | Yes  | No  | Battery current of the device, in unit of mA.                       |
 
 **Example**
 

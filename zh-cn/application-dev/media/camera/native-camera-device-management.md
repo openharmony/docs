@@ -73,7 +73,7 @@
 
 在相机应用开发过程中，可以随时监听相机状态，包括新相机的出现、相机的移除、相机的可用状态。在回调函数中，通过相机ID、相机状态这两个参数进行监听，如当有新相机出现时，可以将新相机加入到应用的备用相机中。
 
-  通过注册cameraStatus事件，通过回调返回监听结果，callback返回Camera_StatusInfo参数，参数的具体内容可参考相机管理器回调接口实例[Camera_StatusInfo](../../reference/apis-camera-kit/capi-camera-statusinfo.md)。
+  通过注册cameraStatus事件，通过回调返回监听结果，callback返回Camera_StatusInfo参数，参数的具体内容可参考相机管理器回调接口实例[Camera_StatusInfo](../../reference/apis-camera-kit/capi-oh-camera-camera-statusinfo.md)。
   ```c++
   void CameraStatusCallback(Camera_Manager* cameraManager, Camera_StatusInfo* status)
   {

@@ -7,6 +7,12 @@
 
 在使用AudioSessionManager的接口之前，需先通过[getSessionManager](arkts-apis-audio-AudioManager.md#getsessionmanager12)获取AudioSessionManager实例。
 
+## 导入模块
+
+```ts
+import { audio } from '@kit.AudioKit';
+```
+
 ## activateAudioSession<sup>12+</sup>
 
 activateAudioSession(strategy: AudioSessionStrategy): Promise\<void>

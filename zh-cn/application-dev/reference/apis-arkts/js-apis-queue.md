@@ -29,7 +29,7 @@ import { Queue } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | Queue的元素个数。 |
 
@@ -220,7 +220,7 @@ queue.add(4);
 queue.add(5);
 queue.add(4);
 queue.forEach((value : number, index ?: number) : void => {
-  console.log("value:" + value, "index:" + index);
+  console.info("value:" + value, "index:" + index);
 });
 ```
 
@@ -259,14 +259,14 @@ queue.add(4);
 // 使用方法一：
 while(queue.length) {
   let item = queue.pop();
-  console.log("value:" + item);
+  console.info("value:" + item);
 }
 
 // 使用方法二：
 let iter = queue[Symbol.iterator]();
 let temp: IteratorResult<number> = iter.next().value;
 while(temp != undefined) {
-  console.log("value:" + temp);
+  console.info("value:" + temp);
   temp = iter.next().value;
 }
 ```

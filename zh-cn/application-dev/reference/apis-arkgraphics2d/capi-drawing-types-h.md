@@ -18,45 +18,45 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_Drawing_Point2D](capi-oh-drawing-point2d.md) | OH_Drawing_Point2D | 定义一个二维的坐标点。 |
-| [OH_Drawing_Point3D](capi-oh-drawing-point3d.md) | OH_Drawing_Point3D | 定义一个三维的坐标点。 |
-| [OH_Drawing_Image_Info](capi-oh-drawing-image-info.md) | OH_Drawing_Image_Info | 定义图片信息结构体。 |
-| [OH_Drawing_RectStyle_Info](capi-oh-drawing-rectstyle-info.md) | OH_Drawing_RectStyle_Info | 定义矩形框样式结构体。 |
-| [OH_Drawing_String](capi-oh-drawing-string.md) | OH_Drawing_String | 采用UTF-16编码的字符串信息结构体。 |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md) | OH_Drawing_Canvas | 定义为一块矩形的画布，可以结合画笔和画刷在上面绘制各种形状、图片和文字。 |
-| [OH_Drawing_Pen](capi-oh-drawing-pen.md) | OH_Drawing_Pen | 定义为画笔，画笔用于描述绘制图形轮廓的样式和颜色。 |
-| [OH_Drawing_Region](capi-oh-drawing-region.md) | OH_Drawing_Region | 定义一个区域，用于表示画布上的封闭区域，实现更精确的图形控制。 |
-| [OH_Drawing_Brush](capi-oh-drawing-brush.md) | OH_Drawing_Brush | 定义为画刷，画刷用于描述填充图形的样式和颜色。 |
-| [OH_Drawing_Path](capi-oh-drawing-path.md) | OH_Drawing_Path | 定义为路径，路径用于自定义各种形状。 |
-| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md) | OH_Drawing_Bitmap | 定义为位图，位图是一块内存，内存中包含了描述一张图片的像素数据。 |
-| [OH_Drawing_Point](capi-oh-drawing-point.md) | OH_Drawing_Point | 定义一个点，用于描述坐标点。 |
-| [OH_Drawing_PixelMap](capi-oh-drawing-pixelmap.md) | OH_Drawing_PixelMap | 定义像素图，用于包装图像框架支持的真实像素图。 |
-| [OH_Drawing_ColorSpace](capi-oh-drawing-colorspace.md) | OH_Drawing_ColorSpace | 定义色彩空间，用于解释颜色信息。 |
-| [OH_Drawing_PathEffect](capi-oh-drawing-patheffect.md) | OH_Drawing_PathEffect | 定义一个路径效果，用于影响描边路径。 |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md) | OH_Drawing_Rect | 用于描述矩形。 |
-| [OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md) | OH_Drawing_RoundRect | 用于描述圆角矩形。 |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md) | OH_Drawing_Matrix | 定义一个矩阵，用于描述坐标变换。 |
-| [OH_Drawing_ShaderEffect](capi-oh-drawing-shadereffect.md) | OH_Drawing_ShaderEffect | 定义一个着色器，用于描述绘制内容的源颜色。 |
-| [OH_Drawing_ShadowLayer](capi-oh-drawing-shadowlayer.md) | OH_Drawing_ShadowLayer | 定义一个阴影层，用于描述绘制内容的阴影层。 |
-| [OH_Drawing_Filter](capi-oh-drawing-filter.md) | OH_Drawing_Filter | 定义一个滤波器，用于存储颜色滤波器，蒙版滤波器和图像滤波器。 |
-| [OH_Drawing_MaskFilter](capi-oh-drawing-maskfilter.md) | OH_Drawing_MaskFilter | 定义蒙版滤波器。 |
-| [OH_Drawing_ColorFilter](capi-oh-drawing-colorfilter.md) | OH_Drawing_ColorFilter | 定义颜色滤波器，传入一个颜色并返回一个新的颜色。 |
-| [OH_Drawing_Font](capi-oh-drawing-font.md) | OH_Drawing_Font | 用于描述字体。 |
-| [OH_Drawing_MemoryStream](capi-oh-drawing-memorystream.md) | OH_Drawing_MemoryStream | 用于描述内存流。 |
-| [OH_Drawing_FontArguments](capi-oh-drawing-fontarguments.md) | OH_Drawing_FontArguments | 用于描述字型参数。 |
-| [OH_Drawing_Typeface](capi-oh-drawing-typeface.md) | OH_Drawing_Typeface | 用于描述字形。 |
-| [OH_Drawing_TextBlob](capi-oh-drawing-textblob.md) | OH_Drawing_TextBlob | 定义一个文本对象，表示将多个文本组合到一个不可变的容器中。每个文本行由字形和位置组成。 |
-| [OH_Drawing_Image](capi-oh-drawing-image.md) | OH_Drawing_Image | 定义一个用于描述绘制二维像素数组的图片。 |
-| [OH_Drawing_ImageFilter](capi-oh-drawing-imagefilter.md) | OH_Drawing_ImageFilter | 定义图像滤波器, 用于对构成图像像素的所有颜色位进行操作。 |
-| [OH_Drawing_SamplingOptions](capi-oh-drawing-samplingoptions.md) | OH_Drawing_SamplingOptions | 定义一个采样选项，用于描述图片、位图等图像的采样方法。 |
-| [OH_Drawing_TextBlobBuilder](capi-oh-drawing-textblobbuilder.md) | OH_Drawing_TextBlobBuilder | 定义文本构建器，用于构建文本。 |
-| [OH_Drawing_GpuContext](capi-oh-drawing-gpucontext.md) | OH_Drawing_GpuContext | 定义图形处理器上下文，用于描述图形处理器后端上下文。 |
-| [OH_Drawing_Surface](capi-oh-drawing-surface.md) | OH_Drawing_Surface | 定义surface，用于管理画布绘制的内容。 |
-| [OH_Drawing_FontMgr](capi-oh-drawing-fontmgr.md) | OH_Drawing_FontMgr | 定义字体管理类, 用于字体管理。 |
-| [OH_Drawing_FontStyleSet](capi-oh-drawing-fontstyleset.md) | OH_Drawing_FontStyleSet | 定义字体样式集, 用于字体样式族匹配。 |
-| [OH_Drawing_RecordCmdUtils](capi-oh-drawing-recordcmdutils.md) | OH_Drawing_RecordCmdUtils | 定义指令录制工具，用于生成录制指令。 |
-| [OH_Drawing_RecordCmd](capi-oh-drawing-recordcmd.md) | OH_Drawing_RecordCmd | 定义录制指令类, 用于存储录制指令的集合。 |
-| [OH_Drawing_Array](capi-oh-drawing-array.md) | OH_Drawing_Array | 定义数组对象, 用于存储多个同类型对象。 |
+| [OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md) | OH_Drawing_Point2D | 定义一个二维的坐标点。 |
+| [OH_Drawing_Point3D](capi-drawing-oh-drawing-point3d.md) | OH_Drawing_Point3D | 定义一个三维的坐标点。 |
+| [OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md) | OH_Drawing_Image_Info | 定义图片信息结构体。 |
+| [OH_Drawing_RectStyle_Info](capi-drawing-oh-drawing-rectstyle-info.md) | OH_Drawing_RectStyle_Info | 定义矩形框样式结构体。 |
+| [OH_Drawing_String](capi-drawing-oh-drawing-string.md) | OH_Drawing_String | 采用UTF-16编码的字符串信息结构体。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md) | OH_Drawing_Canvas | 定义为一块矩形的画布，可以结合画笔和画刷在上面绘制各种形状、图片和文字。 |
+| [OH_Drawing_Pen](capi-drawing-oh-drawing-pen.md) | OH_Drawing_Pen | 定义为画笔，画笔用于描述绘制图形轮廓的样式和颜色。 |
+| [OH_Drawing_Region](capi-drawing-oh-drawing-region.md) | OH_Drawing_Region | 定义一个区域，用于表示画布上的封闭区域，实现更精确的图形控制。 |
+| [OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md) | OH_Drawing_Brush | 定义为画刷，画刷用于描述填充图形的样式和颜色。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md) | OH_Drawing_Path | 定义为路径，路径用于自定义各种形状。 |
+| [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md) | OH_Drawing_Bitmap | 定义为位图，位图是一块内存，内存中包含了描述一张图片的像素数据。 |
+| [OH_Drawing_Point](capi-drawing-oh-drawing-point.md) | OH_Drawing_Point | 定义一个点，用于描述坐标点。 |
+| [OH_Drawing_PixelMap](capi-drawing-oh-drawing-pixelmap.md) | OH_Drawing_PixelMap | 定义像素图，用于包装图像框架支持的真实像素图。 |
+| [OH_Drawing_ColorSpace](capi-drawing-oh-drawing-colorspace.md) | OH_Drawing_ColorSpace | 定义色彩空间，用于解释颜色信息。 |
+| [OH_Drawing_PathEffect](capi-drawing-oh-drawing-patheffect.md) | OH_Drawing_PathEffect | 定义一个路径效果，用于影响描边路径。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md) | OH_Drawing_Rect | 用于描述矩形。 |
+| [OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md) | OH_Drawing_RoundRect | 用于描述圆角矩形。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md) | OH_Drawing_Matrix | 定义一个矩阵，用于描述坐标变换。 |
+| [OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md) | OH_Drawing_ShaderEffect | 定义一个着色器，用于描述绘制内容的源颜色。 |
+| [OH_Drawing_ShadowLayer](capi-drawing-oh-drawing-shadowlayer.md) | OH_Drawing_ShadowLayer | 定义一个阴影层，用于描述绘制内容的阴影层。 |
+| [OH_Drawing_Filter](capi-drawing-oh-drawing-filter.md) | OH_Drawing_Filter | 定义一个滤波器，用于存储颜色滤波器，蒙版滤波器和图像滤波器。 |
+| [OH_Drawing_MaskFilter](capi-drawing-oh-drawing-maskfilter.md) | OH_Drawing_MaskFilter | 定义蒙版滤波器。 |
+| [OH_Drawing_ColorFilter](capi-drawing-oh-drawing-colorfilter.md) | OH_Drawing_ColorFilter | 定义颜色滤波器，传入一个颜色并返回一个新的颜色。 |
+| [OH_Drawing_Font](capi-drawing-oh-drawing-font.md) | OH_Drawing_Font | 用于描述字体。 |
+| [OH_Drawing_MemoryStream](capi-drawing-oh-drawing-memorystream.md) | OH_Drawing_MemoryStream | 用于描述内存流。 |
+| [OH_Drawing_FontArguments](capi-drawing-oh-drawing-fontarguments.md) | OH_Drawing_FontArguments | 用于描述字型参数。 |
+| [OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md) | OH_Drawing_Typeface | 用于描述字形。 |
+| [OH_Drawing_TextBlob](capi-drawing-oh-drawing-textblob.md) | OH_Drawing_TextBlob | 定义一个文本对象，表示将多个文本组合到一个不可变的容器中。每个文本行由字形和位置组成。 |
+| [OH_Drawing_Image](capi-drawing-oh-drawing-image.md) | OH_Drawing_Image | 定义一个用于描述绘制二维像素数组的图片。 |
+| [OH_Drawing_ImageFilter](capi-drawing-oh-drawing-imagefilter.md) | OH_Drawing_ImageFilter | 定义图像滤波器, 用于对构成图像像素的所有颜色位进行操作。 |
+| [OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md) | OH_Drawing_SamplingOptions | 定义一个采样选项，用于描述图片、位图等图像的采样方法。 |
+| [OH_Drawing_TextBlobBuilder](capi-drawing-oh-drawing-textblobbuilder.md) | OH_Drawing_TextBlobBuilder | 定义文本构建器，用于构建文本。 |
+| [OH_Drawing_GpuContext](capi-drawing-oh-drawing-gpucontext.md) | OH_Drawing_GpuContext | 定义图形处理器上下文，用于描述图形处理器后端上下文。 |
+| [OH_Drawing_Surface](capi-drawing-oh-drawing-surface.md) | OH_Drawing_Surface | 定义surface，用于管理画布绘制的内容。 |
+| [OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md) | OH_Drawing_FontMgr | 定义字体管理类, 用于字体管理。 |
+| [OH_Drawing_FontStyleSet](capi-drawing-oh-drawing-fontstyleset.md) | OH_Drawing_FontStyleSet | 定义字体样式集, 用于字体样式族匹配。 |
+| [OH_Drawing_RecordCmdUtils](capi-drawing-oh-drawing-recordcmdutils.md) | OH_Drawing_RecordCmdUtils | 定义指令录制工具，用于生成录制指令。 |
+| [OH_Drawing_RecordCmd](capi-drawing-oh-drawing-recordcmd.md) | OH_Drawing_RecordCmd | 定义录制指令类, 用于存储录制指令的集合。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md) | OH_Drawing_Array | 定义数组对象, 用于存储多个同类型对象。 |
 
 ### 枚举
 

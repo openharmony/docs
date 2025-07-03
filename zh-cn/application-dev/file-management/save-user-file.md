@@ -4,7 +4,7 @@
 
 **权限说明**
 
-- 通过Picker获取的uri默认只具备**临时读写权限**，临时授权在应用退出后台自动失效。
+- 通过Picker获取的URI默认只具备**临时读写权限**，临时授权在应用退出后台自动失效。
 - 获取持久化权限需要通过[FilePicker设置永久授权](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)方式获取。（仅限2in1设备）。
 - 使用Picker对音频、图片、视频、文档类文件的保存操作**无需申请权限**。
 
@@ -17,7 +17,7 @@
 
 [PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpickerdeprecated)在后续版本不再演进，建议使用[Media Library Kit（媒体文件管理服务）中能力来保存媒体库资源](../media/medialibrary/photoAccessHelper-savebutton.md)。
 
-如果开发场景无法调用安全控件进行图片、视频保存，可使用相册管理模块[PhotoAccessHelper.showAssetsCreationDialog](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12)接口进行保存操作。
+如果开发场景无法调用安全控件进行图片、视频保存，可使用相册管理模块[PhotoAccessHelper.showAssetsCreationDialog](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#showassetscreationdialog12)接口进行保存操作。
 
 ## 保存文档类文件
 

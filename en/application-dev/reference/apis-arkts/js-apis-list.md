@@ -1,14 +1,14 @@
 # @ohos.util.List (Linear Container List)
 
-**List** is implemented based on the singly linked list. Each node has a reference pointing to the next element. When querying an element, the system traverses the list from the beginning. **List** offers efficient insertion and removal operations but supports low query efficiency. **List** allows null elements.
+List is implemented based on the singly linked list. Each node has a reference pointing to the next element. Elements must be traversed from the beginning, making querying inefficient. However, insertion and deletion operations are highly efficient. List allows null elements.
 
-Unlike [LinkedList](js-apis-linkedlist.md), which is a doubly linked list, **List** is a singly linked list that does not support insertion or removal at both ends.
+Unlike [LinkedList](js-apis-linkedlist.md), which is a doubly linked list, List is a singly linked list that does not support insertion or removal at both ends.
 
 > **NOTE**
 >
-> Although using \[index\] in **List** can obtain an element with the given index, this operation will result in undefined results. Due to this reason, **get()** method is recommended.
+> Accessing elements in a List using the \[index\] syntax may lead to undefined results. You are advised to use **get()** instead.
 
-**Recommended use case**: Use **List** for frequent insertion and removal operations when a singly linked list is required.
+**Recommended use case**: Use List for frequent insertion and removal operations when a singly linked list is required.
 
 This topic uses the following to identify the use of generics:
 - T: Type
@@ -27,7 +27,7 @@ import { List } from '@kit.ArkTS';
 
 ## List
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -35,7 +35,7 @@ import { List } from '@kit.ArkTS';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in a list (called container later).|
+| length | number | Yes| No| Number of elements in a List.|
 
 
 ### constructor
@@ -67,7 +67,7 @@ let list: List<string | number | boolean | object> = new List();
 
 add(element: T): boolean
 
-Adds an element at the end of this container.
+Adds an element at the end of this List.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -83,7 +83,7 @@ Adds an element at the end of this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the element is added; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -114,7 +114,7 @@ let result5 = list.add(false);
 
 insert(element: T, index: number): void
 
-Inserts an element at the specified position in this container.
+Inserts an element at the specified position in this List.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -150,7 +150,7 @@ list.insert(true, 2);
 
 has(element: T): boolean
 
-Checks whether this container has the specified element.
+Checks whether this List has the specified element.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -166,7 +166,7 @@ Checks whether this container has the specified element.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the specified element is contained; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -188,7 +188,7 @@ let result = list.has("squirrel");
 
 get(index: number): T
 
-Obtains the element at the specified position in this container.
+Obtains the element at the specified position in this List.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -233,7 +233,7 @@ let result = list.get(2);
 
 getLastIndexOf(element: T): number
 
-Obtains the index of the last occurrence of the specified element in this container.
+Obtains the index of the last occurrence of the specified element in this List.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -249,7 +249,7 @@ Obtains the index of the last occurrence of the specified element in this contai
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the index if obtained; returns **-1** otherwise.|
+| number | Index of the element. If no match is found, **-1** is returned.|
 
 **Error codes**
 
@@ -277,7 +277,7 @@ let result = list.getLastIndexOf(2);
 
 getIndexOf(element: T): number
 
-Obtains the index of the first occurrence of the specified element in this container.
+Obtains the index of the first occurrence of the specified element in this List.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -293,7 +293,7 @@ Obtains the index of the first occurrence of the specified element in this conta
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Index of the element. If no match is found, **-1** is returned.|
 
 **Error codes**
 
@@ -321,7 +321,7 @@ let result = list.getIndexOf(2);
 
 equal(obj: Object): boolean
 
-Compares whether a specified object is equal to this container.
+Compares whether a specified object is equal to this List.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -337,7 +337,7 @@ Compares whether a specified object is equal to this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the two are equal; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the two are equal; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -409,7 +409,7 @@ let result = list.removeByIndex(2);
 
 remove(element: T): boolean
 
-Removes the first occurrence of the specified element from this container.
+Removes the first occurrence of the specified element from this List.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -425,7 +425,7 @@ Removes the first occurrence of the specified element from this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the element is removed; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -451,7 +451,7 @@ let result = list.remove(2);
 replaceAllElements(callbackFn: (value: T, index?: number, list?: List&lt;T&gt;) => T,
 thisArg?: Object): void
 
-Replaces all elements in this container with new elements, and returns the new ones.
+Replaces all elements in this List with new elements, and returns the new ones.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -464,7 +464,7 @@ Replaces all elements in this container with new elements, and returns the new o
 | callbackFn | function | Yes| Callback invoked for the replacement.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackFn
+callbackFn parameters
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -500,7 +500,7 @@ list.replaceAllElements((value: number) => {
 forEach(callbackFn: (value: T, index?: number, List?: List&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the elements in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this List and obtain their indexes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -513,7 +513,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | callbackFn | function | Yes| Callback invoked for the replacement.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackFn
+callbackFn parameters
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -547,7 +547,7 @@ list.forEach((value: number, index?: number) => {
 
 sort(comparator: (firstValue: T, secondValue: T) => number): void
 
-Sorts elements in this container.
+Sorts elements in this List.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -591,7 +591,7 @@ list.sort((a: number, b: number) => b - a); // The elements are sorted in descen
 
 getSubList(fromIndex: number, toIndex: number): List&lt;T&gt;
 
-Obtains elements within a range in this container, including the element at the start position but not that at the end position, and returns these elements as a new **List** instance.
+Obtains elements within a range in this List, including the element at the start position but not that at the end position, and returns these elements as a new **List** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -635,7 +635,7 @@ let result = list.getSubList(1, 3);
 
 clear(): void
 
-Clears this container and sets its length to **0**.
+Clears this List and sets its length to **0**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -664,7 +664,7 @@ list.clear();
 
 set(index: number, element: T): T
 
-Replaces an element at the specified position in this container with a given element.
+Replaces an element at the specified position in this List with a given element.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -708,7 +708,7 @@ let result = list.set(2, "b");
 
 convertToArray(): Array&lt;T&gt;
 
-Converts this container into an array.
+Converts this List into an array and returns the array.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -743,7 +743,7 @@ let result = list.convertToArray();
 
 isEmpty(): boolean
 
-Checks whether this container is empty (contains no element).
+Checks whether this List is empty (contains no element).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -753,7 +753,7 @@ Checks whether this container is empty (contains no element).
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the List is empty; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -778,7 +778,7 @@ let result = list.isEmpty();
 
 getFirst(): T
 
-Obtains the first element in this container.
+Obtains the first element in this List.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -813,7 +813,7 @@ let result = list.getFirst();
 
 getLast(): T
 
-Obtains the last element in this container.
+Obtains the last element in this List.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -848,7 +848,7 @@ let result = list.getLast();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Returns an iterator, each item of which is a JavaScript object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -878,7 +878,7 @@ list.add(5);
 list.add(4);
 
 // Method 1:
-let items = Array.from(list)
+let items = Array.from(list);
 for (let item of items) {
   console.log("value: " + item);
 }

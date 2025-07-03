@@ -7,9 +7,13 @@
 
 **库：** libnative_media_venc.so
 
+**引用文件：** <multimedia/player_framework/native_avcodec_videoencoder.h>
+
 **起始版本：** 9
 
 **相关模块：**[VideoEncoder](_video_encoder.md)
+
+**相关示例：**[AVCodec](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
 
 
 ## 汇总
@@ -56,4 +60,8 @@
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_PushInputParameter](_video_encoder.md#oh_videoencoder_pushinputparameter) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将填入数据的输入参数缓冲区提交给视频编码器。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_FreeOutputBuffer](_video_encoder.md#oh_videoencoder_freeoutputbuffer) (OH_AVCodec \*codec, uint32_t index) | 将处理后的输出缓冲区返回给编码器。 | 
 | [OH_AVFormat](_core.md#oh_avformat) \* [OH_VideoEncoder_GetInputDescription](_video_encoder.md#oh_videoencoder_getinputdescription) (OH_AVCodec \*codec) | 获取视频编码器接收的描述信息。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_IsValid](_video_encoder.md#oh_videoencoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | 检查当前编码实例是否有效。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_IsValid](_video_encoder.md#oh_videoencoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | 检查当前编码实例是否有效。 |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_QueryInputBuffer](_video_encoder.md#oh_videoencoder_queryinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | 查询下一个可用输入缓冲区的索引。 | 
+| [OH_AVBuffer](_core.md#oh_avbuffer) [OH_VideoEncoder_GetInputBuffer](_video_encoder.md#oh_videoencoder_getinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 获取可用输入缓冲区的实例。 |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_QueryOutputBuffer](_video_encoder.md#oh_videoencoder_queryoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | 查询下一个可用输出缓冲区的索引。 | 
+| [OH_AVBuffer](_core.md#oh_avbuffer) [OH_VideoEncoder_GetOutputBuffer](_video_encoder.md#oh_videoencoder_getoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 获取可用输出缓冲区的实例。 |
