@@ -1505,6 +1505,48 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 }
 ```
 
+### getPhotoPickerComponentDefaultAlbumName<sup>20+</sup>
+
+getPhotoPickerComponentDefaultAlbumName(): Promise&lt;string&gt;
+
+应用使用PhotoPickerComponent组件选择照片时，支持调用API获取组件默认显示相册的相册名字符串。跟随当前系统语言，支持返回当前语言的相册名。使用Promise异步回调。
+
+**原子化服务API**： 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;string&gt;| Promise对象，返回默认相册的相册名。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 23800301   | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. The IPC request timed out. 2. system running error.         |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import {photoAccessHelper} from '@kit.MediaLibraryKit';
+
+async function example(context: Context) {
+  console.info('getPhotoPickerComponentDefaultAlbumNameDemo');
+  let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
+  phAccessHelper.getPhotoPickerComponentDefaultAlbumName().then((defaultAlbumName) => {
+    console.info('getPhotoPickerComponentDefaultAlbumName success, defaultAlbumName is ' + defaultAlbumName);
+  }).catch((err: BusinessError) => {
+    console.error(`getPhotoPickerComponentDefaultAlbumName failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
 ## PhotoAsset
 
 提供封装文件属性的方法。
