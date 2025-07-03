@@ -817,7 +817,7 @@ RichEditor(this.infoShowOptions)
   }
   ```
 
-  ![RichEditor_disable_menuItems](figures/RichEditor_disable_menuItems.gif)
+  ![alt text](figures/richEditor_disable_menuItems.gif)
 
 ### 默认菜单支持自定义刷新能力
 

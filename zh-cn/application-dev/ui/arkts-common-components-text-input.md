@@ -220,6 +220,100 @@ TextArea({text : '这是一段文本，用来展示选中菜单'})
 ```
 ![TextArea_select_menu](figures/TextArea_select_menu.jpg)
 
+## 禁用系统服务类菜单
+
+从API version 20开始，支持使用[disableSystemServiceMenuItems](../reference/apis-arkui/js-apis-arkui-UIContext.md#disablesystemservicemenuitems20)方法屏蔽文本选择菜单中的所有系统服务菜单项。
+
+  ```ts
+  import { TextMenuController } from '@kit.ArkUI';
+  
+  // xxx.ets
+  @Entry
+  @Component
+  struct Index {
+    aboutToAppear(): void {
+      // 禁用所有系统服务菜单项
+      TextMenuController.disableSystemServiceMenuItems(true)
+    }
+  
+    aboutToDisappear(): void {
+      // 页面消失时恢复系统服务菜单项
+      TextMenuController.disableSystemServiceMenuItems(false)
+    }
+  
+    build() {
+      Row() {
+        Column() {
+          TextInput({ text: "这是一个TextInput，长按弹出文本选择菜单" })
+            .height(60)
+            .fontStyle(FontStyle.Italic)
+            .fontWeight(FontWeight.Bold)
+            .textAlign(TextAlign.Center)
+            .caretStyle({ width: '4vp' })
+            .editMenuOptions({
+              onCreateMenu: (menuItems: Array<TextMenuItem>) => {
+                // menuItems不包含被屏蔽的系统菜单项
+                return menuItems
+              },
+              onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+                return false
+              }
+            })
+        }.width('100%')
+      }
+      .height('100%')
+    }
+  }
+  ```
+
+  ![TextInput_disable_system_service_menu_items](figures/TextInput_disable_system_service_menu_items.gif)
+
+从API version 20开始，支持使用[disableMenuItems](../reference/apis-arkui/js-apis-arkui-UIContext.md#disablemenuitems20)方法屏蔽文本选择菜单中指定的系统服务菜单项。
+
+  ```ts
+  import { TextMenuController } from '@kit.ArkUI';
+  
+  // xxx.ets
+  @Entry
+  @Component
+  struct Index {
+    aboutToAppear(): void {
+      // 禁用搜索和翻译
+      TextMenuController.disableMenuItems([TextMenuItemId.SEARCH, TextMenuItemId.TRANSLATE])
+    }
+  
+    aboutToDisappear(): void {
+      // 页面消失时恢复系统服务菜单项
+      TextMenuController.disableMenuItems([])
+    }
+  
+    build() {
+      Row() {
+        Column() {
+          TextInput({ text: "这是一个TextInput，长按弹出文本选择菜单" })
+            .height(60)
+            .fontStyle(FontStyle.Italic)
+            .fontWeight(FontWeight.Bold)
+            .textAlign(TextAlign.Center)
+            .caretStyle({ width: '4vp' })
+            .editMenuOptions({
+              onCreateMenu: (menuItems: Array<TextMenuItem>) => {
+                  // menuItems不包含搜索和翻译
+                  return menuItems;
+              },
+              onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+                  return false
+              }
+            })
+        }.width('100%')
+      }
+      .height('100%')
+    }
+  }
+  ```
+
+  ![Text_input_disable_menu_items](figures/Text_input_disable_menu_items.gif)
+
 ## 自动填充
 
 输入框可以通过[contentType](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#contenttype12)属性设置自动填充类型。
@@ -265,6 +359,20 @@ TextInput({ placeholder: '输入你的邮箱...' })
     .strokeColor(Color.Red)
   ```
   ![TextInput_stroke](figures/TextInput_stroke.jpg)
+
+## 设置文本行间距
+
+从API version 20开始，支持通过[lineSpacing](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#linespacing20)设置文本的行间距。如果不配置[LineSpacingOptions](../reference/apis-arkui/arkui-ts/ts-text-common.md#linespacingoptions20对象说明)时，首行上方和尾行下方默认会有行间距。如果onlyBetweenLines设置为true时，行间距仅适用于行与行之间，首行上方无额外行间距。
+
+```ts
+TextArea({
+        text: 'The line spacing of this TextArea is set to 20_px, and the spacing is effective only between the lines.'
+      })
+        .fontSize(22)
+        .lineSpacing(LengthMetrics.px(20), { onlyBetweenLines: true })
+```
+
+![TextInput_line_spacing](figures/TextInput_line_spacing.jpg)
 
 ## 键盘避让
 
