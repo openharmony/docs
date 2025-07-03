@@ -551,7 +551,7 @@
     await huks.generateKeyItem(aliasAlice, dhGenOptions)
     await huks.generateKeyItem(aliasBob, dhGenOptions)
 
-    /* 导出非对称密钥alice与bob的的公钥 */
+    /* 导出非对称密钥alice与bob的公钥 */
     const pubKeyAlice = await huks.exportKeyItem(aliasAlice, emptyOptions)
     const pubKeyBob = await huks.exportKeyItem(aliasBob, emptyOptions)
 
