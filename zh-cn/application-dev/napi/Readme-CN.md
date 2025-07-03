@@ -90,12 +90,12 @@
       - [使用JSVM-API接口进行 private 属性相关开发](use-jsvm-about-private.md)
       - [使用JSVM-API接口提供Latin1/UTF16格式字符串相关开发](use-jsvm-about-external-string.md)
       - [使用JSVM-API接口进行Proxy相关开发](use-jsvm-about-proxy.md)
-      - [使用JSVM-API接口进行well-known symbols相关开发](use-jsvm-about-well-known-symbols.md)
-      - [使用JSVM-API接口进行装箱类型判断相关开发](use-jsvm-about-wrapper-object.md)
+      - [使用JSVM-API接口进行Wellknown symbols相关开发](use-jsvm-about-well-known-symbols.md)
+      - [使用JSVM-API接口进行Wrapper object相关开发](use-jsvm-about-wrapper-object.md)
       - [使用JSVM-API接口创建基本数据类型](use-jsvm-basic-data-types.md)
     - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
-      - [JSVM-API Tracing](use-jsvm-about-trace.md)
+      - [使用JSVM-API接口进行Trace相关开发](use-jsvm-about-trace.md)
       - [JSVM 申请JIT权限指导](jsvm-apply-jit-profile.md)
       - [JSVM 坚盾守护模式](jsvm-secure-shield-mode.md)
       - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
