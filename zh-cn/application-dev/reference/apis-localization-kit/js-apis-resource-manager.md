@@ -341,13 +341,9 @@ type Resource = _Resource
 >
 > - ResourceManager涉及到的方法，仅限基于TS扩展的声明式开发范式使用。
 >
-> - 资源文件在工程的resources目录中定义，通过resId、resName、resource对象等可以获取对应的字符串、字符串数组、颜色等资源值，resId可通过`$r(资源地址).id`的方式获取，例如`$r('app.string.test').id`。
+> - 资源文件在工程的resources目录中定义，通过resName、resId、Resource对象等可以获取对应的字符串、字符串数组、颜色等资源值，resName为资源名称，resId可通过`$r(资源地址).id`的方式获取，例如`$r('app.string.test').id`。
 >
-> - [resource](#resource9)对象适用于多工程应用内的跨包访问，因resource对象需创建对应module的context获取资源，故相比于入参为resId、resName的接口耗时更长。
->
-> - 单HAP包获取自身资源，推荐使用参数为resId或resName的接口。跨HAP/HSP包获取资源，推荐使用[createModuleContext](../apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)创建对应module的context，再调用参数为resId或resName的接口。
->
-> - 单HAP包和跨HAP/HSP包资源的访问方式具体请参考[资源访问](../../quick-start/resource-categories-and-access.md#资源访问)。
+> - 单HAP包获取自身资源、跨HAP/HSP包获取资源，由于入参为Resource的接口相比于入参为resName、resId的接口耗时更长，因此更推荐使用参数为resName或resId的接口。跨HAP/HSP包获取资源，**需要先使用[createModuleContext](../apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)创建对应module的context**，再调用参数为resName或resId的接口。具体请参考[资源访问](../../quick-start/resource-categories-and-access.md#资源访问)。
 >
 > - 示例代码中test文件的具体内容请参考[附录](#附录)。
 
@@ -477,6 +473,10 @@ getStringSync(resource: Resource): string
 
 获取指定resource对象对应的字符串，使用同步方式返回。
 
+> **说明**
+>
+> 推荐使用[getStringByNameSync](#getstringbynamesync9)或[getStringSync](#getstringsync9)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
@@ -543,6 +543,10 @@ getStringSync(resource: Resource): string
 getStringSync(resource: Resource, ...args: Array<string | number>): string
 
 获取指定resource对象对应的字符串，并根据args参数对字符串进行格式化，使用同步方式返回。
+
+> **说明**
+>
+> 推荐使用[getStringByNameSync](#getstringbynamesync10)或[getStringSync](#getstringsync10)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -842,6 +846,10 @@ getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 
 获取指定resource对象对应的字符串，使用callback异步回调。
 
+> **说明**
+>
+> 推荐使用[getStringByName](#getstringbyname9)或[getStringValue](#getstringvalue9)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
@@ -902,6 +910,10 @@ getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 getStringValue(resource: Resource): Promise&lt;string&gt;
 
 获取指定resource对象对应的字符串，使用Promise异步回调。
+
+> **说明**
+>
+> 推荐使用[getStringByName](#getstringbyname9-1)或[getStringValue](#getstringvalue9-1)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1129,6 +1141,10 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
 获取指定resource对象对应的字符串数组，使用同步方式返回。
+
+> **说明**
+>
+> 推荐使用[getStringArrayByNameSync](#getstringarraybynamesync10)或[getStringArrayValueSync](#getstringarrayvaluesync10)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1384,6 +1400,10 @@ getStringArrayValue(resource: Resource, callback: _AsyncCallback&lt;Array&lt;str
 
 获取指定resource对象对应的字符串数组，使用callback异步回调。
 
+> **说明**
+>
+> 推荐使用[getStringArrayByName](#getstringarraybyname9)或[getStringArrayValue](#getstringarrayvalue9)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
@@ -1448,6 +1468,10 @@ getStringArrayValue(resource: Resource, callback: _AsyncCallback&lt;Array&lt;str
 getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 获取指定resource对象对应的字符串数组，使用Promise异步回调。
+
+> **说明**
+>
+> 推荐使用[getStringArrayByName](#getstringarraybyname9-1)或[getStringArrayValue](#getstringarrayvalue9-1)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1717,7 +1741,9 @@ getIntPluralStringValueSync(resource: Resource, num: number, ...args: Array<stri
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
+> - 推荐使用[getIntPluralStringByNameSync](#getintpluralstringbynamesync18)或[getIntPluralStringValueSync](#getintpluralstringvaluesync18)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
+>
+> - 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1954,7 +1980,9 @@ getDoublePluralStringValueSync(resource: Resource, num: number, ...args: Array<s
 
 > **说明**
 >
-> 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
+> - 推荐使用[getDoublePluralStringByNameSync](#getdoublepluralstringbynamesync18)或[getDoublePluralStringValueSync](#getdoublepluralstringvaluesync18)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
+>
+> - 中文环境下，字符串不区分单复数；其他语言环境下，字符串区分单复数，具体规则参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -2166,6 +2194,10 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
 获取指定resource对象对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
+
+> **说明**
+>
+> 推荐使用[getMediaByNameSync](#getmediabynamesync10)或[getMediaContentSync](#getmediacontentsync10)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2475,6 +2507,10 @@ getMediaContent(resource: Resource, callback: _AsyncCallback&lt;Uint8Array&gt;):
 
 获取指定resource对象对应的媒体文件内容，使用callback异步回调。
 
+> **说明**
+>
+> 推荐使用[getMediaByName](#getmediabyname9)或[getMediaContent](#getmediacontent9)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
@@ -2528,6 +2564,10 @@ getMediaContent(resource: Resource, callback: _AsyncCallback&lt;Uint8Array&gt;):
 getMediaContent(resource: Resource, density: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
 获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback异步回调。
+
+> **说明**
+>
+> 推荐使用[getMediaByName](#getmediabyname10)或[getMediaContent](#getmediacontent10)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2583,6 +2623,10 @@ getMediaContent(resource: Resource, density: number, callback: _AsyncCallback&lt
 getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 获取指定resource对象对应的媒体文件内容，使用Promise异步回调。
+
+> **说明**
+>
+> 推荐使用[getMediaByName](#getmediabyname9-1)或[getMediaContent](#getmediacontent9-1)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2640,6 +2684,10 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
+
+> **说明**
+>
+> 推荐使用[getMediaByName](#getmediabyname10-1)或[getMediaContent](#getmediacontent10-1)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2944,6 +2992,10 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 getMediaContentBase64Sync(resource: Resource, density?: number): string
 
 获取指定resource对象对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
+
+> **说明**
+>
+> 推荐使用[getMediaBase64ByNameSync](#getmediabase64bynamesync10)或[getMediaContentBase64Sync](#getmediacontentbase64sync10)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3253,6 +3305,10 @@ getMediaContentBase64(resource: Resource, callback: _AsyncCallback&lt;string&gt;
 
 获取指定resource对象对应的图片资源Base64编码，使用callback异步回调。
 
+> **说明**
+>
+> 推荐使用[getMediaBase64ByName](#getmediabase64byname9)或[getMediaContentBase64](#getmediacontentbase649)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
@@ -3306,6 +3362,10 @@ getMediaContentBase64(resource: Resource, callback: _AsyncCallback&lt;string&gt;
 getMediaContentBase64(resource: Resource, density: number, callback: _AsyncCallback&lt;string&gt;): void
 
 获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
+
+> **说明**
+>
+> 推荐使用[getMediaBase64ByName](#getmediabase64byname10)或[getMediaContentBase64](#getmediacontentbase6410)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3361,6 +3421,10 @@ getMediaContentBase64(resource: Resource, density: number, callback: _AsyncCallb
 getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 获取指定resource对象对应的图片资源Base64编码，使用Promise异步回调。
+
+> **说明**
+>
+> 推荐使用[getMediaBase64ByName](#getmediabase64byname9-1)或[getMediaContentBase64](#getmediacontentbase649-1)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3418,6 +3482,10 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt;
 
 获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
+
+> **说明**
+>
+> 推荐使用[getMediaBase64ByName](#getmediabase64byname10-1)或[getMediaContentBase64](#getmediacontentbase6410-1)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3522,6 +3590,10 @@ getMediaBase64ByName(resName: string, callback: _AsyncCallback&lt;string&gt;): v
 getMediaBase64ByName(resName: string, density: number, callback: _AsyncCallback&lt;string&gt;): void
 
 获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
+
+> **说明**
+>
+> 推荐使用[getMediaBase64ByName](#getmediacontentbase6410)或[getMediaContentBase64](#getmediacontentbase6410)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3731,6 +3803,10 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 
 获取指定resource对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
 
+> **说明**
+>
+> 推荐使用[getDrawableDescriptorByName](#getdrawabledescriptorbyname10)或[getDrawableDescriptor](#getdrawabledescriptor10)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
@@ -3920,6 +3996,10 @@ getBoolean(resId: number): boolean
 getBoolean(resource: Resource): boolean
 
 获取指定resource对象对应的布尔值，使用同步方式返回。
+
+> **说明**
+>
+> 推荐使用[getBooleanByName](#getbooleanbyname9)或[getBoolean](#getboolean9)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4133,7 +4213,7 @@ getNumber(resource: Resource): number
 
 > **说明**
 >
-> 该接口获取单位为"vp"的float值时，与参数为resId的接口获取到的值不一致，通过resId获取的值是准确的。该问题正在优化改进，推荐优先使用[getNumber](#getnumber9)或[getNumberByName](#getnumberbyname9)接口。
+> 推荐使用[getNumberByName](#getnumberbyname9)或[getNumber](#getnumber9)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4380,7 +4460,7 @@ getColorSync(resource: Resource): number
 
 > **说明**
 >
-> 该接口在深色模式下会返回浅色资源，与参数为resId的接口返回值不一致。该问题正在优化改进，推荐优先使用[getColorSync](#getcolorsync10)或[getColorByNameSync](#getcolorbynamesync10)接口。
+> 推荐使用[getColorByNameSync](#getcolorbynamesync10)或[getColorSync](#getcolorsync10)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4621,7 +4701,7 @@ getColor(resource: Resource, callback: _AsyncCallback&lt;number&gt;): void
 
 > **说明**
 >
-> 该接口在深色模式下会返回浅色资源，与参数为resId的接口返回值不一致。该问题正在优化改进，推荐优先使用[getColor](#getcolor10)接口。
+> 推荐使用[getColorByName](#getcolorbyname10)或[getColor](#getcolor10)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4686,7 +4766,7 @@ getColor(resource: Resource): Promise&lt;number&gt;
 
 > **说明**
 >
-> 该接口在深色模式下会返回浅色资源，与参数为resId的接口返回值不一致。该问题正在优化改进，推荐优先使用[getColor](#getcolor10-1)接口。
+> 推荐使用[getColorByName](#getcolorbyname10-1)或[getColor](#getcolor10-1)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -5800,6 +5880,10 @@ getSymbol(resId: number): number
 getSymbol(resource: Resource): number
 
 获取指定resource对象对应的[Symbol字符](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol)Unicode码，使用同步方式返回。
+
+> **说明**
+>
+> 推荐使用[getSymbolByName](#getsymbolbyname11)或[getSymbol](#getsymbol11)接口，具体请参考[ResourceManager](#resourcemanager)的说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
