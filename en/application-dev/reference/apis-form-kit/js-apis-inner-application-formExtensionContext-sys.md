@@ -1,6 +1,6 @@
 # FormExtensionContext (System API)
 
-The FormExtensionContext module, inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md), provides the context environment for the [FormExtensionAbility](js-apis-app-form-formExtensionAbility.md).
+The **FormExtensionContext** module, inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md), provides the context environment for the [FormExtensionAbility](js-apis-app-form-formExtensionAbility.md).
 
 You can use the APIs of this module to start a FormExtensionAbility.
 

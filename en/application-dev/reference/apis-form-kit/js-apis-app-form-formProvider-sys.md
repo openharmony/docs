@@ -1,6 +1,6 @@
 # @ohos.app.form.formProvider (formProvider) (System API)
 
-The **FormProvider** module provides APIs related to the widget provider. You can use the APIs to update a widget, set the next refresh time for a widget, obtain widget information, and request a widget release.
+The **formProvider** module provides APIs to obtain widget information, update widgets, set the update time, and request a widget release.
 
 > **NOTE**
 >

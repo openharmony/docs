@@ -37,7 +37,7 @@ Carry out the following operations to develop the widget host based on the stage
 >
 > - The APIs provided by this component are system APIs.
 
-When a widget is added through **FormComponent**, the [onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform) API in **FormExtensionAbility** of the widget provider is called.
+When a widget is added through **FormComponent**, the [onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonaddform) API in **FormExtensionAbility** of the widget provider is called.
 
 ### Temporary and Normal Widgets
 
@@ -131,14 +131,14 @@ struct formHostSample {
     try {
       // Check whether the system is ready.
       formHost.isSystemReady().then(() => {
-        console.log('formHost isSystemReady success');
+        console.info('formHost isSystemReady success');
 
         // Subscribe to events indicating that a widget becomes invisible and events indicating that a widget becomes visible.
         let notifyInvisibleCallback = (data: formInfo.RunningFormInfo[]) => {
-          console.log(`form change invisibility, data: ${JSON.stringify(data)}`);
+          console.info(`form change invisibility, data: ${JSON.stringify(data)}`);
         }
         let notifyVisibleCallback = (data: formInfo.RunningFormInfo[]) => {
-          console.log(`form change visibility, data: ${JSON.stringify(data)}`);
+          console.info(`form change visibility, data: ${JSON.stringify(data)}`);
         }
         formObserver.on('notifyInvisible', notifyInvisibleCallback);
         formObserver.on('notifyVisible', notifyVisibleCallback);
@@ -152,7 +152,7 @@ struct formHostSample {
         } catch (errData) {
           let message = (errData as BusinessError).message;
           let errCode = (errData as BusinessError).code;
-          console.log(`errData is errCode:${errCode}  message:${message}`);
+          console.error(`errData is errCode:${errCode}  message:${message}`);
         }
         // Subscribe to bundle update events.
         try {
@@ -163,7 +163,7 @@ struct formHostSample {
         } catch (errData) {
           let message = (errData as BusinessError).message;
           let errCode = (errData as BusinessError).code;
-          console.log(`errData is errCode:${errCode}  message:${message}`);
+          console.error(`errData is errCode:${errCode}  message:${message}`);
         }
         // Subscribe to bundle uninstall events.
         try {
@@ -174,7 +174,7 @@ struct formHostSample {
         } catch (errData) {
           let message = (errData as BusinessError).message;
           let errCode = (errData as BusinessError).code;
-          console.log(`errData is errCode:${errCode}  message:${message}`);
+          console.error(`errData is errCode:${errCode}  message:${message}`);
         }
       }).catch((error: BusinessError) => {
         console.error(`error, code: ${error.code}, message: ${error.message}`);
@@ -188,7 +188,7 @@ struct formHostSample {
   aboutToDisappear(): void {
     // Delete all widgets.
     this.formIds.forEach((id) => {
-      console.log('delete all form')
+      console.info('delete all form')
       formHost.deleteForm(id);
     });
     // Unsubscribe from bundle installation events.
@@ -197,7 +197,7 @@ struct formHostSample {
     } catch (errData) {
       let message = (errData as BusinessError).message;
       let errCode = (errData as BusinessError).code;
-      console.log(`errData is errCode:${errCode}  message:${message}`);
+      console.error(`errData is errCode:${errCode}  message:${message}`);
     }
     // Unsubscribe from bundle update events.
     try {
@@ -205,7 +205,7 @@ struct formHostSample {
     } catch (errData) {
       let message = (errData as BusinessError).message;
       let errCode = (errData as BusinessError).code;
-      console.log(`errData is errCode:${errCode}  message:${message}`);
+      console.error(`errData is errCode:${errCode}  message:${message}`);
     }
     // Unsubscribe from bundle uninstall events.
     try {
@@ -213,7 +213,7 @@ struct formHostSample {
     } catch (errData) {
       let message = (errData as BusinessError).message;
       let errCode = (errData as BusinessError).code;
-      console.log(`errData is errCode:${errCode}  message:${message}`);
+      console.error(`errData is errCode:${errCode}  message:${message}`);
     }
     // Unsubscribe from events indicating that a widget becomes invisible and events indicating that a widget becomes visible.
     formObserver.off('notifyInvisible');
@@ -227,7 +227,7 @@ struct formHostSample {
     let formHapRecordMap: HashMap<string, formInfo.FormInfo[]> = new HashMap();
     this.formInfoRecord = [];
     formHost.getAllFormsInfo().then((formList: Array<formInfo.FormInfo>) => {
-      console.log('getALlFormsInfo size:' + formList.length)
+      console.info('getALlFormsInfo size:' + formList.length)
       for (let formItemInfo of formList) {
         let formBundleName = formItemInfo.bundleName;
         if (formHapRecordMap.hasKey(formBundleName)) {
@@ -276,8 +276,8 @@ struct formHostSample {
         Button($r('app.string.selectAddForm'))
           .enabled(this.showFormPicker)
           .onClick(() => {
-            console.info("TextPickerDialog: show()")
-            TextPickerDialog.show({
+            console.info("showTextPickerDialog")
+            this.getUIContext().showTextPickerDialog({
               range: this.formInfoRecord,
               selected: this.pickDialogIndex,
               canLoop: false,
@@ -337,12 +337,12 @@ struct formHostSample {
           .borderRadius(10)
           .borderWidth(1)
           .onAcquired((form: FormCallbackInfo) => {
-            console.log(`onAcquired: ${JSON.stringify(form)}`)
+            console.info(`onAcquired: ${JSON.stringify(form)}`)
             this.selectFormId = form.id.toString();
             this.formIds.add(this.selectFormId);
           })
           .onRouter(() => {
-            console.log(`onRouter`)
+            console.info(`onRouter`)
           })
           .onError((error) => {
             console.error(`onError: ${JSON.stringify(error)}`)
@@ -350,7 +350,7 @@ struct formHostSample {
           })
           .onUninstall((info: FormCallbackInfo) => {
             this.showForm = false;
-            console.error(`onUninstall: ${JSON.stringify(info)}`)
+            console.info(`onUninstall: ${JSON.stringify(info)}`)
             this.formIds.remove(this.selectFormId);
           })
 
@@ -395,7 +395,7 @@ struct formHostSample {
                       if (error) {
                         console.error(`deleteForm error, code: ${error.code}, message: ${error.message}`);
                       } else {
-                        console.log('formHost deleteForm success');
+                        console.info('formHost deleteForm success');
                       }
                     });
                   } catch (error) {
