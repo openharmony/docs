@@ -155,10 +155,10 @@ napi_value NapiGenericFailure(napi_env env, napi_callback_info)
 
 拷贝是必要的，因为会涉及到string生命周期。当触发GC的时候，ArkTS对象可能会在虚拟机里面被搬移，可能搬移到其他地方，也可能直接对象被回收。如果直接返回一个类似char*的地址，对象被移动或回收后，那这个地址的指向就不再是之前的字符串了，此时再用这个地址去解引用很容易崩溃。
 
-## 鸿蒙多线程下napi_env的使用注意事项
+## 多线程下napi_env的使用注意事项
 
 - 具体问题：   
-鸿蒙多线程下napi_env的使用注意事项是什么？是否存在napi_env切换导致的异常问题？是否必须在主线程？  
+多线程下napi_env的使用注意事项是什么？是否存在napi_env切换导致的异常问题？是否必须在主线程？  
 
 - 注意事项：   
 1. napi_env和ArkTS线程是绑定的，napi_env不能跨线程使用，否则会导致稳定性问题。
@@ -311,3 +311,9 @@ void FinalizeB(napi_env env, void* data, void* hint) {
     }
 }
 ```
+## napi_call_threadsafe_function回调任务不执行
+
+问题排查：
+原因一：`napi_call_threadsafe_function`函数调用返回值不为`napi_ok`。请确认调用`napi_tsfn`相关函数的返回值是否都是`napi_ok`，若不是，请根据[错误码文档](napi_status_introduction.md)排查返回值非`napi_ok`的原因。  
+原因二：env所在的ArkTS线程被阻塞。`napi_call_threadsafe_function`函数的回调将执行在env所在的ArkTS线程上，若ArkTS线程被阻塞，则线程安全函数回调不会被执行。  
+原因三：线程安全函数被重复初始化的`uv_async_t`句柄影响，导致任务不执行。若某个`uv_async_t`句柄被重新初始化，第一次初始化和重复初始化范围内所创建所有`uv_async_t`句柄将无法被uv访问。线程安全函数是基于`uv_async_t`机制实现，在该特殊场景下创建线程安全函数将失效。  

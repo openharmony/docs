@@ -22,12 +22,12 @@
 8. [【NAPI】native层调用ts层对象方法，必须传入一个function给native层吗？](napi-faq-about-common-basic.md#Native层调用ts层对象方法必须传入一个function给Native层吗)    
 9. [在c++通过pthread或std::thread创建的线程，是否能调用ets的方法并获取到结果？](napi-faq-about-common-basic.md#是否能调用ets的方法并获取到结果)    
 10. [当前napi的napi_get_value_string_utf8每次调用的时候都要进行拷贝，是否有nocopy、不拷贝的napi_get_value_string_utf8接口或者能力？ ](napi-faq-about-common-basic.md#是否有不拷贝的napi_get_value_string_utf8接口或者能力)    
-11. [鸿蒙多线程下napi env的使用注意事项是什么？是否存在napi_env切换导致的异常问题？是否必须在主线程?](napi-faq-about-common-basic.md#鸿蒙多线程下napi_env的使用注意事项)        
+11. [多线程下napi env的使用注意事项是什么？是否存在napi_env切换导致的异常问题？是否必须在主线程?](napi-faq-about-common-basic.md#多线程下napi_env的使用注意事项)        
 12. [请问napi_call_threadsafe_function执行顺序是怎样的？](napi-faq-about-common-basic.md#napi_call_threadsafe_function执行顺序不符合预期)         
 13. [ArkTS/JS侧import xxx from libxxx.so后，使用xxx报错显示undefined/not callable或明确的Error message](napi-faq-about-common-basic.md#ArkTS侧报错显示undefined)    
 14. [接口执行结果非预期，日志显示occur exception need return](napi-faq-about-common-basic.md#接口执行结果非预期)  
 15. [napi_value和napi_ref的生命周期有何区别](napi-faq-about-common-basic.md#napi_value和napi_ref的生命周期有何区别)  
 16. [Node-API接口返回值不是napi_ok时，如何排查定位](napi-faq-about-common-basic.md#Node-API接口返回值不是napi_ok时如何排查定位)   
 17. [napi_wrap如何保证被wrap的对象按期望顺序析构？](napi-faq-about-common-basic.md#napi_wrap如何保证被wrap的对象按期望顺序析构)
-
+18. [napi_call_threadsafe_function回调任务不执行](napi-faq-about-common-basic.md#napi_call_threadsafe_function回调任务不执行)
 
