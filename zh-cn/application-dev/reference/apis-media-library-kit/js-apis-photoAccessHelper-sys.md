@@ -4732,6 +4732,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 | lpath<sup>18+</sup>    | string | 是    | 是   | 相册虚拟路径。<br>**系统接口**：此接口为系统接口。|
 | dateAdded<sup>18+</sup>    | number | 是    | 是   | 相册添加时间。<br>**系统接口**：此接口为系统接口。|
 | dateModified<sup>18+</sup>    | number | 是    | 是   | 相册修改时间。<br>**系统接口**：此接口为系统接口。|
+| coverUriSource<sup>20+</sup>    | number | 是    | 是   | 相册封面来源。<br>**系统接口**：此接口为系统接口。|
 
 ### recoverAssets<sup>(deprecated)</sup>
 
@@ -6438,6 +6439,53 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     console.info('setCoverUri successfully');
   } catch (err) {
     console.error(`setCoverUriDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### resetCoverUri<sup>20+</sup>
+
+resetCoverUri(): void
+
+恢复默认封面。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 23800301       | Internal system error.It is recommended to retry and check the logs. Possible causes: 1. Database corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+  console.info('resetCoverUriDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.resetCoverUri();
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('resetCoverUri successfully');
+  } catch (err) {
+    console.error(`resetCoverUriDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -9223,6 +9271,7 @@ async example() {
 | ALBUM_LPATH<sup>18+</sup>          | 'lpath'                 | 相册的虚拟路径。<br>**系统接口**：此接口为系统接口。            |
 | BUNDLE_NAME<sup>18+</sup>          | 'bundle_name'                 | 相册的包名。<br>**系统接口**：此接口为系统接口。            |
 | DATE_MODIFIED<sup>18+</sup>        | 'date_modified'         | 相册修改的时间戳（单位：毫秒）。<br>**系统接口**：此接口为系统接口。            |
+| COVER_URI_SOURCE<sup>20+</sup>     | 'cover_uri_source'      | 相册封面的来源。<br>**系统接口**：此接口为系统接口。            |
 
 ## HiddenPhotosDisplayMode<sup>11+</sup>
 
@@ -9768,3 +9817,16 @@ async example() {
 | fileId | number | 是 | 否 | 图片id，必须为大于0的整数。 |
 | shareCount | number | 是 | 否 | 图片和视频被分享的次数，必须为大于0的整数。 |
 | lcdJumpCount | number | 是 | 否 | 大图跳转分享等次数，必须为大于0的整数。 |
+
+## CoverUriSource<sup>20+</sup>
+
+枚举，表示相册封面的来源。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                      | 值   | 说明                             |
+| ------------------------- | ---- | -------------------------------- |
+| DEFAULT_COVER        | 0    | 默认封面。     |
+| MANUAL_COVER         | 1    | 手动设置的封面。     |
