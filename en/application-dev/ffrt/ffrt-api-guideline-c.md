@@ -2508,7 +2508,7 @@ struct ffrt_fiber_t;
 
 #### Description
 
-`Ffrt_fiber_t` is a fiber storage entity type used to store and restore execution context.
+`ffrt_fiber_t` is a fiber storage entity type used to store and restore execution context.
 
 #### Method
 
@@ -2530,11 +2530,11 @@ Parameters
 
 Return Values
 
-- Initialize successfully and return `ffrt_succee`, otherwise return `ffrt_error`. The usual reason is that the `stack_size` does not meet the minimum stack space limit (which varies among different platforms), and it is recommended to set a stack space of 4KB or more.
+- Initialize successfully and return `ffrt_success`; otherwise, return `ffrt_error`. The common reason is that the `stack_size` does not meet the minimum stack space limit, which varies across platforms. It is recommended to set a stack space of 4KB or more.
 
 Description
 
-- This function is used to initialize the fiber, which requires passing in the function pointer and parameters for starting the fiber, as well as the stack space used at runtime. The fiber does not manage any memory, and the lifecycle of the fiber stack is managed by the caller.
+- This function initializes the fiber by passing the function pointer, parameters for starting the fiber, and the runtime stack space. The caller manages the fiber stack's lifecycle.
 
 ##### ffrt_fiber_switch
 
