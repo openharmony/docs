@@ -264,6 +264,95 @@ struct Home {
 >
 > 另外，如果使用back方法返回到原来的页面，原页面不会被重复创建，因此使用\@State声明的变量不会重复声明，也不会触发页面的aboutToAppear生命周期回调。如果需要在原页面中使用返回页面传递的自定义参数，可以在需要的位置进行参数解析。例如，在onPageShow生命周期回调中进行参数解析。
 
+## 生命周期
+
+[router](../reference/apis-arkui/js-apis-router.md)页面生命周期，即被[\@Entry](state-management/arkts-create-custom-components.md#entry)装饰的组件生命周期，提供以下生命周期接口：
+
+- [onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)：页面每次显示时触发一次，包括路由过程、应用进入前台等场景。
+
+- [onPageHide](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpagehide)：页面每次隐藏时触发一次，包括路由过程、应用进入后台等场景。
+
+- [onBackPress](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onbackpress)：当用户点击返回按钮时触发。
+
+```ts
+// Index.ets
+@Entry
+@Component
+struct MyComponent {
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onPageShow() {
+    console.info('Index onPageShow');
+  }
+
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onPageHide() {
+    console.info('Index onPageHide');
+  }
+
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onBackPress() {
+    console.info('Index onBackPress');
+    // 返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理
+    return true;
+  }
+
+  build() {
+    Column() {
+      // push到Page页面，执行onPageHide
+      Button('push to next page')
+        .onClick(() => {
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/Page' });
+        })
+    }
+  }
+}
+```
+```ts
+// Page.ets
+@Entry
+@Component
+struct Page {
+  @State textColor: Color = Color.Black;
+  @State num: number = 0;
+
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onPageShow() {
+    console.info('Page onPageShow');
+    this.num = 5;
+  }
+
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onPageHide() {
+    console.info('Page onPageHide');
+  }
+
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onBackPress() { // 不设置返回值按照false处理
+    console.info('Page onBackPress');
+    this.textColor = Color.Grey;
+    this.num = 0;
+  }
+
+  build() {
+    Column() {
+      Text(`num 的值为：${this.num}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .fontColor(this.textColor)
+        .margin(20)
+        .onClick(() => {
+          this.num += 5;
+        })
+      Button('pop to previous page')
+        .onClick(() => {
+          this.getUIContext().getRouter().back();
+        })
+    }
+    .width('100%')
+  }
+}
+```
+![router_2025-07-02_152548](figures/router_2025-07-02_152548.gif)
 
 ## 页面返回前增加一个询问框
 
