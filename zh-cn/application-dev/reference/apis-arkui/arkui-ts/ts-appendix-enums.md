@@ -1086,6 +1086,8 @@ type Nullable\<T> = T | undefined
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
+下表列出了典型设备默认宽度断点的阈值划分，用于在基于窗口宽度断点布局设计时作为参考。个别设备可根据需求通过产品化配置调整断点阈值。
+
 | 名称     | 值   | 说明                   |
 | -------- | ---- | ---------------------- |
 | WIDTH_XS | 0   | 窗口宽度小于320vp。 |
@@ -1094,6 +1096,10 @@ type Nullable\<T> = T | undefined
 | WIDTH_LG | 3   | 窗口宽度大于等于840vp，且小于1440vp。 |
 | WIDTH_XL | 4   | 窗口宽度大于等于1440vp。 |
 
+> **说明：**
+>
+> 大多数应用在构建自适应布局时，可以只考虑窗口宽度断点。
+
 ## HeightBreakpoint<sup>13+</sup>
 
 表示窗口不同高宽比阈值下对应的高度断点枚举值。通过[getWindowHeightBreakpoint](../js-apis-arkui-UIContext.md#getwindowheightbreakpoint13)返回。
@@ -1101,6 +1107,8 @@ type Nullable\<T> = T | undefined
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+下表列出了典型设备默认高宽比断点的阈值划分，用于在基于窗口高宽比布局设计时作为参考。个别设备可根据需求通过产品化配置调整断点阈值。
 
 | 名称     | 值   | 说明                   |
 | -------- | ---- | ---------------------- |
