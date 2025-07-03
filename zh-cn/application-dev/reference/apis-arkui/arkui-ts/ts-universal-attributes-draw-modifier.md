@@ -359,7 +359,8 @@ struct DrawModifierExample {
         .height('100%')
         .textAlign(TextAlign.Center)
     }
-    .margin(100)
+    .margin(50)
+    .width(280)
     .height(300)
     .backgroundColor(0x87CEEB)
     // 调用此接口并传入自定义绘制前景的类实例，即可实现自定义绘制前景。
