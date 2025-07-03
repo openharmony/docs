@@ -112,7 +112,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
      videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式。
      profile : avProfile,
      url: 'fd://' + fileFd.toString(), // 参考应用文件访问与管理开发示例新建并读写一个视频文件。
-     metaData : videoMetaData
+     metadata : videoMetaData
    };
    this.avRecorder.prepare(avConfig).then(() => {
      console.info('avRecorder prepare success');
@@ -187,7 +187,7 @@ export class VideoRecorderDemo extends CustomComponent {
     videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式。
     profile : this.avProfile,
     url : 'fd://35', //  参考应用文件访问与管理开发示例新建并读写一个文件。
-    metaData : this.videoMetaData
+    metadata : this.videoMetaData
   };
   
   private uriPath: string = ''; // 文件uri，可用于安全控件保存媒体资源。
