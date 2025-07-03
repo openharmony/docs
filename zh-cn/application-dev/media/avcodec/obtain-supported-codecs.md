@@ -271,6 +271,10 @@ if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
 OH_AVFormat_Destroy(format);
 
 // 6.启动编码器，开始编码。
+ret = OH_VideoEncoder_Prepare(videoEnc);
+if (ret != AV_ERR_OK) {
+   // 异常处理。
+}
 ret = OH_VideoEncoder_Start(videoEnc);
 if (ret != AV_ERR_OK) {
    // 异常处理。
