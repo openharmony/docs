@@ -38,7 +38,7 @@
 
 ### 生命周期切换超时
 
-生命周期切换超时分为[Ability生命周期](../application-models/uiability-lifecycle.md#uiability组件生命周期)切换超时和[PageAbility生命周期](../application-models/pageability-lifecycle.md#pageability的生命周期)切换超时。
+生命周期切换超时分为[Ability生命周期](../application-models/uiability-lifecycle.md)切换超时和[PageAbility生命周期](../application-models/pageability-lifecycle.md)切换超时。
 
 该故障发生在生命周期切换过程中，影响应用内Ability的切换或者不同PageAbility之间的切换。
 
@@ -794,7 +794,7 @@ waitTime表示的是本次ipc通信时长，如果该值远小于故障检测时
 
 #### 一般分析步骤
 
-根据故障日志确定上报[时间点](#获取故障发生时间点)，再根据具体场景下的故障类型推断卡死开始的时间点，查看对应时间段的hilog日志，分析日志得出应用对应线程运行状态：
+根据日志获取故障发生时间点，再根据具体场景下的故障类型推断卡死开始的时间点，查看对应时间段的hilog日志，分析日志得出应用对应线程运行状态：
 
 - 应用日志完全无打印输出：卡死在最后日志打印的接口调用处。
 
