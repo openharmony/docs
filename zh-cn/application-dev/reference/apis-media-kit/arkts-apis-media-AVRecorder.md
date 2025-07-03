@@ -161,11 +161,7 @@ let avRecorderConfig: media.AVRecorderConfig = {
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : avRecorderProfile,
   url : 'fd://',  // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45
-<<<<<<< HEAD
-  metadata : videoMetaData,
-=======
   metadata : videoMetadata,
->>>>>>> b6f54965265a414280046b5992a580e23789f8b7
   location : { latitude : 30, longitude : 130 }
 };
 
