@@ -164,7 +164,7 @@ OH_AVSource* OH_AVSource_CreateWithFD (int32_t fd, int64_t offset, int64_t size)
 OH_AVSource* OH_AVSource_CreateWithURI (char *uri)
 ```
 **描述**
-为统一资源标识符对应的的资源对象创建OH_AVSource实例，可以通过调用OH_AVSource_Destroy接口释放实例。
+为统一资源标识符对应的资源对象创建OH_AVSource实例，可以通过调用OH_AVSource_Destroy接口释放实例。
 
 **系统能力：** SystemCapability.Multimedia.Media.Spliter
 
