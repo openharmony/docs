@@ -111,11 +111,11 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                     | 说明                                     |
-| ---------------------- | ---------------------------------------- |
-| Default       | 默认加载样式。API version 8及以后不支持设置。            |
-| Circular      | 环形加载样式。API version 8及以后不支持设置。            |
-| Orbital       | 彗星形加载样式。API version 8及以后默认为彗星形样式。         |
+| 名称                     | 值 | 说明                                     |
+| ---------------------- | - | ---------------------------------------- |
+| Default       | 0 | 默认加载样式。API version 8及以后不支持设置。            |
+| Circular      | 1 | 环形加载样式。API version 8及以后不支持设置。            |
+| Orbital       | 2 | 彗星形加载样式。API version 8及以后默认为彗星形样式。         |
 
 ## 示例
 
