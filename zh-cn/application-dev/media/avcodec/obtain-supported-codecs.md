@@ -280,10 +280,10 @@ if (ret != AV_ERR_OK) {
 OH_AVFormat *dynamicFormat = OH_AVFormat_Create();
 // SQR码控支持动态配置最大码率参数和质量稳定码率因子参数。
 sqrFactor = 25; // 更新质量稳定码率因子。
-maxBitRate = 10000000; // 更新最大码率参数。
-OH_AVFormat_SetLongValue(dynamicFormat, OH_MD_KEY_MAX_BITRATE, maxBitRate);
+maxBitrate = 10000000; // 更新最大码率参数。
+OH_AVFormat_SetLongValue(dynamicFormat, OH_MD_KEY_MAX_BITRATE, maxBitrate);
 OH_AVFormat_SetIntValue(dynamicFormat, OH_MD_KEY_SQR_FACTOR, sqrFactor);
-int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, dynamicFormat);
+ret = OH_VideoEncoder_SetParameter(videoEnc, dynamicFormat);
 if (ret != AV_ERR_OK) {
    // 异常处理。
 }
