@@ -1586,7 +1586,7 @@ try {
     let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacter, (err: BusinessError) => {
         if (err) {
-            console.info('notifyCharacteristicChanged callback failed');
+            console.error('notifyCharacteristicChanged callback failed');
         } else {
             console.info('notifyCharacteristicChanged callback successful');
         }
@@ -3072,7 +3072,7 @@ try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.writeDescriptorValue(descriptor, (err: BusinessError) => {
         if (err) {
-            console.info('notifyCharacteristicChanged callback failed');
+            console.error('notifyCharacteristicChanged callback failed');
         } else {
             console.info('notifyCharacteristicChanged callback successful');
         }
@@ -3346,7 +3346,7 @@ try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.setCharacteristicChangeNotification(characteristic, false, (err: BusinessError) => {
         if (err) {
-            console.info('notifyCharacteristicChanged callback failed');
+            console.error('notifyCharacteristicChanged callback failed');
         } else {
             console.info('notifyCharacteristicChanged callback successful');
         }
@@ -3487,7 +3487,7 @@ try {
   let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
   device.setCharacteristicChangeIndication(characteristic, false, (err: BusinessError) => {
     if (err) {
-      console.info('notifyCharacteristicChanged callback failed');
+      console.error('notifyCharacteristicChanged callback failed');
     } else {
       console.info('notifyCharacteristicChanged callback successful');
     }
