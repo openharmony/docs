@@ -1,5 +1,4 @@
 # MediaKeySession_Callback
-<!--Kit_DRM Kit--><!--System_媒体-->
 
 ## 概述
 

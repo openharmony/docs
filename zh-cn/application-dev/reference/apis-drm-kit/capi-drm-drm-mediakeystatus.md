@@ -1,5 +1,4 @@
 # DRM_MediaKeyStatus
-<!--Kit_DRM Kit--><!--System_媒体-->
 
 ## 概述
 
