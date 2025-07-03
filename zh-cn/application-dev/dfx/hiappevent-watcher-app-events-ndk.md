@@ -3,7 +3,7 @@
 HiAppEvent提供了事件订阅接口，用于本地获取应用事件。
 
 ## 接口说明
-API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent)。
+API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md)。
 
 **打点接口功能介绍：**
 
