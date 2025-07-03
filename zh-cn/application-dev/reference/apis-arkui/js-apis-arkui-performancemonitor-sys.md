@@ -57,9 +57,9 @@ begin(scene: string, startInputType: ActionType, note?: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| scene | string | 是 | 用户场景id。 |
+| scene | string | 是 | 用户场景id。无长度限制，推荐字母大写且用下划线连接，例如LAUNCHER_APP_LAUNCH_FROM_ICON |
 | startInputType | [ActionType](#actiontype)| 是 | 用户场景触发模式。 |
-| note | string| 否 | 用户场景重要信息。 |
+| note | string| 否 | 用户场景备注信息。选填，填写后性能指标上报会携带备注信息，不填无影响 |
 
 **示例：** 
 
@@ -80,7 +80,7 @@ end(scene: string): void
 **参数：** 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| scene | string | 是 | 用户场景id，与begin配对。 |
+| scene | string | 是 | 用户场景id，与begin配对严格保持一致，否则本次场景监测无效 |
 
 **示例：** 
 
