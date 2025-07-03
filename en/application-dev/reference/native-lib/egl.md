@@ -1,7 +1,6 @@
-
 # EGL
 
-EGL is an interface between Khronos rendering APIs (such as OpenGL ES and OpenVG) and the underlying native window system. OpenHarmony supports EGL.
+[EGL](https://registry.khronos.org/EGL/sdk/docs/man/) is an interface between Khronos rendering APIs (such as [OpenGLES](https://registry.khronos.org/OpenGL-Refpages/es3/) or OpenVG) and the underlying window system. OpenHarmony supports EGL.
 
 ## Introducing EGL
 
