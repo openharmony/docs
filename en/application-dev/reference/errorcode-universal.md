@@ -36,6 +36,24 @@ The API called by the application is a system API.
 
 Check whether any system API is called. Delete it if any.
 
+## 203 System Function Prohibited by Enterprise Management Policies
+
+**Error Message**
+
+This function is prohibited by enterprise management policies.
+
+**Description**
+
+The enterprise management policies do not allow the use of this system function.
+
+**Possible Causes**
+
+You attempted to operate a system function that has been disabled by the device management application.
+
+**Solution**
+
+Use [getDisallowedPolicy](./apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy) to check whether the system function is disabled, and use [setDisallowedPolicy](./apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy) to enable the system function.
+
 ## 401 Parameter Check Failed
 
 **Error Message**

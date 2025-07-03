@@ -232,7 +232,7 @@ EGLDisplay eglGetDisplay(EGLNativeDisplayType display_id);
 
 The **eglGetDisplay** function returns an **EGLDisplay** object, which represents the connection to an EGL display. If no connection is available, **EGL_NO_DISPLAY** is returned.
 
-The **display_id** parameter indicates the local display type of the display. The **EGLNativeDisplayType** parameter is the native window display type, which has different definitions on different platforms. If you just want to use the default display, use **EGL_DEFAULT_DISPLAY** without explicitly specifying **display_id**.
+The **display_id** parameter indicates the local display type of the display. The **EGLNativeDisplayType** parameter is the window display type, which has different definitions on different platforms. If you just want to use the default display, use **EGL_DEFAULT_DISPLAY** without explicitly specifying **display_id**.
 
 ### Using eglInitialize to Initialize the EGL Display Connection
 Call **eglInitialize** to initialize the EGL display connection obtained.
@@ -263,14 +263,14 @@ Generally, you can use this method because it is easier to obtain the optimal co
 
     ```cpp
     // Here, the following attributes are used:
-    EGLint attribs[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT, -// The renderable type is OpenGL ES 3.
+    EGLint attribs[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT,  // The renderable type is OpenGL ES 3.
                         EGL_BLUE_SIZE, 6, // The number of bits in the blue buffer is 6.
                         EGL_GREEN_SIZE, 8, // The number of bits in the green buffer is 8.
                         EGL_RED_SIZE, 8, // The number of bits in the red buffer is 8.
                         EGL_NONE};
     eglChooseConfig(display, attribs, &config, 1, &numConfigs);
     ```
-  In this example, the number of bits in the blue buffer is 6. To use six bits to represent the blue value 200 in the case of 8-bit RGB (ranging from 0 to 255), use the following formula for calculation: 64 x 200/256, where 64 is the maximum value that can be represented by six bits (2^6 = 64). After **eglChooseConfig** is called, the configurations that match the attributes are returned and stored in the **config** array. In the sample code, **config_size** is set to **1**, indicating that the size of the **config** array is 1. Only one set of configurations can be stored, but that's enough. **numconfigs** specifies the number of configurations that match the attributes. In this way, the desired **config** array is obtained.
+    In this example, the number of bits in the blue buffer is 6. To use six bits to represent the blue value 200 in the case of 8-bit RGB (ranging from 0 to 255), use the following formula for calculation: 64 x 200/256, where 64 is the maximum value that can be represented by six bits (2^6 = 64). After **eglChooseConfig** is called, the configurations that match the attributes are returned and stored in the **config** array. In the sample code, **config_size** is set to **1**, indicating that the size of the **config** array is 1. Only one set of configurations can be stored, but that's enough. **numconfigs** specifies the number of configurations that match the attributes. In this way, the desired **config** array is obtained.
 
 - Use **eglGetConfigs** to query all supported configurations and use **eglGetConfigAttrib** to filter the desired ones.
   The following describes how to use this method to obtain the desired configurations.
@@ -355,7 +355,7 @@ After obtaining the EGL configurations that meet the rendering requirements, use
 ```cpp
 EGLSurface eglCreateWindowSurface(EGLDisplay dpy, // EGL display connection to be associated with the window surface.
                                   EGLConfig config, // EGL configuration of the window surface to create.
-                                  EGLNativeWindowType win, // Parameter of the EGLNativeWindowType type. It is the handle or identifier of the native window and is used to associate with the EGL surface.
+                                  EGLNativeWindowType win, // Parameter of the EGLNativeWindowType type. It is the handle or identifier of the window and is used to associate with the EGL surface.
                                   const EGLint *attrib_list); // Pointer to the EGL attribute list. It specifies the attributes of the window surface. It is an integer array terminating with EGL_NONE.
 ```
 The following values can be passed in to **attrib_list** of **eglCreateWindowSurface**:
@@ -368,13 +368,15 @@ EGL_BACK_BUFFER // There are a front buffer and a back buffer. After the renderi
 ```
 The possible causes of a failure to call **eglCreateWindowSurface** are as follows:
 
-- **EGL_BAD_MATCH**: The native window attributes do not match the EGL configuration. This may be because the EGL configuration does not support rendering to the window (the **EGL_SURFACE_TYPE** attribute is not set to **EGL_WINDOW_BIT**).
+- **EGL_BAD_MATCH**: The window attributes do not match the EGL configuration. This may be because the EGL configuration does not support rendering to the window (the **EGL_SURFACE_TYPE** attribute is not set to **EGL_WINDOW_BIT**).
 
 - **EGL_BAD_CONFIG**: The EGL configuration is not supported by the system.
 
-- **EGL_BAD_NATIVE_WINDOW**: The native window handle is invalid.
+- **EGL_BAD_NATIVE_WINDOW**: The window handle is invalid.
 
-- **EGL_BAD_ALLOC**: Resources cannot be created for a new EGL window or there is already an EGL configuration associated with the native window.
+- **EGL_BAD_ALLOC**: Resources cannot be created for a new EGL window or there is already an EGL configuration associated with the window.
+
+
 
 ```cpp
 EGLint attribList[] = { EGL_RENDER_BUFFER, EGL_BACK_BUFFER, EGL_NONE };
@@ -400,61 +402,54 @@ if (surface == EGL_NO_SURFACE) {
 }
 ```
 The process of using the **XComponent** to obtain a native window is as follows:
-1. Define the **XComponent** and set the **XComponentController** in ArkTS. The **XComponent** is used to embed native rendering elements, such as OpenGL or Vulkan, into the UI.
-
-   ```typescript
-   Column() {
-       XComponent({
-           id: 'myXComponent',
-           type: XComponentType.SURFACE,
-           controller: this.xComponentController
-       })
-   }
-   ```
-
+1. Define the **XComponent** and set the **XComponentController** in ArkTS. The **XComponent** is used to embed rendering elements, such as OpenGL or Vulkan, into the UI.
+```typescript
+Column() {
+    XComponent({
+        id: 'myXComponent',
+        type: XComponentType.SURFACE,
+        controller: this.xComponentController
+    })
+}
+```
 2. Create an **XComponentController** subclass and implement its callbacks.
+```typescript
+class MyXComponentController extends XComponentController {
+    onSurfaceCreated(surfaceId: string): void {
+        console.log(`onSurfaceCreated surfaceId: ${surfaceId}`);
+        nativeRender.SetSurfaceId(BigInt(surfaceId));
+        // The surface ID will be used to associate with the native window.
+    }
 
-   ```typescript
-   class MyXComponentController extends XComponentController {
-       onSurfaceCreated(surfaceId: string): void {
-           console.log(`onSurfaceCreated surfaceId: ${surfaceId}`);
-           nativeRender.SetSurfaceId(BigInt(surfaceId));
-           // The surface ID will be used to associate with the native window.
-       }
-   
-       onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
-           console.log(`onSurfaceChanged surfaceId: ${surfaceId}`);
-       }
-       
-       onSurfaceDestroyed(surfaceId: string): void {
-           console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
-       }
-   }
-   ```
-
+    onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
+        console.log(`onSurfaceChanged surfaceId: ${surfaceId}`);
+    }
+    
+    onSurfaceDestroyed(surfaceId: string): void {
+        console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
+    }
+}
+```
 3. Use the surface ID to obtain a native window.
-
-   The surface ID is generated during the creation of the **XComponent**. In the **onSurfaceCreated** callback, you can use **OH_NativeWindow_CreateNativeWindowFromSurfaceId** to obtain a native window based on the surface ID.
-   
-   ```cpp
-   napi_value PluginManager::SetSurfaceId(napi_env env, napi_callback_info info)
-   {
-       int64_t surfaceId = ParseId(env, info);
-       OHNativeWindow *nativeWindow;
-       PluginRender *pluginRender;
-       if (windowMap_.find(surfaceId) == windowMap_.end()) {
-           OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, &nativeWindow);
-           windowMap_[surfaceId] = nativeWindow;
-       }
-       if (pluginRenderMap_.find(surfaceId) == pluginRenderMap_.end()) {
-           pluginRender = new PluginRender(surfaceId);
-           pluginRenderMap_[surfaceId] = pluginRender;
-       }
-       pluginRender->InitNativeWindow(nativeWindow);
-       return nullptr;
-   }
-   ```
-
+The surface ID is generated during the creation of the **XComponent**. In the **onSurfaceCreated** callback, you can use **OH_NativeWindow_CreateNativeWindowFromSurfaceId** to obtain a native window based on the surface ID.
+```cpp
+napi_value PluginManager::SetSurfaceId(napi_env env, napi_callback_info info)
+{
+    int64_t surfaceId = ParseId(env, info);
+    OHNativeWindow *nativeWindow;
+    PluginRender *pluginRender;
+    if (windowMap_.find(surfaceId) == windowMap_.end()) {
+        OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, &nativeWindow);
+        windowMap_[surfaceId] = nativeWindow;
+    }
+    if (pluginRenderMap_.find(surfaceId) == pluginRenderMap_.end()) {
+        pluginRender = new PluginRender(surfaceId);
+        pluginRenderMap_[surfaceId] = pluginRender;
+    }
+    pluginRender->InitNativeWindow(nativeWindow);
+    return nullptr;
+}
+```
 For details about how to use the **XComponent**, see [ArkTS XComponent Usage Example](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent).
 ### Using eglCreateContext to Create a Rendering Context
 
@@ -632,7 +627,7 @@ In the OpenGL ES rendering pipeline, the following steps describe the entire pro
 
 6. Writing the frame to the buffer
 
-   After all the preceding tests and processing, the final fragment data is written into the frame buffer and displayed as an image on the screen.
+  After all the preceding tests and processing, the final fragment data is written into the frame buffer and displayed as an image on the screen.
 
 ### Creating and Using a Shader Program
 
