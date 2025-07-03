@@ -8,6 +8,10 @@
 
 **级别：** error
 
+ArkTS1.2中使用静态语义，不允许将导入ArkTS1.1模块中的实体重新导出。
+
+确保模块之间的静态与动态边界清晰，防止动态模块中的不确定行为影响静态模块的类型安全和编译优化。
+
 **ArkTS1.1**
 ```typescript
 // file1.ets
@@ -37,11 +41,15 @@ export { foo }; // 编译报错
 export { X, Y } from './file2'; // 编译报错
 ```
 
-### ArkTS1.2判断ArkTS1.1 boxed type类型
+### ArkTS1.2判断ArkTS1.1装箱类型
 
 **规则：** arkts-interop-d2s-boxed-type
 
 **级别：** error
+
+在ArkTS1.2中，语言层面不再区分基本类型和装箱类型。因此，当与JS或ArkTS1.1进行互操作时，ArkTS1.2会自动拆箱，转换为对应的基本类型并使用。
+
+避免使用装箱类型或对装箱类型进行typeof操作。
 
 **ArkTS1.1**
 ```typescript
@@ -54,7 +62,7 @@ typeof b; // 'object'
 typeof c; // 'object'
 
 //file2.ets
-import { a, b, c } from './fiel1';
+import { a, b, c } from './file1';
 typeof a; // 'object'
 typeof b; // 'object'
 typeof c; // 'object'
@@ -72,7 +80,7 @@ typeof b; // 'boolean'
 typeof c; // 'string'
 
 //file2.ets  ArkTS1.1
-import { a, b, c } from './fiel1';
+import { a, b, c } from './file1';
 typeof a; // 'number'
 typeof b; // 'boolean'
 typeof c; // 'string'
@@ -83,6 +91,8 @@ typeof c; // 'string'
 **规则：** arkts-interop-d2s-no-concurrent-decorators
 
 **级别：** error
+
+ArkTS1.2的对象天然支持并发共享，不需要加@Sendable和@Concurrent注解。
 
 **ArkTS1.1**
 ```typescript
@@ -103,11 +113,15 @@ class X {}
 function foo() {}
 ```
 
-### ArkTS1.1 Object内置方法作用在ArkTS1.2对象
+### ArkTS1.1Object内置方法作用在ArkTS1.2对象
 
 **规则：** arkts-interop-d2s-dynamic-object-on-static-instance
 
 **级别：** error
+
+ArkTS1.2对象在动态上下文中不能修改对象布局。
+
+ArkTS1.1Object内置方法作用在ArkTS1.2对象需要重新适配代码。
 
 **ArkTS1.1**
 ```typescript
@@ -166,11 +180,15 @@ class X {
 foo(new X());
 ```
 
-### ArkTS1.1 Reflect内置方法作用在ArkTS1.2对象
+### ArkTS1.1Reflect内置方法作用在ArkTS1.2对象
 
 **规则：** arkts-interop-d2s-dynamic-reflect-on-static-instance
 
 **级别：** error
+
+ArkTS1.2对象在动态上下文中不能修改对象布局。
+
+ArkTS1.1Reflect内置方法作用在ArkTS1.2对象需要重新适配代码。
 
 **ArkTS1.1**
 ```typescript
@@ -234,6 +252,8 @@ foo(new X())
 
 **级别：** error
 
+Object的接口参数类型为静态Object。ArkTS1.1对象在ArkTS1.2中不是静态Object实例，因此参数类型不匹配。
+
 **ArkTS1.1**
 ```typescript
 // file1.ets
@@ -258,7 +278,7 @@ export class X {
   a = 1;
 }
 
-// file2.ets  ArkTS 1.2
+// file2.ets  ArkTS1.2
 'use static'
 import { X } from 'file1';
 export function foo(prx: Object) {
@@ -274,6 +294,8 @@ foo(new X()); // 编译报错
 **规则：** arkts-interop-d2s-static-reflect-on-dynamic-instance
 
 **级别：** error
+
+Reflect接口参数类型为静态Object。ArkTS1.1对象在ArkTS1.2中不是静态Object实例，因此参数类型不匹配。
 
 **ArkTS1.1**
 ```typescript
@@ -323,6 +345,8 @@ foo(new X()); // 编译报错
 
 **级别：** error
 
+ArkTS1.2使用ESValue接口动态导入ArkTS1.1模块和调用接口。
+
 **ArkTS1.1**
 ```typescript
 // file1.ets
@@ -353,6 +377,8 @@ let a = A.instantiate() as A;
 **规则：** arkts-interop-d2s-object-literal-no-args-constructor
 
 **级别：** error
+
+由于ArkTS1.2的语法限制，当ArkTS1.2创建ArkTS1.1的没有无参构造函数的类的对象字面量时，需要使用new关键字和构造函数。
 
 **ArkTS1.1**
 ```typescript
@@ -409,7 +435,7 @@ let x: X | Y = { name: 'hello' };
 
 **ArkTS1.2**
 ```typescript
-// file1.ets  // 1.0
+// file1.ets  ArkTS1.1
 export class X {
   name: string = '';
 }
@@ -418,7 +444,7 @@ export interface Y {
   age?: number;
 }
 
-// file2.ets  // 1.2
+// file2.ets  ArkTS1.2
 'use static'
 import { X, Y } from './file1';
 let x: X | Y = { name: 'hello' }; //编译报错
@@ -430,6 +456,8 @@ let x: X | Y = new X('hello'); // OK
 **规则：** arkts-interop-d2s-object-literal
 
 **级别：** error
+
+ArkTS1.2创建ArkTS1.1的类的对象字面量时，不要使用instanceof判断字面量类型。
 
 **ArkTS1.1**
 ```typescript
@@ -462,11 +490,15 @@ a instanceof A; // true
 
 ## ArkTS1.2中使用ArkTS1.1
 
-### ArkTS1.1判断ArkTS1.2 boxed类型
+### ArkTS1.1判断ArkTS1.2装箱类型
 
 **规则：** arkts-interop-s2d-boxed-type
 
 **级别：** error
+
+在ArkTS1.2中，语言层面不再区分基本类型和装箱类型。因此，当与JS或ArkTS1.1进行互操作时，ArkTS1.2会自动拆箱，转换为对应的基本类型并使用。
+
+避免使用装箱类型或对装箱类型进行typeof操作。
 
 **ArkTS1.1**
 ```typescript
@@ -479,7 +511,7 @@ typeof b; // 'object'
 typeof c; // 'object'
 
 //file2.ets
-import { a, b, c } from './fiel1';
+import { a, b, c } from './file1';
 typeof a; // 'object'
 typeof b; // 'object'
 typeof c; // 'object'
@@ -497,7 +529,7 @@ typeof b; // 'boolean'
 typeof c; // 'string'
 
 //file2.ets  ArkTS1.1
-import { a, b, c } from './fiel1';
+import { a, b, c } from './file1';
 typeof a; // 'number'
 typeof b; // 'boolean'
 typeof c; // 'string'
@@ -508,6 +540,8 @@ typeof c; // 'string'
 **规则：** arkts-interop-s2d-object-literal
 
 **级别：** error
+
+ArkTS1.1的对象字面量是动态对象，不是真正的标注类型，所以ArkTS1.1中使用构造函数创建ArkTS1.2对象字面量。
 
 **ArkTS1.1**
 ```typescript
@@ -566,6 +600,8 @@ bar(createY(456))
 
 **级别：** error
 
+当从ArkTS1.1传参或赋值给ArkTS1.2时，ArkTS1.2需要将接收的动态对象参数或字段的类型声明为ESObject。
+
 **ArkTS1.1**
 ```typescript
 // file1.ets
@@ -612,11 +648,15 @@ let a = new A();
 a.data = y; // 运行时报错
 ```
 
-### ArkTS1.1 Object内置方法作用在ArkTS1.2对象
+### ArkTS1.1Object内置方法作用在ArkTS1.2对象
 
 **规则：** arkts-interop-s2d-dynamic-object-on-static-instance
 
 **级别：** error
+
+ArkTS1.2对象在动态上下文中不能修改对象布局。
+
+ArkTS1.1Object内置方法作用在ArkTS1.2对象需要重新适配代码。
 
 **ArkTS1.1**
 ```typescript
@@ -672,11 +712,15 @@ export function foo(prx: Object) {
 foo(new X());
 ```
 
-### ArkTS1.1 Reflect内置方法作用在ArkTS1.2对象
+### ArkTS1.1Reflect内置方法作用在ArkTS1.2对象
 
 **规则：** arkts-interop-s2d-dynamic-reflect-on-static-instance
 
 **级别：** error
+
+ArkTS1.2对象在动态上下文中不能修改对象布局。
+
+ArkTS1.1Reflect内置方法作用在ArkTS1.2对象需要重新适配代码。
 
 **ArkTS1.1**
 ```typescript
@@ -738,6 +782,10 @@ foo(new X())
 
 **级别：** error
 
+ArkTS1.2对象在动态上下文中不能修改对象布局。
+
+ArkTS1.2Object内置方法作用在ArkTS1.1对象需要重新适配代码。
+
 **ArkTS1.1**
 ```typescript
 // file1.ets
@@ -778,6 +826,10 @@ foo(new X()); // 运行时报错
 **规则：** arkts-interop-s2d-static-reflect-on-dynamic-instance
 
 **级别：** error
+
+ArkTS1.1对象在ArkTS1.2中表现为ESObject实例，不是Object实例，因此参数类型不匹配。
+
+ArkTS1.2Reflect内置方法作用在ArkTS1.1对象需要重新适配代码。
 
 **ArkTS1.1**
 ```typescript
@@ -830,10 +882,10 @@ foo(new X()); // 运行时报错
 
 **ArkTS1.1**
 ```typescript
-// file1.ets ArkTS 1.1
+// file1.ets
 export let arr: Array<number> = new Array<number>(1, 2, 3);
 
-// file2.ets ArkTS 1.1
+// file2.ets
 import {arr} from "./file1"
 
 class C {
@@ -853,11 +905,11 @@ arr.find(a.compare, b) // Result: 3
 
 **ArkTS1.2**
 ```typescript
-// file1.ets ArkTS 1.2
+// file1.ets ArkTS1.2
 'use static'
 export let arr: Array<number> = new Array<number>(1, 2, 3);
 
-// file2.ets ArkTS 1.1
+// file2.ets ArkTS1.1
 import {arr} from "./file1"
 
 class C {
@@ -883,6 +935,8 @@ arr.find(a.compare, b) // 运行时报错
 
 **级别：** error
 
+装饰器会动态修改类或对象的布局，ArkTS1.2不支持装饰器特性。
+
 **ArkTS1.1**
 ```typescript
 // file1.ts
@@ -902,6 +956,8 @@ NA;
 ### ArkTS1.2访问TS独有类型的实体
 
 **规则：** arkts-interop-ts2s-static-access-ts-type
+
+**级别：** error
 
 TS独有类型包括如下类型：
 - any
@@ -938,7 +994,7 @@ TS独有类型包括如下类型：
 - Capitalize<StringType>
 - Uncapitalize<StringType>
 
-**级别：** error
+ArkTS1.2使用ESValue接口进行交互，不支持以上类型。
 
 **ArkTS1.1**
 ```typescript
@@ -971,6 +1027,10 @@ obj.setProperty('prop', ESValue.wrap(1));
 **规则：** arkts-interop-ts2s-ts-object-on-static-instance
 
 **级别：** error
+
+ArkTS1.2对象在动态上下文中不能修改对象布局。
+
+ArkTS1.1Object内置方法作用在ArkTS1.2对象需要重新适配代码。
 
 **ArkTS1.1**
 ```typescript
@@ -1012,6 +1072,10 @@ foo(ESValue.wrap(new X()))
 **规则：** arkts-interop-ts2s-ts-reflect-on-static-instance
 
 **级别：** error
+
+ArkTS1.2对象在动态上下文中不能修改对象布局。
+
+ArkTS1.1Reflect内置方法作用在ArkTS1.2对象需要重新适配代码。
 
 **ArkTS1.1**
 ```typescript
@@ -1058,6 +1122,8 @@ foo(ESValue.wrap(new X()));
 
 **级别：** error
 
+ArkTS1.2中throw和catch的对象只能是Error的实例。
+
 **ArkTS1.1**
 ```typescript
 // file1.ts
@@ -1094,11 +1160,15 @@ try {
 }
 ```
 
-### ArkTS1.2判断ArkTS1.1 boxed type类型
+### ArkTS1.2判断ArkTS1.1装箱类型
 
 **规则：** arkts-interop-ts2s-boxed-type
 
 **级别：** error
+
+在ArkTS1.2中，语言层面不再区分基本类型和装箱类型。因此，当与JS或ArkTS1.1进行互操作时，ArkTS1.2会自动拆箱，转换为对应的基本类型并使用。
+
+避免使用装箱类型或对装箱类型进行typeof操作。
 
 **ArkTS1.1**
 ```typescript
@@ -1111,7 +1181,7 @@ typeof b; // 'object'
 typeof c; // 'object'
 
 //file2.ets
-import { a, b, c } from './fiel1';
+import { a, b, c } from './file1';
 typeof a; // 'object'
 typeof b; // 'object'
 typeof c; // 'object'
@@ -1129,7 +1199,7 @@ typeof c; // 'object'
 
 //file2.ets  ArkTS1.2
 'use static'
-import { a, b, c } from './fiel1';
+import { a, b, c } from './file1';
 typeof a; // 'number'
 typeof b; // 'boolean'
 typeof c; // 'string'
@@ -1139,6 +1209,8 @@ typeof c; // 'string'
 **规则：** arkts-interop-ts2s-dynamic-import-ts
 
 **级别：** error
+
+ArkTS1.2使用ESValue接口动态导入TS模块和调用接口。
 
 **ArkTS1.1**
 ```typescript
@@ -1168,6 +1240,8 @@ let a = A.instantiate() as A;
 **规则：** arkts-interop-ts2s-object-literal
 
 **级别：** error
+
+不要使用instanceof判断字面量类型。
 
 **ArkTS1.1**
 ```typescript
@@ -1206,6 +1280,8 @@ a instanceof A; // true
 
 **级别：** error
 
+ArkTS1.2使用ESValue接口动态导入js模块和调用接口。
+
 **ArkTS1.1**
 ```typescript
 // file1.js
@@ -1231,6 +1307,8 @@ let foo = mod.getProperty('foo');
 **规则：** arkts-interop-js2s-export-js
 
 **级别：** error
+
+ArkTS1.2不能以`export {A} from "./file1"`的形式直接在ets文件中导出js对象。
 
 **ArkTS1.1**
 ```typescript
@@ -1268,6 +1346,8 @@ export { foo, A };
 
 **级别：** error
 
+ArkTS1.2中使用ESValue接口调用js函数和传参。
+
 **ArkTS1.1**
 ```typescript
 // file1.js
@@ -1301,6 +1381,8 @@ bar.invoke(ESValue.wrap(123));
 
 **级别：** error
 
+ArkTS1.2使用ESValue接口实例化js对象。
+
 **ArkTS1.1**
 ```typescript
 // file1.js
@@ -1332,6 +1414,8 @@ foo.instantiate(ESValue.wrap(123));
 
 **级别：** error
 
+ArkTS1.2使用ESValue接口访问js属性。
+
 **ArkTS1.1**
 ```typescript
 // file1.js
@@ -1360,6 +1444,8 @@ foo.setProperty('name', ESValue.wrap("456")）
 **规则：** arkts-interop-js2s-call-js-method
 
 **级别：** error
+
+ArkTS1.2使用ESValue接口调用js方法和传参。
 
 **ArkTS1.1**
 ```typescript
@@ -1393,6 +1479,8 @@ foo.invokeMethod('bar', ESValue.wrap(123));
 
 **级别：** error
 
+ArkTS1.2使用ESValue接口访问索引，接口接收参数为ESValue类型，传参时需要用wrap接口构造ESValue实例再传参。
+
 **ArkTS1.1**
 ```typescript
 // file1.js
@@ -1423,6 +1511,8 @@ arr.setProperty(3, ESValue.wrap(4));
 **规则：** arkts-interop-js2s-convert-js-type
 
 **级别：** error
+
+ArkTS1.2使用ESValue接口转换js对象类型。
 
 **ArkTS1.1**
 ```typescript
@@ -1474,6 +1564,8 @@ let a4: bigint = big.toBigInt();
 
 **级别：** error
 
+ArkTS1.2使用ESValue接口获取js对象类型。
+
 **ArkTS1.1**
 ```typescript
 // file1.js
@@ -1503,6 +1595,8 @@ num.typeOf(); // 'number'
 **规则：** arkts-interop-js2s-instanceof-js-type
 
 **级别：** error
+
+ArkTS1.2使用ESValue接口判断js对象类型。
 
 **ArkTS1.1**
 ```typescript
@@ -1535,6 +1629,8 @@ foo.isInstanceOf(Foo);
 **规则：** arkts-interop-js2s-self-addtion-reduction
 
 **级别：** error
+
+ArkTS1.2对js对象自增自减时，使用ESValue接口转换为数字后再操作。
 
 **ArkTS1.1**
 ```typescript
@@ -1583,6 +1679,8 @@ a = tmp;
 
 **级别：** error
 
+ArkTS1.2对js对象进行一元运算时，使用ESValue接口转换为数字后再操作。
+
 **ArkTS1.1**
 ```typescript
 // file1.js
@@ -1620,6 +1718,8 @@ let num = foo.getProperty('num');
 **规则：** arkts-interop-js2s-binary-op
 
 **级别：** error
+
+ArkTS1.2对js对象进行二元运算时，使用ESValue接口转换为数字后再操作。
 
 **ArkTS1.1**
 ```typescript
@@ -1663,6 +1763,8 @@ a ** b;
 
 **级别：** error
 
+ArkTS1.2在await js中的Promise对象时，先使用ESValue接口转换为Promise对象后再await。
+
 **ArkTS1.1**
 ```typescript
 // file1.js
@@ -1697,6 +1799,8 @@ async function bar() {
 **规则：** arkts-interop-js2s-compare-js-data
 
 **级别：** error
+
+ArkTS1.2对js数据进行比较时，使用ESValue接口转换为数字后再操作。
 
 **ArkTS1.1**
 ```typescript
@@ -1738,6 +1842,8 @@ a <= b;
 
 **级别：** error
 
+ArkTS1.2对js数据进行相等判断时，使用ESValue接口判断。
+
 **ArkTS1.1**
 ```typescript
 // file1.js
@@ -1778,6 +1884,8 @@ a.isStrictlyEqualTo(b);
 
 **级别：** error
 
+ArkTS1.2对js对象进行条件判断时，使用ESValue接口转换为boolean后再判断。
+
 **ArkTS1.1**
 ```typescript
 // file1.js
@@ -1808,6 +1916,8 @@ if (isGood) {}
 **规则：** arkts-interop-js2s-inherit-js-class
 
 **级别：** error
+
+ArkTS1.2继承js的类时，使用ESValue接口构造JS类并传递js父类。
 
 **ArkTS1.1**
 ```typescript
@@ -1842,6 +1952,8 @@ let b = B.instantiate();
 **规则：** arkts-interop-js2s-js-exception
 
 **级别：** error
+
+ArkTS1.2只能catch Error实例，针对非常规的js异常对象，交互时会被包装到ESError中，通过getValue()方法可以获取包装了原始异常对象的ESValue实例。
 
 **ArkTS1.1**
 ```typescript
@@ -1880,11 +1992,15 @@ try {
 }
 ```
 
-### ArkTS1.2访问js的boxed对象
+### ArkTS1.2访问js的装箱类型
 
 **规则：** arkts-interop-js2s-boxed-type
 
 **级别：** error
+
+在ArkTS1.2中，语言层面不再区分基本类型和装箱类型。因此，当与JS或ArkTS1.1进行互操作时，ArkTS1.2会自动拆箱，转换为对应的基本类型并使用。
+
+避免使用装箱类型或对装箱类型进行typeof操作。
 
 **ArkTS1.1**
 ```typescript
@@ -1927,6 +2043,8 @@ foo.getProperty('str').typeOf(); // 'string'
 
 **级别：** error
 
+ArkTS1.2遍历js对象时，使用ESValue接口访问索引和属性。
+
 **ArkTS1.1**
 ```typescript
 // file1.js
@@ -1963,6 +2081,8 @@ for (let i = 0; i < len; ++i) {
 **规则：** arkts-interop-js2s-js-call-static-func
 
 **级别：** error
+
+js调用ArkTS1.2函数和传参时，确保传参匹配声明的类型。
 
 **ArkTS1.1**
 ```typescript
@@ -2015,6 +2135,8 @@ handle.invoke(ESValue.wrap(lambda));
 
 **级别：** error
 
+js增删改ArkTS1.2对象属性时，避免动态修改对象布局，需要新增的属性提前在类型中声明，需要删除的属性使用undefined置空。
+
 **ArkTS1.1**
 ```typescript
 // file1.js
@@ -2061,6 +2183,8 @@ foo.invoke(ESValue.wrap(new X()));
 
 **级别：** error
 
+js Object内置方法作用在ArkTS1.2对象时，需重新适配代码。
+
 **ArkTS1.1**
 ```typescript
 // file1.js
@@ -2102,6 +2226,8 @@ foo.invoke(ESValue.wrap(new X()))
 **规则：** arkts-interop-js2s-js-reflect-on-static-instance
 
 **级别：** error
+
+js Reflect内置方法作用在ArkTS1.2对象时，需重新适配代码。
 
 **ArkTS1.1**
 ```typescript
@@ -2149,6 +2275,8 @@ foo.invoke(ESValue.wrap(new X()));
 
 **级别：** error
 
+js对ArkTS1.2对象进行展开语法时，需重新适配代码。
+
 **ArkTS1.1**
 ```typescript
 // file1.js
@@ -2187,6 +2315,8 @@ foo.invoke(ESValue.wrap(new X()))
 **规则：** arkts-interop-js2s-dynamic-import-js
 
 **级别：** error
+
+ArkTS1.2使用ESValue接口动态导入js模块和调用接口。
 
 **ArkTS1.1**
 ```typescript
