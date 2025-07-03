@@ -879,8 +879,8 @@
 | void OH_ArkUI_FocusActivate([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) uiContext, bool isActive, bool isAutoInactive); | 设置当前界面的焦点激活态，获焦节点显示焦点框。|
 | void OH_ArkUI_FocusSetAutoTransfer([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) uiContext, bool autoTransfer); | 设置页面切换时，焦点转移行为。 |
 | void OH_ArkUI_FocusSetKeyProcessingMode([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) uiContext, ArkUI_KeyProcessingMode mode); | 设置按键事件处理的优先级。 |
-| void [OH_ArkUI_DragEvent_StartDataLoading](#oh_arkui_dragevent_startdataloading)([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent)\* event, [OH_UdmfGetDataParams](#oh_udmfgetdataparams)\* options, char\* key, unsigned int keyLen); | 异步获取拖拽数据。 |
-| void OH_ArkUI_[CancelDataLoading](#oh_arkui_canceldataloading)([ArkUI_Context](_ark_u_i___native_module.md#arkui_context) uiContext, const char\* key); | 取消异步获取拖拽数据。 |
+| void [OH_ArkUI_DragEvent_StartDataLoading](#oh_arkui_dragevent_startdataloading)([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent)\* event, [OH_UdmfGetDataParams](#oh_udmfgetdataparams)\* options, char\* key, unsigned int keyLen); | 使用指定的同步参数开始数据同步。 |
+| void [OH_ArkUI_CancelDataLoading](#oh_arkui_canceldataloading)([ArkUI_Context](_ark_u_i___native_module.md#arkui_context) uiContext, const char\* key); | 取消正在进行的数据同步。 |
 | void OH_ArkUI_[DisableDropDataPrefetchOnNode](#oh_arkui_disabledropdataprefetchonnode)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool disable); | 设置拖拽是否提前获取数据。true为不提前获取数据，默认值为false。 |
 | [ArkUI_ProgressLinearStyleOption](#arkui_progresslinearstyleoption)\* [OH_ArkUI_ProgressLinearStyleOption_Create](#oh_arkui_progresslinearstyleoption_create)(void) | 创建线性进度条样式信息。 |
 | void [OH_ArkUI_ProgressLinearStyleOption_Destroy](#oh_arkui_progresslinearstyleoption_destroy)([ArkUI_ProgressLinearStyleOption](#arkui_progresslinearstyleoption)* option) | 销毁线性进度条样式信息。 |
@@ -904,7 +904,7 @@
 | int32_t [OH_ArkUI_GetGestureParam_duration](#oh_arkui_getgestureparam_duration) (ArkUI_GestureRecognizer \*recognizer, int\* duration) | 获取手势识别器的触发长按的最短时间。 |
 | int32_t [OH_ArkUI_GetGestureParam_angle](#oh_arkui_getgestureparam_angle) (ArkUI_GestureRecognizer \*recognizer, double\* angle) | 获取手势识别器的旋转手势的最小改变度数。 |
 | int32_t [OH_ArkUI_GetGestureParam_distanceThreshold](#oh_arkui_getgestureparam_distancethreshold) (ArkUI_GestureRecognizer \*recognizer, double\* distanceThreshold) | 获取手势识别器的手势移动阈值。 |
-| ArkUI_ErrorCode [OH_ArkUI_PanGesture_SetDistanceMap](#oh_arkui_pangesture_setdistancemap) (ArkUI_GestureRecognizer \*recognizer, int size, int\* toolTypeArray, double\* distanceArray) | 设置手势最小滑动阈值表。 |
+| ArkUI_ErrorCode [OH_ArkUI_PanGesture_SetDistanceMap](#oh_arkui_pangesture_setdistancemap) (ArkUI_GestureRecognizer \*recognizer, int size, int\* toolTypeArray, double\* distanceArray) | 设置手势最小滑动阈值表。当设备类型为非法值时，设置不生效。 |
 | ArkUI_ErrorCode [OH_ArkUI_PanGesture_GetDistanceByToolType](#oh_arkui_pangesture_getdistancebytooltype) (ArkUI_GestureRecognizer \*recognizer, int toolType, double\* distance) | 获取手势识别器的手势移动阈值表。 |
 |int32_t [OH_ArkUI_DragEvent_RequestDragEndPending](#oh_arkui_dragevent_requestdragendpending)([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent)\* event, int32_t* requestIdentify); | 请求延迟执行拖拽结束。|
 |int32_t [OH_ArkUI_NotifyDragResult](#oh_arkui_notifydragresult)(int32_t requestIdentify, [ArkUI_DragResult](#arkui_dragresult) \* result); | 通知拖拽结果。|
@@ -2958,8 +2958,8 @@ enum ArkUI_GestureRecognizerType
 | ROTATION_GESTURE  | 旋转手势。  |
 | SWIPE_GESTURE  | 滑动手势。  |
 | GROUP_GESTURE  | 手势组合。  |
-| CLICK_GESTURE  | 通过onClick注册的点击手势。  |
-| DRAG_DROP  | 用于拖放的拖拽手势。  |
+| CLICK_GESTURE  | 通过onClick注册的点击手势。<br/>**起始版本：** 20  |
+| DRAG_DROP  | 用于拖放的拖拽手势。<br/>**起始版本：** 20  |
 
 
 ### ArkUI_GroupGestureMode
@@ -18384,7 +18384,7 @@ int32_t OH_ArkUI_DragEvent_StartDataLoading (ArkUI_DragEvent* event, OH_UdmfGetD
 ```
 **描述：**
 
-异步获取拖拽数据。
+使用指定的同步参数开始数据同步。
 
 **起始版本：** 15
 
@@ -18410,7 +18410,7 @@ int32_t OH_ArkUI_CancelDataLoading (ArkUI_ContextHandle uiContext, const char* k
 ```
 **描述：**
 
-取消异步获取拖拽数据。
+取消正在进行的数据同步。
 
 **起始版本：** 15
 
@@ -18969,7 +18969,7 @@ ArkUI_ErrorCode OH_ArkUI_PanGesture_GetDistanceByToolType(ArkUI_GestureRecognize
 ```
 **描述：**
 
-获取手势识别器的手势移动阈值表。仅支持对通过OH_ArkUI_PanGesture_SetDistanceMap修改过的设备类型的阈值查询，对于默认滑动阈值可通过查询UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN类型获得，其他未主动设置过的类型不会返回。
+获取手势识别器的手势移动阈值表。仅支持对通过OH_ArkUI_PanGesture_SetDistanceMap修改过的设备类型的阈值查询。默认滑动阈值可通过查询UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN类型获得，其他未设置过的类型不会返回。
 
 **起始版本：** 19
 
