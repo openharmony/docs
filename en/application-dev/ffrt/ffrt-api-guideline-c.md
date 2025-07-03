@@ -2495,3 +2495,66 @@ Description
         return 0;
     }
     ```
+
+## Fiber process
+
+### ffrt_fiber_t
+
+#### Declaration
+
+```c
+struct ffrt_fiber_t;
+```
+
+#### Description
+
+`Ffrt_fiber_t 'is a fiber storage entity type used to store and restore execution context.
+
+#### Method
+
+##### ffrt_fiber_init
+
+Declaration
+
+```c
+FFRT_C_API int ffrt_fiber_init(ffrt_fiber_t* fiber, void(*func)(void*), void* arg, void* stack, size_t stack_size);
+```
+
+Parameters
+
+- `fiber`: Fiber pointer.
+- `func`: The function pointer entry at fiber startup.
+- ` arg `: Function parameter at fiber startup.
+- `stack`: The starting address of the stack space used by the fiber during runtime.
+- `stack_size`: The size of the fiber stack, measured in bytes.
+
+Return Values
+
+- Initialize successfully and return `ffrt_succee`, otherwise return `ffrt_error`. The usual reason is that the `stack_size` does not
+  meet the minimum stack space limit (which varies among different platforms), and it is recommended to set a stack space of 4KB or more.
+
+Description
+
+- This function is used to initialize the fiber, which requires passing in the function pointer and parameters for starting the fiber,
+  as well as the stack space used at runtime. The fiber does not manage any memory, and the lifecycle of the fiber stack is managed by
+  the caller.
+
+##### ffrt_fiber_switch
+
+Declaration
+
+```c
+FFRT_C_API void ffrt_fiber_switch(ffrt_fiber_t* from, ffrt_fiber_t* to);
+```
+
+Parameters
+
+- `from`: The thread calling this function will pause the execution of the current task and save the current context to the fiber pointed to by `from`.
+- `to`: Restore the fiber pointed to by `to` to the current context, and the thread calling this function will execute the task corresponding to `to`.
+
+Description
+
+- Switching the fiber context, the thread calling this function will pause the execution of the current task, save the current context to the fiber
+  pointed to by `from`, and restore the fiber pointed to by `to` to the current context, executing the task corresponding to `to`.
+- Note: This interface cannot determine the validity of `from` and `to`. The caller needs to verify the address validity themselves, otherwise it will
+  cause the process to crash.
