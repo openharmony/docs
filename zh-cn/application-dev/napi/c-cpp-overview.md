@@ -102,4 +102,4 @@ symbol-version是libc在**动态链接-符号重定位**阶段的符号检索机
 | 20   | SIGTSTP   |  停止在终端输入   | 43   | MUSL_SIGNAL_RECYCLE_JEMALLOC (SIGRTMIN + 8) | 系统自留                  |
 | 21   | SIGTTIN   |  后台读终端       | 44   | MUSL_SIGNAL_MEMCHECK (SIGRTMIN + 9)         | 系统自留                  |
 | 22   | SIGTTOU   |  后台写终端       | 45   | MUSL_SIGNAL_FDTRACK (SIGRTMIN + 10)         | 系统自留                  |
-| 23   | SIGURG    |  套接字有紧急数据  |      |                                             |                          |
+| 23   | SIGURG    |  套接字有紧急数据  |   -  |                          -                  |                 -        |
