@@ -1,6 +1,6 @@
 # 使用HiDebug获取调试信息（C/C++）
 
-本模块可用于应用进程的内存、CPU、GPU等相关数据的获取，开启进程trace采集等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试，调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
+本模块可用于应用进程的内存、CPU、GPU等相关数据的获取，开启进程trace采集等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试、调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
 
 ## 接口说明
 | 接口名                          | 描述                              |
@@ -104,7 +104,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            Text(this.message)
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-             .onClick(testNapi.testHiDebugNdk);//添加点击事件，触发testHiDebugNdk方法。
+             .onClick(testNapi.testHiDebugNdk);// 添加点击事件，触发testHiDebugNdk方法。
          }
          .width('100%')
        }
