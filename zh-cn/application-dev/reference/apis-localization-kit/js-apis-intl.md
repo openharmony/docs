@@ -401,7 +401,9 @@ resolvedOptions(): DateTimeOptions
 
 constructor()
 
-创建数字格式化对象，从API version 20开始废弃，建议使用[Intl.NumberFormat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat)替代。
+从API version 20开始废弃，建议使用[Intl.NumberFormat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat)替代。
+
+创建数字格式化对象。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -418,7 +420,9 @@ constructor()
 
 constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 
-创建数字格式化对象，从API version 20开始废弃，建议使用[Intl.NumberFormat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat)替代。
+从API version 20开始废弃，建议使用[Intl.NumberFormat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat)替代。
+
+创建数字格式化对象。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -441,7 +445,9 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 
 format(number: number): string
 
-对数字进行格式化，从API version 20开始废弃，建议使用[Intl.NumberFormat.format()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/format)替代。
+从API version 20开始废弃，建议使用[Intl.NumberFormat.format()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/format)替代。
+
+对数字进行格式化。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -478,7 +484,9 @@ format(number: number): string
 
 formatRange(startRange: number, endRange: number): string
 
-对数字范围进行格式化，从API version 20开始废弃，建议使用[Intl.NumberFormat.formatRange()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/formatRange)替代。
+从API version 20开始废弃，建议使用[Intl.NumberFormat.formatRange()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/formatRange)替代。
+
+对数字范围进行格式化。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -509,7 +517,9 @@ formatRange(startRange: number, endRange: number): string
 
 resolvedOptions(): NumberOptions
 
-获取创建数字格式化对象时设置的配置项，从API version 20开始废弃，建议使用[Intl.NumberFormat.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/resolvedOptions)替代。
+从API version 20开始废弃，建议使用[Intl.NumberFormat.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/resolvedOptions)替代。
+
+获取创建数字格式化对象时设置的配置项。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -533,7 +543,9 @@ resolvedOptions(): NumberOptions
 
 ## NumberOptions<sup>(deprecated)</sup>
 
-创建数字格式化对象时可设置的配置项。从API version 9开始，NumberOptions的属性由必填改为可选，从API version 20开始废弃，建议使用[Intl.NumberFormat#options](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options)替代。
+从API version 20开始废弃，建议使用[Intl.NumberFormat#options](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options)替代。
+
+创建数字格式化对象时可设置的配置项。从API version 9开始，NumberOptions的属性由必填改为可选。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -800,7 +812,9 @@ select(n: number): string
 
 constructor()
 
-创建相对时间格式化对象，从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat)替代。
+从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat)替代。
+
+创建相对时间格式化对象。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -817,7 +831,9 @@ constructor()
 
 constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatInputOptions)
 
-创建相对时间格式化对象，从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat)替代。
+从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat)替代。
+
+创建相对时间格式化对象。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -841,7 +857,9 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 
 format(value: number, unit: string): string
 
-对相对时间进行格式化，从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat.format()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/format)替代。
+从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat.format()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/format)替代。
+
+对相对时间进行格式化。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -873,7 +891,9 @@ format(value: number, unit: string): string
 
 formatToParts(value: number, unit: string): Array&lt;object&gt;
 
-对相对时间进行格式化，获取格式化结果中各个部分的对象数组，从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat.formatToParts()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/formatToParts)替代。
+从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat.formatToParts()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/formatToParts)替代。
+
+对相对时间进行格式化，获取格式化结果中各个部分的对象数组。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -904,7 +924,9 @@ formatToParts(value: number, unit: string): Array&lt;object&gt;
 
 resolvedOptions(): RelativeTimeFormatResolvedOptions
 
-获取相对时间格式化对象的格式化配置项，从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/resolvedOptions)替代。
+从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat.resolvedOptions()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/resolvedOptions)替代。
+
+获取相对时间格式化对象的格式化配置项。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -928,7 +950,9 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 ## RelativeTimeFormatInputOptions<sup>(deprecated)</sup>
 
-创建相对时间格式化对象时可设置的配置项，从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/RelativeTimeFormat#options)替代。
+从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/RelativeTimeFormat#options)替代。
+
+创建相对时间格式化对象时可设置的配置项。
 
 从API version 9开始，RelativeTimeFormatInputOptions中的属性改为可选。
 
@@ -948,7 +972,9 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 ## RelativeTimeFormatResolvedOptions<sup>(deprecated)</sup>
 
-相对时间格式化对象的格式化配置项，从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/resolvedOptions#return_value)替代。
+从API version 20开始废弃，建议使用[Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/resolvedOptions#return_value)替代。
+
+相对时间格式化对象的格式化配置项。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
