@@ -276,6 +276,10 @@ OH_AVErrCode OH_AudioCodec_PushInputBuffer (OH_AVCodec *codec, uint32_t index)
 
 此外，对于某些编解码器，需要在开始时向编解码器输入编解码特定配置数据(Codec-Specific-Data)，以初始化编解码器的编解码过程。
 
+> **注意：** 
+> 
+> 当返回值为AV_ERR_UNKNOWN时此次调用不生效，输入缓冲区仍为未处理状态，需根据返回的特定错误代码处理后输入相同的index重新调用[OH_AudioCodec_PushInputBuffer](#oh_audiocodec_pushinputbuffer)。
+
 **系统能力：** SystemCapability.Multimedia.Media.AudioCodec
 
 **起始版本：** 11
@@ -290,6 +294,14 @@ OH_AVErrCode OH_AudioCodec_PushInputBuffer (OH_AVCodec *codec, uint32_t index)
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+AV_ERR_OK：执行成功。
+
+AV_ERR_INVALID_VAL：输入的index已使用或无效，需使用其他[OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer)回调返回的index。
+
+AV_ERR_INVALID_STATE：编解码器状态错误，调用[OH_AudioCodec_PushInputBuffer](#oh_audiocodec_pushinputbuffer)前需确保按顺序成功调用[OH_AudioCodec_Configure](#oh_audiocodec_configure)、[OH_AudioCodec_Prepare](#oh_audiocodec_prepare)、[OH_AudioCodec_Start](#oh_audiocodec_start)。
+
+AV_ERR_UNKNOWN：输入buffer size无效，需确保buffer设置了正确的buffer size和flags。
 
 
 ### OH_AudioCodec_RegisterCallback()
