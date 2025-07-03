@@ -18,8 +18,6 @@ static marshalling(styledString: StyledString): ArrayBuffer
 
 **系统接口：** 此接口为系统接口。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -41,8 +39,6 @@ static marshalling(styledString: StyledString, callback: StyledStringMarshallCal
 序列化属性字符串，通过定义回调来序列化属性字符串的[StyledStringMarshallingValue](#styledstringmarshallingvalue19)。
 
 **系统接口：** 此接口为系统接口。
-
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -66,8 +62,6 @@ static unmarshalling(buffer: ArrayBuffer): Promise\<StyledString>
 反序列化后得到属性字符串。
 
 **系统接口：** 此接口为系统接口。
-
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -99,8 +93,6 @@ static unmarshalling(buffer: ArrayBuffer, callback: StyledStringUnmarshallCallba
 反序列化后得到属性字符串，通过定义回调来反序列化[StyledStringMarshallingValue](#styledstringmarshallingvalue19)。
 
 **系统接口：** 此接口为系统接口。
-
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
