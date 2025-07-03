@@ -110,7 +110,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_CROP_RIGHT](#oh_md_key_video_crop_right)     | 描述裁剪矩形右坐标(x)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR](#oh_md_key_video_decoder_output_enable_vrr)     | 解码器是否打开视频可变帧率功能的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_SQR_FACTOR](#oh_md_key_sqr_factor)     | 描述SQR码控模式的质量参数，取值范围为[0, 51]（同编码量化参数QP），值越小，编码输出码率越大，质量越好，值类型为int32_t。该键值是可选的且只用于视频编码。 |
-| [OH_MD_KEY_MAX_BITRATE](#oh_md_key_max_bitrate)     | 描述SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同OH_MD_KEY_BITRATE），单位bps，值类型为int64_t。该键值是可选的且只用于视频编码。 |
+| [OH_MD_KEY_MAX_BITRATE](#oh_md_key_max_bitrate)     | 描述SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同[OH_MD_KEY_BITRATE](#oh_md_key_bitrate)），单位bps，值类型为int64_t。该键值是可选的且只用于视频编码。 |
 | [OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS](#oh_md_key_video_encoder_roi_params)    | 描述ROI编码参数，包括ROI区域和deltaQp，值类型为string。该键值是可选的且只用于视频编码。 |
 
 音频专有的键值对：
@@ -301,7 +301,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_VIDEO_CROP_RIGHT](#oh_md_key_video_crop_right) | 描述裁剪矩形右坐标(x)值的键，值类型为int32_t。 | 
 | const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR](#oh_md_key_video_decoder_output_enable_vrr) | 解码器是否打开视频可变帧率功能的键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_SQR_FACTOR](#oh_md_key_sqr_factor)     | 描述SQR码控模式的质量参数，取值范围为[0, 51]（同编码量化参数QP），值越小，编码输出码率越大，质量越好，值类型为int32_t。 |
-| const char \* [OH_MD_KEY_MAX_BITRATE](#oh_md_key_max_bitrate)     | 描述SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同OH_MD_KEY_BITRATE），单位bps，值类型为int64_t。 |
+| const char \* [OH_MD_KEY_MAX_BITRATE](#oh_md_key_max_bitrate)     | 描述SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同[OH_MD_KEY_BITRATE](#oh_md_key_bitrate)），单位bps，值类型为int64_t。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS](#oh_md_key_video_encoder_roi_params)    | 描述ROI编码参数，包括ROI区域和deltaQp，值类型为string。 |
 | const char \* [OH_MD_KEY_VIDEO_STRIDE](#oh_md_key_video_stride) | 描述视频帧宽跨距的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height) | 描述视频帧高跨距的键，值类型为int32_t。  | 
@@ -3133,7 +3133,7 @@ const char* OH_MD_KEY_SQR_FACTOR
 const char* OH_MD_KEY_MAX_BITRATE
 ```
 **描述**
-指定SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同OH_MD_KEY_BITRATE），单位bps。
+指定SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同[OH_MD_KEY_BITRATE](#oh_md_key_bitrate)），单位bps。
 
 在Configure/SetParameter阶段使用。
 
