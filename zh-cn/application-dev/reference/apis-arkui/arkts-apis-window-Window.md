@@ -4818,6 +4818,8 @@ setWindowContainerColor(activeColor: string, inactiveColor: string): void
 
 **系统能力：** SystemCapability.Window.SessionManager
 
+**需要权限：** ohos.permission.SET_WINDOW_TRANSPARENT
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -4882,6 +4884,8 @@ setWindowShadowEnabled(enable: boolean): Promise&lt;void&gt;
 设置主窗口是否显示阴影，使用promise异步回调，仅在2in1设备上支持。未调用该接口时，主窗口默认显示阴影。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**需要权限：** ohos.permission.SET_WINDOW_TRANSPARENT
 
 **参数：**
 
