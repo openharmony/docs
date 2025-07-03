@@ -590,12 +590,12 @@ svg类型图源不支持该属性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 说明                       |
-| ------ | -------------------------- |
-| None   | 最近邻插值。                   |
-| High   | Cubic插值，插值质量最高，可能会影响图片渲染的速度。 |
-| Medium | MipMap插值。                     |
-| Low    | 双线性插值。                     |
+| 名称     | 值 | 说明                       |
+| ------ | - | -------------------------- |
+| None   | 0 | 最近邻插值。                   |
+| Low    | 1 | 双线性插值。                     |
+| Medium | 2 | MipMap插值。                     |
+| High   | 3 | Cubic插值，插值质量最高，可能会影响图片渲染的速度。 |
 
 ## ImageRenderMode
 
@@ -605,10 +605,10 @@ svg类型图源不支持该属性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 说明           |
-| -------- | -------------- |
-| Original | 原色渲染模式。 |
-| Template | 黑白渲染模式。 |
+| 名称     | 值 | 说明           |
+| -------- | - | -------------- |
+| Original | 0 | 原色渲染模式。 |
+| Template | 1 | 黑白渲染模式。 |
 
 ## ResizableOptions<sup>11+</sup>
 
