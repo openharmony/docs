@@ -80,7 +80,7 @@ end(scene: string): void
 **参数：** 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| scene | string | 是 | 用户场景id，与begin配对严格保持一致，否则本次场景监测无效 |
+| scene | string | 是 | 用户场景id，与begin配对严格保持一致，否则本次场景监测无效。 |
 
 **示例：** 
 
