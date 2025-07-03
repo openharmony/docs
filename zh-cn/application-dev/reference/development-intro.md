@@ -49,7 +49,7 @@ OpenHarmony中提供的接口，部分是仅供OEM厂商使用的system api，�
 
 文档在每一个接口描述中说明了接口的系统能力，如：**系统能力**：SystemCapability.xxx.xxx
 
-通过[系统能力SystemCapability列表](syscap-list.md)，可以速查具体能力集支持的设备。
+通过[系统能力SystemCapability列表](phone-syscap-list.md)，可以速查具体能力集支持的设备。
 
 ## 废弃接口说明
 
