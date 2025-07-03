@@ -1435,7 +1435,7 @@ Wraps a Node-API instance into an ArkTS object and specifies the instance size. 
 
 - **native_object**: pointer to the native instance to be wrapped in the ArkTS object.
 
-- **finalize_cb**: (optional) callback to be called when the ArkTS object is destroyed. For details, see [napi_finalize](#napi_finalize callback function description).
+- **finalize_cb**: (optional) callback to be called when the ArkTS object is destroyed. For details, see [napi_finalize](#napi_finalize-description).
 
 - **async_finalizer**: a Boolean value used to indicate whether to execute the **finalize_cb** callback asynchronously. The value **true** means to execute the callback asynchronously. In this case, thread safety must be ensured. The value **false** means to execute the callback synchronously.
 
@@ -1455,7 +1455,7 @@ Wraps a Node-API instance into an ArkTS object and specifies the instance size. 
 
 - **napi_pending_exception**: An uncaught exception or an exception occurs during the execution.
 
-#### **napi_finalize** description
+#### **napi_finalize** Description
 
 ```cpp
 typedef void (*napi_finalize)(napi_env env,
