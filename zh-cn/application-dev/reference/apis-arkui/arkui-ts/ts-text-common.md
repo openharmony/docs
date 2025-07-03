@@ -200,15 +200,13 @@ equals(id: TextMenuItemId): boolean
 
 ## TextMenuItem<sup>12+</sup>对象说明
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| content | [ResourceStr](ts-types.md#resourcestr) | 是   | 菜单名称。 |
-| icon | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单图标。<br/>不支持网络图片。 |
-| id | [TextMenuItemId](#textmenuitemid12) | 是   | 菜单id。 |
+| content | [ResourceStr](ts-types.md#resourcestr) | 是   | 菜单名称。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单图标。<br/>不支持网络图片。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| id | [TextMenuItemId](#textmenuitemid12) | 是   | 菜单id。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | labelInfo<sup>15+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 快捷键提示。<br/>该字段仅2in1设备支持。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## EditMenuOptions
