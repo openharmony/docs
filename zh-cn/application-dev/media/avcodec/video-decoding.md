@@ -194,7 +194,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 ### Surface模式
 
-参考以下示例代码，开发者可以完成Surface模式下视频解码的全流程，实现异步模式的数据轮转。此处以H.264码流文件输入，解码送显输出为例。
+参考以下示例代码，开发者可以完成Surface模式下视频解码的全流程，实现异步模式的数据轮转。此处以输入H.264码流文件，解码送显输出为例。
 
 1. 添加头文件。
 
@@ -763,7 +763,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 ### Buffer模式
 
-参考以下示例代码，开发者可以完成Buffer模式下视频解码的全流程，实现异步模式的数据轮转。此处以H.264文件输入，解码成YUV文件为例。
+参考以下示例代码，开发者可以完成Buffer模式下视频解码的全流程，实现异步模式的数据轮转。此处以输入H.264码流文件，解码成YUV文件为例。
 
 
 1. 添加头文件。

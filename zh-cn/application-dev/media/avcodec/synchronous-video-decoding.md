@@ -1,4 +1,5 @@
 # 视频解码同步模式
+<!--AVCodec Kit--><!--音视频编解码服务-->
 
 开发者可以调用本模块的Native API接口，完成同步模式的视频解码。
 
@@ -13,7 +14,7 @@
 
 ## 开发指导
 
-详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_video_decoder.md)。
+详细的API说明请参考[VideoDecoder](../../reference/apis-avcodec-kit/_video_decoder.md)。
 
 - 虚线表示可选。
 
@@ -21,7 +22,7 @@
 
 ![Invoking relationship of video decode stream](figures/synchronous-video-decode.png)
 
-### 在 CMake 脚本中链接动态库
+### 在CMake脚本中链接动态库
 
 ``` cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
@@ -36,7 +37,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 ### 定义基础结构
 
-本部分示例代码按照C++17标准编写，仅作参考。开发者可以参考此部分。
+本部分示例代码按照C++17标准编写，仅作参考。
 
 1. 添加头文件。
 
@@ -54,9 +55,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     #include <shared_mutex>
     ```
     
-2. 全局变量。
-
-    仅做参考，可以根据实际情况将其封装到对象中。
+2. 全局变量（仅做参考，可以根据实际情况将其封装到对象中）。
 
     ```c++
     // 视频帧宽度。
@@ -78,15 +77,15 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 ### Surface模式
 
-参考以下示例代码，开发者可以完成Surface模式下视频解码的全流程，实现同步模式的数据轮转。此处以H.264码流文件输入，解码送显输出为例。
+参考以下示例代码，开发者可以完成Surface模式下视频解码的全流程，实现同步模式的数据轮转。此处以输入H.264码流文件，解码送显输出为例。
 
 
 1. 创建解码器实例。
 
     通过名称创建解码器。示例中的变量说明如下：
 
-    - videoDec：视频解码器实例的指针；
-    - capability：解码器能力查询实例的指针；
+    - videoDec：视频解码器实例的指针。
+    - capability：解码器能力查询实例的指针。
     - OH_AVCODEC_MIMETYPE_VIDEO_AVC：AVC格式视频编解码器。
 
     ```c++
@@ -101,11 +100,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 2. 调用OH_VideoDecoder_Configure()配置解码器。
 
-    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
-
-    参数校验规则请参考[OH_VideoDecoder_Configure() 参考文档](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_configure)。
-
-    参数取值范围可以通过能力查询接口获取，具体示例请参考[获取支持的编解码能力](obtain-supported-codecs.md)。
+    - 详细可配置选项的说明请参考[媒体数据键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+    - 参数校验规则请参考[OH_VideoDecoder_Configure()](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_configure)。
+    - 参数取值范围可以通过能力查询接口获取，具体示例请参考[获取支持的编解码能力](obtain-supported-codecs.md)。
 
     目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度。
 
@@ -116,7 +113,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width); // 必须配置。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // 必须配置。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, pixelFormat);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_ENABLE_SYNC_MODE, 1); // 同步模式配置
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_ENABLE_SYNC_MODE, 1); // 同步模式配置。
     // 配置解码器。
     int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
     if (ret != AV_ERR_OK) {
@@ -128,13 +125,13 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > **注意：**
     >
     > 1. 使能视频解码同步模式，必须要配置OH_MD_KEY_ENABLE_SYNC_MODE为1。
-    > 2. 在调用OH_VideoDecoder_Configure接口前没有调用OH_VideoDecoder_RegisterCallback接口，否则为异步模式。
+    > 2. 同步模式在调用OH_VideoDecoder_Configure接口前不能调用OH_VideoDecoder_RegisterCallback接口，否则为异步模式。
     >
 
 3. 设置surface。
 
    示例中的变量说明如下：
-   - nativeWindow：获取方式请参考[视频解码](video-decoding.md)“步骤-6：设置surface”
+   - nativeWindow：获取方式请参考[视频解码Surface模式](video-decoding.md#surface模式)的“步骤-6：设置surface”。
 
     ```c++
     // 设置surface。
@@ -169,8 +166,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 6. 调用OH_VideoDecoder_PushInputBuffer()写入解码码流。
 
-    送入输入队列进行解码，以下示例中：
-    - size、offset、pts、frameData：输入尺寸、偏移量、时间戳、帧数据等字段信息，获取方式可以参考[音视频解封装](./audio-video-demuxer.md)“步骤-9：开始解封装，循环获取sample”；
+    送入输入队列进行解码，示例中的变量说明如下：
+    - size、offset、pts、frameData：输入尺寸、偏移量、时间戳、帧数据等字段信息，获取方式可以参考[媒体数据解析](./audio-video-demuxer.md#开发步骤)“步骤-9：开始解封装，循环获取sample”。
     - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)。
 
     ```c++
@@ -313,7 +310,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ```c++
     bool result = true;
-    int64_t timeoutUs = 0; // 单位：微秒，负值：无限等待；0：立即退出；正值：指定时间timeout后退出。
+    int64_t timeoutUs = 0; // 单位：微秒（us），负值：无限等待；0：立即退出；正值：指定时间timeout后退出。
 
     while (!outputDone && result) {
         if (!inputDone) {
@@ -328,10 +325,10 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 9. （可选）调用OH_VideoDecoder_Flush()刷新解码器。
 
     调用OH_VideoDecoder_Flush接口后，解码器仍处于运行态，但会清除解码器中缓存的输入和输出数据及参数集如H.264格式的PPS/SPS。
-    此时需要调用OH_VideoDecoder_Start接口重新开始解码。
+    此时需要调用[OH_VideoDecoder_Start](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_start)接口重新开始解码。
 
     ```c++
-    // 通过codecMutex来避免调用Flush接口后，状态切换，解码线程还在跑会退出循环的问题。
+    // 通过codecMutex来避免调用Flush接口，状态切换后，解码线程还在跑会退出循环的问题。
     std::unique_lock<std::shared_mutex> lock(codecMutex);
     // 刷新解码器videoDec。
     int32_t ret = OH_VideoDecoder_Flush(videoDec);
@@ -348,7 +345,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 10. （可选）调用OH_VideoDecoder_Reset()重置解码器。
 
-    调用OH_VideoDecoder_Reset接口后，解码器回到初始化的状态，需要调用OH_VideoDecoder_Configure接口、OH_VideoDecoder_SetSurface接口和OH_VideoDecoder_Prepare接口重新配置。
+    调用OH_VideoDecoder_Reset接口后，解码器回到初始化的状态，需要调用接口[OH_VideoDecoder_Configure](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_configure)、[OH_VideoDecoder_SetSurface](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_setsurface)和[OH_VideoDecoder_Prepare](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_prepare)重新配置。
 
     ```c++
     // 重置解码器videoDec。
@@ -366,7 +363,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     OH_AVFormat_Destroy(format);
 
-    // Surface模式重新配置surface，而Buffer模式不需要配置surface。
+    // Surface模式需要重新配置surface，而Buffer模式不需要配置surface。
     ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);
     if (ret != AV_ERR_OK) {
         // 异常处理。
@@ -385,7 +382,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 11. （可选）调用OH_VideoDecoder_Stop()停止解码器。
 
-    调用OH_VideoDecoder_Stop()后，解码器保留了解码实例，释放输入输出buffer。
+    调用OH_VideoDecoder_Stop()后，解码器保留解码实例，释放输入输出buffer。
 
     ```c++
     // 终止解码器videoDec。
@@ -418,7 +415,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 ### Buffer模式
 
-参考以下示例代码，开发者可以完成Buffer模式下视频解码的全流程。此处以H.264文件输入，解码成YUV文件为例。
+参考以下示例代码，开发者可以完成Buffer模式下视频解码的全流程，实现同步模式的数据轮转。此处以输入H.264码流文件，解码成YUV文件为例。
 
 1. 创建解码器实例。
 
@@ -458,7 +455,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > **注意：**
     >
     > 1. 使能视频解码同步模式，必须要配置OH_MD_KEY_ENABLE_SYNC_MODE为1。
-    > 2. 在调用OH_VideoDecoder_Configure接口前没有调用OH_VideoDecoder_RegisterCallback接口，否则为异步模式。
+    > 2. 同步模式在调用OH_VideoDecoder_Configure接口前不能调用OH_VideoDecoder_RegisterCallback接口，否则为异步模式。
     >
 
 3. 调用OH_VideoDecoder_Prepare()解码器就绪。
@@ -619,7 +616,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
   
     ```c++
     bool result = true;
-    int64_t timeoutUs = 0; // 单位：微秒，负值：无限等待；0：立即退出；正值：指定时间timeout后退出。
+    int64_t timeoutUs = 0; // 单位：微秒（us），负值：无限等待；0：立即退出；正值：指定时间timeout后退出。
 
     while (!outputDone && result) {
         if (!inputDone) {
