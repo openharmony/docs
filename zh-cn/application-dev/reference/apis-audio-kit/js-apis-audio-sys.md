@@ -2630,7 +2630,7 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
 | 名称          | 类型                                     | 只读 | 可选 | 说明          |
 | -------------| ---------------------------------------- | ---- |---| -------------- |
 | uid          | number                                   |  否  | 是 | 表示应用ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
-| capturerInfo | [AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8) |  否  | 是 | 表示采集器信息。。<br> **系统能力：** SystemCapability.Multimedia.Audio.Capturer|
+| capturerInfo | [AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8) |  否  | 是 | 表示采集器信息。<br> **系统能力：** SystemCapability.Multimedia.Audio.Capturer|
 
 **示例：**
 
