@@ -242,13 +242,13 @@ if (!isSupported) {
 }
 // 2. 获取码率范围，判断待配置最大码率参数是否在范围内。
 OH_AVRange bitrateRange = {-1, -1};
-// 最大码率参数的取值范围同码率参数，故复用OH_AVCapability_GetEncoderBitrateRange获取取值范围
+// 最大码率参数的取值范围同码率参数，故复用OH_AVCapability_GetEncoderBitrateRange获取取值范围。
 int32_t ret = OH_AVCapability_GetEncoderBitrateRange(capability, &bitrateRange);
 if (ret != AV_ERR_OK || bitrateRange.maxVal <= 0) {
    // 异常处理。
 }
 
-// 质量稳定码率因子取值范围同编码量化参数QP，0~51
+// 质量稳定码率因子取值范围为[0, 51]（同编码量化参数QP）。
 if (sqrFactor > 51 || sqrFactor < 0) {
    // 3.（可选）调整待配置质量稳定码率因子参数。
 }
