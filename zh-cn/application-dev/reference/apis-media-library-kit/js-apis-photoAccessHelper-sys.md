@@ -1396,7 +1396,7 @@ createAssetsForApp(bundleName: string, appName: string, tokenId: number, photoCr
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给接口调用方的的媒体库文件uri列表。Uri已对tokenId对应的应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回-3006表不允许出现非法字符；返回-2004表示图片类型和后缀不符；返回-203表示文件操作异常。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给接口调用方的媒体库文件uri列表。Uri已对tokenId对应的应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回-3006表不允许出现非法字符；返回-2004表示图片类型和后缀不符；返回-203表示文件操作异常。 |
 
 **错误码：**
 
@@ -9660,7 +9660,7 @@ async example() {
 | 名称                   | 类型                | 必定提供 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 |taskStatus       |[CloudMediaAssetTaskStatus](#cloudmediaassettaskstatus14)  |是 | 云端媒体资产下载任务状态。 |
-|taskInfo          |string  |是 | 下载资产的的总个数和总大小(byte)，以及未下载的总个数和总大小(byte)。  |
+|taskInfo          |string  |是 | 下载资产的总个数和总大小(byte)，以及未下载的总个数和总大小(byte)。  |
 |errorCode       |[CloudMediaTaskPauseCause](#cloudmediataskpausecause14)  |是 | 云端媒体资产下载任务暂停类型。 |
 
 ## RecommendationType<sup>11+</sup>
