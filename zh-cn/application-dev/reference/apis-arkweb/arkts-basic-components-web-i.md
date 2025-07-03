@@ -543,6 +543,7 @@ Web同层渲染的配置。
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | title | string | 是 | document标题内容。                       |
+| isRealTitle<sup>20+</sup> | boolean | 否 | document标题来源，true表示来自网页的title标签，false表示该title是根据url自动生成。                       |
 
 ## OnGeolocationShowEvent<sup>12+</sup>
 
