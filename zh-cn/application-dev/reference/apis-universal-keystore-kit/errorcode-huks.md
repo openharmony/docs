@@ -44,7 +44,7 @@ Invalid ``${messageInfo}``.
 
 **处理步骤**
 
-1. 查看errorMessage确认无效的的密钥参数名。
+1. 查看errorMessage确认无效的密钥参数名。
 2. 修改对应的密钥参数。
 
 ## 12000004 文件错误
