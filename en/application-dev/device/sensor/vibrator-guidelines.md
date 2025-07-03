@@ -10,16 +10,21 @@ For details about the APIs, see [Vibrator](../../reference/apis-sensor-service-k
 
 ## Available APIs
 
-| Name                                                        | Description                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt; | Starts vibration with the specified effect and attribute. This API uses a promise to return the result.|
-| startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void | Starts vibration with the specified effect and attribute. This API uses an asynchronous callback to return the result.|
-| stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt; | Stops vibration in the specified mode. This API uses a promise to return the result.           |
-| stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): void | Stops vibration in the specified mode. This API uses an asynchronous callback to return the result.          |
-| stopVibration(): Promise&lt;void&gt;                         | Stops vibration in all modes. This API uses a promise to return the result.               |
-| stopVibration(callback: AsyncCallback&lt;void&gt;): void     | Stops vibration in all modes. This API uses an asynchronous callback to return the result.              |
-| isSupportEffect(effectId: string): Promise&lt;boolean&gt;    | Checks whether an effect ID is supported. This API uses a promise to return the result. This API uses a promise to return the result. The return value **true** means that the effect ID is supported, and **false** means the opposite.|
-| isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether an effect ID is supported. This API uses an asynchronous callback to return the result. This API uses an asynchronous callback to return the result. The return value **true** means that the effect ID is supported, and **false** means the opposite.|
+| Name                                                        | Description                                                                         |
+| ------------------------------------------------------------ |-----------------------------------------------------------------------------|
+| startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt; | Starts vibration with the specified effect and attribute. This API uses a promise to return the result.                                         |
+| startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void | Starts vibration with the specified effect and attribute. This API uses an asynchronous callback to return the result.                                        |
+| stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt; | Stops vibration in the specified mode. This API uses a promise to return the result.                                               |
+| stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): void | Stops vibration in the specified mode. This API uses an asynchronous callback to return the result.                                              |
+| stopVibration(): Promise&lt;void&gt;                         | Stops vibration in all modes. This API uses a promise to return the result.                                                 |
+| stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt; | Stops vibration based on the specified vibrator parameters. This API uses a promise to return the result.                                |
+| stopVibration(callback: AsyncCallback&lt;void&gt;): void     | Stops vibration in all modes. This API uses an asynchronous callback to return the result.                                                |
+| isSupportEffect(effectId: string): Promise&lt;boolean&gt;    | Checks whether an effect ID is supported. This API uses a promise to return the result. The return value **true** means that the effect ID is supported, and **false** means the opposite.                       |
+| isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether an effect ID is supported. This API uses an asynchronous callback to return the result. The return value **true** means that the effect ID is supported, and **false** means the opposite.                      |
+| getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo | Checks whether the effect specified by the input **effectId** is supported. The **param** parameter can be used to specify a specific vibrator. You can check the **isEffectSupported** field in the returned **EffectInfo** object to determine whether the effect is supported.|
+| getVibratorInfoSync(param?: VibratorInfoParam): Array&lt;VibratorInfo&gt; | Queries the vibrator list of one or all devices. The returned **VibratorInfo** object includes the following information: device ID, vibrator ID, device name, support for HD vibration, and local device flag.      |
+| on(type: 'vibratorStateChange', callback: Callback&lt;VibratorStatusEvent&gt;): void | Enables listening for vibrator status changes. The **VibratorStatusEvent** parameter includes the following information: event timestamp, device ID, number of vibrators, and online/offline status. |
+| off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;): void | Disables listening for vibrator status changes.                                                          |
 
 
 ## Vibration Effect Description
@@ -151,7 +156,42 @@ The following requirements must be met:
 
 1. Before using the vibrator on a device, you must declare the **ohos.permission.VIBRATE** permission. For details, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 
-2. Start vibration with the specified effect and attribute.
+2. Query vibrator information.
+
+  Scenario 1: Query information about all vibrators.
+  
+  ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    const vibratorInfoList: vibrator.VibratorInfo[] = vibrator.getVibratorInfoSync();
+    console.log(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+  }
+  ```
+
+  Scenario 2: Query information about one or more vibrators of the specified device.
+  
+  ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    const vibratorParam: vibrator.VibratorInfoParam = {
+      deviceId: 1    // The device ID must be the one that actually exists.
+    }
+    const vibratorInfoList: vibrator.VibratorInfo[] = vibrator.getVibratorInfoSync(vibratorParam);
+    console.log(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+  }
+  ```
+
+3. Start vibration with the specified effect and attribute.
 
    Scenario 1: Trigger vibration with the specified duration.
 
@@ -276,7 +316,7 @@ The following requirements must be met:
    }
    ```
 
-3. Stop vibration.
+4. Stop vibration.
 
    Method 1: Stop vibration in the specified mode. This method is invalid for custom vibration.
 
@@ -343,11 +383,65 @@ The following requirements must be met:
    }
    ```
 
+   Method 3: Stop vibration of the specified device.
 
-## Samples
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+  
+   const vibratorInfoParam: vibrator.VibratorInfoParam = {
+     deviceId: 1   // The device ID must be the one that actually exists.
+   }
+   try {
+     vibrator.stopVibration(vibratorInfoParam).then(() => {
+       console.info('Succeed in stopping vibration');
+     }, (error: BusinessError) => {
+       console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+     });
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
-The following sample is provided to help you better understand how to develop vibrators:
 
-- [Vibrator (ArkTS, API version 9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator/BasicVibration)
+5. Enable listening for vibrator status changes. 
 
-- [CustomHaptic (ArkTS, Full SDK, API version 10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic)
+   Enable listening.
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+   // Callback
+   const vibratorStateChangeCallback = (data: vibrator.VibratorStatusEvent) => {
+     console.log('vibrator state callback info:', JSON.stringify(data));
+   }
+
+   try {
+     // Subscribe to vibratorStateChange events.
+     vibrator.on('vibratorStateChange', vibratorStateChangeCallback);
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
+
+   Disable listening. The specified callback must be the same as that passed to the **on** API.
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+   // Callback
+   const vibratorStateChangeCallback = (data: vibrator.VibratorStatusEvent) => {
+     console.log('vibrator state callback info:', JSON.stringify(data));
+   }
+   try {
+     // Unsubscribe from specified vibratorStateChange events.
+     vibrator.off('vibratorStateChange', vibratorStateChangeCallback);
+     // Unsubscribe from all vibratorStateChange events.
+     // vibrator.off('vibratorStateChange');
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
