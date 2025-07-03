@@ -1,5 +1,4 @@
 # native_mediakeysession.h
-<!--Kit_DRM Kit--><!--System_媒体-->
 
 ## 概述
 

@@ -1,5 +1,4 @@
 # native_drm_common.h
-<!--Kit_DRM Kit--><!--System_媒体-->
 
 ## 概述
 
