@@ -243,7 +243,7 @@ if (!isSupported) {
 // 2. 获取码率范围，判断待配置最大码率参数是否在范围内。
 OH_AVRange bitrateRange = {-1, -1};
 // 最大码率参数的取值范围同码率参数，故复用OH_AVCapability_GetEncoderBitrateRange获取取值范围
-ret = OH_AVCapability_GetEncoderBitrateRange(capability, &bitrateRange);
+int32_t ret = OH_AVCapability_GetEncoderBitrateRange(capability, &bitrateRange);
 if (ret != AV_ERR_OK || bitrateRange.maxVal <= 0) {
    // 异常处理。
 }
@@ -271,7 +271,7 @@ if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
 OH_AVFormat_Destroy(format);
 
 // 6.启动编码器，开始编码。
-int32_t ret = OH_VideoEncoder_Start(videoEnc);
+ret = OH_VideoEncoder_Start(videoEnc);
 if (ret != AV_ERR_OK) {
    // 异常处理。
 }
