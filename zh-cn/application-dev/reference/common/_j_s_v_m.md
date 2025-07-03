@@ -1611,7 +1611,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileWasmModule (JSVM_Env env, const uint8_t *
 | wasmBytecodeLength | WebAssembly 字节码的长度，单位：字节。 | 
 | cacheData | 可选的 WebAssembly 缓存。 | 
 | cacheDataLength | 可选的 WebAssembly 缓存长度，单位：字节。 | 
-| cacheRejected | 输出参数，表示提供的 WebAssembly 缓存是否被引擎使用。 | 
+| cacheRejected | 代码缓存是否被编译拒绝，取值为true表示缓存被拒绝，取值为false表示缓存被接受。 | 
 | wasmModule | 输出参数，表示生成的 WebAssembly 模块。 | 
 
 **返回：**
