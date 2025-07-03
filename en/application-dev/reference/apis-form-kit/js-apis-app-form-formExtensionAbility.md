@@ -56,7 +56,7 @@ Called to notify the widget provider that a widget is being created.
 
 | Name| Type                                  | Mandatory| Description                                                        |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information of the widget. You can set the **parameters** field to one or more values enumerated in [widget parameters](./js-apis-app-form-formInfo.md#forminfoformparam), such as widget ID, widget name, and widget style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information of the widget. You can set the **parameters** field to one or more values enumerated in [widget parameters](./js-apis-app-form-formInfo.md#formparam), such as widget ID, widget name, and widget style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
 
 **Return value**
 
@@ -326,7 +326,7 @@ Called to notify the widget provider that the widget host is requesting the widg
 
 | Type                                                        | Description                                                       |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| [formInfo.FormState](js-apis-app-form-formInfo.md#forminfoformstate) | Enumerated values of the current widget status.|
+| [formInfo.FormState](js-apis-app-form-formInfo.md#formstate) | Enumerated values of the current widget status.|
 
 **Example**
 
@@ -362,6 +362,42 @@ import { FormExtensionAbility } from '@kit.FormKit';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onStop() {
     console.log(`FormExtensionAbility onStop`);
+  }
+}
+```
+
+### FormExtensionAbility.onFormLocationChanged<sup>20+</sup>
+
+onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation): void
+
+Called when the widget location changes.
+
+**Model restriction**: This API can be used only in the stage model.
+  
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| formId | string | Yes| Widget ID.|
+| newFormLocation | [formInfo.FormLocation](js-apis-app-form-formInfo.md#formlocation20) | Yes| Enumerated value of the latest widget location.|
+
+**Example**
+
+```ts
+import { formBindingData, FormExtensionAbility, formInfo } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+
+export default class EntryFormAbility extends FormExtensionAbility {
+  onAddForm(want: Want) {
+    let formData: Record<string, string | Object> = {
+      'data': 'addForm'
+    };
+    return formBindingData.createFormBindingData(formData);
+  }
+  onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation) {
+    console.info("EntryFormAbility onFormLocationChanged current location: " + newFormLocation);
   }
 }
 ```

@@ -5,12 +5,13 @@ A widget can be updated through a proxy – a system application that has data s
 ## Implementation Principles
 
 **Figure 1** Updating widget content through a proxy
+
 ![UpdateWidgetByProxyPrinciple](figures/UpdateWidgetByProxyPrinciple.png)
 
-Compared with the [implementation of the ArkTS widget](arkts-ui-widget-working-principles.md#implementation-principles) alone, updating through a proxy involves the data management service and data provider.
+Compared with the [implementation of the ArkTS widget](arkts-form-overview.md#how-to-implement) alone, updating through a proxy involves the data management service and data provider.
 
 - Data management service: provides a mechanism for data sharing among multiple applications.
-- Data provider: must be a system application that has data sharing enabled. The shared data is identified through the defined **key** + **subscriberId** combination.
+- Data provider: must be a system application that has data sharing enabled. The shared data is identified through the defined `key + subscriberId` combination.
 
 > **NOTE**
 >
@@ -18,18 +19,18 @@ Compared with the [implementation of the ArkTS widget](arkts-ui-widget-working-p
 
 Processing flow of the widget provider (indicated by the blue arrows in the figure):
 
-1. The widget provider sets the **dataProxyEnabled** field to **true** in the **form_config.json** file to enable the update-through-proxy feature.
+1. The widget provider sets the `dataProxyEnabled` field to `true` in the `form_config.json` file to enable the update-through-proxy feature.
 > **NOTE**
 >
-> After the update-through-proxy feature is enabled, the settings for [updating periodically](arkts-ui-widget-update-by-time.md) do not work.
+> After the update-through-proxy feature is enabled, the settings for [interval-based update](arkts-ui-widget-passive-refresh.md#interval-based-update) becomes invalid.
 
-2. In the [onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform) callback, the widget provider returns the **key** + **subscriberId** combination defined by the data provider to the Widget Manager.
+2. In the [onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonaddform) callback, the widget provider returns the `key + subscriberId` combination defined by the data provider to the Widget Manager.
 
 3. The Widget Manager parses the subscription information of the widget provider and registers a subscription instance with the data management service.
 
 Processing flow of the widget update proxy (indicated by the red arrows in the figure):
 
-1. The data provider uses the **key** + **subscriberId** combination as the data ID to store data to the database.
+1. The data provider uses the `key + subscriberId` combination as the data ID to store data to the database.
 2. The data management service detects the change in the database and publishes the new data to all currently registered subscription instances.
 3. The Widget Manager parses data from the subscription instance and sends the data to the widget rendering service.
 4. The widget rendering service runs the widget page code **widgets.abc**, which implements rendering based on the new data and sends the rendered data to the <!--Del-->[<!--DelEnd-->FormComponent<!--Del-->](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)<!--DelEnd--> corresponding to the widget host.
@@ -38,7 +39,7 @@ There are two types of shared data provided by the data provider:
 
 - Ephemeral data: data that exists only for a specific period of time and can be subscribed to by system and non-system applications alike.
 
-- Persistent data: data that persists over time and can only be subscribed to by system applications.
+- Persistent data: data that can be subscribed to only by system applications.
 
 The update-through-proxy configuration varies by the type of shared data.
 <!--Del-->
@@ -48,7 +49,7 @@ For details, see [Data Management](../database/share-data-by-silent-access.md).
 <!--DelEnd-->
 ## Widget Provider Development (Ephemeral Data)
 
-- Set the **dataProxyEnabled** field to **true** in the **form_config.json** file to enable the update-through-proxy feature.
+- Set the `dataProxyEnabled` field to `true` in the **form_config.json** file to enable the update-through-proxy feature. When the subscribed ephemeral data is updated, the system automatically updates the widget data.
   ```json
   {
     "forms": [
@@ -75,7 +76,7 @@ For details, see [Data Management](../database/share-data-by-silent-access.md).
   }
   ```
   
-- Configure the subscription information [proxyData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#proxydata10) in the [onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform) callback and return the information to the Widget Manager through [formBinding](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata). In this example, **key** is set to **datashareproxy://com.samples.widgetupdatebyproxy/weather** and **subscriberId** is set to **11**.
+- Configure the subscription information [proxyData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#proxydata10) in the [onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonaddform) callback and return the information to the Widget Manager through [formBinding](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata). In this example, **key** is set to **datashareproxy://com.samples.widgetupdatebyproxy/weather** and **subscriberId** is set to **11**.
   > **NOTE**
   >
   > The value of **key** can be a URI or a simple string. The default value of **subscriberId** is the value of **formId**. The actual value depends on the definition of the data provider.
@@ -104,7 +105,7 @@ For details, see [Data Management](../database/share-data-by-silent-access.md).
   }
   ```
   
-- In the [widget page code file](arkts-ui-widget-creation.md), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In this example, the subscribed data is obtained through **'city'** and displayed in the **Text** component.
+- In the [widget page code file](arkts-ui-widget-creation.md), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In this example, the subscribed data is obtained through **'city'** and displayed in the **\<Text>** component.
   ```ts
   let storageProcess = new LocalStorage();
   
@@ -130,8 +131,8 @@ For details, see [Data Management](../database/share-data-by-silent-access.md).
   }
   ```
 
-## Widget Provider Development (Persistent Data; for System Applications Only)
-- Set the **dataProxyEnabled** field to **true** in the **form_config.json** file to enable the update-through-proxy feature.
+## Widget Provider Development (Persistent Data)
+- Set the `dataProxyEnabled` field to `true` in the **form_config.json** file to enable the update-through-proxy feature.
   ```json
   {
     "forms": [
@@ -159,7 +160,7 @@ For details, see [Data Management](../database/share-data-by-silent-access.md).
   }
   ```
 
-- Add a subscription template <!--Del-->[<!--DelEnd-->addTemplate<!--Del-->](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#addtemplate10)<!--DelEnd--> to the [onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform) callback and use the template predicates to notify the database of the subscribed data conditions. Then, configure the subscription information [proxyData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#proxydata10) and return it to the Widget Manager through [formBinding](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata). In the example, the predicate is set to **"list": "select type from TBL00 limit 0,1"**, indicating that the first data record in the **type** column is obtained from the **TBL00** database. The data is returned to the widget page code file **widgets.abc** in {"list":[{"type":"value0"}]} format. When the subscribed persistent data is updated, the system automatically updates the widget data.
+- Add a subscription template <!--Del-->[<!--DelEnd-->addTemplate<!--Del-->](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#addtemplate10)<!--DelEnd--> to the [onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonaddform) callback and use the template predicates to notify the database of the subscribed data conditions. Then, configure the subscription information [proxyData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#proxydata10) and return it to the Widget Manager through [FormBindingData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata). In the example, the predicate is set to `"list" : "select type from TBL00 limit 0,1"`, indicating that the first data record in the **type** column is obtained from the **TBL00** database. The data is returned to the widget page code file **widgets.abc** in `{"list":[{"type":"value0"}]}` format. When the subscribed persistent data is updated, the system automatically updates the widget data.
 
   > **NOTE**
   >
@@ -202,7 +203,7 @@ For details, see [Data Management](../database/share-data-by-silent-access.md).
   }
   ```
 
-- In the [widget page code file](arkts-ui-widget-creation.md), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In the example, the subscribed data is obtained through **'list'**, and the value of the first element is displayed on the **Text** component.
+- In the [widget page code file](arkts-ui-widget-creation.md), use the variable in LocalStorage to obtain the subscribed data. The variable in LocalStorage is bound to a string and updates the subscribed data in the key:value pair format. The key must be the same as that subscribed to by the widget provider. In the example, the subscribed data is obtained through **'list'**, and the value of the first element is displayed on the **\<Text>** component.
   ```ts
   let storagePersis = new LocalStorage();
   
