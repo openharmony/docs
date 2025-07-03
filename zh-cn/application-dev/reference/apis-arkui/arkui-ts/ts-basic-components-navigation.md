@@ -8,7 +8,7 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 >
 > - 该组件从API version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM, SafeAreaType.KEYBOARD, SafeAreaType.CUTOUT], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
 >
-> - [NavBar](#navbar12)嵌套使用Navigation时，内层Navigation的生命周期不和外层Navigation以及[全模态](ts-universal-attributes-modal-transition.md#全屏模态转场)的生命周期进行联动。
+> - [NavBar](#navbar12)嵌套使用Navigation时，内层Navigation的生命周期不和外层Navigation以及[全模态](ts-universal-attributes-modal-transition.md)的生命周期进行联动。
 >
 > - Navigation未设置主副标题并且没有返回键时，不显示标题栏。
 

@@ -1024,7 +1024,7 @@ setTextSelection选中文字时的配置。
 >
 >  **使用场景：**
 > 
-> - 使用[自定义组件的自定义布局](ts-custom-component-layout.md#自定义组件的自定义布局)时，对其中的子组件的内容未知，不能确定设置固定的长度和宽度，可以为其的宽度或高度设置LayoutPolicy.fixAtIdealSize，使得子组件不受到父组件的影响，只受到自定义布局限制的影响。
+> - 使用[自定义组件的自定义布局](ts-custom-component-layout.md)时，对其中的子组件的内容未知，不能确定设置固定的长度和宽度，可以为其的宽度或高度设置LayoutPolicy.fixAtIdealSize，使得子组件不受到父组件的影响，只受到自定义布局限制的影响。
 
 ## TextContentControllerOptions<sup>15+</sup>
 

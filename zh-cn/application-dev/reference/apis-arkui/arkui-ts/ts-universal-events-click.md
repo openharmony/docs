@@ -6,7 +6,7 @@
 >
 >  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  点击事件遵循[触摸事件](../arkui-ts/ts-universal-events-touch.md#触摸事件)分发流程，触摸事件支持屏蔽、透传等自定义行为。触摸事件分发流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md#多层级手势事件)。
+>  点击事件遵循[触摸事件](../arkui-ts/ts-universal-events-touch.md#触摸事件)分发流程，触摸事件支持屏蔽、透传等自定义行为。触摸事件分发流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md)。
 
 ## onClick<sup>12+</sup>
 
