@@ -2495,3 +2495,61 @@ FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
         return 0;
     }
     ```
+
+## 纤程
+
+### ffrt_fiber_t
+
+#### 声明
+
+```c
+struct ffrt_fiber_t;
+```
+
+#### 描述
+
+`ffrt_fiber_t`为纤程存储实体类型，用于保存和恢复执行上下文。
+
+#### 方法
+
+##### ffrt_fiber_init
+
+声明
+
+```c
+FFRT_C_API int ffrt_fiber_init(ffrt_fiber_t* fiber, void(*func)(void*), void* arg, void* stack, size_t stack_size);
+```
+
+参数
+
+- `fiber`：纤程指针。
+- `func`：纤程启动时的函数指针入口。
+- `arg`：纤程启动时的函数入参。
+- `stack`：纤程运行时使用的栈空间起始地址。
+- `stack_size`：纤程栈大小，单位为字节。
+
+返回值
+
+- 初始化成功返回`ffrt_success`，否则返回`ffrt_error`。通常原因为`stack_size`不满足最小栈空间（不同平台存在差异）限制，建议设置4KB以上的栈空间。
+
+描述
+
+- 该函数用于初始化纤程，需要传入纤程启动的函数指针和入参，以及运行时使用的栈空间，纤程不管理任何的内存，纤程栈生命周期由调用方管理。
+
+##### ffrt_fiber_switch
+
+声明
+
+```c
+FFRT_C_API void ffrt_fiber_switch(ffrt_fiber_t* from, ffrt_fiber_t* to);
+```
+
+参数
+
+- `from`：调用该函数的线程会暂停当前任务的执行，并保存当前上下文到`from`指向的纤程。
+- `to`：将`to`指向的纤程恢复到当前上下文，调用该函数的线程将执行`to`对应的任务。
+
+描述
+
+- 切换纤程上下文，调用该函数的线程会暂停当前任务的执行，保存当前上下文到`from`指向的纤程，并将`to`指向的纤程恢复到当前上下文，执行`to`对应的任务。
+- 注意：本接口对`from`、`to`的有效性无法做判断，调用方需自行校验地址有效性，否则会导致该进程崩溃。
