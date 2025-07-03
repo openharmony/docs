@@ -2654,6 +2654,7 @@ wifiManager.addCandidateConfig(config,(error,networkId) => {
 | gateway        | [NetAddress](#netaddress)   | 是 |网关地址。       |
 | hasGateway     | boolean                     | 是 |true：有网关；false：无网关。     |
 | isDefaultRoute | boolean                     | 是 |true：默认路由；false：非默认路由。 |
+| isExcludedRoute<sup>20+</sup>| boolean                     | 否 |是否为排除路由。true表示排除路由，false表示非排除路由，默认值为false。|
 
 ## LinkAddress
 
