@@ -1372,7 +1372,9 @@
           <!--DelEnd-->
       - Test Kit<!--test-kit-->
         - [arkXtest User Guide](application-test/arkxtest-guidelines.md)
+        <!--Del-->
         - [SmartPerf User Guide](application-test/smartperf-guidelines.md)
+        <!--DelEnd-->
         - [wukong User Guide](application-test/wukong-guidelines.md)
       - Debugging Commands<!--debugging-commands-->
         - [Ability Assistant](tools/aa-tool.md)
