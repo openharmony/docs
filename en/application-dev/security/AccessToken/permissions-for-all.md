@@ -476,7 +476,7 @@ This permission is applicable to the applications that meet the following condit
 
 ## ohos.permission.SET_WINDOW_TRANSPARENT
 
-Allow an application to set the main window container to be transparent and remove the shadow of the outer border of the main window.
+Allows an application to set the main window container to be transparent and remove the shadow of the outer border of the main window.
 
 **Permission level**: normal
 
