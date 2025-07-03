@@ -2867,30 +2867,14 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window;
-    // 创建子窗
-    try {
-      windowStage.createSubWindow("testSubWindow").then((data) => {
-        if (data == null) {
-          console.error("Failed to create the subWindow. Cause: The data is empty");
-          return;
-        }
-        windowClass = data;
-        windowClass.showWindow().then(() => {
-          // windowClass的获取需放在targetWindow之上
-          let targetWindow: window.Window = windowClass;
-          let properties = targetWindow.getWindowProperties();
-          let targetId = properties.id;
-          windowClass.raiseAboveTarget(targetId).then(()=> {
-            console.info('Succeeded in raising the subWindow to target subWindow top.');
-          }).catch((err: BusinessError)=>{
-            console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
-          });
-        });
+    let targetId: number = 102;
+    windowStage.getMainWindow().then((mainWindow) => {
+      mainWindow.raiseMainWindowAboveTarget(targetId).then(() => {
+        console.info('Succeeded in raising the main window above target.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to raise the main window above target. Cause code: ${err.code}, message: ${err.message}`);
       });
-    } catch (exception) {
-      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+    });
   }
 }
 ```
