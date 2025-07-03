@@ -10107,14 +10107,14 @@ import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    windowStage.loadContent('pages/Index', (loadError) => {
+    windowStage.loadContent('pages/Index', (loadError: BusinessError) => {
       if (loadError.code) {
         console.error(`Failed to load the content. Cause code: ${loadError.code}, message: ${loadError.message}`);
         return;
       }
       console.info("Succeeded in loading the content.");
       windowStage.createSubWindow("subWindow").then((subWindow: window.Window) => {
-        if (subWindow == null) {
+        if (subWindow === null) {
           console.error("Failed to create the subWindow. Cause: The data is empty");
           return;
         }
