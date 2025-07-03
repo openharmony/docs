@@ -5364,7 +5364,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值。。
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
