@@ -256,7 +256,7 @@ The APIs exported from the native Node-API library feature usage and behaviors b
 
 **NOTE**
 
-- In OpenHarmory, if the **napi_finalize** callback is registered when a strong reference is created, calling this API will trigger the **napi_finalize** callback.
+- In OpenHarmony, if the **napi_finalize** callback is registered when a strong reference is created, calling this API will trigger the **napi_finalize** callback.
 
 ### napi_create_symbol
 
@@ -714,7 +714,7 @@ The APIs exported from the native Node-API library feature usage and behaviors b
 |FUNC|napi_wrap_sendable | Wraps a native instance into an ArkTS object.|12|
 |FUNC|napi_wrap_sendable_with_size | Wraps a native instance into an ArkTS object with the specified size.|12|
 |FUNC|napi_unwrap_sendable | Unwraps the native instance from an ArkTS object.|12|
-|FUNC|napi_remove_wrap_sendable | Removes the native instance from an ArkTS object.|12|
+|FUNC|napi_remove_wrap_sendable | Removes and obtains the native instance wrapped by an ArkTS object. After removal, the callback will no longer be triggered and must be manually deleted to free memory.|12|
 |FUNC|napi_wrap_enhance | Wraps a Node-API instance into an ArkTS object and specifies the instance size. You can specify whether to execute the registered callback asynchronously (if asynchronous, it must be thread-safe).|18|
 
 > **NOTE**
@@ -739,7 +739,7 @@ Enumerates the QoS levels, which determine the priority of thread scheduling.
 
 ```cpp
 typedef enum {
-    napi_event_mode_default = 0, //  Run the underlying event loop while blocking the current thread, and exit the event loop only when there is no task in the loop.
+    napi_event_mode_default = 0, // Run the underlying event loop while blocking the current thread, and exit the event loop only when there is no task in the loop.
     napi_event_mode_nowait = 1, // Run the underlying event loop without blocking the current thread. Process a task and exit the event loop after the task is complete. If there is no task in the event loop, exit the event loop immediately.
 } napi_event_mode;
 ```
@@ -919,7 +919,7 @@ napi_status napi_create_ark_runtime(napi_env *env)
 
 **Description**
 
-Creates an ArkTS runtime environment. A process allows up to 64 instances, and the total number of subthreads, including those created by [Worker](../../arkts-utils/worker-introduction.md), cannot exceed 80.
+Creates a runtime environment. A process allows up to 64 instances, and the total number of child threads, including those created by [Worker](../../arkts-utils/worker-introduction.md), cannot exceed 80.
 
 **Parameters**
 
@@ -1196,7 +1196,7 @@ Creates a sendable object with the given **napi_property_descriptor**.
 
 - **property_count**: number of properties of the class. This parameter is of the size_t type.
 
-- **properties**: pointer to the properties of the sendable object to create.
+- **properties**: pointer to the descriptors of the properties. This parameter of the const napi_property_descriptor* type.
 
 - **result**: pointer to the sendable class created. This parameter is of the napi_value type.
 
@@ -1396,7 +1396,7 @@ napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void**
 
 **Description**
 
-Removes the native instance from an ArkTS object.
+Removes and obtains the native instance wrapped by an ArkTS object. After removal, the callback will no longer be triggered and must be manually deleted to free memory.
 
 **Parameters**
 
@@ -1435,7 +1435,7 @@ Wraps a Node-API instance into an ArkTS object and specifies the instance size. 
 
 - **native_object**: pointer to the native instance to be wrapped in the ArkTS object.
 
-- **finalize_cb**: (optional) callback to be called when the ArkTS object is destroyed. For details, see [napi_finalize](#napi_finalize-description).
+- **finalize_cb**: (optional) callback to be called when the ArkTS object is destroyed. For details, see [napi_finalize](#napi_finalize callback function description).
 
 - **async_finalizer**: a Boolean value used to indicate whether to execute the **finalize_cb** callback asynchronously. The value **true** means to execute the callback asynchronously. In this case, thread safety must be ensured. The value **false** means to execute the callback synchronously.
 

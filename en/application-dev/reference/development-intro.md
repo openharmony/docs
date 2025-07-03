@@ -1,4 +1,4 @@
-# API Reference Document Description
+# Document Description
 
 API references provide the description of APIs used for application development. This topic describes common fields in the API references to help you better use the reference document.
 

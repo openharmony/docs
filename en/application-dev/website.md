@@ -4596,7 +4596,7 @@
         - [JSVM_ScriptOrigin](reference/common/_j_s_v_m___script_origin.md)
         - [JSVM_TypeTag](reference/common/_j_s_v_m___type_tag.md)
         - [JSVM_VMInfo](reference/common/_j_s_v_m___v_m_info.md)
-  - Standard Library<!--standard-library-->
+  - Native API Standard Libraries<!--standard-library-->
     - [libc](reference/native-lib/musl.md)
     - [libc++](reference/native-lib/cpp.md)
     - [Node-API](reference/native-lib/napi.md)
@@ -4620,8 +4620,8 @@
         - [VkNativeBufferUsageOHOS](reference/native-lib/_vk_native_buffer_usage_o_h_o_s.md)
         - [VkSurfaceCreateInfoOHOS](reference/native-lib/_vk_surface_create_info_o_h_o_s.md)
     - Appendix<!--appendixes-->
-      - [libc Symbols Not Exported](reference/native-lib/musl-peculiar-symbol.md)
-      - [Restricted musl libc APIs](reference/native-lib/guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
-      - [EGL Symbols Exported](reference/native-lib/egl-symbol.md)
+      - [Native API Symbols Not Exported](reference/native-lib/musl-peculiar-symbol.md)
+      - [NDK-Related musl libc Interface Usage Restrictions](reference/native-lib/guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
+      - [EGL Symbols Exported from Native APIs](reference/native-lib/egl-symbol.md)
       - [ICU4C Symbols Exported from Native APIs](reference/native-lib/icu4c-symbol.md)
-      - [OpenGL ES 3.2 Symbols Exported](reference/native-lib/openglesv3-symbol.md)
+      - [OpenGL ES 3.2 Symbols Exported from Native APIs](reference/native-lib/openglesv3-symbol.md)
