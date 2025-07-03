@@ -504,7 +504,7 @@
 
 **起始版本**：20
 
-## ohos.permission.WINDOW_TRANSPARENT
+## ohos.permission.SET_WINDOW_TRANSPARENT
 
 允许应用设置主窗容器透明和去除主窗外边框阴影。
 
