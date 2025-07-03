@@ -1,10 +1,10 @@
 # Vulkan Capabilities
 
-[Vulkan](https://www.vulkan.org/) is a set of 2D and 3D rendering APIs that feature cross-platform and high-performance. OpenHarmony now supports Vulkan v1.3.231.
+[Vulkan](https://www.vulkan.org/) is a set of 2D and 3D rendering APIs that feature cross-platform and high-performance. OpenHarmony now supports Vulkan v1.3.275.
 
 ## Supported Standard APIs
 
-The table below lists the supported APIs of Vulkan v1.3.231.
+The table below lists the supported APIs of Vulkan v1.3.275.
 
 |Type|Symbol|
 | --- | --- | 
@@ -261,5 +261,8 @@ In addition to the standard APIs, OpenHarmony provides extended APIs for creatin
 |FUNC|vkCreateSurfaceOHOS|
 |FUNC|vkGetNativeBufferPropertiesOHOS|
 |FUNC|vkGetMemoryNativeBufferOHOS|
+|FUNC|vkGetSwapchainGrallocUsageOHOS|
+|FUNC|vkAcquireImageOHOS|
+|FUNC|vkQueueSignalReleaseImageOHOS|
 
 For details about the extended APIs, see [Vulkan Module](_vulkan.md).
