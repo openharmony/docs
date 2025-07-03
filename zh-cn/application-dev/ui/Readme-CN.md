@@ -143,6 +143,7 @@
      - [设置浮层 (OverlayManager)](arkts-create-overlaymanager.md)
   - 显示图形<!--arkts-draw-graphics-->
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
+    - [形状裁剪 (clipShape)](arkts-clip-shape.md)
     - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
   - 使用动画<!--arkts-use-animation-->
     - [动画概述](arkts-animation.md)
@@ -196,6 +197,7 @@
       - [自定义扩展概述](arkts-user-defined-modifier.md)
       - [属性修改器 (AttributeModifier)](arkts-user-defined-extension-attributeModifier.md)
       - [属性更新器 (AttributeUpdater)](arkts-user-defined-extension-attributeUpdater.md)
+      - [自定义绘制修改器 (DrawModifier)](arkts-user-defined-extension-drawModifier.md)
   - [使用镜像能力](arkts-mirroring-display.md)
   - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
     - [支持无障碍](arkts-universal-attributes-accessibility.md)
@@ -219,6 +221,7 @@
       - [监听组件事件](ndk-listen-to-component-events.md)
       - [绑定手势事件](ndk-bind-gesture-events.md)
       - [拖拽事件](ndk-drag-event.md)
+      - [监听组件布局和绘制送显事件](ndk-inspector-component-observer.md)
     - [使用动画](ndk-use-animation.md)
     - 构建布局<!--arkts-build-layout-ndk-->
       - [使用列表](ndk-loading-long-list.md)
@@ -231,8 +234,8 @@
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
     - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
     - [自定义绘制](arkts-user-defined-draw.md)
+    - [查询和操作自定义节点](ndk-node-query-operate.md)
     - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md)
-    - [在NDK中保证多实例场景功能正常](ndk-scope-task.md)
 - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明<!--js-framework-overview-->

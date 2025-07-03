@@ -357,7 +357,8 @@ struct DrawModifierExample {
         .height('100%')
         .textAlign(TextAlign.Center)
     }
-    .margin(100)
+    .margin(50)
+    .width(280)
     .height(300)
     .backgroundColor(0x87CEEB)
     .drawModifier(this.foregroundModifier)

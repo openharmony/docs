@@ -52,7 +52,7 @@ OH_Drawing_Point* OH_Drawing_PointCreate(float x, float y)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Point](capi-oh-drawing-point.md)* | 函数会返回一个指针，指针指向创建的坐标点对象。 |
+| [OH_Drawing_Point](capi-drawing-oh-drawing-point.md)* | 函数会返回一个指针，指针指向创建的坐标点对象。 |
 
 ### OH_Drawing_PointGetX()
 
@@ -73,7 +73,7 @@ OH_Drawing_ErrorCode OH_Drawing_PointGetX(const OH_Drawing_Point* point, float* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Point](capi-oh-drawing-point.md)* point | 指向坐标点对象[OH_Drawing_Point](capi-oh-drawing-point.md)的指针。 |
+| const [OH_Drawing_Point](capi-drawing-oh-drawing-point.md)* point | 指向坐标点对象[OH_Drawing_Point](capi-drawing-oh-drawing-point.md)的指针。 |
 | float* x | 表示点的x轴坐标。 |
 
 **返回：**
@@ -101,7 +101,7 @@ OH_Drawing_ErrorCode OH_Drawing_PointGetY(const OH_Drawing_Point* point, float* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Point](capi-oh-drawing-point.md)* point | 指向坐标点对象[OH_Drawing_Point](capi-oh-drawing-point.md)的指针。 |
+| const [OH_Drawing_Point](capi-drawing-oh-drawing-point.md)* point | 指向坐标点对象[OH_Drawing_Point](capi-drawing-oh-drawing-point.md)的指针。 |
 | float* y | 表示点的y轴坐标。 |
 
 **返回：**
@@ -129,7 +129,7 @@ OH_Drawing_ErrorCode OH_Drawing_PointSet(OH_Drawing_Point* point, float x, float
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Point](capi-oh-drawing-point.md)* point | 指向坐标点对象[OH_Drawing_Point](capi-oh-drawing-point.md)的指针。 |
+| [OH_Drawing_Point](capi-drawing-oh-drawing-point.md)* point | 指向坐标点对象[OH_Drawing_Point](capi-drawing-oh-drawing-point.md)的指针。 |
 | float x | 表示点的x轴坐标。 |
 | float y | 表示点的y轴坐标。 |
 
@@ -158,6 +158,6 @@ void OH_Drawing_PointDestroy(OH_Drawing_Point* point)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Point](capi-oh-drawing-point.md)* point | 指向坐标点对象的指针。 |
+| [OH_Drawing_Point](capi-drawing-oh-drawing-point.md)* point | 指向坐标点对象的指针。 |
 
 

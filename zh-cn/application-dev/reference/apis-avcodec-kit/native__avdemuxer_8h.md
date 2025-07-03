@@ -7,6 +7,8 @@
 
 **库：** libnative_media_avdemuxer.so
 
+**引用文件：** <multimedia/player_framework/native_avdemuxer.h>
+
 **起始版本：** 10
 
 **相关模块：**[AVDemuxer](_a_v_demuxer.md)

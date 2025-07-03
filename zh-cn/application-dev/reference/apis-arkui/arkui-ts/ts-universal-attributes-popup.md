@@ -37,6 +37,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 ## PopupOptions类型说明
 
+基础气泡的信息。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                                  | 类型                                                         | 必填 | 说明                                                      |
@@ -72,8 +74,11 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 | borderWidth<sup>20+</sup>| [Dimension](ts-types.md#dimension10)  | 否   | 设置Popup组件内描边的宽度。<br />默认值：1 <br />单位：vp<br />**说明：** <br />1.不支持设置百分比。<br />2.在没有设置Popup组件内描边的情况下，该接口需要和borderLinearGradient配合使用。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | outlineLinearGradient<sup>20+</sup>| [PopupBorderLinearGradient](#popupborderlineargradient20类型说明)  | 否   | 设置Popup组件外描边线性渐变的颜色。<br />**说明：** <br />1.outlineLinearGradient不设置或者设置为null、undefined时，外描边没有线性渐变效果。<br />2.outlineLinearGradient设置时，direction默认值是：GradientDirection.Bottom。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | borderLinearGradient<sup>20+</sup>| [PopupBorderLinearGradient](#popupborderlineargradient20类型说明)  | 否   | 设置Popup组件内描边线性渐变的颜色。<br />**说明：** <br />1.borderLinearGradient不设置或者设置为null、undefined时，内描边没有线性渐变效果。<br />2.borderLinearGradient设置时，direction默认值是：GradientDirection.Bottom。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| avoidTarget<sup>20+</sup>          | [AvoidanceMode](ts-basic-components-select.md#avoidancemode19枚举说明) | 否   | 设置Popup避让时是否覆盖指向组件。<br/>默认值：AvoidanceMode.COVER_TARGET <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## PopupMessageOptions<sup>10+</sup>类型说明
+
+气泡文本的样式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -86,6 +91,8 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 ## DismissPopupAction<sup>12+</sup>类型说明
 
+气泡关闭的信息。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -97,14 +104,21 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 ## DismissReason<sup>12+</sup>枚举说明
 
+关闭原因类型。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 说明        |
-| ------------- | ------------------ |
-| PRESS_BACK    | 点击Back键。       |
-| TOUCH_OUTSIDE | 点击组件外部区域。 |
+| 名称          | 值   | 说明                                                       |
+| ------------- | ---- | ------------------------------------------------------------ |
+| PRESS_BACK    | 0    | 点击三键back、侧滑（左滑/右滑）、键盘ESC。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| TOUCH_OUTSIDE | 1    | 点击遮障层时。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CLOSE_BUTTON  | 2    | 点击按钮时。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SLIDE_DOWN    | 3    | 下拉关闭。<br/>**说明：** <br/>该接口仅支持在[半模态转场](ts-universal-attributes-sheet-transition.md)中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SLIDE<sup>20+</sup>    | 4    | 侧拉关闭。<br/>**说明：** <br/>该接口仅支持在[半模态转场](ts-universal-attributes-sheet-transition.md)中使用。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## CustomPopupOptions<sup>8+</sup>类型说明
+
+弹出自定义气泡的信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -139,6 +153,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 | borderWidth<sup>20+</sup>| [Dimension](ts-types.md#dimension10)  | 否   | 设置Popup组件内描边的宽度。<br />默认值：1 <br />单位：vp<br />**说明：** <br />1.不支持设置百分比。<br />2.在没有设置Popup组件内描边的情况下，该接口需要和borderLinearGradient配合使用。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | outlineLinearGradient<sup>20+</sup>| [PopupBorderLinearGradient](#popupborderlineargradient20类型说明)  | 否   | 设置Popup组件外描边线性渐变的颜色。<br />**说明：** <br />1.outlineLinearGradient不设置或者设置为null、undefined时，外描边没有线性渐变效果。<br />2.outlineLinearGradient设置时，direction默认值是：GradientDirection.Bottom。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | borderLinearGradient<sup>20+</sup>| [PopupBorderLinearGradient](#popupborderlineargradient20类型说明)  | 否   | 设置Popup组件内描边线性渐变的颜色。<br />**说明：** <br />1.borderLinearGradient不设置或者设置为null、undefined时，内描边没有线性渐变效果。<br />2.borderLinearGradient设置时，direction默认值是：GradientDirection.Bottom。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| avoidTarget<sup>20+</sup>          | [AvoidanceMode](ts-basic-components-select.md#avoidancemode19枚举说明) | 否   | 设置Popup避让时是否覆盖指向组件。<br />**说明：** <br />设置avoidTarget为AvoidanceMode.AVOID_AROUND_TARGET时，气泡在剩余显示空间不足的情况下会进行压缩，此时气泡内容需结合Scroll使用，否则气泡内容会出现遮挡。<br/>默认值：AvoidanceMode.COVER_TARGET <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## PopupCommonOptions<sup>18+</sup>类型说明
 
@@ -174,6 +189,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 | borderWidth<sup>20+</sup>| [Dimension](ts-types.md#dimension10)  | 否   | 设置Popup组件内描边的宽度。<br />默认值：1 <br />单位：vp<br />**说明：** <br />1.不支持设置百分比。<br />2.在没有设置Popup组件内描边的情况下，该接口需要和borderLinearGradient配合使用。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | outlineLinearGradient<sup>20+</sup>| [PopupBorderLinearGradient](#popupborderlineargradient20类型说明)  | 否   | 设置Popup组件外描边线性渐变的颜色。<br />**说明：** <br />1.outlineLinearGradient不设置或者设置为null、undefined时，外描边没有线性渐变效果。<br />2.outlineLinearGradient设置时，direction默认值是：GradientDirection.Bottom。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | borderLinearGradient<sup>20+</sup>| [PopupBorderLinearGradient](#popupborderlineargradient20类型说明)  | 否   | 设置Popup组件内描边线性渐变的颜色。<br />**说明：** <br />1.borderLinearGradient不设置或者设置为null、undefined时，内描边没有线性渐变效果。<br />2.borderLinearGradient设置时，direction默认值是：GradientDirection.Bottom。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| avoidTarget<sup>20+</sup>          | [AvoidanceMode](ts-basic-components-select.md#avoidancemode19枚举说明) | 否   | 设置Popup避让时是否覆盖指向组件。<br />**说明：** <br />设置avoidTarget为AvoidanceMode.AVOID_AROUND_TARGET时，气泡在剩余显示空间不足的情况下会进行压缩，此时气泡内容需结合Scroll使用，否则气泡内容会出现遮挡。<br/>默认值：AvoidanceMode.COVER_TARGET <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## PopupStateChangeParam<sup>18+</sup>类型说明
 

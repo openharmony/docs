@@ -14,6 +14,46 @@
 import { ArkTSUtils } from '@kit.ArkTS'
 ```
 
+## ArkTSUtils.isSendable
+
+isSendable(value: Object | null | undefined): boolean
+
+该方法用于判断value是否为Sendable数据类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | Object \| null \| undefined  | 是 | 待校验的对象。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | value是否为Sendable数据类型，true表示value是Sendable数据类型，否则为false。|
+
+**示例：**
+
+```ts
+import { ArkTSUtils } from '@kit.ArkTS';
+
+@Sendable
+function sendableFunc() {
+  console.info("sendableFunc");
+}
+
+if (ArkTSUtils.isSendable(sendableFunc)) {
+  console.info("sendableFunc is Sendable");
+} else {
+  console.info("sendableFunc is not Sendable");
+}
+// 期望输出: 'SendableFunc is Sendable'
+```
+
 ## ArkTSUtils.locks
 
 为了解决多并发实例间的数据竞争问题，ArkTS语言基础库引入了异步锁能力。为了开发者的开发效率，AsyncLock对象支持跨并发实例引用传递。
@@ -199,7 +239,7 @@ static queryAll(): AsyncLockState[]
 
 | 类型                                | 说明                             |
 | ----------------------------------- | -------------------------------- |
-| [AsyncLockState](#asynclockstate)[] | 包含锁状态信息的异步锁状态数组。 |
+| [AsyncLockState](#asynclockstate)[] | 包含状态描述的异步锁状态实例数组。 |
 
 **示例：**
 
@@ -517,7 +557,7 @@ static request(name: string): ConditionVariable
 
 | 类型                    | 说明                             |
 | ----------------------- | -------------------------------- |
-| [ConditionVariable](#conditionvariable18) | 返回查找到或创建后的异步等待通知操作的实例。 |
+| [ConditionVariable](#conditionvariable18) | 返回查找或创建(如果未找到)的异步等待通知操作的实例。 |
 
 **示例：**
 
@@ -725,6 +765,14 @@ parse(text: string, reviver?: Transformer, options?: ParseOptions): ISendable | 
 | -------- | -------- |
 | [ISendable](#isendable) \| null | 返回ISendable数据或null。入参为null时，返回null。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | Parameter error. Invalid JSON string. |
+
 **示例：**
 
 ```ts
@@ -763,44 +811,16 @@ console.info("largeNumber is " + (map as collections.Map<string,bigint>).get("la
 // 期望输出: largeNumber is 112233445566778899
 ```
 
+
 ### stringify
-
-stringify(value: ISendable | null | undefined): string
-
-该方法将Sendable数据转换为JSON字符串。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| value | [ISendable](#isendable) \| null \| undefined  | 是 | Sendable数据。|
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| string | 转换后的JSON字符串。|
-
-**示例：**
-
-```ts
-import { collections } from '@kit.ArkTS';
-
-let arr = new collections.Array(1, 2, 3);
-let str = ArkTSUtils.ASON.stringify(arr);
-console.info(str);
-// 期望输出: '[1,2,3]'
-```
-
-### stringify<sup>18+</sup>
 
 stringify(value: Object | null | undefined): string
 
 该方法将ArkTS对象数据转换为JSON字符串，额外支持Map和Set相关类型。
+
+> **说明：**
+>
+> 从API 18开始参数修改为Object类型，API 18之前参数只支持ISendable类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -817,6 +837,14 @@ stringify(value: Object | null | undefined): string
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 转换后的JSON字符串。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | Parameter error. Invalid ArkTS value. |
 
 **示例：**
 
@@ -865,46 +893,6 @@ sendableSet.add("set");
 let str6 = ArkTSUtils.ASON.stringify(sendableSet);
 console.info(str6);
 //期望输出：'["send","able","set"]'
-```
-
-### isSendable
-
-isSendable(value: Object | null | undefined): boolean
-
-该方法用于判断value是否为Sendable数据类型。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| value | Object \| null \| undefined  | 是 | 待校验的对象。|
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | value是否为Sendable数据类型，true表示value是Sendable数据类型，否则为false。|
-
-**示例：**
-
-```ts
-import { ArkTSUtils } from '@kit.ArkTS';
-
-@Sendable
-function sendableFunc() {
-  console.info("sendableFunc");
-}
-
-if (ArkTSUtils.isSendable(sendableFunc)) {
-  console.info("sendableFunc is Sendable");
-} else {
-  console.info("sendableFunc is not Sendable");
-}
-// 期望输出: 'SendableFunc is Sendable'
 ```
 
 ## SendableLruCache<K, V><sup>18+</sup>

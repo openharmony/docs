@@ -286,12 +286,12 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | launchType        | String                    | 标识ability中的launcherType信息。         | NA                      |
 | orientation       | String                    | 标识ability中的orientation信息。      | NA                              |
 | visible           | boolean                   | 标识ability中的visible信息。true表示可见，false表示不可见。      | NA                              |
-| grantPermission   | boolean                   | 标识ability中的grantPermission信息。   | NA                              |
+| grantPermission   | boolean                   | 标识ability中的grantPermission信息。true表示可以向ability内任何数据授予权限，false表示不可以向ability内任何数据授予权限。   | NA                              |
 | readPermission    | String                    | 标识ability中的readPermission信息。  | NA                              |
 | writePermission   | String                    | 标识ability中的writePermission信息。    | NA                              |
 | uriPermissionMode | String                    | 标识ability中的uriPermissionMode信息。   | NA                              |
 | uriPermissionPath | String                    | 标识ability中的uriPermissionPath信息。 | NA                              |
-| directLaunch      | boolean                   | 标识ability中的directLaunch信息。   | NA                              |
+| directLaunch      | boolean                   | 标识ability中的directLaunch信息。true表示不解锁设备时可以启动应用程序，false表示不解锁设备时不可以启动应用程序。   | NA                              |
 | mission           | String                    | 标识ability中的mission信息。    | NA                              |
 | targetAbility     | String                    | 标识ability中的targetAbility信息。   | NA                              |
 | multiUserShared   | boolean                   | 标识ability中的multiUserShared信息。true表示支持多用户状态进行共享，false表示不支持多用户状态进行共享。   | NA                              |
@@ -434,7 +434,7 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | permissions     | List\<String>            | 标识被其它应用的ability调用时需要申请的权限的集合。 | stage模型支持。      |
 | readPermission  | String                   | 标识读取ability的数据所需的权限。                         | stage模型支持。  |
 | writePermission | String                   | 标识向ability写数据所需的权限。                           | stage模型支持。    |
-| visible         | boolean                  | 标识extensionAbility是否可以被其它应用调用。              | stage模型支持。  |
+| visible         | boolean                  | 标识extensionAbility是否可以被其它应用调用。true表示可以被其他应用调用，false表示不可以被其他应用调用。              | stage模型支持。  |
 | skills          | List\<SkillInfo>         | 标识extensionAbility能够接收的意图的特征集。              | stage模型支持。   |
 | metadataInfos   | List\<ModuleMetadataInfo>| 标识extensionAbility能够接收的元数据信息。                | stage模型支持。  |
 | metadata        | MetaData结构体           | 标识extensionAbility的元信息。  | 将metadata中的信息赋值到CustomizeData中。 |
@@ -526,7 +526,7 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | arkFlag                        | String  | 标识应用程序DeviceConfig的arkFlag。          | NA   |
 | targetArkVersion               | String  | 标识应用程序DeviceConfig的targetArkVersion。 | NA   |
 | compatibleArkVersion           | String  | 标识应用程序DeviceConfig的兼容ArkVersion。   | NA   |
-| directLaunch                   | boolean | 标识应用程序DeviceConfig的直接启动。         | NA   |
+| directLaunch                   | boolean | 标识应用程序DeviceConfig的直接启动。true表示不解锁设备时可以启动应用程序，false表示不解锁设备时不可以启动应用程序。         | NA   |
 | distributedNotificationEnabled | boolean | 标识应用程序AppJson的distributedNotificationEnabled。true表示开启分布式通知，false表示不开启分布式通知。 | NA   |
 
 ### DefPermission结构体信息
@@ -565,7 +565,7 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | icon        | String  | 标识DefPermissionGroup的图标。 | NA   |
 | label       | String  | 标识DefPermissionGroup的标签。 | NA   |
 | description | String  | 标识DefPermissionGroup的描述。 | NA   |
-| request     | boolean | 标识DefPermissionGroup的请求。 | NA   |
+| request     | String  | 标识DefPermissionGroup的请求。 | NA   |
 
 ### FormInfo结构体信息
 
@@ -590,4 +590,4 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | 字段            | 类型    | 描述                                | 备注 |
 |-----------------|---------|-------------------------------------| ---- |
 | designWidth     | int     | 标识模块已用场景的设计宽度。           | NA   |
-| autoDesignWidth | boolean | 标识ModuleUsedScene的autoDesignWidth。 | NA   |
+| autoDesignWidth | boolean | 标识ModuleUsedScene的autoDesignWidth。true表示designWidth将会被忽略，设计基准宽度由设备宽度与屏幕密度计算得出，false表示设计基准宽度为designWidth。 | NA   |

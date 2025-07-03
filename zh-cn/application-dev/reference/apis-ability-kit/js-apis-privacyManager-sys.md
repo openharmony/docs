@@ -818,7 +818,7 @@ getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Prom
 
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| tokenId            | number                | 否   | 访问敏感权限的应用身份标识，为空时表示查询所有应用的敏感权限访问类型信息。   |
+| tokenId            | number                | 否   | 访问敏感权限的应用身份标识，为0时表示查询所有应用的敏感权限访问类型信息。   |
 | permissionName     | Permissions           | 否   | 被访问的敏感权限名称，为空时标识查询所有敏感权限的访问类型信息。   |
 
 **返回值：**
@@ -893,7 +893,7 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 | 名称       | 类型             | 必填   | 说明                                       |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| tokenId  | number         | 否    | 目标应用的身份标识。<br/> 默认查询所有应用。         |
+| tokenId  | number         | 否    | 目标应用的身份标识。<br/> 默认值为0，查询所有应用。         |
 | isRemote | boolean         | 否    | 指定是否查询远端设备。<br/> 默认值false，表示查询本端设备，true表示查询远端设备。 |
 | deviceId  | string         | 否    | 目标应用所在设备的ID。<br/> 默认设备ID为本端设备ID。   |
 | bundleName | string         | 否    | 目标应用的包名。<br/> 默认查询所有应用。 |

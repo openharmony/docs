@@ -563,7 +563,7 @@ static napi_value ImportWrappedKey(napi_env env, napi_callback_info info) {
 
 ## 调测验证
 
-调用[OH_Huks_IsKeyItemExist](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_iskeyitemexist)验证密钥是否存在，如密钥存在即表示密钥导入成功。
+调用[OH_Huks_IsKeyItemExist](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_iskeyitemexist)验证密钥是否存在，如密钥存在即表示密钥导入成功。
 
 ```c++
 #include "huks/native_huks_api.h"

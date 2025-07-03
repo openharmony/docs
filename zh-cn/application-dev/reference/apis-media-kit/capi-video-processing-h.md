@@ -245,7 +245,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_SetSurface(OH_VideoProcessing* vide
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
-| const [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow.md)* window | 指向输出surface的指针。 |
+| const [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow-nativewindow.md)* window | 指向输出surface的指针。 |
 
 **返回：**
 
@@ -273,7 +273,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_GetSurface(OH_VideoProcessing* vide
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
-| [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow.md)** window | 指向输入surface的指针。例如，此输入surface指针可以指向视频解码器输出surface。 |
+| [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow-nativewindow.md)** window | 指向输入surface的指针。例如，此输入surface指针可以指向视频解码器输出surface。 |
 
 **返回：**
 

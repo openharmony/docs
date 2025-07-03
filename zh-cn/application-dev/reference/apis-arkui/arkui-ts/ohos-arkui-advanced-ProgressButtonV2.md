@@ -108,7 +108,7 @@ constructor(options: ProgressButtonV2ColorOptions);
 
 该示例实现了一个简单的带加载进度的文本下载按钮。
 ```ts
-import { ColorMetrics, LengthMetrics, ProgressButtonV2, ProgressButtonV2Color } from '@kit.ArkUI';
+import { LengthMetrics, ProgressButtonV2 } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2

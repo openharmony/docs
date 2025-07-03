@@ -4250,18 +4250,6 @@ Allows a system application to start the page for setting privacy protection.
 
 **Valid since**: 18
 
-## ohos.permission.DLP_GET_HIDE_STATUS
-
-Allows a system application to use the information hiding APIs to obtain the information hiding status.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 18
-
 ## ohos.permission.GET_ANIM_POLICY
 
 Allows a system application to register the animation plugin to obtain animation policies.

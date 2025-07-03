@@ -29,7 +29,7 @@ import { TreeSet } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | TreeSet的元素个数。 |
 
@@ -48,7 +48,7 @@ TreeSet的构造函数，支持通过比较函数对元素进行升序或降序�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| comparator | function | 否 | 用户自定义的比较函数，可通过比较关系对元素进行排序。默认值为hole（一个空白占位符），表示不提供比较函数。|
+| comparator | function | 否 | 用户自定义的比较函数，可通过比较关系对元素进行排序。默认值为null，表示不提供比较函数。|
 
 comparator的参数说明：
 
@@ -82,7 +82,7 @@ treeSet.add("d");
 treeSet.add("b");
 let numbers = Array.from(treeSet.values());
 for (let item of numbers) {
-  console.log("TreeSet:" + item);
+  console.info("TreeSet:" + item);
 }
 ```
 
@@ -100,7 +100,7 @@ let entry2: TestEntry = {
 }
 ts1.add(entry1);
 ts1.add(entry2);
-console.log("treeSet: ", ts1.length);
+console.info("treeSet: ", ts1.length);
 ```
 
 
@@ -172,6 +172,7 @@ has(value: T): boolean
 let treeSet : TreeSet<number> = new TreeSet();
 treeSet.add(123);
 let result = treeSet.has(123);
+console.log("result = " + result); // result = true
 ```
 
 ### getFirstValue
@@ -534,7 +535,7 @@ treeSet.add("sparrow");
 let it = treeSet.values();
 let t: IteratorResult<string> = it.next();
 while(!t.done) {
-  console.log("TreeSet: " + t.value);
+  console.info("TreeSet: " + t.value);
   t = it.next()
 }
 ```
@@ -580,7 +581,7 @@ let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("sparrow");
 treeSet.add("gull");
 treeSet.forEach((value ?: string, key ?: string) :void => {
-  console.log("value:" + value, "key:" + key);
+  console.info("value:" + value, "key:" + key);
 });
 ```
 ```ts
@@ -627,7 +628,7 @@ treeSet.add("sparrow");
 let it = treeSet.entries();
 let t: IteratorResult<Object[]> = it.next();
 while(!t.done) {
-  console.log("TreeSet: " + t.value);
+  console.info("TreeSet: " + t.value);
   t = it.next()
 }
 ```
@@ -675,13 +676,13 @@ treeSet.add("sparrow");
 let numbers = Array.from(treeSet.values());
 // 使用方法一：
 for (let item of numbers) {
-  console.log("value:" + item);
+  console.info("value:" + item);
 }
 // 使用方法二：
 let iter = treeSet[Symbol.iterator]();
 let temp: IteratorResult<string> = iter.next().value;
 while(temp != undefined) {
-  console.log("value:" + temp);
+  console.info("value:" + temp);
   temp = iter.next().value;
 }
 ```

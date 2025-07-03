@@ -28,7 +28,7 @@ import { HashSet } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | HashSet的元素个数。 |
 
@@ -41,7 +41,7 @@ hashSet.add(2);
 hashSet.add(3);
 hashSet.add(4);
 hashSet.add(5);
-let res = hashSet.length;
+let res = hashSet.length;  // result =  5
 ```
 
 ### constructor
@@ -145,7 +145,7 @@ let result = hashSet.has("squirrel");
 
 add(value: T): boolean
 
-向HashSet添加数据。
+向HashSet添加元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -282,7 +282,7 @@ hashSet.add("sparrow");
 let iter = hashSet.values();
 let temp = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:" + temp.value);
   temp = iter.next();
 }
 ```
@@ -292,7 +292,7 @@ while(!temp.done) {
 
 forEach(callbackFn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
 
-通过回调函数来遍历实例对象的元素及其对应的下标。
+在遍历过程中对每个元素调用一次回调函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -328,7 +328,7 @@ let hashSet: HashSet<string> = new HashSet();
 hashSet.add("sparrow");
 hashSet.add("squirrel");
 hashSet.forEach((value?: string, key?: string): void => {
-  console.log("value:" + value, "key:" + key);
+  console.info("value:" + value, "key:" + key);
 });
 ```
 ```ts
@@ -374,8 +374,8 @@ hashSet.add("sparrow");
 let iter = hashSet.entries();
 let temp: IteratorResult<[string, string]> = iter.next();
 while(!temp.done) {
-  console.log("key:" + temp.value[0]);
-  console.log("value:" + temp.value[1]);
+  console.info("key:" + temp.value[0]);
+  console.info("value:" + temp.value[1]);
   temp = iter.next();
 }
 ```
@@ -424,14 +424,14 @@ hashSet.add("sparrow");
 // 使用方法一：
 let val: Array<string> = Array.from(hashSet.values());
 for (let item of val) {
-  console.log("value: " + item);
+  console.info("value: " + item);
 }
 
 // 使用方法二：
 let iter = hashSet[Symbol.iterator]();
 let temp: IteratorResult<string> = iter.next();
 while(!temp.done) {
-  console.log("value: " + temp.value);
+  console.info("value: " + temp.value);
   temp = iter.next();
 }
 ```

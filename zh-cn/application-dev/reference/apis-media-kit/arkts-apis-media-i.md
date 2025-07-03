@@ -1,4 +1,4 @@
-# Interface
+# Interfaces (其他)
 
 > **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -76,8 +76,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
-  console.info('audio key is ' + key); // 通过key值获取对应的value。key值具体可见[MediaDescriptionKey](arkts-apis-media-e.md#mediadescriptionkey8)。
-  console.info('audio value is ' + property); //对应key值得value。其类型可为任意类型，具体key对应value的类型可参考[MediaDescriptionKey](arkts-apis-media-e.md#mediadescriptionkey8)。
+  console.info('audio key is ' + key); // 通过key值获取对应的value。key值具体可见MediaDescriptionKey。
+  console.info('audio value is ' + property); //对应key值得value。其类型可为任意类型，具体key对应value的类型可参考MediaDescriptionKey。
 }
 
 let avPlayer: media.AVPlayer | undefined = undefined;

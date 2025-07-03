@@ -89,13 +89,13 @@ import { window } from '@kit.ArkUI';
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index');
-    let window = windowStage.getMainWindow()
+    let window = windowStage.getMainWindow();
     window.then(window => {
-      let uicontext = window.getUIContext()
-      uicontext.runScopedTask(() => {
+      let uiContext = window.getUIContext();
+      uiContext.runScopedTask(() => {
         Environment.envProp('languageCode', 'en');
-      })
-    })
+      });
+    });
   }
 }
 ```

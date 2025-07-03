@@ -32,7 +32,7 @@ Transferable对象，也称为NativeBinding对象，是指绑定C++对象的JS�
 ```ts
 // Index.ets
 import { taskpool } from '@kit.ArkTS';
-import { loadPixelMap } from './pixelMapTest';
+import { loadPixelMap } from './PixelMapTest';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
@@ -49,7 +49,7 @@ struct Index {
       taskpool.execute(loadPixelMap, rawFileDescriptor).then(pixelMap => {
         if (pixelMap) {
           this.pixelMap = pixelMap as PixelMap;
-          console.log('Succeeded in creating pixelMap.');
+          console.info('Succeeded in creating pixelMap.');
           // 主线程释放pixelMap。由于子线程返回pixelMap时已调用setTransferDetached，所以此处能够立即释放pixelMap。
           this.pixelMap.release();
         } else {
@@ -82,7 +82,7 @@ struct Index {
 ```
 
 ```ts
-// pixelMapTest.ets
+// PixelMapTest.ets
 import { image } from '@kit.ImageKit';
 
 @Concurrent

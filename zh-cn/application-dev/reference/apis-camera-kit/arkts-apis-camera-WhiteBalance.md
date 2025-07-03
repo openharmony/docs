@@ -10,6 +10,12 @@ WhiteBalance extends [WhiteBalanceQuery](arkts-apis-camera-WhiteBalanceQuery.md)
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## setWhiteBalanceMode<sup>20+</sup>
 
 setWhiteBalanceMode(mode: WhiteBalanceMode): void

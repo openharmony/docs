@@ -7,6 +7,8 @@
 
 **库：** libnative_media_venc.so
 
+**引用文件：** <multimedia/player_framework/native_avcodec_videoencoder.h>
+
 **起始版本：** 9
 
 **相关模块：**[VideoEncoder](_video_encoder.md)

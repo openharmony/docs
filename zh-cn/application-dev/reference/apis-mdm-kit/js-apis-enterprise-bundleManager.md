@@ -6,8 +6,6 @@
 >
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块接口仅可在Stage模型下使用。
->
 > 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 
 ## 导入模块
@@ -26,6 +24,7 @@ addAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -76,6 +75,8 @@ removeAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accoun
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 
 **参数：**
 
@@ -125,6 +126,8 @@ getAllowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&g
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -179,6 +182,8 @@ addDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accoun
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
@@ -228,6 +233,8 @@ removeDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, acc
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
@@ -276,6 +283,8 @@ getDisallowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -330,6 +339,8 @@ addDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, acco
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 
 **参数：**
 
@@ -379,6 +390,8 @@ removeDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, a
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 
 **参数：**
 
@@ -427,6 +440,8 @@ getDisallowedUninstallBundlesSync(admin: Want, accountId?: number): Array&lt;str
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -481,6 +496,8 @@ uninstall(admin: Want, bundleName: string, userId?: number, isKeepData?: boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 
 **参数：**
 
@@ -530,12 +547,13 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
 
 install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam): Promise\<void>
 
-安装指定路径下的应用包。使用promise异步回调。
-注意：此接口仅支持安装[企业MDM应用](https://developer.huawei.com/consumer/cn/doc/app/agc-help-harmonyos-mdm-0000001872217329#section154181517295)。
+安装指定路径下的应用包。使用promise异步回调。</br>此接口只能安装分发类型为enterprise_mdm（MDM应用）和enterprise_normal（企业普通应用）类型的应用。
 
 **需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -618,6 +636,8 @@ getInstalledBundleList(admin: Want, accountId: number): Promise\<Array\<BundleIn
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名       | 类型                                                    | 必填 | 说明                   |
@@ -629,7 +649,7 @@ getInstalledBundleList(admin: Want, accountId: number): Promise\<Array\<BundleIn
 
 | 类型                | 说明                                                    |
 | ------------------- | ------------------------------------------------------- |
-| Promise&lt;Array&lt;[BundleInfo](#bundleinfo20)&gt; | Promise对象，返回已安装应用包信息。 |
+| Promise&lt;Array&lt;[BundleInfo](#bundleinfo20)&gt;&gt; | Promise对象，返回已安装应用包信息。 |
 
 **错误码**：
 
@@ -665,6 +685,8 @@ bundleManager.getInstalledBundleList(wantTemp, accountId).then((result) => {
 应用包安装需指定的参数信息。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称                     | 类型                   | 必填 | 说明                                                         |
 | ------------------------ | ---------------------- | ---- | ------------------------------------------------------------ |

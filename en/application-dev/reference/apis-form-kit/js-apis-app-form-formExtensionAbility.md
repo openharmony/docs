@@ -320,6 +320,12 @@ Called to notify the widget provider that the widget host is requesting the widg
 | -------- | -------- | -------- | -------- |
 | want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes| Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension.|
 
+**Return value**
+
+| Type                                                        | Description                                                       |
+| ------------------------------------------------------------ | ----------------------------------------------------------- |
+| [formInfo.FormState](js-apis-app-form-formInfo.md#forminfoformstate) | Enumerated values of the current widget status.|
+
 **Example**
 
 ```ts

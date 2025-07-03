@@ -31,7 +31,7 @@ import { PlainArray } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | PlainArray的元素个数。 |
 
@@ -90,6 +90,7 @@ isEmpty(): boolean
 ```ts
 const plainArray: PlainArray<string> = new PlainArray();
 let result = plainArray.isEmpty();
+console.log("result = ", result); // result = true
 ```
 
 
@@ -130,6 +131,7 @@ has(key: number): boolean
 let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 let result = plainArray.has(1);
+console.log("result = ", result); // result = true
 ```
 
 
@@ -212,6 +214,7 @@ let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfKey(2);
+console.log("result = ", result); // result = 1
 ```
 
 
@@ -293,6 +296,7 @@ let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getKeyAt(1);
+console.log("result = ", result); // result = 2
 ```
 
 ### getValueAt
@@ -632,7 +636,7 @@ plainArray.clear();
 
 forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
 
-通过回调函数来遍历实例对象上的元素及其下标。
+在遍历PlainArray实例对象中每一个元素的过程中，对每个元素执行回调函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -668,7 +672,7 @@ let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.forEach((value: string, index?: number) => {
-  console.log("value:" + value, "index:" + index);
+  console.info("value:" + value, "index:" + index);
 });
 ```
 ```ts
@@ -717,8 +721,8 @@ plainArray.add(2, "sparrow");
 let iter = plainArray[Symbol.iterator]();
 let temp: IteratorResult<Object[]> = iter.next();
 while(!temp.done) {
-  console.log("key:" + temp.value[0]);
-  console.log("value:" + temp.value[1]);
+  console.info("key:" + temp.value[0]);
+  console.info("value:" + temp.value[1]);
   temp = iter.next();
 }
 ```

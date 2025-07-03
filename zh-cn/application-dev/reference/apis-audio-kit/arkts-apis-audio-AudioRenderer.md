@@ -7,6 +7,12 @@
 
 在使用AudioRenderer的接口之前，需先通过[createAudioRenderer](arkts-apis-audio-f.md#audiocreateaudiorenderer8)获取AudioRenderer实例。
 
+## 导入模块
+
+```ts
+import { audio } from '@kit.AudioKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
@@ -963,7 +969,7 @@ setSpeed(speed: number): void
 
 | 参数名 | 类型                                     | 必填 | 说明                   |
 | ------ | ---------------------------------------- | ---- |----------------------|
-| speed | number | 是   | 设置播放的倍速值（倍速范围：0.125-4.0）。 |
+| speed | number | 是   | 设置播放的倍速值（倍速范围：0.25-4.0）。 |
 
 **错误码：**
 

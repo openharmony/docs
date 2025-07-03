@@ -12,9 +12,9 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 ## 开发步骤
 
-1. 初始化密钥属性集。用于查询指定密钥别名集TAG，TAG仅支持[OH_HUKS_TAG_AUTH_STORAGE_LEVEL](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_authstoragelevel)。
+1. 初始化密钥属性集。用于查询指定密钥别名集TAG，TAG仅支持[OH_HUKS_TAG_AUTH_STORAGE_LEVEL](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_authstoragelevel)。
 
-2. 调用接口[OH_Huks_ListAliases](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_listaliases)，查询密钥别名集。
+2. 调用接口[OH_Huks_ListAliases](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_listaliases)，查询密钥别名集。
 
  ```c++
 /* 以下查询密钥别名集为例 */

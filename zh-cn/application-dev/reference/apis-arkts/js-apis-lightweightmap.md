@@ -33,7 +33,7 @@ import { LightWeightMap } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | LightWeightMap的元素个数。 |
 
@@ -135,7 +135,8 @@ lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let map: LightWeightMap<string, number> = new LightWeightMap();
 map.set("sparrow", 356);
-let result = lightWeightMap.hasAll(map);
+let result = lightWeightMap.hasAll(map); 
+console.log("result = ", result); // result = true
 ```
 
 
@@ -711,7 +712,7 @@ lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.keys();
 let temp: IteratorResult<string, number> = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:" + temp.value);
   temp = iter.next();
 }
 ```
@@ -750,7 +751,7 @@ lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.values();
 let temp: IteratorResult<number> = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:" + temp.value);
   temp = iter.next();
 }
 ```
@@ -796,7 +797,7 @@ let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.set("sparrow", 123);
 lightWeightMap.set("gull", 357);
 lightWeightMap.forEach((value?: number, key?: string) => {
-  console.log("value:" + value, "key:" + key);
+  console.info("value:" + value, "key:" + key);
 });
 ```
 ```ts
@@ -843,8 +844,8 @@ lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.entries();
 let temp: IteratorResult<Object[]> = iter.next();
 while(!temp.done) {
-  console.log("key:" + temp.value[0]);
-  console.log("value:" + temp.value[1]);
+  console.info("key:" + temp.value[0]);
+  console.info("value:" + temp.value[1]);
   temp = iter.next();
 }
 ```
@@ -926,20 +927,20 @@ lightWeightMap.set("sparrow", 356);
 // 使用方法一：
 let nums = Array.from(lightWeightMap.values());
 for (let item1 of nums) {
-  console.log("value:" + item1);
+  console.info("value:" + item1);
 }
 
 let key = Array.from(lightWeightMap.keys());
 for (let item2 of key) {
-  console.log("key:" + item2);
+  console.info("key:" + item2);
 }
 
 // 使用方法二：
 let iter = lightWeightMap[Symbol.iterator]();
 let temp: IteratorResult<Object[]> = iter.next();
 while(!temp.done) {
-  console.log("key:" + temp.value[0]);
-  console.log("value:" + temp.value[1]);
+  console.info("key:" + temp.value[0]);
+  console.info("value:" + temp.value[1]);
   temp = iter.next();
 }
 ```

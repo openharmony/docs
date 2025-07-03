@@ -213,6 +213,7 @@ deque.insertEnd(5);
 deque.insertFront(2);
 deque.insertFront(4);
 let result = deque.popFirst();
+console.log("result = ", result) // result =  4
 ```
 
 ### popLast
@@ -256,7 +257,7 @@ let result = deque.popLast();
 forEach(callbackFn: (value: T, index?: number, deque?: Deque&lt;T&gt;) => void,
 thisArg?: Object): void
 
-使用回调函数遍历Deque实例对象的元素及其下标。
+在遍历Deque实例对象中每一个元素的过程中，对每个元素执行回调函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -295,7 +296,7 @@ deque.insertEnd(4);
 deque.insertFront(5);
 deque.insertEnd(4);
 deque.forEach((value: number, index?: number | undefined, deque?: Deque<number> | undefined):void => {
-  console.log("value:" + value, "index:" + index);
+  console.info("value:" + value, "index:" + index);
 });
 ```
 
@@ -404,14 +405,14 @@ deque.insertFront(4);
 // 使用方法一：
 let nums: Array<number> = Array.from(deque);
 for (let item of nums) {
-  console.log("value:" + item);
+  console.info("value:" + item);
 }
 
 // 使用方法二：
 let iter = deque[Symbol.iterator]();
 let temp:IteratorResult<number> = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:" + temp.value);
   temp = iter.next();
 }
 ```

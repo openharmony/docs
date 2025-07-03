@@ -11,9 +11,11 @@
 
 在应用开发中，UI的更新需要随着数据状态的变化进行实时同步，而这种同步往往决定了应用程序的性能和用户体验。为了解决数据与UI同步的复杂性，ArkUI采用了 Model-View-ViewModel（MVVM）架构模式。MVVM 将应用分为Model、View和ViewModel三个核心部分，实现数据、视图与逻辑的分离。通过这种模式，UI可以随着状态的变化自动更新，无需手动处理，从而更加高效地管理数据和视图的绑定与更新。
 
-- Model：负责存储和管理应用的数据以及业务逻辑，不直接与用户界面交互。通常从后端接口获取数据，是应用程序的数据基础，确保数据的一致性和完整性。
-- View：负责用户界面展示数据并与用户交互，不包含任何业务逻辑。它通过绑定ViewModel层提供的数据来动态更新UI。
-- ViewModel：负责管理UI状态和交互逻辑。作为连接Model和View的桥梁，通常一个View对应一个ViewModel，ViewModel监控Model数据的变化，通知View更新UI，同时处理用户交互事件并转换为数据操作。
+- Model：数据访问层。以数据为中心，不直接与用户界面交互。负责数据结构定义，数据管理（获取、存储、更新等），以及业务逻辑处理。
+- View：用户界面层。负责用户界面展示并与用户交互，不包含任何业务逻辑。它通过绑定ViewModel层提供的数据实现动态更新。
+- ViewModel：表示逻辑层。作为连接Model和View的桥梁，通常一个View对应一个ViewModel。View和ViewModel有两种通信方式：  
+  1.方法调用：View通过事件监听用行为，在回调里面触发ViewModel层的方法。例如当View监听到用户Button点击行为，调用ViewModel对应的方法，处理用户操作。  
+  2.双向绑定：View绑定ViewModel的数据，实现双向同步。  
 
 ArkUI的UI开发模式就属于MVVM模式，通过对MVVM概念的基本介绍，开发者大致能猜到状态管理能在MVVM中起什么样的作用，状态管理旨在数据驱动更新，让开发者只用关注页面设计，而不去关注整个UI的刷新逻辑，数据的维护也无需开发者进行感知，由状态变量自动更新完成，而这就是属于ViewModel层所需要支持的内容，因此开发者使用MVVM模式开发自己的应用是最省心省力的。
 
@@ -492,7 +494,7 @@ struct ThingsComponent {
 @Component
 struct Index {
   @State isFinished: boolean = false;
-  @State data: TodoListData = new TodoListData();
+  @State data: TodoListData = new TodoListData(); // View绑定ViewModel的数据
 
   build() {
     Column() {
@@ -615,7 +617,7 @@ View层根据需要来组织，但View层需要区分一下三种组件：
   @Entry
   @Component
   struct TodoList {
-    @State thingsTodo: TodoListViewModel = new TodoListViewModel();
+    @State thingsTodo: TodoListViewModel = new TodoListViewModel(); // View绑定ViewModel的数据
     private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     async aboutToAppear() {
@@ -690,7 +692,7 @@ View层根据需要来组织，但View层需要区分一下三种组件：
       Row() {
         Button(`${this.titleName}`, { type: ButtonType.Capsule })
           .onClick(() => {
-            this.thingsViewModel.chooseAll();
+            this.thingsViewModel.chooseAll(); // View层点击事件发生时，调用ViewModel层方法chooseAll处理逻辑
             this.titleName = this.thingsViewModel.isChoosen ? '全选' : '取消全选';
           })
           .fontSize(30)
@@ -719,7 +721,7 @@ View层根据需要来组织，但View层需要区分一下三种组件：
         .width(28)
         .height(28)
         .onClick(() => {
-          this.things.updateIsFinish();
+          this.things.updateIsFinish(); // View层点击事件发生时，调用ViewModel层方法updateIsFinish处理逻辑
         })
     }
 
@@ -739,7 +741,7 @@ View层根据需要来组织，但View层需要区分一下三种组件：
           .fontWeight(450)
           .decoration({ type: this.things.isFinish ? TextDecorationType.LineThrough: TextDecorationType.None })
           .onClick(() => {
-            this.things.addSuffixes();
+            this.things.addSuffixes(); // View层点击事件发生时，调用ViewModel层方法addSuffixes处理逻辑
           })
       }
       .height('8%')

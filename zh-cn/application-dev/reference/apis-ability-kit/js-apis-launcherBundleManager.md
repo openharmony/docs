@@ -54,7 +54,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let data = launcherBundleManager.getLauncherAbilityInfoSync("com.example.demo", 100);
-    console.log("data is " + JSON.stringify(data));
+    console.info("data is " + JSON.stringify(data));
 } catch (errData) {
     let code = (errData as BusinessError).code;
     let message = (errData as BusinessError).message;

@@ -41,7 +41,7 @@ Web组件提供位置权限管理能力（<!--RP1-->[隐私保护说明](../../d
           var locationInfo=document.getElementById("locationInfo");
           function getLocation(){
               if (navigator.geolocation) {
-                  <!-- 前端页面访问设备地理位置 -->
+                  // 前端页面访问设备地理位置
                   navigator.geolocation.getCurrentPosition(showPosition);
               }
           }

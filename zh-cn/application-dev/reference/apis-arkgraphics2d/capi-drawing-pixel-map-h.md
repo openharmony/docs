@@ -18,8 +18,8 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [NativePixelMap_](capi-nativepixelmap-.md) | NativePixelMap_ | 声明由图像框架定义的像素图对象。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) | OH_PixelmapNative | 声明由图像框架定义的像素图对象。 |
+| [NativePixelMap_](capi-drawing-nativepixelmap-.md) | NativePixelMap_ | 声明由图像框架定义的像素图对象。 |
+| [OH_PixelmapNative](capi-drawing-oh-pixelmapnative.md) | OH_PixelmapNative | 声明由图像框架定义的像素图对象。 |
 
 ### 函数
 
@@ -50,13 +50,13 @@ OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromNativePixelMap(NativePixelMap_* n
 
 | 参数项 | 描述 |
 | -- | -- |
-| [NativePixelMap_](capi-nativepixelmap-.md)* nativePixelMap | 指向图像框架定义的像素图对象[NativePixelMap_](capi-nativepixelmap-.md)的指针。 |
+| [NativePixelMap_](capi-drawing-nativepixelmap-.md)* nativePixelMap | 指向图像框架定义的像素图对象[NativePixelMap_](capi-drawing-nativepixelmap-.md)的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_PixelMap](capi-oh-drawing-pixelmap.md)* | 函数会返回一个指向本模块定义的像素图对象[OH_Drawing_PixelMap](capi-oh-drawing-pixelmap.md)的指针。如果对象返回NULL，表示创建失败；可能的原因是NativePixelMap_为NULL。 |
+| [OH_Drawing_PixelMap](capi-drawing-oh-drawing-pixelmap.md)* | 函数会返回一个指向本模块定义的像素图对象[OH_Drawing_PixelMap](capi-drawing-oh-drawing-pixelmap.md)的指针。如果对象返回NULL，表示创建失败；可能的原因是NativePixelMap_为NULL。 |
 
 ### OH_Drawing_PixelMapGetFromOhPixelMapNative()
 
@@ -77,13 +77,13 @@ OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromOhPixelMapNative(OH_PixelmapNativ
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md)* pixelmapNative | 指向图像框架定义的像素图对象[OH_PixelmapNative](capi-oh-pixelmapnative.md)的指针。 |
+| [OH_PixelmapNative](capi-drawing-oh-pixelmapnative.md)* pixelmapNative | 指向图像框架定义的像素图对象[OH_PixelmapNative](capi-drawing-oh-pixelmapnative.md)的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_PixelMap](capi-oh-drawing-pixelmap.md)* | 函数会返回一个指向本模块定义的像素图对象[OH_Drawing_PixelMap](capi-oh-drawing-pixelmap.md)的指针。如果对象返回NULL，表示创建失败；可能的原因是OH_PixelmapNative为NULL。 |
+| [OH_Drawing_PixelMap](capi-drawing-oh-drawing-pixelmap.md)* | 函数会返回一个指向本模块定义的像素图对象[OH_Drawing_PixelMap](capi-drawing-oh-drawing-pixelmap.md)的指针。如果对象返回NULL，表示创建失败；可能的原因是OH_PixelmapNative为NULL。 |
 
 ### OH_Drawing_PixelMapDissolve()
 
@@ -103,6 +103,6 @@ void OH_Drawing_PixelMapDissolve(OH_Drawing_PixelMap* pixelMap)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_PixelMap](capi-oh-drawing-pixelmap.md)* pixelMap | 指向像素图对象[OH_Drawing_PixelMap](capi-oh-drawing-pixelmap.md)的指针。 |
+| [OH_Drawing_PixelMap](capi-drawing-oh-drawing-pixelmap.md)* pixelMap | 指向像素图对象[OH_Drawing_PixelMap](capi-drawing-oh-drawing-pixelmap.md)的指针。 |
 
 

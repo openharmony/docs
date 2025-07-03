@@ -21,13 +21,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 | \#define OH_LOG_ERROR(type, ...) ((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | ERROR级别写日志，宏封装接口。 |
 | \#define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | FATAL级别写日志，宏封装接口。 |
 | void OH_LOG_SetCallback(LogCallback callback) | 注册函数，注册后可通过LogCallback回调获取本进程所有的hilog日志。|
-| void OH_LOG_SetMinLogLevel(LogLevel level)|设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别。|
-
-<!--RP1-->
-> **说明：**
->
-> 全局日志级别，默认为info, 可参考[查看和设置日志级别](hilog.md#查看和设置日志级别)
-<!--RP1End-->
+| void OH_LOG_SetMinLogLevel(LogLevel level)|设置应用日志打印的最低日志级别，用于拦截低级别日志打印。<br/>需要注意：如果设置的日志级别低于[全局日志级别](hilog.md#查看和设置日志级别)，设置不生效。|
 
 ### 参数解析
 
@@ -46,10 +40,10 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
   | 格式说明符（specifier） | 说明 | 示例 |
   | -------- | -------- | -------- |
-  | d/i | 支持打印number、bool和bigint类型。 | 123 |
-  | s | 支持打印string、undefined和null类型。 | "123" |
+  | d/i | 支持打印number、bool类型。 | 123 |
+  | s | 支持打印char*类型。 | "hello" |
 
-  格式字符串中可以设置多个参数，例如格式字符串为“%s World”，“%s”为参数类型为string的变参标识，具体取值在args中定义。<!--Del-->
+  格式字符串中可以设置多个参数，例如格式字符串为“%{public}s World”，“%{public}s”为参数类型为字符串的变参标识，具体取值在args中定义。<!--Del-->
 
   调试时可通过命令“hilog -p off”指令，关闭隐私开关，明文显示private日志内容。
 <!--DelEnd-->
@@ -105,10 +99,12 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
 4. 输出结果：
 
+<!--RP2-->
    ```
-   01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   pid-9012              I     Failed to visit <private>, reason:11.
-   01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   pid-9012              E     this is an info level log
+   01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   com.example.hilogDemo              I     Failed to visit <private>, reason:11.
+   01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   com.example.hilogDemo              E     this is an info level log
    ```
+<!--RP2End-->
 
 ### 日志回调接口使用示例
 
