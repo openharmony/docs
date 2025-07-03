@@ -131,7 +131,7 @@
         - [Security](release-notes/api-diff/v3.2-Release/js-apidiff-security.md)
         - [Pan-sensor](release-notes/api-diff/v3.2-Release/js-apidiff-sensor.md)
         - [Startup](release-notes/api-diff/v3.2-Release/js-apidiff-start-up.md)
-        - [Telephony ](release-notes/api-diff/v3.2-Release/js-apidiff-telephony.md)
+        - [Telephony](release-notes/api-diff/v3.2-Release/js-apidiff-telephony.md)
         - [Test](release-notes/api-diff/v3.2-Release/js-apidiff-unitest.md)
         - [Update](release-notes/api-diff/v3.2-Release/js-apidiff-update.md)
         - [USB](release-notes/api-diff/v3.2-Release/js-apidiff-usb.md)
