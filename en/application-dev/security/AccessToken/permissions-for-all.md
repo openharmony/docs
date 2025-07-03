@@ -473,15 +473,3 @@ This permission is applicable to the applications that meet the following condit
 **Supported devices**: PC/2in1
 
 **Valid since**: 20
-
-## ohos.permission.WINDOW_TRANSPARENT
-
-Allow an application to set the main window container to be transparent and remove the shadow of the outer border of the main window。
-
-**Permission level**: normal
-
-**Authorization mode**: system_grant
-
-**Supported devices**: PC/2in1
-
-**Valid since**: 20
