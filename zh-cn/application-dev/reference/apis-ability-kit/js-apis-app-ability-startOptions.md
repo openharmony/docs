@@ -38,6 +38,7 @@ import { StartOptions } from '@kit.AbilityKit';
 | maxWindowHeight<sup>17+</sup> | number | 否 | 是 | 窗口最大的高度，单位为px，可以通过[getWindowLimits](../apis-arkui/arkts-apis-window-Window.md#getwindowlimits11)获得当前窗口的尺寸限制。<br>**约束：**<br/>仅在2in1和tablet设备上生效。 |
 | completionHandler<sup>20+</sup> | [CompletionHandler](js-apis-app-ability-completionHandler.md) | 否 | 是 | 拉端结果操作类，用于处理拉端结果。<br/>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
 | hideStartWindow<sup>20+</sup> | boolean | 否 | 是 | 表示是否隐藏启动窗口。<br>**约束：**<br/>1.该功能仅在2in1设备和自由多窗模式下的tablet设备上生效。<br>2.该功能仅在启动当前应用的UIAbility时生效。 |
+| windowCreateParams<sup>20+</sup> | [WindowCreateParams](../apis-arkui/arkts-apis-window-i.md#windowcreateparams20) | 否 | 是 | 启动UIAbility时的窗口参数。 |
 
 **示例：**
 
@@ -65,6 +66,7 @@ import { StartOptions } from '@kit.AbilityKit';
 
       let color = new ArrayBuffer(0);
       let imagePixelMap: image.PixelMap;
+      let windowParam: window.WindowCreateParams = {};
       image.createPixelMap(color, {
         size: {
           height: 100,
@@ -86,7 +88,8 @@ import { StartOptions } from '@kit.AbilityKit';
           maxWindowWidth: 2560,
           maxWindowHeight: 2560,
           completionHandler: completionHandler,
-          hideStartWindow: true
+          hideStartWindow: true,
+          windowCreateParams : windowParam
         };
 
         try {
