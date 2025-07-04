@@ -155,7 +155,55 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVFormat_Destroy(formatVideo); // 销毁。
    ```
 
-7. 添加封面轨。
+7. 添加辅助轨。
+   > **说明：**
+   >
+   > 设置OH_MD_KEY_TRACK_REFERENCE_TYPE时，值必须为"hint"、"cdsc"、"font"、"hind"、"vdep"、"vplx"、"subt"、"thmb"、"auxl"、"cdtg"、"shsc"或"aest"其中一项。
+
+   **添加音频辅助轨**
+
+   ```c++
+   int32_t audioAuxlTrackId = -1;
+   std::vector<int32_t> audioTrackIDsVector = {0}; // 根据实际情况设置被辅助音频轨的编号，可填写多个值。
+   int32_t *audioAuxlTrackIDs = audioTrackIDsVector.data();
+   OH_AVFormat *audioAuxlFormat = OH_AVFormat_Create();
+   OH_AVFormat_SetStringValue(audioAuxlFormat, OH_MD_KEY_CODEC_MIME, OH_AVCODEC_MIMETYPE_AUDIO_AAC); // 必填。
+   OH_AVFormat_SetIntValue(audioAuxlFormat, OH_MD_KEY_AUD_SAMPLE_RATE, 44100); // 必填。
+   OH_AVFormat_SetIntValue(audioAuxlFormat, OH_MD_KEY_AUD_CHANNEL_COUNT, 2); // 必填。
+   OH_AVFormat_SetIntValue(audioAuxlFormat, OH_MD_KEY_PROFILE, AAC_PROFILE_LC); // 选填。
+   OH_AVFormat_SetIntValue(audioAuxlFormat, OH_MD_KEY_TRACK_TYPE, static_cast<int32_t>(OH_MediaType::MEDIA_TYPE_AUXILIARY)); // 必填。
+   OH_AVFormat_SetStringValue(audioAuxlFormat, OH_MD_KEY_TRACK_REFERENCE_TYPE, "auxl"); // 必填。
+   OH_AVFormat_SetStringValue(audioAuxlFormat, OH_MD_KEY_TRACK_DESCRIPTION, "com.openharmony.audiomode.auxiliary"); // 必填。
+   OH_AVFormat_SetIntBuffer(audioAuxlFormat, OH_MD_KEY_REFERENCE_TRACK_IDS, audioAuxlTrackIDs, audioTrackIDsVector.size()); // 必填。
+
+   int ret = OH_AVMuxer_AddTrack(muxer, &audioAuxlTrackId, audioAuxlFormat);
+   if (ret != AV_ERR_OK || audioAuxlTrackId < 0) {
+       // 音频辅助轨添加失败。
+   }
+   ```
+
+   **添加视频辅助轨**
+
+   ```c++
+   int32_t videoAuxlTrackId = -1;
+   std::vector<int32_t> videoTrackIDsVector = {0}; // 根据实际情况设置被辅助视频轨的编号，可填写多个值。
+   int32_t *videoAuxlTrackIDs = videoTrackIDsVector.data();
+   OH_AVFormat *videoAuxlFormat = OH_AVFormat_Create();
+   OH_AVFormat_SetStringValue(videoAuxlFormat, OH_MD_KEY_CODEC_MIME, OH_AVCODEC_MIMETYPE_VIDEO_AVC); // 必填。
+   OH_AVFormat_SetIntValue(videoAuxlFormat, OH_MD_KEY_WIDTH, 1280); // 必填。
+   OH_AVFormat_SetIntValue(videoAuxlFormat, OH_MD_KEY_HEIGHT, 720); // 必填。
+   OH_AVFormat_SetIntValue(videoAuxlFormat, OH_MD_KEY_TRACK_TYPE, static_cast<int32_t>(OH_MediaType::MEDIA_TYPE_AUXILIARY)); // 必填。
+   OH_AVFormat_SetStringValue(videoAuxlFormat, OH_MD_KEY_TRACK_REFERENCE_TYPE, "vdep"); // 必填。
+   OH_AVFormat_SetStringValue(videoAuxlFormat, OH_MD_KEY_TRACK_DESCRIPTION, "com.openharmony.moviemode.depth"); // 必填。
+   OH_AVFormat_SetIntBuffer(videoAuxlFormat, OH_MD_KEY_REFERENCE_TRACK_IDS, videoAuxlTrackIDs, videoTrackIDsVector.size()); // 必填。
+
+   int ret = OH_AVMuxer_AddTrack(muxer, &videoAuxlTrackId, videoAuxlFormat);
+   if (ret != AV_ERR_OK || videoAuxlTrackId < 0) {
+       // 视频辅助轨添加失败。
+   }
+   ```
+
+8. 添加封面轨。
 
    **方法一：用OH_AVFormat_Create创建format**
 
@@ -186,7 +234,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVFormat_Destroy(formatCover); // 销毁。
    ```
 
-8. 调用OH_AVMuxer_Start()开始封装。
+9. 调用OH_AVMuxer_Start()开始封装。
 
    ```c++
    // 调用start，写封装文件头。start后，不能设置媒体参数、不能添加音视频轨。
@@ -195,34 +243,34 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
    ```
 
-9. 调用OH_AVMuxer_WriteSampleBuffer()，写入封装数据。
+10. 调用OH_AVMuxer_WriteSampleBuffer()，写入封装数据。
 
-   封装数据包括视频、音频、封面等数据。
+    封装数据包括视频、音频、封面等数据。
 
-   ```c++
-   // start后，才能开始写入数据。
-   int size = ...;
-   OH_AVBuffer *sample = OH_AVBuffer_Create(size); // 创建AVBuffer。
-   // 通过OH_AVBuffer_GetAddr(sample)往sampleBuffer里写入数据参考OH_AVBuffer的使用方法。
-   // 封装封面，必须一次写完一张图片。
-   
-   // 创建buffer info。
-   OH_AVCodecBufferAttr info = {0};
-   info.pts = ...; // 当前数据的开始播放的时间，单位微秒，相对时间。
-   info.size = size; // 当前数据的长度。
-   info.offset = 0; // 偏移，一般为0。
-   info.flags |= AVCODEC_BUFFER_FLAGS_SYNC_FRAME; // 当前数据的标志。具体参考OH_AVCodecBufferFlags。
-   info.flags |= AVCODEC_BUFFER_FLAGS_CODEC_DATA; // 当annex-b格式的avc包含codec config的标志。
-   OH_AVBuffer_SetBufferAttr(sample, &info); // 设置buffer的属性。
-   int trackId = audioTrackId; // 选择写的音视频轨。
-   
-   int ret = OH_AVMuxer_WriteSampleBuffer(muxer, trackId, sample);
-   if (ret != AV_ERR_OK) {
-       // 异常处理。
-   }
-   ```
+    ```c++
+    // start后，才能开始写入数据。
+    int size = ...;
+    OH_AVBuffer *sample = OH_AVBuffer_Create(size); // 创建AVBuffer。
+    // 通过OH_AVBuffer_GetAddr(sample)往sampleBuffer里写入数据参考OH_AVBuffer的使用方法。
+    // 封装封面，必须一次写完一张图片。
+    
+    // 创建buffer info。
+    OH_AVCodecBufferAttr info = {0};
+    info.pts = ...; // 当前数据的开始播放的时间，单位微秒，相对时间。
+    info.size = size; // 当前数据的长度。
+    info.offset = 0; // 偏移，一般为0。
+    info.flags |= AVCODEC_BUFFER_FLAGS_SYNC_FRAME; // 当前数据的标志。具体参考OH_AVCodecBufferFlags。
+    info.flags |= AVCODEC_BUFFER_FLAGS_CODEC_DATA; // 当annex-b格式的avc包含codec config的标志。
+    OH_AVBuffer_SetBufferAttr(sample, &info); // 设置buffer的属性。
+    int trackId = audioTrackId; // 选择写的音视频轨。
+    
+    int ret = OH_AVMuxer_WriteSampleBuffer(muxer, trackId, sample);
+    if (ret != AV_ERR_OK) {
+        // 异常处理。
+    }
+    ```
 
-10. 调用OH_AVMuxer_Stop()，停止封装。
+11. 调用OH_AVMuxer_Stop()，停止封装。
 
     ```c++
     // 调用stop，写封装文件尾。stop后不能写入媒体数据。
@@ -231,7 +279,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
     }
     ```
 
-11. 调用OH_AVMuxer_Destroy()销毁实例，释放资源。
+12. 调用OH_AVMuxer_Destroy()销毁实例，释放资源。
 
     注意不能重复销毁，否则将会导致程序崩溃。
 
