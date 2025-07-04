@@ -21,7 +21,6 @@
 | 名称                                                                                       | typedef关键字 | 描述 |
 |------------------------------------------------------------------------------------------| -- | -- |
 | [TransientTask_DelaySuspendInfo](capi-transienttask-transienttask-delaysuspendinfo.md)   | TransientTask_DelaySuspendInfo | 定义短时任务返回信息结构体。 |
-| [TransientTask_TransientTaskInfo](capi-transienttask-transienttask-transienttaskinfo.md) | TransientTask_TransientTaskInfo | 定义所有短时任务信息结构体。 |
 
 ### 枚举
 
