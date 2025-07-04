@@ -1117,7 +1117,7 @@ popToName(name: string, animated?: boolean): number
 
 popToName(name: string, result: Object, animated?: boolean): number
 
-回退导路由栈到由栈底开始第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
+回退路由栈到由栈底开始第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
