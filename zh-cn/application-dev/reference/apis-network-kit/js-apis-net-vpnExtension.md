@@ -456,15 +456,15 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 | ------------------- | -------------------------------------------------------------- | ---- | ----------------------------------- |
 | addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | 是   | VPN 虚拟网卡的 IP 地址。            |
 | routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | 否   | VPN 虚拟网卡的路由信息(目前最多可配置1024条路由)。            |
-| dnsAddresses        | Array\<string\>                                                | 否   | DNS 服务器地址信息。                |
+| dnsAddresses        | Array\<string\>                                                | 否   | DNS 服务器地址信息。当配置DNS服务器地址后，VPN启动状态下被代理的应用上网时，使用配置的DNS服务器做DNS查询。                |
 | searchDomains       | Array\<string\>                                                | 否   | DNS 的搜索域列表。                  |
 | mtu                 | number                                                         | 否   | 最大传输单元 MTU 值(单位:字节)。取值范围：576-1500。     |
 | isIPv4Accepted      | boolean                                                        | 否   | 是否支持 IPV4, 默认值为 true。true：支持 IPV4；false：不支持 IPV4。    |
 | isIPv6Accepted      | boolean                                                        | 否   | 是否支持 IPV6, 默认值为 false。true：支持 IPV6；false：不支持 IPV6。     |
 | isInternal          | boolean                                                        | 否   | 是否支持内置 VPN, 默认值为 false。true：支持内置 VPN；false：不支持内置 VPN。   |
 | isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为 false。true：阻塞模式；false：非阻塞模式。       |
-| trustedApplications | Array\<string\>                                                | 否   | 白名单信息, string 类型表示的包名。  |
-| blockedApplications | Array\<string\>                                                | 否   | 黑名单信息, string 类型表示的包名。  |
+| trustedApplications | Array\<string\>                                                | 否   | 白名单信息, string 类型表示的包名。当配置该列表后，仅该列表中的应用数据才能根据routes被VPN代理。<br>注：trustedApplications和blockedApplications列表不能同时配置。  |
+| blockedApplications | Array\<string\>                                                | 否   | 黑名单信息, string 类型表示的包名。当配置该列表后，该列表中的应用数据不会被VPN代理，其他应用可以根据routes配置被VPN代理。<br>注：trustedApplications和blockedApplications列表不能同时配置。  |
 
 **示例：**
 
