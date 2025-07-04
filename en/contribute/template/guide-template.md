@@ -204,7 +204,7 @@ _What are the constraints for using the kit/solution/feature/function/module? Ho
 _**[Key Writing Points]**_
 
 - _Describe perceptible constraints that affect development activities, including but not limited to the following:_
-  - _Function constraints_
+  - **_Function constraints_**
      - _Application scope of the solution/feature/function/module (Specify scenarios that are not supported.)_
      - _Specification constraints_
   - _**Operation constraints**_
@@ -215,7 +215,7 @@ _**[Key Writing Points]**_
 
 ***[Example]***
 
-- This function is available only for XXX devices of XXX and later versions.
+- Device constraints: XXX (the official device category name, such as 2-in-1) devices do not support using this kit. or  This kit is only applicable to (the official device category name, such as 2-in-1) devices. or  Only XXX devices of version XXXXXX and above can use this kit.
 
 - Data synchronization can be implemented across devices only for the applications with the same bundleName.
 

@@ -16,7 +16,7 @@ You can refer to development guidances of key features in the application framew
 
 
 - Open kit capabilities related to the application framework: Ability Kit, ArkUI, and more
-- Open kit capabilities related to application services: Account Kit, Location Kit, and more
+- Open kit capabilities related to application services: Calendar Kit, Location Kit, and more
 - Open kit capabilities related to the system: Network Kit, Universal Keystore Kit, and more
 - Open kit capabilities related to multimedia: Audio Kit, Media Library Kit, and more
 - Open kit capabilities related to graphics: ArkGraphics 2D and more
@@ -33,4 +33,4 @@ To make you better understand how functions work together and jumpstart your app
 
 ## API References
 
-[API References](reference/development-intro.md) encompass all components and APIs provided by every kit in the OpenHarmony SDK, helping you use and integrate APIs more effectively.
+[API References](reference/development-intro-api.md) encompass all components and APIs provided by every kit in the OpenHarmony SDK, helping you use and integrate APIs more effectively.
