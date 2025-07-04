@@ -1584,6 +1584,10 @@ vp2px(value : number) : number
 
 像素密度：当前窗口生效的像素密度值，即屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
 
+> **说明：**
+>
+> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1616,6 +1620,10 @@ px2vp(value : number) : number
 转换公式为：vp值 = px值 ÷ 像素密度
 
 像素密度：当前窗口生效的像素密度值，即屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
+
+> **说明：**
+>
+> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1652,6 +1660,10 @@ fp2px(value : number) : number
 
 字体缩放比例：系统设置的字体缩放系数，对应 [Configuration.fontScale](arkui-ts/ts-types.md#configuration)。
 
+> **说明：**
+>
+> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1687,6 +1699,10 @@ px2fp(value : number) : number
 
 字体缩放比例：系统设置的字体缩放系数，对应 [Configuration.fontScale](arkui-ts/ts-types.md#configuration)。
 
+> **说明：**
+>
+> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1716,7 +1732,11 @@ lpx2px(value : number) : number
 
 将lpx单位的数值转换为以px为单位的数值。
 
-转换公式为：px值 = lpx值 × 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
+转换公式为：px值 = lpx值 × 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值。
+
+> **说明：**
+>
+> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1747,7 +1767,11 @@ px2lpx(value : number) : number
 
 将px单位的数值转换为以lpx为单位的数值。
 
-转换公式为：lpx值 = px值 ÷ 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
+转换公式为：lpx值 = px值 ÷ 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值。
+
+> **说明：**
+>
+> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
