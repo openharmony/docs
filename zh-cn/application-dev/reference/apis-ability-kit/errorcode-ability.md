@@ -1104,6 +1104,134 @@ Current ability is not in foreground.
 
 检查当前Ability是否处于前台状态。
 
+<!--Del-->
+## 16000120 wantList内的元素个数超出4个
+
+**错误信息**
+
+A maximum of four UIAbility instances can be started simultaneously.The current parameter exceeds the maximum number.
+
+**错误描述**
+
+最多支持同时启动4个UIAbility，当前传参超过上限。
+
+**可能原因**
+
+wantList内的元素个数超出4个。
+
+**处理步骤**
+
+检查wantList内的元素个数，是否已超过上限。
+
+## 16000121 待启动的目标组件类型不是UIAbility
+
+**错误信息**
+
+The target component type is not a UIAbility.
+
+**错误描述**
+
+待启动的目标组件类型不是UIAbility。
+
+**可能原因**
+
+startUIAbilities只支持启动UIAbility，如果目标组件为非UIAbility，抛出该错误码。
+
+**处理步骤**
+
+检查Want中传入的组件类型，确保其为UIAbility组件。
+
+## 16000122 待启动的目标组件被系统管控模块拦截
+
+**错误信息**
+
+The target component is blocked by the system module and does not support startup.
+
+**错误描述**
+
+待启动的目标组件被系统管控模块拦截，不支持启动。
+
+**可能原因**
+
+系统管控模块拦截了目标应用的启动。
+
+**处理步骤**
+
+如果无法启动目标UIAbility，可以尝试启动其他UIAbility。
+
+## 16000123 不支持隐式启动
+
+**错误信息**
+
+Implicit startup is not supported.
+
+**错误描述**
+
+不支持隐式启动。
+
+**可能原因**
+
+wantList参数中存在隐式Want。
+
+**处理步骤**
+
+检查wantList参数，确保不存在隐式Want，若存在则将其修改为显式Want。
+
+## 16000124 不支持启动分布式UIAbility
+
+**错误信息**
+
+Starting a remote UIAbility is not supported.
+
+**错误描述**
+
+不支持启动分布式UIAbility。
+
+**可能原因**
+
+Want中的deviceId不为空且非本机的设备ID。
+
+**处理步骤**
+
+将Want中的deviceId字段设为空，或配置为本机的deviceId。
+
+## 16000125 不支持启动插件
+
+**错误信息**
+
+Starting a plugin UIAbility is not supported.
+
+**错误描述**
+
+不支持启动插件。
+
+**可能原因**
+
+Want中的parameters指定了启动插件UIAbility。
+
+**处理步骤**
+
+检查Want中的parameters参数，不要将ohos.params.pluginAbility设置为true。
+
+## 16000126 不支持启动DLP文件
+
+**错误信息**
+
+Starting DLP files is not supported.
+
+**错误描述**
+
+不支持启动DLP文件。
+
+**可能原因**
+
+Want中传入了DLP文件。
+
+**处理步骤**
+
+检查Want是否携带了DLP文件。
+<!--DelEnd-->
+
 ## 16000151 无效wantAgent对象
 
 **错误信息**
