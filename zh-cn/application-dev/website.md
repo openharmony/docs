@@ -3398,15 +3398,15 @@
           <!--DelEnd-->
       - C API<!--background-tasks-c-->
         - 模块<!--background-tasks-module-->
-          - [TransientTask](reference/apis-backgroundtasks-kit/_transient_task.md)
-          - [BackgroundProcessManager](reference/apis-backgroundtasks-kit/_background_process_manager.md)
+          - [BackgroundProcessManager](reference/apis-backgroundtasks-kit/capi-backgroundprocessmanager.md)
+          - [TransientTask](reference/apis-backgroundtasks-kit/capi-transienttask.md)
         - 头文件<!--background-tasks-headerfile-->
-          - [transient_task_api.h](reference/apis-backgroundtasks-kit/transient__task__api_8h.md)
-          - [transient_task_type.h](reference/apis-backgroundtasks-kit/transient__task__type_8h.md)
-          - [background_process_manager.h](reference/apis-backgroundtasks-kit/background__process__manager_8h.md)
+          - [background_process_manager.h](reference/apis-backgroundtasks-kit/capi-background-process-manager-h.md)
+          - [transient_task_api.h](reference/apis-backgroundtasks-kit/capi-transient-task-api-h.md)
+          - [transient_task_type.h](reference/apis-backgroundtasks-kit/capi-transient-task-type-h.md)
         - 结构体<!--background-tasks-struct-->
-          - [TransientTask_DelaySuspendInfo](reference/apis-backgroundtasks-kit/_transient_task___delay_suspend_info.md)
-          - [TransientTask_TransientTaskInfo](reference/apis-backgroundtasks-kit/_transient_task___transient_task_info.md)
+          - [TransientTask_DelaySuspendInfo](reference/apis-backgroundtasks-kit/capi-transienttask-transienttask-delaysuspendinfo.md)
+          - [TransientTask_TransientTaskInfo](reference/apis-backgroundtasks-kit/capi-transienttask-transienttask-transienttaskinfo.md)
       - 错误码<!--background-tasks-arkts-errcode-->
         - [backgroundTaskManager错误码](reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md)
         <!--Del-->
