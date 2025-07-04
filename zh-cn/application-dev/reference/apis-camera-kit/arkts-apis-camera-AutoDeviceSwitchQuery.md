@@ -6,6 +6,12 @@
 
 自动切换镜头查询类，用于查询设备是否支持自动切换镜头。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## isAutoDeviceSwitchSupported<sup>13+</sup>
 
 isAutoDeviceSwitchSupported(): boolean

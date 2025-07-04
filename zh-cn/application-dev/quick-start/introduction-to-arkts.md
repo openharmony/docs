@@ -41,8 +41,6 @@ const hello: string = 'hello';
 
 #### 自动类型推断
 
-由于ArkTS是一种静态类型语言，所有数据的类型都必须在编译时确定。
-
 如果变量或常量的声明包含了初始值，开发者就不需要显式指定其类型，因为ArkTS规范中列举了所有允许自动推断类型的场景。
 
 以下示例中，两条声明语句都是有效的，两个变量都是`string`类型：
@@ -906,7 +904,7 @@ class Person {
 }
 
 let jack = new Person();
-// 假设代码中没有对name赋值，例如调用"jack.setName('Jack')"
+// 假设代码中没有对name赋值，即没有调用"jack.setName('Jack')"
 jack.getName().length; // 运行时异常：name is undefined
 ```
 
@@ -928,7 +926,7 @@ class Person {
   
 
 let jack = new Person();
-// 假设代码中没有对name赋值，例如调用"jack.setName('Jack')"
+// 假设代码中没有对name赋值，即没有调用"jack.setName('Jack')"
 jack.getName().length; // 0, 没有运行时异常
 ```
 
@@ -953,7 +951,7 @@ class Person {
 }
 
 let jack = new Person();
-// 假设代码中没有对name赋值，例如调用"jack.setName('Jack')"
+// 假设代码中没有对name赋值，即没有调用"jack.setName('Jack')"
 
 // 编译时错误：编译器认为下一行代码有可能会访问undefined的属性，报错
 jack.getName().length;  // 编译失败
@@ -1379,7 +1377,7 @@ class Y {
 
 任何一个类的实例只要实现了特定接口，就可以通过该接口实现多态。
 
-接口通常包含属性和方法的声明
+接口通常包含属性和方法的声明。
 
 示例：
 

@@ -14,6 +14,7 @@
     - [fdsan使用指导](fdsan.md)
   - 使用Node-API实现跨语言交互<!--using-napi-interaction-with-cpp-->
     - [Node-API简介](napi-introduction.md)
+    - [Node-API接口返回状态码介绍](napi_status_introduction.md)
     - [Node-API支持的数据类型和接口](napi-data-types-interfaces.md)
     - [Node-API开发规范](napi-guidelines.md)
     - [使用Node-API实现跨语言交互开发流程](use-napi-process.md)
@@ -51,7 +52,11 @@
       - [使用Node-API接口创建、切换和销毁上下文环境](use-napi-about-context.md)
       - [使用Node-API接口产生的异常日志/崩溃分析](use-napi-about-crash.md)
       - [使用Node-API调用返回值为promise的ArkTS方法](use-napi-method-promise.md)
-    - [Node-API常见问题](use-napi-faqs.md)
+    - Node-API常见问题汇总<!--napi-questions-->
+      - [Node-API常见问题](use-napi-faqs.md)
+      - [稳定性相关问题汇总](napi-faq-about-stability.md)
+      - [内存泄漏相关问题汇总](napi-faq-about-memory-leak.md)
+      - [常见基本功能问题汇总](napi-faq-about-common-basic.md)
   - 使用JSVM-API实现JS与C/C++语言交互<!--jsvm-->
     - [JSVM-API简介](jsvm-introduction.md)
     - [JSVM-API支持的数据类型和接口](jsvm-data-types-interfaces.md)
@@ -85,14 +90,14 @@
       - [使用JSVM-API进行异常的定制化处理](use-jsvm-trigger-exceptions.md)
       - [使用JSVM-API感知JSVM引擎生命周期管理](use-jsvm-trigger-gc.md)
       - [使用JSVM-API接口进行 private 属性相关开发](use-jsvm-about-private.md)
-      - [使用JSVM-API接创建 external string](use-jsvm-about-external-string.md)
+      - [使用JSVM-API接口提供Latin1/UTF16格式字符串相关开发](use-jsvm-about-external-string.md)
       - [使用JSVM-API接口进行Proxy相关开发](use-jsvm-about-proxy.md)
-      - [使用JSVM-API接口进行well-known symbols相关开发](use-jsvm-about-well-known-symbols.md)
-      - [使用JSVM-API接口进行装箱类型判断相关开发](use-jsvm-about-wrapper-object.md)
+      - [使用JSVM-API接口进行Wellknown symbols相关开发](use-jsvm-about-well-known-symbols.md)
+      - [使用JSVM-API接口进行Wrapper object相关开发](use-jsvm-about-wrapper-object.md)
       - [使用JSVM-API接口创建基本数据类型](use-jsvm-basic-data-types.md)
     - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
-      - [JSVM-API Tracing](use-jsvm-about-trace.md)
+      - [使用JSVM-API接口进行Trace相关开发](use-jsvm-about-trace.md)
       - [JSVM 申请JIT权限指导](jsvm-apply-jit-profile.md)
       - [JSVM 定位内存泄漏问题指导](jsvm-locate-memory-leak.md)
       - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->

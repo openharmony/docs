@@ -2,7 +2,7 @@
 
 ## 简介
 
-函数调用允许开发者从Node-API模块中调用ArkTS函数，并传递参数进行调用，或者直接在Node-API模块中创建一个ArkTS方法。
+函数调用允许开发者从Node-API模块中调用ArkTS函数并传递参数，或在Node-API模块中创建ArkTS函数。
 
 ## 基本概念
 
@@ -14,12 +14,11 @@
 | -------- | -------- |
 | napi_get_cb_info | 当需要从给定的callback info中获取有关调用的参数信息和this指针时，可使用此接口。 |
 | napi_call_function | 当需要在Node-API模块中对ArkTS侧函数进行调用时，可使用此接口。 |
-| napi_create_function | 当需要将C/C++函数创建一个ArkTS函数时，可以使用此接口。 |
+| napi_create_function | 当需要将C/C++函数创建为ArkTS函数时，可以使用此接口。 |
 
 ## 使用示例
 
-Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。napi_create_function方法除外，具体使用见示例。
-
+Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
 ## napi_get_cb_info
 
 获取有关函数调用的详细信息。
@@ -53,6 +52,7 @@ static napi_value GetCbContext(napi_env env, napi_callback_info info)
     return thisArg;
 }
 ```
+<!-- @[napi_get_cb_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -63,6 +63,7 @@ export const getCbArgs: <T>(arg: T) => T;
 export const getCbArgQuantity: (str: string, num: number) => number;
 export const getCbContext: () => Object;
 ```
+<!-- @[napi_get_cb_info_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS 侧示例代码
 
@@ -102,11 +103,12 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_cb_info get arg quantity:%
 // 获取上下文
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_cb_info get thisArg:%{public}s ', testNapi.getCbContext().toString());
 ```
+<!-- @[ark_napi_get_cb_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/ets/pages/Index.ets) -->
 
 ## napi_call_function
 
 在C/C++侧对ArkTS函数进行调用。
-注意事项：napi_call_function传入的argv的长度必须大于等于argc声明的数量，且被初始化成nullptr。
+注意事项：napi_call_function传入的argv的长度必须大于等于argc声明的数量，并且每个元素都应初始化为nullptr。
 
 cpp部分代码
 
@@ -143,6 +145,7 @@ static napi_value ObjCallFunction(napi_env env, napi_callback_info info)
     return result;
 }
 ```
+<!-- @[napi_call_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -151,6 +154,7 @@ static napi_value ObjCallFunction(napi_env env, napi_callback_info info)
 export const callFunction: (func: Function) => number;
 export const objCallFunction: (obj: Object, func: Function) => number;
 ```
+<!-- @[napi_call_function_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS 侧示例代码
 
@@ -170,6 +174,7 @@ const person = new Person();
 hilog.info(0x0000, 'testTag', 'Test Node-API call_function:%{public}d', testNapi.callFunction(returnNumber));
 hilog.info(0x0000, 'testTag', 'Test Node-API call_function:%{public}d', testNapi.objCallFunction(person,person.age));
 ```
+<!-- @[ark_napi_call_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/ets/pages/Index.ets) -->
 
 ## napi_create_function
 
@@ -204,6 +209,7 @@ static napi_value Init(napi_env env, napi_value exports) {
 }
 EXTERN_C_END
 ```
+<!-- @[napi_create_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -211,6 +217,7 @@ EXTERN_C_END
 // index.d.ts
 export const calculateArea: (width: number, height: number) => number;
 ```
+<!-- @[napi_create_function_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS 侧示例代码
 
@@ -220,6 +227,7 @@ import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API create_function:%{public}d ', testNapi.calculateArea(1.2, 4));
 ```
+<!-- @[ark_napi_create_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/ets/pages/Index.ets) -->
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 

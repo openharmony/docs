@@ -4,7 +4,7 @@
 
 ## 开发步骤
 
-图片编码相关API的详细介绍请参见：[图片编码接口说明](../../reference/apis-image-kit/js-apis-image.md#imagepacker)。
+图片编码相关API的详细介绍请参见：[图片编码接口说明](../../reference/apis-image-kit/arkts-apis-image-ImagePacker.md)。
 
 ### 图片编码进文件流
 

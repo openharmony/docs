@@ -372,3 +372,4 @@
 | FLUORESCENT    | 3 | 荧光 |
 | DAYLIGHT       | 4 | 日光 |
 | MANUAL         | 5 | 手动 |
+| LOCKED         | 6 | 锁定  |

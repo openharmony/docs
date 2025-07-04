@@ -8,7 +8,7 @@
 
 <!--RP1End-->
 
-当前HTTP请求支持的场景如下，以下功能对应的选项可以在HTTP请求的[HttpResponseOptions](../reference/apis-network-kit/js-apis-http.md#httprequestoptions)中进行设置：
+当前HTTP请求支持的场景如下，以下功能对应的选项可以在HTTP请求的[HttpRequestOptions](../reference/apis-network-kit/js-apis-http.md#httprequestoptions)中进行设置：
 
 | 功能分类     | 功能名称                           |功能描述                      | 开始支持的版本         |
 | ----------- | -----------------------------------|-----------------------------|------------------------|
@@ -298,7 +298,7 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
       // 当该请求使用完毕时，调用destroy方法主动销毁。
       httpRequest.destroy();
     }).catch((err: Error) => {
-      console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+      console.error("requestInStream ERROR : err = " + JSON.stringify(err));
     });
     ```
 

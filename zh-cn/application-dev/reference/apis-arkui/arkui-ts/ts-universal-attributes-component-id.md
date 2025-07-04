@@ -56,9 +56,7 @@ key(value: string): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
-
 ## 接口
-
 
 ### getInspectorByKey<sup>9+</sup>
 

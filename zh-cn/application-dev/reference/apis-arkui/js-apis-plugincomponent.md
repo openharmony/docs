@@ -73,7 +73,7 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 | want     | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件提供方Ability信息。                          |
 | name     | string                              | 是    | 请求组件名称。                                  |
 | data     | [KVObject](#kvobject)               | 是    | 组件数据。                                    |
-| jsonPath | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。jsonPath字段不为空或者未设置的时候不触发Request通信。 |
+| jsonPath | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。当jsonPath字段不为空时不触发Request通信。 |
 
 ### RequestCallbackParameters
 
@@ -130,11 +130,11 @@ import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 
 function onPushListener(source: Want, template: PluginComponentTemplate, data: pluginComponentManager.KVObject, extraData: pluginComponentManager.KVObject) {
-  console.log("onPushListener template.source=" + template.source);
-  console.log("onPushListener source=" + JSON.stringify(source));
-  console.log("onPushListener template=" + JSON.stringify(template));
-  console.log("onPushListener data=" + JSON.stringify(data));
-  console.log("onPushListener extraData=" + JSON.stringify(extraData));
+  console.info("onPushListener template.source=" + template.source);
+  console.info("onPushListener source=" + JSON.stringify(source));
+  console.info("onPushListener template=" + JSON.stringify(template));
+  console.info("onPushListener data=" + JSON.stringify(data));
+  console.info("onPushListener extraData=" + JSON.stringify(extraData));
 }
 ```
 
@@ -171,9 +171,9 @@ import { Want } from '@kit.AbilityKit';
 
 function onRequestListener(source: Want, name: string, data: pluginComponentManager.KVObject) {
   console.error("onRequestListener");
-  console.log("onRequestListener source=" + JSON.stringify(source));
-  console.log("onRequestListener name=" + name);
-  console.log("onRequestListener data=" + JSON.stringify(data));
+  console.info("onRequestListener source=" + JSON.stringify(source));
+  console.info("onRequestListener name=" + name);
+  console.info("onRequestListener data=" + JSON.stringify(data));
   let RtnData: Record<string, string | pluginComponentManager.KVObject> = {
     'template': "ets/pages/plugin.js",
     'data': data,
@@ -219,7 +219,7 @@ pluginComponentManager.push(
     jsonPath: "",
   },
   (err, data) => {
-    console.log("push_callback: push ok!");
+    console.info("push_callback: push ok!");
   }
 )
 ```
@@ -260,10 +260,10 @@ pluginComponentManager.request(
     jsonPath: "",
   },
   (err, data) => {
-    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability);
-    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source);
-    console.log("request_callback: data=" + JSON.stringify(data.data));
-    console.log("request_callback: extraData=" + JSON.stringify(data.extraData));
+    console.info("request_callback: componentTemplate.ability=" + data.componentTemplate.ability);
+    console.info("request_callback: componentTemplate.source=" + data.componentTemplate.source);
+    console.info("request_callback: data=" + JSON.stringify(data.data));
+    console.info("request_callback: extraData=" + JSON.stringify(data.extraData));
   }
 )
 ```
@@ -291,17 +291,17 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): 
 import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 function onPushListener(source:Want, template:PluginComponentTemplate, data:pluginComponentManager.KVObject, extraData:pluginComponentManager.KVObject) {
-  console.log("onPushListener template.source=" + template.source);
-  console.log("onPushListener source=" + JSON.stringify(source));
-  console.log("onPushListener template=" + JSON.stringify(template));
-  console.log("onPushListener data=" + JSON.stringify(data));
-  console.log("onPushListener extraData=" + JSON.stringify(extraData));
+  console.info("onPushListener template.source=" + template.source);
+  console.info("onPushListener source=" + JSON.stringify(source));
+  console.info("onPushListener template=" + JSON.stringify(template));
+  console.info("onPushListener data=" + JSON.stringify(data));
+  console.info("onPushListener extraData=" + JSON.stringify(extraData));
 }
 function onRequestListener(source:Want, name:string, data:pluginComponentManager.KVObject) {
   console.error("onRequestListener");
-  console.log("onRequestListener source=" + JSON.stringify(source));
-  console.log("onRequestListener name=" + name);
-  console.log("onRequestListener data=" + JSON.stringify(data));
+  console.info("onRequestListener source=" + JSON.stringify(source));
+  console.info("onRequestListener name=" + name);
+  console.info("onRequestListener data=" + JSON.stringify(data));
   let RtnData:Record<string,string|pluginComponentManager.KVObject> = { 'template': "ets/pages/plugin.js", 'data': data };
   return RtnData;
 }

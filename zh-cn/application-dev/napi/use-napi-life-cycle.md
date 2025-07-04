@@ -14,7 +14,7 @@ napi_ref是一个Node-API类型，用于管理napi_value的生命周期。napi_r
 
 Node-API提供了一组功能，使开发人员能够在Node-API模块中创建和操作ArkTS对象，管理引用和生命周期，并注册垃圾回收回调函数等。下面是一些基本概念：
 
-- **作用域**：用于创建一个范围，在范围内声明的引用在范围外部将不再生效。Node-API提供了创建、关闭普通和可逃逸的作用域的函数。
+- **作用域**：用于管理ArkTS对象的生命周期。在某个作用域中创建的对象句柄，默认情况下只能在该作用域内使用。当作用域被关闭后，其中创建的对象将无法再被访问，除非显式地将它们逃逸出当前作用域。
 - **引用管理**：Node-API提供函数来创建、删除和管理对象的引用，以延长对象的生命周期，避免出现对象use-after-free的问题。同时也通过引用管理去避免发生内存泄漏的问题。
 - **可逃逸的作用域**：允许在创建的作用域中声明的对象返回到父作用域，通过napi_open_escapable_handle_scope和napi_close_escapable_handle_scope进行管理。
 - **垃圾回收回调**：允许注册回调函数，以便在ArkTS对象被垃圾回收时执行特定的清理操作。
@@ -27,8 +27,8 @@ Node-API提供了一组功能，使开发人员能够在Node-API模块中创建�
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_open_handle_scope、napi_close_handle_scope | 主要用于管理ArkTS对象的生命周期，确保在Node-API模块代码中使用ArkTS对象时能够正确地进行内存管理。当在Node-API模块中处理ArkTS对象时，需要创建一个临时的作用域来存储对象的引用，以便在执行期间正确访问这些对象，并在执行结束后关闭这个handle scope。 |
-| napi_open_escapable_handle_scope、napi_close_escapable_handle_scope | 当在Node-API模块中编写函数实现，需要将函数在ArkTS中返回的对象从函数的作用域正确地返回到函数被调用的外部作用域中。 |
-| napi_escape_handle | 需要将ArkTS对象的生命周期提升到父作用域中，避免对象被意外释放。 |
+| napi_open_escapable_handle_scope、napi_close_escapable_handle_scope | 用于创建一个可逃逸的作用域，使得在原生函数中创建的ArkTS对象可以被正确返回到调用该函数的外部ArkTS环境中。 |
+| napi_escape_handle | 将ArkTS对象的生命周期提升到父作用域中，避免对象被意外释放。 |
 | napi_create_reference、napi_delete_reference | 主要用于在Node-API模块代码中管理ArkTS对象的引用，以确保对象的生命周期符合插件的需求。 |
 | napi_reference_ref、napi_reference_unref | 主要用于管理ArkTS对象引用的引用计数，以确保在多个地方共享引用时引用计数能够正确地增加和减少。 |
 | napi_get_reference_value | 主要用于在Node-API模块代码中获取与引用相关联的ArkTS对象，以便在Node-API模块中对其进行操作。 |
@@ -40,7 +40,7 @@ Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程
 
 ### napi_open_handle_scope、napi_close_handle_scope
 
-通过接口napi_open_handle_scope创建一个上下文环境使用。需要使用napi_close_handle_scope进行关闭。用于管理ArkTS对象的生命周期确保在Node-API模块代码处理ArkTS对象时能够正确地管理其句柄，以避免出现对象错误回收的问题。
+通过接口napi_open_handle_scope创建一个上下文环境，并使用napi_close_handle_scope进行关闭。这组接口用于管理ArkTS对象的生命周期，确保在Node-API模块代码处理ArkTS对象时能够正确地管理其句柄，以避免出现对象错误回收的问题。
 需要注意的是合理使用napi_open_handle_scope和napi_close_handle_scope管理napi_value的生命周期，做到生命周期最小化，避免发生内存泄漏问题。
 
 代码部分也可参考下面链接：
@@ -92,6 +92,7 @@ static napi_value HandleScope(napi_env env, napi_callback_info info)
     return result;
 }
 ```
+<!-- @[napi_open_close_handle_scope](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPILifeCycle/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -100,6 +101,7 @@ static napi_value HandleScope(napi_env env, napi_callback_info info)
 export const handleScopeTest: () => string;
 export const handleScope: () => string;
 ```
+<!-- @[napi_open_close_handle_scope_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPILifeCycle/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -113,10 +115,11 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API handleScopeTest errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
 }
 ```
+<!-- @[ark_napi_open_close_handle_scope](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPILifeCycle/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_open_escapable_handle_scope、napi_close_escapable_handle_scope、napi_escape_handle
 
-通过接口napi_open_escapable_handle_scope创建出一个可逃逸的handel scope，可将范围内声明的值返回到父作用域。需要使用napi_close_escapable_handle_scope进行关闭。napi_escape_handle用于提升传入的ArkTS对象的生命周期到其父作用域。
+通过接口napi_open_escapable_handle_scope创建出一个可逃逸的handel scope，可将范围内声明的值返回到父作用域。该作用域需要使用napi_close_escapable_handle_scope进行关闭。napi_escape_handle用于提升传入的ArkTS对象的生命周期到其父作用域。
 通过上述接口可以更灵活的使用管理传入的ArkTS对象，特别是在处理跨作用域的值传递时非常有用。
 
 cpp部分代码
@@ -148,6 +151,7 @@ static napi_value EscapableHandleScopeTest(napi_env env, napi_callback_info info
     return result;
 }
 ```
+<!-- @[napi_open_close_escapable_handle_scope](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPILifeCycle/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -155,6 +159,7 @@ static napi_value EscapableHandleScopeTest(napi_env env, napi_callback_info info
 // index.d.ts
 export const escapableHandleScopeTest: () => string;
 ```
+<!-- @[napi_open_close_escapable_handle_scope_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPILifeCycle/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -167,6 +172,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API EscapableHandleScopeTest errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
 }
 ```
+<!-- @[ark_napi_open_close_escapable_handle_scope](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPILifeCycle/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_reference、napi_delete_reference
 
@@ -267,6 +273,7 @@ static napi_value DeleteReference(napi_env env, napi_callback_info info)
     return returnResult;
 }
 ```
+<!-- @[napi_create_delete_reference](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPILifeCycle/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -276,6 +283,7 @@ export const createReference: () => Object | void;
 export const useReference: () => Object | void;
 export const deleteReference: () => string | void;
 ```
+<!-- @[napi_create_delete_reference_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPILifeCycle/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -290,6 +298,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API ReferenceTest errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
 }
 ```
+<!-- @[ark_napi_create_delete_reference](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPILifeCycle/entry/src/main/ets/pages/Index.ets) -->
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 

@@ -113,15 +113,17 @@ FFRT（Function Flow运行时）是支持Function Flow编程模型的软件运�
 | FFRT_C_API void [ffrt_queue_destroy](#ffrt_queue_destroy) ([ffrt_queue_t](#ffrt_queue_t) queue) | 销毁队列。  | 
 | FFRT_C_API void [ffrt_queue_submit](#ffrt_queue_submit) ([ffrt_queue_t](#ffrt_queue_t) queue, [ffrt_function_header_t](ffrt__function__header__t.md) \*f, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 提交一个任务到队列中调度执行。  | 
 | FFRT_C_API [ffrt_task_handle_t](#ffrt_task_handle_t) [ffrt_queue_submit_h](#ffrt_queue_submit_h) ([ffrt_queue_t](#ffrt_queue_t) queue, [ffrt_function_header_t](ffrt__function__header__t.md) \*f, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 提交一个任务到队列中调度执行，并返回任务句柄。  | 
+| FFRT_C_API void [ffrt_queue_submit_f](#ffrt_queue_submit_f) ([ffrt_queue_t](#ffrt_queue_t) queue, [ffrt_function_t](#ffrt_function_t) func, void \*arg, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 提交一个任务到队列中调度执行，是ffrt_queue_submit接口的简化包装形式。  | 
+| FFRT_C_API [ffrt_task_handle_t](#ffrt_task_handle_t) [ffrt_queue_submit_h_f](#ffrt_queue_submit_h_f) ([ffrt_queue_t](#ffrt_queue_t) queue, [ffrt_function_t](#ffrt_function_t) func, void \*arg, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 提交一个任务到队列中调度执行，并返回任务句柄，是ffrt_queue_submit_h接口的简化包装形式。  | 
 | FFRT_C_API void [ffrt_queue_wait](#ffrt_queue_wait) ([ffrt_task_handle_t](#ffrt_task_handle_t) handle) | 等待队列中一个任务执行完成。  | 
 | FFRT_C_API int [ffrt_queue_cancel](#ffrt_queue_cancel) ([ffrt_task_handle_t](#ffrt_task_handle_t) handle) | 取消队列中一个任务。  | 
 | FFRT_C_API [ffrt_queue_t](#ffrt_queue_t) [ffrt_get_main_queue](#ffrt_get_main_queue) (void) | 获取主线程队列。  | 
 | FFRT_C_API [ffrt_queue_t](#ffrt_queue_t) [ffrt_get_current_queue](#ffrt_get_current_queue) (void) | 获取应用Worker(ArkTs)线程队列。  | 
 | FFRT_C_API int [ffrt_rwlock_init](#ffrt_rwlock_init) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock, const [ffrt_rwlockattr_t](ffrt__rwlockattr__t.md) \*attr) | 初始化rwlock。  | 
 | FFRT_C_API int [ffrt_rwlock_wrlock](#ffrt_rwlock_wrlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | 获取写锁。  | 
-| FFRT_C_API int [ffrt_rwlock_trywrlock](#ffrt_rwlock_trywrlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | 尝试获取写锁，获取不到直接退出。  | 
+| FFRT_C_API int [ffrt_rwlock_trywrlock](#ffrt_rwlock_trywrlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | 尝试获取写锁。  | 
 | FFRT_C_API int [ffrt_rwlock_rdlock](#ffrt_rwlock_rdlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | 获取读锁。  | 
-| FFRT_C_API int [ffrt_rwlock_tryrdlock](#ffrt_rwlock_tryrdlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | 尝试获取读锁，获取不到直接退出。  | 
+| FFRT_C_API int [ffrt_rwlock_tryrdlock](#ffrt_rwlock_tryrdlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | 尝试获取读锁。  | 
 | FFRT_C_API int [ffrt_rwlock_unlock](#ffrt_rwlock_unlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | 释放rwlock。  | 
 | FFRT_C_API int [ffrt_rwlock_destroy](#ffrt_rwlock_destroy) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | 销毁rwlock。  | 
 | FFRT_C_API int [ffrt_usleep](#ffrt_usleep) (uint64_t usec) | 睡眠调用线程固定的时间。  | 
@@ -144,6 +146,8 @@ FFRT（Function Flow运行时）是支持Function Flow编程模型的软件运�
 | FFRT_C_API void \* [ffrt_alloc_auto_managed_function_storage_base](#ffrt_alloc_auto_managed_function_storage_base) ([ffrt_function_kind_t](#ffrt_function_kind_t) kind) | 申请函数执行结构的内存。  | 
 | FFRT_C_API void [ffrt_submit_base](#ffrt_submit_base) ([ffrt_function_header_t](ffrt__function__header__t.md) \*f, const [ffrt_deps_t](ffrt__deps__t.md) \*in_deps, const [ffrt_deps_t](ffrt__deps__t.md) \*out_deps, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 提交任务调度执行。  | 
 | FFRT_C_API [ffrt_task_handle_t](#ffrt_task_handle_t) [ffrt_submit_h_base](#ffrt_submit_h_base) ([ffrt_function_header_t](ffrt__function__header__t.md) \*f, const [ffrt_deps_t](ffrt__deps__t.md) \*in_deps, const [ffrt_deps_t](ffrt__deps__t.md) \*out_deps, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 提交任务调度执行并返回任务句柄。  | 
+| FFRT_C_API void [ffrt_submit_f](#ffrt_submit_f) ([ffrt_function_t](#ffrt_function_t) func, void \*arg, const [ffrt_deps_t](ffrt__deps__t.md) \*in_deps, const [ffrt_deps_t](ffrt__deps__t.md) \*out_deps, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 提交任务调度执行，是ffrt_submit_base接口的简化包装形式。  | 
+| FFRT_C_API [ffrt_task_handle_t](#ffrt_task_handle_t) [ffrt_submit_h_f](#ffrt_submit_h_f) ([ffrt_function_t](#ffrt_function_t) func, void \*arg, const [ffrt_deps_t](ffrt__deps__t.md) \*in_deps, const [ffrt_deps_t](ffrt__deps__t.md) \*out_deps, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | 提交任务调度执行并返回任务句柄，是ffrt_submit_h_base接口的简化包装形式。  | 
 | FFRT_C_API uint32_t [ffrt_task_handle_inc_ref](#ffrt_task_handle_inc_ref) ([ffrt_task_handle_t](#ffrt_task_handle_t) handle) | 增加任务句柄的引用数。  | 
 | FFRT_C_API uint32_t [ffrt_task_handle_dec_ref](#ffrt_task_handle_dec_ref) ([ffrt_task_handle_t](#ffrt_task_handle_t) handle) | 减少任务句柄的引用计数。  | 
 | FFRT_C_API void [ffrt_task_handle_destroy](#ffrt_task_handle_destroy) ([ffrt_task_handle_t](#ffrt_task_handle_t) handle) | 销毁任务句柄。  | 
@@ -1108,6 +1112,8 @@ FFRT_C_API void ffrt_queue_attr_set_timeout (ffrt_queue_attr_t * attr, uint64_t 
 **描述**
 设置串行队列timeout属性。
 
+超时时间的最小值是1ms，如果设置的值小于1ms，那么超时时间被设置为1ms。
+
 **起始版本：** 10
 
 **参数:**
@@ -1198,6 +1204,32 @@ FFRT_C_API void ffrt_queue_submit (ffrt_queue_t queue, ffrt_function_header_t * 
 | attr | 任务属性。  | 
 
 
+### ffrt_queue_submit_f()
+
+```
+FFRT_C_API void ffrt_queue_submit_f (ffrt_queue_t queue, ffrt_function_t func, void * arg, const ffrt_task_attr_t * attr )
+```
+**描述**
+提交一个任务到队列中调度执行，是ffrt_queue_submit接口的简化包装形式。
+
+该接口假定任务不需要销毁回调函数，给定的任务函数和参数被包装为队列任务结构， 并将封装后的任务结构和其他参数传递给ffrt_queue_submit接口。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| queue | 队列句柄。  | 
+| func | 指定的任务函数。  | 
+| arg | 传递给任务函数的参数。  | 
+| attr | 任务属性。  | 
+
+**参见：**
+
+[ffrt_queue_submit](#ffrt_queue_submit)
+
+
 ### ffrt_queue_submit_h()
 
 ```
@@ -1219,6 +1251,36 @@ FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h (ffrt_queue_t queue, ffrt_func
 **返回：**
 
 提交成功返回非空任务句柄， 提交失败返回空指针。
+
+
+### ffrt_queue_submit_h_f()
+
+```
+FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h_f (ffrt_queue_t queue, ffrt_function_t func, void * arg, const ffrt_task_attr_t * attr )
+```
+**描述**
+提交一个任务到队列中调度执行，并返回任务句柄，是ffrt_queue_submit_h接口的简化包装形式。
+
+该接口假定任务不需要销毁回调函数，给定的任务函数和参数被包装为队列任务结构， 并将封装后的任务结构和其他参数传递给ffrt_queue_submit_h接口。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| queue | 队列句柄。  | 
+| func | 指定的任务函数。  | 
+| arg | 传递给任务函数的参数。  | 
+| attr | 任务属性。  | 
+
+**返回：**
+
+提交成功返回非空任务句柄， 提交失败返回空指针。
+
+**参见：**
+
+[ffrt_queue_submit_h](#ffrt_queue_submit_h)
 
 
 ### ffrt_queue_wait()
@@ -1256,7 +1318,7 @@ FFRT_C_API int ffrt_rwlock_destroy (ffrt_rwlock_t * rwlock)
 
 **返回：**
 
-销毁rwlock成功返回ffrt_success； 销毁rwlock失败返回ffrt_error_inval。 具体可参考[ffrt_error_t](#ffrt_error_t)。
+销毁rwlock成功返回ffrt_success，销毁rwlock失败返回ffrt_error_inval。
 
 
 ### ffrt_rwlock_init()
@@ -1278,7 +1340,7 @@ FFRT_C_API int ffrt_rwlock_init (ffrt_rwlock_t * rwlock, const ffrt_rwlockattr_t
 
 **返回：**
 
-初始化rwlock成功返回ffrt_success； 初始化rwlock失败返回ffrt_error_inval。 具体可参考[ffrt_error_t](#ffrt_error_t)。
+初始化rwlock成功返回ffrt_success，初始化rwlock失败返回ffrt_error_inval。
 
 
 ### ffrt_rwlock_rdlock()
@@ -1299,7 +1361,7 @@ FFRT_C_API int ffrt_rwlock_rdlock (ffrt_rwlock_t * rwlock)
 
 **返回：**
 
-获取读锁成功返回ffrt_success； 获取读锁失败返回ffrt_error_inval或者阻塞当前任务。 具体可参考[ffrt_error_t](#ffrt_error_t)。
+获取读锁成功返回ffrt_success，获取读锁失败返回ffrt_error_inval或者阻塞当前任务。
 
 
 ### ffrt_rwlock_tryrdlock()
@@ -1320,7 +1382,7 @@ FFRT_C_API int ffrt_rwlock_tryrdlock (ffrt_rwlock_t * rwlock)
 
 **返回：**
 
-返回ffrt_success - 表示获取读锁成功； 返回ffrt_error_inval - 表示锁不存在，获取读锁失败； 返回ffrt_error_busy - 表示没获取到读锁。 具体可参考[ffrt_error_t](#ffrt_error_t)。
+获取读锁成功返回ffrt_success，获取读锁失败返回ffrt_error_inval或ffrt_error_busy。
 
 
 ### ffrt_rwlock_trywrlock()
@@ -1329,7 +1391,7 @@ FFRT_C_API int ffrt_rwlock_tryrdlock (ffrt_rwlock_t * rwlock)
 FFRT_C_API int ffrt_rwlock_trywrlock (ffrt_rwlock_t * rwlock)
 ```
 **描述**
-尝试获取写锁，获取不到直接退出。
+尝试获取写锁。
 
 **起始版本：** 18
 
@@ -1341,7 +1403,7 @@ FFRT_C_API int ffrt_rwlock_trywrlock (ffrt_rwlock_t * rwlock)
 
 **返回：**
 
-返回ffrt_success - 表示获取写锁成功； 返回ffrt_error_inval - 表示锁不存在，获取写锁失败； 返回ffrt_error_busy - 表示没获取到写锁。 具体可参考[ffrt_error_t](#ffrt_error_t)。
+获取写锁成功返回ffrt_success，获取写锁失败返回ffrt_error_inval或ffrt_error_busy。
 
 
 ### ffrt_rwlock_unlock()
@@ -1362,7 +1424,7 @@ FFRT_C_API int ffrt_rwlock_unlock (ffrt_rwlock_t * rwlock)
 
 **返回：**
 
-释放rwlock成功返回ffrt_success； 释放rwlock失败返回ffrt_error_inval。 具体可参考[ffrt_error_t](#ffrt_error_t)。
+释放rwlock成功返回ffrt_success，释放rwlock失败返回ffrt_error_inval。
 
 
 ### ffrt_rwlock_wrlock()
@@ -1383,7 +1445,7 @@ FFRT_C_API int ffrt_rwlock_wrlock (ffrt_rwlock_t * rwlock)
 
 **返回：**
 
-获取写锁成功返回ffrt_success； 获取写锁失败返回ffrt_error_inval或者阻塞当前任务。 具体可参考[ffrt_error_t](#ffrt_error_t)。
+获取写锁成功返回ffrt_success，获取写锁失败返回ffrt_error_inval或者阻塞当前任务。
 
 
 ### ffrt_submit_base()
@@ -1404,6 +1466,32 @@ FFRT_C_API void ffrt_submit_base (ffrt_function_header_t * f, const ffrt_deps_t 
 | in_deps | 输入依赖指针。  | 
 | out_deps | 输出依赖指针。  | 
 | attr | 任务属性。  | 
+
+### ffrt_submit_f()
+
+```
+FFRT_C_API void ffrt_submit_f (ffrt_function_t func, void * arg, const ffrt_deps_t * in_deps, const ffrt_deps_t * out_deps, const ffrt_task_attr_t * attr )
+```
+**描述**
+提交任务调度执行，是ffrt_submit_base接口的简化包装形式。
+
+该接口假定任务不需要销毁回调函数，给定的任务函数和参数被包装为通用任务结构， 并将封装后的任务结构和其他参数传递给ffrt_submit_base接口。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| func | 指定的任务函数。  | 
+| arg | 传递给任务函数的参数。  | 
+| in_deps | 输入依赖指针。  | 
+| out_deps | 输出依赖指针。  | 
+| attr | 任务属性。  | 
+
+**参见：**
+
+[ffrt_submit_base](#ffrt_submit_base)
 
 
 ### ffrt_submit_h_base()
@@ -1428,6 +1516,37 @@ FFRT_C_API ffrt_task_handle_t ffrt_submit_h_base (ffrt_function_header_t * f, co
 **返回：**
 
 提交任务成功返回非空任务句柄， 提交任务失败返回空指针。
+
+
+### ffrt_submit_h_f()
+
+```
+FFRT_C_API ffrt_task_handle_t ffrt_submit_h_f (ffrt_function_t func, void * arg, const ffrt_deps_t * in_deps, const ffrt_deps_t * out_deps, const ffrt_task_attr_t * attr )
+```
+**描述**
+提交任务调度执行并返回任务句柄，是ffrt_submit_h_base接口的简化包装形式。
+
+该接口假定任务不需要销毁回调函数，给定的任务函数和参数被包装为通用任务结构， 并将封装后的任务结构和其他参数传递给ffrt_submit_h_base接口。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| func | 指定的任务函数。  | 
+| arg | 传递给任务函数的参数。  | 
+| in_deps | 输入依赖指针。  | 
+| out_deps | 输出依赖指针。  | 
+| attr | 任务属性。  | 
+
+**返回：**
+
+提交任务成功返回非空任务句柄， 提交任务失败返回空指针。
+
+**参见：**
+
+[ffrt_submit_h_base](#ffrt_submit_h_base)
 
 
 ### ffrt_task_attr_destroy()

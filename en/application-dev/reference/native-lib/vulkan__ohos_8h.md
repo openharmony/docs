@@ -3,7 +3,9 @@
 
 ## Overview
 
-The **vulkan_ohos.h** file declares the Vulkan interfaces extended by OpenHarmony. File to include: &lt;vulkan/vulkan.h&gt;
+The **vulkan_ohos.h** file declares the Vulkan interfaces extended by OpenHarmony.
+
+**File to include**: &lt;vulkan/vulkan.h&gt;
 
 **Since**
 
@@ -64,6 +66,9 @@ The **vulkan_ohos.h** file declares the Vulkan interfaces extended by OpenHarmon
 
 | Name| Description|
 | -------- | -------- |
-| [vkCreateSurfaceOHOS](_vulkan.md#vkcreatesurfaceohos) (VkInstance instance, const [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md) \*pCreateInfo, const VkAllocationCallbacks \*pAllocator, VkSurfaceKHR \*pSurface) | Creates a Vulkan surface.|
-| [vkGetNativeBufferPropertiesOHOS](_vulkan.md#vkgetnativebufferpropertiesohos) (VkDevice device, const struct OH_NativeBuffer \*buffer, [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md) \*pProperties) | Obtains the properties of an **OH_NativeBuffer** instance.|
-| [vkGetMemoryNativeBufferOHOS](_vulkan.md#vkgetmemorynativebufferohos) (VkDevice device, const [VkMemoryGetNativeBufferInfoOHOS](_vk_memory_get_native_buffer_info_o_h_o_s.md) \*pInfo, struct OH_NativeBuffer \*\*pBuffer) | Obtains an **OH_NativeBuffer** instance.|
+| VKAPI_ATTR VkResult VKAPI_CALL [vkCreateSurfaceOHOS](_vulkan.md#vkcreatesurfaceohos) (VkInstance instance, const [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md) \*pCreateInfo, const VkAllocationCallbacks \*pAllocator, VkSurfaceKHR \*pSurface) | Creates a Vulkan surface. | 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkGetNativeBufferPropertiesOHOS](_vulkan.md#vkgetnativebufferpropertiesohos) (VkDevice device, const struct OH_NativeBuffer \*buffer, [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md) \*pProperties) | Obtains the properties of an **OH_NativeBuffer** instance. | 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkGetMemoryNativeBufferOHOS](_vulkan.md#vkgetmemorynativebufferohos) (VkDevice device, const [VkMemoryGetNativeBufferInfoOHOS](_vk_memory_get_native_buffer_info_o_h_o_s.md) \*pInfo, struct OH_NativeBuffer \*\*pBuffer) | Obtains an **OH_NativeBuffer** instance. | 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkGetSwapchainGrallocUsageOHOS](_vulkan.md#vkgetswapchaingrallocusageohos) (VkDevice device, VkFormat format, VkImageUsageFlags imageUsage, uint64_t \*grallocUsage) | Returns the appropriate gralloc usage flag based on the given Vulkan device, image format, and image usage flag. | 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkAcquireImageOHOS](_vulkan.md#vkacquireimageohos) (VkDevice device, VkImage image, int32_t nativeFenceFd, VkSemaphore semaphore, VkFence fence) | Obtains the ownership of the swap chain image and imports the fence of the external signal to the VkSemaphore and VkFence objects. | 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkQueueSignalReleaseImageOHOS](_vulkan.md#vkqueuesignalreleaseimageohos) (VkQueue queue, uint32_t waitSemaphoreCount, const VkSemaphore \*pWaitSemaphores, VkImage image, int32_t \*pNativeFenceFd) | Sends a signal to the system hardware buffer to release an image once it is no longer needed so that other components can access it. | 

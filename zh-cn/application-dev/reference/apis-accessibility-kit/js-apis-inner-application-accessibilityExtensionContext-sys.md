@@ -23,6 +23,568 @@ class EntryAbility extends AccessibilityExtensionAbility {
 }
 ```
 
+## Parameter<sup>20+</sup>
+
+无障碍节点元素执行特定操作时，为操作提供具体设置的参数值。
+详见[无障碍节点元素可执行的操作](./js-apis-accessibility-sys.md#accessibilityaction)。
+
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
+
+| 名称                  | 类型     | 只读  |可选| 说明                                |
+| ------------------- | ------ | ---- | ----|--------------------------------- |
+| setText             | string | 否   |是 |设置组件文本时文本内容。                 |
+| selectTextBegin     | string | 否  | 是|选定组件内文本时的起始坐标，如：'2'。        |
+| selectTextEnd       | string | 否   | 是|选定组件内文本时的结束坐标，如：'8'。      |
+| selectTextInForWard | bool   | 否    | 是|选定组件内文本时是否向前选择，如：true。      |
+| offset              | string | 否   | 是|设置光标的偏移量，如：'1'。    |
+| spanId              | string | 否   |是 |对SPAN文本进行点击操作时文本id。                |
+| scrollType          | string | 否   | 是|组件滚动类型，包括SCROLL_FORWARD（向前滚动）和SCROLL_BACKWARD（向后滚动）。 |
+
+例如：选中文本输入框中index从0到7的字符时，executeAction(AccessibilityAction.SET_SELECTION, parameter)方法设置的参数如下:
+```ts
+let p : Parameter = { selectTextBegin: '0', selectTextEnd: '8', selectTextInForWard: true }
+```
+
+
+## startAbility<sup>12+</sup>
+
+startAbility(want: Want): Promise\<void>;
+
+提供拉起前台页面的能力。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](../../reference/apis-ability-kit/js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+
+**返回值：**
+
+| 类型                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let want: Want = {
+  bundleName: 'com.huawei.hmos.photos'
+  abilityName: 'com.huawei.hmos.photos.MainAbility'
+}
+
+axContext.startAbility(want).then(() => {
+  console.info(`startAbility Succeeded enable ability`);
+}).catch((err: BusinessError) => {
+  console.error(`startAbility failed to enable ability, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## AccessibilityExtensionContext.getElements<sup>18+</sup>
+
+getElements(windowId: number, elementId?: number): Promise<Array&lt;AccessibilityElement&gt;>;
+
+提供批量查询节点的能力。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| windowId | number | 是 | 表示查询的窗口id。 |
+| elementId | number | 否 | 表示查询的节点id。传入此参数表示查询当前节点下的所有子节点列表，不传则查询窗口下所有节点。默认值为-1。 |
+
+**返回值：**
+| 类型                                  | 说明                     |
+| ----------------------------------- | ---------------------- |
+| Promise<Array&lt;AccessibilityElement&gt;> | Promise对象，返回当前窗口或者当前节点下的所有子节点列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
+
+**示例：**
+
+```ts
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowId: number = 10;
+let elementId: number = 10;
+
+axContext.getElements(windowId, elementId).then((data:AccessibilityElement[]) => {
+  console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## AccessibilityExtensionContext.getDefaultFocusedElementIds<sup>18+</sup>
+
+getDefaultFocusedElementIds(windowId: number): Promise<Array&lt;number&gt;>;
+
+提供查询应用自定义默认焦点的能力。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| windowId | number | 是 | 表示查询的窗口id。 |
+
+**返回值：**
+| 类型                                  | 说明                     |
+| ----------------------------------- | ---------------------- |
+| Promise<Array&lt;number&gt;> | Promise对象，返回当前窗口下的自定义默认焦点列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
+
+**示例：**
+
+```ts
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowId: number = 10;
+
+axContext.getDefaultFocusedElementIds(windowId).then((data: number[]) => {
+  console.log(`Succeeded in get default focus, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to get default focus, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## AccessibilityExtensionContext.holdRunningLockSync<sup>20+</sup>
+
+holdRunningLockSync(): void
+
+持有RunningLock锁，持锁后，屏幕不会自动灭屏。
+
+**需要权限**：ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  axContext.holdRunningLockSync();
+} catch (err) {
+  console.error(`Failed to hold RunningLock, Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## AccessibilityExtensionContext.unholdRunningLockSync<sup>20+</sup>
+
+unholdRunningLockSync(): void
+
+释放RunningLock锁，恢复自动灭屏。
+
+**需要权限**：ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**错误码：**
+
+以以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  axContext.unholdRunningLockSync();
+} catch (err) {
+  console.error(`Failed to unhold RunningLock, code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## AccessibilityExtensionContext.on('preDisconnect')<sup>20+</sup>
+
+on(type: 'preDisconnect', callback: Callback&lt;void&gt;): void
+
+向无障碍服务注册回调函数，在无障碍服务关闭该无障碍扩展服务前会执行该回调函数。
+
+此注册函数需要与[notifyDisconnect](#accessibilityextensioncontextnotifydisconnect20)配合使用，如果不调用[notifyDisconnect](#accessibilityextensioncontextnotifydisconnect20)，则默认等待30秒后，无障碍扩展服务会自动关闭。
+
+**需要权限**：ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 监听事件名，固定为‘preDisconnect’，即无障碍扩展服务即将关闭事件。 |
+| callback | Callback&lt;void&gt; | 是 |回调函数，在无障碍扩展服务即将关闭时回调。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  axContext.on('preDisconnect', () => {
+    console.info(`To do something before accessibilityExtension disconnect.`);
+  });
+} catch (err) {
+  console.error(`Failed to register, code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## AccessibilityExtensionContext.off('preDisconnect')<sup>20+</sup>
+
+off(type: 'preDisconnect', callback?: Callback&lt;void&gt;): void
+
+取消已经向无障碍服务注册的预关闭回调函数，无障碍服务关闭该扩展服务前不再执行该回调。
+
+**需要权限**：ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 监听事件名，固定为‘preDisconnect’，即无障碍扩展服务即将关闭事件。 |
+| callback | Callback&lt;void&gt; | 否 |回调函数，取消指定无障碍扩展服务即将关闭时的回调。需与[on('preDisconnect')](#accessibilityextensioncontextonpredisconnect20)的callback一致。缺省时，表示注销所有已注册事件。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  axContext.off('preDisconnect', () => {
+    console.info(`To do something before accessibilityExtension disconnect.`);
+  });
+} catch (err) {
+  console.error(`Failed to unRegister, code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## AccessibilityExtensionContext.notifyDisconnect<sup>20+</sup>
+
+notifyDisconnect(): void
+
+通知无障碍服务可以关闭该无障碍扩展服务。
+
+此函数需要与注册预关闭接口[on('preDisconnect')](#accessibilityextensioncontextonpredisconnect20)配合使用，如果没有调用过注册预关闭函数，直接调用此函数不生效。
+
+**需要权限**：ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  axContext.notifyDisconnect();
+} catch (err) {
+  console.error(`Failed to notify accessibility, code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## getAccessibilityFocusedElement<sup>20+</sup>
+
+getAccessibilityFocusedElement(): Promise\<AccessibilityElement>;
+
+获取当前获得焦点的元素。
+
+**权限：** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
+
+**返回值:**
+| 类型                                 | 描述                    |
+| ----------------------------------- | ---------------------- |
+| Promise\<[AccessibilityElement](#accessibilityelement12)>| 异步返回函数结果.|
+
+**错误码:**
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed.The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 9300003 | No accessibility permission to perform the operation. |
+
+**示例：**
+
+```ts
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+axContext.getAccessibilityFocusedElement().then((element: AccessibilityElement) => {
+  console.log(`Succeeded in get accessibility focused element, ${element.bundleName}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to get accessibility focused element, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## getRootInActiveWindow<sup>20+</sup>
+
+getRootInActiveWindow(windowId ?: number): Promise\<[AccessibilityElement](#accessibilityelement12)>;
+
+获取活动窗口根元素。
+
+**权限：** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| windowId | number | No | Window ID to be obtained.|
+
+**返回值:**
+| 类型                                 | 描述                    |
+| ----------------------------------- | ---------------------- |
+| Promise\<[AccessibilityElement](#accessibilityelement12)>| Promise used to return the result.|
+
+**错误码:**
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed.The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 9300003 | No accessibility permission to perform the operation. |
+
+**示例：**
+
+```ts
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowId: number = 0;
+
+axContext.getRootInActiveWindow(windowId).then((element: AccessibilityElement) => {
+  console.log(`Succeeded in get root inactive window element, ${element.bundleName}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to get root inactive window element, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## getAccessibilityWindowsSync<sup>20+</sup>
+
+getAccessibilityWindowsSync(displayId?: number): Array\<[AccessibilityElement](#accessibilityelement12)>
+
+获取窗口列表。
+
+**权限：** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| displayId | number | No | 显示ID。如果未提供此参数，则表示默认displayId。 |
+
+**返回值：**s
+
+| 类型                                 | 描述                    |
+| ----------------------------------- | ---------------------- |
+| Array\<[AccessibilityElement](#accessibilityelement12)> | 窗口列表。|
+
+**错误码:**
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed.The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 9300003 | No accessibility permission to perform the operation. |
+
+**示例：**
+
+```ts
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let displayId: number = 0;
+
+let windowList: AccessibilityElement[] = axContext.getAccessibilityWindowsSync(displayId);
+
+for (let window of windowList) {
+  console.log(`window id: ${window.windowId}`);
+}
+```
+
+## AccessibilityElement<sup>12+</sup>
+
+无障碍节点元素。在调用 **AccessibilityElement** 的 API 之前，应该调用 [AccessibilityExtensionContext.getAccessibilityFocusedElement()](#getaccessibilityfocusedelement20) 或 [AccessibilityExtensionContext.getRootInActiveWindow()](#getrootinactivewindow20) 来获取一个 **AccessibilityElement** 实例。
+
+**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
+
+### 属性
+
+| 名称                  | 类型                                                             | 可读 | 可写 | 描述             |
+|----------------------|--------------------------------------------------------------------|------|------|-------------------|
+| accessibilityFocused<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否因无障碍目的而获得焦点。值为 **true** 表示元素已获得焦点，**false** 表示相反情况。<br>默认值：**false**。|
+| bundleName<sup>20+</sup> | string                                                             | 是  | 否  | 包名。|
+| checkable<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否可勾选。值为 **true** 表示元素可勾选，**false** 表示相反情况。<br>默认值：**false**。|
+| checked<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否已勾选。值为 **true** 表示元素已勾选，**false** 表示相反情况。<br>默认值：**false**。|
+| clickable<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否可点击。值为 **true** 表示元素可点击，**false** 表示相反情况。<br>默认值：**false**。|
+| componentId<sup>20+</sup> | number                                                             | 是  | 否  | 元素所属组件的 ID。<br>默认值：**-1**。|
+| componentType<sup>20+</sup> | string                                                             | 是  | 否  | 元素所属组件的类型。|
+| contents<sup>20+</sup> | Array&lt;string&gt;                                                | 是  | 否  | 元素显示内容。|
+| currentIndex<sup>20+</sup> | number                                                             | 是  | 否  | 当前项的索引。<br>默认值：**0**。|
+| description<sup>20+</sup> | string                                                             | 是  | 否  | 元素的描述信息。|
+| editable<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否可编辑。值为 **true** 表示元素可编辑，**false** 表示相反情况。<br>默认值：**false**。|
+| endIndex<sup>20+</sup> | number                                                             | 是  | 否  | 屏幕上显示的最后一个列表项的索引。<br>默认值：**0**。|
+| error<sup>20+</sup> | string                                                             | 是  | 否  | 元素的错误状态。|
+| focusable<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否可获得焦点。值为 **true** 表示元素可获得焦点，**false** 表示相反情况。<br>默认值：**false**。|
+| hintText<sup>20+</sup> | string                                                             | 是  | 否  | 提示文本。|
+| inputType<sup>20+</sup> | number                                                             | 是  | 否  | 输入文本的类型。<br>默认值：**0**。|
+| inspectorKey<sup>20+</sup> | string                                                             | 是  | 否  | 检查器键。|
+| isActive<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否处于活动状态。值为 **true** 表示元素处于活动状态，**false** 表示相反情况。<br>默认值：**true**。|
+| isEnable<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否已启用。值为 **true** 表示元素已启用，**false** 表示相反情况。<br>默认值：**false**。|
+| isHint<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否为提示信息。值为 **true** 表示元素是提示信息，**false** 表示相反情况。<br>默认值：**false**。|
+| isFocused<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否已获得焦点。值为 **true** 表示元素已获得焦点，**false** 表示相反情况。<br>默认值：**false**。|
+| isPassword<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否为密码。值为 **true** 表示元素是密码，**false** 表示相反情况。<br>默认值：**false**。|
+| isVisible<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否可见。值为 **true** 表示元素可见，**false** 表示相反情况。<br>默认值：**false**。|
+| itemCount<sup>20+</sup> | number                                                             | 是  | 否  | 项目总数。<br>默认值：**0**。|
+| lastContent<sup>20+</sup> | string                                                             | 是  | 否  | 最后一项内容。|
+| layer<sup>20+</sup> | number                                                             | 是  | 否  | 元素的显示层级。|
+| longClickable<sup>20+</sup> | boolean                                                            | 是  | 否  | 元素是否可长按。值为 **true** 表示元素可长按，**false** 表示相反情况。<br>默认值：**false**。|
+| pageId<sup>20+</sup> | number                                                             | 是  | 否  | 页面 ID。<br>默认值：**-1**。|
+| pluralLineSupported<sup>20+</sup>  | boolean                                                            | 是  | 否  | 元素是否支持多行文本。值为 **true** 表示元素支持多行文本，**false** 表示相反情况。<br>默认值：**false**。|
+| rect<sup>20+</sup>                 | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#Rect)                                                      | 是  | 否  | 元素的区域。|
+| resourceName<sup>20+</sup>         | string                                                             | 是  | 否  | 元素的资源名称。|
+| screenRect<sup>20+</sup>           | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#Rect)                                                      | 是  | 否  | 元素的显示区域。|
+| scrollable<sup>20+</sup>           | boolean                                                            | 是  | 否  | 元素是否可滚动。值为 **true** 表示元素可滚动，**false** 表示相反情况。<br>默认值：**false**。|
+| selected<sup>20+</sup>             | boolean                                                            | 是  | 否  | 元素是否已选中。值为 **true** 表示元素已选中，**false** 表示相反情况。<br>默认值：**false**。|
+| startIndex<sup>20+</sup>           | number                                                             | 是  | 否  | 屏幕上第一个列表项的索引。<br>默认值：**0**。|
+| text<sup>20+</sup>                 | string                                                             | 是  | 否  | 元素的文本内容。|
+| textLengthLimit<sup>20+</sup>      | number                                                             | 是  | 否  | 元素的最大文本长度。|
+| textMoveUnit<sup>20+</sup>         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit)| 是  | 否  | 文本朗读时的移动单位。<br>默认值：**0**。|
+| triggerAction<sup>20+</sup>        | [accessibility.Action](js-apis-accessibility.md#action)            | 是  | 否  | 触发元素事件的操作。|
+| type<sup>20+</sup>                 | [WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype)                                          | 是  | 否  | 元素的窗口类型。|
+| valueMax<sup>20+</sup>             | number                                                             | 是  | 否  | 最大值。<br>默认值：**0**。|
+| valueMin<sup>20+</sup>             | number                                                             | 是  | 否  | 最小值。<br>默认值：**0**。|
+| valueNow<sup>20+</sup>             | number                                                             | 是  | 否  | 当前值。<br>默认值：**0**。|
+| windowId<sup>20+</sup>             | number                                                             | 是  | 否  | 窗口 ID。<br>默认值：**-1**。|
+| offset<sup>20+</sup>             | number              | 是  | 否  | 内容区域相对于可滚动组件（如 **List** 和 **Grid**）顶部坐标的像素偏移量。<br>默认值：**0**。|
+| textType<sup>20+</sup>             | string                                                             | 是  | 否  | 元素的无障碍文本类型，由组件的 **accessibilityTextHint** 属性配置。|
+| accessibilityText<sup>20+</sup> | string                                                  | 是  | 否  | 元素的无障碍文本信息。|
+| hotArea<sup>20+</sup>             | [Rect](js-apis-inner-application-accessibilityExtensionContext.md#Rect)                                                              | 是  | 否  | 元素的可触摸区域。|
+| customComponentType<sup>20+</sup>             | string                                                             | 是  | 否  | 自定义组件类型。|
+| accessibilityNextFocusId<sup>20+</sup>             | number                | 是  | 否  | 下一个要获得焦点的组件的 ID。<br>默认值：**-1**。|
+| accessibilityPreviousFocusId<sup>20+</sup>             | number                | 是  | 否  | 上一个要获得焦点的组件的 ID。<br>默认值：**-1**。|
+| extraInfo<sup>20+</sup>             | string     | 是  | 否  | 元素的额外信息。值为 JSON 字符串。|
+| accessibilityScrollable<sup>20+</sup>             | boolean                 | 是  | 否  | 元素是否因无障碍目的而可滚动。此属性优先级高于 **scrollable**。<br>- **true**（默认值）：元素可滚动。<br>- **false**：元素不可滚动。|
+| supportedActionNames<sup>20+</sup> | Array&lt;string&gt;                                                | 是  | 否  | 支持的操作名称。|
+| accessibilityGroup<sup>20+</sup>  | boolean                                                            | 是  | 否  | 元素是否为无障碍组。值为 **true** 表示元素是无障碍组，**false** 表示相反情况。<br>默认值：**false**。|
+| accessibilityLevel<sup>20+</sup>             | string                                                             | 是  | 否  | 组件的无障碍级别。|
+| navDestinationId<sup>20+</sup>             | number                                                             | 是  | 否  | 组件的导航目标 ID。|
+| currentItem<sup>20+</sup>             | AccessibilityGrid                                                             | 是  | 否  | 组件网格中的当前项。|
+| spans<sup>20+</sup>             | AccessibilitySpan[]                                                             | 是  | 否  | 组件的跨度数组。|
+| accessibilityVisible<sup>20+</sup>  | boolean                                                            | 是  | 否  | 组件是否无障碍可见。|
+| mainWindowId<sup>20+</sup>             | number                                                             | 是  | 否 | 组件的主窗口 ID。|
+| clip<sup>20+</sup>  | boolean                                                            | 是  | 否  | 组件是否需要裁剪。|
+| parentId<sup>20+</sup>             | number                                                             | 是  | 否  | 组件的父元素 ID。|
+| childrenIds<sup>20+</sup>             | Array\<number>                                                             | 是  | 否  | 组件的子元素 ID 列表。|
+
+**示例：**
+```ts
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowId: number = 10;
+
+axContext.getRootInActiveWindow(windowId)..then((element: AccessibilityElement) => {
+  console.info("AccessibilityElement.checkable: " + element.checkable)
+  console.info("AccessibilityElement.checked: " + element.checked)
+  console.info("AccessibilityElement.clickable: " + element.clickable)
+  console.info("AccessibilityElement.componentId: " + element.componentId)
+  console.info("AccessibilityElement.componentType: " + element.componentType)
+  console.info("AccessibilityElement.contents: " + element.contents)
+  console.info("AccessibilityElement.currentIndex: " + element.currentIndex)
+  console.info("AccessibilityElement.description: " + element.description)
+  // ....
+}).catch((err) => {
+  console.log(`getRootInActiveWindow failed, code: ${err.code}, message: ${err.message}`);
+})
+```
+
 ### enableScreenCurtain<sup>12+</sup>
 
 enableScreenCurtain(isEnable: boolean): void;
@@ -39,7 +601,7 @@ enableScreenCurtain(isEnable: boolean): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -88,7 +650,7 @@ findElement(type: 'elementId', condition: number): Promise\<AccessibilityElement
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
@@ -133,7 +695,7 @@ findElement(type: 'textType', condition: string): Promise\<Array\<AccessibilityE
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
@@ -211,19 +773,23 @@ rootElement.getCursorPosition((err: BusinessError, data: number) => {
 });
 ```
 
-### startAbility<sup>12+</sup>
 
-startAbility(want: Want): Promise\<void>;
+### executeAction<sup>20+</sup>
 
-提供拉起前台页面的能力。
+executeAction(action: AccessibilityAction, parameters?: Parameter): Promise\<void>;
+
+根据action指定的操作类型和parameters传入的参数，执行特定操作。使用Promise异步回调。
+
+**权限:** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| want | [Want](../../reference/apis-ability-kit/js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+| 参数名         | 类型                                     | 必填   | 说明                                                       |
+| ----------- | ---------------------------------------- | ---- |----------------------------------------------------------|
+| action    | [AccessibilityAction](./js-apis-accessibility-sys.md#accessibilityaction)| 是    | 无障碍节点可执行的操作。
+| parameters | [Parameter](#parameter20) | 否    | 执行操作时设置的参数值，默认为空。                            |
 
 **返回值：**
 
@@ -233,59 +799,102 @@ startAbility(want: Want): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 201 | Permission denied. Interface caller does not have permission. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401     | Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300005 | This action is not supported.            |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { AccessibilityAction, Parameter } from '@kit.AccessibilityKit';
 
-let want: Want = {
-  bundleName: 'com.huawei.hmos.photos'
-  abilityName: 'com.huawei.hmos.photos.MainAbility'
-}
-
-axContext.startAbility(want).then(() => {
-  console.info(`startAbility Succeeded enable ability`);
+// rootElement是AccessibilityElement的实例
+rootElement.executeAction(action).then(() => {
+  console.info(`Succeeded in perform action,actionName is ${actionName}`);
 }).catch((err: BusinessError) => {
-  console.error(`startAbility failed to enable ability, Code is ${err.code}, message is ${err.message}`);
+  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
-### AccessibilityExtensionContext.getElements<sup>18+</sup>
 
-getElements(windowId: number, elementId?: number): Promise<Array&lt;AccessibilityElement&gt;>;
+```ts
+//无参数Action示例：
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AccessibilityAction, Parameter } from '@kit.AccessibilityKit';
 
-提供批量查询节点的能力。
+// rootElement是AccessibilityElement的实例
+// Action描述中无明确要求的，均为无参数Action
+rootElement.executeAction(AccessibilityAction.CLICK).then(() => {
+  console.info(`Succeeded in perform action.`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
+});
+```
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
-**参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| windowId | number | 是 | 表示查询的窗口id。 |
-| elementId | number | 否 | 表示查询的节点id。传入此参数表示查询当前节点下的所有子节点列表，不传则查询窗口下所有节点。默认值为-1。 |
+```ts
+//有参数Action示例：
+import { BusinessError } from '@kit.BasicServicesKit'; 
+import { AccessibilityAction, Parameter } from '@kit.AccessibilityKit';
+
+// selectTextBegin: 表示选择起始位置
+// selectTextEnd: 表示选择结束位置
+// selectTextInForWard: true表示为前光标，false表示为后光标
+let p : Parameter = { selectTextBegin: '0', selectTextEnd: '8', selectTextInForWard: true }
+// rootElement是AccessibilityElement的实例
+// setSelection示例代码
+rootElement.executeAction(AccessibilityAction.SET_SELECTION, p).then(() => {
+  console.info(`Succeeded in perform action`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+```ts
+//有参数Action示例：
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AccessibilityAction, Parameter } from '@kit.AccessibilityKit';
+
+// offset: 表示光标的设置位置
+let p : Parameter = { offset: '1' }
+// rootElement是AccessibilityElement的实例
+// setCursorPosition示例代码
+rootElement.executeAction(AccessibilityAction.SET_CURSOR_POSITION, p).then(() => {
+  console.info(`Succeeded in perform action`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+### getParent<sup>20+</sup>
+
+getParent(): Promise\<AccessibilityElement>;
+
+获取无障碍节点元素的父元素。
+
+**权限:** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力:** SystemCapability.BarrierFree.Accessibility.Core
 
 **返回值：**
-| 类型                                  | 说明                     |
-| ----------------------------------- | ---------------------- |
-| Promise<Array&lt;AccessibilityElement&gt;> | Promise对象，返回当前窗口或者当前节点下的所有子节点列表。 |
+
+| 类型                                      | 描述                   |
+| ---------------------------------------- | --------------------- |
+| Promise\<[AccessibilityElement](#accessibilityelement12)> | 父元素。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID   | 错误信息                                     |
+| 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
+| 201 | Permission verification failed.The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
 
@@ -293,44 +902,42 @@ getElements(windowId: number, elementId?: number): Promise<Array&lt;Accessibilit
 import { AccessibilityElement } from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let windowId: number = 10;
-let elementId: number = 10;
-
-axContext.getElements(windowId, elementId).then((data:AccessibilityElement[]) => {
-  console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-  console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
-});
+axContext.getAccessibilityFocusedElement().then((element: AccessibilityElement) => {
+  console.log(`element parent id: ${element.parentId}`);
+  element.getParent().then((parent: AccessibilityElement) => {
+    console.log(`parent element's parent id: ${parent.parentId}`);
+  }).catch((err) => {
+    console.log(`getParent failed, code: ${err.code}, message: ${err.message}`);
+  })
+}).catch((err) => {
+  console.log(`getAccessibilityFocusedElement failed, code: ${err.code}, message: ${err.message}`);
+})
 ```
 
-### AccessibilityExtensionContext.getDefaultFocusedElementIds<sup>18+</sup>
+### getChildren<sup>20+</sup>
 
-getDefaultFocusedElementIds(windowId: number): Promise<Array&lt;number&gt;>;
+getChildren(): Promise\<Array\<AccessibilityElement>>;
 
-提供查询应用自定义默认焦点的能力。
+获取元素的子元素列表。
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+**权限:** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| windowId | number | 是 | 表示查询的窗口id。 |
+**系统能力:** SystemCapability.BarrierFree.Accessibility.Core
 
 **返回值：**
-| 类型                                  | 说明                     |
-| ----------------------------------- | ---------------------- |
-| Promise<Array&lt;number&gt;> | Promise对象，返回当前窗口下的自定义默认焦点列表。 |
+
+| 类型                                      | 描述                   |
+| ---------------------------------------- | --------------------- |
+| Promise\<Array\<[AccessibilityElement](#accessibilityelement12)>> | 子元素数组。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID   | 错误信息                                     |
+| 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
+| 201 | Permission verification failed.The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
 
@@ -338,193 +945,303 @@ getDefaultFocusedElementIds(windowId: number): Promise<Array&lt;number&gt;>;
 import { AccessibilityElement } from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+axContext.getAccessibilityFocusedElement().then((element: AccessibilityElement) => {
+  console.log(`element childrenIds: ${element.childrenIds}`);
+  element.getChildren().then((children: AccessibilityElement[]) => {
+    console.log(`children element's size: ${children.length}`);
+  }).catch((err) => {
+    console.log(`getChildren failed, code: ${err.code}, message: ${err.message}`);
+  })
+}).catch((err) => {
+  console.log(`getAccessibilityFocusedElement failed, code: ${err.code}, message: ${err.message}`);
+})
+```
+
+### getRoot<sup>20+</sup>
+
+getRoot(): Promise\<AccessibilityElement>;
+
+获取活动窗口中的根元素。
+
+**权限:** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力:** SystemCapability.BarrierFree.Accessibility.Core
+
+**返回值：**
+
+| 类型                                      | 描述                   |
+| ---------------------------------------- | --------------------- |
+| Promise\<[AccessibilityElement](#accessibilityelement12)> | 根元素。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                                    |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed.The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windows: AccessibilityWindow[] = axContext.getAccessibilityWindowsSync()
+for (let window of windows) {
+  console.log(`window id: ${window.windowId}`);
+  window.getRoot().then((root: AccessibilityElement) => {
+    console.log(`root element's componentId: ${root.componentId}`);
+  }).catch((err) => {
+    console.log(`getRoot failed, code: ${err.code}, message: ${err.message}`);
+  })
+}
+```
+
+### findElementByContent<sup>20+</sup>
+
+findElementByContent(content: string): Promise\<Array\<AccessibilityElement>>;
+
+根据内容查找元素。
+
+**权限:** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力:** SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 名称 | 类型 | 必填 | 描述 |
+| -------- | ---- | -------- | ------------------------------------------------------------ |
+| content | string | 是 | 内容。 |
+
+**返回值：**
+
+| 类型                                      | 描述                   |
+| ---------------------------------------- | --------------------- |
+| Promise\<Array\<[AccessibilityElement](#accessibilityelement12)>> | 元素数组。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                                    |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed.The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+// Page.ets
+  build() {
+    Text('Connect')
+        .id('connect')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+// ...
+
+// AccessibilityExtAbility.ets
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let windowId: number = 10;
 
-axContext.getDefaultFocusedElementIds(windowId).then((data: number[]) => {
-  console.log(`Succeeded in get default focus, ${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-  console.error(`failed to get default focus, Code is ${err.code}, message is ${err.message}`);
-});
+axContext.getRootInActiveWindow(windowId)..then((root: AccessibilityElement) => {
+    root.findElementByContent('connect').then((elements: AccessibilityElement[]) => {
+        console.log("findElementByContent size=" + elements.length)
+    }).catch((err) => {
+        console.log(`findElementByContent failed, code: ${err.code}, message: ${err.message}`);
+    })
+}).catch((err) => {
+  console.log(`getRootInActiveWindow failed, code: ${err.code}, message: ${err.message}`);
+})
 ```
 
-### AccessibilityExtensionContext.holdRunningLockSync<sup>20+</sup>
+### findElementByFocusDirection<sup>20+</sup>
 
-holdRunningLockSync(): void
+findElementByFocusDirection(direction: FocusDirection): Promise\<AccessibilityElement>;
 
-持有RunningLock锁，持锁后，屏幕不会自动灭屏。
+根据焦点方向查找元素。
 
-**需要权限**：ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+**权限：** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
-
-**错误码：**
-
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
-
-| 错误码ID   | 错误信息                                     |
-| ------- | ---------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
-| 202 | Permission verification failed. A non-system application calls a system API. |
-
-**示例：**
-
-```ts
-import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  axContext.holdRunningLockSync();
-} catch (err) {
-  console.error(`Failed to hold RunningLock, Code is ${err.code}, message is ${err.message}`);
-}
-```
-
-### AccessibilityExtensionContext.unholdRunningLockSync<sup>20+</sup>
-
-unholdRunningLockSync(): void
-
-释放RunningLock锁，恢复自动灭屏。
-
-**需要权限**：ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
-
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
-
-**错误码：**
-
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
-
-| 错误码ID   | 错误信息                                     |
-| ------- | ---------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
-| 202 | Permission verification failed. A non-system application calls a system API. |
-
-**示例：**
-
-```ts
-import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  axContext.unholdRunningLockSync();
-} catch (err) {
-  console.error(`Failed to unhold RunningLock, code is ${err.code}, message is ${err.message}`);
-}
-```
-
-### AccessibilityExtensionContext.on('preDisconnect')<sup>20+</sup>
-
-on(type: 'preDisconnect', callback: Callback&lt;void&gt;): void
-
-向无障碍服务注册回调函数，在无障碍服务关闭该无障碍扩展服务前会执行该回调函数。
-
-此注册函数需要与[notifyDisconnect](#accessibilityextensioncontextnotifydisconnect20)配合使用，如果不调用[notifyDisconnect](#accessibilityextensioncontextnotifydisconnect20)，则默认等待30秒后，无障碍扩展服务会自动关闭。
-
-**需要权限**：ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
-
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+**系统能力:** SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 监听事件名，固定为‘preDisconnect’，即无障碍扩展服务即将关闭事件。 |
-| callback | Callback&lt;void&gt; | 是 |回调函数，在无障碍扩展服务即将关闭时回调。|
+| 名称 | 类型 | 必填 | 描述 |
+| -------- | ---- | -------- | ------------------------------------------------------------ |
+| direction | FocusDirection | 是 | 焦点方向。 |
+
+**返回值：**
+
+| 类型                                      | 描述                   |
+| ---------------------------------------- | --------------------- |
+| Promise\<[AccessibilityElement](#accessibilityelement12)> | AccessibilityElement.|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID   | 错误信息                                     |
+| 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 201 | Permission verification failed.The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
 
 ```ts
-import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+// Page.ets
+// Click TextInput and then it is the accessibility focus element, up direction element is Text#connect
+  build() {
+    Text('Connect')
+        .id('connect')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+
+    TextInput({ placeholder: 'please input...' })
+        .id('text_input')
+        .fontSize($r('app.float.page_text_font_size'))
+// ...
+
+// AccessibilityExtAbility.ets
+import { AccessibilityElement } from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  axContext.on('preDisconnect', () => {
-    console.info(`To do something before accessibilityExtension disconnect.`);
-  });
-} catch (err) {
-  console.error(`Failed to register, code is ${err.code}, message is ${err.message}`);
-}
+axContext.getAccessibilityFocusedElement().then((focus: AccessibilityElement) => {
+    focus.findElementByFocusDirection('up').then((element: AccessibilityElement) => {
+        console.log("findElementByFocusDirection UP componentId: " + element.componentId);
+    }).catch((err) => {
+        console.log(`findElementByFocusDirection UP failed, code: ${err.code}, message: ${err.message}`);
+    })
+}).catch((err) => {
+  console.log(`getAccessibilityFocusedElement failed, code: ${err.code}, message: ${err.message}`);
+})
 ```
 
-### AccessibilityExtensionContext.off('preDisconnect')<sup>20+</sup>
+### findElementByAccessibilityHintText<sup>20+</sup>
 
-off(type: 'preDisconnect', callback?: Callback&lt;void&gt;): void
+findElementsByAccessibilityHintText(hintText: string): Promise\<Array\<AccessibilityElement>>;
 
-取消已经向无障碍服务注册的预关闭回调函数，无障碍服务关闭该扩展服务前不再执行该回调。
+根据性提示文本查找元素。
 
-**需要权限**：ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+**权限：** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+**系统能力:** SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 监听事件名，固定为‘preDisconnect’，即无障碍扩展服务即将关闭事件。 |
-| callback | Callback&lt;void&gt; | 否 |回调函数，取消指定无障碍扩展服务即将关闭时的回调。需与[on('preDisconnect')](#accessibilityextensioncontextonpredisconnect20)的callback一致。缺省时，表示注销所有已注册事件。|
+| 名称 | 类型 | 必填 | 描述 |
+| -------- | ---- | -------- | ------------------------------------------------------------ |
+| hintText | string | 是 | 提示文本。 |
+
+**返回值：**
+
+| 类型                                      | 描述                   |
+| ---------------------------------------- | --------------------- |
+| Promise\<Array\<[AccessibilityElement](#accessibilityelement12)>> | 元素数组。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID   | 错误信息                                     |
+| 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 201 | Permission verification failed.The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
 
 ```ts
-import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+// Page.ets
+  build() {
+    Text('Connect')
+        .id('connect')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+
+    TextInput({ placeholder: 'please input...' })
+        .id('text_input')
+        .fontSize($r('app.float.page_text_font_size'))
+        .accessibilityTextHint('location')
+// ...
+
+// AccessibilityExtAbility.ets
+import { AccessibilityElement } from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  axContext.off('preDisconnect', () => {
-    console.info(`To do something before accessibilityExtension disconnect.`);
-  });
-} catch (err) {
-  console.error(`Failed to unRegister, code is ${err.code}, message is ${err.message}`);
-}
+let windowId: number = 10;
+
+axContext.getRootInActiveWindow(windowId).then((root: AccessibilityElement) => {
+    root.findElementByAccessibilityHintText('location').then((elements: AccessibilityElement[]) => {
+        console.log("findElementByAccessibilityHintText size=" + elements.length)
+    }).catch((err) => {
+        console.log(`findElementByAccessibilityHintText failed, code: ${err.code}, message: ${err.message}`);
+    })
+}).catch((err) => {
+  console.log(`getRootInActiveWindow failed, code: ${err.code}, message: ${err.message}`);
+})
 ```
 
-### AccessibilityExtensionContext.notifyDisconnect<sup>20+</sup>
+### findElementById<sup>20+</sup>
 
-notifyDisconnect(): void
+findElementById(elementId: number): Promise\<AccessibilityElement>;
 
-通知无障碍服务可以关闭该无障碍扩展服务。
+根据元素 ID 查找元素。
 
-此函数需要与注册预关闭接口[on('preDisconnect')](#accessibilityextensioncontextonpredisconnect20)配合使用，如果没有调用过注册预关闭函数，直接调用此函数不生效。
+**权限：** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
-**需要权限**：ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+**系统能力:** SystemCapability.BarrierFree.Accessibility.Core
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+**参数：**
+
+| 名称 | 类型 | 必填 | 描述 |
+| -------- | ---- | -------- | ------------------------------------------------------------ |
+| id | number | 是 | 元素 ID。 |
+
+**返回值：**
+
+| 类型                                      | 描述                   |
+| ---------------------------------------- | --------------------- |
+| Promise\<[AccessibilityElement](#accessibilityelement12)> | AccessibilityElement.|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID   | 错误信息                                     |
+| 错误码ID  | 错误信息                                    |
 | ------- | ---------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 201 | Permission verification failed.The application does not have the permission required to call the API.|
 | 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
 
 ```ts
-import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+// Page.ets
+// Click TextInput and then it is the accessibility focus element
+  build() {
+    Text('Connect')
+        .id('connect')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+
+    TextInput({ placeholder: 'please input...' })
+        .id('text_input')
+        .fontSize($r('app.float.page_text_font_size'))
+// ...
+
+// AccessibilityExtAbility.ets
+import { AccessibilityElement } from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  axContext.notifyDisconnect();
-} catch (err) {
-  console.error(`Failed to notify accessibility, code is ${err.code}, message is ${err.message}`);
-}
+axContext.getAccessibilityFocusedElement().then((focus: AccessibilityElement) => {
+    focus.findElementById(0).then((element: AccessibilityElement) => {
+        console.log("findElementById componentId: " + element.componentId);
+    }).catch((err) => {
+        console.log(`findElementById failed, code: ${err.code}, message: ${err.message}`);
+    })
+}).catch((err) => {
+  console.log(`getAccessibilityFocusedElement failed, code: ${err.code}, message: ${err.message}`);
+})
 ```

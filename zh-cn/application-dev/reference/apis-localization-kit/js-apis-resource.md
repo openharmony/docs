@@ -18,10 +18,10 @@ import { resourceManager } from '@kit.LocalizationKit'
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
-| 名称         | 类型     | 可读   | 可写  |说明          |
+| 名称         | 类型     | 只读   | 可选  |说明          |
 | ---------- | ------ | ----- | ----  | ---------------|
-| bundleName | string | 是    | 否 | 应用的bundle名称。 |
-| moduleName | string | 是    | 否 | 应用的module名称。 |
-| id         | number | 是    | 否 | 资源的id值。      |
-| params     | any[] | 是    | 否 | 其他资源参数（可选）。      |
-| type       | number | 是    | 否 | 资源的类型（可选）。      |
+| bundleName | string | 否    | 否 | 应用的bundle名称。 |
+| moduleName | string | 否    | 否 | 应用的module名称。 |
+| id         | number | 否    | 否 | 资源的id值。      |
+| params     | any[] | 否   | 是 | 其他资源参数，包括资源名、格式化接口的替换值、复数接口的量词。      |
+| type       | number | 否    | 是 | 资源的类型。      |

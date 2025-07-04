@@ -8,6 +8,12 @@
 >
 > 本模块为系统接口。
 
+## 导入模块
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+```
+
 ## PluginBundleInfo
 插件信息。
 

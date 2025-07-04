@@ -49,6 +49,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
        return nullptr;
    }
    ```
+   <!-- @[napi_thread_safety_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
 
 2. 在工作线程中调用ExecuteWork，并执行线程安全函数。
    ```c++
@@ -66,6 +67,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
        }
    }
    ```
+   <!-- @[napi_thread_safety_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
 
 3. 在JS线程执行异步回调函数。
    ```c++
@@ -121,6 +123,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
        napi_call_function(env, promise, thenFunc, INT_NUM_2, argv, nullptr);
    }
    ```
+   <!-- @[napi_thread_safety_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
 
 4. 任务执行完成后，进行资源清理回收。
    ```c++
@@ -133,6 +136,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
        callbackData->work = nullptr;
    }
    ```
+   <!-- @[napi_thread_safety_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
 
 5. 模块初始化以及ArkTS侧调用接口。
    ```c++
@@ -146,11 +150,15 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
        return exports;
    }
    ```
+   <!-- @[napi_thread_safety_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
 
    ``` ts
    // 接口对应的.d.ts描述
     export const startThread: (callback: () => Promise<string>) => void;
+   ```
+   <!-- @[napi_thread_safety_dts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/types/libentry1/Index.d.ts) -->
 
+   ``` ts
    // ArkTS侧调用接口
    import nativeModule from 'libentry.so'; // 通过import的方式，引入Native能力
 
@@ -163,3 +171,4 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
     }
     nativeModule.startThread(callback);
    ```
+   <!-- @[napi_thread_safety_ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/Index.ets) -->

@@ -109,7 +109,7 @@ import { formInfo } from '@kit.FormKit';
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
 | IDENTITY_KEY     | 'ohos.extra.param.key.form_identity'    | 卡片标识。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| DIMENSION_KEY      | 'ohos.extra.param.key.form_dimension'  | 卡片规格样式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| DIMENSION_KEY      | 'ohos.extra.param.key.form_dimension'  | 卡片规格，规格尺寸参考[FormDimension](#formdimension)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | NAME_KEY       | 'ohos.extra.param.key.form_name'   | 卡片名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | MODULE_NAME_KEY        | 'ohos.extra.param.key.module_name'   | 卡片所属模块名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | WIDTH_KEY        | 'ohos.extra.param.key.form_width'   | 卡片宽度。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -137,7 +137,7 @@ import { formInfo } from '@kit.FormKit';
 | Dimension_2_2      | 2   | 2 x 2 form。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | Dimension_2_4      | 3   | 2 x 4 form。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | Dimension_4_4      | 4   | 4 x 4 form。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| Dimension_2_1      | 5   | 2 x 1 form。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| Dimension_2_1<sup>(deprecated)</sup>      | 5   | 2 x 1 form。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**说明：** 该字段从API version 9开始支持，从API version 20开始废弃。|
 | DIMENSION_1_1<sup>11+<sup>      | 6   | 1 x 1 form。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | DIMENSION_6_4<sup>12+<sup>      | 7   | 6 x 4 form。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | DIMENSION_2_3<sup>18+<sup>      | 8   | 2 x 3 form。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用，为穿戴设备使用。|
@@ -202,10 +202,10 @@ import { formInfo } from '@kit.FormKit';
 
 **系统能力：** SystemCapability.Ability.Form
 
-| 名称 | 类型 | 只读 | 可选  | 说明                                |
-|-----|-----|------|-----|-----------------------------------|
-| area     | [Rect](#rect20) | 是 | 否   | 描述溢出动效区域范围，以卡片左上角为原点，单位为vp。       |
-| duration | number | 是 | 否   | 溢出动效持续时长。取值为大于0、小于等于3500的整数，单位ms。 |
+| 名称 | 类型 | 只读 | 可选  | 说明                              |
+|-----|-----|------|-----|---------------------------------|
+| area     | [Rect](#rect20) | 是 | 否   | 描述互动卡片动效区域范围，以卡片左上角为原点，单位为vp。   |
+| duration | number | 是 | 否   | 互动卡片动效持续时长。取值为大于0、小于等于3500的整数，单位ms。 |
 
 ## Rect<sup>20+</sup>
 
@@ -219,3 +219,15 @@ import { formInfo } from '@kit.FormKit';
 | top    | number | 是 | 否   | 描述矩形的左上角顶点的 y 坐标，单位：vp。|
 | width  | number | 是 | 否   | 描述矩形的宽度，单位：vp。|
 | height | number | 是 | 否   | 描述矩形的高度，单位：vp。|
+## FormLocation<sup>20+</sup>
+
+卡片当前位置枚举。
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称                         | 值   | 说明                             |
+| ---------------------------- | ---- | -------------------------------- |
+| DESKTOP                      | 0    | 表示卡片位于桌面。               |
+| FORM_CENTER                  | 1    | 表示卡片位于桌面的卡片中心。     |
+| FORM_MANAGER                 | 2    | 表示卡片位于桌面的卡片管理器。   |
+<!--RP1--><!--RP1End-->

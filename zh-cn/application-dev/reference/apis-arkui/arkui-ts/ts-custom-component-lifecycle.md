@@ -55,7 +55,7 @@ aboutToDisappear函数在自定义组件析构销毁时执行。不允许在abou
 
 onPageShow?(): void
 
-页面每次显示时触发一次，包括路由过程、应用进入前台等场景，仅[\@Entry](../../../../application-dev/ui/state-management/arkts-create-custom-components.md#entry)装饰的自定义组件作为页面时生效。
+router路由页面（仅[\@Entry](../../../../application-dev/ui/state-management/arkts-create-custom-components.md#entry)装饰的自定义组件）每次显示时触发一次，包括路由跳转、应用进入前台等场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -65,7 +65,7 @@ onPageShow?(): void
 
 onPageHide?(): void
 
-页面每次隐藏时触发一次，包括路由过程、应用进入后台等场景，仅[\@Entry](../../../../application-dev/ui/state-management/arkts-create-custom-components.md#entry)装饰的自定义组件作为页面时生效。
+router路由页面（仅[\@Entry](../../../../application-dev/ui/state-management/arkts-create-custom-components.md#entry)装饰的自定义组件）每次隐藏时触发一次，包括路由跳转、应用进入后台等场景。
 
 > **说明：**
 >
@@ -79,17 +79,17 @@ onPageHide?(): void
 
 onBackPress?(): void | boolean
 
-当用户点击返回按钮时触发，仅[\@Entry](../../../../application-dev/ui/state-management/arkts-create-custom-components.md#entry)装饰的自定义组件作为页面时生效。返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理。
+当用户点击返回按钮时触发（仅router路由页面生效）。返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
 | 类型                | 说明        |
 | ------------------- | --------- |
 | void \| boolean | 返回按钮动作。返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理。 |
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
 // xxx.ets
@@ -232,7 +232,7 @@ struct PageOne {
 
 ## aboutToReuse<sup>10+</sup>
 
-aboutToReuse?(params: { [key: string]: unknown }): void
+aboutToReuse?(params: Record\<string, Object | undefined | null>): void
 
 当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发aboutToReuse生命周期回调，并将组件的构造参数传递给aboutToReuse。
 
@@ -247,9 +247,9 @@ aboutToReuse?(params: { [key: string]: unknown }): void
 
 **参数：**
 
-| 参数名    | 类型                         | 说明         |
-|--------|----------------------------|------------|
-| params | { [key: string]: unknown } | 自定义组件的构造参数。|
+| 参数名  | 类型                                      | 说明                |
+|--------|-------------------------------------------|---------------------|
+| params | Record\<string, Object \| undefined \| null> | 自定义组件的构造参数。|
 
 ```ts
 // xxx.ets

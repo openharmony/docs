@@ -72,6 +72,7 @@ Codec MIME类型枚举。
 | AUDIO_G711MU<sup>12+</sup>   | 'audio/g711mu'     | 表示音频/G711-mulaw类型。 |
 | AUDIO_AMR_NB<sup>18+</sup>   | 'audio/3gpp'     | 表示音频/amr-nb类型。 |
 | AUDIO_AMR_WB<sup>18+</sup>   | 'audio/amr-wb'     | 表示音频/amr-wb类型。 |
+| AUDIO_G711A<sup>20+</sup>    | 'audio/g711a'      | 表示音频/G711-alaw类型。 |
 
 ## MediaDescriptionKey<sup>8+</sup>
 
@@ -196,7 +197,7 @@ Codec MIME类型枚举。
 | ----------------------------| ---- | ------------------------------------------------ |
 | VIDEO_SCALE_TYPE_FIT        | 0    | 默认比例类型，视频拉伸至与窗口等大。                |
 | VIDEO_SCALE_TYPE_FIT_CROP   | 1    | 保持视频宽高比缩放至最短边填满窗口，长边超出窗口部分被裁剪。     |
-| VIDEO_SCALE_TYPE_FIT_ASPECT<sup>20+</sup> | 2    | 保持视频宽高比缩放至长边填满窗口，短边居中对齐，未填满部分留黑。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。  |
+| VIDEO_SCALE_TYPE_SCALED_ASPECT<sup>20+</sup> | 2    | 保持视频宽高比缩放至长边填满窗口，短边居中对齐，未填满部分留黑。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。  |
 
 ## AudioSourceType<sup>9+</sup>
 

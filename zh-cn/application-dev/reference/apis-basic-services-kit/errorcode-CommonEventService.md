@@ -171,7 +171,7 @@ Failed to obtain system parameters.
 
 **错误信息**
 
-The number of subscribers exceeds the upper limit.
+The count of subscriber exceed system specification.
 
 **错误描述**
 

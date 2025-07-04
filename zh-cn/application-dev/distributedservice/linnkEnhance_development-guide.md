@@ -33,7 +33,7 @@ OpenHarmony提供了分布式增强连接能力，实现跨设备互联，完成
 ### 搭建环境
 
 1. 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，版本要求在4.1及以上。
-2. 将public-SDK更新到API 20或以上，具体操作参见[更新指南](../tools/openharmony_sdk_upgrade_assistant.md)。
+2. 将public-SDK更新到API 20或以上<!--Del-->，具体操作参见[更新指南](../tools/openharmony_sdk_upgrade_assistant.md)<!--DelEnd-->。
 3. 用USB线缆将两台调测设备（设备A和设备B）连接到PC。
 4. 打开设备A和设备B的蓝牙开关。
 

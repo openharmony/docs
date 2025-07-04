@@ -49,9 +49,9 @@ try {
   });
   // 2.监听设备热插拔
   inputDevice.on("change", (data) => {
-    console.log(`Device event info: ${JSON.stringify(data)}`);
+    console.info(`Device event info: ${JSON.stringify(data)}`);
     inputDevice.getKeyboardType(data.deviceId).then((type) => {
-      console.log("The keyboard type is: " + type);
+      console.info("The keyboard type is: " + type);
       if (type === inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
         // 物理键盘已插入
         isPhysicalKeyboardExist = true;
@@ -62,6 +62,6 @@ try {
     });
   });
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```

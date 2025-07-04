@@ -7,11 +7,15 @@
 
 **库：** libnative_media_core.so
 
+**引用文件：** <multimedia/player_framework/native_avbuffer.h>
+
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
 **起始版本：** 11
 
 **相关模块：**[Core](_core.md)
+
+**相关示例：**[AVCodec](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
 
 
 ## 汇总

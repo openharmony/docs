@@ -33,22 +33,36 @@ on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 | type | string | 是    | 固定取值“systemAutoStartup”，表示为系统应用所调用。 |
 | callback  | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)   | 是    | 监听应用组件开机自启动状态变化的回调对象。      |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------------------------------- |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 16000050 | Internal error. |
+
 **示例**：
 
 ```ts
 import { autoStartupManager, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   autoStartupManager.on('systemAutoStartup', {
     onAutoStartupOn(data: common.AutoStartupInfo) {
-      console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+      console.info(`autostartupmanager onAutoStartupOn, data: ${JSON.stringify(data)}.`);
     },
     onAutoStartupOff(data: common.AutoStartupInfo) {
-      console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+      console.info(`autostartupmanager onAutoStartupOff, data: ${JSON.stringify(data)}.`);
     }
   });
 } catch (err) {
-  console.info('===> autostartupmanager on throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`autostartupmanager on success, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -69,22 +83,36 @@ off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 | type | string              | 是    | 固定取值“systemAutoStartup”，表示为系统应用所调用。 |
 | callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)   | 否 | 监听应用组件开机自启动状态变化的回调对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------------------------------- |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 16000050 | Internal error. |
+
 **示例**：
 
 ```ts
 import { autoStartupManager, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   autoStartupManager.off('systemAutoStartup', {
     onAutoStartupOn(data: common.AutoStartupInfo) {
-      console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+      console.info(`autostartupmanager onAutoStartupOn, data: ${JSON.stringify(data)}.`);
     },
     onAutoStartupOff(data: common.AutoStartupInfo) {
-      console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+      console.info(`autostartupmanager onAutoStartupOff, data: ${JSON.stringify(data)}.`);
     }
   });
 } catch (err) {
-  console.info('===> autostartupmanager off throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`autostartupmanager on success, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -107,28 +135,38 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 16000004 | Cannot start an invisible component.         |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
-
-请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
 ```ts
 import { autoStartupManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   autoStartupManager.setApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
-  }, (err, data) => {
-    console.info('====> setApplicationAutoStartup: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+  }, (err: BusinessError) => {
+    if (err) {
+      console.error(`setApplicationAutoStartup failed, err code: ${err.code}, err msg: ${err.message}.`);
+      return;
+    }
+    console.info(`setApplicationAutoStartup success.`);
   });
 } catch (err) {
-  console.info('====> setApplicationAutoStartup throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`setApplicationAutoStartup failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -156,13 +194,16 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 16000004 | Cannot start an invisible component.         |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
-
-请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -175,12 +216,14 @@ try {
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
   }).then((data: void) => {
-    console.info('====> setApplicationAutoStartup data: ' + JSON.stringify(data));
+    console.info(`setApplicationAutoStartup success.`);
   }).catch((err: BusinessError) => {
-    console.info('====> setApplicationAutoStartup err: ' + JSON.stringify(err));
+    console.error(`setApplicationAutoStartup failed, err code: ${err.code}, err msg: ${err.message}.`);
   });
 } catch (err) {
-  console.info('====> setApplicationAutoStartup throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`setApplicationAutoStartup failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -203,28 +246,38 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 16000004 | Cannot start an invisible component.         |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
-
-请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
 ```ts
 import { autoStartupManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   autoStartupManager.cancelApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
-  }, (err, data) => {
-    console.info('====> cancelApplicationAutoStartup err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+  }, (err: BusinessError) => {
+    if (err) {
+      console.error(`cancelApplicationAutoStartup failed, err code: ${err.code}, msg: ${err.message}.`);
+      return;
+    }
+    console.info(`cancelApplicationAutoStartup success.`);
   });
 } catch (err) {
-  console.info('====> cancelApplicationAutoStartup throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`cancelApplicationAutoStartup failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -252,13 +305,16 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 16000004 | Cannot start an invisible component.         |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
-
-请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -270,13 +326,15 @@ try {
   autoStartupManager.cancelApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
-  }).then((data: void) => {
-    console.info('====> cancelApplicationAutoStartup data: ' + JSON.stringify(data));
+  }).then(() => {
+    console.info(`cancelApplicationAutoStartup success.`);
   }).catch((err: BusinessError) => {
-    console.info('====> cancelApplicationAutoStartup err: ' + JSON.stringify(err));
+    console.error(`cancelApplicationAutoStartup failed, err code: ${err.code}, msg: ${err.message}.`);
   });
 } catch (err) {
-  console.info('====> cancelApplicationAutoStartup throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`cancelApplicationAutoStartup failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -298,23 +356,33 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 
 **错误码**：
 
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 16000050 | Internal error. |
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
-请参考[元能力子系统错误码](errorcode-ability.md)。
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 16000050 | Internal error. |
 
 **示例**：
 
 ```ts
-import { autoStartupManager } from '@kit.AbilityKit';
+import { autoStartupManager, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  autoStartupManager.queryAllAutoStartupApplications((err, data) => {
-    console.info('====> queryAllAutoStartupApplications err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+  autoStartupManager.queryAllAutoStartupApplications((err, data: common.AutoStartupInfo[]) => {
+    if (err) {
+      console.error(`queryAllAutoStartupApplications failed, err code: ${err.code}, err msg: ${err.message}.`);
+      return;
+    }
+    console.info(`queryAllAutoStartupApplications success, data: ${JSON.stringify(data)}.`);
   });
 } catch (err) {
-  console.info('====> queryAllAutoStartupApplications throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`queryAllAutoStartupApplications failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -336,11 +404,14 @@ try {
 
 **错误码**：
 
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 16000050 | Internal error. |
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
-请参考[元能力子系统错误码](errorcode-ability.md)。
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
+| 16000050 | Internal error. |
 
 **示例**：
 
@@ -349,12 +420,14 @@ import { autoStartupManager, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  autoStartupManager.queryAllAutoStartupApplications().then((autoStartupInfo: common.AutoStartupInfo[]) => {
-    console.info('====> queryAllAutoStartupApplications data: ' + JSON.stringify(autoStartupInfo));
+  autoStartupManager.queryAllAutoStartupApplications().then((data: common.AutoStartupInfo[]) => {
+    console.info(`queryAllAutoStartupApplications success, data: ${JSON.stringify(data)}.`);
   }).catch((err: BusinessError) => {
-    console.info('====> queryAllAutoStartupApplications err: ' + JSON.stringify(err));
+    console.error(`queryAllAutoStartupApplications failed, err code: ${err.code}, err msg: ${err.message}.`);
   });
 } catch (err) {
-  console.info('====> queryAllAutoStartupApplications throw err: ' + JSON.stringify(err));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`queryAllAutoStartupApplications failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```

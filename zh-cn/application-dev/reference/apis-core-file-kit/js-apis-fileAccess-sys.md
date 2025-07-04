@@ -24,9 +24,9 @@ import fileAccess from '@ohos.file.fileAccess';
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-| 名称 | 类型                        | 只读 | 可写 | 说明                                                      |
-| ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
-| DEVICES_URI<sup>11+</sup>  | string | 是   | 否   | 监听设备上线，下线通知，作为注册监听的URI。                    |
+| 名称 | 类型                        | 值  | 说明                                                      |
+| ---- | --------------------------- | ----  | --------------------------------------------------------- |
+| DEVICES_URI<sup>11+</sup>  | string | 'file://doc'  | 监听设备上线，下线通知，作为注册监听的URI。                    |
 
 ## fileAccess.getFileAccessAbilityInfo
 
@@ -232,15 +232,15 @@ createFileAccessHelper(context: Context) : FileAccessHelper
 
 ### 属性
 
-| 名称 | 类型   | 只读 | 可写 | 说明     |
+| 名称 | 类型   | 只读 | 可选 | 说明     |
 | ------ | ------ | -------- | ------ | -------- |
-| uri | string | 是 | 否 | 文件(夹)的uri。 |
+| uri | string | 否 | 否 | 文件(夹)的uri。 |
 | relativePath<sup>10+</sup> | string | 是 | 否 | 文件(夹)的相对路径。 |
-| fileName | string | 是 | 否 | 文件(夹)的名称。 |
-| mode | number | 是 | 否 | 文件(夹)的权限信息。 |
-| size | number | 是 | 否 |  文件(夹)的大小。 |
-| mtime | number | 是 | 否 |  文件(夹)的修改时间。 |
-| mimeType | string | 是 | 否 |  文件(夹)的媒体资源类型。 |
+| fileName | string | 否 | 否 | 文件(夹)的名称。 |
+| mode | number | 否 | 否 | 文件(夹)的权限信息。 |
+| size | number | 否 | 否 |  文件(夹)的大小。 |
+| mtime | number | 否 | 否 |  文件(夹)的修改时间。 |
+| mimeType | string | 否 | 否 |  文件(夹)的媒体资源类型。 |
 
 ### listFile
 
@@ -406,13 +406,13 @@ next() : { value: FileInfo, done: boolean }
 
 ### 属性
 
-| 名称 | 类型   | 只读 | 可写 | 说明     |
+| 名称 | 类型   | 只读 | 可选 | 说明     |
 | ------ | ------ | -------- | ------ | -------- |
-| deviceType | number | 是 | 否 |设备类型。 |
-| uri | string | 是 | 否 | 设备根目录Uri。 |
-| relativePath<sup>10+</sup> | string | 是 | 否 | 根目录的相对路径。 |
-| displayName | string | 是 | 否 | 设备名称。 |
-| deviceFlags | number | 是 | 否 | 设备支持的能力。 |
+| deviceType | number | 否 | 否 |设备类型。 |
+| uri | string | 否 | 否 | 设备根目录Uri。 |
+| relativePath<sup>10+</sup> | string | 否 | 否 | 根目录的相对路径。 |
+| displayName | string | 否 | 否 | 设备名称。 |
+| deviceFlags | number | 否 | 否 | 设备支持的能力。 |
 
 ### listFile
 
@@ -693,7 +693,7 @@ createFile(uri: string, displayName: string) : Promise&lt;string&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | -- |
-| uri | string | 是 | 表示需要创建文件的父目录的Uri。 |
+| uri | string | 是 | 表示需要创建文件的父目录的uri。 |
 | displayName | string | 是 | 待创建文件的名称。默认本地文件需要添加后缀。 |
 
 **返回值：**
@@ -749,7 +749,7 @@ createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&g
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | -- |
-| uri | string | 是 | 表示需要创建文件的父目录的Uri。 |
+| uri | string | 是 | 表示需要创建文件的父目录的uri。 |
 | displayName | string | 是 | 待创建文件的名称。默认本地文件需要添加后缀。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 新创建的文件的uri。 |
 
@@ -797,7 +797,7 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | -- |
-| parentUri | string | 是 | 表示需要创建文件夹的父目录的Uri。 |
+| parentUri | string | 是 | 表示需要创建文件夹的父目录的uri。 |
 | displayName | string | 是 | 待创建文件夹的名称。|
 
 **返回值：**
@@ -853,7 +853,7 @@ mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | -- |
-| parentUri | string | 是 | 表示需要创建文件夹的父目录的Uri。 |
+| parentUri | string | 是 | 表示需要创建文件夹的父目录的uri。 |
 | displayName | string | 是 | 待创建文件夹的名称。|
 | callback | AsyncCallback&lt;string&gt; | 是 | 新创建的文件夹的uri。 |
 
@@ -1628,7 +1628,7 @@ async function getQuery02() {
       let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(imageFileRelativePath);
       fileAccessHelper.query(fileInfo.uri, jsonStrSingleRelativepath, (err: BusinessError, queryResult: string) => {
         if (err) {
-          console.log("query_file_single faf query Failed, errCode:" + err.code + ", errMessage:" + err.message);
+          console.error(`query_file_single faf query Failed, code is ${err.code}, message is ${err.message}`);
           return;
         }
         console.log("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
@@ -2599,12 +2599,12 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-| 名称      | 类型   | 只读 | 可写 | 说明                |
+| 名称      | 类型   | 只读 | 可选 | 说明                |
 | --------- | ------ | ---- | ---- | ----------------- |
-| sourceUri | string | 是   | 否   | 源文件(夹) uri。                                         |
-| destUri   | string | 是   | 否   | 产生冲突的目标文件的 uri。如果非冲突导致的错误，则为空。 |
-| errCode   | number | 是   | 否   | 错误码。                                                 |
-| errMsg    | string | 是   | 否   | 错误信息。                                               |
+| sourceUri | string | 否   | 否   | 源文件(夹) uri。                                         |
+| destUri   | string | 否   | 否   | 产生冲突的目标文件的 uri。如果非冲突导致的错误，则为空。 |
+| errCode   | number | 否   | 否   | 错误码。                                                 |
+| errMsg    | string | 否   | 否   | 错误信息。                                               |
 
 ## OPENFLAGS
 
@@ -2664,10 +2664,10 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-| 名称 | 类型                        | 只读 | 可写 | 说明                                                      |
+| 名称 | 类型                        | 只读 | 可选 | 说明                                                      |
 | ---- | --------------------------- | ---- | ---- | --------------------------------------------------------- |
-| type | [NotifyType](#notifytype10) | 是   | 否   | 变更的通知类型。                                            |
-| uris | Array&lt;string&gt;         | 是   | 否   | 所变更文件的uri集合，目前仅支持单条通知，后序支持多条通知。 |
+| type | [NotifyType](#notifytype10) | 否   | 否   | 变更的通知类型。                                            |
+| uris | Array&lt;string&gt;         | 否   | 否   | 所变更文件的uri集合，目前仅支持单条通知，后序支持多条通知。 |
 
 ## MoveResult<sup>11+</sup>
 
@@ -2679,9 +2679,9 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-| 名称      | 类型   | 只读 | 可写 | 说明                                                         |
+| 名称      | 类型   | 只读 | 可选 | 说明                                                         |
 | --------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| sourceUri | string | 是   | 否   | 源文件(夹) uri。                                               |
-| destUri   | string | 是   | 否   | 产生冲突的目标文件的 uri。如果非冲突导致的错误，则为空。     |
-| errCode   | number | 是   | 否   | 错误码。接口抛出错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。 |
-| errMsg    | string | 是   | 否   | 错误信息。                                                   |
+| sourceUri | string | 否   | 否   | 源文件(夹) uri。                                               |
+| destUri   | string | 否   | 否   | 产生冲突的目标文件的 uri。如果非冲突导致的错误，则为空。     |
+| errCode   | number | 否   | 否   | 错误码。接口抛出错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。 |
+| errMsg    | string | 否   | 否   | 错误信息。                                                   |

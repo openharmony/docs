@@ -2,7 +2,7 @@
 
 ## When to Use
 
-The [OH_DisplayManager](../reference/apis-arkui/_o_h___display_manager.md) module provides functions for you to obtain the display information and listen for display status changes and folded/unfolded state changes. Applications can adapt to different UIs based on the information and changes.
+The [OH_DisplayManager](../reference/apis-arkui/capi-oh-displaymanager.md) module provides functions for you to obtain the display information and listen for display status changes and folded/unfolded state changes. Applications can adapt to different UIs based on the information and changes.
 
 - The display information that can be obtained includes the resolution, physical pixel density, logical pixel density, refresh rate, size, orientation, and rotation angle of the display.
 
@@ -18,7 +18,7 @@ The [OH_DisplayManager](../reference/apis-arkui/_o_h___display_manager.md) modul
 
 ## Available APIs
 
-The following table lists the common APIs. For more API description, see [OH_DisplayManager](../reference/apis-arkui/_o_h___display_manager.md).
+The following table lists the common APIs. For more API description, see [OH_DisplayManager](../reference/apis-arkui/capi-oh-displaymanager.md).
 
 | Name| Description|
 | -------- | -------- |

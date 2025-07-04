@@ -87,7 +87,7 @@
 | Down   | -    | 手指按下时触发。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
 | Up     | -    | 手指抬起时触发。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
 | Move   | -    | 手指按压态在屏幕上移动时触发。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
-| Cancel | -    | 触摸事件取消时触发。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
+| Cancel | -    | 触摸事件取消时触发。例如：1.手指按住屏幕同时点击Home键返回桌面，此时会触发Cancel；2.折叠屏手机，应用在按住屏幕的情况下折叠手机切换到外屏，此时会触发Cancel。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | HOVER_ENTER<sup>20+</sup> | 9    | 无障碍模式下，手指按下时触发。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。        |
 | HOVER_MOVE<sup>20+</sup>   | 10    | 无障碍模式下，触摸移动时触发。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。        |
 | HOVER_EXIT<sup>20+</sup> | 11    | 无障碍模式下，抬手触发。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。        |
@@ -375,7 +375,7 @@
 | TOP_END       | 'top_end'     | 顶部尾端。    |
 | START         | 'start'       | 起始端纵向居中。 |
 | CENTER        | 'center'      | 横向和纵向居中。 |
-| End           | 'end'         | 尾端纵向居中。  |
+| END           | 'end'         | 尾端纵向居中。  |
 | BOTTOM_START  | 'bottom_start'| 底部起始端。   |
 | BOTTOM        | 'bottom'      | 底部横向居中。  |
 | BOTTOM_END    | 'bottom_end'  | 底部尾端。    |
@@ -441,10 +441,10 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 说明     |
-| ---------- | ------ |
-| Vertical   | 方向为纵向。 |
-| Horizontal | 方向为横向。 |
+| 名称         | 值 | 说明     |
+| ---------- | -- | ------ |
+| Vertical   | 0 | 方向为纵向。 |
+| Horizontal | 1 | 方向为横向。 |
 
 ## HorizontalAlign
 
@@ -619,7 +619,7 @@
 | ------- | ----- | ----------- |
 | Lighter |  100  |   字体较细。 |
 | Normal  |  400  |   字体粗细正常。 |
-| Regular |  400  |   字体粗细正常。 |
+| Regular |  400  |   字体粗细正常。与Normal效果相同。 |
 | Medium  |  500  |   字体粗细适中。 |
 | Bold    |  700  |   字体较粗。   |
 | Bolder  |  900  |   字体非常粗。 |
@@ -645,7 +645,7 @@
 
 | 名称                    | 说明                  |
 | --------------------- | ------------------- |
-| None                  | 文本超长时按最大行截断显示。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| None                  | 文本超长时按最大行截断显示，与Clip相同。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | Clip                  | 文本超长时按最大行截断显示。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | Ellipsis              | 文本超长时显示不下的文本用省略号代替。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | MARQUEE<sup>10+</sup> | 文本超长时以跑马灯的方式展示。 |
@@ -881,7 +881,8 @@ type Nullable\<T> = T | undefined
 | NORMAL  | 0 | CJK(中文、日文、韩文)文本可以在任意2个字符间断行，而Non-CJK文本（如英文等）只能在空白符处断行。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | BREAK_ALL | 1 | 对于Non-CJK的文本，可在任意2个字符间断行。对于CJK与NORMAL效果一致。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | BREAK_WORD | 2 | 与BREAK_ALL相同，对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行，保障单词优先完整显示。若整一行文本均无断行破发点时，则在任意2个字符间断行。对于CJK与NORMAL效果一致。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| HYPHENATION<sup>18+</sup> | 3 | 对于Non-CJK的文本，可以按照音节断行。对于CJK的文本，换行效果与NORMAL效果保持一致。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| HYPHENATION<sup>18+</sup> | 3 | 每行末尾单词尝试通过连字符“-”进行断行，若无法添加连字符“-”，则跟BREAK_WORD保持一致。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+
 
 ## LineBreakStrategy<sup>12+</sup>
 
@@ -1041,16 +1042,15 @@ type Nullable\<T> = T | undefined
 
 ## ImageSpanAlignment<sup>10+</sup>
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 说明                           |
 | -------- | ------------------------------ |
-| TOP      | 图片上边沿与行上边沿对齐。   |
-| CENTER   | 图片中间与行中间对齐。       |
-| BOTTOM   | 图片下边沿与行下边沿对齐。   |
-| BASELINE | 图片下边沿与文本BaseLine对齐。 |
+| TOP      | 图片上边沿与行上边沿对齐。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| CENTER   | 图片中间与行中间对齐。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| BOTTOM   | 图片下边沿与行下边沿对齐。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| BASELINE | 图片下边沿与文本BaseLine对齐。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| FOLLOW_PARAGRAPH<sup>20+</sup>  | 对齐方式跟随Text父组件。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 
 ## XComponentType<sup>10+</sup>
@@ -1062,7 +1062,7 @@ type Nullable\<T> = T | undefined
 | SURFACE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容单独展示到屏幕上。背景色设置为黑色时会走显示子系统（DSS）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | COMPONENT<sup>(deprecated)</sup> | XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。<br/>**说明：**<br/>从API version 12开始，该接口废弃，建议使用其他容器组件替代。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | TEXTURE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容会和XComponent组件的内容合成后展示到屏幕上。1、保持帧同步，保持在同一帧将图形处理器（GPU）纹理和ArkUI其他的绘制指令统一发给渲染服务(RenderService)。2、动效和系统组件统一。3、走图形处理器（GPU）合成，相比surface可能走显示子系统（DSS）功耗更高。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| NODE<sup>12+</sup>            | 用于Native UI节点的占位容器，开发者通过Native API 开发的页面组件可展示在此容器区域内。<br/>**说明：**<br/>该类型不再演进，推荐使用[ContentSlot](../../../ui/state-management/arkts-rendering-control-contentslot.md)占位组件管理Native API创建的组件，ContentSlot在内存和性能方面都优于NODE类型的XComponent。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NODE<sup>(deprecated)</sup>      | 用于Native UI节点的占位容器，开发者通过Native接口开发的页面组件可展示在此容器区域内。<br/>**说明：**<br/>从API version 20开始，该接口废弃，推荐使用[ContentSlot](../../../ui/state-management/arkts-rendering-control-contentslot.md)组件替代。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## HoverModeAreaType<sup>14+</sup>
 
@@ -1085,6 +1085,8 @@ type Nullable\<T> = T | undefined
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
+下表列出了典型设备默认宽度断点的阈值划分，用于在基于窗口宽度断点布局设计时作为参考。个别设备可根据需求通过产品化配置调整断点阈值。
+
 | 名称     | 值   | 说明                   |
 | -------- | ---- | ---------------------- |
 | WIDTH_XS | 0   | 窗口宽度小于320vp。 |
@@ -1093,6 +1095,10 @@ type Nullable\<T> = T | undefined
 | WIDTH_LG | 3   | 窗口宽度大于等于840vp，且小于1440vp。 |
 | WIDTH_XL | 4   | 窗口宽度大于等于1440vp。 |
 
+> **说明：**
+>
+> 大多数应用在构建自适应布局时，可以只考虑窗口宽度断点。
+
 ## HeightBreakpoint<sup>13+</sup>
 
 表示窗口不同高宽比阈值下对应的高度断点枚举值。通过[getWindowHeightBreakpoint](../js-apis-arkui-UIContext.md#getwindowheightbreakpoint13)返回。
@@ -1100,6 +1106,8 @@ type Nullable\<T> = T | undefined
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+下表列出了典型设备默认高宽比断点的阈值划分，用于在基于窗口高宽比布局设计时作为参考。个别设备可根据需求通过产品化配置调整断点阈值。
 
 | 名称     | 值   | 说明                   |
 | -------- | ---- | ---------------------- |
@@ -1244,7 +1252,7 @@ type Nullable\<T> = T | undefined
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称           | 值  | 描述                                      |
+| 名称           | 值  | 说明                                      |
 | -------------- | -- | ---------------------------------------- |
 | SELF  	     | 0   | 获焦框绘制在节点自身层级。                                 |
 | TOP            | 1   | 获焦框绘制在当前实例Z序的最上层。                                 |
@@ -1324,8 +1332,6 @@ type Nullable\<T> = T | undefined
 ## FocusWrapMode<sup>20+</sup>
 
 交叉轴方向键走焦模式枚举。
-
-**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 

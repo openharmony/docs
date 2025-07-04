@@ -48,7 +48,14 @@ The following describes how to subscribe to a memory leak event.
    ```
 
 3. In the **entry/src/main/ets/pages/index.ets** file, add the **memoryleak** button and construct a scenario for triggering a resource leak event in **onClick()**.
-   In this case, use [hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12) to set the memory limit to trigger a memory leak event, and enable **System resource leak log** in **Developer options**. (Restart the device to enable or disable this function.) The sample code is as follows:
+   You can use [hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12) to set the application's memory limit to construct a memory leak event and trigger a resource leak event report. You are advised not to use this API in the production environment.
+To obtain profiler logs, enable **System resource leak log** in **Developer options**. (You need to restart the device to enable or disable this functionality.)
+
+   <!--RP1-->
+   For details about how to locate resource leak errors, see [Memory Leak Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-insight-session-snapshot).
+   <!--RP1End-->
+
+   The sample code is as follows:
 
    ```ts
     import hidebug from "@ohos.hidebug";
@@ -78,7 +85,7 @@ The following describes how to subscribe to a memory leak event.
     }
    ```
 
-4. Click the **Run** button in DevEco Studio to run the project, and then a memory leak event will be reported after 15 to 30 minutes.
+4. Click the **Run** button in DevEco Studio to run the project, click the **pss leak** button, and then a memory leak event will be reported after 15 to 30 minutes.
    For the same application, the memory leak event can be reported at most once within 24 hours. If the memory leak needs to be reported again within a shorter time, restart the device.
 
 5. After a memory leak event is reported, the system calls **onReceive()**. You can view the following event information in the **Log** window.
@@ -110,4 +117,4 @@ The following describes how to subscribe to a memory leak event.
     >
     > After receiving the subscribed event, the application should obtain the path of the heap snapshot file from the **external_log** field of the event, move or upload the file to the cloud as soon as possible, and then delete the original heap snapshot file. Otherwise, the next heap snapshot file may fail to be generated due to insufficient storage space (up to 2 GB) of the application sandbox path directory.<br>
     > The value **field** in the JSON5 configuration file supports the key-value pair set **key1:value1;key2:value2;...**. Currently, the **oomdump** function can be enabled in the nolog version only for applications configured with the preceding key-value pairs.<br>
-    > Change the extension of the .log file generated after subscription to **.rawheap**, use [rawheap-translator](../tools/rawheap-translator.md) to convert the file to a .heapsnapshot file, and open the file using DevEco Studio or a browser. For details, see [Importing Heap Snapshots Offline](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-snapshot-basic-operations-V5#section6760173514388).
+    > Change the extension of the .log file generated after subscription to **.rawheap**, use [rawheap-translator](../tools/rawheap-translator.md) to convert the file to a .heapsnapshot file, and open the file using DevEco Studio or a browser. For details, see [Importing Heap Snapshots Offline](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-snapshot-basic-operations#section6760173514388).

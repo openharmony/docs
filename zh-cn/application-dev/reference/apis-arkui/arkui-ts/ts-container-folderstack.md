@@ -1,6 +1,6 @@
 # FolderStack
 
-FolderStack继承于Stack(层叠布局)控件，新增了折叠屏悬停能力，通过识别upperItems自动避让折叠屏折痕区后移到上半屏。
+FolderStack继承于Stack(层叠布局)控件，新增了<!--RP1-->折叠屏悬停<!--RP1End-->能力，通过在配置项[FolderStackOptions](#folderstackoptions18对象说明)的upperItems数组上设置子组件id，使相应子组件自动避让折叠屏折痕区后移到上半屏。
 
 >  **说明：**
 >
@@ -26,11 +26,15 @@ FolderStack(options?: FolderStackOptions)
 
 | 参数名       | 类型                                    | 必填 | 说明                                                                 |
 | ------------ | ------------------------------------------- | ---- |----------------------------------------------------------------------|
-| options |  [FolderStackOptions](#folderstackoptions14对象说明) | 否   | FolderStack的配置项。 |
+| options |  [FolderStackOptions](#folderstackoptions18对象说明) | 否   | FolderStack的配置项。 |
 
-## FolderStackOptions<sup>14+</sup>对象说明
+## FolderStackOptions<sup>18+</sup>对象说明
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -72,7 +76,7 @@ enableAnimation(value: boolean)
 
 | 参数名 | 类型                                        | 必填 | 说明                                |
 | ------ | ------------------------------------------- | ---- | ----------------------------------- |
-| value  | boolean | 是   | 是否使用默认动效。<br/>默认值：true，设置true表示使用默认动效，设置false表示不适用默认动效。 |
+| value  | boolean | 是   | 是否使用默认动效。<br/>默认值：true，设置true表示使用默认动效，设置false表示不使用默认动效。 |
 
 ### autoHalfFold
 
@@ -157,14 +161,18 @@ type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
 
 | 参数名     | 类型                                            | 必填 | 说明                 |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
-| callback | [OnFoldStatusChangeInfo](#onfoldstatuschangeinfo14) | 是   | 当前设备的折叠状态。 |
+| callback | [OnFoldStatusChangeInfo](#onfoldstatuschangeinfo18) | 是   | 当前设备的折叠状态。 |
 
 
-## OnFoldStatusChangeInfo<sup>14+</sup>
+## OnFoldStatusChangeInfo<sup>18+</sup>
 
 当折叠状态改变的时候回调，仅在横屏状态下生效。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

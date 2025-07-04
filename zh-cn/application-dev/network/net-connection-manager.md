@@ -118,46 +118,9 @@ async function test() {
 
 ### 默认网络变化后重新建立网络连接
 
-#### 原网络连接使用http模块建立网络连接
+<!--RP1-->
 
-如果您使用了http模块建立网络连接，由于该模块没有提供Close接口用于关闭Socket，在切换默认网络并建立新的网络连接后原有Socket不会立即关闭。因此请切换使用Remote Communication Kit建立网络连接。
-
-#### 原网络连接使用Remote Communication Kit建立网络连接
-
-```ts
-import { rcp } from '@kit.RemoteCommunicationKit';
-import { connection } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let session = rcp.createSession();
-
-async function useRcp() {
-  // 建立rcp请求。
-  try {
-    const request = await session.get('https://www.example.com');
-    console.info(request.statusCode.toString());
-  } catch (e) {
-    console.error(e.code.toString());
-  }
-}
-
-async function rcpTest() {
-  const netConnection = connection.createNetConnection();
-  netConnection.on('netAvailable', async (netHandle: connection.NetHandle) => {
-    // 发生默认网络切换，重新建立session。
-    session.close();
-    session = rcp.createSession();
-    useRcp();
-  });
-  try {
-    netConnection.register(() => {
-    });
-    useRcp();
-  } catch (e) {
-    console.error(e.code.toString());
-  }
-}
-```
+<!--RP1End-->
 
 #### 原网络连接使用Socket模块建立连接
 

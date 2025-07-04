@@ -2,16 +2,16 @@
 
 **AttributeUpdater** directly set attributes to a component to trigger UI re-renders, without marking them as state variables.
 
->  **NOTE**
+> **NOTE**
 >
->  The initial APIs of this module are supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
 >
 
 
 ## Modules to Import
 
 ```ts
-import { AttributeUpdater } from '@kit.ArkUI'
+import { AttributeUpdater } from '@kit.ArkUI';
 ```
 
 >  **Instructions**
@@ -27,7 +27,7 @@ import { AttributeUpdater } from '@kit.ArkUI'
 >  4. You need to ensure the type matching of **T** and **C** in **AttributeUpdater** yourself. For example, if **T** is ImageAttribute, **C** should be ImageInterface;
 >  otherwise, it may cause functionality issues when **updateConstructorParams** is used.
 >  
->  5. Currently, **updateConstructorParams** supports only the **Button**, **Image**, **Text**, and **Span** components.
+>  5. Currently, **updateConstructorParams** supports only the following components: **Button**, **Image**, **Text**, **Span**, **SymbolSpan**, **ImageSpan**.
 >  
 >  6. **AttributeUpdater** does not support operations related to state management, such as switching between light and dark modes.
 
@@ -41,7 +41,7 @@ Defines a decorator for updating attributes.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ## AttributeUpdater<T, C = Initializer\<T>>
-Represents the implementation class of [AttributeModifier](arkui-ts/ts-universal-attributes-attribute-modifier.md#AttributeModifier). You need to customize a class to inherit **AttributeUpdater**.
+Represents the implementation class of [AttributeModifier](arkui-ts/ts-universal-attributes-attribute-modifier.md#attributemodifiert). You need to customize a class to inherit **AttributeUpdater**.
 
 **C** indicates the constructor type of the component, for example, **TextInterface** of the **Text** component and **ImageInterface** of the **Image** component. It is required only when **updateConstructorParams** is used.
 
@@ -83,20 +83,20 @@ This example shows how to use **initializeModifier** to initialize attribute val
 
 ```ts
 // xxx.ets
-import { AttributeUpdater } from '@kit.ArkUI'
+import { AttributeUpdater } from '@kit.ArkUI';
 
 class MyButtonModifier extends AttributeUpdater<ButtonAttribute> {
   initializeModifier(instance: ButtonAttribute): void {
     instance.backgroundColor('#ff2787d9')
       .width('50%')
-      .height(30)
+      .height(30);
   }
 }
 
 @Entry
 @Component
 struct updaterDemo1 {
-  modifier: MyButtonModifier = new MyButtonModifier()
+  modifier: MyButtonModifier = new MyButtonModifier();
 
   build() {
     Row() {
@@ -134,20 +134,20 @@ This example shows how to directly update attributes through **AttributeUpdater*
 
 ```ts
 // xxx.ets
-import { AttributeUpdater } from '@kit.ArkUI'
+import { AttributeUpdater } from '@kit.ArkUI';
 
 class MyButtonModifier extends AttributeUpdater<ButtonAttribute> {
   initializeModifier(instance: ButtonAttribute): void {
     instance.backgroundColor('#ffd5d5d5')
       .width('50%')
-      .height(30)
+      .height(30);
   }
 }
 
 @Entry
 @Component
 struct updaterDemo2 {
-  modifier: MyButtonModifier = new MyButtonModifier()
+  modifier: MyButtonModifier = new MyButtonModifier();
 
   build() {
     Row() {
@@ -155,7 +155,7 @@ struct updaterDemo2 {
         Button("Button")
           .attributeModifier(this.modifier)
           .onClick(() => {
-            this.modifier.attribute?.backgroundColor('#ff2787d9').width('30%')
+            this.modifier.attribute?.backgroundColor('#ff2787d9').width('30%');
           })
       }
       .width('100%')
@@ -183,7 +183,7 @@ This example demonstrates how to use **updateConstructorParams**.
 
 ```ts
 // xxx.ets
-import { AttributeUpdater } from '@kit.ArkUI'
+import { AttributeUpdater } from '@kit.ArkUI';
 
 class MyTextModifier extends AttributeUpdater<TextAttribute, TextInterface> {
   initializeModifier(instance: TextAttribute) {
@@ -193,7 +193,7 @@ class MyTextModifier extends AttributeUpdater<TextAttribute, TextInterface> {
 @Entry
 @Component
 struct attributeDemo3 {
-  private modifier: MyTextModifier = new MyTextModifier()
+  private modifier: MyTextModifier = new MyTextModifier();
 
   build() {
     Row() {
@@ -204,7 +204,7 @@ struct attributeDemo3 {
           .width(200).height(50)
           .backgroundColor('#fff7f7f7')
           .onClick(() => {
-            this.modifier.updateConstructorParams("Updated")
+            this.modifier.updateConstructorParams("Updated");
           })
       }
       .width('100%')
@@ -235,34 +235,34 @@ Invoked to notify the application that the component bound to the same custom **
 
 ```ts
 // xxx.ets
-import { AttributeUpdater } from '@kit.ArkUI'
+import { AttributeUpdater } from '@kit.ArkUI';
 
 class MyButtonModifier extends AttributeUpdater<ButtonAttribute> {
   initializeModifier(instance: ButtonAttribute): void {
     instance.backgroundColor('#ff2787d9')
       .width('50%')
-      .height(30)
+      .height(30);
   }
 
   onComponentChanged(instance: ButtonAttribute) :void {
     instance.backgroundColor('#ff2787d9')
       .width('50%')
-      .height(30)
+      .height(30);
   }
 }
 
 @Entry
 @Component
 struct updaterDemo4 {
-  @State btnState: boolean = false
-  modifier: MyButtonModifier = new MyButtonModifier()
+  @State btnState: boolean = false;
+  modifier: MyButtonModifier = new MyButtonModifier();
 
   build() {
     Row() {
       Column() {
         Button("Test")
           .onClick(() => {
-          this.btnState = !this.btnState
+            this.btnState = !this.btnState;
         })
 
         if (this.btnState) {

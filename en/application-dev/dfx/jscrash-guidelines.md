@@ -2,7 +2,7 @@
 
 When an application crashes dues to a JS exception, it generates a JS crash log file. You can view the log to locate the error code and analyze the cause of the crash.
 
-This topic describes the JS Crash exception capture scenario, JS Crash fault analysis, and typical cases.
+This topic describes the JS Crash capture, JS Crash analysis, and typical cases.
 
 ## JS Crash Detection
 
@@ -10,7 +10,7 @@ This topic describes the JS Crash exception capture scenario, JS Crash fault ana
 
 The following describes the fields in a process crash log.
 
-```
+```text
 Device info:XXX <- Device information
 Build info:XXX-XXXX X.X.X.XX(XXXXXXXX) <- Build information
 Fingerprint:ed1811f3f5ae13c7262b51aab73ddd01df95b2c64466a204e0d70e6461cf1697 <- Feature information
@@ -20,38 +20,95 @@ Version:1.0.0 <- Version number
 VersionCode:1000000 <- Version code
 Pid:579 <- Process ID
 Uid:0 <- User ID
+Process Memory(kB): 1897(Rss) <- Memory used by the process
+Device Memory(kB): Total 1935820, Free 482136, Available 1204216  <- Memory information of the device
 Reason:TypeError <- Cause
 Error message:Cannot read property c of undefined <- Error message
-Cannot get SourceMap info, dump raw stack: <- The release package does not contain the **SourceMap** file, and the JavaScript stack fails to parse it.
+Cannot get SourceMap info, dump raw stack: <- The release package does not contain the **SourceMap** file, and the JS stack fails to parse it.
 SourceCode:
-        var a = b.c;   <- Location of the problematic code
+        var a = b.c;   <- Location of the exception code
                 ^
 Stacktrace:
-    at onPageShow entry (entry/src/main/ets/pages/Index.ets:7:13)  <- Call stack of the error code
+    at onPageShow entry (entry/src/main/ets/pages/Index.ets:7:13)  <- Call stack of the exception code
            ^        ^                              ^
-         Function name Module bundle name The row and column numbers in the file
+         Function name Module package name The row and column numbers in the file
 ```
 
-You can identify the cause of the crash, mostly application issues, based on Error message and Stacktrace in the logs.
+You can identify the cause of the JS crash, mostly application issues, based on **Error message** and **Stacktrace** in the logs.
+
+### Formats of Exception Code Call Stacks
+
+In the debug and release modes, the formats of the exception code call stacks are different. Specifically, the debugging information is retained in the debug mode, and the debugging information is stripped in the release mode through code optimization and obfuscation.
+
+#### Release Mode
+
+In an application built in release mode, the standard format of exception stack information is as follows:
+
+at <Execution method name> (<Module name|Dependent module name|Version number|Compilation product path>:<Line number>:<Column number>)
+
+The following is an example:
+
+```txt
+at onPageShow (entry|har1|1.0.0|src/main/ets/pages/Index.ts:7:13);
+```
+
+Format description:
+
+1. Fixed identifier: **at** is the fixed start identifier of the stack call chain.
+
+2. Execution method name: **onPageShow** indicates the name of the calling method that triggers an exception.
+
+3. Source code path structure:
+
+  - Source code path: For details, see the key field in [Exception Stack Trace Analysis: Sourcemap Format](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-exception-stack-parsing-principle#section1145914292713).
+  - File type: The file name extension is **.ts**.
+
+4. Row and column numbers: Colons (:) are used to separate row and column numbers.
+
+#### Debug Mode
+
+In an application built in debug mode or a release application whose exception stack is translated using source map, the standard format of exception stack information is as follows:
+
+at <Execution method name><Module name of source code path> (<Source code path>:<Line number>:<Column number>)
+
+The following is an example:
+
+```txt
+at onPageShow har1 (har1/src/main/ets/pages/Index.ets:7:13);
+```
+
+Format description:
+
+1. Fixed identifier: **at** is the fixed start identifier of the stack call chain.
+
+2. Execution method name: **onPageShow** indicates the name of the calling method that triggers an exception.
+
+3. Source code path structure:
+
+  - Module name: Name of the module to which the source code path belongs (for example, **har1** in the example).
+  - Source code path: Source code file path based on the project directory.
+  - File type: The file name extension is **.ets**.
+
+4. Row and column numbers: Colons (:) are used to separate row and column numbers.
 
 ### JS Crash Exception Types
 
-JS crash exceptions are classified into the following types in the **Reason** field based on exception scenarios:
+JS crashes are classified into the following types in the **Reason** field based on exception scenarios:
 
- - **Error**: **Error** is the most basic type. Other error types are inherited from this type. The **Error** object consists of **message** and **name**, which indicate the error message and error name, respectively. Generally, exceptions of the **Error** type are thrown by developers.
+- **Error**: **Error** is the most basic type. Other error types are inherited from this type. The **Error** object consists of **message** and **name**, which indicate the error message and error name, respectively. Generally, exceptions of the **Error** type are thrown by developers.
 
- - **TypeError**: As the most common error type at run-time, **TypeError** indicates a variable or parameter that is not of the expected type.
+- **TypeError**: As the most common error type at run-time, **TypeError** indicates a variable or parameter that is not of the expected type.
 
- - **SyntaxError**: **SyntaxError** is also called parsing error. As the most common error type in all programming languages, **SyntaxError** indicates that the syntax does not comply with the syntax specifications of the programming language.
+- **SyntaxError**: **SyntaxError** is also called parsing error. As the most common error type in all programming languages, **SyntaxError** indicates that the syntax does not comply with the syntax specifications of the programming language.
 
- - **RangeError**: **RangeError** is thrown when a value exceeds the valid range. Common range errors include the following:
-    - The array length is negative or too long.
-    - The numeric parameter exceeds the predefined range.
-    - The number of function stack calls exceeds the maximum.
+- **RangeError**: **RangeError** is thrown when a value exceeds the valid range. Common range errors include the following:
+  - The array length is negative or too long.
+  - The numeric parameter exceeds the predefined range.
+  - The number of function stack calls exceeds the maximum.
 
- - **ReferenceError**: **ReferenceError** is thrown when a variable that does not exist is referenced. Each time a variable is created, the variable name and its value are stored in the key-value format. When a variable is referenced, the value will be located based on the key and returned. If the variable referenced cannot be to be found, **ReferenceError** is thrown.
+- **ReferenceError**: **ReferenceError** is thrown when a variable that does not exist is referenced. Each time a variable is created, the variable name and its value are stored in the key-value format. When a variable is referenced, the value will be located based on the key and returned. If the variable referenced cannot be to be found, **ReferenceError** is thrown.
 
- - **URI Error**: **URI Error** is thrown when an invalid URI is found in **encodeURI()**, **decodeURI()**, **encodeURIComponent()**, **decodeURIComponent()**, **escape()**, or **unescape()**.
+- **URI Error**: **URI Error** is thrown when an invalid URI is found in **encodeURI()**, **decodeURI()**, **encodeURIComponent()**, **decodeURIComponent()**, **escape()**, or **unescape()**.
 
 ## JS Crash Fault Analysis
 
@@ -61,11 +118,11 @@ The process crash log is a type of fault log managed together with the app freez
 
 - Method 1: DevEco Studio
 
-    DevEco Studio collects process crash logs in **/data/log/faultlog/faultlogger/** and archives the logs in FaultLog. For details, see <!--RP1-->[Fault Log](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-fault-log-V5)<!--RP1End-->. 
+    DevEco Studio collects process crash logs in **/data/log/faultlog/faultlogger/** and archives the logs in FaultLog. For details, see [DevEco Studio User Guide-Fault Log](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-fault-log).
 
-- Method 2: hiAppEvent APIs
+- Method 2: HiAppEvent APIs
 
-    hiAppEvent provides APIs to subscribe to various fault logs. For details, see [Introduction to HiAppEvent](hiappevent-intro.md).
+    HiAppEvent provides APIs to subscribe to various fault information. For details, see [Introduction to HiAppEvent](hiappevent-intro.md).
 
 <!--Del-->
 - Method 3: Shell
@@ -84,7 +141,8 @@ Generally, the cause of the fault can be found by locating the problematic code 
 In JS Crash fault logs, the **StackTrace** field provides the call stack information about the JS Crash exception. Common **StackTrace** information includes the following:
 
 1. The stack top indicates the problematic code, as shown in the following example. You can click the link to locate the problematic code.
-    ```
+
+    ```text
     Device info:xxx
     Build info:xxx-xxx x.x.x.xxx(xxxx)
     Fingerprint:ed1811f3f5ae13c7262b51aab73ddd01df95b2c64466a204e0d70e6461cf1697
@@ -96,6 +154,8 @@ In JS Crash fault logs, the **StackTrace** field provides the call stack informa
     Foreground:Yes
     Pid:31255
     Uid:20020145
+    Process Memory(kB): 1897(Rss)
+    Device Memory(kB): Total 1935820, Free 482136, Available 1204216
     Reason:Error
     Error name:Error
     Error message:JSERROR
@@ -107,7 +167,8 @@ In JS Crash fault logs, the **StackTrace** field provides the call stack informa
     ```
 
 2. If "Stack Cannot get SourceMap info, dump raw stack" is displayed in the call stack, as shown in the following example, the system fails to retrieve information from SourceMap and only displays the row number of the problematic code in the compiled code in an eTS stack. You can click the link to identify where the error occurred in the compiled code.
-    ```
+
+    ```text
     Device info:xxx
     Build info:xxx-xxx x.x.x.xxx(xxxx)
     Fingerprint:a370fceb59011d96e41e97bda139b1851c911012ab8c386d1a2d63986d6d226d
@@ -119,6 +180,8 @@ In JS Crash fault logs, the **StackTrace** field provides the call stack informa
     Foreground:Yes
     Pid:39185
     Uid:20020145
+    Process Memory(kB): 1897(Rss)
+    Device Memory(kB): Total 1935820, Free 482136, Available 1204216
     Reason:Error
     Error name:Error
     Error message:JSERROR
@@ -128,7 +191,8 @@ In JS Crash fault logs, the **StackTrace** field provides the call stack informa
     ```
 
 3. If "SourceMap is not initialized yet" is displayed in the call stack, as shown in the following example, SourceMap has not been initialized and the row number of the problematic code in the compiled code in an eTS stack is displayed. In this case, this log is added to notify developers. You can click the link to identify where the error occurred in the compiled code. The following is an example.
-    ```
+
+    ```text
     Device info:xxx
     Build info:xxx-xxx x.x.x.xxx(xxxx)
     Fingerprint:377ef8529301363f373ce837d0bf83aacfc46112502143237e2f4026e86a0510
@@ -140,6 +204,8 @@ In JS Crash fault logs, the **StackTrace** field provides the call stack informa
     Foreground:Yes
     Pid:6042
     Uid:20020145
+    Process Memory(kB): 1897(Rss)
+    Device Memory(kB): Total 1935820, Free 482136, Available 1204216
     Reason:Error
     Error name:Error
     Error message:JSERROR
@@ -152,7 +218,8 @@ In JS Crash fault logs, the **StackTrace** field provides the call stack informa
     ```
 
 4. The native stack is printed in the call stack, as shown in the following example. Generally, the **libark_jsruntime.so** dynamic library is at the top of the stack. This is because JS exceptions are thrown by the VM. Search for the error from the top down. Generally, the next frame of **libace_napi.z.so** is the location where an exception is thrown. The following is an example.
-    ```
+
+    ```text
     Device info:xxx
     Build info:xxx-xxx x.x.x.xxx(xxxx)
     Fingerprint:89f2b64b24d642b0fc64e3a7cf68ca39fecaa580ff5736bb9d6706ea4cdf2c93
@@ -164,6 +231,8 @@ In JS Crash fault logs, the **StackTrace** field provides the call stack informa
     Foreground:No
     Pid:14325
     Uid:20020145
+    Process Memory(kB): 1897(Rss)
+    Device Memory(kB): Total 1935820, Free 482136, Available 1204216
     Reason:ReferenceError
     Error name:ReferenceError
     Error message:Cannot find module 'com.xxx.xxx/entry/EntryAbility' , which is application Entry Point
@@ -198,18 +267,17 @@ Perform call stack analysis as follows:
 
   If "Cannot get Source Map info, dump raw stack" is displayed, the JS stack fails to obtain the row and column numbers for the problematic code. In this case, clicking the provided hyperlink in DevEco Studio navigates you to an incorrect position or displays an error that indicates the position does not exist.
 
-  When an error occurs during the running of application code, the error stack information is printed. If the TS stack fails to obtain the row and column numbers for ArkTS code, the filename extension of the error stack is still "ets". You need to compile the intermediate product in the **build** directory to generate TS code and locate the problematic code in JS. For details, see [Stack Trace Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-release-app-stack-analysis-V5).
-
+  When an error occurs during the running of application code, the error stack information is printed. If the TS stack fails to obtain the row and column numbers for ArkTS code, the filename extension of the error stack is still "ets". You need to compile the intermediate product in the **build** directory to generate TS code and locate the problematic code in JS. For details, see [Stack Trace Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-release-app-stack-analysis).
 
 ## Case Study
 
-The following describes the most common error types, namely, **TypeError** and **Error**, that cause JS crashes. 
+The following describes the most common error types, namely, **TypeError** and **Error**, that cause JS crashes.
 
 ### TypeError Analysis
 
 As one of the most common errors that cause JS crashes, TypeError is thrown when the variable type is not the expected one. In other words, the variable is not verified before use. The error message is as follows:
 
-```
+```text
 Error name:TypeError
 Error message:Cannot read property xxx of undefined
 ```
@@ -218,7 +286,7 @@ Error message:Cannot read property xxx of undefined
 
 1. Obtain the JS crash log:
 
-    ```
+    ```text
     Generated by HiviewDFX@OpenHarmony
     ================================================================
     Device info:xxxx
@@ -232,6 +300,8 @@ Error message:Cannot read property xxx of undefined
     Foreground:No
     Pid:2780
     Uid:20020018
+    Process Memory(kB): 1897(Rss)
+    Device Memory(kB): Total 1935820, Free 482136, Available 1204216
     Reason:TypeError
     Error name:TypeError
     Error message:Cannot read property needRenderTranslate of undefined
@@ -246,13 +316,14 @@ Error message:Cannot read property xxx of undefined
 2. Analyze log information.
 
     According to the log information, **TypeError** is reported because the **needRenderTranslate** object is **undefined**. Then, obtain the error location based on the stack trace.
-If "Cannot get SourceMap info, dump raw stack" is displayed, the application is installed using a release package and the eTS row and column numbers cannot be converted from the JS stack. You can refer to [Stack Trace Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-release-app-stack-analysis-V5) to parse the row number.
+
+    If "Cannot get SourceMap info, dump raw stack" is displayed, the application is installed using a release package and the eTS row and column numbers cannot be converted from the JS stack. You can refer to [Stack Trace Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-release-app-stack-analysis) to parse the row number.
 
 3. Locate the error code.
 
     Based on the preceding JS stack and error variable analysis, the error code can be located as follows:
 
-    ```
+    ```ts
       // Update the gesture value.
       public updateGestureValue(screenWidth: number, recentScale: number, sceneContainerSessionList: SCBSceneContainerSession[]) {
         // Calculate the moving distance of the hand.
@@ -267,7 +338,7 @@ If "Cannot get SourceMap info, dump raw stack" is displayed, the application is 
 
     According to the preceding analysis, the member variable **needRenderTranslate** of **sceneContainerSessionList** may be undefined. A protection needs to be added to avoid this type of problem. For example, you can add a '?' operator before the access object for protection.
 
-    ```
+    ```ts
     // Update the gesture value.
     public updateGestureValue(screenWidth: number, recentScale: number, sceneContainerSessionList: SCBSceneContainerSession[]) {
       // Calculate the moving distance of the hand.
@@ -289,15 +360,15 @@ If "Cannot get SourceMap info, dump raw stack" is displayed, the application is 
 Error problems are JS exceptions thrown by developers or JS libraries.
 
 There are two scenarios for this type of problem:
-1.	If the application encounters a fault that cannot be rectified, a JS exception is thrown to terminate the service and generate a fault log.
-2.	The service is terminated by an exception thrown by an API of the dependent JS library or module. In this case, you need to consider using try-catch to capture such exceptions.
 
+1. If the application encounters a fault that cannot be rectified, a JS exception is thrown to terminate the service and generate a fault log.
+2. The service is terminated by an exception thrown by an API of the dependent JS library or module. In this case, you need to consider using try-catch to capture such exceptions.
 
 #### Case 1: Throw a custom JS exception to terminate an application.
 
 You can use the following code to throw a JS exception:
 
-```
+```ts
 throw new Error("TEST JS ERROR")
 ```
 
@@ -310,7 +381,8 @@ To solve this problem, locate the problematic code line based on the fault log a
 #### Case 2: Handle the JS crash caused by a JS exception thrown by a third-party API.
 
 1. Obtain the JS crash log. The key log information is as follows:
-    ```
+
+    ```text
     Error name:Error
     Error message:BussinessError 2501000: Operation failed.
     Error code:2501000
@@ -325,17 +397,18 @@ To solve this problem, locate the problematic code line based on the fault log a
 2. Analyze log information.
 
     According to the log information, an **Error** exception is thrown by the code. Then, obtain the error location based on the stack trace.
-If "Cannot get SourceMap info, dump raw stack" is displayed, the application is installed using a release package and the eTS row and column numbers cannot be converted from the JS stack. You can refer to [Stack Trace Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-release-app-stack-analysis-V5) to parse the row number.
+
+    If "Cannot get SourceMap info, dump raw stack" is displayed, the application is installed using a release package and the eTS row and column numbers cannot be converted from the JS stack. You can refer to [Stack Trace Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-release-app-stack-analysis) to parse the row number.
 
 3. Locate the error code.
 
     Based on the preceding JS stack, you can locate the code in the **NetSpeedController.ts** file. The exception is thrown when **wifiManager.on()** is called.
 
-    ```
+    ```ts
     onStart(): void {
       super.onStart();
       log.showInfo('onStart');
-      ...
+      // ...
       wifiManager.on('wifiConnectionChange', (data) => {
         this.isConnected = data === 1 ? true : false;
         this.handleUpdateState();
@@ -344,7 +417,7 @@ If "Cannot get SourceMap info, dump raw stack" is displayed, the application is 
         this.isWifiActive = data === 1 ? true : false;
         this.handleUpdateState();
       });
-      ...
+      // ...
     }
     ```
 
@@ -352,11 +425,11 @@ If "Cannot get SourceMap info, dump raw stack" is displayed, the application is 
 
     According to the analysis of the source code, **wifiManager.on()** throws "BussinessError 2501000: Operation failed" occasionally. If this exception does not cause the application to crash, use try-catch to capture and process the exception. Modify the code as follows:
 
-    ```
+    ```ts
     onStart(): void {
       super.onStart();
       log.showInfo('onStart');
-      ...
+      // ...
       try {
         wifiManager.on('wifiConnectionChange', (data) => {
           this.isConnected = data === 1 ? true : false;
@@ -373,7 +446,7 @@ If "Cannot get SourceMap info, dump raw stack" is displayed, the application is 
       } catch (error) {
         log.showError('wifiStateChange error');
       }
-      ...
+      // ...
     }
     ```
 

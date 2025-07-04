@@ -18,11 +18,11 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
     | originName           | string                 | 否   | 起点名称。                                             |
     | originLatitude       | number                 | 否   | 起点纬度。                                             |
     | originLongitude      | number                 | 否   | 起点经度。                                             |
-    | originPoiIds         | Record<number, string> | 否   | 起点POI ID列表，当前仅支持传入花瓣地图和高德地图的POI ID。|
+    | originPoiIds         | Record<number, string> | 否   | 起点POI ID列表，当前仅支持传入花瓣地图、高德地图、百度地图的POI ID。|
     | destinationName      | string                 | 否   | 终点名称。                                             |
     | destinationLatitude  | number                 | 是   | 终点纬度。                                             |
     | destinationLongitude | number                 | 是   | 终点经度。                                             |
-    | destinationPoiIds    | Record<number, string> | 否   | 终点POI ID列表，当前仅支持传入花瓣地图和高德地图的POI ID。|
+    | destinationPoiIds    | Record<number, string> | 否   | 终点POI ID列表，当前仅支持传入花瓣地图、高德地图、百度地图的POI ID。|
     | vehicleType          | number                 | 否   | 交通出行工具，取值：0-驾车，1-步行，2-骑行，3-公交。 |
 
 - 导航场景
@@ -33,7 +33,7 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
     | destinationName      | string                 | 否   | 终点名称。          |
     | destinationLatitude  | number                 | 是   | 终点纬度。          |
     | destinationLongitude | number                 | 是   | 终点经度。          |
-    | destinationPoiIds    | Record<number, string> | 否   | 终点POI ID列表，当前仅支持传入花瓣地图和高德地图的POI ID。|
+    | destinationPoiIds    | Record<number, string> | 否   | 终点POI ID列表，当前仅支持传入花瓣地图、高德地图、百度地图的POI ID。|
 
 - 位置搜索场景
 
@@ -74,15 +74,17 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
 								'destinationLongitude': 118.78315,
 								'destinationName': 'xx市xx路xx号',
 								'destinationPoiIds': {
-									1: '1111', // key为1代表花瓣地图，value需为花瓣地图POI
-									2: '2222'   // key为2代表高德地图，value需为高德地图POI
+									1: '1001', // key为1代表花瓣地图，value需为花瓣地图POI
+									2: '2002', // key为2代表高德地图，value需为高德地图POI
+									3: '3003'  // key为3代表百度地图，value需为百度地图POI
 								} as Record<number, string>,
 								'originName': 'xx市xx公园',
 								'originLatitude': 31.060844,
 								'originLongitude': 120.78315,
 								'originPoiIds': {
-									1: '3333', // key为1代表花瓣地图，value需为花瓣地图POI
-									2: '4444'   // key为2代表高德地图，value需为高德地图POI
+									1: '1101', // key为1代表花瓣地图，value需为花瓣地图POI
+									2: '2202', // key为2代表高德地图，value需为高德地图POI
+									3: '3303'  // key为3代表百度地图，value需为百度地图POI
 								} as Record<number, string>,
 								'vehicleType': 0
 							};
@@ -175,11 +177,11 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
         | originName           | string | 否   | 起点名称。                                             |
         | originLatitude       | number | 否   | 起点纬度。                                             |
         | originLongitude      | number | 否   | 起点经度。                                             |
-        | originPoiId          | string | 否   | 起点POI ID，当前仅支持花瓣地图和高德地图获取此参数。      |
+        | originPoiId          | string | 否   | 起点POI ID，当前仅支持花瓣地图、高德地图、百度地图获取此参数。      |
         | destinationName      | string | 否   | 终点名称。                                             |
         | destinationLatitude  | number | 是   | 终点纬度。                                             |
         | destinationLongitude | number | 是   | 终点经度。                                             |
-        | destinationPoiId     | string | 否   | 终点POI ID，当前仅支持花瓣地图和高德地图获取此参数。      |
+        | destinationPoiId     | string | 否   | 终点POI ID，当前仅支持花瓣地图、高德地图、百度地图获取此参数。      |
         | vehicleType          | number | 否   | 交通出行工具，取值：0-驾车，1-步行，2-骑行，3-公交。 |
     
     - 导航场景
@@ -189,7 +191,7 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
         | destinationName      | string | 否   | 终点名称。   |
         | destinationLatitude  | number | 是   | 终点纬度。   |
         | destinationLongitude | number | 是   | 终点经度。   |
-        | destinationPoiId     | string | 否   | 终点POI ID，当前仅支持花瓣地图和高德地图获取此参数。|
+        | destinationPoiId     | string | 否   | 终点POI ID，当前仅支持花瓣地图、高德地图、百度地图获取此参数。|
 
     - 位置搜索场景
     
@@ -206,7 +208,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-const TAG = 'EntryAbility'
+const TAG = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {
     windowStage: window.WindowStage | null = null;

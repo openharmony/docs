@@ -48,13 +48,13 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateBlur(float sigmaX, float sig
 | float sigmaX | 表示沿x轴方向上高斯模糊的标准差，必须大于0。 |
 | float sigmaY | 表示沿y轴方向上高斯模糊的标准差，必须大于0。 |
 | [OH_Drawing_TileMode](capi-drawing-shader-effect-h.md#oh_drawing_tilemode) tileMode | 图像滤波器效果平铺模式类型，支持可选的具体模式可见[OH_Drawing_TileMode](capi-drawing-shader-effect-h.md#oh_drawing_tilemode)枚举。 |
-| [OH_Drawing_ImageFilter](capi-oh-drawing-imagefilter.md)* imageFilter | 表示将要和当前图像滤波器叠加的输入滤波器, 如果为NULL，表示直接将当前图像滤波器作用于原始图像。 |
+| [OH_Drawing_ImageFilter](capi-drawing-oh-drawing-imagefilter.md)* imageFilter | 表示将要和当前图像滤波器叠加的输入滤波器, 如果为NULL，表示直接将当前图像滤波器作用于原始图像。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_ImageFilter](capi-oh-drawing-imagefilter.md)* | 函数会返回一个指针，指针指向创建的图像滤波器对象[OH_Drawing_ImageFilter](capi-oh-drawing-imagefilter.md)。如果对象返回NULL，表示创建失败；可能的原因是可用内存为空。 |
+| [OH_Drawing_ImageFilter](capi-drawing-oh-drawing-imagefilter.md)* | 函数会返回一个指针，指针指向创建的图像滤波器对象[OH_Drawing_ImageFilter](capi-drawing-oh-drawing-imagefilter.md)。如果对象返回NULL，表示创建失败；可能的原因是可用内存为空。 |
 
 ### OH_Drawing_ImageFilterCreateFromColorFilter()
 
@@ -74,14 +74,14 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateFromColorFilter(OH_Drawing_C
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_ColorFilter](capi-oh-drawing-colorfilter.md)* colorFilter | 指向具有颜色变换效果的颜色滤波器对象[OH_Drawing_ColorFilter](capi-oh-drawing-colorfilter.md)。 |
-| [OH_Drawing_ImageFilter](capi-oh-drawing-imagefilter.md)* imageFilter | 表示将要和当前图像滤波器叠加的输入滤波器, 如果为NULL，表示直接将当前图像滤波器作用于原始图像。 |
+| [OH_Drawing_ColorFilter](capi-drawing-oh-drawing-colorfilter.md)* colorFilter | 指向具有颜色变换效果的颜色滤波器对象[OH_Drawing_ColorFilter](capi-drawing-oh-drawing-colorfilter.md)。 |
+| [OH_Drawing_ImageFilter](capi-drawing-oh-drawing-imagefilter.md)* imageFilter | 表示将要和当前图像滤波器叠加的输入滤波器, 如果为NULL，表示直接将当前图像滤波器作用于原始图像。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_ImageFilter](capi-oh-drawing-imagefilter.md)* | 函数会返回一个指针，指针指向创建的图像滤波器对象[OH_Drawing_ImageFilter](capi-oh-drawing-imagefilter.md)。如果对象返回NULL，表示创建失败；可能的原因是可用内存为空，或者是colorFilter为NULL。 |
+| [OH_Drawing_ImageFilter](capi-drawing-oh-drawing-imagefilter.md)* | 函数会返回一个指针，指针指向创建的图像滤波器对象[OH_Drawing_ImageFilter](capi-drawing-oh-drawing-imagefilter.md)。如果对象返回NULL，表示创建失败；可能的原因是可用内存为空，或者是colorFilter为NULL。 |
 
 ### OH_Drawing_ImageFilterCreateOffset()
 
@@ -104,13 +104,13 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateOffset(float x, float y, OH_
 | -- | -- |
 | float x | 水平方向的平移距离。 |
 | float y | 竖直方向的平移距离。 |
-| [OH_Drawing_ImageFilter](capi-oh-drawing-imagefilter.md)* imageFilter | 需进行平移的滤波器，如果为空，则将无滤波效果的绘制结果进行平移。 |
+| [OH_Drawing_ImageFilter](capi-drawing-oh-drawing-imagefilter.md)* imageFilter | 需进行平移的滤波器，如果为空，则将无滤波效果的绘制结果进行平移。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_ImageFilter](capi-oh-drawing-imagefilter.md)* | 函数会返回一个指针，指针指向创建的图像滤波器对象[OH_Drawing_ImageFilter](capi-oh-drawing-imagefilter.md)。如果对象返回NULL，表示创建失败，可能原因为可用内存为空。 |
+| [OH_Drawing_ImageFilter](capi-drawing-oh-drawing-imagefilter.md)* | 函数会返回一个指针，指针指向创建的图像滤波器对象[OH_Drawing_ImageFilter](capi-drawing-oh-drawing-imagefilter.md)。如果对象返回NULL，表示创建失败，可能原因为可用内存为空。 |
 
 ### OH_Drawing_ImageFilterCreateFromShaderEffect()
 
@@ -131,13 +131,13 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateFromShaderEffect(OH_Drawing_
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_ShaderEffect](capi-oh-drawing-shadereffect.md)* shaderEffct | 表示要应用于图像的着色器效果。 |
+| [OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)* shaderEffct | 表示要应用于图像的着色器效果。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_ImageFilter](capi-oh-drawing-imagefilter.md)* | 函数会返回一个指针，指针指向创建的图像滤波器对象[OH_Drawing_ImageFilter](capi-oh-drawing-imagefilter.md)。如果结果返回NULL，表示创建失败，可能原因为可用内存为空。 |
+| [OH_Drawing_ImageFilter](capi-drawing-oh-drawing-imagefilter.md)* | 函数会返回一个指针，指针指向创建的图像滤波器对象[OH_Drawing_ImageFilter](capi-drawing-oh-drawing-imagefilter.md)。如果结果返回NULL，表示创建失败，可能原因为可用内存为空。 |
 
 ### OH_Drawing_ImageFilterDestroy()
 
@@ -158,6 +158,6 @@ void OH_Drawing_ImageFilterDestroy(OH_Drawing_ImageFilter* imageFilter)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_ImageFilter](capi-oh-drawing-imagefilter.md)* imageFilter | 指向图像滤波器对象[OH_Drawing_ImageFilter](capi-oh-drawing-imagefilter.md)的指针。 |
+| [OH_Drawing_ImageFilter](capi-drawing-oh-drawing-imagefilter.md)* imageFilter | 指向图像滤波器对象[OH_Drawing_ImageFilter](capi-drawing-oh-drawing-imagefilter.md)的指针。 |
 
 

@@ -1,4 +1,4 @@
-# Subscribing to Task execution timeout events (C/C++)
+# Subscribing to Task Execution Timeout Events (C/C++)
 
 ## Available APIs
 
@@ -40,12 +40,12 @@ The following describes how to subscribe to the freeze event triggered by a butt
 
 2. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
 
-  ```cmake
-  # Add the jsoncpp.cpp file, which is used to parse the JSON strings in the subscription events.
-  add_library(entry SHARED napi_init.cpp jsoncpp.cpp)
-  # Add libhiappevent_ndk.z.so, libhilog_ndk.z.so (log output), and libohhicollie.so (HiCollie detection).
-  target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libohhicollie.so libhiappevent_ndk.z.so)
-  ```
+    ```cmake
+    # Add the jsoncpp.cpp file, which is used to parse the JSON strings in the subscription events.
+    add_library(entry SHARED napi_init.cpp jsoncpp.cpp)
+    # Add libhiappevent_ndk.z.so, libhilog_ndk.z.so (log output), and libohhicollie.so (HiCollie detection).
+    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libohhicollie.so libhiappevent_ndk.z.so)
+    ```
 
 3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
 
@@ -212,7 +212,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
     static napi_value Init(napi_env env, napi_value exports)
     {
         napi_property_descriptor desc[] = {
-           { "registerWatcher", nullptr, RegisterWatcher, nullptr, nullptr, nullptr, napi_default, nullptr },
+           { "RegisterWatcher", nullptr, RegisterWatcher, nullptr, nullptr, nullptr, napi_default, nullptr },
         };
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
@@ -222,7 +222,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
     In the **index.d.ts** file, define the ArkTS API.
 
     ```typescript
-    export const registerWatcher: () => void;
+    export const RegisterWatcher: () => void;
     ```
 
 6. Register **TestHiCollieTimerNdk** as an ArkTS API.
@@ -233,8 +233,8 @@ The following describes how to subscribe to the freeze event triggered by a butt
     static napi_value Init(napi_env env, napi_value exports)
     {
         napi_property_descriptor desc[] = {
-            { "registerWatcher", nullptr, RegisterWatcher, nullptr, nullptr, nullptr, napi_default, nullptr },
-            { "testHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr },
+            { "RegisterWatcher", nullptr, RegisterWatcher, nullptr, nullptr, nullptr, napi_default, nullptr },
+            { "TestHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr },
         };
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
@@ -268,16 +268,16 @@ The following describes how to subscribe to the freeze event triggered by a butt
 
     // Add the API to onCreate().
     // Register the system event watcher at startup.
-    testNapi.registerWatcher();
+    testNapi.RegisterWatcher();
     ```
 
 8. In the **Index.ets** file, add a button to trigger the task execution timeout event.
 
     ```typescript
-    Button("testHiCollieTimerNdk")
+    Button("TestHiCollieTimerNdk")
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .onClick(testNapi.testHiCollieTimerNdk);
+      .onClick(testNapi.TestHiCollieTimerNdk);
     ```
 
 9. In DevEco Studio, click the **Run** button to run the project. Then, click the **testHiCollieTimerNdk** button to trigger a task execution timeout event.

@@ -31,7 +31,7 @@ Zips a file. This API uses a promise to return the result.
 | outFile | string              | Yes  | Path of the zipped file. The file name extension is .zip.                 |
 | options | [Options](#options) | Yes  | Optional parameters for the zip operation.                                            |
 
-**Return value**
+**Returns**
 
 | Type          | Description                                                        |
 | -------------- | ------------------------------------------------------------ |
@@ -67,6 +67,8 @@ Unzips a file. This API uses a promise to return the result.
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [zlib.decompressFile](#zlibdecompressfile9) instead.
+>
+> The name of the zipped file or zipped folder cannot contain two consecutive periods (..) or start with a slash (/).
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
@@ -74,11 +76,11 @@ Unzips a file. This API uses a promise to return the result.
 
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the file to unzip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md).|
+| inFile  | string              | Yes  | Path of the file to unzip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). If the.zip file to be unzipped contains Chinese file names or folder names, use UTF-8 to encode them. Otherwise, garbled characters may be displayed after unzipping.|
 | outFile | string              | Yes  | Path of the unzipped file.                                        |
 | options | [Options](#options) | Yes  | Optional parameters for the unzip operation.                                            |
 
-**Return value**
+**Returns**
 
 | Type          | Description                                                        |
 | -------------- | ------------------------------------------------------------ |
@@ -113,7 +115,7 @@ Compresses a file. This API uses an asynchronous callback to return the result. 
 
 > **NOTE**
 >
->To avoid path traversal, the input parameters of **inFile** and **outFile** cannot contain **../** since API version 13. Otherwise, error codes 900001 and 900002 are returned.
+> To avoid path traversal, the input parameters of **inFile** and **outFile** cannot contain **../** since API version 13. Otherwise, error codes 900001 and 900002 are returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -173,7 +175,7 @@ Compresses a file. This API uses a promise to return the result. If the operatio
 
 > **NOTE**
 >
->To avoid path traversal, the input parameters of **inFile** and **outFile** cannot contain **../** since API version 13. Otherwise, error codes 900001 and 900002 are returned.
+> To avoid path traversal, the input parameters of **inFile** and **outFile** cannot contain **../** since API version 13. Otherwise, error codes 900001 and 900002 are returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -187,7 +189,7 @@ Compresses a file. This API uses a promise to return the result. If the operatio
 | outFile | string              | Yes  | Path of the compressed file. When multiple threads compress files at the same time, the values of **outFile** must be different.                                          |
 | options | [Options](#options) | Yes  | Compression parameters.                                              |
 
-**Return value**
+**Returns**
 
 | Type          | Description                   |
 | -------------- | ----------------------- |
@@ -238,7 +240,9 @@ Decompresses a file. This API uses an asynchronous callback to return the result
 
 > **NOTE**
 >
->To avoid path traversal, the input parameters of **inFile** and **outFile** cannot contain **../** since API version 13. Otherwise, error codes 900001 and 900002 are returned.
+> To avoid path traversal, the input parameters of **inFile** and **outFile** cannot contain **../** since API version 13. Otherwise, error codes 900001 and 900002 are returned.
+>
+> The name of the zipped file or zipped folder cannot contain two consecutive periods (..) or start with a slash (/). Otherwise, the error code 900003 is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -248,7 +252,7 @@ Decompresses a file. This API uses an asynchronous callback to return the result
 
 | Name                 | Type               | Mandatory| Description                                                        |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | Yes  | Path of the file to decompress. The file name extension must be .zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md).|
+| inFile                  | string              | Yes  | Path of the file to decompress. The file name extension must be .zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). If the.zip file to be unzipped contains Chinese file names or folder names, use UTF-8 to encode them. Otherwise, garbled characters may be displayed after unzipping.|
 | outFile                 | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). If a file or folder with the same name already exists in the path, they will be overwritten. When multiple threads decompress files at the same time, the values of **outFile** must be different.|
 | options                 | [Options](#options) | Yes  | Decompression parameters.                                            |
 | callback | AsyncCallback\<void>            | Yes  | Callback used to return the result.                                              |
@@ -298,7 +302,9 @@ Decompresses a file. This API uses a promise to return the result.
 
 > **NOTE**
 >
->To avoid path traversal, the input parameters of **inFile** and **outFile** cannot contain **../** since API version 13. Otherwise, error codes 900001 and 900002 are returned.
+> To avoid path traversal, the input parameters of **inFile** and **outFile** cannot contain **../** since API version 13. Otherwise, error codes 900001 and 900002 are returned.
+>
+> The name of the zipped file or zipped folder cannot contain two consecutive periods (..) or start with a slash (/). Otherwise, the error code 900003 is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -308,11 +314,11 @@ Decompresses a file. This API uses a promise to return the result.
 
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the file to decompress. The file name extension must be .zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md).|
+| inFile  | string              | Yes  | Path of the file to decompress. The file name extension must be .zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). If the.zip file to be unzipped contains Chinese file names or folder names, use UTF-8 to encode them. Otherwise, garbled characters may be displayed after unzipping.|
 | outFile | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). If a file or folder with the same name already exists in the path, they will be overwritten. When multiple threads decompress files at the same time, the values of **outFile** must be different.|
 | options | [Options](#options) | No  | Decompression parameters.                                          |
 
-**Return value**
+**Returns**
 
 | Type          | Description                   |
 | -------------- | ----------------------- |
@@ -362,7 +368,9 @@ Decompresses a file. This API uses an asynchronous callback to return the result
 
 > **NOTE**
 >
->To avoid path traversal, the input parameters of **inFile** and **outFile** cannot contain **../** since API version 13. Otherwise, error codes 900001 and 900002 are returned.
+> To avoid path traversal, the input parameters of **inFile** and **outFile** cannot contain **../** since API version 13. Otherwise, error codes 900001 and 900002 are returned.
+>
+> The name of the zipped file or zipped folder cannot contain two consecutive periods (..) or start with a slash (/). Otherwise, the error code 900003 is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -372,7 +380,7 @@ Decompresses a file. This API uses an asynchronous callback to return the result
 
 | Name                 | Type               | Mandatory| Description                                                        |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | Yes  | Path of the file to decompress. The file name extension must be .zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md).|
+| inFile                  | string              | Yes  | Path of the file to decompress. The file name extension must be .zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). If the.zip file to be unzipped contains Chinese file names or folder names, use UTF-8 to encode them. Otherwise, garbled characters may be displayed after unzipping.|
 | outFile                 | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). If a file or folder with the same name already exists in the path, they will be overwritten. When multiple threads decompress files at the same time, the values of **outFile** must be different.|
 | callback | AsyncCallback\<void>            | Yes  | Callback used to return the result.                                              |
 
@@ -425,7 +433,7 @@ Obtains the original size of a compressed file and uses a promise to asynchronou
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
 | compressedFile  | string              | Yes  | Specifies the path of the compressed file. Only .zip files are supported. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md).|
 
-**Return value**
+**Returns**
 
 | Type          | Description                   |
 | -------------- | ----------------------- |
@@ -480,7 +488,7 @@ Compresses multiple specified files and uses a promise to asynchronously return 
 | outFile | string              | Yes  | Path of the compressed file. When multiple threads compress files at the same time, the values of **outFile** must be different.|
 | options | [Options](#options) | Yes  | Compression parameters.                                            |
 
-**Return value**
+**Returns**
 
 | Type               | Description                   |
 | ------------------- | ----------------------- |
@@ -534,7 +542,7 @@ Creates a checksum object and uses a promise to asynchronously return the result
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                                  | Description                           |
 | -------------------------------------- | ------------------------------- |
@@ -560,7 +568,7 @@ Creates a checksum object. A checksum object instance is returned upon a success
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                   | Description          |
 | ----------------------- | -------------- |
@@ -595,7 +603,7 @@ Calculates the Adler-32 checksum. This API uses a promise to return the result. 
 | adler  | number      | Yes  | Initial value of the Adler-32 checksum.|
 | buf    | ArrayBuffer | Yes  | Data buffer for calculating the checksum.  |
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
@@ -647,7 +655,7 @@ Combines two Adler-32 checksums. This API uses a promise to return the result. T
 | adler2 | number | Yes  | The second Adler-32 checksum to be combined.      |
 | len2   | number | Yes  | Length of the data block of the second Adler-32 checksum.|
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
@@ -709,7 +717,7 @@ Updates the CRC-32 checksum. This API uses a promise to return the result. The u
 | crc    | number      | Yes  | Initial value of the CRC-32 checksum.|
 | buf    | ArrayBuffer | Yes  | Data buffer for calculating the checksum.|
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                 |
 | --------------------- | ------------------------------------- |
@@ -763,7 +771,7 @@ Combines two CRC-32 checksums and uses a promise to asynchronously return the re
 | crc2 | number | Yes  | The second CRC-32 checksum to be combined.      |
 | len2   | number | Yes  | Indicates the length of the second data block checked by CRC-32|
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                 |
 | --------------------- | ------------------------------------- |
@@ -825,11 +833,11 @@ Updates the CRC-64 checksum. This API uses a promise to return the result. The u
 | crc    | number      | Yes  | Initial value of the CRC-64 checksum.|
 | buf    | ArrayBuffer | Yes  | Data buffer for calculating the checksum.|
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                 |
 | --------------------- | ------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result.   |
+| Promise&lt;number&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -871,7 +879,7 @@ Outputs the CRC-32 checksum table and uses a promise to asynchronously return th
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                              | Description                           |
 | ---------------------------------- | ------------------------------- |
@@ -901,7 +909,7 @@ Outputs the CRC-64 checksum table and uses a promise to asynchronously return th
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                              | Description                           |
 | ---------------------------------- | ------------------------------- |
@@ -931,7 +939,7 @@ Creates an instance of a compressed or decompressed object and uses a promise to
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                        | Description                                 |
 | ---------------------------- | ------------------------------------- |
@@ -961,7 +969,7 @@ Creates an instance of a compressed or decompressed object. The instance of the 
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type         | Description                    |
 | ------------- | ------------------------ |
@@ -977,19 +985,19 @@ let zip = zlib.createZipSync();
 
 ## Zip<sup>12+</sup>
 
-Compresses and decompresses an object instance.
+Provides APIs to zip or unzip data in Zlib, Deflate, or Gzip format.
 
 ### getZStream<sup>12+</sup>
 
 getZStream(): Promise&lt;ZStream&gt;
 
-Outputs a stream. This API uses a promise to return the result. A zlib stream is returned upon success.
+Outputs a stream. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                                | Description                     |
 | ------------------------------------ | ------------------------- |
@@ -1017,7 +1025,7 @@ Obtains the version information of the currently linked **zlib** library. This A
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                   |
 | --------------------- | --------------------------------------- |
@@ -1045,7 +1053,7 @@ Returns a flag indicating a compile-time option. This API uses a promise to retu
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                   |
 | --------------------- | --------------------------------------- |
@@ -1079,9 +1087,9 @@ Compresses the source buffer to the destination buffer. This API uses a promise 
 | --------- | ----------- | ---- | -------------- |
 | dest      | ArrayBuffer | Yes  | Destination buffer.  |
 | source    | ArrayBuffer | Yes  | Source buffer.|
-| sourceLen | number      | No  | Length of the source data.  |
+| sourceLen | number      | No  | Length of the source data. The default value is **0**.  |
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                                           |
 | ------------------------------------------------ | ----------------------------------------------- |
@@ -1094,7 +1102,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800007 | Buffer error.                                                |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **Example**
 
@@ -1136,9 +1144,9 @@ Compresses the source buffer to the destination buffer. This API uses a promise 
 | dest      | ArrayBuffer   | Yes  | Destination buffer.                                 |
 | source    | ArrayBuffer   | Yes  | Source buffer.                               |
 | level     | CompressLevel | Yes  | For details, see [CompressLevel](#compresslevel).|
-| sourceLen | number        | No  | Length of the source data.                                 |
+| sourceLen | number        | No  | Length of the source data. The default value is **0**.                                 |
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                                           |
 | ------------------------------------------------ | ----------------------------------------------- |
@@ -1151,8 +1159,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800007 | Buffer error.                                                |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **Example**
 
@@ -1193,9 +1201,9 @@ Decompresses the compressed data into the original form. This API uses a promise
 | --------- | ----------- | ---- | -------------- |
 | dest      | ArrayBuffer | Yes  | Destination buffer.  |
 | source    | ArrayBuffer | Yes  | Source buffer.|
-| sourceLen | number      | No  | Length of the source data.  |
+| sourceLen | number      | No  | Length of the source data. The default value is **0**.  |
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                                           |
 | ------------------------------------------------ | ----------------------------------------------- |
@@ -1208,8 +1216,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800005 | Data error.                                                  |
-| 17800007 | Buffer error.                                                |
+| 17800005 | The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed. |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **Example**
 
@@ -1254,9 +1262,9 @@ Decompresses the compressed data into the original form. This API uses a promise
 | --------- | ----------- | ---- | -------------- |
 | dest      | ArrayBuffer | Yes  | Destination buffer.  |
 | source    | ArrayBuffer | Yes  | Source buffer.|
-| sourceLen | number      | No  | Length of the source data.  |
+| sourceLen | number      | No  | Length of the source data. The default value is **0**.  |
 
-**Return value**
+**Returns**
 
 | Type                                                        | Description                                                       |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
@@ -1269,8 +1277,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800005 | Data error.                                                  |
-| 17800007 | Buffer error.                                                |
+| 17800005 | The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed. |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **Example**
 
@@ -1315,7 +1323,7 @@ Calculates the maximum size of the compressed data to be returned. This API uses
 | --------- | ------ | ---- | ------------ |
 | sourceLen | number | Yes  | Length of the source data.|
 
-**Return value**
+**Returns**
 
 | Type                 | Description                             |
 | --------------------- | --------------------------------- |
@@ -1368,7 +1376,7 @@ Verifies the checksum inside the compressed stream. This API uses a promise to r
 | strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 | check  | number  | Yes  | Expected checksum.                 |
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -1381,7 +1389,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -1427,7 +1435,7 @@ Finds the synchronization point of the current decompressed stream. This API use
 | ------ | ------- | ---- | ------------------------------- |
 | strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -1440,7 +1448,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -1486,7 +1494,7 @@ Skips invalid compressed data until a complete re-render point is found. This AP
 | ------ | ------- | ---- | ------------------------------- |
 | strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -1499,9 +1507,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800005 | Data error.                                                  |
-| 17800007 | Buffer error.                                                |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
+| 17800005 | The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed. |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **Example**
 
@@ -1578,7 +1586,7 @@ Resets the state of the decompressed stream to preserve the allocated Huffman Tr
 | ------ | ------- | ---- | ------------------------------- |
 | strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -1591,7 +1599,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -1638,7 +1646,7 @@ Initializes the decompression dictionary from a given uncompressed byte sequence
 | strm       | ZStream     | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 | dictionary | ArrayBuffer | Yes  | Dictionary data.                     |
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -1651,8 +1659,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800005 | Data error.                                                  |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
+| 17800005 | The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed. |
 
 **Example**
 
@@ -1734,9 +1742,9 @@ Initializes the decompression dictionary from a given uncompressed byte sequence
 | Name    | Type   | Mandatory| Description                           |
 | ---------- | ------- | ---- | ------------------------------- |
 | strm       | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
-| windowBits | number  | Yes  | The logarithm with base 2 based on the maximum window size.  |
+| windowBits | number  | Yes  | Memory window size. The value is restricted in certain range based on the data formats. The options are as follows:<br>Zlib: [1, 15]<br>Gzip: (15, +∞)<br>Raw Deflate: [-15, -1]  |
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -1749,7 +1757,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -1795,7 +1803,7 @@ Equivalent to call the **inflateEnd** API and then **inflateInit** API. However,
 | ------ | ------- | ---- | ------------------------------- |
 | strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -1808,7 +1816,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -1856,7 +1864,7 @@ Initializes the decompression dictionary from a given uncompressed byte sequence
 | bits   | number  | Yes  | Given bits.                     |
 | value  | number  | Yes  | Given value.                     |
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -1869,7 +1877,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -1915,7 +1923,7 @@ Marks the location of the input data for random access. This API uses a promise 
 | ------ | ------- | ---- | ------------------------------- |
 | strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
-**Return value**
+**Returns**
 
 | Type                 | Description                       |
 | --------------------- | --------------------------- |
@@ -1972,9 +1980,9 @@ Initializes the internal stream state for decompression. This API uses a promise
 | Name    | Type   | Mandatory| Description                           |
 | ---------- | ------- | ---- | ------------------------------- |
 | strm       | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
-| windowBits | number  | Yes  | The logarithm with base 2 based on the maximum window size.  |
+| windowBits | number  | Yes  | Memory window size. The value is restricted in certain range based on the data formats. The options are as follows:<br>Zlib: [1, 15]<br>Gzip: (15, +∞)<br>Raw Deflate: [-15, -1]  |
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -1987,7 +1995,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -2029,7 +2037,7 @@ Initializes the internal stream state for decompression. This API uses a promise
 | ------ | ------- | ---- | ------------------------------- |
 | strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -2084,7 +2092,7 @@ Sets the header information of a gzip file before decompressing data. This API u
 | strm   | ZStream                 | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12). |
 | header | [GzHeader](#gzheader12) | Yes  | Header information of a gzip file extracted from the compressed data stream.|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -2097,7 +2105,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -2144,7 +2152,7 @@ Obtains the content and length of the decompression dictionary used in the curre
 | strm       | ZStream     | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 | dictionary | ArrayBuffer | Yes  | Receives the actual contents of the decompression dictionary.     |
 
-**Return value**
+**Returns**
 
 | Type                                                        | Description                                   |
 | ------------------------------------------------------------ | --------------------------------------- |
@@ -2157,7 +2165,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -2203,7 +2211,7 @@ Frees up all dynamically allocated data structures of the decompression stream. 
 | ------ | ------- | ---- | ------------------------------- |
 | strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -2216,7 +2224,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -2267,7 +2275,7 @@ Copies the decompression stream. This API uses a promise to return the result. T
 | ------ | ---- | ---- | ----------------------- |
 | source | Zip  | Yes  | For details, see [Zip<sup>12+</sup>](#zip12).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -2280,7 +2288,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -2326,7 +2334,7 @@ Describes the number of Huffman Trees used in the current decompression stream. 
 | ------ | ------- | ---- | ------------------------------- |
 | strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                         |
 | --------------------- | --------------------------------------------- |
@@ -2383,10 +2391,10 @@ Initializes the internal stream state for decompression before using the **infla
 | Name    | Type       | Mandatory| Description                                         |
 | ---------- | ----------- | ---- | --------------------------------------------- |
 | strm       | ZStream     | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).              |
-| windowBits | number      | Yes  | The logarithm with base 2 based on the maximum window size. The value ranges from 8 to 15.|
+| windowBits | number      | Yes  | Memory window size. The value is restricted in certain range based on the data formats. The options are as follows:<br>Zlib: [1, 15]<br>Gzip: (15, +∞)<br>Raw Deflate: [-15, -1]|
 | window     | ArrayBuffer | Yes  | Preset window buffer.                           |
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -2399,7 +2407,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -2421,7 +2429,7 @@ Releases all memory allocated by the **inflateBackInit()** function. This API us
 | ------ | ------- | ---- | ------------------------------- |
 | strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -2434,7 +2442,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -2460,7 +2468,7 @@ Uses callback APIs to input and output data for raw decompression. This API uses
 | backOut | InflateBackOutputCallback | Yes  | Writes the decompressed data to the destination buffer.                                |
 | outDesc | object                    | Yes  | Common object.                                                  |
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -2473,7 +2481,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified. <br>2. Incorrect parameter types. <br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -2628,7 +2636,7 @@ Inputs data.
 | ------ | ------ | ---- | ------------------ |
 | inDesc | object | Yes  | User-defined data object.|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -2652,7 +2660,7 @@ Outputs data.
 | buf     | ArrayBuffer | Yes  | Stores the data to be written.|
 | length  | number      | Yes  | Length of the data written to the output buffer.|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -2675,7 +2683,7 @@ Decompresses the data. This API uses a promise to return the result. The result 
 | strm   | ZStream           | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                    |
 | flush  | CompressFlushMode | Yes  | For details, see [CompressFlushMode](#compressflushmode12).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -2688,8 +2696,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800005 | Data error.                                                  |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
+| 17800005 | The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed. |
 
 **Example**
 
@@ -2762,7 +2770,7 @@ Initializes the internal stream state for compression. This API uses a promise t
 | strm   | ZStream       | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).              |
 | level  | CompressLevel | Yes  | For details, see [CompressLevel](#compresslevel).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -2775,7 +2783,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -2822,11 +2830,11 @@ Initializes the internal stream state for compression. This API uses a promise t
 | strm       | ZStream          | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                    |
 | level      | CompressLevel    | Yes  | For details, see [CompressLevel](#compresslevel).      |
 | method     | CompressMethod   | Yes  | For details, see [CompressMethod](#compressmethod12).  |
-| windowBits | number           | Yes  | The logarithm with base 2 based on the maximum window size.                      |
+| windowBits | number           | Yes  | Memory window size. The value is restricted in certain range based on the data formats. The options are as follows:<br>Zlib: [1, 15]<br>Gzip: (15, +∞)<br>Raw Deflate: [-15, -1]                      |
 | memLevel   | MemLevel         | Yes  | For details, see [MemLevel](#memlevel).                |
 | strategy   | CompressStrategy | Yes  | For details, see [CompressStrategy](#compressstrategy).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -2839,7 +2847,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -2887,7 +2895,7 @@ Compresses data. This API uses a promise to return the result. The result state 
 | strm   | ZStream           | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                    |
 | flush  | CompressFlushMode | Yes  | For details, see [CompressFlushMode](#compressflushmode12).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -2900,8 +2908,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800007 | Buffer error.                                                |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **Example**
 
@@ -2952,7 +2960,7 @@ Frees up all dynamically allocated data structures of the compression stream. Th
 | ------ | ------- | ---- | ------------------------------- |
 | strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -2965,7 +2973,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -3022,7 +3030,7 @@ Calculates the maximum size of the compressed data. This API uses a promise to r
 | strm      | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 | sourceLength | number  | Yes  | Length of the source data.                   |
 
-**Return value**
+**Returns**
 
 | Type                 | Description                             |
 | --------------------- | --------------------------------- |
@@ -3086,7 +3094,7 @@ Provides the header information of the gzip file when **deflateInit2()** request
 | strm   | ZStream                 | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12). |
 | head   | [GzHeader](#gzheader12) | Yes  | Header information of a gzip file extracted from the compressed data stream.|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -3099,7 +3107,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -3151,7 +3159,7 @@ Copies the compression stream. This API uses a promise to return the result. The
 | ------ | ---- | ---- | ----------------------- |
 | source | Zip  | Yes  | For details, see [Zip<sup>12+</sup>](#zip12).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -3164,7 +3172,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -3216,7 +3224,7 @@ Initializes the compression dictionary from a given sequence of bytes. This API 
 | strm       | ZStream     | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 | dictionary | ArrayBuffer | Yes  | Dictionary data.                     |
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -3229,7 +3237,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -3281,7 +3289,7 @@ Obtains the content and length of the decompression dictionary used in the curre
 | strm       | ZStream     | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 | dictionary | ArrayBuffer | Yes  | Receives the actual contents of the decompression dictionary.     |
 
-**Return value**
+**Returns**
 
 | Type                                                        | Description                                   |
 | ------------------------------------------------------------ | --------------------------------------- |
@@ -3294,7 +3302,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -3349,12 +3357,12 @@ Fine-tunes the internal compressed parameters of **deflate**. This API uses a pr
 | Name    | Type   | Mandatory| Description                           |
 | ---------- | ------- | ---- | ------------------------------- |
 | strm       | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
-| goodLength | number  | Yes  | Matching length threshold.               |
-| maxLazy    | number  | Yes  | Matching maximum delay.             |
+| goodLength | number  | Yes  | Matched length threshold.               |
+| maxLazy    | number  | Yes  | Delay matching policy used when the compression algorithm builds a Huffman tree. The value is an integer ranging from 0 to 4. **1**–**4**: A larger value indicates a lazier algorithm, which performs a slower matching process but generates a better compression result. **0**: Lazy matching is disabled. The algorithm builds a Huffman tree as soon as possible. The compression speed is fast, but the compression ratio is low. |
 | niceLength | number  | Yes  | Appropriate delay length threshold.             |
 | maxChain   | number  | Yes  | Maximum chain length.                   |
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -3367,7 +3375,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -3418,7 +3426,7 @@ Equivalent to call the **deflateEnd** API and then **deflateInit** API. However,
 | ------ | ------- | ---- | ------------------------------- |
 | strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -3431,7 +3439,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -3482,7 +3490,7 @@ Resets the initialized deflate compression stream, but retains the compression p
 | ------ | ------- | ---- | ------------------------------- |
 | strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -3495,7 +3503,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -3546,7 +3554,7 @@ Returns the number of bytes and bits that has been generated but has not yet bee
 | ------ | ------- | ---- | ------------------------------- |
 | strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
-**Return value**
+**Returns**
 
 | Type                                                        | Description                                             |
 | ------------------------------------------------------------ | ------------------------------------------------- |
@@ -3559,7 +3567,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -3612,7 +3620,7 @@ Dynamically updates the compression level and compression strategy. This API use
 | level    | CompressLevel    | Yes  | For details, see [CompressLevel](#compresslevel).      |
 | strategy | CompressStrategy | Yes  | For details, see [CompressStrategy](#compressstrategy).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -3625,7 +3633,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -3678,7 +3686,7 @@ Inserts bits and values into the compression stream. This API uses a promise to 
 | bits   | number  | Yes  | Number of bits to be inserted. The value ranges from 0 to 16. |
 | value  | number  | Yes  | Bit value corresponding to the number of bits.           |
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -3691,7 +3699,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -3787,7 +3795,13 @@ async function demo() {
 | PARALLEL_STRATEGY_SEQUENTIAL             | 0    | Serial compression/decompression policy (default).|
 | PARALLEL_STRATEGY_PARALLEL_DECOMPRESSION | 1    | Parallel decompression policy.           |
 
-## ErrorCode
+## ErrorCode<sup>(deprecated)<sup>
+
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 7.
+> 
+> This module is deprecated since API version 9.
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
@@ -3926,7 +3940,7 @@ Creates a gzip object. This API uses a promise to return the result. The gzip ob
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                          | Description                           |
 | ------------------------------ | ------------------------------- |
@@ -3952,7 +3966,7 @@ Creates a gzip object. The gzip object instance is returned upon a success.
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type           | Description          |
 | --------------- | -------------- |
@@ -3987,7 +4001,7 @@ Associates gzip file with the file descriptor (fd) and opens the file for readin
 | fd     | number | Yes  | File descriptor. Generally, the value is obtained by calling the **open** method or other methods.|
 | mode   | string | Yes  | Specifies the access mode.                                          |
 
-**Return value**
+**Returns**
 
 | Type               | Description                   |
 | ------------------- | ----------------------- |
@@ -4028,9 +4042,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzdopenDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzdopenDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4056,7 +4071,7 @@ Sets the internal buffer size for the current library function. This API uses a 
 | ------ | ------ | ---- | -------------------------- |
 | size   | number | Yes  | Size of the internal buffer to be set.|
 
-**Return value**
+**Returns**
 
 | Type                 | Description                        |
 | --------------------- | ---------------------------- |
@@ -4075,7 +4090,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { zlib } from '@kit.BasicServicesKit'
+import { zlib } from '@kit.BasicServicesKit';
 
 async function gzbufferDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzbuffer");
@@ -4099,9 +4114,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzbufferDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzbufferDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4115,7 +4131,7 @@ struct Index {
 
 gzopen(path: string, mode: string): Promise&lt;void&gt;
 
-Opens the gzip file in the specified path for reading and decompressing, or compressing and writing. This API uses a promise to return the result.
+Opens the .gz file in the specified path for reading and decompressing, or compressing and writing. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4128,7 +4144,7 @@ Opens the gzip file in the specified path for reading and decompressing, or comp
 | path   | string | Yes  | Path of the file to be opened.|
 | mode   | string | Yes  | Specifies a method for opening a file.  |
 
-**Return value**
+**Returns**
 
 | Type               | Description                   |
 | ------------------- | ----------------------- |
@@ -4168,9 +4184,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzopenDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzopenDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4190,7 +4207,7 @@ Checks whether the read position (position from which data is read) of the gzip 
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
@@ -4232,9 +4249,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzeofDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzeofDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4254,7 +4272,7 @@ Checks whether the specified gzip file handle directly accesses the original unc
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                              |
 | --------------------- | -------------------------------------------------- |
@@ -4286,9 +4304,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzdirectDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzdirectDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4302,13 +4321,13 @@ struct Index {
 
 gzclose(): Promise&lt;ReturnStatus&gt;
 
-Clears all pending output of the file. Closes the file and releases decompression or compression state if necessary. This API uses a promise to return the result. The result state is returned.
+Clears all pending output of the file. Closes the file and releases the decompression or compression state if necessary. This API uses a promise to return the result. The result state is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -4320,7 +4339,7 @@ For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
 | ID| Error Message                 |
 | -------- | ------------------------- |
-| 17800004 | ZStream error.            |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 | 17800006 | Memory allocation failed. |
 
 **Example**
@@ -4348,9 +4367,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzcloseDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzcloseDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4370,7 +4390,7 @@ Clears the errors and end-of-file flags of a file. This API uses a promise to re
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type               | Description                   |
 | ------------------- | ----------------------- |
@@ -4414,9 +4434,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzclearerrDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzclearerrDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4436,7 +4457,7 @@ Describes the last error message that reported for the file. This API uses a pro
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                                                    | Description                                                     |
 | -------------------------------------------------------- | --------------------------------------------------------- |
@@ -4448,7 +4469,7 @@ For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
 | ID| Error Message      |
 | -------- | -------------- |
-| 17800004 | ZStream error. |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -4488,9 +4509,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzerrorDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzerrorDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4510,7 +4532,7 @@ Reads and decompresses a byte from a file. This API uses a promise to return the
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                |
 | --------------------- | ------------------------------------ |
@@ -4553,9 +4575,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzgetcDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzgetcDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4581,7 +4604,7 @@ Flushes all pending output into a compressed file. This API uses a promise to re
 | ------ | ----------------- | ---- | ------------------------------------------------------------ |
 | flush  | CompressFlushMode | Yes  | Controls the flushing mode. For details, see [CompressFlushMode](#compressflushmode12).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -4594,7 +4617,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -4622,9 +4645,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzflushDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzflushDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4652,7 +4676,7 @@ Compresses data blocks that are declared with size and nitems from the buffer an
 | size   | number      | Yes  | Number of bytes in a single data block.|
 | nitems | number      | Yes  | Number of data blocks to be written.    |
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                               |
 | --------------------- | --------------------------------------------------- |
@@ -4698,9 +4722,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzfwriteDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzfwriteDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4728,7 +4753,7 @@ Decompresses and reads data from a gzip file. This API uses a promise to return 
 | size   | number      | Yes  | Number of bytes in a single data block.        |
 | nitems | number      | Yes  | Number of data blocks to be written.            |
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                               |
 | --------------------- | --------------------------------------------------- |
@@ -4778,9 +4803,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzfreadDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzfreadDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4800,7 +4826,7 @@ Implements the same functions as that of **gzclose()** for writing or appending.
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -4812,7 +4838,7 @@ For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
 | ID| Error Message                 |
 | -------- | ------------------------- |
-| 17800004 | ZStream error.            |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 | 17800006 | Memory allocation failed. |
 
 **Example**
@@ -4840,9 +4866,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzclosewDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzclosewDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4862,7 +4889,7 @@ Implements the same functions as that of **gzclose()** for reading only. This AP
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -4874,7 +4901,7 @@ For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
 | ID| Error Message      |
 | -------- | -------------- |
-| 17800004 | ZStream error. |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -4903,9 +4930,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzcloserDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzcloserDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4930,7 +4958,7 @@ Compresses the uncompressed bytes of the declared length in the buffer and write
 | buf    | ArrayBuffer | Yes  | Data buffer pointed by an object to be written.|
 | len    | number      | Yes  | Length of uncompressed bytes.            |
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                 |
 | --------------------- | ------------------------------------- |
@@ -4976,9 +5004,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzwriteDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzwriteDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5002,7 +5031,7 @@ Pushes **c** back into the input stream so that it will be read as the first cha
 | ------ | ------ | ---- | ------------------------ |
 | c      | number | Yes  | Characters before being pushed into the input stream.|
 
-**Return value**
+**Returns**
 
 | Type                 | Description                         |
 | --------------------- | ----------------------------- |
@@ -5046,9 +5075,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzungetcDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzungetcDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5068,7 +5098,7 @@ Returns the start position of the next **gzread** or **gzwrite** in the file. Th
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                                    |
 | --------------------- | -------------------------------------------------------- |
@@ -5108,9 +5138,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gztellDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gztellDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5137,7 +5168,7 @@ Dynamically updates the compression level and compression policy of a file. This
 | level    | CompressLevel    | Yes  | Compression level. For details, see [CompressLevel](#compresslevel).     |
 | strategy | CompressStrategy | Yes  | Compression policy. For details, see [CompressStrategy](#compressstrategy).|
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -5150,7 +5181,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **Example**
 
@@ -5179,9 +5210,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzsetparamsDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzsetparamsDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5208,7 +5240,7 @@ Sets the start position to the offset position relative to the next **gzread** o
 | offset | number               | Yes  | Target offset position.                                              |
 | whence | OffsetReferencePoint | Yes  | Defines the reference point for the offset. For details, see [OffsetReferencePoint](#offsetreferencepoint12).|
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
@@ -5249,9 +5281,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzseekDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzseekDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5271,7 +5304,7 @@ Repositions the file pointer to the beginning of the file. This feature is appli
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                                          | Description                       |
 | ---------------------------------------------- | --------------------------- |
@@ -5313,9 +5346,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzrewindDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzrewindDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5341,7 +5375,7 @@ Reads a maximum of **len** uncompressed bytes from a file and decompresses them 
 | ------ | ----------- | ---- | -------------- |
 | buf    | ArrayBuffer | Yes  | Target offset position.|
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
@@ -5391,9 +5425,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzreadDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzreadDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5419,7 +5454,7 @@ Compresses the given null-terminated strings and writes them to the file, exclud
 | ------ | ------ | ---- | ---------------------- |
 | str    | string | Yes  | Format descriptors and plain text.|
 
-**Return value**
+**Returns**
 
 | Type                 | Description                           |
 | --------------------- | ------------------------------- |
@@ -5460,9 +5495,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzputsDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzputsDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5488,7 +5524,7 @@ Compresses **char** converted to an unsigned character and writes it to a file. 
 | ------ | ------ | ---- | --------------- |
 | char   | number | Yes  | Write character ASCII.|
 
-**Return value**
+**Returns**
 
 | Type                 | Description                         |
 | --------------------- | ----------------------------- |
@@ -5529,9 +5565,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzputcDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzputcDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5558,7 +5595,7 @@ Converts and formats the parameters under the control of the string format and t
 | format | string                        | Yes  | Format descriptors and plain text.|
 | ...args   | Array&lt;string \| number&gt; | No  | List of variable parameters.        |
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
@@ -5571,7 +5608,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 | 17800009 | Internal structure error.                                    |
 
 **Example**
@@ -5600,9 +5637,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzprintfDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzprintfDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5622,7 +5660,7 @@ Returns the current compressed read or write offset of the file. This API uses a
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                                 |
 | --------------------- | ----------------------------------------------------- |
@@ -5662,9 +5700,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzoffsetDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzoffsetDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5690,11 +5729,11 @@ Reads bytes from a compressed file until len-1 characters are read, a newline ch
 | ------ | ----------- | ---- | ------------------ |
 | buf    | ArrayBuffer | Yes  | Stores the read row data.|
 
-**Return value**
+**Returns**
 
 | Type                 | Description                                 |
 | --------------------- | ------------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result.|
+| Promise&lt;string&gt; | Promise used to return a string ended with **null**.|
 
 **Error codes**
 
@@ -5735,9 +5774,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzgetsDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzgetsDemo(pathDir);
+            }
           })
       }
       .width('100%')

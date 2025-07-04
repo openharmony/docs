@@ -1,16 +1,16 @@
 # @ohos.util.LinkedList (Linear Container LinkedList)
 
-**LinkedList** is implemented based on the doubly linked list. Each node of the doubly linked list has references pointing to the previous element and the next element. When querying an element, the system traverses the list from the beginning or end. **LinkedList** offers efficient insertion and removal operations but supports low query efficiency. **LinkedList** allows null elements.
+LinkedList is implemented based on the doubly linked list. Each node of the doubly linked list has references pointing to the previous element and the next element. When querying an element, the system traverses the list from the beginning or end. LinkedList offers efficient insertion and removal operations but supports low query efficiency. LinkedList allows null elements.
 
-Unlike **[List](js-apis-list.md)**, which is a singly linked list, **LinkedList** is a doubly linked list that supports insertion and removal at both ends.
+Unlike [List](js-apis-list.md), which is a singly linked list, LinkedList is a doubly linked list that supports insertion and removal at both ends.
 
-**LinkedList** is more efficient in data insertion than **[ArrayList](js-apis-arraylist.md)**, but less efficient in data access.
+LinkedList is more efficient in data insertion than [ArrayList](js-apis-arraylist.md), but less efficient in data access.
 
 > **NOTE**
 >
-> Although using \[index\] in **LinkedList** can obtain an element with the given index, this operation will result in undefined results. Due to this reason, **get()** method is recommended.
+> Accessing elements in a LinkedList using the \[index\] syntax may lead to undefined results. You are advised to use **get()** instead.
 
-**Recommended use case**: Use **LinkedList** for frequent insertion and removal operations when a doubly linked list is required.
+**Recommended use case**: Use LinkedList for frequent insertion and removal operations when a doubly linked list is required.
 
 This topic uses the following to identify the use of generics:
 - T: Type
@@ -28,7 +28,7 @@ import { LinkedList } from '@kit.ArkTS';
 
 ## LinkedList
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -36,7 +36,7 @@ import { LinkedList } from '@kit.ArkTS';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in a linked list (called container later).|
+| length | number | Yes| No| Number of elements in a LinkedList.|
 
 
 ### constructor
@@ -69,7 +69,7 @@ let linkedList: LinkedList<string | number | boolean | object> = new LinkedList(
 
 add(element: T): boolean
 
-Adds an element at the end of this container.
+Adds an element at the end of this LinkedList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -85,7 +85,7 @@ Adds an element at the end of this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the element is added; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -116,7 +116,7 @@ let result4 = linkedList.add(false);
 
 addFirst(element: T): void
 
-Adds an element at the top of this container.
+Adds an element at the top of this LinkedList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -157,7 +157,7 @@ linkedList.addFirst(false);
 
 insert(index: number, element: T): void
 
-Inserts an element at the specified position in this container.
+Inserts an element at the specified position in this LinkedList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -193,7 +193,7 @@ linkedList.insert(2, true);
 
 has(element: T): boolean
 
-Checks whether this container has the specified element.
+Checks whether this LinkedList has the specified element.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -209,7 +209,7 @@ Checks whether this container has the specified element.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the specified element is contained; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -231,7 +231,7 @@ let result = linkedList.has("squirrel");
 
 get(index: number): T
 
-Obtains an element at the specified position in this container.
+Obtains an element at the specified position in this LinkedList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -276,7 +276,7 @@ let result = linkedList.get(2);
 
 getLastIndexOf(element: T): number
 
-Obtains the index of the last occurrence of the specified element in this container.
+Obtains the index of the last occurrence of the specified element in this LinkedList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -292,7 +292,7 @@ Obtains the index of the last occurrence of the specified element in this contai
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Index of the element. If no match is found, **-1** is returned.|
 
 **Error codes**
 
@@ -320,7 +320,7 @@ let result = linkedList.getLastIndexOf(2);
 
 getIndexOf(element: T): number
 
-Obtains the index of the first occurrence of the specified element in this container.
+Obtains the index of the first occurrence of the specified element in this LinkedList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -336,7 +336,7 @@ Obtains the index of the first occurrence of the specified element in this conta
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Index of the element. If no match is found, **-1** is returned.|
 
 **Error codes**
 
@@ -408,7 +408,7 @@ let result = linkedList.removeByIndex(2);
 
 removeFirst(): T
 
-Removes the first element from this container.
+Removes the first element from this LinkedList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -445,7 +445,7 @@ let result = linkedList.removeFirst();
 
 removeLast(): T
 
-Removes the last element from this container.
+Removes the last element from this LinkedList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -482,7 +482,7 @@ let result = linkedList.removeLast();
 
 remove(element: T): boolean
 
-Removes the first occurrence of the specified element from this container.
+Removes the first occurrence of the specified element from this LinkedList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -498,7 +498,7 @@ Removes the first occurrence of the specified element from this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the element is removed; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -523,7 +523,7 @@ let result = linkedList.remove(2);
 
 removeFirstFound(element: T): boolean
 
-Removes the first occurrence of the specified element from this container.
+Removes the first occurrence of the specified element from this LinkedList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -566,7 +566,7 @@ let result = linkedList.removeFirstFound(4);
 
 removeLastFound(element: T): boolean
 
-Removes the last occurrence of the specified element from this container.
+Removes the last occurrence of the specified element from this LinkedList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -609,7 +609,7 @@ let result = linkedList.removeLastFound(4);
 
 clone(): LinkedList&lt;T&gt;
 
-Clones this container and returns a copy. The modification to the copy does not affect the original instance.
+Clones an instance identical to this **LinkedList** and returns it. The modification to the copy does not affect the original instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -645,7 +645,7 @@ let result = linkedList.clone();
 forEach(callbackFn: (value: T, index?: number, LinkedList?: LinkedList&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the elements in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this LinkedList and obtain their indexes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -655,10 +655,10 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the LinkedList.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackFn
+callbackFn parameters
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -692,7 +692,7 @@ linkedList.forEach((value: number, index?: number) => {
 
 clear(): void
 
-Clears this container and sets its length to **0**.
+Clears this LinkedList and sets its length to **0**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -721,7 +721,7 @@ linkedList.clear();
 
 set(index: number, element: T): T
 
-Replaces an element at the specified position in this container with a given element.
+Replaces an element at the specified position in this LinkedList with a given element.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -738,7 +738,7 @@ Replaces an element at the specified position in this container with a given ele
 
 | Type| Description|
 | -------- | -------- |
-| T | New element. If the operation fails, **undefined** is returned.|
+| T | New element. If the element is empty, **undefined** is returned.|
 
 **Error codes**
 
@@ -765,7 +765,7 @@ let result = linkedList.set(2, "b");
 
 convertToArray(): Array&lt;T&gt;
 
-Converts this container into an array.
+Converts this LinkedList into an array and returns the array.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -799,7 +799,7 @@ let result = linkedList.convertToArray();
 
 getFirst(): T
 
-Obtains the first element in this container.
+Obtains the first element in this LinkedList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -809,7 +809,7 @@ Obtains the first element in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Returns the element if obtained; returns **undefined** otherwise.|
+| T | Element obtained. If the element is empty, **undefined** is returned.|
 
 **Error codes**
 
@@ -834,7 +834,7 @@ let result = linkedList.getFirst();
 
 getLast(): T
 
-Obtains the last element in this container.
+Obtains the last element in this LinkedList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -844,7 +844,7 @@ Obtains the last element in this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Returns the element if obtained; returns **undefined** otherwise.|
+| T | Element obtained. If the element is empty, **undefined** is returned.|
 
 **Error codes**
 
@@ -869,7 +869,7 @@ let result = linkedList.getLast();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Returns an iterator, each item of which is a JavaScript object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -899,7 +899,7 @@ linkedList.add(5);
 linkedList.add(4);
 
 // Method 1:
-let items = Array.from(linkedList)
+let items = Array.from(linkedList);
 for (let item of items) {
   console.log("value:" + item);
 }

@@ -1,15 +1,15 @@
 # Button
 
 
-The **Button** component is usually activated by user clicks to perform a specific action. Buttons are classified as capsule, circle, or normal buttons. When used as a container, the **Button** component accepts child components such as text and images. For details, see [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md).
+The **Button** component is usually activated by user clicks to perform a specific action. It comes in four types: capsule, circle, normal, and rounded rectangle. When used as a container, the **Button** component accepts child components such as text and images. For details, see [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md).
 
 
 ## Creating a Button
 
-You can create a button that contains or does not contain child components.
+You can create a button using the following methods:
 
 
-- Create a button that does not contain child components.
+- Creating a button without child components using **label** and [ButtonOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#buttonoptions)<br> For example, using **type** and **stateEffect** in **ButtonOptions**:
 
   ```ts
   Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
@@ -28,7 +28,7 @@ You can create a button that contains or does not contain child components.
   ![en-us_image_0000001562820757](figures/en-us_image_0000001562820757.png)
 
 
-- Create a button that contains a single child component.
+- Creating a button with child components using ButtonOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#buttonoptions)<br> For example, using **type** and **stateEffect** in **ButtonOptions**:
 
   ```ts
   Button(options?: {type?: ButtonType, stateEffect?: boolean})
@@ -50,7 +50,7 @@ You can create a button that contains or does not contain child components.
 
 ## Setting the Button Type
 
-Use the **type** parameter to set the button type to **Capsule**, **Circle**, or **Normal**.
+Buttons comes in four types, set using the **type** parameter: Capsule, Circle, Normal, and ROUNDED_RECTANGLE.
 
 
 - Capsule button (default type)
@@ -148,7 +148,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 
 - Assigning a function to the button
 
-  In this example, the delete function is assigned to the button.
+ For example, to create a delete button:
 
   ```ts
   let MarLeft: Record<string, number> = { 'left': 20 }
@@ -201,21 +201,21 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
         List({ space: 4 }) {
           ListItem() {
             Button("First").onClick(() => {
-              this.pathStack.pushPath({ name: "first_page"})
+              this.pathStack.pushPath({ name: "first_page"});
             })
               .width('100%')
           }
 
           ListItem() {
             Button("Second").onClick(() => {
-              this.pathStack.pushPath({ name: "second_page"})
+              this.pathStack.pushPath({ name: "second_page"});
             })
               .width('100%')
           }
 
           ListItem() {
             Button("Third").onClick(() => {
-              this.pathStack.pushPath({ name: "third_page"})
+              this.pathStack.pushPath({ name: "third_page"});
             })
               .width('100%')
           }
@@ -240,12 +240,12 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
         }.width('100%').height('100%')
       }.title("pageOne")
       .onBackPressed(() => {
-        const popDestinationInfo = this.pathStack.pop() // Pop the top element out of the navigation stack.
-        console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
+        const popDestinationInfo = this.pathStack.pop(); // Pop the top element out of the navigation stack.
+        console.info('pop' + 'return value' + JSON.stringify(popDestinationInfo));
         return true
       })
       .onReady((context: NavDestinationContext) => {
-        this.pathStack = context.pathStack
+        this.pathStack = context.pathStack;
       })
     }
   }
@@ -262,12 +262,12 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
         }.width('100%').height('100%')
       }.title("pageTwo")
       .onBackPressed(() => {
-        const popDestinationInfo = this.pathStack.pop() // Pop the top element out of the navigation stack.
-        console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
+        const popDestinationInfo = this.pathStack.pop(); // Pop the top element out of the navigation stack.
+        console.info('pop' + 'return value' + JSON.stringify(popDestinationInfo));
         return true
       })
       .onReady((context: NavDestinationContext) => {
-        this.pathStack = context.pathStack
+        this.pathStack = context.pathStack;
       })
     }
   }
@@ -284,12 +284,12 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
         }.width('100%').height('100%')
       }.title("pageThree")
       .onBackPressed(() => {
-        const popDestinationInfo = this.pathStack.pop() // Pop the top element out of the navigation stack.
-        console.log('pop' + 'Return value' + JSON.stringify(popDestinationInfo))
+        const popDestinationInfo = this.pathStack.pop(); // Pop the top element out of the navigation stack.
+        console.info('pop' + 'return value' + JSON.stringify(popDestinationInfo));
         return true
       })
       .onReady((context: NavDestinationContext) => {
-        this.pathStack = context.pathStack
+        this.pathStack = context.pathStack;
       })
     }
   }

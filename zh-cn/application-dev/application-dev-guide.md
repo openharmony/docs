@@ -33,4 +33,4 @@ DevEco Studio工具是OpenHarmony应用开发的推荐IDE工具。
 
 ## API参考
 
-[API参考](reference/development-intro.md)提供了OpenHarmony SDK各Kit开放能力的全量组件和接口的说明文档，可以帮助开发者快速查找到指定接口的详细描述和调用方法。
+[API参考](reference/development-intro-api.md)提供了OpenHarmony SDK各Kit开放能力的全量组件和接口的说明文档，可以帮助开发者快速查找到指定接口的详细描述和调用方法。

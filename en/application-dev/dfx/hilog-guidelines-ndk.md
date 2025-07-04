@@ -6,7 +6,7 @@ HiLog is a subsystem that provides logging for the system framework, services, a
 
 ## Available APIs
 
-HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides APIs to output logs of different levels. For details about the APIs, see [hilog](../reference/apis-performance-analysis-kit/_hi_log.md).
+HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides APIs to output logs of different levels. For details about the APIs, see [HiLog](../reference/apis-performance-analysis-kit/_hi_log.md).
 
 | API/Macro| Description|
 | -------- | -------- |
@@ -100,25 +100,24 @@ The maximum size of a log file is 4096 bytes. Excess content will be discarded.
 
 > **Note**
 >
-> The hilog APIs cannot be called in the callback to print logs. Otherwise, an infinite loop occurs.
+> Do not call the HiLog API recursively in the callback function. Otherwise, a cyclic call issue occurs.
 
 ```c++
 #include "hilog/log.h"
-static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0xD003200, "MY_TAG"};
 
 // Customize a callback for processing logs.
 void MyHiLog(const LogType type, const LogLevel level, const unsigned int domain, const char *tag, const char *msg)
 {
     // Define how to handle your logs, such as redirect/filter.
-    // Note: Do not call the hilog APIs in the callback to print logs. Otherwise, an infinite loop occurs.
+    // Note: Do not call the HiLog API recursively in the callback function. Otherwise, a cyclic call issue occurs.
 }
 
 static void Test(void)
 {
    // 1. Register a callback.
-    OH_LOG_SetCallback(MyHiLog);
+   OH_LOG_SetCallback(MyHiLog);
     
    // 2. Call the hilog API to print logs. Logs are output to HiLog and returned to MyHiLog() through the registered callback. Then, MyHiLog() is called to process the logs.
-   HiLog::Info(LABEL, "hello world");
+   OH_LOG_INFO(LOG_APP, "hello world");
 }
 ```

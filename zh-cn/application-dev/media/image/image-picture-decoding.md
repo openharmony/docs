@@ -4,7 +4,7 @@
 
 ## 开发步骤
 
-图片解码相关API的详细介绍请参见：[图片解码接口说明](../../reference/apis-image-kit/js-apis-image.md#imagesource)。
+图片解码相关API的详细介绍请参见：[图片解码接口说明](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md)。
 
 1. 全局导入Image模块。
 
@@ -45,6 +45,7 @@
             const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
             // 获取资源文件内容，返回Uint8Array。
             const fileData: Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
+            console.info('Successfully got RawFileContent');
             // 转为ArrayBuffer并返回。
             const buffer: ArrayBuffer = fileData.buffer.slice(0);
             return buffer;
@@ -100,7 +101,7 @@
       const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
       ```
 
-4. 设置解码参数DecodingOptions，解码获取picture多图对象。并对picture进行操作，如获取辅助图等。对于picture和辅助图的操作具体请参考[Image API参考文档](../../reference/apis-image-kit/js-apis-image.md#picture13)。
+4. 设置解码参数DecodingOptions，解码获取picture多图对象。并对picture进行操作，如获取辅助图等。对于picture和辅助图的操作具体请参考[Image API参考文档](../../reference/apis-image-kit/arkts-apis-image-Picture.md)。
 
    设置期望的format进行解码：
       ```ts
@@ -140,6 +141,7 @@
 
 5. 释放picture。
 
+   确认picture的异步方法已经执行完成，不再使用该变量后，可按需手动调用下面方法释放。
    ```ts
    picture.release();
    ```

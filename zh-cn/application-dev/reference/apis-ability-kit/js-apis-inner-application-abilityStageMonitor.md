@@ -12,10 +12,10 @@
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称                                                         | 类型     | 可读 | 可写 | 说明                                                         |
-| ------------------------------------------------------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| moduleName                                                 | string   | 是   | 是   | 要监视的abilityStage的模块名。 |
-| srcEntrance | string | 是   | 是   | 要监视的abilityStage的源路径。 |
+| 名称 | 类型 | 只读 | 可选 | 说明  |
+| ---- | ---- | ---- | ---- | ---- |
+| moduleName | string | 否   | 否   | 要监视的abilityStage的模块名。 |
+| srcEntrance | string | 否   | 否   | 要监视的abilityStage的源路径。 |
 
 **示例：**
 ```ts

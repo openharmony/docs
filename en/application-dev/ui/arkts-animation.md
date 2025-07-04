@@ -4,7 +4,7 @@
 The UI contains various components (such as time and wallpaper) that users see when interacting with their devices. Attributes are APIs used to control the behavior of components. For example, you can adjust the location of a component on the screen through the location attribute.
 
 
-In general cases, if the value of an attribute is changed, the UI will be updated accordingly. Animations can add smooth transitions when the UI is updated. Without presence of animations, attributes would change immediately, resulting in a sense of visual discontinuity.
+In most cases, changing an attribute value triggers a corresponding UI update. Animations introduce smooth transitions during UI updates, whereas their absence causes attributes to change abruptly, leading to visual discontinuity.
 
 ![en-us_image_20230822](figures/en-us_image_20230822.gif)
 
@@ -21,7 +21,7 @@ Smart use of animations can breathe life into the process of interaction. The fr
 ArkUI provides a wide range of animation APIs (such as property animation and transition animation), which you can leverage to cause attributes to gradually change from the start value to the end value based on the specified settings. Although the attribute values are not absolutely continuous during the change, but rather discrete to some extent, what you finally see is a continuous animation, since human eyes retain persistence of vision. A change of the UI is called an animation frame, which corresponds to a screen refresh. An important indicator that determines the animation smoothness is the frame rate (FPS), that is, the number of animation frames per second. The higher the frame rate, the smoother the animation. In ArkUI, animation parameters include animation duration, animation curve, and more. As the main factor of the animation, the animation curve determines the law of attribute value changes. For example, with a linear animation curve, the attribute changes from the start value to the end value at a constant speed over the given duration. If the attribute changes too fast or too slow, the visual experience may suffer. Therefore, animation parameters, especially animation curves, must be well designed and adjusted to be tailored to use cases.
 
 
-Animation APIs drive attribute values to continuously transit from one state to another according to the rule determined by the animation parameters, and thereby generate a continuous visual effect on the UI. This walkthrough demonstrates the steps and precautions to follow, for creating a fascinating animation experience for users. It is organized as follows.
+Animation APIs drive attribute values to continuously transit from one state to another according to the rule determined by the animation parameters, and thereby generate a continuous visual effect on the UI. This walkthrough demonstrates the steps and precautions to follow for creating a fascinating animation experience for users. It is organized as follows.
 
 
 ![en-us_image_0000001595763076](figures/en-us_image_0000001595763076.png)

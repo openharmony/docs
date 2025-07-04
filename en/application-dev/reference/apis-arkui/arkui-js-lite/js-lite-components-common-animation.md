@@ -25,7 +25,7 @@ Components support dynamic rotation, translation, and scaling effects. These eff
 
 >  **NOTE**
 >
->  Only images of the original size can be rotated on lite wearables.
+>  Only images of the original size can be rotated on mini-system wearables.
 
 
   **Table 2** \@keyframes

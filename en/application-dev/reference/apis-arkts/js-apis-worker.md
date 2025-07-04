@@ -2,7 +2,7 @@
 
 The Worker thread is an independent thread running in parallel with the main thread. The thread that creates the Worker thread is referred to as the host thread. The URL file passed in during worker creation is executed in the Worker thread. The Worker thread can process time-consuming operations, but cannot directly operate the UI.
 
-With the Worker module, you can provide a multithreaded environment for an application, so that the application can perform a time-consuming operation in a background thread. This greatly prevents a computing-intensive or high-latency task from blocking the running of the host thread. A Worker instance will not be proactively destroyed once it is created. It consumes resources to keep running. Therefore, you should call the API to terminate it in a timely manner.
+Worker primarily provides a multithreaded runtime environment for applications, allowing them to separate from the host thread during execution. This enables scripts to run in background threads for time-consuming operations, significantly reducing the likelihood of blocking the host thread during computing-intensive or high-latency tasks. A Worker instance will not be proactively destroyed once it is created. It consumes resources to keep running. Therefore, you should call the API to terminate it in a timely manner.
 
 The Context object of the Worker thread is different from that of the UI main thread. The Worker thread does not support UI operations.
 
@@ -19,14 +19,14 @@ import { worker } from '@kit.ArkTS';
 ```
 
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name                             | Type                                                        | Readable| Writable| Description                                                        |
+| Name                             | Type                                                        | Read-only| Optional| Description                                                        |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | Yes  | Yes  | Object of the Worker thread used to communicate with the host thread. **Atomic service API**: This API can be used in atomic services since API version 11.                        |
-| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Yes  | Object of the Worker thread used to communicate with the host thread.<br>This attribute is supported since API version 7 and deprecated since API version 9.<br>You are advised to use **workerPort<sup>9+</sup>** instead.|
+| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | No  | No  | Object of the Worker thread used to communicate with the host thread.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                        |
+| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | No  | No  | Object of the Worker thread used to communicate with the host thread.<br>This property is supported since API version 7 and deprecated since API version 9.<br>You are advised to use **workerPort<sup>9+</sup>** instead.|
 
 
 ## WorkerOptions
@@ -37,10 +37,10 @@ Provides options that can be set for the Worker instance to create.
 
 | Name| Type| Read-only| Optional| Description|
 | ---- | -------- | ---- | ---- | -------------- |
-| type | 'classic' \| 'module' | Yes  | Yes| Mode in which the Worker instance executes the script. The **module** type is not supported yet. The default value is **classic**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| name | string   | Yes  | Yes| Name of the Worker thread. The default value is **undefined**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| shared | boolean | Yes  | Yes| Whether sharing of the Worker instance is enabled. Currently, sharing is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| priority<sup>18+</sup> | [ThreadWorkerPriority](#threadworkerpriority18) | Yes  | Yes| Priority of the Worker thread.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| type | 'classic' \| 'module' | No  | Yes| Mode in which the Worker instance executes the script. The **module** type is not supported yet. The default value is **classic**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| name | string   | No  | Yes| Name of the Worker thread. The default value is **undefined**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| shared | boolean | No  | Yes| Whether sharing of the Worker instance is enabled. Currently, sharing is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| priority<sup>18+</sup> | [ThreadWorkerPriority](#threadworkerpriority18) | No  | Yes| Priority of the Worker thread. The default value is **MEDIUM**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 
 ## ThreadWorkerPriority<sup>18+</sup>
@@ -92,18 +92,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-The following code snippet shows how to load the Worker thread file of the ability in the stage model. For details about how to use the library to load the Worker thread file, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls).
+The following uses the **Index.ets** file in the entry module of the stage model as an example to describe how to load the worker file. For details about how to use the library to load the Worker thread file, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls).
 
 ```ts
 import { worker } from '@kit.ArkTS';
 
-// Two scenarios are involved.
-
-// Scenario 1: URL of the Worker thread file: "entry/src/main/ets/workers/worker.ets"
-const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
-
-// Scenario 2: URL of the Worker thread file: "testworkers/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStageModel02 = new worker.ThreadWorker('testworkers/ets/ThreadFile/workers/worker.ets');
+// URL of the Worker file: "entry/src/main/ets/workers/worker.ets"
+const workerInstance = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name: "WorkerThread"});
 ```
 
 
@@ -141,7 +136,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 // Create an object in the Worker thread for communicating with the host thread.
-const workerPort = worker.workerPort
+const workerPort = worker.workerPort;
 
 // The Worker thread receives information from the host thread.
 workerPort.onmessage = (e: MessageEvents): void => {
@@ -155,7 +150,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 // Trigger a callback when an error occurs in the Worker thread.
 workerPort.onerror = (err: ErrorEvent) => {
-  console.log("worker.ets onerror" + err.message);
+  console.error("worker.ets onerror" + err.message);
 }
 ```
 ```ts
@@ -179,6 +174,10 @@ struct Index {
             // The host thread transfers information to the Worker thread.
             const buffer = new ArrayBuffer(8);
             workerInstance.postMessage(buffer, [buffer]);
+
+            // The ownership of the buffer is transferred to the Worker thread and is unavailable in the host thread.
+            // const view = new Int8Array(buffer).fill(3);
+
             // The host thread receives information from the Worker thread.
             workerInstance.onmessage = (e: MessageEvents): void => {
               // data carries the information sent by the Worker thread.
@@ -189,11 +188,11 @@ struct Index {
             }
             // Call onexit().
             workerInstance.onexit = (code) => {
-              console.log("main thread terminate");
+              console.info("main thread terminate");
             }
 
             workerInstance.onAllErrors = (err: ErrorEvent) => {
-              console.log("main error message " + err.message);
+              console.error("main error message " + err.message);
             }
           })
       }
@@ -208,7 +207,7 @@ struct Index {
 
 postMessage(message: Object, options?: PostMessageOptions): void
 
-Sends a message from the host thread to the Worker thread by transferring object ownership or copying data.
+Sends a message from the host thread to the Worker thread by transferring object ownership or copying data. Pass-by-copy is used to pass [Sendable objects](../../arkts-utils/arkts-sendable.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -239,7 +238,12 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
 
 let buffer = new ArrayBuffer(8);
+
+// When the options parameter is specified, the ownership of the buffer is transferred to the Worker thread and will no longer be accessible from the host thread.
 workerInstance.postMessage(buffer, [buffer]);
+
+// When the options parameter is not provided, it defaults to undefined, and the buffer is sent to the Worker thread by copying the data.
+workerInstance.postMessage(buffer);
 ```
 
 
@@ -247,7 +251,7 @@ workerInstance.postMessage(buffer, [buffer]);
 
 postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
 
-Sends a message from the host thread to the Worker thread. In the message, a sendable object is passed by reference, and a non-sendable object is passed by serialization.
+Sends a message from the host thread to the Worker thread. In the message, a [Sendable object](../../arkts-utils/arkts-sendable.md) is passed by reference, and a non-Sendable object is passed by copy.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -278,11 +282,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 // Create a SendableObject instance and pass it to the Worker thread through the host thread.
 
 import { worker } from '@kit.ArkTS';
-import { SendableObject } from './sendable'
+import { SendableObject } from './sendable';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
 let object: SendableObject = new SendableObject();
 workerInstance.postMessageWithSharedSendable(object);
+
+// Use the postMessage API to pass Sendable objects by copying the data.
+workerInstance.postMessage(object);
 ```
 
 ```ts
@@ -301,10 +308,11 @@ export class SendableObject {
 // Worker.ets
 // Receive and access the data passed from the host thread to the Worker thread.
 
-import { SendableObject } from '../pages/sendable'
+import { SendableObject } from '../pages/sendable';
 import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
 workerPort.onmessage = (e: MessageEvents) => {
   let obj: SendableObject = e.data;
   console.info("sendable obj is: " + obj.a);
@@ -343,9 +351,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.on("alert", ()=>{
-    console.log("alert listener callback");
+
+workerInstance.on("alert", () => {
+    console.info("alert listener callback");
 })
+
+// Event listeners added using on can be executed multiple times.
+workerInstance.dispatchEvent({type: "alert", timeStamp: 0}); // timeStamp is not supported yet.
+workerInstance.dispatchEvent({type: "alert", timeStamp: 0}); // timeStamp is not supported yet.
 ```
 
 
@@ -380,9 +393,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.once("alert", ()=>{
-    console.log("alert listener callback");
+
+workerInstance.once("alert", () => {
+  console.info("alert listener callback");
 })
+
+workerInstance.dispatchEvent({type: "alert", timeStamp: 0}); // timeStamp is not supported yet.
+
+// Event listeners added using once are automatically removed after being executed once and cannot be executed multiple times.
+// workerInstance.dispatchEvent({type: "alert", timeStamp: 0}); // timeStamp is not supported yet.
 ```
 
 
@@ -401,7 +420,7 @@ Removes an event listener for the Worker thread. This API provides the same func
 | Name  | Type                                        | Mandatory| Description                        |
 | -------- | -------------------------------------------- | ---- | ---------------------------- |
 | type     | string                                       | Yes  | Type of the event for which the event listener is to be removed.        |
-| listener | [WorkerEventListener](#workereventlistener9) | No| Callback to invoke when the listener is removed.|
+| listener | [WorkerEventListener](#workereventlistener9) | No| Callback for which the listener is to be removed. If this parameter is not passed, all listeners of the specified type are removed.|
 
 **Error codes**
 
@@ -417,7 +436,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-// Use on, once, or addEventListener to add a listener for the "alert" event, and use off to remove the listener.
+
+const handler1 = () => console.info("Handler 1");
+const handler2 = () => console.info("Handler 2");
+
+// Register two listeners.
+workerInstance.on("alert", handler1);
+workerInstance.on("alert", handler2);
+
+// First trigger: Both listeners are executed.
+workerInstance.dispatchEvent({type: "alert", timeStamp: 0}); // timeStamp is not supported yet.
+
+// Remove the handler1 listener.
+workerInstance.off("alert", handler1);
+
+// Second trigger: Only handler2 is executed.
+workerInstance.dispatchEvent({type: "alert", timeStamp: 0}); // timeStamp is not supported yet.
+
+// Remove all listeners of the alert type.
 workerInstance.off("alert");
 ```
 
@@ -452,7 +488,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 //Index.ets
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 class TestObj {
-  private message : string = "this is a message from TestObj"
+  private message : string = "this is a message from TestObj";
   public getMessage() : string {
     return this.message;
   }
@@ -463,7 +499,7 @@ class TestObj {
 let registerObj = new TestObj();
 // Register registerObj with the ThreadWorker instance.
 workerInstance.registerGlobalCallObject("myObj", registerObj);
-workerInstance.postMessage("start worker")
+workerInstance.postMessage("start worker");
 ```
 
 ```ts
@@ -483,7 +519,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
   try {
     // The method to call carries input parameters.
     let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessageWithInput", 0, "hello there!") as string;
-    console.info("worker:", res) //worker: this is a message from TestObj with input: hello there!
+    console.info("worker:", res); //worker: this is a message from TestObj with input: hello there!
   } catch (error) {
     // Exception handling.
     console.error("worker: error code is " + error.code + " error message is " + error.message);
@@ -520,7 +556,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 class TestObj {
-  private message : string = "this is a message from TestObj"
+  private message : string = "this is a message from TestObj";
   public getMessage() : string {
     return this.message;
   }
@@ -534,7 +570,7 @@ workerInstance.registerGlobalCallObject("myObj", registerObj);
 workerInstance.unregisterGlobalCallObject("myObj");
 // Unregister all objects from the ThreadWorker instance.
 //workerInstance.unregisterGlobalCallObject();
-workerInstance.postMessage("start worker")
+workerInstance.postMessage("start worker");
 ```
 
 ### terminate<sup>9+</sup>
@@ -588,7 +624,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.onexit = (code) => {
- console.log("onexit");
+ console.info("onexit");
 }
 
 // onexit is executed in either of the following ways:
@@ -596,7 +632,7 @@ workerInstance.onexit = (code) => {
 workerInstance.terminate();
 
 // Worker thread
-//workerPort.close()
+//workerPort.close();
 ```
 
 
@@ -604,7 +640,7 @@ workerInstance.terminate();
 
 onerror?: (err: ErrorEvent) =&gt; void
 
-Called when an exception occurs during worker execution. The event handler is executed in the host thread. In the callback function, the **err** type is [ErrorEvent](#errorevent), indicating the received abnormal data.
+Called when an exception occurs in the synchronous code of the [onmessage](#onmessage9) callback function. The handler is executed in the host thread. In the callback function, the **err** type is [ErrorEvent](#errorevent), indicating the received abnormal data.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -623,13 +659,33 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
+// Index.ets
 import { worker, ErrorEvent } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+
+// Register the onerror callback.
 workerInstance.onerror = (err: ErrorEvent) => {
-  console.log("onerror" + err.message);
+  // main thread onerror is:  "Error: error test"
+  console.error("main thread onerror is: ", JSON.stringify(err.message));
+}
+
+workerInstance.postMessage(1);
+```
+
+```ts
+// worker.ets
+import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
+workerPort.onmessage = (e: MessageEvents) => {
+  console.info("worker thread data is: ", e.data);
+  // Throw an exception in the onmessage callback of the Worker thread.
+  throw new Error("error test");
 }
 ```
+
 
 ### onAllErrors<sup>18+</sup>
 
@@ -657,13 +713,35 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
+// Index.ets
 import { worker, ErrorEvent } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+
+// Register the onerror callback.
+workerInstance.onerror = (err: ErrorEvent) => {
+  console.error("main thread onerror is: ", JSON.stringify(err.message));
+}
+
+// If both onerror and onAllErrors are registered, only the onAllErrors callback is triggered.
 workerInstance.onAllErrors = (err: ErrorEvent) => {
-  console.log("onAllErrors" + err.message);
+  console.error("main thread onAllErrors is: ", JSON.stringify(err.message));
+}
+
+workerInstance.postMessage(1);
+```
+
+```ts
+import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents) => {
+  console.info("worker thread data is: ", e.data);
+  // Throw an exception in the onmessage callback of the Worker thread.
+  throw new Error("error test");
 }
 ```
+
 
 ### onmessage<sup>9+</sup>
 
@@ -688,13 +766,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
+// Index.ets
 import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.onmessage = (e: MessageEvents): void => {
- // e: MessageEvents. The usage is as follows:
- // let data = e.data;
- console.log("onmessage");
+
+workerInstance.onmessage = (e: MessageEvents) => {
+  console.info("main thread recv data is: ", e.data);
+}
+
+workerInstance.postMessage("main thread postMessage to worker thread.");
+```
+
+```ts
+// worker.ets
+import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
+workerPort.onmessage = (e: MessageEvents) => {
+  console.info("worker thread recv data is: ", e.data);
+  workerPort.postMessage("worker thread postMessage to main thread.");
 }
 ```
 
@@ -722,11 +814,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { worker, MessageEvents } from '@kit.ArkTS';
+import { MessageEvents, worker, HashMap } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.onmessageerror = (err: MessageEvents) => {
-  console.log("onmessageerror");
+
+// Register the onmessageerror callback.
+workerInstance.onmessageerror = (e: MessageEvents) => {
+  console.error("main thread onmessageerror execute.");
+}
+
+let hashMap: HashMap<string, number> = new HashMap();
+let result = hashMap.set("squirrel", 123);
+
+try {
+  workerInstance.postMessage(result);
+} catch (err) {
+  console.error("catch error is: ", JSON.stringify(err));
 }
 ```
 
@@ -761,9 +864,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+
+workerInstance.addEventListener("alert", () => {
+  console.info("alert listener callback");
 })
+
+// Execute the callback of the alert type.
+workerInstance.dispatchEvent({type: "alert", timeStamp: 0}); // timeStamp is not supported yet.
 ```
 
 
@@ -797,8 +904,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+workerInstance.addEventListener("alert", () => {
+    console.info("alert listener callback");
 })
 workerInstance.removeEventListener("alert");
 ```
@@ -808,7 +915,7 @@ workerInstance.removeEventListener("alert");
 
 dispatchEvent(event: Event): boolean
 
-Dispatches the event defined for the Worker thread.
+Dispatches an event object to the event system of the Worker thread. The event system automatically triggers the callback functions of all registered listeners for that event type.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -824,7 +931,7 @@ Dispatches the event defined for the Worker thread.
 
 | Type   | Description                           |
 | ------- | ------------------------------- |
-| boolean | Dispatch result. The value **true** means a successful dispatch, and **false** means the opposite.|
+| boolean | Dispatch result. The value **true** is returned if the dispatch is successful; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -840,7 +947,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
-workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is not supported yet.
+workerInstance.addEventListener("alert", () => {
+  console.info("alert listener callback");
+})
+
+let result: Boolean = workerInstance.dispatchEvent({type: "alert", timeStamp: 0}); // timeStamp is not supported yet.
+
+console.info("dispatchEvent result is: ", result);
 ```
 
 The **dispatchEvent** API can be used together with the **on**, **once**, and **addEventListener** APIs. The sample code is as follows:
@@ -851,24 +964,24 @@ import { worker, MessageEvents } from '@kit.ArkTS';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 // Usage 1:
-workerInstance.on("alert_on", ()=>{
-    console.log("alert listener callback");
+workerInstance.on("alert_on", () => {
+    console.info("alert listener callback");
 })
-workerInstance.once("alert_once", ()=>{
-    console.log("alert listener callback");
+workerInstance.once("alert_once", () => {
+    console.info("alert listener callback");
 })
-workerInstance.addEventListener("alert_add", ()=>{
-    console.log("alert listener callback");
+workerInstance.addEventListener("alert_add", () => {
+    console.info("alert listener callback");
 })
 
 // The event listener created by once is removed after being executed once.
 workerInstance.dispatchEvent({type:"alert_once", timeStamp:0}); // timeStamp is not supported yet.
 // The event listener created by on will not be proactively deleted.
-workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
+workerInstance.dispatchEvent({type: "alert_on", timeStamp: 0});
+workerInstance.dispatchEvent({type: "alert_on", timeStamp: 0});
 // The event listener created by addEventListener will not be proactively deleted.
-workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
-workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
+workerInstance.dispatchEvent({type: "alert_add", timeStamp: 0});
+workerInstance.dispatchEvent({type: "alert_add", timeStamp: 0});
 
 // Usage 2:
 // The event type can be customized, and the special types "message", "messageerror", and "error" exist.
@@ -877,14 +990,14 @@ workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 // When type = "error", the event handler defined by onerror will also be executed.
 // removeEventListener or off can be used to remove an event listener that is created by addEventListener, on, or once.
 
-workerInstance.addEventListener("message", ()=>{
-    console.log("message listener callback");
+workerInstance.addEventListener("message", () => {
+    console.info("message listener callback");
 })
 workerInstance.onmessage = (e: MessageEvents): void => {
-    console.log("onmessage : message listener callback");
+    console.info("onmessage : message listener callback");
 }
 // When dispatchEvent is called to distribute the "message" event, the callback passed in addEventListener and onmessage will be invoked.
-workerInstance.dispatchEvent({type:"message", timeStamp:0});
+workerInstance.dispatchEvent({type: "message", timeStamp: 0});
 ```
 
 
@@ -910,8 +1023,8 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+workerInstance.addEventListener("alert", () => {
+    console.info("alert listener callback");
 })
 workerInstance.removeAllListener();
 ```
@@ -951,8 +1064,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+workerInstance.addEventListener("alert", () => {
+    console.info("alert listener callback");
 })
 ```
 
@@ -987,8 +1100,8 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+workerInstance.addEventListener("alert", () => {
+    console.info("alert listener callback");
 })
 workerInstance.removeEventListener("alert");
 ```
@@ -998,7 +1111,7 @@ workerInstance.removeEventListener("alert");
 
 dispatchEvent(event: Event): boolean
 
-Dispatches the event defined for the Worker thread.
+Dispatches an event object to the event system of the Worker thread. The event system automatically triggers the callback functions of all registered listeners for that event type.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1014,7 +1127,7 @@ Dispatches the event defined for the Worker thread.
 
 | Type   | Description                           |
 | ------- | ------------------------------- |
-| boolean | Dispatch result. The value **true** means a successful dispatch, and **false** means the opposite.|
+| boolean | Dispatch result. The value **true** is returned if the dispatch is successful; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -1041,24 +1154,24 @@ import { worker, MessageEvents } from '@kit.ArkTS';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 // Usage 1:
-workerInstance.on("alert_on", ()=>{
-    console.log("alert listener callback");
+workerInstance.on("alert_on", () => {
+    console.info("alert listener callback");
 })
-workerInstance.once("alert_once", ()=>{
-    console.log("alert listener callback");
+workerInstance.once("alert_once", () => {
+    console.info("alert listener callback");
 })
-workerInstance.addEventListener("alert_add", ()=>{
-    console.log("alert listener callback");
+workerInstance.addEventListener("alert_add", () => {
+    console.info("alert listener callback");
 })
 
 // The event listener created by once is removed after being executed once.
 workerInstance.dispatchEvent({type:"alert_once", timeStamp:0}); // timeStamp is not supported yet.
 // The event listener created by on will not be proactively deleted.
-workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
-workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
+workerInstance.dispatchEvent({type: "alert_on", timeStamp: 0});
+workerInstance.dispatchEvent({type: "alert_on", timeStamp: 0});
 // The event listener created by addEventListener will not be proactively deleted.
-workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
-workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
+workerInstance.dispatchEvent({type: "alert_add", timeStamp: 0});
+workerInstance.dispatchEvent({type: "alert_add", timeStamp: 0});
 
 // Usage 2:
 // The event type can be customized, and the special types "message", "messageerror", and "error" exist.
@@ -1067,14 +1180,14 @@ workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 // When type = "error", the event handler defined by onerror will also be executed.
 // removeEventListener or off can be used to remove an event listener that is created by addEventListener, on, or once.
 
-workerInstance.addEventListener("message", ()=>{
-    console.log("message listener callback");
+workerInstance.addEventListener("message", () => {
+    console.info("message listener callback");
 })
 workerInstance.onmessage = (e: MessageEvents): void => {
-    console.log("onmessage : message listener callback");
+    console.info("onmessage : message listener callback");
 }
 // When dispatchEvent is called to distribute the "message" event, the callback passed in addEventListener and onmessage will be invoked.
-workerInstance.dispatchEvent({type:"message", timeStamp:0});
+workerInstance.dispatchEvent({type: "message", timeStamp: 0});
 ```
 
 
@@ -1100,8 +1213,8 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+workerInstance.addEventListener("alert", () => {
+    console.info("alert listener callback");
 })
 workerInstance.removeAllListener();
 ```
@@ -1109,7 +1222,7 @@ workerInstance.removeAllListener();
 
 ## ThreadWorkerGlobalScope<sup>9+</sup>
 
-Implements communication between the Worker thread and the host thread. The **postMessage** API is used to send messages to the host thread, and the **close** API is used to terminate the Worker thread. The **ThreadWorkerGlobalScope** class inherits from [GlobalScope<sup>9+</sup>](#globalscope9).
+Implements communication between the Worker thread and the host thread. The **postMessage** API is used to send messages to the host thread, and the [close](#close9) API is used to terminate the Worker thread. The **ThreadWorkerGlobalScope** class inherits from [GlobalScope](#globalscope9).
 
 ### postMessage<sup>9+</sup>
 
@@ -1147,7 +1260,7 @@ import { worker, MessageEvents } from '@kit.ArkTS';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
-    console.log("receive data from worker.ets");
+    console.info("receive data from worker.ets");
 }
 ```
 
@@ -1166,7 +1279,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 postMessage(messageObject: Object, options?: PostMessageOptions): void
 
-Sends a message from the Worker thread to the host thread by transferring object ownership or copying data.
+Sends a message from the Worker thread to the host thread by transferring object ownership or copying data. Pass-by-copy is used to pass [Sendable objects](../../arkts-utils/arkts-sendable.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1198,7 +1311,7 @@ import { worker, MessageEvents } from '@kit.ArkTS';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
-    console.log("receive data from worker.ets");
+    console.info("receive data from worker.ets");
 }
 ```
 
@@ -1217,7 +1330,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
 
-Sends a message from the Worker thread to the host thread. In the message, a sendable object is passed by reference, and a non-sendable object is passed by serialization.
+Sends a message from the Worker thread to the host thread. In the message, a [Sendable object](../../arkts-utils/arkts-sendable.md) is passed by reference, and a non-Sendable object is passed by copy.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1248,7 +1361,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 // Worker.ets
 // Create a SendableObject instance and pass it to the host thread through the Worker thread.
 
-import { SendableObject } from '../pages/sendable'
+import { SendableObject } from '../pages/sendable';
 import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
@@ -1274,7 +1387,7 @@ export class SendableObject {
 // Receive the data passed from the Worker thread to the host thread and access its properties.
 
 import { worker, MessageEvents } from '@kit.ArkTS';
-import { SendableObject } from './sendable'
+import { SendableObject } from './sendable';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
 workerInstance.postMessage(1);
@@ -1289,7 +1402,7 @@ workerInstance.onmessage = (e: MessageEvents) => {
 
 callGlobalCallObjectMethod(instanceName: string, methodName: string, timeout: number, ...args: Object[]): Object
 
-Calls a method of an object registered with the host thread. This API is called by the Worker thread. The invoking is synchronous for the Worker thread and asynchronous for the host thread. The return value is transferred through serialization.
+Calls a method of an object registered with the host thread. This API is called by the Worker thread. The invoking is synchronous for the Worker thread and asynchronous for the host thread. The return value is passed by copy.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1328,7 +1441,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 //Index.ets
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 class TestObj {
-  private message : string = "this is a message from TestObj"
+  private message : string = "this is a message from TestObj";
   public getMessage() : string {
     return this.message;
   }
@@ -1339,7 +1452,7 @@ class TestObj {
 let registerObj = new TestObj();
 // Register registerObj with the ThreadWorker instance.
 workerInstance.registerGlobalCallObject("myObj", registerObj);
-workerInstance.postMessage("start worker")
+workerInstance.postMessage("start worker");
 ```
 
 ```ts
@@ -1351,7 +1464,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
   try {
     // The method to call does not carry an input parameter.
     let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessage", 0) as string;
-    console.info("worker:", res) // worker: this is a message from TestObj
+    console.info("worker:", res); // worker: this is a message from TestObj
   } catch (error) {
     // Exception handling.
     console.error("worker: error code is " + error.code + " error message is " + error.message);
@@ -1359,7 +1472,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
   try {
     // The method to call carries input parameters.
     let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessageWithInput", 0, "hello there!") as string;
-    console.info("worker:", res) //worker: this is a message from TestObj with input: hello there!
+    console.info("worker:", res); //worker: this is a message from TestObj with input: hello there!
   } catch (error) {
     // Exception handling.
     console.error("worker: error code is " + error.code + " error message is " + error.message);
@@ -1400,7 +1513,7 @@ import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
-    workerPort.close()
+    workerPort.close();
 }
 ```
 
@@ -1441,7 +1554,7 @@ import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
-    console.log("receive main thread message");
+    console.info("receive main thread message");
 }
 ```
 
@@ -1481,7 +1594,7 @@ import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessageerror = (err: MessageEvents) => {
-    console.log("worker.ets onmessageerror");
+    console.error("worker.ets onmessageerror");
 }
 ```
 
@@ -1524,9 +1637,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
-})
+
+workerInstance.addEventListener("alert", (event: Event) => {
+  console.info("event type is: ", JSON.stringify(event.type));
+});
+
+workerInstance.dispatchEvent({ type: "alert", timeStamp: 0 }); // timeStamp is not supported yet.
 ```
 
 
@@ -1534,56 +1650,26 @@ workerInstance.addEventListener("alert", ()=>{
 
 Implements the running environment of the Worker thread. The **GlobalScope** class inherits from [WorkerEventTarget](#workereventtarget9).
 
-### Attributes
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type                                                        | Readable| Writable| Description                                 |
+| Name| Type                                                        | Read-only| Optional| Description                                 |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
 | name | string                                                       | Yes  | No  | Worker instance specified when there is a new Worker instance.|
 | self | [GlobalScope](#globalscope9)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | Yes  | No  | GlobalScope itself.                    |
+| onerror | (ev: [ErrorEvent](#errorevent)) => void | No  | Yes  | Callback function invoked when an exception occurs during Worker execution. It is executed in the Worker thread. **ev** indicates the exception data received. The default value is **undefined**.|
 
-
-### onerror<sup>9+</sup>
-
-onerror?: (ev: ErrorEvent) =&gt; void
-
-Called when an exception occurs during worker execution. The event handler is executed in the Worker thread. In the callback function, the **ev** type is [ErrorEvent](#errorevent), indicating the received abnormal data.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Example**
-
-```ts
-// Main thread
-import { worker } from '@kit.ArkTS';
-
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets")
-```
-
-```ts
-// worker.ets
-import { worker, ErrorEvent } from '@kit.ArkTS';
-
-const workerPort = worker.workerPort
-workerPort.onerror = (err: ErrorEvent) => {
-    console.log("worker.ets onerror" + err.message)
-}
-```
 
 ## MessageEvents<sup>9+</sup>
 
-Holds the data transferred between Worker threads.
+Holds the data transferred between Worker threads. The class inherits from [Event](#event).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description              |
+| Name| Type| Read-only| Optional| Description              |
 | ---- | ---- | ---- | ---- | ------------------ |
 | data | any  | Yes  | No  | Data transferred between threads.|
 
@@ -1646,19 +1732,13 @@ A constructor used to create a Worker instance.
 
 **Example**
 
-The following code snippet shows how to load the Worker thread file of the ability in the stage model. For details about how to use the library to load the Worker thread file, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls).
-
+The following uses the **Index.ets** file in the entry module of the stage model as an example to describe how to load the worker file. For details about how to use the library to load the Worker thread file, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls).
 
 ```ts
 import { worker } from '@kit.ArkTS';
 
-// Two scenarios are involved.
-
-// Scenario 1: URL of the Worker thread file: "entry/src/main/ets/workers/worker.ets"
-const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
-
-// Scenario 2: URL of the Worker thread file: "testworkers/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStageModel02 = new worker.ThreadWorker('testworkers/ets/ThreadFile/workers/worker.ets');
+// URL of the Worker file: "entry/src/main/ets/workers/worker.ets"
+const workerInstance = new worker.Worker('entry/ets/workers/worker.ets', {name: "WorkerThread"});
 ```
 
 ### postMessage<sup>(deprecated)</sup>
@@ -1740,8 +1820,8 @@ Adds an event listener for the Worker thread. This API provides the same functio
 
 ```ts
 const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.on("alert", ()=>{
-    console.log("alert listener callback");
+workerInstance.on("alert", () => {
+    console.info("alert listener callback");
 })
 ```
 
@@ -1768,8 +1848,8 @@ Adds an event listener for the Worker thread and removes the event listener afte
 
 ```ts
 const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.once("alert", ()=>{
-    console.log("alert listener callback");
+workerInstance.once("alert", () => {
+    console.info("alert listener callback");
 })
 ```
 
@@ -1836,7 +1916,7 @@ Called when the Worker thread exits. The event handler is executed in the host t
 ```ts
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.onexit = (code) => {
-    console.log("onexit");
+    console.info("onexit");
 }
 
 // onexit is executed in either of the following ways:
@@ -1866,7 +1946,7 @@ import { worker, ErrorEvent } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.onerror = (err: ErrorEvent) => {
-  console.log("onerror" + err.message);
+  console.error("onerror" + err.message);
 }
 ```
 
@@ -1889,7 +1969,7 @@ import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.onmessage = (): void => {
-    console.log("onmessage");
+    console.info("onmessage");
 }
 ```
 
@@ -1912,7 +1992,7 @@ import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.onmessageerror = (err) => {
-    console.log("onmessageerror");
+    console.error("onmessageerror");
 }
 ```
 
@@ -2008,7 +2088,7 @@ Dispatches the event defined for the Worker thread.
 
 | Type   | Description                           |
 | ------- | ------------------------------- |
-| boolean | Dispatch result. The value **true** means a successful dispatch, and **false** means the opposite.|
+| boolean | Dispatch result. The value **true** is returned if the dispatch is successful; otherwise, **false** is returned.|
 
 **Example**
 
@@ -2105,7 +2185,7 @@ Sends a message from the Worker thread to the host thread by transferring object
 | messageObject | Object                                    | Yes  | Data to be sent to the host thread. The data object must be sequenceable. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
 | transfer| Transferable[]                            | Yes  | Currently, this parameter is not supported.                                        |
 
-### postMessage<sup>9+</sup>
+### postMessage<sup>(deprecated)</sup>
 
 postMessage(messageObject: Object, transfer: ArrayBuffer[]): void
 
@@ -2134,7 +2214,7 @@ const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (): void => {
     // let data = e.data;
-    console.log("receive data from worker.ets");
+    console.info("receive data from worker.ets");
 }
 ```
 ```ts
@@ -2177,7 +2257,7 @@ import { worker } from '@kit.ArkTS';
 const workerInstance = new worker.Worker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (): void => {
-    console.log("receive data from worker.ets");
+    console.info("receive data from worker.ets");
 }
 ```
 ```ts
@@ -2246,7 +2326,7 @@ import { worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
 parentPort.onmessage = (): void => {
-    console.log("receive main thread message");
+    console.info("receive main thread message");
 }
 ```
 
@@ -2255,7 +2335,7 @@ parentPort.onmessage = (): void => {
 
 onmessageerror?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 
-Called when the Worker thread receives a message that cannot be deserialized. The event handler is executed in the Worker thread. In the callback function, **this** indicates the caller's [DedicatedWorkerGlobalScope](#threadworkerglobalscope9), and the **ev** type is [MessageEvent](#dedicatedworkerglobalscopedeprecated), indicating the received message data.
+Called when the Worker thread receives a message that cannot be deserialized. The event handler is executed in the Worker thread. In the callback function, **this** indicates the caller's [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated), and the **ev** type is [MessageEvent](#messageeventt), indicating the received message data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.onmessageerror<sup>9+</sup>](#onmessageerror9-1).
@@ -2276,7 +2356,7 @@ import { worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
 parentPort.onmessageerror = () => {
-    console.log("worker.ets onmessageerror")
+    console.error("worker.ets onmessageerror")
 }
 ```
 
@@ -2289,9 +2369,9 @@ Defines the object for which the ownership is to be transferred during data tran
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name    | Type    | Readable| Writable| Description                             |
+| Name    | Type    | Read-only| Optional| Description                             |
 | -------- | -------- | ---- | ---- | --------------------------------- |
-| transfer | Object[] | Yes  | Yes  | **ArrayBuffer** array used to transfer the ownership. The array cannot be **null**.|
+| transfer | Object[] | No  | Yes  | **ArrayBuffer** array used to transfer the ownership. The array cannot be **null**. The default value is **undefined**.|
 
 
 ## Event
@@ -2302,7 +2382,7 @@ Defines the event.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name     | Type  | Readable| Writable| Description                                        |
+| Name     | Type  | Read-only| Optional| Description                                        |
 | --------- | ------ | ---- | ---- | -------------------------------------------- |
 | type      | string | Yes  | No  | Type of the event.                            |
 | timeStamp | number | Yes  | No  | Timestamp (accurate to millisecond) when the event is created. This parameter is not supported yet.|
@@ -2343,7 +2423,7 @@ Implements event listening.
 ```ts
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.addEventListener("alert", ()=>{
-    console.log("alert listener callback");
+    console.info("alert listener callback");
 })
 ```
 
@@ -2356,7 +2436,7 @@ Provides detailed information about the exception that occurs during worker exec
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name    | Type  | Readable| Writable| Description                |
+| Name    | Type  | Read-only| Optional| Description                |
 | -------- | ------ | ---- | ---- | -------------------- |
 | message  | string | Yes  | No  | Information about the exception.|
 | filename | string | Yes  | No  | File where the exception is located.|
@@ -2367,13 +2447,13 @@ Provides detailed information about the exception that occurs during worker exec
 
 ## MessageEvent\<T\>
 
-Holds the data transferred between Worker threads.
+Holds the data transferred between Worker threads. The class inherits from [Event](#event).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description              |
+| Name| Type| Read-only| Optional| Description              |
 | ---- | ---- | ---- | ---- | ------------------ |
 | data | T    | Yes  | No  | Data transferred between threads.|
 
@@ -2385,53 +2465,22 @@ Implements the running environment of the Worker thread. The **WorkerGlobalScope
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [GlobalScope<sup>9+</sup>](#globalscope9) instead.
 
-### Attributes
-
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type                                                        | Readable| Writable| Description                                 |
+| Name| Type                                                        | Read-only| Optional| Description                                 |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
 | name | string                                                       | Yes  | No  | Worker instance specified when there is a new Worker instance.|
 | self | [WorkerGlobalScope](#workerglobalscopedeprecated)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | Yes  | No  | WorkerGlobalScope.              |
-
-
-### onerror<sup>(deprecated)</sup>
-
-onerror?: (ev: ErrorEvent) =&gt; void
-
-Called when an exception occurs during worker execution. The event handler is executed in the Worker thread. In the callback function, the **ev** type is [ErrorEvent](#errorevent), indicating the received abnormal data.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [GlobalScope<sup>9+</sup>.onerror<sup>9+</sup>](#onerror9-1).
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Example**
-
-```ts
-// Main thread
-import { worker } from '@kit.ArkTS';
-
-const workerInstance = new worker.Worker("workers/worker.ets")
-```
-```ts
-// worker.ets
-import { worker, ErrorEvent } from '@kit.ArkTS';
-
-const parentPort = worker.parentPort
-parentPort.onerror = (err: ErrorEvent) => {
-    console.log("worker.ets onerror" + err.message)
-}
-```
+| onerror | (ev: [ErrorEvent](#errorevent)) => void | No| Yes| Callback function invoked when an exception occurs during Worker execution. It is executed in the Worker thread. **ev** indicates the exception data received. The default value is **undefined**.|
 
 
 ## More Information
 
 ### Sequenceable Data Types
 
-The following object types are supported: basic types except Symbol, Date, String, RegExp, Array, Map, Set, Object (simple objects only, for example, objects created using **{}** or **new Object**), ArrayBuffer, and TypedArray. (Note that only attributes can be transferred for common objects. Prototypes and methods cannot be transferred.)
+The following object types are supported: basic types except Symbol, Date, String, RegExp, Array, Map, Set, Object (simple objects only, for example, objects created using **{}** or **new Object**), ArrayBuffer, and TypedArray. (Note that only properties can be transferred for common objects. Prototypes and methods cannot be transferred.)
 
-Exception: When an object created through a custom class is passed, no serialization error occurs. However, the attributes (such as Function) of the custom class cannot be passed through serialization.
+Exception: When an object created through a custom class is passed, no serialization error occurs. However, the properties (such as Function) of the custom class cannot be passed through serialization.
 > **NOTE**<br>
 > An FA project of API version 9 is used as an example.
 
@@ -2452,26 +2501,26 @@ import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 class MyModel {
-    name = "undefined"
+    name = "undefined";
     Init() {
-        this.name = "MyModel"
+        this.name = "MyModel";
     }
 }
 workerPort.onmessage = (d: MessageEvents): void => {
-  console.log("worker.ets onmessage");
+  console.info("worker.ets onmessage");
   let data: string = d.data;
   let func1 = () => {
-    console.log("post message is function");
+    console.info("post message is function");
   }
   // workerPort.postMessage(func1); A serialization error occurs when passing func1.
   let obj2 = new MyModel();
   workerPort.postMessage(obj2);     // No serialization error occurs when passing obj2.
 }
 workerPort.onmessageerror = () => {
-    console.log("worker.ets onmessageerror");
+    console.error("worker.ets onmessageerror");
 }
 workerPort.onerror = (err: ErrorEvent) => {
-    console.log("worker.ets onerror" + err.message);
+    console.error("worker.ets onerror" + err.message);
 }
 ```
 
@@ -2502,7 +2551,7 @@ workerInstance.postMessage(buffer, [buffer]);
 workerInstance.onmessage = (e: MessageEvents): void => {
     // data carries the information sent by the Worker thread.
     let data: string = e.data;
-    console.log("main thread onmessage");
+    console.info("main thread onmessage");
 
     // Terminate the Worker instance.
     workerInstance.terminate();
@@ -2510,11 +2559,11 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 // Call onexit().
 workerInstance.onexit = (code) => {
-    console.log("main thread terminate");
+    console.info("main thread terminate");
 }
 
 workerInstance.onerror = (err: ErrorEvent) => {
-    console.log("main error message " + err.message);
+    console.error("main error message " + err.message);
 }
 ```
 ```ts
@@ -2522,14 +2571,14 @@ workerInstance.onerror = (err: ErrorEvent) => {
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 // Create an object in the Worker thread for communicating with the host thread.
-const workerPort = worker.workerPort
+const workerPort = worker.workerPort;
 
 // The Worker thread receives information from the host thread.
 workerPort.onmessage = (e: MessageEvents): void => {
     // data carries the information sent by the host thread.
     let data: number = e.data;
     const view = new Int8Array(data).fill(3);
-    console.log("worker.ets onmessage");
+    console.info("worker.ets onmessage");
 
     // The Worker thread sends information to the host thread.
     workerPort.postMessage(view);
@@ -2537,7 +2586,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 // Trigger a callback when an error occurs in the Worker thread.
 workerPort.onerror = (err: ErrorEvent) => {
-    console.log("worker.ets onerror");
+    console.error("worker.ets onerror");
 }
 ```
 Add the following configuration to the module-level **entry/build-profile.json5** file:
@@ -2582,11 +2631,11 @@ struct Index {
             }
             // Call onexit().
             workerInstance.onexit = (code) => {
-              console.log("main thread terminate");
+              console.info("main thread terminate");
             }
 
             workerInstance.onAllErrors = (err: ErrorEvent) => {
-              console.log("main error message " + err.message);
+              console.error("main error message " + err.message);
             }
           })
       }
@@ -2601,7 +2650,7 @@ struct Index {
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 // Create an object in the Worker thread for communicating with the host thread.
-const workerPort = worker.workerPort
+const workerPort = worker.workerPort;
 
 // The Worker thread receives information from the host thread.
 workerPort.onmessage = (e: MessageEvents): void => {
@@ -2615,7 +2664,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 // Trigger a callback when an error occurs in the Worker thread.
 workerPort.onerror = (err: ErrorEvent) => {
-  console.log("worker.ets onerror" + err.message);
+  console.error("worker.ets onerror" + err.message);
 }
 ```
 Add the following configuration to the module-level **entry/build-profile.json5** file:

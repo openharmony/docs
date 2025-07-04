@@ -206,6 +206,12 @@ const transform: Matrix4 = [
 
 图形绘制上下文，提供绘制所需的画布宽度和高度。
 
+| 名称 | 类型   | 只读 | 可选 | 说明              |
+| ---- | ------ | ---- | ---- | ----------------- |
+| size | [Size](#size) | 是  | 否  | 画布的宽度和高度。 |
+| sizeInPixel | [Size](#size) | 是  | 否  | 画布的宽度和高度，以px为单位。 |
+| canvas | [drawing.Canvas](../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas)| 是  | 否  | 用于绘制的画布。 |
+
 ### size
 
 get size(): Size
@@ -252,7 +258,7 @@ get canvas(): drawing.Canvas
 
 | 类型          | 说明             |
 | ------------- | ---------------- |
-| [drawing.Canvas](../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 用于绘制的画布。 |
+| [drawing.Canvas](../apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md) | 用于绘制的画布。 |
 
 **示例：**
 
@@ -598,7 +604,7 @@ static colorWithSpace(colorSpace: ColorSpace, red: number, green: number, blue: 
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| colorSpace   | [ColorSpace](./arkui-ts/ts-appendix-enums.md#colorspace20) | 是   | 颜色空间，用于指定颜色的色彩空间。 |
+| colorSpace   | [ColorSpace](./arkui-ts/ts-appendix-enums.md#colorspace20) | 是   | 颜色空间，用于指定颜色的色彩空间。使用ColorSpace.DISPLAY_P3，需要对应窗口调用[setWindowColorSpace](./arkts-apis-window-Window.md#setwindowcolorspace9-1)接口，将当前窗口设置为广色域模式。 |
 | red   | number | 是   | 颜色的R分量（红色），值是0~1的浮动数值。 |
 | green | number | 是   | 颜色的G分量（绿色），值是0~1的浮动数值。 |
 | blue  | number | 是   | 颜色的B分量（蓝色），值是0~1的浮动数值。 |
@@ -881,7 +887,7 @@ type Rect = common2D.Rect
 
 | 名称                                                         | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------------------------------------------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| [commands](./arkui-ts/ts-drawing-components-path.md#commands-1) | string | 是   | 是   | 路径绘制的指令字符串。像素单位的转换方法请参考[像素单位转换](./arkui-ts/ts-pixel-units.md#像素单位转换)。<br/>单位：px |
+| [commands](./arkui-ts/ts-drawing-components-path.md#commands) | string | 是   | 是   | 路径绘制的指令字符串。像素单位的转换方法请参考[像素单位转换](./arkui-ts/ts-pixel-units.md#像素单位转换)。<br/>单位：px |
 
 ## ShapeMask<sup>12+</sup>
 

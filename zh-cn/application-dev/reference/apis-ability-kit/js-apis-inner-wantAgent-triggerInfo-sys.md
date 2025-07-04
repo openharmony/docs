@@ -18,6 +18,6 @@ import { wantAgent } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称       | 类型                 | 必填 | 说明        |
-| ---------- | --- |-------------------- | ----------- |
-| startOptions<sup>12+<sup>|[StartOptions](js-apis-app-ability-startOptions.md)         | 否  | 触发启动Ability的wantAgent时，由该属性指定启动参数。 |
+| 名称       | 类型                 | 只读 | 可选 | 说明        |
+| ---------- | ------------------- | ---- | ---- | ----------- |
+| startOptions<sup>12+<sup>|[StartOptions](js-apis-app-ability-startOptions.md)         | 否 | 是 | 触发启动Ability的wantAgent时，由该属性指定启动参数。 |

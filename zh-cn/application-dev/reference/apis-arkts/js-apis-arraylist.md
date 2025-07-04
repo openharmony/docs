@@ -485,7 +485,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.forEach((value: number, index?: number) => {
-  console.log("value:" + value, "index:" + index);
+  console.info("value:" + value, "index:" + index);
 });
 ```
 
@@ -892,14 +892,14 @@ arrayList.add(4);
 // 使用方法一：
 let numbers: Array<number> = arrayList.convertToArray();
 for (let item of numbers) {
-  console.log(`value : ${item}`);
+  console.info(`value : ${item}`);
 }
 
 // 使用方法二：
 let iter = arrayList[Symbol.iterator]();
 let temp: IteratorResult<number> = iter.next();
 while(!temp.done) {
-    console.log(`value:${temp.value}`);
+    console.info(`value:${temp.value}`);
     temp = iter.next();
 }
 ```

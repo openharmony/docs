@@ -26,7 +26,7 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                                        | 必填 | 说明                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 设置发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1) | 是   | 设置发布通知的内容和相关配置信息。 |
 | callback | AsyncCallback\<void\>                       | 是   | 回调函数。当发布通知成功，err为undefined，否则为错误对象。                        |
 
 **错误码：**
@@ -92,7 +92,7 @@ publish(request: NotificationRequest): Promise\<void\>
 
 | 参数名     | 类型                                        | 必填 | 说明                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 设置发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1) | 是   | 设置发布通知的内容和相关配置信息。 |
 
 **返回值：**
 
@@ -387,7 +387,7 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// addslot回调
+// addSlot回调
 let addSlotCallBack = (err: BusinessError): void => {
   if (err) {
     console.error(`Failed to add slot. Code is ${err.code}, message is ${err.message}`);
@@ -1065,7 +1065,7 @@ getActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): v
 
 | 参数名     | 类型                                                         | 必填 | 说明                           |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 回调函数。当获取未删除的通知列表成功，err为undefined，data为获取到的通知列表，否则为错误对象。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)>> | 是   | 回调函数。当获取未删除的通知列表成功，err为undefined，data为获取到的通知列表，否则为错误对象。 |
 
 **错误码：**
 
@@ -1105,7 +1105,7 @@ getActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 
 | 类型                                                         | 说明                                    |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\> | Promise对象，返回当前应用的通知列表。 |
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)\>\> | Promise对象，返回当前应用的通知列表。 |
 
 **错误码：**
 
@@ -1141,7 +1141,7 @@ cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                         |
 | --------- | --------------------- | ---- | ---------------------------- |
-| groupName | string                | 是   | 通知组名称，此名称需要在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象指定。 |
+| groupName | string                | 是   | 通知组名称，此名称需要在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)对象指定。 |
 | callback  | AsyncCallback\<void\> | 是   | 回调函数。当取消当前应用指定组下的通知成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -1183,7 +1183,7 @@ cancelGroup(groupName: string): Promise\<void\>
 
 | 参数名      | 类型   | 必填 | 说明           |
 | --------- | ------ | ---- | -------------- |
-| groupName | string | 是   | 通知组名称，此名称需要在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象指定。 |
+| groupName | string | 是   | 通知组名称，此名称需要在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)对象指定。 |
 
 **返回值：**
 
@@ -1349,10 +1349,10 @@ class MyAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        hilog.error(0x0000, 'testTag', `Failed to load the content. Cause: ${JSON.stringify(err) ?? ''}`);
         return;
       }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      hilog.info(0x0000, 'testTag', `Succeeded in loading the content. Data: ${JSON.stringify(data) ?? ''}`);
       let requestEnableNotificationCallback = (err: BusinessError): void => {
         if (err) {
           hilog.error(0x0000, 'testTag', `[ANS] requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
@@ -1419,10 +1419,10 @@ class MyAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        hilog.error(0x0000, 'testTag', `Failed to load the content. Cause: ${JSON.stringify(err) ?? ''}`);
         return;
       }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      hilog.info(0x0000, 'testTag', `Succeeded in loading the content. Data: ${JSON.stringify(data) ?? ''}`);
       notificationManager.requestEnableNotification(this.context).then(() => {
         hilog.info(0x0000, 'testTag', `[ANS] requestEnableNotification success`);
       }).catch((err: BusinessError) => {
@@ -1647,10 +1647,10 @@ class MyAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        hilog.error(0x0000, 'testTag', `Failed to load the content. Cause: ${JSON.stringify(err) ?? ''}`);
         return;
       }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      hilog.info(0x0000, 'testTag', `Succeeded in loading the content. Data: ${JSON.stringify(data) ?? ''}`);
       notificationManager.openNotificationSettings(this.context).then(() => {
         hilog.info(0x0000, 'testTag', `[ANS] openNotificationSettings success`);
       }).catch((err: BusinessError) => {
@@ -1794,7 +1794,7 @@ type NotificationContent = _NotificationContent
 
 | 类型 | 说明 |
 | --- | --- |
-| [_NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent) | 描述通知内容。 |
+| [_NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent-1) | 描述通知内容。 |
 
 ## NotificationLongTextContent
 
@@ -1854,7 +1854,7 @@ type NotificationRequest = _NotificationRequest
 
 | 类型 | 说明 |
 | --- | --- |
-| [_NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 通知请求。 |
+| [_NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1) | 通知请求。 |
 
 ## DistributedOptions
 

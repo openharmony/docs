@@ -43,16 +43,29 @@ setKeyDownDuration(businessKey: string, delay: number, callback: AsyncCallback&l
 **示例**：
 
 ```js
-try {
-  shortKey.setKeyDownDuration("businessId", 500, (error) => {
-    if (error) {
-      console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { shortKey } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            shortKey.setKeyDownDuration("businessId", 500, (error) => {
+              if (error) {
+                console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`Set key down duration success`);
+            });
+          } catch (error) {
+            console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Set key down duration success`);
-  });
-} catch (error) {
-  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -89,12 +102,25 @@ setKeyDownDuration(businessKey: string, delay: number): Promise&lt;void&gt;
 **示例**：
 
 ```js
-try {
-  shortKey.setKeyDownDuration("businessId", 500).then(() => {
-    console.log(`Set key down duration success`);
-  });
-} catch (error) {
-  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { shortKey } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            shortKey.setKeyDownDuration("businessId", 500).then(() => {
+              console.log(`Set key down duration success`);
+            });
+          } catch (error) {
+            console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -106,11 +132,11 @@ try {
 
 | 名称                 | 值          | 说明                |
 | ---------------------| ---------- | --------------------|
-| DOWN                 | 0x00000000 | 按下事件。           |
-| UP                   | 0x00000001 | 抬起事件。           |
-| SLIDE                | 0x00000002 | 滑动事件。           |
-| RETOUCH              | 0x00000003 | 滑动事件。           |
-| CLICK                | 0x00000004 | 点击事件。           |
+| DOWN                 | 0 | 按下事件。           |
+| UP                   | 1 | 抬起事件。           |
+| SLIDE                | 2 | 滑动事件。           |
+| RETOUCH              | 3 | 滑动事件。           |
+| CLICK                | 4 | 点击事件。           |
 
 
 ## FingerprintEvent<sup>12+</sup>
@@ -121,6 +147,6 @@ try {
 
 | 名称      | 类型                                       |只读   | 可选  |说明                    |
 | --------  | ------------------------                  |-------|------ |--------               |
-| action    | [FingerprintAction](#fingerprintaction12)   | 是    |  否   |按键事件类型。           |
-| distanceX | number                                    | 是    |  否   |相对于光标位置的x轴偏移量（正数表示向右移动，负数表示向左移动）。 |
-| distanceY | number                                    | 是    |  否   |相对于光标位置的y轴偏移量（正数表示向上移动，负数表示向下移动）。 |
+| action    | [FingerprintAction](#fingerprintaction12)   | 否    |  否   |按键事件类型。           |
+| distanceX | number                                    | 否    |  否   |相对于光标位置的x轴偏移量（正数表示向右移动，负数表示向左移动）。 |
+| distanceY | number                                    | 否    |  否   |相对于光标位置的y轴偏移量（正数表示向上移动，负数表示向下移动）。 |

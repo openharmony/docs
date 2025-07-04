@@ -7,6 +7,8 @@
 
 **库：** libnative_media_core.so
 
+**引用文件：** <multimedia/player_framework/media_types.h>
+
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
 **起始版本：** 18

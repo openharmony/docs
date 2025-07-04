@@ -1,8 +1,8 @@
 # @ohos.file.trash (Trash) (System API)
 
-The **file.trash** module provides APIs for querying, recovering, or permanently deleting the files or folders in **Recently deleted** (trash). Currently, only local files and folders are supported.
+The **file.trash** module provides APIs for querying, recovering, or permanently deleting the files or directories in **Recently deleted** (trash). Currently, only local files and directories are supported.
 
-You can use **delete()** of [@ohos.file.fileAccess](js-apis-fileAccess-sys.md) to move a file or folder to the trash.
+You can use **delete()** of [@ohos.file.fileAccess](js-apis-fileAccess-sys.md) to move a file or directory to the trash.
 
 >**NOTE**
 >
@@ -20,7 +20,7 @@ import trash from '@ohos.file.trash';
 
 listFile(): Array\<FileInfo>
 
-Lists the files and folders in the **Recently deleted** list.
+Lists the files and directories in the **Recently deleted** list.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -34,7 +34,7 @@ Lists the files and folders in the **Recently deleted** list.
 
   | Type| Description|
   | --- | -- |
-  | Array [\<FileInfo>](#fileinfo) | List of the files and folders obtained.|
+  | Array [\<FileInfo>](#fileinfo) | List of the files and directories obtained.|
 
 **Error codes**
 
@@ -59,7 +59,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 recover(uri: string): void
 
-Recovers a file or folder from the trash.
+Recovers a file or directory from the trash.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -73,7 +73,7 @@ Recovers a file or folder from the trash.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| uri   | string | Yes  | URI of the file or folder to recover.|
+| uri   | string | Yes  | URI of the file or directory to recover.|
 
 **Error codes**
 
@@ -91,7 +91,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 completelyDelete(uri: string): void
 
-Permanently deletes a file or folder from the **Recently deleted** list.
+Permanently deletes a file or directory from the **Recently deleted** list.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -105,7 +105,7 @@ Permanently deletes a file or folder from the **Recently deleted** list.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| uri   | string | Yes  | URI of the file or folder to delete.|
+| uri   | string | Yes  | URI of the file or directory to delete.|
 
 **Error codes**
 
@@ -121,18 +121,18 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 ## FileInfo
 
-Represents information about a file or folder in the **Recently deleted** list.
+Represents information about a file or directory in the **Recently deleted** list.
 
 **Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-| Name| Type  | Read-Only| Writable| Description    |
+| Name| Type  | Read-Only| Optional| Description    |
 | ------ | ------ | -------- | ------ | -------- |
-| uri | string | Yes| No| URI of the file or folder.|
-| srcPath | string | Yes| No| Path of the file or folder before being deleted.|
-| fileName | string | Yes| No| Name of the file or folder.|
-| mode | number | Yes| No| Permission on the file or folder.|
-| size | number | Yes| No|  Size of a file or folder, in bytes.|
-| mtime | number | Yes| No|  Time when the file or folder was last modified. It is the number of milliseconds elapsed since the Unix epoch (00:00:00 UTC on January 1, 1970).|
-| ctime | number | Yes| No|  Time when the file or folder was created. It is the number of seconds elapsed since the Unix epoch (00:00:00 UTC on January 1, 1970).|
+| uri | string | Yes| No| URI of the file or directory.|
+| srcPath | string | Yes| No| Path of the file or directory before being deleted.|
+| fileName | string | Yes| No| Name of the file or directory.|
+| mode | number | Yes| No| Permission on the file or directory.|
+| size | number | Yes| No|  Size of a file or directory, in bytes.|
+| mtime | number | Yes| No|  Time when the file or directory was last modified. It is the number of milliseconds elapsed since the Unix epoch (00:00:00 UTC on January 1, 1970).|
+| ctime | number | Yes| No|  Time when the file or directory was created. It is the number of seconds elapsed since the Unix epoch (00:00:00 UTC on January 1, 1970).|
