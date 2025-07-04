@@ -2531,7 +2531,8 @@ FFRT_C_API int ffrt_fiber_init(ffrt_fiber_t* fiber, void(*func)(void*), void* ar
 
 返回值
 
-- 初始化成功返回`ffrt_success`，否则返回`ffrt_error`。返回错误的常见原因是`stack_size`不满足最小栈空间限制（不同平台存在差异），建议设置栈空间大小为4KB或以上。
+- 初始化成功返回`ffrt_success`，否则返回`ffrt_error`。
+- 返回错误的常见原因是`stack_size`不满足最小栈空间限制（不同平台存在差异），建议设置栈空间大小为4KB或以上。
 
 描述
 
@@ -2553,4 +2554,4 @@ FFRT_C_API void ffrt_fiber_switch(ffrt_fiber_t* from, ffrt_fiber_t* to);
 描述
 
 - 切换纤程上下文时，调用该函数的线程会暂停当前任务，保存上下文到`from`纤程，并恢复`to`纤程上下文，执行`to`对应的任务。
-- 注意：本接口不校验对`from`、`to`的有效性，调用方需自行校验地址有效性，否则会导致该进程崩溃。
+- 注意：本接口不校验`from`、`to`的有效性，调用方需自行校验地址有效性，否则会导致该进程崩溃。
