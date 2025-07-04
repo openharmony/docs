@@ -1,10 +1,16 @@
-# Interfaces (PreviewOutput)
+# Interface (PreviewOutput)
 
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 预览输出类。继承[CameraOutput](arkts-apis-camera-CameraOutput.md)。
+
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
 
 ## on('frameStart')
 
@@ -311,6 +317,8 @@ getActiveProfile(): Profile
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testGetActiveProfile(previewOutput: camera.PreviewOutput): camera.Profile | undefined {
   let activeProfile: camera.Profile | undefined = undefined;
   try {
@@ -362,6 +370,8 @@ getPreviewRotation(displayRotation: number): ImageRotation
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
   let previewRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
@@ -405,6 +415,8 @@ setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): v
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRotation : camera.ImageRotation, isDisplayLocked: boolean): void {
   try {
     previewOutput.setPreviewRotation(previewRotation, isDisplayLocked);

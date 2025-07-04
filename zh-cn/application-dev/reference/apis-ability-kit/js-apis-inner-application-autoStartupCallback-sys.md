@@ -32,17 +32,19 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let autoStartupCallback: common.AutoStartupCallback = {
   onAutoStartupOn(data: common.AutoStartupInfo) {
-    console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+    console.info(`autostartupmanager onAutoStartupOn, data: ${JSON.stringify(data)}.`);
   },
   onAutoStartupOff(data: common.AutoStartupInfo) {
-    console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+    console.info(`autostartupmanager onAutoStartupOff, data: ${JSON.stringify(data)}}.`);
   }
 }
 
 try {
-  autoStartupManager.on('systemAutoStartup', autoStartupCallback)
+  autoStartupManager.on('systemAutoStartup', autoStartupCallback);
 } catch (err) {
-  console.info('===> autostartupmanager on callback err: ' + JSON.stringify(err as BusinessError));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`autoStartupManager.on failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -70,16 +72,18 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let autoStartupCallback: common.AutoStartupCallback = {
   onAutoStartupOn(data: common.AutoStartupInfo) {
-    console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+    console.info(`autostartupmanager onAutoStartupOn, data: ${JSON.stringify(data)}.`);
   },
   onAutoStartupOff(data: common.AutoStartupInfo) {
-    console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+    console.info(`autostartupmanager onAutoStartupOff, data: ${JSON.stringify(data)}}.`);
   }
 }
 
 try {
-  autoStartupManager.on('systemAutoStartup', autoStartupCallback)
+  autoStartupManager.on('systemAutoStartup', autoStartupCallback);
 } catch (err) {
-  console.info('===> autostartupmanager on callback err: ' + JSON.stringify(err as BusinessError));
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`autoStartupManager.on failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```

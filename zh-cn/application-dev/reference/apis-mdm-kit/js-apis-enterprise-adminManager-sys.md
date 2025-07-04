@@ -1271,6 +1271,8 @@ replaceSuperAdmin(oldAdmin: Want, newAdmin: Want, isKeepPolicy: boolean): void
 
 将指定应用替换成超级设备管理应用。
 
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 
@@ -1327,6 +1329,8 @@ setAdminRunningMode(admin: Want, mode: RunningMode): void
 
 该接口仅在PC设备上生效。
 
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 
@@ -1378,10 +1382,10 @@ try {
 
 
 
-| 名称         | 类型     | 必填 | 说明                            |
-| ----------- | --------| ---- | ------------------------------- |
-| name        | string   | 是   | 表示设备管理应用所属企业的名称。 |
-| description | string   | 是   | 表示设备管理应用所属企业的描述。 |
+| 名称         | 类型     | 只读 | 可选 | 说明                            |
+| ----------- | --------| ---- | -----| -------------------------- |
+| name        | string   | 否   | 否 | 表示设备管理应用所属企业的名称。 |
+| description | string   | 否   | 否 |表示设备管理应用所属企业的描述。 |
 
 ## AdminType
 

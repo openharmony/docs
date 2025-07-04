@@ -10,6 +10,8 @@ OpenHarmony provides the VPN Extension solution for enhanced VPN management. Cur
 >
 > To maximize the application running efficiency, all APIs are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [API Reference](../reference/apis-network-kit/js-apis-net-vpnExtension.md).
 
+For details about the complete JavaScript APIs and sample code, see [API Reference](../reference/apis-network-kit/js-apis-net-vpnExtension.md).
+
 ## VPN Extension Ability UI
 
 With the VPN Extension APIs provided by OpenHarmony, you can build VPN services that support different protocols. OpenHarmony provides a UI for users to learn about VPN startup and connection.
@@ -20,13 +22,12 @@ With the VPN Extension APIs provided by OpenHarmony, you can build VPN services 
 To facilitate the query and configuration, your VPN application needs to provide the following UIs:
 
 - UI for manually starting and stopping the VPN connection.
-- UI for displaying the connection status of the VPN application in the notification bar  or providing network statistics (such as the connection duration and traffic) of the VPN connection. Touching the notification in notification bar should bring your VPN application to the foreground.
+- UI for displaying the connection status of the VPN application in the notification bar or providing network statistics (such as the connection duration and traffic) of the VPN connection. Touching the notification in notification bar should bring your VPN application to the foreground.
 
-## Available APIs
 
-For details about the complete JavaScript APIs and sample code, see [API Reference](../reference/apis-network-kit/js-apis-net-vpnExtension.md).
+## How to Develop
 
-## Creating a VPN Extension Ability
+### Creating a VPN Extension Ability
 
 To enable your application to support the VPN functionality, you need to create an **ExtensionAbilities** instance inherited from **VpnExtensionAbility**.
 
@@ -54,8 +55,7 @@ Next, you need to configure, start, and stop the VPN in the created **VpnExtensi
 - Use [VpnConnection.create](../reference/apis-network-kit/js-apis-net-vpnExtension.md#create) to establish a VPN connection.
 - Process data of the virtual network interface card (vNIC), such as reading or writing data.
 
-
-## Starting the VPN Extension Ability
+### Starting the VPN Extension Ability
 
 To start a connection from the VPN application, you need to call **startVpnExtensionAbility** with the **VpnExtensionAbility** information specified. Make sure that **bundleName** is the same as that of the VPN application, and **abilityName** is the name of the **VpnExtensionAbility** you created. The sample code is as follows:
 
@@ -96,7 +96,7 @@ Currently, only one active VPN connection is supported. If the application calls
 
 
 
-## Stopping the VPN Extension Ability
+### Stopping the VPN Extension Ability
 
 To stop a VPN connection, the VPN application needs to call **stopVpnExtensionAbility** with the target **VpnExtensionAbility** specified. The system verifies the permission of the caller. The caller of **stopVpnExtensionAbility** must have obtained the VPN connection authorization of the user and can only stop the **VpnExtensionAbility** it started. Therefore, make sure that the value of **bundleName** passed by the API is the same as that of the VPN application, and the value of **abilityName** is the same as that of the target **VpnExtensionAbility**.
 

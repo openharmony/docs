@@ -7,8 +7,9 @@ The **ffrt_function_header_t** struct describes a task execution function.
 
 **Since**: 10
 
-Related module: [FFRT](_f_f_r_t.md)
+**Related module**: [FFRT](_f_f_r_t.md)
 
+**Header file**: [type_def.h](type__def_8h.md)
 
 ## Summary
 

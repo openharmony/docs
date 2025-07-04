@@ -62,5 +62,5 @@ Defines a response that returns the charging status and remaining power of the d
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| charging | boolean | Yes| No| Whether the battery is being charged.|
+| charging | boolean | Yes| No| Whether the battery is being charged. The value **true** indicates that the battery is being changed; **false** indicates the opposite. The default value is **false**.|
 | level | number | Yes| No| Current battery level, which ranges from **0.00** to **1.00**.|

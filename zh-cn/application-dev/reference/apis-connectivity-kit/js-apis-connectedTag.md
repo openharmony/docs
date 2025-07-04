@@ -100,7 +100,7 @@ readNdefTag(): Promise&lt;string&gt;
 
 > **说明：**
 >
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.read](#connectedtagread9)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.read](#connectedtagread9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -172,7 +172,7 @@ readNdefTag(callback: AsyncCallback&lt;string&gt;): void
 
 > **说明：**
 >
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.read](#connectedtagread9)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.read](#connectedtagread9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -246,7 +246,7 @@ writeNdefTag(data: string): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.write](#connectedtagwrite9)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.write](#connectedtagwrite9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -333,7 +333,7 @@ writeNdefTag(data: string, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.write](#connectedtagwrite9)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.write](#connectedtagwrite9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -447,16 +447,17 @@ import { connectedTag } from '@kit.ConnectivityKit';
 connectedTag.on("notify", (rfState : number)=> {
   console.log("connectedTag on Callback rfState: " + rfState);
 });
-
-let initStatus = connectedTag.init();
-console.log("connectedTag init status: " + initStatus);
-
-// Add nfc connected tag business operations here...
-// connectedTag.writeNdefTag(rawData)
-// connectedTag.readNdefTag()
-
-let uninitStatus = connectedTag.uninit();
-console.log("connectedTag uninit status: " + uninitStatus);
+try {
+    connectedTag.initialize();
+    let tag = [3, 1, 0];
+    console.log("connectedTag write: tag=" + tag);
+    await connectedTag.write(tag);
+    let data = await connectedTag.read();
+    console.log("connectedTag read: data=" + data);
+    connectedTag.uninitialize();
+} catch (error) {
+    console.error("connectedTag error: " + error);
+}
 
 // Unregister event
 connectedTag.off("notify", (rfState : number)=> {

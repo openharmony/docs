@@ -118,6 +118,7 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
         napi_module_register(&nativeModule);
     }
    ```
+   <!-- @[napi_call_threadsafe_function_with_priority_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/napi_init.cpp) -->
 
 - 接口声明
 
@@ -125,6 +126,7 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
     // index.d.ts
     export const callThreadSafeWithPriority: (cb: (a: number, b: number) => number) => void;
     ```
+    <!-- @[napi_call_threadsafe_function_with_priority_dts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 - 编译配置
 
@@ -147,6 +149,7 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
     add_library(entry SHARED hello.cpp)
     target_link_libraries(entry PUBLIC libace_napi.z.so)
     ```
+    <!-- @[napi_call_threadsafe_function_with_priority_cmake](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/CMakeLists.txt) -->
 
 - ArkTS代码示例
 
@@ -160,3 +163,4 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
     }
     testNapi.callThreadSafeWithPriority(callback);
     ```
+    <!-- @[napi_call_threadsafe_function_with_priority_ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/Index.ets) -->

@@ -58,6 +58,7 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
       return promise;
    }
    ```
+   <!-- @[napi_create_async_work](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/napi_init.cpp) -->
 
 2. 定义异步任务的第一个回调函数，该函数在工作线程中执行，处理具体的业务逻辑。
 
@@ -68,6 +69,7 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
        callbackData->result = callbackData->args;
    }
    ```
+   <!-- @[napi_first_call_back_work](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/napi_init.cpp) -->
 
 3. 定义异步任务的第二个回调函数，该函数在主线程执行，将结果传递给ArkTS侧。
 
@@ -88,6 +90,7 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
        callbackData = nullptr;
    }
    ```
+   <!-- @[napi_second_call_back_main](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/napi_init.cpp) -->
 
 4. 模块初始化以及ArkTS侧调用接口。
 
@@ -102,6 +105,7 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
        return exports;
    }
     ```
+   <!-- @[napi_value_init](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/callback.cpp) -->
 
     ```ts
    // 接口对应的.d.ts描述
@@ -152,6 +156,7 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
        return nullptr;
    }
    ```
+   <!-- @[napi_create_queue_async_work](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/callback.cpp) -->
 
 2. 定义异步任务的第一个回调函数，该函数在工作线程中执行，处理具体的业务逻辑。
 
@@ -162,6 +167,7 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
        callbackData->result = callbackData->args[0] + callbackData->args[1];
    }
    ```
+   <!-- @[napi_async_first_call_back_work](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/callback.cpp) -->
 
 3. 定义异步任务的第二个回调函数，该函数在主线程执行，将结果传递给ArkTS侧。
 
@@ -185,6 +191,7 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
        callbackData = nullptr;
    }
    ```
+   <!-- @[napi_async_second_call_back_work](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/callback.cpp) -->
 
 4. 模块初始化以及ArkTS侧调用接口。
 
@@ -199,6 +206,7 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
        return exports;
    }
    ```
+   <!-- @[napi_value_init](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/callback.cpp) -->
 
    ```ts
    // 接口对应的.d.ts描述
@@ -216,3 +224,5 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
 ## 注意事项
 - 调用napi_cancel_async_work接口，无论底层uv是否失败都会返回napi_ok。若因为底层uv导致取消任务失败，complete callback中的status会传入对应错误值，请在complete callback中对status进行处理。
 - NAPI的异步工作项（napi_async_work）建议单次使用。napi_queue_async_work后，该napi_async_work需在complete回调执行时或执行后，通过napi_delete_async_work完成释放。同一个napi_async_work只允许释放一次，尝试重复释放会导致未定义行为。
+`napi_async_work`的`execute_cb`会运行在一个独立的工作线程，该线程从uv线程池中取出，不同工作线程之间互不影响。
+- 在任务的执行时序上，`napi_async_work`仅可保证`complete_cb`执行在`execute_cb`之后。对于不同`napi_async_work`，`execute_cb`执行在各自的工作线程上，因此无法保证不同`execute_cb`执行的先后时序。在对任务执行有顺序要求的情况下，推荐使用`napi_threadsafe_function`系列的接口，此类接口是保序的, 可参考[链接](use-napi-thread-safety.md)

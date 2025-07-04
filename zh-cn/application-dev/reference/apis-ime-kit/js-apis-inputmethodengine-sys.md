@@ -100,4 +100,36 @@ try {
     console.error(`Failed to subscribe sizeUpdate: ${JSON.stringify(err)}`);
 }
 ```
+## FluidLightMode<sup>20+</sup>
+
+枚举，输入法流光模式。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**系统接口：** 此接口为系统接口。
+
+| 名称         | 值 | 说明               |
+| ------------ | -- | ------------------ |
+| NONE | 0 | 不使用流光模式。 |
+| BACKGROUND_FLUID_LIGHT  | 1 | 背景流光。 |
+
+## EditorAttribute
+
+编辑框属性值。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称         | 类型 | 只读 | 可选 | 说明               |
+| ------------ | -------- | ---- | ---- | ------------------ |
+| fluidLightMode<sup>20+</sup> | [FluidLightMode](#fluidlightmode20) | 是 | 是 | 流光模式。如果没有设置或设置非法值，默认不使用流光模式。<br>该属性仅系统应用可以使用。|
+
+## ImmersiveEffect<sup>20+</sup>
+
+沉浸效果。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称   | 类型                                  | 只读 | 可选 | 说明           |
+| ------ | ------------------------------------ | ---- | ---- | -------------- |
+| fluidLightMode | [FluidLightMode](#fluidlightmode20) | 否   | 是   | 流光模式，如果不填充，则默认为NONE。<br>该属性仅系统应用可以使用。 |
 <!--no_check-->

@@ -1,10 +1,16 @@
-# Interfaces (VideoOutput)
+# Interface (VideoOutput)
 
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 录像会话中使用的输出信息，继承[CameraOutput](arkts-apis-camera-CameraOutput.md)。
+
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
 
 ## start
 
@@ -455,6 +461,8 @@ getActiveProfile(): VideoProfile
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile | undefined {
   let activeProfile: camera.VideoProfile | undefined = undefined;
   try {
@@ -501,7 +509,7 @@ enableMirror(enabled: boolean): void
 
 - 调用该接口前，需要通过[isMirrorSupported](#ismirrorsupported15)查询是否支录像镜像功能。
 
-- 启用/关闭录像镜像后，需要通过[getVideoRotation](#getvideorotation12)以及[updateRotation](../apis-media-kit/js-apis-media.md#updaterotation12)更新旋转角度。
+- 启用/关闭录像镜像后，需要通过[getVideoRotation](#getvideorotation12)以及[updateRotation](../apis-media-kit/arkts-apis-media-AVRecorder.md#updaterotation12)更新旋转角度。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 

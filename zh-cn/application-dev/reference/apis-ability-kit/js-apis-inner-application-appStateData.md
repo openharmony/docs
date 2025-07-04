@@ -1,6 +1,6 @@
 # AppStateData
 
-定义应用状态信息，可以通过[appManager.on('applicationState')](./js-apis-app-ability-appManager.md#appmanageronapplicationstate)获取当前应用的相关信息。
+定义应用状态信息，可以通过[appManager.on('applicationState')](./js-apis-app-ability-appManager.md#appmanageronapplicationstate14)获取当前应用的相关信息。
 
 > **说明：**
 > 

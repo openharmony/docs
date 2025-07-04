@@ -1027,7 +1027,7 @@ type AssetMap = Map\<Tag, Value>
 
 **系统能力：** SystemCapability.Security.Asset
 
-| 参数名        | 类型   | 只读 | 可选 |说明               |
+| 名称        | 类型   | 只读 | 可选 |说明               |
 | ----------- | ---- | ---- | ---- | ------------------ |
 | resultCode   | number    | 是 | 否 | 关键资产同步的结果码。同步成功时结果码为0，同步失败时结果码参考[ErrorCode](#errorcode)。 |
 | totalCount | number    | 是 | 是 |  触发同步的关键资产总数。 |

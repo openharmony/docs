@@ -446,11 +446,11 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称                | 类型     | 必填  | 说明            |
-| ----------------- | ------ | --- | ------------- |
-| versionName       | string | 是   | 待更新的系统版本名称。   |
-| firstReceivedTime | number | 是   | 首次收到系统更新包的时间。 |
-| packageType       | string | 是   | 待更新的系统更新包类型。  |
+| 名称                | 类型     | 只读  | 可选 | 说明            |
+| ----------------- | ------ | --- | --- |------------- |
+| versionName       | string | 否   | 否 |待更新的系统版本名称。   |
+| firstReceivedTime | number | 否   | 否 |第一次收到系统更新包的时间。 |
+| packageType       | string | 否   | 否 |待更新的系统更新包类型。  |
 
 ## OtaUpdatePolicy
 
@@ -458,15 +458,15 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称         | 类型     | 必填 | 说明                            |
-| ----------- | --------| ---- | ------------------------------- |
-| policyType        | [PolicyType](#policytype)   | 是   | 表示升级策略类型。 |
-| version | string   | 是   | 表示待升级软件版本号。 |
-| latestUpdateTime        | number   | 否   | 表示最晚升级时间（时间戳）。 |
-| delayUpdateTime | number   | 否   | 表示延迟升级时间（单位：小时）。 |
-| installStartTime        | number   | 否   | 表示指定安装窗口起始时间（时间戳）。 |
-| installEndTime | number   | 否   | 表示指定安装窗口结束时间（时间戳）。 |
-| disableSystemOtaUpdate<sup>20+</sup> | boolean   | 否   | 表示是否禁用在公网环境下升级。true表示禁用公网升级，false表示不禁用公网升级，默认值为false。禁用公网升级后，可以采用内网升级。 |
+| 名称         | 类型     | 只读 | 可选 | 说明                            |
+| ----------- | --------| ---- | -----| -------------------------- |
+| policyType        | [PolicyType](#policytype)   | 否   | 否 | 表示升级策略类型。 |
+| version | string   | 否   | 否 |表示待升级软件版本号。 |
+| latestUpdateTime        | number   | 否   | 是 | 表示最晚升级时间（时间戳）。 |
+| delayUpdateTime | number   | 否   | 是 | 表示延迟升级时间（单位：小时）。 |
+| installStartTime        | number   | 否   | 是 | 表示指定安装窗口起始时间（时间戳）。 |
+| installEndTime | number   | 否   | 是 | 表示指定安装窗口结束时间（时间戳）。 |
+| disableSystemOtaUpdate<sup>20+</sup> | boolean   | 否   | 是 | 表示是否禁用在公网环境下升级。true表示禁用公网升级，false表示不禁用公网升级，默认值为false。禁用公网升级后，可以采用内网升级。 |
 
 ## PolicyType
 
@@ -488,12 +488,12 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称                | 类型     | 必填  | 说明            |
-| ----------------- | ------ | --- | ------------- |
-| version       | string | 是   | 系统更新包版本号。   |
-| packages | Array&lt;[Package](#package)&gt; | 是   | 系统更新包详情。 |
-| description       | [PackageDescription](#packagedescription) | 否   | 系统更新包描述信息。  |
-| authInfo<sup>19+</sup> | string | 否 | 系统更新包的鉴权信息。 |
+| 名称                | 类型     | 只读  | 可选 | 说明            |
+| ----------------- | ------ | --- | ---- |------------- |
+| version       | string | 否   | 否 | 系统更新包版本号。   |
+| packages | Array&lt;[Package](#package)&gt; | 否   | 否 | 系统更新包详情。 |
+| description       | [PackageDescription](#packagedescription) | 否   | 是 | 系统更新包描述信息。  |
+| authInfo<sup>19+</sup> | string | 否 | 是 | 系统更新包的鉴权信息。 |
 
 ## Package
 
@@ -501,11 +501,11 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称                | 类型     | 必填  | 说明            |
-| ----------------- | ------ | --- | ------------- |
-| type       | [PackageType](#packagetype) | 是   | 系统更新包类型。   |
-| path | string | 是   | 系统更新包文件路径。若传入fd参数，该参数传入更新包文件名。 |
-| fd       | number | 否   | 系统更新包文件句柄。当前不支持只传入path参数，需要传入fd。  |
+| 名称                | 类型     | 只读  | 可选 | 说明            |
+| ----------------- | ------ | --- | --- | ------------- |
+| type       | [PackageType](#packagetype) | 否   | 否 |  系统更新包类型。   |
+| path | string | 否   | 否 | 系统更新包文件路径。若传入fd参数，该参数传入更新包文件名。 |
+| fd       | number | 否   | 是 | 系统更新包文件句柄。当前不支持只传入path参数，需要传入fd。  |
 
 ## PackageDescription
 
@@ -513,9 +513,9 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称                | 类型     | 必填  | 说明            |
-| ----------------- | ------ | --- | ------------- |
-| notify       | [NotifyDescription](#notifydescription) | 否   | 企业自定义更新通知说明。   |
+| 名称                | 类型     | 只读  | 可选 | 说明            |
+| ----------------- | ------ | --- | --- | ------------- |
+| notify       | [NotifyDescription](#notifydescription) | 否   | 是 | 企业自定义更新通知说明。   |
 
 ## NotifyDescription
 
@@ -523,10 +523,10 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称                | 类型     | 必填  | 说明            |
-| ----------------- | ------ | --- | ------------- |
-| installTips       | string | 否   | 企业自定义更新提示。   |
-| installTipsDetail       | string | 否   | 企业自定义更新提示详情。   |
+| 名称                | 类型     | 只读  |  可选 | 说明            |
+| ----------------- | ------ | --- | ---- | ------------- |
+| installTips       | string | 否   | 是 | 企业自定义更新提示。   |
+| installTipsDetail       | string | 否   | 是 | 企业自定义更新提示详情。   |
 
 ## UpdateResult
 
@@ -534,11 +534,11 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称                | 类型   | 可读  | 可写   | 说明            |
+| 名称                | 类型   | 只读  | 可选   | 说明            |
 | ----------------- | ------ | ------ | ------ | ------------- |
-| version       | string |  是 | 否 |系统当前版本号。   |
-| status       | [UpdateStatus](#updatestatus) | 是 | 否 | 系统更新状态。   |
-| errorInfo       | [ErrorInfo](#errorinfo) | 是 | 否 | 系统更新错误信息。   |
+| version       | string |  否 | 否 |系统当前版本号。   |
+| status       | [UpdateStatus](#updatestatus) | 否 | 否 | 系统更新状态。   |
+| errorInfo       | [ErrorInfo](#errorinfo) | 否 | 否 | 系统更新错误信息。   |
 
 ## ErrorInfo
 
@@ -546,10 +546,10 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称                | 类型     | 可读  | 可写 | 说明            |
+| 名称                | 类型     | 只读  | 可选 | 说明            |
 | ----------------- | ------ | ------ | ------ | ------------- |
-| code       | number | 是 | 否 | 错误码。   |
-| message       | string | 是 | 否 | 错误描述信息。   |
+| code       | number | 否 | 否 | 错误码。   |
+| message       | string | 否 | 否 | 错误描述信息。   |
 
 ## PackageType
 

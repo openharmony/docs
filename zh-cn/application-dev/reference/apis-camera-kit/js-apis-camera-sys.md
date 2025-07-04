@@ -73,7 +73,7 @@ lcd闪光灯信息项。
 
 | 名称   | 类型                            | 只读  | 可选       | 说明 |
 | ------ | ----------------------------- |-----| ---------- | ---------- |
-| raw<sup>12+</sup> | [image.Image](../apis-image-kit/js-apis-image.md#image9)| NA  | 是   | raw图。 |
+| raw<sup>12+</sup> | [image.Image](../apis-image-kit/arkts-apis-image-Image.md)| NA  | 是   | raw图。 |
 
 ## ExposureMode
 
@@ -717,7 +717,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 | 名称      | 类型                          | 只读 | 可选 | 说明            |
 | -------- | ----------------------------- |----- |---| -------------- |
 | format | [CameraFormat](#cameraformat)   | 是 |  否  | 深度图的格式。 |
-| depthMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)    | 是 |  否  | 深度图。 |
+| depthMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)    | 是 |  否  | 深度图。 |
 | qualityLevel | [DepthDataQualityLevel](#depthdataqualitylevel13)   | 是 |  否  | 深度图的质量。 |
 | accuracy | [DepthDataAccuracy](#depthdataaccuracy13) | 是 |  否  | 深度图的精度。 |
 
@@ -734,7 +734,7 @@ release(): void
 **示例：**
 
 ```ts
-function releaseDepthData(depthData: camera.DepthData): void {
+async function releaseDepthData(depthData: camera.DepthData): Promise<void> {
   await depthData.release();
 }
 ```
@@ -1236,6 +1236,8 @@ isSketchSupported(): boolean
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function isSketchSupported(previewOutput: camera.PreviewOutput): boolean {
   try {
     let isSupported: boolean = previewOutput.isSketchSupported();
@@ -2052,7 +2054,7 @@ on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type    | string     | 是   | 监听事件，固定为'quickThumbnail'。 |
-| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | 是 | 回调返回PixelMap。 |
+| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)> | 是 | 回调返回PixelMap。 |
 
 **示例：**
 
@@ -2115,7 +2117,7 @@ off(type: 'quickThumbnail', callback?: AsyncCallback\<image.PixelMap>): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type    | string     | 是   | 监听事件，固定为'quickThumbnail'。 |
-| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | 否 | 回调函数，可选，有就是匹配on('quickThumbnail') callback（callback对象不可是匿名函数）。 |
+| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)> | 否 | 回调函数，可选，有就是匹配on('quickThumbnail') callback（callback对象不可是匿名函数）。 |
 
 **示例：**
 
@@ -2750,17 +2752,19 @@ getZoomPointInfos(): Array\<ZoomPointInfo\>
 **示例：**
 
 ```ts
+import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function getZoomPointInfos(photoSessionForSys: camera.PhotoSessionForSys): Array<camera.ZoomPointInfo> {
+  let zoomPointInfos: Array<camera.ZoomPointInfo> = [];
   try {
-    let zoomPointInfos: Array<ZoomPointInfo> = photoSessionForSys.getZoomPointInfos();
-	return zoomPointInfos;
+    zoomPointInfos = photoSessionForSys.getZoomPointInfos();
   } catch (error) {
-    // 失败返回错误码error.code并处理。
+    // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
     console.error(`The getZoomPointInfos call failed. error code: ${err.code}`);
   }
+  return zoomPointInfos;
 }
 ```
 
@@ -4154,22 +4158,25 @@ on(type: 'lightStatusChange', callback: AsyncCallback\<LightStatus\>): void
 **示例**：
 
 ```ts
-    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
-    (err, data: camera.LightStatus) => {
-      if (err) {
-        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
-        return;
-      }
-      Logger.info(TAG, `lightStatusCallback: ${data}`);
-    };
-    public handleLightStatusOn(): void {
-        Logger.info(TAG, 'handleLightStatusOn');
-        try {
-          this.mSession?.on('lightStatusChange', this.handleLightStatusCallback);
-        } catch (e) {
-          Logger.error(TAG, `handleLightStatusOn err:${e}`);
-        }
-    }
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function handleLightStatusCallback(err: BusinessError, lightStatus: camera.LightStatus) : void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`lightStatus: ${lightStatus}`);
+}
+
+function handleLightStatusOn(mSession: camera.VideoSessionForSys): void {
+  console.info('handleLightStatusOn');
+  try {
+    mSession.on('lightStatusChange', handleLightStatusCallback);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`handleLightStatusOn err:${err}`);
+  }
+}
 ```
 
 ### off('lightStatusChange')<sup>18+</sup>
@@ -4200,22 +4207,25 @@ off(type: 'lightStatusChange', callback?: AsyncCallback\<LightStatus\>): void
 **示例**：
 
 ```ts
-    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
-    (err, data: camera.LightStatus) => {
-      if (err) {
-        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
-        return;
-      }
-      Logger.info(TAG, `lightStatusCallback: ${data}`);
-    };
-    public handleLightStatusOff(): void {
-        Logger.info(TAG, 'handleLightStatusOff');
-        try {
-          this.mSession?.off('lightStatusChange');
-        } catch (e) {
-          Logger.error(TAG, `handleLightStatusOff err:${e}`);
-        }
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function LightStatusCallback(err: BusinessError, lightStatus: camera.LightStatus) : void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
   }
+  console.info(`lightStatus: ${lightStatus}`);
+}
+
+function handleLightStatusOff(mSession: camera.VideoSessionForSys): void {
+  console.info('handleLightStatusOff');
+  try {
+    mSession.on('lightStatusChange', LightStatusCallback);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`handleLightStatusOff err:${err}`);
+  }
+}
 ```
 
 ## PortraitPhotoSession<sup>11+</sup>

@@ -15,7 +15,7 @@
 
 ## 开发指导
 
-详细的API说明请参考[ImagePacker API参考](../../reference/apis-image-kit/image__packer__mdk_8h.md)。
+详细的API说明请参考[ImagePacker API参考](../../reference/apis-image-kit/capi-image-packer-mdk-h.md)。
 
 参考以下示例代码，完成图片编码的全流程，包括：创建编码器、初始化资源、编码过程、销毁资源。
 

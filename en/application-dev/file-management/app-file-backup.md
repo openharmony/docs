@@ -93,19 +93,19 @@ You can save the file to a local directory as required.
 
 **Example**
 
- ```ts
+  ```ts
   import backup from '@ohos.file.backup';
   import common from '@ohos.app.ability.common';
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
-
+  appfileDir: string = '';
   // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-  let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  this.appfileDir = context.filesDir;
   // Create a SessionBackup instance for data backup.
   let g_session: backup.SessionBackup;
-  function createSessionBackup(context: common.UIAbilityContext): backup.SessionBackup {
+  function createSessionBackup(fileDir: string): backup.SessionBackup {
     let generalCallbacks: backup.GeneralCallbacks = {
-      let filesDir = context.filesDir;
       // onFileReady is called to return a data complete notification to the application. Avoid time-consuming implementations in onFileReady. You can use asynchronous threads to process data based on the file FD.
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
@@ -161,8 +161,8 @@ You can save the file to a local directory as required.
     return sessionBackup;
   }
 
-  async function sessionBackup (): Promise<void> {
-    g_session = createSessionBackup();
+  async function sessionBackup (fileDir: string): Promise<void> {
+    g_session = createSessionBackup(fileDir);
     // Select the application to be backed up based on the capability file obtained by backup.getLocalCapabilities().
     // You can also back up data based on the application bundle name.
     const backupApps: string[] = [
@@ -171,7 +171,7 @@ You can save the file to a local directory as required.
     await g_session.appendBundles(backupApps);
     console.info('appendBundles success');
   }
- ```
+  ```
 
 ## Restoring Application Data
 
@@ -183,7 +183,7 @@ When all the data of the application is ready, the service starts to restore the
 
 **Example**
 
- ```ts
+  ```ts
   import backup from '@ohos.file.backup';
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
@@ -277,4 +277,4 @@ When all the data of the application is ready, the service starts to restore the
     await g_session.getFileHandle(handle);
     console.info('getFileHandle success');
   }
- ```
+  ```

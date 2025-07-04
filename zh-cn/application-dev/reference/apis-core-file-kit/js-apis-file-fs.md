@@ -491,8 +491,8 @@ copy(srcUri: string, destUri: string, options?: CopyOptions): Promise\<void>
 
   | 参数名  | 类型                         | 必填   | 说明                                       |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | srcUri  | string | 是    | 待复制文件或目录的uri。                      |
-  | destUri | string | 是    | 目标文件或目录的uri。                          |
+  | srcUri  | string | 是    | 待复制文件或目录的URI。                      |
+  | destUri | string | 是    | 目标文件或目录的URI。                          |
   | options | [CopyOptions](#copyoptions11)| 否| options中提供拷贝进度回调。不填该参数则无拷贝进度回调。|
 
 **返回值：**
@@ -550,8 +550,8 @@ copy(srcUri: string, destUri: string, callback: AsyncCallback\<void>): void
 
   | 参数名  | 类型    | 必填   | 说明          |
   | ---- | ------------------ | ---- | ----------------------------|
-  | srcUri  | string | 是    | 待复制文件或目录的uri。                      |
-  | destUri | string | 是    | 目标文件或目录的uri。                          |
+  | srcUri  | string | 是    | 待复制文件或目录的URI。                      |
+  | destUri | string | 是    | 目标文件或目录的URI。                          |
   | callback | AsyncCallback\<void>| 是| 异步拷贝之后的回调。|
 
 **错误码：**
@@ -598,8 +598,8 @@ copy(srcUri: string, destUri: string, options: CopyOptions, callback: AsyncCallb
 
   | 参数名  | 类型                         | 必填   | 说明                                       |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | srcUri  | string | 是    | 待复制文件或目录的uri。                      |
-  | destUri | string | 是    | 目标文件或目录的uri。                          |
+  | srcUri  | string | 是    | 待复制文件或目录的URI。                      |
+  | destUri | string | 是    | 目标文件或目录的URI。                          |
   | options | [CopyOptions](#copyoptions11) |是| 拷贝进度回调。                          |
   | callback | AsyncCallback\<void>| 是| 异步拷贝之后的回调。|
 
@@ -951,7 +951,7 @@ copyDirSync(src: string, dest: string, mode?: number): void
 
 dup(fd: number): File
 
-将文件描述符转化为File。
+复制文件描述符，并返回对应的File对象。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1217,9 +1217,9 @@ getxattrSync(path: string, key: string): string
 
 **返回值：**
 
-  | 类型     | 说明                                       |
-  | ------ | ---------------------------------------- |
-  | key| string对象。返回扩展属性的value。      |
+  | 类型    | 说明                |
+  | ------ | ------------------- |
+  | string | 返回扩展属性的value。|
 
 **错误码：**
 
@@ -1460,7 +1460,7 @@ open(path: string, mode?: number): Promise&lt;File&gt;
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 文件或目录的应用沙箱路径或文件URI。                                   |
-| mode  | number | 否   | 打开文件或目录的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>可以追加以下功能选项，以按位或的方式组合，默认情况下不追加任何额外选项。：<br/>-&nbsp;OpenMode.CREATE(0o100)：如果文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO方式打开文件。 |
+| mode  | number | 否   | 打开文件或目录的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>可以追加以下功能选项，以按位或的方式组合，默认情况下不追加任何额外选项。<br/>-&nbsp;OpenMode.CREATE(0o100)：如果文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO方式打开文件。 |
 
 **返回值：**
 
@@ -3214,9 +3214,8 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  // move directory from srcPath to destPath
-  let srcPath = pathDir + "/srcDir/";
-  let destPath = pathDir + "/destDir/";
+  let srcPath = pathDir + "/srcDir";
+  let destPath = pathDir + "/destDir";
   fs.moveDir(srcPath, destPath, 1).then(() => {
     console.info("move directory succeed");
   }).catch((err: BusinessError) => {
@@ -3254,9 +3253,8 @@ moveDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
-  // move directory from srcPath to destPath
-  let srcPath = pathDir + "/srcDir/";
-  let destPath = pathDir + "/destDir/";
+  let srcPath = pathDir + "/srcDir";
+  let destPath = pathDir + "/destDir";
   fs.moveDir(srcPath, destPath, 1, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015 && err.data?.length !== undefined) {
       for (let i = 0; i < err.data.length; i++) {
@@ -3301,9 +3299,8 @@ moveDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
-  // move directory from srcPath to destPath
-  let srcPath = pathDir + "/srcDir/";
-  let destPath = pathDir + "/destDir/";
+  let srcPath = pathDir + "/srcDir";
+  let destPath = pathDir + "/destDir";
   fs.moveDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015 && err.data?.length !== undefined) {
       for (let i = 0; i < err.data.length; i++) {
@@ -3346,9 +3343,8 @@ moveDirSync(src: string, dest: string, mode?: number): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
-// move directory from srcPath to destPath
-let srcPath = pathDir + "/srcDir/";
-let destPath = pathDir + "/destDir/";
+let srcPath = pathDir + "/srcDir";
+let destPath = pathDir + "/destDir";
 try {
   fs.moveDirSync(srcPath, destPath, 1);
   console.info("move directory succeed");
@@ -4228,15 +4224,20 @@ getBaseFile(): File
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
+**返回值：**
+
+  | 类型          | 说明            |
+  | ------------- | -------------- |
+  | [File](#file) | 打开的File对象。|
+
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md)。
 
 **示例：**
 
 <!--code_no_check-->
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
 
@@ -4247,13 +4248,13 @@ let pathDir = context.filesDir;
 try {
   let atomicFile = new fs.AtomicFile(`${pathDir}/write.txt`);
   let writeSream = atomicFile.startWrite();
-  writeSream.write("xxxxx","utf-8",()=> {
+  writeSream.write("hello, world", "utf-8", ()=> {
     atomicFile.finishWrite();
     let File = atomicFile.getBaseFile();
-    hilog.info(0x0000, 'AtomicFile', 'getBaseFile File.fd is:%{public}d, path:%{public}s, name:%{public}s', File.fd, File.path, File.path);
+    console.info('AtomicFile getBaseFile File.fd is: ' + File.fd + ' path: ' + File.path + ' name: ' + File.name);
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed! err :%{public}s', err.message);
+  console.error(`Failed to get baseFile. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4273,16 +4274,14 @@ openRead(): ReadStream
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md)。
 
 **示例：**
 
 <!--code_no_check-->
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -4291,22 +4290,22 @@ let pathDir = context.filesDir;
 try {
   let file = new fs.AtomicFile(`${pathDir}/read.txt`);
   let writeSream = file.startWrite();
-  writeSream.write("xxxxxx","utf-8",()=> {
+  writeSream.write("hello, world", "utf-8", ()=> {
     file.finishWrite();
     setTimeout(()=>{
       let readStream = file.openRead();
       readStream.on('readable', () => {
         const data = readStream.read();
         if (!data) {
-          hilog.error(0x0000, 'AtomicFile', 'Read data is null');
+          console.error('AtomicFile read data is null.');
           return;
         }
-        hilog.info(0x0000, 'AtomicFile', 'Read data is:%{public}s!', data);
+        console.info('AtomicFile read data is: ' + data);
       });
     },1000);
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
+  console.error(`Failed to AtomicFile. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4326,17 +4325,15 @@ readFully(): ArrayBuffer
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md)。
 
 **示例：**
 
 <!--code_no_check-->
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
 import { util, buffer } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -4345,17 +4342,17 @@ let pathDir = context.filesDir;
 try {
   let file = new fs.AtomicFile(`${pathDir}/read.txt`);
   let writeSream = file.startWrite();
-  writeSream.write("xxxxxxxxxxx","utf-8",()=> {
+  writeSream.write("hello, world", "utf-8", ()=> {
     file.finishWrite();
     setTimeout(()=>{
       let data = file.readFully();
       let decoder = util.TextDecoder.create('utf-8');
       let str = decoder.decodeToString(new Uint8Array(data));
-      hilog.info(0x0000, 'AtomicFile', 'readFully str is :%{public}s!', str);
+      console.info('AtomicFile readFully str is: ' + str);
     },1000);
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
+  console.error(`Failed to AtomicFile. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4379,13 +4376,12 @@ startWrite(): WriteStream
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md)。
 
 **示例：**
 
 <!--code_no_check-->
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
 
@@ -4396,12 +4392,11 @@ let pathDir = context.filesDir;
 try {
   let file = new fs.AtomicFile(`${pathDir}/write.txt`);
   let writeSream = file.startWrite();
-  hilog.info(0x0000, 'AtomicFile', 'startWrite end');
-  writeSream.write("xxxxxxxx","utf-8",()=> {
-    hilog.info(0x0000, 'AtomicFile', 'write end');
+  writeSream.write("hello, world", "utf-8", ()=> {
+    console.info('AtomicFile write finished!');
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed! err :%{public}s', err.message);
+  console.error(`Failed to AtomicFile. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4415,13 +4410,12 @@ finishWrite(): void
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md)。
 
 **示例：**
 
 <!--code_no_check-->
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
 
@@ -4432,11 +4426,11 @@ let pathDir = context.filesDir;
 try {
   let file = new fs.AtomicFile(`${pathDir}/write.txt`);
   let writeSream = file.startWrite();
-  writeSream.write("xxxxxxxxxxx","utf-8",()=> {
+  writeSream.write("hello, world", "utf-8", ()=> {
     file.finishWrite();
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
+  console.error(`Failed to AtomicFile. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4450,17 +4444,14 @@ failWrite(): void
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md)。
 
 **示例：**
 
 <!--code_no_check-->
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
-import { util, buffer } from '@kit.ArkTS';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -4469,12 +4460,12 @@ let pathDir = context.filesDir;
 let file = new fs.AtomicFile(`${pathDir}/write.txt`);
 try {
   let writeSream = file.startWrite();
-  writeSream.write("xxxxxxxxxxx","utf-8",()=> {
-    hilog.info(0x0000, 'AtomicFile', 'write succeed!');
+  writeSream.write("hello, world", "utf-8", ()=> {
+    console.info('AtomicFile write succeed!');
   })
 } catch (err) {
   file.failWrite();
-  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
+  console.error(`Failed to AtomicFile. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4488,7 +4479,7 @@ delete(): void
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)和[通用错误码](../errorcode-universal.md)。
 
 **示例：**
 
@@ -4496,7 +4487,6 @@ delete(): void
 ```ts
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { util } from '@kit.ArkTS';
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
@@ -4506,18 +4496,18 @@ let pathDir = context.filesDir;
 try {
   let file = new fs.AtomicFile(`${pathDir}/read.txt`);
   let writeSream = file.startWrite();
-  writeSream.write("xxxxxxxxxxx","utf-8",()=> {
+  writeSream.write("hello, world", "utf-8", ()=> {
     file.finishWrite();
     setTimeout(()=>{
       let data = file.readFully();
       let decoder = util.TextDecoder.create('utf-8');
       let str = decoder.decodeToString(new Uint8Array(data));
-      hilog.info(0x0000, 'AtomicFile', 'readFully str is :%{public}s!', str);
+      console.info('AtomicFile readFully str is: ' + str);
       file.delete();
     },1000);
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
+  console.error(`Failed to AtomicFile. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4759,6 +4749,10 @@ copySignal.onCancel().then(() => {
 | mtimeNs<sup>15+</sup>  | bigint | 是    | 是    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
 | ctimeNs<sup>15+</sup>  | bigint | 是    | 是    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
 | location<sup>11+</sup> | [LocaltionType](#locationtype11)| 是 |否| 文件的位置，表示该文件是本地文件或者云端文件。
+
+> **说明：**
+>
+> Stat中部分属性仅支持普通文件获取，开发者可通过[isFile()](#isfile)接口判断文件是否为普通文件。
 
 ### isBlockDevice
 
@@ -5590,7 +5584,7 @@ onStatus(networkId: string, status: number): void;
   | 参数名  | 类型     | 必填   | 说明                              |
   | ---- | ------ | ---- | ---------------------------------------- |
   | networkId   | string | 是    | 设备的网络Id。                             |
-  | status | number | 是    | 分布式文件系统的状态码（以connectDfs回调onStatus的特定错误码作为入参）。触发场景为connectDfs调用过程中出现对端设备异常，对应错误码为：<br/>-&nbsp;[13900046](errorcode-filemanagement.md#13900046)：软件造成连接中断。
+  | status | number | 是    | 分布式文件系统的状态码（以connectDfs回调onStatus的特定错误码作为入参）。触发场景为connectDfs调用过程中出现对端设备异常，对应错误码为：<br/>-&nbsp;[13900046](errorcode-filemanagement.md#13900046-软件造成连接中断)：软件造成连接中断。
 
 ## RandomAccessFile
 
@@ -6098,7 +6092,7 @@ open接口flags参数常量。文件打开标签。
 
 | 名称        | 值       | 说明                |
 | ----------- | --------------- | ------------------ |
-| LOCAl | 1     | 文件在本地存在。           |
+| LOCAL | 1     | 文件在本地存在。           |
 | CLOUD    | 2     | 文件在云端存在。 |
 
 ## AccessModeType<sup>12+</sup>

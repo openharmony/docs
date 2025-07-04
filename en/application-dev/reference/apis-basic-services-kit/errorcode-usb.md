@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Permission denied. Call requestRight or requestAccessoryRight to get the permission or USBDevicePipe access right first.
+Access right denied. Call requestRight to get the USBDevicePipe access right first.
 
 **Description**
 
@@ -18,7 +18,7 @@ This error code is reported if a certain API of the USB module is called but the
 
 The permission to access the USB device is not granted.
 
-**Procedure**
+**Solution**
 
 Call **requestRight** to request for the permission to access the USB device.
 <!--Del-->
@@ -36,7 +36,7 @@ This error code is reported if HDC is disabled by the system.
 
 The USB debugging permission is not granted.
 
-**Procedure**
+**Solution**
 
 Apply for the USB debugging permission.
 
@@ -48,13 +48,13 @@ Unsupported operation. The current device does not support port role switching.
 
 **Description**
 
-This error code is reported if port role switching is not supported. The device does not support port role switching.
+This error code is reported if the port role is switched.
 
 **Possible Causes**
 
 The port role is incorrect.
 
-**Procedure**
+**Solution**
 
 Use the correct port role.
 <!--DelEnd-->
@@ -72,7 +72,7 @@ This error code is reported if the service is abnormal.
 
 No accessory is inserted.
 
-**Procedure**
+**Solution**
 
 Insert the accessory.
 
@@ -86,7 +86,7 @@ Database operation exception.
 
 This error code is reported if the database operation is abnormal.
 
-**Procedure**
+**Solution**
 
 Call the API again.
 <!--Del-->
@@ -98,13 +98,13 @@ Unsupported operation. The function is not supported.
 
 **Description**
 
-This error code is reported if the requested USB device function is not supported.  
+This error code is reported if the USB device function is switched.
 
 **Possible Causes**
 
 The USB device function is not supported.
 
-**Procedure**
+**Solution**
 
 Use the correct USB device function.
 <!--DelEnd-->
@@ -118,7 +118,7 @@ The target USBAccessory not matched.
 
 This error code is reported if the target USB accessory does not match the device.
 
-**Procedure**
+**Solution**
 
 Call **getAccessoryList** to obtain the accessory list and use a matched USB accessory to try again.
 
@@ -132,7 +132,7 @@ Failed to open the native accessory node.
 
 This error code is reported if the attempt to open the native accessory node fails.
 
-**Procedure**
+**Solution**
 
 Call the API again.
 
@@ -146,7 +146,7 @@ Cannot reopen the accessory.
 
 This error code is reported if an accessory is opened repeatedly.
 
-**Procedure**
+**Solution**
 
 The accessory has been opened. Continue to perform subsequent operations.
 
@@ -154,13 +154,19 @@ The accessory has been opened. Continue to perform subsequent operations.
 
 **Error Message**
 
-Resource busy.
+Resource busy. Possible causes: 1. The transfer has already been submitted. 2. The interface is claimed by another program or driver.
 
 **Description**
 
 This error code is reported if the requested resource is in use.
 
-**Procedure**
+**Possible Causes**
+
+1. The transmission task has been submitted.
+
+2. The API is occupied by another program or driver.
+
+**Solution**
 
 Check whether [usbManager.claimInterface](js-apis-usbManager.md#usbmanagerclaiminterface) is successfully called.
 
@@ -174,7 +180,7 @@ No such device (it may have been disconnected).
 
 This error code is reported if the device cannot be identified.
 
-**Procedure**
+**Solution**
 
 Check whether the device type is correct and whether the device is successfully connected.
 
@@ -182,13 +188,17 @@ Check whether the device type is correct and whether the device is successfully 
 
 **Error Message**
 
-Insufficient memory.
+Insufficient memory. Possible causes: 1. Memory allocation failed.
 
 **Description**
 
 This error code is reported if no memory is available when being requested. The maximum data size is 1 KB for a single transfer.
 
-**Procedure**
+**Possible Causes**
+
+The memory usage is too high to allocate sufficient space to the current task.
+
+**Solution**
 
 Clear memory in a timely manner.
 
@@ -196,13 +206,13 @@ Clear memory in a timely manner.
 
 **Error Message**
 
-Other USB error. Possible causes:Unrecognized discard error code.
+Other USB error. Possible causes: Unrecognized discard error code.
 
 **Description**
 
 This error code is reported if an unknown error occurs.
 
-**Procedure**
+**Solution**
 
 Correct the error by referring to the related documentation, and try again.
 
@@ -210,13 +220,13 @@ Correct the error by referring to the related documentation, and try again.
 
 **Error Message**
 
-If the transfer is not in progress, already complete, or already cancelled. 
+The transfer is not in progress, or is already complete or cancelled.
 
 **Description**
 
 This error code is reported if the current data transfer has been canceled or completed.
 
-**Procedure**
+**Solution**
 
 Initiate a new data transfer request.
 
@@ -228,17 +238,38 @@ Transmission I/O error.
 
 **Description**
 
-This error code is reported if the read/write operation fails because the I/O channel is abnormal.
+This error code is reported when the read/write operation fails due to the abnormal I/O channel.
 
-**Procedure**
+**Solution**
 
 Try again.
+
+## 14400013 Parameter Validity Check Failed
+
+**Error Message**
+
+The USBDevicePipe validity check failed. Possible causes: 1. The input parameters fail the validation check. 2. The call chain used to obtain the input parameters is not reasonable.
+
+**Description**
+
+This error code is reported if the parameter validity check fails.
+
+ **Possible Causes**
+
+1. The validity check of the input parameter fails.
+
+2. The input parameter call chain is improper.
+
+**Solution**
+
+Use a proper call chain to obtain the input parameter.
+
 
 ## 31400001 Serial Port Service Error
 
 **Error Message**
 
-serial service exception.
+Serial port management exception.
 
 **Description**
 
@@ -248,7 +279,7 @@ This error code is reported if the serial port service is abnormal.
 
 The process exits due to a program exception.
 
-**Procedure**
+**Solution**
 
 Check whether the device is connected, and obtain the correct serial port number from the serial port list.
 
@@ -256,7 +287,7 @@ Check whether the device is connected, and obtain the correct serial port number
 
 **Error Message**
 
-no access right to serial device, call requestSerialRight first.
+Access denied. Call requestSerialRight to request user authorization first.
 
 **Description**
 
@@ -266,7 +297,7 @@ This error code is reported if you do not have the permission to access the seri
 
 You have not applied for the permission to access the serial port device.
 
-**Procedure**
+**Solution**
 
 Call **requestSerialRight** to apply for the access permission.
 
@@ -274,7 +305,7 @@ Call **requestSerialRight** to apply for the access permission.
 
 **Error Message**
 
-portId not exist.
+PortId does not exist.
 
 **Description**
 
@@ -284,7 +315,7 @@ This error code is reported if the port number does not exist.
 
 The original port number becomes invalid because the device connection is abnormal.
 
-**Procedure**
+**Solution**
 
 Remove and insert the device, and try again.
 
@@ -292,17 +323,17 @@ Remove and insert the device, and try again.
 
 **Error Message**
 
-device is using by other application.
+The serial port device is occupied.
 
 **Description**
 
-This error code is reported if the device is being used by another application.
+This error code is reported if the serial port device is occupied.
 
 **Possible Causes**
 
 The serial port device is enabled repeatedly.
 
-**Procedure**
+**Solution**
 
 Remove and insert the device, and try again.
 
@@ -310,35 +341,35 @@ Remove and insert the device, and try again.
 
 **Error Message**
 
-device is not open, call open first.
+The serial port device is not opened. Call the open API first.
 
 **Description**
 
-This error code is reported if the device is not opened. 
+This error code is reported if the serial port device is not opened.
 
 **Possible Causes**
 
 A device has not been opened.
 
-**Procedure**
+**Solution**
 
 Call the **Open** API to open the device before performing subsequent operations.
 
-## 31400006 Transmission Timeout
+## 31400006 Data Transfer Timeout
 
 **Error Message**
 
-transfer timeout.
+Data transfer timed out.
 
 **Description**
 
-This error code is reported if the data transfer times out.
+This error code is reported if data transfer times out.
 
 **Possible Causes**
 
 The peer end does not send data.
 
-**Procedure**
+**Solution**
 
 Check whether the peer device initiates data transfer.
 
@@ -346,7 +377,7 @@ Check whether the peer device initiates data transfer.
 
 **Error Message**
 
-I/O exception.
+I/O exception.Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed.
 
 **Description**
 
@@ -354,8 +385,10 @@ This error code is reported if an I/O exception occurs.
 
 **Possible Causes**
 
-The amount of received data in a single transfer exceeds the configured buffer size.
+1. The transfer task is canceled abnormally.
 
-**Procedure**
+2. The amount of received data in a single transfer exceeds the buffer size limit.
+
+**Solution**
 
 Adjust the buffer size properly, and perform data transfer again.

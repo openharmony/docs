@@ -278,6 +278,8 @@
 
 ## ResourceColor
 
+type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Resource](#resource)
+
 颜色类型，用于描述资源颜色类型。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -438,18 +440,16 @@
 
 边框属性集合，用于描述边框相关信息。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                                       | 必填   | 说明      |
-| ------ | ---------------------------------------- | ---- | ------- |
-| width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> \| [LocalizedEdgeWidths](#localizededgewidths12)<sup>12+</sup> | 否    | 边框宽度。   |
-| color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | 否    | 边框颜色。   |
-| radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | 否    | 边框圆角半径。 |
-| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#edgestyles9)<sup>9+</sup>| 否    | 边框样式。   |
+| 名称   | 参数类型                                                     | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| width  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[EdgeWidths](ts-universal-attributes-border.md#edgewidths9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeWidths](ts-universal-attributes-border.md#localizededgewidths12对象说明)<sup>12+</sup> | 否   | 设置边框宽度。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。     |
+| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-border.md#edgecolors9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeColors](ts-universal-attributes-border.md#localizededgecolors12对象说明)<sup>12+</sup> | 否   | 设置边框颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。     |
+| radius | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](ts-universal-attributes-border.md#borderradiuses9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedBorderRadiuses](ts-universal-attributes-border.md#localizedborderradiuses12对象说明)<sup>12+</sup> | 否   | 设置边框圆角半径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](ts-universal-attributes-border.md#edgestyles9对象说明)<sup>9+</sup> | 否   | 设置边框样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。     |
+| dashGap<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](ts-universal-attributes-border.md#edgewidths9对象说明)&nbsp;\|&nbsp;[LocalizedEdgeWidths](ts-universal-attributes-border.md#localizededgewidths12对象说明) | 否  | 设置虚线的线段间距，仅在边框样式为虚线时生效。<br/>不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 该接口不支持在ArkTS卡片中使用。|
+| dashWidth<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](ts-universal-attributes-border.md#edgewidths9对象说明)&nbsp;\|&nbsp;[LocalizedEdgeWidths](ts-universal-attributes-border.md#localizededgewidths12对象说明) | 否   | 设置虚线的线段长度，仅在边框样式为虚线时生效。<br/>不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 该接口不支持在ArkTS卡片中使用。     |
 
 ## ColorFilter<sup>9+</sup>
 
@@ -472,7 +472,7 @@
 
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合@Builder使用。具体用法见[@Builder](../../../ui/state-management/arkts-builder.md#builder)。 |
+| CustomBuilder | ()&nbsp;=&gt;&nbsp;any \| void | 生成用户自定义组件，在使用时结合[@Builder](../../../ui/state-management/arkts-builder.md)使用。 |
 
 ## MarkStyle<sup>10+</sup>对象说明
 
@@ -600,8 +600,8 @@
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
 | radius | number \| [Resource](#resource) | 否 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
-| offsetX | number \| [Resource](#resource) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
-| offsetY | number \| [Resource](#resource) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+| offsetX | number \| [Resource](#resource) | 否 | X轴偏移量。 <br/>默认值：5<br/>单位：vp |
+| offsetY | number \| [Resource](#resource) | 否 | Y轴偏移量。 <br/>默认值：5<br/>单位：vp |
 
 ## SafeAreaType<sup>10+</sup>
 
@@ -657,10 +657,17 @@
 
 扩展安全区域的方向。
 
-| 名称   | 描述       |
-| ------ | ---------- |
-| TOP    | 上方区域。 |
-| BOTTOM | 下方区域。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 值 | 描述       |
+| ------ | --- | ---------- |
+| TOP    | 0 | 上方区域。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BOTTOM | 1 | 下方区域。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| START<sup>20+</sup>      | 2 | 前部区域。LTR模式时表示左侧区域，RTL模式表示右侧区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| END<sup>20+</sup>        | 3 |尾部区域。LTR模式时表示右侧区域，RTL模式表示左侧区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| VERTICAL<sup>20+</sup>   | 4 |垂直区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| HORIZONTAL<sup>20+</sup> | 5 |水平区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| ALL<sup>20+</sup>        | 6 |全部区域。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## TouchPoint<sup>11+</sup>
 
@@ -735,7 +742,7 @@ type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 | 参数名 | 类型                                                | 必填 | 说明                                                         |
 | ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | ratios | Array&lt;number&gt;                                 | 是   | 阈值数组。其中，每个阈值代表组件可见面积（即组件在屏幕显示区的面积，只计算父组件内的面积，超出父组件部分不会计算）与组件自身面积的比值。每个阈值的取值范围为[0.0, 1.0]，如果开发者设置的阈值超出该范围，则会实际取值0.0或1.0。 |
-| expectedUpdateInterval | number | 否 | 预期更新间隔，单位为ms。定义了开发者期望的更新间隔。默认值：1000。|
+| expectedUpdateInterval | number | 否 | 定义了开发者期望的计算间隔，单位为ms。默认值：1000|
 
 ## VisibleAreaChangeCallback<sup>12+</sup>
 
@@ -908,28 +915,6 @@ clearPreviewText(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### getText<sup>19+</sup>
-
-getText(range?: TextRange): string
-
-获取指定范围的文本内容。
-
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名  | 类型   | 必填   | 说明  |
-| ------- | ------ | ---- | ----- |
-| range | [TextRange](ts-text-common.md#textrange12) | 否    | 获取文本的范围，包括需要获取文本的起始位置和终止位置。<br>未指定范围时，默认将获取全部文本。未指定获取文本的起始位置，则默认从下标0开始；未指定获取文本的终止位置，则默认以文本末尾作为结束点。 |
-
-**返回值：**
-
-| 类型    | 说明               |
-| ------ | ---------------- |
-| string | 指定范围的文本内容。 |
-
 ## TextDecorationOptions<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -991,19 +976,6 @@ setTextSelection选中文字时的配置。
 | thresholdPercentage | number  | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，数值为小数时，向下取整，如果设置的number超出有效值区间内，不显示字符计数器。thresholdPercentage设置为undefined，显示字符计数器，但此参数不生效。 |
 | highlightBorder     | boolean | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框和计数器下标将变成红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |
 
-
-## MaxLinesOptions<sup>20+</sup>对象说明
-
-配置TextArea组件，文本超长时显示效果。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名              | 类型    | 必填  | 说明                                                         |
-| ------------------- | ------- | ------- | ------------------------------------------------------------ |
-| overflowMode |[MaxLinesMode](ts-appendix-enums.md#maxlinesmode20)  | 否  | overflowMode 可配置 TextArea组件的非内联模式。当超出设置的 maxLines 最大行数时，会启用滚动效果。需同时配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)，且仅当 [textOverflow](ts-basic-components-textarea.md#textoverflow12)为None或Clip 时，MaxLinesMode 才能生效。默认情况下，MaxLinesMode的值为Clip，超出 maxLines 后文本会被截断。 |
-
 ## ChainWeightOptions<sup>14+</sup>对象说明
 
 链中组件的布局权重。
@@ -1047,6 +1019,8 @@ setTextSelection选中文字时的配置。
 
 >  **说明：**
 >
+> - LayoutPolicy支持设置三种布局策略：matchParent（自适应父组件布局）、wrapContent（根据内容自适应但不超过父组件尺寸的布局）和fixAtIdealSize（根据内容自适应，可能超过父组件尺寸的布局）。具体示例代码参见[设置布局策略](./ts-universal-attributes-size.md#示例5设置布局策略)。
+>
 > - 当设置了matchParent组件，其父容器设定了长度时，该组件将以父容器的尺寸为基准，自动调整以适应父组件的布局。若父容器未设定长度，该组件则会等待其父组件所有子组件完成布局后，再进行自身调整以适应父组件布局。
 > 
 > - 若同一父组件下有多个设置matchParent的子组件，则多个子组件均会被设置为父组件大小，也即在特定组件（[Flex](./ts-container-flex.md)、[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[RelativeContainer](./ts-container-relativecontainer.md)）上子组件会被绘制出容器外。
@@ -1059,7 +1033,7 @@ setTextSelection选中文字时的配置。
 >
 >  **使用场景：**
 > 
-> - 使用[自定义组件的自定义布局](ts-custom-component-layout.md#自定义组件的自定义布局)时，对其中的子组件的内容未知，不能确定设置固定的长度和宽度，可以为其的宽度或高度设置LayoutPolicy.fixAtIdealSize，使得子组件不受到父组件的影响，只受到自定义布局限制的影响。
+> - 使用[自定义组件的自定义布局](ts-custom-component-layout.md)时，对其中的子组件的内容未知，不能确定设置固定的长度和宽度，可以为其的宽度或高度设置LayoutPolicy.fixAtIdealSize，使得子组件不受到父组件的影响，只受到自定义布局限制的影响。
 
 ## TextContentControllerOptions<sup>15+</sup>
 

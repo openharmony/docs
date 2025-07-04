@@ -1,10 +1,17 @@
-# Interfaces (StabilizationQuery)
+# Interface (StabilizationQuery)
 
 > **说明：**
 >
-> 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块接口在API version 12发生兼容变更，保留了内层元素的起始版本信息，会出现外层元素@since版本号大于内层元素的情况，不影响接口使用。
 
 提供了查询设备在录像模式下是否支持对应的视频防抖模式的能力。
+
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
 
 ## isVideoStabilizationModeSupported<sup>11+</sup>
 

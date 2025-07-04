@@ -22,7 +22,7 @@ ImageBitmap(data: PixelMap, unit?: LengthMetricsUnit)
 
 | 参数名  | 类型   | 必填  | 说明                                    |
 | ---- | ------ | ---- | ---------------------------------------- |
-| data  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 图片的数据源支持PixelMap对象。 |
+| data  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片的数据源支持PixelMap对象。 |
 | unit  | [LengthMetricsUnit](ts-canvasrenderingcontext2d.md#lengthmetricsunit12) | 否 |  用来配置ImageBitmap对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT |
 
 ### ImageBitmap
@@ -78,7 +78,7 @@ close(): void
 
 ### 示例1（加载图片）
 
-通过ImageBitMap加载本地图片。
+通过ImageBitmap加载本地图片。
 
   ```ts
   // xxx.ets

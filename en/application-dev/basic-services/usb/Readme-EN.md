@@ -18,5 +18,3 @@
   - [USB Serial Communication Management](usbSerial/usbSerial-communication.md)
 - [FAQs](faqs-usb.md)
 - [Glossary](usb-glossary.md)
-
-<!--no_check-->

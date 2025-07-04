@@ -4,7 +4,7 @@ The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth L
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs provided by this module are no longer maintained since API version 9. You are advised to use profile APIs of [@ohos.bluetooth.ble](js-apis-bluetooth-ble.md).
+> The APIs provided by this module are no longer maintained since API version 9. You are advised to use APIs of [`@ohos.bluetooth.ble`](js-apis-bluetooth-ble.md).
 
 
 
@@ -2478,7 +2478,7 @@ disconnect(): boolean
 Disconnects from the remote BLE device.
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. Use [bluetoothManager.GattClientDevice.disconnect](js-apis-bluetoothManager.md#disconnectdeprecated-4) instead.
+> This API is supported since API version 7 and deprecated since API version 9. Use [bluetoothManager.GattClientDevice.disconnect](js-apis-bluetoothManager.md#disconnectdeprecated-2) instead.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3312,7 +3312,7 @@ Enumerates the SPP link types.
 Defines the GATT service API parameters.
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. Use [bluetoothManager.GattService](js-apis-bluetoothManager.md#gattservice) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattService](js-apis-bluetoothManager.md#gattservicedeprecated).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3701,7 +3701,7 @@ Defines the pairing state parameters.
 Defines the profile state change parameters.
 
 > **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. Use [bluetoothManager.StateChangeParam](js-apis-bluetoothManager.md#statechangeparam) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.StateChangeParam](js-apis-bluetoothManager.md#statechangeparamdeprecated).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 

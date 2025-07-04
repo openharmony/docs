@@ -33,7 +33,7 @@ import { List } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | List的元素个数。 |
 
@@ -451,7 +451,7 @@ let result = list.remove(2);
 replaceAllElements(callbackFn: (value: T, index?: number, list?: List&lt;T&gt;) => T,
 thisArg?: Object): void
 
-用户操作List中的元素，用操作后的元素替换原元素并返回操作后的元素。
+遍历List中的元素，并用回调函数返回的新值替换原List中的元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -539,7 +539,7 @@ list.add(4);
 list.add(5);
 list.add(4);
 list.forEach((value: number, index?: number) => {
-  console.log("value:" + value, "index:" + index);
+  console.info("value:" + value, "index:" + index);
 });
 ```
 
@@ -880,14 +880,14 @@ list.add(4);
 // 使用方法一：
 let items = Array.from(list);
 for (let item of items) {
-  console.log("value: " + item);
+  console.info("value: " + item);
 }
 
 // 使用方法二：
 let iter = list[Symbol.iterator]();
 let temp: IteratorResult<number> = iter.next();
 while(!temp.done) {
-  console.log("value: " + temp.value);
+  console.info("value: " + temp.value);
   temp = iter.next();
 }
 ```

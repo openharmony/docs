@@ -7,7 +7,7 @@ In ArkTS, Worker differ from TaskPool in that it has a limited number of threads
 The following example demonstrates how a Worker can respond to a "hello world" request.
 
 
-1. Create a Worker that executes multiple tasks.
+1. Create a Worker that executes tasks.
 
    ```ts
    // Worker.ets
@@ -21,8 +21,9 @@ The following example demonstrates how a Worker can respond to a "hello world" r
      }
    }
    ```
+   <!-- @[create_worker_execute_multi_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/workers/Worker.ets) -->
 
-2. In the host thread (UI main thread), create a Worker object. Use the **postmessage** method to send a message to the Worker when a button is clicked, and use the **onmessage** method of Worker to receive the response.
+2. In the host thread (UI main thread), create a Worker object. Use the **postMessage** method to send a message to the Worker thread when a button is clicked, and use the **onmessage** method of Worker to receive the response.
 
    ```ts
    // Index.ets
@@ -85,6 +86,7 @@ The following example demonstrates how a Worker can respond to a "hello world" r
      }
    }
    ```
+   <!-- @[respond_worker_instant_message](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/WorkerCommunicatesWithMainthread.ets) -->
 
 
 In this example, the Worker thread receives a message from the host thread, processes it, and sends a response back. This enables real-time communication between the host thread and the Worker thread, allowing the host thread to conveniently use the execution results of the Worker.

@@ -56,7 +56,7 @@ color(value: ResourceColor)
 
 enableLoading(value: boolean)
 
-设置LoadingProgress动画显示或者不显示。LoadingProgress动画不显示时，该组件依旧占位。通用属性[Visibility.Hidden](ts-universal-attributes-visibility.md#visibility)隐藏的是包括[border](ts-universal-attributes-border.md#border)、[padding](ts-universal-attributes-size.md#padding)等整个组件范围，而enableLoading=false只隐藏LoadingProgress本身动画内容，不包括border等。
+设置LoadingProgress动画是否显示。LoadingProgress动画不显示时，该组件依旧占位。通用属性[Visibility.Hidden](ts-universal-attributes-visibility.md#visibility)隐藏的是包括[border](ts-universal-attributes-border.md#border)、[padding](ts-universal-attributes-size.md#padding)等整个组件范围，而enableLoading=false只隐藏LoadingProgress本身动画内容，不包括border等。
 
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -111,17 +111,17 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                     | 说明                                     |
-| ---------------------- | ---------------------------------------- |
-| Default       | 默认加载样式。API version 8及以后不支持设置。            |
-| Circular      | 环形加载样式。API version 8及以后不支持设置。            |
-| Orbital       | 彗星形加载样式。API version 8及以后默认为彗星形样式。         |
+| 名称                     | 值 | 说明                                     |
+| ---------------------- | - | ---------------------------------------- |
+| Default       | 0 | 默认加载样式。API version 8及以后不支持设置。            |
+| Circular      | 1 | 环形加载样式。API version 8及以后不支持设置。            |
+| Orbital       | 2 | 彗星形加载样式。API version 8及以后默认为彗星形样式。         |
 
 ## 示例
 
 ### 示例1（设置颜色）
 
-该示例通过color接口，实现了设置加载动效颜色的功能。
+该示例通过[color](#color)接口，实现了设置加载动效颜色的功能。
 
 ```ts
 // xxx.ets
@@ -143,7 +143,7 @@ struct LoadingProgressExample {
 
 ### 示例2（设置定制内容区）
 
-该示例通过contentModifier接口，实现了定制内容区的功能，并通过enableLoading接口实现了通过按钮切换是否显示LoadingProgress的效果。
+该示例通过[contentModifier](#contentmodifier12)接口，实现了定制内容区的功能，并通过[enableLoading](#enableloading10)接口实现了通过按钮切换是否显示LoadingProgress的效果。
 
 ```ts
 // xxx.ets

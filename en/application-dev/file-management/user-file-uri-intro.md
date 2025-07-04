@@ -136,21 +136,21 @@ The following table describes the fields in a media file URI.
 
 ### Obtaining a Media File URI
 
-1. Call [PhotoViewPicker of PhotoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker) to select media files. The URIs of the selected files are returned.
+1. Call [PhotoViewPicker of PhotoAccessHelper](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md) to select media files. The URIs of the selected files are returned.
 
-2. Call [getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets) or [createAsset](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createasset) of [photoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).<!--Del-->
+2. Call [getAssets](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets) or [createAsset](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#createasset) API in [photoAccessHelper](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md) to obtain the URIs of the selected files.<!--Del-->
 
 3. Call [getPhotoAssets](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#getphotoassets), [getAudioAssets](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#getaudioassets), [createAudioAsset](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#createaudioasset10), or [createPhotoAsset](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#createphotoasset) of [userFileManager](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md).
 <!--DelEnd-->
 
 ### Using a Media File URI
 
-Applications of the normal APL can call [photoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md) APIs to process media files based on their URI. For details about the sample code, see [Obtaining an Image or Video by URI](../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri). To call the API, the application must have the ohos.permission.READ_IMAGEVIDEO permission.<!--Del-->
+Applications of the normal APL can call [photoAccessHelper](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md) APIs to process media files based on their URI. For details about the sample code, see [Obtaining an Image or Video by URI](../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri). To call the API, the application must have the ohos.permission.READ_IMAGEVIDEO permission.<!--Del-->
 
 Applications of the system_basic or system_core APL can call **photoAccessHelper** and [userFileManager](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md) APIs to process media files based on their URI. For details about how to use the APIs, see the API reference document.
 <!--DelEnd-->
 
-If you do not want to request the permission for a normal application, call [PhotoViewPicker of PhotoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker) to obtain the file URI and call [photoAccessHelper.getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets) to obtain the **PhotoAsset** object based on the URI. Based on the **PhotoAsset** object, you can use [getThumbnail](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail) to obtain the image thumbnail or use [get()](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#get) to obtain information from [PhotoKeys](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photokeys).
+If you do not want to request the permission for a normal application, call [PhotoViewPicker of PhotoAccessHelper](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md) to obtain the file URI and call [photoAccessHelper.getAssets](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets) to obtain the **PhotoAsset** object based on the URI. Based on the **PhotoAsset** object, you can use [getThumbnail](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md#getthumbnail) to obtain the image thumbnail or use [get](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md#get) to obtain information from [PhotoKeys](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-e.md#photokeys).
 
 The following information can be obtained from **PhotoKeys** through temporary authorization:
 
@@ -299,3 +299,5 @@ async function example(context: common.UIAbilityContext) {
   }
 ```
 <!--DelEnd-->
+
+<!--no_check-->

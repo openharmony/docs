@@ -131,7 +131,7 @@ To close the popup, call the [closePopup](../reference/apis-arkui/js-apis-arkui-
 
 ## Using the Global Popup in HAR Packages
 
-You can encapsulate a popuo using the [HAR](../quick-start/har-package.md) package to provide display, update, and close capabilities.
+You can encapsulate a popup using the [HAR](../quick-start/har-package.md) package to provide display, update, and close capabilities.
 
 ```ts
 // library/src/main/ets/components/MainPage.ets

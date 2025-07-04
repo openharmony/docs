@@ -351,7 +351,7 @@ getNfcV(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 ## tag.getIsoDep<sup>9+</sup>
 
-getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTag9 )
+getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isodeptag9 )
 
 获取IsoDep类型Tag对象，通过该对象可访问支持IsoDep技术类型的Tag。
 
@@ -495,7 +495,7 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 
 | **类型**                                                  | **说明**                                                                  |
 | --------------------------------------------------------- | ------------------------------------------------------------------------- |
-| [NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag) | NDEF Formatable类型Tag对象，通过该对象访问NDEF Formatable类型的相关接口。 |
+| [NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag9) | NDEF Formatable类型Tag对象，通过该对象访问NDEF Formatable类型的相关接口。 |
 
 **错误码：**
 
@@ -1412,7 +1412,7 @@ type IsoDepTag = _IsoDepTag
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [_IsoDepTag](./js-apis-nfctech.md#isodeptag9) | IsoDepTag 提供 ISO-DEP(ISO 14443-4)技术的属性和I/O操作的访问。 |
+| [_IsoDepTag](js-apis-nfctech.md#isodeptag9) | IsoDepTag 提供 ISO-DEP(ISO 14443-4)技术的属性和I/O操作的访问。 |
 
 ## NdefTag<sup>9+</sup>
 
@@ -1468,7 +1468,7 @@ type NdefFormatableTag = _NdefFormatableTag
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [_NdefFormatableTag](./js-apis-nfctech.md#ndefformatabletag9) | NdefFormatableTag为NDEF Formattable的标签提供格式化操作。 |
+| [_NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag9) | NdefFormatableTag为NDEF Formattable的标签提供格式化操作。 |
 
 ## BarcodeTag<sup>18+</sup>
 

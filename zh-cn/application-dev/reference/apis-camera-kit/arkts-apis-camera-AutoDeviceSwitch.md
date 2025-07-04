@@ -1,4 +1,4 @@
-# Interfaces (AutoDeviceSwitch)
+# Interface (AutoDeviceSwitch)
 
 > **说明：**
 >
@@ -12,6 +12,12 @@ AutoDeviceSwitch extends [AutoDeviceSwitchQuery](arkts-apis-camera-AutoDeviceSwi
 如系统发现镜头切换时，两颗镜头的变焦范围不一致，则会通过[AutoDeviceSwitchStatus](arkts-apis-camera-i.md#autodeviceswitchstatus13)中的isDeviceCapabilityChanged字段告知应用，
 但仍需要应用自己处理UX的变更（如变焦范围的调整，需要重新通过[getZoomRatioRange](arkts-apis-camera-ZoomQuery.md#getzoomratiorange11)接口获取数据并更新UX），
 因此更适用于极简UX交换的场景。
+
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
 
 ## enableAutoDeviceSwitch<sup>13+</sup>
 

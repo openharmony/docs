@@ -1,4 +1,4 @@
-# Interfaces (Zoom)
+# Interface (Zoom)
 
 > **说明：**
 >
@@ -7,6 +7,12 @@
 Zoom extends [ZoomQuery](arkts-apis-camera-ZoomQuery.md)
 
 变焦类，对设备变焦操作。
+
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
 
 ## setZoomRatio<sup>11+</sup>
 

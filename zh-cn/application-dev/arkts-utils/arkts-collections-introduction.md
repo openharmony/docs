@@ -57,6 +57,7 @@ struct Index {
   }
 }
 ```
+<!-- @[example_use](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/ArktsCollectionsIntroduction.ets) -->
 
 ## 共享容器与原生API方法的行为差异对比
 

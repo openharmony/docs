@@ -255,7 +255,7 @@ struct Parent {
 #### 迁移规则
 在V1中，@Prop装饰器用于从父组件传递参数给子组件，这些参数在子组件中可以被直接修改。在V2中，@Param取代了@Prop的作用，但@Param是只读的，子组件不能直接修改参数的值。因此，根据场景的不同，有几种迁移策略：
 
-- 简单类型：对于简单类型的参数，可以直接将@Prop替换@Param。
+- 简单类型：对于简单类型的参数，可以直接将@Prop替换为@Param。
 - 复杂类型：如果传递的是复杂对象且需要严格的单向数据绑定，可以对对象进行深拷贝，防止子组件修改父组件的数据。
 - 子组件修改变量：如果子组件需要修改传入的参数，可以使用@Once来允许子组件对在本地修改该变量。但需要注意，如果使用了\@Once，则代表当前子组件只会被初始化一次，后续并没有父组件到子组件的同步能力。
 
@@ -3089,6 +3089,109 @@ struct Index {
         })
     }
     .width('100%')
+  }
+}
+```
+#### AttributeUpdater
+
+将属性直接设置给组件，无需标记为状态变量即可直接触发UI更新。
+
+V1：
+
+在状态管理V1中，开发者希望通过修改`MyButtonModifier`的`flag`来改变绑定在Button上的属性。由于状态管理V1的\@State装饰器支持自身及第一层对象属性的观察能力，因此只需用\@State装饰`AttributeUpdater`，即可监听其变化并触发属性更新。
+
+```ts
+// xxx.ets
+import { AttributeUpdater } from '@kit.ArkUI';
+
+class MyButtonModifier extends AttributeUpdater<ButtonAttribute> {
+  flag: boolean = false;
+
+  initializeModifier(instance: ButtonAttribute): void {
+    instance.backgroundColor('#ff2787d9')
+      .width('50%')
+      .height(30)
+  }
+
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    if (this.flag) {
+      instance.borderWidth(2);
+    } else {
+      instance.borderWidth(10);
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State modifier: MyButtonModifier = new MyButtonModifier();
+
+  build() {
+    Row() {
+      Column() {
+        Button('Button')
+          .attributeModifier(this.modifier)
+        Button('Update')
+          .onClick(() => {
+            this.modifier.flag = !this.modifier.flag;
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+V2：
+
+与状态管理V1不同，状态管理V2的\@Local仅观察自身变化，因此`MyButtonModifier`需添加\@ObservedV2装饰器，`flag`需要被\@Trace装饰，并且需要在组件创建过程中读取`flag`以建立其与Button组件的联系。在`AttributeUpdater`场景中，需在`initializeModifier`中读取`flag`（如示例所示），否则无法建立关联。
+
+```ts
+// xxx.ets
+import { AttributeUpdater } from '@kit.ArkUI';
+
+@ObservedV2
+class MyButtonModifier extends AttributeUpdater<ButtonAttribute> {
+  @Trace flag: boolean = false;
+
+  initializeModifier(instance: ButtonAttribute): void {
+    // initializeModifier会在组件初始化阶段回调，需要在这个地方触发下flag的读，使其建立Button组件的关联。
+    this.flag;
+    instance.backgroundColor('#ff2787d9')
+      .width('50%')
+      .height(30)
+  }
+
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    if (this.flag) {
+      instance.borderWidth(2);
+    } else {
+      instance.borderWidth(10);
+    }
+  }
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  // 状态管理V2装饰器仅观察本层，即当前可以观察到modifier整体赋值的变化。
+  @Local modifier: MyButtonModifier = new MyButtonModifier();
+
+  build() {
+    Row() {
+      Column() {
+        Button('Button')
+          .attributeModifier(this.modifier)
+        Button('Update')
+          .onClick(() => {
+            this.modifier.flag = !this.modifier.flag;
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
   }
 }
 ```

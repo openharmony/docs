@@ -1,4 +1,4 @@
-# Interfaces (WhiteBalance)
+# Interface (WhiteBalance)
 
 > **说明：**
 >
@@ -9,6 +9,12 @@ WhiteBalance extends [WhiteBalanceQuery](arkts-apis-camera-WhiteBalanceQuery.md)
 提供了处理设备白平衡的相关功能，包括获取和设置白平衡模式以及白平衡值。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
+
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
 
 ## setWhiteBalanceMode<sup>20+</sup>
 

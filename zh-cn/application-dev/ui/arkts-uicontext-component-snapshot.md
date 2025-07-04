@@ -1,6 +1,6 @@
 # 使用组件截图（ComponentSnapshot）
 ## 能力介绍
-组件截图是将应用内一个组件节点树的渲染结果生成位图（[PixelMap](../reference/apis-image-kit/js-apis-image.md#pixelmap7)）的能力，支持两种方式：一种是对已挂树显示的组件进行截图，另一种是对通过Builder或ComponentContent实现的离线组件进行截图。
+组件截图是将应用内一个组件节点树的渲染结果生成位图（[PixelMap](../reference/apis-image-kit/arkts-apis-image-PixelMap.md)）的能力，支持两种方式：一种是对已挂树显示的组件进行截图，另一种是对通过Builder或ComponentContent实现的离线组件进行截图。
 
 > **说明：**
 >
@@ -88,7 +88,7 @@ export struct ScrollSnapshot {
     const pixelMap = await this.getUIContext().getComponentSnapshot().get(LIST_ID);
     // 获取位图像素字节，并保存在数组中
     let area: image.PositionArea =
-      await ImageUtils.getSnapshotArea(pixelMap, this.scrollYOffsets, this.listComponentWidth, this.listComponentHeight)
+      await this.getSnapshotArea(pixelMap, this.scrollYOffsets, this.listComponentWidth, this.listComponentHeight)
     this.areaArray.push(area);
 
     // 判断是否滚动到底以及用户是否已经强制停止
@@ -100,7 +100,7 @@ export struct ScrollSnapshot {
     } else {
       // 当滚动到底时，调用`mergeImage`将所有保存的位图数据进行拼接，返回长截图位图对象
       this.mergedImage =
-        await ImageUtils.mergeImage(this.areaArray, this.scrollYOffsets[this.scrollYOffsets.length - 1],
+        await this.mergeImage(this.areaArray, this.scrollYOffsets[this.scrollYOffsets.length - 1],
           this.listComponentWidth, this.listComponentHeight);
     }
   }
@@ -124,16 +124,15 @@ static scrollAnimation(scroller: Scroller, duration: number, scrollHeight: numbe
 使用image.createPixelMapSync()方法创建长截图longPixelMap，并遍历之前保存的图像片段数据（this.areaArray），构建image.PositionArea对象area，然后调用longPixelMap.writePixelsSync(area)方法将这些片段逐个写入到正确的位置，从而拼接成一个完整的长截图。
 
 ```ts
-// src/main/ets/common/ImageUtils.ets
-static async mergeImage(areaArray: image.PositionArea[], lastOffsetY: number, listWidth: number,
+async mergeImage(areaArray: image.PositionArea[], lastOffsetY: number, listWidth: number,
   listHeight: number): Promise<PixelMap> {
   // 创建一个长截图位图对象
   let opts: image.InitializationOptions = {
     editable: true,
     pixelFormat: 4,
     size: {
-      width: vp2px(listWidth),
-      height: vp2px(lastOffsetY + listHeight)
+      width: this.getUIContext().vp2px(listWidth),
+      height: this.getUIContext().vp2px(lastOffsetY + listHeight)
     }
   };
   let longPixelMap = image.createPixelMapSync(opts);
@@ -306,4 +305,4 @@ export class GlobalStaticSnapshot {
 请不要截取过大尺寸的图片，截图不建议超过屏幕尺寸大小。当要截取的图片目标长宽超过底层限制时，截图会返回失败，不同设备的底层限制并不相同。可以通过控制SnapshotOptions中的scale参数，减小采样精度，这可以在很大程度上节省内存，并大幅度提高截图的效率。
 
 ### 使用其他能力对自渲染场景实现截图
-尽管截图只需传入一个组件根节点即可实现对其下所有组件进行截图，但当子组件中存在[Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md)、[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)或[Web](../web/Readme-CN.md)组件时，这并不是推荐的截图方式。建议直接使用[image.createPixelMapFromSurface](../reference/apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11)接口来实现。
+尽管截图只需传入一个组件根节点即可实现对其下所有组件进行截图，但当子组件中存在[Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md)、[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)或[Web](../reference/apis-arkweb/arkts-basic-components-web.md)组件时，这并不是推荐的截图方式。建议直接使用[image.createPixelMapFromSurface](../reference/apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmapfromsurface11)接口来实现。

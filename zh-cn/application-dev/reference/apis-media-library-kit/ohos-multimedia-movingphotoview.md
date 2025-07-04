@@ -20,7 +20,7 @@ import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } 
 > - 当前不支持动态属性设置。
 > - 当前不支持ArkUI通用属性ComponentOptions中expandSafeArea属性设置。
 > - 该组件长按触发播放时组件区域放大为1.1倍。
-> - 该组件使用[AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)进行播放，同时开启的AVPlayer个数不建议超过3个，超过3个可能会出现视频播放卡顿现象。
+> - 该组件使用[AVPlayer](../apis-media-kit/arkts-apis-media-AVPlayer.md)进行播放，同时开启的AVPlayer个数不建议超过3个，超过3个可能会出现视频播放卡顿现象。
 
 MovingPhotoView(options: MovingPhotoViewOptions)
 
@@ -36,7 +36,7 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 
 | 参数名      | 参数类型                                                                                         | 必填 | 参数描述                                                                                                                                        |
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | 是   | 支持媒体库MovingPhoto数据源，具体信息详见[MovingPhoto说明](js-apis-photoAccessHelper.md#movingphoto12)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| movingPhoto | [MovingPhoto](arkts-apis-photoAccessHelper-MovingPhoto.md) | 是   | 支持媒体库MovingPhoto数据源，具体信息详见[MovingPhoto说明](arkts-apis-photoAccessHelper-MovingPhoto.md)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | 否   | 设置动态照片控制器，可以控制动态照片的播放状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                      |
 | imageAIOptions<sup>18+</sup>   | [ImageAIOptions](../apis-arkui/arkui-ts/ts-image-common.md#imageaioptions) | 否   | 设置动态照片AI分析选项，可配置分析类型或绑定一个分析控制器。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
@@ -255,6 +255,23 @@ onStop(callback: MovingPhotoViewEventCallback)
 | -------- | ------------------------------------------------------------- | ---- | ------------------------------ |
 | callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | 是   | 动态照片停止播放时触发的回调。 |
 
+### onPrepared<sup>20+</sup>
+
+onPrepared(callback: MovingPhotoViewEventCallback)
+
+动态照片准备完成图片时触发该事件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+
+| 参数名   | 类型                                                          | 必填 | 说明                           |
+| -------- | ------------------------------------------------------------- | ---- | ------------------------------ |
+| callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | 是   | 动态照片加载完成图片的回调。 |
+
 ## MovingPhotoViewEventCallback
 
 declare type MovingPhotoViewEventCallback = () => void
@@ -263,7 +280,7 @@ declare type MovingPhotoViewEventCallback = () => void
 
 ## MovingPhotoViewController
 
-一个MovingPhotoViewController对象可以控制一个MovingPhotoView，可用视频播放实例请参考[@ohos.multimedia.media](../apis-media-kit/js-apis-media.md)。
+一个MovingPhotoViewController对象可以控制一个MovingPhotoView，可用视频播放实例请参考[@ohos.multimedia.media](../apis-media-kit/arkts-apis-media.md)。
 
 ### startPlayback
 

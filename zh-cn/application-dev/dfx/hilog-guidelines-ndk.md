@@ -21,13 +21,9 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 | \#define OH_LOG_ERROR(type, ...) ((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | ERROR级别写日志，宏封装接口。 |
 | \#define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | FATAL级别写日志，宏封装接口。 |
 | void OH_LOG_SetCallback(LogCallback callback) | 注册函数，注册后可通过LogCallback回调获取本进程所有的hilog日志。|
-| void OH_LOG_SetMinLogLevel(LogLevel level)|设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别，[全局日志级别](hilog.md#查看和设置日志级别)默认为Info。|
+| void OH_LOG_SetMinLogLevel(LogLevel level)|设置应用日志打印的最低日志级别，用于拦截低级别日志打印。<br/>需要注意：如果设置的日志级别低于[全局日志级别](hilog.md#查看和设置日志级别)，设置不生效。|
 
 ### 参数解析
-
-> **说明：**
->
-> OH_LOG_IsLoggable()和OH_LOG_Print()使用的domain、tag和level应保持一致。
 
 - domain：用于指定输出日志所对应的业务领域，取值范围为0x0000~0xFFFF，开发者可以根据需要进行自定义。
 
@@ -44,15 +40,27 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
   | 格式说明符（specifier） | 说明 | 示例 |
   | -------- | -------- | -------- |
-  | d/i | 支持打印number、bool和bigint类型。 | 123 |
-  | s | 支持打印string、undefined和null类型。 | "123" |
+  | d/i | 支持打印number、bool类型。 | 123 |
+  | s | 支持打印char*类型。 | "hello" |
 
-  格式字符串中可以设置多个参数，例如格式字符串为“%s World”，“%s”为参数类型为string的变参标识，具体取值在args中定义。<!--Del-->
+  格式字符串中可以设置多个参数，例如格式字符串为“%{public}s World”，“%{public}s”为参数类型为字符串的变参标识，具体取值在args中定义。<!--Del-->
 
   调试时可通过命令“hilog -p off”指令，关闭隐私开关，明文显示private日志内容。
 <!--DelEnd-->
 
 - args：可以为0个或多个参数，是格式字符串中参数类型对应的参数列表。参数的数量、类型必须与格式字符串中的标识一一对应。
+
+> **说明：**
+>
+> - OH_LOG_IsLoggable()和OH_LOG_Print()使用的domain、tag和level应保持一致。
+>
+> - OH_LOG_IsLoggable()返回值：如果指定的domain、tag、level日志可以打印则返回true；否则返回false。
+>
+>   debug应用：不做日志级别管控，所有级别日志都能够正常打印出来；
+>
+>   release应用：按照全局日志级别管控，当日志的级别不低于全局日志级别时，才能正常打印出来；
+>
+>   调试过程中，可手动修改日志级别，参考：[查看和设置日志级别](hilog.md#查看和设置日志级别)
 
 ## 约束与限制
 
@@ -91,10 +99,12 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
 4. 输出结果：
 
+<!--RP2-->
    ```
-   01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   pid-9012              I     Failed to visit <private>, reason:11.
-   01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   pid-9012              E     this is an info level log
+   01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   com.example.hilogDemo              I     Failed to visit <private>, reason:11.
+   01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   com.example.hilogDemo              E     this is an info level log
    ```
+<!--RP2End-->
 
 ### 日志回调接口使用示例
 

@@ -6,7 +6,7 @@
 
 ## 开发步骤及注意事项
 
-详细的API说明请参考[AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9)
+详细的API说明请参考[AVPlayer](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md)
 
 1. 使用视频播放的AVPlayer实例设置外挂字幕资源。
 

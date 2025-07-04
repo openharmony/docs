@@ -4,7 +4,7 @@ OpenHarmony uses [libc++](https://libcxx.llvm.org/) of the open-source LLVM proj
 
 ## libc++ Version
 
-- Clang/LLVM 15.0.4 from OpenHarmony 4.0 to OpenHarmony 5.0
+- Clang/LLVM 15.0.4 for OpenHarmony 4.0 to <!--RP1-->OpenHarmony 6.0<!--RP1End-->
 
 - Clang/LLVM 12.0.1 from OpenHarmony 3.2
 

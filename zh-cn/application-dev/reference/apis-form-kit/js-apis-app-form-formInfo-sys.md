@@ -172,7 +172,7 @@ import { formInfo } from '@kit.FormKit';
 |-----|-----|----|----|-----|
 | formId       | string  | 是  | 否  | 卡片id。|
 | isOverflow   | boolean | 是  | 否  | 动效请求类型标记，true 表示互动卡片请求触发动效，false 表示互动卡片请求取消动效。|
-| overflowInfo | [formInfo.OverflowInfo](js-apis-app-form-formInfo.md#overflowinfo20) | 是 | 是 | 动效请求参数信息，包括溢出动效时长（单位：ms）和溢出动效区域（溢出动效区域范围以卡片左上角为原点，单位为vp），默认值为空。 |
+| overflowInfo | [formInfo.OverflowInfo](js-apis-app-form-formInfo.md#overflowinfo20) | 是 | 是 | 动效请求参数信息，包括动效时长（单位：ms）和动效区域（动效区域范围以卡片左上角为原点，单位为vp），默认值为空。 |
 
 ## ChangeSceneAnimationStateRequest<sup>20+</sup>
 

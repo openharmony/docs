@@ -1,4 +1,4 @@
-# @ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)
+# @ohos.app.ability.abilityLifecycleCallback (UIAbility生命周期回调监听器)
 
 AbilityLifecycleCallback模块提供应用上下文[ApplicationContext](js-apis-inner-application-applicationContext.md)的生命周期发生变化时触发相应回调的能力。
 

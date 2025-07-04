@@ -40,11 +40,11 @@ Sets the battery configuration based on the specified scenario.
 
 **Error codes**
 
-For details about the error codes, see [Battery Information Error Codes](errorcode-battery-info.md).
+For details about the error codes, see [Battery Info Error Codes](errorcode-battery-info.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
+| 5100101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 
@@ -84,11 +84,11 @@ Obtains the battery configuration based on the specified scenario.
 
 **Error codes**
 
-For details about the error codes, see [Battery Information Error Codes](errorcode-battery-info.md).
+For details about the error codes, see [Battery Info Error Codes](errorcode-battery-info.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
+| 5100101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 
@@ -127,11 +127,11 @@ Checks whether the battery configuration is enabled based on the specified scena
 
 **Error codes**
 
-For details about the error codes, see [Battery Information Error Codes](errorcode-battery-info.md).
+For details about the error codes, see [Battery Info Error Codes](errorcode-battery-info.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
+| 5100101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 
@@ -146,13 +146,13 @@ For details about the error codes, see [Battery Information Error Codes](errorco
   console.info("The result is: " + result);
   ```
 
-## Attributes
+## Properties
 
 Describes battery information.
 
 **System capability**: SystemCapability.PowerManager.BatteryManager.Core
 
-| Name     | Type       | Readable| Writable|  Description    |
+| Name     | Type       | Read-Only| Optional|  Description    |
 | --------------- | ------------------- | ---- | ---- | ---------------------|
 | estimatedRemainingChargeTime<sup>9+</sup> | number                                         | Yes  | No  | Estimated time for fully charging the current device, in unit of milliseconds. This is a system API.         |
 | totalEnergy<sup>9+</sup>                  | number                                         | Yes  | No  | Total battery capacity of the device, in unit of mAh. This is a system API.  |

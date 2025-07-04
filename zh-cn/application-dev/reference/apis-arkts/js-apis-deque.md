@@ -30,7 +30,7 @@ import { Deque } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | Deque的元素个数。 |
 
@@ -295,7 +295,7 @@ deque.insertEnd(4);
 deque.insertFront(5);
 deque.insertEnd(4);
 deque.forEach((value: number, index?: number | undefined, deque?: Deque<number> | undefined):void => {
-  console.log("value:" + value, "index:" + index);
+  console.info("value:" + value, "index:" + index);
 });
 ```
 
@@ -404,14 +404,14 @@ deque.insertFront(4);
 // 使用方法一：
 let nums: Array<number> = Array.from(deque);
 for (let item of nums) {
-  console.log("value:" + item);
+  console.info("value:" + item);
 }
 
 // 使用方法二：
 let iter = deque[Symbol.iterator]();
 let temp:IteratorResult<number> = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:" + temp.value);
   temp = iter.next();
 }
 ```

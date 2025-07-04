@@ -61,7 +61,7 @@ API 10开始支持应用卡死时的状态保存。JsError故障时，onSaveStat
 
 - 故障查询指的是[faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)通过其查询接口获取当前的故障信息。
 
-下图中并没有标记[faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)的调用时机，开发者可以根据应用启动时传入的[LastExitReason](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantlastexitreason)来决定是否调用[faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)查询上次的故障信息。
+下图中并没有标记[faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)的调用时机，开发者可以根据应用启动时传入的[LastExitReason](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#lastexitreason)来决定是否调用[faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)查询上次的故障信息。
 
 ![故障处理流程示意](./figures/20221106203527.png)
 

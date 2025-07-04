@@ -29,7 +29,7 @@ Currently, the **Allow this time only** option is available only for the followi
 
 - When the user selects **Allow this time only**, the permission is authorized to the application temporarily.
 
-  - The authorized permission remains valid as long as the application is running in the foreground, the application widget is [visible on the home screen](../../form/arkts-ui-widget-lifecycle.md), or the application has a [continuous task](../../task-management/continuous-task.md#continuous-task) (currently, only the location task is supported) in the background.
+  - The authorized permission remains valid as long as the application is running in the foreground, the application widget is [visible on the home screen](../../form/arkts-ui-widget-lifecycle.md), or the application has a [continuous task](../../task-management/continuous-task.md) (currently, only the location task is supported) in the background.
 
      In other cases, the permission will be revoked after a 10-second timer has expired. If the application needs the permission again, you need to request the permission.
 

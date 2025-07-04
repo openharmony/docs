@@ -1,10 +1,16 @@
-# Interfaces (CameraManager)
+# Interface (CameraManager)
 
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 相机管理器类，使用前需要通过[getCameraManager](arkts-apis-camera-f.md#cameragetcameramanager)接口获取相机管理实例。
+
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
 
 ## getSupportedCameras
 
@@ -261,7 +267,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 | 参数名     | 类型                                             | 必填 | 说明                              |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
 | profile  | [Profile](arkts-apis-camera-i.md#profile)                             | 是   | 支持的预览配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。|
-| surfaceId| string | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9)组件获取的surfaceId。|
+| surfaceId| string | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](../apis-image-kit/arkts-apis-image-ImageReceiver.md)组件获取的surfaceId。|
 
 **返回值：**
 
@@ -311,7 +317,7 @@ createPreviewOutput(surfaceId: string): PreviewOutput
 
 | 参数名     | 类型                                             | 必填 | 说明                              |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
-| surfaceId| string | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9)组件获取的surfaceId。|
+| surfaceId| string | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](../apis-image-kit/arkts-apis-image-ImageReceiver.md)组件获取的surfaceId。|
 
 **返回值：**
 
@@ -411,7 +417,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 | 参数名     | 类型                                        | 必填 | 说明                              |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
 | profile  | [VideoProfile](arkts-apis-camera-i.md#videoprofile)               | 是   | 支持的录像配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。 |
-| surfaceId| string          | 是   | 从[AVRecorder](../apis-media-kit/js-apis-media.md#avrecorder9)获取的surfaceId。|
+| surfaceId| string          | 是   | 从[AVRecorder](../apis-media-kit/arkts-apis-media-AVRecorder.md)获取的surfaceId。|
 
 **返回值：**
 
@@ -461,7 +467,7 @@ createVideoOutput(surfaceId: string): VideoOutput
 
 | 参数名       | 类型     | 必填    | 说明                                                                         |
 |-----------|--------|-------|----------------------------------------------------------------------------|
-| surfaceId | string | 是     | 从[AVRecorder](../apis-media-kit/js-apis-media.md#avrecorder9)获取的surfaceId。 |
+| surfaceId | string | 是     | 从[AVRecorder](../apis-media-kit/arkts-apis-media-AVRecorder.md)获取的surfaceId。 |
 
 **返回值：**
 
@@ -946,6 +952,7 @@ getCameraDevice(position:CameraPosition, type: CameraType): CameraDevice
 
 ```ts
 import { camera } from '@kit.CameraKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getCameraDevice(cameraManager: camera.CameraManager, position: camera.CameraPosition, type: camera.CameraType): void {
   try {
@@ -993,11 +1000,12 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 
 ```ts
 import { camera } from '@kit.CameraKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
   try {
-    let cameraconcurrentinfos: Array<camera.CameraConcurrentInfo> = [];
-    cameraconcurrentinfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
+    let cameraConcurrentInfos: Array<camera.CameraConcurrentInfo> = [];
+    cameraConcurrentInfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
   } catch (error) {
     // 失败返回错误码并处理。
     let err = error as BusinessError;
@@ -1054,7 +1062,7 @@ createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
 | 参数名     | 类型                                         | 必填 | 说明                                  |
 | -------- | ------------------------------------------- | ---- | ----------------------------------- |
 | profile  | [Profile](arkts-apis-camera-i.md#profile)                         | 是   | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。|
-| surfaceId| string            | 是   | 从[ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9)获取的surfaceId。|
+| surfaceId| string            | 是   | 从[ImageReceiver](../apis-image-kit/arkts-apis-image-ImageReceiver.md)获取的surfaceId。|
 
 **返回值：**
 

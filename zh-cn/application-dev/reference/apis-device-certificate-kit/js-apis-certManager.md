@@ -166,6 +166,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | CM_ERROR_MAX_CERT_COUNT_REACHED<sup>12+</sup>  | 17500004      | 表示证书或凭据数量达到上限。 |
 | CM_ERROR_NO_AUTHORIZATION<sup>12+</sup>  | 17500005      | 表示应用未经用户授权。 |
 | CM_ERROR_DEVICE_ENTER_ADVSECMODE<sup>18+</sup> | 17500007 | 表示设备进入坚盾守护模式。 |
+| CM_ERROR_STORE_PATH_NOT_SUPPORTED<sup>20+</sup> | 17500009 | 表示不支持指定的证书存储路径。   |
 
 ## CertType<sup>18+</sup>
 
@@ -210,7 +211,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 |-----------|-----------------------------------| ---- | ------------------------------------------------------------ |---------------------------------------------|
 | certType  | [CertType](#certtype18)           | 否  | 否  | 表示证书的类型。                                    |
 | certScope | [CertScope](#certscope18)         | 否   | 是  | 表示证书的存储位置。当证书类型为CA_CERT_USER时，此项为必选项。       |
-| certAlg   | [CertAlgorithm](#certalgorithm20) | 否   | 是  | 表示证书算法类型。仅当certType为CA_CERT_SYSTEM时有效，默认值为INTERNATIONAL。 |
+| certAlg<sup>20+</sup>   | [CertAlgorithm](#certalgorithm20) | 否   | 是  | 表示证书算法类型。仅当certType为CA_CERT_SYSTEM时有效，默认值为INTERNATIONAL。 |
 
 ## AuthStorageLevel<sup>18+</sup>
 
@@ -1536,7 +1537,7 @@ getCertificateStorePath(property: CertStoreProperty): string;
 |----------| ------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error. |
-| 17500009 | The device does not support the specified certificate store path. |
+| 17500009 | The device does not support the specified certificate store path, such as the overseas device does not support the certificate which algorithm is SM. |
 
 **示例**：
 ```ts

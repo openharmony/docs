@@ -41,3 +41,21 @@ unmarshalling无法将传入的字节反序列化出对应的属性字符串。
 
 NA
 <!--DelEnd-->
+
+## 180101 无效的属性字符串
+
+**错误信息**
+
+Invalid styled string.
+
+**错误描述**
+
+属性字符串序列化CAPI中，ArkUI_StyledString_Descriptor的属性字符串对象为空。
+
+**可能原因**
+
+参数中传递属性字符串有误。
+
+**处理步骤**
+
+检查参数中是否正确传递属性字符串。

@@ -1,4 +1,4 @@
-# @ohos.app.ability.errorManager (ErrorManager)
+# @ohos.app.ability.errorManager (错误观测管理)
 
 ErrorManager模块提供对错误观察器的注册和注销的能力。
 
@@ -115,7 +115,7 @@ function errorFunc(observer: errorManager.GlobalError) {
     console.info("result message :" + observer.message);
     console.info("result stack :" + observer.stack);
     console.info("result instanceName :" + observer.instanceName);
-    console.info("result instaceType :" + observer.instanceType);
+    console.info("result instanceType :" + observer.instanceType);
 }
 
 try {

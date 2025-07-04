@@ -173,7 +173,7 @@ let dialCallOptions: call.DialCallOptions = {
     accountId: 0,
     videoState: 0,
     dialScene: 0,
-    dialType: 0,
+    dialType: 0
 }
 call.dialCall("138xxxxxxxx", dialCallOptions).then(() => {
     console.log(`dialCall success.`);
@@ -2035,7 +2035,7 @@ postDialProceed\(callId: number, proceed: boolean\): Promise\<void\>
 | 参数名   | 类型                      | 必填 | 说明                    |
 | -------- | ------------------------- | ---- | ----------------------- |
 | callId   | number                    | 是   | 呼叫Id。                |
-| proceed  | boolean                   | 是   | 用户选择是否发送DTMF音。|
+| proceed  | boolean                   | 是   | 用户选择是否发送DTMF音，默认为false。<br/>-true：是<br/>-false：否|
 
 **返回值：**
 
@@ -5085,7 +5085,7 @@ VoIP通话信息。
 | --------------- | ------------------- | ---- | -------------- |
 | voipCallId   | string    | 是   | VoIP通话唯一Id。       |
 | userName  | string    | 是   | 用户昵称。 |
-| userProfile       | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)    | 是   | 用户头像图片。  |
+| userProfile       | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)    | 是   | 用户头像图片。  |
 | extensionId      | string     | 是   |  三方应用进程Id。  |
 | abilityName      | string     | 是   |  需加载的三方应用的界面ability。  |
 | voipBundleName    | string     | 是   |  三方应用包名。  |
@@ -5612,7 +5612,7 @@ setPreviewSurface\(callId: number, surfaceId: string\): Promise\<void\>
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
 | callId | number                       | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。       |
-| surfaceId | string                    | 是   | 预览窗口Id。surfaceId获取方式可参考[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。   |
+| surfaceId | string                    | 是   | 预览窗口Id。surfaceId获取方式可参考[getXComponentSurfaceId](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9)。   |
 
 **返回值：**
 
@@ -5663,7 +5663,7 @@ setDisplaySurface\(callId: number, surfaceId: string\): Promise\<void\>
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
 | callId | number                       | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。       |
-| surfaceId | string                    | 是   | 画面窗口Id。surfaceId获取方式可参考[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。   |
+| surfaceId | string                    | 是   | 画面窗口Id。surfaceId获取方式可参考[getXComponentSurfaceId](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9)。   |
 
 **返回值：**
 

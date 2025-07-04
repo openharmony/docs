@@ -20,8 +20,8 @@
 
 | 名称                                               | typedef关键字       | 描述                                  |
 | -------------------------------------------------- | ------------------- | ------------------------------------- |
-| [OH_PreferencesPair](capi-oh-preferencespair.md)   | OH_PreferencesPair  | 定义Preferences使用的KV数据对象类型。 |
-| [OH_PreferencesValue](capi-oh-preferencesvalue.md) | OH_PreferencesValue | 定义PreferencesValue对象类型。        |
+| [OH_PreferencesPair](capi-preferences-oh-preferencespair.md)   | OH_PreferencesPair  | 定义Preferences使用的KV数据对象类型。 |
+| [OH_PreferencesValue](capi-preferences-oh-preferencesvalue.md) | OH_PreferencesValue | 定义PreferencesValue对象类型。        |
 
 ### 枚举
 
@@ -36,9 +36,9 @@
 | [const char *OH_PreferencesPair_GetKey(const OH_PreferencesPair *pairs, uint32_t index)](#oh_preferencespair_getkey) | 获取KV数据中索引对应数据的键。                               |
 | [const OH_PreferencesValue *OH_PreferencesPair_GetPreferencesValue(const OH_PreferencesPair *pairs, uint32_t index)](#oh_preferencespair_getpreferencesvalue) | 获取KV数据数组中索引对应的值。                               |
 | [Preference_ValueType OH_PreferencesValue_GetValueType(const OH_PreferencesValue *object)](#oh_preferencesvalue_getvaluetype) | 获取PreferencesValue对象的数据类型。                         |
-| [int OH_PreferencesValue_GetInt(const OH_PreferencesValue *object, int *value)](#oh_preferencesvalue_getint) | 从PreferencesValue对象[OH_PreferencesValue](capi-oh-preferencesvalue.md)中获取一个整型值。 |
-| [int OH_PreferencesValue_GetBool(const OH_PreferencesValue *object, bool *value)](#oh_preferencesvalue_getbool) | 从PreferencesValue对象[OH_PreferencesValue](capi-oh-preferencesvalue.md)中获取一个布尔值。 |
-| [int OH_PreferencesValue_GetString(const OH_PreferencesValue *object, char **value, uint32_t *valueLen)](#oh_preferencesvalue_getstring) | 从PreferencesValue对象[OH_PreferencesValue](capi-oh-preferencesvalue.md)中获取字符串。 |
+| [int OH_PreferencesValue_GetInt(const OH_PreferencesValue *object, int *value)](#oh_preferencesvalue_getint) | 从PreferencesValue对象[OH_PreferencesValue](capi-preferences-oh-preferencesvalue.md)中获取一个整型值。 |
+| [int OH_PreferencesValue_GetBool(const OH_PreferencesValue *object, bool *value)](#oh_preferencesvalue_getbool) | 从PreferencesValue对象[OH_PreferencesValue](capi-preferences-oh-preferencesvalue.md)中获取一个布尔值。 |
+| [int OH_PreferencesValue_GetString(const OH_PreferencesValue *object, char **value, uint32_t *valueLen)](#oh_preferencesvalue_getstring) | 从PreferencesValue对象[OH_PreferencesValue](capi-preferences-oh-preferencesvalue.md)中获取字符串。 |
 
 ## 枚举类型说明
 
@@ -82,8 +82,8 @@ const char *OH_PreferencesPair_GetKey(const OH_PreferencesPair *pairs, uint32_t 
 
 | 参数项                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| const [OH_PreferencesPair](capi-oh-preferencespair.md) *pairs | 目标KV数据[OH_PreferencesPair](capi-oh-preferencespair.md)的指针。 |
-| uint32_t index                                               | 目标KV数据[OH_PreferencesPair](capi-oh-preferencespair.md)的索引值。 |
+| const [OH_PreferencesPair](capi-preferences-oh-preferencespair.md) *pairs | 目标KV数据[OH_PreferencesPair](capi-preferences-oh-preferencespair.md)的指针。 |
+| uint32_t index                                               | 目标KV数据[OH_PreferencesPair](capi-preferences-oh-preferencespair.md)的索引值。 |
 
 **返回：**
 
@@ -108,14 +108,14 @@ const OH_PreferencesValue *OH_PreferencesPair_GetPreferencesValue(const OH_Prefe
 
 | 参数项                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| const [OH_PreferencesPair](capi-oh-preferencespair.md) *pairs | 目标KV数据[OH_PreferencesPair](capi-oh-preferencespair.md)的指针。 |
-| uint32_t index                                               | 目标KV数据[OH_PreferencesPair](capi-oh-preferencespair.md)的索引值。 |
+| const [OH_PreferencesPair](capi-preferences-oh-preferencespair.md) *pairs | 目标KV数据[OH_PreferencesPair](capi-preferences-oh-preferencespair.md)的指针。 |
+| uint32_t index                                               | 目标KV数据[OH_PreferencesPair](capi-preferences-oh-preferencespair.md)的索引值。 |
 
 **返回：**
 
 | 类型                                                     | 说明                                                         |
 | -------------------------------------------------------- | ------------------------------------------------------------ |
-| const [OH_PreferencesValue](capi-oh-preferencesvalue.md) | 如果操作成功，返回获取到的值对象的指针。操作失败或传参不合法返回空指针。 |
+| const [OH_PreferencesValue](capi-preferences-oh-preferencesvalue.md) | 如果操作成功，返回获取到的值对象的指针。操作失败或传参不合法返回空指针。 |
 
 
 ### OH_PreferencesValue_GetValueType()
@@ -135,7 +135,7 @@ Preference_ValueType OH_PreferencesValue_GetValueType(const OH_PreferencesValue 
 
 | 参数项                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| const [OH_PreferencesValue](capi-oh-preferencesvalue.md) *object | 对象[OH_PreferencesValue](capi-oh-preferencesvalue.md)的指针。 |
+| const [OH_PreferencesValue](capi-preferences-oh-preferencesvalue.md) *object | 对象[OH_PreferencesValue](capi-preferences-oh-preferencesvalue.md)的指针。 |
 
 **返回：**
 
@@ -151,7 +151,7 @@ int OH_PreferencesValue_GetInt(const OH_PreferencesValue *object, int *value)
 
 **描述**
 
-从PreferencesValue对象[OH_PreferencesValue](capi-oh-preferencesvalue.md)中获取一个整型值。
+从PreferencesValue对象[OH_PreferencesValue](capi-preferences-oh-preferencesvalue.md)中获取一个整型值。
 
 **起始版本：** 13
 
@@ -160,7 +160,7 @@ int OH_PreferencesValue_GetInt(const OH_PreferencesValue *object, int *value)
 
 | 参数项                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| const [OH_PreferencesValue](capi-oh-preferencesvalue.md) *object | 对象[OH_PreferencesValue](capi-oh-preferencesvalue.md)的指针。 |
+| const [OH_PreferencesValue](capi-preferences-oh-preferencesvalue.md) *object | 对象[OH_PreferencesValue](capi-preferences-oh-preferencesvalue.md)的指针。 |
 | int *value                                                   | 该参数作为出参使用，表示指向获取到的整型值的指针。           |
 
 **返回：**
@@ -177,7 +177,7 @@ int OH_PreferencesValue_GetBool(const OH_PreferencesValue *object, bool *value)
 
 **描述**
 
-从PreferencesValue对象[OH_PreferencesValue](capi-oh-preferencesvalue.md)中获取一个布尔值。
+从PreferencesValue对象[OH_PreferencesValue](capi-preferences-oh-preferencesvalue.md)中获取一个布尔值。
 
 **起始版本：** 13
 
@@ -186,7 +186,7 @@ int OH_PreferencesValue_GetBool(const OH_PreferencesValue *object, bool *value)
 
 | 参数项                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| const [OH_PreferencesValue](capi-oh-preferencesvalue.md) *object | 对象[OH_PreferencesValue](capi-oh-preferencesvalue.md)的指针。 |
+| const [OH_PreferencesValue](capi-preferences-oh-preferencesvalue.md) *object | 对象[OH_PreferencesValue](capi-preferences-oh-preferencesvalue.md)的指针。 |
 | bool *value                                                  | 该参数作为出参使用，表示指向获取到的布尔值的指针。           |
 
 **返回：**
@@ -203,7 +203,7 @@ int OH_PreferencesValue_GetString(const OH_PreferencesValue *object, char **valu
 
 **描述**
 
-从PreferencesValue对象[OH_PreferencesValue](capi-oh-preferencesvalue.md)中获取字符串。
+从PreferencesValue对象[OH_PreferencesValue](capi-preferences-oh-preferencesvalue.md)中获取字符串。
 
 **起始版本：** 13
 
@@ -212,7 +212,7 @@ int OH_PreferencesValue_GetString(const OH_PreferencesValue *object, char **valu
 
 | 参数项                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| const [OH_PreferencesValue](capi-oh-preferencesvalue.md) *object | 对象[OH_PreferencesValue](capi-oh-preferencesvalue.md)的指针。 |
+| const [OH_PreferencesValue](capi-preferences-oh-preferencesvalue.md) *object | 对象[OH_PreferencesValue](capi-preferences-oh-preferencesvalue.md)的指针。 |
 | char **value                                                 | 该参数作为出参使用，表示指向获取到的字符串的二级指针，使用完毕后需要调用释放函数[OH_Preferences_FreeString](capi-oh-preferences-h.md#oh_preferences_freestring)释放内存。 |
 | uint32_t *valueLen                                           | 该参数作为出参使用，表示指向获取到的字符串长度的指针。       |
 

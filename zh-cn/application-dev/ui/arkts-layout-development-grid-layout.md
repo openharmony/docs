@@ -103,7 +103,7 @@
 
 GridRow中通过columns设置栅格布局的总列数。
 
-- API version 20之前，columns默认值为12，即在未设置columns时，任何断点下，栅格布局均被分成12列。 
+- API version 20之前，columns默认值为12，即在未设置columns时，任何断点下，栅格布局均被分成12列。
 - API version 20及以后，columns默认值为{ xs: 2, sm: 4, md: 8, lg: 12, xl: 12, xxl: 12 }。
 
 

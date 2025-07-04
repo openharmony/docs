@@ -53,3 +53,4 @@
 |FUNC|eglGetFrameTimestampSupportedANDROID|
 |FUNC|eglPresentationTimeANDROID|
 |FUNC|eglGetNativeClientBufferANDROID|
+|FUNC|eglSwapBuffersWithDamageKHR|

@@ -70,7 +70,10 @@ VideoEncoder模块提供用于视频编码的接口。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_FreeOutputBuffer](#oh_videoencoder_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的index对应的OH_AVBuffer返回给编码器。  | 
 | OH_AVFormat \* [OH_VideoEncoder_GetInputDescription](#oh_videoencoder_getinputdescription) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 编码器接收到的图像的描述信息。  |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_IsValid](#oh_videoencoder_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | 检查当前编码实例是否有效。  | 
-
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_QueryInputBuffer](#oh_videoencoder_queryinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | 查询下一个可用输入缓冲区的索引。 | 
+| [OH_AVBuffer](_core.md#oh_avbuffer) [OH_VideoEncoder_GetInputBuffer](#oh_videoencoder_getinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 获取可用输入缓冲区的实例。 |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_QueryOutputBuffer](#oh_videoencoder_queryoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | 查询下一个可用输出缓冲区的索引。 | 
+| [OH_AVBuffer](_core.md#oh_avbuffer) [OH_VideoEncoder_GetOutputBuffer](#oh_videoencoder_getoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 获取可用输出缓冲区的实例。 |
 
 ## 类型定义说明
 
@@ -766,7 +769,7 @@ AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
 OH_AVErrCode OH_VideoEncoder_Start (OH_AVCodec *codec)
 ```
 **描述**
-调用OH_VideoEncoder_Prepare接口成功后调用此接口启动解码器。成功启动后，编码器将开始报告注册的回调事件。
+调用OH_VideoEncoder_Prepare接口成功后调用此接口启动编码器。成功启动后，编码器将开始报告注册的回调事件。
 
 Surface模式下，在surface中有正确的输入后，每完成一帧编码会触发OnNewOutputBuffer。
 
@@ -832,6 +835,154 @@ AV_ERR_UNKNOWN：未知错误。
 AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
+
+
+### OH_VideoEncoder_QueryInputBuffer()
+
+```
+OH_AVErrCode OH_VideoEncoder_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
+```
+**描述**
+
+查询下一个可用输入缓冲区的索引。
+
+调用此接口后需要接着调用[OH_VideoEncoder_GetInputBuffer](#oh_videoencoder_getinputbuffer)接口获取缓冲区实例，并通过[OH_VideoEncoder_PushInputBuffer](#oh_videoencoder_pushinputbuffer)接口传递给编码器。
+
+需要注意的是，上述操作仅在同步模式下支持。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向视频编码实例的指针。  |
+| index | 输入buffer对应的索引值。| 
+| timeoutUs | 超时时长，单位为微秒。负值：无限等待；0：立即退出；正值：指定时间timeout后退出。  | 
+
+**返回：**
+
+返回接口结果：
+
+AV_ERR_OK：执行成功。
+
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
+
+AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+
+AV_ERR_UNKNOWN：未知错误。
+
+AV_ERR_SERVICE_DIED：编解码服务已终止。
+
+AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
+
+AV_ERR_OPERATE_NOT_PERMIT：禁止异步模式下使用。
+
+AV_ERR_TRY_AGAIN_LATER：查询失败，建议等待短暂间隔后重试。
+
+
+### OH_VideoEncoder_GetInputBuffer()
+
+```
+OH_AVBuffer *OH_VideoEncoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t index);
+```
+**描述**
+
+获取可用输入缓冲区的实例。
+
+需要注意的是，此接口仅适用于同步模式。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向视频编码实例的指针。  |
+| index | 输入buffer对应的索引值，可通过[OH_VideoEncoder_QueryInputBuffer](#oh_videoencoder_queryinputbuffer)接口获取。| 
+
+**返回：**
+
+如果执行成功，则返回一个指向OH_AVBuffer实例的指针，否则返回NULL。
+
+
+### OH_VideoEncoder_QueryOutputBuffer()
+
+```
+OH_AVErrCode OH_VideoEncoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
+```
+**描述**
+
+查询下一个可用输出缓冲区的索引。
+
+通过[OH_VideoEncoder_GetOutputBuffer](#oh_videoencoder_getoutputbuffer)接口获取的缓冲区实例可以通过[OH_VideoEncoder_FreeOutputBuffer](#oh_videoencoder_freeoutputbuffer)接口将处理后的输出缓冲区返回到编码器。
+
+需要注意的是，上述操作仅在同步模式下支持。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向视频编码实例的指针。  |
+| index | 输出buffer对应的索引值。| 
+| timeoutUs | 超时时长，单位为微秒。负值：无限等待；0：立即退出；正值：指定时间timeout后退出。  | 
+
+**返回：**
+
+返回接口结果：
+
+AV_ERR_OK：执行成功。
+
+AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
+
+AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
+
+AV_ERR_UNKNOWN：未知错误。
+
+AV_ERR_SERVICE_DIED：编解码服务已终止。
+
+AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
+
+AV_ERR_OPERATE_NOT_PERMIT：禁止异步模式下使用。
+
+AV_ERR_STREAM_CHANGED：流格式已变更，可以通过调用OH_VideoEncoder_GetOutputDescription接口获取新的流信息。
+
+AV_ERR_TRY_AGAIN_LATER：查询失败，建议等待短暂间隔后重试。
+
+
+### OH_VideoEncoder_GetOutputBuffer()
+
+```
+OH_AVBuffer *OH_VideoEncoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t index);
+```
+**描述**
+
+获取可用输出缓冲区的实例。
+
+需要注意的是，此接口仅适用于同步模式。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向视频编码实例的指针。  |
+| index | 输出buffer对应的索引值，可通过[OH_VideoEncoder_QueryOutputBuffer](#oh_videoencoder_queryoutputbuffer)接口获取。| 
+
+**返回：**
+
+如果执行成功，则返回一个指向OH_AVBuffer实例的指针，否则返回NULL。
 
 
 ## 废弃函数说明

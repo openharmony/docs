@@ -43,8 +43,8 @@ GridRow(option?: GridRowOptions)
 | 名称 |类型|必填|说明|
 |-----|-----|----|----|
 |columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  否  |设置布局列数。<br />取值为大于0的整数。<br/>- API version 20之前：默认值为12。<br/>- API version 20及之后：默认值为{ xs: 2, sm: 4, md: 8, lg: 12, xl: 12, xxl: 12 }。|
-|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   否  |栅格布局间距。<br />默认值：0 |
-|breakpoints|[BreakPoints](#breakpoints)|  否  |设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。<br />默认值：<br />{<br />value: ["320vp", "600vp", "840vp"],<br />reference: BreakpointsReference.WindowSize<br />} |
+|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   否  |栅格布局间距。<br />默认值：0<br />单位：vp |
+|breakpoints|[BreakPoints](#breakpoints)|  否  |设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。<br />默认值：<br />{<br />value: ["320vp", "600vp", "840vp"],<br />reference: BreakpointsReference.WindowSize<br />}<br />单位：vp |
 |direction|[GridRowDirection](#gridrowdirection枚举说明)|   否  |栅格布局排列方向。<br />默认值：GridRowDirection.Row |
 
 ## GutterOption
@@ -93,6 +93,7 @@ GridRow(option?: GridRowOptions)
   columns: {md:4, lg:8} // 等于配置 columns: {xs:4, sm:4, md:4, lg:8, xl:8, xxl:8}
   ```
 - 建议手动配置不同断点下GridRow组件的栅格列数，避免默认补全的栅格列数的布局效果不符合预期。
+- 每列栅格的宽度为GridRow的内容区大小减去栅格子组件的间距gutter， 再除以总的栅格列数。比如，宽800px的GridRow设置columns为12，gutter设置为10px， padding设置为20px，那么每列栅格的宽度为(800 - 20 * 2 - 10 * 11) / 12。
 
 ## GridRowSizeOption
 
@@ -125,7 +126,7 @@ GridRow(option?: GridRowOptions)
 
 | 名称   | 类型   | 必填   | 说明                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "600vp", "840vp"]    |
+| value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "600vp", "840vp"]<br />单位：vp    |
 | reference  | [BreakpointsReference](#breakpointsreference枚举说明) | 否    | 断点切换参照物。<br>默认值：BreakpointsReference.WindowSize |
 ```ts
   // 启用xs、sm、md共3个断点

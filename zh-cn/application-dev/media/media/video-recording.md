@@ -10,7 +10,7 @@
 
 ![Recording status change](figures/video-recording-status-change.png)
 
-状态的详细说明请参考[AVRecorderState](../../reference/apis-media-kit/js-apis-media.md#avrecorderstate9)。
+状态的详细说明请参考[AVRecorderState](../../reference/apis-media-kit/arkts-apis-media-t.md#avrecorderstate9)。
 
 
 ## 申请权限
@@ -34,7 +34,7 @@
 > 关于文件的创建与存储操作，请参考[应用文件访问与管理](../../file-management/app-file-access.md)，默认存储在应用的沙箱路径之下，如需存储至图库，请使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)对沙箱内文件进行存储。
 
 
-AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis-media-kit/js-apis-media.md#avrecorder9)。
+AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md)。
 
 1. 创建AVRecorder实例，实例创建完成进入idle状态。
 
@@ -99,6 +99,10 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
      videoFrameRate : 30 // 视频帧率。
    };
 
+   let videoMetaData: media.AVMetadata = {
+     videoOrientation: '0' // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270。
+   };
+
    const context: Context = this.getUIContext().getHostContext()!; // 参考应用文件访问与管理。
    let filePath: string = context.filesDir + '/example.mp4';
    let videoFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
@@ -108,7 +112,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
      videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式。
      profile : avProfile,
      url: 'fd://' + fileFd.toString(), // 参考应用文件访问与管理开发示例新建并读写一个视频文件。
-     rotation : 0 // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270。
+     metadata : videoMetaData
    };
    this.avRecorder.prepare(avConfig).then(() => {
      console.info('avRecorder prepare success');
@@ -176,11 +180,14 @@ export class VideoRecorderDemo extends CustomComponent {
     videoFrameHeight : 480, // 视频分辨率的高。
     videoFrameRate : 30 // 视频帧率。
   };
+  private videoMetaData: media.AVMetadata = {
+    videoOrientation: '0' // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270。
+  };
   private avConfig: media.AVRecorderConfig = {
     videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式。
     profile : this.avProfile,
     url : 'fd://35', //  参考应用文件访问与管理开发示例新建并读写一个文件。
-    rotation : 0 // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270。
+    metadata : this.videoMetaData
   };
   
   private uriPath: string = ''; // 文件uri，可用于安全控件保存媒体资源。

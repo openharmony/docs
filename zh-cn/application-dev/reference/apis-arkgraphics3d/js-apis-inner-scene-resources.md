@@ -70,7 +70,7 @@ function destroy() : void {
 ```
 
 ## Shader
-着色器，继承自[SceneResource](#sceneresource)。
+着色器，继承自[SceneResource](#sceneresource-1)。
 
 ### 属性
 
@@ -125,7 +125,7 @@ function destroy() : void {
 | renderSortLayerOrder | number | 否 | 是 | 同一渲染图层内，不同物体的渲染顺序，数值越小，越先渲染。取值范围[0, 255]，默认值为0。|
 
 ## Material
-材质类型，继承自[SceneResource](#sceneresource)。
+材质类型，继承自[SceneResource](#sceneresource-1)。
 
 ### 属性
 
@@ -218,7 +218,6 @@ function destroy() : void {
 | mipMapMode | [SamplerFilter](#samplerfilter20) | 否 | 是 | mipmap过滤模式，控制纹理贴图在多层不同分辨率之间的采样方式，默认值为LINEAR。 |
 | addressModeU | [SamplerAddressMode](#sampleraddressmode20) | 否 | 是 | 纹理贴图U方向（水平）的采样方式，默认值为REPEAT。 |
 | addressModeV | [SamplerAddressMode](#sampleraddressmode20) | 否 | 是 | 纹理贴图V方向（垂直）的采样方式，默认值为REPEAT。 |
-| addressModeW | [SamplerAddressMode](#sampleraddressmode20) | 否 | 是 | 纹理贴图W方向（深度）的采样方式，默认值为REPEAT。 |
 
 ## SubMesh
 子网格类型。
@@ -244,7 +243,7 @@ function destroy() : void {
 | targets | Record<string, number> | 是 | 否 | 用于存储所有形变目标的名称和对应的权重。权重值通常在[0.0, 1.0]范围内。 |
 
 ## Mesh
-网格类型，继承自[SceneResource](#sceneresource)。
+网格类型，继承自[SceneResource](#sceneresource-1)。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -256,12 +255,12 @@ function destroy() : void {
 | materialOverride | [Material](#material) | 否 | 是 | 材质，默认为空。 |
 
 ## MeshResource<sup>18+</sup>
-网格资源，继承自[SceneResource](#sceneresource)。
+网格资源，继承自[SceneResource](#sceneresource-1)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 ## Animation
-动画类型，继承自[SceneResource](#sceneresource)。
+动画类型，继承自[SceneResource](#sceneresource-1)。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -270,14 +269,14 @@ function destroy() : void {
 | ---- | ---- | ---- | ---- | ---- |
 | enabled | boolean | 否 | 否 | 动画是否使能。true表示可以播放动画，false表示不可以播放动画。 |
 | speed<sup>20+</sup> | number | 否 | 是 | 动画的播放速度因子。默认值为1.0，表示正常速度播放。如果设置为负值，动画将以反向速度播放。 |
-| duration | number | 是 | 否 | 动画持续时间，取值范围大于等于0。 |
+| duration | number | 是 | 否 | 动画持续时间，单位为秒（s），取值范围大于等于0。 |
 | running | boolean | 是 | 否 | 动画运行状态。true表示动画正在播放，false表示动画停止播放。 |
 | progress | number | 是 | 否 | 动画进度状态，取值区间为[0, 1]。 |
 
 ### onFinished
 onFinished(callback: Callback\<void>): void
 
-动画播放结束时执行的的回调函数，动画播放完成或者finish操作会触发这个回调。
+动画播放结束时执行的回调函数，动画播放完成或者finish操作会触发这个回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -499,7 +498,7 @@ function finish() : void {
 | BACKGROUND_EQUIRECTANGULAR | 3 | 等距矩形背景。 |
 
 ## Environment
-环境类型，继承自[SceneResource](#sceneresource)。
+环境类型，继承自[SceneResource](#sceneresource-1)。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -515,12 +514,12 @@ function finish() : void {
 | irradianceCoefficients | [Vec3](js-apis-inner-scene-types.md#vec3)[] | 否 | 是 | 辐射系数，默认为undefined。 |
 
 ## Image
-图片类型，继承自[SceneResource](#sceneresource)。
+图片类型，继承自[SceneResource](#sceneresource-1)。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| width | number | 是 | 否 | 图片宽度，取值范围大于0。 |
-| height | number | 是 | 否 | 图片高度，取值范围大于0。 |
+| width | number | 是 | 否 | 图片宽度，单位为像素（px），取值范围大于0。 |
+| height | number | 是 | 否 | 图片高度，单位为像素（px），取值范围大于0。 |

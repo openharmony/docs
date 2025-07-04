@@ -20,7 +20,7 @@ import { process } from '@kit.ArkTS';
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称             | 类型   | 可读 | 可写 | 说明             |
+| 名称             | 类型   | 只读 | 可选 | 说明             |
 | ---------------- | ------ | ---- | ---- | ---------------- |
 | uid              | number | 是   | 否   | 进程的用户标识。 |
 | pid              | number | 是   | 否   | 当前进程的pid。  |
@@ -434,7 +434,7 @@ let pro = new process.ProcessManager();
 // uid通过process.uid获取
 let pres = process.uid;
 let result = pro.isAppUid(pres);
-console.log("result: " + result); // result: true
+console.info("result: " + result); // result: true
 ```
 
 

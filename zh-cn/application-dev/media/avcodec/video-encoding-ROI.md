@@ -8,7 +8,7 @@ ROI视频编码是在现有的硬件编码基础上开放的高级能力，允�
 
 ## 适用场景
 
-具备明显ROI区域的视频编码场景有以下两种。
+具备明显ROI区域的视频编码场景，例如：
 - **直播场景**：人脸或商品一般是受关注的重点区域，通过ROI编码能够有效提升该区域的主观清晰度。
 - **监控场景**：车牌或人脸一般是受关注的重点区域，通过ROI编码能够保留更清晰的有效信息。
 
@@ -51,7 +51,10 @@ ROI编码接口支持开发者通过字符串形式下发配置参数，参数�
 
 ### Surface模式
 
-    ```cpp
+
+1. 调用OH_VideoEncoder_RegisterParameterCallback()接口注册随帧通路回调。
+
+    ```c++
     // 1. 编码输入参数回调OH_VideoEncoder_OnNeedInputParameter实现。
     static void OnNeedInputParameter(OH_AVCodec *codec, uint32_t index, OH_AVFormat *parameter, void *userData)
     {
@@ -73,8 +76,10 @@ ROI编码接口支持开发者通过字符串形式下发配置参数，参数�
     ```
 
 ### Buffer模式
+   
+1. 调用OH_AVBuffer_SetParameter()接口配置随帧参数。
 
-    ```cpp
+    ```c++
     void OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
         /**

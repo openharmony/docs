@@ -6,12 +6,15 @@ FormExtensionAbility为卡片扩展模块，提供卡片创建、销毁、刷新
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> FormExtensionAbility创建后10秒内无操作将会被清理。
+>
 > 如下模块不支持在FormExtensionAbility引用，可能会导致程序异常退出。
 > - @ohos.ability.particleAbility (ParticleAbility模块)
 > - @ohos.multimedia.audio (音频管理)
 > - @ohos.multimedia.camera (相机管理)
 > - @ohos.multimedia.media (媒体服务)
 > - @ohos.resourceschedule.backgroundTaskManager (后台任务管理)
+
 
 ## 导入模块
 
@@ -53,7 +56,7 @@ onAddForm(want: Want): formBindingData.FormBindingData
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 当前卡片相关的Want类型信息，包括卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 当前卡片相关的Want类型信息，其中Want中的parameters为自定义取值，取值可以包含[卡片参数枚举](./js-apis-app-form-formInfo.md#formparam)中的一个或多个，如卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
 
 **返回值：**
 
@@ -115,7 +118,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 
-卡片提供方接收携带参数的更新卡片的通知接口。获取最新数据后调用formProvider的[updateForm](js-apis-app-form-formProvider.md#updateform)接口刷新卡片数据。
+卡片提供方接收携带参数的更新卡片的通知接口。获取最新数据后调用formProvider的[updateForm](js-apis-app-form-formProvider.md#formproviderupdateform)接口刷新卡片数据。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -272,8 +275,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onConfigurationUpdate(newConfig: Configuration): void
 
-当系统配置更新时调用。  
-仅当前formExtensionAbility存活时更新配置才会触发此生命周期。需要注意：formExtensionAbility创建后10秒内无操作将会被清理。
+当系统配置项变更时调用，仅当FormExtensionAbility存活时才会触发onConfigurationUpdate回调。<!--Del-->此外，从API version 20开始，对于系统应用，当系统语言发生变更时会拉起FormExtensionAbility再触发onConfigurationUpdate回调。<!--DelEnd-->
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -320,6 +322,12 @@ onAcquireFormState?(want: Want): formInfo.FormState
 | -------- | -------- | -------- | -------- |
 | want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | want表示获取卡片状态的描述。描述包括Bundle名称、能力名称、模块名称、卡片名和卡片维度。 |
 
+**返回值：**
+
+| 类型                                                         | 说明                                                        |
+| ------------------------------------------------------------ | ----------------------------------------------------------- |
+| [formInfo.FormState](js-apis-app-form-formInfo.md#formstate) | formInfo.FormState枚举，表示卡片当前的状态。 |
+
 **示例：**
 
 ```ts
@@ -354,6 +362,42 @@ import { FormExtensionAbility } from '@kit.FormKit';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onStop() {
     console.log(`FormExtensionAbility onStop`);
+  }
+}
+```
+
+### FormExtensionAbility.onFormLocationChanged<sup>20+</sup>
+
+onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation): void
+
+当卡片位置发生变化时，触发该回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+  
+**系统能力：** SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| formId | string | 是 | 发生位置变化的卡片标识。 |
+| newFormLocation | [formInfo.FormLocation](js-apis-app-form-formInfo.md#formlocation20) | 是 | 卡片最新位置的枚举值。 |
+
+**示例：**
+
+```ts
+import { formBindingData, FormExtensionAbility, formInfo } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+
+export default class EntryFormAbility extends FormExtensionAbility {
+  onAddForm(want: Want) {
+    let formData: Record<string, string | Object> = {
+      'data': 'addForm'
+    };
+    return formBindingData.createFormBindingData(formData);
+  }
+  onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation) {
+    console.info("EntryFormAbility onFormLocationChanged current location: " + newFormLocation);
   }
 }
 ```

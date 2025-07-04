@@ -1,4 +1,4 @@
-# Interfaces (Flash)
+# Interface (Flash)
 
 > **说明：**
 >
@@ -7,6 +7,12 @@
 Flash extends [FlashQuery](arkts-apis-camera-FlashQuery.md)
 
 闪光灯类，对设备闪光灯操作。
+
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
 
 ## setFlashMode<sup>11+</sup>
 

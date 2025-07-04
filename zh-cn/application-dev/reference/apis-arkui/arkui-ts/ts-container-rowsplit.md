@@ -25,6 +25,8 @@ RowSplit()
 
 ## 属性
 
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
+
 ### resizeable
 
 resizeable(value: boolean)
@@ -45,7 +47,7 @@ resizeable(value: boolean)
 >
 > RowSplit的分割线可以改变左右两边子组件的宽度，子组件可改变宽度的范围取决于子组件的最大最小宽度。
 >
-> 支持[clip](ts-universal-attributes-sharp-clipping.md#clip)、[margin](ts-universal-attributes-size.md#margin)等通用属性，clip不设置的时候默认值为true。
+> 支持[clip](ts-universal-attributes-sharp-clipping.md#clip12)、[margin](ts-universal-attributes-size.md#margin)等通用属性，clip不设置的时候默认值为true。
 
 
 ## 示例

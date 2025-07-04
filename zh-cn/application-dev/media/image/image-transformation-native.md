@@ -34,7 +34,7 @@ EXTERN_C_END
 
 **Native接口调用**
 
-具体接口说明请参考[API文档](../../reference/apis-image-kit/image.md)。
+具体接口说明请参考[API文档](../../reference/apis-image-kit/capi-image.md)。
 
 在hello.cpp文件中获取JS的资源对象，并转为Native的资源对象，即可调用Native接口，调用方式示例代码如下：
 

@@ -51,6 +51,8 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 | displayY            | number                 | 是   | 否   | 鼠标光标相对于当前屏幕左上角的Y坐标。<br/>单位：vp |
 | scrollStep          | number                 | 是   | 否   | 鼠标轴滚动步长配置。<br/> **说明：**&nbsp;仅支持鼠标滚轮，取值范围0~65535。|
 | propagation         | Callback\<void>        | 是   | 否   | 激活事件冒泡。   |
+| globalDisplayX<sup>20+</sup> | number | 否 | 是 | 鼠标光标相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| globalDisplayY<sup>20+</sup> | number | 否 | 是 | 鼠标光标相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ### getHorizontalAxisValue
 

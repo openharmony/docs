@@ -127,7 +127,7 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
    import { abilityConnectionManager } from '@kit.DistributedServiceKit';
    import { hilog } from '@kit.PerformanceAnalysisKit';
- 
+    
    export default class EntryAbility extends UIAbility {
      onCollaborate(wantParam: Record<string, Object>): AbilityConstant.CollaborateResult {
        hilog.info(0x0000, 'testTag', '%{public}s', 'on collaborate');
@@ -135,7 +135,7 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
        this.onCollab(param);
        return 0;
      }
- 
+    
      onCollab(collabParam: Record<string, Object>) {
        const sessionId = this.createSessionFromWant(collabParam);
        if (sessionId == -1) {
@@ -143,14 +143,14 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
          return;
        }
      }
- 
+    
      createSessionFromWant(collabParam: Record<string, Object>): number {
        let sessionId = -1;
        const peerInfo = collabParam["PeerInfo"] as abilityConnectionManager.PeerInfo;
        if (peerInfo == undefined) {
          return sessionId;
        }
- 
+    
        const options = collabParam["ConnectOptions"] as abilityConnectionManager.ConnectOptions;
        try {
          sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", this.context, peerInfo, options);
@@ -815,11 +815,11 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 | 名称                    | 类型       |只读   | 可选   | 说明                 |
 | ----------------- | ------ | ----  | ---- | ------------------ |
-| deviceId          | string | 是    |是    | 对端设备ID。     |
-| bundleName        | string | 是    |是    | 对端应用的包名。 |
-| moduleName        | string | 是    |是    | 对端应用的模块名。 |
-| abilityName       | string | 是    |是     | 对端应用的组件名。 |
-| serviceName       | string | 是    |否     | 应用设置的服务名称。 |
+| deviceId          | string | 否   |否    | 对端设备ID。     |
+| bundleName        | string | 否   |否    | 对端应用的包名。 |
+| moduleName        | string | 否   |否    | 对端应用的模块名。 |
+| abilityName       | string | 否   |否     | 对端应用的组件名。 |
+| serviceName       | string | 否   |是     | 应用设置的服务名称。 |
 
 ## ConnectOptions
 
@@ -829,9 +829,9 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 | 名称          | 类型    | 只读   | 可选   | 说明          |
 | ----------- | ------- | ---- | ---- | ----------- |
-| needSendData    | boolean  | 否    | 否    | true代表需要传输数据，false代表不需要传输数据。     |
-| startOptions | [StartOptionParams](#startoptionparams) | 否    | 否    | 配置应用启动选项。 |
-| parameters | Record&lt;string, string&gt;  | 否    | 否    | 配置连接所需的额外信息。    |
+| needSendData    | boolean  | 否    | 是   | true代表需要传输数据，false代表不需要传输数据。     |
+| startOptions | [StartOptionParams](#startoptionparams) | 否    | 是   | 配置应用启动选项。 |
+| parameters | Record&lt;string, string&gt;  | 否    | 是   | 配置连接所需的额外信息。    |
 
 ## ConnectResult
 
@@ -841,9 +841,9 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 | 名称       | 类型   | 只读   | 可选   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
-| isConnected | boolean | 是    | 是    | true表示连接成功，false表示连接失败。 |
-| errorCode | [ConnectErrorCode](#connecterrorcode) | 是    | 否    | 表示连接错误码。 |
-| reason | string | 是    | 否    | 表示拒绝连接的原因。 |
+| isConnected | boolean | 否   | 否 | true表示连接成功，false表示连接失败。 |
+| errorCode | [ConnectErrorCode](#connecterrorcode) | 否   | 是   | 表示连接错误码。 |
+| reason | string | 否   | 是   | 表示拒绝连接的原因。 |
 
 ## EventCallbackInfo
 
@@ -851,12 +851,12 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
-| 名称       | 类型    | 可读   | 可写   | 说明          |
+| 名称       | 类型    | 只读 | 可选 | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
-| sessionId | number   | 是    | 是    |   表示当前事件对应的协同会话ID。 |
-| reason | [DisconnectReason](#disconnectreason)     | 是    | 否    |   表示断连原因。 |
-| msg | string   | 是    | 否    |   表示接收的消息。 |
-| data  | ArrayBuffer | 是    | 否    |   表示接收的字节流。 |
+| sessionId | number   | 否   | 否   |   表示当前事件对应的协同会话ID。 |
+| reason | [DisconnectReason](#disconnectreason)     | 否   | 是   |   表示断连原因。 |
+| msg | string   | 否   | 是   |   表示接收的消息。 |
+| data  | ArrayBuffer | 否   | 是   |   表示接收的字节流。 |
 
 ## CollaborateEventInfo
 
@@ -866,8 +866,8 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 | 名称       | 类型   | 只读   | 可选   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
-| eventType | [CollaborateEventType](#collaborateeventtype) | 是    | 是    | 表示协同事件的类型。 |
-| eventMsg | string | 是    | 否    | 表示协同事件的消息内容。 |
+| eventType | [CollaborateEventType](#collaborateeventtype) | 否   | 否 | 表示协同事件的类型。 |
+| eventMsg | string | 否   | 是   | 表示协同事件的消息内容。 |
 
 ## ConnectErrorCode
 

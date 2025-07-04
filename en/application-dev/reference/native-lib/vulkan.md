@@ -1,10 +1,10 @@
 # Vulkan Capabilities
 
-[Vulkan](https://www.vulkan.org/) is a set of 2D and 3D rendering APIs that feature cross-platform and high-performance. OpenHarmony now supports Vulkan v1.3.231.
+[Vulkan](https://www.vulkan.org/) is a set of 2D and 3D rendering APIs that feature cross-platform and high-performance. OpenHarmony SDK now supports Vulkan v1.4.309, and the available version depends on the GPU driver implementation.
 
 ## Supported Standard APIs
 
-The table below lists the supported APIs of Vulkan v1.3.231.
+The table below lists the supported APIs of Vulkan v1.4.309.
 
 |Type|Symbol|
 | --- | --- | 
@@ -23,7 +23,9 @@ The table below lists the supported APIs of Vulkan v1.3.231.
 |FUNC|vkCmdBeginRenderPass|
 |FUNC|vkCmdBeginRenderPass2|
 |FUNC|vkCmdBindDescriptorSets|
+|FUNC|vkCmdBindDescriptorSets2|
 |FUNC|vkCmdBindIndexBuffer|
+|FUNC|vkCmdBindIndexBuffer2|
 |FUNC|vkCmdBindPipeline|
 |FUNC|vkCmdBindVertexBuffers|
 |FUNC|vkCmdBindVertexBuffers2|
@@ -61,6 +63,11 @@ The table below lists the supported APIs of Vulkan v1.3.231.
 |FUNC|vkCmdPipelineBarrier|
 |FUNC|vkCmdPipelineBarrier2|
 |FUNC|vkCmdPushConstants|
+|FUNC|vkCmdPushConstants2|
+|FUNC|vkCmdPushDescriptorSet|
+|FUNC|vkCmdPushDescriptorSet2|
+|FUNC|vkCmdPushDescriptorSetWithTemplate|
+|FUNC|vkCmdPushDescriptorSetWithTemplate2|
 |FUNC|vkCmdResetEvent|
 |FUNC|vkCmdResetEvent2|
 |FUNC|vkCmdResetQueryPool|
@@ -79,10 +86,13 @@ The table below lists the supported APIs of Vulkan v1.3.231.
 |FUNC|vkCmdSetEvent|
 |FUNC|vkCmdSetEvent2|
 |FUNC|vkCmdSetFrontFace|
+|FUNC|vkCmdSetLineStipple|
 |FUNC|vkCmdSetLineWidth|
 |FUNC|vkCmdSetPrimitiveRestartEnable|
 |FUNC|vkCmdSetPrimitiveTopology|
 |FUNC|vkCmdSetRasterizerDiscardEnable|
+|FUNC|vkCmdSetRenderingAttachmentLocations|
+|FUNC|vkCmdSetRenderingInputAttachmentIndices|
 |FUNC|vkCmdSetScissor|
 |FUNC|vkCmdSetScissorWithCount|
 |FUNC|vkCmdSetStencilCompareMask|
@@ -97,6 +107,9 @@ The table below lists the supported APIs of Vulkan v1.3.231.
 |FUNC|vkCmdWaitEvents2|
 |FUNC|vkCmdWriteTimestamp|
 |FUNC|vkCmdWriteTimestamp2|
+|FUNC|vkCopyImageToImage|
+|FUNC|vkCopyImageToMemory|
+|FUNC|vkCopyMemoryToImage|
 |FUNC|vkCreateBuffer|
 |FUNC|vkCreateBufferView|
 |FUNC|vkCreateCommandPool|
@@ -111,6 +124,7 @@ The table below lists the supported APIs of Vulkan v1.3.231.
 |FUNC|vkCreateFence|
 |FUNC|vkCreateFramebuffer|
 |FUNC|vkCreateGraphicsPipelines|
+|FUNC|vkCreateHeadlessSurfaceEXT|
 |FUNC|vkCreateImage|
 |FUNC|vkCreateImageView|
 |FUNC|vkCreateInstance|
@@ -126,6 +140,7 @@ The table below lists the supported APIs of Vulkan v1.3.231.
 |FUNC|vkCreateShaderModule|
 |FUNC|vkCreateSharedSwapchainsKHR|
 |FUNC|vkCreateSwapchainKHR|
+|FUNC|vkCreateWin32SurfaceKHR|
 |FUNC|vkDestroyBuffer|
 |FUNC|vkDestroyBufferView|
 |FUNC|vkDestroyCommandPool|
@@ -175,6 +190,7 @@ The table below lists the supported APIs of Vulkan v1.3.231.
 |FUNC|vkGetDeviceGroupSurfacePresentModesKHR|
 |FUNC|vkGetDeviceImageMemoryRequirements|
 |FUNC|vkGetDeviceImageSparseMemoryRequirements|
+|FUNC|vkGetDeviceImageSubresourceLayout|
 |FUNC|vkGetDeviceMemoryCommitment|
 |FUNC|vkGetDeviceMemoryOpaqueCaptureAddress|
 |FUNC|vkGetDeviceProcAddr|
@@ -192,6 +208,7 @@ The table below lists the supported APIs of Vulkan v1.3.231.
 |FUNC|vkGetImageSparseMemoryRequirements|
 |FUNC|vkGetImageSparseMemoryRequirements2|
 |FUNC|vkGetImageSubresourceLayout|
+|FUNC|vkGetImageSubresourceLayout2|
 |FUNC|vkGetInstanceProcAddr|
 |FUNC|vkGetPhysicalDeviceDisplayPlaneProperties2KHR|
 |FUNC|vkGetPhysicalDeviceDisplayPlanePropertiesKHR|
@@ -222,14 +239,17 @@ The table below lists the supported APIs of Vulkan v1.3.231.
 |FUNC|vkGetPhysicalDeviceSurfacePresentModesKHR|
 |FUNC|vkGetPhysicalDeviceSurfaceSupportKHR|
 |FUNC|vkGetPhysicalDeviceToolProperties|
+|FUNC|vkGetPhysicalDeviceWin32PresentationSupportKHR|
 |FUNC|vkGetPipelineCacheData|
 |FUNC|vkGetPrivateData|
 |FUNC|vkGetQueryPoolResults|
 |FUNC|vkGetRenderAreaGranularity|
+|FUNC|vkGetRenderingAreaGranularity|
 |FUNC|vkGetSemaphoreCounterValue|
 |FUNC|vkGetSwapchainImagesKHR|
 |FUNC|vkInvalidateMappedMemoryRanges|
 |FUNC|vkMapMemory|
+|FUNC|vkMapMemory2|
 |FUNC|vkMergePipelineCaches|
 |FUNC|vkQueueBindSparse|
 |FUNC|vkQueuePresentKHR|
@@ -245,8 +265,10 @@ The table below lists the supported APIs of Vulkan v1.3.231.
 |FUNC|vkSetEvent|
 |FUNC|vkSetPrivateData|
 |FUNC|vkSignalSemaphore|
+|FUNC|vkTransitionImageLayout|
 |FUNC|vkTrimCommandPool|
 |FUNC|vkUnmapMemory|
+|FUNC|vkUnmapMemory2|
 |FUNC|vkUpdateDescriptorSets|
 |FUNC|vkUpdateDescriptorSetWithTemplate|
 |FUNC|vkWaitForFences|
@@ -261,5 +283,8 @@ In addition to the standard APIs, OpenHarmony provides extended APIs for creatin
 |FUNC|vkCreateSurfaceOHOS|
 |FUNC|vkGetNativeBufferPropertiesOHOS|
 |FUNC|vkGetMemoryNativeBufferOHOS|
+|FUNC|vkGetSwapchainGrallocUsageOHOS|
+|FUNC|vkAcquireImageOHOS|
+|FUNC|vkQueueSignalReleaseImageOHOS|
 
 For details about the extended APIs, see [Vulkan Module](_vulkan.md).

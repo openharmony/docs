@@ -2,7 +2,7 @@
 
 TextClock组件通过文本将当前系统时间显示在设备上。支持不同时区的时间显示，最高精度到秒级。
 
-在组件不可见时时间变动将停止，组件的可见状态基于[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)处理，可见阈值ratios大于0即视为可见状态。
+组件不可见时，时间变动将停止。组件的可见状态基于[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)处理，可见阈值ratios大于0即视为可见状态。
 
 >**说明：**
 >
@@ -168,7 +168,7 @@ fontStyle(value: FontStyle)
 
 fontWeight(value: number | FontWeight | string)
 
-设置文本的字体粗细，设置过大可能会在不同字体下有截断。
+设置文本的字体粗细，设置过大可能会导致不同字体下的文字出现截断。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -180,7 +180,7 @@ fontWeight(value: number | FontWeight | string)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal |
+| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值范围为[100,&nbsp;900]，取值间隔为100，取值越大，字体越粗。number类型取值范围外的默认值为400。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal |
 
 ### fontFamily
 
@@ -375,11 +375,11 @@ stop()
 ## 示例
 ### 示例1（支持启停的文本样式时钟）
 
-该示例展示了TextClock组件的基本使用方法，通过format属性设置时钟文本的格式。
+该示例展示了TextClock组件的基本使用方法，通过[format](#format)属性设置时钟文本的格式。
 
 点击"start TextClock"按钮，按钮回调函数会调用TextClockController启动文本时钟。点击"stop TextClock"按钮，会调用TextClockController暂停文本时钟。
 
-示例中的组件通过设置onDateChange回调函数，在文本时钟更新时，持续修改accumulateTime的内容。
+示例中的组件通过设置[TextClockController](#textclockcontroller)回调函数，在文本时钟更新时，持续修改accumulateTime的内容。
 
 ```ts
 @Entry
@@ -422,7 +422,7 @@ struct Second {
 
 ### 示例2（设定文本阴影样式）
 
-该示例通过textShadow属性设置文本时钟的文本阴影样式。
+该示例通过[textShadow](#textshadow11)属性设置文本时钟的文本阴影样式。
 
 ``` ts
 @Entry
@@ -547,7 +547,7 @@ struct TextClockExample {
 ![ContentModifierExample](figures/text_clock_contentmodifier.gif)
 
 ### 示例4（设置前导零）
-该示例演示了dateTimeOptions属性为小时字段增加或去除前导0的功能。24小时制的小时字段默认带有前导0，可通过dateTimeOptions属性去除前导0，12小时制的小时字段默认不带有前导0，可通过dateTimeOptions属性增加前导0。
+该示例演示了[dateTimeOptions](#datetimeoptions12)属性为小时字段增加或去除前导0的功能。24小时制的小时字段默认带有前导0，可通过[dateTimeOptions](#datetimeoptions12)属性去除前导0，12小时制的小时字段默认不带有前导0，可通过[dateTimeOptions](#datetimeoptions12)属性增加前导0。
 ``` ts
 @Entry
 @Component

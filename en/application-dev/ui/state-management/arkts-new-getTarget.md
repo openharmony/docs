@@ -61,7 +61,7 @@ Use **getTarget** to obtain the original objects of these proxy objects.
         Button(`Change the attributes of the original object`)
           .onClick(() => {
             let rawInfo: Info = UIUtils.getTarget(this.info);
-            The rawInfo.name = "Bob"; // Text component cannot be re-rendered.
+            rawInfo.name = "Bob"; // Text component cannot be re-rendered.
           })
       }
     }

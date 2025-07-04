@@ -1,4 +1,4 @@
-# Interfaces (Macro)
+# Interface (Macro)
 
 > **说明：**
 >
@@ -7,6 +7,12 @@
 Macro extends [MacroQuery](arkts-apis-camera-MacroQuery.md)
 
 提供使能微距能力的接口。
+
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
 
 ## enableMacro<sup>19+</sup>
 

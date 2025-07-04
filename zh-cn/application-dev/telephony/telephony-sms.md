@@ -73,7 +73,7 @@ let serviceCenter: string = '+861xxxxxxxxxx';
 let destinationPort: number = 1000;
 let options: sms.SendMessageOptions = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
 sms.sendShortMessage(options, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    console.error(`callback: err->${JSON.stringify(err)}`);
 });
 
 ```
@@ -125,7 +125,7 @@ struct JumpMessage {
         this.context.startAbilityForResult(want).then((data) => {
             console.log("Success" + JSON.stringify(data));
         }).catch(() => {
-            console.log("error");
+            console.error("error");
         });
     }
 
@@ -160,7 +160,7 @@ sms:106XXXXXXXXXX?body=发送短信内容
 ```
 
 + `sms:`：sms scheme，必填。
-+ `106XXXXXXXXXX：收件人号码，选填。如果存在多个地址，用英文逗号分隔。
++ `106XXXXXXXXXX`：收件人号码，选填。如果存在多个地址，用英文逗号分隔。
 + `?`：短信内容声明开始符号。如果带短信内容参数，则必填。
 + `body-value`：发送内容参数，选填。
 
@@ -201,7 +201,7 @@ struct Index {
           context.startAbility(want).then((data) => {
               console.log("Success" + JSON.stringify(data));
           }).catch(() => {
-              console.log("error");
+              console.error("error");
           });
 
         })

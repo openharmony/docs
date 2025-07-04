@@ -20,7 +20,7 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 将当前设备指定用户的设备管理应用解除激活。使用promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN（该权限仅系统应用可申请）
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -370,6 +370,7 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common, Want } from '@kit.AbilityKit';
 
@@ -381,6 +382,7 @@ let recordParameters: Record<string, string> = {
   "activateId": "activateId testValue",
   "customizedInfo": "customizedInfo testValue"
 };
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   console.info('context:' + JSON.stringify(context));

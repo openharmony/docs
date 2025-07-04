@@ -4,7 +4,7 @@
 
 模块化是将 ArkTS/TS/JS模块（一个文件对应一个模块）、包含so模块，并通过编译工具或运行时机制将这些[模块加载](#模块化运行加载流程)、解析、组合并执行的过程。
 
-其中ArkTS支持的模块类型有ets/ts/js文件、 json文件、Native模块，ArkTS中支持[ECMAScript模块规范](#ecmascript模块)及[CommonJS模块规范](#commonjs模块)，此外ArkTS也对加载方式进行了拓展，包含[动态加载](arkts-dynamic-import.md)、静态加载、[延迟加载](arkts-lazy-import.md)、[同步动态加载Native模块](js-apis-load-native-module.md)、[Node-API接口加载文件](load-module-base-nodeapi.md)。
+其中ArkTS支持的模块类型有ets/ts/js文件、json文件、Native模块，ArkTS中支持[ECMAScript模块规范](#ecmascript模块)及[CommonJS模块规范](#commonjs模块)，此外ArkTS也对加载方式进行了拓展，包含[动态加载](arkts-dynamic-import.md)、静态加载、[延迟加载](arkts-lazy-import.md)、[同步动态加载Native模块](js-apis-load-native-module.md)、[Node-API接口加载文件](load-module-base-nodeapi.md)。
 
 ## 模块化运行加载流程
 
@@ -17,6 +17,8 @@ ArkTS模块化运行根据ECMAScript模块规范实现，以后序遍历的方�
 A文件称为入口文件，即执行起点。一些内置的加载接口，如[windowStage.loadContent](../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9)和[路由跳转](../ui/arkts-navigation-navigation.md)等页面拉起接口（即不是通过import写法拉起的文件），入参文件都会作为入口文件执行。
 
 以A文件为入口，会加载一整套文件，包含A文件，A文件依赖的文件，这些文件后面依赖的文件，直到各分支叶节点。
+
+普通模块在同一线程内只加载一次，而在不同线程中会加载多次，每个线程都会生成新的模块对象。如果需要在进程内只会加载一次，请使用[共享模块](./arkts-sendable-module.md)。
 
 ## ArkTS支持的模块化规范
 

@@ -11,7 +11,7 @@
 
 | 接口名                               | 描述                                                             |
 | ------------------------------------ | ---------------------------------------------------------------- |
-|[CommonEvent_ErrCode OH_CommonEvent_UnSubscribe(const CommonEvent_Subscriber* subscriber)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_unsubscribe)|创建订阅者信息。|
+|[CommonEvent_ErrCode OH_CommonEvent_UnSubscribe(const CommonEvent_Subscriber* subscriber)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_unsubscribe)|取消订阅公共事件。|
 
 ## 开发步骤
 

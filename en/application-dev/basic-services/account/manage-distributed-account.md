@@ -38,7 +38,7 @@ You can use the [distributed account SDK](../../reference/apis-basic-services-ki
    distributedAccountAbility.setOsAccountDistributedInfo(distributedInfo).then(() => {
        console.log('setOsAccountDistributedInfo successfully');
    }).catch((err: BusinessError) => {
-       console.log('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
+       console.error('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
    });
    ```
 
@@ -48,7 +48,7 @@ You can use the [distributed account SDK](../../reference/apis-basic-services-ki
    distributedAccountAbility.getOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
        console.log('distributed information: ' + JSON.stringify(data));
    }).catch((err: BusinessError) => {
-       console.log('getOsAccountDistributedInfo exception: '  + JSON.stringify(err));
+       console.error('getOsAccountDistributedInfo exception: '  + JSON.stringify(err));
    });
    ```
 
@@ -72,7 +72,7 @@ You can use the [distributed account SDK](../../reference/apis-basic-services-ki
    distributedAccountAbility.setOsAccountDistributedInfo(distributedInfo).then(() => {
        console.log('setOsAccountDistributedInfo successfully');
    }).catch((err: BusinessError) => {
-       console.log('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
+       console.error('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
    });
    ```
 
@@ -97,7 +97,7 @@ You can use the [distributed account SDK](../../reference/apis-basic-services-ki
    distributedAccountAbility.setOsAccountDistributedInfoByLocalId(localId, distributedInfo).then(() => {
        console.log('setOsAccountDistributedInfoByLocalId successfully');
    }).catch((err: BusinessError) => {
-       console.log('setOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
+       console.error('setOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
    });
    ```
 
@@ -107,7 +107,7 @@ You can use the [distributed account SDK](../../reference/apis-basic-services-ki
    distributedAccountAbility.getOsAccountDistributedInfoByLocalId(localId).then((data: distributedAccount.DistributedInfo) => {
        console.log('distributed information: ' + JSON.stringify(data));
    }).catch((err: BusinessError) => {
-       console.log('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
+       console.error('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
    });
    ```
 
@@ -132,6 +132,6 @@ You can use the [distributed account SDK](../../reference/apis-basic-services-ki
    distributedAccountAbility.setOsAccountDistributedInfoByLocalId(localId, distributedInfo).then(() => {
        console.log('setOsAccountDistributedInfoByLocalId successfully');
    }).catch((err: BusinessError) => {
-       console.log('setOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
+       console.error('setOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
    });
    ```

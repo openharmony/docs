@@ -30,6 +30,8 @@ TextArea(value?: TextAreaOptions)
 
 ## TextAreaOptions对象说明
 
+TextArea初始化参数。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -49,7 +51,7 @@ TextArea(value?: TextAreaOptions)
 >
 >  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> }
 >
->  从API version 11开始，多行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
+>  从API version 11开始，多行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md)。
 
 ### placeholderColor
 
@@ -106,6 +108,10 @@ textAlign(value: TextAlign)
 | 参数名 | 类型                                        | 必填 | 说明                                                       |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
 | value  | [TextAlign](ts-appendix-enums.md#textalign) | 是   | 文本在输入框中的水平对齐方式。<br/>默认值：TextAlign.Start |
+
+>  **说明：**  
+>
+>  textAlign只能调整文本整体的布局，不影响字符的显示顺序。若需要调整字符的显示顺序，请参考[镜像状态字符对齐](../../../ui/arkts-mirroring-display.md#镜像状态字符对齐)。
 
 ### caretColor
 
@@ -204,7 +210,7 @@ fontFamily(value: ResourceStr)
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
 
 ### inputFilter<sup>8+</sup>
 
@@ -275,7 +281,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 | 参数名                | 类型                                                         | 必填 | 说明             |
 | --------------------- | ------------------------------------------------------------ | ---- | ---------------- |
-| value                 | boolean                                                      | 是   | 是否显示计数器。 |
+| value                 | boolean                                                      | 是   | 是否显示计数器。<br/>true表示显示计时器，false表示不显示。 |
 | options<sup>11+</sup> | [InputCounterOptions](ts-types.md#inputcounteroptions11对象说明) | 否   | 计数器的配置项。 |
 
 ### style<sup>10+</sup>
@@ -362,9 +368,9 @@ maxLines(value: number)
 
 ### maxLines<sup>20+</sup>
 
-maxLines(value: number, options?: MaxLinesOptions)
+maxLines(lines: number, options: MaxLinesOptions)
 
-配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)一起使用时，maxLines为可显示行数，超出可配置为截断或滚动。未配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)时，内联模式获焦状态下内容超出maxLines时，文本可滚动显示。内联模式非获焦状态下，maxLines不生效。
+配置[textOverflow](#textoverflow12)一起使用时，maxLines为可显示行数，超出可配置为截断或滚动。未配置textOverflow时，内联模式获焦状态下内容超出maxLines时，文本可滚动显示。内联模式非获焦状态下，maxLines不生效。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -374,8 +380,8 @@ maxLines(value: number, options?: MaxLinesOptions)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3，非内联模式下，默认值为+∞，不限制最大行数。 <br/>取值范围：(0, +∞) |
-|options | [MaxLinesOptions](ts-types.md#maxlinesoptions20对象说明) | 否   | 文本超长时显示效果。<br/>默认值：MaxLinesMode.CLIP |
+| lines  | number | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3，非内联模式下，默认值为+∞，不限制最大行数。 <br/>取值范围：(0, +∞) |
+|options | [MaxLinesOptions](ts-text-common.md#maxlinesoptions20对象说明) | 是   | 文本超长时显示效果。<br/>默认值：MaxLinesMode.CLIP |
 
 ### minLines<sup>20+</sup>
 
@@ -504,6 +510,10 @@ lineHeight(value: number | string | Resource)
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本的文本行高。 |
 
+>  **说明：**
+>  
+>  特殊字符字体高度远超出同行的其他字符高度时，文本框出现截断、遮挡、内容相对位置发生变化等不符合预期的显示异常，需要开发者调整组件高度、行高等属性，修改对应的页面布局。
+
 ### decoration<sup>12+</sup>
 
 decoration(value: TextDecorationOptions)
@@ -528,6 +538,8 @@ letterSpacing(value: number | string | Resource)
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
 
+对每个字符生效，包括行尾字符。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -536,7 +548,7 @@ letterSpacing(value: number | string | Resource)
 
 | 参数名 | 类型                       | 必填 | 说明           |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。<br/>单位：[fp](ts-pixel-units.md) |
 
 ### fontFeature<sup>12+</sup>
 
@@ -678,7 +690,7 @@ minFontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。<br/>单位：[fp](ts-pixel-units.md) |
 
 ### maxFontSize<sup>12+</sup>
 
@@ -698,7 +710,7 @@ maxFontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。<br/>单位：[fp](ts-pixel-units.md) |
 
 ### heightAdaptivePolicy<sup>12+</sup>
 
@@ -754,7 +766,7 @@ lineSpacing(value: LengthMetrics, options?: LineSpacingOptions)
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本的行间距。设置值不大于0时，取默认值0。 |
-| options  | [LineSpacingOptions](ts-basic-components-text.md#linespacingoptions20对象说明) | 否   | 设置行间距配置项。<br/>默认值：{&nbsp;onlyBetweenLines:&nbsp;false&nbsp;} |
+| options  | [LineSpacingOptions](ts-text-common.md#linespacingoptions20对象说明) | 否   | 设置行间距配置项。<br/>默认值：{&nbsp;onlyBetweenLines:&nbsp;false&nbsp;} |
 
 ### lineBreakStrategy<sup>12+</sup>
 
@@ -805,6 +817,10 @@ enablePreviewText(enable: boolean)
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | 是   | 是否开启输入预上屏。<br/>true表示开启，false表示不开启。<br/>默认值：true |
+
+>  **说明：**
+>  
+>  “预上屏”描述的是一种文字暂存状态。需要在输入法中开启预上屏功能，在输入文本过程中，未确认输入候选词时，文本框中显示标记文本。例如，通过拼音输入中文时，未确定候选词之前，在输入框中显示拼音字母，该状态称为文字预上屏。
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -981,7 +997,7 @@ EllipsisMode.START和EllipsisMode.CENTER仅在maxLines设置为1生效。
 
 ### enableAutoSpacing<sup>20+</sup>
 
-enableAutoSpacing(enable: Optional\<boolean>)
+enableAutoSpacing(enabled: Optional\<boolean>)
 
 设置是否开启中文与西文的自动间距。
 
@@ -993,7 +1009,7 @@ enableAutoSpacing(enable: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| enable | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
+| enabled | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
 
 ## 事件
 
@@ -1113,8 +1129,8 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
 | 参数名       | 类型   | 必填 | 说明                               |
 | ------------ | ------ | ---- | ---------------------------------- |
-| totalOffsetX | number | 是   | 文本在内容区的横坐标偏移。<br/>单位：[px](ts-pixel-units.md#像素单位) |
-| totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移。<br/>单位：[px](ts-pixel-units.md#像素单位) |
+| totalOffsetX | number | 是   | 文本在内容区的横坐标偏移。<br/>单位：[px](ts-pixel-units.md) |
+| totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移。<br/>单位：[px](ts-pixel-units.md) |
 
 ### onSubmit<sup>11+</sup>
 
@@ -1211,6 +1227,10 @@ onDidDelete(callback: Callback\<DeleteValue>)
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
+
+>  **说明：**
+>
+>  点击清除按钮不触发onDidDelete回调。
 
 ### onWillChange<sup>15+</sup>
 
@@ -1934,24 +1954,29 @@ struct TextAreaExample {
 @Component
 struct TextAreaExample {
   @State text: string = 'TextArea editMenuOptions';
+  @State endIndex: number = 0;
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
-      content: 'custom1',
+      content: 'create1',
       icon: $r('app.media.startIcon'),
-      id: TextMenuItemId.of('custom1'),
+      id: TextMenuItemId.of('create1'),
     };
     let item2: TextMenuItem = {
-      content: 'custom2',
-      id: TextMenuItemId.of('custom2'),
+      content: 'create2',
+      id: TextMenuItemId.of('create2'),
       icon: $r('app.media.startIcon'),
     };
-    menuItems.push(item1)
-    menuItems.unshift(item2)
-    return menuItems
-  };
+    menuItems.push(item1);
+    menuItems.unshift(item2);
+    return menuItems;
+  }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
-    if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end);
+    if (menuItem.id.equals(TextMenuItemId.of("create2"))) {
+      console.log("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
+    }
+    if (menuItem.id.equals(TextMenuItemId.of("prepare1"))) {
+      console.log("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
@@ -1964,8 +1989,19 @@ struct TextAreaExample {
     }
     return false;
   }
+  onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
+    let item1: TextMenuItem = {
+      content: 'prepare1_' + this.endIndex,
+      icon: $r('app.media.startIcon'),
+      id: TextMenuItemId.of('prepare1'),
+    };
+    menuItems.unshift(item1);
+    return menuItems;
+  }
   @State editMenuOptions: EditMenuOptions = {
-    onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+    onCreateMenu: this.onCreateMenu,
+    onMenuItemClick: this.onMenuItemClick,
+    onPrepareMenu: this.onPrepareMenu
   };
 
   build() {
@@ -1975,6 +2011,9 @@ struct TextAreaExample {
         .height(56)
         .editMenuOptions(this.editMenuOptions)
         .margin({ top: 100 })
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          this.endIndex = selectionEnd;
+        })
     }
     .width("90%")
     .margin("5%")
@@ -2010,10 +2049,10 @@ struct EllipsisModeExample {
   @State maxLinesStr: string[] = ['1', '2', '3'];
   @State styleAreaIndex: number = 0;
   @State styleArea: TextContentStyle[] = [TextContentStyle.INLINE, TextContentStyle.DEFAULT];
-  @State styleAreaStr: string[] = ['Inline', 'Default'];
+  @State styleAreaStr: string[] = ['INLINE', 'DEFAULT'];
 
   build() {
-    Column() {
+    Column({ space: 20 }) {
       TextArea({ text: this.text })
         .textOverflow(this.textOverflow[this.textOverflowIndex])
         .ellipsisMode(this.ellipsisMode[this.ellipsisModeIndex])
@@ -2046,7 +2085,7 @@ struct EllipsisModeExample {
           this.styleAreaIndex = 0;
         }
       }).fontSize(20)
-    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
+    }.height(600).width('100%')
   }
 }
 ```
@@ -2130,7 +2169,7 @@ struct TextAreaExample {
 
 ### 示例17（设置最小字体范围与最大字体范围）
 
-该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围。
+该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围<!--Del-->（该示例使用系统接口，应用类型需调整为系统应用，可参考HarmonyAppProvision的[系统接口说明](../../../reference/development-intro-api.md#系统接口说明)）<!--DelEnd-->。
 
 ```json
 // 开启应用缩放跟随系统
@@ -2159,30 +2198,76 @@ struct TextAreaExample {
   }
 }
 ```
-
+<!--RP1-->
 ```ts
 // xxx.ets
+import { abilityManager, Configuration } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct TextAreaExample {
+  @State currentFontSizeScale: number = 1;
   @State minFontScale: number = 0.85;
   @State maxFontScale: number = 2;
+
+  // 设置字体大小
+  async setFontScale(scale: number): Promise<void> {
+    let configInit: Configuration = {
+      language: 'zh-Ch',
+      fontSizeScale: scale,
+    };
+    // 更新配置-字体大小，调用系统接口更新字体配置
+    // 需在工程的module.json5文件的requestPermissions字段配置权限：ohos.permission.UPDATE_CONFIGURATION
+    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
+      if (err) {
+        console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
+      } else {
+        this.currentFontSizeScale = scale;
+        console.log('updateConfiguration success.');
+      }
+    });
+  }
 
   build() {
     Column() {
       Column({ space: 30 }) {
-        Text("系统字体变大变小，变大变小aaaaaaaAAAAAA")
+        Text("通过minFontScale、maxFontScale调整文本显示的最大和最小字体缩放倍数。")
         TextArea({
           placeholder: 'The text area can hold an unlimited amount of text. input your word...',
+          text: '通过minFontScale、maxFontScale调整文本显示的最大和最小字体缩放倍数。'
         })
           .minFontScale(this.minFontScale)// 设置最小字体缩放倍数，参数为undefined则跟随系统默认倍数缩放
-          .maxFontScale(this.maxFontScale)// 设置最大字体缩放倍数，参数为undefined则跟随系统默认倍数缩放
+          .maxFontScale(this.maxFontScale) // 设置最大字体缩放倍数，参数为undefined则跟随系统默认倍数缩放
       }.width('100%')
+
+      Column() {
+        Row() {
+          Button('1倍').onClick(() => {
+            this.setFontScale(1)
+          }).margin(10)
+          Button('1.75倍').onClick(() => {
+            this.setFontScale(1.75)
+          }).margin(10)
+        }
+
+        Row() {
+          Button('2倍').onClick(() => {
+            this.setFontScale(2)
+          }).margin(10)
+          Button('3.2倍').onClick(() => {
+            this.setFontScale(3.2)
+          }).margin(10)
+        }
+      }.margin({ top: 50 })
     }
   }
 }
 ```
-
+| 系统字体缩放倍数为2倍 | 系统字体缩放倍数为3.2倍 |
+| ---------------------------------- | ------------------------------------ |
+| ![](figures/TextArea_font_scale1.png)  | ![](figures/TextArea_font_scale2.png)  |
+<!--RP1End-->
 ### 示例18（设置选中指定区域的文本内容）
 
 该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
@@ -2230,6 +2315,8 @@ struct TextAreaExample {
 
 ```ts
 // xxx.ets
+import { LengthMetrics } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct TextAreaExample {
@@ -2238,14 +2325,23 @@ struct TextAreaExample {
       Column() {
         Text('stroke feature').fontSize(9).fontColor(0xCCCCCC)
 
-        TextArea({text: 'StrokeSet123'})
-          .width('80%').height(90).borderWidth(1).fontSize(40)
-        TextArea({text: 'StrokeSet123'})
-          .width('80%').height(90).borderWidth(1).fontSize(40)
+        TextArea({ text: 'Text without stroke' })
+          .width('100%')
+          .height(60)
+          .borderWidth(1)
+          .fontSize(40)
+        TextArea({ text: 'Text with stroke' })
+          .width('100%')
+          .height(60)
+          .borderWidth(1)
+          .fontSize(40)
           .strokeWidth(LengthMetrics.px(-3.0))
           .strokeColor(Color.Red)
-        TextArea({text: 'StrokeSet123'})
-          .width('80%').height(90).borderWidth(1).fontSize(40)
+        TextArea({ text: 'Text with stroke' })
+          .width('100%')
+          .height(60)
+          .borderWidth(1)
+          .fontSize(40)
           .strokeWidth(LengthMetrics.px(3.0))
           .strokeColor(Color.Red)
       }.height('90%')
@@ -2284,3 +2380,61 @@ struct TextAreaExample {
 ```
 
 ![textAreaEnableAutoSpacing](figures/textAreaEnableAutoSpacing.png)
+
+### 示例21（设置最大行数）
+
+该示例通过maxLines属性设置显示最大行数，超出最大行数后可滚动。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  build() {
+    Row() {
+      Column() {
+        TextArea({ text: '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20' })
+          .fontSize(50)
+          .width('50%')
+          .borderWidth(1)
+          .margin(100)
+          .textOverflow(TextOverflow.Clip)
+          .maxLines(3, { overflowMode: MaxLinesMode.SCROLL })
+      }.height('90%')
+    }
+    .width('90%')
+    .margin(10)
+  }
+}
+
+```
+![TextAreaMaxLines](figures/TextAreaMaxLines.gif)
+
+### 示例22（设置最小行数）
+
+该示例通过minLines属性设置显示的最小行数。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        TextArea({ text: this.message })
+          .width('95%')
+          .fontSize(20)
+          .margin(10)
+          .minLines(3)
+      }
+    }
+    .width('90%')
+    .margin(10)
+  }
+}
+```
+
+![textAreaMinlines](figures/textAreaMinlines.png)

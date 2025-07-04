@@ -11,7 +11,7 @@ Provides APIs for accelerating the Neural Network Runtime (NNRt) model inference
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |

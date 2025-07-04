@@ -6,7 +6,7 @@ hiperf is a command-line tool provided to capture performance data of a specific
 
 - The environment for OpenHarmony Device Connector (hdc) has been set up. For details, see [Environment Setup](hdc.md#environment-setup).
 
-- The devices are properly connected.
+- The devices are properly connected and **hdc shell** is executed.
 
 ## hiperf
 
@@ -163,6 +163,8 @@ Monitors the specified application and periodically prints the values of perform
 | --restart | Collects performance indicator information about application startup. If a process is not started within 30 seconds, the record exits.|
 | --verbose | Outputs a more detailed report.|
 | --dumpoptions | Dumps the command options.|
+| --control [command]| Controls the collection command. The commands include **prepare**, **start**, and **stop**.<br>**NOTE**: This parameter is supported since API version 20.|
+| -o | Sets a path to output a file. This parameter must be used together with **--control prepare**.<br>**NOTE**: This parameter is supported since API version 20.|
 
 ```
 Usage: hiperf stat [options] [command [command-args]]

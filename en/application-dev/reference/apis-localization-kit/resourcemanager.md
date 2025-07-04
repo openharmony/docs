@@ -11,7 +11,7 @@ Provides C APIs for obtaining resources.
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |

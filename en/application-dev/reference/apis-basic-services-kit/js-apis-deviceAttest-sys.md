@@ -27,13 +27,15 @@ Obtains details about the device attestation result from the cloud. This API use
 
 | Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;[AttestResultInfo](#attestresultinfo)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **error** is **undefined**, and **result** is the obtained [AttestResultInfo](#attestresultinfo). Otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;[AttestResultInfo](#attestresultinfo)&gt; | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined**, and **result** is the obtained [AttestResultInfo](#attestresultinfo). Otherwise, **error** is an error object.|
 
-**Error codes**
-
+**Error codes** 
+For details about error codes, see [Device Attestation Error Codes](./errorcode-deviceAttest.md) and [Universal Error Codes](../errorcode-universal.md). 
 | ID | Error Message            |
 |----------|----------------------|
-| 20000001 | system service exception. |
+| 202     | This api is system api, Please use the system application to call this api. |
+| 401     | Input parameters wrong, the number of parameters is incorrect, or the type of parameters is incorrect. |
+| 20000001 | System service exception, please try again or reboot your device. |
 
 **Example**
 
@@ -43,7 +45,7 @@ import base from '@ohos.base';
 try {
     deviceAttest.getAttestStatus((error: base.BusinessError, value: deviceAttest.AttestResultInfo) => {
     if (typeof error != 'undefined') {
-        console.info("error code:" + error.code + " message:" + error.message);
+        console.error("error code:" + error.code + " message:" + error.message);
     } else {
         console.info("auth:" + value.authResult + " software:" + value.softwareResult + " ticket:" + value.ticket);
         console.info("versionIdResult:" + value.softwareResultDetail[0],
@@ -56,7 +58,7 @@ try {
 } catch (error) {
     let code: number = (error as base.BusinessError).code;
     let message: string = (error as base.BusinessError).message;
-    console.info("error code:" + code + " message:" + message);
+    console.error("error code:" + code + " message:" + message);
 }
 ```
 
@@ -74,11 +76,13 @@ Obtains details about the device attestation result from the cloud. This API use
 | ----------------------------------------------------- | ------------------------------- |
 | Promise&lt;[AttestResultInfo](#attestresultinfo)&gt; | Promise used to return the device attestation information obtained.|
 
-**Error codes**
-
+**Error codes** 
+For details about error codes, see [Device Attestation Error Codes](./errorcode-deviceAttest.md) and [Universal Error Codes](../errorcode-universal.md). 
 | ID | Error Message            |
 |----------|----------------------|
-| 20000001 | system service exception. |
+| 202     | This api is system api, Please use the system application to call this api. |
+| 401     | Input parameters wrong, the number of parameters is incorrect, or the type of parameters is incorrect. |
+| 20000001 | System service exception, please try again or reboot your device. |
 
 **Example**
 
@@ -94,12 +98,12 @@ try {
         " PCIDResult:" + value.softwareResultDetail[3],
         " reserver:" + value.softwareResultDetail[4]);
     }).catch((error: base.BusinessError) => {
-        console.info("error code:" + error.code + " message:" + error.message);
+        console.error("error code:" + error.code + " message:" + error.message);
     });
 } catch (error) {
     let code: number = (error as base.BusinessError).code;
     let message: string = (error as base.BusinessError).message;
-    console.info("error code:" + code + " message:" + message);
+    console.error("error code:" + code + " message:" + message);
 }
 ```
 
@@ -117,11 +121,13 @@ Obtains details about the device attestation result from the cloud synchronously
 | ----------------------------------------------------- | ------------------------------- |
 | [AttestResultInfo](#attestresultinfo) | Returns the device attestation information obtained.|
 
-**Error codes**
-
+**Error codes** 
+For details about error codes, see [Device Attestation Error Codes](./errorcode-deviceAttest.md) and [Universal Error Codes](../errorcode-universal.md). 
 | ID | Error Message            |
 |----------|----------------------|
-| 20000001 | system service exception. |
+| 202     | This api is system api, Please use the system application to call this api. |
+| 401     | Input parameters wrong, the number of parameters is incorrect, or the type of parameters is incorrect. |
+| 20000001 | System service exception, please try again or reboot your device. |
 
 **Example**
 
@@ -139,7 +145,7 @@ try {
 } catch (error) {
     let code: number = (error as base.BusinessError).code;
     let message: string = (error as base.BusinessError).message;
-    console.info("error code:" + code + " message:" + message);
+    console.error("error code:" + code + " message:" + message);
 }
 ```
 
@@ -149,12 +155,12 @@ Defines the device attestation result information.
 
 **System capability**: SystemCapability.XTS.DeviceAttest
 
-| Name                 | Type                 | Readable| Writable| Description                  |
+| Name                 | Type                 | Read-Only| Optional| Description                  |
 | --------------------- | --------------------- | ---- | ---- | ---------------------- |
-| authResult            | number               | Yes  | No  | Device hardware attestation result.   |
-| softwareResult        | number               | Yes  | No  | Device software attestation result.   |
-| softwareResultDetail  | Array&lt;number&gt;  | Yes  | No  | Detailed information about the device software attestation result.<br> - **softwareResultDetail[0]**: version ID attestation result.<br>- **softwareResultDetail[1]**: attestation result of the security patch label.<br>- **softwareResultDetail[2]**: version hash attestation result.<br>- **softwareResultDetail[3]**: attestation result of the system capability set.<br>- **softwareResultDetail[4]**: reserved. |
-| ticket                | string               | Yes  | No  | Soft certificate delivered by the cloud.<br>If the device hardware attestation is successful, a value is returned. If the attestation fails, this parameter is empty.       |
+| authResult            | number               | No  | No  | Device hardware attestation result.   |
+| softwareResult        | number               | No  | No  | Device software attestation result.   |
+| softwareResultDetail  | Array&lt;number&gt;  | No  | No  | Detailed information about the device software attestation result.<br> - **softwareResultDetail[0]**: attestation result of version ID.<br>- **softwareResultDetail[1]**: attestation result of the security patch label.<br>- **softwareResultDetail[2]**: attestation result of version hash.<br>- **softwareResultDetail[3]**: attestation result of the system capability set.<br>- **softwareResultDetail[4]**: reserved. |
+| ticket                | string               | No  | No  | Soft certificate delivered by the cloud.<br>If the device hardware attestation is successful, a value is returned. If the attestation fails, this parameter is empty.       |
 
 > **NOTE**
 >

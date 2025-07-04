@@ -486,6 +486,31 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 | --- | -------------- |
 | T | 返回当前滚动组件。 |
 
+
+### onWillStopDragging<sup>20+</sup>
+
+onWillStopDragging(handler: OnWillStopDraggingCallback): T
+
+滚动组件划动离手时触发，使用鼠标滚轮划动时不会触发。
+
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                        | 必填 | 说明                         |
+| ------- | ----------------------------------------------------------- | ---- | ---------------------------- |
+| handler | [OnWillStopDraggingCallback](#onwillstopdraggingcallback20) | 是   | 滚动组件划动离手时触发的回调 |
+
+**返回值：**
+
+| 类型 | 说明               |
+| ---- | ------------------ |
+| T    | 返回当前滚动组件。 |
+
+
 ## ItemDragInfo对象说明
 
 拖拽点信息对象。
@@ -854,3 +879,20 @@ setOnScrollFrameBegin(callback: OnScrollFrameBeginCallback | undefined): void
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
 | callback  | [OnScrollFrameBeginCallback](./ts-container-scroll.md#onscrollframebegincallback18)&nbsp;\|&nbsp;undefined | 是   | onScrollFrameBegin事件的回调函数。 |
+
+
+## OnWillStopDraggingCallback<sup>20+</sup>
+
+type OnWillStopDraggingCallback = (velocity: number) => void
+
+滚动组件划动离手时触发的回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| velocity | number | 是   | 划动离手速度，滚动组件的内容向上滚动时速度为正，向下滚动时速度为负。<br/>单位vp/s。 |

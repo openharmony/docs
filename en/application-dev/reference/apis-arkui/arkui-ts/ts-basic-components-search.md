@@ -34,7 +34,7 @@ Describes the initialization options of the **Search** component.
 
 | Name     | Type        | Mandatory| Description       |
 | ----------- | ------------- | ---- | ------------- |
-| value<sup>8+</sup>       | string                                               | No  | Text input in the search text box.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>Since API version 18, this parameter supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| value<sup>8+</sup>       | string                                               | No  | Text input in the search text box.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>Since API version 18, this parameter supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | placeholder<sup>8+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Text displayed when there is no input.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | icon<sup>8+</sup>        | string                                               | No  | Path to the search icon. By default, the system search icon is used.<br>**NOTE**<br>The icon data source can be a local or online image.<br>- The supported formats include PNG, JPG, BMP, SVG, GIF, pixelmap, and HEIF.<br>- The Base64 string is supported in the following format: data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], where *[base64 data]* is a Base64 string.<br>If this attribute and the **searchIcon** attribute are both set, the **searchIcon** attribute takes precedence.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | controller<sup>8+</sup>  | [SearchController](#searchcontroller) | No  | Controller of the **Search** component.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
@@ -759,7 +759,7 @@ onChange(callback: EditableTextOnChangeCallback)
 
 Invoked when the input in the text box changes.
 
-In this callback, if cursor operations are performed, developers need to adjust the cursor logic based on the **previewText** parameter to ensure it works seamlessly within the preview display scenario.
+In this callback, if cursor operations are performed,  you must adjust the cursor logic based on the **previewText** parameter to ensure it works seamlessly within the preview display scenario.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

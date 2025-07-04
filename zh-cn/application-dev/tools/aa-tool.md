@@ -30,6 +30,7 @@ hdc shell "aa process -b com.example.myapplication -a EntryAbility -p perf-cmd"
 | detach | 退出调试模式命令。通过bundleName使指定应用退出调试模式。|
 | appdebug | 等待调试命令。用于设置、取消设置应用等待调试状态，以及获取处于等待调试状态的应用包名和持久化信息。等待调试状态只对debug类型应用生效。appdebug的设置命令只对单个应用生效，当重复设置时，应用包名与持久化状态会替换成最新设置内容。|
 | process | 应用调试/调优命令。对应用进行调试或调优，IDE用该命令集成调试和调优工具。|
+| send-memory-level | onMemoryLevel回调命令。指定进程的pid和内存使用级别来触发该进程的onMemoryLevel生命周期回调。|
 
 ## 帮助命令（help）
 
@@ -75,7 +76,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | -S | 可选参数，调试时是否进入应用沙箱。携带该参数代表进入，不携带代表不进入。 |
   | -D | 可选参数，调试模式。        |
   | -p | 可选参数，调优命令。命令由调用方自定义。        |
-  | -W | 可选参数，调优命令。打印启动耗时。<br>**说明：** 从API version 20开始，支持该参数。        |
+  | -W | 可选参数，调优命令。用于测量UIAbility从启动到切换至前台状态耗时。<br>**说明：** <br>&emsp; - 从API version 20开始支持，支持该参数。<br>&emsp; - 仅当显式启动UIAbility（必须携带-b和-a参数）时，该参数生效。<br>**正常情况的返回信息如下：** <br>&emsp; - StartMode：UIAbility启动模式，值：Cold（冷启动）/Hot（热启动）。<br>&emsp; - BundleName：目标应用bundleName。<br>&emsp; - AbilityName：目标应用abilityName。<br>&emsp; - ModuleName：目标应用moduleName，命令中带有"-m"参数时会打印moduleName，否则不打印。<br>&emsp; - TotalTime：<br>&emsp;&emsp;&emsp; 冷启动场景下，系统侧接收到aa启动UIAbility请求到该UIAbility完成首帧绘制的耗时，单位毫秒（ms）。<br>&emsp;&emsp;&emsp; 热启动场景下，系统侧接收到aa启动UIAbility请求到该UIAbility状态切换至前台的耗时，单位毫秒（ms）。<br>&emsp; - WaitTime：命令启动到命令执行结束的耗时，单位毫秒（ms）。<br>**异常情况的返回信息如下：**<br>&emsp; - "The wait option does not support starting implict" ：不支持隐式启动。 <br>&emsp; - "The wait option does not support starting non-uiability" ：不支持启动非UIAbility组件。   |
 
   **返回值**：
 
@@ -311,7 +312,7 @@ aa test -b <bundleName> [-m <module-name>] [-p <package-name>] [-s class <test-c
 
 > **说明**：
 > 
-> 关于class、level、size、testType等参数的详细说明请参见<!--RP2-->[aa test命令执行配置参数](../application-test/arkxtest-guidelines.md#cmd执行)<!--RP2End-->。
+> 关于class、level、size、testType等参数的详细说明请参见<!--RP2-->[aa test命令执行配置参数](../application-test/arkxtest-guidelines.md#在cmd执行)<!--RP2End-->。
 
   **启动测试框架命令参数列表**
   | 参数 | 参数说明 |
@@ -515,7 +516,7 @@ aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-p <perf-cmd>] [-
 
 ## onMemoryLevel回调命令（send-memory-level）
 
-从API version 20开始，开发者可以通过该命令来调试应用的[onMemoryLevel](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel)生命周期。通过在参数中指定进程的pid和内存使用级别来触发该进程的onMemoryLevel生命周期回调。
+从API version 13开始，开发者可以通过该命令来调试应用的[onMemoryLevel](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onmemorylevel)生命周期。通过在参数中指定进程的pid和内存使用级别来触发该进程的onMemoryLevel生命周期回调。
 
 ```bash
 # 触发onMemoryLevel回调

@@ -8,7 +8,7 @@ JavaScript虚拟机（JSVM）的快照创建功能，将当前运行时的JavaSc
 
 - **虚拟机启动快照**：虚拟机在某个特定时间点的状态快照，包含了当前虚拟机的所有内部状态和数据。通过创建一个启动快照，可以在之后的时间点恢复虚拟机到相同的状态。
 
-创建虚拟机启动快照可以简化一些复杂的编程任务，使得在JSVM中管理和维护虚拟机更加便捷，使程序更加灵活与稳定。
+创建和使用虚拟机启动快照可以简化一些复杂的编程任务，提高JSVM中虚拟机的管理和维护效率，增强程序的灵活性和稳定性。
 
 ## 接口说明
 
@@ -22,7 +22,7 @@ JavaScript虚拟机（JSVM）的快照创建功能，将当前运行时的JavaSc
 
 用于创建和使用虚拟机的启动快照。
 
-cpp部分代码
+cpp部分代码：
 
 **注意事项**: 需要在OH_JSVM_Init的时候，将JSVM对外部的依赖注册到initOptions.externalReferences中。
 ```cpp
@@ -297,9 +297,9 @@ static napi_module demoModule = {
 
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
 ```
-<!-- @[oh_jsvm_create_snapshot_and_create_env_from_snapshot](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/createsnapshot/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_snapshot_and_create_env_from_snapshot](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/createsnapshot/src/main/cpp/hello.cpp) -->
 
-ArkTS侧示例代码
+ArkTS侧示例代码：
 
 ```ts
 @Entry
@@ -338,4 +338,4 @@ Test JSVM RunVMSnapshot read file blobSize = : 300032
 Test JSVM RunVMSnapshot read file blobSize = : 300176
 Test JSVM RunVMSnapshot read file blobSize = : 300048
 ```
-这是因为，在读取快照文件时，blobSize 是通过 file.tellg() 获取的文件大小。因此，快照文件的大小直接决定了 blobSize 的值。
+这是因为，在读取快照文件时，blobSize 是通过 file.tellg() 获取的文件大小。因此，快照文件的大小直接决定了blobSize的值，所以会输出不同的值。

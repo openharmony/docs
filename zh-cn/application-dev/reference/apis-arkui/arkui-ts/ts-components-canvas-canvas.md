@@ -50,7 +50,7 @@ Canvas(context: CanvasRenderingContext2D | DrawingRenderingContext, imageAIOptio
 ### enableAnalyzer<sup>12+</sup>
 
 设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
-需要搭配[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#canvasrenderingcontext2d)中的[StartImageAnalyzer](ts-canvasrenderingcontext2d.md#startimageanalyzer12)和[StopImageAnalyzer](ts-canvasrenderingcontext2d.md#stopimageanalyzer12)一起使用。
+需要搭配[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)中的[StartImageAnalyzer](ts-canvasrenderingcontext2d.md#startimageanalyzer12)和[StopImageAnalyzer](ts-canvasrenderingcontext2d.md#stopimageanalyzer12)一起使用。
 不能和[overlay](ts-universal-attributes-overlay.md#overlay)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -71,9 +71,9 @@ Canvas(context: CanvasRenderingContext2D | DrawingRenderingContext, imageAIOptio
 
 onReady(event: VoidCallback)
 
-Canvas组件初始化完成时或者Canvas组件发生大小变化时的事件回调，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
+Canvas组件初始化完成或者发生大小变化时的事件回调，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
-当该事件被触发时画布被清空，该事件之后Canvas组件宽高确定且可获取，可使用Canvas相关API进行绘制。当Canvas组件仅发生位置变化时，只触发[onAreaChange](ts-universal-component-area-change-event.md#onAreaChange)事件，不触发onReady事件。[onAreaChange](ts-universal-component-area-change-event.md#onAreaChange)事件在onReady事件后触发。
+当该事件被触发时画布被清空，该事件之后Canvas组件宽高确定且可获取，可使用Canvas相关API进行绘制。当Canvas组件仅发生位置变化时，只触发[onAreaChange](ts-universal-component-area-change-event.md#onareachange)事件，不触发onReady事件。[onAreaChange](ts-universal-component-area-change-event.md#onareachange)事件在onReady事件后触发。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -85,7 +85,7 @@ Canvas组件初始化完成时或者Canvas组件发生大小变化时的事件�
 
 | 参数名 | 类型    | 必填 | 说明 |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| event  | [VoidCallback](ts-types.md#voidcallback12) | 是   | Canvas组件初始化完成时或者Canvas组件发生大小变化时的事件回调事件。 |
+| event  | [VoidCallback](ts-types.md#voidcallback12) | 是   | Canvas组件初始化完成或者发生大小变化时的事件回调事件。 |
 
 ## 示例
 

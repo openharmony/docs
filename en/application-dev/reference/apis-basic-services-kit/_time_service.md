@@ -11,32 +11,32 @@ Enables the application to obtain the time and time zone information.
 ## Summary
 
 
-### File
+### Files
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [time_service.h](time__service_8h.md) | Declares the API for obtaining the time and time zone information. |
+| [time_service.h](time__service_8h.md) | Declares the API for obtaining the time and time zone information.| 
 
 
 ### Types
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| typedef enum [TimeService_ErrCode](#timeservice_errcode)[TimeService_ErrCode](#timeservice_errcode) | Enumerates the error codes.|
+| typedef enum [TimeService_ErrCode](#timeservice_errcode) [TimeService_ErrCode](#timeservice_errcode) | Defines an enum for error codes.| 
 
 
 ### Enums
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [TimeService_ErrCode](#timeservice_errcode) {<br>TIMESERVICE_ERR_OK = 0,<br>TIMESERVICE_ERR_INTERNAL_ERROR = 13000001,<br>TIMESERVICE_ERR_INVALID_PARAMETER = 13000002<br>} | Enumerates the error codes.|
+| [TimeService_ErrCode](#timeservice_errcode) {<br>TIMESERVICE_ERR_OK = 0,<br>TIMESERVICE_ERR_INTERNAL_ERROR = 13000001,<br>TIMESERVICE_ERR_INVALID_PARAMETER = 13000002<br>} | Enumerates the error codes.| 
 
 
 ### Functions
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [TimeService_ErrCode](#timeservice_errcode)[OH_TimeService_GetTimeZone](#oh_timeservice_gettimezone) (char \*timeZone, uint32_t len) | Returns the current system time zone. |
+| [TimeService_ErrCode](#timeservice_errcode) [OH_TimeService_GetTimeZone](#oh_timeservice_gettimezone) (char \*timeZone, uint32_t len) | Obtains the current system time zone.| 
 
 
 ## Type Description
@@ -70,11 +70,11 @@ Enumerates the error codes.
 
 **Since**: 12
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| TIMESERVICE_ERR_OK | Obtains system parameters.|
-| TIMESERVICE_ERR_INTERNAL_ERROR | Fails to obtain system parameters.|
-| TIMESERVICE_ERR_INVALID_PARAMETER | Invalid parameter.|
+| TIMESERVICE_ERR_OK | Obtains system parameters.| 
+| TIMESERVICE_ERR_INTERNAL_ERROR | Fails to obtain system parameters.| 
+| TIMESERVICE_ERR_INVALID_PARAMETER | Invalid parameter.| 
 
 
 ## Function Description
@@ -83,12 +83,12 @@ Enumerates the error codes.
 ### OH_TimeService_GetTimeZone()
 
 ```
-TimeService_ErrCode OH_TimeService_GetTimeZone (char * timeZone, uint32_t len )
+TimeService_ErrCode OH_TimeService_GetTimeZone (char * timeZone, uint32_t len)
 ```
 
 **Description**
 
-Returns the current system time zone.
+Obtains the current system time zone.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -96,10 +96,10 @@ Returns the current system time zone.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| timeZone | A character array of time zone ID. If the time zone is obtained, the time zone ID string of the current system is written. Otherwise, an empty string is written. The string ends with **\0**. |
-| len | Length of a character array of time zone ID without maximum limit. You are advised to apply for sufficient memory for at less 31 bytes. |
+| timeZone | A character array of time zone ID. If the time zone is obtained, the time zone ID string of the current system is written. Otherwise, an empty string is written. The string ends with **\0**.| 
+| len | Length of a character array of time zone ID without maximum limit. You are advised to apply for sufficient memory for at less 31 bytes.| 
 
 **Returns**
 

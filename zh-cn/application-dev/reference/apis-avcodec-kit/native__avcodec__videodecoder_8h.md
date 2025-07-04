@@ -7,10 +7,13 @@
 
 **库：** libnative_media_vdec.so
 
+**引用文件：** <multimedia/player_framework/native_avcodec_videodecoder.h>
+
 **起始版本：** 9
 
 **相关模块：**[VideoDecoder](_video_decoder.md)
 
+**相关示例：**[AVCodec](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
 
 ## 汇总
 
@@ -41,4 +44,8 @@
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_RenderOutputBufferAtTime](_video_decoder.md#oh_videodecoder_renderoutputbufferattime) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index, int64_t renderTimestampNs) | 将处理后的带渲染时间戳的输出缓冲返回给解码器，并通知解码器完成在输出surface上渲染，输出缓冲包含解码数据。  |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_FreeOutputBuffer](_video_decoder.md#oh_videodecoder_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲区返回到解码器。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_IsValid](_video_decoder.md#oh_videodecoder_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | 检查当前解码实例是否有效。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetDecryptionConfig](_video_decoder.md#oh_videodecoder_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureVideoPath) | 设置解密配置。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetDecryptionConfig](_video_decoder.md#oh_videodecoder_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureVideoPath) | 设置解密配置。 |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_QueryInputBuffer](_video_decoder.md#oh_videodecoder_queryinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | 查询下一个可用输入缓冲区的索引。 | 
+| [OH_AVBuffer](_core.md#oh_avbuffer) [OH_VideoDecoder_GetInputBuffer](_video_decoder.md#oh_videodecoder_getinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 获取可用输入缓冲区的实例。 |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_QueryOutputBuffer](_video_decoder.md#oh_videodecoder_queryoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | 查询下一个可用输出缓冲区的索引。 | 
+| [OH_AVBuffer](_core.md#oh_avbuffer) [OH_VideoDecoder_GetOutputBuffer](_video_decoder.md#oh_videodecoder_getoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 获取可用输出缓冲区的实例。 |

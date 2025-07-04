@@ -1,10 +1,16 @@
-# Interfaces (Session)
+# Interface (Session)
 
 > **说明：**
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 会话类，保存一次相机运行所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)，并向相机设备申请完成相机功能(录像，拍照)。
+
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
 
 ## beginConfig<sup>11+</sup>
 

@@ -1,59 +1,5 @@
-# Service Widget Development in FA Model
-
-
-## Widget Overview
-
-A service widget (also called widget) is a set of UI components that display important information or operations specific to an application. It provides users with direct access to a desired application service, without the need to open the application first.
-
-A widget usually appears as a part of the UI of another application (which currently can only be a system application) and provides basic interactive features such as opening a UI page or sending a message.
-
-Before you get started, it would be helpful if you have a basic understanding of the following concepts:
-
-- Widget host: an application that displays the widget content and controls the widget location.
-
-- Widget Manager: a resident agent that provides widget management features such as periodic widget updates.
-
-- Widget provider: an atomic service that provides the widget content to display and controls how widget components are laid out and how they interact with users.
-
-
-## Working Principles
-
-Figure 1 shows the working principles of the widget framework.
-
-**Figure 1** Widget framework working principles in the FA model
-
-![form-extension](figures/form-extension.png)
-
-The widget host consists of the following modules:
-
-- Widget usage: provides operations such as creating, deleting, or updating a widget.
-
-- Communication adapter: provided by the OpenHarmony SDK for communication with the Widget Manager. It sends widget-related operations to the Widget Manager.
-
-The Widget Manager consists of the following modules:
-
-- Periodic updater: starts a scheduled task based on the update policy to periodically update a widget after it is added to the Widget Manager.
-
-- Cache manager: caches view information of a widget after it is added to the Widget Manager to directly return the cached data when the widget is obtained next time. This reduces the latency greatly.
-
-- Lifecycle manager: suspends update when a widget is switched to the background or is blocked, and updates and/or clears widget data during upgrade and deletion.
-
-- Object manager: manages RPC objects of the widget host. It is used to verify requests from the widget host and process callbacks after the widget update.
-
-- Communication adapter: communicates with the widget host and provider through RPCs.
-
-The widget provider consists of the following modules:
-
-- Widget service: implemented by the widget provider developer to process requests on widget creation, update, and deletion, and to provide corresponding widget services.
-
-- Instance manager: implemented by the widget provider developer for persistent management of widget instances allocated by the Widget Manager.
-
-- Communication adapter: provided by the OpenHarmony SDK for communication with the Widget Manager. It pushes update data to the Widget Manager.
-
-> **NOTE**
->
-> You only need to develop the widget provider. The system automatically handles the work of the widget host and Widget Manager.
-
+# Developing a JS Widget (FA Model)
+The FA model is supported since API version 7, and no longer recommended. Application components are specified by exporting anonymous objects and fixed entry files. You cannot perform derivation for capability expansion. Now, the stage model is recommended for application development.
 
 ## Available APIs
 
@@ -64,7 +10,7 @@ The **FormAbility** has the following APIs.
 | onCreate(want: Want): formBindingData.FormBindingData | Called to notify the widget provider that a widget has been created.|
 | onCastToNormal(formId: string): void | Called to notify the widget provider that a temporary widget has been converted to a normal one.|
 | onUpdate(formId: string): void | Called to notify the widget provider that a widget has been updated.|
-| onVisibilityChange(newStatus: Record&lt;string, number&gt;): void | Called to notify the widget provider of the change in widget visibility.|
+| onVisibilityChange(newStatus:&nbsp;Record&lt;string,&nbsp;number&gt;):&nbsp;void | Called to notify the widget provider of the change in widget visibility.|
 | onEvent(formId: string, message: string): void | Called to instruct the widget provider to receive and process a widget event.|
 | onDestroy(formId: string): void | Called to notify the widget provider that a widget has been destroyed.|
 | onAcquireFormState?(want: Want): formInfo.FormState | Called to instruct the widget provider to receive the status query result of a widget.|
@@ -300,7 +246,7 @@ The widget configuration file is named **config.json**. Find the **config.json**
   | description | Description of the widget. The value can be a string or a resource index to descriptions in multiple languages. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
   | isDefault | Whether the widget is a default one. Each ability has only one default widget.<br>**true**: The widget is the default one.<br>**false**: The widget is not the default one.| Boolean| No|
   | type | Type of the widget. The value can be:<br>**JS**: indicates a JavaScript-programmed widget.| String| No|
-  | colorMode | Color mode of the widget.<br>**auto**: The widget adopts the auto-adaptive color mode.<br>**dark**: The widget adopts the dark color mode.<br>**light**: The widget adopts the light color mode.| String| Yes (initial value: **auto**)|
+  | colorMode<sup>(deprecated)</sup> | Color mode of the widget.<br>**auto**: The widget adopts the auto-adaptive color mode.<br>**dark**: The widget adopts the dark color mode.<br>**light**: The widget adopts the light color mode.<br>**NOTE**<br><br>This API is deprecated since API version 20. The color mode follows the system color mode.| String| Yes (initial value: **auto**)|
   | supportDimensions | Grid styles supported by the widget.<br>**1 * 2**: indicates a grid with one row and two columns.<br>**2 * 2**: indicates a grid with two rows and two columns.<br>**2 * 4**: indicates a grid with two rows and four columns.<br>**4 * 4**: indicates a grid with four rows and four columns.| String array| No|
   | defaultDimension | Default grid style of the widget. The value must be available in the **supportDimensions** array of the widget.| String| No|
   | updateEnabled | Whether the widget can be updated periodically.<br>**true**: The widget can be updated at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** takes precedence over **scheduledUpdateTime**.<br>**false**: The widget cannot be updated periodically.| Boolean| No|
@@ -335,7 +281,6 @@ The widget configuration file is named **config.json**. Find the **config.json**
           "defaultDimension": "2*2",
           "name": "widget",
           "description": "This is a service widget.",
-          "colorMode": "auto",
           "type": "JS",
           "formVisibleNotify": true,
           "supportDimensions": [

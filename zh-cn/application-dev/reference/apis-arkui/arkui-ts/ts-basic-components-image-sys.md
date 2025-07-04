@@ -30,7 +30,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 edgeAntialiasing(value: number)
 
-设置SVG图源抗锯齿效果，仅对svg图源生效。取值范围$[0.333, 1.333]$，有效数字保留小数点后3位。
+设置SVG图源抗锯齿效果，仅对svg图源生效。取值范围为$[0.333, 1.333]$，有效数字保留小数点后3位。
 
 适用于超低分辨率设备（PPI低于200的设备）的SVG图源的锯齿优化，存在一定的性能影响，请谨慎使用。
 
@@ -64,9 +64,9 @@ pointLight(value: PointLightStyle)
 
 enhancedImageQuality(imageQuality: ResolutionQuality)
 
-设置图像解码时图像解码分辨率选项。
+设置图像解码时的图像解码分辨率选项。
 
-该属性不支持 svg，[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)，[DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) 等非解码图片类型。
+该属性不支持 svg、[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)和[DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) 等非解码图片类型。
 
 **系统接口：** 此接口为系统接口。
 
@@ -80,7 +80,7 @@ enhancedImageQuality(imageQuality: ResolutionQuality)
 
 ## ResolutionQuality<sup>12+</sup>
 
-图像解码时图像解码分辨率选项。
+图像解码时的图像解码分辨率选项。
 
 **系统接口：** 此接口为系统接口。
 

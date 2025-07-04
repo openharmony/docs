@@ -1,14 +1,14 @@
 # 使用DevTools工具调试前端页面
 
 
-Web组件支持使用DevTools工具调试前端页面。DevTools是Web前端开发调试工具，支持在电脑上调试移动设备前端页面。开发者通过[setWebDebuggingAccess()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setwebdebuggingaccess)接口开启Web组件前端页面调试能力，使用DevTools在电脑上调试移动前端网页，设备需为4.1.0及以上版本。
+Web组件支持使用DevTools工具调试前端页面。DevTools是Web前端开发调试工具，支持在电脑上调试移动设备前端页面。开发者通过[setWebDebuggingAccess()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess)接口开启Web组件前端页面调试能力，使用DevTools在电脑上调试移动前端网页，设备需为4.1.0及以上版本。
 
 
 ## 调试步骤
 
 ### 应用代码开启Web调试开关
 
-调试网页前，需要应用侧代码调用[setWebDebuggingAccess()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setwebdebuggingaccess)接口开启Web调试开关。  
+调试网页前，需要应用侧代码调用[setWebDebuggingAccess()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess)接口开启Web调试开关。  
 如果没有开启Web调试开关，则DevTools无法发现被调试的网页。
 
 1. 在应用代码中开启Web调试开关，具体如下：
@@ -71,7 +71,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是Web前端开�
    ```
 
 ### 端口转发
-当应用代码调用setWebDebuggingAccess接口开启Web调试开关后，ArkWeb内核将启动一个domain socket的监听，以此实现DevTools对网页的调试功能。  
+当应用代码调用setWebDebuggingAccess接口开启Web调试开关后，ArkWeb内核将启动一个domain socket的监听，以此实现DevTools对网页的调试功能。也可以参考[自动映射WebView调试链接](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-run-debug-configurations#section2773943154118)。  
 Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将设备上的domain socket转发到电脑上。
 
 1. 先在hdc shell里执行如下命令，查询ArkWeb在设备里创建的domain socket。  
@@ -274,11 +274,11 @@ Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将
    ```
 
 ## 无线调试
-上述的[调试步骤](#调试步骤)中，由于[端口转发](#端口转发)这一步骤需频繁查询Domain Socket并转发端口，给页面调试造成不便。因此，从API version 20开始，可使用无线调试接口[setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setwebdebuggingaccess20)，来简化调试流程。
+上述的[调试步骤](#调试步骤)中，由于[端口转发](#端口转发)这一步骤需频繁查询Domain Socket并转发端口，给页面调试造成不便。因此，从API version 20开始，可使用无线调试接口[setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20)，来简化调试流程。
 
 1. 应用代码开启Web调试开关。
 
-   这此步骤中，应用需要调用[setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setwebdebuggingaccess20)接口，设置TCP Socket端口号并启用Web调试功能。
+   这此步骤中，应用需要调用[setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20)接口，设置TCP Socket端口号并启用Web调试功能。
    ```ts
    // xxx.ets
    import { webview } from '@kit.ArkWeb';
@@ -320,7 +320,7 @@ Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将
 4. 在Chrome浏览器上打开调试工具页面。
 
    将[在Chrome浏览器上打开调试工具页面](#在chrome浏览器上打开调试工具页面)的第2步"修改Chrome调试工具的配置"的第(2)条，改为:  
-   在 "Target discovery settings" 中添加被调试设备的IP地址和[setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setwebdebuggingaccess20)接口中指定的port端口，比如：192.168.0.3:8888。
+   在 "Target discovery settings" 中添加被调试设备的IP地址和[setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20)接口中指定的port端口，比如：192.168.0.3:8888。
 
    > **说明：**
    >

@@ -10,5 +10,5 @@ OsAccount模块为应用提供系统账号管理能力。
 
 | 名称 | 描述 |
 | -- | -- |
-| [os_account.h](capi-os-account-h.md) | 声明访问和管理系统帐号信息的API。 |
+| [os_account.h](capi-os-account-h.md) | 声明访问和管理系统账号信息的API。 |
 | [os_account_common.h](capi-os-account-common-h.md) | 提供OsAccount接口的公共类型定义。 |

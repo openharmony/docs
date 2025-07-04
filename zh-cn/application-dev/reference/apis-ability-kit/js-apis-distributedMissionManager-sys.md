@@ -472,6 +472,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 201      | Permission denied.|
+| 202 | The application is not system-app, can not use system-api. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16300501 | The system ability work abnormally. |
 | 16300502 | Failed to get the missionInfo of the specified missionId. |
@@ -542,6 +543,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 201      | Permission denied.|
+| 202 | The application is not system-app, can not use system-api. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16300501 | The system ability work abnormally. |
 | 16300502 | Failed to get the missionInfo of the specified missionId. |
@@ -603,6 +605,7 @@ continueMission(parameter: ContinueMissionInfo, callback: AsyncCallback&lt;void&
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 201      | Permission denied.|
+| 202 | The application is not system-app, can not use system-api. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16300501 | The system ability work abnormally. |
 | 16300503 | The application is not installed on the remote end and installation-free is not supported. |
@@ -666,6 +669,7 @@ continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 201      | Permission denied.|
+| 202 | The application is not system-app, can not use system-api. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16300501 | The system ability work abnormally. |
 | 16300503 | The application is not installed on the remote end and installation-free is not supported. |
@@ -736,7 +740,7 @@ on(type: 'continueStateChange',  callback: Callback&lt;ContinueCallbackInfo&gt;)
   } catch (error) {
     console.error("continueStateChange err: " + JSON.stringify(error));
   }
-  ```
+```
 
 ## distributedMissionManager.off('continueStateChange')<sup>11+</sup>
 
@@ -776,7 +780,7 @@ off(type: 'continueStateChange',  callback?: Callback&lt;ContinueCallbackInfo&gt
   } catch (err) {
     console.error("continueStateChange err: " + JSON.stringify(err));
   }
-  ```
+```
 
 ## MissionCallback
 

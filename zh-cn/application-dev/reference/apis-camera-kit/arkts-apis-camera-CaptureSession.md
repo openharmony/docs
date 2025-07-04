@@ -1,9 +1,15 @@
-# 废弃的Interfaces (CaptureSession, deprecated)
+# 废弃的Interface (CaptureSession, deprecated)
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[PhotoSession](arkts-apis-camera-PhotoSession.md)、[VideoSession](arkts-apis-camera-VideoSession.md)替代。
 
 拍照会话类，保存一次相机运行所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)，并向相机设备申请完成相机功能(录像，拍照)。
+
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
 
 ## beginConfig<sup>(deprecated)</sup>
 
@@ -429,7 +435,7 @@ stop(): Promise\<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。。 |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 

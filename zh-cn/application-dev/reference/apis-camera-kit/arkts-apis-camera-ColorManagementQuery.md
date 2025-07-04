@@ -1,10 +1,16 @@
-# Interfaces (ColorManagementQuery)
+# Interface (ColorManagementQuery)
 
 > **说明：**
 >
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 色彩管理类，用于查询色彩空间参数。
+
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
 
 ## getSupportedColorSpaces<sup>12+</sup>
 

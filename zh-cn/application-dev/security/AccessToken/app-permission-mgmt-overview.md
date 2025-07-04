@@ -96,6 +96,6 @@ user_grant指的是用户授权类型，在该类型的权限许可下，应用�
 
   因此，系统引入了可以携带额外信息的权限键值对，这种新的权限类型能够在日益复杂的权限管控模型中展现出更大的灵活性和适应性。
 
-  以权限[ohos.permission.ACCESS_DDK_DRIVERS](permissions-for-system-apps.md#ohospermissionaccess_ddk_drivers)为例。
+  以权限[ohos.permission.ACCESS_DDK_DRIVERS](restricted-permissions.md#ohospermissionaccess_ddk_drivers)为例。
 
-  场景举例：如在扩展外设场景中，系统需要管理当前应用能够连接的驱动服务端，而这样的服务端可能有多个，这就要求权限能够携带具体的服务端数据，明确指出应用能够连接哪些外设驱动服务端。此时，可以通过“[app-services-capabilities](declare-permissions-in-acl.md)”中定义的数据来指定具体的服务端信息。
+  场景举例：如在扩展外设场景中，系统需要管理当前应用能够连接的驱动服务端，而这样的服务端可能有多个，这就要求权限能够携带具体的服务端数据，明确指出应用能够连接哪些外设驱动服务端。<!--Del-->此时，可以通过“[app-services-capabilities](declare-permissions-in-acl.md)”中定义的数据来指定具体的服务端信息。<!--DelEnd-->

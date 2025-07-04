@@ -1,8 +1,6 @@
 # Statically Loading Native Modules
 
-In ECMAScript 6.0 (ES6) module design, the **import** syntax is used to load content exported by other files, as defined by the ECMAScript specification.
-
-To help you easily import content exported from native modules (.so), ArkTS has adapted and supports the following methods:
+In ECMAScript 6.0 (ES6) module design, the **import** syntax is used to load content exported by other files, as defined by the ECMAScript specification. To help you import content exported from native modules (.so), ArkTS has adapted and provides the following methods:
 
 ## Direct Import
 Export content from the **index.d.ts** file of a native module, and then import the content to the file.
@@ -25,8 +23,8 @@ export const add: (a: number, b: number) => number;
 ```
 ```ts
 // test.ets
-import add from 'libentry.so'
-add.add(2, 3);
+import entry from 'libentry.so'
+entry.add(2, 3);
 ```
 
 ### Namespace Import
@@ -79,7 +77,7 @@ export * from 'libentry.so'
 ```
 ```ts
 // test2.ets
-import * as add from 'file1'
+import * as add from './test1'
 // The add object cannot be obtained.
 ```
 

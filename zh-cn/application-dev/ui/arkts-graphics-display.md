@@ -13,6 +13,8 @@ Image(src: PixelMap | ResourceStr | DrawableDescriptor)
 
 该接口通过图片数据源获取图片，支持本地图片和网络图片的渲染展示。其中，src是图片的数据源，加载方式请参考[加载图片资源](#加载图片资源)。
 
+如果图片加载过程中出现白色块，请参考[Image白块问题解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-image-white-lump-solution)。如果图片加载时间过长，请参考[优化应用预置图片资源加载耗时问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-texture-compression-improve-performance)。
+
 
 ## 加载图片资源
 
@@ -152,214 +154,174 @@ Image支持加载存档图、多媒体像素图和可绘制描述符三种类型
 
 PixelMap是图片解码后的像素图，具体用法请参考[图片开发指导](../media/image/image-overview.md)。以下示例将加载的网络图片返回的数据解码成PixelMap格式，再显示在Image组件上。
 
-1. 创建PixelMap状态变量。
-
-   ```ts
-   @State image: PixelMap | undefined = undefined;
-   ```
-
-2. 引用多媒体。
-
-   (1) 引用网络权限与媒体库权限。
 
    ```ts
    import { http } from '@kit.NetworkKit';
    import { image } from '@kit.ImageKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   ```
-
-   (2) 填写网络图片地址。
-
-   ```ts
-   let OutData: http.HttpResponse
-   http.createHttp().request("https://www.example.com/xxx.png",
-     (error: BusinessError, data: http.HttpResponse) => {
-       if (error) {
-         console.error(`http request failed with. Code: ${error.code}, message: ${error.message}`);
-       } else {
-         OutData = data
-       }
+   
+   @Entry
+   @Component
+   struct HttpExample {
+     outData: http.HttpResponse | undefined = undefined;
+     code: http.ResponseCode | number | undefined = undefined;
+     @State image: PixelMap | undefined = undefined; //创建PixelMap状态变量。
+   
+     aboutToAppear(): void {
+       http.createHttp().request('https://www.example.com/xxx.png', //请填写一个具体的网络图片地址。
+         (error: BusinessError, data: http.HttpResponse) => {
+           if (error) {
+             console.error('hello http request failed with. Code: ${error.code}, message: ${error.message}');
+             return;
+           }
+           this.outData = data;
+           //将网络地址成功返回的数据，编码转码成pixelMap的图片格式。
+           if (http.ResponseCode.OK === this.outData.responseCode) {
+             let imageData: ArrayBuffer = this.outData.result as ArrayBuffer;
+             let imageSource: image.ImageSource = image.createImageSource(imageData);
+             let options: image.DecodingOptions = {
+               'desiredPixelFormat': image.PixelMapFormat.RGBA_8888,
+             };
+             imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
+               this.image = pixelMap;
+             });
+           }
+         })
      }
-   )
-   ```
-
-3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
-
-   ```ts
-   let code: http.ResponseCode | number = OutData.responseCode;
-   if (http.ResponseCode.OK === code) {
-     let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
-     let imageSource: image.ImageSource = image.createImageSource(imageData);
-
-     class tmp {
-       height: number = 100;
-       width: number = 100;
-     }
-
-     let si: tmp = new tmp()
-     let options: Record<string, number | boolean | tmp> = {
-       'alphaType': 0, // 透明度
-       'editable': false, // 是否可编辑
-       'pixelFormat': 3, // 像素格式
-       'scaleMode': 1, // 缩略值
-       'size': { height: 100, width: 100 }
-     } // 创建图片大小
-
-     class imagetmp {
-       image: PixelMap | undefined = undefined;
-       set(val: PixelMap) {
-         this.image = val;
-       }
-     }
-
-     imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
-       let im = new imagetmp();
-       im.set(pixelMap);
-     })
-   }
-   ```
-
-4. 显示图片。
-
-   ```ts
-   class htp{
-     httpRequest: Function | undefined = undefined;
-     set(){
-       if(this.httpRequest){
-         this.httpRequest();
+   
+     build() {
+       Column() {
+         //显示图片
+         Image(this.image)
+           .height(100)
+           .width(100)
        }
      }
    }
-   Button("获取网络图片")
-     .onClick(() => {
-       let sethtp = new htp();
-       sethtp.set();
-     })
-   Image(this.image).height(100).width(100)
-   ```
-
-   同时，也可以传入pixelMap创建[PixelMapDrawableDescriptor](../reference/apis-arkui/js-apis-arkui-drawableDescriptor.md#pixelmapdrawabledescriptor12)对象，用来显示图片。
-
-   ```ts
-   import { DrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI';
-   class htp{
-     httpRequest: Function | undefined = undefined;
-     set(){
-       if(this.httpRequest){
-         this.httpRequest();
-       }
-     }
-   }
-   Button("获取网络图片")
-     .onClick(() => {
-       let sethtp = new htp();
-       sethtp.set();
-       this.drawablePixelMap = new PixelMapDrawableDescriptor(this.image);
-     })
-   Image(this.drawablePixelMap).height(100).width(100)
    ```
 
 ### 可绘制描述符
 
 DrawableDescriptor是ArkUI提供的一种高级图片抽象机制，它通过将图片资源封装为可编程对象，实现了传统Image组件难以实现的动态组合与运行时控制功能。开发者可利用它实现图片的分层叠加（如徽章图标）、动态属性调整（如颜色滤镜）、复杂动画序列等高级效果，适用于需要灵活控制图片展现或实现复杂视觉交互的场景。详细使用方法，请参考[DrawableDescriptor说明](../../application-dev/reference/apis-arkui/js-apis-arkui-drawableDescriptor.md)。
 
-1. 引入模块。
+通过DrawableDescriptor显示图片及动画的示例如下所示：
 
-   ```ts
-   import { DrawableDescriptor, PixelMapDrawableDescriptor, LayeredDrawableDescriptor, AnimatedDrawableDescriptor, AnimationOptions } from '@kit.ArkUI';
-   ```
+```ts
+import {
+  DrawableDescriptor,
+  PixelMapDrawableDescriptor,
+  LayeredDrawableDescriptor,
+  AnimatedDrawableDescriptor,
+  AnimationOptions
+} from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
 
-2. 创建DrawableDescriptor对象。
+@Entry
+@Component
+struct Index {
+  // 声明DrawableDescriptor对象
+  @State pixmapDesc: DrawableDescriptor | null = null;
+  @State pixelMapDesc: PixelMapDrawableDescriptor | null = null;
+  @State layeredDesc: LayeredDrawableDescriptor | null = null;
+  @State animatedDesc: AnimatedDrawableDescriptor | null = null;
+  // 动画配置
+  private animationOptions: AnimationOptions = {
+    duration: 3000,
+    iterations: -1
+  };
 
-   ```ts
-   // 声明DrawableDescriptor对象
-   @State pixmapDesc: DrawableDescriptor | null = null;
-   @State pixelMapDesc: PixelMapDrawableDescriptor | null = null;
-   @State layeredDesc: LayeredDrawableDescriptor | null = null;
-   @State animatedDesc: AnimatedDrawableDescriptor | null = null;
-   
-   // 动画配置
-   private animationOptions: AnimationOptions = {
-       duration: 1000, // 总时长1秒
-       iterations: -1  // 无限循环
-   };
-   
-   async aboutToAppear() {
-       const resManager = getContext().resourceManager;
-       // 创建普通DrawableDescriptor
-       this.pixmapDesc = (await resManager.getDrawableDescriptor($r('app.media.app_icon').id)) as DrawableDescriptor;
-       // 创建PixelMapDrawableDescriptor
-       const pixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'));
-       this.pixelMapDesc = new PixelMapDrawableDescriptor(pixelMap);
-       // 创建分层图标
-       const foreground = await this.getDrawableDescriptor($r('app.media.foreground'));
-       const background = await this.getDrawableDescriptor($r('app.media.background'));
-       this.layeredDesc = new LayeredDrawableDescriptor(foreground, background);
-       // 创建动画图片（需加载多张图片）
-       const frame1 = await this.getPixmapFromMedia($r('app.media.startIcon'));
-       const frame2 = await this.getPixmapFromMedia($r('app.media.app_icon'));
-       const frame3 = await this.getPixmapFromMedia($r('app.media.background'));
-       this.animatedDesc = new AnimatedDrawableDescriptor([frame1, frame2, frame3], this.animationOptions);
-   }
-   ```
+  async aboutToAppear() {
+    const resManager = this.getUIContext().getHostContext()?.resourceManager;
+    if (!resManager) {
+      return;
+    }
+    // 创建普通DrawableDescriptor
+    let pixmapDescResult = resManager.getDrawableDescriptor($r('app.media.landscape').id);
+    if (pixmapDescResult) {
+      this.pixmapDesc = pixmapDescResult as DrawableDescriptor;
+    }
+    // 创建PixelMapDrawableDescriptor
+    const pixelMap = await this.getPixmapFromMedia($r('app.media.landscape'));
+    this.pixelMapDesc = new PixelMapDrawableDescriptor(pixelMap);
+    // 创建分层图标
+    const foreground = await this.getDrawableDescriptor($r('app.media.foreground'));
+    const background = await this.getDrawableDescriptor($r('app.media.landscape'));
+    this.layeredDesc = new LayeredDrawableDescriptor(foreground, background);
+    // 创建动画图片（需加载多张图片）
+    const frame1 = await this.getPixmapFromMedia($r('app.media.sky'));
+    const frame2 = await this.getPixmapFromMedia($r('app.media.landscape'));
+    const frame3 = await this.getPixmapFromMedia($r('app.media.clouds'));
+    if (frame1 && frame2 && frame3) {
+      this.animatedDesc = new AnimatedDrawableDescriptor([frame1, frame2, frame3], this.animationOptions);
+    }
+  }
 
-3. 封装辅助方法。
+  // 辅助方法：从资源获取PixelMap
+  private async getPixmapFromMedia(resource: Resource): Promise<image.PixelMap | undefined> {
+    const unit8Array = await this.getUIContext().getHostContext()?.resourceManager.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    });
+    if (!unit8Array) {
+      return undefined;
+    }
+    const imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
+    const pixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+    });
+    await imageSource.release();
+    return pixelMap;
+  }
 
-   以下是为简化DrawableDescriptor创建过程而封装的辅助方法。
+  // 辅助方法：获取DrawableDescriptor
+  private async getDrawableDescriptor(resource: Resource): Promise<DrawableDescriptor | undefined> {
+    const resManager = this.getUIContext().getHostContext()?.resourceManager;
+    if (!resManager) {
+      return undefined;
+    }
+    return (resManager.getDrawableDescriptor(resource.id)) as DrawableDescriptor;
+  }
 
-   ```ts
-   // 辅助方法：从资源获取PixelMap
-   private async getPixmapFromMedia(resource: Resource): Promise<image.PixelMap> {
-     const unit8Array = await getContext().resourceManager.getMediaContent({
-       bundleName: resource.bundleName,
-       moduleName: resource.moduleName,
-       id: resource.id
-     });
-     const imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
-     const pixelMap = await imageSource.createPixelMap({
-       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-     });
-     await imageSource.release();
-     return pixelMap;
-   }
-   
-   // 辅助方法：获取DrawableDescriptor
-   private async getDrawableDescriptor(resource: Resource): Promise<DrawableDescriptor> {
-     const resManager = getContext().resourceManager;
-     return (await resManager.getDrawableDescriptor(resource.id)) as DrawableDescriptor;
-   }
-   ```
+  build() {
+    RelativeContainer() {
+      Column() {
 
-4. 显示图片。
+        // 显示普通图片
+        Image(this.pixmapDesc)
+          .width(100)
+          .height(100)
+          .border({ width: 1, color: Color.Black })
+        // 显示PixelMap图片
+        Image(this.pixelMapDesc)
+          .width(100)
+          .height(100)
+          .border({ width: 1, color: Color.Red })
+        // 显示分层图标
+        if (this.layeredDesc) {
+          Image(this.layeredDesc)
+            .width(100)
+            .height(100)
+            .border({ width: 1, color: Color.Blue })
+        }
+        // 显示动画图片
+        if (this.animatedDesc) {
+          Image(this.animatedDesc)
+            .width(200)
+            .height(200)
+            .margin({ top: 20 })
+        }
+      }
+    }
+    .height('100%')
+    .width('100%')
+    .margin(50)
+  }
+}
+```
 
-   ```ts
-   // 显示普通图片
-   Image(this.pixmapDesc)
-     .width(100)
-     .height(100)
-     .border({ width: 1, color: Color.Black })
-   // 显示PixelMap图片
-   Image(this.pixelMapDesc)
-     .width(100)
-     .height(100)
-     .border({ width: 1, color: Color.Red })
-   // 显示分层图标
-   if (this.layeredDesc) {
-     Image(this.layeredDesc)
-       .width(100)
-       .height(100)
-       .border({ width: 1, color: Color.Blue })
-   }
-   // 显示动画图片
-   if (this.animatedDesc) {
-     Image(this.animatedDesc)
-       .width(200)
-       .height(200)
-       .margin({ top: 20 })
-   }
-   ```
+![drawableDescriptor](figures/drawableDescriptor.gif)
 
-   
 
 ## 显示矢量图
 

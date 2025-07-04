@@ -13,7 +13,7 @@
 - DMA_ALLOC：DMA内存。IPC耗时同样较短，但无需纹理上传。
 - SHARE_MEMORY：共享内存。IPC耗时较少，但需要进行纹理上传。
 
-鉴于当前的解码接口内存分配策略无法满足某些场景的需求，系统提供了[OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createpixelmapusingallocator)接口，以便用户能够自定义内存分配类型进行解码。
+鉴于当前的解码接口内存分配策略无法满足某些场景的需求，系统提供了[OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmapusingallocator)接口，以便用户能够自定义内存分配类型进行解码。
 
 ### DMA_ALLOC和SHARE_MEMORY的区别
 
@@ -43,14 +43,14 @@
 
 ## 系统默认的内存分配方式
 
-在使用接口[OH_ImageSourceNative_CreatePixelmap](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createpixelmap)接口进行解码时，不同场景下会采取不同的内存分配类型。
+在使用接口[OH_ImageSourceNative_CreatePixelmap](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmap)接口进行解码时，不同场景下会采取不同的内存分配类型。
 
 以下场景将使用DMA_ALLOC。
 
 - 解码HDR图片。
 - 解码HEIF格式图片。
-- 解码JPEG格式图片，当原图的宽和高均在1024至8192之间，[desiredPixelFormat](../../reference/apis-image-kit/_image___native_module.md#oh_decodingoptions)为RGBA_8888或NV21，同时硬件不繁忙（并发数为3）。
-- 解码其他格式图片。要求[desiredSize](../../reference/apis-image-kit/_image___native_module.md#oh_decodingoptions)大于等于512 * 512（未设置desiredSize时按原图尺寸考虑），并且宽度为64的倍数。
+- 解码JPEG格式图片，当原图的宽和高均在1024至8192之间，[desiredPixelFormat](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md)为RGBA_8888或NV21，同时硬件不繁忙（并发数为3）。
+- 解码其他格式图片。要求[desiredSize](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md)大于等于512 * 512（未设置desiredSize时按原图尺寸考虑），并且宽度为64的倍数。
 
 除上述场景外，其余情况均使用SHARE_MEMORY。
 
@@ -58,7 +58,7 @@
 
 默认场景下，由系统选择性能最优的内存分配方式。特定场景支持应用使用指定的内存分配方式。
 
-开发者使用接口[OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createpixelmapusingallocator)进行解码时，系统会根据传入的[解码参数](../../reference/apis-image-kit/_image___native_module.md#oh_decodingoptions)和[内存申请类型](../../reference/apis-image-kit/_image___native_module.md#image_allocator_type)，自动选择硬件解码和软件解码。
+开发者使用接口[OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmapusingallocator)进行解码时，系统会根据传入的[解码参数](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md)和[内存申请类型](../../reference/apis-image-kit/capi-image-source-native-h.md#image_allocator_type)，自动选择硬件解码和软件解码。
 
 在创建像素图时，将根据用户指定的分配器类型来决定采用DMA_ALLOC分配机制还是SHARE_MEMORY分配机制。
 
@@ -70,7 +70,7 @@
 - 硬件解码仅支持DMA_ALLOC的内存模式。
 - SVG格式图片解码仅支持SHARE_MEMORY的内存模式。
 
-使用接口[OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createpixelmapusingallocator)进行解码时，若设置的内存分配模式，与图片格式或解码方式不匹配，则会抛出内存分配失败的异常。
+使用接口[OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmapusingallocator)进行解码时，若设置的内存分配模式，与图片格式或解码方式不匹配，则会抛出内存分配失败的异常。
 
 如果用户选择的分配类型为AUTO，系统将根据解码和渲染的时间综合评估，以决定使用DMA_ALLOC还是SHARE_MEMORY分配机制。
 
@@ -84,14 +84,23 @@ stride（步幅）描述了图片在内存中每一行像素数据的存储宽�
 
 - stride值需为硬件平台要求字节数的整数倍。
 - 如果通过上面的计算公式得到的stride不满足对齐要求时，系统会自动补齐填充数据（padding）。
-  stride的值可以通过[OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_getimageinfo) 接口获取。
+  stride的值可以通过[OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_getimageinfo) 接口获取。
 
-1. 调用[OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_getimageinfo)方法，获取 `OH_Pixelmap_ImageInfo` 对象。
-2. 调用[OH_PixelmapImageInfo_GetRowStride](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapimageinfo_getrowstride)方法，获取stride的值。
+1. 调用[OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_getimageinfo)方法，获取 `OH_Pixelmap_ImageInfo` 对象。
+2. 调用[OH_PixelmapImageInfo_GetRowStride](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapimageinfo_getrowstride)方法，获取stride的值。
 
-C-API 获取和操作stride示例代码如下。
+C-API 获取和操作stride示例代码如下。在使用下面的示例代码之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libimage_packer.so 以及日志依赖libhilog_ndk.z.so。
+
+```txt
+target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libimage_packer.so libpixelmap.so)
+```
 
 ```C++
+#include <cstring>
+#include <multimedia/image_framework/image/image_common.h>
+#include <multimedia/image_framework/image/pixelmap_native.h>
+#include <multimedia/image_framework/image/image_source_native.h>
+
 struct PixelmapInfo {
     uint32_t width = 0;
     uint32_t height = 0;
@@ -117,6 +126,38 @@ static void GetPixelmapAddrInfo(OH_PixelmapNative *pixelmap, PixelmapInfo *info)
     OH_PixelmapNative_GetByteCount(pixelmap, &info->byteCount);
     OH_PixelmapNative_GetAllocationByteCount(pixelmap, &info->allocationByteCount);
     return;
+}
+
+int32_t GetPixelFormatBytes(int32_t pixelFormat) {
+    switch (pixelFormat) {
+        case 2: // PIXEL_FORMAT_RGB_565
+            return 2;
+        case 3: // PIXEL_FORMAT_RGBA_8888
+        case 4: // PIXEL_FORMAT_BGRA_8888
+            return 4;
+        case 5: // PIXEL_FORMAT_RGB_888
+            return 3;
+        case 6: // PIXEL_FORMAT_ALPHA_8
+            return 1;
+        case 7: // PIXEL_FORMAT_RGBA_F16
+            return 8; // 每通道16位浮点数，共4通道：4 * 2 bytes = 8 bytes
+        case 8: // PIXEL_FORMAT_NV21
+        case 9: // PIXEL_FORMAT_NV12'
+            // NV21 和 NV12 是 YUV 4:2:0 半平面格式：
+            // - Y 分量占用 width × height 字节（每像素1字节）
+            // - UV 分量以交错方式排列（UV 或 VU），占用 width × height / 2 字节
+            // - 总字节数 = width × height × 1.5
+            // 因为函数返回类型为 int32_t，无法返回小数，因此保守起见向上取整返回 2
+            // 虽然实际平均每像素占用 1.5 字节，但返回 2 可以保证内存分配安全，避免越界。代价是需要注意stride的处理。
+            return 2; // Semi-planar YUV, use 2 as approximate per-byte-per-pixel
+        case 10: // PIXEL_FORMAT_RGBA_1010102
+            return 4;
+        case 11: // PIXEL_FORMAT_YCBCR_P010
+        case 12: // PIXEL_FORMAT_YCRCB_P010
+            return 2; // 10-bit YUV 格式，通常对齐为 16 bit（2 字节）
+        default: // PIXEL_FORMAT_UNKNOWN or unsupported
+            return 0;
+    }
 }
 
 OH_PixelmapNative* TestStrideWithAllocatorType() {

@@ -25,6 +25,9 @@ HiDebug模块代码结构体定义。
 | struct&nbsp;&nbsp;[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) | 系统内存信息结构类型定义。  | 
 | struct&nbsp;&nbsp;[HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) | 应用程序进程本机内存信息结构类型定义。  | 
 | struct&nbsp;&nbsp;[HiDebug_MemoryLimit](_hi_debug___memory_limit.md) | 应用程序进程内存限制结构类型定义。  | 
+| struct&nbsp;&nbsp;[HiDebug_JsStackFrame](_hi_debug___js_stack_frame.md) | js栈帧内容的定义。  | 
+| struct&nbsp;&nbsp;[HiDebug_NativeStackFrame](_hi_debug___native_stack_frame.md) | native栈帧内容的定义。  | 
+| struct&nbsp;&nbsp;[HiDebug_StackFrame](_hi_debug___stack_frame.md) | 栈帧内容的定义。  | 
 
 
 ### 宏定义
@@ -76,7 +79,11 @@ HiDebug模块代码结构体定义。
 | typedef struct [HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) [HiDebug_NativeMemInfo](_hi_debug.md#hidebug_nativememinfo) | 应用程序进程本机内存信息结构类型定义。  | 
 | typedef struct [HiDebug_MemoryLimit](_hi_debug___memory_limit.md) [HiDebug_MemoryLimit](_hi_debug.md#hidebug_memorylimit) | 应用程序进程内存限制结构类型定义。  | 
 | typedef enum [HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag-1) [HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag) | 采集trace线程的类型。  | 
-
+| typedef struct [HiDebug_JsStackFrame](_hi_debug___js_stack_frame.md) [HiDebug_JsStackFrame](_hi_debug.md#hidebug_jsstackframe) | js栈帧内容的定义。  | 
+| typedef struct [HiDebug_NativeStackFrame](_hi_debug___native_stack_frame.md) [HiDebug_NativeStackFrame](_hi_debug.md#hidebug_nativestackframe) | native栈帧内容的定义。  | 
+| typedef enum [HiDebug_StackFrameType](_hi_debug.md#hidebug_stackframetype) [HiDebug_StackFrameType](_hi_debug.md#hidebug_stackframetype) | 栈帧类型的枚举值定义。  | 
+| typedef struct [HiDebug_StackFrame](_hi_debug___stack_frame.md) [HiDebug_StackFrame](_hi_debug.md#hidebug_stackframe) | 栈帧内容的定义。  | 
+| typedef struct HiDebug_Backtrace_Object__ \* [HiDebug_Backtrace_Object](_hi_debug.md#hidebug_backtrace_object) | 用于栈回溯及栈解析的对象。  | 
 
 ### 枚举
 

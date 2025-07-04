@@ -1,4 +1,4 @@
-# Interfaces (CameraInput)
+# Interface (CameraInput)
 
 > **说明：**
 >
@@ -7,6 +7,12 @@
 相机设备输入对象。
 
 会话中[Session](arkts-apis-camera-Session.md)使用的相机信息。
+
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
 
 ## open
 
