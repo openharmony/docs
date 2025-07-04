@@ -138,9 +138,23 @@
     mutableStyledString: MutableStyledString = new MutableStyledString("运动35分钟", [
       {
         start: 0,
-        length: 3,
+        length: 4,
         styledKey: StyledStringKey.DECORATION,
         styledValue: new DecorationStyle({ type: TextDecorationType.LineThrough, color: Color.Red, thicknessScale: 3 })
+      },
+      {
+        start: 4,
+        length: 2,
+        styledKey: StyledStringKey.DECORATION,
+        styledValue: new DecorationStyle(
+          {
+            type: TextDecorationType.Underline,
+          },
+          {
+            // 开启多装饰线
+            enableMultiType: true
+          }
+        )
       },
       {
         start: 4,
@@ -151,6 +165,7 @@
             type: TextDecorationType.LineThrough,
           },
           {
+            // 开启多装饰线
             enableMultiType: true
           }
         )
