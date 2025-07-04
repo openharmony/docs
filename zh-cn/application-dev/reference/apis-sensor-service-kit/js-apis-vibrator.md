@@ -682,10 +682,9 @@ stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt;
    // 调用 vibrator.startVibration 开始振动。
    // ...
 
-   // 根据实际业务场景停止振动。
-
    // 使用try catch对可能出现的异常进行捕获
    try {
+       // 根据实际业务场景停止马达振动。
        vibrator.stopVibration({ deviceId: targetVibrator.deviceId, vibratorId: targetVibrator.vibratorId }).then(() => {
          console.info('Succeed in stopping vibration');
        }, (error: BusinessError) => {
