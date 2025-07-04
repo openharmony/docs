@@ -103,7 +103,7 @@ Navigation组件信息。
 | 名称         | 类型                                               | 必填 | 说明                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
 | navigationId | string | 是   | Navigation组件的id。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| pathStack         | [NavPathStack](arkui-ts/ts-basic-components-navigation.md#navpathstack10) | 是   | Navigation组件的路由栈。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
+| pathStack         | [NavPathStack](arkui-ts/ts-basic-components-navigation.md#navpathstack10) | 是   | Navigation组件的导航控制器。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
 | uniqueId<sup>20+</sup>         | number | 否   | Navigation组件的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                  |
 
 ## ScrollEventInfo<sup>12+</sup>
