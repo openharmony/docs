@@ -4921,7 +4921,7 @@ setWindowShadowEnabled(enable: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | -- | ----------------------------------------------------------------------- |
-| enable  | boolean | 是 | 设置主窗口是否显示阴影，true表示显示，false表示不显示。 |
+| enable  | boolean | 是 | 设置主窗口是否显示阴影。true表示显示阴影，false表示不显示阴影。 |
 
 **返回值：**
 
@@ -4966,13 +4966,12 @@ export default class EntryAbility extends UIAbility {
           return;
         }
         windowClass = data;
-        let ebable = true;
-        // 调用setWindowShadowEnabled接口
-        let promise = windowClass.setWindowShadowEnabled(ebable);
+        let enable = true;
+        let promise = windowClass.setWindowShadowEnabled(enable);
         promise.then(() => {
           console.info('Succeeded in setting window shadow.');
         }).catch((err: BusinessError) => {
-          console.error(`Failed to set window shadow. Cause code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to set the window shadow. Cause code: ${err.code}, message: ${err.message}`);
         });
       });
     });
