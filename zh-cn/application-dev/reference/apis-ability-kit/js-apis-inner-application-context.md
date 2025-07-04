@@ -15,6 +15,10 @@ Context模块继承自[BaseContext](js-apis-inner-application-baseContext.md)，
 - 不同类型Context的持有关系如下：
 
   ![context-holding](../../application-models/figures/context-holding.png)
+  
+> **说明**
+>
+> [UIContext](../../reference/apis-arkui/js-apis-arkui-UIContext.md)是指UI实例上下文，用于关联窗口与UI页面。与本文档中的应用上下文Context无直接关联，不存在继承或持有关系。
 
 ## 导入模块
 
