@@ -10,6 +10,12 @@
 >
 > - 在下载过程中，下载的进程会通过WebDownloadDelegate通知给使用者，使用者可以通过参数WebDownloadItem来操作下载任务。
 
+## 导入模块
+
+```ts
+import { webview } from '@kit.ArkWeb';
+```
+
 ## getGuid<sup>11+</sup>
 
 getGuid(): string
