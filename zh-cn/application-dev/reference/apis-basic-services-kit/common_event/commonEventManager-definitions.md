@@ -272,11 +272,11 @@
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅者所需权限：** ohos.permission.RECEIVER_SPLIT_SCREEN
+**订阅者所需权限：** 无
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**取值：** "usual.event.SPLIT_SCREEN"
+**取值：** "common.event.SPLIT_SCREEN"
 
 
 
