@@ -8,7 +8,7 @@
   - [Building an NDK Project with the Command Line CMake](build-with-ndk-cmake.md)
   - [Building an NDK Project with Prebuilt Libraries](build-with-ndk-prebuilts.md)
 - Code Development<!--coding-->
-  - [Code Development Overview](develop-code-overview.md)
+  - [Development Overview](develop-code-overview.md)
   - C/C++ Standard Library<!--c-cpp-->
     - [C/C++ Library Mechanisms](c-cpp-overview.md)
     - [Using fdsan](fdsan.md)
@@ -28,7 +28,7 @@
       - [Working with Cleanup Hooks Using Node-API](use-napi-about-cleanuphook.md)
       - [Working with Date Using Node-API](use-napi-about-date.md)
       - [Error Handling Using Node-API](use-napi-about-error.md)
-      - [Associating Data with a Running Environment to Tide Their Lifecycle Using Node-API](use-napi-about-environmental-life-cycle.md)
+      - [Associating Data with a Running Environment to Tie Their Lifecycle Using Node-API](use-napi-about-environmental-life-cycle.md)
       - [Working with Functions Using Node-API](use-napi-about-function.md)
       - [Performing Lifecycle Management Using Node-API](use-napi-life-cycle.md)
       - [Working with Objects Using Node-API](use-napi-about-object.md)
@@ -50,7 +50,8 @@
       - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](use-call-threadsafe-function-with-priority.md)
       - [Analyzing Exceptions and Crashes Triggered by Using Node-API](use-napi-about-crash.md)
       - [Calling an ArkTS Method with Return Value of a Promise Using Node-API](use-napi-method-promise.md)
-    - [Node-API FAQs](use-napi-faqs.md)
+    - Node-API FAQs<!--napi-questions-->
+      - [Node-API FAQs](use-napi-faqs.md)
   - Using JSVM-API<!--jsvm-->
     - [JSVM-API Overview](jsvm-introduction.md)
     - [JSVM-API Data Types and APIs](jsvm-data-types-interfaces.md)
@@ -90,7 +91,7 @@
       - [Creating Basic Data Types Using JSVM-API](use-jsvm-basic-data-types.md)
     - Typical JSVM-API Use Cases<!--jsvm-scenarios-->
       - [JSVM-API Debugging](jsvm-debugger-cpuprofiler-heapsnapshot.md)
-      - [JSVM-API Tracing](use-jsvm-about-trace.md)
+      - [Working with Trace Using JSVM-API](use-jsvm-about-trace.md)
       - [Requesting the JIT Profile for JSVMs](jsvm-apply-jit-profile.md)
       - JSVM-API Tuning and Performant Coding Cases<!--jsvm-usage-examples-->
         - [Creating and Destroying JSVMs Using JSVM-API](use-jsvm-runtime-task.md)
@@ -116,4 +117,3 @@
   - [OpenHarmony ABIs](ohos-abi.md)
   - [CPU Features](cpu-features.md)
   - [Using Neon Instructions](neon-guide.md)
-
