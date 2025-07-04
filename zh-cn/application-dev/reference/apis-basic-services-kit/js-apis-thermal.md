@@ -1,6 +1,6 @@
 # @ohos.thermal (热管理)
 
-该模块提供热管理相关的接口，包括热档位查询及注册回调等功能。
+通过本模块接口可获取设备外壳的热档位信息，以及监听热档位信息变化。
 
 > **说明：**
 >
@@ -24,7 +24,7 @@ registerThermalLevelCallback(callback: Callback&lt;ThermalLevel&gt;): void
 
 | 参数名   | 类型                         | 必填 | 说明                           |
 | -------- | ---------------------------- | ---- | ------------------------------ |
-| callback | Callback&lt;ThermalLevel&gt; | 是   | 回调函数，返回变化后的热档位；该参数是一个函数类型。 |
+| callback | Callback&lt;[ThermalLevel](#thermallevel)&gt; | 是   | 回调函数，返回变化后的热档位；该参数是一个函数类型。 |
 
 **错误码：**
 
@@ -96,7 +96,7 @@ getLevel(): ThermalLevel
 
 | 类型         | 说明         |
 | ------------ | ------------ |
-| ThermalLevel | 热档位信息。 |
+| [ThermalLevel](#thermallevel) | 热档位信息。 |
 
 **错误码：**
 
@@ -131,7 +131,7 @@ subscribeThermalLevel(callback: AsyncCallback&lt;ThermalLevel&gt;): void
 
 | 参数名   | 类型                              | 必填 | 说明                                                         |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;ThermalLevel&gt; | 是   | 回调函数。AsyncCallback只返回一个参数，为热档位信息。|
+| callback | AsyncCallback&lt;[ThermalLevel](#thermallevel)&gt; | 是   | 回调函数。AsyncCallback只返回一个参数，为热档位信息。|
 
 **示例：**
 
@@ -179,7 +179,7 @@ getThermalLevel(): ThermalLevel
 
 | 类型           | 说明     |
 | ------------ | ------ |
-| ThermalLevel | 热档位信息。 |
+| [ThermalLevel](#thermallevel) | 热档位信息。 |
 
 **示例：**
 
