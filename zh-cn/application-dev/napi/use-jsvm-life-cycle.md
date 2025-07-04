@@ -46,7 +46,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 ### OH_JSVM_OpenHandleScope、OH_JSVM_CloseHandleScope
 
-通过接口OH_JSVM_OpenHandleScope创建一个上下文环境使用。需要使用OH_JSVM_CloseHandleScope进行关闭。用于管理JavaScript对象的生命周期确保在JSVM-API模块代码处理JavaScript对象时能够正确地管理其句柄，以避免出现垃圾回收相关的问题。
+通过接口OH_JSVM_OpenHandleScope创建一个上下文环境，使用时需调用OH_JSVM_CloseHandleScope进行关闭。该机制用于管理JavaScript对象的生命周期，确保在JSVM-API模块中处理JavaScript对象时能正确管理其句柄，避免垃圾回收相关的问题。
 
 cpp部分代码
 
