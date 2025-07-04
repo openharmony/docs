@@ -1,12 +1,12 @@
-# Updating Widget Content Through the message Event
+# Transferring Messages to an Application (message Event)
 
-On the widget page, the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction) API can be used to trigger a message event to start a FormExtensionAbility, which then updates the widget content. The following is an example of this widget update mode.
+On the widget page, you can trigger a message event via the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction) API to launch the [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md). The FormExtensionAbility then notifies the application through the [onFormEvent](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonformevent) callback. This process enables the functionality of passing messages to the application after a widget is touched. Subsequently, the FormExtensionAbility refreshes the widget content. Below is a simple example.
 
 > **NOTE**
 >
 > This topic describes development for dynamic widgets. For static widgets, see [FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md).
 
-- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the message event to start the FormExtensionAbility. Use [LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop) to decorate the widget data to be updated.
+- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the message event to start the FormExtensionAbility. Use [LocalStorageProp](../ui/state-management/arkts-localstorage.md#localstorageprop) to decorate the widget data to be updated.
   
   ```ts
   let storageUpdateByMsg = new LocalStorage();
@@ -62,7 +62,7 @@ On the widget page, the [postCardAction](../reference/apis-arkui/js-apis-postCar
   }
   ```
   
-- Call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform) API to update the widget in the **onFormEvent** callback of the FormExtensionAbility.
+- Call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderupdateform) API to update the widget in the **onFormEvent** callback of the FormExtensionAbility.
   
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -74,14 +74,15 @@ On the widget page, the [postCardAction](../reference/apis-arkui/js-apis-postCar
   
   export default class EntryFormAbility extends FormExtensionAbility {
     onFormEvent(formId: string, message: string): void {
-      // Called when a specified message event defined by the form provider is triggered.
+      // Called when the message event of the postCardAction API of the widget provider is triggered.
       hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
   
       class FormDataClass {
-        title: string ='Title Update.'; // It matches the widget layout.
+        title: string = 'Title Update.'; // It matches the widget layout.
         detail: string = 'Description update success.'; // It matches the widget layout.
       }
   
+      // Replace it with the actual widget data.
       let formData = new FormDataClass();
       let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(formId, formInfo).then(() => {
@@ -96,6 +97,6 @@ On the widget page, the [postCardAction](../reference/apis-arkui/js-apis-postCar
   
   The figure below shows the effect.
   
-  | Initial State                                               | After Clicking                                             |
+  | Initial State                                               | Touch to Refresh                                             |
   | ------------------------------------------------------- | ----------------------------------------------------- |
   | ![WidgetUpdateBefore](figures/widget-update-before.PNG) | ![WidgetUpdateAfter](figures/widget-update-after.PNG) |

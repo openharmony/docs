@@ -2181,7 +2181,7 @@ Sets a router proxy for widgets and obtains the Want information required for re
 > **NOTE**
 >
 >- Generally, for a widget added to the home screen, in the case of router-based redirection, the widget framework checks whether the destination is proper and whether the widget has the redirection permission, and then triggers redirection accordingly. For a widget that is added to a widget host and has a router proxy configured, in the case of router-based redirection, the widget framework does not trigger redirection for the widget. Instead, it returns the **want** parameter containing the destination to the widget host. Therefore, if the widget host wants to use the Want information for redirection, it must have the application redirection permission. For details, see
-[UIAbilityContext.startAbility()](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
+[UIAbilityContext.startAbility()](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability).
 >
 >- Only one router proxy can be set for a widget. If multiple proxies are set, only the last proxy takes effect.
 
@@ -2221,7 +2221,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct CardExample {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @State formId: number = 0;
   @State fwidth: number = 420;
   @State fheight: number = 280;
@@ -2273,7 +2273,7 @@ Sets a router proxy for widgets and obtains the Want information required for re
 
 > **NOTE**
 >
->- Generally, for a widget added to the home screen, in the case of router-based redirection, the widget framework checks whether the destination is proper and whether the widget has the redirection permission, and then triggers redirection accordingly. For a widget that is added to a widget host and has a router proxy configured, in the case of router-based redirection, the widget framework does not trigger redirection for the widget. Instead, it returns the **want** parameter containing the destination to the widget host. Therefore, if the widget host wants to use the Want information for redirection, it must have the application redirection permission. For details, see [UIAbilityContext.startAbility()](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
+>- Generally, for a widget added to the home screen, in the case of router-based redirection, the widget framework checks whether the destination is proper and whether the widget has the redirection permission, and then triggers redirection accordingly. For a widget that is added to a widget host and has a router proxy configured, in the case of router-based redirection, the widget framework does not trigger redirection for the widget. Instead, it returns the **want** parameter containing the destination to the widget host. Therefore, if the widget host wants to use the Want information for redirection, it must have the application redirection permission. For details, see [UIAbilityContext.startAbility()](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability).
 >
 >- Only one router proxy can be set for a widget. If multiple proxies are set, only the last proxy takes effect.
 
@@ -2320,7 +2320,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct CardExample {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @State formId: number = 0;
   @State fwidth: number = 420;
   @State fheight: number = 280;
@@ -2748,7 +2748,7 @@ Updates the widget location.
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formId | string | Yes  | Widget ID.|
-| location |[formInfo.FormLocation](js-apis-app-form-formInfo-sys.md#formlocation) | Yes| Widget location.|
+| location |[formInfo.FormLocation](js-apis-app-form-formInfo-sys.md#formlocation12) | Yes| Widget location.|
 
 **Error codes**
 
@@ -2796,7 +2796,7 @@ Sets the result for the operation of adding a widget to the home screen.
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | formId | string                                                       | Yes  | Widget ID.        |
-| result | [PublishFormResult](js-apis-app-form-formInfo-sys.md#publishformresult) | Yes  | Result of the operation.|
+| result | [formInfo.PublishFormResult](js-apis-app-form-formInfo-sys.md#publishformresult12) | Yes  | Result of the operation.|
 
 **Error codes**
 
@@ -2885,4 +2885,168 @@ try {
   console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 
+```
+
+## formHost.on('formOverflow')<sup>20+</sup>
+
+on(type: 'formOverflow', callback: Callback&lt;formInfo.OverflowRequest&gt;): void
+
+Subscribes to the interactive widget animation request event.
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type      | Mandatory| Description|
+|----------|--------|---|---------------------------------------|
+| type     | string | Yes| Event type. Only **'formOverflow'** is supported, indicating the interactive widget animation request.|
+| callback | Callback&lt;[formInfo.OverflowRequest](js-apis-app-form-formInfo-sys.md#overflowrequest20)&gt; | Yes| Callback used by the widget host to process the animation request.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message                                                                                                 |
+|-------|-----------------------------------------------------------------------------------------------------------|
+| 202   | The application is not a system application.                                                              |
+| 801   | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
+
+**Example**
+
+```ts
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formHost.on('formOverflow', (request: formInfo.OverflowRequest) => {
+    console.log(`formHost on formOverflow, formId is ${request.formId}`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## formHost.off('formOverflow')<sup>20+</sup>
+
+off(type: 'formOverflow', callback?: Callback&lt;formInfo.OverflowRequest&gt;): void
+
+Unsubscribes from the interactive widget animation request event.
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                    |
+| ------ | ------ |----|----------------------------------------|
+| type | string | Yes | Event type. Only **'formOverflow'** is supported, indicating the interactive widget animation request.|
+| callback |Callback&lt;[formInfo.OverflowRequest](js-apis-app-form-formInfo-sys.md#overflowrequest20)&gt; | No | Callback function, which corresponds to the subscribed interactive widget animation request. By default, all registered interactive widget animation request events are deregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message                                                                                               |
+| --- |-----------------------------------------------------------------------------------------------------------|
+| 202 | The application is not a system application.                                                              |
+| 801 | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
+
+**Example**
+
+```ts
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formHost.off('formOverflow', (request: formInfo.OverflowRequest) => {
+    console.log(`formHost off formOverflow, formId is ${request.formId}`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}   
+```
+
+## formHost.on('changeSceneAnimationState')<sup>20+</sup>
+
+on(type: 'changeSceneAnimationState', callback: Callback&lt;formInfo.ChangeSceneAnimationStateRequest&gt;): void
+
+Subscribes to the event of switching the interactive widget state. An interactive widget can be in the active or inactive state. In the inactive state, the interactive widget is the same as a common widget. In the active state, the interactive widget can start the **LiveFormExtensionAbility** process developed by the widget host to implement interactive widget animations.
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                  |
+| ------ | ------ | ---- |------------------------------------------------------|
+| type | string | Yes  | Event type. The event **'changeSceneAnimationState'** is triggered when the interactive widget state is switched.|
+| callback |Callback&lt;[formInfo.ChangeSceneAnimationStateRequest](js-apis-app-form-formInfo-sys.md#changesceneanimationstaterequest20)&gt; | Yes| Callback function, which is used by the widget host to process the state switching request.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message                                                                                                 |
+|-------|-----------------------------------------------------------------------------------------------------------|
+| 202   | The application is not a system application.                                                              |
+| 801   | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
+
+**Example**
+
+```ts
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formHost.on('changeSceneAnimationState', (request: formInfo.ChangeSceneAnimationStateRequest): void => {
+    console.log(`formHost on changeSceneAnimationState, formId is ${request.formId}`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## formHost.off('changeSceneAnimationState')<sup>20+</sup>
+
+off(type: 'changeSceneAnimationState', callback: Callback&lt;formInfo.changeSceneAnimationState&gt;): void
+
+Unsubscribes from the event of switching the interactive widget state. An interactive widget can be in the active or inactive state. In the inactive state, the interactive widget is the same as a common widget. In the active state, the interactive widget can start the **LiveFormExtensionAbility** process developed by the widget host to implement interactive widget animations.
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ |----| ------- |
+| type | string | Yes | Event type. The event **'changeSceneAnimationState'** is triggered when the interactive widget state is switched.|
+| callback |Callback&lt;[formInfo.ChangeSceneAnimationStateRequest](js-apis-app-form-formInfo-sys.md#changesceneanimationstaterequest20)&gt; | No | Callback function, which corresponds to the request for switching the state of a subscribed interactive widget. By default, all registered interactive widget state switching events are deregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 801 | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
+
+**Example**
+
+```ts
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formHost.off('changeSceneAnimationState', (request: formInfo.ChangeSceneAnimationStateRequest): void => {
+    console.log(`formHost off changeSceneAnimationState, formId is ${request.formId}`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
 ```
