@@ -1586,7 +1586,7 @@ vp2px(value : number) : number
 
 > **说明：**
 >
-> 本[接口](js-apis-arkui-UIContext.md#vp2px12)需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1623,7 +1623,7 @@ px2vp(value : number) : number
 
 > **说明：**
 >
-> 本[接口](js-apis-arkui-UIContext.md#px2vp12)需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1662,7 +1662,7 @@ fp2px(value : number) : number
 
 > **说明：**
 >
-> 本[接口](js-apis-arkui-UIContext.md#fp2px12)需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1701,7 +1701,7 @@ px2fp(value : number) : number
 
 > **说明：**
 >
-> 本[接口](js-apis-arkui-UIContext.md#px2fp12)需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1736,7 +1736,7 @@ lpx2px(value : number) : number
 
 > **说明：**
 >
-> 本[接口](js-apis-arkui-UIContext.md#lpx2px12)需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1771,7 +1771,7 @@ px2lpx(value : number) : number
 
 > **说明：**
 >
-> 本[接口](js-apis-arkui-UIContext.md#px2lpx12)需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
