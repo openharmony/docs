@@ -447,16 +447,17 @@ import { connectedTag } from '@kit.ConnectivityKit';
 connectedTag.on("notify", (rfState : number)=> {
   console.log("connectedTag on Callback rfState: " + rfState);
 });
-
-let initStatus = connectedTag.init();
-console.log("connectedTag init status: " + initStatus);
-
-// Add nfc connected tag business operations here...
-// connectedTag.writeNdefTag(rawData)
-// connectedTag.readNdefTag()
-
-let uninitStatus = connectedTag.uninit();
-console.log("connectedTag uninit status: " + uninitStatus);
+try {
+    connectedTag.initialize();
+    let tag = [3, 1, 0];
+    console.log("connectedTag write: tag=" + tag);
+    await connectedTag.write(tag);
+    let data = await connectedTag.read();
+    console.log("connectedTag read: data=" + data);
+    connectedTag.uninitialize();
+} catch (error) {
+    console.error("connectedTag error: " + error);
+}
 
 // Unregister event
 connectedTag.off("notify", (rfState : number)=> {
