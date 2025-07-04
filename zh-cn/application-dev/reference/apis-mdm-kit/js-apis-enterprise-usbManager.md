@@ -462,10 +462,10 @@ USB设备ID信息。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称      | 类型   | 必填 | 说明     |
-| --------- | ------ | ---- | -------- |
-| vendorId  | number | 是   | 厂商ID。 |
-| productId | number | 是   | 产品ID。 |
+| 名称      | 类型   | 只读 | 可选 | 说明     |
+| --------- | ------ | ---- | ---- | -------- |
+| vendorId  | number | 否   | 否 | 厂商ID。 |
+| productId | number | 否   | 否 | 产品ID。 |
 
 ## UsbDeviceType<sup>14+</sup>
 
@@ -473,12 +473,12 @@ USB设备类型信息。其中具体编号可查询：[defined-class-codes](http
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称       | 类型                        | 必填 | 说明                                                         |
-| ---------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| baseClass  | number                      | 是   | 类型编号，可通过[getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices)接口获取。若descriptor为DEVICE，则取返回值中的USBDevice.clazz字段，若descriptor为INTERFACE，则取返回值中的USBDevice.configs.interfaces.clazz字段。 |
-| subClass   | number                      | 是   | 子类型编号，可通过[getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices)接口获取。若descriptor为DEVICE，则取返回值中的USBDevice.subClass字段，若descriptor为INTERFACE，则取返回值中的USBDevice.configs.interfaces.subClass字段。 |
-| protocol   | number                      | 是   | 协议编号，可通过[getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices)接口获取。若descriptor为DEVICE，则取返回值中的USBDevice.protocol字段，若descriptor为INTERFACE，则取返回值中的USBDevice.configs.interfaces.protocol字段。 |
-| descriptor | [Descriptor](#descriptor14) | 是   | USB描述符。须按照[defined-class-codes](https://www.usb.org/defined-class-codes)，取baseClass对应的Descriptor Usage值作为参数传入，若Descriptor Usage为Both，则设备级禁用时传入DEVICE、接口级禁用时传入INTERFACE。 |
+| 名称       | 类型                        | 只读 | 可选 | 说明                                                         |
+| ---------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| baseClass  | number                      | 否   | 否 | 类型编号，可通过[getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices)接口获取。若descriptor为DEVICE，则取返回值中的USBDevice.clazz字段，若descriptor为INTERFACE，则取返回值中的USBDevice.configs.interfaces.clazz字段。 |
+| subClass   | number                      | 否   | 否 | 子类型编号，可通过[getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices)接口获取。若descriptor为DEVICE，则取返回值中的USBDevice.subClass字段，若descriptor为INTERFACE，则取返回值中的USBDevice.configs.interfaces.subClass字段。 |
+| protocol   | number                      | 否   | 否 | 协议编号，可通过[getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices)接口获取。若descriptor为DEVICE，则取返回值中的USBDevice.protocol字段，若descriptor为INTERFACE，则取返回值中的USBDevice.configs.interfaces.protocol字段。 |
+| descriptor | [Descriptor](#descriptor14) | 否   | 否 | USB描述符。须按照[defined-class-codes](https://www.usb.org/defined-class-codes)，取baseClass对应的Descriptor Usage值作为参数传入，若Descriptor Usage为Both，则设备级禁用时传入DEVICE、接口级禁用时传入INTERFACE。 |
 
 ## UsbPolicy
 
