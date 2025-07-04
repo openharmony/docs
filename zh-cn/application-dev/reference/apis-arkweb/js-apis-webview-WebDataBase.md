@@ -10,6 +10,12 @@ Web组件数据库管理对象。
 >
 > - 目前调用WebDataBase下的方法，都需要先加载Web组件。
 
+## 导入模块
+
+```ts
+import { webview } from '@kit.ArkWeb';
+```
+
 ## getHttpAuthCredentials
 
 static getHttpAuthCredentials(host: string, realm: string): Array\<string>
