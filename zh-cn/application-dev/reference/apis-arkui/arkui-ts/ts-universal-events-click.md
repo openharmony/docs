@@ -35,7 +35,7 @@ onClick(event: Callback\<ClickEvent>, distanceThreshold: number): T
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [ClickEvent](#clickevent对象说明) | 是   | 获得[ClickEvent](#clickevent对象说明)对象。 |
+| event  | Callback\<[ClickEvent](#clickevent对象说明)> | 是   | 点击事件的回调函数。 |
 | distanceThreshold  | number | 是   | 点击事件移动阈值。当设置的值小于等于0时，会被转化为默认值。<br/>默认值：2^31-1<br/>单位：vp<br/>**说明：**<br/>当手指的移动距离超出开发者预设的移动阈值时，点击识别失败。如果初始化为默认阈值时，手指移动超过组件热区范围，点击识别失败。 |
 
 >  **说明：**
@@ -72,7 +72,7 @@ onClick(event: (event: ClickEvent) => void): T
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [ClickEvent](#clickevent对象说明) | 是   | 获得[ClickEvent](#clickevent对象说明)对象。 |
+| event  | (event: [ClickEvent](#clickevent对象说明)) => void | 是   | 点击事件的回调函数。 |
 
 **返回值：**
 
