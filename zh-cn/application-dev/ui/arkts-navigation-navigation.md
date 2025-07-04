@@ -1,10 +1,10 @@
-# 组件导航 (Navigation)(推荐)
+# 组件导航(Navigation) (推荐)
 
 组件导航（Navigation）主要用于实现页面间以及组件内部的页面跳转，支持在不同组件间传递跳转参数，提供灵活的跳转栈操作，从而更便捷地实现对不同页面的访问和复用。本文将从组件导航（Navigation）的显示模式、路由操作、子页面管理、跨包跳转以及跳转动效等几个方面进行详细介绍。
 
 [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)是路由导航的根视图容器，一般作为页面（@Entry）的根容器，包括单栏（Stack）、分栏（Split）和自适应（Auto）三种显示模式。Navigation组件适用于模块内和跨模块的路由切换，通过组件级路由能力实现更加自然流畅的转场体验，并提供多种标题栏样式来呈现更好的标题和内容联动效果。一次开发，多端部署场景下，Navigation组件能够自动适配窗口显示大小，在窗口较大的场景下自动切换分栏展示效果。
 
-Navigation组件主要包含​导航页和子页。导航页由标题栏（包含菜单栏）、内容区和工具栏组成，可以通过[hideNavBar](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#hidenavbar9)属性进行隐藏，导航页不存在[页面栈](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)中，与子页，以及子页之间可以通过路由操作进行切换。
+Navigation组件主要包含​导航页和子页。导航页由标题栏（包含菜单栏）、内容区和工具栏组成，可以通过[hideNavBar](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#hidenavbar9)属性进行隐藏，导航页不存在[路由栈](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)中，与子页，以及子页之间可以通过路由操作进行切换。
 
 在API version 9上，Navigation需要配合[NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)组件实现页面路由。从API version 10开始，更推荐使用[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)实现页面路由。
 
@@ -308,13 +308,13 @@ Navigation() {
 
 ## 路由操作
 
-Navigation路由相关的操作都是基于页面栈[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)提供的方法进行，每个Navigation都需要创建并传入一个NavPathStack对象，用于管理页面。主要涉及页面跳转、页面返回、页面替换、页面删除、参数获取、路由拦截等功能。
+Navigation路由相关的操作都是基于导航控制器[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)提供的方法进行，每个Navigation都需要创建并传入一个NavPathStack对象，用于管理页面。主要涉及页面跳转、页面返回、页面替换、页面删除、参数获取、路由拦截等功能。
 
-从API version 12开始，页面栈允许被继承。开发者可以在派生类中自定义属性和方法，也可以重写父类的方法。派生类对象可以替代基类NavPathStack对象使用。具体示例代码参见：[页面栈继承示例代码](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例10定义路由栈派生类)。
+从API version 12开始，导航控制器允许被继承。开发者可以在派生类中自定义属性和方法，也可以重写父类的方法。派生类对象可以替代基类NavPathStack对象使用。Navigation中的NavDeatination页面存在于NavPathStack中，以栈的结构管理，我们称为路由栈。具体示例代码参见：[导航控制器继承示例代码](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例10定义导航控制器派生类)。
 
 > **说明：**
 >
-> 1.不建议开发者通过监听生命周期的方式管理自己的页面栈。
+> 1.不建议开发者通过监听生命周期的方式管理自己的路由栈。
 >
 > 2.在应用处于后台状态下，调用NavPathStack的栈操作方法，会在应用再次回到前台状态时触发刷新。
 
@@ -322,7 +322,7 @@ Navigation路由相关的操作都是基于页面栈[NavPathStack](../reference/
 @Entry
 @Component
 struct Index {
-  // 创建一个页面栈对象并传入Navigation
+  // 创建一个导航控制器对象并传入Navigation
   pageStack: NavPathStack = new NavPathStack();
 
   build() {
@@ -403,7 +403,7 @@ this.pageStack.replaceDestination({name: "PageOne", param: "PageOne Param"})
 
 ### 页面删除
 
-NavPathStack通过Remove相关接口去实现删除页面栈中特定页面的功能。
+NavPathStack通过Remove相关接口去实现删除路由栈中特定页面的功能。
 
 ```ts
 // 删除栈中name为PageOne的所有页面
@@ -416,7 +416,7 @@ this.pageStack.removeByNavDestinationId("1");
 
 ### 移动页面
 
-NavPathStack通过Move相关接口去实现移动页面栈中特定页面到栈顶的功能。
+NavPathStack通过Move相关接口去实现移动路由栈中特定页面到栈顶的功能。
 
 ```ts
 // 移动栈中name为PageOne的页面到栈顶
@@ -472,7 +472,7 @@ NavPathStack提供了[setInterception](../reference/apis-arkui/arkui-ts/ts-basic
 
 > **说明：**
 >
-> 无论是哪个回调，在进入回调时页面栈都已经发生了变化。
+> 无论是哪个回调，在进入回调时路由栈都已经发生了变化。
 
 开发者可以在willShow回调中通过修改路由栈来实现路由拦截重定向的能力。
 
@@ -503,7 +503,7 @@ this.pageStack.setInterception({
 
 当栈中存在的NavDestination页面通过单实例方式移动到栈顶时，将触发[onNewParam](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#onnewparam19)回调。
 
-有关单实例路由栈操作的示例代码，可以参考[Navigation单例跳转示例](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例2使用路由栈方法)。
+有关单实例跳转的示例代码，可以参考[Navigation单例跳转示例](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例2使用导航控制器方法)。
 
 ## 子页面
 
@@ -513,7 +513,7 @@ this.pageStack.setInterception({
 
 - 标准类型
 
-  NavDestination组件默认为标准类型，此时mode属性为NavDestinationMode.STANDARD。标准类型的NavDestination的生命周期跟随其在NavPathStack页面栈中的位置变化而改变。
+  NavDestination组件默认为标准类型，此时mode属性为NavDestinationMode.STANDARD。标准类型的NavDestination的生命周期跟随其在NavPathStack路由栈中的位置变化而改变。
 
 - 弹窗类型
   
@@ -655,7 +655,7 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
 
 ## 页面转场
 
-Navigation默认提供了页面切换的转场动画，通过页面栈操作时，会触发不同的转场效果（API version 13之前，Dialog类型的页面默认无转场动画。从API version13开始，Dialog类型的页面支持系统转场动画。），Navigation也提供了关闭系统转场、自定义转场以及共享元素转场的能力。
+Navigation默认提供了页面切换的转场动画，通过导航控制器操作时，会触发不同的转场效果（API version 13之前，Dialog类型的页面默认无转场动画。从API version13开始，Dialog类型的页面支持系统转场动画。），Navigation也提供了关闭系统转场、自定义转场以及共享元素转场的能力。
 
 ### 关闭转场
 
@@ -774,7 +774,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
 系统路由表是动态路由的一种实现方式。从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（[HSP](../quick-start/in-app-hsp.md)/[HAR](../quick-start/har-package.md)）中需要独立配置route_map.json文件，在触发路由跳转时，应用只需要通过NavPathStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。系统路由表支持模拟器但不支持预览器。其主要步骤如下：
 
-1. 在跳转目标模块的配置文件module.json5添加路由表配置：
+1. 在跳转目标模块的配置文件[module.json5](../quick-start/module-configuration-file.md)添加路由表配置：
    
    ```json
      {
@@ -861,4 +861,303 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
    - 在ets文件中配置路由加载配置项，一般包括路由页面名称（即pushPath等接口中页面的别名），文件所在模块名称（hsp/har的模块名），加载页面在模块内的路径（相对src目录的路径）。
 2. 加载目标跳转页面，通过[动态import](../arkts-utils/arkts-dynamic-import.md)将跳转目标页面所在的模块在运行时加载，在模块加载完成后，调用模块中的方法，通过import在模块的方法中加载模块中显示的目标页面，并返回页面加载完成后定义的Builder函数。
 3. 触发页面跳转，在Navigation的[navDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10)属性执行步骤2中加载的Builder函数，即可跳转到目标页面。
+
+## 导航示例
+
+### 创建导航首页
+实现步骤为：
+
+1.使用Navigation创建导航主页，并创建导航控制器NavPathStack以此来实现不同页面之间的跳转。
+
+2.在Navigation中增加List组件，来定义导航主页中不同的一级界面。
+
+3.在List内的组件添加onClick方法，并在其中使用导航控制器NavPathStack的pushPathByName方法，使组件可以在点击之后从当前页面跳转到输入参数name在路由表内对应的页面。
+```ts
+@Entry
+@Component
+struct NavigationDemo {
+  @Provide('pathInfos') pathInfos: NavPathStack = new NavPathStack();
+  private listArray: Array<string> = ['WLAN', 'Bluetooth', 'Personal Hotspot', 'Connect & Share'];
+
+  build() {
+    Column() {
+      Navigation(this.pathInfos) {
+        TextInput({ placeholder: '输入关键字搜索' })
+          .width('90%')
+          .height(40)
+          .margin({ bottom: 10 })
+
+        // 通过List定义导航的一级界面
+        List({ space: 12, initialIndex: 0 }) {
+          ForEach(this.listArray, (item: string) => {
+            ListItem() {
+              Row() {
+                Row() {
+                  Text(`${item.slice(0, 1)}`)
+                    .fontColor(Color.White)
+                    .fontSize(14)
+                    .fontWeight(FontWeight.Bold)
+                }
+                .width(30)
+                .height(30)
+                .backgroundColor('#a8a8a8')
+                .margin({ right: 20 })
+                .borderRadius(20)
+                .justifyContent(FlexAlign.Center)
+
+                Column() {
+                  Text(item)
+                    .fontSize(16)
+                    .margin({ bottom: 5 })
+                }
+                .alignItems(HorizontalAlign.Start)
+
+                Blank()
+
+                Row()
+                  .width(12)
+                  .height(12)
+                  .margin({ right: 15 })
+                  .border({
+                    width: { top: 2, right: 2 },
+                    color: 0xcccccc
+                  })
+                  .rotate({ angle: 45 })
+              }
+              .borderRadius(15)
+              .shadow({ radius: 100, color: '#ededed' })
+              .width('90%')
+              .alignItems(VerticalAlign.Center)
+              .padding({ left: 15, top: 15, bottom: 15 })
+              .backgroundColor(Color.White)
+            }
+            .width('100%')
+            .onClick(() => {
+              this.pathInfos.pushPathByName(`${item}`, '详情页面参数'); // 将name指定的NaviDestination页面信息入栈,传递的参数为param
+            })
+          }, (item: string): string => item)
+        }
+        .listDirection(Axis.Vertical)
+        .edgeEffect(EdgeEffect.Spring)
+        .sticky(StickyStyle.Header)
+        .chainAnimation(false)
+        .width('100%')
+      }
+      .width('100%')
+      .mode(NavigationMode.Auto)
+      .title('设置') // 设置标题文字
+    }
+    .size({ width: '100%', height: '100%' })
+    .backgroundColor(0xf4f4f5)
+  }
+}
+```
+
+### 创建导航子页
+导航子页1实现步骤为：
+
+1.使用NavDestination，来创建导航子页PageOne。
+
+2.创建导航控制器NavPathStack并在onReady时进行初始化，获取当前所在的导航控制器，以此来实现不同页面之间的跳转。
+
+3.在子页面内的组件添加onClick，并在其中使用导航控制器NavPathStack的pop方法，使组件可以在点击之后弹出路由栈栈顶元素实现页面的返回。
+
+```ts
+//PageOne.ets
+@Builder
+export function PageOneBuilder(name: string, param: string) {
+  PageOne({ name: name, value: param });
+}
+
+@Component
+export struct PageOne {
+  pathInfos: NavPathStack = new NavPathStack();
+  name: String = '';
+  @State value: String = '';
+
+  build() {
+    NavDestination() {
+      Column() {
+        Text(`${this.name}设置页面`)
+          .width('100%')
+          .fontSize(20)
+          .fontColor(0x333333)
+          .textAlign(TextAlign.Center)
+          .textShadow({
+            radius: 2,
+            offsetX: 4,
+            offsetY: 4,
+            color: 0x909399
+          })
+          .padding({ top: 30 })
+        Text(`${JSON.stringify(this.value)}`)
+          .width('100%')
+          .fontSize(18)
+          .fontColor(0x666666)
+          .textAlign(TextAlign.Center)
+          .padding({ top: 45 })
+        Button('返回')
+          .width('50%')
+          .height(40)
+          .margin({ top: 50 })
+          .onClick(() => {
+            //弹出路由栈栈顶元素，返回上个页面
+            this.pathInfos.pop();
+          })
+      }
+      .size({ width: '100%', height: '100%' })
+    }.title(`${this.name}`)
+    .onReady((ctx: NavDestinationContext) => {
+      // NavDestinationContext获取当前所在的导航控制器
+      this.pathInfos = ctx.pathStack;
+    })
+  }
+}
+```
+导航子页2实现步骤为：
+
+1.使用NavDestination，来创建导航子页PageTwo。
+
+2.创建导航控制器NavPathStack并在onReady时进行初始化，获取当前所在的导航控制器，以此来实现不同页面之间的跳转。
+
+3.在子页面内的组件添加onClick，并在其中使用导航控制器NavPathStack的pushPathByName方法，使组件可以在点击之后从当前页面跳转到输入参数name在路由表内对应的页面。
+```ts
+//PageTwo.ets
+@Builder
+export function PageTwoBuilder(name: string) {
+  PageTwo({ name: name });
+}
+
+@Component
+export struct PageTwo {
+  pathInfos: NavPathStack = new NavPathStack();
+  name: String = '';
+  private listArray: Array<string> = ['Projection', 'Print', 'VPN', 'Private DNS', 'NFC'];
+
+  build() {
+    NavDestination() {
+      Column() {
+        List({ space: 12, initialIndex: 0 }) {
+          ForEach(this.listArray, (item: string) => {
+            ListItem() {
+              Row() {
+                Row() {
+                  Text(`${item.slice(0, 1)}`)
+                    .fontColor(Color.White)
+                    .fontSize(14)
+                    .fontWeight(FontWeight.Bold)
+                }
+                .width(30)
+                .height(30)
+                .backgroundColor('#a8a8a8')
+                .margin({ right: 20 })
+                .borderRadius(20)
+                .justifyContent(FlexAlign.Center)
+
+                Column() {
+                  Text(item)
+                    .fontSize(16)
+                    .margin({ bottom: 5 })
+                }
+                .alignItems(HorizontalAlign.Start)
+
+                Blank()
+
+                Row()
+                  .width(12)
+                  .height(12)
+                  .margin({ right: 15 })
+                  .border({
+                    width: { top: 2, right: 2 },
+                    color: 0xcccccc
+                  })
+                  .rotate({ angle: 45 })
+              }
+              .borderRadius(15)
+              .shadow({ radius: 100, color: '#ededed' })
+              .width('90%')
+              .alignItems(VerticalAlign.Center)
+              .padding({ left: 15, top: 15, bottom: 15 })
+              .backgroundColor(Color.White)
+            }
+            .width('100%')
+            .onClick(() => {
+              this.pathInfos.pushPathByName(`${item}`, '页面设置参数');
+            })
+          }, (item: string): string => item)
+        }
+        .listDirection(Axis.Vertical)
+        .edgeEffect(EdgeEffect.Spring)
+        .sticky(StickyStyle.Header)
+        .width('100%')
+      }
+      .size({ width: '100%', height: '100%' })
+    }.title(`${this.name}`)
+    .onReady((ctx: NavDestinationContext) => {
+      // NavDestinationContext获取当前所在的导航控制器
+      this.pathInfos = ctx.pathStack;
+    })
+  }
+}
+```
+
+### 创建路由跳转
+实现步骤为：
+
+1.工程配置文件[module.json5](../quick-start/module-configuration-file.md)中配置 {"routerMap": "$profile:router_map"}。
+
+2.router_map.json中配置全局路由表，导航控制器NavPathStack可根据路由表中的name将对应页面信息入栈。
+```ts
+{
+  "routerMap" : [
+    {
+      "name" : "WLAN",
+      "pageSourceFile"  : "src/main/ets/pages/PageOne.ets",
+      "buildFunction" : "PageOneBuilder"
+    },
+    {
+      "name" : "Bluetooth",
+      "pageSourceFile"  : "src/main/ets/pages/PageOne.ets",
+      "buildFunction" : "PageOneBuilder"
+    },
+    {
+      "name" : "Personal Hotspot",
+      "pageSourceFile"  : "src/main/ets/pages/PageOne.ets",
+      "buildFunction" : "PageOneBuilder"
+    },
+    {
+      "name" : "Connect & Share",
+      "pageSourceFile"  : "src/main/ets/pages/PageTwo.ets",
+      "buildFunction" : "PageTwoBuilder"
+    },
+    {
+      "name" : "Projection",
+      "pageSourceFile"  : "src/main/ets/pages/PageOne.ets",
+      "buildFunction" : "PageOneBuilder"
+    },
+    {
+      "name" : "Print",
+      "pageSourceFile"  : "src/main/ets/pages/PageOne.ets",
+      "buildFunction" : "PageOneBuilder"
+    },
+    {
+      "name" : "VPN",
+      "pageSourceFile"  : "src/main/ets/pages/PageOne.ets",
+      "buildFunction" : "PageOneBuilder"
+    },
+    {
+      "name" : "Private DNS",
+      "pageSourceFile"  : "src/main/ets/pages/PageOne.ets",
+      "buildFunction" : "PageOneBuilder"
+    },
+    {
+      "name" : "NFC",
+      "pageSourceFile"  : "src/main/ets/pages/PageOne.ets",
+      "buildFunction" : "PageOneBuilder"
+    }
+  ]
+}
+```
+
+![zh-cn_image_0000001588458252](figures/arkts-navigation-transition_1.gif)
 <!--RP2--><!--RP2End-->

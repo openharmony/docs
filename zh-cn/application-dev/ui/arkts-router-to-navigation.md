@@ -189,7 +189,7 @@ let size = this.getUIContext().getRouter().getLength();
 let pageState = this.getUIContext().getRouter().getState();
 ```
 
-Navigation通过页面栈对象[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)提供的方法来操作页面，需要创建一个栈对象并传入Navigation中。
+Navigation通过导航控制器对象[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)提供的方法来操作页面，需要创建一个栈对象并传入Navigation中。
 
 ```ts
 @Entry
@@ -222,7 +222,7 @@ this.pathStack.replacePath({ name: 'pageOne' });
 // clear all page
 this.pathStack.clear();
 
-// 获取页面栈大小
+// 获取路由栈大小
 let size: number = this.pathStack.size();
 
 // 删除栈中name为PageOne的所有页面
@@ -245,7 +245,7 @@ this.pathStack.getIndexByName("pageOne");
 // ...
 ```
 
-Router作为全局通用模块，可以在任意页面中调用，Navigation作为组件，子页面想要做路由需要拿到Navigation持有的页面栈对象NavPathStack，可以通过如下几种方式获取：
+Router作为全局通用模块，可以在任意页面中调用，Navigation作为组件，子页面想要做路由需要拿到Navigation持有的导航控制器对象NavPathStack，可以通过如下几种方式获取：
 
 **方式一**：通过`@Provide`和`@Consume`传递给子页面（有耦合，不推荐）。
 
@@ -695,7 +695,7 @@ Navigation也可以通过[queryNavDestinationInfo](../reference/apis-arkui/arkui
 | navigationId                  | ResourceStr         | 是   | 包含NavDestination组件的Navigation组件的id。 |
 | name                          | ResourceStr         | 是   | NavDestination组件的名称。                   |
 | state                         | NavDestinationState | 是   | NavDestination组件的状态。                   |
-| index<sup>12+<sup>            | number              | 是   | NavDestination在页面栈中的索引。             |
+| index<sup>12+<sup>            | number              | 是   | NavDestination在路由栈中的索引。             |
 | param<sup>12+<sup>            | Object              | 否   | NavDestination组件的参数。                   |
 | navDestinationId<sup>12+<sup> | string              | 是   | NavDestination组件的唯一标识ID。             |
 
