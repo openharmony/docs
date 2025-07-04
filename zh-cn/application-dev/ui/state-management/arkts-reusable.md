@@ -52,7 +52,7 @@ export struct Crash {
 @Component
 struct Index {
   @State message: string = 'Hello World';
-  private uicontext = this.getUIContext();
+  private uiContext = this.getUIContext();
 
   build() {
     RelativeContainer() {
@@ -65,9 +65,9 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          let contentNode = new ComponentContent(this.uicontext, wrapBuilder(buildCreativeLoadingDialog), () => {
+          let contentNode = new ComponentContent(this.uiContext, wrapBuilder(buildCreativeLoadingDialog), () => {
           });
-          this.uicontext.getPromptAction().openCustomDialog(contentNode);
+          this.uiContext.getPromptAction().openCustomDialog(contentNode);
         })
     }
     .height('100%')
@@ -75,6 +75,179 @@ struct Index {
   }
 }
 ```
+
+- 被@Reusable装饰的自定义组件在复用时，会递归调用该自定义组件及其所有子组件的aboutToReuse回调函数。若在子组件的aboutToReuse函数中修改了父组件的状态变量，此次修改将不会生效，请避免此类用法。若需设置父组件的状态变量，可使用setTimeout设置延迟执行，将任务抛出组件复用的作用范围，使修改生效。
+
+
+  【反例】
+
+  在子组件的aboutToReuse中，直接修改父组件的状态变量。
+
+  ```ts
+  class BasicDataSource implements IDataSource {
+    private listener: DataChangeListener | undefined = undefined;
+    public dataArray: number[] = [];
+
+    totalCount(): number {
+      return this.dataArray.length;
+    }
+
+    getData(index: number): number {
+      return this.dataArray[index];
+    }
+
+    registerDataChangeListener(listener: DataChangeListener): void {
+      this.listener = listener;
+    }
+
+    unregisterDataChangeListener(listener: DataChangeListener): void {
+      this.listener = undefined;
+    }
+  }
+
+  @Entry
+  @Component
+  struct Index {
+    private data: BasicDataSource = new BasicDataSource();
+
+    aboutToAppear(): void {
+      for (let index = 1; index < 20; index++) {
+        this.data.dataArray.push(index);
+      }
+    }
+
+    build() {
+      List() {
+        LazyForEach(this.data, (item: number, index: number) => {
+          ListItem() {
+            ReuseComponent({ num: item })
+          }
+        }, (item: number, index: number) => index.toString())
+      }.cachedCount(0)
+    }
+  }
+
+  @Reusable
+  @Component
+  struct ReuseComponent {
+    @State num: number = 0;
+
+    aboutToReuse(params: ESObject): void {
+      this.num = params.num;
+    }
+
+    build() {
+      Column() {
+        Text('ReuseComponent num:' + this.num.toString())
+        ReuseComponentChild({ num: this.num })
+        Button('plus')
+          .onClick(() => {
+            this.num += 10;
+          })
+      }
+      .height(200)
+    }
+  }
+
+  @Component
+  struct ReuseComponentChild {
+    @Link num: number;
+
+    aboutToReuse(params: ESObject): void {
+      this.num = -1 * params.num;
+    }
+
+    build() {
+      Text('ReuseComponentChild num:' + this.num.toString())
+    }
+  }
+  ```
+
+  【正例】
+
+  在子组件的aboutToReuse中，使用setTimeout，将修改抛出组件复用的作用范围。
+
+  ```ts
+  class BasicDataSource implements IDataSource {
+    private listener: DataChangeListener | undefined = undefined;
+    public dataArray: number[] = [];
+
+    totalCount(): number {
+      return this.dataArray.length;
+    }
+
+    getData(index: number): number {
+      return this.dataArray[index];
+    }
+
+    registerDataChangeListener(listener: DataChangeListener): void {
+      this.listener = listener;
+    }
+
+    unregisterDataChangeListener(listener: DataChangeListener): void {
+      this.listener = undefined;
+    }
+  }
+
+  @Entry
+  @Component
+  struct Index {
+    private data: BasicDataSource = new BasicDataSource();
+
+    aboutToAppear(): void {
+      for (let index = 1; index < 20; index++) {
+        this.data.dataArray.push(index);
+      }
+    }
+
+    build() {
+      List() {
+        LazyForEach(this.data, (item: number, index: number) => {
+          ListItem() {
+            ReuseComponent({ num: item })
+          }
+        }, (item: number, index: number) => index.toString())
+      }.cachedCount(0)
+    }
+  }
+
+  @Reusable
+  @Component
+  struct ReuseComponent {
+    @State num: number = 0;
+
+    aboutToReuse(params: ESObject): void {
+      this.num = params.num;
+    }
+
+    build() {
+      Column() {
+        Text('ReuseComponent num:' + this.num.toString())
+        ReuseComponentChild({ num: this.num })
+        Button('plus')
+          .onClick(() => {
+            this.num += 10;
+          })
+      }
+      .height(200)
+    }
+  }
+
+  @Component
+  struct ReuseComponentChild {
+    @Link num: number;
+
+    aboutToReuse(params: ESObject): void {
+      setTimeout(() => {
+        this.num = -1 * params.num;
+      }, 1)
+    }
+
+    build() {
+      Text('ReuseComponentChild num:' + this.num.toString())
+    }
+  }
+  ```
 
 - ComponentContent不支持传入\@Reusable装饰器装饰的自定义组件。
 
@@ -109,7 +282,7 @@ export struct Crash {
 @Component
 struct Index {
   @State message: string = 'Hello World';
-  private uicontext = this.getUIContext();
+  private uiContext = this.getUIContext();
 
   build() {
     RelativeContainer() {
@@ -123,9 +296,9 @@ struct Index {
         })
         .onClick(() => {
           // ComponentContent底层是buildNode，buildNode不支持传入@Reusable注解的自定义组件。
-          let contentNode = new ComponentContent(this.uicontext, wrapBuilder(buildCreativeLoadingDialog), () => {
+          let contentNode = new ComponentContent(this.uiContext, wrapBuilder(buildCreativeLoadingDialog), () => {
           });
-          this.uicontext.getPromptAction().openCustomDialog(contentNode);
+          this.uiContext.getPromptAction().openCustomDialog(contentNode);
         })
     }
     .height('100%')
@@ -136,110 +309,6 @@ struct Index {
 
 - \@Reusable装饰器不建议嵌套使用，会增加内存，降低复用效率，加大维护难度。嵌套使用会导致额外缓存池的生成，各缓存池拥有相同树状结构，复用效率低下。此外，嵌套使用会使生命周期管理复杂，资源和变量共享困难。
 
-```ts
-
-// 以下示例中PlayButton形成的复用缓存池，并不能在PlayButton02的复用缓存池中使用。而PlayButton02自己形成的复用缓存可以相互使用。
-// 在PlayButton隐藏时已经触发PlayButton02的aboutToRecycle，但是在PlayButton02单独显示时却无法执行aboutToReuse，组件复用的生命周期方法存在无法成对调用问题。
-@Entry
-@Component
-struct Index {
-  @State isPlaying: boolean = false;
-  @State isPlaying02: boolean = true;
-  @State isPlaying01: boolean = false;
-
-  build() {
-    Column() {
-      if (this.isPlaying02) {
-
-        // 初始态是显示的按钮。
-        Text("Default shown childbutton")
-          .fontSize(14)
-        PlayButton02({ isPlaying02: $isPlaying02 })
-      }
-
-      // 初始态是隐藏的按钮。
-      if (this.isPlaying01) {
-        Text("Default hidden childbutton")
-          .fontSize(14)
-        PlayButton02({ isPlaying02: $isPlaying01 })
-      }
-
-      // 父子嵌套。
-      if (this.isPlaying) {
-        Text("parent child 嵌套")
-          .fontSize(14)
-        PlayButton({ buttonPlaying: $isPlaying })
-      }
-
-      // 父子嵌套控制。
-      Text(`Parent=child==is ${this.isPlaying ? '' : 'not'} playing`).fontSize(14)
-      Button('Parent=child===controll=' + this.isPlaying)
-        .margin(14)
-        .onClick(() => {
-          this.isPlaying = !this.isPlaying;
-        })
-
-      //  默认隐藏按钮控制。
-      Text(`Hiddenchild==is ${this.isPlaying01 ? '' : 'not'} playing`).fontSize(14)
-      Button('Button===hiddenchild==control==' + this.isPlaying01)
-        .margin(14)
-        .onClick(() => {
-          this.isPlaying01 = !this.isPlaying01;
-        })
-
-      // 默认显示按钮控制。
-      Text(`shownchid==is ${this.isPlaying02 ? '' : 'not'} playing`).fontSize(14)
-      Button('Button===shownchid==control==:' + this.isPlaying02)
-        .margin(15)
-        .onClick(() => {
-          this.isPlaying02 = !this.isPlaying02;
-        })
-    }
-  }
-}
-
-@Reusable
-@Component
-struct PlayButton {
-  @Link buttonPlaying: boolean;
-
-  build() {
-    Column() {
-
-      // 复用
-      PlayButton02({ isPlaying02: $buttonPlaying })
-      Button(this.buttonPlaying ? 'parent_pause' : 'parent_play')
-        .margin(12)
-        .onClick(() => {
-          this.buttonPlaying = !this.buttonPlaying;
-        })
-    }
-  }
-}
-
-//  不建议嵌套使用
-@Reusable
-@Component
-struct PlayButton02 {
-  @Link isPlaying02: boolean;
-
-  aboutToRecycle(): void {
-    console.log("=====aboutToRecycle====PlayButton02====");
-  }
-
-// 当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发aboutToReuse生命周期回调，并将组件的构造参数传递给aboutToReuse。
-  aboutToReuse(params: ESObject): void {
-    console.log("=====aboutToReuse====PlayButton02====");
-  }
-
-  build() {
-    Column() {
-      Button('===commonbutton=====')
-        .margin(12)
-    }
-  }
-}
-```
 
 ## 使用场景
 

@@ -35,13 +35,13 @@
    Windows平台：
 
    ```
-   g++ --share -o example.dll example.cpp
+   g++ --shared -o example.dll example.cpp
    ```
 
    Linux平台：
 
    ```
-   g++ --share -o example.so example.cpp
+   g++ --shared -o example.so example.cpp
    ```
 
    Mac平台：

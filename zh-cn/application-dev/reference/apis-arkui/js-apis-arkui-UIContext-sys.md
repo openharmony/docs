@@ -2,8 +2,6 @@
 
 在Stage模型中，WindowStage/Window可以通过loadContent接口加载页面并创建UI的实例，并将页面内容渲染到关联的窗口中，所以UI实例和窗口是一一关联的。一些全局的UI接口是和具体UI实例的执行上下文相关的，在当前接口调用时，通过追溯调用链跟踪到UI的上下文，来确定具体的UI实例。若在非UI页面中或者一些异步回调中调用这类接口，可能无法跟踪到当前UI的上下文，导致接口执行失败。
 
-@ohos.window在API version 10 新增[getUIContext](arkts-apis-window-Window.md#getuicontext10)接口，获取UI上下文实例UIContext对象，使用UIContext对象提供的替代方法，可以直接作用在对应的UI实例上。
-
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -14,7 +12,7 @@
 
 ## UIContext
 
-以下API需先使用ohos.window中的[getUIContext()](arkts-apis-window-Window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。本文中UIContext对象以uiContext表示。
+以下API需先使用ohos.window中的[getUIContext()](arkts-apis-window-Window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。或者可以通过自定义组件内置方法[getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext)获取。本文中UIContext对象以uiContext表示。
 
 ### setDynamicDimming<sup>12+<sup>
 
@@ -382,7 +380,7 @@ setKeyboardAppearanceConfig(uniqueId: number, config: KeyboardAppearanceConfig):
 | 参数名     | 类型    | 必填   | 说明      |
 | --- | --- | --- | --- |
 | uniqueId | number | 是 | 组件节点对应的UniqueId。取值范围大于等于0。 |
-| config | [KeyboardAppearanceConfig](../apis-arkui/arkui-ts/ts-text-common-sys.md#keyboardappearanceconfig) | 是 | 键盘样式配置参数。|
+| config | [KeyboardAppearanceConfig](../apis-arkui/arkui-ts/ts-text-common-sys.md#keyboardappearanceconfig20) | 是 | 键盘样式配置参数。|
 
 **错误码：**
 
@@ -442,6 +440,10 @@ getWithRange(start: NodeIdentity, end: NodeIdentity, isStartRect: boolean, optio
 
 传入两个组件的ID，获取范围内的组件的截图，并通过Promise返回结果。
 
+> **说明：**
+>
+> start对应的组件和end对应的组件必须为同一棵组件树上的组件，且start对应的组件需要为end对应的组件的祖先组件。
+
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -452,7 +454,7 @@ getWithRange(start: NodeIdentity, end: NodeIdentity, isStartRect: boolean, optio
 | ---- | ------ | ---- | ------- |
 | start   | [NodeIdentity](./js-apis-arkui-UIContext.md#nodeidentity20) | 是    | 范围开始的组件的ID。 |
 | end   | [NodeIdentity](./js-apis-arkui-UIContext.md#nodeidentity20) | 是    | 范围结束的组件的ID。 |
-| isStartRect   | boolean | 是    | 范围是否以开始组件的外接矩形为准。 |
+| isStartRect   | boolean | 是    | 范围是否以开始组件的外接矩形为准。<br/>true表示以开始组件的外接矩形为准，false表示以结束组件的外接矩形为准。<br/>默认值为true。 |
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数，不支持region参数。 |
 
 **返回值：**
@@ -502,7 +504,7 @@ struct SnapshotExample {
               .then((pixmap: image.PixelMap) => {
                 this.pixmap = pixmap
               }).catch((err:Error) => {
-              console.log("error: " + err)
+              console.error("error: " + err)
             })
           }).margin(10)
       }.justifyContent(FlexAlign.SpaceAround)

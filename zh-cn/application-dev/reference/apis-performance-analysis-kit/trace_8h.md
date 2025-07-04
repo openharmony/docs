@@ -6,7 +6,7 @@
 HiTraceMeter模块打点接口定义，通过这些接口实现性能打点相关功能。
 
 
-用户态tarce格式使用竖线 | 作为分隔符，所以通过HiTraceMeter接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
+用户态trace格式使用竖线 | 作为分隔符，所以通过HiTraceMeter接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
 
 用户态trace总长度限制512字符，超过的部分将会被截断。
 
@@ -81,7 +81,7 @@ HiTraceMeter模块打点接口定义，通过这些接口实现性能打点相�
 | uint64_t [OH_HiTrace_GetSpanId](_hitrace.md#oh_hitrace_getspanid) (const [HiTraceId](_hi_trace_id.md) \*id) | 获取当前HiTraceId结构体中的分支ID。  | 
 | void [OH_HiTrace_SetSpanId](_hitrace.md#oh_hitrace_setspanid) ([HiTraceId](_hi_trace_id.md) \*id, uint64_t spanId) | 设置分支ID到HiTraceId结构体中。  | 
 | uint64_t [OH_HiTrace_GetParentSpanId](_hitrace.md#oh_hitrace_getparentspanid) (const [HiTraceId](_hi_trace_id.md) \*id) | 获取当前HiTraceId结构体中的父分支ID。  | 
-| void [OH_HiTrace_SetParentSpanId](_hitrace.md#oh_hitrace_setparentspanid) ([HiTraceId](_hi_trace_id.md) \*id, uint64_t parentSpanId) | 设置HiTraceId结构的parentSpanId字符。  | 
+| void [OH_HiTrace_SetParentSpanId](_hitrace.md#oh_hitrace_setparentspanid) ([HiTraceId](_hi_trace_id.md) \*id, uint64_t parentSpanId) | 设置HiTraceId结构的parentSpanId字段。  | 
 | int [OH_HiTrace_IdToBytes](_hitrace.md#oh_hitrace_idtobytes) (const [HiTraceId](_hi_trace_id.md) \*id, uint8_t \*pIdArray, int len) | 将HiTraceId结构体转换为字节数组，用于缓存或者通信传递。  | 
 | void [OH_HiTrace_StartTrace](_hitrace.md#oh_hitrace_starttrace) (const char \*name) | 标记一个同步跟踪耗时任务的开始。  | 
 | void [OH_HiTrace_FinishTrace](_hitrace.md#oh_hitrace_finishtrace) (void) | 标记一个同步跟踪耗时任务的结束。  | 

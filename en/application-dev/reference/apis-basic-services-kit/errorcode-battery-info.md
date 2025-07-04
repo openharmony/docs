@@ -4,7 +4,7 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-## 4600101 Service Connection Failure
+## 5100101 Service Connection Failure
 
 **Error Message**
 
@@ -30,4 +30,4 @@ Check whether the system services are running properly.
     > hdc shell hidumper -ls
     ```
 
-2. Check whether **Battery-info** is included in the system service list.
+2. Check whether **BatteryService** is present on the system service list.

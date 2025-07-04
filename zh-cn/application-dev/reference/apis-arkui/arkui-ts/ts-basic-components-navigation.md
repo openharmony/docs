@@ -8,7 +8,7 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 >
 > - 该组件从API version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM, SafeAreaType.KEYBOARD, SafeAreaType.CUTOUT], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
 >
-> - [NavBar](#navbar12)嵌套使用Navigation时，内层Navigation的生命周期不和外层Navigation以及[全模态](ts-universal-attributes-modal-transition.md#全屏模态转场)的生命周期进行联动。
+> - [NavBar](#navbar12)嵌套使用Navigation时，内层Navigation的生命周期不和外层Navigation以及[全模态](ts-universal-attributes-modal-transition.md)的生命周期进行联动。
 >
 > - Navigation未设置主副标题并且没有返回键时，不显示标题栏。
 
@@ -48,6 +48,31 @@ Navigation(pathInfos: NavPathStack)
 | 参数名       | 类型                            | 必填   | 说明   |
 | --------- | ------------------------------- | ---- | ------ |
 | pathInfos | [NavPathStack](#navpathstack10) | 是    | 路由栈信息。 |
+
+### Navigation<sup>20+</sup>
+
+Navigation(pathInfos: NavPathStack, homeDestination: HomePathInfo)
+
+绑定路由栈到Navigation组件，并且指定一个NavDestination作为Navigation的导航栏（主页），适用于使用[NavPathStack](#navpathstack10)配合[navDestination](#navdestination10)属性或者系统路由表进行页面路由。使用示例参考[示例16（Navigation使用NavDestination作为导航栏）](#示例16navigation使用navdestination作为导航栏)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名       | 类型                            | 必填   | 说明   |
+| --------- | ------------------------------- | ---- | ------ |
+| pathInfos | [NavPathStack](#navpathstack10) | 是    | 路由栈信息。 |
+| homeDestination | [HomePathInfo](#homepathinfo20) | 是    | 主页NavDestination信息。 |
+
+> **说明：**
+>
+> 如果使用了主页NavDestination，则Navigation有如下变化：
+>
+> - 开发者写在Navigation组件内的内容不会被创建。
+>
+> - 对于Navigation的各种属性，如果主页NavDestination有对应功能的属性，则Navigation的属性不生效。
 
 ## 属性
 
@@ -658,6 +683,10 @@ customNavContentTransition(delegate:(from: NavContentInfo, to: NavContentInfo, o
 
 Navigation路由栈，从API version 12开始，NavPathStack允许被继承。开发者可以在派生类中新增属性方法，也可以重写基类NavPathStack的方法。派生类对象可以替代基类NavPathStack对象使用。使用示例参见[示例10](#示例10定义路由栈派生类)。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 > **说明：**
 >
 > 1.连续调用多个页面栈操作方法时，中间过程会被忽略，显示最终的栈操作结果。<br/>
@@ -769,7 +798,7 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 | 类型                | 说明        |
 | ------------------- | --------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 异步返回结果。 |
 
 **错误码：**
 
@@ -1283,7 +1312,7 @@ getParamByName(name: string): Array<unknown\>
 
 | 类型              | 说明                                |
 | --------------- | --------------------------------- |
-| Array<unknown\> | 返回全部名为name的NavDestination页面的参数信息，unkown可以是用户自定义的类型。 |
+| Array<unknown\> | 返回全部名为name的NavDestination页面的参数信息，unknown可以是用户自定义的类型。 |
 
 ### getIndexByName<sup>10+</sup>
 
@@ -1507,7 +1536,7 @@ NavigationTransitionProxy参数信息。
 |------|-------|-----|-------|
 | from | [NavContentInfo](#navcontentinfo11) | 是 | 退场页面信息。|
 | to | [NavContentInfo](#navcontentinfo11) | 是 | 进场页面信息。|
-| isInteractive<sup>12+</sup> | boolean | 否 | 是否为可交互转场动画。<br/>true：本次转场动画是可交互转场。<br/>false：本次转场动画不是可交互转场。|
+| isInteractive<sup>12+</sup> | boolean | 否 | 是否为可交互转场动画。<br> 默认值：false。<br/>true：本次转场动画是可交互转场。<br/>false：本次转场动画不是可交互转场。|
 
 ### finishTransition
 
@@ -1661,8 +1690,8 @@ Navigation首页名字。
 | 名称 | 值 | 说明                                                         |
 | ---- | --- | ------------------------------------------------------------ |
 | Free | 0 | 当内容为满一屏的可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。<br/>可滚动组件不满一屏时，如果想使用联动效果，就要使用滚动组件提供的[edgeEffect](ts-container-list.md#edgeeffect)接口将options参数设置为true。未滚动状态，标题栏高度与Full模式一致；滚动时，标题栏的最小高度与Mini模式一致。 |
-| Mini | 1 | 固定为小标题模式。<br/>默认值：API version 12之前，只有主标题时，标题栏高度为56vp；同时有主标题和副标题时，标题栏高度为82vp。从API version 12开始，该模式下标题栏高度为56vp。 |
-| Full | 2 | 固定为大标题模式。<br/>默认值：只有主标题时，标题栏高度为112vp；同时有主标题和副标题时，标题栏高度为138vp。 |
+| Full | 1 | 固定为大标题模式。<br/>默认值：只有主标题时，标题栏高度为112vp；同时有主标题和副标题时，标题栏高度为138vp。 |
+| Mini | 2 | 固定为小标题模式。<br/>默认值：API version 12之前，只有主标题时，标题栏高度为56vp；同时有主标题和副标题时，标题栏高度为82vp。从API version 12开始，该模式下标题栏高度为56vp。 |
 
 ## NavigationCommonTitle<sup>9+</sup>
 
@@ -1846,6 +1875,19 @@ type SystemBarStyle = SystemBarStyle
 | -------- | ------------------ |
 | [SystemBarStyle](../arkts-apis-window-i.md#systembarstyle12)   | 状态栏文字颜色。默认值：`'#0xE5FFFFFF'`。|
 
+## HomePathInfo<sup>20+</sup>
+
+主页NavDestination的信息。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型      | 只读    |  可选   | 说明                   |
+| ----- | ------- | ---- | ---- | ----------------- |
+| name  | string  | 否 |   否    | 主页NavDestination的页面名称。 |
+| param | Object | 否 |   是    | 主页NavDestination的页面详细参数。 |
+
 ## 示例
 
 示例效果请以真机为准，系统路由表不支持预览器，跨平台以及模拟器。
@@ -1980,7 +2022,7 @@ struct NavigationExample {
           return;
         }
         if (typeof to === "string") {
-          console.log("target page is navigation home");
+          console.info("target page is navigation home");
           return;
         }
         // 重定向目标页面，更改为pageTwo页面到pageOne页面。
@@ -1997,14 +2039,14 @@ struct NavigationExample {
           return;
         }
         if (typeof from === "string") {
-          console.log("current transition is from navigation home");
+          console.info("current transition is from navigation home");
         } else {
-          console.log(`current transition is from  ${(from as NavDestinationContext).pathInfo.name}`);
+          console.info(`current transition is from  ${(from as NavDestinationContext).pathInfo.name}`);
         }
         if (typeof to === "string") {
-          console.log("current transition to is navBar");
+          console.info("current transition to is navBar");
         } else {
-          console.log(`current transition is to ${(to as NavDestinationContext).pathInfo.name}`);
+          console.info(`current transition is to ${(to as NavDestinationContext).pathInfo.name}`);
         }
       },
       // Navigation单双栏显示状态发生变更时触发该回调。
@@ -2012,7 +2054,7 @@ struct NavigationExample {
         if (!this.isUseInterception) {
           return;
         }
-        console.log(`current navigation mode is ${mode}`);
+        console.info(`current navigation mode is ${mode}`);
       }
     })
   }
@@ -2084,7 +2126,7 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.popToName('pageTwo'); //回退路由栈到第一个名为name的NavDestination页面
-            console.log('popToName' + JSON.stringify(this.pageInfos),
+            console.info('popToName' + JSON.stringify(this.pageInfos),
               '返回值' + JSON.stringify(this.pageInfos.popToName('pageTwo')));
           })
         Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
@@ -2093,7 +2135,7 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.popToIndex(1); // 回退路由栈到index指定的NavDestination页面
-            console.log('popToIndex' + JSON.stringify(this.pageInfos));
+            console.info('popToIndex' + JSON.stringify(this.pageInfos));
           })
         Button('moveToTop', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -2101,7 +2143,7 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.moveToTop('pageTwo'); // 将第一个名为name的NavDestination页面移到栈顶
-            console.log('moveToTop' + JSON.stringify(this.pageInfos),
+            console.info('moveToTop' + JSON.stringify(this.pageInfos),
               '返回值' + JSON.stringify(this.pageInfos.moveToTop('pageTwo')));
           })
         Button('moveIndexToTop', { stateEffect: true, type: ButtonType.Capsule })
@@ -2110,7 +2152,7 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.moveIndexToTop(1); // 将index指定的NavDestination页面移到栈顶
-            console.log('moveIndexToTop' + JSON.stringify(this.pageInfos));
+            console.info('moveIndexToTop' + JSON.stringify(this.pageInfos));
           })
         Button('clear', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -2124,21 +2166,21 @@ export struct PageOne {
           .height(40)
           .margin(20)
           .onClick(() => {
-            console.log('-------------------');
-            console.log('获取栈中所有NavDestination页面的名称', JSON.stringify(this.pageInfos.getAllPathName()));
-            console.log('获取index指定的NavDestination页面的参数信息',
+            console.info('-------------------');
+            console.info('获取栈中所有NavDestination页面的名称', JSON.stringify(this.pageInfos.getAllPathName()));
+            console.info('获取index指定的NavDestination页面的参数信息',
               JSON.stringify(this.pageInfos.getParamByIndex(1)));
-            console.log('获取全部名为name的NavDestination页面的参数信息',
+            console.info('获取全部名为name的NavDestination页面的参数信息',
               JSON.stringify(this.pageInfos.getParamByName('pageTwo')));
-            console.log('获取全部名为name的NavDestination页面的位置索引',
+            console.info('获取全部名为name的NavDestination页面的位置索引',
               JSON.stringify(this.pageInfos.getIndexByName('pageOne')));
-            console.log('获取栈大小', JSON.stringify(this.pageInfos.size()));
+            console.info('获取栈大小', JSON.stringify(this.pageInfos.size()));
           })
       }.width('100%').height('100%')
     }.title('pageOne')
     .onBackPressed(() => {
       const popDestinationInfo = this.pageInfos.pop(); // 弹出路由栈栈顶元素
-      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo));
+      console.info('pop' + '返回值' + JSON.stringify(popDestinationInfo));
       return true;
     }).onReady((context: NavDestinationContext) => {
       this.pageInfos = context.pathStack;
@@ -2192,7 +2234,7 @@ export struct PageTwo {
     })
     .onReady((context: NavDestinationContext) => {
       this.pathStack = context.pathStack;
-      console.log("current page config info is " + JSON.stringify(context.getConfigInRouteMap()));
+      console.info("current page config info is " + JSON.stringify(context.getConfigInRouteMap()));
     })
   }
 }
@@ -2262,7 +2304,7 @@ struct NavigationExample {
       if (CustomTransition.getInstance().interactive) {
         let customAnimation: NavigationAnimatedTransition = {
           onTransitionEnd: (isSuccess: boolean) => {
-            console.log("===== current transition is " + isSuccess);
+            console.info("===== current transition is " + isSuccess);
             CustomTransition.getInstance().recoverState();
             CustomTransition.getInstance().proxy = undefined;
           },
@@ -2280,7 +2322,7 @@ struct NavigationExample {
       }
       let customAnimation: NavigationAnimatedTransition = {
         onTransitionEnd: (isSuccess: boolean) => {
-          console.log(`current transition result is ${isSuccess}`);
+          console.info(`current transition result is ${isSuccess}`);
         },
         timeout: 7000,
         // 转场开始时系统调用该方法，并传入转场上下文代理对象
@@ -2544,9 +2586,9 @@ export struct PageTwo {
 }
 ```
 ```ts
-// CustomNavigationUtils.ets
-// 自定义接口，用来保存某个页面相关的转场动画回调和参数
 // src/main/pages/CustomNavigationUtils.ets
+// 自定义接口，用来保存某个页面相关的转场动画回调和参数
+
 export interface AnimateCallback {
   finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
   start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
@@ -3376,7 +3418,7 @@ struct PageOne {
         this.paramNum = (ctx?.pathInfo?.param as PageParam)?.num;
         this.stack = ctx.pathStack;
       } catch (e) {
-        console.log(`testTag onReady catch exception: ${JSON.stringify(e)}`);
+        console.error(`testTag onReady catch exception: ${JSON.stringify(e)}`);
       }
     })
   }
@@ -3496,7 +3538,7 @@ struct PageOneComponent {
         this.eventStr += "<onReady>";
         this.stack = ctx.pathStack;
       } catch (e) {
-        console.log(`testTag onReady catch exception: ${JSON.stringify(e)}`);
+        console.error(`testTag onReady catch exception: ${JSON.stringify(e)}`);
       }
     })
   }
@@ -3640,7 +3682,7 @@ class DerivedNavPathStack extends NavPathStack {
   pushPath(info: NavPathInfo, animated?: boolean): void
   pushPath(info: NavPathInfo, options?: NavigationOptions): void
   pushPath(info: NavPathInfo, secArg?: boolean | NavigationOptions): void {
-    console.log('[derive-test] reached DerivedNavPathStack\'s pushPath');
+    console.info('[derive-test] reached DerivedNavPathStack\'s pushPath');
     if (typeof secArg === 'boolean') {
       super.pushPath(info, secArg);
     } else {
@@ -3652,7 +3694,7 @@ class DerivedNavPathStack extends NavPathStack {
   pop(animated?: boolean | undefined): NavPathInfo | undefined
   pop(result: Object, animated?: boolean | undefined): NavPathInfo | undefined
   pop(result?: Object, animated?: boolean | undefined): NavPathInfo | undefined {
-    console.log('[derive-test] reached DerivedNavPathStack\'s pop');
+    console.info('[derive-test] reached DerivedNavPathStack\'s pop');
     return super.pop(result, animated);
   }
 
@@ -3726,12 +3768,12 @@ struct PageOne {
       })
     }.title('Page One')
     .onReady((context: NavDestinationContext) => {
-      console.log('[derive-test] reached PageOne\'s onReady');
+      console.info('[derive-test] reached PageOne\'s onReady');
       // get derived stack from navdestinationContext
       this.derivedStack = context.pathStack as DerivedNavPathStack;
-      console.log('[derive-test] -- got derivedStack: ' + this.derivedStack.id);
+      console.info('[derive-test] -- got derivedStack: ' + this.derivedStack.id);
       this.curStringifyParam = JSON.stringify(context.pathInfo.param);
-      console.log('[derive-test] -- got param: ' + this.curStringifyParam);
+      console.info('[derive-test] -- got param: ' + this.curStringifyParam);
     })
   }
 }
@@ -3875,14 +3917,14 @@ class MainTitleTextModfier extends TextModifier {
 
   applyNormalAttribute(instance: TextModifier): void {
     if (this.useStyle1) {
-      console.log(`testTag mainTitle use style1`);
+      console.info(`testTag mainTitle use style1`);
       instance.fontColor('#FFFFC000');
       instance.fontSize(35);
       instance.fontWeight(FontWeight.Bolder);
       instance.fontStyle(FontStyle.Normal);
       instance.textShadow({ radius: 5, offsetX: 9 });
     } else {
-      console.log(`testTag mainTitle use style2`);
+      console.info(`testTag mainTitle use style2`);
       instance.fontColor('#FF23A98D');
       instance.fontSize(20);
       instance.heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST);
@@ -3898,14 +3940,14 @@ class SubTitleTextModfier extends TextModifier {
 
   applyNormalAttribute(instance: TextModifier): void {
     if (this.useStyle1) {
-      console.log(`testTag subTitle use style1`);
+      console.info(`testTag subTitle use style1`);
       instance.fontColor('#FFFFC000');
       instance.fontSize(15);
       instance.fontWeight(FontWeight.Bolder);
       instance.fontStyle(FontStyle.Normal);
       instance.textShadow({ radius: 5, offsetX: 9 });
     } else {
-      console.log(`testTag subTitle use style2`);
+      console.info(`testTag subTitle use style2`);
       instance.fontColor('#FF23A98D');
       instance.fontSize(10);
       instance.fontWeight(FontWeight.Lighter);
@@ -4259,9 +4301,8 @@ export struct PageContainer {
 }
 ```
 ```ts
-// CustomNavigationUtils.ts 工具类，用来管理所有页面的自定义动画参数注册和获取等
+// src/main/pages/CustomNavigationUtils.ts 工具类，用来管理所有页面的自定义动画参数注册和获取等
 // 自定义接口，用来保存某个页面相关的转场动画回调和参数
-// src/main/pages/CustomNavigationUtils.ts
 export interface AnimateCallback {
   start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
   finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
@@ -4514,3 +4555,87 @@ struct NavigationExample {
 ```
 
 ![zh-cn_image_navigation_toolbar_adaptation_landscape](figures/zh-cn_image_navigation_toolbar_adaptation_landscape.gif)
+
+### 示例16（Navigation使用NavDestination作为导航栏）
+
+该示例代码主要展示Navigation可以使用NavDestination作为导航栏（主页）。
+
+```ts
+@Component
+struct PageHome {
+  private stack: NavPathStack | undefined = undefined;
+
+  build() {
+    NavDestination() {
+      Stack({alignContent: Alignment.Center}) {
+        Button('push PageOne').onClick(() => {
+          this.stack?.pushPath({name: 'PageOne'});
+        })
+      }.width('100%').height('100%')
+    }.title('PageHome')
+    .onReady((ctx: NavDestinationContext) => {
+      this.stack = ctx.pathStack;
+    })
+  }
+}
+
+@Builder
+function PageHomeBuilder() {
+  PageHome()
+}
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Stack({alignContent: Alignment.Center}) {
+        Text('PageOne')
+      }.width('100%').height('100%')
+    }.title('PageOne')
+  }
+}
+
+@Builder
+function PageOneBuilder() {
+  PageOne()
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  build() {
+    // 在这里配置主页NavDestination信息
+    Navigation(this.stack, { name: 'PageHome' }) {
+    }
+    .width('100%').height('100%')
+  }
+}
+```
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"。
+```json
+// src/main/resources/base/profile/route_map.json
+{
+  "routerMap": [
+    {
+      "name": "PageHome",
+      "pageSourceFile": "src/main/ets/pages/Index.ets",
+      "buildFunction": "PageHomeBuilder",
+      "data": {
+        "description": "this is PageHome"
+      }
+    },
+    {
+      "name": "PageOne",
+      "pageSourceFile": "src/main/ets/pages/Index.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is PageOne"
+      }
+    }
+  ]
+}
+```
+
+![zh-cn_image_navigation_home_NavDestination](figures/zh-cn_image_navigation_home_NavDestination.gif)

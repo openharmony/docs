@@ -1,6 +1,6 @@
 # @ohos.hidebug (Debug调试)
 
-为应用提供多种以供调试、调优的方法。包括但不限于内存、CPU、GPU、GC等相关数据的获取，进程trace、profiler采集，VM堆快照转储等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试，调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
+为应用提供多种以供调试、调优的方法。包括但不限于内存、CPU、GPU、GC等相关数据的获取，进程trace、profiler采集，VM堆快照转储等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试、调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
 
 > **说明：**
 >
@@ -748,7 +748,7 @@ console.info(`totalMem: ${systemMemInfo.totalMem}, freeMem: ${systemMemInfo.free
 
 getVMRuntimeStats(): GcStats
 
-获取系统gc全部统计信息。
+获取系统[GC](../../arkts-utils/gc-introduction.md)统计信息。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -775,7 +775,7 @@ console.info(`fullgc-longtime-count: ${vMRuntimeStats['ark.gc.fullgc-longtime-co
 
 getVMRuntimeStat(item: string): number
 
-根据参数获取指定的系统gc统计信息。
+根据参数获取指定的系统[GC](../../arkts-utils/gc-introduction.md)统计信息。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 

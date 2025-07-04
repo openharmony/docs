@@ -8,7 +8,7 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 
 ![image-SysCap.png](figures/image-SysCap.png)
 
-<!--Del-->开发者可以在[SysCap列表](syscap-list.md)中查询OpenHarmony的能力集。<!--DelEnd-->
+<!--Del-->开发者可以在[SysCap列表](phone-syscap-list.md)中查询OpenHarmony的能力集。<!--DelEnd-->
 
 ### 支持能力集，联想能力集与要求能力集
 

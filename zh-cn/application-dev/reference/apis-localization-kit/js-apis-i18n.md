@@ -1,6 +1,6 @@
 # @ohos.i18n (国际化-I18n)
 
-本模块提供系统相关的或者增强的[国际化](../../internationalization/i18n-l10n.md#国际化和本地化概述)能力，包括区域管理、电话号码处理、日历等，相关接口为[ECMA 402](https://dev.ecma-international.org/publications-and-standards/standards/ecma-402/)标准中未定义的补充接口。[Intl模块](js-apis-intl.md)提供了ECMA 402标准定义的基础国际化接口，与本模块共同使用可提供完整地国际化能力。
+本模块提供系统相关的或者增强的[国际化](../../internationalization/i18n-l10n.md)能力，包括区域管理、电话号码处理、日历等，相关接口为[ECMA 402](https://dev.ecma-international.org/publications-and-standards/standards/ecma-402/)标准中未定义的补充接口。[Intl模块](js-apis-intl.md)提供了ECMA 402标准定义的基础国际化接口，与本模块共同使用可提供完整地国际化能力。
 
 >  **说明：**
 >
@@ -767,11 +767,11 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 **系统能力：** SystemCapability.Global.I18n
 
-| 名称  | 类型   | 可读   | 可写   | 说明                |
+| 名称  | 类型   | 只读   | 可选   | 说明                |
 | ---- | ---- | ---- | ---- | ----------------- |
-| type | string | 是    | 是    | 实体的类型，当前支持phone_number和date类型。phone_number表示实体类型是电话号码，date表示实体类型是时间日期。 |
-| begin | number | 是    | 是    | 实体在输入字符串中的起始位置。 |
-| end | number | 是    | 是    | 实体在输入字符串中的终止位置。 |
+| type | string | 否    | 否    | 实体的类型，当前支持phone_number和date类型。phone_number表示实体类型是电话号码，date表示实体类型是时间日期。 |
+| begin | number | 否    | 否    | 实体在输入字符串中的起始位置。 |
+| end | number | 否    | 否    | 实体在输入字符串中的终止位置。 |
 
 ## Calendar<sup>8+</sup>
 
@@ -1266,8 +1266,8 @@ isValidNumber(number: string): boolean
 
 **示例：**
   ```ts
-  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
-  let isValidNumber: boolean = phonenumberfmt.isValidNumber('158****2312'); // isValidNumber = true
+  let formatter: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
+  let isValidNumber: boolean = formatter.isValidNumber('158****2312'); // isValidNumber = true
   ```
 
 
@@ -1298,18 +1298,18 @@ format(number: string): string
 
 **示例：**
   ```ts
-  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
+  let formatter: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
   // formattedPhoneNumber = '158 **** 2312'
-  let formattedPhoneNumber: string = phonenumberfmt.format('158****2312');
+  let formattedPhoneNumber: string = formatter.format('158****2312');
 
   // 拨号中的电话号码格式化
   let option: i18n.PhoneNumberFormatOptions = { type: 'TYPING' };
-  let phoneNumberFmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN', option);
+  let typingFormatter: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN', option);
   let phoneNumber: string = '130493';
   let formatResult: string = '';
   for (let i = 0; i < phoneNumber.length; i++) {
     formatResult += phoneNumber.charAt(i);
-    formatResult = phoneNumberFmt.format(formatResult); // formatResult = '130 493'
+    formatResult = typingFormatter.format(formatResult); // formatResult = '130 493'
   }
   ```
 
@@ -1338,9 +1338,9 @@ getLocationName(number: string, locale: string): string
 
 **示例：**
   ```ts
-  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
-  let locationName: string = phonenumberfmt.getLocationName('158****2345', 'zh-CN'); // locationName = '广东省湛江市'
-  let locName: string = phonenumberfmt.getLocationName('0039312****789', 'zh-CN'); // locName = '意大利'
+  let phonenumberFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat('CN');
+  let locationName: string = phonenumberFormat.getLocationName('158****2345', 'zh-CN'); // locationName = '广东省湛江市'
+  let locName: string = phonenumberFormat.getLocationName('0039312****789', 'zh-CN'); // locName = '意大利'
   ```
 
 
@@ -1352,9 +1352,9 @@ getLocationName(number: string, locale: string): string
 
 **系统能力：** SystemCapability.Global.I18n
 
-| 名称   | 类型     | 可读   | 可写   | 说明                                       |
+| 名称   | 类型     | 只读   | 可选   | 说明                                       |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| type | string | 是    | 是    | 表示对电话号码格式化的类型，取值包括：'E164',&nbsp;'INTERNATIONAL',&nbsp;'NATIONAL',&nbsp;'RFC3966',&nbsp;'TYPING'。<br>-在API version 8版本，type为必填项。 <br>-API version 9版本开始，type为选填项。<br>-API version 12版本开始支持TYPING，表示对拨号中的电话号码实时格式化。|
+| type | string | 否    | 是    | 表示对电话号码格式化的类型，取值包括：'E164',&nbsp;'INTERNATIONAL',&nbsp;'NATIONAL',&nbsp;'RFC3966',&nbsp;'TYPING'。<br>-在API version 8版本，type为必填项。 <br>-API version 9版本开始，type为选填项。<br>-API version 12版本开始支持TYPING，表示对拨号中的电话号码实时格式化。|
 
 
 ## UnitInfo<sup>8+</sup>
@@ -1365,10 +1365,10 @@ getLocationName(number: string, locale: string): string
 
 **系统能力：** SystemCapability.Global.I18n
 
-| 名称            | 类型     | 可读   | 可写   | 说明                                       |
+| 名称            | 类型     | 只读   | 可选   | 说明                                       |
 | ------------- | ------ | ---- | ---- | ---------------------------------------- |
-| unit          | string | 是    | 是    | 单位的名称，如：'meter',&nbsp;'inch',&nbsp;'cup'等。 |
-| measureSystem | string | 是    | 是    | 单位的度量体系，取值包括：'SI',&nbsp;'US',&nbsp;'UK'。 |
+| unit          | string | 否    | 否    | 单位的名称，如：'meter',&nbsp;'inch',&nbsp;'cup'等。 |
+| measureSystem | string | 否    | 否    | 单位的度量体系，取值包括：'SI',&nbsp;'US',&nbsp;'UK'。 |
 
 
 ## i18n.getInstance<sup>8+</sup>
@@ -2128,7 +2128,7 @@ getMilliseconds(): number
 
 | 类型       | 说明         |
 | -------- | ---------- |
-| number | 从1970年1月1日0时0分0秒到时间跳变点之间的毫秒数，例如：1762074000000，单位：毫秒。 |
+| number | 从1970年1月1日0时0分0秒到时间跳变点之间的毫秒数，例如：1762074000000，单位：毫秒。如果当前时区[原始偏移量](#getrawoffset)保持不变并且不使用夏令时，则返回0。|
 
 **示例：**
 ```ts
@@ -3175,13 +3175,13 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 **系统能力：** SystemCapability.Global.I18n
 
-| 名称            | 类型             |  必填   |  说明                                   |
-| --------------- | --------------- | ------  | --------------------------------------- |
-| baseName        | string          |   是    | 节假日的英文名称。              |
-| year            | number          |   是    | 节假日所在年。                   |
-| month           | number          |   是    | 节假日所在月。          |
-| day             | number          |   是    | 节假日所在日。                         |
-| localNames      | Array&lt;[HolidayLocalName](#holidaylocalname11)&gt;          |   否    | 节假日的本地名称列表。          |
+| 名称            | 类型             |  只读   |  可选   |  说明                                   |
+| --------------- | --------------- | ------  | ------  | --------------------------------------- |
+| baseName        | string          |   否    |   否    | 节假日的英文名称。              |
+| year            | number          |   否    |   否    | 节假日所在年。                   |
+| month           | number          |   否    |   否    | 节假日所在月。          |
+| day             | number          |   否    |   否    | 节假日所在日。                         |
+| localNames      | Array&lt;[HolidayLocalName](#holidaylocalname11)&gt;          |   否    |   是    | 节假日的本地名称列表。          |
 
 ## HolidayLocalName<sup>11+</sup>
 
@@ -3191,10 +3191,10 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 **系统能力：** SystemCapability.Global.I18n
 
-| 名称            | 类型             |  必填   |  说明                                   |
-| --------------- | -----------------| ------  | --------------------------------------- |
-| language        | string           |   是    | 语言，例如ar，en，tr。          |
-| name            | string           |   是    | 节假日的本地名称，例如Sacrifice Feast（宰牲节）的土耳其语名称为Kurban Bayrami。      |
+| 名称            | 类型             |  只读   |  可选   |  说明                                   |
+| --------------- | -----------------| ------  | ------  | --------------------------------------- |
+| language        | string           |   否    |   否    | 语言，例如ar，en，tr。          |
+| name            | string           |   否    |   否    | 节假日的本地名称，例如Sacrifice Feast（宰牲节）的土耳其语名称为Kurban Bayrami。      |
 
 
 ## i18n.getSimpleDateTimeFormatByPattern<sup>20+</sup>
@@ -3679,12 +3679,12 @@ format(value: number): StyledString
 
 **系统能力：** SystemCapability.Global.I18n
 
-| 名称            | 类型             |  必填   |  说明                                   |
-| --------------- | --------------- | ------  | --------------------------------------- |
-| integer        | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   否    |  指定整数部分的文本样式。默认值：默认的文本样式。     |
-| decimal        | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   否    |  指定小数点的文本样式。默认值：默认的文本样式。    |
-| fraction       | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   否    |  指定小数部分的文本样式。默认值：默认的文本样式。     |
-| unit           | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   否    |  指定单位部分的文本样式。默认值：默认的文本样式。     |
+| 名称            | 类型             |  只读   |  可选   |  说明                                   |
+| --------------- | --------------- | ------  | ------  | --------------------------------------- |
+| integer        | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   否    |   是    |  指定整数部分的文本样式。默认值：默认的文本样式。     |
+| decimal        | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   否    |   是    |  指定小数点的文本样式。默认值：默认的文本样式。    |
+| fraction       | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   否    |   是    |  指定小数部分的文本样式。默认值：默认的文本样式。     |
+| unit           | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   否    |   是    |  指定单位部分的文本样式。默认值：默认的文本样式。     |
 
 ## i18n.getDisplayCountry<sup>(deprecated)</sup>
 

@@ -1,6 +1,6 @@
 # @ohos.request (Upload and Download)
 
-The **request** module provides applications with basic upload, download, and background transmission agent capabilities.
+The request module provides applications with basic upload, download, and background transmission agent capabilities.
 
 > **NOTE**
 >
@@ -51,7 +51,7 @@ import { request } from '@kit.BasicServicesKit';
 | ERROR_OFFLINE<sup>9+</sup> | number |   9   | (Download error codes) No network connection.|
 | ERROR_UNSUPPORTED_NETWORK_TYPE<sup>9+</sup> | number |   10   | (Download error codes) Network type mismatch.|
 | PAUSED_QUEUED_FOR_WIFI<sup>7+</sup> | number |   0   | (Causes of download pause) Download paused and queuing for a WLAN connection, because the file size exceeds the maximum value allowed for a mobile network session.|
-| PAUSED_WAITING_FOR_NETWORK<sup>7+</sup> | number |   1   | (Causes of download pause) Download paused due to a network connection problem, for example, network disconnection.|
+| PAUSED_WAITING_FOR_NETWORK<sup>7+</sup> | number |   1   | (Causes of download pause) Download paused due to a network connection problem,<br>for example, network disconnection.|
 | PAUSED_WAITING_TO_RETRY<sup>7+</sup> | number |   2   | (Causes of download pause) Download paused due to network error and then retried.|
 | PAUSED_BY_USER<sup>9+</sup> | number |   3   | (Causes of download pause) The user paused the session.|
 | PAUSED_UNKNOWN<sup>7+</sup> | number |   4   | (Causes of download pause) Download paused due to unknown reasons.|
@@ -97,7 +97,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 13400002 | File path not supported or invalid. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -157,7 +157,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 13400002 | File path not supported or invalid. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -359,7 +359,7 @@ Subscribes to HTTP response events for the upload task.This API uses an asynchro
 | type | string | Yes| Type of the event to subscribe to.<br>- **'headerReceive'**: The HTTP request receives a response.|
 | callback | function | Yes| Callback used to return the response content.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -858,7 +858,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 13400003 | Task service ability error. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -913,7 +913,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 13400003 | Task service ability error. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -1076,7 +1076,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -1132,35 +1132,35 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // Replace the URL with the HTTP address of the real server.
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    let progressCallback1 = (receivedSize: number, totalSize: number) => {
-      console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
-    };
-    let progressCallback2 = (receivedSize: number, totalSize: number) => {
-      console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
-    };
-    downloadTask.on('progress', progressCallback1);
-    downloadTask.on('progress', progressCallback2);
-    // Unsubscribe from progressCallback1.
-    downloadTask.off('progress', progressCallback1);
-    // Unsubscribe from all callbacks of download progress events.
-    downloadTask.off('progress');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // Replace the URL with the HTTP address of the real server.
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      let progressCallback1 = (receivedSize: number, totalSize: number) => {
+        console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
+      };
+      let progressCallback2 = (receivedSize: number, totalSize: number) => {
+        console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
+      };
+      downloadTask.on('progress', progressCallback1);
+      downloadTask.on('progress', progressCallback2);
+      // Unsubscribe from progressCallback1.
+      downloadTask.off('progress', progressCallback1);
+      // Unsubscribe from all callbacks of download progress events.
+      downloadTask.off('progress');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 
@@ -1188,37 +1188,37 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // Replace the URL with the HTTP address of the real server.
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    let completeCallback = () => {
-      console.info('Download task completed.');
-    };
-    downloadTask.on('complete', completeCallback);
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // Replace the URL with the HTTP address of the real server.
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      let completeCallback = () => {
+        console.info('Download task completed.');
+      };
+      downloadTask.on('complete', completeCallback);
 
-    let pauseCallback = () => {
-      console.info('Download task pause.');
-    };
-    downloadTask.on('pause', pauseCallback);
+      let pauseCallback = () => {
+        console.info('Download task pause.');
+      };
+      downloadTask.on('pause', pauseCallback);
 
-    let removeCallback = () => {
-      console.info('Download task remove.');
-    };
-    downloadTask.on('remove', removeCallback);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+      let removeCallback = () => {
+        console.info('Download task remove.');
+      };
+      downloadTask.on('remove', removeCallback);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 
@@ -1246,62 +1246,61 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // Replace the URL with the HTTP address of the real server.
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    let completeCallback1 = () => {
-      console.info('Download delete complete notification.');
-    };
-    let completeCallback2 = () => {
-      console.info('Download delete complete notification.');
-    };
-    downloadTask.on('complete', completeCallback1);
-    downloadTask.on('complete', completeCallback2);
-    // Unsubscribe from completeCallback1.
-    downloadTask.off('complete', completeCallback1);
-    // Unsubscribe from all callbacks of the download completion events.
-    downloadTask.off('complete');
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // Replace the URL with the HTTP address of the real server.
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      let completeCallback1 = () => {
+        console.info('Download delete complete notification.');
+      };
+      let completeCallback2 = () => {
+        console.info('Download delete complete notification.');
+      };
+      downloadTask.on('complete', completeCallback1);
+      downloadTask.on('complete', completeCallback2);
+      // Unsubscribe from completeCallback1.
+      downloadTask.off('complete', completeCallback1);
+      // Unsubscribe from all callbacks of the download completion events.
+      downloadTask.off('complete');
 
-    let pauseCallback1 = () => {
-      console.info('Download delete pause notification.');
-    };
-    let pauseCallback2 = () => {
-      console.info('Download delete pause notification.');
-    };
-    downloadTask.on('pause', pauseCallback1);
-    downloadTask.on('pause', pauseCallback2);
-    // Unsubscribe from pauseCallback1.
-    downloadTask.off('pause', pauseCallback1);
-    // Unsubscribe from all callbacks of the download pause events.
-    downloadTask.off('pause');
+      let pauseCallback1 = () => {
+        console.info('Download delete pause notification.');
+      };
+      let pauseCallback2 = () => {
+        console.info('Download delete pause notification.');
+      };
+      downloadTask.on('pause', pauseCallback1);
+      downloadTask.on('pause', pauseCallback2);
+      // Unsubscribe from pauseCallback1.
+      downloadTask.off('pause', pauseCallback1);
+      // Unsubscribe from all callbacks of the download pause events.
+      downloadTask.off('pause');
 
-    let removeCallback1 = () => {
-      console.info('Download delete remove notification.');
-    };
-    let removeCallback2 = () => {
-      console.info('Download delete remove notification.');
-    };
-    downloadTask.on('remove', removeCallback1);
-    downloadTask.on('remove', removeCallback2);
-    // Unsubscribe from removeCallback1.
-    downloadTask.off('remove', removeCallback1);
-    // Unsubscribe from all callbacks of the download removal events.
-    downloadTask.off('remove');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
-  
+      let removeCallback1 = () => {
+        console.info('Download delete remove notification.');
+      };
+      let removeCallback2 = () => {
+        console.info('Download delete remove notification.');
+      };
+      downloadTask.on('remove', removeCallback1);
+      downloadTask.on('remove', removeCallback2);
+      // Unsubscribe from removeCallback1.
+      downloadTask.off('remove', removeCallback1);
+      // Unsubscribe from all callbacks of the download removal events.
+      downloadTask.off('remove');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }  
   ```
 
 
@@ -1335,27 +1334,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // Replace the URL with the HTTP address of the real server.
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    let failCallback = (err: number) => {
-      console.error(`Failed to download the task. Code: ${err}`);
-    };
-    downloadTask.on('fail', failCallback);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // Replace the URL with the HTTP address of the real server.
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      let failCallback = (err: number) => {
+        console.error(`Failed to download the task. Code: ${err}`);
+      };
+      downloadTask.on('fail', failCallback);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 
@@ -1389,35 +1388,35 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // Replace the URL with the HTTP address of the real server.
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    let failCallback1 = (err: number) => {
-      console.error(`Failed to download the task. Code: ${err}`);
-    };
-    let failCallback2 = (err: number) => {
-      console.error(`Failed to download the task. Code: ${err}`);
-    };
-    downloadTask.on('fail', failCallback1);
-    downloadTask.on('fail', failCallback2);
-    // Unsubscribe from failCallback1.
-    downloadTask.off('fail', failCallback1);
-    // Unsubscribe from all callbacks of the download failure events.
-    downloadTask.off('fail');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // Replace the URL with the HTTP address of the real server.
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      let failCallback1 = (err: number) => {
+        console.error(`Failed to download the task. Code: ${err}`);
+      };
+      let failCallback2 = (err: number) => {
+        console.error(`Failed to download the task. Code: ${err}`);
+      };
+      downloadTask.on('fail', failCallback1);
+      downloadTask.on('fail', failCallback2);
+      // Unsubscribe from failCallback1.
+      downloadTask.off('fail', failCallback1);
+      // Unsubscribe from all callbacks of the download failure events.
+      downloadTask.off('fail');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 ### delete<sup>9+</sup>
@@ -1434,7 +1433,7 @@ Deletes this download task. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise The value **true** indicates that the operation is successful; **false** indicates the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful; **false** indicates the opposite.|
 
 **Error codes**
 
@@ -1445,28 +1444,28 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // Replace the URL with the HTTP address of the real server.
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.delete().then((result: boolean) => {
-      console.info('Succeeded in removing the download task.');
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // Replace the URL with the HTTP address of the real server.
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.delete().then((result: boolean) => {
+        console.info('Succeeded in removing the download task.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
+      });
     }).catch((err: BusinessError) => {
-      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **NOTE**
@@ -1499,30 +1498,30 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // Replace the URL with the HTTP address of the real server.
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.delete((err: BusinessError, result: boolean) => {
-      if (err) {
-        console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in removing the download task.');
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // Replace the URL with the HTTP address of the real server.
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.delete((err: BusinessError, result: boolean) => {
+        if (err) {
+          console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in removing the download task.');
+      });
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **NOTE**
@@ -1555,28 +1554,28 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // Replace the URL with the HTTP address of the real server.
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
-      console.info('Succeeded in querying the download task')
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // Replace the URL with the HTTP address of the real server.
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
+        console.info('Succeeded in querying the download task')
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
+      });
     }).catch((err: BusinessError) => {
-      console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-} 
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  } 
   ```
 
 > **NOTE**
@@ -1609,30 +1608,30 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // Replace the URL with the HTTP address of the real server.
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
-      if (err) {
-        console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
-      } else {
-        console.info('Succeeded in querying the download mimeType');
-      }
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // Replace the URL with the HTTP address of the real server.
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
+        if (err) {
+          console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
+        } else {
+          console.info('Succeeded in querying the download mimeType');
+        }
+      });
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **NOTE**
@@ -1644,7 +1643,7 @@ try {
 
 getTaskMimeType(): Promise&lt;string&gt;
 
-Obtains **MimeType** (that is, media type of resources in HTTP) of a download task. This API uses a promise to return the result.
+Obtains the MIME type (that is, media type of resources in HTTP) of a download task. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1654,7 +1653,7 @@ Obtains **MimeType** (that is, media type of resources in HTTP) of a download ta
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the MimeType object.|
+| Promise&lt;string&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -1665,28 +1664,28 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // Replace the URL with the HTTP address of the real server.
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.getTaskMimeType().then((data: string) => {
-      console.info('Succeeded in querying the download MimeType');
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // Replace the URL with the HTTP address of the real server.
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.getTaskMimeType().then((data: string) => {
+        console.info('Succeeded in querying the download MimeType');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
+      });
     }).catch((err: BusinessError) => {
-      console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **NOTE**
@@ -1698,7 +1697,7 @@ try {
 
 getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void
 
-Obtains **MimeType** (that is, media type of resources in HTTP) of a download task. This API uses an asynchronous callback to return the result.
+Obtains the MIME type (that is, media type of resources in HTTP) of a download task. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1719,30 +1718,30 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // Replace the URL with the HTTP address of the real server.
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
-      if (err) {
-        console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
-      } else {
-        console.info('Succeeded in querying the download mimeType');
-      }
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // Replace the URL with the HTTP address of the real server.
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
+        if (err) {
+          console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
+        } else {
+          console.info('Succeeded in querying the download mimeType');
+        }
+      });
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **NOTE**
@@ -1775,28 +1774,28 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // Replace the URL with the HTTP address of the real server.
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.suspend().then((result: boolean) => {
-      console.info('Succeeded in pausing the download task.');
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // Replace the URL with the HTTP address of the real server.
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.suspend().then((result: boolean) => {
+        console.info('Succeeded in pausing the download task.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
+      });
     }).catch((err: BusinessError) => {
-      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **NOTE**
@@ -1829,30 +1828,30 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // Replace the URL with the HTTP address of the real server.
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.suspend((err: BusinessError, result: boolean) => {
-      if (err) {
-        console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in pausing the download task.');
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // Replace the URL with the HTTP address of the real server.
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.suspend((err: BusinessError, result: boolean) => {
+        if (err) {
+          console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in pausing the download task.');
+      });
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **NOTE**
@@ -1874,7 +1873,7 @@ Restores this download task. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise The value **true** indicates that the operation is successful; **false** indicates the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful; **false** indicates the opposite.|
 
 **Error codes**
 
@@ -1885,28 +1884,28 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // Replace the URL with the HTTP address of the real server.
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.restore().then((result: boolean) => {
-      console.info('Succeeded in resuming the download task.')
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // Replace the URL with the HTTP address of the real server.
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.restore().then((result: boolean) => {
+        console.info('Succeeded in resuming the download task.')
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
+      });
     }).catch((err: BusinessError) => {
-      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **NOTE**
@@ -1939,30 +1938,30 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // Replace the URL with the HTTP address of the real server.
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.restore((err: BusinessError, result: boolean) => {
-      if (err) {
-        console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in resuming the download task.');
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // Replace the URL with the HTTP address of the real server.
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.restore((err: BusinessError, result: boolean) => {
+        if (err) {
+          console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in resuming the download task.');
+      });
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **NOTE**
@@ -1988,7 +1987,7 @@ Removes this download task. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise The value **true** indicates that the operation is successful; **false** indicates the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful; **false** indicates the opposite.|
 
 **Error codes**
 
@@ -2134,7 +2133,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 queryMimeType(): Promise&lt;string&gt;
 
-Queries the **MimeType** of this download task. This API uses a promise to return the result.
+Queries the MIME type of this download task. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -2148,7 +2147,7 @@ Queries the **MimeType** of this download task. This API uses a promise to retur
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the **MimeType** object.|
+| Promise&lt;string&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -2173,7 +2172,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 queryMimeType(callback: AsyncCallback&lt;string&gt;): void
 
-Queries the **MimeType** of this download task. This API uses an asynchronous callback to return the result.
+Queries the MIME type of this download task. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2503,14 +2502,14 @@ Provides the configuration information of an upload or download task.
 | url | string | Yes| Resource URL. From API version 6 to 14, the value contains a maximum of 2048 characters; since API version 15, the value contains a maximum of 8192 characters. [Intercepting HTTP](../../basic-services/request/app-file-upload-download.md#adding-network-configuration) is supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | title | string | No| Task title. The value contains a maximum of 256 characters. The default value is **upload** or **download** in lowercase. Set the value to that of **action**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | description | string | No| Task description. The value contains a maximum of 1024 characters. The default value is a null string.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| mode | [Mode](#mode10) | No| Task mode. The default mode is background.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| overwrite | boolean | No| Whether to overwrite an existing file during the download. The default value is **false**.<br>- **true**: Overwrite the existing file.<br>- **false**: Do not overwrite the existing file. In this case, the download fails.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| mode | [Mode](#mode10) | No| Task mode. The default mode is background. Since API version 20, the task mode for downloading files to the user file folder must be set to **request.agent.Mode.FOREGROUND**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| overwrite | boolean | No| Whether to overwrite an existing file during the download. The default value is **false**.<br>- **true**: Overwrite the existing file.<br>- **false**: Do not overwrite the existing file. In this case, the download fails.<br>Since API version 20, the overwrite mode for downloading files to the user file folder must be set to **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | method | string | No| Standard HTTP method for the task. The value can be **GET**, **POST**, or **PUT**, which is case-insensitive.<br>- For the upload task, use **PUT** or **POST**. The default value is **PUT**.<br>- For the download task, use **GET** or **POST**. The default value is **GET**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | headers | object | No| HTTP headers to be included in the task.<br>- For the upload task, the default **Content-Type** is **multipart/form-data**.<br>- For the download task, the default **Content-Type** is **application/json**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | No| - For the download task, the value is a string, typically in JSON format (an object will be converted to a JSON string); the default value is null.<br>- For the upload task, the value is Array&lt;[FormItem](#formitem10)&gt;. Since API version 15, a maximum of 100 files can be uploaded in a single task. This parameter is left empty by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path, which is in the cache directory of the caller, for example, **./xxx/yyy/zzz.html** or **xxx/yyy/zzz.html**.<br>- Internal protocol path, which can be **internal://** or its subdirectory. **internal** indicates the cache directory of the caller (that is, the input **context**), and **internal://cache** corresponds to **context.cacheDir**, for example, **internal://cache/path/to/file.txt**.<br>- Application sandbox path. Only the **base** directory and its subdirectories are supported, for example, **/data/storage/el1/base/path/to/file.txt**.<br>- File protocol path, which must match the application bundle name. Only the **base** directory and its subdirectories are supported, for example, **file://com.example.test/data/storage/el2/base/file.txt**.<br>The default value is the cache directory of the caller (that is, the input **context**). The default file name is the part truncated from the last slash (/) in the URL.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path, which is in the cache directory of the caller, for example, **./xxx/yyy/zzz.html** or **xxx/yyy/zzz.html**.<br>- Internal protocol path, which can be **internal://** or its subdirectory. **internal** indicates the cache directory of the caller (that is, the input **context**), and **internal://cache** corresponds to **context.cacheDir**, for example, **internal://cache/path/to/file.txt**.<br>- Application sandbox path. Only the **base** directory and its subdirectories are supported, for example, **/data/storage/el1/base/path/to/file.txt**.<br>- File protocol path, which can be the path of an application file or a user file. For the application file, the application bundle name must be matched and only the **base** directory and its subdirectories are supported, for example, **file://com.example.test/data/storage/el2/base/file.txt**. For the user file, its path must be the user file URI created by the caller.<br>Since API version 20, the default file path can be the cache path of the caller (that is, the passed context), except for [downloading network resource files to the user file](../../basic-services/request/app-file-upload-download.md#downloading-network-resource-files-to-the-user-file). The default file name is the part truncated from the last slash (/) in the URL.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | network | [Network](#network10) | No| Network used for the task. The default value is **ANY** (Wi-Fi or cellular).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| metered | boolean | No| Whether the task is allowed on a metered connection.<br>- **true**: The task is allowed on a metered connection.<br>- **false**: The task is not allowed on a metered connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| metered | boolean | No| Whether the task is allowed on a metered connection.<br>- **true**: The task is allowed on a metered connection.<br>- **false** (default): The task is not allowed on a metered connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | roaming | boolean | No| Whether the task is allowed on a roaming network.<br>- **true** (default): The task is allowed on a roaming connection.<br>- **false**: The task is not allowed on a roaming connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks.<br>- **true** (default): The automatic retry is enabled.<br>- **false**: The automatic retry is disabled.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | redirect | boolean | No| Whether redirection is allowed.<br>- **true** (default): The redirection is allowed.<br>- **false**: The redirection is not allowed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -2525,6 +2524,8 @@ Provides the configuration information of an upload or download task.
 | extras | object | No| Additional information of the task. This parameter is left empty by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | multipart<sup>15+</sup> | boolean | No| Whether to use a single request to upload multiple files. If yes, **multipart/form-data** must be used.<br>- **false**: A single request is used to upload one file.<br>- **true**: A single request is used to upload multiple files.<br>The default value is **false**.|
 | notification<sup>15+</sup> | [Notification](#notification15) | No| Custom settings for the notification bar. The default value is **{}**.|
+| minSpeed<sup>20+</sup> | [MinSpeed](#minspeed20) | No| Minimum speed, which is disabled by default.|
+| timeout<sup>20+</sup> | [Timeout](#timeout20) | No| Custom timeout interval. The default connection timeout interval is 60 seconds, and the default total timeout interval is 604800 seconds (one week).|
 
 ## State<sup>10+</sup>  
 
@@ -2567,22 +2568,21 @@ Describes the data structure of the task progress.
 
 Defines the cause of a task failure.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 | Name| Value| Description                                                                            |
 | -------- | -------- |--------------------------------------------------------------------------------|
-| OTHERS | 0xFF | Other fault.                                                                       |
-| DISCONNECTED | 0x00 | Network disconnection.                                                                     |
-| TIMEOUT | 0x10 | Timeout.                                                                       |
-| PROTOCOL | 0x20 | Protocol error, for example, an internal server error (500) or a data range that cannot be processed (416).                                       |
+| OTHERS | 0xFF | Other fault.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                       |
+| DISCONNECTED | 0x00 | Network disconnection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                     |
+| TIMEOUT | 0x10 | Timeout.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                       |
+| PROTOCOL | 0x20 | Protocol error, for example, an internal server error (500) or a data range that cannot be processed (416).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                       |
 | PARAM<sup>12+</sup> | 0x30 | Parameter error, for example, incorrect URL format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.         |
-| FSIO | 0x40 | File system I/O error, for example, an error that occurs during the open, search, read, write, or close operation.                                                  |
+| FSIO | 0x40 | File system I/O error, for example, an error that occurs during the open, search, read, write, or close operation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                  |
 | DNS<sup>12+</sup> | 0x50 | DNS resolution error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
 | TCP<sup>12+</sup> | 0x60 | TCP connection error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.             |
 | SSL<sup>12+</sup> | 0x70 | SSL connection error, for example, a certificate error or certificate verification failure.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | REDIRECT<sup>12+</sup> | 0x80 | Redirection error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                   |
+| LOW_SPEED<sup>20+</sup>  | 0x90 | Low speed.                   |
 
 > **NOTE**
 >
@@ -2664,6 +2664,42 @@ Describes group configuration options for download tasks.
 | gauge        | boolean                                       | No | Whether to send progress notifications. This parameter applies only to background tasks.<br>- **true**: The progress, success, and failure notifications are displayed.<br>- **false**: Only success and failure notifications are displayed.<br>The default value is **false**.|
 | notification<sup>15+</sup> | [Notification](#notification15) | Yes | Custom settings for the notification bar. The default value is **{}**.                    |
 
+## WaitingReason<sup>20+</sup>
+
+Enumerates the reasons why a task is waiting.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+| Name| Value   | Description                      |
+| -------- |------|--------------------------|
+| TASK_QUEUE_FULL | 0x00 | The task queue is full.     |
+| NETWORK_NOT_MATCH | 0x01 | The required network conditions are not met.  |
+| APP_BACKGROUND | 0x02 | The application has been running in the background for a long time.  |
+| USER_INACTIVATED | 0x03 | The user is inactive.|
+
+## MinSpeed<sup>20+</sup>
+
+Defines the minimum speed of a task. If the task speed is lower than the preset value for a specified period of time, the task fails. The failure cause is [LOW_SPEED](#faults10).
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+| Name     | Type  | Read-Only| Optional| Description                                                          |
+|---------|----------|----|----|--------------------------------------------------------------|
+| speed   | number   | No | No | Minimum speed of a task, in byte/s. If the task speed is lower than this value for a specified period of time, the task fails. If the value is set to **0**, there is no minimum speed limit.|
+| duration    | number   | No | No | Duration during which the task speed can be lower than the minimum speed, in seconds. If the task speed is lower than the preset value for a specified period of time, the task fails. If the value is set to **0**, there is no minimum speed limit. |
+
+## Timeout<sup>20+</sup>
+
+Defines the timeout configuration of a task.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+| Name     | Type    | Read-Only| Optional| Description                                     |
+|---------|--------|----|----|-----------------------------------------|
+| connectionTimeout   | number | No | Yes | Task connection timeout interval, in seconds. The connection timeout interval indicates the maximum time required for establishing a connection between the client and server. If this parameter is not set, the default value **60** is used. The minimum value is **1**.|
+| totalTimeout    | number | No | Yes |Total timeout interval of a task, in seconds. The total timeout interval includes the time required for establishing a connection, sending a request, and receiving a response. If this parameter is not set, the default value **604800** is used. The minimum value is 1, and the maximum value is **604800** (that is, one week). |
+
+
 ## Task<sup>10+</sup> 
 Implements an upload or download task. Before using this API, you must obtain a **Task** object, from a promise through [request.agent.create<sup>10+</sup>](#requestagentcreate10-1) or from a callback through [request.agent.create<sup>10+</sup>](#requestagentcreate10).
 
@@ -2715,7 +2751,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2799,7 +2835,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2883,7 +2919,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2965,7 +3001,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3049,7 +3085,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3135,7 +3171,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3215,7 +3251,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3267,6 +3303,158 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 >
 > For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
+### on('faultOccur')<sup>20+</sup>
+
+on(event: 'faultOccur', callback: Callback&lt;Faults&gt;): void
+
+Subscribes to task failure events. This API uses a callback to return the result.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name| Type                                 | Mandatory| Description                        |
+| -------- |-------------------------------------| -------- |----------------------------|
+| event | string                              | Yes| Type of the event to subscribe to.<br>- **'faultOccur'**: task failure.|
+| callback | Callback&lt;[Faults](#faults10)&gt; | Yes| Callback used to return the failure cause of the task.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+
+**Example**
+  <!--code_no_check-->
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+  
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
+    title: 'taskOnTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let faultOnCallback = (faults: request.agent.Faults) => {
+    console.info('upload task failed.');
+  };
+  request.agent.create(context, config).then((task: request.agent.Task) => {
+    task.on('faultOccur', faultOnCallback);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **NOTE**
+>
+> For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+### on('wait')<sup>20+</sup>
+
+on(event: 'wait', callback: Callback&lt;WaitingReason&gt;): void
+
+Subscribes to task wait events. This API uses a callback to return the result.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name| Type                                               | Mandatory| Description                             |
+| -------- |---------------------------------------------------| -------- |---------------------------------|
+| event | string                                            | Yes| Type of the event to subscribe to.<br>- 'wait': The task is waiting.|
+| callback | Callback&lt;[WaitingReason](#waitingreason20)&gt; | Yes| Callback used to return the waiting reason of the task.     |
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+
+**Example**
+  <!--code_no_check-->
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+  
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
+    title: 'taskOnTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let waitOnCallback = (reason: request.agent.WaitingReason) => {
+    console.info('upload task waiting.');
+  };
+  request.agent.create(context, config).then((task: request.agent.Task) => {
+    task.on('wait', waitOnCallback);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **NOTE**
+>
+> For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ### off('progress')<sup>10+</sup>
 
 off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void): void
@@ -3300,7 +3488,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3393,7 +3581,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3485,7 +3673,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3575,7 +3763,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3665,7 +3853,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3755,7 +3943,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3841,7 +4029,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3888,8 +4076,178 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     task.on('response', createOffCallback2);
     // Unsubscribe from createOffCallback1.
     task.off('response', createOffCallback1);
-    // Unsubscribe from all callbacks of the task removal event.
+    // Unsubscribe from all callbacks of the task response event.
     task.off('response');
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **NOTE**
+>
+> For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+### off('faultOccur')<sup>20+</sup>
+
+off(event: 'faultOccur', callback?: Callback&lt;Faults&gt;): void
+
+Unsubscribes from the task failure event.
+
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                                   |
+| -------- |----------------------------| -------- |---------------------------------------|
+| event | string                     | Yes| Type of the event to subscribe to.<br>- **'faultOccur'**: task failure.     |
+| callback | Callback&lt;[Faults](#faults10)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+
+**Example**
+  <!--code_no_check-->
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+  
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
+    title: 'taskOffTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let faultOffCallback1 = (faults: request.agent.Faults) => {
+    console.info('upload task failed.');
+  };
+  let faultOffCallback2 = (faults: request.agent.Faults) => {
+    console.info('upload task failed.');
+  };
+  request.agent.create(context, config).then((task: request.agent.Task) => {
+    task.on('faultOccur', faultOffCallback1);
+    task.on('faultOccur', faultOffCallback2);
+    // Unsubscribe from faultOffCallback1.
+    task.off('faultOccur', faultOffCallback1);
+    // Unsubscribe from all callbacks of the task failure event.
+    task.off('faultOccur');
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **NOTE**
+>
+> For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+### off('wait')<sup>20+</sup>
+
+off(event: 'wait', callback?: Callback&lt;WaitingReason&gt;): void
+
+Unsubscribes from the task wait event.
+
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+| Name| Type                               | Mandatory| Description                                   |
+| -------- |-----------------------------------| -------- |---------------------------------------|
+| event | string                            | Yes| Type of the event to subscribe to.<br>- 'wait': The task is waiting.      |
+| callback | Callback&lt;[WaitingReason](#waitingreason20)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+
+**Example**
+  <!--code_no_check-->
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+  
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
+    title: 'taskOffTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let waitOffCallback1 = (reason: request.agent.WaitingReason) => {
+    console.info('upload task waiting.');
+  };
+  let waitOffCallback2 = (reason: request.agent.WaitingReason) => {
+    console.info('upload task waiting.');
+  };
+  request.agent.create(context, config).then((task: request.agent.Task) => {
+    task.on('wait', waitOffCallback1);
+    task.on('wait', waitOffCallback2);
+    // Unsubscribe from waitOffCallback1.
+    task.off('wait', waitOffCallback1);
+    // Unsubscribe from all callbacks of the task wait event.
+    task.off('wait');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
   }).catch((err: BusinessError) => {
@@ -3933,7 +4291,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900007 | Operation with wrong task state. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4012,7 +4370,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900007 | Operation with wrong task state. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4081,7 +4439,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900007 | Operation with wrong task state. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4150,7 +4508,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900007 | Operation with wrong task state. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4220,7 +4578,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900007 | Operation with wrong task state. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4294,7 +4652,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900007 | Operation with wrong task state. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4365,7 +4723,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900007 | Operation with wrong task state. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4437,7 +4795,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900007 | Operation with wrong task state. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4490,9 +4848,9 @@ Sets the maximum number of bytes that can be transmitted by a task per second. T
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                                |
-|-------|--------|----|------------------------------------|
-| speed | number | Yes | Maximum number of bytes that can be transmitted by a task per second, with a minimum of 16384 bytes.|
+| Name  | Type    | Mandatory| Description                                                                          |
+|-------|--------|----|------------------------------------------------------------------------------|
+| speed | number | Yes | Maximum number of bytes that can be transmitted by a task per second, with a minimum of 16384 bytes. The value cannot be less than the minimum speed value specified by [MinSpeed](#minspeed20).|
 
 **Return value**
 
@@ -4510,7 +4868,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 13400003 | Task service ability error.     |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4569,7 +4927,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900005 | Operation with wrong task mode. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4661,7 +5019,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900005 | Operation with wrong task mode. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4731,7 +5089,7 @@ Obtains task information based on the task ID. This API uses a promise to return
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;[Task](#task10)&gt; | Promise used to return the configuration about the created task.|
+| Promise&lt;[Task](#task10)&gt; | Promise used to return the configuration about the obtained task.|
 
 **Error codes**
 
@@ -4744,7 +5102,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900006 | Task removed or not found. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -5110,7 +5468,7 @@ Searches for task IDs based on [Filter](#filter10). This API uses a promise to r
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise Promise used to return task ID matches.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the task IDs that meet the filter criteria.|
 
 **Error codes**
 

@@ -57,7 +57,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let currentIme = inputMethod.getCurrentInputMethod();
 try {
   inputMethod.switchInputMethod(currentIme.name).then(() => {
-    console.log('Succeeded in switching inputmethod.');
+    console.info('Succeeded in switching inputmethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
   })
@@ -67,7 +67,7 @@ try {
 let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
   inputMethod.switchInputMethod(currentIme.name, currentImeSubType.id).then(() => {
-    console.log('Succeeded in switching inputmethod.');
+    console.info('Succeeded in switching inputmethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
   })
@@ -169,7 +169,7 @@ Unsubscribes from the soft keyboard show event of the [input method panel](js-ap
 
 | Name  | Type| Mandatory| Description  |
 | -------- | ---- | ---- | ------ |
-| type     | string | Yes| Event type, which is `imeShow`.|
+| type     | string | Yes| Event type, which is **'imeShow'**.|
 | callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void  | No| Callback to unregister.<br>If this parameter is not specified, this API unregisters all callbacks for the specified event type.|
 
 **Example**
@@ -252,8 +252,63 @@ let info: PanelInfo = {
 }
 try {
   let result = inputMethodSetting.isPanelShown(info);
-  console.log('Succeeded in querying isPanelShown, result: ' + result);
+  console.info('Succeeded in querying isPanelShown, result: ' + result);
 } catch (err) {
   console.error(`Failed to query isPanelShown: ${JSON.stringify(err)}`);
+}
+```
+
+### enableInputMethod<sup>20+</sup>
+
+enableInputMethod(bundleName: string, extensionName: string, enabledState: EnabledState): Promise&lt;void&gt;
+
+Enables or disables an input method. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**System API**: This is a system API.
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | bundleName |  string | Yes| Bundle name of the input method.|
+  | extensionName |  string | Yes| Extension name of the input method.|
+  | enabledState |  [EnabledState](js-apis-inputmethod.md#enabledstate15) | Yes| Whether the input method is enabled.|
+
+**Return value**
+
+  | Type          | Description                    |
+  | -------------- | ----------------------- |
+  | Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 201      | permissions check fails. |
+| 202      | not system application. |
+| 12800008 | input method manager service error. |
+| 12800018 | the input method is not found. |
+| 12800019 | current operation cannot be applied to the preconfigured default input method. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let currentIme = inputMethod.getCurrentInputMethod();
+try {
+  inputMethodSetting.enableInputMethod(currentIme.name, currentIme.id, inputMethod.EnabledState.BASIC_MODE).then(() => {
+    console.info('Succeeded in enable inputmethod.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to enableInputMethod. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to enableInputMethod. Code: ${err.code}, message: ${err.message}`);
 }
 ```

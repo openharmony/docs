@@ -20,16 +20,16 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [VideoOutput_Callbacks](capi-videooutput-callbacks.md) | VideoOutput_Callbacks | 用于录像输出的回调。 |
-| [Camera_VideoOutput](capi-camera-videooutput.md) | Camera_VideoOutput | 录像输出对象。<br> 可以使用[OH_CameraManager_CreateVideoOutput](capi-camera-manager-h.md#oh_cameramanager_createvideooutput)方法创建指针。 |
+| [VideoOutput_Callbacks](capi-oh-camera-videooutput-callbacks.md) | VideoOutput_Callbacks | 用于录像输出的回调。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md) | Camera_VideoOutput | 录像输出对象。<br> 可以使用[OH_CameraManager_CreateVideoOutput](capi-camera-manager-h.md#oh_cameramanager_createvideooutput)方法创建指针。 |
 
 ### 函数
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [typedef void (\*OH_VideoOutput_OnFrameStart)(Camera_VideoOutput* videoOutput)](#oh_videooutput_onframestart) | OH_VideoOutput_OnFrameStart | 在[VideoOutput_Callbacks](capi-videooutput-callbacks.md)中被调用的录像输出帧开始回调。 |
-| [typedef void (\*OH_VideoOutput_OnFrameEnd)(Camera_VideoOutput* videoOutput, int32_t frameCount)](#oh_videooutput_onframeend) | OH_VideoOutput_OnFrameEnd | 在[VideoOutput_Callbacks](capi-videooutput-callbacks.md)中被调用的录像输出帧结束回调。 |
-| [typedef void (\*OH_VideoOutput_OnError)(Camera_VideoOutput* videoOutput, Camera_ErrorCode errorCode)](#oh_videooutput_onerror) | OH_VideoOutput_OnError | 在[VideoOutput_Callbacks](capi-videooutput-callbacks.md)中被调用的录像输出错误回调。 |
+| [typedef void (\*OH_VideoOutput_OnFrameStart)(Camera_VideoOutput* videoOutput)](#oh_videooutput_onframestart) | OH_VideoOutput_OnFrameStart | 在[VideoOutput_Callbacks](capi-oh-camera-videooutput-callbacks.md)中被调用的录像输出帧开始回调。 |
+| [typedef void (\*OH_VideoOutput_OnFrameEnd)(Camera_VideoOutput* videoOutput, int32_t frameCount)](#oh_videooutput_onframeend) | OH_VideoOutput_OnFrameEnd | 在[VideoOutput_Callbacks](capi-oh-camera-videooutput-callbacks.md)中被调用的录像输出帧结束回调。 |
+| [typedef void (\*OH_VideoOutput_OnError)(Camera_VideoOutput* videoOutput, Camera_ErrorCode errorCode)](#oh_videooutput_onerror) | OH_VideoOutput_OnError | 在[VideoOutput_Callbacks](capi-oh-camera-videooutput-callbacks.md)中被调用的录像输出错误回调。 |
 | [Camera_ErrorCode OH_VideoOutput_RegisterCallback(Camera_VideoOutput* videoOutput, VideoOutput_Callbacks* callback)](#oh_videooutput_registercallback) | - | 注册录像输出更改事件回调。 |
 | [Camera_ErrorCode OH_VideoOutput_UnregisterCallback(Camera_VideoOutput* videoOutput, VideoOutput_Callbacks* callback)](#oh_videooutput_unregistercallback) | - | 注销录像输出更改事件回调。 |
 | [Camera_ErrorCode OH_VideoOutput_Start(Camera_VideoOutput* videoOutput)](#oh_videooutput_start) | - | 开始录像输出。 |
@@ -55,7 +55,7 @@ typedef void (*OH_VideoOutput_OnFrameStart)(Camera_VideoOutput* videoOutput)
 
 **描述**
 
-在[VideoOutput_Callbacks](capi-videooutput-callbacks.md)中被调用的录像输出帧开始回调。
+在[VideoOutput_Callbacks](capi-oh-camera-videooutput-callbacks.md)中被调用的录像输出帧开始回调。
 
 **起始版本：** 11
 
@@ -64,7 +64,7 @@ typedef void (*OH_VideoOutput_OnFrameStart)(Camera_VideoOutput* videoOutput)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 传递回调的录像输出实例。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 传递回调的录像输出实例。 |
 
 ### OH_VideoOutput_OnFrameEnd()
 
@@ -74,7 +74,7 @@ typedef void (*OH_VideoOutput_OnFrameEnd)(Camera_VideoOutput* videoOutput, int32
 
 **描述**
 
-在[VideoOutput_Callbacks](capi-videooutput-callbacks.md)中被调用的录像输出帧结束回调。
+在[VideoOutput_Callbacks](capi-oh-camera-videooutput-callbacks.md)中被调用的录像输出帧结束回调。
 
 **起始版本：** 11
 
@@ -83,7 +83,7 @@ typedef void (*OH_VideoOutput_OnFrameEnd)(Camera_VideoOutput* videoOutput, int32
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 传递回调的录像输出实例。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 传递回调的录像输出实例。 |
 |  int32_t frameCount | 回调传递的帧计数。 |
 
 ### OH_VideoOutput_OnError()
@@ -94,7 +94,7 @@ typedef void (*OH_VideoOutput_OnError)(Camera_VideoOutput* videoOutput, Camera_E
 
 **描述**
 
-在[VideoOutput_Callbacks](capi-videooutput-callbacks.md)中被调用的录像输出错误回调。
+在[VideoOutput_Callbacks](capi-oh-camera-videooutput-callbacks.md)中被调用的录像输出错误回调。
 
 **起始版本：** 11
 
@@ -103,7 +103,7 @@ typedef void (*OH_VideoOutput_OnError)(Camera_VideoOutput* videoOutput, Camera_E
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 传递回调的录像输出实例。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 传递回调的录像输出实例。 |
 |  [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) errorCode | 录像输出的错误码。 |
 
 **参考：**
@@ -127,8 +127,8 @@ Camera_ErrorCode OH_VideoOutput_RegisterCallback(Camera_VideoOutput* videoOutput
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 录像输出实例。 |
-| [VideoOutput_Callbacks](capi-videooutput-callbacks.md)* callback | 要注册的录像输出更改事件回调。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 录像输出实例。 |
+| [VideoOutput_Callbacks](capi-oh-camera-videooutput-callbacks.md)* callback | 要注册的录像输出更改事件回调。 |
 
 **返回：**
 
@@ -153,8 +153,8 @@ Camera_ErrorCode OH_VideoOutput_UnregisterCallback(Camera_VideoOutput* videoOutp
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 录像输出实例。 |
-| [VideoOutput_Callbacks](capi-videooutput-callbacks.md)* callback | 要注销的录像输出更改事件回调。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 录像输出实例。 |
+| [VideoOutput_Callbacks](capi-oh-camera-videooutput-callbacks.md)* callback | 要注销的录像输出更改事件回调。 |
 
 **返回：**
 
@@ -179,7 +179,7 @@ Camera_ErrorCode OH_VideoOutput_Start(Camera_VideoOutput* videoOutput)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 要启动的录像输出实例。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 要启动的录像输出实例。 |
 
 **返回：**
 
@@ -204,7 +204,7 @@ Camera_ErrorCode OH_VideoOutput_Stop(Camera_VideoOutput* videoOutput)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 要停止的录像输出实例。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 要停止的录像输出实例。 |
 
 **返回：**
 
@@ -229,7 +229,7 @@ Camera_ErrorCode OH_VideoOutput_Release(Camera_VideoOutput* videoOutput)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 要释放的录像输出实例。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 要释放的录像输出实例。 |
 
 **返回：**
 
@@ -254,8 +254,8 @@ Camera_ErrorCode OH_VideoOutput_GetActiveProfile(Camera_VideoOutput* videoOutput
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 传递当前视频输出配置文件的录像输出实例。 |
-| [Camera_VideoProfile](capi-camera-videoprofile.md)** profile | 如果方法调用成功，将记录当前的视频输出配置文件。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 传递当前视频输出配置文件的录像输出实例。 |
+| [Camera_VideoProfile](capi-oh-camera-camera-videoprofile.md)** profile | 如果方法调用成功，将记录当前的视频输出配置文件。 |
 
 **返回：**
 
@@ -280,7 +280,7 @@ Camera_ErrorCode OH_VideoOutput_DeleteProfile(Camera_VideoProfile* profile)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoProfile](capi-camera-videoprofile.md)* profile | 要删除的视频配置文件实例。 |
+| [Camera_VideoProfile](capi-oh-camera-camera-videoprofile.md)* profile | 要删除的视频配置文件实例。 |
 
 **返回：**
 
@@ -305,7 +305,7 @@ Camera_ErrorCode OH_VideoOutput_DeleteProfile(Camera_VideoProfile* profile)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 传递当前视频输出的录像输出实例。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 传递当前视频输出的录像输出实例。 |
 | bool* isSupported | 当前视频输出是否支持镜像。 |
 
 **返回：**
@@ -331,7 +331,7 @@ Camera_ErrorCode OH_VideoOutput_DeleteProfile(Camera_VideoProfile* profile)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 传递当前视频输出的录像输出实例。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 传递当前视频输出的录像输出实例。 |
 | bool mirrorMode | TRUE表示打开镜像功能，FALSE表示关闭镜像功能。 |
 
 **返回：**
@@ -357,7 +357,7 @@ Camera_ErrorCode OH_VideoOutput_DeleteProfile(Camera_VideoProfile* profile)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 传递当前视频输出的录像输出实例。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 传递当前视频输出的录像输出实例。 |
 | int deviceDegree | 设备目前相对于自然方向（充电口朝下）顺时针的旋转角度。 |
 | [Camera_ImageRotation](capi-camera-h.md#camera_imagerotation)* imageRotation | 当前视频输出应当设置的旋转角度。 |
 
@@ -384,8 +384,8 @@ Camera_ErrorCode OH_VideoOutput_GetSupportedFrameRates(Camera_VideoOutput* video
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 传递支持的视频输出帧率列表的录像输出实例。 |
-| [Camera_FrameRateRange](capi-camera-frameraterange.md)** frameRateRange | 如果方法调用成功，将记录支持的视频输出帧率列表。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 传递支持的视频输出帧率列表的录像输出实例。 |
+| [Camera_FrameRateRange](capi-oh-camera-camera-frameraterange.md)** frameRateRange | 如果方法调用成功，将记录支持的视频输出帧率列表。 |
 | uint32_t* size | 如果方法调用成功，将记录支持的视频输出帧率列表大小。 |
 
 **返回：**
@@ -411,8 +411,8 @@ Camera_ErrorCode OH_VideoOutput_DeleteFrameRates(Camera_VideoOutput* videoOutput
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 录像输出实例。 |
-| [Camera_FrameRateRange](capi-camera-frameraterange.md)* frameRateRange | 要删除的帧率列表。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 录像输出实例。 |
+| [Camera_FrameRateRange](capi-oh-camera-camera-frameraterange.md)* frameRateRange | 要删除的帧率列表。 |
 
 **返回：**
 
@@ -437,7 +437,7 @@ Camera_ErrorCode OH_VideoOutput_SetFrameRate(Camera_VideoOutput* videoOutput,int
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 要设置帧率的录像输出实例。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 要设置帧率的录像输出实例。 |
 | int32_t minFps | 设置的最小帧率。 |
 | int32_t maxFps | 设置的最大帧率。 |
 
@@ -464,8 +464,8 @@ Camera_ErrorCode OH_VideoOutput_GetActiveFrameRate(Camera_VideoOutput* videoOutp
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 传递当前视频输出帧率的录像输出实例。 |
-| [Camera_FrameRateRange](capi-camera-frameraterange.md)* frameRateRange | 如果方法调用成功，将记录当前的视频输出帧率。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 传递当前视频输出帧率的录像输出实例。 |
+| [Camera_FrameRateRange](capi-oh-camera-camera-frameraterange.md)* frameRateRange | 如果方法调用成功，将记录当前的视频输出帧率。 |
 
 **返回：**
 

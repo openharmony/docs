@@ -19,7 +19,7 @@ The following table lists the APIs used in geofencing. For details, see [Locatio
 
 ## How to Develop
 
-1. Declare the **ohos.permission.APPROXIMATELY_LOCATION** permission. For details, see [Applying for Location Permissions](#location-permission-guidelines.md).
+1. Declare the **ohos.permission.APPROXIMATELY_LOCATION** permission. For details, see [Applying for Location Permissions](location-permission-guidelines.md).
 
 2. Import the **geoLocationManager**, **wantAgent**, and **BusinessError** modules.
 

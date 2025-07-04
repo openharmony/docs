@@ -811,7 +811,7 @@ let permissionList = [
 
 **建议改法**
 
-为对象字面量声明类型
+为对象字面量声明类型。
 
 ```typescript
 class PermissionItem {
@@ -962,7 +962,7 @@ for (let [key, value] of map) {
 
 **建议改法**
 
-使用数组
+使用数组。
 
 ```typescript
 let map = new Map<string, string>([['a', 'a'], ['b', 'b']]);
@@ -1110,7 +1110,7 @@ foo.apply(obj);
 
 **建议改法1**
 
-使用类的方法实现,如果该方法被多个类使用,可以考虑采用继承的机制
+使用类的方法实现,如果该方法被多个类使用,可以考虑采用继承的机制。
 
 ```typescript
 class Test {
@@ -1130,7 +1130,7 @@ obj.foo();
 
 **建议改法2**
 
-将this作为参数传入
+将this作为参数传入。
 
 ```typescript
 function foo(obj: Test) {
@@ -1147,7 +1147,7 @@ foo(obj);
 
 **建议改法3**
 
-将属性作为参数传入
+将属性作为参数传入。
 ```typescript
 function foo(value: string) {
   console.log(value);
@@ -1534,9 +1534,9 @@ entries.forEach((value, key) => {
 
 ### 使用`Number`的属性和方法
 
-ArkTS不允许使用全局对象的属性和方法： `Infinity, NaN, isFinite, isNaN, parseFloat, parseInt`
+ArkTS不允许使用全局对象的属性和方法： `Infinity, NaN, isFinite, isNaN, parseFloat, parseInt`。
 
-可以使用`Number`的属性和方法： `Infinity, NaN, isFinite, isNaN, parseFloat, parseInt`
+可以使用`Number`的属性和方法： `Infinity, NaN, isFinite, isNaN, parseFloat, parseInt`。
 
 **应用代码**
 
@@ -1673,7 +1673,7 @@ class Test {
 }
 ```
 
-2.对于对象类型（包括函数类型）`A`，如果不确定如何初始化，建议按照以下方式之一进行初始化
+2.对于对象类型（包括函数类型）`A`，如果不确定如何初始化，建议按照以下方式之一进行初始化：
 
 ​	方式(i)  `prop: A | null = null`
 
@@ -1682,7 +1682,7 @@ class Test {
 ​	方式三(iii) `prop： A | undefined = undefined`
 
 - 从性能角度看，`null`类型仅用于编译期的类型检查，不会影响虚拟机性能。而`undefined | A`被视为联合类型，运行时可能产生额外开销。
-- 从代码可读性、简洁性的角度来说，`prop?:A`是`prop： A | undefined = undefined`的语法糖，**推荐使用可选属性的写法**
+- 从代码可读性、简洁性的角度来说，`prop?:A`是`prop： A | undefined = undefined`的语法糖，**推荐使用可选属性的写法**。
 
 ### 严格函数类型检查
 
@@ -1972,7 +1972,7 @@ function foo(a: number): number {
 
 **建议改法1** 
 
-根据业务逻辑，在else分支中返回合适的数值
+根据业务逻辑，在else分支中返回合适的数值。
 
 **建议改法2**
 

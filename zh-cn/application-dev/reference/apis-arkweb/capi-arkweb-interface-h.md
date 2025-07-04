@@ -18,7 +18,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [ArkWeb_AnyNativeAPI](capi-arkweb-anynativeapi.md) | ArkWeb_AnyNativeAPI | 定义基础Native API类型。 |
+| [ArkWeb_AnyNativeAPI](capi-web-arkweb-anynativeapi.md) | ArkWeb_AnyNativeAPI | 定义基础Native API类型。 |
 
 ### 枚举
 
@@ -83,7 +83,7 @@ ArkWeb_AnyNativeAPI* OH_ArkWeb_GetNativeAPI(ArkWeb_NativeAPIVariantKind type)
 
 | 类型                                           | 说明 |
 |----------------------------------------------| -- |
-| [ArkWeb_AnyNativeAPI](capi-arkweb-anynativeapi.md)* | 根据传入的API类型，返回对应的Native API结构体指针，结构体第一个成员为当前结构体的大小。 |
+| [ArkWeb_AnyNativeAPI](capi-web-arkweb-anynativeapi.md)* | 根据传入的API类型，返回对应的Native API结构体指针，结构体第一个成员为当前结构体的大小。 |
 
 ### OH_ArkWeb_RegisterScrollCallback()
 

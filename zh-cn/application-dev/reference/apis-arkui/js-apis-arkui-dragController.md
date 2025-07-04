@@ -5,8 +5,8 @@
 > **说明：**
 >
 > 本模块首批接口从 API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
-> 示例效果请以真机运行为准，当前 IDE 预览器不支持。
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
+> 示例效果请以真机运行为准，当前 DevEco Studio预览器不支持。
 
 ## 导入模块
 
@@ -271,19 +271,18 @@ struct DragControllerPage {
   ![zh-cn_executeDrag2](figures/executeDrag2.gif)
 ## DragInfo
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+发起拖拽所需要的属性和拖拽时携带的信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-发起拖拽所需要的属性和拖拽时携带的信息。
-
 | 名称        | 类型                                                   | 必填 | 说明                                     |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| pointerId   | number                                                 | 是   | 设置启动拖拽时屏幕上触摸点的Id。取值范围为0-9的整数。         |
-| data        | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。               |
-| extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。默认值为空。 |
-| touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标。不配置时，左右居中，顶部向下偏移20%。 |
-| previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 设置拖拽过程中背板图处理模式及数量角标的显示。 |
+| pointerId   | number                                                 | 是   | 设置启动拖拽时屏幕上触摸点的Id。取值范围为0-9的整数。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| data        | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。               |
+| extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。默认值为空。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标。不配置时，左右居中，顶部向下偏移20%。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 设置拖拽过程中背板图处理模式及数量角标的显示。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| dataLoadParams<sup>20+</sup>| [unifiedDataChannel.DataLoadParams](../apis-arkdata/js-apis-data-unifiedDataChannel.md#dataloadparams20)                                | 否   | 设置拖起方延迟提供数据。使用此方法向系统提供数据加载参数，而不是直接提供完整的数据对象。当用户在目标应用程序上落入时，系统将使用此参数从起拖方请求实际数据。与data同时设置时，dataLoadParams生效。默认值为空。 <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## dragController.createDragAction<sup>(deprecated)</sup>
 
@@ -451,7 +450,7 @@ startDrag(): Promise&lt;void&gt;
 | -------- | ------------- |
 | 100001   | Internal handling failed. |
 
-**示例：**
+**示例1：**
 
 > **说明：**
 >
@@ -511,6 +510,181 @@ struct DragControllerPage {
   }
 }
 ```
+
+**示例2：**
+
+在[DragInfo](#draginfo)中配置dataLoadParams，设置拖起方延迟提供数据。
+
+```ts
+import { unifiedDataChannel, uniformTypeDescriptor, uniformDataStruct } from '@kit.ArkData';
+import { fileUri, fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+import { dragController } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct ImageExample {
+  private dragAction: dragController.DragAction | null = null;
+  customBuilders: Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  @State uri: string = "";
+  @State blockArr: string[] = [];
+  uiContext = this.getUIContext();
+  udKey: string = '';
+
+  @Builder
+  DraggingBuilder() {
+    Video({ src: $rawfile('test1.mp4'), controller: new VideoController() })
+      .width(100)
+      .height(100)
+  }
+
+  build() {
+    Column() {
+      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+        Button('touch to execute drag')
+          .margin(10)
+          .onTouch((event?: TouchEvent) => {
+            if (event) {
+              if (event.type == TouchType.Down) {
+                this.customBuilders.splice(0, this.customBuilders.length);
+                this.customBuilders.push(() => {
+                  this.DraggingBuilder()
+                });
+                const context: Context | undefined = this.uiContext.getHostContext();
+                if (context) {
+                  let loadHandler: unifiedDataChannel.DataLoadHandler = () => {
+                    let data =
+                      context.resourceManager.getRawFdSync('test1.mp4');
+                    let filePath = context.filesDir + '/test1.mp4';
+                    let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+                    let bufferSize = data.length as number;
+                    let buf = new ArrayBuffer(bufferSize);
+                    fs.readSync(data.fd, buf, { offset: data.offset, length: bufferSize });
+                    fs.writeSync(file.fd, buf, { offset: 0, length: bufferSize });
+                    fs.closeSync(file.fd);
+                    context.resourceManager.closeRawFdSync('test1.mp4')
+                    this.uri = fileUri.getUriFromPath(filePath);
+                    let videoMp: uniformDataStruct.FileUri = {
+                      uniformDataType: 'general.file-uri',
+                      oriUri: this.uri,
+                      fileType: 'general.video',
+                    }
+                    let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
+                    let unifiedData = new unifiedDataChannel.UnifiedData();
+                    unifiedRecord.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, videoMp);
+                    unifiedData.addRecord(unifiedRecord);
+                    return unifiedData;
+                  }
+
+                  let dragInfo: dragController.DragInfo = {
+                    pointerId: 0,
+                    extraParams: '',
+                    dataLoadParams: {
+                      loadHandler: loadHandler,
+                      dataLoadInfo: { types: new Set([uniformTypeDescriptor.UniformDataType.VIDEO]), recordCount: 1 }
+                    }
+                  }
+
+                  let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
+                    console.info("ndq Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+                  }
+                  try {
+                    this.dragAction = this.getUIContext()
+                      .getDragController()
+                      .createDragAction(this.customBuilders,
+                        dragInfo)
+                    if (!this.dragAction) {
+                      console.info("listener dragAction is null");
+                      return;
+                    }
+                    this.dragAction.on('statusChange', func);
+                    this.dragAction.startDrag().then(() => {
+                    }).catch((err: Error) => {
+                      console.error("start drag Error:" + err.message);
+                    })
+                  } catch (err) {
+                    console.error("create dragAction Error:" + err.message);
+                  }
+                }
+              }
+            }
+          })
+      }
+      .margin({ bottom: 20 })
+
+      Row() {
+        Column() {
+          Text('可释放区域')
+            .fontSize('15dp')
+            .height('10%')
+          List() {
+            ForEach(this.blockArr, (item: string, index) => {
+              ListItem() {
+                Video({ src: item, controller: new VideoController() })
+                  .width(100)
+                  .height(100)
+                  .border({ width: 1 })
+              }
+              .margin({ left: 30, top: 30 })
+            }, (item: string) => item)
+          }
+          .border({ width: 1 })
+          .height('90%')
+          .width('100%')
+          .allowDrop([uniformTypeDescriptor.UniformDataType.VIDEO])
+          .onDrop((event?: DragEvent, extraParams?: string) => {
+            let context = this.uiContext.getHostContext() as common.UIAbilityContext;
+            let pathDir: string = context.distributedFilesDir;
+            let destUri = fileUri.getUriFromPath(pathDir);
+            let progressListener: unifiedDataChannel.DataProgressListener =
+              (progress: unifiedDataChannel.ProgressInfo, dragData: UnifiedData | null) => {
+                if (dragData != null) {
+                  let arr: Array<unifiedDataChannel.UnifiedRecord> = dragData.getRecords();
+                  if (arr.length > 0) {
+                    if (arr[0].getType() === uniformTypeDescriptor.UniformDataType.VIDEO) {
+                      this.blockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
+                    }
+                  } else {
+                    console.info('dragData arr is null');
+                  }
+                } else {
+                  console.info('dragData is undefined');
+                }
+                console.info(`percentage: ${progress.progress}`);
+              };
+            let options: DataSyncOptions = {
+              destUri: destUri,
+              fileConflictOptions: unifiedDataChannel.FileConflictOptions.OVERWRITE,
+              progressIndicator: unifiedDataChannel.ProgressIndicator.DEFAULT,
+              dataProgressListener: progressListener,
+            }
+            try {
+              this.udKey = (event as DragEvent).startDataLoading(options);
+              console.info('udKey: ', this.udKey);
+            } catch (e) {
+              console.error(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+            }
+          }, { disableDataPrefetch: true })
+        }
+        .height("50%")
+        .width("90%")
+        .border({ width: 1 })
+      }
+
+      Button('取消数据传输')
+        .onClick(() => {
+          try {
+            this.getUIContext().getDragController().cancelDataLoading(this.udKey);
+          } catch (e) {
+            console.error(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+          }
+        })
+        .margin({ top: 10 })
+    }.width('100%')
+  }
+}
+```
+![zh-cn_executeDrag5](figures/dragControllerDataLoading.gif)
 
 ### on('statusChange')<sup>11+</sup>
 
@@ -679,11 +853,11 @@ struct DragControllerPage {
 
 ## DragAndDropInfo<sup>11+</sup>
 
+拖拽过程中监听到status改变时上报的数据。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-拖拽过程中监听到status改变时上报的数据。
 
 | 名称          | 类型                                                   | 必填 | 说明                                     |
 | -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
@@ -693,11 +867,11 @@ struct DragControllerPage {
 
 ## DragStatus<sup>11+</sup>
 
+拖拽开始和结束状态。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-拖拽开始和结束状态。
 
 | 名称          | 值                                                   | 说明                                     |
 | -----------   | ------------------------------------------------------| ---------------------------------------- |
@@ -706,11 +880,11 @@ struct DragControllerPage {
 
 ## AnimationOptions<sup>11+</sup>
 
+拖拽相关的动效参数。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-发起拖拽所需要的属性和拖拽时携带的信息。
 
 | 名称        | 类型                                                   | 必填 | 说明                                     |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
@@ -719,16 +893,16 @@ struct DragControllerPage {
 
 ## DragEventParam<sup>12+</sup>
 
+拖拽结束返回结果的回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-拖拽结束返回结果的回调。
-
 | 名称        | 类型                                                         | 必填 | 说明                           |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| event       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent7) | 是   | 拖拽事件信息，仅包括拖拽结果。 |
-| extraParams | string                                                       | 是   | 拖拽事件额外信息。             |
+| event<sup>10+</sup>       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent7) | 是   | 拖拽事件信息，仅包括拖拽结果。 |
+| extraParams<sup>10+</sup> | string                                                       | 是   | 拖拽事件额外信息。             |
 
 ## dragController.getDragPreview<sup>(deprecated)</sup>
 
@@ -784,7 +958,7 @@ setForegroundColor(color: ResourceColor): void
 
 请参考[animate](#animate11)
 
-  ### animate<sup>11+</sup>
+### animate<sup>11+</sup>
 
 animate(options: AnimationOptions, handler: () => void): void
 
@@ -832,13 +1006,13 @@ export default class EntryAbility extends UIAbility {
 
     windowStage.loadContent('pages/Index', this.storage, (err, data) => {
       if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', `Code is ${err.code}, message is ${err.message}`);
         return;
       }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s',  `Code is ${err.code}, message is ${err.message}`);
       windowStage.getMainWindow((err, data) => {
         if (err.code) {
-          hilog.error(0x0000, 'Failed to abtain the main window. Cause:' + err.message, '');
+          hilog.error(0x0000, `Failed to abtain the main window. Cause: ${err.message}`, '');
           return;
         }
         let windowClass: window.Window = data;

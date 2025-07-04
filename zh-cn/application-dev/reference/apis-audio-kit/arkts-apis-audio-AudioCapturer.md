@@ -7,6 +7,12 @@
 
 在使用AudioCapturer的接口之前，需先通过[createAudioCapturer](arkts-apis-audio-f.md#audiocreateaudiocapturer8)获取AudioCapturer实例。
 
+## 导入模块
+
+```ts
+import { audio } from '@kit.AudioKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
@@ -291,7 +297,7 @@ try {
 
 start(callback: AsyncCallback<void\>): void
 
-启动音频采集器。使用callback异步回调。
+启动音频采集器，开始获取音频数据。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -320,7 +326,7 @@ audioCapturer.start((err: BusinessError) => {
 
 start(): Promise<void\>
 
-启动音频采集器。使用Promise异步回调。
+启动音频采集器，开始获取音频数据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -352,7 +358,7 @@ audioCapturer.start().then(() => {
 
 stop(callback: AsyncCallback<void\>): void
 
-停止音频采集。使用callback异步回调。
+停止音频采集器，停止输入音频流。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -381,7 +387,7 @@ audioCapturer.stop((err: BusinessError) => {
 
 stop(): Promise<void\>
 
-停止音频采集。使用Promise异步回调。
+停止音频采集器，停止输入音频流。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -547,7 +553,9 @@ try {
 
 getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
 
-获取音频流时间戳和当前数据帧位置信息。使用Promise异步回调。
+获取输入音频流时间戳和当前数据帧位置信息。
+
+该接口可以获取到音频通道实际录制位置（framePosition）以及录制到该位置时候的时间戳（timestamp），时间戳单位为纳秒。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 

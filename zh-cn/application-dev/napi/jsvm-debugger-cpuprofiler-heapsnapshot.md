@@ -37,6 +37,15 @@ JSVM，即标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执
 ```
 
 2. 为避免debugger过程中的暂停被误报为无响应异常，可以[开启DevEco Studio的Debug模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5)（无需设置断点），或者可以在非主线程的其他线程中运行JSVM。
+```cpp
+// 在非主线程的其他线程中运行JSVM示例代码
+static napi_value RunTest(napi_env env, napi_callback_info info)
+{
+    std::thread testJSVMThread(TestJSVM);
+    testJSVMThread.detach();
+    return  nullptr;
+}
+```
 3. 在执行JS代码之前，调用OH_JSVM_OpenInspector在指定的主机和端口上激活inspector，创建socket。例如OH_JSVM_OpenInspector(env, "localhost", 9225)，在端侧本机端口9225创建socket。
 4. 调用OH_JSVM_WaitForDebugger，等待建立socket连接。
 5. 检查端侧端口是否打开成功。hdc shell "netstat -anp | grep 9225"。结果为9225端口状态为“LISTEN"即可。
@@ -51,6 +60,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 #include "ark_runtime/jsvm.h"
 
 #include <string>
+#include <thread>
 
 using namespace std;
 
@@ -119,7 +129,6 @@ void TestJSVM() {
 }
 
 ```
-<!-- @[oh_jsvm_open_inspector](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmDebug/openinspector/src/main/cpp/hello.cpp) -->
 
 ### 使用 OH_JSVM_OpenInspectorWithName
 
@@ -307,7 +316,6 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```cpp
 const char *srcCallNative = R"JS(runScriptWithStatistics();)JS";
 ```
-<!-- @[heap_snapshot](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmDebug/snapshot/src/main/cpp/hello.cpp) -->
 预计的输出结果：
 ```
 在对应鸿蒙设备内生成两个文件用于后续调优：

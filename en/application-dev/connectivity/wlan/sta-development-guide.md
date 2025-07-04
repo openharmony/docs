@@ -1,7 +1,6 @@
 # STA Development
 
 ## Introduction
-
 The Wi-Fi STA mode (that is, station mode) enables wireless devices to connect to a wireless local area network (WLAN) as clients. In this mode, devices such as mobile phones, computers, and tablets can access the network by connecting to an access point (AP) or wireless router.
 
 
@@ -37,8 +36,7 @@ The following table describes the related APIs.
 2. Check that the **SystemCapability.Communication.WiFi.STA** capability is available.
 3. Apply for the **ohos.permission.GET_WIFI_INFO** permission.
 4. Enable Wi-Fi on the device.
-
-Sample code:
+5. Sample code:
 
 ```ts
   import { wifiManager } from '@kit.ConnectivityKit';
@@ -47,7 +45,7 @@ Sample code:
     let wifiState = "";
       switch (result) {
       case 0:
-      wifiState += 'DISABLEING';
+      wifiState += 'DISABLING';
       break;
       case 1:
       wifiState += 'DISABLED';
@@ -63,12 +61,12 @@ Sample code:
       break;
     }
   }
-    // Subscribe to Wi-Fi state changes.
+    // Subscribe to Wi-Fi connection state changes.
     wifiManager.on("wifiStateChange", recvPowerNotifyFunc);
     // Check whether Wi-Fi is enabled.
     let isWifiActive = wifiManager.isWifiActive();
     if (!isWifiActive) {
-      console.info("wifi not enable"); // Enable Wi-Fi manually.
+      console.info("Wi-Fi not enabled"); // Enable Wi-Fi manually.
       return;
     }
 
@@ -77,13 +75,11 @@ Sample code:
 ```
 
 ### Establishing a Wi-Fi Connection
-
 1. Import the required Wi-Fi module.
 2. Enable Wi-Fi on the device.
 3. Check that the **SystemCapability.Communication.WiFi.STA** capability is available.
 4. Apply for the **ohos.permission.GET_WIFI_INFO** and **ohos.permission.SET_WIFI_INFO** permissions.
-
-Sample code:
+5. Sample code:
 
 ```ts
   import { wifiManager } from '@kit.ConnectivityKit';
@@ -109,11 +105,11 @@ Sample code:
     });
 
     if (!wifiManager.isConnected()) {
-        console.info("wifi not conneted");
+        console.info("Wi-Fi not connected");
     }
     // Obtain link information.
     wifiManager.getLinkedInfo().then(data => {
-      console.info("get wifi linked info: " + JSON.stringify(data));
+      console.info("get Wi-Fi linked info: " + JSON.stringify(data));
     })
     // Query the signal strength.
     let level = wifiManager.getSignalLevel(rssi,band);
@@ -124,4 +120,4 @@ Sample code:
   }
 ```
 6. Check the Wi-Fi connection status. For details, see [ConnState](../../reference/apis-connectivity-kit/js-apis-wifiManager.md#connstate9).
-   For details about error codes, see [Wi-Fi Error Codes](../../reference/apis-connectivity-kit/errorcode-wifi.md).
+7. For details about error codes, see [Wi-Fi Error Codes](../../reference/apis-connectivity-kit/errorcode-wifi.md).

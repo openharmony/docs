@@ -49,7 +49,7 @@ import { pluginComponentManager } from '@kit.ArkUI';
 | target   | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件提供方Ability信息。                          |
 | name     | string                              | 是    | 请求组件名称。                                  |
 | data     | [KVObject](js-apis-plugincomponent.md#kvobject)               | 是    | 附加数据。                                    |
-| jsonPath | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。当jsonPath字段不为空或者未设置时，不触发Request通信。 |
+| jsonPath | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。当jsonPath字段不为空时不触发Request通信。 |
 
 ### push
 

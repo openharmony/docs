@@ -18,13 +18,13 @@
 
   RichText组件不适用于对HTML字符串的显示效果进行较多自定义的应用场景。例如RichText组件不支持通过设置属性与事件，来修改**背景颜色、字体颜色、字体大小、动态改变内容**等。在这种情况下，推荐使用[Web组件](../../apis-arkweb/arkts-basic-components-web.md)。
 
-  RichText组件比较消耗内存资源，而且有一些重复使用RichText组件的场景下，比如在**List下循环重复使用RichText**时，会出现卡顿、滑动响应慢等现象。在这种情况下，推荐使用[RichEditor组件](../arkui-ts/ts-basic-components-richeditor.md#richeditor)。
+  RichText组件比较消耗内存资源，而且有一些重复使用RichText组件的场景下，比如在**List下循环重复使用RichText**时，会出现卡顿、滑动响应慢等现象。在这种情况下，推荐使用[RichEditor组件](../arkui-ts/ts-basic-components-richeditor.md)。
 
 >  **说明：**
 >
 > - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - 该组件无法根据内容自适应设置宽高属性，需要开发者设置显示布局。
-> - **该组件不再更新和维护，推荐使用[RichEditor组件](../arkui-ts/ts-basic-components-richeditor.md#richeditor)或[Web组件](../../apis-arkweb/arkts-basic-components-web.md)。**
+> - **该组件不再更新和维护，推荐使用[RichEditor组件](../arkui-ts/ts-basic-components-richeditor.md)或[Web组件](../../apis-arkweb/arkts-basic-components-web.md)。**
 
 
 ## 子组件

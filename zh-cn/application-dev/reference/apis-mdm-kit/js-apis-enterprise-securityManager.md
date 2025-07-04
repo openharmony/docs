@@ -106,6 +106,7 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -117,6 +118,7 @@ let wantTemp: Want = {
 let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;
@@ -169,6 +171,7 @@ installUserCertificate(admin: Want, certificate: CertBlob, accountId: number): s
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common, Want } from '@kit.AbilityKit';
 
@@ -180,6 +183,7 @@ let certFileArray: Uint8Array = new Uint8Array();
 let accountId: number = 100;
 // The variable context needs to be initialized in MainAbility's onCreate callback function
 // test.cer needs to be placed in the rawfile directory
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;
@@ -700,10 +704,10 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称   | 类型       | 必填 | 说明               |
-| ------ | ---------- | ---- | ------------------ |
-| inData | Uint8Array | 是   | 证书的二进制内容。 |
-| alias  | string     | 是   | 证书别名。         |
+| 名称   | 类型       | 只读 | 可选 | 说明               |
+| ------ | ---------- | ---- | ---- | ------------------ |
+| inData | Uint8Array | 否   | 否 |证书的二进制内容。 |
+| alias  | string     | 否   | 否 |证书别名。         |
 
 ## PasswordPolicy
 
@@ -711,11 +715,11 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称         | 类型     | 必填 | 说明                            |
-| ----------- | --------| ---- | ------------------------------- |
-| complexityRegex | string | 否 | 口令复杂度正则表达式。 |
-| validityPeriod | number | 否 | 密码有效期（单位：毫秒）。 |
-| additionalDescription | string | 否 | 描述文本。 |
+| 名称         | 类型     | 只读 | 可选 | 说明                            |
+| ----------- | --------| ---- | ---- | --------------------------- |
+| complexityRegex | string | 否 | 是 | 口令复杂度正则表达式。 |
+| validityPeriod | number | 否 | 是 | 密码有效期（单位：毫秒）。 |
+| additionalDescription | string | 否 | 是 | 描述文本。 |
 
 ## ClipboardPolicy
 

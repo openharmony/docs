@@ -1,7 +1,14 @@
 # 开发参考
 - [开发说明](development-intro-api.md)
 - [系统能力SystemCapability使用指南](syscap.md)
-- [系统能力SystemCapability列表](syscap-list.md)
+<!--Del-->
+- 系统能力SystemCapability列表<!--syscap-list-->
+    - [Phone](phone-syscap-list.md)
+    - [Tablet](tablet-syscap-list.md)
+    - [LiteWearable](litewearable-syscap-list.md)
+    - [TV](tv-syscap-list.md)
+    - [Wearable](wearable-syscap-list.md)
+<!--DelEnd-->
 - [通用错误码](errorcode-universal.md)
 - [Ability Kit API参考](apis-ability-kit/Readme-CN.md)
 - [Accessibility Kit API参考](apis-accessibility-kit/Readme-CN.md)

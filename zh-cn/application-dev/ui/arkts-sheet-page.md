@@ -186,4 +186,71 @@ onWillSpringBackWhenDismiss: ((SpringBackAction: SpringBackAction) => {
 }),
 ```
 
+## 半模态支持避让中轴
 
+半模态从API version 14开始支持中轴避让，当前在2in1设备默认开启（仅窗口处于瀑布模式时产生避让）中轴避让能力，且在2in1设备默认避让区域为上半屏。开发者可以通过[SheetOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)的enableHoverMode主动设置是否避让中轴，及[SheetOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)的hoverModeArea设置避让中轴后显示区域。
+
+- 半模态中轴避让不支持控件子窗能力，showInSubWindow=true场景。
+- 2in1设备上需同时满足窗口处于瀑布模式才会产生避让。
+
+完整示例代码如下：
+
+```ts
+@Entry
+@Component
+struct SheetTransitionExample {
+  @State isShow: boolean = false;
+  @State enableHoverMode: boolean = true;
+  @State hoverModeArea: HoverModeAreaType = HoverModeAreaType.TOP_SCREEN;
+
+  @Builder
+  myBuilder() {
+    Column() {
+      Button("enableHoverMode切换")
+        .margin(10)
+        .fontSize(20)
+        .onClick(() => {
+          this.enableHoverMode = !this.enableHoverMode;
+        })
+
+      Button("hoverModeArea切换")
+        .margin(10)
+        .fontSize(20)
+        .onClick(() => {
+          this.hoverModeArea = this.hoverModeArea === HoverModeAreaType.TOP_SCREEN ?
+          HoverModeAreaType.BOTTOM_SCREEN : HoverModeAreaType.TOP_SCREEN;
+        })
+
+      Button("close modal")
+        .margin(10)
+        .fontSize(20)
+        .onClick(() => {
+          this.isShow = false;
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+
+  build() {
+    Column() {
+      Button("拉起半模态")
+        .onClick(() => {
+          this.isShow = true;
+        })
+        .fontSize(20)
+        .margin(10)
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          height: 300,
+          backgroundColor: Color.Green,
+          preferType: SheetType.CENTER,
+          enableHoverMode: this.enableHoverMode,
+          hoverModeArea: this.hoverModeArea
+        })
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
+  }
+}
+```

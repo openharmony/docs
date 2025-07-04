@@ -35,7 +35,7 @@ struct Index {
               },
             };
             try {
-              formProvider.openFormManager(this.want);
+              formProvider.openFormManager(want);
             } catch (error) {
               console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
             }

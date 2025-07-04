@@ -418,7 +418,7 @@ bundle.getPermissionDef(permission, (err, data) => {
 
 getPermissionDef(permissionName: string): Promise&lt;PermissionDef&gt;
 
-按权限名称获取权限的详细信息，使用promise异步回调。。
+按权限名称获取权限的详细信息，使用promise异步回调。
 
 **需要权限：**
 

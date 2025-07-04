@@ -35,7 +35,7 @@
 
 当前支持的解码能力：
 
-AAC、MPEG(MP3)、Flac、Vorbis、AMR(amrnb、amrwb)、G711mu、APE<!--RP1--><!--RP1End-->。
+AAC、MPEG(MP3)、Flac、Vorbis、AMR(amrnb、amrwb)、G711mu、APE、G711a<!--RP1--><!--RP1End-->。
 
 具体开发指导请参考[音频解码](audio-decoding.md)。
 
@@ -69,7 +69,7 @@ AAC、Flac、MP3、G711mu<!--RP3--><!--RP3End-->。
 | 音频       | mp3                        |音频码流：MPEG(MP3)|
 | 音频       | ogg                        |音频码流：Vorbis|
 | 音频       | flac                       |音频码流：Flac|
-| 音频       | wav                        |音频码流：PCM、G711mu|
+| 音频       | wav                        |音频码流：PCM、G711mu、G711a|
 | 音频       | amr                        |音频码流：AMR(amrnb、amrwb)|
 | 音频       | ape                        |音频码流：APE|
 | 外挂字幕   | srt                        |字幕流：SRT|

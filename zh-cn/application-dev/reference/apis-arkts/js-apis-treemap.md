@@ -33,7 +33,7 @@ import { TreeMap } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | TreeMap的元素个数。 |
 
@@ -52,7 +52,7 @@ TreeMap的构造函数，支持通过比较函数对元素进行升序或降序�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| comparator | function | 否 | 用户自定义的比较函数，可通过比较关系对元素进行排序。默认值为hole（一个空白占位符），表示不提供比较函数。 |
+| comparator | function | 否 | 用户自定义的比较函数，可通过比较关系对元素进行排序。默认值为null，表示不提供比较函数。 |
 
 comparator的参数说明：
 
@@ -370,7 +370,7 @@ let map : TreeMap<string, number> = new TreeMap();
 map.set("demo", 12);
 map.setAll(treeMap); // 将treeMap中的所有元素添加到map中
 map.forEach((value ?: number, key ?: string) : void => {
-  console.log("value: " + value, "key: " + key); 
+  console.info("value: " + value, "key: " + key); 
 })
 // 输出结果:
 // value: 12 key: demo

@@ -439,18 +439,18 @@ struct Index {
 
 ### GC稳定性问题排查指导
 
-GC稳定性问题大多由两种异常引起：一是非法多线程操作导致的对象异常，GC任务过程中遇到到这些异常的对象进而报错。二是踩内存问题导致的存储的指针异常，GC任务过程中使用这些异常的指针进而报错。这两种问题在GC任务中的表现通常为堆栈中的地址异常。 
+GC稳定性问题大多由两种异常引起：一是非法多线程操作导致的对象异常。二是踩内存问题导致的存储的指针异常。这两种问题在GC任务中的表现通常为堆栈中的地址访问异常。 
 
-分辨GC任务需要通过线程名称和堆栈内的方法来判断。OS_GC_Thread线程主要执行GC任务和PGO相关任务；堆栈内包含`GCTask`等关键词可帮助识别GC任务。GC任务上报地址异常类型的crash时，开发者应首先应排查非法多线程问题和踩内存问题。 
+可通过线程名称和堆栈内的方法来识别GC任务：`OS_GC_Thread`线程主要执行GC任务和PGO相关任务（采集型任务）；或者通过堆栈内包含`GCTask`等关键词识别GC任务。GC任务上报地址异常类型的崩溃时，开发者应首先应排查非法多线程问题和踩内存问题。 
 
-- 检测非法多线程操作：[方舟运行时检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-multi-thread-check) 
-- 检测踩内存问题：[HWASan检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hwasan)
+- 检测非法多线程操作：[方舟运行时检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-multi-thread-check)。
+- 检测踩内存问题：[HWASan检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hwasan)。
 
 以下示例仅列举部分情况，实际问题上报的地址异常类型多种多样，此处不再赘述。
 
-对象异常问题堆栈： 
+对象异常问题典型堆栈信息： 
 
-0xffff000000000048为对象异常偏移出错。
+0xffff000000000048 为对象异常偏移出错。
 
 ``` text
 Reason:Signal:SIGSEGV(SEGV_MAPERR)@0xffff000000000048 
@@ -467,9 +467,9 @@ Tid:6490, Name:OS_GC_Thread
 #08 pc 000000000064f718 /system/lib64/platformsdk/libark_jsruntime.so(a3d1ba664de66d31faed07d711ee1299)
 #09 pc 00000000001ba6b8 /system/lib/ld-musl-aarch64.so.1(start+236)(8102fa8a64ba5e1e9f2257469d3fb251)
 ```
-指针异常问题堆栈：
+指针异常问题典型堆栈信息：
 
-0x000056c2fffc0008为指针异常，和正常指针位数不一致。
+0x000056c2fffc0008 为指针异常，指针映射出错。
 
 ``` text
 Reason:Signal:SIGSEGV(SEGV_MAPERR)@0x000056c2fffc0008 

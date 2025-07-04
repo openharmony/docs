@@ -1,6 +1,6 @@
 # Canceling Tasks in Multithreading with TaskPool
 
-[Task](../reference/apis-arkts/js-apis-taskpool.md#task) objects of the [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) cannot be passed to child threads. Therefore, tasks cannot be canceled from child threads prior to API version 18. Starting from API version 18, tasks have been enhanced with the [task ID](../reference/apis-arkts/js-apis-taskpool.md#properties), allowing tasks to be canceled in child threads using this ID. The following example describes how to cancel a task that has been submitted to the TaskPool in a multithreaded environment. You can store the task ID of a created task in a [Sendable object](./arkts-sendable.md) and use this object to cancel the task from a child thread.
+[Task](../reference/apis-arkts/js-apis-taskpool.md#task) objects of the [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) cannot be passed across threads. Therefore, tasks cannot be canceled from child threads. Starting from API version 18, tasks have been enhanced with the [task ID](../reference/apis-arkts/js-apis-taskpool.md#properties), allowing tasks to be canceled in child threads using this ID. The following example describes how to cancel a task that has been submitted to the TaskPool in a multithreaded environment. You can store the task ID of a created task in a [Sendable object](./arkts-sendable.md) and use this object to cancel the task from a child thread.
 
 1. Define a Sendable class and store the task ID in the class properties.
 
@@ -56,7 +56,9 @@
            .fontWeight(FontWeight.Bold)
            .onClick(async () => {
              let task = new taskpool.Task(delayed);
-             taskpool.executeDelayed(2000, task);
+             taskpool.executeDelayed(2000, task).catch((e: BusinessError) => {
+               console.error(`taskpool execute error, message is: ${e.message}`); // taskpool execute error, message is: taskpool:: task has been canceled
+             });
              let send = new SendableTest(task.taskId);
              taskpool.execute(cancel, send);
            })

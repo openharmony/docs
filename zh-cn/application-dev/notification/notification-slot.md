@@ -46,7 +46,7 @@
 2. 创建指定类型的通知渠道。
 
     ```ts
-    // addslot回调
+    // addSlot回调
     let addSlotCallBack = (err: BusinessError): void => {
       if (err) {
         hilog.error(DOMAIN_NUMBER, TAG, `addSlot failed, code is ${err.code}, message is ${err.message}`);

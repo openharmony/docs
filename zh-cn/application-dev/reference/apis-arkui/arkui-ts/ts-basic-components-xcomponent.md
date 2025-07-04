@@ -92,12 +92,11 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | 是   | 用于指定XComponent组件类型。 |
-| controller | [XComponentController](#xcomponentcontroller) | 是 | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
-| imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
-| screenId<sup>17+</sup> | number | 否 | 屏幕的id。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | 否 | 否   | 用于指定XComponent组件类型。 |
+| controller | [XComponentController](#xcomponentcontroller) | 否 | 否 | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
+| imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 是 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
 
 ## NativeXComponentParameters<sup>19+</sup>
 
@@ -107,10 +106,10 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | 是   | 用于指定XComponent组件类型。 |
-| imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | 否 | 否   | 用于指定XComponent组件类型。 |
+| imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 是 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
 
 ## 属性
 除支持通用属性外，还支持以下属性：
@@ -261,8 +260,6 @@ XComponent组件的控制器，可以将此对象绑定至XComponent组件，然
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 ### constructor
 
 constructor()
@@ -332,7 +329,7 @@ getXComponentContext(): Object
 
 setXComponentSurfaceRect(rect: SurfaceRect): void
 
-设置XComponent持有Surface的显示区域，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+设置XComponent持有Surface的显示区域，包括宽高和相对于组件左上角的位置坐标，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -356,7 +353,7 @@ setXComponentSurfaceRect(rect: SurfaceRect): void
 
 getXComponentSurfaceRect(): SurfaceRect
 
-获取XComponent持有Surface的显示区域，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+获取XComponent持有Surface的显示区域，包括宽高和相对于组件左上角的位置坐标，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -521,13 +518,13 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 | 类型                                 | 描述                                  |
 | ------------------------------------ | ------------------------------------- |
-| [SurfaceRotationOptions](#surfacerotationoptions12对象说明) | 获取XComponent持有Surface在屏幕旋转时是否锁定方向的设置。 |
+| Required<[SurfaceRotationOptions](#surfacerotationoptions12对象说明)> | 获取XComponent持有Surface在屏幕旋转时是否锁定方向的设置。 |
 
 ### lockCanvas<sup>20+</sup>
 
 lockCanvas(): DrawingCanvas | null
 
-返回可用于向XComponent上绘制内容的画布对象。具体绘制方法请参考[Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas)。
+返回可用于向XComponent上绘制内容的画布对象。具体绘制方法请参考[Canvas](../../apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md)。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -536,7 +533,7 @@ lockCanvas(): DrawingCanvas | null
 **返回值：**
 | 类型                                 | 说明                                  |
 | ------------------------------------ | ------------------------------------- |
-| [DrawingCanvas](#drawingcanvas12对象说明) \| null | 可用于向XComponent区域绘制的画布对象或者空对象null。 |
+| [DrawingCanvas](ts-drawingrenderingcontext.md#drawingcanvas12对象说明) \| null | 可用于向XComponent区域绘制的画布对象或者空对象null。 |
 
 > **说明：**
 >
@@ -565,7 +562,7 @@ unlockCanvasAndPost(canvas: DrawingCanvas): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| canvas | [DrawingCanvas](#drawingcanvas12对象说明) | 是 | 之前调用lockCanvas方法返回的画布对象。 |
+| canvas | [DrawingCanvas](ts-drawingrenderingcontext.md#drawingcanvas12对象说明) | 是 | 之前调用lockCanvas方法返回的画布对象。 |
 
 > **说明：**
 >
@@ -585,9 +582,9 @@ unlockCanvasAndPost(canvas: DrawingCanvas): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型   | 必填 | 说明                                                         |
-| ------------- | ------ | ---- | ------------------------------------------------------------ |
-| lock       | boolean | 否   | Surface在屏幕旋转时是否锁定方向，未设置时默认取值为false，即不锁定方向。<br/>true：锁定方向；false：不锁定方向。 |
+| 名称          | 类型   | 只读 | 可选 | 说明                                                         |
+| ------------- | ------ | ------ | ---- | ------------------------------------------------------------ |
+| lock       | boolean | 否 | 是   | Surface在屏幕旋转时是否锁定方向，未设置时默认取值为false，即不锁定方向。<br/>true：锁定方向；false：不锁定方向。 |
 
 ## SurfaceRect<sup>12+</sup>对象说明
 
@@ -597,32 +594,20 @@ unlockCanvasAndPost(canvas: DrawingCanvas): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型   | 必填 | 说明                                                         |
-| ------------- | ------ | ---- | ------------------------------------------------------------ |
-| offsetX       | number | 否   | Surface显示区域相对于XComponent组件左上角的x轴坐标，单位：px。 |
-| offsetY       | number | 否   | Surface显示区域相对于XComponent组件左上角的y轴坐标，单位：px。 |
-| surfaceWidth  | number | 是   | Surface显示区域的宽度，单位：px。                            |
-| surfaceHeight | number | 是   | Surface显示区域的高度，单位：px。                            |
+| 名称          | 类型   | 只读 | 可选 | 说明                                                         |
+| ------------- | ------ | ------ | ---- | ------------------------------------------------------------ |
+| offsetX       | number | 否   | 是   | Surface显示区域相对于XComponent组件左上角的x轴坐标，单位：px。 |
+| offsetY       | number | 否   | 是   | Surface显示区域相对于XComponent组件左上角的y轴坐标，单位：px。 |
+| surfaceWidth  | number | 否   | 否   | Surface显示区域的宽度，单位：px。                            |
+| surfaceHeight | number | 否   | 否   | Surface显示区域的高度，单位：px。                            |
 
 > **说明：**
 >
 > surfaceWidth和surfaceHeight属性在未调用[setXComponentSurfaceRect](ts-basic-components-xcomponent.md#setxcomponentsurfacerect12)也未设置[border](ts-universal-attributes-border.md#border)和[padding](ts-universal-attributes-size.md#padding)等属性时，其取值大小为XComponent组件的大小。
 > 
 > surfaceWidth和surfaceHeight属性的取值都不可超过8192px，否则会导致渲染异常。
-
-## DrawingCanvas<sup>12+</sup>对象说明
-
-type DrawingCanvas = Canvas
-
-可用于向XComponent上绘制内容的画布对象。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 类型                  | 说明           |
-| --------------------- | -------------- |
-| [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 返回一个Canvas对象。 |
+>
+> 沉浸式场景下，默认布局的SurfaceRect不包括安全区，需调用[setXComponentSurfaceRect](ts-basic-components-xcomponent.md#setxcomponentsurfacerect12)接口主动设置Surface显示区域达到沉浸式效果。
 
 ## 示例
 
@@ -646,17 +631,17 @@ import nativeRender from 'libnativerender.so';// 开发者自己实现的so，�
 
 class CustomXComponentController extends XComponentController {
   onSurfaceCreated(surfaceId: string): void {
-    console.log(`onSurfaceCreated surfaceId: ${surfaceId}`);
+    console.info(`onSurfaceCreated surfaceId: ${surfaceId}`);
     nativeRender.SetSurfaceId(BigInt(surfaceId));
   }
 
   onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
-    console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`);
+    console.info(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`);
     nativeRender.ChangeSurface(BigInt(surfaceId), rect.surfaceWidth, rect.surfaceHeight);
   }
 
   onSurfaceDestroyed(surfaceId: string): void {
-    console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
+    console.info(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
     nativeRender.DestroySurface(BigInt(surfaceId));
   }
 }
@@ -719,10 +704,10 @@ struct XComponentExample {
           .onClick(() => {
             this.xComponentController.startImageAnalyzer(this.config)
               .then(() => {
-                console.log("analysis complete");
+                console.info("analysis complete");
               })
               .catch((error: BusinessError) => {
-                console.log("error code: " + error.code);
+                console.error("error code: " + error.code);
               })
           })
           .margin(2)

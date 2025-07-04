@@ -11,7 +11,7 @@ With the native APIs provided by **ImageEffect**, you can:
 
 ## **Available APIs**
 
-For details about the APIs, see [ImageEffect](../../reference/apis-image-kit/_image_effect.md).
+For details about the APIs, see [ImageEffect](../../reference/apis-image-kit/capi-imageeffect.md).
 
 ## How to Develop
 
@@ -41,7 +41,7 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
 
 ### Making a Filter Effective
 
-1. Create an **ImageEffect** instance.
+1. Create an ImageEffect instance.
 
     ```c++
     // Create an ImageEffect instance, with the alias set to ImageEdit.
@@ -101,12 +101,24 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     errorCode = OH_ImageEffect_SetOutputUri(imageEffect, outputUri);
     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputUri fail!");
     ```
+    **Scenario 4: Set the texture input type.**
 
-    **Scenario 4: Set the OHNativeWindow input type.**
+    In the texture input scenario, the GPU is used for rendering. In this scenario, the application needs to provide a valid OpenGL context environment, set parameters, and perform rendering operations in the correct environment.
+    ```c++
+    // Set the input texture ID.
+    errorCode = OH_ImageEffect_SetInputTextureId(imageEffect, inputTex, ColorSpaceName::SRGB);
+    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetInputTextureId fail!");
 
-    The following uses camera preview as an example to describe the scenario. The surface ID provided by the **XComponent** for camera preview streams can be converted into an **OHNativeWindow** instance at the native C++ layer.
+    // Set the output texture ID. Note that the output texture ID cannot be the same as the input texture ID. Otherwise, rendering exceptions may occur.
+    errorCode = OH_ImageEffect_SetOutputTextureId(imageEffect, outputTex);
+    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputTextureId fail!");
+    ```
+
+    **Scenario 5: Set the OHNativeWindow input type.**
+
+    The following uses camera preview as an example to describe the scenario. The surface ID provided by the **XComponent** for camera preview streams can be converted into an OHNativeWindow instance at the native C++ layer.
     For details about how to use the **XComponent**, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
-    For details about how to use the native window module, see [OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md).
+    For details about how to use the native window module, see [OHNativeWindow](../../reference/apis-arkgraphics2d/capi-nativewindow.md).
     For details about how to use the camera, see [Camera Preview (C/C++)](../camera/native-camera-preview.md).
 
     (1) Add an **XComponent** to the .ets file.
@@ -185,7 +197,7 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_Save fail!");
     ```
 
-7. Destroy the **ImageEffect** instance.
+7. Destroy the ImageEffect instance.
 
     ```c++
     // Release the ImageEffect instance.
@@ -418,3 +430,4 @@ To implement and register a custom filter, perform the following steps:
     OH_EffectFilter_ReleaseFilterNames();
     ```
 
+<!--no_check-->

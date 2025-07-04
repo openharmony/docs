@@ -40,7 +40,7 @@ Load a page by calling **windowStage.loadContent** in the UIAbility.
 
 > **NOTE**
 > 
-> Directly using **getContext** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **Context** object using [getHostContext](js-apis-arkui-UIContext.md#gethostcontext12).
+> Directly using **getContext** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain a **UIContext** instance using [getUIContext](js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **Context** object using [getHostContext](js-apis-arkui-UIContext.md#gethostcontext12).
 
 ```ts
 // EntryAbility.ets
@@ -99,8 +99,8 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             // You are advised to use this.getUIContext().getHostContext().
-            let context : Context = getContext(this) as Context
-            console.info("CacheDir:" + context.cacheDir)
+            let context: Context = getContext(this) as Context;
+            console.info("CacheDir:" + context.cacheDir);
           })
       }
       .width('100%')

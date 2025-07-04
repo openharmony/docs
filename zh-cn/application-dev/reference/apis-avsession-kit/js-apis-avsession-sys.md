@@ -9,7 +9,7 @@
 > **说明：**
 >
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.multimedia.avsession (媒体会话管理)](js-apis-avsession.md)。
+> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.multimedia.avsession (媒体会话管理)](arkts-apis-avsession.md)。
 
 ## 导入模块
 
@@ -19,7 +19,7 @@ import { avSession } from '@kit.AVSessionKit';
 
 ## 使用说明
 
-本文档仅提供系统接口说明，以下接口的使用说明均需先创建实例，请参考公开接口[avSession.createAVSession](js-apis-avsession.md#avsessioncreateavsession10)的说明及示例，创建对应实例。
+本文档仅提供系统接口说明，以下接口的使用说明均需先创建实例，请参考公开接口[avSession.createAVSession](arkts-apis-avsession-f.md#avsessioncreateavsession10)的说明及示例，创建对应实例。
 
 ## avSession.getAllSessionDescriptors
 
@@ -325,7 +325,7 @@ createController(sessionId: string): Promise\<AVSessionController>
 
 | 类型                                                  | 说明                                                         |
 | ----------------------------------------------------- | ------------------------------------------------------------ |
-| Promise<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\> | Promise对象。返回会话控制器实例，可查看会话ID，<br>并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。|
+| Promise<[AVSessionController](arkts-apis-avsession-AVSessionController.md)\> | Promise对象。返回会话控制器实例，可查看会话ID，<br>并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。|
 
 **错误码：**
 
@@ -369,7 +369,7 @@ createController(sessionId: string, callback: AsyncCallback\<AVSessionController
 | 参数名    | 类型                                                        | 必填 | 说明                                                         |
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | sessionId | string                                                      | 是   | 会话ID，如果提供 'default'，系统将创建一个默认控制器，用于控制系统默认会话。                                                     |
-| callback  | AsyncCallback<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\> | 是   | 回调函数。返回会话控制器实例，可查看会话ID，<br>并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。 |
+| callback  | AsyncCallback<[AVSessionController](arkts-apis-avsession-AVSessionController.md)\> | 是   | 回调函数。返回会话控制器实例，可查看会话ID，<br>并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。 |
 
 **错误码：**
 
@@ -594,7 +594,7 @@ getDistributedSessionController(distributedSessionType: DistributedSessionType):
 
 | 类型                                                                                 | 说明                                                                    |
 |------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
-| Promise<Array<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\>> | Promise对象。返回对应类型的会话控制器实例列表，可查看会话ID，并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。 |
+| Promise<Array<[AVSessionController](arkts-apis-avsession-AVSessionController.md)\>> | Promise对象。返回对应类型的会话控制器实例列表，可查看会话ID，并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。 |
 
 **错误码：**
 
@@ -946,7 +946,7 @@ on(type: 'distributedSessionChange', distributedSessionType: DistributedSessionT
 | -------- |-------------------------------------------------------------------------------------| ---- |--------------------------------------------------------------------------|
 | type     | string                                                                              | 是   | 事件回调类型，支持的事件为 `'distributedSessionChange'`：最新远端分布式会话的变化事件，检测到最新的会话改变时触发。 |
 | distributedSessionType     | [DistributedSessionType](#distributedsessiontype18)             | 是   | 远端会话类型。                                                                  |
-| callback | Callback<Array<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\>> | 是   | 回调函数。参数为对应类型的会话控制器实例列表，可查看会话ID，并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。            |
+| callback | Callback<Array<[AVSessionController](arkts-apis-avsession-AVSessionController.md)\>> | 是   | 回调函数。参数为对应类型的会话控制器实例列表，可查看会话ID，并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。            |
 
 **错误码：**
 
@@ -984,7 +984,7 @@ off(type: 'distributedSessionChange', distributedSessionType: DistributedSession
 | -------- |-------------------------------------------------------------------------------------|----|---------------------------------------------------------------|
 | type     | string                                                                              | 是  | 事件回调类型，支持的事件为`'distributedSessionChange'`。                    |
 | distributedSessionType     | [DistributedSessionType](#distributedsessiontype18)             | 是  | 远端会话类型。                                                       |
-| callback | Callback<Array<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\>> | 否  | 回调函数。参数为对应类型的会话控制器实例列表，可查看会话ID，并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。 |
+| callback | Callback<Array<[AVSessionController](arkts-apis-avsession-AVSessionController.md)\>> | 否  | 回调函数。参数为对应类型的会话控制器实例列表，可查看会话ID，并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。 |
 
 **错误码：**
 
@@ -1116,7 +1116,7 @@ sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback\<voi
 
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| command  | [AVControlCommand](js-apis-avsession.md#avcontrolcommand10) | 是   | AVSession的相关命令和命令相关参数。   |
+| command  | [AVControlCommand](arkts-apis-avsession-i.md#avcontrolcommand10) | 是   | AVSession的相关命令和命令相关参数。   |
 | callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
@@ -1175,7 +1175,7 @@ sendSystemControlCommand(command: AVControlCommand): Promise\<void>
 
 | 参数名  | 类型                                  | 必填 | 说明                                |
 | ------- | ------------------------------------- | ---- | ----------------------------------- |
-| command | [AVControlCommand](js-apis-avsession.md#avcontrolcommand10) | 是   | AVSession的相关命令和命令相关参数。 |
+| command | [AVControlCommand](arkts-apis-avsession-i.md#avcontrolcommand10) | 是   | AVSession的相关命令和命令相关参数。 |
 
 **返回值：**
 
@@ -1519,7 +1519,7 @@ on(type: 'deviceAvailable', callback: (device: OutputDeviceInfo) => void): void
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type     | string               | 是   | 事件回调类型，支持事件`'deviceAvailable'`，有设备被发现时触发回调。 |
-| callback | (device: [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)) => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则返回错误对象。                                |
+| callback | (device: [OutputDeviceInfo](arkts-apis-avsession-i.md#outputdeviceinfo10)) => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则返回错误对象。                                |
 
 **错误码：**
 
@@ -1555,7 +1555,7 @@ off(type: 'deviceAvailable', callback?: (device: OutputDeviceInfo) => void): voi
 | 参数名    | 类型                    | 必填  |      说明                                               |
 | ------   | ---------------------- | ---- | ------------------------------------------------------- |
 | type     | string                 | 是    | 事件回调类型，支持事件`'deviceAvailable'`：设备发现回调。|
-| callback     | (device: [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)) => void                 | 否    | 用于返回设备信息。|
+| callback     | (device: [OutputDeviceInfo](arkts-apis-avsession-i.md#outputdeviceinfo10)) => void                 | 否    | 用于返回设备信息。|
 
 **错误码：**
 
@@ -1799,7 +1799,7 @@ startCasting(session: SessionToken, device: OutputDeviceInfo, callback: AsyncCal
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
 | session      | [SessionToken](#sessiontoken) | 是   | 会话令牌。SessionToken表示单个token。 |
-| device | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)                        | 是   | 设备相关信息。 |
+| device | [OutputDeviceInfo](arkts-apis-avsession-i.md#outputdeviceinfo10)                        | 是   | 设备相关信息。 |
 | callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功并启动投播，err为undefined，否则返回错误对象。 |
 
 **错误码：**
@@ -1855,7 +1855,7 @@ startCasting(session: SessionToken, device: OutputDeviceInfo): Promise\<void>
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
 | session      | [SessionToken](#sessiontoken) | 是   | 会话令牌。SessionToken表示单个token。 |
-| device | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)                        | 是   | 设备相关信息。 |
+| device | [OutputDeviceInfo](arkts-apis-avsession-i.md#outputdeviceinfo10)                        | 是   | 设备相关信息。 |
 
 **返回值：**
 
@@ -2144,7 +2144,7 @@ avSession.off('deviceLogEvent');
 
 ## AVCastController<sup>10+</sup>
 
-在投播建立后，调用[avSession.getAVCastController](js-apis-avsession.md#getavcastcontroller10)后，返回会话控制器实例。控制器可查看会话ID，并可完成对会话发送命令及事件，获取会话元数据，播放状态信息等操作。
+在投播建立后，调用[avSession.getAVCastController](arkts-apis-avsession-AVSession.md#getavcastcontroller10)后，返回会话控制器实例。控制器可查看会话ID，并可完成对会话发送命令及事件，获取会话元数据，播放状态信息等操作。
 
 ### setDisplaySurface<sup>10+</sup>
 
@@ -2363,12 +2363,12 @@ aVCastController.off('videoSizeChange');
 | 名称          | 类型              | 只读 | 可选 | 说明  |
 | --------------| ---------------- | ---------------- | ---------------- |------|
 | sessionId    | string    | 否 | 否  | 会话ID。      |
-| type         | [AVSessionType](js-apis-avsession.md#avsessiontype10)   | 否 | 否 | 会话类型。    |
+| type         | [AVSessionType](arkts-apis-avsession-t.md#avsessiontype10)   | 否 | 否 | 会话类型。    |
 | sessionTag   | string             | 否 | 否 | 会话的自定义名称。    |
 | elementName  | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md)  | 否 | 否 | 会话所属应用的信息（包含bundleName、abilityName等）。 |
 | isActive     | boolean             | 否 | 否 | 会话是否被激活。<br>true：已被激活。 <br>false：没有被激活。                                      |
 | isTopSession | boolean             | 否 | 否 | 会话是否为最新的会话。 <br>true：是最新的会话。<br>false：不是最新的会话。                |
-| outputDevice | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)    | 否 | 否 | 分布式设备相关信息。   |
+| outputDevice | [OutputDeviceInfo](arkts-apis-avsession-i.md#outputdeviceinfo10)    | 否 | 否 | 分布式设备相关信息。   |
 
 ## DeviceLogEventCode<sup>13+</sup>
 

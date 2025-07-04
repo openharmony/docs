@@ -60,7 +60,7 @@ Core模块提供用于媒体系统的基础骨干能力，包含内存、错误�
 | [OH_AmbAttributeSet](#oh_ambattributeset-1) {<br/>AMB_ORD_1 = 1ULL &lt;&lt; 0U,<br/>AMB_ORD_2 = 2ULL &lt;&lt; 0U,<br/>AMB_ORD_3 = 3ULL &lt;&lt; 0U,<br/>AMB_COM_ACN = 0ULL &lt;&lt; 8U,<br/>AMB_COM_FUMA = 1ULL &lt;&lt; 8U,<br/>AMB_NOR_N3D = 0ULL &lt;&lt; 12U,<br/>AMB_NOR_SN3D = 1ULL &lt;&lt; 12U,<br/>AMB_MODE = 1ULL &lt;&lt; 44U<br/>} | 高保真立体声混响设置。 | 
 | [OH_AudioChannelLayout](#oh_audiochannellayout-1) {<br/>CH_LAYOUT_UNKNOWN = 0ULL,<br/>CH_LAYOUT_MONO = CH_SET_FRONT_CENTER,<br/>CH_LAYOUT_STEREO = CH_SET_FRONT_LEFT \| CH_SET_FRONT_RIGHT,<br/>CH_LAYOUT_STEREO_DOWNMIX = CH_SET_STEREO_LEFT \| CH_SET_STEREO_RIGHT,<br/>CH_LAYOUT_2POINT1 = CH_LAYOUT_STEREO \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_3POINT0 = CH_LAYOUT_STEREO \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_SURROUND = CH_LAYOUT_STEREO \| CH_SET_FRONT_CENTER,<br/>CH_LAYOUT_3POINT1 = CH_LAYOUT_SURROUND \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_4POINT0 = CH_LAYOUT_SURROUND \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_QUAD_SIDE = CH_LAYOUT_STEREO \| CH_SET_SIDE_LEFT \| CH_SET_SIDE_RIGHT,<br/>CH_LAYOUT_QUAD = CH_LAYOUT_STEREO \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br/>CH_LAYOUT_2POINT0POINT2 = CH_LAYOUT_STEREO \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br/>CH_LAYOUT_AMB_ORDER1_ACN_N3D = AMB_MODE \| AMB_ORD_1 \| AMB_COM_ACN \| AMB_NOR_N3D, CH_LAYOUT_AMB_ORDER1_ACN_SN3D = AMB_MODE \| AMB_ORD_1 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br/>CH_LAYOUT_AMB_ORDER1_FUMA = AMB_MODE \| AMB_ORD_1 \| AMB_COM_FUMA,<br/>CH_LAYOUT_4POINT1 = CH_LAYOUT_4POINT0 \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_5POINT0 = CH_LAYOUT_SURROUND \| CH_SET_SIDE_LEFT \| CH_SET_SIDE_RIGHT,<br/>CH_LAYOUT_5POINT0_BACK = CH_LAYOUT_SURROUND \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br/>CH_LAYOUT_2POINT1POINT2 = CH_LAYOUT_2POINT0POINT2 \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_3POINT0POINT2 = CH_LAYOUT_2POINT0POINT2 \| CH_SET_FRONT_CENTER,<br/>CH_LAYOUT_5POINT1 = CH_LAYOUT_5POINT0 \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_5POINT1_BACK = CH_LAYOUT_5POINT0_BACK \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_6POINT0 = CH_LAYOUT_5POINT0 \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_3POINT1POINT2 = CH_LAYOUT_3POINT1 \| CH_SET_TOP_FRONT_LEFT \| CH_SET_TOP_FRONT_RIGHT,<br/>CH_LAYOUT_6POINT0_FRONT = CH_LAYOUT_QUAD_SIDE \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br/>CH_LAYOUT_HEXAGONAL = CH_LAYOUT_5POINT0_BACK \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_6POINT1 = CH_LAYOUT_5POINT1 \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_6POINT1_BACK = CH_LAYOUT_5POINT1_BACK \| CH_SET_BACK_CENTER,<br/>CH_LAYOUT_6POINT1_FRONT = CH_LAYOUT_6POINT0_FRONT \| CH_SET_LOW_FREQUENCY,<br/>CH_LAYOUT_7POINT0 = CH_LAYOUT_5POINT0 \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br/>CH_LAYOUT_7POINT0_FRONT = CH_LAYOUT_5POINT0 \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br/>CH_LAYOUT_7POINT1 = CH_LAYOUT_5POINT1 \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br/>CH_LAYOUT_OCTAGONAL = CH_LAYOUT_5POINT0 \| CH_SET_BACK_LEFT \| CH_SET_BACK_CENTER \| CH_SET_BACK_RIGHT,<br/>CH_LAYOUT_5POINT1POINT2 = CH_LAYOUT_5POINT1 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br/>CH_LAYOUT_7POINT1_WIDE = CH_LAYOUT_5POINT1 \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br/>CH_LAYOUT_7POINT1_WIDE_BACK = CH_LAYOUT_5POINT1_BACK \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br/>CH_LAYOUT_AMB_ORDER2_ACN_N3D = AMB_MODE \| AMB_ORD_2 \| AMB_COM_ACN \| AMB_NOR_N3D,<br/>CH_LAYOUT_AMB_ORDER2_ACN_SN3D = AMB_MODE \| AMB_ORD_2 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br/>CH_LAYOUT_AMB_ORDER2_FUMA = AMB_MODE \| AMB_ORD_2 \| AMB_COM_FUMA,<br/>CH_LAYOUT_5POINT1POINT4,<br/>CH_LAYOUT_7POINT1POINT2 = CH_LAYOUT_7POINT1 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br/>CH_LAYOUT_7POINT1POINT4,<br/>CH_LAYOUT_10POINT2,<br/>CH_LAYOUT_9POINT1POINT4 = CH_LAYOUT_7POINT1POINT4 \| CH_SET_WIDE_LEFT \| CH_SET_WIDE_RIGHT,<br/>CH_LAYOUT_9POINT1POINT6 = CH_LAYOUT_9POINT1POINT4 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br/>CH_LAYOUT_HEXADECAGONAL,<br/>CH_LAYOUT_AMB_ORDER3_ACN_N3D = AMB_MODE \| AMB_ORD_3 \| AMB_COM_ACN \| AMB_NOR_N3D,<br/>CH_LAYOUT_AMB_ORDER3_ACN_SN3D = AMB_MODE \| AMB_ORD_3 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br/>CH_LAYOUT_AMB_ORDER3_FUMA = AMB_MODE \| AMB_ORD_3 \| AMB_COM_FUMA,<br/>CH_LAYOUT_22POINT2<br/>} | 音频声道布局。 | 
 | [OH_AVCodecBufferFlags](#oh_avcodecbufferflags-1) {<br/>AVCODEC_BUFFER_FLAGS_NONE = 0,<br/>AVCODEC_BUFFER_FLAGS_EOS = 1 &lt;&lt; 0, AVCODEC_BUFFER_FLAGS_SYNC_FRAME = 1 &lt;&lt; 1, AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME = 1 &lt;&lt; 2,<br/>AVCODEC_BUFFER_FLAGS_CODEC_DATA = 1 &lt;&lt; 3, <br/>AVCODEC_BUFFER_FLAGS_DISCARD = 1 &lt;&lt; 4, <br/>AVCODEC_BUFFER_FLAGS_DISPOSABLE = 1 &lt;&lt; 5<br/>} | 枚举OH_AVCodec缓冲区标记的类别。  | 
-| [OH_AVErrCode](#oh_averrcode-1)  {<br/>AV_ERR_OK = 0,<br/>AV_ERR_NO_MEMORY = 1,<br/>AV_ERR_OPERATE_NOT_PERMIT = 2,<br/>AV_ERR_INVALID_VAL = 3,<br/>AV_ERR_IO = 4,<br/>AV_ERR_TIMEOUT = 5,<br/>AV_ERR_UNKNOWN = 6,<br/>AV_ERR_SERVICE_DIED = 7,<br/>AV_ERR_INVALID_STATE = 8,<br/>AV_ERR_UNSUPPORT = 9, <br/>AV_ERR_UNSUPPORTED_FORMAT = 11,<br/>AV_ERR_EXTEND_START = 100,<br/>AV_ERR_DRM_BASE = 200,<br/>AV_ERR_DRM_DECRYPT_FAILED = 201,<br/>AV_ERR_VIDEO_BASE = 300,<br/>AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION = 301<br/>} | 媒体系统错误码。  |
+| [OH_AVErrCode](#oh_averrcode-1)  {<br/>AV_ERR_OK = 0,<br/>AV_ERR_NO_MEMORY = 1,<br/>AV_ERR_OPERATE_NOT_PERMIT = 2,<br/>AV_ERR_INVALID_VAL = 3,<br/>AV_ERR_IO = 4,<br/>AV_ERR_TIMEOUT = 5,<br/>AV_ERR_UNKNOWN = 6,<br/>AV_ERR_SERVICE_DIED = 7,<br/>AV_ERR_INVALID_STATE = 8,<br/>AV_ERR_UNSUPPORT = 9, <br/>AV_ERR_UNSUPPORTED_FORMAT = 11,<br/>AV_ERR_EXTEND_START = 100,<br/>AV_ERR_DRM_BASE = 200,<br/>AV_ERR_DRM_DECRYPT_FAILED = 201,<br/>AV_ERR_VIDEO_BASE = 300,<br/>AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION = 301,<br/>AV_ERR_STREAM_CHANGED = 5410005,<br/>AV_ERR_TRY_AGAIN_LATER  = 5410006<br/>} | 媒体系统错误码。  |
 | [OH_AVPixelFormat](#oh_avpixelformat-1) {<br/>AV_PIXEL_FORMAT_YUVI420 = 1,<br/>AV_PIXEL_FORMAT_NV12 = 2,<br/>AV_PIXEL_FORMAT_NV21 = 3,<br/>AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br/>AV_PIXEL_FORMAT_RGBA = 5<br/>} | 视频像素格式的枚举类。 | 
 
 
@@ -95,6 +95,7 @@ Core模块提供用于媒体系统的基础骨干能力，包含内存、错误�
 | bool [OH_AVFormat_GetDoubleValue](#oh_avformat_getdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double \*out) | 从OH_AVFormat的key获取double类型的值。 | 
 | bool [OH_AVFormat_GetStringValue](#oh_avformat_getstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*\*out) | 从OH_AVFormat的key获取string类型的值。 | 
 | bool [OH_AVFormat_GetBuffer](#oh_avformat_getbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, uint8_t \*\*addr, size_t \*size) | 从OH_AVFormat中读取指定长度的数据块。 | 
+| bool [OH_AVFormat_GetIntBuffer](#oh_avformat_getintbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t \*\*addr, size_t \*size) | 从OH_AVFormat中读取一个int32_t数据的数组。 | 
 | const char \* [OH_AVFormat_DumpInfo](#oh_avformat_dumpinfo) (struct [OH_AVFormat](#oh_avformat) \*format) | 返回OH_AVFormat中包含的key-value组成的字符串。 | 
 | [OH_AVMemory](#oh_avmemory) \* [OH_AVMemory_Create](#oh_avmemory_create) (int32_t size) | 创建OH_AVMemory实例的指针。（API11废弃） | 
 | uint8_t \* [OH_AVMemory_GetAddr](#oh_avmemory_getaddr) (struct [OH_AVMemory](#oh_avmemory) \*mem) | 获取内存虚拟地址。 （API11废弃）| 
@@ -487,6 +488,8 @@ enum OH_AVErrCode
 | AV_ERR_DRM_DECRYPT_FAILED  | DRM解密失败。<br/>**起始版本：** 12 | 
 | AV_ERR_VIDEO_BASE   | 视频起始错误码。<br/>**起始版本：** 12 |
 | AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION   | 视频不支持色彩空间转换。<br/>**起始版本：** 12 |
+| AV_ERR_STREAM_CHANGED | 同步模式下流格式发生变更。可以通过调用接口[OH_VideoEncoder_GetOutputDescription](_video_encoder.md#oh_videoencoder_getoutputdescription)（视频编码）、[OH_VideoDecoder_GetOutputDescription](_video_decoder.md#oh_videodecoder_getoutputdescription)（视频解码）、[OH_AudioCodec_GetOutputDescription](_audio_codec.md#oh_audiocodec_getoutputdescription)（音频编解码）来获取更新后流的配置信息。<br/>**起始版本：** 20 |
+| AV_ERR_TRY_AGAIN_LATER  | 同步模式下临时缓冲区查询失败，建议等待短暂间隔后重试操作。<br/>**起始版本：** 20 |
 
 ### OH_AVPixelFormat
 
@@ -1033,6 +1036,41 @@ bool OH_AVFormat_GetBuffer (struct OH_AVFormat *format, const char *key, uint8_t
 5. size为空指针；
 6. 获取的key不存在或者未设置。
 
+### OH_AVFormat_GetIntBuffer()
+
+```
+bool OH_AVFormat_GetIntBuffer(struct OH_AVFormat *format, const char *key, int32_t **addr, size_t *size)
+```
+
+**描述**
+
+从OH_AVFormat中读取一个int32_t数据的数组。
+需要注意的是，获取的buffer生命周期与OH_AVFormat对象绑定，当format销毁时自动失效。如果开发者需要长时间保持绑定，应用程序必须将数据显式复制到新分配的内存。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| format | 指向OH_AVFormat实例的指针。 | 
+| key | 要读取数据的键。 | 
+| addr | 保存数据内存的指针。 | 
+| size | 读到数据的元素个数。 | 
+
+**返回：**
+
+返回值为TRUE表示成功，返回值为FALSE表示失败。
+
+可能的失败原因：
+
+1. 输入format为空指针。
+2. 输入format参数结构校验失败。
+3. 输入key为空指针。
+4. 输入addr为空指针。
+5. 输入size为空指针。
 
 ### OH_AVFormat_GetDoubleValue()
 

@@ -20,7 +20,7 @@
     <!--DelEnd-->
 - 用户文件<!--user-files-->
   - [用户文件概述](user-file-overview.md)
-  - [用户文件uri介绍](user-file-uri-intro.md)
+  - [用户文件URI介绍](user-file-uri-intro.md)
   - [FileUri开发指导(C/C++)](native-fileuri-guidelines.md)
   - [获取用户目录环境(C/C++)](native-environment-guidelines.md)
   - 选择与保存用户文件<!--select-save-user-file-->

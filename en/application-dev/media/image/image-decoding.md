@@ -1,10 +1,10 @@
 # Using ImageSource to Decode Images
 
-Image decoding refers to the process of decoding an image in a supported format into a [PixelMap](image-overview.md) for image display or [processing](image-transformation.md). Currently, the following image formats are supported: JPEG, PNG, GIF, WebP, BMP, SVG, ICO, DNG, and HEIF (depending on the hardware).
+Image decoding refers to the process of decoding an image in a supported format into a [PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md) for image display or processing. Currently, the following image formats are supported: JPEG, PNG, GIF, WebP, BMP, SVG, ICO, DNG, and HEIF. The supported formats may vary depending on the hardware.
 
 ## How to Develop
 
-Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for APIs related to image decoding.
+Read the [API reference](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md) for APIs related to image decoding.
 
 1. Import the image module.
 
@@ -16,95 +16,86 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
    - Method 1: Directly obtain the image through the sandbox path. This method applies only to images in the application sandbox path. For details about how to obtain the sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../../file-management/app-sandbox-directory.md).
 
       ```ts
-      const context : Context = getContext(this);
-      const filePath : string = context.cacheDir + '/test.jpg';
+      function getFilePath(context: Context): string {
+        const filePath: string = context.cacheDir + '/test.jpg';
+        return filePath;
+      }
       ```
 
-   - Method 2: Obtain the file descriptor of the image through the sandbox path. For details, see [file.fs API Reference](../../reference/apis-core-file-kit/js-apis-file-fs.md).
-      To use this method, you must import the \@kit.CoreFileKit module first.
+   - Method 2: Obtain the file descriptor of the image through the sandbox path. For details, see [file.fs API Reference](../../reference/apis-core-file-kit/js-apis-file-fs.md). To use this method, you must import the \@kit.CoreFileKit module first.
 
       ```ts
       import { fileIo as fs } from '@kit.CoreFileKit';
+
+      function getFileFd(context: Context): number | undefined {
+        const filePath: string = context.cacheDir + '/test.jpg';
+        const file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
+        const fd: number = file?.fd;
+        return fd;
+      }
       ```
 
-      Then call **fs.openSync()** to obtain the file descriptor.
-  
-      ```ts
-      const context = getContext(this);
-      const filePath = context.cacheDir + '/test.jpg';
-      const file : fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
-      const fd : number = file?.fd;
-      ```
-
-   - Method 3: Obtain the array buffer of the resource file through the resource manager. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfilecontent9-1).
+   - Method 3: Obtain the array buffer of the resource file through the resource manager. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfilecontent9-1). To use this method, you must import the \@kit.LocalizationKit module first.
 
       ```ts
-      // Import the resourceManager module.
       import { resourceManager } from '@kit.LocalizationKit';
 
-      const context : Context = getContext(this);
-      // Obtain a resource manager.
-      const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
+      async function getFileBuffer(context: Context): Promise<ArrayBuffer | undefined> {
+         try {
+            const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+            // Obtain the resource file content. The Uint8Array is returned.
+            const fileData: Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
+            console.info('Successfully got RawFileContent');
+            // Convert the array to an ArrayBuffer and return the ArrayBuffer.
+            const buffer: ArrayBuffer = fileData.buffer.slice(0);
+            return buffer;
+         } catch (error) {
+            console.error("Failed to get RawFileContent");
+            return undefined;
+         }
+      }
       ```
 
-      The method of obtaining the resource manager varies according to the application model. After obtaining the resource manager, call **resourceMgr.getRawFileContent()** to obtain the array buffer of the resource file.
-
+   - Method 4: Obtain the raw file descriptor of the resource file through the resource manager. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9-1). To use this method, you must import the \@kit.LocalizationKit module first.
       ```ts
-      resourceMgr.getRawFileContent('test.jpg').then((fileData : Uint8Array) => {
-         console.log("Succeeded in getting RawFileContent")
-         // Obtain the array buffer of the image.
-         const buffer = fileData.buffer.slice(0);
-      }).catch((err : BusinessError) => {
-         console.error("Failed to get RawFileContent")
-      });
-      
-      ```
-
-   - Method 4: Obtain the raw file descriptor of the resource file through the resource manager. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9-1).
-
-      ```ts
-      // Import the resourceManager module.
       import { resourceManager } from '@kit.LocalizationKit';
 
-      const context : Context = getContext(this);
-      // Obtain a resource manager.
-      const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
+      async function getRawFd(context: Context): Promise<resourceManager.RawFileDescriptor | undefined> {
+         try {
+            const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+            const rawFileDescriptor: resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
+            console.info('Successfully got RawFileDescriptor');
+            return rawFileDescriptor;
+         } catch (error) {
+            console.error('Failed to get RawFileDescriptor:');
+            return undefined;
+         }
+      }
       ```
 
-      The method of obtaining the resource manager varies according to the application model. After obtaining the resource manager, call **resourceMgr.getRawFd()** to obtain the raw file descriptor of the resource file.
+3. Create an ImageSource instance.
 
-      ```ts
-      
-      resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor : resourceManager.RawFileDescriptor) => {
-         console.log("Succeeded in getting RawFileDescriptor")
-      }).catch((err : BusinessError) => {
-         console.error("Failed to get RawFileDescriptor")
-      });
-      ```
-
-3. Create an **ImageSource** instance.
-
-   - Method 1: Create an **ImageSource** instance using the sandbox path. The sandbox path can be obtained by using method 1 in step 2.
+   - Method 1: Create an ImageSource instance using the sandbox path. The sandbox path can be obtained by using method 1 in step 2.
 
       ```ts
       // path indicates the obtained sandbox path.
       const imageSource : image.ImageSource = image.createImageSource(filePath);
       ```
 
-   - Method 2: Create an **ImageSource** instance using the file descriptor. The file descriptor can be obtained by using method 2 in step 2.
+   - Method 2: Create an ImageSource instance using the file descriptor. The file descriptor can be obtained by using method 2 in step 2.
 
       ```ts
       // fd is the obtained file descriptor.
       const imageSource : image.ImageSource = image.createImageSource(fd);
       ```
 
-   - Method 3: Create an **ImageSource** instance using an array buffer. The array buffer can be obtained by using method 3 in step 2.
+   - Method 3: Create an ImageSource instance using an array buffer. The array buffer can be obtained by using method 3 in step 2.
 
       ```ts
       const imageSource : image.ImageSource = image.createImageSource(buffer);
       ```
 
-   - Method 4: Create an **ImageSource** instance using the raw file descriptor of the resource file. The raw file descriptor can be obtained by using method 4 in step 2.
+   - Method 4: Create an ImageSource instance using the raw file descriptor of the resource file. The raw file descriptor can be obtained by using method 4 in step 2.
 
       ```ts
       const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
@@ -116,17 +107,19 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
       import { BusinessError } from '@kit.BasicServicesKit';
       import { image } from '@kit.ImageKit';
 
-      let img = await getContext(this).resourceManager.getMediaContent($r('app.media.image'));
-      let imageSource:image.ImageSource = image.createImageSource(img.buffer.slice(0));
+      // Create an ImageSource object. Select a proper method in step 3 to replace the preceding code.
+      let fd : number = 0;
+      let imageSource : image.ImageSource = image.createImageSource(fd);
+      // Set the decoding options.
       let decodingOptions : image.DecodingOptions = {
          editable: true,
-         desiredPixelFormat: 3,
-      }
+         desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+      };
       // Create a PixelMap.
       imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
-         console.log("Succeeded in creating PixelMap")
+         console.info("Succeeded in creating PixelMap");
       }).catch((err : BusinessError) => {
-         console.error("Failed to create PixelMap")
+         console.error("Failed to create PixelMap");
       });
       ```
    - Decode an HDR image.
@@ -134,28 +127,37 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
       import { BusinessError } from '@kit.BasicServicesKit';
       import { image } from '@kit.ImageKit';
 
-      let img = await getContext(this).resourceManager.getMediaContent($r('app.media.CUVAHdr'));
-      let imageSource:image.ImageSource = image.createImageSource(img.buffer.slice(0));
+      // Create an ImageSource object. Select a proper method in step 3 to replace the preceding code.
+      let fd : number = 0;
+      let imageSource : image.ImageSource = image.createImageSource(fd);
+      // Set the decoding options.
       let decodingOptions : image.DecodingOptions = {
          // If IMAGE_DYNAMIC_RANGE_AUTO is passed in, decoding is performed based on the image format. If the image is an HDR resource, an HDR PixelMap is obtained after decoding.
          desiredDynamicRange: image.DecodingDynamicRange.AUTO,
-      }
+      };
       // Create a PixelMap.
       imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
-         console.log("Succeeded in creating PixelMap")
+         console.info("Succeeded in creating PixelMap");
          // Check whether the PixelMap is the HDR content.
          let info = pixelMap.getImageInfoSync();
-         console.log("pixelmap isHdr:" + info.isHdr);
+         console.info("pixelmap isHdr:" + info.isHdr);
       }).catch((err : BusinessError) => {
-         console.error("Failed to create PixelMap")
+         console.error("Failed to create PixelMap");
       });
       ```
    After the decoding is complete and the PixelMap is obtained, you can perform subsequent [image processing](image-transformation.md).
 
-5. Release the **PixelMap** and **ImageSource** instances.
+5. Release the PixelMap and ImageSource instances.
 
-   Ensure that the asynchronous operations of the **PixelMap** and **ImageSource** instances have finished executing. After these variables are no longer needed, you can manually call the APIs below to release them.
+   Ensure that the asynchronous operations of the PixelMap and ImageSource instances have finished executing. After these variables are no longer needed, you can manually call the APIs below to release them.
    ```ts
    pixelMap.release();
    imageSource.release();
    ```
+
+   > **NOTE**
+   > 1. When to release the ImageSource instance: After successfully executing **createPixelMap** and obtaining the PixelMap instance, if you are certain that no other APIs of ImageSource will be used, you can manually release the ImageSource instance. Since the PixelMap instance obtained from decoding is independent, releasing the ImageSource instance will not make the PixelMap instance unusable.
+   > 2. When to release the PixelMap instance: If you are using the [**Image** component](../../reference/apis-arkui/arkui-ts/ts-basic-components-image.md) for displaying images, there is no need to manually release the PixelMap instance, as the Image component will automatically manage the PixelMap instance passed to it. If your application handles the PixelMap instance on its own, you are advised to manually release the PixelMap instance of the old page during page transitions or when the application switches to the background. In scenarios where memory resources are tight, you are advised to release the PixelMap instances of all invisible pages except the current one.
+
+<!--RP1-->
+<!--RP1End-->

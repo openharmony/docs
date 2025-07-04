@@ -398,3 +398,79 @@ struct PopupItemChild {
 ```
 
 ![popupStateStyle](figures/popupStateStyle.gif)
+
+## 气泡支持避让中轴
+
+从API version 18起，气泡支持中轴避让功能。从API version 20开始，在2in1设备上默认启用（仅在窗口处于瀑布模式时产生避让）。开发者可通过[PopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions类型说明)中的enableHoverMode属性，控制气泡是否启用中轴避让。
+
+> **说明：** 
+> - 如果气泡的点击位置在中轴区域，则气泡不会避让。
+> - 2in1设备上需同时满足窗口处于瀑布模式才会产生避让。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  @State index: number = 0;
+  @State arrayStr: Array<string> = ['上半屏', '中轴', '下半屏'];
+  @State enableHoverMode: boolean | undefined = true;
+  @State showInSubwindow: boolean = false;
+  @State placement: Placement | undefined = undefined;
+  @State isShow: boolean = false;
+
+  build() {
+    RelativeContainer() {
+      Column() {
+        Button('区域:' + this.arrayStr[this.index])
+          .onClick(() => {
+            if (this.index < 2) {
+              this.index++
+            } else {
+              this.index = 0
+            }
+          })
+
+        Button('子窗显示:' + (this.showInSubwindow ? '子窗' : '非子窗'))
+          .onClick(() => {
+            this.showInSubwindow = !this.showInSubwindow
+          })
+
+        Button('hoverMode开启:' + this.enableHoverMode)
+          .onClick(() => {
+            if (this.enableHoverMode == undefined) {
+              this.enableHoverMode = true
+            } else if (this.enableHoverMode == true) {
+              this.enableHoverMode = false
+            } else {
+              this.enableHoverMode = undefined
+            }
+          })
+      }
+
+      Row() {
+        Button('Popup')
+          .fontWeight(FontWeight.Bold)
+          .bindPopup(this.isShow, {
+            message: 'popup',
+            enableHoverMode: this.enableHoverMode,
+            showInSubWindow: this.showInSubwindow,
+          })
+          .onClick(() => {
+            this.isShow = !this.isShow
+          })
+      }
+      .alignRules({
+        center: { anchor: '__container__', align: VerticalAlign.Center },
+        middle: { anchor: '__container__', align: HorizontalAlign.Center }
+      })
+      .margin({
+        top: this.index == 2 ? 330 : this.index == 1 ? 50 : 0,
+        bottom: this.index == 0 ? 330 : 0
+      })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
