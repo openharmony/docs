@@ -500,7 +500,7 @@ struct WebComponent {
 }
 ```
 
-指定baseURL
+指定baseURL。
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -533,7 +533,7 @@ struct WebComponent {
 }
 ```
 
-加载本地资源
+加载本地资源。
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
