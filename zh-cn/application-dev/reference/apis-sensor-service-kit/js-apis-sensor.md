@@ -2059,10 +2059,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -2190,10 +2197,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -2315,10 +2329,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -2440,10 +2461,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -2566,10 +2594,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -2692,10 +2727,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -2827,10 +2869,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -2958,10 +3007,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -3083,10 +3139,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -3214,10 +3277,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -3339,10 +3409,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -3470,10 +3547,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -3595,10 +3679,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -3720,10 +3811,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -3849,10 +3947,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -3980,10 +4085,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -4111,10 +4223,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -4236,10 +4355,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -4361,10 +4487,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -4486,10 +4619,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -4611,10 +4751,17 @@ function sensorSubscribe(): Ret {
     if (!sensorList.length) {
       return Ret.Failed;
     }
-    // 根据实际业务逻辑获取目标传感器
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 根据实际业务逻辑获取目标传感器。
+    const targetSensor = sensorList
+      // 按需过滤deviceId为1、sensorId为2的所有传感器。此处示例仅做展示，开发者需要自行调整筛选逻辑。
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // 可能存在的多个同类型传感器，选择sensorIndex为0的传感器。
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // 订阅传感器事件
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
