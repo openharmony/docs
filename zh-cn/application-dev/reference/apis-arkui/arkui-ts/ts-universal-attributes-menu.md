@@ -889,7 +889,7 @@ struct Index {
 
 ![hoverScaleInterruption](figures/menuPreviewBorderRadius.jpg)
 
-### 示例16（设置菜单蒙层）
+### 示例14（设置菜单蒙层）
 
 该示例为bindMenu通过配置mask属性设置菜单蒙层。
 
@@ -935,7 +935,7 @@ struct Index {
 
 ![menuMask](figures/menuMask.jpg)
 
-### 示例17（bindMenu设置下拉菜单外描边样式）
+### 示例15（bindMenu设置下拉菜单外描边样式）
 
 该示例为bindMenu通过配置outlineWidth和outlineColor属性设置下拉菜单外描边样式。
 
