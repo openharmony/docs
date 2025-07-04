@@ -10,7 +10,7 @@
 
 **起始版本：** 10
 
-**废弃版本：** 18
+**废弃版本：** 20
 
 **替代接口：**
 
@@ -54,7 +54,7 @@ int32_t (*OH_AudioRenderer_OnWriteData)(OH_AudioRenderer* renderer, void* userDa
 
 **起始版本：** 10
 
-**废弃版本：** 18
+**废弃版本：** 20
 
 **替代接口：** [OH_AudioRenderer_OnWriteDataCallback](capi-native-audiostream-base-h.md#oh_audiorenderer_onwritedatacallback)
 
@@ -79,7 +79,7 @@ int32_t (*OH_AudioRenderer_OnStreamEvent)(OH_AudioRenderer* renderer, void* user
 
 **起始版本：** 10
 
-**废弃版本：** 18
+**废弃版本：** 20
 
 **替代接口：** [OH_AudioRenderer_OutputDeviceChangeCallback](capi-native-audiostream-base-h.md#oh_audiorenderer_outputdevicechangecallback)
 **参数：**
@@ -102,7 +102,7 @@ int32_t (*OH_AudioRenderer_OnInterruptEvent)(OH_AudioRenderer* renderer, void* u
 
 **起始版本：** 10
 
-**废弃版本：** 18
+**废弃版本：** 20
 
 **替代接口：** [OH_AudioRenderer_OnInterruptCallback](capi-native-audiorenderer-h.md#oh_audiorenderer_oninterruptcallback)
 
@@ -128,7 +128,7 @@ int32_t (*OH_AudioRenderer_OnError)(OH_AudioRenderer* renderer, void* userData, 
 
 **起始版本：** 10
 
-**废弃版本：** 18
+**废弃版本：** 20
 
 **替代接口：** [OH_AudioRenderer_OnErrorCallback](capi-native-audiorenderer-h.md#oh_audiorenderer_onerrorcallback)
 
