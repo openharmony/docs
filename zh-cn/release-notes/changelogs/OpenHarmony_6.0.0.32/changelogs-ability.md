@@ -61,11 +61,9 @@ AbilityDelegator提供的startAbility()接口参见[startAbility API参考](../.
 
 **变更原因**
 
-在文件分享场景下（Want的flags字段中配置了[wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags)或[wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags)），应用可以通过Want的uri字段传递单个URI、或者通过[wantConstant.Params.PARAMS_STREAM](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)的Key值传递多个URI。为了确保传递给目标应用的参数合法，系统将主动擦除不满足条件的URI。
+在文件分享场景下（[Want](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-want.md#want)的flags字段中配置了[wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags)或[wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags)），应用可以通过Want的uri字段传递单个URI、或者通过[wantConstant.Params.PARAMS_STREAM](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)的Key值传递多个URI。为了确保传递给目标应用的参数合法，系统将主动擦除不满足条件的URI。
 
 **变更影响**
-
-此变更不涉及应用适配。
 
 变更前：文件分享场景下，如果Want的uri字段中scheme为空，或wantConstant.Params.PARAMS_STREAM字段中的URI的scheme不为file，系统不做任何处理。
 
@@ -113,4 +111,8 @@ API 9
 
 **适配指导**
 
-默认行为变更，无需适配。
+排查Want的flags字段中是否设置了文件URI读写Flag(wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION或wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION)，并且uri字段或wantConstant.Params.PARAMS_STREAM字段中写入了非[文件URI](../../../application-dev/reference/apis-core-file-kit/js-apis-file-fileuri.md#fileuri10)。
+
+以下两种处理方式任选其一：
+- 删除Want中flags字段的文件URI读写Flag。
+- 修改uri字段和wantConstant.Params.PARAMS_STREAM字段中的非文件URI为文件URI。如果原来写入的URI是沙箱路径，可以通过[fileUri.getUriFromPath](../../../application-dev/reference/apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)接口将其转为文件URI。
