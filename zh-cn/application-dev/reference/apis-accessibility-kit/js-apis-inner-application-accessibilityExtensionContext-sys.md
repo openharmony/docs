@@ -492,7 +492,7 @@ for (let window of windowList) {
 
 无障碍节点元素。在调用 **AccessibilityElement** 的 API 之前，应该调用 [AccessibilityExtensionContext.getAccessibilityFocusedElement()](#getaccessibilityfocusedelement20) 或 [AccessibilityExtensionContext.getRootInActiveWindow()](#getrootinactivewindow20) 来获取一个 **AccessibilityElement** 实例。
 
-**系统能力：**: SystemCapability.BarrierFree.Accessibility.Core
+**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
 
 ### 属性
 
@@ -780,7 +780,7 @@ executeAction(action: AccessibilityAction, parameters?: Parameter): Promise\<voi
 
 根据action指定的操作类型和parameters传入的参数，执行特定操作。使用Promise异步回调。
 
-**权限**: ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+**权限:** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -877,9 +877,9 @@ getParent(): Promise\<AccessibilityElement>;
 
 获取无障碍节点元素的父元素。
 
-**权限**: ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+**权限:** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
-**系统能力**: SystemCapability.BarrierFree.Accessibility.Core
+**系统能力:** SystemCapability.BarrierFree.Accessibility.Core
 
 **返回值：**
 
@@ -920,9 +920,9 @@ getChildren(): Promise\<Array\<AccessibilityElement>>;
 
 获取元素的子元素列表。
 
-**权限**: ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+**权限:** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
-**系统能力**: SystemCapability.BarrierFree.Accessibility.Core
+**系统能力:** SystemCapability.BarrierFree.Accessibility.Core
 
 **返回值：**
 
@@ -963,9 +963,9 @@ getRoot(): Promise\<AccessibilityElement>;
 
 获取活动窗口中的根元素。
 
-**权限：**: ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+**权限:** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
-**系统能力**: SystemCapability.BarrierFree.Accessibility.Core
+**系统能力:** SystemCapability.BarrierFree.Accessibility.Core
 
 **返回值：**
 
@@ -1005,9 +1005,9 @@ findElementByContent(content: string): Promise\<Array\<AccessibilityElement>>;
 
 根据内容查找元素。
 
-**权限：**: ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+**权限:** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
-**系统能力**: SystemCapability.BarrierFree.Accessibility.Core
+**系统能力:** SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -1064,9 +1064,9 @@ findElementByFocusDirection(direction: FocusDirection): Promise\<AccessibilityEl
 
 根据焦点方向查找元素。
 
-**权限：**: ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+**权限：** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
-**系统能力**: SystemCapability.BarrierFree.Accessibility.Core
+**系统能力:** SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -1126,9 +1126,9 @@ findElementsByAccessibilityHintText(hintText: string): Promise\<Array\<Accessibi
 
 根据性提示文本查找元素。
 
-**权限：**: ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+**权限：** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
-**系统能力**: SystemCapability.BarrierFree.Accessibility.Core
+**系统能力:** SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -1190,9 +1190,9 @@ findElementById(elementId: number): Promise\<AccessibilityElement>;
 
 根据元素 ID 查找元素。
 
-**权限：**: ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+**权限：** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
-**系统能力**: SystemCapability.BarrierFree.Accessibility.Core
+**系统能力:** SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
