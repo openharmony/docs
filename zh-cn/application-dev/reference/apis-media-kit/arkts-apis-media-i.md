@@ -247,6 +247,22 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 | hdrType<sup>12+</sup> | [HdrType](arkts-apis-media-e.md#hdrtype12) | 否   | 媒体资源的HDR类型。当前版本为只读参数。 |
 | location<sup>12+</sup> | [Location](#location) | 否 | 视频的地理位置信息。 |
 | customInfo<sup>12+</sup> | Record<string, string> | 否 | 从moov.meta.list 获取的自定义参数键值映射。|
+| tracks<sup>20+</sup> | Array\<[MediaDescription](#mediadescription8)> | 否 | 媒体资源的轨道信息。当前版本为只读参数。|
+
+> **说明：**
+> AVMetadata.tracks支持的[MediaDescriptionKey](arkts-apis-media-e.md#mediadescriptionkey8)的范围如下：
+> 
+> | 名称   | 值   | 适用的轨道类型  |
+> | -------- | --------------------|------------------------ |
+> | MD_KEY_TRACK_INDEX | 'track_index' | 全部 |
+> | MD_KEY_TRACK_TYPE | 'track_type' | 全部 |
+> | MD_KEY_CODEC_MIME | 'codec_mime' | 音频、视频 |
+> | MD_KEY_WIDTH | 'width' | 视频 |
+> | MD_KEY_HEIGHT | 'height' | 视频 |
+> | MD_KEY_FRAME_RATE | 'frame_rate' | 视频 |
+> | MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 音频 |
+> | MD_KEY_AUD_SAMPLE_RATE | 'sample_rate' | 音频 |
+> | MD_KEY_HDR_TYPE | 'hdr_type' | 视频 |
 
 ## PixelMapParams<sup>12+</sup>
 
