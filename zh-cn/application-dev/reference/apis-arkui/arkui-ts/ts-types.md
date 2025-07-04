@@ -32,6 +32,8 @@
 
 ## Length
 
+type Length = string | number | Resource
+
 长度类型，用于描述尺寸单位。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
