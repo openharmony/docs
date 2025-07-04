@@ -214,6 +214,10 @@ on(type: 'environment', callback: EnvironmentCallback): number
 
 注册对系统环境变化的监听。使用callback异步回调。仅支持主线程调用。
 
+> **说明：**
+>
+> 使用[onConfigurationUpdate](../apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)也可以实现对系统环境变量的监听。相较于onConfigurationUpdate接口，当前接口的使用场景更加灵活，不仅可以在应用组件中使用，还可以在页面中使用。
+
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
