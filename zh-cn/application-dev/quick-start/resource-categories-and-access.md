@@ -109,7 +109,7 @@ base目录默认存在。二级子目录element用于存放字符串、颜色、
 | H.264 AVC |.3gp |
 | Baseline Profile (BP) | .mp4   |
 
-**资源文件示例**
+### 资源文件示例
 
 color.json文件的内容如下：
 
