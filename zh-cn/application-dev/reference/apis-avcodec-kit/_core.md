@@ -1586,7 +1586,7 @@ int32_t OH_AVMemory_GetSize (struct OH_AVMemory *mem)
 ### OH_AVFormat_SetIntBuffer()
 
 ```
-bool OH_AVFormat_SetIntBuffer (struct OH_AVFormat *format, const char *key, const int32_t *addr, size_t size)
+bool OH_AVFormat_SetIntBuffer(struct OH_AVFormat *format, const char *key, const int32_t *addr, size_t size)
 ```
 
 **描述**
@@ -1612,8 +1612,8 @@ bool OH_AVFormat_SetIntBuffer (struct OH_AVFormat *format, const char *key, cons
 
 可能的失败原因：
 
-1. 输入format为空指针；
-2. 输入format参数结构校验失败；
-3. 输入key为空指针；
-4. 输入addr为空指针；
-5. size为0；
+1. 输入format为空指针。
+2. 输入format参数结构校验失败。
+3. 输入key为空指针。
+4. 输入addr为空指针。
+5. size为0。
