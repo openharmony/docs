@@ -17,7 +17,7 @@ A safe area refers to the display area that isn't covered by a status bar, navig
 
 ## expandSafeArea
 
-expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&gt;)
+expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&gt;): T
 
 Sets the safe area to be expanded to.
 
@@ -31,6 +31,12 @@ Sets the safe area to be expanded to.
 | ------ | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | types  | Array <[SafeAreaType](ts-types.md#safeareatype10)> | No  | Types of non-safe areas to extend into. For the **CUTOUT** type to take effect, the [Metadata](../../apis-ability-kit/js-apis-bundleManager-metadata.md) item must be added to the configuration file.<br>Default value: **[SafeAreaType.SYSTEM, SafeAreaType.CUTOUT, SafeAreaType.KEYBOARD]**|
 | edges  | Array <[SafeAreaEdge](ts-types.md#safeareaedge10)> | No  | Edges for expanding the safe area.<br>Default value: **[SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM, SafeAreaEdge.START, SafeAreaEdge.END]**<br>The default value expands the safe area on all available edges.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 >  **NOTE**
 >
