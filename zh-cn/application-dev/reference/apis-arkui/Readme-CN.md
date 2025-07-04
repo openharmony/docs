@@ -568,6 +568,7 @@
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
     <!--DelEnd-->
     - [XComponent组件错误码](errorcode-xcomponent.md)
+    - [Video组件错误码](errorcode-video.md)
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)
