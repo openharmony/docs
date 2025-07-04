@@ -1755,6 +1755,195 @@ import { connection } from '@kit.NetworkKit';
 let pacUrl = connection.getPacUrl();
 ```
 
+## connection.setNetExtAttribute<sup>20+</sup>
+
+setNetExtAttribute(netHandle: NetHandle, netExtAttribute: string): Promise<void>
+
+为netHandle对应的网络设置网络扩展属性以标识网络的安全级别，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.SET_NET_EXT_ATTRIBUTE
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名    | 类型                                              | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| netHandle | NetHandle                                         | 是   | 数据网络的句柄。             |
+| netExtAttribute | string                                      | 是   | 需要设置的网络扩展属性                                         |
+
+**返回值：**
+
+| 类型                   | 说明                    |
+| ---------------------- | ----------------------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    return;
+  }
+  let netExtAttribute: string = "xxx";
+  connection.setNetExtAttribute(netHandle, netExtAttribute).then(() => {
+    console.log("setNetExtAttribute success");
+  }).catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
+  })
+});
+```
+
+## connection.setNetExtAttributeSync<sup>20+</sup>
+
+setNetExtAttributeSync(netHandle: NetHandle, netExtAttribute: string): void
+
+使用同步方法为netHandle对应的网络设置网络扩展属性以标识网络的安全级别。
+
+**需要权限**：ohos.permission.SET_NET_EXT_ATTRIBUTE
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名    | 类型                                              | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| netHandle | NetHandle                                         | 是   | 数据网络的句柄。             |
+| netExtAttribute | string                                      | 是   | 需要设置的网络扩展属性                                         |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let netExtAttribute: string = "xxx";
+let netHandle = connection.getDefaultNetSync();
+connection.setNetExtAttributeSync(netHandle, netExtAttribute);
+```
+
+## connection.getNetExtAttribute<sup>20+</sup>
+
+getNetExtAttribute(netHandle: NetHandle): Promise<string>
+
+获取netHandle对应网络的网络扩展属性以获取网络的安全级别，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名    | 类型                                              | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| netHandle | NetHandle                                         | 是   | 数据网络的句柄。             |
+
+**返回值：**
+
+| 类型                   | 说明                    |
+| ---------------------- | ----------------------- |
+| Promise\<string\> | Promise对象。以Promise形式返回的网络扩展属性。
+
+**错误码：**
+
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    return;
+  }
+  connection.getNetExtAttribute(netHandle).then((netExtAttribute: string) => {
+    console.log("getNetExtAttribute: " + netExtAttribute);
+  }).catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
+  })
+});
+```
+
+## connection.getNetExtAttributeSync<sup>20+</sup>
+
+getNetExtAttributeSync(netHandle: NetHandle): string
+
+使用同步方法获取netHandle对应网络的网络扩展属性以获取网络的安全级别。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名    | 类型                                              | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| netHandle | NetHandle                                         | 是   | 数据网络的句柄。             |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ----------------------- |
+| string | Promise对象。以Promise形式返回的网络扩展属性。|
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let netHandle = connection.getDefaultNetSync();
+let netExtAttribute: string = connection.getNetExtAttributeSync(netHandle);
+console.log("getNetExtAttribute: " + netExtAttribute);
+```
 
 ## NetConnection
 
