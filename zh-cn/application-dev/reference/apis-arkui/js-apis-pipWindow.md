@@ -858,7 +858,7 @@ getPiPSettingSwitch(): Promise&lt;boolean&gt;
 
 | 类型                   | 说明                  |
 |----------------------|---------------------|
-| Promise&lt;boolean&gt;  | Promise对象，返回当前自动启动画中画开关状态。 |
+| Promise&lt;boolean&gt;  | Promise对象，返回当前自动启动画中画开关状态，true表示开启，false表示关闭。 |
 
 **错误码：**
 
@@ -877,7 +877,7 @@ try {
   let promise : Promise<boolean> = this.pipController.getPiPSettingSwitch();
   promise.then((data) => {
     pipSwitchStatus = data;
-    console.info('Success in get pip switch status. switchStatus: ' + JSON.stringify(data));
+    console.info('Succeeded in geting pip switch status. switchStatus: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error(`Failed to get pip switch status. Cause code: ${err.code}, message: ${err.message}`);
   });
