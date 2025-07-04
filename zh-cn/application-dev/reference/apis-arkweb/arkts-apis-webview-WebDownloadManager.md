@@ -8,6 +8,12 @@
 >
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
+## 导入模块
+
+```ts
+import { webview } from '@kit.ArkWeb';
+```
+
 ## setDownloadDelegate<sup>11+</sup>
 
 static setDownloadDelegate(delegate: WebDownloadDelegate): void
