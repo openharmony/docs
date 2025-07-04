@@ -105,7 +105,7 @@ Navigation组件信息。
 | 名称         | 类型                                               | 必填 | 说明                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
 | navigationId | string | 是   | Navigation组件的id。 |
-| pathStack         | [NavPathStack](arkui-ts/ts-basic-components-navigation.md#navpathstack10) | 是   | Navigation组件的路由栈。                   |
+| pathStack         | [NavPathStack](arkui-ts/ts-basic-components-navigation.md#navpathstack10) | 是   | Navigation组件的导航控制器。                   |
 
 ## ScrollEventInfo<sup>12+</sup>
 
