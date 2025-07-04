@@ -55,7 +55,7 @@
     ```ts
     try {
       const deviceId = 1;
-      // 第一个参数deviceId 非必填，默认查询的为本地设备
+      // 第一个参数deviceId 非必填，缺省默认查询的为本地设备。
       const sensorList: sensor.Sensor[] = sensor.getSensorListByDeviceSync(deviceId);
       console.log(`sensorList length: ${sensorList.length}`);
       console.log(`sensorList: ${JSON.stringify(sensorList)}`);
@@ -137,6 +137,6 @@
 
     取消监听。
     ```ts
-    // 请在订阅后在使用此接口取消订阅
+    // 注意：取消监听前，请确保已通过 on('sensorStatusChange', ...) 成功订阅，否则此调用无意义。
     sensor.off('sensorStatusChange');
     ```
