@@ -84,7 +84,7 @@ end(scene: string): void
 
 **示例：** 
 
-用户点击图标应用场景动效结束点
+用户点击图标启动应用场景动效结束点
   ```ts
 performanceMonitor.end("LAUNCHER_APP_LAUNCH_FROM_ICON");
   ```
