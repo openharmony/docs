@@ -517,7 +517,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.loadData(
-              "<img src=aa/bb.jpg>", // 会尝试从`"https://xxx.com/" + "aa/bb.jpg"加载该图片
+              "<img src=aa/bb.jpg>", // 会尝试从"https://xxx.com/" + "aa/bb.jpg"加载该图片
               "text/html",
               "UTF-8",
               "https://xxx.com/",
