@@ -11,6 +11,12 @@
 >
 > 使用相机进行视频录制时，需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/arkts-apis-camera.md)。
 
+## 导入模块
+
+```ts
+import { media } from '@kit.MediaKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
@@ -69,12 +75,15 @@ let avRecorderProfile: media.AVRecorderProfile = {
   videoFrameHeight : 480,
   videoFrameRate : 30
 };
+let videoMetaData: media.AVMetadata = {
+  videoOrientation: '0' // 合理值0、90、180、270，非合理值prepare接口报错。
+};
 let avRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : avRecorderProfile,
   url : 'fd://', // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45
-  rotation : 0, // 合理值0、90、180、270，非合理值prepare接口将报错。
+  metadata: videoMetaData,
   location : { latitude : 30, longitude : 130 }
 };
 
@@ -144,12 +153,15 @@ let avRecorderProfile: media.AVRecorderProfile = {
   videoFrameHeight : 480,
   videoFrameRate : 30
 };
+let videoMetaData: media.AVMetadata = {
+  videoOrientation: '0' // 合理值0、90、180、270，非合理值prepare接口报错。
+};
 let avRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : avRecorderProfile,
   url : 'fd://',  // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45
-  rotation : 0, // 合理值0、90、180、270，非合理值prepare接口报错。
+  metadata : videoMetaData,
   location : { latitude : 30, longitude : 130 }
 };
 
@@ -1322,7 +1334,7 @@ avRecorder.off('audioCapturerChange');
 
 on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset>): void
 
-订阅媒体资源回调事件，当[FileGenerationMode](arkts-apis-media-e.md#filegenerationmode12)枚举设置为系统创建媒体文件时，会在[stop](#stop9)操作结束后把[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)对象回调给应用。
+订阅媒体资源回调事件，当[FileGenerationMode](arkts-apis-media-e.md#filegenerationmode12)枚举设置为系统创建媒体文件时，会在[stop](#stop9)操作结束后把[PhotoAsset](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md)对象回调给应用。
 
 当用户重复订阅时，以最后一次订阅的回调接口为准。
 
@@ -1333,7 +1345,7 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   |录像资源的回调类型，支持的事件：'photoAssetAvailable'。 |
-| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | 是 | 系统创建的资源文件对应的PhotoAsset对象。|
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md)> | 是 | 系统创建的资源文件对应的PhotoAsset对象。|
 
 **错误码：**
 
@@ -1393,7 +1405,7 @@ off(type: 'photoAssetAvailable', callback?: Callback<photoAccessHelper.PhotoAsse
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 录音配置变化的回调类型，支持的事件：'photoAssetAvailable'。 |
-| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | 否 | 系统创建的资源文件对应的PhotoAsset对象。|
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md)> | 否 | 系统创建的资源文件对应的PhotoAsset对象。|
 
 **示例：**
 

@@ -1,6 +1,6 @@
 # FrameNode
 
-FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeController.md#nodecontroller)可通过[BuilderNode](./js-apis-arkui-builderNode.md#buildernode)持有的FrameNode将其挂载到[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)上，也可通过FrameNode获取[RenderNode](./js-apis-arkui-renderNode.md#rendernode)，挂载到其他FrameNode上。最佳实践请参考[组件动态创建-组件动态添加、更新和删除](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-ui-dynamic-operations#section153921947151012)。
+FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeController.md)可通过[BuilderNode](./js-apis-arkui-builderNode.md)持有的FrameNode将其挂载到[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)上，也可通过FrameNode获取[RenderNode](./js-apis-arkui-renderNode.md)，挂载到其他FrameNode上。最佳实践请参考[组件动态创建-组件动态添加、更新和删除](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-ui-dynamic-operations#section153921947151012)。
 
 > **说明：**
 >
@@ -121,7 +121,7 @@ getRenderNode(): RenderNode | null
 
 | 类型                                                           | 说明                                                                                                             |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [RenderNode](./js-apis-arkui-renderNode.md#rendernode) \| null | 一个RenderNode对象。若该FrameNode不包含RenderNode，则返回空对象null。如果当前FrameNode为声明式组件创建的节点，则返回null。 |
+| [RenderNode](./js-apis-arkui-renderNode.md) \| null | 一个RenderNode对象。若该FrameNode不包含RenderNode，则返回空对象null。如果当前FrameNode为声明式组件创建的节点，则返回null。 |
 
 **示例：**
 
@@ -558,6 +558,27 @@ getPositionToScreen(): Position
 | 类型     | 说明                            |
 | -------- | ------------------------------- |
 | [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移，单位为VP。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+
+### getGlobalPositionOnDisplay<sup>20+</sup> 
+
+getGlobalPositionOnDisplay(): Position
+
+获取FrameNode相对于全局屏幕的位置偏移，单位为VP。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明                            |
+| -------- | ------------------------------- |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于全局屏幕的位置偏移，单位为VP。 |
 
 **示例：**
 
@@ -1087,7 +1108,7 @@ struct Index {
 
 get commonAttribute(): CommonAttribute
 
-获取FrameNode中持有的CommonAttribute接口，用于设置通用属性。
+获取FrameNode中持有的CommonAttribute接口，用于设置[通用属性](./arkui-ts/ts-component-general-attributes.md)。
 
 仅可以修改自定义节点的属性。
 
@@ -1127,7 +1148,7 @@ LazyForEach场景下，由于存在节点的销毁重建，对于重建的节点
 
 | 类型                                                           | 说明                                                                                                             |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [UICommonEvent](./arkui-ts/ts-uicommonevent.md#设置事件回调) | UICommonEvent对象，用于设置基础事件。 |
+| [UICommonEvent](./arkui-ts/ts-uicommonevent.md#uicommonevent) | UICommonEvent对象，用于设置基础事件。 |
 
 **示例：**
 
@@ -1147,7 +1168,7 @@ get gestureEvent(): UIGestureEvent
 
 | 类型                                                           | 说明                                                                                                             |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [UIGestureEvent](./arkui-ts/ts-uigestureevent.md#设置组件绑定的手势) | UIGestureEvent对象，用于设置组件绑定的手势。 |
+| [UIGestureEvent](./arkui-ts/ts-uigestureevent.md#uigestureevent) | UIGestureEvent对象，用于设置组件绑定的手势。 |
 
 **示例：**
 
@@ -1345,7 +1366,7 @@ addComponentContent\<T>(content: ComponentContent\<T>): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| content | [ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent)\<T> | 是   | FrameNode节点中显示的组件内容。 |
+| content | [ComponentContent](./js-apis-arkui-ComponentContent.md)\<T> | 是   | FrameNode节点中显示的组件内容。 |
 
 **错误码：**
 
@@ -1594,7 +1615,7 @@ setCrossLanguageOptions(options: CrossLanguageOptions): void
 
 > **说明：**
 >
-> 当前仅支持[Scroll](#scroll12)类型的[TypedFrameNode](#typedframenode12)设置跨ArkTS语言访问选项。
+> 当前仅支持[Scroll](#scroll12), [Swiper](#swiper12)，[List](#list12)，[ListItem](#listitem12),[ListImteGroup](#listitemgroup12)，[WatterFlow](#waterflow12)，[FlowItem](#flowitem12)，[Grid](#grid14)，[GridTime](#griditem14)，[TextInput](#textinput12)，[TextArea](#textarea14)，[Column](#column12)，[Row](#row12)，[Stack](#stack12)，[Flex](#flex12)，[RelativeContainer](#relativecontainer12)，[Progress](#progress12)，[LoadingProgress](#loadingprogress12)，[Image](#image12)，[Button](#button12)，[CheckBox](#checkbox18)，[Radio](#radio18)，[Slider](#slider18)，[Toggle](#toggle18)，[XComponent](#xcomponent12)类型的[TypedFrameNode](#typedframenode12)设置跨ArkTS语言访问选项。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -1871,6 +1892,69 @@ createNode(context: UIContext, nodeType: 'Text'): Text
 
 ```ts
 typeNode.createNode(uiContext, 'Text');
+```
+### getAttribute('Text')<sup>20+</sup>
+getAttribute(node: FrameNode, nodeType: 'Text'): TextAttribute | undefined
+
+获取Text节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
+| nodeType | 'Text' | 是 | 获取Text节点类型的属性。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| TextAttribute&nbsp;\|&nbsp;undefined | Text节点类型的属性，若获取失败，则返回undefined。 |
+
+**示例：** 
+
+<!--code_no_check-->
+
+```ts
+typeNode.getAttribute(node, 'Text');
+```
+### bindController('Text')<sup>20+</sup>
+bindController(node: FrameNode, controller: TextController, nodeType: 'Text'): void
+
+将文本控制器TextController绑定到Text节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 绑定文本控制器的目标节点。 |
+| controller | [TextController](arkui-ts/ts-basic-components-text.md#textcontroller11) | 是   | 文本控制器。 |
+| nodeType | 'Text' | 是 | 绑定输入框控制器的目标节点的节点类型为Text。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[自定义节点错误码](./errorcode-node.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 100023   | Parameter error. Possible causes: 1. The component type of the node is incorrect. 2. The node is null or undefined. 3. The controller is null or undefined. |
+| 100021   | The FrameNode is not modifiable. |
+
+**示例：** 
+
+<!--code_no_check-->
+
+```ts
+let controller: TextController = new TextController()
+typeNode.bindController(node, controller, 'Text');
 ```
 
 ### Column<sup>12+</sup>
@@ -3067,6 +3151,69 @@ createNode(context: UIContext, nodeType: 'TextInput'): TextInput
 ```ts
 typeNode.createNode(uiContext, 'TextInput');
 ```
+### getAttribute('TextInput')<sup>20+</sup>
+getAttribute(node: FrameNode, nodeType: 'TextInput'): TextInputAttribute | undefined
+
+获取TextInput节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
+| nodeType | 'TextInput' | 是 | 获取TextInput节点类型的属性。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| TextInputAttribute&nbsp;\|&nbsp;undefined | TextInput节点类型的属性，若获取失败，则返回undefined。 |
+
+**示例：** 
+
+<!--code_no_check-->
+
+```ts
+typeNode.getAttribute(node, 'TextInput');
+```
+### bindController('TextInput')<sup>20+</sup>
+bindController(node: FrameNode, controller: TextInputController, nodeType: 'TextInput'): void
+
+将输入框控制器TextInputController绑定到TextInput节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 绑定输入框控制器的目标节点。 |
+| controller | [TextInputController](arkui-ts/ts-basic-components-textinput.md#textinputcontroller8) | 是   | 输入框控制器。 |
+| nodeType | 'TextInput' | 是 | 绑定输入框控制器的目标节点的节点类型为TextInput。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[自定义节点错误码](./errorcode-node.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 100023   | Parameter error. Possible causes: 1. The component type of the node is incorrect. 2. The node is null or undefined. 3. The controller is null or undefined. |
+| 100021   | The FrameNode is not modifiable. |
+
+**示例：** 
+
+<!--code_no_check-->
+
+```ts
+let controller: TextInputController = new TextInputController()
+typeNode.bindController(node, controller, 'TextInput');
+```
 
 ### Button<sup>12+</sup>
 type Button = TypedFrameNode&lt;ButtonInterface, ButtonAttribute&gt;
@@ -4033,6 +4180,70 @@ createNode(context: UIContext, nodeType: 'TextArea'): TextArea
 
 ```ts
 typeNode.createNode(uiContext, 'TextArea');
+```
+
+### getAttribute('TextArea')<sup>20+</sup>
+getAttribute(node: FrameNode, nodeType: 'TextArea'): TextAreaAttribute | undefined
+
+获取TextArea节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
+| nodeType | 'TextArea' | 是 | 获取TextArea节点类型的属性。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| TextAreaAttribute&nbsp;\|&nbsp;undefined | TextArea节点类型的属性，若获取失败，则返回undefined。 |
+
+**示例：** 
+
+<!--code_no_check-->
+
+```ts
+typeNode.getAttribute(node, 'TextArea');
+```
+### bindController('TextArea')<sup>20+</sup>
+bindController(node: FrameNode, controller: TextAreaController, nodeType: 'TextArea'): void
+
+将输入框控制器TextAreaController绑定到TextArea节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 绑定输入框控制器的目标节点。 |
+| controller | [TextAreaController](arkui-ts/ts-basic-components-textarea.md#textareacontroller8) | 是   | 输入框控制器。 |
+| nodeType | 'TextArea' | 是 | 绑定输入框控制器的目标节点的节点类型为TextArea。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[自定义节点错误码](./errorcode-node.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 100023   | Parameter error. Possible causes: 1. The component type of the node is incorrect. 2. The node is null or undefined. 3. The controller is null or undefined. |
+| 100021   | The FrameNode is not modifiable. |
+
+**示例：** 
+
+<!--code_no_check-->
+
+```ts
+let controller: TextAreaController = new TextAreaController()
+typeNode.bindController(node, controller, 'TextArea');
 ```
 
 ### SymbolGlyph<sup>14+</sup>
@@ -5011,6 +5222,11 @@ class MyNodeController extends NodeController {
     console.log(TEST_TAG + JSON.stringify(positionToScreen));
   }
 
+  getGlobalPositionOnDisplay() {
+    let positionOnGlobalDisplay = this.rootNode?.getGlobalPositionOnDisplay();
+    console.log(TEST_TAG + JSON.stringify(positionOnGlobalDisplay));
+  }
+
   getPositionToWindowWithTransform() {
     let positionToWindowWithTransform = this.rootNode?.getPositionToWindowWithTransform();
     console.log(TEST_TAG + JSON.stringify(positionToWindowWithTransform));
@@ -5230,6 +5446,11 @@ struct Index {
           .width(300)
           .onClick(() => {
             this.myNodeController.getPositionToScreen();
+          })
+        Button("getGlobalPositionOnDisplay")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getGlobalPositionOnDisplay();
           })
         Button("getPositionToParentWithTransform")
           .width(300)

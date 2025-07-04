@@ -24,11 +24,11 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 2. 指定待签名的明文数据。
 
-3. 调用[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset)指定算法参数配置。
+3. 调用[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-param-h.md#oh_huks_initparamset)指定算法参数配置。
 
-4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
+4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
 
-5. 调用[OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_finishsession)结束密钥会话，获取签名signature。
+5. 调用[OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_finishsession)结束密钥会话，获取签名signature。
 
 **验签**
 
@@ -36,13 +36,13 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 2. 获取待验证的签名signature。
 
-3. 指定[算法参数配置](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset)。
+3. 指定[算法参数配置](../../reference/apis-universal-keystore-kit/capi-native-huks-param-h.md#oh_huks_initparamset)。
 
-4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
+4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
 
-5. 调用[OH_Huks_UpdateSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_updatesession)更新密钥会话。
+5. 调用[OH_Huks_UpdateSession](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_updatesession)更新密钥会话。
 
-6. 调用[OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_finishsession)结束密钥会话，验证签名。
+6. 调用[OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_finishsession)结束密钥会话，验证签名。
 
 **删除密钥**
 

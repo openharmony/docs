@@ -31,6 +31,8 @@ constructor(value: CustomDialogControllerOptions)
 
 ## CustomDialogControllerOptions对象说明
 
+自定义弹窗的样式。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                           | 类型                                     | 必填   | 说明                                     |
@@ -94,14 +96,18 @@ Dialog关闭的信息。
 
 ### 属性
 
-| 名称    | 类型                                                         | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | dismiss | Callback&lt;void&gt;                                         | 否   | 否   | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
 | reason  | [DismissReason](../js-apis-promptAction.md#dismissreason12枚举说明) | 否   | 否   | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
 
 ## CustomDialogController
 
+自定义弹窗的控制器。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 导入对象
 
@@ -218,7 +224,7 @@ struct CustomDialogExample {
     alignment: DialogAlignment.Bottom,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.log("dialog onWillDismiss");
+      console.info("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -287,7 +293,7 @@ struct CustomDialogUser {
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.log("dialog onWillDismiss");
+      console.info("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -373,7 +379,7 @@ struct CustomDialogUser {
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.log("dialog onWillDismiss");
+      console.info("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -460,7 +466,7 @@ struct CustomDialogUser {
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-      console.log("dialog onWillDismiss")
+      console.info("dialog onWillDismiss")
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -568,7 +574,7 @@ struct CustomDialogUser {
     autoCancel: true,
     onWillDismiss: (dismissDialogAction: DismissDialogAction)=> {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.log("dialog onWillDismiss");
+      console.info("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -1032,7 +1038,7 @@ struct CustomDialogExample1 {
       Button('点我关闭弹窗')
         .onClick(() => {
           if (this.controller != undefined) {
-            this.controller.close()
+            this.controller.close();
           }
         })
         .margin(20)
@@ -1043,61 +1049,61 @@ struct CustomDialogExample1 {
 @Entry
 @Component
 struct Example3 {
-  @State log:string = 'Log information:';
+  @State log: string = 'Log information:';
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample1({
-      cancel: ()=> { this.onCancel() },
-      confirm: ()=> { this.onAccept() }
+      cancel: ()=> { this.onCancel(); },
+      confirm: ()=> { this.onAccept(); }
     }),
     cancel: this.existApp,
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-      console.log("dialog onWillDismiss")
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+      console.info("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
       if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
     },
     onDidAppear: () => {
-      this.log += '# onDidAppear'
-      console.info("CustomDialog,is onDidAppear!")
+      this.log += '# onDidAppear';
+      console.info("CustomDialog,is onDidAppear!");
     },
     onDidDisappear: () => {
-      this.log += '# onDidDisappear'
-      console.info("CustomDialog,is onDidDisappear!")
+      this.log += '# onDidDisappear';
+      console.info("CustomDialog,is onDidDisappear!");
     },
     onWillAppear: () => {
-      this.log = 'Log information:onWillAppear'
-      console.info("CustomDialog,is onWillAppear!")
+      this.log = 'Log information:onWillAppear';
+      console.info("CustomDialog,is onWillAppear!");
     },
     onWillDisappear: () => {
-      this.log += '# onWillDisappear'
-      console.info("CustomDialog,is onWillDisappear!")
+      this.log += '# onWillDisappear';
+      console.info("CustomDialog,is onWillDisappear!");
     },
     offset: { dx: 0, dy: -20 },
     customStyle: false,
   })
   onCancel() {
-    console.info('CustomDialog Callback when the first button is clicked')
+    console.info('CustomDialog Callback when the first button is clicked');
   }
 
   onAccept() {
-    console.info('CustomDialog Callback when the second button is clicked')
+    console.info('CustomDialog Callback when the second button is clicked');
   }
 
   existApp() {
-    console.info('CustomDialog Click the callback in the blank area')
+    console.info('CustomDialog Click the callback in the blank area');
   }
   build() {
     Column({ space: 5 }) {
       Button('CustomDialog')
         .onClick(() => {
-          this.dialogController?.open()
-        }).backgroundColor(0x317aff).height("60vp")
+          this.dialogController?.open();
+        })
       Text(this.log).fontSize(30).margin({ top: 200 })
     }.width('100%').margin({ top: 5 })
   }

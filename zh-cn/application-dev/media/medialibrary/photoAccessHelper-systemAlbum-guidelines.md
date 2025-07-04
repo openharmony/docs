@@ -7,7 +7,7 @@ photoAccessHelper提供对收藏夹、视频相册、截屏和录屏相册的相
 > 在进行功能开发前，请查阅[开发准备](photoAccessHelper-preparation.md)，了解如何获取相册管理模块实例及申请相关权限。
 > 文档中使用到PhotoAccessHelper的地方，默认使用[开发准备](photoAccessHelper-preparation.md)中获取的对象，如未添加此段代码提示PhotoAccessHelper未定义的错误请自行添加。
 
-为了保证应用的运行效率，大部分photoAccessHelper的接口调用都是异步的。以下异步调用的API示例均采用Promise函数，更多方式可以查阅[API参考](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)。
+为了保证应用的运行效率，大部分photoAccessHelper的接口调用都是异步的。以下异步调用的API示例均采用Promise函数，更多方式可以查阅[API参考](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md)。
 如无特别说明，文档中涉及的待获取的资源均视为已经预置且在数据库中存在相应数据。如出现按照示例代码执行出现获取资源为空的情况，请确认文件是否已预置，数据库中是否存在该文件的数据。
 
 ## 收藏夹
@@ -16,7 +16,7 @@ photoAccessHelper提供对收藏夹、视频相册、截屏和录屏相册的相
 
 ### 获取收藏夹对象
 
-通过[PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getalbums-2)接口获取收藏夹对象。
+通过[PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getalbums-2)接口获取收藏夹对象。
 
 **前提条件**
 
@@ -47,7 +47,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 <!--Del-->
 ### 收藏图片和视频（仅向系统应用开放）
 
-通过[MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#setfavorite11)和[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口将图片或视频设置为收藏。
+通过[MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#setfavorite11)和[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11)接口将图片或视频设置为收藏。
 
 **前提条件**
 
@@ -91,7 +91,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 ### 获取收藏夹中的图片和视频
 
-先[获取收藏夹对象](#获取收藏夹对象)。然后调用[Album.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-3)接口获取收藏夹中的资源。
+先[获取收藏夹对象](#获取收藏夹对象)。然后调用[Album.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-AbsAlbum.md#getassets-1)接口获取收藏夹中的资源。
 
 **前提条件**
 
@@ -105,7 +105,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 1. [获取收藏夹对象](#获取收藏夹对象)。
 2. 建立图片检索条件，用于获取图片。
 3. 调用Album.getAssets接口获取图片资源。
-4. 调用[FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片。
+4. 调用[FetchResult.getFirstObject](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md#getfirstobject-1)接口获取第一张图片。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -139,7 +139,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 <!--Del-->
 ### 取消收藏图片或视频（仅向系统应用开放）
 
-通过[MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#setfavorite11)和[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口将图片或视频取消收藏。
+通过[MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#setfavorite11)和[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11)接口将图片或视频取消收藏。
 
 **前提条件**
 
@@ -195,7 +195,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 ### 获取视频相册对象
 
-通过[PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getalbums-2)接口获取视频相册对象。
+通过[PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getalbums-2)接口获取视频相册对象。
 
 **前提条件**
 
@@ -225,7 +225,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 ### 获取视频相册中的视频
 
-先[获取视频相册对象](#获取视频相册对象)。然后调用[Album.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-3)接口获取视频相册对象中的视频资源。
+先[获取视频相册对象](#获取视频相册对象)。然后调用[Album.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-AbsAlbum.md#getassets-1)接口获取视频相册对象中的视频资源。
 
 **前提条件**
 
@@ -239,7 +239,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 1. 先[获取视频相册对象](#获取视频相册对象)。
 2. 建立视频检索条件，用于获取视频。
 3. 调用Album.getAssets接口获取视频资源。
-4. 调用[FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一个视频。
+4. 调用[FetchResult.getFirstObject](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md#getfirstobject-1)接口获取第一个视频。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -276,7 +276,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 ### 获取截屏和录屏相册对象
 
-通过[PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getalbums-2)接口获取截屏和录屏相册对象。
+通过[PhotoAccessHelper.getAlbums](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getalbums-2)接口获取截屏和录屏相册对象。
 
 **前提条件**
 
@@ -306,7 +306,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 ### 获取截屏和录屏相册中的媒体资源
 
-先[获取截屏和录屏相册对象](#获取截屏和录屏相册对象)。然后调用[Album.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-3)接口获取截屏和录屏相册对象中的媒体资源。
+先[获取截屏和录屏相册对象](#获取截屏和录屏相册对象)。然后调用[Album.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-AbsAlbum.md#getassets-1)接口获取截屏和录屏相册对象中的媒体资源。
 
 **前提条件**
 
@@ -320,7 +320,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 1. 先[获取截屏和录屏相册对象](#获取截屏和录屏相册对象)。
 2. 建立检索条件，用于获取媒体资源。
 3. 调用Album.getAssets接口获取媒体资源。
-4. 调用[FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一个媒体资源。
+4. 调用[FetchResult.getFirstObject](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md#getfirstobject-1)接口获取第一个媒体资源。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';

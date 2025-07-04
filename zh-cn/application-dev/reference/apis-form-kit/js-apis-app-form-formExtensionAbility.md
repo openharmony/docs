@@ -365,3 +365,39 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
   }
 }
 ```
+
+### FormExtensionAbility.onFormLocationChanged<sup>20+</sup>
+
+onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation): void
+
+当卡片位置发生变化时，触发该回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+  
+**系统能力：** SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| formId | string | 是 | 发生位置变化的卡片标识。 |
+| newFormLocation | [formInfo.FormLocation](js-apis-app-form-formInfo.md#formlocation20) | 是 | 卡片最新位置的枚举值。 |
+
+**示例：**
+
+```ts
+import { formBindingData, FormExtensionAbility, formInfo } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+
+export default class EntryFormAbility extends FormExtensionAbility {
+  onAddForm(want: Want) {
+    let formData: Record<string, string | Object> = {
+      'data': 'addForm'
+    };
+    return formBindingData.createFormBindingData(formData);
+  }
+  onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation) {
+    console.info("EntryFormAbility onFormLocationChanged current location: " + newFormLocation);
+  }
+}
+```

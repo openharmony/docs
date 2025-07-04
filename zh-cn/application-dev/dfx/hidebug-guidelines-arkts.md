@@ -1,6 +1,6 @@
 # 使用HiDebug获取调试信息（ArkTS）
 
-为应用提供多种调试和调优方法。包括但不限于内存、CPU、GPU、GC等相关数据的获取，进程trace、profiler采集，VM堆快照转储等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试，调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
+为应用提供多种调试和调优方法。包括但不限于内存、CPU、GPU、GC等相关数据的获取，进程trace、profiler采集，VM堆快照转储等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试、调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
 
 ## 接口说明
 
@@ -27,8 +27,8 @@
 | hidebug.setAppResourceLimit        | 设置应用的fd数量、线程数量、js内存或者native内存资源限制。   |
 | hidebug.getAppNativeMemInfo        | 获取应用进程内存信息。                                       |
 | hidebug.getSystemMemInfo           | 获取系统内存信息。                                           |
-| hidebug.getVMRuntimeStats          | 获取系统gc全部统计信息。                                     |
-| hidebug.getVMRuntimeStat           | 根据参数获取指定的系统gc统计信息。                           |
+| hidebug.getVMRuntimeStats          | 获取系统[GC](../arkts-utils/gc-introduction.md)统计信息。                                     |
+| hidebug.getVMRuntimeStat           | 根据参数获取指定的系统[GC](../arkts-utils/gc-introduction.md)统计信息。                           |
 | hidebug.isDebugState               | 获取应用进程被调试状态。                                     |
 | hidebug.getGraphicsMemory          | 使用异步方式获取应用显存大小。                    |
 | hidebug.getGraphicsMemorySync      | 使用同步方式获取应用显存大小。                    |
@@ -77,7 +77,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
            Text(this.message)
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-             .onClick(testHiDebug);//添加点击事件
+             .onClick(testHiDebug);// 添加点击事件
          }
          .width('100%')
        }

@@ -23,12 +23,15 @@
   - [@ohos.multimedia.avInputCastPicker（录音设备选择组件）](ohos-multimedia-avinputcastpicker.md)
 - C API<!--avsession-c-->
   - 模块<!--avsession-module-->
-    - [OHAVSession](_o_h_a_v_session.md)
+    - [OHAVSession](capi-ohavsession.md)
   - 头文件<!--avsession-headerfile-->
-    - [native_avmetadata.h](native__avmetadata_8h.md)
-    - [native_avsession.h](native__avsession_8h.md)
-    - [native_avsession_errors.h](native__avsession__errors_8h.md)
+    - [native_avmetadata.h](capi-native-avmetadata-h.md)
+    - [native_avsession.h](capi-native-avsession-h.md)
+    - [native_avsession_errors.h](capi-native-avsession-errors-h.md)
   - 结构体<!--avsession-struct-->
-    - [AVSession_PlaybackPosition](_a_v_session___playback_position.md)
+    - [OH_AVMetadataBuilderStruct](capi-ohavsession-oh-avmetadatabuilderstruct.md)
+    - [OH_AVMetadataStruct](capi-ohavsession-oh-avmetadatastruct.md)
+    - [AVSession_PlaybackPosition](capi-ohavsession-avsession-playbackposition.md)
+    - [OH_AVSession](capi-ohavsession-oh-avsession.md)
 - 错误码<!--avsession-arkts-errcode-->
   - [媒体会话管理错误码](errorcode-avsession.md)

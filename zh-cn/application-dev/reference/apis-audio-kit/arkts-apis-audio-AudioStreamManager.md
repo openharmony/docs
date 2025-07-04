@@ -7,6 +7,12 @@
 
 在使用AudioStreamManager的接口之前，需先通过[getStreamManager](arkts-apis-audio-AudioManager.md#getstreammanager9)获取AudioStreamManager实例。
 
+## 导入模块
+
+```ts
+import { audio } from '@kit.AudioKit';
+```
+
 ## getCurrentAudioRendererInfoArray<sup>9+</sup>
 
 getCurrentAudioRendererInfoArray(callback: AsyncCallback&lt;AudioRendererChangeInfoArray&gt;): void

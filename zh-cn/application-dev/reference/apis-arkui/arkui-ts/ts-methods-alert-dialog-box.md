@@ -10,6 +10,8 @@
 
 ## AlertDialogParam对象说明
 
+警告弹窗的样式。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                              | 类型                                                         | 必填 | 说明                                                        |
@@ -23,7 +25,7 @@
 | offset                            | [Offset](ts-types.md#offset)                                 | 否   | 弹窗相对alignment所在位置的偏移量。<br/>默认值：{&nbsp;dx:&nbsp;0&nbsp;,&nbsp;dy:&nbsp;0&nbsp;}<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | gridCount                         | number                                                       | 否   | 弹窗容器宽度所占用栅格数。<br/>默认值：4 <br>取值范围：大于等于0的整数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                    |
 | maskRect<sup>10+</sup>            | [Rectangle](#rectangle8类型说明)                             | 否   | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } <br/>**说明：**<br/>showInSubWindow为true时，maskRect不生效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| showInSubWindow<sup>11+</sup>     | boolean                                                      | 否   | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。值为true表示在子窗口显示弹窗。<br/>默认值：false，弹窗显示在应用内，而非独立子窗口。<br/>**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| showInSubWindow<sup>11+</sup>     | boolean                                                      | 否   | 某弹窗需要显示在主窗口之外时，是否在子窗口显示此弹窗。值为true表示在子窗口显示弹窗。<br/>默认值：false，弹窗显示在应用内，而非独立子窗口。<br/>**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isModal<sup>11+</sup>             | boolean                                                      | 否   | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。值为false时，弹窗为非模态窗口，无蒙层。<br/>默认值：true，此时弹窗有蒙层。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | backgroundColor<sup>11+</sup>     | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 弹窗背板颜色。<br/>默认值：Color.Transparent<br/>**说明：** <br/>backgroundColor会与模糊属性backgroundBlurStyle叠加产生效果，如果不符合预期，可将backgroundBlurStyle设置为BlurStyle.NONE，即可取消模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 否   | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK<br/>**说明：** <br/>设置为BlurStyle.NONE即可关闭背景虚化。当设置了backgroundBlurStyle为非NONE值时，则不要设置backgroundColor，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -132,6 +134,12 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
 ## AlertDialogButtonBaseOptions<sup>18+</sup>对象说明
 
+警告弹窗中按钮的样式。
+
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -148,6 +156,8 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
 ## DialogButtonDirection<sup>10+</sup>枚举说明
 
+警告弹窗中按钮的对齐方式。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -159,6 +169,8 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 | VERTICAL                      | 2                     | 按钮竖直布局。 |
 
 ## DialogAlignment枚举说明
+
+警告弹窗的对齐方式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -219,6 +231,8 @@ Dialog关闭的信息。
 
 ## TextStyle<sup>12+</sup>对象说明
 
+弹窗中message的截断方式。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -255,7 +269,7 @@ static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | A
 
 > **说明：**
 > 
-> 直接使用AlertDialog可能导致[UI上下文不明确](../../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)调用绑定实例的AlertDialog.show()。
+> 直接使用AlertDialog可能导致[UI上下文不明确](../../../ui/arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../js-apis-arkui-UIContext.md#uicontext)实例，并使用[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)调用绑定实例的AlertDialog.show()。
 
 ### 示例1（弹出多个按钮的弹窗）
 
@@ -289,7 +303,7 @@ struct AlertDialogExample {
               },
               onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
                 console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-                console.log("dialog onWillDismiss");
+                console.info("dialog onWillDismiss");
                 if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
                   dismissDialogAction.dismiss();
                 }
@@ -332,7 +346,7 @@ struct AlertDialogExample {
               },
               onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
                 console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-                console.log("dialog onWillDismiss");
+                console.info("dialog onWillDismiss");
                 if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
                   dismissDialogAction.dismiss();
                 }
@@ -383,7 +397,7 @@ struct AlertDialogExample {
               },
               onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
                 console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-                console.log("dialog onWillDismiss");
+                console.info("dialog onWillDismiss");
                 if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
                   dismissDialogAction.dismiss();
                 }
@@ -454,7 +468,7 @@ struct AlertDialogExample {
               },
               onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
                 console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-                console.log("dialog onWillDismiss");
+                console.info("dialog onWillDismiss");
                 if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
                   dismissDialogAction.dismiss();
                 }
@@ -564,7 +578,7 @@ struct AlertDialogExample {
               },
               onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
                 console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-                console.log("dialog onWillDismiss");
+                console.info("dialog onWillDismiss");
                 if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
                   dismissDialogAction.dismiss();
                 }
@@ -614,7 +628,7 @@ struct AlertDialogExample {
               },
               onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
                 console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-                console.log("dialog onWillDismiss");
+                console.info("dialog onWillDismiss");
                 if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
                   dismissDialogAction.dismiss();
                 }
@@ -644,7 +658,7 @@ struct AlertDialogExample {
 @Entry
 @Component
 struct Example2 {
-  @State log:string = 'Log information:';
+  @State log: string = 'Log information:';
 
   build() {
     Column({ space: 5 }) {
@@ -659,32 +673,32 @@ struct Example2 {
             confirm: {
               value: 'button',
               action: () => {
-                console.info('AlertDialog Button-clicking callback')
+                console.info('AlertDialog Button-clicking callback');
               }
             },
             cancel: () => {
-              console.info('Closed callbacks')
+              console.info('Closed callbacks');
             },
             onDidAppear: () => {
-              this.log += '# onDidAppear'
-              console.info("AlertDialog,is onDidAppear!")
+              this.log += '# onDidAppear';
+              console.info("AlertDialog,is onDidAppear!");
             },
             onDidDisappear: () => {
-              this.log += '# onDidDisappear'
-              console.info("AlertDialog,is onDidDisappear!")
+              this.log += '# onDidDisappear';
+              console.info("AlertDialog,is onDidDisappear!");
             },
             onWillAppear: () => {
-              this.log = 'Log information:onWillAppear'
-              console.info("AlertDialog,is onWillAppear!")
+              this.log = 'Log information:onWillAppear';
+              console.info("AlertDialog,is onWillAppear!");
             },
             onWillDisappear: () => {
-              this.log += '# onWillDisappear'
-              console.info("AlertDialog,is onWillDisappear!")
+              this.log += '# onWillDisappear';
+              console.info("AlertDialog,is onWillDisappear!");
             }
           })
-        }).backgroundColor(0x317aff).height("60vp")
+        })
       Text(this.log).fontSize(30).margin({ top: 200 })
-    }.width('100%').margin({ top: 5 }).justifyContent(FlexAlign.SpaceAround)
+    }.width('100%').margin({ top: 5 })
   }
 }
 ```

@@ -9,10 +9,11 @@ When the PixelMap is large and uses regular memory, the RenderService main threa
 ## Memory Types
 
 The memory types for the PixelMap are as follows:
-- DMA_ALLOC: ION memory. IPC latency is relatively low, and texture upload is not required.
+
+- DMA_ALLOC: DMA memory. IPC latency is relatively low, and texture upload is not required.
 - SHARE_MEMORY: shared memory. IPC latency is minimal, but texture upload is required.
- 
-Given that the current memory allocation strategy of the decoding API cannot meet the requirements in certain scenarios, the system provides [createPixelMapUsingAllocator](../../reference/apis-image-kit/js-apis-image.md#createpixelmapusingallocator15), allowing you to customize the memory allocation type for decoding. For details about the API definition and usage example, see [Image Decoding API](../../reference/apis-image-kit/js-apis-image.md#imagesource).
+
+Given that the current memory allocation strategy of the decoding API cannot meet the requirements in certain scenarios, the system provides [createPixelMapUsingAllocator](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md#createpixelmapusingallocator15), allowing you to customize the memory allocation type for decoding. For details about the API definition and usage example, see [Image Decoding API](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md).
 
 ### Differences Between DMA_ALLOC and SHARE_MEMORY
 
@@ -42,14 +43,14 @@ Given that the current memory allocation strategy of the decoding API cannot mee
 
 ## Default Memory Allocation Method
 
-When [createPixelMap](../../reference/apis-image-kit/js-apis-image.md#createpixelmap7) is called for decoding, different memory allocation types are used in different scenarios.
+When [createPixelMap](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md#createpixelmap7) is called for decoding, different memory allocation types are used in different scenarios.
 
 DMA_ALLOC is used in the following scenarios:
 
 - Decoding HDR images.
 - Decoding HEIF images.
-- Decoding JPEG images, when the original image's width and height are both between 1024 and 8192, [desiredPixelFormat](../../reference/apis-image-kit/js-apis-image.md#decodingoptions7) is RGBA_8888 or NV21, and the hardware is not busy (concurrency is 3).
-- Decoding images in other formats. The value of [desiredSize](../../reference/apis-image-kit/js-apis-image.md#decodingoptions7) must be greater than or equal to 512 * 512 (consider the original image size if **desiredSize** is not set), and the width must be a multiple of 64.
+- Decoding JPEG images, when the original image's width and height are both between 1024 and 8192, [desiredPixelFormat](../../reference/apis-image-kit/arkts-apis-image-i.md#decodingoptions7) is RGBA_8888 or NV21, and the hardware is not busy (concurrency is 3).
+- Decoding images in other formats. The value of [desiredSize](../../reference/apis-image-kit/arkts-apis-image-i.md#decodingoptions7) must be greater than or equal to 512 * 512 (consider the original image size if **desiredSize** is not set), and the width must be a multiple of 64.
 
 In all other cases, SHARE_MEMORY is used.
 
@@ -57,7 +58,7 @@ In all other cases, SHARE_MEMORY is used.
 
 By default, the system selects the optimal memory allocation method for performance. In specific scenarios, applications can use a specified memory allocation method.
 
-When you call [createPixelMapUsingAllocator](../../reference/apis-image-kit/js-apis-image.md#createpixelmapusingallocator15) for decoding, the system automatically selects hardware or software decoding based on the [decoding options](../../reference/apis-image-kit/js-apis-image.md#decodingoptions7) and [memory application type](../../reference/apis-image-kit/js-apis-image.md#allocatortype15).
+When you call [createPixelMapUsingAllocator](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md#createpixelmapusingallocator15) for decoding, the system automatically selects hardware or software decoding based on the [decoding options](../../reference/apis-image-kit/arkts-apis-image-i.md#decodingoptions7) and [memory application type](../../reference/apis-image-kit/arkts-apis-image-e.md#allocatortype15).
 
 When creating a PixelMap, the system determines whether to use DMA_ALLOC or SHARE_MEMORY based on the user-specified allocator type.
 
@@ -69,7 +70,7 @@ The current image decoding feature has the following restrictions on memory allo
 - Hardware decoding supports only DMA_ALLOC.
 - SVG image decoding supports only SHARE_MEMORY.
 
-When [createPixelMapUsingAllocator](../../reference/apis-image-kit/js-apis-image.md#createpixelmapusingallocator15) is used for decoding, if the specified memory allocation mode does not match the image format or decoding method, an exception indicating a memory allocation failure is thrown.
+When [createPixelMapUsingAllocator](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md#createpixelmapusingallocator15) is used for decoding, if the specified memory allocation mode does not match the image format or decoding method, an exception indicating a memory allocation failure is thrown.
 
 If the allocation type is set to AUTO, the system determines whether to use DMA_ALLOC or SHARE_MEMORY based on the decoding and rendering time.
 
@@ -83,16 +84,15 @@ When memory is allocated using DMA_ALLOC, the stride must meet the hardware alig
 
 - The stride value must be an integer multiple of the number of bytes required by the hardware platform.
 - If the stride calculated using the above formula does not meet the alignment requirements, the system automatically pads the data.
-The stride value can be obtained by calling [PixelMap::GetImageInfo()](../../reference/apis-image-kit/js-apis-image.md#getimageinfo-1).
+The stride value can be obtained by calling [getImageInfo()](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md#getimageinfo-1).
 
-1. Call [GetImageInfo()](../../reference/apis-image-kit/js-apis-image.md#getimageinfo-1) to obtain an **ImageInfo** object.
-2. Access the stride value (**info.stride**) from the **ImageInfo** object.
+1. Call [getImageInfo()](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md#getimageinfo-1) to obtain an ImageInfo object.
+2. Access the stride value (**info.stride**) from the ImageInfo object.
 
 ```ts
 import image from '@ohos.multimedia.image';
 
-async CreatePixelMapUsingAllocator() {
-  const context = getContext();
+async function CreatePixelMapUsingAllocator(context : Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("test.jpg");  // Test image.
   let imageSource: image.ImageSource | null = await image.createImageSource(rawFile.buffer as ArrayBuffer);
@@ -100,7 +100,7 @@ async CreatePixelMapUsingAllocator() {
   let pixelmap = await imageSource.createPixelMapUsingAllocator(options, image.AllocatorType.AUTO);
   let info = await pixelmap.getImageInfo();
   // The stride of the PixelMap allocated by using DMA_ALLOC is different from that of the PixelMap allocated by using SHARE_MEMORY.
-  console.log("stride = " + info.stride);
+  console.info("stride = " + info.stride);
   let region: image.Region = { x: 0, y: 0, size: {height: 100, width:35} };
   if (pixelmap != undefined) {
     await pixelmap.crop(region);

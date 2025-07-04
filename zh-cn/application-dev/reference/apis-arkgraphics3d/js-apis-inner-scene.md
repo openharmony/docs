@@ -193,75 +193,71 @@ createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promi
 **示例：**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext, RenderResourceFactory,
-  GeometryDefinition, MeshResource } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node }  from '@kit.ArkGraphics3D';
+import { CustomGeometry, PrimitiveTopology, RenderContext, RenderResourceFactory,
+  MeshResource } from '@ohos.graphics.scene';
 
 function createMeshResource(): Promise<MeshResource> {
-  return Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
-    .then(scene => {
-      const renderContext = scene.getRenderContext();
-      if (!renderContext) {
-        return Promise.reject(new Error("RenderContext is null"));
-      }
-      const renderResourceFactory = renderContext.getRenderResourceFactory();
-      let geometry = new CustomGeometry(
-        [
-          { x: 0, y: 0, z: 0 },
-          { x: 1, y: 0, z: 0 },
-          { x: 1, y: 1, z: 0 },
-          { x: 0, y: 1, z: 0 },
-          { x: 0, y: 0, z: 1 },
-          { x: 1, y: 0, z: 1 },
-          { x: 1, y: 1, z: 1 },
-          { x: 0, y: 1, z: 1 }
-        ],
-        [
-          0, 1, 2, 2, 3, 0,
-          4, 5, 6, 6, 7, 4,
-          0, 4, 5, 5, 1, 0,
-          1, 5, 6, 6, 2, 1,
-          2, 6, 7, 7, 3, 2,
-          3, 7, 4, 4, 0, 3
-        ]
-      );
-      geometry.topology = PrimitiveTopology.TRIANGLE_LIST;
-      geometry.normals = [
-        { x: 0, y: 0, z: 1 },
-        { x: 0, y: 0, z: 1 },
-        { x: 0, y: 0, z: 1 },
-        { x: 0, y: 0, z: 1 },
-        { x: 0, y: 0, z: 1 },
-        { x: 0, y: 0, z: 1 },
-        { x: 0, y: 0, z: 1 },
-        { x: 0, y: 0, z: 1 }
-      ];
-
-      geometry.uvs = [
-        { x: 0, y: 0 },
-        { x: 1, y: 0 },
-        { x: 1, y: 1 },
-        { x: 0, y: 1 },
-        { x: 0, y: 0 },
-        { x: 1, y: 0 },
-        { x: 1, y: 1 },
-        { x: 0, y: 1 }
-      ];
-      geometry.colors = [
-        { r: 1, g: 0, b: 0, a: 1 },
-        { r: 0, g: 1, b: 0, a: 1 },
-        { r: 0, g: 0, b: 1, a: 1 },
-        { r: 1, g: 1, b: 0, a: 1 },
-        { r: 1, g: 0, b: 1, a: 1 },
-        { r: 0, g: 1, b: 1, a: 1 },
-        { r: 1, g: 1, b: 1, a: 1 },
-        { r: 0, g: 0, b: 0, a: 1 }
-      ];
-      let sceneResourceParameter: SceneResourceParameters = {
-        name: "cubeMesh",
-        uri: $rawfile("models/cube.obj")
-      };
-      return renderResourceFactory.createMesh(sceneResourceParameter, geometry);
-    });
+  const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+  if (!renderContext) {
+    return Promise.reject(new Error("RenderContext is null"));
+  }
+  const renderResourceFactory: RenderResourceFactory = renderContext.getRenderResourceFactory();
+  const geometry = new CustomGeometry();
+  geometry.vertices = [
+    { x: 0, y: 0, z: 0 },
+    { x: 1, y: 0, z: 0 },
+    { x: 1, y: 1, z: 0 },
+    { x: 0, y: 1, z: 0 },
+    { x: 0, y: 0, z: 1 },
+    { x: 1, y: 0, z: 1 },
+    { x: 1, y: 1, z: 1 },
+    { x: 0, y: 1, z: 1 }
+  ];
+  geometry.indices = [
+    0, 1, 2, 2, 3, 0,     // front
+    4, 5, 6, 6, 7, 4,     // back
+    0, 4, 5, 5, 1, 0,     // bottom
+    1, 5, 6, 6, 2, 1,     // right
+    3, 2, 6, 6, 7, 3,     // top
+    3, 7, 4, 4, 0, 3      // left
+  ];
+  geometry.topology = PrimitiveTopology.TRIANGLE_LIST;
+  geometry.normals = [
+    { x: 0, y: 0, z: 1 },
+    { x: 0, y: 0, z: 1 },
+    { x: 0, y: 0, z: 1 },
+    { x: 0, y: 0, z: 1 },
+    { x: 0, y: 0, z: 1 },
+    { x: 0, y: 0, z: 1 },
+    { x: 0, y: 0, z: 1 },
+    { x: 0, y: 0, z: 1 }
+  ];
+  geometry.uvs = [
+    { x: 0, y: 0 },
+    { x: 1, y: 0 },
+    { x: 1, y: 1 },
+    { x: 0, y: 1 },
+    { x: 0, y: 0 },
+    { x: 1, y: 0 },
+    { x: 1, y: 1 },
+    { x: 0, y: 1 }
+  ];
+  geometry.colors = [
+    { r: 1, g: 0, b: 0, a: 1 },
+    { r: 0, g: 1, b: 0, a: 1 },
+    { r: 0, g: 0, b: 1, a: 1 },
+    { r: 1, g: 1, b: 0, a: 1 },
+    { r: 1, g: 0, b: 1, a: 1 },
+    { r: 0, g: 1, b: 1, a: 1 },
+    { r: 1, g: 1, b: 1, a: 1 },
+    { r: 0, g: 0, b: 0, a: 1 }
+  ];
+  let sceneResourceParameter: SceneResourceParameters = {
+    name: "cubeMesh",
+    uri: $rawfile("image/Cube_BaseColor.png")
+  };
+  return renderResourceFactory.createMesh(sceneResourceParameter, geometry);
 }
 ```
 
@@ -326,26 +322,24 @@ createScene(uri?: ResourceStr): Promise\<Scene>
 **示例：**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext, RenderResourceFactory,
-  ResourceStr } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { RenderContext, RenderResourceFactory } from '@ohos.graphics.scene';
 
+// fromFile=true：从指定glb文件加载场景，fromFile=false：创建一个空场景，此参数是为了示例展示两种常见场景创建方式
 function createScenePromise(fromFile: boolean = false): Promise<Scene> {
-  return Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
-    .then(scene => {
-      const renderContext = scene.getRenderContext();
-      if (!renderContext) {
-        return Promise.reject(new Error("RenderContext is null"));
-      }
+  const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+  if (!renderContext) {
+    return Promise.reject(new Error("RenderContext is null"));
+  }
 
-      const renderResourceFactory = renderContext.getRenderResourceFactory();
-      if (fromFile) {
-        // 从文件创建场景
-        return renderResourceFactory.createScene($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
-      } else {
-        // 创建空场景
-        return renderResourceFactory.createScene();
-      }
-    });
+  const renderResourceFactory: RenderResourceFactory = renderContext.getRenderResourceFactory();
+  if (fromFile) {
+    // 从文件创建场景
+    return renderResourceFactory.createScene($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
+  } else {
+    // 创建空场景
+    return renderResourceFactory.createScene();
+  }
 }
 ```
 
@@ -607,8 +601,8 @@ getRenderResourceFactory() : RenderResourceFactory
 **示例：**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext, RenderResourceFactory,
-  RenderContext } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext,
+  RenderResourceFactory } from '@kit.ArkGraphics3D';
 
 function getRenderResourceFactory(): void {
   Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
@@ -645,8 +639,8 @@ loadPlugin(name: string): Promise\<boolean>
 **示例：**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext, RenderResourceFactory,
-  RenderContext } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext,
+  RenderResourceFactory } from '@kit.ArkGraphics3D';
 
 function loadPlugin(): void {
   Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
@@ -705,7 +699,7 @@ static load(uri?: ResourceStr): Promise\<Scene>
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| Promise\<[Scene](#scene)> | Promise对象，返回场景对象。|
+| Promise\<[Scene](#scene-1)> | Promise对象，返回场景对象。|
 
 **示例：**
 ```ts

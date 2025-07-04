@@ -6,6 +6,12 @@
 
 图像元数据类，用于存储图像的元数据。目前支持的元数据类型可参考[MetadataType](arkts-apis-image-e.md#metadatatype13)。
 
+## 导入模块
+
+```ts
+import { image } from '@kit.ImageKit';
+```
+
 ## getProperties<sup>13+</sup>
 
 getProperties(key: Array\<string>): Promise\<Record\<string, string | null>>
@@ -184,15 +190,6 @@ clone(): Promise\<Metadata>
 | 类型                              | 说明                              |
 | --------------------------------- | --------------------------------- |
 | Promise\<[Metadata](arkts-apis-image-Metadata.md)> | Promise对象，成功返回元数据实例。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
-
-| 错误码ID | 错误信息             |
-| -------- | -------------------- |
-| 7600301  | Memory alloc failed. |
-| 7600302  | Memory copy failed.  |
 
 **示例：**
 

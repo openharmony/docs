@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
+import { videoProcessingEngine } from '@kit.ImageKit';
 ```
 
 ## videoProcessingEngine.initializeEnvironment
@@ -32,7 +32,7 @@ initializeEnvironment(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md#视频处理引擎错误码)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)
 
 
 | 错误码ID  | 错误信息  |
@@ -45,7 +45,7 @@ initializeEnvironment(): Promise\<void>
 **示例：**
 
 ```ts
-import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
+import { videoProcessingEngine } from '@kit.ImageKit';
 async function initializeEnvironment() {
 videoProcessingEngine.initializeEnvironment();
 }
@@ -69,7 +69,7 @@ deinitializeEnvironment(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[视频处理引擎错误码](errorcode-videoprocessingengine.md#视频处理引擎错误码)
+以下错误码的详细介绍请参见[视频处理引擎错误码](errorcode-videoprocessingengine.md)
 
 | 错误码ID  | 错误信息  |
 | :------------ | :------------ |
@@ -78,7 +78,7 @@ deinitializeEnvironment(): Promise\<void>
 **示例：**
 
 ```ts
-import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
+import { videoProcessingEngine } from '@kit.ImageKit';
 async function deinitializeEnvironment() {
   videoProcessingEngine.initializeEnvironment();
   videoProcessingEngine.deinitializeEnvironment();
@@ -103,7 +103,7 @@ create(): ImageProcessor
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md#视频处理引擎错误码)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)
 
 | 错误码ID  | 错误信息  |
 | :------------ | :------------ |
@@ -114,7 +114,7 @@ create(): ImageProcessor
 **示例：**
 
 ```ts
-import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
+import { videoProcessingEngine } from '@kit.ImageKit';
 async function create() {
 videoProcessingEngine.initializeEnvironment();
 let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
@@ -157,7 +157,7 @@ enhanceDetail(sourceImage: image.PixelMap, width: number, height: number, level?
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md#视频处理引擎错误码)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)
 
 | 错误码ID  | 错误信息  |
 | :------------ | :------------ |
@@ -168,7 +168,7 @@ enhanceDetail(sourceImage: image.PixelMap, width: number, height: number, level?
 **示例：**
 
 ```ts
-import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
+import { videoProcessingEngine } from '@kit.ImageKit';
 async function enhanceDetail(sourceImage: image.PixelMap, width: number, height: number) {
   videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
@@ -202,7 +202,7 @@ enhanceDetail(sourceImage: image.PixelMap, scale: number, level?: QualityLevel):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md#视频处理引擎错误码)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)
 
 | 错误码ID  | 错误信息  |
 | :------------ | :------------ |
@@ -213,7 +213,7 @@ enhanceDetail(sourceImage: image.PixelMap, scale: number, level?: QualityLevel):
 **示例：**
 
 ```ts
-import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
+import { videoProcessingEngine } from '@kit.ImageKit';
 async function enhanceDetail(sourceImage: image.PixelMap, scale: number) {
   videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
@@ -248,7 +248,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, width: number, height: number, le
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md#视频处理引擎错误码)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)
 
 | 错误码ID  | 错误信息  |
 | :------------ | :------------ |
@@ -260,7 +260,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, width: number, height: number, le
 **示例：**
 
 ```ts
-import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
+import { videoProcessingEngine } from '@kit.ImageKit';
 async function enhanceDetailSync(sourceImage:image.PixelMap, width: number, height: number) {
   videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
@@ -295,7 +295,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, scale: number, level?: QualityLev
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md#视频处理引擎错误码)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[视频处理引擎错误码](errorcode-videoprocessingengine.md)
 
 | 错误码ID  | 错误信息  |
 | :------------ | :------------ |
@@ -307,7 +307,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, scale: number, level?: QualityLev
 **示例：**
 
 ```ts
-import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
+import { videoProcessingEngine } from '@kit.ImageKit';
 async function enhanceDetailSync(sourceImage:image.PixelMap, scale: number) {
   videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;

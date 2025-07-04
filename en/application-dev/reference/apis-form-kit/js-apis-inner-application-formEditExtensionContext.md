@@ -14,15 +14,13 @@ You can use **FormEditExtensionContext** to access specific **FormEditExtensionA
 ```ts
 import { FormEditExtensionAbility } from '@kit.FormKit';
 ```
-## FormEditExtensionAbility.startSecondPage
+## FormEditExtensionContext.startSecondPage
 
 startSecondPage(want: Want): Promise<[AbilityResult](../apis-ability-kit/js-apis-inner-ability-abilityResult.md)>
 
 Starts the widget provider page to be edited.
 
 **Model restriction**: This API can be used only in the stage model.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -44,7 +42,6 @@ For details about the error codes, see [Form Error Codes](errorcode-form.md) and
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 202      | The application is not a system application.                 |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | An IPC connection error happened.                            |
 | 16501000 | An internal functional error occurred.                       |
 | 16500100 | Failed to obtain the configuration information.                        |

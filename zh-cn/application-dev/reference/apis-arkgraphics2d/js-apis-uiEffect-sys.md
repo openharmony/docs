@@ -219,7 +219,23 @@ radiusGradientBlur(value: number, options: LinearGradientBlurOptions): Filter
 **示例：**
 
 ```ts
-filter.radiusGradientBlur(20, {fractionStops: [[0, 0], [0.5, 0.2], [1.0, 1.0]], direction: GradientDirection.Bottom})
+import { uiEffect } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct RadiusGradientBlurExample {
+  @State blurRadiusExample: number = 64
+  @State linearGradientBlurOptionsExample: LinearGradientBlurOptions =
+    {fractionStops: [[0.0, 0.0], [1.0, 1.0]], direction: GradientDirection.Bottom}
+
+  build() {
+    Column() {
+      Image($rawfile('test.png'))
+        .compositingFilter(uiEffect.createFilter().radiusGradientBlur(this.blurRadiusExample,
+          this.linearGradientBlurOptionsExample))
+    }
+  }
+}
 ```
 
 ### bezierWarp<sup>20+</sup>
@@ -307,7 +323,97 @@ colorGradient(colors: Array\<Color>, positions: Array\<common2D.Point>, strength
 **示例：**
 
 ```ts
-filter.colorGradient([{red: 1.0, green: 0.8, blue: 0.5, alpha: 0.8}, {red: 1.0, green: 1.5, blue: 0.5, alpha: 1.0}], [{x: 0.2, y: 0.2}, {x: 0.8, y: 0.6}], [0.3, 0.3], uiEffect.Mask.createRippleMask({x: 0.5, y: 0.5}, 0.5, 0.5, 0.5))
+import { common2D, uiEffect } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct ColorGradientExample {
+  @State colorsExample: Array<uiEffect.Color> = [
+    {red: 1.0, green: 0.8, blue: 0.5, alpha: 0.8},
+    {red: 1.0, green: 1.5, blue: 0.5, alpha: 1.0}
+  ]
+
+  @State positionsExample: Array<common2D.Point> = [
+    {x: 0.2, y: 0.2},
+    {x: 0.8, y: 0.6}]
+
+  @State strengthsExample: Array<number> = [0.3, 0.3]
+
+  build() {
+    Column() {
+      Row()
+        .width("100%")
+        .height("100%")
+        .backgroundFilter(uiEffect.createFilter().colorGradient(this.colorsExample, this.positionsExample, this.strengthsExample))
+    }
+  }
+}
+```
+
+### contentLight<sup>20+</sup>
+contentLight(lightPosition: common2D.Point3d, lightColor: common2D.Color, lightIntensity: number, displacementMap?: Mask): Filter
+
+为组件内容添加3D光照效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| lightPosition | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是 | 光源在组件空间的位置，[-1, -1, 0]为组件左上角，[1, 1, 0]为组件的右下角，z轴分量越大光源离组件平面越远，可照射区域越大。<br/> x分量取值范围[-10, 10]，y分量取值范围[-10, 10]，z分量取值范围[0, 10]，超出范围会自动截断。 |
+| lightColor | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 光源颜色，各元素取值范围为[0, 1]，超出范围会自动截断。 |
+| lightIntensity | number | 是 | 光源强度，取值范围[0, 1]，数值越大光源亮度越大，超出范围会自动截断。|
+| displacementMap | [Mask](#mask20) | 否 | 该参数暂不生效。 |
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [filter](#filter) | 返回了具有内容光照效果的filter。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { common2D, uiEffect } from '@kit.ArkGraphics2D'
+@Entry
+@Component
+struct Index {
+  @State point2:common2D.Point3d = {
+    x:0,y:0,z:2
+  }
+  @State color2:common2D.Color = {
+    red:1,green:1,blue:1,alpha:1
+  }
+  @State lightIntentsity2:number = 1
+
+  build() {
+    Column() {
+      Stack() {
+        Image($r('app.media.man'))
+          .width('646px')
+          .height('900px')
+          .borderRadius(10)
+          .foregroundFilter(uiEffect.createFilter().contentLight(this.point2, this.color2, this.lightIntentsity2))
+      }
+      .width('100%')
+      .height('55%')
+    }
+    .height('100%')
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
+    .backgroundColor('#555')
+  }
+}
 ```
 
 ### edgeLight<sup>20+</sup>
@@ -344,7 +450,25 @@ edgeLight(alpha: number, color?: Color, mask?: Mask, bloom?: boolean): Filter
 **示例：**
 
 ```ts
-uiEffect.createFilter().edgeLight(1.0, {red: 1.0, green: 0.78, blue: 0.57, alpha: 1.0}, null)
+import { uiEffect } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct EdgeLightExample {
+  @State colorExample: uiEffect.Color = {red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0}
+  
+  @State maskExample: uiEffect.Mask = uiEffect.Mask.createRippleMask({x: 0.5, y: 0.5}, 0.2, 0.5, 0.5)
+  
+  build() {
+    Stack() {
+      Image($rawfile('test.png'))
+      Row()  
+        .width("100%")
+        .height("100%")
+        .backgroundFilter(uiEffect.createFilter().edgeLight(1.0, this.colorExample, this.maskExample, false))
+    }
+  }
+}
 ```
 
 ### displacementDistort<sup>20+</sup>
@@ -379,7 +503,23 @@ displacementDistort(displacementMap: Mask, factor?: [number, number]): Filter
 **示例：**
 
 ```ts
-uiEffect.createFilter().displacementDistort(uiEffect.Mask.createRippleMask({x: 0.5, y: 1.0}, 1.2, 0.3, 0.0), [1.0, 1.0])
+import { uiEffect } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct DisplacementDistortExample {
+  @State maskExample: uiEffect.Mask = uiEffect.Mask.createRippleMask({x: 0.5, y: 0.5}, 0.2, 0.3, 0.0)
+  
+  build() {
+    Stack() {
+      Image($rawfile('test.png'))
+      Row()  
+        .width("100%")
+        .height("100%")
+        .backgroundFilter(uiEffect.createFilter().displacementDistort(this.maskExample, [5.0, 5.0]))
+    }
+  }
+}
 ```
 
 ### maskDispersion<sup>20+</sup>
@@ -417,7 +557,45 @@ maskDispersion(dispersionMask: Mask, alpha: number, rFactor?: [number, number], 
 **示例：**
 
 ```ts
-filter.maskDispersion(mask, 0.5, [0.15, -0.15], [0.0, 0.0], [-0.15, 0.15])
+import {image} from '@kit.ImageKit'
+import {common2D, uiEffect} from '@kit.ArkGraphics2D'
+
+const context = getContext(this)
+const resourceMgr =context.resourceManager
+
+@Entry
+@Component
+struct MaskDispersion {
+  @State pixelMap_: PixelMap | null = null
+  @State src: common2D.Rect = { left: 0, top: 0, right: 1.0, bottom: 1.0 }
+  @State dst: common2D.Rect = { left: 0, top: 0, right: 1.0, bottom: 1.0 }
+  @State fillColor: uiEffect.Color = { red: 0, green: 0, blue: 0, alpha: 0 }
+
+  onPageShow(): void {
+    resourceMgr.getMediaContent($r("app.media.mask_alpha")).then(val => {
+      let buffer = val.buffer.slice(0, val.buffer.byteLength)
+      let imageSource = image.createImageSource(buffer);
+      imageSource.createPixelMap().then(pixelmap => {
+        this.pixelMap_ = pixelmap
+      })
+    })
+  }
+  
+  build() {
+    Stack() {
+      Image($rawfile('test.png'))
+      Row()  
+        .width("100%")
+        .height("100%")
+        .backgroundFilter(uiEffect.createFilter().maskDispersion(
+          uiEffect.Mask.createPixelMapMask(this.pixelMap_, this.src, this.dst, this.fillColor),
+          1.0,
+          [0.5, -0.5],
+          [0.0, 0.0],
+          [-0.5, 0.5]))
+    }
+  }
+}
 ```
 
 ### hdrBrightnessRatio<sup>20+</sup>
@@ -528,6 +706,78 @@ let blender : uiEffect.BrightnessBlender =
   uiEffect.createBrightnessBlender({cubicRate:1.0, quadraticRate:1.0, linearRate:1.0, degree:1.0, saturation:1.0,
     positiveCoefficient:[2.3, 4.5, 2.0], negativeCoefficient:[0.5, 2.0, 0.5], fraction:0.0})
 visualEffect.backgroundColorBlender(blender)
+```
+
+### borderLight<sup>20+</sup>
+borderLight(lightPosition: common2D.Point3d, lightColor: common2D.Color, lightIntensity: number, borderWidth: number): VisualEffect
+
+为圆角矩形组件边框添加3D光照效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| lightPosition | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是 | 光源在组件空间的3D位置，[-1, -1, 0]为组件左上角，[1, 1, 0]为组件的右下角，z轴分量越大，光源离组件平面越远，可照射区域越大。<br/> x轴分量取值范围[-10, 10]，y轴分量取值范围[-10, 10]，z轴分量取值范围[0, 10]，超出范围会自动截断。 |
+| lightColor | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 光源颜色，各元素取值范围为[0, 1]，超出范围会自动截断。 |
+| lightIntensity | number | 是 | 光源强度，取值范围[0, 1]，数值越大光源亮度越大，超出范围会自动截断。|
+| borderWidth | number | 是 | 组件边框的受光宽度，取值范围为[0.0, 30.0]，超出范围会自动截断。设置为0.0时，组件边框无光照效果，数值越大，光可照亮的区域越宽。 |
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [VisualEffect](#visualeffect) | 返回了具有边框光照效果的VisualEffect。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+```ts
+import { common2D, uiEffect } from '@kit.ArkGraphics2D'
+
+@Entry
+@Component
+struct Index {
+  @State point1:common2D.Point3d = {
+    x:0,y:0,z:2
+  }
+  @State color1:common2D.Color = {
+    red:1,green:1,blue:1,alpha:1
+  }
+  @State lightIntentsity1:number = 1
+  @State bordrwidth:number = 20
+
+  build() {
+    Column() {
+      Stack() {
+        Image($r('app.media.man'))
+          .width('646px')
+          .height('900px')
+          .borderRadius(10)
+        Column()
+          .width('646px')
+          .height('900px')
+          .borderRadius(10)
+          .visualEffect(uiEffect.createEffect().borderLight(this.point1, this.color1, this.lightIntentsity1,
+            this.bordrwidth))
+      }
+      .width('100%')
+      .height('55%')
+    }
+    .height('100%')
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
+    .backgroundColor('#555')
+  }
+}
 ```
 
 ## Blender<sup>13+</sup>
@@ -683,7 +933,58 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   let mask = uiEffect.Mask.createPixelMapMask(pixelMap, srcRect, dstRect, fillColor);
 })
 ```
+### createRadialGradientMask<sup>20+</sup>
+static createRadialGradientMask(center: common2D.Point, radiusX: number, radiusY: number, values: Array<[number, number]>): Mask
 
+通过输入椭圆中心点的位置、长短轴和形状参数创建椭圆遮罩效果[Mask](#mask20)实例，具体的效果由输入的参数决定。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名  | 类型                                      | 必填 | 说明                       |
+| ------- | ---------------------------------------- | ---- | ------------------------- |
+| center | [common2D.Point](js-apis-graphics-common2D.md#point12)  | 是 | 设置椭圆的中心点，[0, 0]为屏幕左上角，[1, 1]为屏幕的右下角。<br/>取值范围[-10, 10]，可取浮点数，超出边界会在实现时自动截断。 |
+| radiusX | number  | 是 | 设置椭圆的长轴，半径为1等于屏幕的高度。<br/>取值范围[0, 10]，可取浮点数，超出边界会在实现时自动截断。 |
+| radiusY | number  | 是 | 设置椭圆的短轴，半径为1等于屏幕的高度。<br/>取值范围[0, 10]，可取浮点数，超出边界会在实现时自动截断。 |
+| values | Array<[number, number]>     | 是 | 数组中保存的二元数组表示梯度：[RGBA颜色, 位置]。RGBA颜色四通道使用相同的值，可看作一个灰度值；位置表示沿径向方向向外时RGBA颜色对应的分布位置；RGBA颜色与位置的取值范围均为[0, 1]，可取浮点数，小于0的转为0，大于1的转为1。<br/>位置参数值须严格递增，Array数组中二元数组个数必须大于等于2，二元数组中的元素不能为空，否则该椭圆分布效果不生效。 |
+
+**返回值：**
+
+| 类型                          | 说明                                               |
+| ----------------------------- | ------------------------------------------------- |
+| [Mask](#mask20) | 返回椭圆形状的径向分布效果的灰度Mask。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import uiEffect from '@ohos.graphics.uiEffect'
+// values: [[1.0, 0.5], [1.0, 1.0]] => color0: 1.0; color1: 1.0; position0: 0.5; position1: 1.0
+let mask = uiEffect.Mask.createRadialGradientMask({x: 0.0, y: 0.0}, 0.5, 0.5, [[1.0, 0.5], [1.0, 1.0]]);
+@Entry
+@Component
+struct RadialGradientMaskExample {
+  build() {
+    Stack() {
+      Image('test.jpg')
+      Column()
+        .width('100%')
+        .height('100%')
+        // Mask作为Filter的入参实现对应的效果，该效果中Mask是在屏幕左上角的四分之一圆环
+        .backgroundFilter(uiEffect.createFilter().edgeLight(1.0, null, mask))
+    }
+  }
+}
+```
 ## BrightnessBlenderParam
 BrightnessBlender参数列表。
 

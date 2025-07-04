@@ -6,6 +6,12 @@
 
 AVSessionController控制器可查看会话ID，并可完成对会话发送命令及事件，获取会话元数据，播放状态信息等操作。
 
+## 导入模块
+
+```ts
+import { avSession } from '@kit.AVSessionKit';
+```
+
 ## 属性
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -2118,7 +2124,7 @@ avsessionController.off('queueTitleChange');
 
 ## on('extrasChange')<sup>10+</sup>
 
-on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): void
+on(type: 'extrasChange', callback: (extras: {[key: string]: Object}) => void): void
 
 媒体控制器设置自定义媒体数据包事件变化的监听器。
 
@@ -2131,7 +2137,7 @@ on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): vo
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'extrasChange'`：当媒体提供方设置自定义媒体数据包时，触发该事件。 |
-| callback | (extras: {[key:string]: Object}) => void         | 是   | 回调函数，extras为媒体提供方新设置的自定义媒体数据包，该自定义媒体数据包与dispatchSessionEvent方法设置的数据包完全一致。          |
+| callback | (extras: {[key: string]: Object}) => void         | 是   | 回调函数，extras为媒体提供方新设置的自定义媒体数据包，该自定义媒体数据包与dispatchSessionEvent方法设置的数据包完全一致。          |
 
 **错误码：**
 
@@ -2169,7 +2175,7 @@ if (controller !== undefined) {
 
 ## off('extrasChange')<sup>10+</sup>
 
-off(type: 'extrasChange', callback?: (extras: {[key:string]: Object}) => void): void
+off(type: 'extrasChange', callback?: (extras: {[key: string]: Object}) => void): void
 
 媒体控制器取消监听自定义媒体数据包变化事件。
 
@@ -2182,7 +2188,7 @@ off(type: 'extrasChange', callback?: (extras: {[key:string]: Object}) => void): 
 | 参数名    | 类型                    | 必填 | 说明                                                                                                    |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------------------------------------------------- |
 | type     | string                  | 是   | 取消对应的监听事件，支持事件`'extrasChange'`。                                                         |
-| callback | (extras: {[key:string]: Object}) => void | 否   | 注册监听事件时的回调函数。<br>该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
+| callback | (extras: {[key: string]: Object}) => void | 否   | 注册监听事件时的回调函数。<br>该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
 
 **错误码：**
 

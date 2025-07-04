@@ -1,12 +1,12 @@
 # 菜单控制
 
-为组件绑定弹出式菜单，菜单项以垂直列表形式显示，支持长按、点击或鼠标右键触发。
+为组件绑定弹出式菜单，支持长按、点击或鼠标右键来触发菜单的弹出，菜单项以垂直列表形式显示。
 
 >  **说明：**
 >
 >  - 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  - CustomBuilder不支持使用bindMenu和bindContextMenu弹出菜单。多级菜单可使用[Menu组件](ts-basic-components-menu.md)。
+>  - CustomBuilder不支持使用bindMenu和bindContextMenu弹出菜单。可以使用[Menu组件](ts-basic-components-menu.md)来实现多级菜单。
 >
 >  - 弹出菜单的文本内容不支持长按选中。
 >
@@ -28,7 +28,7 @@
 
 bindMenu(content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions): T
 
-给组件绑定菜单，点击后弹出菜单。弹出菜单项支持图标+文本排列和自定义两种功能。
+给组件绑定菜单，点击后弹出菜单。弹出的菜单项支持图标+文本排列以及自定义组件两种功能。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -51,7 +51,7 @@ bindMenu(content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions):
 
 bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions): T
 
-给组件绑定菜单，点击后弹出菜单。弹出菜单项支持图标+文本排列和自定义两种功能。
+给组件绑定菜单，点击后弹出菜单。弹出的菜单项支持图标+文本排列以及自定义组件两种功能。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -134,7 +134,7 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 | icon<sup>10+</sup>       | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 菜单项图标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | enabled<sup>11+</sup>    | boolean                                                      | 否   | 菜单条目是否可进行交互。<br/>默认值：true，菜单条目可以进行交互。<br/>值为false时，菜单条目不可以进行交互。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | action                   | ()&nbsp;=&gt;&nbsp;void                                      | 是   | 点击菜单项的事件回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| symbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 设置菜单项图标。通过Modifier配置菜单项图标，配置该项时，原icon图标不显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| symbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 设置菜单项图标。通过Modifier配置菜单项图标，若同时配置symbolIcon和icon的情况下，icon图标不显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## MenuOptions<sup>10+</sup>
 
@@ -182,6 +182,8 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 | onDidAppear<sup>20+</sup> | [Callback&lt;void&gt;](ts-types.md#callback12) | 否 | 菜单弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：aboutToAppear>>onWillAppear>>onAppear>>onDidAppear>>aboutToDisappear>>onWillDisappear>>onDisappear>>onDidDisappear。<br />2.快速点击弹出，消失菜单时，存在onWillDisappear在onDidAppear前生效。<br />3. 当菜单入场动效未完成时关闭菜单，该回调不会触发。<br/>4.onAppear和onDidAppear触发时机相同，onDidAppear在onAppear后生效。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | onWillDisappear<sup>20+</sup> | [Callback&lt;void&gt;](ts-types.md#callback12) | 否 | 菜单退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：aboutToAppear>>onWillAppear>>onAppear>>onDidAppear>>aboutToDisappear>>onWillDisappear>>onDisappear>>onDidDisappear。<br />2.快速点击弹出，消失菜单时，存在onWillDisappear在onDidAppear前生效。<br/>3.aboutToDisappear和onWillDisappear触发时机相同，onWillDisappear在aboutToDisappear后生效。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 | onDidDisappear<sup>20+</sup> | [Callback&lt;void&gt;](ts-types.md#callback12) | 否 | 菜单消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：aboutToAppear>>onWillAppear>>onAppear>>onDidAppear>>aboutToDisappear>>onWillDisappear>>onDisappear>>onDidDisappear。<br/>2.onDisappear和onDidDisappear触发时机相同，onDidDisappear在onDisappear后生效。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| previewScaleMode<sup>20+</sup> | [PreviewScaleMode](#previewscalemode20类型说明) | 否 | 预览图缩放方式。<br />默认值：PreviewScaleMode.AUTO<br />**说明：**<br />布局空间不足时，控制预览图的缩放方式。未设置或设置undefined按照PreviewScaleMode.AUTO处理。当设置成PreviewScaleMode.CONSTANT时，如果预览图过大，剩余的空间不足以放置菜单时，菜单将重叠显示在预览图之下。<br />预览图的最大宽高不会超过预览图最大可布局区域（窗口大小减去上下左右的安全边距）。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| availableLayoutArea<sup>20+</sup> | [AvailableLayoutArea](#availablelayoutarea20类型说明) | 否 | 设置预览图宽高的可布局区域，预览图的百分比依据此设置计算。 <br /> **说明：** <br /> 未设置或设置为undefined时，百分比依据窗口大小计算。最终可能因安全区限制而被压缩或裁剪，若设置为AvailableLayoutArea.SAFE_AREA，预览图的可布局区域为：窗口大小减去上下左右的安全边距。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## MenuPreviewMode<sup>11+</sup>
 
@@ -276,9 +278,35 @@ type BorderRadiusType = [Length](ts-types.md#length) | [BorderRadiuses](ts-types
 
 | 名称  | 值 | 说明                                   |
 | ----- | -  | --------------------------------------|
-| AUTO  | 0  | 自动模式，跟随系统设置，当前效果同ModalMode.NONE。|
-| NONE  | 1   | 菜单周围的事件可穿透到所在窗口，下层控件可响应。|
-| TARGET_WINDOW | 2 | 模住所在的窗口，菜单显示时下层控件不可响应事件。|
+| AUTO  | 0  | 自动模式，菜单组件在当前设备的默认行为。当前版本在所有设备上的效果等同于ModalMode.NONE。|
+| NONE  | 1   | 除菜单自身区域外，其他区域均可传递事件，下层控件可响应事件。|
+| TARGET_WINDOW | 2 | 菜单所在应用的窗口与菜单区域不可传递事件，其他区域可传递事件。|
+
+## PreviewScaleMode<sup>20+</sup>类型说明
+
+预览图的缩放方式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 值 | 说明                                   |
+| ----- | -  | --------------------------------------|
+| AUTO  | 0  | 预览图根据[Placement](ts-appendix-enums.md#placement8)自动调整预览图宽高及缩放。|
+| CONSTANT  | 1 | 预览图不缩放，大小保持不变。最终仍会受到安全区的限制而出现压缩、裁剪。|
+| MAINTAIN | 2 | 预览图缩放时保持宽高比。|
+
+## AvailableLayoutArea<sup>20+</sup>类型说明
+
+预览图宽高设置为百分比时的参考可布局区域大小。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 值 | 说明                                   |
+| ----- | -  | --------------------------------------|
+| SAFE_AREA  | 0  | 参考可布局区域大小为窗口大小减去上下左右安全边距。 |
 
 ## 示例
 
@@ -911,7 +939,7 @@ struct Index {
                 }
               })
             .onClick(() => {
-              console.log('trigger onClick')
+              console.info('trigger onClick')
             })
         }
       }.width('100%')
@@ -1086,3 +1114,49 @@ struct Index {
 ```
 
 ![menuMask](figures/menuMask.jpg)
+
+### 示例17（bindMenu设置下拉菜单外描边样式）
+
+该示例为bindMenu通过配置outlineWidth和outlineColor属性设置下拉菜单外描边样式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ content: "菜单选项" })
+      MenuItem({ content: "菜单选项" })
+      MenuItem({ content: "菜单选项" })
+    }
+  }
+
+  build() {
+    Column({ space: 50 }) {
+      Column() {
+        Column() {
+          Text('click for Menu')
+            .width(200)
+            .height(100)
+            .textAlign(TextAlign.Center)
+            .margin(100)
+            .fontSize(30)
+            .bindMenu(this.MyMenu,
+              {
+                outlineWidth: '5vp',
+                outlineColor: Color.Blue
+              })
+        }
+      }
+      .width('100%')
+      .height('100%')
+      .backgroundColor('#F0F2F5')
+    }
+  }
+}
+
+```
+
+![menu-outline](figures/menuOutline.png)

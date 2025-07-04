@@ -17,6 +17,12 @@
 
 ## 汇总
 
+### 结构体
+
+| 名称 | typedef关键字 | 描述 |
+| -- | -- | -- |
+| [OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md) | OH_NativeColorSpaceManager | 声明色域管理对象，提供获取色域基础属性的能力。 |
+
 ### 函数
 
 | 名称 | 描述 |
@@ -36,6 +42,11 @@
 | [void OH_Drawing_BrushGetFilter(OH_Drawing_Brush* brush, OH_Drawing_Filter* filter)](#oh_drawing_brushgetfilter) | 从画刷获取滤波器[OH_Drawing_Filter](capi-drawing-oh-drawing-filter.md)。滤波器是一个容器，可以承载蒙版滤波器和颜色滤波器。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>brush、filter任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。 |
 | [void OH_Drawing_BrushSetBlendMode(OH_Drawing_Brush* brush, OH_Drawing_BlendMode blendMode)](#oh_drawing_brushsetblendmode) | 为画刷设置一个混合器，该混合器实现了指定的混合模式枚举。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；<br>blendMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。 |
 | [void OH_Drawing_BrushReset(OH_Drawing_Brush* brush)](#oh_drawing_brushreset) | 将画刷重置至初始状态，清空所有已设置的属性。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。 |
+| [OH_Drawing_ErrorCode OH_Drawing_BrushSetColor4f(OH_Drawing_Brush* brush, float a, float r, float g, float b,OH_NativeColorSpaceManager* colorSpaceManager)](#oh_drawing_brushsetcolor4f) | 设置画刷的颜色。颜色将被画刷用来填充形状。<br> 颜色采用浮点数表示的ARGB格式，色彩空间由[OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)指定。<br> 如果colorSpaceManager为nullptr，使用SRGB（基于IEC 61966-2.1：1999的标准红绿蓝色彩空间）色彩空间作为默认值。 |
+| [OH_Drawing_ErrorCode OH_Drawing_BrushGetAlphaFloat(const OH_Drawing_Brush* brush, float* a)](#oh_drawing_brushgetalphafloat) | 获取画刷颜色的透明度值。 |
+| [OH_Drawing_ErrorCode OH_Drawing_BrushGetRedFloat(const OH_Drawing_Brush* brush, float* r)](#oh_drawing_brushgetredfloat) | 获取画刷颜色的红色分量。 |
+| [OH_Drawing_ErrorCode OH_Drawing_BrushGetGreenFloat(const OH_Drawing_Brush* brush, float* g)](#oh_drawing_brushgetgreenfloat) | 获取画刷颜色的绿色分量。 |
+| [OH_Drawing_ErrorCode OH_Drawing_BrushGetBlueFloat(const OH_Drawing_Brush* brush, float* b)](#oh_drawing_brushgetbluefloat) | 获取画刷颜色的蓝色分量。 |
 
 ## 函数说明
 
@@ -384,3 +395,143 @@ void OH_Drawing_BrushReset(OH_Drawing_Brush* brush)
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)* brush | 指向画刷对象[OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)的指针。 |
+
+
+### OH_Drawing_BrushSetColor4f()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_BrushSetColor4f(OH_Drawing_Brush* brush, float a, float r, float g, float b,OH_NativeColorSpaceManager* colorSpaceManager)
+```
+
+**描述**
+
+设置画刷的颜色。颜色将被画刷用来填充形状。<br> 颜色采用浮点数表示的ARGB格式，色彩空间由[OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)指定。<br> 如果colorSpaceManager为nullptr，使用SRGB（基于IEC 61966-2.1：1999的标准红绿蓝色彩空间）色彩空间作为默认值。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| OH_Drawing_Brush* brush | 表示指向[OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)对象的指针。 |
+| float a | 表示颜色中的透明度值，用0.0 ~ 1.0之间的浮点数表示，大于1.0时，取1.0，小于0.0时，取0.0。 |
+| float r | 表示颜色中的红色分量，用0.0 ~ 1.0之间的浮点数表示，大于1.0时，取1.0，小于0.0时，取0.0。 |
+| float g | 表示颜色中的绿色分量，用0.0 ~ 1.0之间的浮点数表示，大于1.0时，取1.0，小于0.0时，取0.0。 |
+| float b | 表示颜色中的蓝色分量，用0.0 ~ 1.0之间的浮点数表示，大于1.0时，取1.0，小于0.0时，取0.0。 |
+| [OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)* colorSpaceManager | 表示指向[OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)对象的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行结果。<br> 返回OH_DRAWING_SUCCESS，表示执行成功。<br> 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数brush为NULL。 |
+
+### OH_Drawing_BrushGetAlphaFloat()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_BrushGetAlphaFloat(const OH_Drawing_Brush* brush, float* a)
+```
+
+**描述**
+
+获取画刷颜色的透明度值。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const [OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)* brush | 表示指向[OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)对象的指针。 |
+| float* a | 表示颜色的透明度，范围为0.0 ~ 1.0的浮点数。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行结果。<br> 返回OH_DRAWING_SUCCESS，表示执行成功。<br> 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数brush或a为NULL。 |
+
+### OH_Drawing_BrushGetRedFloat()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_BrushGetRedFloat(const OH_Drawing_Brush* brush, float* r)
+```
+
+**描述**
+
+获取画刷颜色的红色分量。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const [OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)* brush | 表示指向[OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)对象的指针。 |
+| float* r | 表示颜色中的红色分量，范围为0.0 ~ 1.0的浮点数。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行结果。<br> 返回OH_DRAWING_SUCCESS，表示执行成功。<br> 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数brush或r为NULL。 |
+
+### OH_Drawing_BrushGetGreenFloat()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_BrushGetGreenFloat(const OH_Drawing_Brush* brush, float* g)
+```
+
+**描述**
+
+获取画刷颜色的绿色分量。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const [OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)* brush | 表示指向[OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)对象的指针。 |
+| float* g | 表示颜色中的绿色分量，范围为0.0 ~ 1.0的浮点数。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行结果。<br> 返回OH_DRAWING_SUCCESS，表示执行成功。<br> 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数brush或g为NULL。 |
+
+### OH_Drawing_BrushGetBlueFloat()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_BrushGetBlueFloat(const OH_Drawing_Brush* brush, float* b)
+```
+
+**描述**
+
+获取画刷颜色的蓝色分量。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const [OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)* brush | 表示指向[OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)对象的指针。 |
+| float* b | 表示颜色中的蓝色分量，范围为0.0 ~ 1.0的浮点数。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行结果。<br> 返回OH_DRAWING_SUCCESS，表示执行成功。<br> 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数brush或b为NULL。 |

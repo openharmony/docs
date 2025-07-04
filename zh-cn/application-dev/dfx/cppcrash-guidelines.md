@@ -645,6 +645,12 @@ HiLog: <- 故障之前进程打印的流水日志
 08-06 21:52:51.212 10208 10208 I C02d11/DfxSignalHandler: DFX_SigchainHandler :: signo(11), pid(10208), processName(./crasher_cpp),         threadName(crasher_cpp).
 ```
 
+ **HiTraceId说明**
+
+HiTraceId：HiTraceChain提供的唯一跟踪标识，参考[HiTraceId](../reference/apis-performance-analysis-kit/_hitrace.md)。
+
+ **栈帧内容说明**
+
 以三层调用栈为例，详细解释调用栈帧内容：
 
 ```text
@@ -669,6 +675,8 @@ HiLog: <- 故障之前进程打印的流水日志
 > 2. 二进制文件中保存的函数名长度超过256字节。
 >
 > - 如果没打印BuildID，可以通过readelf -n xxx.so确认二进制是否有BuildID，如果没有则尝试增加编译参数--enable-linker-build-id，同时注意LDFLAGS‌里不要加--build-id=none。
+
+ **JS混合栈帧内容说明**
 
 ARM 64位系统支持抓取CPP和JS之间跨语言的调用栈，因此如果在函数调用链上有JS代码，崩溃日志还会打印如下格式的JS代码调用栈：
 

@@ -37,7 +37,7 @@
 >
 > - 本模块为系统接口。
 
-通过卡片组件成功添加卡片时，会调用到卡片提供方FormExtensionAbility中的[onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform)方法。
+通过卡片组件成功添加卡片时，会调用到卡片提供方FormExtensionAbility中的[onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonaddform)方法。
 
 ### 临时卡片和常态卡片
 
@@ -71,7 +71,6 @@ struct formHostSample {
     '2*2',
     '2*4',
     '4*4',
-    '2*1',
     '1*1',
     '6*4',
   ]
@@ -82,7 +81,6 @@ struct formHostSample {
     [120, 120],   // 2*2
     [240, 120],   // 2*4
     [240, 240],   // 4*4
-    [60, 120],    // 2*1
     [60, 60],     // 1*1
     [240, 360],   // 6*4
   ]

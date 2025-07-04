@@ -5,6 +5,12 @@
 
 音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](arkts-apis-media-f.md#mediacreateaudiorecorderdeprecated) 构建一个AudioRecorder实例。
 
+## 导入模块
+
+```ts
+import { media } from '@kit.MediaKit';
+```
+
 ## prepare<sup>(deprecated)</sup>
 
 prepare(config: AudioRecorderConfig): void

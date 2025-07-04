@@ -6,7 +6,7 @@
 >
 > 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 事件分发流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md#多层级手势事件)。
+> 事件分发流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md)。
 >
 > 如需绑定手势事件可参考[绑定手势方法](./ts-gesture-settings.md)。
 
@@ -66,7 +66,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 
 **返回值：**
 
-| 类型     | 描述                      |
+| 类型     | 说明                      |
 | ------ | ----------------------- |
 | Array&lt;[HistoricalPoint](#historicalpoint10对象说明)&gt; | 由历史点组成的数组。 |
 
@@ -75,7 +75,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                                        | 描述                                  |
+| 名称    | 类型                                        | 说明                                  |
 | ------- | ------------------------------------------- | ------------------------------------- |
 | type    | [TouchType](ts-appendix-enums.md#touchtype) | 触摸事件的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
 | id      | number                                      | 手指唯一标识符。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
@@ -92,8 +92,12 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | width<sup>15+</sup> | number | 当前手指按压区域的宽。<br />单位：vp<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | height<sup>15+</sup> | number | 当前手指按压区域的高。<br />单位：vp<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| globalDisplayX<sup>20+</sup> | number | 触摸点位置相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| globalDisplayY<sup>20+</sup> | number | 触摸点位置相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## HistoricalPoint<sup>10+</sup>对象说明
+
+历史点信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

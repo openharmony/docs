@@ -4,6 +4,12 @@
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+## 导入模块
+
+```ts
+import { window } from '@kit.ArkUI';
+```
+
 ## Window
 
 当前窗口实例，窗口管理器管理的基本单元。
@@ -932,6 +938,12 @@ setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 | ---- |----------------------------------| -- | ------------------------------------------------------------ |
 | enabled | boolean | 是 | 是否可以获取到避让区。<br> true表示可以获取避让区；false表示不可以获取避让区。默认值是false。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
@@ -1055,6 +1067,12 @@ setTitleAndDockHoverShown(isTitleHoverShown?: boolean, isDockHoverShown?: boolea
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
 | isTitleHoverShown    | boolean | 否   | 是否显示窗口标题栏。<br>true表示显示窗口标题栏；false表示不显示窗口标题栏。默认值是true。</br> |
 | isDockHoverShown    | boolean | 否   | 是否显示dock栏。<br>true表示显示dock栏；false表示不显示dock栏。默认值是true。</br> |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2293,7 +2311,7 @@ export struct Index {
 
 ### loadContentByName<sup>11+</sup>
 
-loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt
+loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 根据指定路由页面名称为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性至加载页面，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，重复调用该接口将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
@@ -3153,6 +3171,85 @@ try {
   windowClass.off('screenshot');
 } catch (exception) {
   console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### on('screenshotAppEvent')<sup>20+</sup>
+
+on(type: 'screenshotAppEvent', callback: Callback&lt;ScreenshotEventType&gt;): void
+
+开启屏幕截屏事件类型的监听。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                                                         |
+| -------- | ------------------- | ---- | ------------------------------------------------------------ |
+| type     | string              | 是   | 监听事件，固定为'screenshotAppEvent'，即屏幕截屏的事件类型，对控制中心截屏、快捷键截屏以及滚动截屏生效。 |
+| callback | Callback&lt;[ScreenshotEventType](arkts-apis-window-e.md#screenshoteventtype20)&gt; | 是   | 回调函数。返回触发的截屏事件类型。                 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+const callback = (eventType: window.ScreenshotEventType) => {
+  console.info(`screenshotAppEvent happened. Event: ${data}`);
+}
+try {
+  windowClass.on('screenshotAppEvent', callback);
+} catch (exception) {
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('screenshotAppEvent')<sup>20+</sup>
+
+off(type: 'screenshotAppEvent', callback?: Callback&lt;ScreenshotEventType&gt;): void
+
+关闭屏幕截屏事件类型的监听。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                                                         |
+| -------- | ------------------- | ---- | ------------------------------------------------------------ |
+| type     | string              | 是   | 监听事件，固定为'screenshotAppEvent'，即屏幕截屏的事件类型。 |
+| callback | Callback&lt;[ScreenshotEventType](arkts-apis-window-e.md#screenshoteventtype20)&gt; | 否   | 回调函数。返回触发的截屏事件类型。若传入参数，则关闭该监听。若未传入参数，则关闭所有窗口截图事件的监听。                 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+const callback = (eventType: window.ScreenshotEventType) => {
+  // ...
+}
+try {
+  // 通过on接口开启监听
+  windowClass.on('screenshotAppEvent', callback);
+  // 关闭指定callback的监听
+  windowClass.off('screenshotAppEvent', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('screenshotAppEvent');
+} catch (exception) {
+  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -7406,6 +7503,11 @@ setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 | --------- | ------- | ---- | --------------------------------------------- |
 | isWindowTopmost | boolean | 是   | 设置主窗口置顶，true为置顶，false为取消置顶。 |
 
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -7878,6 +7980,8 @@ startMoving(): Promise&lt;void&gt;
 
 仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent对象说明)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标或触摸点移动。
 
+在点击拖拽场景下，若不期望在按下时触发拖拽事件，则可以在事件类型为[TouchType.Move](./arkui-ts/ts-appendix-enums.md#touchtype)（需要保证当前行为已经触发TouchType.Down事件）时调用此接口，触发移动效果。
+
 手机设备上对子窗、系统窗口生效。
 
 平板设备非自由多窗模式上对子窗、系统窗口生效；平板设备自由多窗模式上对主窗、子窗和系统窗口生效。
@@ -7917,6 +8021,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
+  private isTouchDown: boolean = false;
   build() {
     Row() {
       Column() {
@@ -7936,6 +8041,29 @@ struct Index {
               }
             }
           })
+        Blank('160')
+          .color(Color.Red)
+          .onTouch((event: TouchEvent) => {
+            if(event.type == TouchType.Down){
+              this.isTouchDown = true;
+            } else if (event.type === TouchType.Move && this.isTouchDown) {
+              try {
+                let context = this.getUIContext().getHostContext();
+                window.getLastWindow(context).then((data)=>{
+                  let windowClass: window.Window = data;
+                  windowClass.startMoving().then(() => {
+                    console.info('Succeeded in starting moving window.')
+                  }).catch((err: BusinessError) => {
+                    console.error(`Failed to start moving. Cause code: ${err.code}, message: ${err.message}`);
+                  });
+                });
+              } catch (exception) {
+                console.error(`Failed to start moving window. Cause code: ${exception.code}, message: ${exception.message}`);
+              }
+            } else {
+              this.isTouchDown = false;
+            }
+          })
       }.width('100%')
     }.height('100%').width('100%')
   }
@@ -7951,6 +8079,8 @@ startMoving(offsetX: number, offsetY: number): Promise&lt;void&gt;
 在同应用内窗口分合后，且鼠标保持按下状态直接移动新窗口，如果此时鼠标快速移动，窗口移动时鼠标可能会在窗口外。可以使用本接口指定窗口移动时鼠标在窗口内的位置，先移动窗口到鼠标位置，再开始移动窗口。
 
 仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent对象说明)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
+
+在点击拖拽场景下，若不期望在按下时触发拖拽事件，则可以在事件类型为[TouchType.Move](./arkui-ts/ts-appendix-enums.md#touchtype)（需要保证当前行为已经触发TouchType.Down事件）时调用此接口，触发移动效果。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
@@ -7993,6 +8123,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
+  private isTouchDown: boolean = false;
   build() {
     Row() {
       Column() {
@@ -8010,6 +8141,29 @@ struct Index {
               } catch (exception) {
                 console.error(`Failed to start moving window. Cause code: ${exception.code}, message: ${exception.message}`);
               }
+            }
+          })
+        Blank('160')
+          .color(Color.Red)
+          .onTouch((event: TouchEvent) => {
+            if(event.type == TouchType.Down){
+              this.isTouchDown = true;
+            } else if (event.type === TouchType.Move && this.isTouchDown) {
+              try {
+                let context = this.getUIContext().getHostContext();
+                window.getLastWindow(context).then((data)=>{
+                  let windowClass: window.Window = data;
+                  windowClass.startMoving(100, 50).then(() => {
+                    console.info('Succeeded in starting moving window.')
+                  }).catch((err: BusinessError) => {
+                    console.error(`Failed to start moving. Cause code: ${err.code}, message: ${err.message}`);
+                  });
+                });
+              } catch (exception) {
+                console.error(`Failed to start moving window. Cause code: ${exception.code}, message: ${exception.message}`);
+              }
+            } else {
+              this.isTouchDown = false;
             }
           })
       }.width('100%')
@@ -8588,15 +8742,13 @@ setRelativePositionToParentWindowEnabled(enabled: boolean, anchor?: WindowAnchor
 
 2、当子窗调用该接口后，立即使其显示位置跟随主窗并保持相对位置不变，除非传入false再次调用该接口，否则效果将持续。
 
-3、当子窗调用该接口后，再调用[moveWindowTo()](#movewindowto9)、[maximize()](#maximize12)等修改窗口位置或大小的接口将不生效。
+3、当子窗调用该接口后，再调用[moveWindowTo()](#movewindowto9)、[maximize()](#maximize12)修改窗口位置或大小的接口将不生效。
 
 该接口调用生效后，[setFollowParentWindowLayoutEnabled()](#setfollowparentwindowlayoutenabled17)接口调用不生效。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **系统能力：** SystemCapability.Window.SessionManager
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8619,7 +8771,6 @@ setRelativePositionToParentWindowEnabled(enabled: boolean, anchor?: WindowAnchor
 
 | 错误码ID | 错误信息                                                                                                     |
 | -------- | ------------------------------------------------------------------------------------------------------------ |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801      | Capability not supported.Function setRelativePositionToParentWindowEnabled can not work correctly due to limited device capabilities.|
 | 1300002  | This window state is abnormal.                                                                               |
 | 1300003  | This window manager service works abnormally.                                                                |
@@ -8628,19 +8779,33 @@ setRelativePositionToParentWindowEnabled(enabled: boolean, anchor?: WindowAnchor
 **示例：**
 
 ```ts
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { UIAbility } from '@kit.AbilityKit';
 
-try {
-  let windowClass: window.Window = window.findWindow("subWindow");
-  let enabled: boolean = true;
-  let promise = windowClass?.setRelativePositionToParentWindowEnabled(enabled);
-  promise.then(() => {
-    console.info('Succeeded in setting the sub window supports relative position to parent window.')
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the sub window supports relative position to parent window. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set the sub window supports relative position to parent window. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Index', (loadError: BusinessError) => {
+      if (loadError.code) {
+        console.error(`Failed to load the content. Cause code: ${loadError.code}, message: ${loadError.message}`);
+        return;
+      }
+      console.info("Succeeded in loading the content.");
+      windowStage.createSubWindow("subWindow").then((subWindow: window.Window) => {
+        if (subWindow == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        subWindow.setRelativePositionToParentWindowEnabled(true).then(() => {
+          console.info("after set relative position to parent window enabled");
+        }).catch((error: BusinessError) => {
+          console.error(`setRelativePositionToParentWindowEnabled failed. ${error.code} ${error.message}`);
+        })
+      }).catch((error: BusinessError) => {
+        console.error(`createSubWindow failed. ${error.code} ${error.message}`);
+      })
+    });
+  }
 }
 ```
 

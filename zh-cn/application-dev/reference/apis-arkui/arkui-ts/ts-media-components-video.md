@@ -36,13 +36,13 @@ Video(value: VideoOptions)
 
 ##  VideoOptions对象说明
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+定义Video的具体配置参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称              | 类型                                                     | 必填 | 说明                                                     |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src                 | string \| [Resource](ts-types.md#resource)                            | 否   | 视频的数据源，支持本地视频和网络视频。<br>Resource格式可以跨包/跨模块访问资源文件，常用于访问本地视频。<br/>- 支持rawfile文件下的资源，即通过\$rawfile引用视频文件。<br/>string格式可用于加载网络视频和本地视频，常用于加载网络视频。<br/>- 支持网络视频地址。<br/>- 支持file://路径前缀的字符串，即[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>**说明：**<br/>视频支持的格式是：mp4、mkv、TS。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| src                 | string \| [Resource](ts-types.md#resource)                            | 否   | 视频的数据源，支持本地视频和网络视频。<br>Resource格式可以跨包/跨模块访问资源文件，常用于访问本地视频。<br/>- 仅支持rawfile文件下的资源，即通过\$rawfile引用视频文件。<br/>string格式可用于加载网络视频和本地视频，常用于加载网络视频。<br/>- 支持网络视频地址。<br/>- 支持file://路径前缀的字符串，即[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>**说明：**<br/>视频支持的格式是：mp4、mkv、TS。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | currentProgressRate | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[PlaybackSpeed<sup>8+</sup>](#playbackspeed8枚举说明) | 否   | 视频播放倍速。<br/>**说明：**<br/>number格式取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/>string格式支持number格式取值的字符串形式："0.75"，"1.0"，"1.25"，"1.75"，"2.0"。<br/>默认值：1.0 \| PlaybackSpeed.Speed_Forward_1_00_X<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | previewUri          | string&nbsp;\| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)&nbsp;\|&nbsp;[Resource](ts-types.md#resource)  | 否   | 视频未播放时的预览图片路径，默认不显示图片。<br/>string格式可用于加载本地图片和网络图片，<br/>- 支持网络图片地址。<br/>- 支持相对路径引用本地图片，例如：previewUri: “common/test.jpg”。当使用相对路径引用本地图片时，不支持跨包/跨模块调用。<br/>- 支持file://路径前缀的字符串，即[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>Resource格式可以跨包/跨模块访问资源文件。<br/>- 支持rawfile文件下的资源，即通过\\$rawfile引用图片。<br/>- 支持通过\\$r引用系统资源或者应用资源中的图片。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
 | controller          | [VideoController](#videocontroller)                          | 否   | 设置视频控制器，可以控制视频的播放状态。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
@@ -50,6 +50,8 @@ Video(value: VideoOptions)
 | posterOptions<sup>18+</sup>  | [PosterOptions](#posteroptions18对象说明) | 否   | 设置视频播放的首帧送显选项，可以控制视频是否支持首帧送显。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## PlaybackSpeed<sup>8+</sup>枚举说明
+
+视频播放倍速选项。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -137,7 +139,7 @@ objectFit(value: ImageFit)
 
 | 参数名 | 类型                                      | 必填 | 说明                             |
 | ------ | ----------------------------------------- | ---- | -------------------------------- |
-| value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 视频填充模式。<br/>默认值：Cover。<br/>约束：不支持ImageFit类型中的枚举值MATRIX，若设置，则作用效果与Cover一致。<br/>异常值：若设置异常值undefined、null，或不在[ImageFit](ts-appendix-enums.md#imagefit)枚举范围内的值，作用效果均与Cover一致。|
+| value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 视频填充模式。<br/>默认值：Cover<br/>约束：不支持ImageFit类型中的枚举值MATRIX，若设置，则作用效果与Cover一致。<br/>异常值：若设置异常值undefined、null，或不在[ImageFit](ts-appendix-enums.md#imagefit)枚举范围内的值，作用效果均与Cover一致。|
 
 ### loop
 
@@ -171,7 +173,7 @@ enableAnalyzer(enable: boolean)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| enable | boolean | 是 | 是否启用AI分析功能<br/>true：开启AI分析功能；false：关闭AI分析功能。<br/>默认值：false |
+| enable | boolean | 是 | 是否启用AI分析功能。<br/>true：开启AI分析功能；false：关闭AI分析功能。<br/>默认值：false |
 
 > **说明：**
 >
@@ -190,7 +192,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是 | 设置AI分析识别类型 |
+| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是 | 设置AI分析识别类型。 |
 
 ### enableShortcutKey<sup>15+</sup>
 
@@ -274,14 +276,14 @@ onError(event: VoidCallback | ErrorCallback)
 
 | 参数名 | 类型                                           | 必填 | 说明                                 |
 | ------ | --------------------------------------------- | ---- | ----------------------------------- |
-| event  | [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup> | 是   | 视频播放失败时的回调函数，[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)入参用于接收异常信息。<br>Video组件报错信息请参考以下错误信息的详细介绍，其余错误码请请参考[媒体错误码](../../apis-media-kit/errorcode-media.md)。|
+| event  | [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup> | 是   | 视频播放失败时的回调函数，[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)入参用于接收异常信息。|
 
-以下是错误信息的详细介绍。
+以下错误码的详细介绍请参见[Video组件错误码](../errorcode-video.md)，其余错误码请参考[媒体错误码](../../apis-media-kit/errorcode-media.md)。
 
-|错误码|错误信息|错误描述|
-|--|--|--|
-|103601 |Failed to create the media player.|播放器创建失败。|
-|103602 |Not a valid source.|视频资源设置无效。|
+|错误码ID|错误信息|
+|--|--|
+|103601 |Failed to create the media player.|
+|103602 |Not a valid source.|
 
 ### onStop<sup>12+</sup>
 
@@ -554,6 +556,8 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 ## SeekMode<sup>8+</sup>枚举说明
 
+视频跳转模式选项。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -804,12 +808,12 @@ struct Index {
 @Entry
 @Component
 struct video {
-  @State videoSrc: Resource = $rawfile('rabbit.mp4')
-  @State previewUri: Resource = $r('app.media.tree')
-  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
-  @State isAutoPlay: boolean = true
-  @State showControls: boolean = true
-  controller: VideoController = new VideoController()
+  @State videoSrc: Resource = $rawfile('rabbit.mp4');
+  @State previewUri: Resource = $r('app.media.tree');
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
+  @State isAutoPlay: boolean = true;
+  @State showControls: boolean = true;
+  controller: VideoController = new VideoController();
 
   build() {
     Column() {
@@ -866,13 +870,13 @@ struct video {
 @Entry
 @Component
 struct VideoErrorComponent {
-  @State videoSrc: string = "video.mp4" // 传入不存在的视频资源路径。
-  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
-  @State isAutoPlay: boolean = false
-  @State showControls: boolean = true
-  @State showFirstFrame: boolean = false
-  controller: VideoController = new VideoController()
-  @State errorMessage: string = ""
+  @State videoSrc: string = "video.mp4"; // 传入不存在的视频资源路径。
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
+  @State isAutoPlay: boolean = false;
+  @State showControls: boolean = true;
+  @State showFirstFrame: boolean = false;
+  controller: VideoController = new VideoController();
+  @State errorMessage: string = "";
 
   build() {
     Column() {
@@ -968,7 +972,7 @@ struct VideoModifierDemo {
   @State isAutoPlay: boolean = false;
   @State showControls: boolean = false;
   controller: VideoController = new VideoController();
-  @State modifier: MyVideoModifier = new MyVideoModifier()
+  @State modifier: MyVideoModifier = new MyVideoModifier();
 
   build() {
     Column() {

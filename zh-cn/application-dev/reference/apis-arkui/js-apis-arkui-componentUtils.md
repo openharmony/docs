@@ -6,7 +6,7 @@
 >
 > 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。 
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。 
 
 ## 导入模块
 
@@ -57,6 +57,8 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 ```
 
 ## ComponentInfo
+
+组件大小、位置、平移缩放旋转及仿射矩阵属性信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

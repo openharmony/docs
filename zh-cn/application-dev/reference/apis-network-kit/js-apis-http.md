@@ -869,7 +869,7 @@ httpRequest.once("headersReceive", (header: Object) => {
 
 ### on("dataReceive")<sup>10+</sup>
 
-on(type: "dataReceive", callback: AsyncCallback\<ArrayBuffer\>): void
+on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 
 订阅HTTP流式响应数据接收事件。
 
@@ -882,7 +882,7 @@ on(type: "dataReceive", callback: AsyncCallback\<ArrayBuffer\>): void
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataReceive'。 |
-| callback | AsyncCallback\<ArrayBuffer\> | 是   | 回调函数。当订阅成功时，error为undefined，data为获取到的HTTP流式数据接收数据，类型为ArrayBuffer；否则为错误对象。 |
+| callback | Callback\<ArrayBuffer\> | 是   | 回调函数。当订阅成功时，error为undefined，data为获取到的HTTP流式数据接收数据，类型为ArrayBuffer；否则为错误对象。 |
 
 **示例：**
 
@@ -927,7 +927,7 @@ httpRequest.off("dataReceive");
 
 ### on("dataEnd")<sup>10+</sup>
 
-on(type: "dataEnd", callback: AsyncCallback\<void\>): void
+on(type: "dataEnd", callback: Callback\<void\>): void
 
 订阅HTTP流式响应数据接收完毕事件。
 
@@ -940,7 +940,7 @@ on(type: "dataEnd", callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataEnd'。 |
-| callback | AsyncCallback\<void\>   | 是   | 回调函数。当订阅成功时，err为undefined，否则为错误对象。                        |
+| callback | Callback\<void\>   | 是   | 回调函数。当订阅成功时，err为undefined，否则为错误对象。                        |
 
 **示例：**
 
@@ -985,7 +985,7 @@ httpRequest.off("dataEnd");
 
 ### on('dataReceiveProgress')<sup>10+</sup>
 
-on(type: 'dataReceiveProgress', callback: AsyncCallback\<DataReceiveProgressInfo\>): void
+on(type: 'dataReceiveProgress', callback: Callback\<DataReceiveProgressInfo\>): void
 
 订阅HTTP流式响应数据接收进度事件。
 
@@ -998,7 +998,7 @@ on(type: 'dataReceiveProgress', callback: AsyncCallback\<DataReceiveProgressInfo
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataReceiveProgress'。 |
-| callback | AsyncCallback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | 是   | 回调函数。当订阅成功时，回调内容是[DataReceiveProgressInfo](#datareceiveprogressinfo11)，订阅失败时为undefined。 |
+| callback | Callback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | 是   | 回调函数。当订阅成功时，回调内容是[DataReceiveProgressInfo](#datareceiveprogressinfo11)，订阅失败时为undefined。 |
 
 **示例：**
 
@@ -1043,7 +1043,7 @@ httpRequest.off("dataReceiveProgress");
 
 ### on('dataSendProgress')<sup>11+</sup>
 
-on(type: 'dataSendProgress', callback: AsyncCallback\<DataSendProgressInfo\>): void
+on(type: 'dataSendProgress', callback: Callback\<DataSendProgressInfo\>): void
 
 订阅HTTP网络请求数据发送进度事件。
 
@@ -1056,7 +1056,7 @@ on(type: 'dataSendProgress', callback: AsyncCallback\<DataSendProgressInfo\>): v
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataSendProgress'。 |
-| callback | AsyncCallback\<[DataSendProgressInfo](#datasendprogressinfo11)\>   | 是   | 回调函数。当订阅成功时，回调内容是[DataSendProgressInfo](#datasendprogressinfo11)，订阅失败时为undefined。|
+| callback | Callback\<[DataSendProgressInfo](#datasendprogressinfo11)\>   | 是   | 回调函数。当订阅成功时，回调内容是[DataSendProgressInfo](#datasendprogressinfo11)，订阅失败时为undefined。|
 
 **示例：**
 

@@ -1,9 +1,9 @@
-# Editing and Updating the Widget Content
+# Widget Editing Development
 
 The home screen provides a unified widget editing page. The widget provider uses [FormEditExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md) provided by the widget framework to develop the widget editing function.
 
 ## How to Develop
-1. In the entry module of the project, create a code file named EntryFormEditAbility. In the EntryFormEditAbility file, implement the [startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#startsecondpage) method. In the [onSessionCreate](../reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md#onsessioncreate) callback method, load the level-1 widget editing page and transfer the implementation of the **startSecondPage** method to the level-1 widget editing page.
+1. In the entry module of the project, create a code file named EntryFormEditAbility. In the EntryFormEditAbility file, implement the [startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#formeditextensioncontextstartsecondpage) method. In the [onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate) callback method, load the level-1 widget editing page and transfer the implementation of **startSecondPage** to the level-1 widget editing page.
 
 ```ts
 // src/main/ets/entryformeditability/EntryFormEditAbility.ets
@@ -15,19 +15,19 @@ import { ExtensionEvent } from '../pages/model/ExtensionEvent';
 const TAG: string = 'FormEditDemo[EntryFormEditAbility] -->';
 export default class EntryFormEditAbility extends FormEditExtensionAbility {
   onCreate() {
-    console.log(`${TAG} onCreate`);
+    console.info(`${TAG} onCreate`);
   }
   onForeground(): void {
-    console.log(`${TAG} EntryFormEditAbility onForeground.....`);
+    console.info(`${TAG} EntryFormEditAbility onForeground.....`);
   }
   onBackground(): void {
-    console.log(`${TAG} EntryFormEditAbility onBackground......`);
+    console.info(`${TAG} EntryFormEditAbility onBackground......`);
   }
   onDestroy(): void {
-    console.log(`${TAG} EntryFormEditAbility onDestroy......`);
+    console.info(`${TAG} EntryFormEditAbility onDestroy......`);
   }
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    console.log(`${TAG} onSessionCreate start..... want: ${JSON.stringify(want)}`);
+    console.info(`${TAG} onSessionCreate start..... want: ${JSON.stringify(want)}`);
     let storage: LocalStorage = new LocalStorage();
     let extensionEvent: ExtensionEvent = new ExtensionEvent();
     extensionEvent.setStartSecondPage(() => this.startSecondPage());
@@ -36,16 +36,16 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
       session.loadContent('pages/Extension', storage);
       session.setWindowBackgroundColor('#00000000');
     } catch (e) {
-      console.log(`${TAG} EntryFormEditAbility loadContent err, want: ${JSON.stringify(e)}`);
+      console.error(`${TAG} EntryFormEditAbility loadContent err, want: ${JSON.stringify(e)}`);
     }
   }
   onSessionDestroy(session: UIExtensionContentSession) {
-    console.log(`${TAG} onSessionDestroy`);
+    console.info(`${TAG} onSessionDestroy`);
   }
   private startSecondPage(): void {
     const bundleName: string = this.context.extensionAbilityInfo.bundleName;
     const secPageAbilityName: string = 'FormEditSecPageAbility';
-    console.log(`${TAG} startSecondPage. bundleName: ${bundleName}, secPageAbilityName: ${secPageAbilityName}.`);
+    console.info(`${TAG} startSecondPage. bundleName: ${bundleName}, secPageAbilityName: ${secPageAbilityName}.`);
     try {
       this.context.startSecondPage({
         bundleName: bundleName,
@@ -54,7 +54,7 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
         }
       });
     } catch (err) {
-      console.log(`${TAG} startSecondPage failed: ${err}`);
+      console.error(`${TAG} startSecondPage failed: ${err}`);
     }
   }
 };
@@ -68,7 +68,7 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { ExtensionEvent } from './model/ExtensionEvent';
 
-let storage = LocalStorage.getShared();
+let storage = new LocalStorage();
 const TAG: string = 'FormEditDemo[Extension] -->';
 @Entry(storage)
 @Component
@@ -77,7 +77,7 @@ struct Extension {
   private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
   private extensionEvent: ExtensionEvent | undefined = storage.get<ExtensionEvent>('extensionEvent');
   onPageShow() {
-    console.log(`${TAG} onPageShow. extensionEvent: ${JSON.stringify(this.extensionEvent)}, session: ${JSON.stringify(this.session)}.`);
+    console.info(`${TAG} onPageShow. extensionEvent: ${JSON.stringify(this.extensionEvent)}, session: ${JSON.stringify(this.session)}.`);
   }
   build() {
     Row() {
@@ -93,7 +93,7 @@ struct Extension {
             top: 20
           })
           .onClick(() => {
-            console.log(`${TAG} Button onClick`);
+            console.info(`${TAG} Button onClick`);
             this.extensionEvent?.startFormEditSecondPage();
           })
       }
@@ -104,7 +104,7 @@ struct Extension {
 }
 ```
 
-3. Add the ExtensionEvent file and use the **startFormEditSecondPage** method to invoke the [startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#startsecondpage) method.
+3. Add the ExtensionEvent file and use the **startFormEditSecondPage** method to invoke the [startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#formeditextensioncontextstartsecondpage) method.
 
 ```ts
 // src/main/ets/widget/pages/model/ExtensionEvent.ets
@@ -112,14 +112,14 @@ struct Extension {
 const TAG: string = 'FormEditDemo[ExtensionEvent] -->';
 export class ExtensionEvent {
   private startSecondPage: () => void = () => {
-    console.log(`${TAG} startSecondPage is empty!`);
+    console.info(`${TAG} startSecondPage is empty!`);
   };
   public setStartSecondPage(startSecondPage: () => void) {
-    console.log(`${TAG} setStartSecondPage`);
+    console.info(`${TAG} setStartSecondPage`);
     this.startSecondPage = startSecondPage;
   }
   public startFormEditSecondPage(): void {
-    console.log(`${TAG} startFormEditSecondPage`);
+    console.info(`${TAG} startFormEditSecondPage`);
     this.startSecondPage();
   }
 }

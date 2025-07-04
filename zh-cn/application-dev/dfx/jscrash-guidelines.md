@@ -329,7 +329,6 @@ Error message:Cannot read property xxx of undefined
         // 跟手移动的距离计算
         this.translationUpY = (this.multiCardsNum >= 1) ? sceneContainerSessionList[this.multiCardsNum - 1].needRenderTranslate.translateY : 0;    ---> 报错行号
         this.translationDownY = (this.multiCardsNum >= 2) ? sceneContainerSessionList[this.multiCardsNum - 2].needRenderTranslate.translateY : 0;
-        this.screenWidth = px2vp(screenWidth);
         this.recentScale = recentScale;
       }
     ```
@@ -346,7 +345,6 @@ Error message:Cannot read property xxx of undefined
         sceneContainerSessionList[this.multiCardsNum - 1]?.needRenderTranslate.translateY : 0;
       this.translationDownY = (this.multiCardsNum >= 2) ?
         sceneContainerSessionList[this.multiCardsNum - 2]?.needRenderTranslate.translateY : 0;
-      this.screenWidth = px2vp(screenWidth);
       this.recentScale = recentScale;
     }
     ```

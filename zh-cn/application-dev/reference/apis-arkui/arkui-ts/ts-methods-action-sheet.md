@@ -10,6 +10,8 @@
 
 ## ActionSheetOptions对象说明
 
+列表选择弹窗的样式。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型                    | 必填  | 说明                          |
@@ -51,6 +53,8 @@
 | levelOrder<sup>18+</sup>       | [LevelOrder](../js-apis-promptAction.md#levelorder18) | 否   | 设置弹窗显示的顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0) <br />- 不支持动态刷新顺序。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## SheetInfo对象说明
+
+弹窗中的选项内容，每一项支持设置文本、图标以及选中的回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -107,6 +111,12 @@ Dialog关闭的信息。
 
 ## ActionSheetButtonOptions<sup>18+</sup>对象说明
 
+弹窗中按钮的样式。
+
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -120,6 +130,8 @@ Dialog关闭的信息。
 | action<sup>8+</sup> | [VoidCallback](ts-types.md#voidcallback12)      |   是   | Button选中时的回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## ActionSheetOffset<sup>18+</sup>对象说明
+
+弹窗的对齐方式。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -158,7 +170,7 @@ static show(value: ActionSheetOptions)
 
 > **说明：**
 > 
-> 直接使用ActionSheet可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet)调用绑定实例的ActionSheet.show()。
+> 直接使用ActionSheet可能导致实例不明确的问题，建议使用getUIContext()获取[UIContext](../js-apis-arkui-UIContext.md#uicontext)实例，并使用[showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet)调用绑定实例的ActionSheet.show()。
 
 ### 示例1（弹出列表选择弹窗）
 
@@ -182,15 +194,15 @@ struct ActionSheetExample {
               defaultFocus: true,
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled');
+                console.info('Get Alert Dialog handled');
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled');
+              console.info('actionSheet canceled');
             },
             onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
               console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-              console.log("dialog onWillDismiss");
+              console.info("dialog onWillDismiss");
               if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
                 dismissDialogAction.dismiss();
               }
@@ -204,19 +216,19 @@ struct ActionSheetExample {
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples');
+                  console.info('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas');
+                  console.info('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears');
+                  console.info('pears');
                 }
               }
             ]
@@ -254,15 +266,15 @@ struct ActionSheetExample {
               defaultFocus: true,
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled');
+                console.info('Get Alert Dialog handled');
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled');
+              console.info('actionSheet canceled');
             },
             onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
               console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-              console.log("dialog onWillDismiss");
+              console.info("dialog onWillDismiss");
               if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
                 dismissDialogAction.dismiss();
               }
@@ -276,19 +288,19 @@ struct ActionSheetExample {
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples');
+                  console.info('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas');
+                  console.info('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears');
+                  console.info('pears');
                 }
               }
             ]
@@ -339,19 +351,19 @@ struct ActionSheetExample {
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples');
+                  console.info('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas');
+                  console.info('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears');
+                  console.info('pears');
                 }
               }
             ]
@@ -399,15 +411,15 @@ struct ActionSheetExample {
               defaultFocus: true,
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled');
+                console.info('Get Alert Dialog handled');
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled');
+              console.info('actionSheet canceled');
             },
             onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
               console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-              console.log("dialog onWillDismiss");
+              console.info("dialog onWillDismiss");
               if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
                 dismissDialogAction.dismiss();
               }
@@ -421,19 +433,19 @@ struct ActionSheetExample {
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples');
+                  console.info('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas');
+                  console.info('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears');
+                  console.info('pears');
                 }
               }
             ]
@@ -468,15 +480,15 @@ struct ActionSheetExample {
               defaultFocus: true,
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled');
+                console.info('Get Alert Dialog handled');
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled');
+              console.info('actionSheet canceled');
             },
             onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
               console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-              console.log("dialog onWillDismiss")
+              console.info("dialog onWillDismiss")
               if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
                 dismissDialogAction.dismiss();
               }
@@ -492,19 +504,19 @@ struct ActionSheetExample {
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples');
+                  console.info('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas');
+                  console.info('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears');
+                  console.info('pears');
                 }
               }
             ]
@@ -527,7 +539,7 @@ struct ActionSheetExample {
 @Entry
 @Component
 struct Example1 {
-  @State log:string = 'Log information:';
+  @State log: string = 'Log information:';
   flag: boolean = false;
 
   build() {
@@ -543,50 +555,50 @@ struct Example1 {
             confirm: {
               value: 'button',
               action: () => {
-                console.info('ActionSheet Button-clicking callback')
+                console.info('ActionSheet Button-clicking callback');
               }
             },
             cancel: () => {
-              console.info('ActionSheet Closed callbacks')
+              console.info('ActionSheet Closed callbacks');
             },
             sheets: [
               {
                 title: 'apples',
                 action: () => {
-                  console.log('ActionSheet apples')
+                  console.info('ActionSheet apples')
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('ActionSheet bananas')
+                  console.info('ActionSheet bananas')
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('ActionSheet pears')
+                  console.info('ActionSheet pears')
                 }
               }
             ],
             onDidAppear: () => {
-              this.log += '# onDidAppear'
-              console.info("ActionSheet,is onDidAppear!")
+              this.log += '# onDidAppear';
+              console.info("ActionSheet,is onDidAppear!");
             },
             onDidDisappear: () => {
-              this.log += '# onDidDisappear'
-              console.info("ActionSheet,is onDidDisappear!")
+              this.log += '# onDidDisappear';
+              console.info("ActionSheet,is onDidDisappear!");
             },
             onWillAppear: () => {
-              this.log = 'Log information:onWillAppear'
-              console.info("ActionSheet,is onWillAppear!")
+              this.log = 'Log information:onWillAppear';
+              console.info("ActionSheet,is onWillAppear!");
             },
             onWillDisappear: () => {
-              this.log += '# onWillDisappear'
-              console.info("ActionSheet,is onWillDisappear!")
+              this.log += '# onWillDisappear';
+              console.info("ActionSheet,is onWillDisappear!");
             }
           })
-        }).backgroundColor(0x317aff).height("60vp")
+        })
       Text(this.log).fontSize(30).margin({ top: 200 })
     }.width('100%').margin({ top: 5 })
   }

@@ -136,8 +136,8 @@
 |int32_t [OH_ArkUI_XComponent_SetNeedSoftKeyboard](#oh_arkui_xcomponent_setneedsoftkeyboard)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool needSoftKeyboard) | 为此XComponent组件实例设置是否需要软键盘。|
 |[ArkUI_AccessibilityProvider](_o_h___native_x_component.md#oh_arkui_accessibilityprovider_create)* [OH_ArkUI_AccessibilityProvider_Create](#oh_arkui_accessibilityprovider_create)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 基于此XComponent组件实例创建ArkUI_AccessibilityProvider实例。|
 |void [OH_ArkUI_AccessibilityProvider_Dispose](#oh_arkui_accessibilityprovider_dispose)([ArkUI_AccessibilityProvider](_o_h___native_x_component.md#oh_arkui_accessibilityprovider_create)* provider)|销毁由NDK接口[OH_ArkUI_AccessibilityProvider_Create](#oh_arkui_accessibilityprovider_create)创建的[ArkUI_AccessibilityProvider](arkui_native_interface_accessibility.md#arkui_accessibilityprovider)实例。|
-|void [OH_ArkUI_SurfaceCallback_SetSurfaceShowEvent](#oh_arkui_surfacecallback_setsurfaceshowevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback,void (\*onSurfaceShow)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder))|为此OH_ArkUI_SurfaceCallback实例设置Surface显示回调。|
-|void [OH_ArkUI_SurfaceCallback_SetSurfaceHideEvent](#oh_arkui_surfacecallback_setsurfacehideevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback,void (\*onSurfaceHide)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder))|为此OH_ArkUI_SurfaceCallback实例设置Surface隐藏回调。|
+|void [OH_ArkUI_SurfaceCallback_SetSurfaceShowEvent](#oh_arkui_surfacecallback_setsurfaceshowevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback,void (\*onSurfaceShow)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder))|为此OH_ArkUI_SurfaceCallback实例设置Surface显示回调，该回调在应用窗口已经从后台回到前台时触发。|
+|void [OH_ArkUI_SurfaceCallback_SetSurfaceHideEvent](#oh_arkui_surfacecallback_setsurfacehideevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback,void (\*onSurfaceHide)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder))|为此OH_ArkUI_SurfaceCallback实例设置Surface隐藏回调，该回调在应用窗口已经从前台进入后台时触发。|
 
 ### 变量
 
@@ -913,6 +913,10 @@ int32_t OH_NativeXComponent_AttachNativeRootNode (OH_NativeXComponent * componen
 
 **起始版本：** 12
 
+**废弃版本：** 20
+
+**替代接口：** [OH_ArkUI_NodeContent_AddNode](./_ark_u_i___native_module.md#oh_arkui_nodecontent_addnode)。
+
 **参数:**
 
 | 名称 | 描述 |
@@ -937,6 +941,10 @@ int32_t OH_NativeXComponent_DetachNativeRootNode (OH_NativeXComponent * componen
 将ArkUI的Native组件从当前XComponent上卸载。
 
 **起始版本：** 12
+
+**废弃版本：** 20
+
+**替代接口：** [OH_ArkUI_NodeContent_RemoveNode](./_ark_u_i___native_module.md#oh_arkui_nodecontent_removenode)。
 
 **参数:**
 
@@ -2729,7 +2737,7 @@ void OH_ArkUI_SurfaceCallback_SetSurfaceShowEvent(
 
 **描述：**
 
-为此[OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)实例设置Surface显示回调。
+为此[OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)实例设置Surface显示回调，该回调在应用窗口已经从后台回到前台时触发。
 
 **起始版本：**
 
@@ -2752,7 +2760,7 @@ void OH_ArkUI_SurfaceCallback_SetSurfaceHideEvent(
 
 **描述：**
 
-为此[OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)实例设置Surface隐藏回调。
+为此[OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)实例设置Surface隐藏回调，该回调在应用窗口已经从前台进入后台时触发。
 
 **起始版本：**
 

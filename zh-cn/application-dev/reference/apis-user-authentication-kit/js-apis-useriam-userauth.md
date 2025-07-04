@@ -722,7 +722,7 @@ type EventInfo = AuthResultInfo | TipInfo
 
 type AuthEventKey = 'result' | 'tip'
 
-表示认证事件类型的关键字，作为[on](#ondeprecated)接口的的参数。
+表示认证事件类型的关键字，作为[on](#ondeprecated)接口的参数。
 
 该类型为下表类型取值中的联合类型。
 

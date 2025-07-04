@@ -1,12 +1,12 @@
 # @ohos.util.ArrayList (Linear Container ArrayList)
 
-**ArrayList** is a linear data structure that is implemented based on arrays. **ArrayList** can dynamically adjust the capacity based on project requirements. It increases the capacity by 50% each time.
+ArrayList is a linear data structure that is implemented based on arrays. ArrayList can dynamically adjust the capacity based on project requirements. It increases the capacity by 50% each time.
 
-Similar to **ArrayList**, **[Vector](js-apis-vector.md)** is also implemented based on arrays and can dynamically adjust the capacity. It increases the capability by 100% each time.
+Similar to ArrayList, [Vector](js-apis-vector.md) is also implemented based on arrays and can dynamically adjust the capacity. It increases the capability by 100% each time.
 
-When compared with **[LinkedList](js-apis-linkedlist.md)**, **ArrayList** is more efficient in random access but less efficient in the addition or removal operation, because its addition or removal operation affects the position of other elements in the container.
+When compared with [LinkedList](js-apis-linkedlist.md), ArrayList is more efficient in random access but less efficient in the addition or removal operation, because its addition or removal operation affects the position of other elements in the container.
 
-**Recommended use case**: Use **ArrayList** when elements in a container need to be frequently read.
+**Recommended use case**: Use ArrayList when elements in a container need to be frequently read.
 
 This topic uses the following to identify the use of generics:
 - T: Type
@@ -24,15 +24,15 @@ import { ArrayList } from '@kit.ArkTS';
 
 ## ArrayList
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in an array list (called container later).|
+| length | number | Yes| No| Number of elements in an ArrayList.|
 
 
 ### constructor
@@ -64,7 +64,7 @@ let arrayList: ArrayList<string | number> = new ArrayList();
 
 add(element: T): boolean
 
-Adds an element at the end of this container.
+Adds an element at the end of this ArrayList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -80,7 +80,7 @@ Adds an element at the end of this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the element is added; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -111,7 +111,7 @@ let result5 = arrayList.add(false);
 
 insert(element: T, index: number): void
 
-Inserts an element at the specified position in this container.
+Inserts an element at the specified position in this ArrayList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -147,7 +147,7 @@ arrayList.insert(true, 2);
 
 has(element: T): boolean
 
-Checks whether this container has the specified element.
+Checks whether this ArrayList has the specified element.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -163,7 +163,7 @@ Checks whether this container has the specified element.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the specified element is contained; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -185,7 +185,7 @@ let result: boolean = arrayList.has("squirrel");
 
 getIndexOf(element: T): number
 
-Obtains the index of the first occurrence of the specified element in this container.
+Obtains the index of the first occurrence of the specified element in this ArrayList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -229,7 +229,7 @@ let result: number = arrayList.getIndexOf(2);
 
 getLastIndexOf(element: T): number
 
-Obtains the index of the last occurrence of the specified element in this container.
+Obtains the index of the last occurrence of the specified element in this ArrayList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -273,7 +273,7 @@ let result: number = arrayList.getLastIndexOf(2);
 
 removeByIndex(index: number): T
 
-Removes an element with the specified position from this container.
+Removes an element with the specified position from this ArrayList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -317,7 +317,7 @@ let result: number = arrayList.removeByIndex(2);
 
 remove(element: T): boolean
 
-Removes the first occurrence of the specified element from this container.
+Removes the first occurrence of the specified element from this ArrayList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -333,7 +333,7 @@ Removes the first occurrence of the specified element from this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the element is removed; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -358,7 +358,7 @@ let result: boolean = arrayList.remove(2);
 
 removeByRange(fromIndex: number, toIndex: number): void
 
-Removes from this container all of the elements within a range, including the element at the start position but not that at the end position.
+Removes elements within a range, including the element at the start position but not that at the end position.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -397,7 +397,7 @@ arrayList.removeByRange(2, 4);
 replaceAllElements(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => T,
 thisArg?: Object): void
 
-Replaces all elements in this container with new elements, and returns the new ones.
+Replaces all elements in this ArrayList with new elements, and returns the new ones.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -410,7 +410,7 @@ Replaces all elements in this container with new elements, and returns the new o
 | callbackFn | function | Yes| Callback invoked for the replacement.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackFn
+callbackFn parameters
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -446,7 +446,7 @@ arrayList.replaceAllElements((value: number): number => {
 forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the elements in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this ArrayList and obtain their indexes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -459,7 +459,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | callbackFn | function | Yes| Callback invoked for the replacement.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackFn
+callbackFn parameters
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -493,7 +493,7 @@ arrayList.forEach((value: number, index?: number) => {
 
 sort(comparator?: (firstValue: T, secondValue: T) => number): void
 
-Sorts elements in this container.
+Sorts elements in this ArrayList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -538,7 +538,7 @@ arrayList.sort();
 
 subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 
-Obtains elements within a range in this container, including the element at the start position but not that at the end position, and returns these elements as a new **ArrayList** instance.
+Obtains elements within a range in this ArrayList, including the element at the start position but not that at the end position, and returns these elements as a new **ArrayList** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -582,7 +582,7 @@ let result: ArrayList<number> = arrayList.subArrayList(2, 4);
 
 clear(): void
 
-Clears this container and sets its length to **0**.
+Clears this ArrayList and sets its length to **0**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -611,7 +611,7 @@ arrayList.clear();
 
 clone(): ArrayList&lt;T&gt;
 
-Clones this container and returns a copy. The modification to the copy does not affect the original instance.
+Clones this ArrayList and returns a copy. The modification to the copy does not affect the original instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -647,7 +647,7 @@ let result:  ArrayList<number> = arrayList.clone();
 
 getCapacity(): number
 
-Obtains the capacity of this container.
+Obtains the capacity of this ArrayList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -682,7 +682,7 @@ let result: number = arrayList.getCapacity();
 
 convertToArray(): Array&lt;T&gt;
 
-Converts this container into an array.
+Converts this ArrayList into an array.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -717,7 +717,7 @@ let result: Array<number> = arrayList.convertToArray();
 
 isEmpty(): boolean
 
-Checks whether this container is empty (contains no element).
+Checks whether this ArrayList is empty (contains no element).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -727,7 +727,7 @@ Checks whether this container is empty (contains no element).
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the ArrayList is empty; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -794,7 +794,7 @@ let result: number = arrayList[2];
 
 increaseCapacityTo(newCapacity: number): void
 
-Increases the capacity of this container.
+Increases the capacity of this ArrayList.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -831,7 +831,7 @@ arrayList.increaseCapacityTo(8);
 
 trimToCurrentLength(): void
 
-Releases the reserved space in this container by adjusting the container capacity to the actual number of elements in this container.
+Releases the reserved space in this ArrayList by adjusting the capacity to the actual number of elements in it.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -860,7 +860,7 @@ arrayList.trimToCurrentLength();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Returns an iterator, each item of which is a JavaScript object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -890,7 +890,7 @@ arrayList.add(5);
 arrayList.add(4);
 
 // Method 1:
-let numbers: Array<number> = arrayList.convertToArray()
+let numbers: Array<number> = arrayList.convertToArray();
 for (let item of numbers) {
   console.log(`value : ${item}`);
 }

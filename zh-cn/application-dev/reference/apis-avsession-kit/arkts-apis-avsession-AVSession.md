@@ -6,6 +6,12 @@
 
 调用[avSession.createAVSession](arkts-apis-avsession-f.md#avsessioncreateavsession10)后，返回会话的实例，可以获得会话ID，完成设置元数据，播放状态信息等操作。
 
+## 导入模块
+
+```ts
+import { avSession } from '@kit.AVSessionKit';
+```
+
 ## 属性
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -2217,7 +2223,7 @@ on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Obje
 
 **参数：**
 
-| 参数名   | 类型     必填 | 说明     |
+| 参数名   | 类型  |   必填 | 说明     |
 | -------- | --------- | ---- | --------- |
 | type     | string    | 是   | 事件回调类型，支持事件`'commonCommand'`：当自定义控制命令变化时，触发该事件。 |
 | callback | (command: string, args: {[key: string]: Object}) => void         | 是   | 回调函数，command为变化的自定义控制命令名，args为自定义控制命令的参数，参数内容与[sendCommonCommand](arkts-apis-avsession-AVSessionController.md#sendcommoncommand10)方法设置的参数内容完全一致。          |
@@ -2722,7 +2728,7 @@ off(type: 'handleKeyEvent', callback?: (event: KeyEvent) => void): void
 
 **参数：**
 
-| 参数名   | 类型     必填 | 说明     |
+| 参数名   | 类型  |   必填 | 说明     |
 | -------- | --------- | ---- | --------- |
 | type     | string    | 是   | 关闭对应的监听事件，支持关闭事件`'handleKeyEvent'`。             |
 | callback | (event: [KeyEvent](../apis-input-kit/js-apis-keyevent.md)) => void | 否   | 回调函数，参数event是按键事件。<br>当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                              |
@@ -2778,7 +2784,7 @@ currentAVSession.off('outputDeviceChange');
 
 ## off('commonCommand')<sup>10+</sup>
 
-off(type: 'commonCommand', callback?: (command: string, args: {[key:string]: Object}) => void): void
+off(type: 'commonCommand', callback?: (command: string, args: {[key: string]: Object}) => void): void
 
 取消监听自定义控制命令的变化。
 
@@ -2788,10 +2794,10 @@ off(type: 'commonCommand', callback?: (command: string, args: {[key:string]: Obj
 
 **参数：**
 
-| 参数名   | 类型     必填 | 说明  |
+| 参数名   | 类型  |   必填 | 说明  |
 | -------- | --------- | ---- | ----------------------|
 | type     | string    | 是   | 取消对应的监听事件，支持事件`'commonCommand'`。    |
-| callback | (command: string, args: {[key:string]: Object}) => void         | 否   | 回调函数，参数command是变化的自定义控制命令名，args为自定义控制命令的参数。<br>该参数为可选参数，若不填写该参数，则认为取消所有对command事件的监听。                      |
+| callback | (command: string, args: {[key: string]: Object}) => void         | 否   | 回调函数，参数command是变化的自定义控制命令名，args为自定义控制命令的参数。<br>该参数为可选参数，若不填写该参数，则认为取消所有对command事件的监听。                      |
 
 **错误码：**
 
@@ -2821,7 +2827,7 @@ on(type: 'answer', callback: Callback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型     必填 | 说明     |
+| 参数名   | 类型   |  必填 | 说明     |
 | -------- | --------- | ---- | --------- |
 | type     | string    | 是   | 事件回调类型，支持事件`'answer'`：当通话接听时，触发该事件。 |
 | callback | Callback\<void>                                               | 是   | 回调函数。                      |
@@ -2889,7 +2895,7 @@ on(type: 'hangUp', callback: Callback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型     必填 | 说明     |
+| 参数名   | 类型  |   必填 | 说明     |
 | -------- | --------- | ---- | --------- |
 | type     | string    | 是   | 事件回调类型，支持事件`'hangUp'`：当通话挂断时，触发该事件。 |
 | callback | Callback\<void>                                               | 是   | 回调函数。                                             |
@@ -2957,7 +2963,7 @@ on(type: 'toggleCallMute', callback: Callback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型     必填 | 说明     |
+| 参数名   | 类型  |   必填 | 说明     |
 | -------- | --------- | ---- | --------- |
 | type     | string    | 是   | 事件回调类型，支持事件`'toggleCallMute'`：当通话静音或解除静音时，触发该事件。 |
 | callback | Callback\<void>                                               | 是   | 回调函数。                                             |

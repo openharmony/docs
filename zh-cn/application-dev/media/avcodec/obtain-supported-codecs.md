@@ -242,16 +242,22 @@ if (!isSupported) {
 }
 // 2. 获取码率范围，判断待配置最大码率参数是否在范围内。
 OH_AVRange bitrateRange = {-1, -1};
-ret = OH_AVCapability_GetEncoderBitrateRange(capability, &bitrateRange);
+// 最大码率参数的取值范围同码率参数，故复用OH_AVCapability_GetEncoderBitrateRange获取取值范围。
+int32_t ret = OH_AVCapability_GetEncoderBitrateRange(capability, &bitrateRange);
 if (ret != AV_ERR_OK || bitrateRange.maxVal <= 0) {
    // 异常处理。
 }
 
-if (maxBitrate > bitrateRange.maxVal || maxBitrate < bitrateRange.minVal) {
-   // 3.（可选）调整待配置最大码率参数。
+// 质量稳定码率因子取值范围为[0, 51]（同编码量化参数QP）。
+if (sqrFactor > 51 || sqrFactor < 0) {
+   // 3.（可选）调整待配置质量稳定码率因子参数。
 }
 
-// 4. 配置编码参数。
+if (maxBitrate > bitrateRange.maxVal || maxBitrate < bitrateRange.minVal) {
+   // 4.（可选）调整待配置最大码率参数。
+}
+
+// 5. 配置编码参数。
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_HEVC);
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_HEVC, 1920, 1080);
 if (OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, bitrateMode) &&
@@ -263,6 +269,29 @@ if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
    // 异常处理。
 }
 OH_AVFormat_Destroy(format);
+
+// 6.启动编码器，开始编码。
+ret = OH_VideoEncoder_Prepare(videoEnc);
+if (ret != AV_ERR_OK) {
+   // 异常处理。
+}
+ret = OH_VideoEncoder_Start(videoEnc);
+if (ret != AV_ERR_OK) {
+   // 异常处理。
+}
+
+// 7.（可选）OH_VideoEncoder_SetParameter()在运行过程中动态配置质量稳定码率因子参数和最大码率参数。
+OH_AVFormat *dynamicFormat = OH_AVFormat_Create();
+// SQR码控支持动态配置最大码率参数和质量稳定码率因子参数。
+sqrFactor = 25; // 更新质量稳定码率因子。
+maxBitrate = 10000000; // 更新最大码率参数。
+OH_AVFormat_SetLongValue(dynamicFormat, OH_MD_KEY_MAX_BITRATE, maxBitrate);
+OH_AVFormat_SetIntValue(dynamicFormat, OH_MD_KEY_SQR_FACTOR, sqrFactor);
+ret = OH_VideoEncoder_SetParameter(videoEnc, dynamicFormat);
+if (ret != AV_ERR_OK) {
+   // 异常处理。
+}
+OH_AVFormat_Destroy(dynamicFormat);
 ```
 
 ### 查询编解码器支持复杂度范围

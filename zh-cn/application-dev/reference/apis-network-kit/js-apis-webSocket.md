@@ -1332,7 +1332,7 @@ on(type: 'close', callback: ClientConnectionCloseCallback): void
 | 参数名  | 类型                    | 必填 | 说明                                                     |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | 是  | 事件回调类型，支持的事件为'close'，当onclose()调用完成，连接关闭成功。 |
-| callback | Callback\<[ClientConnectionCloseCallback](#clientconnectionclosecallback19)\> | 是  | 回调函数。<br>close：close错误码；reason：错误码说明。 |
+| callback | [ClientConnectionCloseCallback](#clientconnectionclosecallback19) | 是  | 回调函数。<br>close：close错误码；reason：错误码说明。 |
 
 **示例：**
 
@@ -1363,7 +1363,7 @@ off(type: 'close', callback?: ClientConnectionCloseCallback): void
 | 参数名  | 类型                    | 必填 | 说明                                                     |
 | -------- | ----------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                          | 是  | 事件回调类型，支持的事件为'close'，当offclose()调用完成，取消订阅连接关闭事件成功。 |
-| callback | Callback\<[ClientConnectionCloseCallback](#clientconnectionclosecallback19)\> | 否  | 回调函数。<br>close：close错误码；reason：错误码说明。 |
+| callback | [ClientConnectionCloseCallback](#clientconnectionclosecallback19) | 否  | 回调函数。<br>close：close错误码；reason：错误码说明。 |
 
 **示例：**
 
@@ -1529,7 +1529,7 @@ type HttpProxy = connection.HttpProxy
 
 网络全局代理配置信息。
 
-**系统能力**：SystemCapability.Communication.NetStack.Core
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 |       类型       |            说明             |
 | ---------------- | --------------------------- |

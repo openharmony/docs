@@ -7,9 +7,13 @@
 
 **库：** libnative_media_avdemuxer.so
 
+**引用文件：** <multimedia/player_framework/native_avdemuxer.h>
+
 **起始版本：** 10
 
 **相关模块：**[AVDemuxer](_a_v_demuxer.md)
+
+**相关示例：**[AVCodec](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
 
 
 ## 汇总

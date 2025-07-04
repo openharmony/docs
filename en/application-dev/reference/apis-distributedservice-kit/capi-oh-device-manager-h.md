@@ -6,7 +6,7 @@ Provides APIs to obtain information about trusted devices and local devices.
 
 **File to include**: <distributedhardware/device_manager/oh_device_manager.h>
 
-**Library:** libdevicemanager_ndk.so
+**Library**: libdevicemanager_ndk.so
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 

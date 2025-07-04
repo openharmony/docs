@@ -30,8 +30,7 @@ XComponent组件负责创建Surface，并通过回调将Surface的相关信息�
 >
 > 1. Native侧的NativeWindow缓存在字典中，其key需要保证其唯一性，当对应的XComponent销毁后，需要及时从字典里将其删除。
 >
-> 2. 对于使用[typeNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#typenode12)创建的SURFACE或TEXTURE类型的XComponent组件，由于typeNode组件的生命周期与声明式组件存在差异，组件在创建后的缓冲区尺寸为未设置状态，因此在开始绘制内容之前，应调用[OH_NativeWindow_NativeWindowHandleOpt](../reference/apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowhandleopt
-)接口进行缓冲区尺寸设置。
+> 2. 对于使用[typeNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#typenode12)创建的SURFACE或TEXTURE类型的XComponent组件，由于typeNode组件的生命周期与声明式组件存在差异，组件在创建后的缓冲区尺寸为未设置状态，因此在开始绘制内容之前，应调用[OH_NativeWindow_NativeWindowHandleOpt](../reference/apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowhandleopt)接口进行缓冲区尺寸设置。
 > 
 > 3. 多个XComponent开发时，缓存Native侧资源需要保证key是唯一的，key推荐使用id+随机数或者surfaceId。
 
@@ -761,6 +760,13 @@ Native侧
 
     ```c++
     // plugin_manager.cpp
+    std::unordered_map<std::string, ArkUI_NodeHandle> PluginManager::nodeHandleMap_;
+    std::unordered_map<void *, EGLRender *> PluginManager::renderMap_;
+    std::unordered_map<void *, OH_ArkUI_SurfaceCallback *> PluginManager::callbackMap_;
+    std::unordered_map<void *, OH_ArkUI_SurfaceHolder *> PluginManager::surfaceHolderMap_;
+    ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+
     std::string value2String(napi_env env, napi_value value) { // 将napi_value转化为string类型的变量
         size_t stringSize = 0;
         napi_get_value_string_utf8(env, value, nullptr, 0, &stringSize);
@@ -832,7 +838,7 @@ Native侧
         napi_get_value_int32(env, args[2], &max);
 
         int32_t expected = 0;
-        napi_get_value_int32(env, args[2], &expected);
+        napi_get_value_int32(env, args[3], &expected);
         OH_NativeXComponent_ExpectedRateRange range = {
             .min = min,
             .max = max,

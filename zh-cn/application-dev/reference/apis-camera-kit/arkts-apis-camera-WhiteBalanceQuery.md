@@ -8,6 +8,12 @@
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## isWhiteBalanceModeSupported<sup>20+</sup>
 
 isWhiteBalanceModeSupported(mode: WhiteBalanceMode): boolean

@@ -6,6 +6,12 @@
 
 投播半模态对象，可拉起半模态窗口，选择投播设备。在使用前，需要创建AVCastPickerHelper实例。
 
+## 导入模块
+
+```ts
+import { avSession } from '@kit.AVSessionKit';
+```
+
 ## constructor<sup>14+</sup>
 
 constructor(context: Context)

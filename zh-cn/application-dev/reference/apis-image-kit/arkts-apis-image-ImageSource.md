@@ -6,6 +6,12 @@
 
 ImageSource类，用于获取图片相关信息。在调用ImageSource的方法前，需要先通过[createImageSource](arkts-apis-image-f.md#imagecreateimagesource)构建一个ImageSource实例。
 
+## 导入模块
+
+```ts
+import { image } from '@kit.ImageKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
@@ -186,14 +192,13 @@ getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<stri
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;              |
-| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
+| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980103 | The image data is not supported.         |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.       |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
-| 62980116| Failed to decode the image.            |
 | 62980118 | Failed to create the image plugin.   |
 | 62980122 | Failed to decode the image header.   |
 | 62980123| The image does not support EXIF decoding. |
@@ -240,7 +245,7 @@ getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey,
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;     |
-| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
+| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980110| The image source data is incorrect.            |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980116| Failed to decode the image.            |
@@ -401,7 +406,6 @@ modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;      |
 | 62980123| The image does not support EXIF decoding.             |
-| 62980133| The EXIF data is out of range.             |
 | 62980135| The EXIF value is invalid.             |
 | 62980146| The EXIF data failed to be written to the file.             |
 
@@ -792,20 +796,16 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980099 | The shared memory data is abnormal. |
 | 62980101 | The image data is abnormal. |
 | 62980103| The image data is not supported.             |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980109 | Failed to crop the image. |
-| 62980110| The image source data is incorrect.             |
 | 62980111| The image source data is incomplete.           |
-| 62980112 | The image format does not match. |
-| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter. |
 | 62980116 | Failed to decode the image. |
 | 62980118| Failed to create the image plugin.             |
-| 62980122 | Failed to decode the image header. |
 | 62980137 | Invalid media operation. |
 | 62980173 | The DMA memory does not exist. |
 | 62980174 | The DMA memory data is abnormal. |
@@ -853,20 +853,16 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
+| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.          |
 | 62980103 | The image data is not supported.         |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980109 | Failed to crop the image.            |
-| 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
-| 62980112 | The image format does not match.       |
-| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.         |
 | 62980118 | Failed to create the image plugin.   |
-| 62980122 | Failed to decode the image header.   |
 | 62980137 | Invalid media operation.     |
 | 62980173 | The DMA memory does not exist.        |
 | 62980174 | The DMA memory data is abnormal.    |
@@ -909,20 +905,16 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.            |
+| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.            |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.         |
 | 62980103 | The image data is not supported.        |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980109 | Failed to crop the image.           |
-| 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
-| 62980112 | The image format does not match.        |
-| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.         |
 | 62980118 | Failed to create the image plugin.  |
-| 62980122 | Failed to decode the image header.   |
 | 62980137 | Invalid media operation.      |
 | 62980173 | The DMA memory does not exist.         |
 | 62980174 | The DMA memory data is abnormal.     |
@@ -1099,16 +1091,13 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980110| The image source data is incorrect.             |
 | 62980111| The image source data is incomplete.            |
-| 62980112 | The image format does not match. |
-| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter. |
 | 62980116| Failed to decode the image. |
 | 62980118| Failed to create the image plugin. |
 | 62980122| Failed to decode the image header. |
-| 62980137 | Invalid media operation. |
 | 62980149 | Invalid MIME type for the image source. |
 
 **示例：**
@@ -1145,16 +1134,13 @@ getDelayTimeList(): Promise<Array\<number>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
+| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
-| 62980112 | The image format does not match.        |
-| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.          |
 | 62980118 | Failed to create the image plugin.  |
 | 62980122 | Failed to decode the image header.   |
-| 62980137 | Invalid media operation.      |
 | 62980149 | Invalid MIME type for the image source.      |
 
 **示例：**
@@ -1189,8 +1175,7 @@ getFrameCount(callback: AsyncCallback\<number>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
-| 62980110| The image source data is incorrect. |
+| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980111| The image source data is incomplete. |
 | 62980112| The image format does not match. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -1234,8 +1219,7 @@ getFrameCount(): Promise\<number>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
-| 62980110 | The image source data is incorrect.      |
+| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.        |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -1277,7 +1261,7 @@ getDisposalTypeList(): Promise\<Array\<number>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.      |
+| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.      |
 | 62980101 | The image data is abnormal. |
 | 62980137 | Invalid media operation.        |
 | 62980149 | Invalid MIME type for the image source.      |

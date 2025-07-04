@@ -96,7 +96,7 @@ drawBehind?(drawContext: DrawContext): void
 
 drawForeground?(drawContext: DrawContext): void
 
-自定义绘制前景的接口，若重载该方法则可进行前景的自定义绘制。
+自定义绘制前景的接口，若重载该方法则可进行前景的自定义绘制。需要对其组件的前景层进行绘制时重载该方法。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -324,6 +324,7 @@ class MyForegroundDrawModifier extends DrawModifier {
     this.uiContext = uiContext;
   }
 
+  // 重载drawForeground方法，实现自定义绘制前景。
   drawForeground(context: DrawContext): void {
     const brush = new drawing.Brush();
     brush.setColor({
@@ -347,6 +348,7 @@ class MyForegroundDrawModifier extends DrawModifier {
 @Entry
 @Component
 struct DrawModifierExample {
+  // 将自定义绘制前景的类实例化，传入UIContext实例。
   private foregroundModifier: MyForegroundDrawModifier = new MyForegroundDrawModifier(this.getUIContext());
 
   build() {
@@ -357,9 +359,11 @@ struct DrawModifierExample {
         .height('100%')
         .textAlign(TextAlign.Center)
     }
-    .margin(100)
+    .margin(50)
+    .width(280)
     .height(300)
     .backgroundColor(0x87CEEB)
+    // 调用此接口并传入自定义绘制前景的类实例，即可实现自定义绘制前景。
     .drawModifier(this.foregroundModifier)
   }
 }

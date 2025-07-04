@@ -9,7 +9,7 @@ JSVM-API WebAssembly 接口提供了 WebAssembly 字节码编译、WebAssembly �
 
 ## 基本概念
 
-- **wasm module**：表示一个 WebAssembly 模块，(WebAssembly 简称为wasm)，通过 `OH_JSVM_CompileWasmModule` 接口可以从 wasm 字节码或 wasm cache 创建 wasm module。通过 `OH_JSVM_IsWasmModuleObject` 接口可以判断一个 JSVM_Value 是否是一个 wasm module。
+- **wasm module**：表示一个 WebAssembly 模块，(WebAssembly 简称为wasm)，通过`OH_JSVM_CompileWasmModule`可以将wasm字节码或wasm cache创建为wasm module。通过 `OH_JSVM_IsWasmModuleObject` 接口可以判断一个 JSVM_Value 是否是一个 wasm module。
 - **wasm function**：表示 wasm module 中定义的函数，wasm function 在导出后被外部代码使用。`OH_JSVM_CompileWasmFunction` 接口提供了将 wasm function 编译为优化后的机器码的能力，方便开发者对指定 wasm function 提前编译和函数粒度的并行编译。
 - **wasm cache**：对 wasm module 中的机器码进行序列化，生成的数据被称为 wasm cache。wasm cache 的创建和释放接口分别为 `OH_JSVM_CreateWasmCache` 和 `OH_JSVM_ReleaseCache` (对应的 cacheType 为 `JSVM_CACHE_TYPE_WASM`)。
 
@@ -17,10 +17,10 @@ JSVM-API WebAssembly 接口提供了 WebAssembly 字节码编译、WebAssembly �
 
 | 接口                          | 功能说明                                                                                 |
 | --------------------------- | ------------------------------------------------------------------------------------ |
-| OH_JSVM_CompileWasmModule   | 将 wasm 字节码同步编译为 wasm module。如果提供了 cache 参数，先尝试将 cache 反序列为 wasm module，反序列化失败时再执行编译。 |
+| OH_JSVM_CompileWasmModule   | 将 wasm 字节码同步编译为 wasm module。如果提供了 cache 参数，先尝试将 cache 反序列为 wasm module，反序列化失败后再执行编译。 |
 | OH_JSVM_CompileWasmFunction | 将 wasm module 中指定编号的函数编译为优化后的机器码，目前只使能了最高的优化等级，函数编号的合法性由接口调用者保证。                     |
-| OH_JSVM_IsWasmModuleObject  | 判断传入的值是否是一个 wasm module。                                                             |
-| OH_JSVM_CreateWasmCache     | 将 wasm module 中的机器码序列化为 wasm cache，如果 wasm module 不包含机器码，则会序列化失败。                    |
+| OH_JSVM_IsWasmModuleObject  | 判断传入的值是否是wasm module。                                                             |
+| OH_JSVM_CreateWasmCache     | 将 wasm module 中的机器码序列化为 wasm cache，如果 wasm module 不包含机器码，会导致序列化失败。                    |
 | OH_JSVM_ReleaseCache        | 释放由 JSVM 接口生成的 cache。传入的 cacheType 和 cacheData 必须匹配，否则会产生未定义行为。                      |
 
 ## code cache 校验规格说明
@@ -54,7 +54,7 @@ cpp 部分代码：
 
 // 判断一个 JSVM_Value 是否是 wasm module
 static bool IsWasmModuleObject(JSVM_Env env, JSVM_Value value) {
-    bool result;
+    bool result = false;
     JSVM_Status status = OH_JSVM_IsWasmModuleObject(env, value, &result);
     CHECK_STATUS(status == JSVM_OK);
     return result;
@@ -137,7 +137,7 @@ static void VerifyAddWasmInstance(JSVM_Env env, JSVM_Value wasmInstance) {
     JSVM_Value result;
     status = OH_JSVM_CallFunction(env, undefined, add, 2, argv, &result);
     CHECK_STATUS(status == JSVM_OK);
-    int32_t resultInt32;
+    int32_t resultInt32 = 0;
     OH_JSVM_GetValueInt32(env, result, &resultInt32);
     CHECK_STATUS(resultInt32 == 3);
 }
@@ -182,7 +182,7 @@ static JSVM_Value WasmDemo(JSVM_Env env, JSVM_CallbackInfo info) {
     CHECK_STATUS(status == JSVM_OK);
 
     // 使用 wasm code 反序列化来生成 wasm module
-    bool cacheRejected;
+    bool cacheRejected = false;
     JSVM_Value wasmModule2;
     status = OH_JSVM_CompileWasmModule(env, wasmBytecode, wasmBytecodeLength, cacheBuffer.data(), cacheBuffer.size(),
                                        &cacheRejected, &wasmModule2);
@@ -217,7 +217,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(wasmDemo())JS";
 ```
-<!-- @[jsvm_wasm](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/webassembly/src/main/cpp/hello.cpp) -->
+<!-- @[jsvm_wasm](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/webassembly/src/main/cpp/hello.cpp) -->
 预期输出
 ```
 JSVM Init

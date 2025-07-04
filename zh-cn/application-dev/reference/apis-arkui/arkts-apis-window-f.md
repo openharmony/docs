@@ -4,6 +4,12 @@
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+## 导入模块
+
+```ts
+import { window } from '@kit.ArkUI';
+```
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -492,9 +498,9 @@ shiftAppWindowTouchEvent(sourceWindowId: number, targetWindowId: number, fingerI
 
 | 参数名          | 类型   | 必填  | 说明                    |
 | -------------- | ------ | ----- | ----------------------- |
-| sourceWindowId | number | 是    | 源窗口id。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。            |
-| targetWindowId | number | 是    | 目标窗口id。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。             |
-| fingerId | number | 是    | 触屏事件的fingerId。推荐使用[touchEvent](arkui-ts/ts-universal-events-touch.md#touchevent对象说明)事件中[touches](arkui-ts/ts-universal-events-touch.md#touchobject对象说明)属性获取id。             |
+| sourceWindowId | number | 是    | 源窗口id。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。该参数应为大于0的整数，小于等于0时会返回错误码1300016。            |
+| targetWindowId | number | 是    | 目标窗口id。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。该参数应为大于0的整数，小于等于0时会返回错误码1300016。             |
+| fingerId | number | 是    | 触屏事件的fingerId。推荐使用[touchEvent](arkui-ts/ts-universal-events-touch.md#touchevent对象说明)事件中[touches](arkui-ts/ts-universal-events-touch.md#touchobject对象说明)属性获取id。该参数应为大于等于0的整数，小于0时会返回错误码1300016。             |
 
 **返回值：**
 
@@ -735,9 +741,9 @@ getGlobalWindowMode(displayId?: number): Promise&lt;number&gt;
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                                        |
-| ------ | ---------- |----|---------------------------------------------------------------------------|
-| displayId   | number| 否  | 可选的屏幕ID，用于获取对应屏幕上的窗口模式信息。该参数应为大于等于0的整数，小于0时会返回错误码1300016，不传或传值为null以及undefined则代表查询所有屏幕。如果指定的屏幕不存在，返回值为0。|
+| 参数名 | 类型       | 必填                 | 说明                                                                              |
+| ------ | ---------- |--------------------|------------------------------------------------------------------------------------|
+| displayId   | number| 否  | 可选的屏幕ID，用于获取对应屏幕上的窗口模式信息。该参数应为大于等于0的整数，小于0时会返回错误码1300016，不传或传值为null以及undefined则代表查询所有屏幕。如果指定的屏幕不存在，返回值为0，推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口所在屏幕id属性。                                                    |
 
 **返回值：**
 

@@ -58,6 +58,7 @@
 
    ```ts
    import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 申请能效资源。
@@ -72,15 +73,24 @@
      isPersist: true, // 永久持有资源
      isProcess: false, // 在应用级别申请
    };
-   backgroundTaskManager.applyEfficiencyResources(request);
-   console.info("Succeeded in invoking applyEfficiencyResources.");
+   try {
+     backgroundTaskManager.applyEfficiencyResources(request);
+     console.info("Succeeded in invoking applyEfficiencyResources.");
+   } catch (error) {
+     console.error(`Operation applyEfficiencyResources failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+   }
    ```
 
 3. 释放能效资源。应用在后台完成工作后，及时释放资源，支持释放部分资源或全部资源。
 
    ```ts
    // 应用在后台完成了工作后，全部释放能效资源
-   backgroundTaskManager.resetAllEfficiencyResources();
+   try {
+     backgroundTaskManager.resetAllEfficiencyResources();
+     console.info("Succeeded in invoking resetAllEfficiencyResources.");
+   } catch (error) {
+     console.error(`Operation resetAllEfficiencyResources failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+   }
    //应用在后台完成了工作后，部分释放能效资源
    let request: backgroundTaskManager.EfficiencyResourcesRequest = {
      resourceTypes: backgroundTaskManager.ResourceType.CPU,
@@ -90,8 +100,12 @@
      isPersist: true,
      isProcess: false, // 在应用级别释放资源
    };
-   backgroundTaskManager.applyEfficiencyResources(request);
-   console.info("Succeeded in invoking applyEfficiencyResources.");
+   try {
+     backgroundTaskManager.applyEfficiencyResources(request);
+     console.info("Succeeded in invoking applyEfficiencyResources.");
+   } catch (error) {
+     console.error(`Operation applyEfficiencyResources failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+   }
    ```
 
    > **说明：**

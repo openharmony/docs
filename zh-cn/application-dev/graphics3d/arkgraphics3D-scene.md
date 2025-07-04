@@ -20,8 +20,8 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function loadModel() : void {
-  // 加载模型
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf"));
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.glb"));
   scene.then(async (result: Scene) => {});
 }
 ```
@@ -47,8 +47,8 @@ struct Model {
 
   Init(): void {
     if (this.scene == null) {
-      // 加载模型，将gltf文件放置到相关路径，加载时以实际路径为准
-      Scene.load($rawfile('gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'))
+      // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
+      Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.glb"))
       .then(async (result: Scene) => {
         this.scene = result;
         let rf:SceneResourceFactory = this.scene.getResourceFactory();
@@ -72,7 +72,7 @@ struct Model {
           // 通过Component3D呈现3D场景
           Component3D(this.sceneOpt)
         } else {
-          Text("loading ...")
+          Text("Loading···")
         }
       }.width('100%')
     }.height('60%')
@@ -90,11 +90,12 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function createCameraPromise() : Promise<Camera> {
-  return new Promise(() => {
-    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  return new Promise((resolve, reject) => {
+    // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
     scene.then(async (result: Scene) => {
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
-      let sceneCameraParameter: SceneNodeParameters = { name: "camera1" };
+      let sceneCameraParameter: SceneNodeParameters = { name: "camera" };
       // 创建相机
       let camera: Promise<Camera> = sceneFactory.createCamera(sceneCameraParameter);
       camera.then(async (cameraEntity: Camera) => {
@@ -109,8 +110,8 @@ function createCameraPromise() : Promise<Camera> {
 
         // 可以参照此方式设置相机很多其他的参数
         // ...
+        resolve(cameraEntity);
       });
-      return camera;
     });
   });
 }
@@ -129,8 +130,9 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function createLightPromise() : Promise<Light> {
-  return new Promise(() => {
-    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  return new Promise((resolve, reject) => {
+    // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
     scene.then(async (result: Scene) => {
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
       let sceneLightParameter: SceneNodeParameters = { name: "light" };
@@ -142,8 +144,8 @@ function createLightPromise() : Promise<Light> {
 
         // 可以参照此方式设置光源很多其他的参数
         // ...
+        resolve(lightEntity);
       });
-      return light;
     });
   });
 }

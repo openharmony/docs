@@ -291,7 +291,7 @@ reset()
 ## 示例
 ### 示例1（支持手动启停的文本计时器）
 
-该示例展示了TextTimer组件的基本使用方法，通过format属性设置计时器的文本显示格式。
+该示例展示了TextTimer组件的基本使用方法，通过[format](#format)属性设置计时器的文本显示格式。
 
 用户可以通过点击"start"、"pause"、"reset"按钮，开启、暂停、重置计时器。
 
@@ -333,7 +333,7 @@ struct TextTimerExample {
 
 ### 示例2（设定文本阴影样式）
 
-该示例通过textShadow属性设置计时器的文本阴影样式。
+该示例通过[textShadow](#textshadow11)属性设置计时器的文本阴影样式。
 
 ``` ts
 // xxx.ets

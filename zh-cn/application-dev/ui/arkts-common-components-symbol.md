@@ -253,6 +253,94 @@ SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置�
   ```
   ![BounceSymbolEffect](figures/symbolGlyph_bounceSymbolEffect_trigger.gif)
 
+- 从API version 20开始，支持通过设置SymbolEffect属性为[DisableSymbolEffect](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#disablesymboleffect20)，可以指定SymbolGlyph的禁用动画效果及其播放触发条件。
+
+  ```ts
+  @State triggerValueReplace: number = 0;
+  @State renderMode: number = 1;
+  replaceFlag: boolean = true;
+
+  Column() {
+    Text("禁用动效")
+    SymbolGlyph(this.replaceFlag ? $r('sys.symbol.eye_slash') : $r('sys.symbol.eye'))
+      .fontSize(96)
+      .renderingStrategy(this.renderMode)
+      .symbolEffect(new DisableSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace)
+    Button('trigger').onClick(() => {
+      this.replaceFlag = !this.replaceFlag;
+      this.triggerValueReplace = this.triggerValueReplace + 1;
+    })
+  }
+  ```
+  ![symbolGlyph_symbolEffect_disable](figures/symbolGlyph_symbolEffect_disable.gif)
+
+- 从API version 20开始，支持通过设置SymbolEffect属性为[QuickReplaceSymbolEffect](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#quickreplacesymboleffect20)，可以指定SymbolGlyph的快速替换动画效果及其播放触发条件。
+
+  ```ts
+  @State triggerValueReplace: number = 0;
+  replaceFlag: boolean = true;
+
+  Column() {
+    Text("快速替换动效")
+    SymbolGlyph(this.replaceFlag ? $r('sys.symbol.checkmark_circle') : $r('sys.symbol.repeat_1'))
+      .fontSize(96)
+      .symbolEffect(new QuickReplaceSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace)
+    Button('trigger').onClick(() => {
+      this.replaceFlag = !this.replaceFlag;
+      this.triggerValueReplace = this.triggerValueReplace + 1;
+    })
+  }
+  ```
+  ![symbolGlyph_symbolEffect_quick_replace](figures/symbolGlyph_symbolEffect_quick_replace.gif)
+
+## 设置阴影和渐变色
+
+- 从API version 20开始，支持通过[symbolShadow](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#symbolshadow20)接口实现了symbolGlyph组件显示阴影效果。
+
+  ```ts
+  @State isActive: boolean = true;
+
+  options: ShadowOptions = {
+    radius: 30.0,
+    color: Color.Blue,
+    offsetX: 20,
+    offsetY: 20,
+  };
+
+  Column() {
+    Text("阴影能力")
+    SymbolGlyph($r('sys.symbol.ohos_wifi'))
+      .fontSize(96)
+      .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), !this.isActive)
+      .symbolShadow(this.options)
+    Button(!this.isActive ? '关闭' : '播放').onClick(() => {
+      this.isActive = !this.isActive;
+    })
+  }
+  ```
+  ![SymbolShadowSymbolEffect](figures/symbolGlyph_symbolShadow.gif)
+
+- 从API version 20开始，支持通过[shaderStyle](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#shaderstyle20)接口实现了symbolGlyph组件显示渐变色效果。 
+
+  ```ts
+  radialGradientOptions: RadialGradientOptions = {
+    center: ["50%", "50%"],
+    radius: 20,
+    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
+    repeating: true,
+  };
+
+  Column() {
+    Text('径向渐变')
+      .fontSize(18)
+      .fontColor(0xCCCCCC)
+      .textAlign(TextAlign.Center)
+    SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
+      .fontSize(96)
+      .shaderStyle([new RadialGradientStyle(this.radialGradientOptions)])
+  }
+  ```
+  ![ShaderStyleSymbolEffect](figures/symbolGlyph_shaderStyle.jpg)
 
 ## 添加事件
 

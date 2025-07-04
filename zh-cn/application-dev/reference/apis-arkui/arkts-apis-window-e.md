@@ -13,7 +13,7 @@
 | 名称                                  | 值 | 说明                                                                                     |
 |-------------------------------------| ------ |----------------------------------------------------------------------------------------|
 | TYPE_APP                            | 0      | 表示应用子窗口。<br>**模型约束：** 此接口仅可在FA模型下使用。                                                   |
-| TYPE_SYSTEM_ALERT                   | 1      | 表示系统告警窗口。<br>- **说明：** 从API version 11开始废弃。<br>- 从API version 7开始支持。                               |
+| TYPE_SYSTEM_ALERT<sup>(deprecated)</sup>               | 1     | 表示系统告警窗口。<br>- **说明：** 从API version 11开始废弃。<br>- 从API version 7开始支持。                           |
 | TYPE_FLOAT<sup>9+</sup>             | 8      | 表示悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | TYPE_DIALOG<sup>10+</sup>           | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。                                                 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | TYPE_MAIN<sup>18+</sup>             | 32      | 表示应用主窗口。<br>此窗口类型不支持在创建窗口时使用，仅可在getWindowProperties接口的返回值中用于读取。                               |
@@ -225,10 +225,10 @@
 
 | 名称   | 值 | 说明                    |
 | ------ | --- | ------------------------ |
-| FULLSCREEN | 1 | 全屏窗口。 |
-| SPLIT  | 1 << 1 | 分屏窗口。 |
-| FLOAT   | 1 << 2  | 悬浮窗。 |
-| PIP   | 1 << 3  | 画中画。 |
+| FULLSCREEN | 1 | 全屏窗口，二进制从右往左，第一个二进制位为1。  |
+| SPLIT  | 1 << 1 | 分屏窗口，二进制从右往左，第二个二进制位为1。 |
+| FLOAT   | 1 << 2  | 悬浮窗，二进制从右往左，第三个二进制位为1。 |
+| PIP   | 1 << 3  | 画中画，二进制从右往左，第四个二进制位为1。 |
 
 ## WindowStageEventType<sup>9+</sup>
 
@@ -249,6 +249,21 @@ WindowStage生命周期。
 | RESUMED<sup>11+</sup> | 5      | 前台可交互状态，例如应用打开后，可以与用户交互的状态。 |
 | PAUSED<sup>11+</sup>  | 6      | 前台不可交互状态，例如从屏幕底部上划，应用进入到多任务界面后的状态。 |
 
+## WindowStageLifecycleEventType<sup>20+</sup>
+
+WindowStage生命周期的状态类型枚举。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称       | 值 | 说明       |
+| ---------- | ------ | ---------- |
+| SHOWN      | 1      | 切到前台。 |
+| RESUMED    | 2      | 前台可交互状态。 |
+| PAUSED     | 3      | 前台不可交互状态。 |
+| HIDDEN     | 4      | 切到后台。 |
+
 ## ModalityType<sup>14+</sup>
 
 子窗口模态类型枚举。
@@ -261,3 +276,17 @@ WindowStage生命周期。
 | -------------------- | ------ | ---------- |
 | WINDOW_MODALITY      | 0      | 模态子窗类型为模窗口子窗，当仅需要其父级窗口不响应用户操作时，可选此参数。 |
 | APPLICATION_MODALITY | 1      | 模态子窗类型为模应用子窗，除其父级窗口外还需要该应用其他实例的窗口不响应用户操作时，可选此参数。<br> 此接口仅支持在2in1设备下使用。 |
+
+## ScreenshotEventType<sup>20+</sup>
+
+截屏事件类型枚举。
+
+**系统能力：**  SystemCapability.WindowManager.WindowManager.Core
+
+| 名称   | 值 | 说明                   |
+| ------ | ---- | --------------------- |
+| SYSTEM_SCREENSHOT | 0 | 系统截屏成功。 |
+| SYSTEM_SCREENSHOT_ABORT | 1 | 系统截屏中止。 |
+| SCROLL_SHOT_START | 2 | 滚动截屏开始。 |
+| SCROLL_SHOT_END | 3 | 滚动截屏结束。 |
+| SCROLL_SHOT_ABORT | 4 | 滚动截屏中止。 |

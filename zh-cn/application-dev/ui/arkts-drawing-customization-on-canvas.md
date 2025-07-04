@@ -269,9 +269,9 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
             // 使用drawImage接口将图片画在（0，0）为起点，宽高130的区域
             offContext.drawImage(this.img, 0, 0, 130, 130);
             // 使用getImageData接口，获得canvas组件区域中，（50，50）为起点，宽高130范围内的绘制内容
-            let imagedata = offContext.getImageData(50, 50, 130, 130);
+            let imageData = offContext.getImageData(50, 50, 130, 130);
             // 使用putImageData接口将得到的ImageData画在起点为（150， 150）的区域中
-            offContext.putImageData(imagedata, 150, 150);
+            offContext.putImageData(imageData, 150, 150);
             // 将离屏绘制的内容画到canvas组件上
             let image = this.offCanvas.transferToImageBitmap();
             this.context.transferFromImageBitmap(image);
@@ -446,7 +446,7 @@ struct CanvasContentUpdate {
     private sh: number = 270; // Canvas固定高度
     private cursorWH: number = 50; // 光标区域宽高
     private dashedLineW: number = 7; // 光标宽高
-    private arcRdius: number = 6; // 光标宽高
+    private arcRadius: number = 6; // 光标中心圆半径
     private isReadyMove: boolean = false
     private touchPosition: Position = {
       x: 0,
@@ -568,7 +568,7 @@ struct CanvasContentUpdate {
       this.canvasContext.strokeStyle = this.isTouchDown ? '#ff1a5cae' : '#ff9ba59b'
       this.canvasContext.fillStyle = this.isTouchDown ? '#ff1a5cae' : '#ff9ba59b'
       this.canvasContext.arc(this.cursorPosition.x + this.cursorPosition.width / 2,
-        this.cursorPosition.y + this.cursorPosition.width / 2, this.arcRdius, 0, 2 * Math.PI)
+        this.cursorPosition.y + this.cursorPosition.width / 2, this.arcRadius, 0, 2 * Math.PI)
       this.canvasContext.fill()
       this.canvasContext.stroke()
 

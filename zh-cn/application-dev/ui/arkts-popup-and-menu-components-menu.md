@@ -149,3 +149,197 @@ Button('click for Menu')
     .bindContextMenu(this.MyMenu, ResponseType.RightClick, { hapticFeedbackMode: HapticFeedbackMode.ENABLED })
 ```
 
+## 菜单支持避让中轴
+
+从API version 18起，菜单支持中轴避让功能。从API version 20开始，在2in1设备上默认启用（仅在窗口处于瀑布模式时产生避让）。开发者可通过[ContextMenuOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#contextmenuoptions10)中的enableHoverMode属性，控制菜单是否启用中轴避让。
+
+> **说明：**
+> - 如果菜单的点击位置在中轴区域，则菜单不会避让。
+> - 2in1设备上需同时满足窗口处于瀑布模式才会产生避让。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  private iconStr: Resource = $r('app.media.startIcon');
+  @State index: number = 0;
+  @State arrayStr: Array<string> = ['上半屏', '中轴', '下半屏'];
+  @State enableHoverMode: boolean | undefined = true;
+  @State showInSubwindow: boolean = false;
+  @State placement: Placement | undefined = undefined;
+
+  @Builder
+  MyMenu1() {
+    Menu() {
+      MenuItem({ startIcon: this.iconStr, content: '菜单选项' })
+      MenuItem({ startIcon: this.iconStr, content: '菜单选项' })
+      MenuItem({ startIcon: this.iconStr, content: '菜单选项' })
+      MenuItem({ startIcon: this.iconStr, content: '菜单选项' })
+    }
+  }
+
+  @State isShow: boolean = false;
+
+  build() {
+    RelativeContainer() {
+      Column() {
+        Button('区域:' + this.arrayStr[this.index])
+          .onClick(() => {
+            if (this.index < 2) {
+              this.index++
+            } else {
+              this.index = 0
+            }
+          })
+
+        Button('hoverMode开启:' + this.enableHoverMode)
+          .onClick(() => {
+            if (this.enableHoverMode == undefined) {
+              this.enableHoverMode = true
+            } else if (this.enableHoverMode == true) {
+              this.enableHoverMode = false
+            } else {
+              this.enableHoverMode = undefined
+            }
+          })
+
+        Button('MenuPlacement:' + this.placement)
+          .onClick(() => {
+            if (this.placement == undefined) {
+              this.placement = Placement.Bottom
+            } else if (this.placement == Placement.Bottom) {
+              this.placement = Placement.Top
+            } else {
+              this.placement = undefined
+            }
+          })
+      }
+
+      Row() {
+        Button('Menu')
+          .fontWeight(FontWeight.Bold)
+          .bindMenu(this.MyMenu1(), {
+            enableHoverMode: this.enableHoverMode,
+            showInSubWindow: this.showInSubwindow,
+            placement: this.placement
+          })
+
+        Select([{ value: 'text1' }, { value: 'text2' }, { value: 'text3' }, { value: 'text4' }, { value: 'text5' },
+          { value: 'text6' }, { value: 'text7' }, { value: 'text8' }, { value: 'text9' }, { value: 'text10' }, { value: 'text11' },
+          { value: 'text12' }])
+          .value("Select")
+
+      }
+      .alignRules({
+        center: { anchor: '__container__', align: VerticalAlign.Center },
+        middle: { anchor: '__container__', align: HorizontalAlign.Center }
+      })
+      .margin({
+        top: this.index == 2 ? 330 : this.index == 1 ? 50 : 0,
+        bottom: this.index == 0 ? 330 : 0
+      })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+
+```
+
+## 控制子窗菜单的事件透传
+
+当菜单在子窗口中弹出时，默认情况下，菜单周围的事件会传递至所在窗口。从API version 20开始，开发者可通过[ContextMenuOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#contextmenuoptions10)的modalMode属性设置子菜单弹出时的模态模式，以控制菜单周围事件是否传递。将modalMode设置为ModalMode.TARGET_WINDOW时，菜单周围的事件将不再传递，菜单下方的控件也不会响应事件。
+
+```ts
+@Entry
+@Component
+struct Index2 {
+  build() {
+    Column() {
+    }
+    .bindContextMenu(this.contextMenuBuilder, ResponseType.RightClick, {
+      modalMode: ModalMode.TARGET_WINDOW
+    })
+    .onClick(() => {
+      this.getUIContext().getPromptAction().showToast({
+        message: 'Clicked!'
+      })
+    })
+    .width('100%')
+    .height('100%')
+  }
+
+  @Builder
+  bindMenuBuilder() {
+    Menu() {
+      MenuItem({ content: 'bindMenu item' }) {
+
+      }
+    }
+  }
+
+  @Builder
+  contextMenuBuilder() {
+    Menu() {
+      MenuItem({ content: 'contextMenu item' }) {
+
+      }
+    }
+  }
+}
+
+```
+
+## 基于绑定组件指定位置弹出菜单
+
+菜单从API version 20开始支持基于绑定组件在指定位置弹出。通过设置水平与垂直偏移量，控制菜单相对于绑定组件左上角的弹出位置。与单独使用offset接口不同，此方法可使菜单覆盖显示在绑定组件上。需要指定弹出位置时，可使用[ContextMenuOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#contextmenuoptions10)的anchorPosition属性进行设置。
+
+> **说明：**
+>- 当菜单处于预览状态时，设定的定位偏移量将无法生效。
+>- 预设的[placement](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#contextmenuoptions10)对齐参数将不再生效。
+>- 叠加[offset](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#contextmenuoptions10)参数的偏移量，最终确定菜单的精确显示位置。
+>- 当水平与垂直偏移量均设为负值时，菜单以绑定组件左下角为基准点进行显示。
+>- 当水平或垂直偏移量存在负值时，组件将以绑定组件的左上角为定位基准点，通过叠加偏移量参数实现反向偏移。
+
+```ts
+@Entry
+@Component
+struct DirectiveMenuExample {
+  @Builder
+  MenuBuilder() {
+    Column() {
+      Menu() {
+        MenuItemGroup() {
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 1", labelInfo: "" })
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 2", labelInfo: "" })
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 3", labelInfo: "" })
+        }
+      }
+    }
+  }
+
+  build() {
+    Column() {
+      Text()
+        .borderRadius(10)
+        .width(200) 
+        .height(150)
+        .borderWidth(1)
+        .backgroundColor(Color.White)
+        .borderColor(Color.Red)
+        .margin({ top: 200, left: 125 })
+        .bindContextMenu(this.MenuBuilder, ResponseType.RightClick, {
+          anchorPosition: { x: 45, y: 50 },
+        })
+    }
+    .alignItems(HorizontalAlign.Start)
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F5F5F5')
+  }
+}
+```
+
+![AnchorPosition](figures/AnchorPosition.gif)
+

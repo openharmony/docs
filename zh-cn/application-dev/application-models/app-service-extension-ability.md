@@ -371,7 +371,6 @@
 
 ```ts
 import { common } from '@kit.AbilityKit';
-import { promptAction } from '@kit.ArkUI';
 import { rpc } from '@kit.IPCKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -404,11 +403,8 @@ let options: common.ConnectOptions = {
       if (errCode === 0) {
         msg = reply.readInt();
       }
-      hilog.info(DOMAIN_NUMBER, TAG, `sendRequest msg:${msg}`);
       // 成功连接后台服务
-      promptAction.showToast({
-        message: `sendRequest msg:${msg}`
-      });
+      hilog.info(DOMAIN_NUMBER, TAG, `sendRequest success, msg:${msg}`);
     }).catch((error: BusinessError) => {
       hilog.info(DOMAIN_NUMBER, TAG, `sendRequest failed, ${JSON.stringify(error)}`);
     });

@@ -1784,7 +1784,7 @@ Hello world!
 
 layoutMode(mode: WebLayoutMode)
 
-设置Web布局模式。
+设置Web布局模式。常见问题请参考[Web组件大小自适应页面内容布局](../../web/web-fit-content.md)。
 
 > **说明：**
 >
@@ -1796,7 +1796,7 @@ layoutMode(mode: WebLayoutMode)
 > - Web组件宽高规格：指定`RenderMode.SYNC_RENDER`模式时，分别不超过50万px；指定`RenderMode.ASYNC_RENDER`模式时，分别不超过7680px。
 > - 频繁更改页面宽高会触发Web组件重新布局，影响体验。
 > - 不支持瀑布流网页（下拉到底部加载更多）。
-> - 不支持宽度自适应，仅支持高度自适应（不支持vh单位）。
+> - 不支持宽度自适应，仅支持高度自适应。
 > - 由于高度自适应网页高度，您无法通过修改组件高度属性来修改组件高度。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -1953,6 +1953,45 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
   <div class="blue">webArea</div>
   </body>
   </html>
+  ```
+
+## bypassVsyncCondition<sup>20+</sup>
+
+bypassVsyncCondition(condition: WebBypassVsyncCondition)
+
+当开发者调用scrollBy接口进行页面滚动时，可以通过bypassVsyncCondition接口设置渲染流程跳过vsync（垂直同步）调度，直接触发绘制。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型                                  | 必填   | 说明                  |
+| ---- | ------------------------------------- | ---- | --------------------- |
+| condition | [WebBypassVsyncCondition](./arkts-basic-components-web-e.md#webbypassvsynccondition20) | 是    | 触发渲染流程跳过vsync调度的条件。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    condition: WebBypassVsyncCondition = WebBypassVsyncCondition.SCROLLBY_FROM_ZERO_OFFSET;
+
+    build() {
+      Column() {
+        Button('scrollBy')
+          .onClick(() => {
+            this.controller.scrollBy(0, 5);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .bypassVsyncCondition(this.condition)
+      }
+    }
+  }
   ```
 
 ## enableNativeEmbedMode<sup>11+</sup>
@@ -2361,6 +2400,8 @@ Web组件自定义文本选择菜单。
 
 在[onMenuItemClick](../apis-arkui/arkui-ts/ts-text-common.md#onmenuitemclick12)中，可以自定义菜单选项的回调函数。该函数在菜单选项被点击后触发，并根据返回值决定是否执行系统默认的回调。返回true不执行系统回调，返回false继续执行系统回调。
 
+在[onPrepareMenu<sup>20+</sup>](../apis-arkui/arkui-ts/ts-text-common.md#onpreparemenu20)中，当文本选择区域变化后显示菜单之前触发该回调，可在该回调中进行修改、增加、删除菜单选项，实现动态更新菜单。
+
 本接口在与[selectionMenuOptions<sup>(deprecated)</sup>](#selectionmenuoptionsdeprecated)同时使用时，会使selectionMenuOptions<sup>(deprecated)</sup>不生效。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -2377,10 +2418,18 @@ Web组件自定义文本选择菜单。
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
 
+let selectText:string = '';
+class TestClass {
+  setSelectText(param: String) {
+    selectText = param.toString();
+  }
+}
+
 @Entry
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
+  @State testObj: TestClass = new TestClass();
 
   onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
     let items = menuItems.filter((menuItem) => {
@@ -2431,12 +2480,34 @@ struct WebComponent {
     return false;// 返回默认值false
   }
 
-  @State EditMenuOptions: EditMenuOptions = { onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick }
+   onPrepareMenu(menuItems: Array<TextMenuItem>) => {
+    let item1: TextMenuItem = {
+      content: 'prepare1',
+      id: TextMenuItemId.of('prepareMenu1'),
+    };
+    let item2: TextMenuItem = {
+      content: 'prepare2' + selectText,
+      id: TextMenuItemId.of('prepareMenu2'),
+    };
+    items.push(item1);// 在选项列表后添加新选项
+    items.unshift(item2);// 在选项列表前添加选项
+
+    return items;
+  }
+
+  @State EditMenuOptions: EditMenuOptions =
+    { onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick, onPrepareMenu:this.onPrepareMenu }
 
   build() {
     Column() {
       Web({ src: $rawfile("index.html"), controller: this.controller })
         .editMenuOptions(this.EditMenuOptions)
+        .javaScriptProxy({
+          object: this.testObj,
+          name: "testObjName",
+          methodList: ["setSelectText"],
+          controller: this.controller,
+        })
     }
   }
 }
@@ -2453,6 +2524,21 @@ struct WebComponent {
   <body>
     <h1>editMenuOptions Demo</h1>
     <span>edit menu options</span>
+    <script>
+      function callArkTS() {
+        let str = testObjName.test();
+        document.getElementById("demo").innerHTML = str;
+      }
+
+      document.addEventListener('selectionchange', () => {
+        var selection = window.getSelection();
+        if (selection.rangeCount > 0) {
+          var selectedText = selection.toString();
+          testObjName.setSelectText(selectedText);
+        }
+        callArkTS();
+      });
+  </script>
   </body>
 </html>
 ```

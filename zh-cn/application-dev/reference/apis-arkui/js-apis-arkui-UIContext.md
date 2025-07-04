@@ -2,8 +2,6 @@
 
 在Stage模型中，WindowStage/Window可以通过[loadContent](arkts-apis-window-Window.md#loadcontent9)接口加载页面并创建UI的实例，并将页面内容渲染到关联的窗口中，所以UI实例和窗口是一一关联的。一些全局的UI接口是和具体UI实例的执行上下文相关的，在当前接口调用时，通过追溯调用链跟踪到UI的上下文，来确定具体的UI实例。若在非UI页面中或者一些异步回调中调用这类接口，可能无法跟踪到当前UI的上下文，导致接口执行失败。
 
-@ohos.window在API version 10 新增[getUIContext](arkts-apis-window-Window.md#getuicontext10)接口，获取UI上下文实例UIContext对象，使用UIContext对象提供的替代方法，可以直接作用在对应的UI实例上。
-
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -34,7 +32,6 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  @build
   build() {
     Column() {
       Button("Button")
@@ -1328,7 +1325,7 @@ getDragController(): DragController
 
 |类型|说明|
 |----|----|
-|[DragController](js-apis-arkui-dragController.md#ohosarkuidragcontroller-dragcontroller)| 获取DragController对象。|
+|[DragController](js-apis-arkui-dragController.md)| 获取DragController对象。|
 
 **示例：**
 
@@ -1381,7 +1378,7 @@ uiContext.getFocusController();
 
 getFilteredInspectorTree(filters?: Array\<string\>): string
 
-获取组件树及组件属性。
+获取组件树及组件属性。此接口耗时较长，仅适用于测试场景。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1481,7 +1478,7 @@ InsTree ----| type: Button, ID: 18
 
 getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\>): string
 
-获取指定的组件及其子组件的属性。
+获取指定的组件及其子组件的属性。此接口耗时较长，仅适用于测试场景。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3122,6 +3119,8 @@ let componentUtils: ComponentUtils = uiContext.getComponentUtils();
 let modePosition = componentUtils.getRectangleById("onClick");
 let localOffsetWidth = modePosition.size.width;
 let localOffsetHeight = modePosition.size.height;
+let localOffsetX = modePosition.localOffset.x;// 获取组件相对于父组件的x轴偏移
+let localOffsetY = modePosition.localOffset.y;// 获取组件相对于父组件的y轴偏移
 ```
 
 ## UIInspector
@@ -4123,7 +4122,7 @@ off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitch
 
 on(type: 'willClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
+监听点击事件指令下发情况。回调类型为[GestureEventListenerCallback](#gestureeventlistenercallback12)。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4181,7 +4180,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
+监听点击事件指令下发情况。回调类型为[GestureEventListenerCallback](#gestureeventlistenercallback12)。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4239,7 +4238,7 @@ observer.off('didClick', callback);
 
 on(type: 'willClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
+监听点击事件指令下发情况。回调类型为[ClickEventListenerCallback](#clickeventlistenercallback12)。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4297,7 +4296,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
+监听点击事件指令下发情况。回调类型为[ClickEventListenerCallback](#clickeventlistenercallback12)。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4808,7 +4807,7 @@ on(type: 'nodeRenderState', nodeIdentity: NodeIdentity, callback: NodeRenderStat
 
 注意节点数量的限制。出于性能考虑，在单个UI实例中，注册节点太多，将会抛出异常。
 
-通常，当组件被移动到屏幕外时，会收到RENDER_OUT的通知。但在某些情况下，即使组件移动到屏幕外也不会触发RENDER_OUT通知。例如，具有缓存功能的组件[Swiper](./arkui-ts/ts-container-swiper.md#swiper)，即使[cachedCount](./arkui-ts/ts-container-swiper.md#cachedcount15)属性中的参数isShown配置为true，也不会触发RENDER_OUT通知。
+通常，当组件被移动到屏幕外时，会收到RENDER_OUT的通知。但在某些情况下，即使组件移动到屏幕外也不会触发RENDER_OUT通知。例如，具有缓存功能的组件[Swiper](./arkui-ts/ts-container-swiper.md)，即使[cachedCount](./arkui-ts/ts-container-swiper.md#cachedcount15)属性中的参数isShown配置为true，也不会触发RENDER_OUT通知。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -5123,7 +5122,7 @@ type NodeRenderStateChangeCallback = (state: NodeRenderState, node?: FrameNode) 
 | 参数名  | 类型              | 必填 | 说明                                |
 | ------- | ----------------- | ---- | --------------------------------- |
 | state   | [NodeRenderState](#noderenderstate20)     | 是   | 触发事件监听的手势事件的相关信息。   |
-| node    | [FrameNode](js-apis-arkui-frameNode.md#framenode)         | 否   | 触发事件监听的手势事件所绑定的组件，如果组件被释放将返回null。 |
+| node    | [FrameNode](js-apis-arkui-frameNode.md)         | 否   | 触发事件监听的手势事件所绑定的组件，如果组件被释放将返回null。 |
 
 ## NodeRenderState<sup>20+</sup>
 
@@ -5197,7 +5196,7 @@ type GestureListenerCallback = (info: GestureTriggerInfo) => void
 | event | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明)   |是       |手势事件对象。 |
 | current | [GestureRecognizer](arkui-ts/ts-gesture-blocking-enhancement.md#gesturerecognizer)    |是      |手势识别器对象。可从中获取手势的详细信息，但请勿在本地保留此对象，因为当节点释放后该对象可能失效。 |
 | currentPhase  | [GestureActionPhase](#gestureactionphase20) |是      | 手势动作回调阶段。|
-| node  | [FrameNode](js-apis-arkui-frameNode.md#framenode) |否      |触发手势的节点。默认值为null，表示没有触发手势的节点。 |
+| node  | [FrameNode](js-apis-arkui-frameNode.md) |否      |触发手势的节点。默认值为null，表示没有触发手势的节点。 |
 
 ## GestureObserverConfigs<sup>20+</sup>
 
@@ -5226,7 +5225,7 @@ Pan手势事件监听函数类型。
 | ------- | ----------------- | ---- | --------------------------------- |
 | event   | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明)      | 是   | 触发事件监听的手势事件的相关信息。   |
 | current | [GestureRecognizer](arkui-ts/ts-gesture-blocking-enhancement.md#gesturerecognizer) | 是   | 触发事件监听的手势识别器的相关信息。  |
-| node    | [FrameNode](js-apis-arkui-frameNode.md#framenode)         | 否   | 触发事件监听的手势事件所绑定的组件。 |
+| node    | [FrameNode](js-apis-arkui-frameNode.md)         | 否   | 触发事件监听的手势事件所绑定的组件。 |
 
 ## GestureEventListenerCallback<sup>12+</sup>
 type GestureEventListenerCallback = (event: GestureEvent, node?: FrameNode) => void
@@ -5242,7 +5241,7 @@ ArkTS GestureEvent事件监听函数类型。
 | 参数名  | 类型   | 必填 | 说明                          |
 | ------- | ------ | ---- | --------------------------- |
 | event | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明) | 是 | 触发事件监听的手势事件的相关信息。 |
-| node | [FrameNode](js-apis-arkui-frameNode.md#framenode) | 否 | 触发事件监听的手势事件所绑定的组件。 |
+| node | [FrameNode](js-apis-arkui-frameNode.md) | 否 | 触发事件监听的手势事件所绑定的组件。 |
 
 ## ClickEventListenerCallback<sup>12+</sup>
 type ClickEventListenerCallback = (event: ClickEvent, node?: FrameNode) => void
@@ -5258,7 +5257,7 @@ ArkTS GestureEvent事件监听函数类型。
 | 参数名  | 类型   | 必填 | 说明                          |
 | ------- | ------ | ---- | --------------------------- |
 | event | [ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明) | 是 | 触发事件监听的点击事件的相关信息。 |
-| node | [FrameNode](js-apis-arkui-frameNode.md#framenode) | 否 | 触发事件监听的点击事件所绑定的组件。 |
+| node | [FrameNode](js-apis-arkui-frameNode.md) | 否 | 触发事件监听的点击事件所绑定的组件。 |
 
 ## MediaQuery
 
@@ -8177,7 +8176,7 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 >
 > 2. 由于[updatePopup](#updatepopup18)和[closePopup](#closepopup18)依赖content去更新或者关闭指定的popup弹窗，开发者需自行维护传入的content。
 >
-> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则[ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent-1)应采用带有四个参数的构造函数constructor，其中options参数应传递{ nestingBuilderSupported: true }。
+> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md)组件），则[ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent-1)应采用带有四个参数的构造函数constructor，其中options参数应传递{ nestingBuilderSupported: true }。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -8386,7 +8385,7 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 >
 > 2. 由于[updateMenu](#updatemenu18)和[closeMenu](#closemenu18)依赖content去更新或者关闭指定的menu弹窗，开发者需自行维护传入的content。
 >
-> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则[ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent-1)应采用带有四个参数的构造函数constructor，其中options参数应传递{ nestingBuilderSupported: true }。
+> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md)组件），则[ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent-1)应采用带有四个参数的构造函数constructor，其中options参数应传递{ nestingBuilderSupported: true }。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -10115,7 +10114,7 @@ setAutoFocusTransfer(isAutoFocusTransfer: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| isAutoFocusTransfer | boolean| 是 | 设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](js-apis-router.md#routerpushurldeprecated)、[Navigation](arkui-ts/ts-basic-components-navigation.md#navigation)、[Menu](arkui-ts/ts-basic-components-menu.md#menu)、[Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)、[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)等。true表示需要主动获取焦点，false表示不需要主动获取焦点。默认值为true。 |
+| isAutoFocusTransfer | boolean| 是 | 设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](js-apis-router.md#routerpushurldeprecated)、[Navigation](arkui-ts/ts-basic-components-navigation.md)、[Menu](arkui-ts/ts-basic-components-menu.md)、[Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)、[Popup](arkui-ts/ohos-arkui-advanced-Popup.md)等。true表示需要主动获取焦点，false表示不需要主动获取焦点。默认值为true。 |
 
 ```ts
 @CustomDialog
@@ -10507,6 +10506,221 @@ struct Index {
 }
 ```
 
+
+### getParagraphs<sup>20+</sup>
+
+getParagraphs(styledString: StyledString, options?: TextLayoutOptions): Array\<Paragraph\>
+
+将属性字符串根据文本布局选项转换成对应的[Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)数组。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ----- | ------ | ---- | -------------- |
+| styledString | [StyledString](arkui-ts/ts-universal-styled-string.md#styledstring) | 是   | 待转换的属性字符串。|
+| options | [TextLayoutOptions](arkui-ts/ts-text-common.md#textlayoutoptions对象说明20) | 否 | 文本布局选项。|
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| Array<[Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)> | [Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)的数组。 |
+
+**示例：**
+通过MeasureUtils的getParagraphs方法测算文本，当内容超出最大显示行数的时候，截断文本显示并展示“...全文”的效果。
+
+``` typescript
+import { LengthMetrics } from '@kit.ArkUI';
+import image from '@ohos.multimedia.image';
+import { drawing, text } from '@kit.ArkGraphics2D';
+
+class MyCustomSpan extends CustomSpan {
+  constructor(word: string, width: number, height: number, context: UIContext) {
+    super();
+    this.word = word;
+    this.width = width;
+    this.height = height;
+    this.context = context;
+  }
+  onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics {
+    return { width: this.width, height: this.height };
+  }
+  onDraw(context: DrawContext, options: CustomSpanDrawInfo) {
+    let canvas = context.canvas;
+    const brush = new drawing.Brush();
+    brush.setColor({
+      alpha: 255,
+      red: 0,
+      green: 74,
+      blue: 175
+    });
+    const font = new drawing.Font();
+    font.setSize(25);
+    const textBlob = drawing.TextBlob.makeFromString(this.word, font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.attachBrush(brush);
+    canvas.drawRect({
+      left: options.x + 10,
+      right: options.x + this.context.vp2px(this.width) - 10,
+      top: options.lineTop + 10,
+      bottom: options.lineBottom - 10
+    });
+    brush.setColor({
+      alpha: 255,
+      red: 23,
+      green: 169,
+      blue: 141
+    });
+    canvas.attachBrush(brush);
+    canvas.drawTextBlob(textBlob, options.x + 20, options.lineBottom - 15);
+    canvas.detachBrush();
+  }
+  setWord(word: string) {
+    this.word = word;
+  }
+  width: number = 160;
+  word: string = "drawing";
+  height: number = 10;
+  context: UIContext;
+}
+@Entry
+@Component
+struct Indeddddx {
+  @State pixelmap?: PixelMap = undefined;
+  str : string = "Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal."
+  mutableStr2 = new MutableStyledString(this.str, [
+    {
+      start: 0,
+      length: 3,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({fontSize: LengthMetrics.px(20)})
+    },
+    {
+      start: 3,
+      length: 3,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({fontColor: Color.Brown})
+    }
+  ])
+  getlineNum(styledString: StyledString, width: LengthMetrics) {
+    let paragraphArr = this.getUIContext().getMeasureUtils().getParagraphs(styledString, { constraintWidth: width })
+    let res = 0
+    for (let i = 0; i < paragraphArr.length; ++i) {
+      res += paragraphArr[i].getLineCount()
+    }
+    return res
+  }
+  getCorretIndex(styledString : MutableStyledString, maxLines: number, width: LengthMetrics)  {
+    let low = 0
+    let high = styledString.length - 1;
+    while(low <= high) {
+      let mid = (low + high) >> 1;
+      console.log("demo: get " + low + " " + high + " " + mid)
+      let moreStyledString = new MutableStyledString("... 全文", [{
+        start: 4,
+        length: 2,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({fontColor: Color.Blue})
+      }])
+      moreStyledString.insertStyledString(0, styledString.subStyledString(0, mid))
+      let lineNum = this.getlineNum(moreStyledString, LengthMetrics.px(500))
+      if(lineNum <= maxLines) {
+        low = mid + 1;
+      } else {
+        high = mid -1;
+      }
+    }
+    return high
+  }
+  mutableStrAllContent = new MutableStyledString(this.str, [
+    {
+      start: 0,
+      length: 3,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({fontSize: LengthMetrics.px(40)})
+    },
+    {
+      start: 3,
+      length: 3,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({fontColor: Color.Brown})
+    }
+  ])
+  customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 120, 10, this.getUIContext());
+  mutableStrAllContent2 = new MutableStyledString(this.str, [
+    {
+      start: 0,
+      length: 3,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({fontSize: LengthMetrics.px(100)})
+    },
+    {
+      start: 3,
+      length: 3,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({fontColor: Color.Brown})
+    }
+  ])
+  controller: TextController = new TextController()
+  controller2: TextController = new TextController()
+  textController: TextController = new TextController()
+  textController2: TextController = new TextController()
+  aboutToAppear() {
+    this.mutableStrAllContent2.insertStyledString(0, new StyledString(this.customSpan1));
+    this.mutableStr2.insertStyledString(0, new StyledString(this.customSpan1));
+  }
+  build() {
+    Scroll() {
+      Column() {
+        Text('原文')
+        Text(undefined, { controller: this.controller }).width('500px').onAppear(() => {
+          this.controller.setStyledString(this.mutableStrAllContent)
+        })
+        Divider().strokeWidth(8).color('#F1F3F5')
+        Text('排版后')
+        Text(undefined, { controller: this.textController }).onAppear(() => {
+          let now = this.getCorretIndex(this.mutableStrAllContent, 3, LengthMetrics.px(500))
+          if (now != this.mutableStrAllContent.length - 1) {
+            let moreStyledString = new MutableStyledString("... 全文", [{
+              start: 4,
+              length: 2,
+              styledKey: StyledStringKey.FONT,
+              styledValue: new TextStyle({ fontColor: Color.Blue })
+            }])
+            moreStyledString.insertStyledString(0, this.mutableStrAllContent.subStyledString(0, now))
+            this.textController.setStyledString(moreStyledString)
+          } else {
+            this.textController.setStyledString(this.mutableStrAllContent)
+          }
+        })
+          .width('500px')
+        Divider().strokeWidth(8).color('#F1F3F5')
+        Text('原文')
+        Text(undefined, { controller: this.controller2 }).width('500px').onAppear(() => {
+          this.controller2.setStyledString(this.mutableStrAllContent2)
+        })
+        Divider().strokeWidth(8).color('#F1F3F5')
+        Text('排版后')
+        Text(undefined, { controller: this.textController2 }).onAppear(() => {
+          let now = this.getCorretIndex(this.mutableStrAllContent2, 3, LengthMetrics.px(500))
+          let moreStyledString = new MutableStyledString("... 全文", [{
+            start: 4,
+            length: 2,
+            styledKey: StyledStringKey.FONT,
+            styledValue: new TextStyle({ fontColor: Color.Blue })
+          }])
+          moreStyledString.insertStyledString(0, this.mutableStrAllContent2.subStyledString(0, now))
+          this.textController2.setStyledString(moreStyledString)
+        })
+          .width('500px')
+      }.width('100%')
+    }
+  }
+}
+```
+![](figures/styledString_15.png)
+
 ## ComponentSnapshot<sup>12+</sup>
 
 以下API需先使用UIContext中的[getComponentSnapshot()](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取ComponentSnapshot对象，再通过此实例调用对应方法。
@@ -10517,7 +10731,7 @@ struct Index {
 
 get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnapshot.SnapshotOptions): void
 
-获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过回调返回结果。
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)，找到对应组件进行截图。通过回调返回结果。
 
 > **说明：** 
 >
@@ -10531,7 +10745,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnap
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。 |
+| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。 |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是   | 截图返回结果的回调。                                         |
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
@@ -10583,7 +10797,7 @@ struct SnapshotExample {
 
 get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
-获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过Promise返回结果。
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)，找到对应组件进行截图。通过Promise返回结果。
 
 > **说明：**
 >
@@ -10597,7 +10811,7 @@ get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.Pixe
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。 |
+| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。 |
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -10841,7 +11055,7 @@ struct ComponentSnapshotExample {
 
 getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
-获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)。
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)。
 
 > **说明：**
 >
@@ -10855,7 +11069,7 @@ getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 <br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。|
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)。 <br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -11662,6 +11876,16 @@ static disableSystemServiceMenuItems(disable: boolean): void
 > 涉及文本选择菜单的组件有 [Text](./arkui-ts/ts-basic-components-text.md)、[TextArea](./arkui-ts/ts-basic-components-textarea.md)、[TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)、[RichEditor](./arkui-ts/ts-basic-components-richeditor.md)、[Web](../apis-arkweb/arkts-basic-components-web.md)。
 >
 > 系统服务菜单项指除[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)中的复制、剪切、全选、粘贴以外的菜单项。
+>
+> 当disableSystemServiceMenuItems与disableMenuItems同时设置时，优先生效先设置的disableSystemServiceMenuItems。
+>
+> 使用该接口时，全局生效，多次调用以最后一次为准。
+>
+> 可以通过以下三种方式恢复禁用菜单：
+>
+> - 仅设置disableSystemServiceMenuItems(true)禁用菜单时，设置false即可恢复禁用；
+> - 仅设置disableMenuItems禁用菜单时，设置为空数组即可恢复禁用；
+> - 当disableSystemServiceMenuItems与disableMenuItems同时使用时，则前者设置为false，后者设置为空数组，即可恢复禁用。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -11733,6 +11957,16 @@ static disableMenuItems(items: Array\<TextMenuItemId>): void
 > 涉及文本选择菜单的组件有 [Text](./arkui-ts/ts-basic-components-text.md)、[TextArea](./arkui-ts/ts-basic-components-textarea.md)、[TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)、[RichEditor](./arkui-ts/ts-basic-components-richeditor.md)、[Web](../apis-arkweb/arkts-basic-components-web.md)。
 >
 > 系统服务菜单项指除[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)中的复制、剪切、全选、粘贴以外的菜单项。
+>
+> 当disableSystemServiceMenuItems与disableMenuItems同时设置时，优先生效先设置的disableSystemServiceMenuItems。
+>
+> 使用该接口时，全局生效，多次调用以最后一次为准。
+>
+> 可以通过以下三种方式恢复禁用菜单：
+>
+> - 仅设置disableSystemServiceMenuItems(true)禁用菜单时，设置false即可恢复禁用；
+> - 仅设置disableMenuItems禁用菜单时，设置为空数组即可恢复禁用；
+> - 当disableSystemServiceMenuItems与disableMenuItems同时使用时，则前者设置为false，后者设置为空数组，即可恢复禁用。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -11742,7 +11976,7 @@ static disableMenuItems(items: Array\<TextMenuItemId>): void
 
 | 参数名      | 类型         | 必填   | 说明   |
 | -------- | ---------- | ---- | ---- |
-| items | Array<[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)> | 是    | 禁用菜单项的列表。<br />默认值: [] |
+| items | Array<[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)> | 是    | 禁用菜单项的列表。<br />默认值: []<br />默认不禁用任何菜单。 |
 
 **示例：**
 

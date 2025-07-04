@@ -357,6 +357,70 @@ try {
 }
 ```
 
+## userAuth.queryReusableAuthResult<sup>20+</sup>
+
+queryReusableAuthResult(authParam: AuthParam): Uint8Array
+
+查询是否有可复用的身份认证结果。
+
+**需要权限**：ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                 |
+| ------- | ------ | ---- | -------------------- |
+| authParam | [userAuth.AuthParam](js-apis-useriam-userauth.md#authparam10) | 是 | 用户认证相关参数。|
+
+**返回值：**
+
+| 类型        | 说明                                 |
+| ---------- | ------------------------------------ |
+| Uint8Array | 可复用的AuthToken。最大长度为1024B。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[用户认证错误码](errorcode-useriam.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 201      | Permission verification failed.         |
+| 202      | The caller is not a system application. |
+| 12500002 | General operation error.                |
+| 12500008 | Parameter verification failed.          |
+| 12500017 | Failed to reuse authentication result.       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const reuseUnlockResult: userAuth.ReuseUnlockResult = {
+    reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
+    reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
+  }
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+    reuseUnlockResult: reuseUnlockResult,
+  };
+  let authToken = userAuth.queryReusableAuthResult(authParam);
+  console.info('query reuse auth result success');
+} catch (error) {
+  console.error(`query reuse auth result catch error. Code is ${error?.code}, message is ${error?.message}`);
+}
+```
+
 ## UserAuthResultCode<sup>18+</sup>
 
 表示返回码的枚举。

@@ -816,7 +816,7 @@ struct Parent {
           Text(item.key)
         }
       }
-        // 如果不定义下面的`keyGenerator`函数，则ArkUI框架会使用默认的键值生成函数
+        // 如果不定义下面的keyGenerator函数，则ArkUI框架会使用默认的键值生成函数
         , (item: Data) => {
           return item.key;
         }
@@ -834,3 +834,61 @@ struct Parent {
   
 **图15** 自定义键值生成函数下的内存占用  
 ![ForEach-StateVarNoRender](figures/ForEach-defined-keyGenerator.PNG)
+
+### 键值生成失败
+如果开发者没有定义`keyGenerator`函数，则ArkUI框架会使用默认的键值生成函数，即`(item: Object, index: number) => { return index + '__' + JSON.stringify(item); }`。然而，`JSON.stringify`序列化在某些数据结构上会失败，导致应用发生jscrash并退出。例如，`bigint`无法被`JSON.stringify`序列化：
+
+```ts
+class Data {
+  content: bigint;
+
+  constructor(content: bigint) {
+    this.content = content;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State simpleList: Array<Data> = [new Data(1234567890123456789n), new Data(2345678910987654321n)];
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(this.simpleList, (item: Data) => {
+          ChildItem({ item: item.content.toString() })
+        }
+          // 如果不定义下面的keyGenerator函数，则ArkUI框架会使用默认的键值生成函数
+          // Data中的content: bigint在JSON序列化时失败
+          , (item: Data) => item.content.toString()
+        )
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+    .backgroundColor(0xF1F3F5)
+  }
+}
+
+@Component
+struct ChildItem {
+  @Prop item: string;
+
+  build() {
+    Text(this.item)
+      .fontSize(50)
+  }
+}
+```
+
+开发者定义`keyGenerator`函数，应用正常启动：  
+![ForEach-StateVarNoRender](figures/ForEach-defined-keyGenerator2.PNG)  
+
+使用默认的键值生成函数，应用发生jscrash： 
+```
+Error message:@Component 'Parent'[4]: ForEach id 7: use of default id generator function not possible on provided data structure. Need to specify id generator function (ForEach 3rd parameter). Application Error!
+Stacktrace:
+    ...
+    at anonymous (entry/src/main/ets/pages/Index.ets:18:52)
+```

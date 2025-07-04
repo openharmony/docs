@@ -124,9 +124,10 @@ class ConsumerTest {
 
 function Main(): void {
   let consumer: ConsumerTest = new ConsumerTest();
-  let producer1: Producer = new Producer();
-  for (let i = 0; i < 0; i++) {
-    // 模拟启动多线程执行生产任务
+  let producer: Producer = new Producer();
+  let threadNum: number = 10;
+  for (let i = 0; i < threadNum; i++) {
+    // 如下伪代码模拟启动多线程执行生产任务
     // let thread = new Thread();
     // thread.run(producer.run());
     // consumer.run();
@@ -195,7 +196,7 @@ struct Index {
   }
 }
 ```
-<!-- @[actor_model](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[actor_model](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
 也可以等待生产者完成所有生产任务，通过序列化通信将结果发送给UI线程。UI线程接收完毕后，由消费者统一消费结果。
 

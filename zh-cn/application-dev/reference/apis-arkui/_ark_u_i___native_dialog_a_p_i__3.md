@@ -18,8 +18,8 @@ ArkUI提供的Native侧自定义弹窗接口集合。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md#arkui_nativedialogapi_1) nativeDialogAPI1 | ArkUI提供的Native侧自定义弹窗接口集合。  | 
-| [ArkUI_NativeDialogAPI_2](_ark_u_i___native_dialog_a_p_i__2.md#arkui_nativedialogapi_2) nativeDialogAPI2 | ArkUI提供的Native侧自定义弹窗接口集合2。  |
+| [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md) nativeDialogAPI1 | ArkUI提供的Native侧自定义弹窗接口集合。  | 
+| [ArkUI_NativeDialogAPI_2](_ark_u_i___native_dialog_a_p_i__2.md) nativeDialogAPI2 | ArkUI提供的Native侧自定义弹窗接口集合2。  |
 | int32_t(\* [setLevelOrder](#setlevelorder) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, double levelOrder) | 设置自定义弹窗显示的顺序。  | 
 | int32_t(\* [registerOnWillAppear](#registeronwillappear) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, void* userData, void (* callback)(void* userData)) | 注册自定义弹窗显示之前的回调函数。  | 
 | int32_t(\* [registerOnDidAppear](#registerondidappear) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, void* userData, void (* callback)(void* userData)) | 注册自定义弹窗显示之后的回调函数。  | 
@@ -31,14 +31,14 @@ ArkUI提供的Native侧自定义弹窗接口集合。
 | int32_t(\* [setWidth](#setwidth) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, float width, [ArkUI_LengthMetricUnit](_ark_u_i___native_module.md#arkui_lengthmetricunit) unit) | 设置自定义弹窗的背板宽度。  | 
 | int32_t(\* [setHeight](#setheight) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, float height, [ArkUI_LengthMetricUnit](_ark_u_i___native_module.md#arkui_lengthmetricunit) unit) | 设置自定义弹窗的背板高度。  | 
 | int32_t(\* [setShadow](#setshadow) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, [ArkUI_ShadowStyle](_ark_u_i___native_module.md#arkui_shadowstyle) shadow) | 设置自定义弹窗的背板阴影。  | 
-| int32_t(\* [setCustomShadow](#setcustomshadow) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md#arkui_attributeitem)\* customShadow) | 设置自定义弹窗背板的自定义阴影。  | 
+| int32_t(\* [setCustomShadow](#setcustomshadow) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)\* customShadow) | 设置自定义弹窗背板的自定义阴影。  | 
 | int32_t(\* [setBackgroundBlurStyle](#setbackgroundblurstyle) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, [ArkUI_BlurStyle](_ark_u_i___native_module.md#arkui_blurstyle) blurStyle) | 设置自定义弹窗的背板模糊材质。  | 
 | int32_t(\* [setKeyboardAvoidMode](#setkeyboardavoidmode) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, [ArkUI_KeyboardAvoidMode](_ark_u_i___native_module.md#arkui_keyboardavoidmode) keyboardAvoidMode) | 设置自定义弹窗避让键盘模式。  | 
 | int32_t(\* [enableHoverMode](#enablehovermode) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, bool enableHoverMode) | 设置自定义弹窗是否相应悬停态。  | 
 | int32_t(\* [setHoverModeArea](#sethovermodearea) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, [ArkUI_HoverModeAreaType](_ark_u_i___native_module.md#arkui_hovermodeareatype) hoverModeAreaType) | 设置悬停态下自定义弹窗默认展示区域。  | 
 | int32_t(\* [setFocusable](#setfocusable) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, bool focusable) | 设置自定义弹窗是否获取焦点。  | 
-| int32_t(\* [setBackgroundBlurStyleOptions](#setbackgroundblurstyleoptions) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md#arkui_attributeitem)\* backgroundBlurStyleOptions) | 设置自定义弹窗的背景模糊效果。  | 
-| int32_t(\* [setBackgroundEffect](#setbackgroundeffect) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md#arkui_attributeitem)\* backgroundEffect) | 设置自定义弹窗的背景效果参数。  | 
+| int32_t(\* [setBackgroundBlurStyleOptions](#setbackgroundblurstyleoptions) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)\* backgroundBlurStyleOptions) | 设置自定义弹窗的背景模糊效果。  | 
+| int32_t(\* [setBackgroundEffect](#setbackgroundeffect) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)\* backgroundEffect) | 设置自定义弹窗的背景效果参数。  | 
 
 ## 结构体成员变量说明
 

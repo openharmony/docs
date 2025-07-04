@@ -1,5 +1,5 @@
 # Media Error Codes
-<!--RP1-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -25,6 +25,80 @@ Test DTS2025010983858 quesiton one
    ```
 
 ### question two
+
+For exampl:
+
+```ts
+import { taskpool } from '@kit.ArkTS';
+
+@Concurrent
+async function testPromiseError() {
+  await new Promise<number>((resolve, reject) => {
+    resolve(1);
+  }).then(()=>{
+    throw new Error('testPromise Error');
+  })
+}
+
+@Concurrent
+async function testPromiseError1() {
+  await new Promise<string>((resolve, reject) => {
+    reject('testPromiseError1 Error msg');
+  })
+}
+
+@Concurrent
+function testPromiseError2() {
+  return new Promise<string>((resolve, reject) => {
+    reject('testPromiseError2 Error msg');
+  })
+}
+
+async function testConcurrentFunc() {
+  let task1: taskpool.Task = new taskpool.Task(testPromiseError);
+  let task2: taskpool.Task = new taskpool.Task(testPromiseError1);
+  let task3: taskpool.Task = new taskpool.Task(testPromiseError2);
+
+  taskpool.execute(task1).then((d:object)=>{
+    console.info('task1 res is: ' + d);
+  }).catch((e:object)=>{
+    console.info('task1 catch e: ' + e);
+  })
+  taskpool.execute(task2).then((d:object)=>{
+    console.info('task2 res is: ' + d);
+  }).catch((e:object)=>{
+    console.info('task2 catch e: ' + e);
+  })
+  taskpool.execute(task3).then((d:object)=>{
+    console.info('task3 res is: ' + d);
+  }).catch((e:object)=>{
+    console.info('task3 catch e: ' + e);
+  })
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Button(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            testConcurrentFunc();
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+<!--@[concurrent_taskpool_async_promise_usage](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/asynchronousfunctions.ets)-->
+
 Test DTS2025010983858 quesiton two
 
 **Table 1**
@@ -76,6 +150,26 @@ Test DTS2025010983858 quesiton two
         | <!--DelRow-->formVisibleNotify | 15 | beijing |
         | <!--DelRow-->transparencyEnabled | 18| shagnhai |
         |fontScaleFollowSystemeternal|25|Pairs|
+
+4. List-Four
+    ```ts
+    export function testAdd(arg: number) {
+        return ++arg;
+    }
+
+    @Sendable
+    export class MyTestA {
+        constructor(name: string) {
+            this.name = name;
+        }
+        name: string = 'MyTestA';
+    }
+
+    export class MyTestB {
+        static nameStr:string = 'MyTestB';
+    }
+    ```
+    <!--@[concurrent_taskpool_test_resources](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/Test.ets)-->
 
 
 ## 5400101 Memory Allocation Failed
@@ -206,4 +300,49 @@ Another process occupies the audio focus.
 **Solution**
 
 Destroy the current instance and check whether another process is recording. If you can stop the other process, you can create the current instance again.
-<!--RP1End-->
+
+### test
+
+#### codehub
+
+For example:
+
+```ts
+import { taskpool } from '@kit.ArkTS';
+
+@Concurrent
+function add(num1: number, num2: number): number {
+  return num1 + num2;
+}
+
+async function ConcurrentFunc(): Promise<void> {
+  try {
+    let task: taskpool.Task = new taskpool.Task(add, 1, 2);
+    console.info("taskpool res is: " + await taskpool.execute(task));
+  } catch (e) {
+    console.error("taskpool execute error is: " + e);
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            ConcurrentFunc();
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+<!--@[concurrent_taskpool_common_usage](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/generaluse.ets)-->

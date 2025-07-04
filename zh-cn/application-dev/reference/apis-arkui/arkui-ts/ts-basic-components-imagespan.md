@@ -29,7 +29,7 @@ ImageSpan(value: ResourceStr | PixelMap)
 
 ## 属性
 
-属性继承自[BaseSpan](ts-basic-components-span.md#basespan)，通用属性方法支持[尺寸设置](ts-universal-attributes-size.md#尺寸设置)、[背景设置](ts-universal-attributes-background.md#背景设置)、[边框设置](ts-universal-attributes-border.md#边框设置)。
+属性继承自[BaseSpan](ts-basic-components-span.md#basespan)，通用属性方法支持[尺寸设置](ts-universal-attributes-size.md)、[背景设置](ts-universal-attributes-background.md#背景设置)、[边框设置](ts-universal-attributes-border.md#边框设置)。
 
 ### verticalAlign
 
@@ -155,15 +155,15 @@ type ImageCompleteCallback = (result: ImageLoadResult) => void
 
 | 名称                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ---- | ------------------------------------------------------------ |
-| width                        | number | 是   | 图片的宽。<br/>单位：[px](ts-pixel-units.md#像素单位)                                    |
-| height                       | number | 是   | 图片的高。<br/>单位：[px](ts-pixel-units.md#像素单位)                                    |
-| componentWidth               | number | 是   | 组件的宽。<br/>单位：[px](ts-pixel-units.md#像素单位)                                    |
-| componentHeight              | number | 是   | 组件的高。<br/>单位：[px](ts-pixel-units.md#像素单位)                                    |
+| width                        | number | 是   | 图片的宽。<br/>单位：[px](ts-pixel-units.md)                                    |
+| height                       | number | 是   | 图片的高。<br/>单位：[px](ts-pixel-units.md)                                    |
+| componentWidth               | number | 是   | 组件的宽。<br/>单位：[px](ts-pixel-units.md)                                    |
+| componentHeight              | number | 是   | 组件的高。<br/>单位：[px](ts-pixel-units.md)                                    |
 | loadingStatus                | number | 是   | 图片加载成功的状态值。<br/>**说明：**<br/>返回的状态值为0时，表示图片数据加载成功。返回的状态值为1时，表示图片解码成功。 |
-| contentWidth   | number | 是   | 图片实际绘制的宽度。<br/>单位：[px](ts-pixel-units.md#像素单位)<br>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-| contentHeight  | number | 是   | 图片实际绘制的高度。<br/>单位：[px](ts-pixel-units.md#像素单位)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-| contentOffsetX | number | 是   | 实际绘制内容相对于组件自身的x轴偏移。<br/>单位：[px](ts-pixel-units.md#像素单位)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-| contentOffsetY | number | 是   | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：[px](ts-pixel-units.md#像素单位)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentWidth   | number | 是   | 图片实际绘制的宽度。<br/>单位：[px](ts-pixel-units.md)<br>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentHeight  | number | 是   | 图片实际绘制的高度。<br/>单位：[px](ts-pixel-units.md)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentOffsetX | number | 是   | 实际绘制内容相对于组件自身的x轴偏移。<br/>单位：[px](ts-pixel-units.md)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentOffsetY | number | 是   | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：[px](ts-pixel-units.md)<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
 
 
 

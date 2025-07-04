@@ -4,7 +4,7 @@
 
 本文档将介绍系统的音频焦点策略，以及应用如何申请、释放音频焦点，以及应对焦点变化的方法。
 
-同时，系统提供了音频会话（AudioSession）机制，允许应用自定义其音频流的焦点策略。在系统进行焦点管理时，只要条件允许，本应用的所有音频流将优先遵循这一策略。
+同时，系统提供了音频会话（AudioSession）机制，允许应用自定义其音频流的焦点策略。在系统进行焦点管理时，只要条件允许，本应用的所有音频流将优先遵循通过AudioSession指定的策略。
 
 ## 音频焦点
 
@@ -108,8 +108,7 @@
 
 - 若[使用OHAudio开发音频播放功能(C/C++)](using-ohaudio-for-playback.md)，可以调用[OH_AudioStreamBuilder_SetRendererCallback](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setrenderercallback)接口，监听音频焦点事件[OH_AudioRenderer_OnInterruptEvent](../../reference/apis-audio-kit/capi-ohaudio-oh-audiorenderer-callbacks-struct.md#oh_audiorenderer_oninterruptevent)。
 
-- 若[使用AudioCapturer开发音频录制功能](using-audiocapturer-for-recording.md)，可以调用[on('audioInterrupt')](../../reference/apis-audio-kit/arkts-apis-audio-AudioCapturer.md#o
-naudiointerrupt10)接口，监听音频焦点事件[InterruptEvent](../../reference/apis-audio-kit/arkts-apis-audio-i.md#interruptevent9)。
+- 若[使用AudioCapturer开发音频录制功能](using-audiocapturer-for-recording.md)，可以调用[on('audioInterrupt')](../../reference/apis-audio-kit/arkts-apis-audio-AudioCapturer.md#onaudiointerrupt10)接口，监听音频焦点事件[InterruptEvent](../../reference/apis-audio-kit/arkts-apis-audio-i.md#interruptevent9)。
 
 - 若[使用OHAudio开发音频录制功能(C/C++)](using-ohaudio-for-recording.md)，可以调用[OH_AudioStreamBuilder_SetCapturerCallback](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setcapturercallback)接口，监听音频焦点事件[OH_AudioCapturer_OnInterruptEvent](../../reference/apis-audio-kit/capi-ohaudio-oh-audiocapturer-callbacks-struct.md#oh_audiocapturer_oninterruptevent)。
 
@@ -121,7 +120,7 @@ naudiointerrupt10)接口，监听音频焦点事件[InterruptEvent](../../refere
 
   InterruptForceType参数提示应用该焦点变化是否已由系统强制操作：
 
-  - 强制打断类型（INTERRUPT_FORCE）：由系统进行操作，强制执行。应用需要做一些必要的处理，例如更新状态、更新界面显示等。
+  - 强制打断类型（INTERRUPT_FORCE）：由系统进行操作，强制执行。应用收到打断提示后无需再调用系统相关接口，只需做一些必要的处理，例如更新状态、更新界面显示等。
 
   - 共享打断类型（INTERRUPT_SHARE）：由应用进行操作，应用可以选择响应或忽略，系统不会干涉。
 
@@ -217,17 +216,25 @@ async function onAudioInterrupt(): Promise<void> {
 
 ## 使用AudioSession管理音频焦点
 
-应用可以使用音频会话（AudioSession）的相关接口，自定义本应用音频流的焦点策略。在系统进行焦点管理时，只要条件允许，本应用的所有音频流将优先遵循这一策略。
+应用可以使用音频会话（AudioSession）的相关接口，自定义本应用音频流的焦点策略。在系统进行焦点管理时，只要条件允许，本应用的所有音频流将优先遵循通过AudioSession指定的策略。
+
+> **注意：**
+> 
+> - 应用在申请音频焦点（开始音频播放或录制）之前需要确保AudioSession已经处于激活状态，否则AudioSession的自定义焦点策略不会影响此次焦点申请。若应用使用了异步接口，则需要格外注意异步操作执行的时序。
+>
+> - [音频会话策略（AudioSessionStrategy）](#音频会话策略audiosessionstrategy)中的并发模式（CONCURRENCY_MIX_WITH_OTHERS）为双向生效，其他策略均为单向生效。
+> 
+> - 音频策略优先级为：STOP > PAUSE > DUCK > PLAYBOTH。当指定的[音频会话策略（AudioSessionStrategy）](#音频会话策略audiosessionstrategy)优先级高于默认策略时，指定的音频会话策略不会生效。
 
 使用音频会话（AudioSession）相关接口，主要可以实现以下功能：
 
 - 应用激活音频会话（AudioSession）并指定[音频会话策略（AudioSessionStrategy）](#音频会话策略audiosessionstrategy)后，本应用的所有音频流在参与焦点管理时，会优先使用该策略。
 
-  典型场景：应用播放短视频时，会打断后台音乐，应用希望自身的音频流停止后，后台的音乐可以自动恢复。
+  典型场景：应用播放短视频时，会打断后台音乐，应用希望自身的音频流停止后，后台的音乐可以自动恢复（该场景需要应用在音频流启动前激活AudioSession，音频流停止后停用AudioSession）。
 
 - 音频会话（AudioSession）处于激活状态下，本应用的音频流全部停止时，不会立刻释放音频焦点，系统会保持音频焦点，直到音频会话停用时再释放音频焦点，或是直到该应用有新的音频流申请焦点。
 
-  典型场景：应用连续播放多个音频时，在多个音频衔接的间隙，不希望后台被影响的其他音频自动恢复，希望整个播放过程保持音频焦点的连贯性。
+  典型场景：应用连续播放多个音频时，在多个音频衔接的间隙，不希望后台被影响的其他音频自动恢复，希望整个播放过程保持音频焦点的连贯性（该场景需要应用在整个播放过程开始前激活AudioSession，整个播放过程结束后停用AudioSession）。
 
 ### 音频会话（AudioSession）使用流程
 
@@ -271,7 +278,7 @@ async function onAudioInterrupt(): Promise<void> {
 
 - 默认模式（CONCURRENCY_DEFAULT）：即系统默认的[音频焦点策略](#音频焦点策略)。
 
-- 并发模式（CONCURRENCY_MIX_WITH_OTHERS）：和其它音频流并发。
+- 并发模式（CONCURRENCY_MIX_WITH_OTHERS）：和其他音频流并发。
 
 - 降低音量模式（CONCURRENCY_DUCK_OTHERS）：和其他音频流并发，并且降低其他音频流的音量。
 

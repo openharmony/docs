@@ -174,7 +174,7 @@ const age: number = params.info.age; // 获取age属性的值
 
 ![router-back-to-home](figures/router-back-to-home.gif)
 
-直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 可以使用以下几种方式返回页面：
 
@@ -239,7 +239,7 @@ const age: number = params.info.age; // 获取age属性的值
 
 > **说明：**
 > 
-> 直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+> 直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 ```ts
 @Entry
@@ -264,6 +264,95 @@ struct Home {
 >
 > 另外，如果使用back方法返回到原来的页面，原页面不会被重复创建，因此使用\@State声明的变量不会重复声明，也不会触发页面的aboutToAppear生命周期回调。如果需要在原页面中使用返回页面传递的自定义参数，可以在需要的位置进行参数解析。例如，在onPageShow生命周期回调中进行参数解析。
 
+## 生命周期
+
+[router](../reference/apis-arkui/js-apis-router.md)页面生命周期，即被[\@Entry](state-management/arkts-create-custom-components.md#entry)装饰的组件生命周期，提供以下生命周期接口：
+
+- [onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)：页面每次显示时触发一次，包括路由过程、应用进入前台等场景。
+
+- [onPageHide](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpagehide)：页面每次隐藏时触发一次，包括路由过程、应用进入后台等场景。
+
+- [onBackPress](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onbackpress)：当用户点击返回按钮时触发。
+
+```ts
+// Index.ets
+@Entry
+@Component
+struct MyComponent {
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onPageShow() {
+    console.info('Index onPageShow');
+  }
+
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onPageHide() {
+    console.info('Index onPageHide');
+  }
+
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onBackPress() {
+    console.info('Index onBackPress');
+    // 返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理
+    return true;
+  }
+
+  build() {
+    Column() {
+      // push到Page页面，执行onPageHide
+      Button('push to next page')
+        .onClick(() => {
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/Page' });
+        })
+    }
+  }
+}
+```
+```ts
+// Page.ets
+@Entry
+@Component
+struct Page {
+  @State textColor: Color = Color.Black;
+  @State num: number = 0;
+
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onPageShow() {
+    console.info('Page onPageShow');
+    this.num = 5;
+  }
+
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onPageHide() {
+    console.info('Page onPageHide');
+  }
+
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onBackPress() { // 不设置返回值按照false处理
+    console.info('Page onBackPress');
+    this.textColor = Color.Grey;
+    this.num = 0;
+  }
+
+  build() {
+    Column() {
+      Text(`num 的值为：${this.num}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .fontColor(this.textColor)
+        .margin(20)
+        .onClick(() => {
+          this.num += 5;
+        })
+      Button('pop to previous page')
+        .onClick(() => {
+          this.getUIContext().getRouter().back();
+        })
+    }
+    .width('100%')
+  }
+}
+```
+![router_2025-07-02_152548](figures/router_2025-07-02_152548.gif)
 
 ## 页面返回前增加一个询问框
 
@@ -280,7 +369,7 @@ struct Home {
 
 为了实现这个功能，可以使用页面路由Router模块提供的两个方法：[showAlertBeforeBackPage](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertbeforebackpage)和[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)来实现这个功能。
 
-直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 如果想要在目标界面开启页面返回询问框，需要在调用[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)方法之前，通过调用[showAlertBeforeBackPage](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertbeforebackpage)方法设置返回询问框的信息。例如，在支付页面中定义一个返回按钮的点击事件处理函数：
 
@@ -316,7 +405,7 @@ message：string类型，表示询问框的内容。
 
 自定义询问框的方式，可以使用弹窗[showDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdialog-1)或者自定义弹窗实现。这样可以让应用界面与系统默认询问框有所区别，提高应用的用户体验度。本文以弹窗为例，介绍如何实现自定义询问框。
 
-直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+直接使用router可能导致[UI上下文不明确](./arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)实例，并使用[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 在事件回调中，调用弹窗的[showDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdialog-1)方法：
 

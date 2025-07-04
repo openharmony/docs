@@ -28,7 +28,7 @@ import { componentSnapshot } from '@kit.ArkUI';
 
 get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptions): void
 
-获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过回调返回结果。
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)，找到对应组件进行截图。通过回调返回结果。
 
 > **说明：** 
 >
@@ -46,7 +46,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptio
 
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| id       | string                              | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
+| id       | string                              | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)。 |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是    | 截图返回结果的回调。                               |
 | options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
 
@@ -63,7 +63,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptio
 
 > **说明：**
 > 
-> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](js-apis-arkui-UIContext.md#uicontext)实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -105,7 +105,7 @@ struct SnapshotExample {
 
 get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
-获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过Promise返回结果。
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)，找到对应组件进行截图。通过Promise返回结果。
 
 > **说明：**
 >
@@ -123,7 +123,7 @@ get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)。 |
 | options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -145,7 +145,7 @@ get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
 > **说明：**
 > 
-> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](js-apis-arkui-UIContext.md#uicontext)实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -228,7 +228,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 > **说明：**
 > 
-> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](js-apis-arkui-UIContext.md#uicontext)实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -339,7 +339,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 
 > **说明：**
 > 
-> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](js-apis-arkui-UIContext.md#uicontext)实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI'
@@ -402,7 +402,7 @@ struct OffscreenSnapshotExample {
 
 getSync(id: string, options?: SnapshotOptions): image.PixelMap
 
-获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)。
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)。
 
 > **说明：**
 >
@@ -416,7 +416,7 @@ getSync(id: string, options?: SnapshotOptions): image.PixelMap
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)。 |
 | options       | [SnapshotOptions](#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -439,7 +439,7 @@ getSync(id: string, options?: SnapshotOptions): image.PixelMap
 
 > **说明：**
 > 
-> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](js-apis-arkui-UIContext.md#uicontext)实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';

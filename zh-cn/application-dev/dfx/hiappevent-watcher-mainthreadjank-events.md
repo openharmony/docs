@@ -55,74 +55,6 @@
 
    ![抓trace示例](figures/dump-trace2.PNG)
 
-## 自定义采样栈参数介绍
-
-系统提供了基础的主线程超时检测功能，一些应用主线程对检测事件的检测间隔、采集次数等有更高的要求，因此开放可配置参数的接口提供给开发者使用。
-
-API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[应用事件打点setEventConfig接口说明](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#hiappeventseteventconfig15)。
-
-### 接口说明
-
-| 接口名                                                                                | 描述                                         |
-| -------------------------------------------------------------------------------------| -------------------------------------------- |
-| setEventConfig(name: string, config: Record<string, ParamType>): Promise\<void>       | 设置主线程采样栈参数接口。 **name为MAIN_THREAD_JANK。** |
-
-### 参数设置说明
-
-开发者可以使用上述hiappevent提供的接口，在Record<string, ParamType>中自定义配置采集MAIN_THREAD_JANK事件的参数。
-
-开发者通过设置log_type（采集MAIN_THREAD_JANK事件日志类型）的值，定制不同的MAIN_THREAD_JANK事件的规格，具体规格如下：
-
-1. log_type设置0：默认值，采集调用栈150ms~450ms，采集trace阈值450ms。如果之前使用log_type=1设置过抓采样栈参数，自定义参数无效。参数配置示例如下：
-
-    ```text
-        let params: Record<string, hiAppEvent.ParamType> = {
-        "log_type": "0"
-        };
-    ```
-
-2. log_type设置1：采集调用栈，触发检测的阈值用户自定义。**log_type=1，必须配置采样栈相关的5个参数**，具体参数如下：
-
-    （1）sample_interval：主线程超时采样检测间隔。系统根据开发者设置的interval进行超时检测判断，并使用该interval作为周期性任务检测的间隔。范围：[50, 500]，单位：ms。默认值：150ms。
-
-    （2）ignore_startup_time：线程启动一定时间内，不进行超时检测。一些进程启动时间较长，此时抓全的超时采样栈，分析意义不大。因此，在开发者定义启动时间间隔内，不进行超时检测。最小值：3s。默认值：10s。
-
-    （3）sample_count：主线程超时采样次数。系统检测到当前主线程执行任务超过采样限制后，开始周期性采集堆栈，每个间隔采集一次堆栈，共采集sample_count次。最小值：1次，最大值需要结合自定义的sample_interval进行动态计算，计算公式：**sample_count <= (2500 / sample_interval - 4)**。开发者要结合需求场景，进行合理的设置。
-
-    > **说明：**
-    >
-    > 2500的含义：根据系统规定，主线程超时事件从检测到上报的时间不可以超过2.5s（即：2500ms）。因此sample_count的设置值不能超过系统按计算公式得出的最大值。
-    >
-    > 4的含义：第一次超时间隔检测时间 + 第二次超时间隔（系统提供两次再次发生超时事件的检测机会）时间 + 收集并上报堆栈信息的时间。
-
-    （4）report_times_per_app：同一个应用的PID一个生命周期内，主线程超时采样上报次数。一个生命周期内只能设置一次。
-
-    > **说明：**
-    >
-    > 开发者选项打开，每小时范围：[1, 3]，单位：次。默认值：1次；
-    >
-    > 开发者选项关闭，每天上报次数范围：[1, 3]，单位：次。默认值：1次。
-
-    参数配置示例如下:
-
-    ```text
-        let params: Record<string, hiAppEvent.ParamType> = {
-        "log_type": "1",
-        "sample_interval": "100",
-        "ignore_startup_time": "11",
-        "sample_count": "21",
-        "report_times_per_app": "3"
-        };
-    ```
-
-3. log_type设置2：收集trace，触发检测的阈值450ms。参数配置示例如下:
-
-    ```text
-        let params: Record<string, hiAppEvent.ParamType> = {
-        "log_type": "2"
-        };
-    ```
-
 ## 主线程超时事件日志规格
 
 1. 日志老化规格。
@@ -194,6 +126,95 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     trace文件大小约为1-5M左右。trace文件可以通过[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化分析。工具下载链接：[developtools_smartperf_host官方发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
 
     trace文件说明参考：[web端加载trace说明](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_systemtrace.md)。
+
+## 自定义主线程超时事件参数介绍
+
+从API version 15开始，系统提供了基础的主线程超时检测功能，一些应用主线程对检测事件的检测间隔、采集次数等有更高的要求，因此开放可配置参数的接口提供给开发者使用。
+
+#### 接口说明
+
+| 接口名                                                                                | 描述                                         |
+| -------------------------------------------------------------------------------------| -------------------------------------------- |
+| setEventConfig(name: string, config: Record<string, ParamType>): Promise\<void>       | 设置主线程采样栈参数接口。 **name为MAIN_THREAD_JANK。**<br>**说明**：从API version 15开始，支持该接口。 |
+
+#### 参数设置说明
+
+开发者可以使用上述hiappevent提供的接口，在Record<string, ParamType>中配置崩溃日志打印规格的参数。具体参数说明如下：
+
+> **注意**
+>
+> log_type=0或2，无需设置其他参数。
+>
+> log_type=1时，必须配置以下参数：sample_interval、ignore_startup_time、sample_count和report_times_per_app。
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -----| ----- | ----- |----- |
+| log_type | string | 是 |采集MAIN_THREAD_JANK事件日志类型。<br/>log_type=0：默认值，主线程连续两次超时150ms~450ms，采集调用栈；主线程超时450ms，采集trace。<br/>log_type=1：仅采集调用栈，触发检测的阈值由用户自定义。<br/>log_type=2：仅采集trace。<br/> |
+| sample_interval | string | 否 | 主线程超时检测间隔和采样间隔。<br/>单位为ms，取值范围为[50, 500]。<br/>系统根据开发者设置的interval进行超时检测判断，并使用该interval作为周期性任务检测的间隔。<br/> |
+| ignore_startup_time | string | 否 | 忽略启动时间内的主线程超时检测。单位为s，最小值：3，默认值：10。<br/>线程启动一定时间内，不进行超时检测。一些进程启动时间较长，此时抓全的超时采样栈，分析意义不大。因此，在开发者定义启动时间间隔内，不进行超时检测。<br/>|
+| sample_count | string | 否 |主线程超时采样次数。系统检测到当前主线程执行任务超过采样限制后，开始周期性采集堆栈，每个间隔采集一次堆栈，共采集sample_count次。<br/>最小值：1次，最大值需要结合自定义的sample_interval进行动态计算，计算公式：**sample_count <= (2500 / sample_interval - 4)**。|
+| report_times_per_app | string | 否 | 同一个应用的PID一个生命周期内，主线程超时采样上报次数。一个生命周期内只能设置一次。<br/>默认值：1次，单位：次。<br/>开发者选项打开，每小时范围：[1, 3]。<br/> 开发者选项关闭，每天上报次数范围：[1, 3]。<br/>|
+
+**sample_count说明：**
+
+（1）2500的含义：根据系统规定，主线程超时事件从检测到上报的时间不可以超过2.5s（即：2500ms）。因此sample_count的设置值不能超过系统按计算公式得出的最大值。
+
+（2）4的含义：第一次超时间隔检测时间 + 第二次超时间隔（系统提供两次再次发生超时事件的检测机会）时间 + 收集并上报堆栈信息的时间。
+
+（3）开发者要结合需求场景，进行合理的设置。
+
+#### 参数设置示例
+
+以下示例用于模拟配置MAIN_THREAD_JANK事件的门限触发条件，以log_type的三种类型为例：
+
+log_type=0，用于采样栈或采样trace。
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let params: Record<string, hiAppEvent.ParamType> = {
+"log_type": "0"
+};
+hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
+hilog.info(0x0000, 'hiAppEvent', `Setting default value successfully.`);
+}).catch((err: BusinessError) => {
+hilog.error(0x0000, 'hiAppEvent', `Failed to set default value. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
+log_type=1，仅用于采集调用栈。
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let params: Record<string, hiAppEvent.ParamType> = {
+  "log_type": "1",
+  "sample_interval": "100",
+  "ignore_startup_time": "11",
+  "sample_count": "21",
+  "report_times_per_app": "3"
+};
+hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
+  hilog.info(0x0000, 'hiAppEvent', `Successfully set sampling stack parameters.`);
+}).catch((err: BusinessError) => {
+hilog.error(0x0000, 'hiAppEvent', `Failed to set sample stack value. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
+log_type=2，仅用于采集trace。
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let params: Record<string, hiAppEvent.ParamType> = {
+  "log_type": "2"
+};
+hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
+  hilog.info(0x0000, 'hiAppEvent', `Set to only collect trace successfully.`);
+}).catch((err: BusinessError) => {
+  hilog.error(0x0000, 'hiAppEvent', `Failed to set only collect trace. code: ${err.code}, message: ${err.message}`);
+});
+```
 
 ## 事件params属性描述
 

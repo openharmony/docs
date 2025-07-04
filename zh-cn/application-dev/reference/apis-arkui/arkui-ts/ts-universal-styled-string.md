@@ -573,10 +573,10 @@ TextShadowStyle | GestureStyle | ImageAttachment | ParagraphStyle | LineHeightSt
 | ----------- | ---------------------------------------- | ---- | ---- | --------------------------------------------------------------------------------------------------------------------------------- |
 | fontColor   | [ResourceColor](ts-types.md#resourcecolor)  | 是   | 是   | 获取属性字符串的文本颜色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                               |
 | fontFamily  | string                                   | 是   | 是   | 获取属性字符串的文本字体。<br/>默认返回undefined。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                       |
-| fontSize    | number                                   | 是   | 是   | 获取属性字符串的文本字体大小。<br/>单位：[fp](ts-pixel-units.md#像素单位) <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| fontSize    | number                                   | 是   | 是   | 获取属性字符串的文本字体大小。<br/>单位：[fp](ts-pixel-units.md) <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | fontWeight  | number                                   | 是   | 是   | 获取属性字符串的文本字体粗细。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                           |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | 是   | 是   | 获取属性字符串的文本字体样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                           |
-| strokeWidth<sup>20+</sup> | number                                   | 是   | 是   | 获取属性字符串的文本描边宽度。<br/>默认返回0，单位为[vp](ts-pixel-units.md#像素单位)。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
+| strokeWidth<sup>20+</sup> | number                                   | 是   | 是   | 获取属性字符串的文本描边宽度。<br/>默认返回0，单位为[vp](ts-pixel-units.md)。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 | strokeColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 是   | 是   | 获取属性字符串的文本描边颜色。<br/>默认返回字体颜色。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 | superscript<sup>20+</sup> | [SuperscriptStyle](ts-text-common.md#superscriptstyle20枚举说明)  | 是   | 是   | 获取属性字符串的文本上下角标。<br/>默认值：SuperscriptStyle.NORMAL。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 
@@ -604,7 +604,7 @@ constructor(value?: TextStyleInterface)
 | ----------- | ------------------------------------------------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | fontColor   | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | 字体颜色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                  |
 | fontFamily  | [ResourceStr](ts-types.md#resourcestr)                           | 否   | 文本字体。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                  |
-| fontSize    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 字体大小。如果LengthMetrics的unit值是percent，当前设置不生效，处理为16fp。<br/>单位：[fp](ts-pixel-units.md#像素单位) <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                        |
+| fontSize    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 字体大小。如果LengthMetrics的unit值是percent，当前设置不生效，处理为16fp。<br/>单位：[fp](ts-pixel-units.md) <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                        |
 | fontWeight  | number\| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 字体粗细。<br/>number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle)                      | 否   | 字体样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                  |
 | strokeWidth<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 文本描边宽度。如果LengthMetrics的unit值是percent，当前设置不生效，处理为0。<br/>设置值小于0时为实心字，大于0时为空心字。<br/>默认值为0。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                      |
@@ -733,7 +733,7 @@ constructor(value: DecorationStyleInterface, options?: DecorationOptions)
 
 | 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| baselineOffset  | number |  是  |  否 | 获取属性字符串的文本基线偏移量。<br/>单位：[vp](ts-pixel-units.md#像素单位) |
+| baselineOffset  | number |  是  |  否 | 获取属性字符串的文本基线偏移量。<br/>单位：[vp](ts-pixel-units.md) |
 
 ### constructor
 
@@ -765,7 +765,7 @@ constructor(value: LengthMetrics)
 
 | 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| letterSpacing  | number |  是  |  否  | 获取属性字符串的文本字符间距。<br/>单位：[vp](ts-pixel-units.md#像素单位) |
+| letterSpacing  | number |  是  |  否  | 获取属性字符串的文本字符间距。<br/>单位：[vp](ts-pixel-units.md) |
 
 ### constructor
 
@@ -797,7 +797,7 @@ constructor(value: LengthMetrics)
 
 | 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| lineHeight  | number |  是  |  否  | 获取属性字符串的文本行高。<br/>单位：[vp](ts-pixel-units.md#像素单位) |
+| lineHeight  | number |  是  |  否  | 获取属性字符串的文本行高。<br/>单位：[vp](ts-pixel-units.md) |
 
 ### constructor
 
@@ -928,7 +928,7 @@ type ColorFilterType = ColorFilter | DrawingColorFilter
 | 类型  | 说明   |
 | ------ | ---------- |
 | [ColorFilter](ts-types.md#colorfilter9) | ColorFilter类型图片颜色滤镜设置项。 |
-| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter) | DrawingColorFilter类型图片颜色滤镜设置项。 |
+| [DrawingColorFilter](../../apis-arkgraphics2d/arkts-apis-graphics-drawing-ColorFilter.md) | DrawingColorFilter类型图片颜色滤镜设置项。 |
 
 ## ImageAttachmentInterface对象说明
 
@@ -951,9 +951,9 @@ type ColorFilterType = ColorFilter | DrawingColorFilter
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | 否   | 设置图片外边距。<br/>默认值：0<br/>单位：[vp](ts-pixel-units.md#像素单位) |
-| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Padding](ts-types.md#padding) | 否   | 设置图片内边距。<br/>默认值：0<br/>单位：[vp](ts-pixel-units.md#像素单位) |
-| borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置圆角。<br/>默认值：0<br/>单位：[vp](ts-pixel-units.md#像素单位) |
+| margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | 否   | 设置图片外边距。<br/>默认值：0<br/>单位：[vp](ts-pixel-units.md) |
+| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Padding](ts-types.md#padding) | 否   | 设置图片内边距。<br/>默认值：0<br/>单位：[vp](ts-pixel-units.md) |
+| borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置圆角。<br/>默认值：0<br/>单位：[vp](ts-pixel-units.md) |
 
 ## ResourceImageAttachmentOptions<sup>15+</sup>
 
@@ -1038,7 +1038,7 @@ invalidate(): void
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| fontSize | number |  是  | 设置文本字体大小。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
+| fontSize | number |  是  | 设置文本字体大小。<br/>单位：[fp](ts-pixel-units.md) |
 
 ## CustomSpanMetrics对象说明
 
@@ -1048,8 +1048,8 @@ invalidate(): void
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| width | number |  是  | 自定义绘制Span的宽。<br/>单位：[vp](ts-pixel-units.md#像素单位) |
-| height | number |  否  | 自定义绘制Span的高。<br/>单位：[vp](ts-pixel-units.md#像素单位) |
+| width | number |  是  | 自定义绘制Span的宽。<br/>单位：[vp](ts-pixel-units.md) |
+| height | number |  否  | 自定义绘制Span的高。<br/>单位：[vp](ts-pixel-units.md) |
 
 ## CustomSpanDrawInfo对象说明
 
@@ -1059,10 +1059,10 @@ invalidate(): void
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| x | number |  是  | 自定义绘制Span相对于挂载组件的偏移。<br/>单位：[px](ts-pixel-units.md#像素单位) |
-| lineTop | number |  是  | 自定义绘制Span相对于Text组件的上边距。<br/>单位：[px](ts-pixel-units.md#像素单位) |
-| lineBottom | number |  是  | 自定义绘制Span相对于Text组件的下边距。<br/>单位：[px](ts-pixel-units.md#像素单位) |
-| baseline | number |  是  | 自定义绘制Span的所在行的基线偏移量。<br/>单位：[px](ts-pixel-units.md#像素单位) |
+| x | number |  是  | 自定义绘制Span相对于挂载组件的偏移。<br/>单位：[px](ts-pixel-units.md) |
+| lineTop | number |  是  | 自定义绘制Span相对于Text组件的上边距。<br/>单位：[px](ts-pixel-units.md) |
+| lineBottom | number |  是  | 自定义绘制Span相对于Text组件的下边距。<br/>单位：[px](ts-pixel-units.md) |
+| baseline | number |  是  | 自定义绘制Span的所在行的基线偏移量。<br/>单位：[px](ts-pixel-units.md) |
 
 ## ParagraphStyle
 
@@ -1092,6 +1092,8 @@ invalidate(): void
 >  **说明：**
 >
 >  属性字符串的maxLines和overflow仅在Text中生效，建议在组件侧设置。
+>
+>  textAlign只能调整文本整体的布局，不影响字符的显示顺序。若需要调整字符的显示顺序，请参考[镜像状态字符对齐](../../../ui/arkts-mirroring-display.md#镜像状态字符对齐)。
 
 ### constructor
 
@@ -1219,42 +1221,6 @@ constructor(url: string)
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | url | string | 是   | 超链接设置项。|
-
-
-## TextLayout<sup>20+</sup>
-
-文本布局类。
-
-### getParagraphs<sup>20+</sup>
-
-getParagraphs(styledString: StyledString, options?: TextLayoutOptions): Array\<Paragraph\>
-
-将属性字符串根据文本布局选项转换成对应的[Paragraph](../../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)数组。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明           |
-| ----- | ------ | ---- | -------------- |
-| styledString | [StyledString](#styledstring) | 是   | 待转换的属性字符串。|
-| options | [TextLayoutOptions](#textlayoutoptions对象说明20) | 否 | 文本布局选项。|
-
-**返回值：**
-
-| 类型     | 说明        |
-| ------ | --------- |
-| Array<[Paragraph](../../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)> | [Paragraph](../../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)的数组。 |
-
-## TextLayoutOptions对象说明<sup>20+</sup>
-
-文本布局选项。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| constraintWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 设置被计算文本布局宽度。若不设置则宽度为单行布局所占最大宽度值。 |
 
 ## 示例
 
@@ -1898,7 +1864,7 @@ struct Index {
   //第三段落不设置缩进配置最大行数及超长显示方式
   paragraphStyleAttr3: ParagraphStyle = new ParagraphStyle({
     textAlign: TextAlign.End,
-    textVerticalAlign：TextVerticalAlign.BASELINE,
+    textVerticalAlign: TextVerticalAlign.BASELINE,
     maxLines: 1,
     wordBreak: WordBreak.BREAK_ALL,
     overflow: TextOverflow.Ellipsis
@@ -2667,212 +2633,3 @@ struct Index {
 ```
 
 ![](figures/styledString_14.png)
-
-### 示例15 (属性字符串转换成Paragraph)
-
-该示例通过调用TextLayout.GetParagraph接口，展示了通过测算文本，当内容超出最大显示行数的时候，截断文本显示并展示“...全文”的效果。
-
-``` typescript
-import { LengthMetrics } from '@kit.ArkUI';
-import image from '@ohos.multimedia.image';
-import { drawing, text } from '@kit.ArkGraphics2D';
-let gUIContext: UIContext;
-class MyCustomSpan extends CustomSpan {
-  constructor(word: string, width: number, height: number) {
-    super();
-    this.word = word;
-    this.width = width;
-    this.height = height;
-  }
-  onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics {
-    return { width: this.width, height: this.height };
-  }
-  onDraw(context: DrawContext, options: CustomSpanDrawInfo) {
-    let canvas = context.canvas;
-    const brush = new drawing.Brush();
-    brush.setColor({
-      alpha: 255,
-      red: 0,
-      green: 74,
-      blue: 175
-    });
-    const font = new drawing.Font();
-    font.setSize(25);
-    const textBlob = drawing.TextBlob.makeFromString(this.word, font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
-    canvas.attachBrush(brush);
-    canvas.drawRect({
-      left: options.x + 10,
-      right: options.x + gUIContext.vp2px(this.width) - 10,
-      top: options.lineTop + 10,
-      bottom: options.lineBottom - 10
-    });
-    brush.setColor({
-      alpha: 255,
-      red: 23,
-      green: 169,
-      blue: 141
-    });
-    canvas.attachBrush(brush);
-    canvas.drawTextBlob(textBlob, options.x + 20, options.lineBottom - 15);
-    canvas.detachBrush();
-  }
-  setWord(word: string) {
-    this.word = word;
-  }
-  width: number = 160;
-  word: string = "drawing";
-  height: number = 10;
-}
-@Entry
-@Component
-struct Indeddddx {
-  @State pixelmap?: PixelMap = undefined;
-  str : string = "Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal."
-  mutableStr2 = new MutableStyledString(this.str, [
-    {
-      start: 0,
-      length: 3,
-      styledKey: StyledStringKey.FONT,
-      styledValue: new TextStyle({fontSize: LengthMetrics.px(20)})
-    },
-    {
-      start: 3,
-      length: 3,
-      styledKey: StyledStringKey.FONT,
-      styledValue: new TextStyle({fontColor: Color.Brown})
-    }
-  ])
-  imagePixelMap: image.PixelMap | undefined = undefined;
-  @State pixelmap2?: PixelMap = undefined;
-  private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array  = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
-    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
-    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
-      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    });
-    await imageSource.release();
-    return createPixelMap;
-  }
-  getlineNum(styledString: StyledString, width: LengthMetrics) {
-    let paragraphArr = TextLayout.getParagraphs(styledString, { constraintWidth: width})
-    let res = 0
-    for (let i = 0; i < paragraphArr.length; ++i) {
-      res += paragraphArr[i].getLineCount()
-    }
-    return res
-  }
-  getCorretIndex(styledString : MutableStyledString, maxLines: number, width: LengthMetrics)  {
-    let low = 0
-    let high = styledString.length - 1;
-    while(low <= high) {
-      let mid = (low + high) >> 1;
-      console.log("demo: get " + low + " " + high + " " + mid)
-      let moreStyledString = new MutableStyledString("... 全文", [{
-        start: 4,
-        length: 2,
-        styledKey: StyledStringKey.FONT,
-        styledValue: new TextStyle({fontColor: Color.Blue})
-      }])
-      moreStyledString.insertStyledString(0, styledString.subStyledString(0, mid))
-      let lineNum = this.getlineNum(moreStyledString, LengthMetrics.px(500))
-      if(lineNum <= maxLines) {
-        low = mid + 1;
-      } else {
-        high = mid -1;
-      }
-    }
-    return high
-  }
-  mutableStrAllContent = new MutableStyledString(this.str, [
-    {
-      start: 0,
-      length: 3,
-      styledKey: StyledStringKey.FONT,
-      styledValue: new TextStyle({fontSize: LengthMetrics.px(40)})
-    },
-    {
-      start: 3,
-      length: 3,
-      styledKey: StyledStringKey.FONT,
-      styledValue: new TextStyle({fontColor: Color.Brown})
-    }
-  ])
-  customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 120, 10);
-  mutableStrAllContent2 = new MutableStyledString(this.str, [
-    {
-      start: 0,
-      length: 3,
-      styledKey: StyledStringKey.FONT,
-      styledValue: new TextStyle({fontSize: LengthMetrics.px(100)})
-    },
-    {
-      start: 3,
-      length: 3,
-      styledKey: StyledStringKey.FONT,
-      styledValue: new TextStyle({fontColor: Color.Brown})
-    }
-  ])
-  controller: TextController = new TextController()
-  controller2: TextController = new TextController()
-  textController: TextController = new TextController()
-  textController2: TextController = new TextController()
-  async aboutToAppear() {
-    gUIContext = this.getUIContext();
-    this.mutableStrAllContent2.insertStyledString(0, new StyledString(this.customSpan1));
-    this.mutableStr2.insertStyledString(0, new StyledString(this.customSpan1));
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.startIcon'));
-  }
-  build() {
-    Scroll() {
-      Column() {
-        Text('原文')
-        Text(undefined, { controller: this.controller }).width('500px').onAppear(() => {
-          this.controller.setStyledString(this.mutableStrAllContent)
-        })
-        Divider().strokeWidth(8).color('#F1F3F5')
-        Text('排版后')
-        Text(undefined, { controller: this.textController }).onAppear(() => {
-          let now = this.getCorretIndex(this.mutableStrAllContent, 3, LengthMetrics.px(500))
-          if (now != this.mutableStrAllContent.length - 1) {
-            let moreStyledString = new MutableStyledString("... 全文", [{
-              start: 4,
-              length: 2,
-              styledKey: StyledStringKey.FONT,
-              styledValue: new TextStyle({ fontColor: Color.Blue })
-            }])
-            moreStyledString.insertStyledString(0, this.mutableStrAllContent.subStyledString(0, now))
-            this.textController.setStyledString(moreStyledString)
-          } else {
-            this.textController.setStyledString(this.mutableStrAllContent)
-          }
-        })
-          .width('500px')
-        Divider().strokeWidth(8).color('#F1F3F5')
-        Text('原文')
-        Text(undefined, { controller: this.controller2 }).width('500px').onAppear(() => {
-          this.controller2.setStyledString(this.mutableStrAllContent2)
-        })
-        Divider().strokeWidth(8).color('#F1F3F5')
-        Text('排版后')
-        Text(undefined, { controller: this.textController2 }).onAppear(() => {
-          let now = this.getCorretIndex(this.mutableStrAllContent2, 3, LengthMetrics.px(500))
-          let moreStyledString = new MutableStyledString("... 全文", [{
-            start: 4,
-            length: 2,
-            styledKey: StyledStringKey.FONT,
-            styledValue: new TextStyle({ fontColor: Color.Blue })
-          }])
-          moreStyledString.insertStyledString(0, this.mutableStrAllContent2.subStyledString(0, now))
-          this.textController2.setStyledString(moreStyledString)
-        })
-          .width('500px')
-      }.width('100%')
-    }
-  }
-}
-```
-![](figures/styledString_15.png)

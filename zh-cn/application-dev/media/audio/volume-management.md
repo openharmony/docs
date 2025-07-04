@@ -42,6 +42,61 @@ let audioManager = audio.getAudioManager();
 let audioVolumeManager = audioManager.getVolumeManager();
 ```
 
+### 获取音量信息
+
+管理音频组音量的接口由AudioVolumeGroupManager提供，在使用之前，需要使用[getVolumeGroupManager()](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeManager.md#getvolumegroupmanager9)获取AudioVolumeGroupManager实例。
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
+
+audioVolumeManager.getVolumeGroupManager(groupId, (err: BusinessError, value: audio.AudioVolumeGroupManager) => {
+  if (err) {
+    console.error(`Failed to obtain the volume group infos list. ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+});
+```
+
+使用[AudioVolumeGroupManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeGroupManager.md)获取指定流的音量信息。
+
+示例代码如下所示：
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// 获取指定流的音量。
+audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
+  if (err) {
+    console.error(`Failed to obtain the volume. ${err}`);
+    return;
+  }
+  console.info('Callback invoked to indicate that the volume is obtained.');
+});
+
+// 获取指定流的最小音量。
+audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
+  if (err) {
+    console.error(`Failed to obtain the minimum volume. ${err}`);
+    return;
+  }
+  console.info(`Callback invoked to indicate that the minimum volume is obtained. ${value}`);
+});
+
+// 获取指定流的最大音量。
+audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
+  if (err) {
+    console.error(`Failed to obtain the maximum volume. ${err}`);
+    return;
+  }
+  console.info(`Callback invoked to indicate that the maximum volume is obtained. ${value}`);
+});
+```
+
 ### 监听系统音量变化
 
 通过设置监听事件，可以监听系统音量的变化：
@@ -159,16 +214,28 @@ let volume = 1.0;  // 指定的音量大小，取值范围为[0.00-1.00]，1表�
 avPlayer.setVolume(volume);
 ```
 
-使用[AudioRenderer](../../reference/apis-audio-kit/arkts-apis-audio-f.md#audiocreateaudiorenderer8)设置音频流音量的示例代码如下：
+使用[AudioRenderer](../../reference/apis-audio-kit/arkts-apis-audio-f.md#audiocreateaudiorenderer8)的[setVolume](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#setvolume9)和[getVolume](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#getvolume12)接口分别完成音频流音量的设置和获取。
+
+示例代码如下所示：
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 设置音频流音量。
 audioRenderer.setVolume(0.5).then(() => {  // 音量范围为[0.0-1.0]。
   console.info('Invoke setVolume succeeded.');
 }).catch((err: BusinessError) => {  
   console.error(`Invoke setVolume failed, code is ${err.code}, message is ${err.message}`);
 });
+
+// 获取音频流音量。
+try {
+  let value: number = audioRenderer.getVolume();
+  console.info(`Indicate that the volume is obtained ${value}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the volume, error ${error}.`);
+}
 ```
 
 ### 监听活跃流变化

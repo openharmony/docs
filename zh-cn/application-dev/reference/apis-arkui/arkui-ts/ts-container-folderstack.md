@@ -1,6 +1,6 @@
 # FolderStack
 
-FolderStack继承于Stack(层叠布局)控件，新增了折叠屏悬停能力，通过识别upperItems自动避让折叠屏折痕区后移到上半屏。
+FolderStack继承于Stack(层叠布局)控件，新增了<!--RP1-->折叠屏悬停<!--RP1End-->能力，通过在配置项[FolderStackOptions](#folderstackoptions18对象说明)的upperItems数组上设置子组件id，使相应子组件自动避让折叠屏折痕区后移到上半屏。
 
 >  **说明：**
 >
@@ -29,6 +29,10 @@ FolderStack(options?: FolderStackOptions)
 | options |  [FolderStackOptions](#folderstackoptions18对象说明) | 否   | FolderStack的配置项。 |
 
 ## FolderStackOptions<sup>18+</sup>对象说明
+
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -164,6 +168,10 @@ type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
 
 当折叠状态改变的时候回调，仅在横屏状态下生效。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -183,9 +191,9 @@ type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
 | foldStatus       | [FoldStatus](ts-appendix-enums.md#foldstatus11)             | 是   | 当前设备的折叠状态。 |
 | isHoverMode      | boolean                                                     | 是   | 当前是否为悬停态。设置为true时表示当前为悬停态，设置为false时表示当前为非悬停态。  |
 | appRotation      | [AppRotation](ts-appendix-enums.md#approtation12)           | 是   | 当前应用方向。    |
-| windowStatusType | [WindowStatusType](#windowstatustype11) | 是   | 窗口模式枚举。    |
+| windowStatusType | [WindowStatusType](#windowstatustype12) | 是   | 窗口模式枚举。    |
 
-## WindowStatusType<sup>11+</sup>
+## WindowStatusType<sup>12+</sup>
 
 type WindowStatusType = WindowStatusType
 

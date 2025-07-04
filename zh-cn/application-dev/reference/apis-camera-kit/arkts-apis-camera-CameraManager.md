@@ -6,6 +6,12 @@
 
 相机管理器类，使用前需要通过[getCameraManager](arkts-apis-camera-f.md#cameragetcameramanager)接口获取相机管理实例。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## getSupportedCameras
 
 getSupportedCameras(): Array\<CameraDevice\>

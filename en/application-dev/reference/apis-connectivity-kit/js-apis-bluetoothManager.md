@@ -223,7 +223,7 @@ setLocalName(name: string): void
 Sets the name of the local Bluetooth device.
 
 > **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use [connection.setLocalName](js-apis-bluetooth-connection.md#connectionsetlocalname) instead.
+> This API is supported since API version 9 and deprecated since API version 10. Use [connection.setLocalName](js-apis-bluetooth-connection.md#connectionsetlocalnamedeprecated) instead.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -2169,7 +2169,7 @@ getPlayingState(device: string): PlayingState
 Obtains the playing state of a device.
 
 > **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use [a2dp.A2dpSourceProfile#getPlayingState](js-apis-bluetooth-a2dp.md#getPlayingState) instead.
+> This API is supported since API version 9 and deprecated since API version 10. Use [getPlayingState](js-apis-bluetooth-a2dp.md#getplayingstate) instead.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -2218,7 +2218,7 @@ try {
 Before using an API of **HandsFreeAudioGatewayProfile**, you need to create an instance of this class by using **getProfile()**.
 
 > **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use [hfp.HandsFreeAudioGatewayProfile](js-apis-bluetooth-hfp.md#HandsFreeAudioGatewayProfile) instead.
+> This API is supported since API version 9 and deprecated since API version 10. Use [hfp.HandsFreeAudioGatewayProfile](js-apis-bluetooth-hfp.md#handsfreeaudiogatewayprofile) instead.
 
 
 ### connect
@@ -2505,7 +2505,7 @@ hidHost.off('connectionStateChange', onReceiveEvent);
 Before using an API of **PanProfile**, you need to create an instance of this class by using **getProfile()**.
 
 > **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use [pan.PanProfile](js-apis-bluetooth-pan.md#panprofile) instead.
+> This API is supported since API version 9 and deprecated since API version 10. Use [pan.createPanProfile](js-apis-bluetooth-pan.md#pancreatepanprofile) instead.
 
 
 
@@ -2606,7 +2606,7 @@ panProfile.off('connectionStateChange', onReceiveEvent);
 Implements the Generic Attribute Profile (GATT) server. Before using an API of this class, you need to create a **GattServer** instance using **createGattServer()**.
 
 > **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer](js-apis-bluetooth-ble.md#GattServer) instead. 
+> This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer](js-apis-bluetooth-ble.md#gattserver) instead. 
 
 
 ### startAdvertising<sup>(deprecated)</sup>
@@ -4109,7 +4109,7 @@ setBLEMtuSize(mtu: number): void
 Sets the maximum transmission unit (MTU) that can be transmitted between the GATT client and its remote BLE device. This API can be used only after a connection is set up by calling [connect](#connect).
 
 > **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#setBLEMtuSize](js-apis-bluetooth-ble.md#setBLEMtuSize) instead.
+> This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#setBLEMtuSize](js-apis-bluetooth-ble.md#setblemtusize) instead.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 

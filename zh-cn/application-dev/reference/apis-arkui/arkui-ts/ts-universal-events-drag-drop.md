@@ -213,7 +213,7 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 
 | 参数名        | 类型                                      | 必填 | 说明                                           |
 | :------------ | ----------------------------------------- | ---- | ---------------------------------------------- |
-| callback          | Callback\<[SpringLoadingContext](../js-apis-arkui-dragController.md#springloadingcontext20)\> \| null    | 是   | 悬停检测回调函数，为null时取消监听。 |
+| callback          | Callback\<[SpringLoadingContext](../js-apis-arkui-dragController.md#springloadingcontext20)\> \| null    | 是   | 悬停检测回调函数，为null时禁用悬停检测。 |
 | configuration | [DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20) | 否   | 悬停检测配置信息，为undefined时取[DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20)默认值。  |
 
 ## DragItemInfo说明
@@ -627,6 +627,38 @@ getY(): number
 | 类型   | 说明                                                |
 | ------ | --------------------------------------------------- |
 | number | 返回当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。 |
+
+### getGlobalDisplayX<sup>20+</sup>
+
+getGlobalDisplayX(): number
+
+当前拖拽点相对于全局屏幕的左上角的X坐标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                                |
+| ------ | --------------------------------------------------- |
+| number | 返回当前拖拽点相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞) |
+
+### getGlobalDisplayY<sup>20+</sup>
+
+getGlobalDisplayY(): number
+
+当前拖拽点相对于全局屏幕的左上角的Y坐标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                                |
+| ------ | --------------------------------------------------- |
+| number | 返回当前拖拽点相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞) |
 
 ## DragResult<sup>10+</sup>枚举说明
 
@@ -1377,7 +1409,7 @@ struct Index {
         .height(50)
         .margin({ left: 15 })
       Text('onDragEnter dragSource: ' + this.enterDragSource.toString() + '\n' + 'onDragEnter isRemote: ' +
-      this.startIsRemote.toString())
+      this.enterIsRemote.toString())
         .width('100%')
         .height(50)
         .margin({ left: 15 })
@@ -1500,26 +1532,26 @@ struct VideoExample {
           .onDragStart((event: DragEvent) => {
             const context: Context | undefined = this.uiContext.getHostContext();
             if (context) {
-              let data = context.resourceManager.getRawFdSync('test1.mp4');
-              let filePath = context.filesDir + '/test1.mp4';
-              let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-              let bufferSize = data.length as number;
-              let buf = new ArrayBuffer(bufferSize);
-              fs.readSync(data.fd, buf, { offset: data.offset, length: bufferSize });
-              fs.writeSync(file.fd, buf, { offset: 0, length: bufferSize });
-              fs.closeSync(file.fd);
-              context.resourceManager.closeRawFdSync('test1.mp4')
-              this.uri = fileUri.getUriFromPath(filePath);
-              let videoMp: uniformDataStruct.FileUri = {
-                uniformDataType: 'general.file-uri',
-                oriUri: this.uri,
-                fileType: 'general.video',
-              }
-              let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
-              let unifiedData = new unifiedDataChannel.UnifiedData();
-              unifiedRecord.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, videoMp);
-              unifiedData.addRecord(unifiedRecord);
               let loadHandler: unifiedDataChannel.DataLoadHandler = () => {
+                let data = context.resourceManager.getRawFdSync('test1.mp4');
+                let filePath = context.filesDir + '/test1.mp4';
+                let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+                let bufferSize = data.length as number;
+                let buf = new ArrayBuffer(bufferSize);
+                fs.readSync(data.fd, buf, { offset: data.offset, length: bufferSize });
+                fs.writeSync(file.fd, buf, { offset: 0, length: bufferSize });
+                fs.closeSync(file.fd);
+                context.resourceManager.closeRawFdSync('test1.mp4')
+                this.uri = fileUri.getUriFromPath(filePath);
+                let videoMp: uniformDataStruct.FileUri = {
+                  uniformDataType: 'general.file-uri',
+                  oriUri: this.uri,
+                  fileType: 'general.video',
+                }
+                let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
+                let unifiedData = new unifiedDataChannel.UnifiedData();
+                unifiedRecord.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, videoMp);
+                unifiedData.addRecord(unifiedRecord);
                 return unifiedData;
               }
               (event as DragEvent).setDataLoadParams({
@@ -1563,12 +1595,12 @@ struct VideoExample {
                       this.blockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
                     }
                   } else {
-                    console.log('dragData arr is null');
+                    console.info('dragData arr is null');
                   }
                 } else {
-                  console.log('dragData is undefined');
+                  console.info('dragData is undefined');
                 }
-                console.log(`percentage: ${progress.progress}`);
+                console.info(`percentage: ${progress.progress}`);
               };
             let options: DataSyncOptions = {
               destUri: destUri,
@@ -1578,9 +1610,9 @@ struct VideoExample {
             }
             try {
               this.udKey = (event as DragEvent).startDataLoading(options);
-              console.log('udKey: ', this.udKey);
+              console.info('udKey: ', this.udKey);
             } catch (e) {
-              console.log(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+              console.error(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
             }
           }, { disableDataPrefetch: true })
         }
@@ -1593,7 +1625,7 @@ struct VideoExample {
           try {
             this.getUIContext().getDragController().cancelDataLoading(this.udKey);
           } catch (e) {
-            console.log(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+            console.error(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
           }
         })
         .margin({ top: 10 })
@@ -1601,4 +1633,4 @@ struct VideoExample {
   }
 }
 ```
-![DragEvent_getDisplayId](figures/dragLoading.gif)
+![DragEvent_setDataLoadParams](figures/dragLoading.gif)

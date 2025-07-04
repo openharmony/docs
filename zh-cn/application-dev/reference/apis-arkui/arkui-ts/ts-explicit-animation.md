@@ -7,16 +7,18 @@
 >  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
->
->**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
->
->  从API version 11开始，该接口支持在原子化服务中使用。
 
 ## animateTo<sup>(deprecated)</sup>
 
 animateTo(value: AnimateParam, event: () => void): void
 
+显式动画接口。在需要动画时，显式调用该接口改变状态以产生动画。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 > **说明：**
 > - 从API version 18开始废弃，建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[animateTo](../js-apis-arkui-UIContext.md#animateto)替代。
@@ -29,14 +31,14 @@ animateTo(value: AnimateParam, event: () => void): void
 > - 某些场景下，在[状态管理V2](../../../ui/state-management/arkts-state-management-overview.md#状态管理v2)中使用animateTo动画，会产生异常效果，具体可参考：[在状态管理V2中使用animateTo动画效果异常](../../../ui/state-management/arkts-new-local.md#在状态管理v2中使用animateto动画效果异常)。
 
 **参数：**
-| 参数    | 类型                                | 是否必填 | 描述                                    |
+| 参数名    | 类型                                | 必填 | 说明                                    |
 | ----- | --------------------------------- | ---- | ------------------------------------- |
 | value | [AnimateParam](#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
 | event | () => void                        | 是    | 指定动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
 
 ## AnimateParam对象说明 
 
-| 名称         | 类型          | 是否必填                 | 描述                                       |
+| 参数名         | 类型          | 必填                 | 说明                                       |
 | ---------- | ---------------|------------------------ | ---------------------------------------- |
 | duration   | number         |  否  | 动画持续时间，单位为毫秒。<br/>默认值：1000<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**说明：**<br/>- 在ArkTS卡片上最大动画持续时间为1000毫秒，若超出则固定为1000毫秒。<br/>-&nbsp;可以通过在持续时间为0的动画闭包函数中改变属性，以实现停止该属性动画的效果。<br/>-&nbsp;设置小于0的值时按0处理。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。 |
 | tempo      | number         | 否 | 动画播放速度，值越大动画播放越快，值越小播放越慢，为0时无动画效果。<br/>默认值：1.0<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**说明：** <br/>当设置小于0的值时按值为1处理。 |
@@ -62,10 +64,10 @@ animateTo(value: AnimateParam, event: () => void): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 描述                                                         |
-| --------- | ------------------------------------------------------------ |
-| REMOVED   | 当整个动画结束并立即删除时，将触发回调。                         |
-| LOGICALLY | 当动画在逻辑上处于下降状态，但可能仍处于其长尾状态时，将触发回调。 |
+| 名称       | 值         | 说明                                                         |
+| --------- | ---------------|------------------------------------------------------------ |
+| REMOVED   | 0  | 当整个动画结束并立即删除时，将触发回调。                         |
+| LOGICALLY | 1  | 当动画在逻辑上处于下降状态，但可能仍处于其长尾状态时，将触发回调。 |
 
 ## ExpectedFrameRateRange<sup>11+</sup>
 
@@ -85,7 +87,7 @@ animateTo(value: AnimateParam, event: () => void): void
 
 > **说明：**
 > 
-> 直接使用animateTo可能导致[UI上下文不明确](../../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[animateTo](../js-apis-arkui-UIContext.md#animateto)调用绑定实例的animateTo。
+> 直接使用animateTo可能导致[UI上下文不明确](../../../ui/arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../js-apis-arkui-UIContext.md#uicontext)实例，并使用[animateTo](../js-apis-arkui-UIContext.md#animateto)调用绑定实例的animateTo。
 
 该示例通过在onAppear方法中创建组件出现时的动画效果。
 

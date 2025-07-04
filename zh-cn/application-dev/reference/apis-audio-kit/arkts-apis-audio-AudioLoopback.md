@@ -11,6 +11,12 @@
 
 输入\输出设备由系统自动选择。如果当前输入\输出不支持低时延，则音频返听无法启用。在运行过程中，如果音频焦点被另一个音频流抢占，输入\输出设备切换到不支持低时延的设备，系统会自动禁用音频返听。
 
+## 导入模块
+
+```ts
+import { audio } from '@kit.AudioKit';
+```
+
 ## getStatus
 
 getStatus(): Promise<AudioLoopbackStatus\>
