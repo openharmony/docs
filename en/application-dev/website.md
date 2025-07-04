@@ -356,7 +356,7 @@
             - [Custom Component Layout](ui/state-management/arkts-page-custom-components-layout.md)
             - [Constraints on Access Modifiers of Custom Component Member Variables](ui/state-management/arkts-custom-components-access-restrictions.md)
           - Component Extension<!--arkts-extend-components-->
-            - [Component Extension Overview](ui/state-management/arkts-extend-components-overview.md)  
+            - [Component Extension Overview](ui/state-management/arkts-extend-components-overview.md)
             - [\@Builder Decorator: Custom Builder Function](ui/state-management/arkts-builder.md)
             - [\@LocalBuilder Decorator: Maintaining the Parent-Child Relationship Between Component and State Management](ui/state-management/arkts-localBuilder.md)
             - [\@BuilderParam Decorator: @Builder Function Reference](ui/state-management/arkts-builderparam.md)
@@ -784,40 +784,43 @@
         - [Copying Files Across Devices](file-management/file-copy-across-devices.md)
     - Form Kit<!--form-kit-->
       - [Introduction to Form Kit](form/formkit-overview.md)
-      - Service Widget Development in Stage Model<!--arkts-ui-widget-stage-->
-        - Developing an ArkTS Widget<!--arkts-ui-widget-->
-          - [ArkTS Widget Working Principles](form/arkts-ui-widget-working-principles.md)
-          - [ArkTS Widget Related Modules](form/arkts-ui-widget-modules.md)
-          - ArkTS Widget Development<!--arkts-ui-widget-dev-->
-            - [Creating an ArkTS Widget](form/arkts-ui-widget-creation.md)
-            - [Configuring Widget Configuration Files](form/arkts-ui-widget-configuration.md)
-            - [Widget Lifecycle Management](form/arkts-ui-widget-lifecycle.md)
-            - Widget Page Development<!--arkts-ui-widget-page-->
-              - [Widget Page Capability Overview](form/arkts-ui-widget-page-overview.md)
-              - [Using Animations in the Widget](form/arkts-ui-widget-page-animation.md)
-              - [Applying Custom Drawing in the Widget](form/arkts-ui-widget-page-custom-drawing.md)
-            - Widget Event Development<!--arkts-ui-widget-event-->
-              - [Widget Event Capability Overview](form/arkts-ui-widget-event-overview.md)
-              - [Launching the UIAbility of the Widget Provider Through the router Event](form/arkts-ui-widget-event-router.md)
-              - [Launching the UIAbility of the Widget Provider in the Background Through the call Event](form/arkts-ui-widget-event-call.md)
-              - [Updating Widget Content Through the message Event](form/arkts-ui-widget-event-formextensionability.md)
-              - [Updating Widget Content Through the router or call Event](form/arkts-ui-widget-event-uiability.md)
-            - Widget Data Interaction<!--arkts-ui-widget-interaction-->
-              - [Updating Widget Content](form/arkts-ui-widget-interaction-overview.md)              
-              <!--Del-->
-              - [Updating Widget Content Through a Proxy](form/arkts-ui-widget-update-by-proxy.md)
-              - [Conditional Widget Updates](form/arkts-ui-widget-update-by-conditions.md)
-              <!--DelEnd-->
-              - [Updating Local and Online Images in the Widget](form/arkts-ui-widget-image-update.md)
-              - [Updating Widget Content by State](form/arkts-ui-widget-update-by-status.md)
-          - Editing the ArkTS Widget Page<!--arkts-ui-widget-edit-->
-            - [Overview of ArkTS Widget Page Editing Interaction](form/arkts-ui-widget-event-formeditextensionability-overview.md)
-            - [Editing and Updating the Widget Content](form/arkts-ui-widget-event-formeditextensionability.md)
-          <!--Del-->
-          - [Widget Host Development (for System Applications Only)](form/widget-host-development-guide.md)
-          <!--DelEnd-->
-        - [Developing a JS Widget](form/js-ui-widget-development.md)
-      - [Service Widget Development in FA Model](form/widget-development-fa.md)
+      - ArkTS Widget Development (Recommended)<!--arkts-ui-->
+        - [ArkTS Widget Overview](form/arkts-form-overview.md)
+        - [Creating an ArkTS Widget](form/arkts-ui-widget-creation.md)
+        - [Configuring Widget Configuration Files](form/arkts-ui-widget-configuration.md)
+        - [Managing ArkTS Widget Lifecycle](form/arkts-ui-widget-lifecycle.md)
+        - [ArkTS Widget Process Model](form/arkts-ui-widget-process.md)
+        - ArkTS Widget Provider Development<!--arkts-ui-widget-->
+          - ArkTS Widget UI Development<!--arkts-ui-widget-page-->
+            - [Overview of ArkTS Widget UI Development](form/arkts-ui-widget-page-overview.md)
+            - [Using Animations in ArkTS Widgets](form/arkts-ui-widget-page-animation.md)
+            - [Using Canvas in ArkTS Widgets](form/arkts-ui-widget-page-custom-drawing.md)
+          - ArkTS Widget Page Interaction<!--arkts-ui-widget-event-->
+            - [Overview of ArkTS Widget Page Interaction](form/arkts-ui-widget-event-overview.md)
+            - [Interaction Through the router Event](form/arkts-ui-widget-event-router.md)
+            - [Interaction Through the call Event](form/arkts-ui-widget-event-call.md)
+            - [Interaction Through the message Event](form/arkts-ui-widget-event-formextensionability.md)
+          - ArkTS Widget Update<!--arkts-ui-widget-interaction-->
+            - [Overview of ArkTS Widget Update](form/arkts-ui-widget-interaction-overview.md)
+            - [Active Update of ArkTS Widgets](form/arkts-ui-widget-active-refresh.md)
+            - [Passive Update of ArkTS Widgets](form/arkts-ui-widget-passive-refresh.md)
+            <!--Del-->
+            - [Updating Widget Content Through a Proxy](form/arkts-ui-widget-update-by-proxy.md)
+            <!--DelEnd-->
+            - [Updating Local and Online Images in the Widget](form/arkts-ui-widget-image-update.md)
+            - [Updating Widget Content by State](form/arkts-ui-widget-update-by-status.md)
+          - ArkTS Widget Editing<!--arkts-ui-widget-edit-->
+            - [Overview of ArkTS Widget Editing](form/arkts-ui-widget-event-formeditextensionability-overview.md)
+            - [Widget Editing Development](form/arkts-ui-widget-event-formeditextensionability.md)
+          - Widget Addition to Home Screen<!--arkts-ui-widget-add-->
+            - [Adding Widgets to the Home Screen](form/arkts-ui-widget-open-formmanager.md)
+        <!--Del--> 
+        - [ArkTS Widget Host Development (for System Applications Only)](form/widget-host-development-guide.md)
+        <!--DelEnd-->
+      - JS Widget Development<!--form-js-ui-->
+        - [JS Widget Overview](form/js-ui-widget-overview.md)
+        - [Developing a JS Widget (Stage Model)](form/js-ui-widget-development.md)
+        - [Developing a JS Widget (FA Model)](form/widget-development-fa.md)
     - IME Kit<!--ime-kit-->
       - [Introduction to IME Kit](inputmethod/ime-kit-intro.md)
       - [Implementing an Input Method Application](inputmethod/inputmethod-application-guide.md)
@@ -1372,9 +1375,7 @@
           <!--DelEnd-->
       - Test Kit<!--test-kit-->
         - [arkXtest User Guide](application-test/arkxtest-guidelines.md)
-        <!--Del-->
         - [SmartPerf User Guide](application-test/smartperf-guidelines.md)
-        <!--DelEnd-->
         - [wukong User Guide](application-test/wukong-guidelines.md)
       - Debugging Commands<!--debugging-commands-->
         - [Ability Assistant](tools/aa-tool.md)
@@ -1726,7 +1727,7 @@
     - Code Development<!--coding-->
       - [Development Overview](napi/develop-code-overview.md)
       - C/C++ Standard Library<!--c-cpp-->
-        - [C/C++ Mechanisms](napi/c-cpp-overview.md)
+        - [C/C++ Library Mechanisms](napi/c-cpp-overview.md)
         - [Using fdsan](napi/fdsan.md)
       - Using Node-API<!--using-napi-interaction-with-cpp-->
         - [Node-API Overview](napi/napi-introduction.md)
@@ -1761,7 +1762,7 @@
           - [Wrapping a Native Object in a Sendable ArkTS Object](napi/use-sendable-napi.md)
           - [Creating an ArkTS Runtime Environment Using Node-API](napi/use-napi-ark-runtime.md)
           - [Loading a Module in the Main Thread Using Node-API](napi/use-napi-load-module.md)
-          - [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extensions](napi/use-napi-event-loop.md)
+          - [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extension APIs](napi/use-napi-event-loop.md)
           - [Loading a Module Using Node-API](napi/use-napi-load-module-with-info.md)
           - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](napi/use-call-threadsafe-function-with-priority.md)
           - [Analyzing Exceptions and Crashes Triggered by Using Node-API](napi/use-napi-about-crash.md)
@@ -2519,6 +2520,7 @@
           - [Styled String](reference/apis-arkui/arkui-ts/ts-universal-styled-string.md)
           - [Text Component Common APIs](reference/apis-arkui/arkui-ts/ts-text-common.md)
           <!--Del-->
+          - [Text Component Common APIs (System API)](reference/apis-arkui/arkui-ts/ts-text-common-sys.md)
           - [TextInput (System API)](reference/apis-arkui/arkui-ts/ts-basic-components-textinput-sys.md)
           - [Styled String (System API)](reference/apis-arkui/arkui-ts/ts-universal-styled-string-sys.md)
           - [RichEditor (System API)](reference/apis-arkui/arkui-ts/ts-basic-components-richeditor-sys.md)
@@ -2975,11 +2977,13 @@
           - [Styled String Error Codes](reference/apis-arkui/errorcode-styled-string.md)
           - [UI Context Error Codes](reference/apis-arkui/errorcode-uicontext.md)
           - [Interaction Event Error Codes](reference/apis-arkui/errorcode-event.md)
+          - [Custom Node Error Codes](reference/apis-arkui/errorcode-node.md)
           - [NodeAdapter Error Codes](reference/apis-arkui/errorcode-nodeadapter.md)
           <!--Del-->
           - [UI Appearance Error Codes](reference/apis-arkui/errorcode-uiappearance.md)
           - [UIExtension Error Codes](reference/apis-arkui/errorcode-uiextension.md)
           <!--DelEnd-->
+          - [XComponent Error Codes](reference/apis-arkui/errorcode-xcomponent.md)
         - Graphics<!--arkui-graphics-images-arkts-errcode-->
           - [Display Error Codes](reference/apis-arkui/errorcode-display.md)
           - [Window Error Codes](reference/apis-arkui/errorcode-window.md)
@@ -4012,7 +4016,9 @@
           - [OH_AudioCapturer_Callbacks_Struct](reference/apis-audio-kit/_o_h___audio_capturer___callbacks___struct.md)
       - Error Codes<!--audio-arkts-errcode-->
         - [Audio Error Codes](reference/apis-audio-kit/errorcode-audio.md)
+        <!--Del-->
         - [Ringtone Error Codes](reference/apis-audio-kit/errorcode-ringtone.md)
+        <!--DelEnd-->
     - AVCodec Kit<!--avcodec-api-->
       - C APIs<!--avcodec-c-->
         - Modules<!--avcodec-module-->
