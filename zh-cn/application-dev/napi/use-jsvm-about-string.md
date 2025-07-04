@@ -6,7 +6,7 @@
 
 ## 基本概念
 
-string是编程中常用的数据类型之一。它可以存储和操作文本数据，用于表示和处理字符序列。还可用于构建用户界面元素，如标签、按钮和文本框，处理用户输入，验证和格式化输入数据。不同的编码支持不同的字符集和语言，以下是一些主要的编码方案及其区别：
+string是编程中常用的数据类型。它可以存储和操作文本数据，用于表示和处理字符序列。它还可以用于构建用户界面元素，如标签、按钮和文本框，处理用户输入，验证和格式化数据。不同的编码方案支持不同的字符集和语言，以下是一些主要的编码方案及其区别：
 
 - **ASCII**：ASCII是最早的字符编码方案之一，使用7位编码，只能表示英文字母、数字和一些基本符号。它是许多其他编码方案的基础。
 - **UTF-8**：UTF-8是一种变长编码方案，可以表示全球范围的字符集。它使用8位编码，根据字符的不同范围使用不同长度的字节序列。UTF-8是互联网上广泛使用的编码方案。
@@ -78,7 +78,7 @@ const char *srcCallNative = R"JS(
     let script = getValueStringUtf8(data);
 )JS";
 ```
-<!-- @[oh_jsvm_get_value_string_utf8](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf8/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_value_string_utf8](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf8/src/main/cpp/hello.cpp) -->
 
 预期输出结果
 
@@ -128,7 +128,7 @@ const char *srcCallNative = R"JS(
     let script = createStringUtf8();
 )JS";
 ```
-<!-- @[oh_jsvm_create_string_utf8](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf8/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_string_utf8](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf8/src/main/cpp/hello.cpp) -->
 
 预期输出结果
 
@@ -192,7 +192,7 @@ const char *srcCallNative = R"JS(
     let script = getValueStringUtf16(data);
 )JS";
 ```
-<!-- @[oh_jsvm_get_value_string_utf16](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf16/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_value_string_utf16](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf16/src/main/cpp/hello.cpp) -->
 
 预期输出结果
 
@@ -249,7 +249,7 @@ const char *srcCallNative = R"JS(
     let script = createStringUtf16();
 )JS";
 ```
-<!-- @[oh_jsvm_create_string_utf16](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf16/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_string_utf16](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf16/src/main/cpp/hello.cpp) -->
 
 预期输出结果
 
@@ -303,7 +303,7 @@ const char *srcCallNative = R"JS(
     let script = getValueStringLatin1(data);
 )JS";
 ```
-<!-- @[oh_jsvm_get_value_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringlatin1/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_value_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringlatin1/src/main/cpp/hello.cpp) -->
 
 预期输出结果
 
@@ -358,7 +358,7 @@ const char *srcCallNative = R"JS(
     let script = createStringLatin1();
 )JS";
 ```
-<!-- @[oh_jsvm_create_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringlatin1/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringlatin1/src/main/cpp/hello.cpp) -->
 
 预期输出结果
 
