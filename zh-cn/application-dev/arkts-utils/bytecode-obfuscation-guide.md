@@ -115,7 +115,7 @@
         staticName: value  // 静态定义属性
         };
         const fieldName = 'static' + 'Name';  // 动态构建属性名
-        console.log(obj[fieldName]);  // 使用方括号语法动态访问属性
+        console.info(obj[fieldName]);  // 使用方括号语法动态访问属性
         ```
 
         ```ts
@@ -123,7 +123,7 @@
         const obj = {
         [dynamicExpression]: value  // 动态定义属性
         };
-        console.log(obj.dynamicPropertyName);  // 使用点语法静态访问属性
+        console.info(obj.dynamicPropertyName);  // 使用点语法静态访问属性
         ```
 
     2. 若代码中使用点语法访问未在ArkTS/TS/JS代码中定义的字段，比如访问native实现的so库，字段固定的json文件与数据库等场景：
