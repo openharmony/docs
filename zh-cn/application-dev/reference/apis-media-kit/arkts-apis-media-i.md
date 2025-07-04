@@ -246,6 +246,7 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 | hdrType<sup>12+</sup> | [HdrType](arkts-apis-media-e.md#hdrtype12) | 否   | 媒体资源的HDR类型。当前版本为只读参数。 |
 | location<sup>12+</sup> | [Location](#location) | 否 | 视频的地理位置信息。 |
 | customInfo<sup>12+</sup> | Record<string, string> | 否 | 从moov.meta.list 获取的自定义参数键值映射。|
+| tracks<sup>20+</sup> | Array\<[MediaDescription](#mediadescription8)> | 否 | 媒体资源的轨道信息。当前版本为只读参数。|
 
 ## PixelMapParams<sup>12+</sup>
 
