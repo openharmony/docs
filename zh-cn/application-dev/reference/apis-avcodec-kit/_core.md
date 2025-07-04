@@ -1604,7 +1604,7 @@ bool OH_AVFormat_SetIntBuffer (struct OH_AVFormat *format, const char *key, cons
 | format | 指向OH_AVFormat实例的指针。 | 
 | key | 写入数据的键。 | 
 | addr | 写入数据的地址，生命周期由开发者管理。 | 
-| size | 写入数据的长度（以元素为单位，不是字节数） | 
+| size | 写入数据的长度（以元素为单位，不是字节数）。 | 
 
 **返回：**
 
