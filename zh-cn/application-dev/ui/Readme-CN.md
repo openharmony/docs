@@ -186,7 +186,7 @@
       - [单一手势](arkts-gesture-events-single-gesture.md)
       - [组合手势](arkts-gesture-events-combined-gestures.md)
       - [多层级手势事件](arkts-gesture-events-multi-level-gesture.md)
-      - [手势拦截](arkts-gesture-events-gesture-judge.md)
+      - [手势冲突处理](arkts-gesture-events-gesture-judge.md)
     - [支持统一拖拽](arkts-common-events-drag-event.md)
     - [支持焦点处理](arkts-common-events-focus-event.md)
   - 使用自定义能力<!--arkts-user-defined-capabilities-->
