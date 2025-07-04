@@ -1618,6 +1618,10 @@ vp2px(value : number) : number
 
 像素密度：当前窗口生效的像素密度值，即屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
 
+> **说明：**
+>
+> 本[接口](js-apis-arkui-UIContext.md#vp2px12)需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1633,10 +1637,6 @@ vp2px(value : number) : number
 | 类型   | 说明           |
 | ------ | -------------- |
 | number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
-
-> **说明：**
->
-> 本接口需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **示例：**
 
@@ -1655,6 +1655,10 @@ px2vp(value : number) : number
 
 像素密度：当前窗口生效的像素密度值，即屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
 
+> **说明：**
+>
+> 本[接口](js-apis-arkui-UIContext.md#px2vp12)需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1670,10 +1674,6 @@ px2vp(value : number) : number
 | 类型   | 说明           |
 | ------ | -------------- |
 | number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
-
-> **说明：**
->
-> 本接口需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **示例：**
 
@@ -1694,6 +1694,10 @@ fp2px(value : number) : number
 
 字体缩放比例：系统设置的字体缩放系数，对应 [Configuration.fontScale](arkui-ts/ts-types.md#configuration)。
 
+> **说明：**
+>
+> 本[接口](js-apis-arkui-UIContext.md#fp2px12)需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1709,10 +1713,6 @@ fp2px(value : number) : number
 | 类型   | 说明           |
 | ------ | -------------- |
 | number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
-
-> **说明：**
->
-> 本接口需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **示例：**
 
@@ -1733,6 +1733,10 @@ px2fp(value : number) : number
 
 字体缩放比例：系统设置的字体缩放系数，对应 [Configuration.fontScale](arkui-ts/ts-types.md#configuration)。
 
+> **说明：**
+>
+> 本[接口](js-apis-arkui-UIContext.md#px2fp12)需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1749,10 +1753,6 @@ px2fp(value : number) : number
 | ------ | -------------- |
 | number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
 
-> **说明：**
->
-> 本接口需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
-
 **示例：**
 
 <!--code_no_check-->
@@ -1766,7 +1766,11 @@ lpx2px(value : number) : number
 
 将lpx单位的数值转换为以px为单位的数值。
 
-转换公式为：px值 = lpx值 × 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
+转换公式为：px值 = lpx值 × 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值。
+
+> **说明：**
+>
+> 本[接口](js-apis-arkui-UIContext.md#lpx2px12)需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1784,10 +1788,6 @@ lpx2px(value : number) : number
 | ------ | -------------- |
 | number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
 
-> **说明：**
->
-> 本接口需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
-
 **示例：**
 
 <!--code_no_check-->
@@ -1801,7 +1801,11 @@ px2lpx(value : number) : number
 
 将px单位的数值转换为以lpx为单位的数值。
 
-转换公式为：lpx值 = px值 ÷ 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
+转换公式为：lpx值 = px值 ÷ 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值。
+
+> **说明：**
+>
+> 本[接口](js-apis-arkui-UIContext.md#px2lpx12)需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1818,10 +1822,6 @@ px2lpx(value : number) : number
 | 类型   | 说明           |
 | ------ | -------------- |
 | number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
-
-> **说明：**
->
-> 本接口需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **示例：**
 
