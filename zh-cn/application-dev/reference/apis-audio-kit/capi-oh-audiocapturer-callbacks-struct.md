@@ -8,7 +8,7 @@
 
 **起始版本：** 10
 
-**废弃版本：** 18
+**废弃版本：** 20
 
 **替代接口：**
 
@@ -50,7 +50,7 @@ int32_t (*OH_AudioCapturer_OnReadData)(OH_AudioCapturer* capturer,void* userData
 
 **起始版本：** 10
 
-**废弃版本：** 18
+**废弃版本：** 20
 
 **替代接口：** [OH_AudioCapturer_OnReadDataCallback](capi-native-audiocapturer-h.md#oh_audiocapturer_onreaddatacallback)
 
@@ -75,7 +75,7 @@ int32_t (*OH_AudioCapturer_OnStreamEvent)(OH_AudioCapturer* capturer,void* userD
 
 **起始版本：** 10
 
-**废弃版本：** 18
+**废弃版本：** 20
 
 **替代接口：** [OH_AudioCapturer_OnDeviceChangeCallback](capi-native-audiocapturer-h.md#oh_audiocapturer_ondevicechangecallback)
 
@@ -99,7 +99,7 @@ int32_t (*OH_AudioCapturer_OnInterruptEvent)(OH_AudioCapturer* capturer,void* us
 
 **起始版本：** 10
 
-**废弃版本：** 18
+**废弃版本：** 20
 
 **替代接口：** [OH_AudioCapturer_OnInterruptCallback](capi-native-audiocapturer-h.md#oh_audiocapturer_oninterruptcallback)
 
@@ -125,7 +125,7 @@ int32_t (*OH_AudioCapturer_OnError)(OH_AudioCapturer* capturer, void* userData, 
 
 **起始版本：** 10
 
-**废弃版本：** 18
+**废弃版本：** 20
 
 **替代接口：** [OH_AudioCapturer_OnErrorCallback](capi-native-audiocapturer-h.md#oh_audiocapturer_onerrorcallback)
 
