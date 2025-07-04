@@ -111,7 +111,7 @@ ArkTS侧示例代码
 
 ```ts
 // index.ets
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import worker from '@ohos.worker';
 
 let wk = new worker.ThreadWorker("entry/ets/workers/worker.ts");
@@ -127,7 +127,7 @@ wk.onmessage = (message) => {
 
 ```ts
 // worker.ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import worker from '@ohos.worker';
 import testNapi from 'libentry.so';
 
@@ -247,7 +247,7 @@ export const napiAsyncCleanUpHook: () => boolean | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_add_async_cleanup_hook: %{public}s', testNapi.napiAsyncCleanUpHook());
