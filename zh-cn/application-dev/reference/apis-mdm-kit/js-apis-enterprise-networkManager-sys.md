@@ -1121,18 +1121,18 @@ networkManager.listIptablesFilterRules(wantTemp).then((result) => {
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 
-| 名称         | 类型     | 必填 | 说明                            |
-| ----------- | --------| ---- | ------------------------------- |
-| ruleNo        | number    | 否   | 规则序号。 |
-| srcAddr | string   | 否   | ip源地址。 |
-| destAddr        | string    | 否   | ip目标地址。 |
-| srcPort | string   | 否   | ip源端口。 |
-| destPort        | string    | 否   | ip目标端口。 |
-| uid | string   | 否   | 应用uid。 |
-| method        | [AddMethod](#addmethod)    | 是   | 添加策略。 |
-| direction | [Direction](js-apis-enterprise-networkManager.md#direction) | 是   | 规则链。 |
-| action        | [Action](js-apis-enterprise-networkManager.md#action) | 是   | 接收或者丢弃数据包。 |
-| protocol | [Protocol](js-apis-enterprise-networkManager.md#protocol) | 否   | 网络协议。 |
+| 名称         | 类型     | 只读 | 可选 | 说明                            |
+| ----------- | --------| ---- | ---- | ------------------------------- |
+| ruleNo        | number    | 否   | 是 | 规则序号。 |
+| srcAddr | string   | 否   | 是 | ip源地址。 |
+| destAddr        | string    | 否   | 是 | ip目标地址。 |
+| srcPort | string   | 否   | 是 | ip源端口。 |
+| destPort        | string    | 否   | 是 | ip目标端口。 |
+| uid | string   | 否   | 是 | 应用uid。 |
+| method        | [AddMethod](#addmethod)    | 否   | 否 | 添加策略。 |
+| direction | [Direction](js-apis-enterprise-networkManager.md#direction) | 否   | 否 | 规则链。 |
+| action        | [Action](js-apis-enterprise-networkManager.md#action) | 否   | 否 | 接收或者丢弃数据包。 |
+| protocol | [Protocol](js-apis-enterprise-networkManager.md#protocol) | 否   | 是 |网络协议。 |
 
 ## RemoveFilterRule
 
@@ -1141,16 +1141,16 @@ networkManager.listIptablesFilterRules(wantTemp).then((result) => {
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 
-| 名称         | 类型     | 必填 | 说明                            |
-| ----------- | --------| ---- | ------------------------------- |
-| srcAddr | string   | 否   | ip源地址。 |
-| destAddr        | string    | 否   | ip目标地址。 |
-| srcPort | string   | 否   | ip源端口。 |
-| destPort        | string    | 否    | ip目标端口。 |
-| uid | string   | 否    | 应用uid。 |
-| direction | [Direction](js-apis-enterprise-networkManager.md#direction) | 是    | 规则链。 |
-| action        | [Action](js-apis-enterprise-networkManager.md#action) | 否    | 接收或者丢弃数据包。 |
-| protocol | [Protocol](js-apis-enterprise-networkManager.md#protocol) | 否    | 网络协议。 |
+| 名称         | 类型     | 只读 | 可选 | 说明                            |
+| ----------- | --------| ---- | ---- | ------------------------------ |
+| srcAddr | string   | 否   | 是 | ip源地址。 |
+| destAddr        | string    | 否   | 是 | ip目标地址。 |
+| srcPort | string   | 否   | 是 | ip源端口。 |
+| destPort        | string    | 否    | 是 | ip目标端口。 |
+| uid | string   | 否    | 是 | 应用uid。 |
+| direction | [Direction](js-apis-enterprise-networkManager.md#direction) | 否    | 否 | 规则链。 |
+| action        | [Action](js-apis-enterprise-networkManager.md#action) | 否    | 是 | 接收或者丢弃数据包。 |
+| protocol | [Protocol](js-apis-enterprise-networkManager.md#protocol) | 否    | 是 | 网络协议。 |
 
 ## AddMethod
 
