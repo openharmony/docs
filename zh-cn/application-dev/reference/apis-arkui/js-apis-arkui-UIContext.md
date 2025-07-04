@@ -2752,6 +2752,59 @@ struct Index {
   }
 }
 ```
+
+### setUIStates<sup>20+</sup>
+
+setUIStates(callback: VoidCallback): void
+
+提供在非UI线程中安全更新状态变量的能力。在UI线程调用该接口会同步执行回调函数更新状态变量，在非UI线程中调用时，会将回调函数分发到UI线程队列异步执行。
+
+在debug模式下，若检测到未通过setUIStates在非UI线程更新状态变量，系统将输出错误日志（需要使用try-catch捕获异常）。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**ArkTS版本：**  该接口仅适用于ArkTS1.2
+
+| 参数名  |        类型                          | 必填 | 说明               |
+| ------ | ----------------------------- | ---- | ------------------ |
+| callback  | [VoidCallback](arkui-ts/ts-types.md#voidcallback12) |  是   | 用于更新状态变量的回调函数。 |
+
+
+**示例：**
+
+```ts
+@Entry
+@Component
+struct MyStateSample {
+  @State stateVar: string = "state var";
+  message: string = "var";
+
+  build() {
+    Column() {
+      Text("Hello World").fontSize(20)
+      Button(this.message).backgroundColor("#FFFF00FF")
+        .onClick((e: ClickEvent) => {
+          let uiContext: UIContext = this.getUIContext();
+          taskpool.execute(() => {
+            uiContext.setUIStates(() => {
+              this.stateVar += "~"
+            });
+          });
+
+          // 在非UI线程未使用setUIStates更新状态变量，debug模式下会输出错误日志
+          taskpool.execute(() => {
+            this.stateVar += "~"
+          }).then(() => {}).catch((err: Error) => {
+            console.error("Illegal update detected:", err);
+          });
+        })
+      Text(this.stateVar).fontSize(20)
+    }
+  }
+}
+```
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
