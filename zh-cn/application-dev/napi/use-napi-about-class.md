@@ -61,7 +61,7 @@ export const newInstance: (obj: Object, param: string) => Object;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 class Fruit {
   name: string;
@@ -195,7 +195,7 @@ export const removeWrap: (obj: Object) => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
     class Obj {}
