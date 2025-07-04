@@ -848,7 +848,7 @@ try {
 ### getPiPSettingSwitch<sup>20+</sup>
 getPiPSettingSwitch(): Promise&lt;boolean&gt;
 
-获取设置中自动启动画中画开关状态，仅支持手机和pad设备。
+获取设置中自动启动画中画开关的状态，仅支持手机和pad设备。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -877,7 +877,7 @@ try {
   let promise : Promise<boolean> = this.pipController.getPiPSettingSwitch();
   promise.then((data) => {
     pipSwitchStatus = data;
-    console.info('Succeeded in geting pip switch status. switchStatus: ' + JSON.stringify(data));
+    console.info('Succeeded in getting pip switch status. switchStatus: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error(`Failed to get pip switch status. Cause code: ${err.code}, message: ${err.message}`);
   });
