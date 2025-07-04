@@ -57,7 +57,7 @@ begin(scene: string, startInputType: ActionType, note?: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| scene | string | 是 | 用户场景id。无长度限制，推荐字母大写且用下划线连接，例如LAUNCHER_APP_LAUNCH_FROM_ICON。 |
+| scene | string | 是 | 用户场景id。长度限制50个字符，推荐字母大写且用下划线连接，例如LAUNCHER_APP_LAUNCH_FROM_ICON。 |
 | startInputType | [ActionType](#actiontype)| 是 | 用户场景触发模式。 |
 | note | string| 否 | 用户场景备注信息。长度限制30个字符，可以空缺不填，填写后性能指标上报会携带备注信息，不填无影响。 |
 
@@ -102,7 +102,7 @@ recordInputEventTime(type: ActionType, sourceType: SourceType, time: number): vo
 | -- | -- | -- | -- |
 | type | [ActionType](#actiontype)| 是 | 用户场景触发模式。 |
 | sourceType | [SourceType](#sourcetype12) | 是 | 用户场景触发源。 |
-| time | number | 是 | 场景触发时间（ms），13位数字，例如1751508570794。 |
+| time | number | 是 | 场景触发时间（ms），13位数字表示的时间戳，例如1751508570794。不正确的传参会导致用户操作响应时延指标异常。若传负值将自动转化为当前系统时间，若传正值则正常使用。 |
 
 **错误码：**
 
