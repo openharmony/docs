@@ -22,7 +22,7 @@ JSVM-API提供了一组功能，使开发人员能够在JSVM-API模块中创建�
 - **可逃逸的作用域**：允许在创建的作用域中声明的对象返回到父作用域，通过OH_JSVM_OpenEscapableHandleScope和OH_JSVM_CloseEscapableHandleScope进行管理。
 - **垃圾回收回调**：允许注册回调函数，以便在JavaScript对象被垃圾回收时执行特定的清理操作。
 
-这些基本概念使开发人员安全且有效地操作JavaScript对象，正确管理对象的生命周期。
+这些基本概念使开发人员能够在JSVM-API模块中安全且有效地操作JavaScript对象，并确保正确管理对象的生命周期。
 
 ## 接口说明
 
@@ -46,7 +46,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 ### OH_JSVM_OpenHandleScope、OH_JSVM_CloseHandleScope
 
-通过接口OH_JSVM_OpenHandleScope创建一个上下文环境。需要使用OH_JSVM_CloseHandleScope进行关闭。这用于管理JavaScript对象的生命周期，确保在JSVM-API模块中处理JavaScript对象时能正确管理其句柄，避免垃圾回收相关的问题。
+通过接口OH_JSVM_OpenHandleScope创建一个上下文环境，使用时需调用OH_JSVM_CloseHandleScope进行关闭。该机制用于管理JavaScript对象的生命周期，确保在JSVM-API模块中处理JavaScript对象时能正确管理其句柄，避免垃圾回收相关的问题。
 
 cpp部分代码：
 
