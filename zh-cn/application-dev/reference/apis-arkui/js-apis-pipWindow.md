@@ -848,7 +848,7 @@ try {
 ### getPiPSettingSwitch<sup>20+</sup>
 getPiPSettingSwitch(): Promise&lt;boolean&gt;
 
-获取设置中自动启动画中画开关的状态，仅支持手机和pad设备。
+获取设置中自动启动画中画开关的状态，仅支持手机和平板设备。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
