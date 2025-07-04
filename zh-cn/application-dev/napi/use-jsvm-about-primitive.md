@@ -32,7 +32,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 用于将一个给定的JavaScript值强制转为JavaScript boolean值。
 
-cpp 部分代码
+cpp 部分代码：
 
 ```cpp
 // hello.cpp
@@ -78,7 +78,7 @@ SVM OH_JSVM_CoerceToBool success:1
 
 用于将给定的JavaScript value强转为JavaScript number。
 
-cpp 部分代码
+cpp 部分代码：
 
 ```cpp
 // hello.cpp
@@ -169,7 +169,7 @@ JSVM OH_JSVM_CoerceToObject success
 
 用于将给定的JavaScript value强转为JavaScript string类型。
 
-cpp部分代码
+cpp 部分代码：
 
 ```cpp
 // hello.cpp
@@ -214,7 +214,7 @@ JSVM OH_JSVM_CoerceToString success
 
 获取给定布尔值的JavaScript单例对象。
 
-cpp部分代码
+cpp 部分代码：
 
 ```cpp
 // hello.cpp
@@ -274,7 +274,7 @@ JSVM OH_JSVM_CoerceToNumber success:1
 
 使用这个函数将JavaScript中的布尔值转为等价的C布尔值。
 
-cpp 部分代码
+cpp 部分代码：
 
 ```cpp
 // hello.cpp
@@ -326,7 +326,7 @@ JSVM OH_JSVM_GetValueBool success:0
 
 用于获取全局JavaScript对象。该函数的主要作用是获取表示JavaScript全局对象的JSVM_Value，使得JSVM模块能够与JavaScript运行时的全局对象进行交互。
 
-cpp 部分代码
+cpp 部分代码：
 
 ```cpp
 // hello.cpp
@@ -371,7 +371,7 @@ JSVM OH_JSVM_GetGlobal success
 
 用于获取JavaScript null
 
-cpp 部分代码
+cpp 部分代码：
 
 ```cpp
 // hello.cpp
@@ -411,7 +411,7 @@ JSVM OH_JSVM_GetNull success
 
 用于获取JavaScript undefined
 
-cpp 部分代码
+cpp 部分代码：
 
 ```cpp
 // hello.cpp

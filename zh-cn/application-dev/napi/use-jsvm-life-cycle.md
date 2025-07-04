@@ -3,7 +3,7 @@
 ## 简介
 
 在JSVM-API中，JSVM_Value是一个表示JavaScript值的抽象类型，它可以表示任何JavaScript值，包括基本类型（如数字、字符串、布尔值）和对象类型（如数组、函数、对象等）。
-JSVM_Value的生命周期与其在JavaScript中的对应值的生命周期紧密相关。当JavaScript值被垃圾回收时，与之关联的JSVM_Value也将不再有效。重要的是不要在JavaScript值不再存在时尝试使用JSVM_Value。
+JSVM_Value的生命周期与JavaScript值的生命周期相关。JavaScript值被垃圾回收后，JSVM_Value将失效。请勿在JavaScript值不存在时使用JSVM_Value。
 
 框架层的scope通常用于管理JSVM_Value的生命周期。在JSVM-API中，可以使用OH_JSVM_OpenHandleScope和OH_JSVM_CloseHandleScope函数来创建和销毁scope。通过在scope内创建JSVM_Value，可以确保在scope结束时自动释放JSVM_Value，避免内存泄漏。
 
@@ -46,7 +46,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 ### OH_JSVM_OpenHandleScope、OH_JSVM_CloseHandleScope
 
-通过接口OH_JSVM_OpenHandleScope创建一个上下文环境使用。需要使用OH_JSVM_CloseHandleScope进行关闭。用于管理JavaScript对象的生命周期确保在JSVM-API模块代码处理JavaScript对象时能够正确地管理其句柄，以避免出现垃圾回收相关的问题。
+通过接口OH_JSVM_OpenHandleScope创建一个上下文环境，使用时需调用OH_JSVM_CloseHandleScope进行关闭。该机制用于管理JavaScript对象的生命周期，确保在JSVM-API模块中处理JavaScript对象时能正确管理其句柄，避免垃圾回收相关的问题。
 
 cpp部分代码
 
