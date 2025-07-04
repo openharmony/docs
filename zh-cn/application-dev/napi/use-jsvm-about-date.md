@@ -22,7 +22,7 @@ JavaScript Date对象提供了一种在JavaScript中表示和操作日期和时�
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅展示接口对应C++相关代码。
+JSVM-API接口开发流程请参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅展示接口对应的C++相关代码。
 
 ### OH_JSVM_CreateDate
 

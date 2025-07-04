@@ -198,8 +198,8 @@ typedef enum {
 
 当 id 为 JSVM_COMPILE_CODE_CACHE 时，content 的类型：
 
-- cache : 指向code cache的指针。
-- length : 代表code cache的大小。
+- cache : 指向 code cache 的指针。
+- length : 代表 code cache 的大小。
 
 ```c
 typedef struct {
