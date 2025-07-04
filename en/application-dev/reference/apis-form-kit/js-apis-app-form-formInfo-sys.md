@@ -13,6 +13,18 @@ The **formInfo** module provides types and enums related to the widget informati
 import { formInfo } from '@kit.FormKit';
 ```
 
+## FormInfo
+
+Defines the widget information.
+
+**System capability**: SystemCapability.Ability.Form
+
+| Name       | Type                | Readable   | Writable   | Description                                                        |
+| ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
+| previewImages<sup>18+</sup> | Array&lt;number&gt; | Yes| No| Resource IDs of the preview images of the widget.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| enableBlurBackground<sup>18+</sup>  | boolean               | Yes   | No    | Whether the widget uses a blur background.|
+| renderingMode<sup>18+</sup>|[RenderingMode](./js-apis-app-form-formInfo-sys.md#renderingmode18)|Yes|No|Widget rendering mode.|
+
 
 ##  FormParam
 
@@ -71,11 +83,11 @@ Defines the information about the widget provider.
 
 | Name       | Type                | Readable   | Writable   | Description                                                        |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| bundleName  | string               | Yes   | No    | Name of the bundle to which the widget provider belongs. |
-| formName    | string               | Yes   | No    | Widget name.                    |
-| moduleName  | string               | Yes   | No    | Name of the module to which the widget belongs.       |
-| abilityName | string               | Yes   | No    | Name of the ability to which the widget belongs.       |
-| isUnusedIncluded<sup>11+</sup> | boolean               | Yes   | No    | Whether an unused widget is included.       |
+| bundleName  | string               | Yes   | Yes    | Name of the bundle to which the widget provider belongs. |
+| formName    | string               | Yes   | Yes    | Widget name.                    |
+| moduleName  | string               | Yes   | Yes    | Name of the module to which the widget belongs.       |
+| abilityName | string               | Yes   | Yes    | Name of the ability to which the widget belongs.       |
+| isUnusedIncluded<sup>11+</sup> | boolean               | Yes   | Yes    | Whether an unused widget is included.<br>- **true**: An unused widget is included.<br>- **false** (default): There is no unused widget.<br>        |
 
 
 ## FormInfoFilter
@@ -133,3 +145,17 @@ Enumerates the result codes that may be used for the operation of adding a widge
 | NO_SPACE       | 1    | There is no space for adding widgets.          |
 | PARAM_ERROR    | 2    | Parameter check fails.              |
 | INTERNAL_ERROR | 3    | An internal error occurs during widget processing.|
+
+## RenderingMode<sup>18+</sup>
+
+Enumerates the rendering modes supported by the widget.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Ability.Form
+
+| Name       | Value  | Description        |
+| ----------- | ---- | ------------ |
+| AUTO_COLOR    | 0    | Auto mode.  |
+| FULL_COLOR     | 1   | Full-color mode.  |
+| SINGLE_COLOR      | 2   | Single-color mode.  |

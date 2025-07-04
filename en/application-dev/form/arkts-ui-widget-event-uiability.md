@@ -260,7 +260,7 @@ With the router event, a touch on the widget can start the associated applicatio
     }
   }
   ```
-  To start the UIAbility in the background, you must configure the ohos.permission.KEEP_BACKGROUND_RUNNING permission in the **module.json5** file.
+  To start the UIAbility in the background, you must configure the `ohos.permission.KEEP_BACKGROUND_RUNNING` permission in the `module.json5` file.
   ```json
     "requestPermissions":[
         {

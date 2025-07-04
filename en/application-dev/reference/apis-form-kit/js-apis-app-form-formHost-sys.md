@@ -2181,7 +2181,7 @@ Sets a router proxy for widgets and obtains the Want information required for re
 > **NOTE**
 >
 >- Generally, for a widget added to the home screen, in the case of router-based redirection, the widget framework checks whether the destination is proper and whether the widget has the redirection permission, and then triggers redirection accordingly. For a widget that is added to a widget host and has a router proxy configured, in the case of router-based redirection, the widget framework does not trigger redirection for the widget. Instead, it returns the **want** parameter containing the destination to the widget host. Therefore, if the widget host wants to use the Want information for redirection, it must have the application redirection permission. For details, see
-[UIAbilityContext.startAbility()](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
+[UIAbilityContext.startAbility()](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability).
 >
 >- Only one router proxy can be set for a widget. If multiple proxies are set, only the last proxy takes effect.
 
@@ -2221,7 +2221,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct CardExample {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @State formId: number = 0;
   @State fwidth: number = 420;
   @State fheight: number = 280;
@@ -2273,7 +2273,7 @@ Sets a router proxy for widgets and obtains the Want information required for re
 
 > **NOTE**
 >
->- Generally, for a widget added to the home screen, in the case of router-based redirection, the widget framework checks whether the destination is proper and whether the widget has the redirection permission, and then triggers redirection accordingly. For a widget that is added to a widget host and has a router proxy configured, in the case of router-based redirection, the widget framework does not trigger redirection for the widget. Instead, it returns the **want** parameter containing the destination to the widget host. Therefore, if the widget host wants to use the Want information for redirection, it must have the application redirection permission. For details, see [UIAbilityContext.startAbility()](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
+>- Generally, for a widget added to the home screen, in the case of router-based redirection, the widget framework checks whether the destination is proper and whether the widget has the redirection permission, and then triggers redirection accordingly. For a widget that is added to a widget host and has a router proxy configured, in the case of router-based redirection, the widget framework does not trigger redirection for the widget. Instead, it returns the **want** parameter containing the destination to the widget host. Therefore, if the widget host wants to use the Want information for redirection, it must have the application redirection permission. For details, see [UIAbilityContext.startAbility()](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability).
 >
 >- Only one router proxy can be set for a widget. If multiple proxies are set, only the last proxy takes effect.
 
@@ -2320,7 +2320,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct CardExample {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @State formId: number = 0;
   @State fwidth: number = 420;
   @State fheight: number = 280;
@@ -2748,7 +2748,7 @@ Updates the widget location.
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formId | string | Yes  | Widget ID.|
-| location |[formInfo.FormLocation](js-apis-app-form-formInfo-sys.md#formlocation) | Yes| Widget location.|
+| location |[formInfo.FormLocation](js-apis-app-form-formInfo-sys.md#formlocation12) | Yes| Widget location.|
 
 **Error codes**
 
@@ -2796,7 +2796,7 @@ Sets the result for the operation of adding a widget to the home screen.
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | formId | string                                                       | Yes  | Widget ID.        |
-| result | [PublishFormResult](js-apis-app-form-formInfo-sys.md#publishformresult) | Yes  | Result of the operation.|
+| result | [formInfo.PublishFormResult](js-apis-app-form-formInfo-sys.md#publishformresult12) | Yes  | Result of the operation.|
 
 **Error codes**
 
