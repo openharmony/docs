@@ -890,7 +890,7 @@ try {
 
 addApn(admin: Want, apnInfo: Record\<string, string>): void
 
-添加APN（access point name，接入点名称）。
+添加APN（Access Point Name，接入点名称）。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
 
@@ -918,8 +918,10 @@ addApn(admin: Want, apnInfo: Record\<string, string>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+import { networkManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  //需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -970,12 +972,14 @@ deleteApn(admin: Want, apnId: string): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+import { networkManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  //需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let apnId: string = "1";
+let apnId: string = "1"; //需根据实际情况进行替换
 try {
   networkManager.deleteApn(wantTemp, apnId);
   console.info(`Succeeded in deleting apn.`);
@@ -1017,8 +1021,10 @@ updateApn(admin: Want, apnInfo: Record\<string, string>, apnId: string): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+import { networkManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  //需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -1029,7 +1035,7 @@ let apnInfo: Record<string, string> = {
   "mnc": "11",
   "mcc": "460",
 };
-let apnId: string = "1";
+let apnId: string = "1"; //需根据实际情况进行替换
 try {
   networkManager.updateApn(wantTemp, apnInfo, apnId);
   console.info(`Succeeded in updating apn.`);
@@ -1070,12 +1076,14 @@ setPreferredApn(admin: Want, apnId: string): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+import { networkManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  //需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let apnId: string = "1";
+let apnId: string = "1"; //需根据实际情况进行替换
 try {
   networkManager.setPreferredApn(wantTemp, apnId);
   console.info(`Succeeded in setting preferred apn.`);
@@ -1122,8 +1130,10 @@ queryApn(admin: Want, apnInfo: Record\<string, string>): Array\<string>
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+import { networkManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  //需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
@@ -1146,7 +1156,7 @@ try {
 
 queryApn(admin: Want, apnId: string): Record\<string, string>
 
-查询特定APN ID的APN参数信息。
+查询特定APN的APN参数信息。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
 
@@ -1180,12 +1190,14 @@ queryApn(admin: Want, apnId: string): Record\<string, string>
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+import { networkManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  //需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let apnId: string = "1";
+let apnId: string = "1"; //需根据实际情况进行替换
 try {
   let queryResult: Record<string, string> = networkManager.queryApn(wantTemp, apnId);
   console.info(`Succeeded in querying apn, result : ${JSON.stringify(queryResult)}`);
