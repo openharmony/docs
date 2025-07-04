@@ -2190,10 +2190,11 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
-| 错误码ID | 错误信息                                      |
-| -------- | --------------------------------------------- |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002  | This window state is abnormal.                |
+| 1300002  | This window state is abnormal.                               |
+| 1300003  | This window manager service works abnormally.                |
 
 **示例：**
 <!--code_no_check-->
@@ -2263,10 +2264,11 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
-| 错误码ID | 错误信息                                      |
-| -------- | --------------------------------------------- |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002  | This window state is abnormal.                |
+| 1300002  | This window state is abnormal.                               |
+| 1300003  | This window manager service works abnormally.                |
 
 **示例：**
 <!--code_no_check-->
@@ -2338,10 +2340,11 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
-| 错误码ID | 错误信息                                      |
-| -------- | --------------------------------------------- |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002  | This window state is abnormal.                |
+| 1300002  | This window state is abnormal.                               |
+| 1300003  | This window manager service works abnormally.                |
 
 **示例：**
 <!--code_no_check-->
