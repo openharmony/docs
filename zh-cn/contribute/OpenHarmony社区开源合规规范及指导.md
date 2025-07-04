@@ -52,7 +52,7 @@
 
 #### 软件物料清单(SBOM)规范
 
-[OpenHarmony社区SBOM规范](https://gitee.com/openharmony/community/blob/master/sig/sig_compliance/docs/OpenHarmony%E7%A4%BE%E5%8C%BASBOM%E8%A7%84%E8%8C%83%E4%B8%8E%E6%8C%87%E5%AF%BC.md)
+[OpenHarmony社区SBOM规范](https://gitee.com/openharmony/community/blob/master/sig/sig_compliance/docs/OpenHarmony%E7%A4%BE%E5%8C%BASBOM%E8%A7%84%E8%8C%83.md)
 
 #### 开源义务履行
 
