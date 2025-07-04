@@ -123,7 +123,7 @@ controls(value: boolean)
 
 > **说明：**
 >
-> Video组件自带的控制器无法自定义。若有其他需求，可隐藏自带控制器，自定义控制器的样式或功能。参考<!--RP1-->[视频播放](https://gitee.com/harmonyos_samples/video-play)<!--RP1End-->。
+> Video组件自带的控制器无法自定义。若有其他需求，可隐藏自带控制器并自定义控制器的样式或功能。参考<!--RP1-->[视频播放](https://gitee.com/harmonyos_samples/video-play)<!--RP1End-->。
 
 ### objectFit
 
@@ -366,6 +366,10 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 用于描述当前视频是否进入全屏播放状态。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -378,6 +382,10 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 用于描述当前视频的时长。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -389,6 +397,10 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 ## PlaybackInfo<sup>18+</sup>对象说明
 
 用于描述当前视频播放的进度。
+
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
