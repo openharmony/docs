@@ -74,7 +74,7 @@ struct Index {
 
 createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): void
 
-指               
+指定待创建的图片或者视频的文件名，创建图片或视频资源，使用callback方式返回结果。               
 
 待创建的文件名参数规格为：
 - 应包含有效文件主名和图片或视频扩展名。
