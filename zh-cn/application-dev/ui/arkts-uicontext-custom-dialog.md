@@ -85,7 +85,7 @@ this.contentNode.update(new Params('update'))
 
 ## 更新自定义弹出框的属性
 
-通过updateCustomDialog可以动态更新弹出框的属性。目前支持的属性包括alignment、offset、autoCancel、maskColor。
+通过updateCustomDialog可以动态更新弹出框的属性。目前支持更新弹出框的对齐方式、基于对齐方式的偏移量、是否点击蒙层自动关闭以及蒙层颜色，对应的属性分别为alignment、offset、autoCancel、maskColor。
 
 更新属性时，未设置的属性会恢复为默认值。例如，初始设置{ alignment: DialogAlignment.Top, offset: { dx: 0, dy: 50 } }，更新时设置{ alignment: DialogAlignment.Bottom }，则初始设置的offset: { dx: 0, dy: 50 }不会保留，会恢复为默认值。
 
@@ -103,24 +103,11 @@ PromptActionClass.ctx.getPromptAction().updateCustomDialog(PromptActionClass.con
 
 ## 为弹出框内容和蒙层设置不同的动画效果
 
-当弹出框出现时，内容与蒙层显示动效一致。若开发者希望为弹出框内容及蒙层设定不同动画效果，可通过dialogTransition和maskTransition属性单独配置弹窗内容与蒙层的动画。具体的动画效果请参考[组件内转场 (transition)](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md)。
+当弹出框出现时，内容与蒙层显示动效一致。若开发者希望为弹出框内容及蒙层设定不同动画效果，可通过[BaseDialogOptions](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)中dialogTransition和maskTransition属性单独配置弹窗内容与蒙层的动画。具体的动画效果请参考[组件内转场 (transition)](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md)。
 
 > **说明：** 
 >
 > 当isModal为true时，蒙层将显示，此时可以设置蒙层的动画效果；否则，maskTransition将不生效。
-
-```ts
-dialogTransition:
-  TransitionEffect.translate({ x: 0, y: 290, z: 0 }).animation({ duration: 4000, curve: Curve.Smooth }),
-
-maskTransition:
-  TransitionEffect.asymmetric(
-    TransitionEffect.OPACITY.animation({ duration: 1000 }).combine(
-      TransitionEffect.rotate({ z: 1, angle: 180 }).animation({ duration: 1000 })),
-
-    TransitionEffect.OPACITY.animation({ delay: 3000, duration: 3000 }).combine(
-      TransitionEffect.rotate({ z: 1, angle: 180 }).animation({ duration: 3000 }))),
-```
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -151,11 +138,11 @@ struct Index {
               maskColor: Color.Pink,
               maskRect:{ x: 20, y: 20, width: '90%', height: '90%' },
 
-              dialogTransition:
+              dialogTransition: // 设置弹窗内容显示的过渡效果
               TransitionEffect.translate({ x: 0, y: 290, z: 0 })
                 .animation({ duration: 4000, curve: Curve.Smooth }),// 四秒钟的偏移渐变动画
 
-              maskTransition:
+              maskTransition: // 设置蒙层显示的过渡效果
               TransitionEffect.opacity(0)
                 .animation({ duration: 4000, curve: Curve.Smooth }) // 四秒钟的透明渐变动画
 

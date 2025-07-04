@@ -104,6 +104,6 @@ struct ZIndexExample {
 
 ![zIndex_1.png](figures/zIndex_1.png)
 
-点击Button动态修改zIndex，使Text1的zIndex大于Text2，层级顺序发生改变。
+点击Button动态修改zIndex，使Text2的zIndex大于Text1，层级顺序发生改变。
 
 ![zIndex_2.png](figures/zIndex_2.png)

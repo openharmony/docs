@@ -42,7 +42,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -91,7 +91,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -140,7 +140,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -184,7 +184,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -228,7 +228,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -272,7 +272,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -323,7 +323,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -373,7 +373,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -423,7 +423,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -471,7 +471,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -515,7 +515,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -563,7 +563,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -609,7 +609,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -655,7 +655,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -687,6 +687,10 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, op
 
 Subscribes to data of the orientation sensor.
 
+> **NOTE**
+> 
+> Applications or services invoking this API can prompt users to use figure-8 calibration to improve the accuracy of the direction sensor. The sensor has a theoretical error of ±5 degrees, but the specific precision may vary depending on different driver implementations and algorithmic designs.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
@@ -698,7 +702,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Parameters**
 
@@ -747,7 +751,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Parameters**
 
@@ -803,7 +807,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -847,7 +851,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3.Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -892,7 +896,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3.Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -940,7 +944,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3.Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -985,7 +989,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3.Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1005,6 +1009,49 @@ try {
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
+
+### sensorStatusChange<sup>19+</sup>
+
+on(type: 'sensorStatusChange', callback: Callback&lt;SensorStatusEvent&gt;): void
+
+Enables listening for sensor status changes. This API asynchronously returns the result through a callback.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                       |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| sensorStatusChange     |  sensorStatusChange        | Yes  | Event type. The value **sensorStatusChange** indicates a sensor status change event.            |
+| callback | Callback&lt;[SensorStatusEvent](#sensorstatusevent19)&gt; | Yes  | Callback used to return the sensor status change event.|
+
+**Error codes**
+
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  sensor.on('sensorStatusChange', (data: sensor.SensorStatusEvent) => {
+    console.info('sensorStatusChange : ' + JSON.stringify(data));
+  });
+  setTimeout(() => {
+    sensor.off('sensorStatusChange');
+  }, 5000);
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
 
 ## sensor.once<sup>9+</sup>
 
@@ -1033,7 +1080,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1078,7 +1125,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1123,7 +1170,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1163,7 +1210,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1203,7 +1250,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1243,7 +1290,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1288,7 +1335,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1333,7 +1380,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1378,7 +1425,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1421,7 +1468,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1461,7 +1508,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1504,7 +1551,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1546,7 +1593,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1588,7 +1635,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1633,7 +1680,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1678,7 +1725,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1721,7 +1768,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1761,7 +1808,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1801,7 +1848,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1844,7 +1891,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1884,7 +1931,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -1918,10 +1965,10 @@ Unsubscribes from data of the acceleration sensor.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9).ACCELEROMETER                         | Yes  | Sensor type. The value is fixed at **SensorId.ACCELEROMETER**.              |
-| callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+| Name                          | Type                                                        | Mandatory| Description                                                        |
+|-------------------------------| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type                          | [SensorId](#sensorid9).ACCELEROMETER                         | Yes  | Sensor type. The value is fixed at **SensorId.ACCELEROMETER**.              |
+| callback                      | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Error codes**
 
@@ -1956,6 +2003,86 @@ try {
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+### ACCELEROMETER<sup>19+</sup>
+
+off(type: SensorId.ACCELEROMETER, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;AccelerometerResponse&gt;): void
+
+Unsubscribes from data of the acceleration sensor.
+
+**Required permissions**: ohos.permission.ACCELEROMETER
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name               | Type                                                        | Mandatory| Description                                                        |
+|--------------------| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type               | [SensorId](#sensorid9).ACCELEROMETER                         | Yes  | Sensor type. The value is fixed at **SensorId.ACCELEROMETER**.              |
+| sensorInfoParam    | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback           | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.AccelerometerResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.ACCELEROMETER;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
 }
 ```
 
@@ -2012,6 +2139,84 @@ try {
 }
 ```
 
+### ACCELEROMETER_UNCALIBRATED<sup>19+</sup>
+
+off(type: SensorId.ACCELEROMETER_UNCALIBRATED, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
+
+Unsubscribes from data of the uncalibrated acceleration sensor.
+
+**Required permissions**: ohos.permission.ACCELEROMETER
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                                        | Mandatory| Description                                                        |
+|------------------| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | Yes  | Sensor type. The value is fixed at **SensorId.ACCELEROMETER_UNCALIBRATED**. |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.AccelerometerUncalibratedResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.ACCELEROMETER_UNCALIBRATED;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+```
+
 ### AMBIENT_LIGHT<sup>9+</sup> 
 
 off(type: SensorId.AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): void
@@ -2059,6 +2264,81 @@ try {
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+### AMBIENT_LIGHT<sup>19+</sup>
+
+off(type: SensorId.AMBIENT_LIGHT, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;LightResponse&gt;): void
+
+Unsubscribes from data of the ambient light sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                           | Mandatory| Description                                                        |
+|------------------| ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).AMBIENT_LIGHT            | Yes  | Sensor type. The value is fixed at **SensorId.AMBIENT_LIGHT**.              |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[LightResponse](#lightresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.LightResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.AMBIENT_LIGHT;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
 }
 ```
 
@@ -2112,6 +2392,82 @@ try {
 }
 ```
 
+### AMBIENT_TEMPERATURE<sup>19+</sup>
+
+off(type: SensorId.AMBIENT_TEMPERATURE, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;AmbientTemperatureResponse&gt;): void
+
+Unsubscribes from data of the ambient temperature sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                                        | Mandatory| Description                                                        |
+|------------------| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | Yes  | Sensor type. The value is fixed at **SensorId.AMBIENT_TEMPERATURE**.        |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.AmbientTemperatureResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.AMBIENT_TEMPERATURE;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+```
+
+
 ### BAROMETER<sup>9+</sup>  
 
 off(type: SensorId.BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): void
@@ -2159,6 +2515,81 @@ try {
 } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+### BAROMETER<sup>19+</sup>
+
+off(type: SensorId.BAROMETER, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;BarometerResponse&gt;): void
+
+Unsubscribes from data of the barometer sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                                   | Mandatory| Description                                                        |
+|------------------| ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).BAROMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.BAROMETER**.                  |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.BarometerResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.BAROMETER;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
 }
 ```
 
@@ -2211,6 +2642,81 @@ try {
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 
+```
+
+### GRAVITY<sup>19+</sup>
+
+off(type: SensorId.GRAVITY, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;GravityResponse&gt;): void
+
+Unsubscribes from data of the gravity sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                               | Mandatory| Description                                                        |
+|------------------| --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).GRAVITY                      | Yes  | Sensor type. The value is fixed at **SensorId.GRAVITY**.                    |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[GravityResponse](#gravityresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.GravityResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.GRAVITY;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
 ```
 
 ### GYROSCOPE<sup>9+</sup> 
@@ -2268,6 +2774,86 @@ try {
 }
 ```
 
+### GYROSCOPE<sup>19+</sup>
+
+off(type: SensorId.GYROSCOPE, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;GyroscopeResponse&gt;): void
+
+Unsubscribes from data of the gyroscope sensor.
+
+**Required permissions**: ohos.permission.GYROSCOPE
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                                   | Mandatory| Description                                                        |
+|------------------| ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).GYROSCOPE                        | Yes  | Sensor type. The value is fixed at **SensorId.GYROSCOPE**.                  |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.GyroscopeResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.GYROSCOPE;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+```
+
 ### GYROSCOPE_UNCALIBRATED<sup>9+</sup> 
 
 off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
@@ -2321,6 +2907,84 @@ try {
 }
 ```
 
+### GYROSCOPE_UNCALIBRATED<sup>19+</sup>
+
+off(type: SensorId.GYROSCOPE_UNCALIBRATED, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
+
+Unsubscribes from data of the uncalibrated gyroscope sensor.
+
+**Required permissions**: ohos.permission.GYROSCOPE
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                                        | Mandatory| Description                                                        |
+|------------------| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | Yes  | Sensor type. The value is fixed at **SensorId.GYROSCOPE_UNCALIBRATED**.     |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.GyroscopeUncalibratedResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.GYROSCOPE_UNCALIBRATED;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+```
+
 ### HALL<sup>9+</sup> 
 
 off(type: SensorId.HALL, callback?: Callback&lt;HallResponse&gt;): void
@@ -2368,6 +3032,81 @@ try {
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+### HALL<sup>19+</sup>
+
+off(type: SensorId.HALL, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;HallResponse&gt;): void
+
+Unsubscribes from data of the Hall effect sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                         | Mandatory| Description                                                        |
+|------------------| --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).HALL                   | Yes  | Sensor type. The value is fixed at **SensorId.HALL**.                       |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[HallResponse](#hallresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.HallResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.HALL;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
 }
 ```
 
@@ -2424,6 +3163,84 @@ try {
 }
 ```
 
+### HEART_RATE<sup>19+</sup>
+
+off(type: SensorId.HEART_RATE, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;HeartRateResponse&gt;): void
+
+Unsubscribes from data of the heart rate sensor.
+
+**Required permissions**: ohos.permission.READ_HEALTH_DATA
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                                   | Mandatory| Description                                                        |
+|------------------| ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).HEART_RATE                       | Yes  | Sensor type. The value is fixed at **SensorId.HEART_RATE**.                 |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.HeartRateResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.HEART_RATE;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+```
+
 ### HUMIDITY<sup>9+</sup> 
 
 off(type: SensorId.HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
@@ -2471,6 +3288,81 @@ try {
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+### HUMIDITY<sup>19+</sup>
+
+off(type: SensorId.HUMIDITY, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;HumidityResponse&gt;): void
+
+Unsubscribes from data of the humidity sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                                 | Mandatory| Description                                                        |
+|------------------| ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).HUMIDITY                       | Yes  | Sensor type. The value is fixed at **SensorId.HUMIDITY**.                   |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.HumidityResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.HUMIDITY;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
 }
 ```
 
@@ -2527,6 +3419,84 @@ try {
 }
 ```
 
+### LINEAR_ACCELEROMETER<sup>19+</sup>
+
+off(type: SensorId.LINEAR_ACCELEROMETER, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
+
+Unsubscribes from data of the linear acceleration sensor.
+
+**Required permissions**: ohos.permission.ACCELEROMETER
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                                        | Mandatory| Description                                                        |
+|------------------| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | Yes  | Sensor type. The value is fixed at **SensorId.LINEAR_ACCELERATION**.        |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.LinearAccelerometerResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.LINEAR_ACCELEROMETER;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+```
+
 ### MAGNETIC_FIELD<sup>9+</sup> 
 
 off(type: SensorId.MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&gt;): void
@@ -2574,6 +3544,81 @@ try {
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+### MAGNETIC_FIELD<sup>19+</sup>
+
+off(type: SensorId.MAGNETIC_FIELD, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;MagneticFieldResponse&gt;): void
+
+Unsubscribes from data of the magnetic field sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                                        | Mandatory| Description                                                        |
+|------------------| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).MAGNETIC_FIELD                        | Yes  | Sensor type. The value is fixed at **SensorId.MAGNETIC_FIELD**.             |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.MagneticFieldResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.MAGNETIC_FIELD;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
 }
 ```
 
@@ -2627,6 +3672,81 @@ try {
 }
 ```
 
+### MAGNETIC_FIELD_UNCALIBRATED<sup>19+</sup>
+
+off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
+
+Unsubscribes from data of the uncalibrated magnetic field sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                                        | Mandatory| Description                                                        |
+|------------------| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | Yes  | Sensor type. The value is fixed at **SensorId.MAGNETIC_FIELD_UNCALIBRATED**.|
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.MagneticFieldUncalibratedResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+```
+
 ### ORIENTATION<sup>9+</sup> 
 
 off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;): void
@@ -2676,6 +3796,83 @@ try {
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+### ORIENTATION<sup>19+</sup>
+
+off(type: SensorId.ORIENTATION, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;OrientationResponse&gt;): void
+
+Unsubscribes from data of the orientation sensor.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).ORIENTATION                          | Yes  | Sensor type. The value is fixed at **SensorId.ORIENTATION**.                |
+| sensorInfoParam | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.OrientationResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.ORIENTATION;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
 }
 ```
 
@@ -2732,6 +3929,84 @@ try {
 }
 ```
 
+### PEDOMETER<sup>19+</sup>
+
+off(type: SensorId.PEDOMETER, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;PedometerResponse&gt;): void
+
+Unsubscribes from data of the pedometer sensor.
+
+**Required permissions**: ohos.permission.ACTIVITY_MOTION
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                                   | Mandatory| Description                                                        |
+|------------------| ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).PEDOMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.PEDOMETER**.                  |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.PedometerResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.PEDOMETER;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+```
+
 ### PEDOMETER_DETECTION<sup>9+</sup> 
 
 off(type: SensorId.PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectionResponse&gt;): void
@@ -2785,6 +4060,84 @@ try {
 }
 ```
 
+### PEDOMETER_DETECTION<sup>19+</sup>
+
+off(type: SensorId.PEDOMETER_DETECTION, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;PedometerDetectionResponse&gt;): void
+
+Unsubscribes from data of the pedometer detection sensor.
+
+**Required permissions**: ohos.permission.ACTIVITY_MOTION
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                                        | Mandatory| Description                                                        |
+|------------------| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | Yes  | Sensor type. The value is fixed at **SensorId.PEDOMETER_DETECTION**.        |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.PedometerDetectionResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.PEDOMETER_DETECTION;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+```
+
 ### PROXIMITY<sup>9+</sup>  
 
 off(type: SensorId.PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): void
@@ -2832,6 +4185,81 @@ try {
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+### PROXIMITY<sup>19+</sup>
+
+off(type: SensorId.PROXIMITY, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;ProximityResponse&gt;): void
+
+Unsubscribes from data of the proximity sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name            | Type                                                   | Mandatory| Description                                                        |
+|-----------------| ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type            | [SensorId](#sensorid9).PROXIMITY                        | Yes  | Sensor type. The value is fixed at **SensorId.PROXIMITY**.                  |
+| sensorInfoParam | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback        | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.ProximityResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.PROXIMITY;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
 }
 ```
 
@@ -2885,6 +4313,81 @@ try {
 }
 ```
 
+### ROTATION_VECTOR<sup>19+</sup>
+
+off(type: SensorId.ROTATION_VECTOR, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;RotationVectorResponse&gt;): void
+
+Unsubscribes from data of the rotation vector sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                                        | Mandatory| Description                                                        |
+|------------------| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).ROTATION_VECTOR                       | Yes  | Sensor type. The value is fixed at **SensorId.ROTATION_VECTOR**.            |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.RotationVectorResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.ROTATION_VECTOR;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+```
+
 ### SIGNIFICANT_MOTION<sup>9+</sup> 
 
 off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionResponse&gt;): void
@@ -2932,6 +4435,81 @@ try {
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+### SIGNIFICANT_MOTION<sup>19+</sup>
+
+off(type: SensorId.SIGNIFICANT_MOTION, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;SignificantMotionResponse&gt;): void
+
+Unsubscribes from valid motion sensor data.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                                        | Mandatory| Description                                                        |
+|------------------| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | Yes  | Sensor type. The value is fixed at **SensorId.SIGNIFICANT_MOTION**.         |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.SignificantMotionResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.SIGNIFICANT_MOTION;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
 }
 ```
 
@@ -2985,6 +4563,219 @@ try {
 }
 ```
 
+### WEAR_DETECTION<sup>19+</sup>
+
+off(type: SensorId.WEAR_DETECTION, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;WearDetectionResponse&gt;): void
+
+Unsubscribes from data of the wear detection sensor.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name             | Type                                                        | Mandatory| Description                                                        |
+|------------------| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type             | [SensorId](#sensorid9).WEAR_DETECTION                        | Yes  | Sensor type. The value is fixed at **SensorId.WEAR_DETECTION**.             |
+| sensorInfoParam  | [SensorInfoParam](#sensorinfoparam19) |  No| Sensor parameters, including **deviceId** and **sensorIndex**.|
+| callback         | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. | 
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// Sensor callback
+const sensorCallback = (response: sensor.WearDetectionResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// Sensor type
+const sensorType = sensor.SensorId.WEAR_DETECTION;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // Query all sensors.
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // Obtain the target sensor based on the actual service logic.
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // Subscribe to sensor events.
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+```
+
+### sensorStatusChange<sup>19+<sup>
+
+off(type: 'sensorStatusChange', callback?: Callback&lt;SensorStatusEvent&gt;): void
+
+Disables listening for sensor status changes.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                       |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| sensorStatusChange     |  sensorStatusChange        | Yes  | Event type. The value **sensorStatusChange** indicates a sensor status change event.            |
+| callback | Callback&lt;[SensorStatusEvent](#sensorstatusevent19)&gt; | No  | Callback passed to **sensor.on**. If this parameter is left unspecified, listening will be disabled for all callbacks.|
+
+**Error codes**
+
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  const statusChangeCallback = (data: sensor.SensorStatusEvent) => {
+    console.info('sensorStatusChange : ' + JSON.stringify(data));
+  }
+  const statusChangeCallback2 = (data: sensor.SensorStatusEvent) => {
+    console.info('sensorStatusChange2 : ' + JSON.stringify(data));
+  }
+  // Register two callback listeners for device online events.
+  sensor.on('sensorStatusChange', statusChangeCallback);
+  sensor.on('sensorStatusChange', statusChangeCallback2);
+  
+  // Unregister the first listener after 3 seconds.
+  setTimeout(() => {
+    sensor.off('sensorStatusChange', statusChangeCallback);
+  }, 3000);
+  // Unregister the other listener after 5 seconds.
+  setTimeout(() => {
+    sensor.off('sensorStatusChange');
+  }, 5000);
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+
+## sensor.getSensorListByDeviceSync<sup>19+</sup> 
+
+getSensorListByDeviceSync(deviceId?: number): Array&lt;Sensor&gt; 
+
+Obtains the information about all sensors on the device.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name         | Type                                                        | Mandatory| Description    |
+| --------------- | ------------------------------------------------------------ | ---- |--------|
+| deviceId | number                 | No  | Device ID. The default value is the ID of the local device.|
+
+
+**Return value**
+
+| Type                                                      | Description          |
+| ---------------------------------------------------------- | -------------- |
+| Array&lt;[Sensor](#sensor9)&gt;           | Sensor attribute list.                 |
+
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  const deviceId = 1;
+  // The first deviceId is optional. By default, it is set to the ID of the local device.
+  const sensorList: sensor.Sensor[] = sensor.getSensorListByDeviceSync(deviceId);
+  console.log(`sensorList length: ${sensorList.length}`);
+  console.log(`sensorList: ${JSON.stringify(sensorList)}`);
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+
+## sensor.getSingleSensorByDeviceSync<sup>19+</sup> 
+
+getSingleSensorByDeviceSync(type: SensorId, deviceId?: number): Array&lt;Sensor&gt;
+
+Obtains information about the sensor of a specific type.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name         | Type                                                        | Mandatory| Description      |
+| --------------- | ------------------------------------------------------------ | ---- |----------|
+| type     | [SensorId](#sensorid9) | Yes  | Sensor type.|
+| deviceId | number                 | No  | Device ID. The default value is the ID of the local device.  |
+
+
+**Return value**
+
+| Type                                                      | Description          |
+| ---------------------------------------------------------- | -------------- |
+| Array&lt;[Sensor](#sensor9)&gt;           | Sensor attribute list.                 |
+
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  const deviceId = 1;
+  // The second deviceId is optional.
+  const sensorList: sensor.Sensor[] = sensor.getSingleSensorByDeviceSync(sensor.SensorId.ACCELEROMETER, deviceId);
+  console.log(`sensorList length: ${sensorList.length}`);
+  console.log(`sensorList Json: ${JSON.stringify(sensorList)}`);
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+
 ## sensor.getGeomagneticInfo<sup>9+</sup> 
 
 getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number, callback: AsyncCallback&lt;GeomagneticResponse&gt;): void
@@ -3008,7 +4799,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3065,7 +4856,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3115,7 +4906,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3167,7 +4958,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3212,7 +5003,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3267,7 +5058,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3318,7 +5109,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3384,7 +5175,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3443,7 +5234,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3495,7 +5286,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3543,7 +5334,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3600,7 +5391,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3650,7 +5441,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3702,7 +5493,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3748,7 +5539,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3807,7 +5598,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3858,7 +5649,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3910,7 +5701,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3954,7 +5745,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -3999,7 +5790,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -4041,7 +5832,7 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 
 | ID| Error Message          |
 | -------- | ------------------ |
-| 14500101 | Service exception. |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **Example**
 
@@ -4082,7 +5873,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 | 14500102 | The sensor is not supported by the device.                   |
 
 **Example**
@@ -4132,7 +5923,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 | 14500102 | The sensor is not supported by the device.                   |
 
 **Example**
@@ -4180,7 +5971,7 @@ For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md)
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 | 14500102 | The sensor is not supported by the device.                   |
 
 **Example**
@@ -4227,6 +6018,36 @@ Enumerates the sensor types.
 | HEART_RATE                  | 278  | Heart rate sensor.                                                |
 | WEAR_DETECTION              | 280  | Wear detection sensor.                                            |
 | ACCELEROMETER_UNCALIBRATED  | 281  | Uncalibrated acceleration sensor.                                      |
+
+
+## SensorInfoParam<sup>19+</sup>
+
+Defines sensor parameters, including **deviceId** and **sensorIndex**.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+
+| Name| Type                  | Mandatory| Description                     |
+| ------ | ---------------------- | ---- |-------------------------|
+| deviceId   | number | No  | Device ID. The default value is **-1**, which indicates the local device. You can use [getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19) to query other device IDs.    |
+| sensorIndex   | number | No  | Sensor index. The default value is **0**, which indicates the default sensor on the device. You can use [getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19) to query other sensor IDs.|
+
+
+## SensorStatusEvent<sup>19+</sup>
+
+Defines a device status change event.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+
+| Name| Type                   | Description        |
+| ------ | ---------------------- | ------------ |
+| timestamp   | number  | Timestamp when an event occurs.|
+| sensorId   | number   | Sensor ID.|
+| sensorIndex   | number   | Sensor index.|
+| isSensorOnline   | boolean   | Sensor status. The value **true** indicates that the sensor is online, and the value **false** indicates the opposite.|
+| deviceId   | number   | Device ID.|
+| deviceName   | string   | Device name.|
 
 ## SensorType<sup>(deprecated)</sup>
 
@@ -4282,7 +6103,7 @@ Describes the timestamp of the sensor data.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name     | Type  | Readable| Writable| Description                    |
+| Name     | Type  | Read-Only| Optional| Description                    |
 | --------- | ------ | ---- | ---- | ------------------------ |
 | timestamp | number | Yes  | Yes  | Timestamp when the sensor reports data.|
 | accuracy<sup>11+</sup> | [SensorAccuracy](#sensoraccuracy11)<sup>11+</sup> | Yes  | No  | Accuracy of the sensor data.|
@@ -4293,18 +6114,22 @@ Describes the sensor information.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name           | Type| Readable| Writable| Description                  |
-| --------------- | -------- | ---------------------- | ---------------------- | ---------------------- |
-| sensorName      | string   | Yes | No | Sensor name.           |
-| vendorName      | string   | Yes | No | Vendor of the sensor.        |
-| firmwareVersion | string   | Yes | No | Firmware version of the sensor.      |
-| hardwareVersion | string   | Yes | No | Hardware version of the sensor.      |
-| sensorId        | number   | Yes | No | Sensor type ID.        |
-| maxRange        | number   | Yes | No | Maximum measurement range of the sensor.|
-| minSamplePeriod | number   | Yes | No | Minimum sampling period.  |
-| maxSamplePeriod | number   | Yes | No | Maximum sampling period.  |
-| precision       | number   | Yes | No | Precision of the sensor.          |
-| power           | number   | Yes | No | Estimated sensor power, in mA. |
+| Name                         | Type     | Read-Only| Optional| Description              |
+|-----------------------------|---------|----|----|------------------|
+| sensorName                  | string  | Yes | No | Sensor name.          |
+| vendorName                  | string  | Yes | No | Vendor of the sensor.         |
+| firmwareVersion             | string  | Yes | No | Firmware version of the sensor.        |
+| hardwareVersion             | string  | Yes | No | Hardware version of the sensor.        |
+| sensorId                    | number  | Yes | No | Sensor type ID.        |
+| maxRange                    | number  | Yes | No | Maximum measurement range of the sensor.    |
+| minSamplePeriod             | number  | Yes | No | Minimum sampling period.      |
+| maxSamplePeriod             | number  | Yes | No | Maximum sampling period.      |
+| precision                   | number  | Yes | No | Precision of the sensor.          |
+| power                       | number  | Yes | No | Estimated sensor power, in mA.|
+| sensorIndex<sup>19+</sup>   | number  | Yes | Yes | Sensor index.          |
+| deviceId<sup>19+</sup>      | number  | Yes | Yes | Device ID.           |
+| deviceName<sup>19+</sup>    | string  | Yes | Yes | Device name.           |
+| isLocalSensor<sup>19+</sup> | boolean | Yes | Yes | Whether the sensor is a local sensor.        |
 
 ## AccelerometerResponse
 
@@ -4315,7 +6140,7 @@ Describes the acceleration sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description                                                      |
+| Name| Type  | Read-Only| Optional| Description                                                      |
 | ---- | ------ | ---- | ---- | ---------------------------------------------------------- |
 | x    | number | Yes  | Yes  | Acceleration along the x-axis of the device, in m/s². The value is equal to the reported physical quantity.|
 | y    | number | Yes  | Yes  | Acceleration along the y-axis of the device, in m/s². The value is equal to the reported physical quantity.|
@@ -4329,7 +6154,7 @@ Describes the linear acceleration sensor data. It extends from [Response](#respo
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description                                    |
+| Name| Type  | Read-Only| Optional| Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | x    | number | Yes  | Yes  | Linear acceleration along the x-axis of the device, in m/s².|
 | y    | number | Yes  | Yes  | Linear acceleration along the y-axis of the device, in m/s².|
@@ -4343,7 +6168,7 @@ Describes the uncalibrated acceleration sensor data. It extends from [Response](
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name | Type  | Readable| Writable| Description                                          |
+| Name | Type  | Read-Only| Optional| Description                                          |
 | ----- | ------ | ---- | ---- | ---------------------------------------------- |
 | x     | number | Yes  | Yes  | Uncalibrated acceleration along the x-axis of the device, in m/s².    |
 | y     | number | Yes  | Yes  | Uncalibrated acceleration along the y-axis of the device, in m/s².    |
@@ -4360,7 +6185,7 @@ Describes the gravity sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description                                    |
+| Name| Type  | Read-Only| Optional| Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | x    | number | Yes  | Yes  | Gravitational acceleration along the x-axis of the device, in m/s².|
 | y    | number | Yes  | Yes  | Gravitational acceleration along the y-axis of the device, in m/s².|
@@ -4376,7 +6201,7 @@ Describes the orientation sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name | Type  | Readable| Writable| Description                                                 |
+| Name | Type  | Read-Only| Optional| Description                                                 |
 | ----- | ------ | ---- | ---- | ----------------------------------------------------- |
 | alpha | number | Yes  | Yes  | Rotation angle of the device around the z-axis, in degrees. The value ranges from 0 to 360. |
 | beta  | number | Yes  | Yes  | Rotation angle of the device around the x-axis, in degrees. The value ranges from 0 to ±180.|
@@ -4390,12 +6215,12 @@ Describes the rotation vector sensor data. It extends from [Response](#response)
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description             |
+| Name| Type  | Read-Only| Optional| Description             |
 | ---- | ------ | ---- | ---- | ----------------- |
 | x    | number | Yes  | Yes  | X-component of the rotation vector.|
 | y    | number | Yes  | Yes  | Y-component of the rotation vector.|
 | z    | number | Yes  | Yes  | Z-component of the rotation vector.|
-| w    | number | Yes  | Yes  | Scalar.           |
+| w    | number | Yes  | Yes  | Scalar, which describes the rotation status of the device relative to a reference direction, in radians           |
 
 
 ## GyroscopeResponse
@@ -4407,7 +6232,7 @@ Describes the gyroscope sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description                                                  |
+| Name| Type  | Read-Only| Optional| Description                                                  |
 | ---- | ------ | ---- | ---- | ------------------------------------------------------ |
 | x    | number | Yes  | Yes  | Angular velocity of rotation around the x-axis of the device, in rad/s. The value is equal to the reported physical quantity.|
 | y    | number | Yes  | Yes  | Angular velocity of rotation around the y-axis of the device, in rad/s. The value is equal to the reported physical quantity.|
@@ -4421,7 +6246,7 @@ Describes the uncalibrated gyroscope sensor data. It extends from [Response](#re
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name | Type  | Readable| Writable| Description                                      |
+| Name | Type  | Read-Only| Optional| Description                                      |
 | ----- | ------ | ---- | ---- | ------------------------------------------ |
 | x     | number | Yes  | Yes  | Uncalibrated angular velocity of rotation around the x-axis of the device, in rad/s.    |
 | y     | number | Yes  | Yes  | Uncalibrated angular velocity of rotation around the y-axis of the device, in rad/s.    |
@@ -4438,7 +6263,7 @@ Describes the significant motion sensor data. It extends from [Response](#respon
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name  | Type  | Readable| Writable| Description                                                        |
+| Name  | Type  | Read-Only| Optional| Description                                                        |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | scalar | number | Yes  | Yes  | Intensity of a motion. This parameter specifies whether a device has a significant motion on three physical axes (X, Y, and Z). The value **1** is reported when the device has a significant motion.|
 
@@ -4450,7 +6275,7 @@ Describes the proximity sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name    | Type  | Readable| Writable| Description                                                      |
+| Name    | Type  | Read-Only| Optional| Description                                                      |
 | -------- | ------ | ---- | ---- | ---------------------------------------------------------- |
 | distance | number | Yes  | Yes  | Proximity between the visible object and the device monitor. The value **0** means the two are close to each other, and a value greater than 0 means that they are far away from each other.|
 
@@ -4462,7 +6287,7 @@ Describes the ambient light sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name                           | Type  | Readable| Writable| Description                                                        |
+| Name                           | Type  | Read-Only| Optional| Description                                                        |
 | ------------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | intensity                       | number | Yes  | Yes  | Illumination, in lux.                                      |
 | colorTemperature<sup>12+</sup>  | number | Yes  | Yes  | Color temperature, in Kelvin. This parameter is optional. If this parameter is not supported, **undefined** is returned. If this parameter is supported, a normal value is returned.|
@@ -4476,7 +6301,7 @@ Describes the Hall effect sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name  | Type  | Readable| Writable| Description                                                        |
+| Name  | Type  | Read-Only| Optional| Description                                                        |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | status | number | Yes  | Yes  | Hall effect sensor status. This parameter specifies whether a magnetic field exists around a device. The value **0** means that a magnetic field does not exist, and a value greater than **0** means the opposite.|
 
@@ -4488,7 +6313,7 @@ Describes the magnetic field sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description                        |
+| Name| Type  | Read-Only| Optional| Description                        |
 | ---- | ------ | ---- | ---- | ---------------------------- |
 | x    | number | Yes  | Yes  | Magnetic field strength on the x-axis, in μT.|
 | y    | number | Yes  | Yes  | Magnetic field strength on the y-axis, in μT.|
@@ -4502,7 +6327,7 @@ Describes the uncalibrated magnetic field sensor data. It extends from [Response
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name | Type  | Readable| Writable| Description                                  |
+| Name | Type  | Read-Only| Optional| Description                                  |
 | ----- | ------ | ---- | ---- | -------------------------------------- |
 | x     | number | Yes  | Yes  | Uncalibrated magnetic field strength on the x-axis, in μT.    |
 | y     | number | Yes  | Yes  | Uncalibrated magnetic field strength on the y-axis, in μT.    |
@@ -4519,7 +6344,7 @@ Describes the pedometer sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name | Type  | Readable| Writable| Description            |
+| Name | Type  | Read-Only| Optional| Description            |
 | ----- | ------ | ---- | ---- | ---------------- |
 | steps | number | Yes  | Yes  | Number of steps a user has walked.|
 
@@ -4531,7 +6356,7 @@ Describes the humidity sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name    | Type  | Readable| Writable| Description                                                     |
+| Name    | Type  | Read-Only| Optional| Description                                                     |
 | -------- | ------ | ---- | ---- | --------------------------------------------------------- |
 | humidity | number | Yes  | Yes  | Ambient relative humidity, in a percentage (%).|
 
@@ -4543,7 +6368,7 @@ Describes the pedometer detection sensor data. It extends from [Response](#respo
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name  | Type  | Readable| Writable| Description                                                        |
+| Name  | Type  | Read-Only| Optional| Description                                                        |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | scalar | number | Yes  | Yes  | Pedometer detection. This parameter specifies whether a user takes a step. The value **0** means that the user does not take a step, and **1** means that the user takes a step.|
 
@@ -4555,7 +6380,7 @@ Describes the ambient temperature sensor data. It extends from [Response](#respo
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name       | Type  | Readable| Writable| Description                      |
+| Name       | Type  | Read-Only| Optional| Description                      |
 | ----------- | ------ | ---- | ---- | -------------------------- |
 | temperature | number | Yes  | Yes  | Ambient temperature, in degree Celsius.|
 
@@ -4567,7 +6392,7 @@ Describes the barometer sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name    | Type  | Readable| Writable| Description                  |
+| Name    | Type  | Read-Only| Optional| Description                  |
 | -------- | ------ | ---- | ---- | ---------------------- |
 | pressure | number | Yes  | Yes  | Atmospheric pressure, in units of hPa.|
 
@@ -4579,7 +6404,7 @@ Describes the heart rate sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name     | Type  | Readable| Writable| Description                                   |
+| Name     | Type  | Read-Only| Optional| Description                                   |
 | --------- | ------ | ---- | ---- | --------------------------------------- |
 | heartRate | number | Yes  | Yes  | Heart rate, in beats per minute (bpm).|
 
@@ -4591,7 +6416,7 @@ Describes the wear detection sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name | Type  | Readable| Writable| Description                                            |
+| Name | Type  | Read-Only| Optional| Description                                            |
 | ----- | ------ | ---- | ---- | ------------------------------------------------ |
 | value | number | Yes  | Yes  | Whether the device is being worn. The value **1** means that the device is being worn, and **0** means the opposite.|
 
@@ -4604,9 +6429,10 @@ Describes the sensor data reporting frequency.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name    | Type                                                       | Readable| Writable| Description                                                        |
+| Name    | Type                                                       | Read-Only| Optional| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | interval | number\|[SensorFrequency](#sensorfrequency11)<sup>11+</sup> | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns. The maximum and minimum values of this parameter are determined by the reporting frequency supported by the hardware. If the configured frequency is greater than the maximum value, the maximum value is used for data reporting. If the configured frequency is less than the minimum value, the minimum value is used for data reporting.|
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) | Yes| Yes| Sensor parameters, including **deviceId** and **sensorIndex**.|
 
 ## SensorFrequency<sup>11+</sup>
 
@@ -4630,7 +6456,7 @@ Describes the response for setting the rotation matrix.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name       | Type               | Readable| Writable| Description      |
+| Name       | Type               | Read-Only| Optional| Description      |
 | ----------- | ------------------- | ---- | ---- | ---------- |
 | rotation    | Array&lt;number&gt; | Yes  | Yes  | Rotation matrix.|
 | inclination | Array&lt;number&gt; | Yes  | Yes  | Inclination matrix.|
@@ -4642,7 +6468,7 @@ Describes the coordinate options.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name| Type  | Readable| Writable| Description       |
+| Name| Type  | Read-Only| Optional| Description       |
 | ---- | ------ | ---- | ---- | ----------- |
 | x    | number | Yes  | Yes  | X coordinate direction.|
 | y    | number | Yes  | Yes  | Y coordinate direction.|
@@ -4654,7 +6480,7 @@ Describes a geomagnetic response object.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name           | Type  | Readable| Writable| Description                                              |
+| Name           | Type  | Read-Only| Optional| Description                                              |
 | --------------- | ------ | ---- | ---- | -------------------------------------------------- |
 | x               | number | Yes  | Yes  | North component of the geomagnetic field.                                  |
 | y               | number | Yes  | Yes  | East component of the geomagnetic field.                                  |
@@ -4670,7 +6496,7 @@ Describes the geographical location.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name     | Type  | Readable| Writable| Description      |
+| Name     | Type  | Read-Only| Optional| Description      |
 | --------- | ------ | ---- | ---- | ---------- |
 | latitude  | number | Yes  | Yes  | Latitude.    |
 | longitude | number | Yes  | Yes  | Longitude.    |

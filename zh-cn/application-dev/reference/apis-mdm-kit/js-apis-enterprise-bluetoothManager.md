@@ -385,11 +385,11 @@ try {
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-| 名称            | 类型                                                         | 必填 | 说明                     |
-| --------------- | ------------------------------------------------------------ | ---- | ------------------------ |
-| name            | string                                                       | 是   | 表示设备的蓝牙名称。     |
-| state           | [access.BluetoothState](../apis-connectivity-kit/js-apis-bluetooth-access.md#bluetoothstate) | 是   | 表示设备的蓝牙状态。     |
-| connectionState | [constant.ProfileConnectionState](../apis-connectivity-kit/js-apis-bluetooth-constant.md#profileconnectionstate) | 是   | 表示设备的蓝牙连接状态。 |
+| 名称            | 类型                                                         | 只读 | 可选 | 说明                     |
+| --------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------ |
+| name            | string                                                       | 否   | 否 | 表示设备的蓝牙名称。     |
+| state           | [access.BluetoothState](../apis-connectivity-kit/js-apis-bluetooth-access.md#bluetoothstate) | 否   | 否 | 表示设备的蓝牙状态。     |
+| connectionState | [constant.ProfileConnectionState](../apis-connectivity-kit/js-apis-bluetooth-constant.md#profileconnectionstate) | 否   | 否 | 表示设备的蓝牙连接状态。 |
 
 ## bluetoothManager.turnOnBluetooth<sup>20+</sup>
 

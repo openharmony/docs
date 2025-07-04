@@ -4930,6 +4930,20 @@
 
 **起始版本**：20
 
+## ohos.permission.MANAGE_FILE_ENCRYPTION
+
+允许系统应用修改系统文件的加密状态。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
 ## ohos.permission.FILE_TRANSFER_OPERATION
 
 允许系统应用执行文件的传输、取消传输、删除、移除和修改等操作。
@@ -4983,6 +4997,20 @@
 **ACL使能**：true
 
 **支持设备**：Phone | Tablet
+
+**起始版本**：20
+
+## ohos.permission.MOUNT_HDCDEBUG_PATH
+
+允许应用挂载hdc调试路径。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
 
 **起始版本**：20
 

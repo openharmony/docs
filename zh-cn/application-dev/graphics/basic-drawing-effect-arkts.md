@@ -15,7 +15,7 @@
 
 ### 接口说明
 
-使用画刷（Brush）设置绘制效果的常用接口如下表所示，详细的使用和参数请见[drawing.Brush](../reference/apis-arkgraphics2d/js-apis-graphics-drawing.md#brush)。
+使用画刷（Brush）设置绘制效果的常用接口如下表所示，详细的使用和参数请见[drawing.Brush](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Brush.md)。
 
 | 接口 | 描述 |
 | -------- | -------- |
@@ -68,7 +68,7 @@
 
 ### 接口说明
 
-使用画笔（Pen）设置绘制效果的常用接口如下表所示，详细的使用和参数请见[drawing.Pen](../reference/apis-arkgraphics2d/js-apis-graphics-drawing.md#pen)。
+使用画笔（Pen）设置绘制效果的常用接口如下表所示，详细的使用和参数请见[drawing.Pen](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Pen.md)。
 
 
 | 接口 | 描述 |

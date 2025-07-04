@@ -55,6 +55,7 @@ static napi_value GetPrototype(napi_env env, napi_callback_info info)
     return result;
 }
 ```
+<!-- @[napi_get_prototype](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -62,6 +63,7 @@ static napi_value GetPrototype(napi_env env, napi_callback_info info)
 // index.d.ts
 export const getPrototype: (object: Object) => Object;
 ```
+<!-- @[napi_get_prototype_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -91,6 +93,7 @@ if (applePrototype === Person.prototype) {
   hilog.info(0x0000, 'Node-API', 'get_prototype_fail');
 }
 ```
+<!-- @[ark_napi_get_prototype](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/napiGetPrototype.ts) -->
 
 ### napi_create_object
 
@@ -118,6 +121,7 @@ napi_value NewObject(napi_env env, napi_callback_info info)
     return object;
 }
 ```
+<!-- @[napi_create_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -125,6 +129,7 @@ napi_value NewObject(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createObject: () => { name: string };
 ```
+<!-- @[napi_create_object_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -138,6 +143,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_object errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
 }
 ```
+<!-- @[ark_napi_create_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_object_freeze
 
@@ -166,6 +172,7 @@ static napi_value ObjectFreeze(napi_env env, napi_callback_info info)
     return objFreeze;
 }
 ```
+<!-- @[napi_object_freeze](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -177,6 +184,7 @@ export interface Obj {
 }
 export const objectFreeze: (objFreeze: Object) => Obj;
 ```
+<!-- @[napi_object_freeze_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -195,6 +203,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_object_freeze error: %{public}s', error.message);
 }
 ```
+<!-- @[ark_napi_object_freeze](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_object_seal
 
@@ -222,6 +231,7 @@ static napi_value ObjectSeal(napi_env env, napi_callback_info info)
     return objSeal;
 }
 ```
+<!-- @[napi_object_seal](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -234,6 +244,7 @@ export interface Obj {
 }
 export const objectSeal : (objSeal: Object) => Obj;
 ```
+<!-- @[napi_object_seal_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -257,6 +268,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_object_seal error: %{public}s', error.message);
 }
 ```
+<!-- @[ark_napi_object_seal](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_typeof
 
@@ -325,6 +337,7 @@ static napi_value NapiTypeOf(napi_env env, napi_callback_info info)
     return returnValue;
 }
 ```
+<!-- @[napi_typeof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -332,6 +345,7 @@ static napi_value NapiTypeOf(napi_env env, napi_callback_info info)
 // index.d.ts
 export const napiTypeOf : <T>(value: T) => string | void;
 ```
+<!-- @[napi_typeof_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -363,6 +377,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_typeof error: %{public}s', error.message);
 }
 ```
+<!-- @[ark_napi_typeof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_instanceof
 
@@ -393,6 +408,7 @@ static napi_value NapiInstanceOf(napi_env env, napi_callback_info info)
     return returnValue;
 }
 ```
+<!-- @[napi_instanceof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -400,6 +416,7 @@ static napi_value NapiInstanceOf(napi_env env, napi_callback_info info)
 // index.d.ts
 export const napiInstanceOf: (date: Object, construct: Object) => boolean | void;
 ```
+<!-- @[napi_instanceof_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -428,6 +445,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_instanceof error: %{public}s', error.message);
 }
 ```
+<!-- @[ark_napi_instanceof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_type_tag_object
 
@@ -494,6 +512,7 @@ static napi_value CheckObjectTypeTag(napi_env env, napi_callback_info info)
     return checked;
 }
 ```
+<!-- @[napi_type_tag_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -502,6 +521,7 @@ static napi_value CheckObjectTypeTag(napi_env env, napi_callback_info info)
 export const setTypeTagToObject: (obj: Object, index: number) => boolean | void;
 export const checkObjectTypeTag: (obj: Object, index: number) => boolean;
 ```
+<!-- @[napi_type_tag_object_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -519,6 +539,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_type_tag_object objB -> 0: %{p
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_check_object_type_tag objA -> 0: %{public}s', testNapi.checkObjectTypeTag(objA, 0));
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_check_object_type_tag objB -> 1: %{public}s', testNapi.checkObjectTypeTag(objB, 1));
 ```
+<!-- @[ark_napi_type_tag_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_external
 
@@ -573,6 +594,7 @@ static napi_value CreateExternal(napi_env env, napi_callback_info info)
     return result;
 }
 ```
+<!-- @[napi_create_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -581,6 +603,7 @@ static napi_value CreateExternal(napi_env env, napi_callback_info info)
 export const createExternal: () => Object;
 export const getExternalType: (externalData: Object) => boolean;
 ```
+<!-- @[napi_create_external_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -590,6 +613,7 @@ import testNapi from 'libentry.so';
 const externalData = testNapi.createExternal();
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_external:%{public}s', testNapi.getExternalType(externalData));
 ```
+<!-- @[ark_napi_create_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_value_external
 
@@ -616,6 +640,7 @@ static napi_value GetValueExternal(napi_env env, napi_callback_info info)
     return result;
 }
 ```
+<!-- @[napi_get_value_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -623,6 +648,7 @@ static napi_value GetValueExternal(napi_env env, napi_callback_info info)
 // index.d.ts
 export const getValueExternal: () => number;
 ```
+<!-- @[napi_get_value_external_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -631,6 +657,7 @@ import hilog from '@ohos.hilog';
 import testNapi from 'libentry.so';
 hilog.info(0x0000, 'Node-API', 'get_value_external:%{public}d', testNapi.getValueExternal());
 ```
+<!-- @[ark_napi_get_value_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_symbol
 
@@ -653,6 +680,7 @@ static napi_value CreateSymbol(napi_env env, napi_callback_info info)
     return returnSymbol;
 }
 ```
+<!-- @[napi_create_symbol](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -660,6 +688,7 @@ static napi_value CreateSymbol(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createSymbol : () => symbol;
 ```
+<!-- @[napi_create_symbol_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
@@ -669,6 +698,7 @@ import testNapi from 'libentry.so';
 let varSymbol = testNapi.createSymbol();
 hilog.info(0x0000, 'Node-API', 'createSymbol:%{public}s', typeof varSymbol);
 ```
+<!-- @[ark_napi_create_symbol](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/Index.ets) -->
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 

@@ -39,6 +39,7 @@
 | [InputEvent_MouseAxis](#inputevent_mouseaxis) | InputEvent_MouseAxis | 鼠标轴事件类型。 |
 | [Input_MouseEventButton](#input_mouseeventbutton) | Input_MouseEventButton | 鼠标按键的枚举值。 |
 | [Input_TouchEventAction](#input_toucheventaction) | Input_TouchEventAction | 触屏动作的枚举值。 |
+| [Input_InjectionStatus](#input_injectionstatus) | Input_InjectionStatus | 注入权限状态枚举值。 |
 | [InputEvent_SourceType](#inputevent_sourcetype) | InputEvent_SourceType | 输入事件源类型。 |
 | [Input_KeyboardType](#input_keyboardtype) | Input_KeyboardType | 输入设备的键盘类型。 |
 | [Input_Result](#input_result) | Input_Result | 错误码枚举值。 |
@@ -54,6 +55,7 @@
 | [typedef void (\*Input_AxisEventCallback)(const Input_AxisEvent* axisEvent)](#input_axiseventcallback) | Input_AxisEventCallback | 轴事件的回调函数，axisEvent的生命周期为回调函数内。 |
 | [typedef void (\*Input_DeviceAddedCallback)(int32_t deviceId)](#input_deviceaddedcallback) | Input_DeviceAddedCallback | 回调函数，用于回调输入设备的热插事件。 |
 | [typedef void (\*Input_DeviceRemovedCallback)(int32_t deviceId)](#input_deviceremovedcallback) | Input_DeviceRemovedCallback | 回调函数，用于回调输入设备的热拔事件。 |
+| [typedef void (\*Input_InjectAuthorizeCallback)(Input_InjectionStatus authorizedStatus)](#input_injectauthorizecallback) | Input_InjectAuthorizeCallback | 回调函数，用于获取注入权限状态。 |
 | [Input_Result OH_Input_GetKeyState(struct Input_KeyState* keyState)](#oh_input_getkeystate) | - | 查询按键状态的枚举对象。 |
 | [struct Input_KeyState* OH_Input_CreateKeyState()](#oh_input_createkeystate) | - | 创建按键状态的枚举对象。 |
 | [void OH_Input_DestroyKeyState(struct Input_KeyState** keyState)](#oh_input_destroykeystate) | - | 销毁按键状态的枚举对象。 |
@@ -112,6 +114,8 @@
 | [void OH_Input_SetTouchEventDisplayId(struct Input_TouchEvent* touchEvent, int32_t displayId)](#oh_input_settoucheventdisplayid) | - | 设置触屏事件的屏幕Id。 |
 | [int32_t OH_Input_GetTouchEventDisplayId(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayid) | - | 获取触屏事件的屏幕Id。 |
 | [void OH_Input_CancelInjection()](#oh_input_cancelinjection) | - | 取消事件注入并撤销授权。 |
+| [Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback)](#oh_input_requestinjection) | - | 当前应用申请注入权限，包括申请注入按键事件[OH_Input_InjectKeyEvent](capi-oh-input-manager-h.md#oh_input_injectkeyevent)、注入触屏事件[OH_Input_InjectTouchEvent](capi-oh-input-manager-h.md#oh_input_injecttouchevent)、注入鼠标事件[OH_Input_InjectMouseEvent](capi-oh-input-manager-h.md#oh_input_injectmouseevent)等注入操作的权限。该接口仅在PC/2in1设备上生效。 |
+| [Input_Result OH_Input_QueryAuthorizedStatus(Input_InjectionStatus* status)](#oh_input_queryauthorizedstatus) | - | 查询当前应用注入的权限状态。 |
 | [Input_AxisEvent* OH_Input_CreateAxisEvent(void)](#oh_input_createaxisevent) | - | 创建轴事件对象实例。 |
 | [Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent)](#oh_input_destroyaxisevent) | - | 销毁轴事件对象实例。 |
 | [Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_AxisAction action)](#oh_input_setaxiseventaction) | - | 设置轴事件的动作。 |
@@ -179,6 +183,7 @@
 | [int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent)](#oh_input_injecttouchevent) | - | 注入触屏事件。 |
 | [int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent)](#oh_input_injectmouseevent) | - | 注入鼠标事件。 |
 | [int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayid) | - | 获取鼠标事件的屏幕Id。 |
+| [Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count)](#oh_input_querymaxtouchpoints) | - | 查询设备支持的最大触屏报点数。 |
 
 ## 枚举类型说明
 
@@ -299,6 +304,24 @@ enum Input_TouchEventAction
 | TOUCH_ACTION_MOVE = 2 | 触屏移动。 |
 | TOUCH_ACTION_UP = 3 | 触屏抬起。 |
 
+### Input_InjectionStatus
+
+```
+enum Input_InjectionStatus
+```
+
+**描述**
+
+注入权限状态枚举值。
+
+**起始版本：** 20
+
+| 枚举项 | 描述 |
+| -- | -- |
+| UNAUTHORIZED = 0 | 未授权。 |
+| AUTHORIZING = 1 | 授权中。 |
+| AUTHORIZED = 2 | 已授权。 |
+
 ### InputEvent_SourceType
 
 ```
@@ -362,6 +385,10 @@ enum Input_Result
 | INPUT_OCCUPIED_BY_SYSTEM = 4200002 | 已经被系统应用占用。<br>**起始版本：** 14。 |
 | INPUT_OCCUPIED_BY_OTHER = 4200003 | 已经被其他应用占用。<br>**起始版本：** 14。 |
 | INPUT_KEYBOARD_DEVICE_NOT_EXIST = 3900002 |  未连接键盘设备。<br>**起始版本：** 15。 |
+| INPUT_INJECTION_AUTHORIZING = 3900005 |  正在授权中。<br>**起始版本：** 20。 |
+| INPUT_INJECTION_OPERATION_FREQUENT = 3900006 |  重复请求。<br>**起始版本：** 20。 |
+| INPUT_INJECTION_AUTHORIZED = 3900007 |  当前应用已经授权。<br>**起始版本：** 20。 |
+| INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008 |  其它应用已经授权。<br>**起始版本：** 20。 |
 
 
 ## 函数说明
@@ -491,6 +518,25 @@ typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId)
 | 参数项 | 描述 |
 | -- | -- |
 | int32_t deviceId | 设备的ID。 |
+
+### Input_InjectAuthorizeCallback()
+
+```
+typedef void (*Input_InjectAuthorizeCallback)(Input_InjectionStatus authorizedStatus)
+```
+
+**描述**
+
+回调函数，用于获取注入权限状态。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Input_InjectionStatus](capi-oh-input-manager-h.md#input_injectionstatus) authorizedStatus | 注入权限状态。 |
 
 ### OH_Input_GetKeyState()
 
@@ -1872,6 +1918,56 @@ void OH_Input_CancelInjection()
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
 **起始版本：** 12
+
+### OH_Input_RequestInjection()
+
+```
+Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback)
+```
+
+**描述**
+
+当前应用申请注入权限，包括申请注入按键事件[OH_Input_InjectKeyEvent](capi-oh-input-manager-h.md#oh_input_injectkeyevent)、注入触屏事件[OH_Input_InjectTouchEvent](capi-oh-input-manager-h.md#oh_input_injecttouchevent)、注入鼠标事件[OH_Input_InjectMouseEvent](capi-oh-input-manager-h.md#oh_input_injectmouseevent)等注入操作的权限。该接口仅在PC/2in1设备上生效。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Input_InjectAuthorizeCallback](capi-oh-input-manager-h.md#input_injectauthorizecallback) callback | 授权状态回调，具体请参考[Input_InjectAuthorizeCallback](capi-oh-input-manager-h.md#input_injectauthorizecallback)。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Input_Result](capi-oh-input-manager-h.md#input_result) | 返回结果码，参见[Input_Result](capi-oh-input-manager-h.md#input_result)。<br>      INPUT_SUCCESS = 0 申请授权成功，等待用户授权结果并回调授权状态。<br>      INPUT_PARAMETER_ERROR = 401  参数错误，参数callback为空。<br>      INPUT_DEVICE_NOT_SUPPORTED = 801  设备不支持。<br>      INPUT_SERVICE_EXCEPTION = 3800001  服务器错误。<br>      INPUT_INJECTION_AUTHORIZING =  3900005 正在授权中。<br>      INPUT_INJECTION_OPERATION_FREQUENT = 3900006 重复请求（当前应用连续申请授权弹窗成功，间隔时间不超过3秒）。<br>      INPUT_INJECTION_AUTHORIZED = 3900007 当前应用已经授权。<br>      INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008   其它应用已经授权。 |
+
+### OH_Input_QueryAuthorizedStatus()
+
+```
+Input_Result OH_Input_QueryAuthorizedStatus(Input_InjectionStatus* status)
+```
+
+**描述**
+
+查询当前应用注入的权限状态。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Input_InjectionStatus](capi-oh-input-manager-h.md#input_injectionstatus)* status | 当前应用注入权限状态。参见[Input_InjectionStatus](capi-oh-input-manager-h.md#input_injectionstatus)。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Input_Result](capi-oh-input-manager-h.md#input_result) | 返回结果码，参见[Input_Result](capi-oh-input-manager-h.md#input_result)。<br>      INPUT_SUCCESS = 0 查询成功。<br>      INPUT_PARAMETER_ERROR = 401  参数错误，参数status为空。<br>      INPUT_SERVICE_EXCEPTION = 3800001  服务器错误。 |
 
 ### OH_Input_CreateAxisEvent()
 
@@ -3675,3 +3771,27 @@ int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEven
 | 类型 | 说明 |
 | -- | -- |
 | int32_t | 若获取鼠标事件的屏幕Id成功，则返回鼠标事件的屏幕Id；若mouseEvent为NULL，则返回-1。 |
+
+### OH_Input_QueryMaxTouchPoints()
+
+```
+Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count)
+```
+
+**描述**
+
+查询设备支持的最大触屏报点数。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| int32_t *count | 设备支持的最大触屏报点数，count取值范围为0-10，-1表示未知数量。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Input_Result](capi-oh-input-manager-h.md#input_result) | OH_Input_QueryMaxTouchPoints的执行结果：<br>[INPUT_SUCCESS](#input_result) 表示查询成功。<br> [INPUT_PARAMETER_ERROR](capi-oh-input-manager-h.md#input_result) 表示参数错误。 |

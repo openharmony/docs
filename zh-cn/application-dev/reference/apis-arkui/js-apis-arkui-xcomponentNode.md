@@ -1,7 +1,7 @@
 # XComponentNode
 <!--deprecated_code_no_check-->
 
-提供XComponent节点XComponentNode，表示组件树中的[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md#xcomponent)，用于[EGL](../native-lib/egl.md)/[OpenGLES](../native-lib/opengles.md)和媒体数据写入，并支持动态修改节点渲染类型。
+提供XComponent节点XComponentNode，表示组件树中的[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md)，用于[EGL](../native-lib/egl.md)/[OpenGLES](../native-lib/opengles.md)和媒体数据写入，并支持动态修改节点渲染类型。
 
 > **说明：** 从API version 12开始，该接口不再维护，推荐使用[XComponent类型typeNode](./js-apis-arkui-frameNode.md#xcomponent12)的方式实现。
 >
@@ -31,9 +31,9 @@ XComponentNode的构造函数。
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uiContext   | [UIContext](js-apis-arkui-UIContext.md)                      | 是   | UI上下文，获取方式可参考[UIContext获取方法](./js-apis-arkui-node.md#uicontext获取方法)。 |
 | options     | [RenderOptions](./js-apis-arkui-builderNode.md#renderoptions) | 是   | XComponentNode的构造可选参数。                               |
-| id          | string                                                       | 是   | XComponent的唯一标识，支持最大的字符串长度128。详见[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md#xcomponent)。 |
-| type        | [XComponentType](arkui-ts/ts-appendix-enums.md#xcomponenttype10) | 是   | 用于指定XComponent组件类型。详见[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md#xcomponent)。 |
-| libraryName | string                                                       | 否   | Native层编译输出动态库名称。详见[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md#xcomponent)。 |
+| id          | string                                                       | 是   | XComponent的唯一标识，支持最大的字符串长度128。详见[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md)。 |
+| type        | [XComponentType](arkui-ts/ts-appendix-enums.md#xcomponenttype10) | 是   | 用于指定XComponent组件类型。详见[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md)。 |
+| libraryName | string                                                       | 否   | Native层编译输出动态库名称。详见[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md)。 |
 
 > **说明：**
 >

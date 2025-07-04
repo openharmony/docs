@@ -2612,7 +2612,7 @@ connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnect
 
 | 参数名 | 类型 | 必填 | 说明                 |
 | ------ | ---- | ---- | ---- |
-| want   |[Want](js-apis-app-ability-want.md) | 是  | 连接UIServiceExtensionAbility的必要信息。。 |
+| want   |[Want](js-apis-app-ability-want.md) | 是  | 连接UIServiceExtensionAbility的必要信息。 |
 | callback | [UIServiceExtensionConnectCallback](js-apis-inner-application-uiServiceExtensionconnectcallback.md) | 是  | 连接UIServiceExtensionAbility回调。 |
 
 **返回值：**

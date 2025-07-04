@@ -779,7 +779,7 @@ queryMaxLoggedInOsAccountNumber(): Promise&lt;number&gt;
 
 getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-获取指定系统账号已使能的的全部约束。使用Promise异步回调。
+获取指定系统账号已使能的全部约束。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -797,7 +797,7 @@ getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&
 
 | 类型                               | 说明                                                       |
 | ---------------------------------- | ---------------------------------------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回指定系统账号已使能的的全部[约束](js-apis-osAccount.md#系统账号约束列表)。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回指定系统账号已使能的全部[约束](js-apis-osAccount.md#系统账号约束列表)。 |
 
 **错误码：**
 

@@ -113,6 +113,10 @@ Dialog关闭的信息。
 
 弹窗中按钮的样式。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -166,7 +170,7 @@ static show(value: ActionSheetOptions)
 
 > **说明：**
 > 
-> 直接使用ActionSheet可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet)调用绑定实例的ActionSheet.show()。
+> 直接使用ActionSheet可能导致实例不明确的问题，建议使用getUIContext()获取[UIContext](../js-apis-arkui-UIContext.md#uicontext)实例，并使用[showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet)调用绑定实例的ActionSheet.show()。
 
 ### 示例1（弹出列表选择弹窗）
 

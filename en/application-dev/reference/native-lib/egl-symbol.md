@@ -1,7 +1,7 @@
 # EGL Symbols Exported from Native APIs
 
 |Type|Symbol|
-| --- | --- |
+| --- | --- | 
 |FUNC|eglChooseConfig|
 |FUNC|eglCopyBuffers|
 |FUNC|eglCreateContext|
@@ -53,3 +53,4 @@
 |FUNC|eglGetFrameTimestampSupportedANDROID|
 |FUNC|eglPresentationTimeANDROID|
 |FUNC|eglGetNativeClientBufferANDROID|
+|FUNC|eglSwapBuffersWithDamageKHR|

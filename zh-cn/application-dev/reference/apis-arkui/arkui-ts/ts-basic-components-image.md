@@ -432,7 +432,7 @@ colorFilter(value: ColorFilter | DrawingColorFilter)
 
 draggable(value: boolean)
 
-设置组件默认拖拽效果。不能和[onDragStart](ts-universal-events-drag-drop.md#ondragstart)事件、[bindPopup](ts-universal-attributes-popup.md)同时使用。
+设置组件默认拖拽效果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -442,7 +442,7 @@ draggable(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 组件默认拖拽效果，设置为true时，组件可拖拽，绑定的长按手势不生效。<br />API version 9及之前，默认值为false。API version 10及之后，默认值为true。<br /> 若用户需要设置自定义手势，则需要将draggable设置为false。 |
+| value  | boolean | 是   | 组件默认拖拽效果，设置为true时，组件可拖拽，绑定的长按手势不生效。<br />API version 9及之前，默认值为false。API version 10及之后，默认值为true。<br /> 若用户需要设置自定义手势，则需要将draggable设置为false。设置为false之后，拖拽类事件不再触发。 |
 
 ### enableAnalyzer<sup>11+</sup>
 
@@ -590,12 +590,12 @@ svg类型图源不支持该属性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 说明                       |
-| ------ | -------------------------- |
-| None   | 最近邻插值。                   |
-| High   | Cubic插值，插值质量最高，可能会影响图片渲染的速度。 |
-| Medium | MipMap插值。                     |
-| Low    | 双线性插值。                     |
+| 名称     | 值 | 说明                       |
+| ------ | - | -------------------------- |
+| None   | 0 | 最近邻插值。                   |
+| Low    | 1 | 双线性插值。                     |
+| Medium | 2 | MipMap插值。                     |
+| High   | 3 | Cubic插值，插值质量最高，可能会影响图片渲染的速度。 |
 
 ## ImageRenderMode
 
@@ -605,10 +605,10 @@ svg类型图源不支持该属性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 说明           |
-| -------- | -------------- |
-| Original | 原色渲染模式。 |
-| Template | 黑白渲染模式。 |
+| 名称     | 值 | 说明           |
+| -------- | - | -------------- |
+| Original | 0 | 原色渲染模式。 |
+| Template | 1 | 黑白渲染模式。 |
 
 ## ResizableOptions<sup>11+</sup>
 
@@ -660,15 +660,15 @@ svg类型图源不支持该属性。
 
 | 名称     | 值    | 说明                    |
 | ------ | -------------------------- | -------------------------- |
-| AUTO | 0 | 读取图片携带的EXIF元数据作为显示方向，支持旋转和镜像。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| AUTO | 0 | 读取图片携带的EXIF元数据作为显示方向，支持旋转和镜像。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br/>![imageRotateOrientation_0](figures/imageRotateOrientation_0.png) |
 | UP | 1 | 默认按照当前图片的像素数据进行显示，不做任何处理。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| RIGHT | 2 | 将当前图片顺时针旋转90度后显示。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| DOWN | 3 | 将当前图片顺时针旋转180度后显示。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| LEFT | 4 | 将当前图片顺时针旋转270度后显示。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| UP_MIRRORED<sup>20+</sup> | 5 | 将当前图片水平翻转后显示。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| RIGHT_MIRRORED<sup>20+</sup> | 6 | 将当前图片水平翻转再顺时针旋转90度后显示。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| DOWN_MIRRORED<sup>20+</sup> | 7 | 将当前图片垂直翻转后显示。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| LEFT_MIRRORED<sup>20+</sup> | 8 | 将当前图片水平翻转再顺时针旋转270度后显示。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| RIGHT | 2 | 将当前图片顺时针旋转90度后显示。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br/>![imageRotateOrientation_2](figures/imageRotateOrientation_2.png) |
+| DOWN | 3 | 将当前图片顺时针旋转180度后显示。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br/>![imageRotateOrientation_3](figures/imageRotateOrientation_3.png) |
+| LEFT | 4 | 将当前图片顺时针旋转270度后显示。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br/>![imageRotateOrientation_4](figures/imageRotateOrientation_4.png) |
+| UP_MIRRORED<sup>20+</sup> | 5 | 将当前图片水平翻转后显示。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。<br/>![imageRotateOrientation_5](figures/imageRotateOrientation_5.png) |
+| RIGHT_MIRRORED<sup>20+</sup> | 6 | 将当前图片水平翻转再顺时针旋转90度后显示。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。<br/>![imageRotateOrientation_6](figures/imageRotateOrientation_6.png) |
+| DOWN_MIRRORED<sup>20+</sup> | 7 | 将当前图片垂直翻转后显示。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。<br/>![imageRotateOrientation_7](figures/imageRotateOrientation_7.png) |
+| LEFT_MIRRORED<sup>20+</sup> | 8 | 将当前图片水平翻转再顺时针旋转270度后显示。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。<br/>![imageRotateOrientation_8](figures/imageRotateOrientation_8.png) |
 
 ## ImageSourceSize<sup>18+</sup>对象说明
 
@@ -709,7 +709,7 @@ type DrawingColorFilter = ColorFilter
 
 | 类型     | 说明       |
 | ------ | ---------- |
-| [ColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter)  | 返回一个颜色滤波器。 |
+| [ColorFilter](../../apis-arkgraphics2d/arkts-apis-graphics-drawing-ColorFilter.md)  | 返回一个颜色滤波器。 |
 
 ## DrawingLattice<sup>12+<sup>
 
@@ -723,7 +723,7 @@ type DrawingLattice = Lattice
 
 | 类型     | 说明       |
 | ------ | ---------- |
-| [Lattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) | 返回一个矩阵网格对象。 |
+| [Lattice](../../apis-arkgraphics2d/arkts-apis-graphics-drawing-Lattice.md) | 返回一个矩阵网格对象。 |
 
 ## ImageMatrix<sup>15+</sup>对象说明
 
@@ -1932,7 +1932,121 @@ struct OrientationExample {
 
 ![orientation](figures/orientation.png)
 
-### 示例22（动态切换SVG图片的填充颜色）
+### 示例22（获取图片的exif信息并设置图像内容的显示方向）
+
+该示例通过[getImageProperty](../../apis-image-kit/arkts-apis-image-ImageSource.md#getimageproperty11)接口，获取图片的exif信息，再根据获取到的exif信息，通过[orientation](#orientation14)属性设置图像内容显示为正确方向。
+
+```ts
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
+
+@Entry
+@Component
+struct Example {
+  @State rotateOrientation: ImageRotateOrientation = ImageRotateOrientation.UP;
+  @State pixelMap: image.PixelMap | undefined = undefined;
+  @State text1: string = 'The exif orientation is ';
+  @State text2: string = 'Set orientation to ';
+
+  // 根据获取到的EXIF方向信息，转换ImageRotateOrientation，使图片显示为正确的方向。
+  getOrientation(orientation: string): ImageRotateOrientation {
+    if (orientation == 'Top-right') {
+      this.text2 = this.text2 + 'UP_MIRRORED';
+      return ImageRotateOrientation.UP_MIRRORED;
+    } else if (orientation == 'Bottom-right') {
+      this.text2 = this.text2 + 'DOWN';
+      return ImageRotateOrientation.DOWN;
+    } else if (orientation == 'Bottom-left') {
+      this.text2 = this.text2 + 'DOWN_MIRRORED';
+      return ImageRotateOrientation.DOWN_MIRRORED;
+    } else if (orientation == 'Left-top') {
+      this.text2 = this.text2 + 'LEFT_MIRRORED';
+      return ImageRotateOrientation.LEFT_MIRRORED;
+    } else if (orientation == 'Right-top') {
+      this.text2 = this.text2 + 'RIGHT';
+      return ImageRotateOrientation.RIGHT;
+    } else if (orientation == 'Right-bottom') {
+      this.text2 = this.text2 + 'RIGHT_MIRRORED';
+      return ImageRotateOrientation.RIGHT_MIRRORED;
+    } else if (orientation == 'Left-bottom') {
+      this.text2 = this.text2 + 'LEFT';
+      return ImageRotateOrientation.LEFT;
+    } else if (orientation == 'Top-left') {
+      this.text2 = this.text2 + 'UP';
+      return ImageRotateOrientation.UP;
+    } else {
+      this.text2 = this.text2 + 'UP';
+      return ImageRotateOrientation.UP;
+    }
+  }
+
+  async getFileBuffer(context: Context): Promise<ArrayBuffer | undefined> {
+    try {
+      const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+      // 传入带有EXIF信息的资源文件，获取资源文件内容，返回Uint8Array。
+      const fileData: Uint8Array = await resourceMgr.getRawFileContent('hello.jpg');
+      console.info('Successfully get RawFileContent');
+      // 转为ArrayBuffer并返回。
+      const buffer: ArrayBuffer = fileData.buffer.slice(0);
+      return buffer;
+    } catch (error) {
+      console.error('Failed to get RawFileContent');
+      return undefined;
+    }
+  }
+
+  aboutToAppear() {
+    let context = this.getUIContext().getHostContext();
+    if (!context) {
+      return;
+    }
+    this.getFileBuffer(context).then((buf: ArrayBuffer | undefined) => {
+      let imageSource = image.createImageSource(buf);
+      // 从图像源中读取图片的EXIF方向信息。
+      imageSource.getImageProperty(image.PropertyKey.ORIENTATION).then((orientation) => {
+        this.rotateOrientation = this.getOrientation(orientation);
+        this.text1 = this.text1 + orientation;
+      })
+      let options: image.DecodingOptions = {
+        'editable': true,
+        'desiredPixelFormat': image.PixelMapFormat.RGBA_8888,
+      }
+      imageSource.createPixelMap(options).then((pixelMap: image.PixelMap) => {
+        this.pixelMap = pixelMap;
+      });
+    })
+  }
+
+  build() {
+    Column() {
+      Row({ space: 40 }) {
+        Column({ space: 10 }) {
+          Text('before').fontSize(20).fontWeight(700)
+          Image($rawfile('hello.jpg'))
+            .width(150)
+            .height(150)
+          Text(this.text1);
+        }
+
+        Column({ space: 10 }) {
+          Text('after').fontSize(20).fontWeight(700)
+          Image(this.pixelMap)
+            .width(150)
+            .height(150)
+            .orientation(this.rotateOrientation)
+          Text(this.text2);
+        }
+      }
+    }
+    .height('80%')
+    .width('100%')
+  }
+}
+```
+
+![orientation2](figures/orientation2.png)
+
+### 示例23（动态切换SVG图片的填充颜色）
 
 通过按钮切换不同色域下的颜色值，动态改变SVG图片的填充颜色效果，以展示[ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)类型的使用方式和显示差异。
 
@@ -1953,7 +2067,7 @@ struct fillColorMetricsDemo {
   ]
   @State colorArrayStr: string[] = [
     "P3 Red", "SRGB Red", "P3 Green", "SRGB Green",
-    "P3 Blue", "SRGB Blue", "ColorContent.ORIGIN", "Gray", "undefined"
+    "P3 Blue", "SRGB Blue", "ORIGIN", "Gray", "undefined"
   ]
   @State arrayIdx: number = 0
   build() {

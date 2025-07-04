@@ -18,7 +18,7 @@ ArkUI提供的Native侧自定义弹窗接口集合2。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md#arkui_nativedialogapi_1) nativeDialogAPI1 | ArkUI提供的Native侧自定义弹窗接口集合。  | 
+| [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md) nativeDialogAPI1 | ArkUI提供的Native侧自定义弹窗接口集合。  | 
 | int32_t(\* [setKeyboardAvoidDistance](#setkeyboardavoiddistance) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, float distance, [ArkUI_LengthMetricUnit](_ark_u_i___native_module.md#arkui_lengthmetricunit) unit) | 弹窗避让键盘后，和键盘之间距离。  | 
 | int32_t(\* [setLevelMode](#setlevelmode) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, [ArkUI_LevelMode](_ark_u_i___native_module.md#arkui_levelmode) levelMode) | 设置弹窗的显示层级。  | 
 | int32_t(\* [setLevelUniqueId](#setleveluniqueid) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, int32_t uniqueId) | 设置弹窗显示层级页面下的节点id。  | 

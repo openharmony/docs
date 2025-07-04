@@ -1,8 +1,8 @@
 # 使用AVMetadataExtractor提取音视频元数据信息(ArkTS)
 
-使用[AVMetadataExtractor](media-kit-intro.md#avmetadataextractor)可以实现从原始媒体资源中获取元数据，本开发指导将以获取一个音频资源的元数据作为示例，向开发者讲解AVMetadataExtractor元数据相关功能。视频资源的元数据获取流程与音频类似，由于视频没有专辑封面，所以无法获取视频资源的专辑封面。
+使用[AVMetadataExtractor](media-kit-intro.md#avmetadataextractor)可以实现从原始媒体资源中获取元数据。本指南将以获取一个音视频资源的元数据作为示例，向开发者讲解AVMetadataExtractor元数据相关功能。视频资源的元数据获取流程与音频类似，由于视频没有专辑封面，所以无法获取视频资源的专辑封面。
 
-获取音频资源的元数据的全流程包含：创建AVMetadataExtractor，设置资源，获取元数据，获取专辑封面，销毁资源。
+获取音视频资源的元数据的全流程包含：创建AVMetadataExtractor、设置资源、获取元数据、获取音频资源的专辑封面或获取视频缩略图、销毁资源。
 
 ## 开发步骤及注意事项
 
@@ -15,7 +15,7 @@
    let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
    ```
 
-2. 设置资源：用户可以根据需要选择设置属性fdSrc（表示文件描述符）, 或者设置属性dataSrc（表示dataSource描述符）。
+2. 设置资源：用户可以根据需要选择设置属性fdSrc（表示文件描述符）和属性dataSrc（表示dataSource描述符）或者调用setUrlSource设置在线媒体链接。
    > **说明：**
    >
    > 开发者需根据实际情况，确认资源有效性并设置（只能设置其中一种）：
@@ -24,9 +24,12 @@
    >
    > - 如果设置dataSrc，必须正确设置dataSrc中的callback属性，确保callback被调用时能正确读取到对应资源，使用应用沙箱路径访问对应资源，参考[获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../../file-management/app-sandbox-directory.md)。
    >
+   > - 如果设置[setUrlSource](../../reference/apis-media-kit/arkts-apis-media-AVMetadataExtractor.md#seturlsource20)，必须正确设置setUrlSource中的url和headers属性，确保正确访问url。
+   >
    > - 不同AVMetadataExtractor或者[AVImageGenerator](../../reference/apis-media-kit/arkts-apis-media-AVImageGenerator.md)实例，如果需要操作同一资源，需要多次打开文件描述符，不要共用同一文件描述符。
 
    ```ts
+   import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
    import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
    // 获取rawfile目录下资源文件描述符，设置fdSrc属性。
@@ -67,6 +70,16 @@
    };
    // 设置dataSrc。
    avMetadataExtractor.dataSrc = dataSrc;
+
+   // 调用setUrlSource设置网络点播媒体资源URL，用来获取在线音视频元数据和在线视频缩略图。
+   let url: string = 'http://xx.mp4';
+   let headers: Record<string, string> = {
+     "User-Agent" : "User-Agent-Value"
+   };
+   await avMetadataExtractor.setUrlSource(url, headers).then(() => {
+   }).catch((error: BusinessError) => {
+     console.error(`Failed to setUrlSource, code: ${error.code} message: ${error.message}`);
+   });
    ```
 
 3. 获取元数据：调用fetchMetadata()，可以获取到一个AVMetadata对象，通过访问该对象的各个属性，可以获取到元数据。
@@ -101,7 +114,22 @@
    this.pixelMap = await avMetadataExtractor.fetchAlbumCover();
    ```
 
-5. 释放资源：调用release()销毁实例，释放资源。
+5. （可选）获取视频缩略图：调用fetchFrameByTime，可以获取到视频缩略图。
+   ```ts
+   import { image } from '@kit.ImageKit';
+   // pixelMap对象声明，用于图片显示。
+   @State pixelMap: image.PixelMap | undefined = undefined;
+   // 接口入参声明。
+   let timeUs: number = 0;
+   let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_PREVIOUS_SYNC;
+   let param: media.PixelMapParams = {
+     width : 300,
+     height : 300
+   }
+   // 获取视频缩略图（promise模式）。
+   this.pixelMap = await avMetadataExtractor.fetchFrameByTime(timeUs, queryOption, param);
+
+6. 释放资源：调用release()销毁实例，释放资源。
    ```ts
    // 释放资源（callback模式）。
    avMetadataExtractor.release((error) => {

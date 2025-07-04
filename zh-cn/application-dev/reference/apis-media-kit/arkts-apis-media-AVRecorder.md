@@ -75,12 +75,15 @@ let avRecorderProfile: media.AVRecorderProfile = {
   videoFrameHeight : 480,
   videoFrameRate : 30
 };
+let videoMetaData: media.AVMetadata = {
+  videoOrientation: '0' // 合理值0、90、180、270，非合理值prepare接口报错。
+};
 let avRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : avRecorderProfile,
   url : 'fd://', // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45
-  rotation : 0, // 合理值0、90、180、270，非合理值prepare接口将报错。
+  metadata: videoMetaData,
   location : { latitude : 30, longitude : 130 }
 };
 
@@ -150,12 +153,15 @@ let avRecorderProfile: media.AVRecorderProfile = {
   videoFrameHeight : 480,
   videoFrameRate : 30
 };
+let videoMetaData: media.AVMetadata = {
+  videoOrientation: '0' // 合理值0、90、180、270，非合理值prepare接口报错。
+};
 let avRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : avRecorderProfile,
   url : 'fd://',  // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45
-  rotation : 0, // 合理值0、90、180、270，非合理值prepare接口报错。
+  metadata : videoMetaData,
   location : { latitude : 30, longitude : 130 }
 };
 

@@ -142,9 +142,11 @@ decoration:{
 
 当copyOptions设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本和复制功能。
 
-从API 20开始支持AI菜单。当enableDataDetector设置为true，并且[copyOptions](#copyoptions)设置为CopyOptions.LocalDevice时，AI菜单生效，菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url、email、phoneNumber、address、dateTime。
+从API 20开始支持AI菜单。当enableDataDetector设置为true，并且[copyOptions](#copyoptions)设置为CopyOptions.LocalDevice或CopyOptions.CROSS_DEVICE时，AI菜单生效，菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url（打开链接）、email（新建邮件）、phoneNumber（呼叫）、address（导航至该位置）、dateTime（新建日程提醒）。
 
 AI菜单生效时，需要非编辑态选中单个AI实体，才能展示AI菜单。
+
+从API version 20开始，支持选中文本后，在文本选择菜单与鼠标右键菜单中显示问问小艺选项。当[copyOptions](#copyoptions)设置为CopyOptions.LocalDevice或CopyOptions.CROSS_DEVICE时，若enableDataDetector设置为false，显示问问小艺选项。若enableDataDetector设置为true，此时选中范围内，没有包括一个完整的AI实体或包括超过一个完整的AI实体，才能展示对应的选项。相关选项为[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的askAI（问问小艺）。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -261,7 +263,9 @@ selectedBackgroundColor(value: ResourceColor)
 
 editMenuOptions(editMenu: EditMenuOptions)
 
-设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
+设置系统默认菜单的扩展项，允许配置扩展项的文本内容、图标和回调方法。
+
+调用[disableMenuItems](../js-apis-arkui-UIContext.md#disablemenuitems20)或[disableSystemServiceMenuItems](../js-apis-arkui-UIContext.md#disablesystemservicemenuitems20)接口屏蔽文本选择菜单内的系统服务菜单项时，editMenuOptions接口内回调方法[onCreateMenu](./ts-text-common.md#oncreatemenu12)的入参列表中不包含被屏蔽的菜单选项。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -457,6 +461,8 @@ onSelect(callback:Callback\<[RichEditorSelection](#richeditorselection)\>)
 鼠标左键双击选中内容触发回调；松开鼠标左键再次触发回调。
 
 手指长按选中内容触发回调；松开手指再次触发回调。
+
+通过手指或鼠标连续修改选中区、三击选段场景，不回调onSelect。
 
 需要实时感知选中区变化的场景和使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件，请使用onSelectionChange接口。
 
@@ -1065,7 +1071,7 @@ setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options?:&n
 
 支持设置组件内的内容选中，选中部分背板高亮。
 
-selectionStart和selectionEnd均为-1时表示全选。
+selectionStart和selectionEnd均为-1时表示全选，均为0时可以清空选中区。
 
 未获焦时调用该接口不产生选中效果。
 
@@ -3115,7 +3121,7 @@ struct Index {
             },
             paragraphStyle: {
               textAlign: TextAlign.Start,
-              textVerticalAlign：TextVerticalAlign.BASELINE,
+              textVerticalAlign: TextVerticalAlign.BASELINE,
               leadingMargin: 16
             }
           })
@@ -5081,8 +5087,8 @@ export struct Index {
 
 ![LayoutManager](figures/getLayoutManager.gif)
 
-### 示例23（设置自定义菜单扩展项）
-通过[editMenuOptions](#editmenuoptions12)属性设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
+### 示例23（设置系统默认菜单扩展项）
+通过[editMenuOptions](#editmenuoptions12)属性设置系统默认菜单的扩展项，允许配置扩展项的文本内容、图标和回调方法。
 
 ```ts
 // xxx.ets
@@ -5094,10 +5100,10 @@ struct RichEditorExample {
   @State endIndex: number | undefined = 0;
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     const idsToFilter = [
-      TextMenuItemId.of('OH_DEFAULT_TRANSLATE'),
-      TextMenuItemId.of('OH_DEFAULT_SHARE'),
-      TextMenuItemId.of('OH_DEFAULT_SEARCH'),
-      TextMenuItemId.of('OH_DEFAULT_AI_WRITE')
+      TextMenuItemId.TRANSLATE,
+      TextMenuItemId.SHARE,
+      TextMenuItemId.SEARCH,
+      TextMenuItemId.AI_WRITE
     ]
     const items = menuItems.filter(item => !idsToFilter.some(id => id.equals(item.id)))
     let item1: TextMenuItem = {

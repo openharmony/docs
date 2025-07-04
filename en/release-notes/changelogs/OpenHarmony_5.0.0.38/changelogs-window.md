@@ -8,7 +8,7 @@ Public API
 
 **Reason for Change**
 
-The injected value does not match the enumerated value when the [Input_KeyEventAction](../../../application-dev/reference/apis-input-kit/input.md#input_keyeventaction) field of the [Input_KeyEvent](../../../application-dev/reference/apis-input-kit/input.md) struct is injected into the callback function. Before the change, the values 1, 2, and 3 of **Input_KeyEventAction** correspond to KEY_ACTION_CANCEL, KEY_ACTION_DOWN, and KEY_ACTION_UP, respectively, whereas the enumerated values are 0 (KEY_ACTION_CANCEL), 1 (KEY_ACTION_DOWN), and 2 (KEY_ACTION_UP).
+The injected value does not match the enumerated value when the [Input_KeyEventAction](../../../application-dev/reference/apis-input-kit/capi-oh-input-manager-h.md#input_keyeventaction) field of the [Input_KeyEvent](../../../application-dev/reference/apis-input-kit/capi-input-input-keyevent.md) struct is injected into the callback function. Before the change, the values 1, 2, and 3 of **Input_KeyEventAction** correspond to KEY_ACTION_CANCEL, KEY_ACTION_DOWN, and KEY_ACTION_UP, respectively, whereas the enumerated values are 0 (KEY_ACTION_CANCEL), 1 (KEY_ACTION_DOWN), and 2 (KEY_ACTION_UP).
 
 **Change Impact**
 

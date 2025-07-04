@@ -29,7 +29,7 @@ DrawingRenderingContext(unit?: LengthMetricsUnit)
 | 名称       | 类型 | 只读 | 可选 | 说明 |
 | ---------- | ------------ | -------------------- | ---------------------------- | ---------------------------- |
 | size       | [Size](#size)    | 否 | 否 | Context大小的宽和高。<br>默认单位为vp。                                            |
-| canvas     | [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 否 | 否 | 绘制模块的Canvas对象，具体描述见绘制模块中的[Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas)对象。 |
+| canvas     | [Canvas](../../apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md) | 否 | 否 | 绘制模块的Canvas对象，具体描述见绘制模块中的[Canvas](../../apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md)对象。 |
 
 ### Size
 
@@ -66,7 +66,7 @@ type DrawingCanvas = Canvas
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 返回一个Canvas对象。 |
+| [Canvas](../../apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md) | 返回一个Canvas对象。 |
 
 ## 示例
 

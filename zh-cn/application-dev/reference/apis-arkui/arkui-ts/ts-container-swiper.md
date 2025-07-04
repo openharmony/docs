@@ -8,7 +8,7 @@
 >
 > - Swiper组件内包含了[PanGesture](ts-basic-gestures-pangesture.md)拖动手势事件，用于滑动轮播子组件。[disableSwipe](#disableswipe8)属性设为true会取消内部的PanGesture事件监听。
 >
-> - Swiper中复用[NodeContainer](./ts-basic-components-nodecontainer.md#nodecontainer)时，禁止递归流程中子节点更新父节点状态变量。
+> - Swiper中复用[NodeContainer](./ts-basic-components-nodecontainer.md)时，禁止递归流程中子节点更新父节点状态变量。
 
 ## 子组件
 
@@ -373,6 +373,8 @@ displayCount(value: number | string | [SwiperAutoFill](#swiperautofill10), swipe
 >2.displayCount设置为'auto'，并且设置非循环时，选中导航点的位置与视窗内首个页面的位置保持一致。如果翻页完成后，视窗内首个页面仅部分显示在视窗内，选中导航点亦与页面的位置保持一致，位于两个未选中的导航点之间。在此情况下，建议开发者隐藏导航点。
 >
 >3.导航点样式设定为圆形导航点，视窗内显示子元素数量等于1时（单页场景）或者 displayCount设置为'auto'时，显示导航点数量等于子元素数量。
+>
+>4.displayCount设置为'auto'时，若设置swipeByGroup为true，则单个子元素按组翻页，一次只能翻一页。在此情况下，建议开发者不设置swipeByGroup或者设置swipeByGroup为false。
 
 当导航点样式设定为圆形导航点，视窗内显示子元素数量大于1（多页场景），显示导航点数量情况如下表：
 

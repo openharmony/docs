@@ -16,29 +16,25 @@ MindSpore Lite AI模型部署流程是：
 1. 开发者首先将原始模型（如：ONNX、CAFFE等）用MindSpore Lite模型转换工具，生成后缀为.ms的模型文件。MindSpore Lite Kit所支持的ONNX算子，可查询[MindSpore Lite Kit算子支持列表](mindspore-lite-supported-operators.md)，以确保模型转换成功。
 2. 然后在代码中调用MindSpore Lite推理引擎接口，执行[模型推理](mindspore-lite-guidelines.md)。
 
-## 环境准备
-
-### 获取模型转换工具
+## 获取模型转换工具
 
 对于MindSpore Lite模型转换工具，有以下两种方式可以获取：
 
-#### 通过下载获取
+### 通过下载获取
 
 | 组件                                                    | 硬件平台 | 操作系统     | 链接                                                         | SHA-256                                                      |
 | ------------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 端侧推理和训练benchmark工具、converter工具、cropper工具 | CPU      | Linux-x86_64 | [mindspore-lite-2.3.0-linux-x64.tar.gz](https://ms-release.obs.cn-north-4.myhuaweicloud.com/2.3.0/MindSpore/lite/release/linux/x86_64/mindspore-lite-2.3.0-linux-x64.tar.gz) | 060d698a171b52c38b64c8d65927816daf4b81d8e2b5069718aeb91a9f8a154c |
 
+### 通过源码编译
+
 > **说明：**
 >
-> 1. 由于支持转换PyTorch模型的编译选项默认关闭，因此下载的安装包不支持转换PyTorch模型，只能通过源码编译方式获取。
+> - 由于支持转换PyTorch模型的编译选项默认关闭，因此下载的安装包不支持转换PyTorch模型，只能通过源码编译方式获取。
 >
-> 2. 在以下情况进行模型转换时，需要通过源码编译方式获取。
->    
->    自定义关闭clip算子融合优化功能；
->    
->    模型中有transpose与convolution算子融合。
-
-#### 通过源码编译
+> - 模型中有transpose与convolution算子融合，需要通过源码编译方式获取。
+>
+> - 自定义[关闭clip算子融合](#关闭指定算子融合)时，需要通过源码编译方式获取。
 
 1. 编译环境要求如下：
 
@@ -62,7 +58,7 @@ MindSpore Lite AI模型部署流程是：
 
    编译完成后，可从源码根目录的`output/`子目录取得MindSpore Lite发布件。解压后，转换工具位于`tools/converter/converter/`。
 
-### 配置环境变量
+## 配置环境变量
 
 获取到模型转换工具之后，还需要将转换工具需要的动态链接库加入环境变量LD_LIBRARY_PATH。
 
@@ -158,3 +154,63 @@ extended_parameters=key_foo:value_foo;key_bar:value_bar
 - `output_shapes`：[必选]模型输出形状，格式：整数数组，多个输出用`;`间隔。
 - `output_formats`：[可选]模型输出内存布局，格式：字符串，多个输入用`;`间隔，默认值NHWC。
 - `extended_parameters`：[可选]推理硬件自定义配置，字符串键值对格式，会通过NNRt后端传给硬件。
+
+## 附录
+
+### 关闭指定算子融合
+
+如果用户需要关闭指定算子融合功能，可新建配置文件，如converter.cfg，配置文件内容如下：
+
+```ini
+[registry]
+# 当参数disable_fusion=off时，可通过配置fusion_blacklists关闭指定融合；当参数disable_fusion=on时，关闭所有融合，参数fusion_blacklists不生效。默认值为off。
+disable_fusion=off
+# 关闭多个算子融合时，用逗号分隔。
+fusion_blacklists=ConvActivationFusion,MatMulActivationFusion,clip_convert_activation_pass
+```
+
+在执行converter时，指定参数--configFile=converter.cfg即可。
+
+支持关闭的融合算子如下所示：
+
+- AddConcatActivationFusion
+- SqueezeFusion
+- TransposeFusion
+- ReshapeReshapeFusion 
+- ConvBiasaddFusion 
+- ConvBatchNormFusion 
+- ConvScaleFusion 
+- GroupNormFusion 
+- TfNormFusion 
+- OnnxLayerNormFusion 
+- OnnxLayerNormFusion2 
+- BatchMatMulFusion 
+- BatchNormToScaleFusion 
+- SigmoidMulFusion 
+- ActivationFusion 
+- ConvActivationFusion 
+- ConvTupleGetItemFusion 
+- ConvTupleActivationFusion  
+- TfliteLstmCellFusion 
+- TfLstmCellFusion 
+- TfBidirectionGruFusion 
+- TfGeLUFusion 
+- OnnxGeLUFusion 
+- TfliteRelPosMultiHeadAttentionFusion  
+- GLUFusion 
+- ConstFoldPass 
+- AffineFusion 
+- AffineActivationFusion 
+- ConvConvFusion 
+- ConvPadFusion 
+- MatMulAddFusion 
+- MatMulMulFusion 
+- TransposeMatMulFusion 
+- MulAddFusion 
+- ScaleActivationFusion 
+- ScaleScaleFusion 
+- FullConnectedFusion 
+- FullconnectedAddFusion 
+- TensorDotFusion 
+- MatMulActivationFusion 
+- clip_convert_activation_pass  

@@ -801,7 +801,13 @@ try {
 
 getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
 
-获取音频流时间戳和当前数据帧位置信息。使用Promise异步回调。
+获取输出音频流时间戳和位置信息，适配倍速接口。使用Promise异步回调。
+
+获取输出音频流时间戳和位置信息，通常用于进行音画同步对齐。
+
+注意，当实际播放位置（framePosition）为0时，时间戳（timestamp）是固定值，直到流真正跑起来时才会更新。当调用Flush接口时实际播放位置也会被重置。
+
+当音频流路由（route）变化时，例如设备变化或者输出类型变化时，播放位置也会被重置，但此时时间戳仍会持续增长。推荐当实际播放位置和时间戳的变化稳定后再使用该接口获取的值。该接口适配倍速接口，例如当播放速度设置为2倍时，播放位置的增长速度也会返回为正常的2倍。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -969,7 +975,7 @@ setSpeed(speed: number): void
 
 | 参数名 | 类型                                     | 必填 | 说明                   |
 | ------ | ---------------------------------------- | ---- |----------------------|
-| speed | number | 是   | 设置播放的倍速值（倍速范围：0.125-4.0）。 |
+| speed | number | 是   | 设置播放的倍速值（倍速范围：0.25-4.0）。 |
 
 **错误码：**
 
@@ -1579,7 +1585,7 @@ console.info(`BlendMode: ${mode}`);
 
 setVolumeWithRamp(volume: number, duration: number): void
 
-设置音量渐变模式。同步返回结果。
+在指定时间范围内设置音量渐变模式。同步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -1623,7 +1629,7 @@ setSilentModeAndMixWithOthers(on: boolean): void
 
 | 参数名 | 类型                                     | 必填 | 说明                   |
 | ------ | ---------------------------------------- | ---- |----------------------|
-| on | boolean | 是   | 打开/关闭静音并发播放模式。true表示打开，false表示关闭。 |
+| on | boolean | 是   | 打开/关闭静音并发播放模式。true表示设置当前播放的音频流静音播放，并且不会打断其它音频流播放。false表示取消当前播放的音频流静音播放，音频流可根据系统焦点策略抢占焦点。 |
 
 **示例：**
 

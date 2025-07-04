@@ -78,10 +78,10 @@ TimePicker(options?: TimePickerOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称               | 说明                     |
-| ------------------ | ------------------------ |
-| HOUR_MINUTE        | 按照小时和分钟显示。       |
-| HOUR_MINUTE_SECOND | 按照小时、分钟和秒显示。 |
+| 名称               | 值 | 说明                     |
+| ------------------ | - | ------------------------ |
+| HOUR_MINUTE        | 0 | 按照小时和分钟进行显示。       |
+| HOUR_MINUTE_SECOND | 1 | 按照小时、分钟和秒进行显示。 |
 
 **异常情形说明：**
 
@@ -112,7 +112,7 @@ useMilitaryTime(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | 是   | 展示时间是否为24小时制。<br/>默认值：false，false表示展示时间为12小时制，true表示展示时间为24小时制。|
+| value  | boolean | 是   | 展示时间是否为24小时制。<br/>默认值：false<br/>false表示展示时间为12小时制，true表示展示时间为24小时制。|
 
 ### useMilitaryTime<sup>18+</sup>
 
@@ -128,7 +128,7 @@ useMilitaryTime(isMilitaryTime: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| isMilitaryTime | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 展示时间是否为24小时制。<br/>当isMilitaryTime的值为undefined时，默认值：false，表示展示时间为12小时制。|
+| isMilitaryTime | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 展示时间是否为24小时制。<br/>默认值：false。当isMilitaryTime的值为undefined时，使用默认值。<br/>false表示展示时间为12小时制，true表示展示时间为24小时制。|
 
 ### disappearTextStyle<sup>10+</sup>
 
@@ -248,7 +248,7 @@ loop(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否启用循环模式。<br/>默认值：true，表示启用循环模式。 |
+| value  | boolean | 是   | 是否启用循环模式。<br/>默认值：true<br/>true表示启用循环模式，false表示不启用循环模式。 |
 
 ### loop<sup>18+</sup>
 
@@ -264,7 +264,7 @@ loop(isLoop: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否启用循环模式。<br/>当isLoop的值为undefined时，默认值：true，表示启用循环模式。 |
+| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否启用循环模式。<br/>默认值：true。当isLoop的值为undefined时，使用默认值。<br/>true表示启用循环模式，false表示不启用循环模式。 |
 
 ### dateTimeOptions<sup>12+</sup>
 
@@ -309,8 +309,8 @@ enableHapticFeedback(enable: boolean)
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
-| ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| enable  | boolean | 是   | 是否支持触控反馈。<br/>默认值：true，表示开启触控反馈。<br/>设置为true后，其是否生效取决于系统的硬件支持情况。 |
+| ------ | --------------------------------------------- | ----- |-------------------------------------------------------------------------------------|
+| enable  | boolean | 是   | 是否支持触控反馈。<br/>默认值：true<br/>true表示开启触控反馈，false表示不开启触控反馈。<br/>设置为true后，其生效情况取决于系统的硬件是否支持。 |
 
 ### enableHapticFeedback<sup>18+</sup>
 
@@ -324,7 +324,7 @@ enableHapticFeedback(enable: Optional\<boolean>)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| enable  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否支持触控反馈。<br/>当enable的值为undefined时，默认值：true，true表示开启触控反馈，false表示不开启触控反馈。<br/>设置为true后是否生效，还取决于系统的硬件是否支持。 |
+| enable  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否支持触控反馈。<br/>默认值：true。当enable的值为undefined时，使用默认值。<br/>true表示开启触控反馈，false表示不开启触控反馈。<br/>设置为true后，其生效情况取决于系统的硬件是否支持。 |
 
 >  **说明：**
 >
@@ -349,7 +349,7 @@ enableCascade(enable: boolean)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| enable  | boolean | 是   | 在12小时制时，设置上午和下午的标识是否会根据小时数自动切换。<br/>默认值：false，表示不开启自动切换。<br/>设置为true时，仅在loop参数同时为true时生效。<br/> |
+| enable  | boolean | 是   | 在设置12小时制时，上午和下午的标识是否会根据小时数自动切换。<br/>默认值：false<br/>false表示不自动切换，true表示自动切换。<br/>设置为true时，仅在loop参数同时为true时生效。|
 
 ### digitalCrownSensitivity<sup>18+</sup>
 digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
@@ -571,7 +571,7 @@ struct TimePickerExample {
 @Component
 struct TimePickerExample {
   @State isLoop: boolean = true;
-  private selectedTime: Date = new Date('2022-07-22T12:00:00');
+  @State selectedTime: Date = new Date('2022-07-22T12:00:00');
 
   build() {
     Column() {

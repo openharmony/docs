@@ -292,7 +292,7 @@ enableInputMethod(bundleName: string, extensionName: string, enabledState: Enabl
 | -------- | -------------------------------------- |
 | 201      | permissions check fails. |
 | 202      | not system application. |
-| 12800008 | input method manager service error. |
+| 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception.  |
 | 12800018 | the input method is not found. |
 | 12800019 | current operation cannot be applied to the preconfigured default input method. |
 

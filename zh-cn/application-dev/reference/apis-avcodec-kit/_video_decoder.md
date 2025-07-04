@@ -53,7 +53,11 @@ VideoDecoder模块提供用于视频解码的接口。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_RenderOutputBufferAtTime](#oh_videodecoder_renderoutputbufferattime) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index, int64_t renderTimestampNs) | 将index对应的输出缓冲返回给解码器，缓冲中携带解码输出数据，并通知解码器在开发者指定的时间内完成在输出surface上渲染，输出缓冲包含解码数据。  |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_FreeOutputBuffer](#oh_videodecoder_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲区返回到解码器。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_IsValid](#oh_videodecoder_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | 检查当前解码实例是否有效。  | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetDecryptionConfig](#oh_videodecoder_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureVideoPath) | 设置解密配置。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetDecryptionConfig](#oh_videodecoder_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureVideoPath) | 设置解密配置。  |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_QueryInputBuffer](#oh_videodecoder_queryinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | 查询下一个可用输入缓冲区的索引。 | 
+| [OH_AVBuffer](_core.md#oh_avbuffer) [OH_VideoDecoder_GetInputBuffer](#oh_videodecoder_getinputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 获取可用输入缓冲区的实例。 |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_QueryOutputBuffer](#oh_videodecoder_queryoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t *index, int64_t timeoutUs) | 查询下一个可用输出缓冲区的索引。 | 
+| [OH_AVBuffer](_core.md#oh_avbuffer) [OH_VideoDecoder_GetOutputBuffer](#oh_videodecoder_getoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 获取可用输出缓冲区的实例。 |
 
 
 ## 函数说明
@@ -578,7 +582,7 @@ OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig (OH_AVCodec *codec, MediaKeySes
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  |
-| mediaKeySession | 指向带有解密功能的DRM会话实例的指针，请参阅[MediaKeySession](../../reference/apis-drm-kit/native__mediakeysession_8h.md)。  | 
+| mediaKeySession | 指向带有解密功能的DRM会话实例的指针，请参阅[MediaKeySession](../../reference/apis-drm-kit/capi-native-mediakeysession-h.md)。  | 
 | secureVideoPath | 安全视频通路。指定安全视频通路为true，非安全视频通路为false。在[Surface模式](../../media/avcodec/video-decoding.md#surface模式)下，既支持安全视频通路，也支持非安全视频通路。在[Buffer模式](../../media/avcodec/video-decoding.md#buffer模式)下，仅支持非安全视频通路。  |
 
 **返回：**
@@ -758,6 +762,157 @@ AV_ERR_UNKNOWN：未知错误。
 AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
+
+
+### OH_VideoDecoder_QueryInputBuffer()
+
+```
+OH_AVErrCode OH_VideoDecoder_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
+```
+**描述**
+
+查询下一个可用输入缓冲区的索引。
+
+调用此接口后需要接着调用[OH_VideoDecoder_GetInputBuffer](#oh_videodecoder_getinputbuffer)接口获取缓冲区实例，并通过[OH_VideoDecoder_PushInputBuffer](#oh_videodecoder_pushinputbuffer)接口传递给解码器。
+
+需要注意的是，上述操作仅在同步模式下支持。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向视频解码实例的指针。  |
+| index | 输入buffer对应的索引值。| 
+| timeoutUs | 超时时长，单位为微秒。负值：无限等待；0：立即退出；正值：指定时间timeout后退出。  | 
+
+**返回：**
+
+返回接口结果：
+
+AV_ERR_OK：执行成功。
+
+AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+
+AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
+
+AV_ERR_UNKNOWN：未知错误。
+
+AV_ERR_SERVICE_DIED：编解码服务已终止。
+
+AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
+
+AV_ERR_OPERATE_NOT_PERMIT：禁止异步模式下使用。
+
+AV_ERR_TRY_AGAIN_LATER：查询失败，建议等待短暂间隔后重试。
+
+
+### OH_VideoDecoder_GetInputBuffer()
+
+```
+OH_AVBuffer *OH_VideoDecoder_GetInputBuffer(struct OH_AVCodec *codec, uint32_t index);
+```
+**描述**
+
+获取可用输入缓冲区的实例。
+
+需要注意的是，此接口仅适用于同步模式。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向视频解码实例的指针。  |
+| index | 输入buffer对应的索引值，可通过[OH_VideoDecoder_QueryInputBuffer](#oh_videodecoder_queryinputbuffer)接口获取。| 
+
+**返回：**
+
+如果执行成功，则返回一个指向OH_AVBuffer实例的指针，否则返回NULL。
+
+
+### OH_VideoDecoder_QueryOutputBuffer()
+
+```
+OH_AVErrCode OH_VideoDecoder_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t *index, int64_t timeoutUs);
+```
+**描述**
+
+查询下一个可用输出缓冲区的索引。
+
+通过[OH_VideoDecoder_GetOutputBuffer](#oh_videodecoder_getoutputbuffer)接口获取的缓冲区实例可以通过执行以下操作来显示或释放解码帧：
+1. 通过[OH_VideoDecoder_FreeOutputBuffer](#oh_videodecoder_freeoutputbuffer)接口将处理后的输出缓冲区返回到解码器。
+2. 通过[OH_VideoDecoder_RenderOutputBuffer](#oh_videodecoder_renderoutputbuffer)在输出surface上渲染。
+3. 通过[OH_VideoDecoder_RenderOutputBufferAtTime](#oh_videodecoder_renderoutputbufferattime)在指定时间内完成输出surface上渲染。
+
+需要注意的是，上述操作仅在同步模式下支持。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向视频解码实例的指针。  |
+| index | 输出buffer对应的索引值。| 
+| timeoutUs | 超时时长，单位为微秒。负值：无限等待；0：立即退出；正值：指定时间timeout后退出。  | 
+
+**返回：**
+
+返回接口结果：
+
+AV_ERR_OK：执行成功。
+
+AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+
+AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针。
+
+AV_ERR_UNKNOWN：未知错误。
+
+AV_ERR_SERVICE_DIED：编解码服务已终止。
+
+AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
+
+AV_ERR_OPERATE_NOT_PERMIT：禁止异步模式下使用。
+
+AV_ERR_STREAM_CHANGED：流格式已变更，可以通过调用OH_VideoDecoder_GetOutputDescription接口获取新的流信息。
+
+AV_ERR_TRY_AGAIN_LATER：查询失败，建议等待短暂间隔后重试。
+
+
+### OH_VideoDecoder_GetOutputBuffer()
+
+```
+OH_AVBuffer *OH_VideoDecoder_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t index);
+```
+**描述**
+
+获取可用输出缓冲区的实例。
+
+需要注意的是，此接口仅适用于同步模式。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向视频解码实例的指针。  |
+| index | 输出buffer对应的索引值，可通过[OH_VideoDecoder_QueryOutputBuffer](#oh_videodecoder_queryoutputbuffer)接口获取。| 
+
+**返回：**
+
+如果执行成功，则返回一个指向OH_AVBuffer实例的指针，否则返回NULL。
 
 
 ## 废弃函数说明

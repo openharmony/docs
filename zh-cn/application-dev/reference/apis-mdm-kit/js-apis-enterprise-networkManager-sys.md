@@ -764,7 +764,7 @@ networkManager.getGlobalProxy(wantTemp).then(() => {
 
 addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCallback\<void>): void
 
-为设备添加网络包过滤规则。使用callback异步回调。
+为设备添加网络包过滤规则，仅支持IPv4。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -826,7 +826,7 @@ networkManager.addIptablesFilterRule(wantTemp, filterRule, (err) => {
 
 addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 
-为设备添加网络包过滤规则。使用Promise异步回调。
+为设备添加网络包过滤规则，仅支持IPv4。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -892,7 +892,7 @@ networkManager.addIptablesFilterRule(wantTemp, filterRule).then(() => {
 
 removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: AsyncCallback\<void>): void
 
-移除网络包过滤规则。使用callback异步回调。
+移除网络包过滤规则，仅支持IPv4。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -952,7 +952,7 @@ networkManager.removeIptablesFilterRule(wantTemp, filterRule, (err) => {
 
 removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<void>
 
-移除网络包过滤规则。使用Promise异步回调。
+移除网络包过滤规则，仅支持IPv4。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1016,7 +1016,7 @@ networkManager.removeIptablesFilterRule(wantTemp, filterRule).then(() => {
 
 listIptablesFilterRules(admin: Want, callback: AsyncCallback\<string>): void
 
-获取网络包过滤规则。使用callback异步回调。
+获取网络包过滤规则，仅支持IPv4。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1065,7 +1065,7 @@ networkManager.listIptablesFilterRules(wantTemp, (err, result) => {
 
 listIptablesFilterRules(admin: Want): Promise\<string>
 
-获取网络包过滤规则。使用Promise异步回调。
+获取网络包过滤规则，仅支持IPv4。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1121,18 +1121,18 @@ networkManager.listIptablesFilterRules(wantTemp).then((result) => {
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 
-| 名称         | 类型     | 必填 | 说明                            |
-| ----------- | --------| ---- | ------------------------------- |
-| ruleNo        | number    | 否   | 规则序号。 |
-| srcAddr | string   | 否   | ip源地址。 |
-| destAddr        | string    | 否   | ip目标地址。 |
-| srcPort | string   | 否   | ip源端口。 |
-| destPort        | string    | 否   | ip目标端口。 |
-| uid | string   | 否   | 应用uid。 |
-| method        | [AddMethod](#addmethod)    | 是   | 添加策略。 |
-| direction | [Direction](js-apis-enterprise-networkManager.md#direction) | 是   | 规则链。 |
-| action        | [Action](js-apis-enterprise-networkManager.md#action) | 是   | 接收或者丢弃数据包。 |
-| protocol | [Protocol](js-apis-enterprise-networkManager.md#protocol) | 否   | 网络协议。 |
+| 名称         | 类型     | 只读 | 可选 | 说明                            |
+| ----------- | --------| ---- | ---- | ------------------------------- |
+| ruleNo        | number    | 否   | 是 | 规则序号。 |
+| srcAddr | string   | 否   | 是 | ip源地址。 |
+| destAddr        | string    | 否   | 是 | ip目标地址。 |
+| srcPort | string   | 否   | 是 | ip源端口。 |
+| destPort        | string    | 否   | 是 | ip目标端口。 |
+| uid | string   | 否   | 是 | 应用uid。 |
+| method        | [AddMethod](#addmethod)    | 否   | 否 | 添加策略。 |
+| direction | [Direction](js-apis-enterprise-networkManager.md#direction) | 否   | 否 | 规则链。 |
+| action        | [Action](js-apis-enterprise-networkManager.md#action) | 否   | 否 | 接收或者丢弃数据包。 |
+| protocol | [Protocol](js-apis-enterprise-networkManager.md#protocol) | 否   | 是 |网络协议。 |
 
 ## RemoveFilterRule
 
@@ -1141,16 +1141,16 @@ networkManager.listIptablesFilterRules(wantTemp).then((result) => {
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 
-| 名称         | 类型     | 必填 | 说明                            |
-| ----------- | --------| ---- | ------------------------------- |
-| srcAddr | string   | 否   | ip源地址。 |
-| destAddr        | string    | 否   | ip目标地址。 |
-| srcPort | string   | 否   | ip源端口。 |
-| destPort        | string    | 否    | ip目标端口。 |
-| uid | string   | 否    | 应用uid。 |
-| direction | [Direction](js-apis-enterprise-networkManager.md#direction) | 是    | 规则链。 |
-| action        | [Action](js-apis-enterprise-networkManager.md#action) | 否    | 接收或者丢弃数据包。 |
-| protocol | [Protocol](js-apis-enterprise-networkManager.md#protocol) | 否    | 网络协议。 |
+| 名称         | 类型     | 只读 | 可选 | 说明                            |
+| ----------- | --------| ---- | ---- | ------------------------------ |
+| srcAddr | string   | 否   | 是 | ip源地址。 |
+| destAddr        | string    | 否   | 是 | ip目标地址。 |
+| srcPort | string   | 否   | 是 | ip源端口。 |
+| destPort        | string    | 否    | 是 | ip目标端口。 |
+| uid | string   | 否    | 是 | 应用uid。 |
+| direction | [Direction](js-apis-enterprise-networkManager.md#direction) | 否    | 否 | 规则链。 |
+| action        | [Action](js-apis-enterprise-networkManager.md#action) | 否    | 是 | 接收或者丢弃数据包。 |
+| protocol | [Protocol](js-apis-enterprise-networkManager.md#protocol) | 否    | 是 | 网络协议。 |
 
 ## AddMethod
 

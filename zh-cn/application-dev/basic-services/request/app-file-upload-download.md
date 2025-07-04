@@ -543,6 +543,98 @@ struct Index {
 }
 ```
 
+## 添加任务速度限制与超时限制
+
+开发者可以使用[ohos.request (上传下载)](../../reference/apis-basic-services-kit/js-apis-request.md)模块中的接口上传本地文件或下载网络资源文件。为方便对任务速度及时长进行限制，分别在API version 18中增加了[setMaxSpeed](../../reference/apis-basic-services-kit/js-apis-request.md#setmaxspeed18)接口，支持用户设置任务的最高速度限制；在API version 20的[request.agent.create](../../reference/apis-basic-services-kit/js-apis-request.md#requestagentcreate10-1)接口中增加了最低限速及超时参数，支持用户自定义最低速度限制以及超时时间。
+
+以下是对下载任务进行速度限制与超时限制的方式的示例代码演示：
+
+```ts
+// pages/xxx.ets
+// 将网络资源文件下载到应用文件目录并读取一段内容
+import { common } from '@kit.AbilityKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError, request } from '@kit.BasicServicesKit';
+import { buffer } from '@kit.ArkTS';
+
+@Entry
+@Component
+struct Index {
+    build() {
+        Row() {
+            Column() {
+                Button("下载").onClick(() => {
+                    // 获取应用文件路径
+                    // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+                    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+                    let filesDir = context.filesDir;
+
+                    let config: request.agent.Config = {
+                        action: request.agent.Action.DOWNLOAD,
+                        url: 'https://xxxx/test.txt',
+                        saveas: 'xxxx.txt',
+                        gauge: true,
+                        overwrite: true,
+                        network: request.agent.Network.WIFI,
+                        // 最低速度限制规则：
+                        // 1. 若任务速度持续低于设定值（如：16 * 1024 B/s）达到指定时长（如：10s），则任务失败
+                        // 2. 重置计时条件：
+                        //    - 任一秒速度超过最低限速
+                        //    - 任务暂停后恢复
+                        //    - 任务停止后重启
+                        minSpeed: {
+                            speed: 16 * 1024,
+                            duration: 10
+                        },
+                        // 超时控制规则：
+                        // 1. 连接超时（connectionTimeout）：
+                        //    - 单次连接建立耗时超过设定值（如：60s）则任务失败
+                        //    - 多次连接时各次独立计时（不累积）
+                        // 2. 总超时（totalTimeout）：
+                        //    - 任务总耗时（含连接+传输时间）超过设定值（如：120s）则失败
+                        //    - 暂停期间不计时，恢复后累积计时
+                        // 3. 重置计时条件：任务失败或停止时重置计时
+                        timeout: {
+                            connectionTimeout: 60,
+                            totalTimeout: 120,
+                        }
+                    };
+                    request.agent.create(context, config).then((task: request.agent.Task) => {
+                        task.start((err: BusinessError) => {
+                            if (err) {
+                                console.error(`Failed to start the download task, Code: ${err.code}  message: ${err.message}`);
+                                return;
+                            }
+                            // 设置任务速度上限
+                            task.setMaxSpeed(10 * 1024 * 1024).then(() => {
+                                console.info(`Succeeded in setting the max speed of the task. result: ${task.tid}`);
+                            }).catch((err: BusinessError) => {
+                                console.error(`Failed to set the max speed of the task. result: ${task.tid}`);
+                            });
+                        });
+                        task.on('progress', async (progress) => {
+                            console.warn(`/Request download status ${progress.state}, downloaded ${progress.processed}`);
+                        })
+                        task.on('completed', async () => {
+                            console.warn(`/Request download completed`);
+                            let file = fileIo.openSync(filesDir + '/xxxx.txt', fileIo.OpenMode.READ_WRITE);
+                            let arrayBuffer = new ArrayBuffer(1024);
+                            let readLen = fileIo.readSync(file.fd, arrayBuffer);
+                            let buf = buffer.from(arrayBuffer, 0, readLen);
+                            console.info(`The content of file: ${buf.toString()}`);
+                            fileIo.closeSync(file);
+                            request.agent.remove(task.tid);
+                        })
+                    }).catch((err: BusinessError) => {
+                        console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
+                    });
+                })
+            }
+        }
+    }
+}
+```
+
 ## 添加网络配置
 
 ### HTTP拦截

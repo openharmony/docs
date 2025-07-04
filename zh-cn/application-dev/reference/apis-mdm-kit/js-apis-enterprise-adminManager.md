@@ -20,7 +20,7 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 将当前设备指定用户的设备管理应用解除激活。使用promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN（该权限仅系统应用可申请）
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 

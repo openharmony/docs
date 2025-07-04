@@ -34,7 +34,7 @@ EXTERN_C_END
 
 **Calling the Native APIs**
 
-For details about the APIs, see [Image](../../reference/apis-image-kit/image.md).
+For details about the APIs, see [Image](../../reference/apis-image-kit/capi-image.md).
 
 Obtain the JS resource object from the **hello.cpp** file and convert it to a native resource object. Then you can call native APIs.
 
@@ -46,7 +46,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
 #include <stdlib.h>
 ```
 
-1. Create a **PixelMap** object.
+1. Create a PixelMap object.
 
     ```c++
     napi_value CreatePixelMapTest(napi_env env, napi_callback_info info) {
@@ -77,7 +77,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
     }
     ```
 
-2. Create a **PixelMap** object that contains only alpha channel information.
+2. Create a PixelMap object that contains only alpha channel information.
 
     ```c++
     napi_value CreateAlphaPixelMap(napi_env env, napi_callback_info info) {
@@ -102,7 +102,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
     }
     ```
 
-3. Process the **PixelMap** object.
+3. Process the PixelMap object.
 
     ```c++
     napi_value Transform(napi_env env, napi_callback_info info) {
@@ -231,7 +231,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
                 .width(100)
                 .height(100)
                 .onClick(() => {
-                    console.log("com.example.native_ndk_api10 button click in");
+                    console.info("com.example.native_ndk_api10 button click in");
                     this._pixelMap = testNapi.createPixelMapTest();
                     testNapi.transform(this._pixelMap);
                 })

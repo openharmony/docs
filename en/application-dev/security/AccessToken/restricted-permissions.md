@@ -636,3 +636,19 @@ With this permission, the application can obtain the current screen peeping stat
 **Valid since**: 18
 
 **Changelog**: This permission is available only to system applications in API versions 18 to 19. From API version 20, it's also available to normal applications.
+
+## ohos.permission.READ_LOCAL_DEVICE_NAME
+
+Allows an application to obtain the local device name.
+
+With this permission, the application can obtain the device name on the About screen in Settings. Without this permission, the application can only obtain the default device name.
+
+<!--RP47--><!--RP47End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Supported devices**:  Phone | PC/2in1 | Tablet
+
+**Valid since**: 20

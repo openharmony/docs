@@ -91,7 +91,7 @@ import { cloudSync } from '@kit.CoreFileKit';
 | state | [State](#state11) | 是   | 枚举值，云文件下载状态。|
 | processed | number | 是   | 已下载数据大小，取值范围[0，9223372036854775807]（单位：Byte）。|
 | size | number | 是   | 当前云文件大小，取值范围[0，9223372036854775807]（单位：Byte）。|
-| uri | string | 是   | 当前云文件uri。|
+| uri | string | 是   | 当前云文件URI。|
 | error | [DownloadErrorType](#downloaderrortype11) | 是   | 下载的错误类型。|
 
 ## FileSync<sup>12+</sup>
@@ -576,7 +576,7 @@ start(uri: string): Promise&lt;void&gt;
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
 | 13900025 | No space left on device. |
-| 14000002 | Invalid uri. |
+| 14000002 | Invalid URI. |
 
 **示例：**
 
@@ -628,7 +628,7 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
 | 13900025 | No space left on device. |
-| 14000002 | Invalid uri. |
+| 14000002 | Invalid URI. |
 
 **示例：**
 
@@ -872,4 +872,4 @@ unregisterChange(uri: string): void
 | ---------- | ------ | ---- | ---- |
 | type | [NotifyType](#notifytype12) | 是   | 更改的通知类型。|
 | isDirectory | Array&lt;boolean&gt; | 是   | 指示更改的URI是否为目录。true：是目录。false：非目录。|
-| uris | Array&lt;string&gt; | 是   | 更改的uris。|
+| uris | Array&lt;string&gt; | 是   | 需要更改的URI列表。|

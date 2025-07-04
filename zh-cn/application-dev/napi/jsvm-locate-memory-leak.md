@@ -32,7 +32,7 @@ OH_JSVM_GetReferenceValue(env, reference, &result);
 ```
 
 ### 定位步骤
-Native内存泄漏分析，可以借助DevEco Studio的内存分析模块，参考[DevEco Studio Allocation内存分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-insight-session-allocations-data-filtering )。
+为了分析Native内存泄漏，可以借助DevEco Studio的内存分析模块，具体参考文档：[内存分析及优化](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-insight-session-allocations-memory)。
 1. 使用Profiler的Alloctaion模块记录一段时间内的Native内存信息。
 <div align=left><img src="figures/jsvm_locate_memory_leak_allocation1.png"/></div>  
 

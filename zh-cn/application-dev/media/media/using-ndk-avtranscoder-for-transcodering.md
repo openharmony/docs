@@ -221,7 +221,7 @@ target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
     const std::int32_t VIDEO_BITRATE = 3000000;
     OH_AVTranscoderConfig_SetDstVideoBitrate(config, VIDEO_BITRATE); // 视频比特率，可选。
     ```
-    <!--RP1-->
+<!--RP2--><!--RP2End-->
 11. 准备转码：调用OH_AVTranscoder_Prepare()成功之后进入AVTRANSCODER_PREPARED状态。
 
     ```c++
@@ -270,7 +270,6 @@ target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
     OH_AVErrCode errCode = AV_ERR_OK;
     errCode = OH_AVTranscoder_Release(transcoder); // 释放转码实例
     ```
-<!--RP1End-->
 
 ## 运行完整示例
 

@@ -7,6 +7,8 @@ AVSource模块提供用于构造媒体资源对象功能的函数。
 
 **系统能力：** SystemCapability.Multimedia.Media.Spliter
 
+**相关示例：** [AVCodec](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
+
 **起始版本：** 10
 
 
@@ -162,7 +164,7 @@ OH_AVSource* OH_AVSource_CreateWithFD (int32_t fd, int64_t offset, int64_t size)
 OH_AVSource* OH_AVSource_CreateWithURI (char *uri)
 ```
 **描述**
-为统一资源标识符对应的的资源对象创建OH_AVSource实例，可以通过调用OH_AVSource_Destroy接口释放实例。
+为统一资源标识符对应的资源对象创建OH_AVSource实例，可以通过调用OH_AVSource_Destroy接口释放实例。
 
 **系统能力：** SystemCapability.Multimedia.Media.Spliter
 

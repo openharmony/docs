@@ -4949,6 +4949,20 @@ Allows a system application to access /data/log/ directory.
 
 **Supported devices**：General
 
+## ohos.permission.MANAGE_FILE_ENCRYPTION
+
+Allows a system application to modify the encryption status of system files.
+
+**Permission level**：system_core
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**：PC/2in1
+
+**Valid since**：20
+
 ## ohos.permission.FILE_TRANSFER_OPERATION
 
 Allows a system application to perform operations, such as transferring files, canceling file transfer, and deleting, moving, and modifying files.
@@ -5004,6 +5018,20 @@ Allows the private space application to mount public directories from the main s
 **Supported devices**: Phone | Tablet
 
 **Valid since**：20
+
+## ohos.permission.MOUNT_HDCDEBUG_PATH
+
+Allows an applications to mount hdc debugging paths.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20
 
 ## ohos.permission.ACCESS_CAMERA_SCENARIOS_CARD
 

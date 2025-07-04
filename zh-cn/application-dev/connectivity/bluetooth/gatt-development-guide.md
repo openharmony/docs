@@ -236,7 +236,7 @@ try {
   // enable入参: true表示启用，false表示禁用
   gattClient.setCharacteristicChangeNotification(characteristic, true, (err: BusinessError) => {
     if (err) {
-      console.info('setCharacteristicChangeNotification callback failed');
+      console.error('setCharacteristicChangeNotification callback failed');
     } else {
       console.info('setCharacteristicChangeNotification callback successful');
     }
@@ -250,7 +250,7 @@ try {
   // enable入参: true表示启用，false表示禁用
   gattClient.setCharacteristicChangeIndication(characteristic, true, (err: BusinessError) => {
     if (err) {
-      console.info('setCharacteristicChangeIndication callback failed');
+      console.error('setCharacteristicChangeIndication callback failed');
     } else {
       console.info('setCharacteristicChangeIndication callback successful');
     }
@@ -511,7 +511,7 @@ try {
   // 发送变更通知或指示
   gattServer.notifyCharacteristicChanged(device, notifyCharacter, (err: BusinessError) => {
     if (err) {
-      console.info('notifyCharacteristicChanged callback failed');
+      console.error('notifyCharacteristicChanged callback failed');
     } else {
       console.info('notifyCharacteristicChanged callback successful');
     }
@@ -694,7 +694,7 @@ export class GattClientManager {
   // 3. client端连接成功后，需要进行服务发现
   public async discoverServices() {
     if (!this.gattClient) {
-      console.info(TAG, 'gattClient does not exist');
+      console.error(TAG, 'gattClient does not exist');
       return;
     }
     console.info(TAG, 'discoverServices');
@@ -846,7 +846,7 @@ export class GattClientManager {
       // 设置特征值变化通知能力，enable: true表示启用，false表示禁用
       this.gattClient.setCharacteristicChangeNotification(this.myCharacteristic, enable, (err: BusinessError) => {
         if (err) {
-          console.info('setCharacteristicChangeNotification callback failed');
+          console.error('setCharacteristicChangeNotification callback failed');
         } else {
           console.info('setCharacteristicChangeNotification callback successful');
         }
@@ -875,7 +875,7 @@ export class GattClientManager {
       // 设置特征值变化指示能力，enable: true表示启用，false表示禁用
       this.gattClient.setCharacteristicChangeIndication(this.myCharacteristic, enable, (err: BusinessError) => {
         if (err) {
-          console.info('setCharacteristicChangeIndication callback failed');
+          console.error('setCharacteristicChangeIndication callback failed');
         } else {
           console.info('setCharacteristicChangeIndication callback successful');
         }
@@ -1152,7 +1152,7 @@ export class GattServerManager {
       console.info(TAG, 'sendCharacterChange notification');
       this.gattServer?.notifyCharacteristicChanged(this.device, notifyCharacter, (err: BusinessError) => {
         if (err) {
-          console.info(TAG, 'notifyCharacteristicChanged notification callback failed');
+          console.error(TAG, 'notifyCharacteristicChanged notification callback failed');
         } else {
           console.info(TAG, 'notifyCharacteristicChanged notification callback successful');
         }
@@ -1167,7 +1167,7 @@ export class GattServerManager {
       console.info(TAG, 'sendCharacterChange indication');
       this.gattServer?.notifyCharacteristicChanged(this.device, notifyCharacter, (err: BusinessError) => {
         if (err) {
-          console.info(TAG, 'notifyCharacteristicChanged indication callback failed');
+          console.error(TAG, 'notifyCharacteristicChanged indication callback failed');
         } else {
           console.info(TAG, 'notifyCharacteristicChanged indication callback successful');
         }

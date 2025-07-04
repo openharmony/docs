@@ -7,7 +7,7 @@
     - [声明式UI描述](../ui/state-management/arkts-declarative-ui-description.md)
     - 自定义组件<!--arkts-custom-components-->
       - [创建自定义组件](../ui/state-management/arkts-create-custom-components.md)
-      - [router页面和自定义组件生命周期](../ui/state-management/arkts-page-custom-components-lifecycle.md)
+      - [自定义组件生命周期](../ui/state-management/arkts-page-custom-components-lifecycle.md)
       - [自定义组件的自定义布局](../ui/state-management/arkts-page-custom-components-layout.md)
       - [自定义组件成员属性访问限定符使用限制](../ui/state-management/arkts-custom-components-access-restrictions.md)
     - 组件扩展<!--arkts-extend-components-->
@@ -105,8 +105,7 @@
     - [自定义渲染 (XComponent)](napi-xcomponent-guidelines.md)
   - 设置组件导航和页面路由<!--arkts-set-navigation-routing-->
     - [组件导航和页面路由概述](arkts-navigation-introduction.md)
-    - [组件导航 (Navigation)(推荐)](arkts-navigation-navigation.md)
-    - [实现组件导航转场](arkts-navigation-transition.md)
+    - [组件导航(Navigation) (推荐)](arkts-navigation-navigation.md)
     - [页面路由 (@ohos.router)(不推荐)](arkts-routing.md)
     - [Router切换Navigation](arkts-router-to-navigation.md)
   - 使用文本<!--arkts-use-text-->
@@ -116,6 +115,7 @@
     - [富文本 (RichEditor)](arkts-common-components-richeditor.md)
     - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
     - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
+    - [图文混排](arkts-text-image-layout.md)
   - 使用弹窗<!--arkts-use-dialog-->
      - [弹窗概述](arkts-dialog-overview.md)
      - 使用弹出框 (Dialog)<!--arkts-use-dialogs-->
@@ -141,8 +141,10 @@
         - [绑定全模态页面 (bindContentCover)](arkts-contentcover-page.md)
      - [即时反馈 (Toast)](arkts-create-toast.md)
      - [设置浮层 (OverlayManager)](arkts-create-overlaymanager.md)
-  - 显示图形<!--arkts-draw-graphics-->
+  - 几何图形绘制<!--arkts-draw-graphics-->
+    - [几何图形绘制概述](arkts-shape-overview.md)
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
+    - [形状裁剪 (clipShape)](arkts-clip-shape.md)
     - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
   - 使用动画<!--arkts-use-animation-->
     - [动画概述](arkts-animation.md)
@@ -169,23 +171,26 @@
       - [阴影](arkts-shadow-effect.md)
       - [色彩](arkts-color-effect.md)
     - [帧动画（ohos.animator）](arkts-animator.md)
-  - 支持交互事件<!--arkts-events-->
-    - [交互事件概述](arkts-event-overview.md)
-    - 使用通用事件<!--arkts-common-events-->
-      - [事件分发](arkts-common-events-distribute.md)
-      - [触屏事件](arkts-common-events-touch-screen-event.md)
-      - [键鼠事件](arkts-common-events-device-input-event.md)
-      - [焦点事件](arkts-common-events-focus-event.md)
-      - [拖拽事件](arkts-common-events-drag-event.md)
-      - [表冠事件](arkts-common-events-crown-event.md)（圆形屏幕推荐使用）
-    - 使用手势事件<!--arkts-gesture-events-->
+  - [添加交互响应](arkts-interaction-development-guide-overview.md)
+    - [交互响应概述](arkts-interaction-capability-overview.md)
+    - [交互基础机制说明](arkts-interaction-basic-principles.md)
+    - [输入设备与事件](arkts-interaction-development-guide-raw-input-event.md)
+      - [支持触屏输入事件](arkts-interaction-development-guide-touch-screen.md)
+      - [支持鼠标输入事件](arkts-interaction-development-guide-mouse.md)
+      - [支持触控板输入事件](arkts-interaction-development-guide-touchpad.md)
+      - [支持键盘输入事件](arkts-interaction-development-guide-keyboard.md)
+      - [支持表冠输入事件](arkts-common-events-crown-event.md)
+    - [添加手势响应](arkts-interaction-development-guide-support-gesture.md)
       - [绑定手势方法](arkts-gesture-events-binding.md)
       - [单一手势](arkts-gesture-events-single-gesture.md)
       - [组合手势](arkts-gesture-events-combined-gestures.md)
       - [多层级手势事件](arkts-gesture-events-multi-level-gesture.md)
-      - [手势拦截](arkts-gesture-events-gesture-judge.md)
+      - [手势冲突处理](arkts-gesture-events-gesture-judge.md)
+    - [支持统一拖拽](arkts-common-events-drag-event.md)
+    - [支持焦点处理](arkts-common-events-focus-event.md)
   - 使用自定义能力<!--arkts-user-defined-capabilities-->
     - [自定义能力概述](arkts-user-defined.md)
+    - [自定义组合](arkts-user-defined-composition.md)
     - 自定义节点<!--arkts-nodes-->
       - [自定义节点概述](arkts-user-defined-node.md)
       - [自定义占位节点](arkts-user-defined-place-holder.md)
@@ -221,6 +226,7 @@
       - [监听组件事件](ndk-listen-to-component-events.md)
       - [绑定手势事件](ndk-bind-gesture-events.md)
       - [拖拽事件](ndk-drag-event.md)
+      - [监听组件布局和绘制送显事件](ndk-inspector-component-observer.md)
     - [使用动画](ndk-use-animation.md)
     - 构建布局<!--arkts-build-layout-ndk-->
       - [使用列表](ndk-loading-long-list.md)

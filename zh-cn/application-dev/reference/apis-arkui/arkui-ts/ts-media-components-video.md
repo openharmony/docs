@@ -36,7 +36,7 @@ Video(value: VideoOptions)
 
 ##  VideoOptions对象说明
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+定义Video的具体配置参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -50,6 +50,8 @@ Video(value: VideoOptions)
 | posterOptions<sup>18+</sup>  | [PosterOptions](#posteroptions18对象说明) | 否   | 设置视频播放的首帧送显选项，可以控制视频是否支持首帧送显。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## PlaybackSpeed<sup>8+</sup>枚举说明
+
+视频播放倍速选项。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -121,7 +123,7 @@ controls(value: boolean)
 
 > **说明：**
 >
-> Video组件自带的控制器无法自定义。若有其他需求，可隐藏自带控制器，自定义控制器的样式或功能。参考<!--RP1-->[视频播放](https://gitee.com/harmonyos_samples/video-play)<!--RP1End-->。
+> Video组件自带的控制器无法自定义。若有其他需求，可隐藏自带控制器并自定义控制器的样式或功能。参考<!--RP1-->[视频播放](https://gitee.com/harmonyos_samples/video-play)<!--RP1End-->。
 
 ### objectFit
 
@@ -137,7 +139,7 @@ objectFit(value: ImageFit)
 
 | 参数名 | 类型                                      | 必填 | 说明                             |
 | ------ | ----------------------------------------- | ---- | -------------------------------- |
-| value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 视频填充模式。<br/>默认值：Cover。<br/>约束：不支持ImageFit类型中的枚举值MATRIX，若设置，则作用效果与Cover一致。<br/>异常值：若设置异常值undefined、null，或不在[ImageFit](ts-appendix-enums.md#imagefit)枚举范围内的值，作用效果均与Cover一致。|
+| value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 视频填充模式。<br/>默认值：Cover<br/>约束：不支持ImageFit类型中的枚举值MATRIX，若设置，则作用效果与Cover一致。<br/>异常值：若设置异常值undefined、null，或不在[ImageFit](ts-appendix-enums.md#imagefit)枚举范围内的值，作用效果均与Cover一致。|
 
 ### loop
 
@@ -171,7 +173,7 @@ enableAnalyzer(enable: boolean)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| enable | boolean | 是 | 是否启用AI分析功能<br/>true：开启AI分析功能；false：关闭AI分析功能。<br/>默认值：false |
+| enable | boolean | 是 | 是否启用AI分析功能。<br/>true：开启AI分析功能；false：关闭AI分析功能。<br/>默认值：false |
 
 > **说明：**
 >
@@ -190,7 +192,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是 | 设置AI分析识别类型 |
+| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是 | 设置AI分析识别类型。 |
 
 ### enableShortcutKey<sup>15+</sup>
 
@@ -274,14 +276,14 @@ onError(event: VoidCallback | ErrorCallback)
 
 | 参数名 | 类型                                           | 必填 | 说明                                 |
 | ------ | --------------------------------------------- | ---- | ----------------------------------- |
-| event  | [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup> | 是   | 视频播放失败时的回调函数，[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)入参用于接收异常信息。<br>Video组件报错信息请参考以下错误信息的详细介绍，其余错误码请请参考[媒体错误码](../../apis-media-kit/errorcode-media.md)。|
+| event  | [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup> | 是   | 视频播放失败时的回调函数，[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)入参用于接收异常信息。|
 
-以下是错误信息的详细介绍。
+以下错误码的详细介绍请参见[Video组件错误码](../errorcode-video.md)，其余错误码请参考[媒体错误码](../../apis-media-kit/errorcode-media.md)。
 
-|错误码|错误信息|错误描述|
-|--|--|--|
-|103601 |Failed to create the media player.|播放器创建失败。|
-|103602 |Not a valid source.|视频资源设置无效。|
+|错误码ID|错误信息|
+|--|--|
+|103601 |Failed to create the media player.|
+|103602 |Not a valid source.|
 
 ### onStop<sup>12+</sup>
 
@@ -377,6 +379,10 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 用于描述当前视频是否进入全屏播放状态。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -389,6 +395,10 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 用于描述当前视频的时长。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -400,6 +410,10 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 ## PlaybackInfo<sup>18+</sup>对象说明
 
 用于描述当前视频播放的进度。
+
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -553,6 +567,8 @@ setCurrentTime(value: number, seekMode: SeekMode)
 | seekMode | [SeekMode](#seekmode8枚举说明) | 是    | 跳转模式。          |
 
 ## SeekMode<sup>8+</sup>枚举说明
+
+视频跳转模式选项。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -804,12 +820,12 @@ struct Index {
 @Entry
 @Component
 struct video {
-  @State videoSrc: Resource = $rawfile('rabbit.mp4')
-  @State previewUri: Resource = $r('app.media.tree')
-  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
-  @State isAutoPlay: boolean = true
-  @State showControls: boolean = true
-  controller: VideoController = new VideoController()
+  @State videoSrc: Resource = $rawfile('rabbit.mp4');
+  @State previewUri: Resource = $r('app.media.tree');
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
+  @State isAutoPlay: boolean = true;
+  @State showControls: boolean = true;
+  controller: VideoController = new VideoController();
 
   build() {
     Column() {
@@ -866,13 +882,13 @@ struct video {
 @Entry
 @Component
 struct VideoErrorComponent {
-  @State videoSrc: string = "video.mp4" // 传入不存在的视频资源路径。
-  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
-  @State isAutoPlay: boolean = false
-  @State showControls: boolean = true
-  @State showFirstFrame: boolean = false
-  controller: VideoController = new VideoController()
-  @State errorMessage: string = ""
+  @State videoSrc: string = "video.mp4"; // 传入不存在的视频资源路径。
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
+  @State isAutoPlay: boolean = false;
+  @State showControls: boolean = true;
+  @State showFirstFrame: boolean = false;
+  controller: VideoController = new VideoController();
+  @State errorMessage: string = "";
 
   build() {
     Column() {
@@ -968,7 +984,7 @@ struct VideoModifierDemo {
   @State isAutoPlay: boolean = false;
   @State showControls: boolean = false;
   controller: VideoController = new VideoController();
-  @State modifier: MyVideoModifier = new MyVideoModifier()
+  @State modifier: MyVideoModifier = new MyVideoModifier();
 
   build() {
     Column() {

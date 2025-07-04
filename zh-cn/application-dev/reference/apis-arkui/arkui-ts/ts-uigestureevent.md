@@ -852,4 +852,4 @@ Rotation手势识别成功，接收到触摸取消事件触发回调。
 
 ## 示例
 
-见[动态手势设置](./ts-universal-attributes-gesture-modifier.md#动态手势设置)。
+见[动态手势设置](./ts-universal-attributes-gesture-modifier.md)。

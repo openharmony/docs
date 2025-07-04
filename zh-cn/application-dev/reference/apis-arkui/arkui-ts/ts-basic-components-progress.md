@@ -50,13 +50,13 @@ Progress(options: ProgressOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                     | 说明                                     |
-| ---------------------- | ---------------------------------------- |
-| Linear                 | 线性样式。从API version 9开始，高度大于宽度时，自适应垂直显示。   |
-| Ring      | 环形无刻度样式，环形圆环逐渐显示至完全填充效果。                 |
-| Eclipse  | 圆形样式，显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。         |
-| ScaleRing | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。从API version 9开始，刻度外圈出现重叠的时候自动转换为环形无刻度进度条。 |
-| Capsule   | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同，中段处的进度展示效果与Linear相同。高度大于宽度时，自适应垂直显示。 |
+| 名称                     | 值 | 说明                                     |
+| ---------------------- | - | ---------------------------------------- |
+| Linear                 | 0 | 线性样式。从API version 9开始，当高度大于宽度时，自适应垂直显示。   |
+| Ring      | 1 | 环形无刻度样式，环形圆环逐渐显示直至完全填充。                 |
+| Eclipse  | 2 | 圆形样式，显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。         |
+| ScaleRing | 3 | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。从API version 9开始，刻度外圈出现重叠时自动转换为环形无刻度进度条。 |
+| Capsule   | 4 | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同，中段的进度展示效果与Linear相同。当高度大于宽度时，自适应垂直显示。 |
 
 ##  ProgressStyle枚举说明 
 
@@ -66,13 +66,13 @@ Progress(options: ProgressOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 说明                                     |
-| --------- | ---------------------------------------- |
-| Linear    | 线性样式。                                    |
-| Ring<sup>8+</sup>      | 环形无刻度样式，环形圆环逐渐显示至完全填充效果。                 |
-| Eclipse   | 圆形样式，显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。         |
-| ScaleRing<sup>8+</sup> | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。               |
-| Capsule<sup>8+</sup>   | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同，中段处的进度展示效果与Linear相同。高度大于宽度时，自适应垂直显示。 |
+| 名称        | 值 | 说明                                     |
+| --------- | - | ---------------------------------------- |
+| Linear    | 0 | 线性样式。                                    |
+| Ring<sup>8+</sup>      | 1 | 环形圆环逐渐显示直至完全填充。                 |
+| Eclipse   | 2 | 圆形样式，显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。         |
+| ScaleRing<sup>8+</sup> | 3 | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。               |
+| Capsule<sup>8+</sup>   | 4 | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同，中段的进度展示效果与Linear相同。当高度大于宽度时，自适应垂直显示。 |
 
 ##  ProgressStyleMap对象说明 
 
@@ -377,7 +377,7 @@ struct ProgressExample {
 
 ### 示例2（设置环形进度条属性）
 
-该示例通过style接口的strokeWidth和shadow属性，实现了环形进度条视觉属性设置功能。
+该示例通过[style](#style8)接口的strokeWidth和shadow属性，实现了环形进度条视觉属性设置功能。
 
 ```ts
 // xxx.ets
@@ -406,7 +406,7 @@ struct ProgressExample {
 
 ### 示例3（设置环形进度条动画）
 
-该示例通过style接口的status和enableScanEffect属性，实现了环形进度条动效的开关功能。
+该示例通过[style](#style8)接口的status和enableScanEffect属性，实现了环形进度条动效的开关功能。
 
 ```ts
 // xxx.ets
@@ -432,7 +432,7 @@ struct ProgressExample {
 
 ### 示例4（设置胶囊形进度条属性）
 
-该示例通过style接口的borderColor、borderWidth、content、font、fontColor、enableScanEffect、showDefaultPercentage属性，实现胶囊形进度条的视觉属性设置。
+该示例通过[style](#style8)接口的borderColor、borderWidth、content、font、fontColor、enableScanEffect、showDefaultPercentage属性，实现胶囊形进度条的视觉属性设置。
 
 ```ts
 // xxx.ets
@@ -461,7 +461,7 @@ struct ProgressExample {
 
 ### 示例5（设置进度平滑动效）
 
-该示例通过style接口的enableSmoothEffect属性，实现了进度平滑动效开关的功能。
+该示例通过[style](#style8)接口的enableSmoothEffect属性，实现了进度平滑动效开关的功能。
 
 ```ts
 // xxx.ets
@@ -503,7 +503,7 @@ struct Index {
 
 ### 示例6（设置定制内容区）
 
-该示例通过contentModifier接口，实现了自定义进度条的功能，自定义实现星形，其中总进度为3，且当前值可通过按钮进行增减，达到的进度使用自定义颜色填充。
+该示例通过[contentModifier](#contentmodifier12)接口，实现了自定义进度条的功能，自定义实现星形，其中总进度为3，且当前值可通过按钮进行增减，达到的进度使用自定义颜色填充。
 
 ```ts
 // xxx.ets
@@ -584,7 +584,7 @@ struct Index {
 
 ### 示例7（设置隐私隐藏）
 
-该示例通过privacySensitive属性，实现了隐私隐藏效果。效果展示需要卡片框架支持。
+该示例通过[privacySensitive](#privacysensitive12)属性，实现了隐私隐藏效果。效果展示需要卡片框架支持。
 
 ```ts
 @Entry

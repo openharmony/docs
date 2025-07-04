@@ -239,6 +239,7 @@
         - [数据库加密 (C/C++)](database/native-data-encryption.md)
         - [基于设备分类和数据分级的访问控制 (ArkTS)](database/access-control-by-device-and-data-level.md)
         - [基于设备分类和数据分级的访问控制 (C/C++)](database/native-access-control-by-device-and-data-level.md)
+        - [E类加密数据库的使用 (ArkTS)](database/encrypted_estore_guidelines.md)
       - 跨应用数据共享<!--cross-app-data-share-->
         - [跨应用数据共享概述](database/data-share-overview.md)
         <!--Del-->
@@ -469,8 +470,7 @@
           - [自定义渲染 (XComponent)](ui/napi-xcomponent-guidelines.md)
         - 设置组件导航和页面路由<!--arkts-set-navigation-routing-->
           - [组件导航和页面路由概述](ui/arkts-navigation-introduction.md)
-          - [组件导航 (Navigation)(推荐)](ui/arkts-navigation-navigation.md)
-          - [实现组件导航转场](ui/arkts-navigation-transition.md)
+          - [组件导航(Navigation) (推荐)](ui/arkts-navigation-navigation.md)
           - [页面路由 (@ohos.router)(不推荐)](ui/arkts-routing.md)
           - [Router切换Navigation](ui/arkts-router-to-navigation.md)
         - 使用文本<!--arkts-use-text-->
@@ -480,6 +480,7 @@
           - [富文本 (RichEditor)](ui/arkts-common-components-richeditor.md)
           - [图标小符号 (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
           - [属性字符串 (StyledString/MutableStyledString)](ui/arkts-styled-string.md)
+          - [图文混排](ui/arkts-text-image-layout.md)
         - 使用弹窗<!--arkts-use-dialog-->
           - [弹窗概述](ui/arkts-dialog-overview.md)
           - 使用弹出框 (Dialog)<!--arkts-use-dialogs-->
@@ -505,8 +506,10 @@
             - [绑定全模态页面 (bindContentCover)](ui/arkts-contentcover-page.md)
           - [即时反馈 (Toast)](ui/arkts-create-toast.md)
           - [设置浮层 (OverlayManager)](ui/arkts-create-overlaymanager.md)
-        - 显示图形<!--arkts-draw-graphics-->
+        - 几何图形绘制<!--arkts-draw-graphics-->
+          - [几何图形绘制概述](ui/arkts-shape-overview.md)
           - [绘制几何图形 (Shape)](ui/arkts-geometric-shape-drawing.md)
+          - [形状裁剪 (clipShape)](ui/arkts-clip-shape.md)
           - [使用画布绘制自定义图形 (Canvas)](ui/arkts-drawing-customization-on-canvas.md)
         - 使用动画<!--arkts-use-animation-->
           - [动画概述](ui/arkts-animation.md)
@@ -533,23 +536,26 @@
             - [阴影](ui/arkts-shadow-effect.md)
             - [色彩](ui/arkts-color-effect.md)
           - [帧动画（ohos.animator）](ui/arkts-animator.md)
-        - 支持交互事件<!--arkts-events-->
-          - [交互事件概述](ui/arkts-event-overview.md)
-          - 使用通用事件<!--arkts-common-events-->
-            - [事件分发](ui/arkts-common-events-distribute.md)
-            - [触屏事件](ui/arkts-common-events-touch-screen-event.md)
-            - [键鼠事件](ui/arkts-common-events-device-input-event.md)
-            - [焦点事件](ui/arkts-common-events-focus-event.md)
-            - [拖拽事件](ui/arkts-common-events-drag-event.md)
-            - [表冠事件（圆形屏幕推荐使用）](ui/arkts-common-events-crown-event.md)
-          - 使用手势事件<!--arkts-gesture-events-->
+        - [添加交互响应](ui/arkts-interaction-development-guide-overview.md)
+          - [交互响应概述](ui/arkts-interaction-capability-overview.md)
+          - [交互基础机制说明](ui/arkts-interaction-basic-principles.md)
+          - [输入设备与事件](ui/arkts-interaction-development-guide-raw-input-event.md)
+            - [支持触屏输入事件](ui/arkts-interaction-development-guide-touch-screen.md)
+            - [支持鼠标输入事件](ui/arkts-interaction-development-guide-mouse.md)
+            - [支持触控板输入事件](ui/arkts-interaction-development-guide-touchpad.md)
+            - [支持键盘输入事件](ui/arkts-interaction-development-guide-keyboard.md)
+            - [支持表冠输入事件](ui/arkts-common-events-crown-event.md)
+          - [添加手势响应](ui/arkts-interaction-development-guide-support-gesture.md)
             - [绑定手势方法](ui/arkts-gesture-events-binding.md)
             - [单一手势](ui/arkts-gesture-events-single-gesture.md)
             - [组合手势](ui/arkts-gesture-events-combined-gestures.md)
             - [多层级手势事件](ui/arkts-gesture-events-multi-level-gesture.md)
             - [手势拦截](ui/arkts-gesture-events-gesture-judge.md)
+          - [支持统一拖拽](ui/arkts-common-events-drag-event.md)
+          - [支持焦点处理](ui/arkts-common-events-focus-event.md)
         - 使用自定义能力<!--arkts-user-defined-capabilities-->
           - [自定义能力概述](ui/arkts-user-defined.md)
+          - [自定义组合](ui/arkts-user-defined-composition.md)
           - 自定义节点<!--arkts-nodes-->
             - [自定义节点概述](ui/arkts-user-defined-node.md)
             - [自定义占位节点](ui/arkts-user-defined-place-holder.md)
@@ -585,6 +591,7 @@
             - [监听组件事件](ui/ndk-listen-to-component-events.md)
             - [绑定手势事件](ui/ndk-bind-gesture-events.md)
             - [拖拽事件](ui/ndk-drag-event.md)
+            - [监听组件布局和绘制送显事件](ui/ndk-inspector-component-observer.md)
           - [使用动画](ui/ndk-use-animation.md)
           - 构建布局<!--arkts-build-layout-ndk-->
             - [使用列表](ui/ndk-loading-long-list.md)
@@ -1091,6 +1098,7 @@
           - [证书链校验器对象的创建和校验](security/DeviceCertificateKit/create-verify-cerchainvalidator-object.md)
           - [证书集合及证书吊销列表集合对象的创建和获取](security/DeviceCertificateKit/create-get-cert-crl-object.md)
           - [证书链对象的创建和校验](security/DeviceCertificateKit/create-verify-certchain-object.md)
+          - [证书PKCS7签名](security/DeviceCertificateKit/create-pkcs7-sign-object.md)
         - 证书管理<!--certmanager-->
           - [证书管理概述](security/DeviceCertificateKit/certManager-overview.md)
           - [应用证书凭据开发指导](security/DeviceCertificateKit/certManager-private-credential-guidelines.md)
@@ -1534,6 +1542,7 @@
         - [典型场景的视频编码配置](media/avcodec/video-encoding-configuration-typical-scenarios.md)
         - [ROI视频编码](media/avcodec/video-encoding-ROI.md)
         - [视频解码](media/avcodec/video-decoding.md)
+        - [视频解码同步模式](media/avcodec/synchronous-video-decoding.md)
         - [创建视频解码器和NativeWindow初始化并行](media/avcodec/parallel-decoding-nativeWindow.md)
         - [视频可变帧率](media/avcodec/video-variable-refreshrate.md)
       - 媒体数据封装与解析<!--file-muxing-demuxing-->
@@ -1640,6 +1649,7 @@
           - [使用Image_NativeModule处理图像信息](media/image/image-info-c.md)
       - Image Kit常见问题<!--image-faqs-->
         - [如何处理HEIF图片](media/image/image-faqs/heif-adapter-faq.md)
+        - [如何获取图片的旋转角度信息](media/image/image-faqs/image-rotate-faq.md)
       - 不再推荐使用<!--imagekit-not-recommended-->
         - 图片开发指导(依赖JS对象)(C/C++)<!--image-native-js-objects-->
           - [图片解码](media/image/image-decoding-native.md)
@@ -1900,7 +1910,11 @@
           - [使用Node-API接口创建、切换和销毁上下文环境](napi/use-napi-about-context.md)
           - [使用Node-API接口产生的异常日志/崩溃分析](napi/use-napi-about-crash.md)
           - [使用Node-API调用返回值为promise的ArkTS方法](napi/use-napi-method-promise.md)
-        - [Node-API常见问题](napi/use-napi-faqs.md)
+        - Node-API常见问题汇总<!--napi-questions-->
+          - [Node-API常见问题](napi/use-napi-faqs.md)
+          - [稳定性相关问题汇总](napi/napi-faq-about-stability.md)
+          - [内存泄漏相关问题汇总](napi/napi-faq-about-memory-leak.md)
+          - [常见基本功能问题汇总](napi/napi-faq-about-common-basic.md)
       - 使用JSVM-API实现JS与C/C++语言交互<!--jsvm-->
         - [JSVM-API简介](napi/jsvm-introduction.md)
         - [JSVM-API支持的数据类型和接口](napi/jsvm-data-types-interfaces.md)
@@ -2041,6 +2055,8 @@
     - 功耗
       - [高效利用HWC的低功耗设计](performance/utilize_hwc_effiently.md)
       - [主动关闭CPU访问窗口缓冲区数据降低功耗](performance/close_CPU_access_window_buffer_data.md)
+      - [使用属性动画替换帧动画](performance/using-animation-insteadof-animator.md)
+      - [冗余刷新类问题解决方案](performance/invisible-refresh-performance.md)
   <!--DelEnd-->
 
 - API参考<!--api-reference-->
@@ -2274,7 +2290,7 @@
             - [remoteAbilityInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-remoteAbilityInfo-sys.md)
             - [SharedBundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-sharedBundleInfo-sys.md)
             <!--DelEnd-->
-          - continuation<!--continuation-->
+          - continuation<!--ability-continuation-->
             - [continuationExtraParams](reference/apis-ability-kit/js-apis-continuation-continuationExtraParams.md)
             - [continuationResult](reference/apis-ability-kit/js-apis-continuation-continuationResult.md)
           - security<!--ability-security-->
@@ -2504,7 +2520,12 @@
         - [@arkts.collections (ArkTS容器集)](reference/apis-arkts/js-apis-arkts-collections.md)
         - [@arkts.lang (ArkTS语言基础能力)](reference/apis-arkts/js-apis-arkts-lang.md)
         - [@arkts.math.Decimal (高精度数学库Decimal)](reference/apis-arkts/js-apis-arkts-decimal.md)
-        - [@arkts.utils (ArkTS工具库)](reference/apis-arkts/js-apis-arkts-utils.md)
+        - @arkts.utils (ArkTS工具库)<!--js-apis-arkts-utils-->
+          - [模块描述](reference/apis-arkts/arkts-apis-arkts-utils.md)
+          - [Functions](reference/apis-arkts/arkts-apis-arkts-utils-f.md)
+          - [ArkTSUtils.locks](reference/apis-arkts/arkts-apis-arkts-utils-locks.md)
+          - [ArkTSUtils.ASON](reference/apis-arkts/arkts-apis-arkts-utils-ASON.md)
+          - [SendableLruCache<K, V>](reference/apis-arkts/arkts-apis-arkts-utils-SendableLruCache.md)
         - [@ohos.buffer (Buffer)](reference/apis-arkts/js-apis-buffer.md)
         - [@ohos.convertxml (xml转换JavaScript)](reference/apis-arkts/js-apis-convertxml.md)
         - [@ohos.fastbuffer (FastBuffer)](reference/apis-arkts/js-apis-fastbuffer.md)
@@ -2997,7 +3018,6 @@
           <!--DelEnd-->
           - [GridContainer](reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md)
           - [Panel](reference/apis-arkui/arkui-ts/ts-container-panel.md)
-          - [LocationButton](reference/apis-arkui/arkui-ts/ts-security-components-locationbutton.md)
           - [NavRouter](reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)
           - [Navigator](reference/apis-arkui/arkui-ts/ts-container-navigator.md)
           - [点击控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-click.md)
@@ -3282,6 +3302,7 @@
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
           - [NodeAdapter错误码](reference/apis-arkui/errorcode-nodeadapter.md)
           - [XComponent组件错误码](reference/apis-arkui/errorcode-xcomponent.md)
+          - [Video组件错误码](reference/apis-arkui/errorcode-video.md)
         - UI编译<!--arkui-compile-arkts-errcode-->
           - [编译错误码](reference/apis-arkui/_ark_ui_compile.md)
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
@@ -4539,13 +4560,16 @@
         - [@ohos.multimedia.avInputCastPicker（录音设备选择组件）](reference/apis-avsession-kit/ohos-multimedia-avinputcastpicker.md)
       - C API<!--avsession-c-->
         - 模块<!--avsession-module-->
-          - [OHAVSession](reference/apis-avsession-kit/_o_h_a_v_session.md)
+          - [OHAVSession](reference/apis-avsession-kit/capi-ohavsession.md)
         - 头文件<!--avsession-headerfile-->
-          - [native_avmetadata.h](reference/apis-avsession-kit/native__avmetadata_8h.md)
-          - [native_avsession.h](reference/apis-avsession-kit/native__avsession_8h.md)
-          - [native_avsession_errors.h](reference/apis-avsession-kit/native__avsession__errors_8h.md)
+          - [native_avmetadata.h](reference/apis-avsession-kit/capi-native-avmetadata-h.md)
+          - [native_avsession.h](reference/apis-avsession-kit/capi-native-avsession-h.md)
+          - [native_avsession_errors.h](reference/apis-avsession-kit/capi-native-avsession-errors-h.md)
         - 结构体<!--avsession-struct-->
-          - [AVSession_PlaybackPosition](reference/apis-avsession-kit/_a_v_session___playback_position.md)
+          - [OH_AVMetadataBuilderStruct](reference/apis-avsession-kit/capi-ohavsession-oh-avmetadatabuilderstruct.md)
+          - [OH_AVMetadataStruct](reference/apis-avsession-kit/capi-ohavsession-oh-avmetadatastruct.md)
+          - [AVSession_PlaybackPosition](reference/apis-avsession-kit/capi-ohavsession-avsession-playbackposition.md)
+          - [OH_AVSession](reference/apis-avsession-kit/capi-ohavsession-oh-avsession.md)
       - 错误码<!--avsession-arkts-errcode-->
         - [媒体会话管理错误码](reference/apis-avsession-kit/errorcode-avsession.md)
     - Camera Kit（相机服务）<!--camera-api-->
@@ -4654,24 +4678,26 @@
           - [Enums](reference/apis-drm-kit/arkts-apis-drm-e.md)
       - C API<!--drm-c-->
         - 模块<!--drm-module-->
-          - [Drm](reference/apis-drm-kit/_drm.md)
+          - [Drm](reference/apis-drm-kit/capi-drm.md)
         - 头文件<!--drm-headerfile-->
-          - [native_drm_common.h](reference/apis-drm-kit/native__drm__common_8h.md)
-          - [native_drm_err.h](reference/apis-drm-kit/native__drm__err_8h.md)
-          - [native_mediakeysession.h](reference/apis-drm-kit/native__mediakeysession_8h.md)
-          - [native_mediakeysystem.h](reference/apis-drm-kit/native__mediakeysystem_8h.md)
+          - [native_drm_common.h](reference/apis-drm-kit/capi-native-drm-common-h.md)
+          - [native_drm_err.h](reference/apis-drm-kit/capi-native-drm-err-h.md)
+          - [native_mediakeysession.h](reference/apis-drm-kit/capi-native-mediakeysession-h.md)
+          - [native_mediakeysystem.h](reference/apis-drm-kit/capi-native-mediakeysystem-h.md)
         - 结构体<!--drm-struct-->
-          - [DRM_KeysInfo](reference/apis-drm-kit/_d_r_m___keys_info.md)
-          - [DRM_MediaKeyRequest](reference/apis-drm-kit/_d_r_m___media_key_request.md)
-          - [DRM_MediaKeyRequestInfo](reference/apis-drm-kit/_d_r_m___media_key_request_info.md)
-          - [DRM_MediaKeyStatus](reference/apis-drm-kit/_d_r_m___media_key_status.md)
-          - [DRM_MediaKeySystemDescription](reference/apis-drm-kit/_d_r_m___media_key_system_description.md)
-          - [DRM_MediaKeySystemInfo](reference/apis-drm-kit/_d_r_m___media_key_system_info.md)
-          - [DRM_OfflineMediakeyIdArray](reference/apis-drm-kit/_d_r_m___offline_mediakey_id_array.md)
-          - [DRM_PsshInfo](reference/apis-drm-kit/_d_r_m___pssh_info.md)
-          - [DRM_Statistics](reference/apis-drm-kit/_d_r_m___statistics.md)
-          - [MediaKeySession_Callback](reference/apis-drm-kit/_media_key_session___callback.md)
-          - [OH_MediaKeySession_Callback](reference/apis-drm-kit/_o_h___media_key_session___callback.md)
+          - [DRM_MediaKeyRequestInfo](reference/apis-drm-kit/capi-drm-drm-mediakeyrequestinfo.md)
+          - [DRM_MediaKeyRequest](reference/apis-drm-kit/capi-drm-drm-mediakeyrequest.md)
+          - [DRM_Statistics](reference/apis-drm-kit/capi-drm-drm-statistics.md)
+          - [DRM_OfflineMediakeyIdArray](reference/apis-drm-kit/capi-drm-drm-offlinemediakeyidarray.md)
+          - [DRM_KeysInfo](reference/apis-drm-kit/capi-drm-drm-keysinfo.md)
+          - [DRM_MediaKeyStatus](reference/apis-drm-kit/capi-drm-drm-mediakeystatus.md)
+          - [DRM_PsshInfo](reference/apis-drm-kit/capi-drm-drm-psshinfo.md)
+          - [DRM_MediaKeySystemInfo](reference/apis-drm-kit/capi-drm-drm-mediakeysysteminfo.md)
+          - [DRM_MediaKeySystemDescription](reference/apis-drm-kit/capi-drm-drm-mediakeysystemdescription.md)
+          - [MediaKeySystem](reference/apis-drm-kit/capi-drm-mediakeysystem.md)
+          - [MediaKeySession](reference/apis-drm-kit/capi-drm-mediakeysession.md)
+          - [MediaKeySession_Callback](reference/apis-drm-kit/capi-drm-mediakeysession-callback.md)
+          - [OH_MediaKeySession_Callback](reference/apis-drm-kit/capi-drm-oh-mediakeysession-callback.md)
       - 错误码<!--drm-arkts-errcode-->
         - [DRM错误码](reference/apis-drm-kit/errorcode-drm.md)
     - Image Kit（图片处理服务）<!--image-api-->
@@ -4822,6 +4848,9 @@
           - [AVRecorder](reference/apis-media-kit/capi-avrecorder.md)
           - [AVTranscoder](reference/apis-media-kit/capi-avtranscoder.md)
           - [AVScreenCapture](reference/apis-media-kit/capi-avscreencapture.md)
+          - [AVSinkBase](reference/apis-media-kit/capi-avsinkbase.md)
+          - [LowPowerAudioSink](reference/apis-media-kit/capi-lowpoweraudiosink.md)
+          - [LowPowerVideoSink](reference/apis-media-kit/capi-lowpowervideosink.md)
           - [VideoProcessing](reference/apis-media-kit/capi-videoprocessing.md)
         - 头文件<!--media-headerfile-->
           - [avimage_generator.h](reference/apis-media-kit/capi-avimage-generator-h.md)
@@ -4837,6 +4866,11 @@
           - [native_avscreen_capture.h](reference/apis-media-kit/capi-native-avscreen-capture-h.md)
           - [native_avscreen_capture_base.h](reference/apis-media-kit/capi-native-avscreen-capture-base-h.md)
           - [native_avscreen_capture_errors.h](reference/apis-media-kit/capi-native-avscreen-capture-errors-h.md)
+          - [lowpower_audio_sink.h](reference/apis-media-kit/capi-lowpower-audio-sink-h.md)
+          - [lowpower_audio_sink_base.h](reference/apis-media-kit/capi-lowpower-audio-sink-base-h.md)
+          - [lowpower_avsink_base.h](reference/apis-media-kit/capi-lowpower-avsink-base-h.md)
+          - [lowpower_video_sink.h](reference/apis-media-kit/capi-lowpower-video-sink-h.md)
+          - [lowpower_video_sink_base.h](reference/apis-media-kit/capi-lowpower-video-sink-base-h.md)
           - [video_processing.h](reference/apis-media-kit/capi-video-processing-h.md)
           - [video_processing_types.h](reference/apis-media-kit/capi-video-processing-types-h.md)
         - 结构体<!--media-struct-->
@@ -4872,6 +4906,11 @@
           - [OH_AVScreenCapture_ContentFilter](reference/apis-media-kit/capi-avscreencapture-oh-avscreencapture-contentfilter.md)
           - [OH_AVScreenCapture_CaptureStrategy](reference/apis-media-kit/capi-avscreencapture-oh-avscreencapture-capturestrategy.md)
           - [OH_AVScreenCapture_UserSelectionInfo](reference/apis-media-kit/capi-avscreencapture-oh-avscreencapture-userselectioninfo.md)
+          - [OH_LowPowerAudioSink](reference/apis-media-kit/capi-lowpoweraudiosink-oh-lowpoweraudiosink.md)
+          - [OH_LowPowerAudioSinkCallback](reference/apis-media-kit/capi-lowpoweraudiosink-oh-lowpoweraudiosinkcallback.md)
+          - [OH_AVSamplesBuffer](reference/apis-media-kit/capi-avsinkbase-oh-avsamplesbuffer.md)
+          - [OH_LowPowerVideoSink](reference/apis-media-kit/capi-lowpowervideosink-oh-lowpowervideosink.md)
+          - [OH_LowPowerVideoSinkCallback](reference/apis-media-kit/capi-lowpowervideosink-oh-lowpowervideosinkcallback.md)
           - [VideoProcessing_ColorSpaceInfo](reference/apis-media-kit/capi-videoprocessing-videoprocessing-colorspaceinfo.md)
           - [OH_VideoProcessing](reference/apis-media-kit/capi-videoprocessing-oh-videoprocessing.md)
           - [VideoProcessing_Callback](reference/apis-media-kit/capi-videoprocessing-videoprocessing-callback.md)
@@ -4937,7 +4976,32 @@
         - [@ohos.graphics.sendableColorSpaceManager (可共享的色彩管理)](reference/apis-arkgraphics2d/js-apis-sendableColorSpaceManager.md)
         - [@ohos.graphics.common2D (2D图形通用数据类型)](reference/apis-arkgraphics2d/js-apis-graphics-common2D.md)
         - [@ohos.graphics.displaySync (可变帧率)](reference/apis-arkgraphics2d/js-apis-graphics-displaySync.md)
-        - [@ohos.graphics.drawing (绘制模块)](reference/apis-arkgraphics2d/js-apis-graphics-drawing.md)
+        - @ohos.graphics.drawing (绘制模块)<!--js-apis-graphics-drawing-->
+          - [模块描述](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing.md)
+          - [Class (Brush)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Brush.md)
+          - [Class (Canvas)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md)
+          - [Class (ClorFilter)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-ColorFilter.md)
+          - [Class (Font)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Font.md)
+          - [Class (ImageFilter)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-ImageFilter.md)
+          - [Class (Lattice)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Lattice.md)
+          - [Class (MaskFilter)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-MaskFilter.md)
+          - [Class (Matrix)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Matrix.md)
+          - [Class (Path)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Path.md)
+          - [Class (PathEffect)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-PathEffect.md)
+          - [Class (PathIterator)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-PathIterator.md)
+          - [Class (Pen)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Pen.md)
+          - [Class (RectUtils)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-RectUtils.md)
+          - [Class (Region)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Region.md)
+          - [Class (RoundRect)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-RoundRect.md)
+          - [Class (SamplingOptions)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-SamplingOptions.md)
+          - [Class (ShaderEffect)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-ShaderEffect.md)
+          - [Class (ShadowLayer)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-ShadowLayer.md)
+          - [Class (TextBold)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-TextBlob.md)
+          - [Class (Tool)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Tool.md)
+          - [Class (Typeface)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Typeface.md)
+          - [Class (TypefaceArguments)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-TypefaceArguments.md)
+          - [Interfaces (其他)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-i.md)
+          - [Enums](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-e.md)
         - [@ohos.graphics.hdrCapability (HDR能力)](reference/apis-arkgraphics2d/js-apis-hdrCapability.md)
         - [@ohos.graphics.text (文本模块)](reference/apis-arkgraphics2d/js-apis-graphics-text.md)
         - [@ohos.graphics.uiEffect (效果级联)](reference/apis-arkgraphics2d/js-apis-uiEffect.md)

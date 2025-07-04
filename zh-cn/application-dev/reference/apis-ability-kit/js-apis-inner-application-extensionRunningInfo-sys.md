@@ -31,7 +31,7 @@ import { abilityManager } from '@kit.AbilityKit';
 | processName | string | 否 | 否 | 进程名称。 |
 | startTime | number | 否 | 否 | Extension被启动时的时间戳。 |
 | clientPackage | Array&lt;String&gt; | 否 | 否 | 表示当期进程下的所有包名。 |
-| type | [ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 否 | 否 | Extension类型。 |
+| type | [bundle.ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 否 | 否 | Extension类型。 |
 
 **示例：**
 ```ts

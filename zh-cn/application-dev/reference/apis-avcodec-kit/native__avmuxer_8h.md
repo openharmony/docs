@@ -7,6 +7,8 @@
 
 **库：** libnative_media_avmuxer.so
 
+**引用文件：** <multimedia/player_framework/native_avmuxer.h>
+
 **起始版本：** 10
 
 **相关模块：**[AVMuxer](_a_v_muxer.md)

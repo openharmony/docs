@@ -34,6 +34,10 @@ libnative_window.so
 libvulkan.so
 ```
 
+> **NOTE**
+>
+> When the **dlopen** function is used to link the **libvulkan.so** dynamic library in a program, you do not need to add dependencies in CMake. Otherwise, symbol conflicts occur.
+
 **Including Header Files**
 
 ```c++

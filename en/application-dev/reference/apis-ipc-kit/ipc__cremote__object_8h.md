@@ -3,7 +3,7 @@
 
 ## Overview
 
-Provides C interfaces for creating and destroying a remote object, transferring data, and observing the dead status of a remote object.
+Provides C APIs for creating and destroying a remote object, transferring data, and observing the dead status of a remote object.
 
 **Library**: libipc_capi.so
 
@@ -13,6 +13,7 @@ Provides C interfaces for creating and destroying a remote object, transferring 
 
 **Related module**: [OHIPCRemoteObject](_o_h_i_p_c_remote_object.md)
 
+**Header file**: [ipc_cremote_object.h](ipc__cremote__object_8h.md)
 
 ## Summary
 
@@ -38,7 +39,7 @@ Provides C interfaces for creating and destroying a remote object, transferring 
 
 | Name| Description| 
 | -------- | -------- |
-| OH_IPC_RequestMode {<br>[OH_IPC_REQUEST_MODE_SYNC](_o_h_i_p_c_remote_object.md) = 0,<br>[OH_IPC_REQUEST_MODE_ASYNC](_o_h_i_p_c_remote_object.md) = 1<br>} | Enumerates the IPC request modes.| 
+| [OH_IPC_RequestMode](_o_h_i_p_c_remote_object.md#oh_ipc_requestmode) {<br>OH_IPC_REQUEST_MODE_SYNC = 0,<br>OH_IPC_REQUEST_MODE_ASYNC = 1<br>} | Enumerates the IPC request modes.| 
 
 
 ### Functions

@@ -10,7 +10,7 @@
 
 ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应。开发者也可以通过实现通用拖拽事件来自定义拖拽响应。
 
-- 默认支持拖出能力的组件（可从组件上拖出数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、<!--Del-->[FormComponent](ts-basic-components-formcomponent-sys.md)、<!--DelEnd-->[Hyperlink](ts-container-hyperlink.md)，开发者可通过设置这些组件的[draggable](ts-universal-attributes-drag-drop.md#draggable)属性来控制对默认拖拽能力的使用。
+- 默认支持拖出能力的组件（可从组件上拖出数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、[Hyperlink](ts-container-hyperlink.md)，开发者可通过设置这些组件的[draggable](ts-universal-attributes-drag-drop.md#draggable)属性来控制对默认拖拽能力的使用。
 
 - 默认支持拖入能力的组件（目标组件可响应拖入数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)，开发者可通过设置这些组件的[allowDrop](ts-universal-attributes-drag-drop.md#allowdrop)属性为null来禁用对默认拖入能力的支持。
 
@@ -205,6 +205,8 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 
 绑定此事件的组件可作为具有悬停检测功能的拖拽目标。当拖拽对象对象悬停在目标上时，触发回调通知。此时只有一个目标可以成为响应方，并且子组件始终具有更高的优先级。
 
+关于悬停检测的触发机制及详细使用方法，请参考开发指南[支持悬停检测](../../../ui/arkts-common-events-drag-event.md#支持悬停检测)。
+
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -213,7 +215,7 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 
 | 参数名        | 类型                                      | 必填 | 说明                                           |
 | :------------ | ----------------------------------------- | ---- | ---------------------------------------------- |
-| callback          | Callback\<[SpringLoadingContext](../js-apis-arkui-dragController.md#springloadingcontext20)\> \| null    | 是   | 悬停检测回调函数，为null时取消监听。 |
+| callback          | Callback\<[SpringLoadingContext](../js-apis-arkui-dragController.md#springloadingcontext20)\> \| null    | 是   | 悬停检测回调函数，为null时禁用悬停检测。 |
 | configuration | [DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20) | 否   | 悬停检测配置信息，为undefined时取[DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20)默认值。  |
 
 ## DragItemInfo说明
@@ -627,6 +629,38 @@ getY(): number
 | 类型   | 说明                                                |
 | ------ | --------------------------------------------------- |
 | number | 返回当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。 |
+
+### getGlobalDisplayX<sup>20+</sup>
+
+getGlobalDisplayX(): number
+
+当前拖拽点相对于全局屏幕的左上角的X坐标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                                |
+| ------ | --------------------------------------------------- |
+| number | 返回当前拖拽点相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞) |
+
+### getGlobalDisplayY<sup>20+</sup>
+
+getGlobalDisplayY(): number
+
+当前拖拽点相对于全局屏幕的左上角的Y坐标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                                |
+| ------ | --------------------------------------------------- |
+| number | 返回当前拖拽点相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞) |
 
 ## DragResult<sup>10+</sup>枚举说明
 
@@ -1377,7 +1411,7 @@ struct Index {
         .height(50)
         .margin({ left: 15 })
       Text('onDragEnter dragSource: ' + this.enterDragSource.toString() + '\n' + 'onDragEnter isRemote: ' +
-      this.startIsRemote.toString())
+      this.enterIsRemote.toString())
         .width('100%')
         .height(50)
         .margin({ left: 15 })
@@ -1500,26 +1534,26 @@ struct VideoExample {
           .onDragStart((event: DragEvent) => {
             const context: Context | undefined = this.uiContext.getHostContext();
             if (context) {
-              let data = context.resourceManager.getRawFdSync('test1.mp4');
-              let filePath = context.filesDir + '/test1.mp4';
-              let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-              let bufferSize = data.length as number;
-              let buf = new ArrayBuffer(bufferSize);
-              fs.readSync(data.fd, buf, { offset: data.offset, length: bufferSize });
-              fs.writeSync(file.fd, buf, { offset: 0, length: bufferSize });
-              fs.closeSync(file.fd);
-              context.resourceManager.closeRawFdSync('test1.mp4')
-              this.uri = fileUri.getUriFromPath(filePath);
-              let videoMp: uniformDataStruct.FileUri = {
-                uniformDataType: 'general.file-uri',
-                oriUri: this.uri,
-                fileType: 'general.video',
-              }
-              let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
-              let unifiedData = new unifiedDataChannel.UnifiedData();
-              unifiedRecord.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, videoMp);
-              unifiedData.addRecord(unifiedRecord);
               let loadHandler: unifiedDataChannel.DataLoadHandler = () => {
+                let data = context.resourceManager.getRawFdSync('test1.mp4');
+                let filePath = context.filesDir + '/test1.mp4';
+                let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+                let bufferSize = data.length as number;
+                let buf = new ArrayBuffer(bufferSize);
+                fs.readSync(data.fd, buf, { offset: data.offset, length: bufferSize });
+                fs.writeSync(file.fd, buf, { offset: 0, length: bufferSize });
+                fs.closeSync(file.fd);
+                context.resourceManager.closeRawFdSync('test1.mp4')
+                this.uri = fileUri.getUriFromPath(filePath);
+                let videoMp: uniformDataStruct.FileUri = {
+                  uniformDataType: 'general.file-uri',
+                  oriUri: this.uri,
+                  fileType: 'general.video',
+                }
+                let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
+                let unifiedData = new unifiedDataChannel.UnifiedData();
+                unifiedRecord.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, videoMp);
+                unifiedData.addRecord(unifiedRecord);
                 return unifiedData;
               }
               (event as DragEvent).setDataLoadParams({
@@ -1563,12 +1597,12 @@ struct VideoExample {
                       this.blockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
                     }
                   } else {
-                    console.log('dragData arr is null');
+                    console.info('dragData arr is null');
                   }
                 } else {
-                  console.log('dragData is undefined');
+                  console.info('dragData is undefined');
                 }
-                console.log(`percentage: ${progress.progress}`);
+                console.info(`percentage: ${progress.progress}`);
               };
             let options: DataSyncOptions = {
               destUri: destUri,
@@ -1578,9 +1612,9 @@ struct VideoExample {
             }
             try {
               this.udKey = (event as DragEvent).startDataLoading(options);
-              console.log('udKey: ', this.udKey);
+              console.info('udKey: ', this.udKey);
             } catch (e) {
-              console.log(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+              console.error(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
             }
           }, { disableDataPrefetch: true })
         }
@@ -1593,7 +1627,7 @@ struct VideoExample {
           try {
             this.getUIContext().getDragController().cancelDataLoading(this.udKey);
           } catch (e) {
-            console.log(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+            console.error(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
           }
         })
         .margin({ top: 10 })
@@ -1601,4 +1635,4 @@ struct VideoExample {
   }
 }
 ```
-![DragEvent_getDisplayId](figures/dragLoading.gif)
+![DragEvent_setDataLoadParams](figures/dragLoading.gif)

@@ -1375,7 +1375,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 createAssetsForApp(bundleName: string, appName: string, tokenId: number, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
 
-调用接口代替应用创建媒体库uri列表。Uri已对appId对应的应用授权，支持应用使用uri写入图片/视频。
+调用接口代替应用创建媒体库uri列表。Uri已对tokenId对应的应用授权，支持应用使用uri写入图片/视频。
 
 **系统接口**：此接口为系统接口。
 
@@ -1389,14 +1389,14 @@ createAssetsForApp(bundleName: string, appName: string, tokenId: number, photoCr
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | bundleName | string | 是 | 需保存图片/视频文件的应用bundle name。 |
 | appName | string | 是 | 需保存图片/视频文件的应用app name。 |
-| appId | string | 是 | 需保存图片/视频文件的应用app id。 |
+| tokenId | number | 是 | 需保存图片/视频文件的应用tokenId。 |
 | photoCreationConfigs | Array&lt;[PhotoCreationConfig](arkts-apis-photoAccessHelper-i.md#photocreationconfig12)&gt; | 是 | 保存图片/视频到媒体库的配置。 |
 
 **返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给接口调用方的的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回-3006表不允许出现非法字符；返回-2004表示图片类型和后缀不符；返回-203表示文件操作异常。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回给接口调用方的媒体库文件uri列表。Uri已对tokenId对应的应用授权，支持应用写入数据。如果生成uri异常，则返回批量创建错误码。<br>返回-3006表不允许出现非法字符；返回-2004表示图片类型和后缀不符；返回-203表示文件操作异常。 |
 
 **错误码：**
 
@@ -1718,6 +1718,116 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     phAccessHelper.stopThumbnailCreationTask(taskId);
   } catch (err) {
     console.error(`stopThumbnailCreationTask failed, error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getIndexConstructProgress<sup>12+</sup>
+
+getIndexConstructProgress(): Promise&lt;string&gt;
+
+获取索引构建进度。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+
+**返回值：**
+
+| 类型                        | 说明           |
+| --------------------------- | -------------- |
+| Promise&lt;string&gt; | Promise对象，返回一个json格式的字符串。表示已完成智慧分析的图片数量、总数和已经完成智慧分析的视频数量、总数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
+```ts
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+
+  class indexProgress {
+    finishedImageCount: number = 0;
+    totalImageCount: number = 0;
+    finishedVideoCount: number = 0;
+    totalVideoCount: number = 0;
+  }
+
+  try {
+    console.info('getIndexConstructProgress test start');
+    let result: string = await phAccessHelper.getIndexConstructProgress();
+    console.info('getIndexProgress:' + result);
+
+    let jsonObj: indexProgress = JSON.parse(result);
+    // ...使用获取到的索引构建进度数据。
+  } catch (err) {
+    console.error(`getIndexConstructProgress failed, error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getDataAnalysisProgress<sup>12+</sup>
+
+getDataAnalysisProgress(analysisType: AnalysisType): Promise&lt;string&gt;
+
+获取资产的分析进度。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名  | 类型             | 必填   | 说明    |
+| ---- | -------------- | ---- | ----- |
+| analysisType | [AnalysisType](#analysistype11) | 是    | 需要获取的智慧分析类型。 |
+
+**返回值：**
+
+| 类型                        | 说明           |
+| --------------------------- | -------------- |
+| Promise&lt;string&gt; | Promise对象，返回一个json格式的字符串。表示资产分析的进度。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
+```ts
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+  try {
+    console.info('getDataAnalysisProgress test start');
+
+    let result: string = await phAccessHelper.getDataAnalysisProgress(photoAccessHelper.AnalysisType.ANALYSIS_FACE);
+    console.info('getDataAnalysisProgress:' + result);
+
+  } catch (err) {
+    console.error(`getDataAnalysisProgress failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -2312,14 +2422,14 @@ on(type: 'hiddenPhotoChange', callback: Callback&lt;PhotoAssetChangeInfos&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Called by non-system application. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'hiddenPhotoChange'; 2. The same callback is registered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -2372,14 +2482,14 @@ off(type: 'hiddenPhotoChange', callback?: Callback&lt;PhotoAssetChangeInfos&gt;)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Called by non-system application. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'hiddenPhotoChange'; 2. The same callback is unregistered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -2435,14 +2545,14 @@ on(type: 'trashedPhotoChange', callback: Callback&lt;PhotoAssetChangeInfos&gt;):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Called by non-system application. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151  | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'trashedPhotoChange'; 2. The same callback is registered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -2495,14 +2605,14 @@ off(type: 'trashedPhotoChange', callback?: Callback&lt;PhotoAssetChangeInfos&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Called by non-system application. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'trashedPhotoChange'; 2. The same callback is unregistered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -2558,14 +2668,14 @@ on(type: 'hiddenAlbumChange', callback: Callback&lt;AlbumChangeInfos&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Called by non-system application. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'hiddenAlbumChange'; 2. The same callback is registered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -2618,14 +2728,14 @@ off(type: 'hiddenAlbumChange', callback?: Callback&lt;AlbumChangeInfos&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Called by non-system application. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'hiddenAlbumChange'; 2. The same callback is unregistered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -2681,14 +2791,14 @@ on(type: 'trashedAlbumChange', callback: Callback&lt;AlbumChangeInfos&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Called by non-system application. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'trashedAlbumChange'; 2. The same callback is registered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -2741,14 +2851,14 @@ off(type: 'trashedAlbumChange', callback?: Callback&lt;AlbumChangeInfos&gt;): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Called by non-system application. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'trashedAlbumChange'; 2. The same callback is unregistered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -4622,6 +4732,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 | lpath<sup>18+</sup>    | string | 是    | 是   | 相册虚拟路径。<br>**系统接口**：此接口为系统接口。|
 | dateAdded<sup>18+</sup>    | number | 是    | 是   | 相册添加时间。<br>**系统接口**：此接口为系统接口。|
 | dateModified<sup>18+</sup>    | number | 是    | 是   | 相册修改时间。<br>**系统接口**：此接口为系统接口。|
+| coverUriSource<sup>20+</sup>    | number | 是    | 是   | 相册封面来源。<br>**系统接口**：此接口为系统接口。|
 
 ### recoverAssets<sup>(deprecated)</sup>
 
@@ -5052,6 +5163,63 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     });
   } catch (err) {
     console.error(`setCoverUriDemoPromise failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getFaceId<sup>13+</sup>
+
+getFaceId(): Promise\<string>
+
+获取人像相册或合影相册的封面人脸标识。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ\_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                | 说明                                |
+| :------------------ | :---------------------------------- |
+| Promise&lt;string&gt; | Promise对象，人像相册返回tag_id，合影相册返回group_tag，未找到返回空字符串。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                                                     |
+| :------- | :----------------------------------------------------------- |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 14000011 | Internal system error                                        |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+  try {
+    console.info('getFaceIdDemo');
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo("user_display_level", 1);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult =
+      await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT,
+        fetchOptions);
+    let album = await fetchResult?.getFirstObject();
+    let faceId = await album?.getFaceId();
+    console.info(`getFaceId successfully, faceId: ${faceId}`);
+    fetchResult.close();
+  } catch (err) {
+    console.error(`getFaceId failed with err: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -6271,6 +6439,53 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     console.info('setCoverUri successfully');
   } catch (err) {
     console.error(`setCoverUriDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### resetCoverUri<sup>20+</sup>
+
+resetCoverUri(): void
+
+恢复默认封面。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 23800301       | Internal system error.It is recommended to retry and check the logs. Possible causes: 1. Database corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+  console.info('resetCoverUriDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.resetCoverUri();
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('resetCoverUri successfully');
+  } catch (err) {
+    console.error(`resetCoverUriDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -8207,63 +8422,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asse
 }
 ```
 
-### getFaceId<sup>13+</sup>
-
-getFaceId(): Promise\<string>
-
-获取人像相册或合影相册的封面人脸标识。
-
-**系统接口**：此接口为系统接口。
-
-**需要权限**：ohos.permission.READ\_IMAGEVIDEO
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**返回值：**
-
-| 类型                | 说明                                |
-| :------------------ | :---------------------------------- |
-| Promise&lt;string&gt; | Promise对象，人像相册返回tag_id，合影相册返回group_tag，未找到返回空字符串。 |
-
-**错误码：**
-
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息                                                     |
-| :------- | :----------------------------------------------------------- |
-| 201      | Permission denied.                                           |
-| 202      | Called by non-system application.                            |
-| 14000011 | Internal system error                                        |
-
-**示例：**
-
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
-
-```ts
-import { dataSharePredicates } from '@kit.ArkData';
-
-async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
-  try {
-    console.info('getFaceIdDemo');
-    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-    predicates.equalTo("user_display_level", 1);
-    let fetchOptions: photoAccessHelper.FetchOptions = {
-      fetchColumns: [],
-      predicates: predicates
-    };
-    let fetchResult =
-      await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT,
-        fetchOptions);
-    let album = await fetchResult?.getFirstObject();
-    let faceId = await album?.getFaceId();
-    console.info(`getFaceId successfully, faceId: ${faceId}`);
-    fetchResult.close();
-  } catch (err) {
-    console.error(`getFaceId failed with err: ${err.code}, ${err.message}`);
-  }
-}
-```
-
 ## CloudMediaAssetManager<sup>14+</sup>
 
 云端媒体资产管理类，该类用于管理云端资产的下载任务，以及删除云端资产在本地的数据和文件。
@@ -8577,7 +8735,7 @@ isVideoReady(): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -8627,6 +8785,374 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
   } catch (err) {
     console.error(`failed to request moving photo, error code is ${err.code}, message is ${err.message}`);
   }
+}
+```
+
+## PhotoAssetCustomRecordManager<sup>20+</sup>
+
+媒体库支持图库自定义用户统计行为接口。
+
+**系统接口**：此接口为系统接口。
+
+### getCustomRecordManagerInstance<sup>20+</sup>
+
+static getCustomRecordManagerInstance(context: Context): PhotoAssetCustomRecordManager
+
+获取图库自定义用户统计行为实例。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**： SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | 是 | 传入Ability实例的上下文。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| [PhotoAssetCustomRecordManager](#photoassetcustomrecordmanager20) | 用户自定义行为统计实例。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 202 | Called by non-system application. |
+| 23800107 | Context is invalid. |
+
+**示例：**
+
+```ts
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async example(context: Context) {
+  console.info('getCustomRecordManagerInstance');
+  try {
+    let context = getContext(this);
+    let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
+  } catch(err) {
+    console.error(`getCustomRecordManagerInstance failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### createCustomRecords<sup>20+</sup>
+
+createCustomRecords(customRecords: Array&lt;PhotoAssetCustomRecord&gt;): Promise&lt;void&gt;
+
+新增自定义用户统计行为数据。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**： SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| customRecords | Array&lt;[PhotoAssetCustomRecord](#photoassetcustomrecord20)&gt; | 是 | 新增自定义用户统计行为数据。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 202 | Called by non-system application. |
+| 23800151 | Scenario parameters fail to pass the verification. Possible causes: 1. The value range of mandatory parameters in photoAssetCustomRecord does not meet the requirements. 2. The transferred record already exists. 3. The number of transferred records exceeds 200. |
+| 23800301 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async example() {
+  console.info('createCustomRecords');
+  let context = getContext(this);
+  let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
+  let crArray:Array<photoAccessHelper.PhotoAssetCustomRecord> = [
+    {fileId:1,shareCount:1,lcdJumpCount:1}
+  ];
+  crManager.createCustomRecords(crArray).then(() => {
+    console.info('createCustomRecords successful');
+  }).catch((err: BusinessError) => {
+    console.error('createCustomRecords fail with error: ${err.code}, ${err.message}');
+  });
+}
+```
+
+### getCustomRecords<sup>20+</sup>
+
+getCustomRecords(optionCheck: FetchOptions): Promise&lt;FetchResult&lt;PhotoAssetCustomRecord&gt;&gt;
+
+根据检索选项获取自定义用户统计行为数据。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**： SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| optionCheck | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是 | 检索选项。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| Promise&lt;FetchResult&lt;[PhotoAssetCustomRecord](#photoassetcustomrecord20)&gt;&gt; | Promise对象，返回自定义用户统计行为数据集合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 202 | Called by non-system application. |
+| 23800151 | Scenario parameters fail to pass the verification. Possible causes: 1. The fileter criteria or fetchColumns that are not supported by options are transferred. |
+| 23800301 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async example() {
+  console.info('getCustomRecords');
+  let context = getContext(this);
+  let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  predicates.equalTo('file_id', 1);
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  crManager.getCustomRecords(fetchOption).then(async (fetchResult) => {
+    let record = await fetchResult.getFirstObject();
+    console.info('record file id is ' + record.fileId);
+  }).catch((err: BusinessError) => {
+    console.error('getCustomRecords fail with error: ${err.code}, ${err.message}');
+  });
+}
+```
+
+### setCustomRecords<sup>20+</sup>
+
+setCustomRecords(customRecords: Array&lt;PhotoAssetCustomRecord&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+根据自定义用户统计行为数据，更新已存在的数据库字段。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**： SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| customRecords | Array&lt;[PhotoAssetCustomRecord](#photoassetcustomrecord20)&gt; | 是 | 自定义用户统计行为数据。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| Promise&lt;Array&lt;number&gt;&gt; | 更新失败的自定义用户统计行为数据中的fileId。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 202 | Called by non-system application. |
+| 23800151 | Scenario parameters fail to pass the verification. Possible causes: 1. The value range of mandatory parameters in photoAssetCustomRecord does not meet the requirements. 2. The number of transferred records exceeds 200. |
+| 23800301 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async example() {
+  console.info('setCustomRecords');
+  let context = getContext(this);
+  let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
+  let UpdateArray: Array<photoAccessHelper.PhotoAssetCustomRecord> = [
+    {fileId:1,shareCount:2,lcdJumpCount:3},
+    {fileId:2,shareCount:2,lcdJumpCount:3}
+  ];
+  crManager.setCustomRecords(UpdateArray).then((failIds) => {
+    console.info('setCustomRecords successful');
+  }).catch((err: BusinessError) => {
+    console.error('setCustomRecords file with err: ${err.code}, ${err.message}');
+  });
+}
+```
+
+### removeCustomRecords<sup>20+</sup>
+
+removeCustomRecords(optionCheck: FetchOptions): Promise&lt;void&gt;
+
+根据检索选项删除自定义用户统计行为数据。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**： SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| optionCheck | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是 | 检索选项。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 202 | Called by non-system application. |
+| 23800151 | Scenario parameters fail to pass the verification. Possible causes: 1. The fileter criteria or fetchColumns that are not supported by options are transferred |
+| 23800301 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async example() {
+  console.info('removeCustomRecords');
+  let context = getContext(this);
+  let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  predicates.equalTo('file_id', 1);
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  crManager.removeCustomRecords(fetchOption).then(() => {
+    console.info('removeCustomRecords successful');
+  }).catch((err: BusinessError) => {
+    console.error('removeCustomRecords fail with error: ${err.code}, ${err.message}');
+  });
+}
+```
+
+### addShareCount<sup>20+</sup>
+
+addShareCount(ids: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+根据[PhotoAssetCustomRecord](#photoassetcustomrecord20)中的fileId给数据库中对应数据的shareCount加1。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**： SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| ids | Array&lt;number&gt; | 是 | [PhotoAssetCustomRecord](#photoassetcustomrecord20)中的fileId集合。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| Promise&lt;Array&lt;number&gt;&gt; | 更新失败的自定义用户统计行为数据中的fileId。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 202 | Called by non-system application. |
+| 23800151 | Scenario parameters fail to pass the verification. Possible causes: 1. The ids list is empty; 2. The number of ids lists exceeds 500. |
+| 23800301 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async example() {
+  console.info('addShareCount');
+  let context = getContext(this);
+  let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
+  let ids: Array<number> = [1, 2];
+  crManager.addShareCount(ids).then((failIds) => {
+    console.info('addShareCount successful');
+  }).catch((err: BusinessError) => {
+    console.error('addShareCount fail with error: ${err.code}, ${err.message}');
+  });
+}
+```
+
+### addLcdJumpCount<sup>20+</sup>
+
+addLcdJumpCount(ids: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+根据[PhotoAssetCustomRecord](#photoassetcustomrecord20)中的fileId给数据库中对应数据的LcdJumpCount加1。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**： SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| ids | Array&lt;number&gt; | 是 | [PhotoAssetCustomRecord](#photoassetcustomrecord20)中的fileId集合。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| Promise&lt;Array&lt;number&gt;&gt; | 更新失败的自定义用户统计行为数据中的fileId。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 202 | Called by non-system application. |
+| 23800151 | Scenario parameters fail to pass the verification. Possible causes: 1. The ids list is empty; 2. The number of ids lists exceeds 500. |
+| 23800301 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async example() {
+  console.info('addLcdJumpCount');
+  let context = getContext(this);
+  let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
+  let ids: Array<number> = [1, 2];
+  crManager.addLcdJumpCount(ids).then((failIds) => {
+    console.info('addLcdJumpCount successful');
+  }).catch((err: BusinessError) => {
+    console.error('addLcdJumpCount fail with error: ${err.code}, ${err.message}');
+  });
 }
 ```
 
@@ -8745,6 +9271,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 | ALBUM_LPATH<sup>18+</sup>          | 'lpath'                 | 相册的虚拟路径。<br>**系统接口**：此接口为系统接口。            |
 | BUNDLE_NAME<sup>18+</sup>          | 'bundle_name'                 | 相册的包名。<br>**系统接口**：此接口为系统接口。            |
 | DATE_MODIFIED<sup>18+</sup>        | 'date_modified'         | 相册修改的时间戳（单位：毫秒）。<br>**系统接口**：此接口为系统接口。            |
+| COVER_URI_SOURCE<sup>20+</sup>     | 'cover_uri_source'      | 相册封面的来源。<br>**系统接口**：此接口为系统接口。            |
 
 ## HiddenPhotosDisplayMode<sup>11+</sup>
 
@@ -8921,6 +9448,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 | ANALYSIS\_HEAD\_POSITION<sup>12+</sup>      | 11 | 人头、宠物头位置分析类别。**系统接口**：此接口为系统接口。    |
 | ANALYSIS\_BONE\_POSE<sup>12+</sup>        | 12 | 人体骨骼点信息分析类别。**系统接口**：此接口为系统接口。    |
 | ANALYSIS\_VIDEO\_LABEL<sup>12+</sup>        | 13 | 视频标签。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_HIGHLIGHT<sup>12+</sup>        | 14 | 时刻标签。**系统接口**：此接口为系统接口。    |
 
 ## HighlightAlbumInfoType<sup>12+</sup>
 
@@ -9181,7 +9709,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 | 名称                   | 类型                | 必定提供 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 |taskStatus       |[CloudMediaAssetTaskStatus](#cloudmediaassettaskstatus14)  |是 | 云端媒体资产下载任务状态。 |
-|taskInfo          |string  |是 | 下载资产的的总个数和总大小(byte)，以及未下载的总个数和总大小(byte)。  |
+|taskInfo          |string  |是 | 下载资产的总个数和总大小(byte)，以及未下载的总个数和总大小(byte)。  |
 |errorCode       |[CloudMediaTaskPauseCause](#cloudmediataskpausecause14)  |是 | 云端媒体资产下载任务暂停类型。 |
 
 ## RecommendationType<sup>11+</sup>
@@ -9275,3 +9803,30 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 | 名称                   | 类型                | 只读 | 可选 | 说明       |
 | ---- | ------- | ---- |  ---- | ----- |
 | version | number  | 否 | 否 | 相册信息通知的版本号，用于确定通知的顺序。<br>**系统接口**：此接口为系统接口。 |
+
+## PhotoAssetCustomRecord<sup>20+</sup>
+
+媒体库支持图库自定义用户统计行为。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| --- | --- | --- | --- | --- |
+| fileId | number | 是 | 否 | 图片id，必须为大于0的整数。 |
+| shareCount | number | 是 | 否 | 图片和视频被分享的次数，必须为大于0的整数。 |
+| lcdJumpCount | number | 是 | 否 | 大图跳转分享等次数，必须为大于0的整数。 |
+
+## CoverUriSource<sup>20+</sup>
+
+枚举，表示相册封面的来源。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                      | 值   | 说明                             |
+| ------------------------- | ---- | -------------------------------- |
+| DEFAULT_COVER        | 0    | 默认封面。     |
+| MANUAL_COVER         | 1    | 手动设置的封面。     |

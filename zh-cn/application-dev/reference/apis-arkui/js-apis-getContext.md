@@ -32,7 +32,7 @@ getContext(component?: Object):Context
 
 | 类型 | 说明                             |
 | ------ | ------------------------------- |
-| [Context](../../application-models/application-context-stage.md#应用上下文context)  | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。    |
+| [Context](../../application-models/application-context-stage.md)  | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。    |
 
 **示例：**
 
@@ -40,7 +40,7 @@ getContext(component?: Object):Context
 
 > **说明：**
 > 
-> 直接使用getContext可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getHostContext](js-apis-arkui-UIContext.md#gethostcontext12)调用绑定实例的getContext。
+> 直接使用getContext可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](js-apis-arkui-UIContext.md#uicontext)实例，并使用[getHostContext](js-apis-arkui-UIContext.md#gethostcontext12)调用绑定实例的getContext。
 
 ```ts
 // EntryAbility.ets

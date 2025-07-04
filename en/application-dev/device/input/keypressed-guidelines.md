@@ -31,30 +31,85 @@ In e-book or news reading apps, users can navigate pages via volume buttons—ty
 
 ```js
 import { inputConsumer, KeyEvent } from '@kit.InputKit';
-// Start the application.
-try {
-  let options: inputConsumer.KeyPressedConfig = {
-    key: 17,
-    action: 1,
-    isRepeat: false,
+import { KeyCode } from '@kit.InputKit';
+
+@Entry
+@Component
+struct TestDemo14 {
+  private volumeUpCallBackFunc: (event: KeyEvent) => void = () => {
   }
-  // Subscribe to key press events.
-  inputConsumer.on('keyPressed', options, (event: KeyEvent) => {
-    console.info(`Subscribe success ${JSON.stringify(event)}`);
-  });
-  // You can define a typical scenario, such as page turning or in-app photographing via the volume button.
-} catch (error) {
-  console.error(`Subscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-}
-// Stop the application.
-try {
-  // Disable listening for a single callback.
-  inputConsumer.off('keyPressed', (event: KeyEvent) => {
-    console.info(`Unsubscribe success ${JSON.stringify(event)}`);
-  });
-  // Disable listening for all callbacks.
-  inputConsumer.off("keyPressed");
-} catch (error) {
-  console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  private volumeDownCallBackFunc: (event: KeyEvent) => void = () => {
+  }
+
+  aboutToAppear(): void {
+    try {
+      let options1: inputConsumer.KeyPressedConfig = {
+        key: KeyCode.KEYCODE_VOLUME_UP,
+        action: 1, // The value 1 indicates a key press.
+        isRepeat: false, // Key events are consumed preferentially and not reported.
+      }
+      let options2: inputConsumer.KeyPressedConfig = {
+        key: KeyCode.KEYCODE_VOLUME_DOWN,
+        action: 1, // The value 1 indicates a key press.
+        isRepeat: false, // Key events are consumed preferentially and not reported.
+      }
+
+      // Callback invoked when the Volume Up button is pressed
+      this.volumeUpCallBackFunc = (event: KeyEvent) => {
+        this.getUIContext().getPromptAction().showToast({ message: 'The Volume Up button was pressed.' });
+        // do something
+      }
+
+      // Callback invoked when the Volume Down button is pressed
+      this.volumeDownCallBackFunc = (event: KeyEvent) => {
+        this.getUIContext().getPromptAction().showToast({ message: 'The Volume Down button was pressed.' });
+        // do something
+      }
+      // Register an event listener.
+      inputConsumer.on('keyPressed', options1, this.volumeUpCallBackFunc);
+      inputConsumer.on('keyPressed', options2, this.volumeDownCallBackFunc);
+    } catch (error) {
+      console.error(`Subscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Row() {
+        Button ('Cancel listening for Volume Up button events')
+          .onClick(() => {
+            try {
+              // Disable listening for a single callback.
+              inputConsumer.off('keyPressed', this.volumeUpCallBackFunc);
+              this.getUIContext().getPromptAction().showToast({ message: ''Listening for Volume Up button events is canceled successfully.' });
+            } catch (error) {
+              console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            }
+          })
+      }.width('100%')
+      .justifyContent(FlexAlign.Center)
+      .margin({ top: 20, bottom: 50 })
+
+      Row() {
+        Button ('Cancel listening for Volume Down button events')
+          .onClick(() => {
+            try {
+              // Disable listening for a single callback.
+              inputConsumer.off('keyPressed', this.volumeDownCallBackFunc);
+              this.getUIContext().getPromptAction().showToast({ message: 'Listening for Volume Down button events is canceled successfully.' });
+            } catch (error) {
+              console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            }
+          })
+      }.width('100%')
+      .justifyContent(FlexAlign.Center)
+      .margin({ top: 20, bottom: 50 })
+      Row(){
+        Text ('Listening is enabled for Volume Down and Volume Down button events by default.')
+      }
+      .width('100%')
+      .justifyContent(FlexAlign.Center)
+    }.width('100%').height('100%')
+  }
 }
 ```

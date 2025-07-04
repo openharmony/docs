@@ -94,13 +94,20 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    options:
     -N              set the collection times(default value is 0) range[1,2147483647], for example: -N 10
     -PKG            set package name, must add, for example: -PKG ohos.samples.ecg
+    -PID            set process pid, must add, for example: -PID 3568
+    -threads        get threads, must add -PID or -PKG for example:
+                    -threads -PID 3568 or -threads -PKG ohos.samples.ecg
+    -fds            get file descriptor, must add -PID or -PKG for example:
+                    -fds -PID 3568 or -fds -PKG ohos.samples.ecg
     -c              get device CPU frequency and CPU usage, process CPU usage and CPU load ..
+    -ci             get cpu instructions and cycles
     -g              get device GPU frequency and GPU load
     -f              get app refresh fps(frames per second) and fps jitters and refreshrate
     -profilerfps    get refresh fps and timestamp
     -sections       set collection time period(using with profilerfps)
     -t              get remaining battery power and temperature..
     -p              get battery power consumption and voltage(Not supported by some devices)
+    -print          start mode print log
     -r              get process memory and total memory
     -snapshot       get screen capture
     -net            get uplink and downlink traffic
@@ -109,7 +116,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     -VIEW           set layler, for example: -VIEW DisplayNode
     -OUT            set csv output path.
     -d              get device DDR information
-    -ci             get cpu instructions and cycles
     -screen         get screen resolution
     -deviceinfo     get device information
     -server         start a process to listen to the socket message of the start and stop commands
@@ -155,6 +161,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | :-----| :-----| :--------------------- |
 | -N    |是| 设置采集次数，一秒采集一次。    |
 | -PKG  |否| 设置包名。                |
+| -PID  |否| 设置进程ID或者线程ID。                |
+| -threads  |否| 采集应用子线程数量。                |
+| -fds  |否| 采集应用文件描述符，仅支持root用户采集。                |
 | -c    |否| 采集cpu的频点和使用率。<br>设置应用包名时，采集整机和应用CPU信息。 <br>不设置应用包名时，采集整机CPU信息。     |
 | -ci    |否| 采集cpu的指令数。<br>设置应用包名时，采集整机和应用CPU指令数。 <br>不设置应用包名时，采集整机CPU指令数。     |
 | -g    |否| 采集gpu的频点和负载信息。   |
@@ -168,6 +177,18 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -sections|否| 设置分段采集。          |
 
 ##### 使用示例
+- 设置包名并采集1次应用的线程数量
+
+  ```
+    $ SP_daemon -N 1 -PKG ohos.samples.ecg -threads
+ 
+    order:0 timestamp=1741415592481
+    order:1 threadsNum=18847:113|
+    order:2 tids=18847:43411 43409 43350 43236 25783 25622 25384 25381 19423 19170 19167 19166 19165 19163 19162 19159 19157 19156 19154 19153 19152 19151 19150 19149 19147 19146 19145 19142 19141 19140 19139 19136 19135 19134 19120 19112 19111 19088 19083 19081 19077 19076 19075 19074 19073 19072 19071 19070 19055 19044 19040 19039 19034 19033 19032 19031 19030 19029 19028 19027 19019 19017 19016 19015 19014 19013 19012 19011 19009 19007 19006 19005 19004 19003 19001 19000 18999 18998 18997 18996 18995 18994 18993 18992 18991 18990 18989 18988 18987 18986 18985 18984 18983 18982 18981 18980 18977 18974 18946 18942 18936 18934         18933 18931 18930 18929 18928 18927 18926 18925 18924 18923 18847|
+ 
+    command exec finished!
+    $
+  ```
 
 - 采集2次整机CPU大中小核频率、各核使用率
 
@@ -226,64 +247,38 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     $
   ```
 
-- 采集2次整机CPU大中小核频率、各核使用率以及进程CPU使用率、负载
+- 设置包名并采集2次整机CPU大中小核频率、各核使用率以及进程CPU使用率、负载
 
   ```
     $ SP_daemon -N 2 -PKG ohos.samples.ecg -c
 
 
 
-    order:0 timestamp=1501839151499
-    order:1 ProcAppName=ohos.samples.ecg
-    order:2 ProcCpuLoad=0.000000
-    order:3 ProcCpuUsage=36.177645
-    order:4 ProcId=2111
-    order:5 ProcSCpuUsage=8.982036
-    order:6 ProcUCpuUsage=27.195609
-    order:7 TotalcpuUsage=62.500000
-    order:8 TotalcpuidleUsage=37.500000
-    order:9 TotalcpuioWaitUsage=0.000000
-    order:10 TotalcpuirqUsage=0.000000
-    order:11 TotalcpuniceUsage=0.000000
-    order:12 TotalcpusoftIrqUsage=0.000000
-    order:13 TotalcpusystemUsage=21.614583
-    order:14 TotalcpuuserUsage=40.885417
-    order:15 cpu0Frequency=1992000
-    order:16 cpu0Usage=77.083333
-    order:17 cpu0idleUsage=22.916667
-    order:18 cpu0ioWaitUsage=0.000000
-    order:19 cpu0irqUsage=0.000000
-    order:20 cpu0niceUsage=0.000000
-    order:21 cpu0softIrqUsage=0.000000
-    order:22 cpu0systemUsage=21.875000
-    order:23 cpu0userUsage=55.208333
-    order:24 cpu1Frequency=1992000
-    order:25 cpu1Usage=57.731959
-    order:26 cpu1idleUsage=42.268041
-    order:27 cpu1ioWaitUsage=0.000000
-    order:28 cpu1irqUsage=0.000000
-    order:29 cpu1niceUsage=0.000000
-    order:30 cpu1softIrqUsage=0.000000
-    order:31 cpu1systemUsage=21.649485
-    order:32 cpu1userUsage=36.082474
-    order:33 cpu2Frequency=1992000
-    order:34 cpu2Usage=59.793814
-    order:35 cpu2idleUsage=40.206186
-    order:36 cpu2ioWaitUsage=0.000000
-    order:37 cpu2irqUsage=0.000000
-    order:38 cpu2niceUsage=0.000000
-    order:39 cpu2softIrqUsage=0.000000
-    order:40 cpu2systemUsage=19.587629
-    order:41 cpu2userUsage=40.206186
-    order:42 cpu3Frequency=1992000
-    order:43 cpu3Usage=55.789474
-    order:44 cpu3idleUsage=44.210526
-    order:45 cpu3ioWaitUsage=0.000000
-    order:46 cpu3irqUsage=0.000000
-    order:47 cpu3niceUsage=0.000000
-    order:48 cpu3softIrqUsage=0.000000
-    order:49 cpu3systemUsage=23.157895
-    order:50 cpu3userUsage=32.631579
+    order:0 timestamp=1741415021814
+    order:1 ChildProcCpuLoad=NA
+    order:2 ChildProcCpuUsage=NA
+    order:3 ChildProcId=NA
+    order:4 ChildProcSCpuUsage=NA
+    order:5 ChildProcUCpuUsage=NA
+    order:6 ProcAppName=ohos.samples.ecg
+    order:7 ProcCpuLoad=2.742330
+    order:8 ProcCpuUsage=7.825508
+    order:9 ProcId=18847
+    order:10 ProcSCpuUsage=2.014652
+    order:11 ProcUCpuUsage=5.810856
+    order:12 TotalcpuUsage=22.527016
+    order:13 TotalcpuidleUsage=77.472984
+    order:14 TotalcpuioWaitUsage=0.000000
+    order:15 TotalcpuirqUsage=0.083126
+    order:16 TotalcpuniceUsage=0.000000
+    order:17 TotalcpusoftIrqUsage=0.000000
+    order:18 TotalcpusystemUsage=7.148795
+    order:19 TotalcpuuserUsage=15.295096
+    order:20 cpu0Frequency=1430000
+    order:21 cpu0Usage=52.475248
+    order:22 cpu0idleUsage=47.524752
+    order:23 cpu0ioWaitUsage=0.000000
+    order:24 cpu0irqUsage=0.000000
 
     ...
 
@@ -291,6 +286,42 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     $
   ```
 
+- 设置进程ID并采集2次整机CPU大中小核频率、各核使用率以及进程CPU使用率、负载
+
+  ```
+    $ SP_daemon -N 2 -PID 18847 -c
+ 
+ 
+ 
+    order:0 timestamp=1741415133211
+    order:1 ChildProcCpuLoad=NA
+    order:2 ChildProcCpuUsage=NA
+    order:3 ChildProcId=NA
+    order:4 ChildProcSCpuUsage=NA
+    order:5 ChildProcUCpuUsage=NA
+    order:6 ProcAppName=ohos.samples.ecg
+    order:7 ProcCpuLoad=2.510634
+    order:8 ProcCpuUsage=7.005678
+    order:9 ProcId=18847
+    order:10 ProcSCpuUsage=2.697061
+    order:11 ProcUCpuUsage=4.308617
+    order:12 TotalcpuUsage=24.979114
+    order:13 TotalcpuidleUsage=75.020886
+    order:14 TotalcpuioWaitUsage=0.000000
+    order:15 TotalcpuirqUsage=0.083542
+    order:16 TotalcpuniceUsage=0.000000
+    order:17 TotalcpusoftIrqUsage=0.000000
+    order:18 TotalcpusystemUsage=8.270677
+    order:19 TotalcpuuserUsage=16.624896
+    order:20 cpu0Frequency=1430000
+    order:21 cpu0Usage=50.000000
+    order:22 cpu0idleUsage=50.000000
+    order:23 cpu0ioWaitUsage=0.000000
+    order:24 cpu0irqUsage=0.000000
+    ...
+    command exec finished!
+    $
+  ```
   >**说明**
   >
   >- 使用该命令采集时需进入被测应用内。
@@ -346,31 +377,93 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     $
   ```
 
-- 采集1次整机和指定应用进程内存
+- 设置包名并采集1次整机和指定应用进程内存
 
   ```
     $ SP_daemon -N 1 -PKG ohos.samples.ecg -r
+ 
+ 
+ 
+    order:0 timestamp=1741415257059
+    order:1 arktsHeapPss=44835
+    order:2 childCarktsHeapPss=NA
+    order:3 childGpuPss=NA
+    order:4 childGraphicPss=NA
+    order:5 childHeapAlloc=NA
+    order:6 childHeapFree=NA
+    order:7 childHeapSize=NA
+    order:8 childNativeHeapPss=NA
+    order:9 childPrivateClean=NA
+    order:10 childPrivateDirty=NA
+    order:11 childPss=NA
+    order:12 childSharedClean=NA
+    order:13 childSharedDirty=NA
+    order:14 childStackPss=NA
+    order:15 childSwap=NA
+    order:16 childSwapPss=NA
+    order:17 gpuPss=222377
+    order:18 graphicPss=184276
+    order:19 heapAlloc=154696
+    order:20 heapFree=780
+    order:21 heapSize=163208
+    order:22 memAvailable=4612096
+    order:23 memFree=1240924
+    order:24 memTotal=11692696
+    order:25 nativeHeapPss=85290
+    order:26 privateClean=195816
+    order:27 privateDirty=418973
+    order:28 pss=693349
+    order:29 sharedClean=146848
+    order:30 sharedDirty=71056
+    order:31 stackPss=2492
+    order:32 swap=25360
+    order:33 swapPss=25356
 
-    order:0 timestamp=1720427095197
-    order:1 arktsHeapPss=17555
-    order:2 gpuPss=7021
-    order:3 graphicPss=163320
-    order:4 heapAlloc=120344
-    order:5 heapFree=14362
-    order:6 heapSize=133436
-    order:7 memAvailable=2757504
-    order:8 memFree=190852
-    order:9 memTotal=11742716
-    order:10 nativeHeapPss=49102
-    order:11 privateClean=1100020
-    order:12 privateDirty=175169
-    order:13 pss=422172
-    order:14 sharedClean=89348
-    order:15 sharedDirty=19084
-    order:16 stackPss=1588
-    order:17 swap=122076
-    order:18 swapPss=122076
+    command exec finished!
+    $
+  ```
 
+- 设置进程ID并采集1次整机和指定应用进程内存
+
+  ```
+    $ SP_daemon -N 1 -PID 18847 -r
+ 
+ 
+ 
+    order:0 timestamp=1741415293198
+    order:1 arktsHeapPss=45011
+    order:2 childCarktsHeapPss=NA
+    order:3 childGpuPss=NA
+    order:4 childGraphicPss=NA
+    order:5 childHeapAlloc=NA
+    order:6 childHeapFree=NA
+    order:7 childHeapSize=NA
+    order:8 childNativeHeapPss=NA
+    order:9 childPrivateClean=NA
+    order:10 childPrivateDirty=NA
+    order:11 childPss=NA
+    order:12 childSharedClean=NA
+    order:13 childSharedDirty=NA
+    order:14 childStackPss=NA
+    order:15 childSwap=NA
+    order:16 childSwapPss=NA
+    order:17 gpuPss=222381
+    order:18 graphicPss=184276
+    order:19 heapAlloc=154588
+    order:20 heapFree=757
+    order:21 heapSize=163184
+    order:22 memAvailable=4612096
+    order:23 memFree=1238420
+    order:24 memTotal=11692696
+    order:25 nativeHeapPss=85274
+    order:26 privateClean=195996
+    order:27 privateDirty=418977
+    order:28 pss=693440
+    order:29 sharedClean=146848
+    order:30 sharedDirty=71056
+    order:31 stackPss=2492
+    order:32 swap=25360
+    order:33 swapPss=25356
 
     command exec finished!
     $
@@ -393,7 +486,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     $
   ```
 
-- 采集1次整机和指定应用cpu指令数
+- 设置包名并采集1次整机和指定应用cpu指令数
 
   ```
     $ SP_daemon -N 1 -PKG ohos.samples.ecg -ci
@@ -451,7 +544,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     $
   ```
 
-- 采集5次指定应用帧率
+- 设置包名并采集5次指定应用帧率
 
   ```
     $ SP_daemon -N 5 -PKG ohos.samples.ecg -f
@@ -470,11 +563,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     command exec finished!
     $
   ```
-  >**说明**
-  >
-  >- 使用该命令采集时需进入被测应用内，滑动或切换页面。
-  >- 在智能刷新率情况下，刷新率是实时变化的（一秒内可能存在多次变化），refreshrate取值是采集时刻（timestamp）的刷新率。
-
  
 - 采集10次指定图层帧率
 
@@ -582,98 +670,147 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     $
   ```
 
-- 全量采集示例2，采集指定应用信息，包括cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图
+- 全量采集示例2，设置包名并采集指定应用信息，包括cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图
  
   ```
-    $ SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot
-
-    order:0 timestamp=1501837949706
-    order:1 ProcAppName=ohos.samples.ecg
-    order:2 ProcCpuLoad=0.000000
-    order:3 ProcCpuUsage=38.775000
-    order:4 ProcId=1960
-    order:5 ProcSCpuUsage=8.875000
-    order:6 ProcUCpuUsage=29.900000
-    order:7 TotalcpuUsage=85.416667
-    order:8 TotalcpuidleUsage=14.583333
-    order:9 TotalcpuioWaitUsage=0.000000
-    order:10 TotalcpuirqUsage=0.000000
-    order:11 TotalcpuniceUsage=0.000000
-    order:12 TotalcpusoftIrqUsage=0.000000
-    order:13 TotalcpusystemUsage=33.072917
-    order:14 TotalcpuuserUsage=52.343750
-    order:15 cpu0Frequency=1992000
-    order:16 cpu0Usage=92.929293
-    order:17 cpu0idleUsage=7.070707
-    order:18 cpu0ioWaitUsage=0.000000
-    order:19 cpu0irqUsage=0.000000
-    order:20 cpu0niceUsage=0.000000
-    order:21 cpu0softIrqUsage=0.000000
-    order:22 cpu0systemUsage=40.404040
-    order:23 cpu0userUsage=52.525253
-    order:24 cpu1Frequency=1992000
-    order:25 cpu1Usage=82.291667
-    order:26 cpu1idleUsage=17.708333
-    order:27 cpu1ioWaitUsage=0.000000
-    order:28 cpu1irqUsage=0.000000
-    order:29 cpu1niceUsage=0.000000
-    order:30 cpu1softIrqUsage=0.000000
-    order:31 cpu1systemUsage=29.166667
-    order:32 cpu1userUsage=53.125000
-    order:33 cpu2Frequency=1992000
-    order:34 cpu2Usage=81.111111
-    order:35 cpu2idleUsage=18.888889
-    order:36 cpu2ioWaitUsage=0.000000
-    order:37 cpu2irqUsage=0.000000
-    order:38 cpu2niceUsage=0.000000
-    order:39 cpu2softIrqUsage=0.000000
-    order:40 cpu2systemUsage=31.111111
-    order:41 cpu2userUsage=50.000000
-    order:42 cpu3Frequency=1992000
-    order:43 cpu3Usage=85.858586
-    order:44 cpu3idleUsage=14.141414
-    order:45 cpu3ioWaitUsage=0.000000
-    order:46 cpu3irqUsage=0.000000
-    order:47 cpu3niceUsage=0.000000
-    order:48 cpu3softIrqUsage=0.000000
-    order:49 cpu3systemUsage=32.323232
-    order:50 cpu3userUsage=53.535354
-    order:51 gpuFrequency=200000000
-    order:52 gpuLoad=29.000000
-    order:53 gpu-thermal=41875.000000
-    order:54 soc-thermal=45.000000
-    order:55 fps=40
-    order:56 fpsJitters=14482127;;28966003;;28971836;;14484751;;28952878;;28970962;;14480959;;28968337;;14476001;;28967461;;28968045;;14477751;;28966878;;28975337;;14475126;;28962795;;28967461;;14496710;;28953169;;28966003;;14483002;;28963961;;28965711;;28964836;;28966295;;14550085;;28898628;;28964544;;28975628;;14497293;;28938878;;43454546;;28966003;;28973295;;28959878;;28964252;;14476585;;28965128;;28970670;;14478626
-    order:57 refreshrate=69
-    order:58 arktsHeapPss=10970
-    order:59 gpuPss=0
-    order:60 graphicPss=10800
-    order:61 heapAlloc=0
-    order:62 heapFree=0
-    order:63 heapSize=0
-    order:64 memAvailable=1137784
-    order:65 memFree=682592
-    order:66 memTotal=1935948
-    order:67 nativeHeapPss=21398
-    order:68 privateClean=24816
-    order:69 privateDirty=44932
-    order:70 pss=91587
-    order:71 sharedClean=100512
-    order:72 sharedDirty=36832
-    order:73 stackPss=1444
-    order:74 swap=0
-    order:75 swapPss=0
-    order:76 ddrFrequency=800000000
-    order:77 networkDown=0
-    order:78 networkUp=0
-    order:79 capture=data/local/tmp/capture/screenCap_1501837950216.png
-
+    $ SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot -threads
+    
+    order:0 timestamp=1741415955626
+    order:1 ChildProcCpuLoad=NA
+    order:2 ChildProcCpuUsage=NA
+    order:3 ChildProcId=NA
+    order:4 ChildProcSCpuUsage=NA
+    order:5 ChildProcUCpuUsage=NA
+    order:6 ProcAppName=ohos.samples.ecg
+    order:7 ProcCpuLoad=2.641511
+    order:8 ProcCpuUsage=6.026481
+    order:9 ProcId=18847
+    order:10 ProcSCpuUsage=1.747202
+    order:11 ProcUCpuUsage=4.279279
+    order:12 TotalcpuUsage=26.021798
+    order:13 TotalcpuidleUsage=73.978202
+    order:14 TotalcpuioWaitUsage=0.000000
+    order:15 TotalcpuirqUsage=0.068120
+    order:16 TotalcpuniceUsage=0.000000
+    order:17 TotalcpusoftIrqUsage=0.000000
+    order:18 TotalcpusystemUsage=10.762943
+    order:19 TotalcpuuserUsage=15.190736
     ...
-
+    order:123 gpuFrequency=279000000
+    order:124 gpuLoad=0.000000
+    order:125 Battery=35.000000
+    order:126 cluster0=51.000000
+    order:127 gpu=47.000000
+    order:128 npu_thermal=35.000000
+    order:129 shell_back=36.627000
+    order:130 shell_frame=35.627000
+    order:131 shell_front=35.652000
+    order:132 soc_thermal=59.259000
+    order:133 system_h=37.000000
+    order:134 fps=30
+    order:135 fpsJitters=33501562;;50251042;;33522396;;16743750;;33482812;;33505730;;33507291;;33505209;;33502604;;50258854;;33518229;;33501563;;16753125;;50247916;;16751563;;33507812;;16740104;;16792188;;33464583;;33497917;;50261458;;33493750;;33511459;;33502083;;16744271;;16756250;;33505729;;50254687;;33507292;;50286979
+    order:136 refreshrate=60
+    order:137 arktsHeapPss=29564
+    order:138 gpuPss=254647
+    order:139 graphicPss=215796
+    order:140 heapAlloc=174032
+    order:141 heapFree=1232
+    order:142 heapSize=187924
+    order:143 memAvailable=3437568
+    order:144 memFree=780152
+    order:145 memTotal=11697880
+    order:146 nativeHeapPss=91244
+    order:147 privateClean=162560
+    order:148 privateDirty=488739
+    order:149 pss=761908
+    order:150 sharedClean=225060
+    order:151 sharedDirty=48740
+    order:152 stackPss=2596
+    order:153 swap=62024
+    order:154 swapPss=62024
+    order:155 ddrFrequency=1531000000
+    order:156 networkDown=215
+    order:157 networkUp=0
+    ...
+    order:180 capture=data/local/tmp/capture/screenCap_1741415955811.png
+    order:181 threadsNum=18847:111|
+    order:182 tids=18847:45862 45700 25783 25622 25384 25381 19423 19170 19167 19166 19165 19163 19162 19159 19157 19156 19154 19153 19152 19151 19150 19149 19147 19146 19145 19142 19141 19140 19139 19136 19135 19134 19120 19112 19111 19088 19083 19081 19077 19076 19075 19074 19073 19072 19071 19070 19055 19044 19040 19039 19034 19033 19032 19031 19030 19029 19028 19027 19019 19017 19016 19015 19014 19013 19012 19011 19009 19007 19006 19005 19004 19003 19001 19000 18999 18998 18997 18996 18995 18994 18993 18992 18991 18990 18989 18988 18987 18986 18985 18984 18983 18982 18981 18980 18977 18974 18946 18942 18936 18934 18933 18931 18930 18929 18928 18927 18926 18925 18924 18923 18847|
+    ...
+    
     command exec finished!
     $
   ```
 
+- 全量采集示例3，设置进程ID并采集指定应用信息，包括cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图
+ 
+  ```
+    $ SP_daemon -N 10 -PID 18847 -c -g -t -f -r -d -net -snapshot -threads
+    
+    order:0 timestamp=1741416084766
+    order:1 ChildProcCpuLoad=NA
+    order:2 ChildProcCpuUsage=NA
+    order:3 ChildProcId=NA
+    order:4 ChildProcSCpuUsage=NA
+    order:5 ChildProcUCpuUsage=NA
+    order:6 ProcAppName=ohos.samples.ecg
+    order:7 ProcCpuLoad=2.857003
+    order:8 ProcCpuUsage=5.932203
+    order:9 ProcId=18847
+    order:10 ProcSCpuUsage=1.765537
+    order:11 ProcUCpuUsage=4.166667
+    order:12 TotalcpuUsage=28.442728
+    order:13 TotalcpuidleUsage=71.557272
+    order:14 TotalcpuioWaitUsage=0.000000
+    order:15 TotalcpuirqUsage=0.000000
+    order:16 TotalcpuniceUsage=0.000000
+    order:17 TotalcpusoftIrqUsage=0.000000
+    order:18 TotalcpusystemUsage=9.716860
+    order:19 TotalcpuuserUsage=18.725869
+    ...
+    order:123 gpuFrequency=279000000
+    order:124 gpuLoad=0.000000
+    order:125 Battery=35.000000
+    order:126 cluster0=51.000000
+    order:127 gpu=47.000000
+    order:128 npu_thermal=35.000000
+    order:129 shell_back=36.627000
+    order:130 shell_frame=35.627000
+    order:131 shell_front=35.652000
+    order:132 soc_thermal=59.259000
+    order:133 system_h=37.000000
+    order:134 fps=30
+    order:135 fpsJitters=33501562;;50251042;;33522396;;16743750;;33482812;;33505730;;33507291;;33505209;;33502604;;50258854;;33518229;;33501563;;16753125;;50247916;;16751563;;33507812;;16740104;;16792188;;33464583;;33497917;;50261458;;33493750;;33511459;;33502083;;16744271;;16756250;;33505729;;50254687;;33507292;;50286979
+    order:136 refreshrate=60
+    order:137 arktsHeapPss=29564
+    order:138 gpuPss=254647
+    order:139 graphicPss=215796
+    order:140 heapAlloc=174032
+    order:141 heapFree=1232
+    order:142 heapSize=187924
+    order:143 memAvailable=3437568
+    order:144 memFree=780152
+    order:145 memTotal=11697880
+    order:146 nativeHeapPss=91244
+    order:147 privateClean=162560
+    order:148 privateDirty=488739
+    order:149 pss=761908
+    order:150 sharedClean=225060
+    order:151 sharedDirty=48740
+    order:152 stackPss=2596
+    order:153 swap=62024
+    order:154 swapPss=62024
+    order:155 ddrFrequency=1531000000
+    order:156 networkDown=215
+    order:157 networkUp=0
+    ...
+    order:180 capture=data/local/tmp/capture/screenCap_1741416084923.png
+    order:181 threadsNum=18847:113|
+    order:182 tids=18847:46736 46734 46731 46663 25783 25622 25384 25381 19423 19170 19167 19166 19165 19163 19162 19159 19157 19156 19154 19153 19152 19151 19150 19149 19147 19146 19145 19142 19141 19140 19139 19136 19135 19134 19120 19112 19111 19088 19083 19081 19077 19076 19075 19074 19073 19072 19071 19070 19055 19044 19040 19039 19034 19033 19032 19031 19030 19029 19028 19027 19019 19017 19016 19015 19014 19013 19012 19011 19009 19007 19006 19005 19004 19003 19001 19000 18999 18998 18997 18996 18995 18994 18993 18992 18991 18990 18989 18988 18987 18986 18985 18984 18983 18982 18981 18980 18977 18974 18946 18942 18936 18934 18933 18931 18930 18929 18928 18927 18926 18925 18924 18923 18847|
+    ...
+    
+    command exec finished!
+    $
+  ```
   >**说明**
   >
   >- 使用该命令采集时需进入被测应用内。
@@ -687,11 +824,14 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | :-----|:-----| :--------------------- |
 | -start |是| 开始采集，该命令参数后可添加基础采集命令，一秒采集一次。            |
 | -stop |是| 结束采集，执行后会生成采集报告。              |
+| -print |否| 一秒打印一次启停采集信息。              |
 
 ##### 使用示例
   
+- 启停采集整机CPU大中小核频率、各核使用率
+
    ```
-   开始采集
+   # 开始采集
    $ SP_daemon -start -c
    SP_daemon Collection begins
     
@@ -699,7 +839,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    command exec finished!
    $
       
-   结束采集
+   # 结束采集
    $ SP_daemon -stop
    SP_daemon Collection ended
    Output Path: data/local/tmp/smartperf/1/t_index_info.csv
@@ -708,11 +848,74 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    command exec finished!
    $
    ```
+
+- 启停采集并打印整机CPU大中小核频率、各核使用率
+
+   ```
+    # 开始采集
+    # 打印启停采集信息
+    $ SP_daemon -start -c -print
+    SP_daemon Collection begins
+    
+    order:0 TotalcpuUsage=20.860927
+    order:1 TotalcpuidleUsage=79.139073
+    order:2 TotalcpuioWaitUsage=0.000000
+    order:3 TotalcpuirqUsage=0.082781
+    order:4 TotalcpuniceUsage=0.000000
+    order:5 TotalcpusoftIrqUsage=0.000000
+    order:6 TotalcpusystemUsage=8.029801
+    order:7 TotalcpuuserUsage=12.748344
+    order:8 cpu0Frequency=1430000
+    order:9 cpu0Usage=44.554455
+    order:10 cpu0idleUsage=55.445545
+    order:11 cpu0ioWaitUsage=0.000000
+    order:12 cpu0irqUsage=0.000000
+    order:13 cpu0niceUsage=0.000000
+    order:14 cpu0softIrqUsage=0.000000
+    order:15 cpu0systemUsage=17.821782
+    order:16 cpu0userUsage=26.732673
+    order:17 cpu10Frequency=1239000
+    order:18 cpu10Usage=0.000000
+    order:19 cpu10idleUsage=100.000000
+    order:20 cpu10ioWaitUsage=0.000000
+    order:21 cpu10irqUsage=0.000000
+    order:22 cpu10niceUsage=0.000000
+    order:23 cpu10softIrqUsage=0.000000
+    order:24 cpu10systemUsage=0.000000
+    order:25 cpu10userUsage=0.000000
+    order:26 cpu11Frequency=1239000
+    order:27 cpu11Usage=0.000000
+    order:28 cpu11idleUsage=100.000000
+    order:29 cpu11ioWaitUsage=0.000000
+    order:30 cpu11irqUsage=0.000000
+    order:31 cpu11niceUsage=0.000000
+    order:32 cpu11softIrqUsage=0.000000
+    order:33 cpu11systemUsage=0.000000
+    order:34 cpu11userUsage=0.000000
+    ...
+    command exec finished!
+    $
+      
+    # 结束采集
+    # 在启停打印时，需重新开启命令框执行此命令
+    $ SP_daemon -stop
+    SP_daemon Collection ended
+    Output Path: data/local/tmp/smartperf/1/t_index_info.csv
+    
+    command exec finished!
+    $
+   ```
    >**说明**
    >
-   >- 开始采集示例1（采整机）：SP_daemon -start -c -g -t -r -d -net -snapshot。
+   >- 开始采集示例1（采整机cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图）：SP_daemon -start -c -g -t -r -d -net -snapshot。
    >
-   >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot。
+   >- 开始采集示例2（采整机和进程cpu负载、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot -threads -fd。
+   >
+   >- 开始采集示例3（采整机和进程cpu负载、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符）：SP_daemon -start -PID 18847 -c -g -t -f -r -d -net -snapshot -threads -fd。
+   >
+   >- 开始采集示例4（采整机cpu、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符并且打印采集信息）：SP_daemon -start -c -g -t -r -d -net -snapshot -threads -fd -print。
+   >
+   >- 开始采集示例5（采整机和进程cpu负载、gpu、温度、fps、内存信息、DDR信息、网络速率、屏幕截图、线程数、文件描述符并且打印采集信息）：SP_daemon -start -PID 18847 -c -g -t -f -r -d -net -snapshot -threads -fd -print。
    >
    >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告。具体请参考[查看csv采集结果](#查看csv采集结果)。
 
@@ -747,6 +950,10 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
     | 数据项    | 说明             |备注|
     | :-----| :--------------------- |:-----|
+    | threadsNum              | 线程总数。              |-|
+    | tids                    | 线程id。                |-|
+    | fdTotal                 | 文件描述符总数。         |-|
+    | fds                     | 文件描述符。             |单位：Hz|
     | cpuFrequency            | CPU大中小核频率。        |单位：Hz|
     | cpuUasge                | CPU各核使用率。          |%|
     | cpuidleUsage            | CPU空闲态使用率。        |%| 
@@ -757,11 +964,16 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     | cpusystemUsage          | 系统/内核态使用率。      |%|
     | cpuuserUsage            | 用户态使用率。           |%| 
     | ProcId                  | 进程id。                |-|
+    | ChildProcId             | 子进程id。                |-|
     | ProcAppName             | app包名。                |-| 
     | ProcCpuLoad             | 进程CPU负载占比。        |%|
+    | ChildProcCpuLoad        | 子进程CPU负载占比。        |%|
     | ProcCpuUsage            | 进程CPU使用率。          |%| 
+    | ChildProcCpuUsage       | 子进程CPU使用率。          |%| 
     | ProcUCpuUsage           | 进程用户态CPU使用率。     |%|
+    | ChildProcCpuUsage       | 子进程用户态CPU使用率。          |%| 
     | ProcSCpuUsage           | 进程内核态CPU使用率。     |%| 
+    | ChildProcSCpuUsage      | 子进程内核态CPU使用率。     |%|
     | gpuFrequ                | 整机GPU的频率。          |%|
     | gpuLoad                 | 整机GPU的负载占比。      |%|
     | hw-instructions         | 执行的指令数。          |-|
@@ -781,20 +993,35 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     | memFree                 | 整机空闲内存。         |单位：KB|
     | memTotal                | 整机总内存。           |单位：KB|
     | pss                     | 进程实际使用内存。      |单位：KB|
-    | sharedClean             | 共享的未改写页面。      |单位：KB|
-    | sharedDirty             | 共享的已改写页面。      |单位：KB|
-    | priviateClean           | 私有的未改写页面。      |单位：KB|
-    | privateDirty            | 私有的已改写页面。      |单位：KB|
-    | swapTotal               | 总的交换内存。          |单位：KB|
-    | swapPss                 | 交换的pss内存。        |单位：KB|
-    | HeapSize                | 堆内存大小。           |单位：KB|
-    | HeapAlloc               | 可分配的堆内存大小。    |单位：KB|
-    | HeapFree                | 剩余的堆内存大小。      |单位：KB|
-    | gpuPss                  | 使用的gpu内存大小。     |单位：KB|
-    | graphicPss              | 使用的图形内存大小。     |单位：KB|
-    | arktsHeapPss            | 使用的arkts内存大小。    |单位：KB|
-    | nativeHeapPss           | 使用的native内存大小。   |单位：KB|
-    | stackPss                | 使用的栈内存大小。       |单位：KB|
+    | Childpss                | 子进程实际使用内存。      |单位：KB|
+    | sharedClean             | 进程共享的未改写页面。      |单位：KB|
+    | ChildsharedClean        | 子进程共享的未改写页面。      |单位：KB|
+    | sharedDirty             | 进程共享的已改写页面。      |单位：KB|
+    | ChildsharedDirty        | 子进程共享的已改写页面。      |单位：KB|
+    | priviateClean           | 进程私有的未改写页面。      |单位：KB|
+    | ChildpriviateClean      | 子进程私有的未改写页面。      |单位：KB|
+    | privateDirty            | 进程私有的已改写页面。      |单位：KB|
+    | ChildprivateDirty       | 子进程私有的已改写页面。      |单位：KB|
+    | swapTotal               | 进程总的交换内存。          |单位：KB|
+    | ChildswapTotal          | 子进程总的交换内存。          |单位：KB|
+    | swapPss                 | 进程交换的pss内存。        |单位：KB|
+    | ChildswapPss            | 子进程交换的pss内存。        |单位：KB|
+    | HeapSize                | 进程堆内存大小。           |单位：KB|
+    | ChildHeapSize           | 子进程堆内存大小。           |单位：KB|
+    | HeapAlloc               | 进程可分配的堆内存大小。    |单位：KB|
+    | ChildHeapAlloc          | 子进程可分配的堆内存大小。    |单位：KB|
+    | HeapFree                | 进程剩余的堆内存大小。      |单位：KB|
+    | ChildHeapFree           | 子进程剩余的堆内存大小。      |单位：KB|
+    | gpuPss                  | 进程使用的gpu内存大小。     |单位：KB|
+    | ChildgpuPss             | 子进程使用的gpu内存大小。     |单位：KB|
+    | graphicPss              | 进程使用的图形内存大小。     |单位：KB|
+    | ChildgraphicPss         | 子进程使用的图形内存大小。     |单位：KB|
+    | arktsHeapPss            | 进程使用的arkts内存大小。    |单位：KB|
+    | ChildarktsHeapPss       | 子进程使用的arkts内存大小。    |单位：KB|
+    | nativeHeapPss           | 进程使用的native内存大小。   |单位：KB|
+    | ChildnativeHeapPss      | 子进程使用的native内存大小。   |单位：KB|
+    | stackPss                | 进程使用的栈内存大小。       |单位：KB|
+    | ChildstackPss           | 子进程使用的栈内存大小。       |单位：KB|
     | timeStamp               | 当前时间戳。            |对应采集时间| 
 
 ### 场景化采集

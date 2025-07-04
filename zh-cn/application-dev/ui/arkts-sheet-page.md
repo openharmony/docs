@@ -4,7 +4,7 @@
 
 半模态页面适用于展示简单的任务或信息面板，例如，个人信息、文本简介、分享面板、创建日程、添加内容等。若需展示可能影响父视图的半模态页面，半模态支持配置为非模态交互形式。
 
-半模态在不同宽度的设备上存在不同的形态能力，开发者对不同宽度的设备上有不同的形态诉求请参考([preferType](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions))属性。可以使用bindSheet构建半模态转场效果，详见[模态转场](arkts-modal-transition.md#使用bindsheet构建半模态转场效果)。对于复杂或者冗长的用户流程，建议考虑其他的转场方式替代半模态。如[全模态转场](arkts-contentcover-page.md)和[Navigation转场](arkts-navigation-transition.md)。
+半模态在不同宽度的设备上存在不同的形态能力，开发者对不同宽度的设备上有不同的形态诉求请参考([preferType](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions))属性。可以使用bindSheet构建半模态转场效果，详见[模态转场](arkts-modal-transition.md#使用bindsheet构建半模态转场效果)。对于复杂或者冗长的用户流程，建议考虑其他的转场方式替代半模态。如[全模态转场](arkts-contentcover-page.md)和[Navigation转场](arkts-navigation-navigation.md)。
 
 ## 使用约束
 
@@ -186,4 +186,71 @@ onWillSpringBackWhenDismiss: ((SpringBackAction: SpringBackAction) => {
 }),
 ```
 
+## 半模态支持避让中轴
 
+半模态从API version 14开始支持中轴避让，当前在2in1设备默认开启（仅窗口处于瀑布模式时产生避让）中轴避让能力，且在2in1设备默认避让区域为上半屏。开发者可以通过[SheetOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)的enableHoverMode主动设置是否避让中轴，及[SheetOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)的hoverModeArea设置避让中轴后显示区域。
+
+- 半模态中轴避让不支持控件子窗能力，showInSubWindow=true场景。
+- 2in1设备上需同时满足窗口处于瀑布模式才会产生避让。
+
+完整示例代码如下：
+
+```ts
+@Entry
+@Component
+struct SheetTransitionExample {
+  @State isShow: boolean = false;
+  @State enableHoverMode: boolean = true;
+  @State hoverModeArea: HoverModeAreaType = HoverModeAreaType.TOP_SCREEN;
+
+  @Builder
+  myBuilder() {
+    Column() {
+      Button("enableHoverMode切换")
+        .margin(10)
+        .fontSize(20)
+        .onClick(() => {
+          this.enableHoverMode = !this.enableHoverMode;
+        })
+
+      Button("hoverModeArea切换")
+        .margin(10)
+        .fontSize(20)
+        .onClick(() => {
+          this.hoverModeArea = this.hoverModeArea === HoverModeAreaType.TOP_SCREEN ?
+          HoverModeAreaType.BOTTOM_SCREEN : HoverModeAreaType.TOP_SCREEN;
+        })
+
+      Button("close modal")
+        .margin(10)
+        .fontSize(20)
+        .onClick(() => {
+          this.isShow = false;
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+
+  build() {
+    Column() {
+      Button("拉起半模态")
+        .onClick(() => {
+          this.isShow = true;
+        })
+        .fontSize(20)
+        .margin(10)
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          height: 300,
+          backgroundColor: Color.Green,
+          preferType: SheetType.CENTER,
+          enableHoverMode: this.enableHoverMode,
+          hoverModeArea: this.hoverModeArea
+        })
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
+  }
+}
+```

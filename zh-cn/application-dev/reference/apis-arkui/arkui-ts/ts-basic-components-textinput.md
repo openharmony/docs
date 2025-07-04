@@ -30,6 +30,8 @@ TextInput(value?: TextInputOptions)
 
 ## TextInputOptions对象说明
 
+TextInput初始化参数。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -719,7 +721,7 @@ letterSpacing(value: number | string | Resource)
 
 | 参数名 | 类型                       | 必填 | 说明           |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。<br/>单位：[fp](ts-pixel-units.md) |
 
 ### fontFeature<sup>12+</sup>
 
@@ -831,7 +833,7 @@ minFontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。<br/>单位：[fp](ts-pixel-units.md) |
 
 ### maxFontSize<sup>12+</sup>
 
@@ -851,7 +853,7 @@ maxFontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。<br/>单位：[fp](ts-pixel-units.md) |
 
 ### heightAdaptivePolicy<sup>12+</sup>
 
@@ -2643,7 +2645,8 @@ struct EllipsisModeExample {
     " pink, and lavender, creating a breath taking tapestry that stretches as far as the eye can see." +
     "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil.";
   @State ellipsisModeIndex: number = 0;
-  @State ellipsisMode: (EllipsisMode | undefined | null)[] = [EllipsisMode.END, EllipsisMode.START, EllipsisMode.CENTER];
+  @State ellipsisMode: (EllipsisMode | undefined | null)[] =
+    [EllipsisMode.END, EllipsisMode.START, EllipsisMode.CENTER];
   @State ellipsisModeStr: string[] = ['END ', 'START', 'CENTER'];
   @State textOverflowIndex: number = 0;
   @State textOverflow: TextOverflow[] = [TextOverflow.Ellipsis, TextOverflow.Clip];
@@ -2651,13 +2654,13 @@ struct EllipsisModeExample {
   @State styleInputIndex: number = 0;
   @State styleInput: TextInputStyle[] = [TextInputStyle.Inline, TextInputStyle.Default];
   @State styleInputStr: string[] = ['Inline', 'Default'];
+
   build() {
     Row() {
       Column({ space: 20 }) {
-        Text('测试TextInput').fontSize(30)
-        TextInput({ text: this.text})
-          .textOverflow( this.textOverflow[this.textOverflowIndex])
-          .ellipsisMode( this.ellipsisMode[this.ellipsisModeIndex])
+        TextInput({ text: this.text })
+          .textOverflow(this.textOverflow[this.textOverflowIndex])
+          .ellipsisMode(this.ellipsisMode[this.ellipsisModeIndex])
           .style(this.styleInput[this.styleInputIndex])
           .fontSize(30)
           .margin(30)
@@ -2798,7 +2801,7 @@ struct TextInputExample {
 
 ### 示例18（设置最小字体范围与最大字体范围）
 
-该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围。
+该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围<!--Del-->（该示例使用系统接口，应用类型需调整为系统应用，可参考HarmonyAppProvision的[系统接口说明](../../../reference/development-intro-api.md#系统接口说明)）<!--DelEnd-->。
 
 ```json
 // 开启应用缩放跟随系统
@@ -2827,30 +2830,76 @@ struct TextInputExample {
   }
 }
 ```
-
+<!--RP3-->
 ```ts
 // xxx.ets
+import { abilityManager, Configuration } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct TextInputExample {
+  @State currentFontSizeScale: number = 1;
   @State minFontScale: number = 0.85;
   @State maxFontScale: number = 2;
+
+  // 设置字体大小
+  async setFontScale(scale: number): Promise<void> {
+    let configInit: Configuration = {
+      language: 'zh-Ch',
+      fontSizeScale: scale,
+    };
+    // 更新配置-字体大小，调用系统接口更新字体配置
+    // 需在工程的module.json5文件的requestPermissions字段配置权限：ohos.permission.UPDATE_CONFIGURATION
+    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
+      if (err) {
+        console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
+      } else {
+        this.currentFontSizeScale = scale;
+        console.log('updateConfiguration success.');
+      }
+    });
+  }
 
   build() {
     Column() {
       Column({ space: 30 }) {
-        Text("系统字体变大变小，变大变小aaaaaaaAAAAAA")
+        Text("通过minFontScale、maxFontScale调整文本显示的最大和最小字体缩放倍数。")
         TextInput({
           placeholder: 'The text area can hold an unlimited amount of text. input your word...',
+          text: '通过minFontScale、maxFontScale调整文本显示的最大和最小字体缩放倍数。'
         })
           .minFontScale(this.minFontScale)// 设置最小字体缩放倍数，参数为undefined则跟随系统默认倍数缩放
-          .maxFontScale(this.maxFontScale)// 设置最大字体缩放倍数，参数为undefined则跟随系统默认倍数缩放
+          .maxFontScale(this.maxFontScale) // 设置最大字体缩放倍数，参数为undefined则跟随系统默认倍数缩放
       }.width('100%')
+
+      Column() {
+        Row() {
+          Button('1倍').onClick(() => {
+            this.setFontScale(1)
+          }).margin(10)
+          Button('1.75倍').onClick(() => {
+            this.setFontScale(1.75)
+          }).margin(10)
+        }
+
+        Row() {
+          Button('2倍').onClick(() => {
+            this.setFontScale(2)
+          }).margin(10)
+          Button('3.2倍').onClick(() => {
+            this.setFontScale(3.2)
+          }).margin(10)
+        }
+      }.margin({ top: 50 })
     }
   }
 }
 ```
-
+| 系统字体缩放倍数为2倍 | 系统字体缩放倍数为3.2倍 |
+| ---------------------------------- | ------------------------------------ |
+| ![](figures/TextInput_font_scale1.png)  | ![](figures/TextInput_font_scale2.png)  |
+<!--RP3End-->
 ### 示例19（设置选中指定区域的文本内容）
 
 该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。

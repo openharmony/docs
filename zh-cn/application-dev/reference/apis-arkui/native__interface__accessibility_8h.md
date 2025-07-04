@@ -9,7 +9,7 @@
 
 **引用文件：** <arkui/native_interface_accessibility.h>
 
-**起始版本：** 8
+**起始版本：** 13
 
 **相关模块：**[Native Accessibility](arkui_native_interface_accessibility.md)
 

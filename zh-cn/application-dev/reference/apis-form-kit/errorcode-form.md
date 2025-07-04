@@ -240,7 +240,7 @@ Some internal server error occurs.
 **处理步骤**
 
 1. 重启系统后重试。
-2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
+2. 重启后仍旧失败，请提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
 
 ## 2293766 包管理获取请求的应用包名不存在
 
@@ -259,7 +259,7 @@ The requested bundle name does not exist.
 **处理步骤**
 
 1. 重启系统后重试。
-2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
+2. 重启后仍旧失败，请提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
 
 ## 2293767 无效参数
 
@@ -301,7 +301,7 @@ Get bms rpc failed.
 **处理步骤**
 
 1. 重启系统后重试。
-2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
+2. 重启后仍旧失败，请提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
 
 ## 2293798 获取卡片管理服务失败
 
@@ -320,7 +320,7 @@ Get fms rpc failed.
 **处理步骤**
 
 1. 重启系统后重试。
-2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
+2. 重启后仍旧失败，请提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
 
 ## 2293802 获取系统能力管理服务失败
 
@@ -339,4 +339,4 @@ Get system manager service failed.
 **处理步骤**
 
 1. 重启系统后重试。
-2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
+2. 重启后仍旧失败，请提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
