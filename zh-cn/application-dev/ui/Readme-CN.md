@@ -107,8 +107,7 @@
     - [自定义渲染 (XComponent)](napi-xcomponent-guidelines.md)
   - 设置组件导航和页面路由<!--arkts-set-navigation-routing-->
     - [组件导航和页面路由概述](arkts-navigation-introduction.md)
-    - [组件导航 (Navigation)(推荐)](arkts-navigation-navigation.md)
-    - [实现组件导航转场](arkts-navigation-transition.md)
+    - [组件导航(Navigation) (推荐)](arkts-navigation-navigation.md)
     - [页面路由 (@ohos.router)(不推荐)](arkts-routing.md)
     - [Router切换Navigation](arkts-router-to-navigation.md)
   - 使用文本<!--arkts-use-text-->
