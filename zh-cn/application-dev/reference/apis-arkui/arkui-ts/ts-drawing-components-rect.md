@@ -31,6 +31,10 @@ Rect(options?: RectOptions | RoundedRectOptions)
 ## RectOptions<sup>18+</sup>对象说明
 用于描述Rect绘制属性。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -39,13 +43,17 @@ Rect(options?: RectOptions | RoundedRectOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| height | string \| number | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| radius | string \| number \| Array&lt;string \| number&gt; | 否 | 圆角半径，支持分别设置四个角的圆角度数，取值范围≥0。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| width<sup>7+</sup> | string \| number | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height<sup>7+</sup> | string \| number | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| radius<sup>7+</sup> | string \| number \| Array&lt;string \| number&gt; | 否 | 圆角半径，支持分别设置四个角的圆角度数，取值范围≥0。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ## RoundedRectOptions<sup>18+</sup>对象说明
 用于描述Rect绘制属性。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -54,10 +62,10 @@ Rect(options?: RectOptions | RoundedRectOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| height | string \| number | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| radiusWidth | string \| number | 否 | 圆角宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |圆角宽度。<br/>默认值：0<br/>异常值按照默认值处理。
-| radiusHeight | string \| number | 否 | 圆角高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |圆角高度。<br/>默认值：0<br/>异常值按照默认值处理。
+| width<sup>7+</sup> | string \| number | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height<sup>7+</sup> | string \| number | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| radiusWidth<sup>7+</sup> | string \| number | 否 | 圆角宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |圆角宽度。<br/>默认值：0<br/>异常值按照默认值处理。
+| radiusHeight<sup>7+</sup> | string \| number | 否 | 圆角高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |圆角高度。<br/>默认值：0<br/>异常值按照默认值处理。
 
 ## 属性
 
@@ -139,7 +147,7 @@ fill(value: ResourceColor)
 
 fillOpacity(value: number | string | Resource)
 
-设置填充区域透明度。取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理。
+设置填充区域透明度。取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0；其余异常值按1.0处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
