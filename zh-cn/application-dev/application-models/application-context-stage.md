@@ -3,84 +3,270 @@
 
 ## 概述
 
-[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md)是应用中对象的上下文，其提供了应用的一些基础信息，例如[resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)（资源管理）、[applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md)（当前应用信息）、[dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context)（应用文件路径）、[area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)（文件分区）等，以及应用的一些基本方法，例如<!--Del-->[createBundleContext()](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12)、<!--DelEnd-->[getApplicationContext()](../reference/apis-ability-kit/js-apis-inner-application-context.md#getapplicationcontext)等。[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)组件和各种[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)派生类组件都有各自不同的Context类。分别有基类Context、[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)、[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)、[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)、[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)<!--Del-->、[ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md)<!--DelEnd-->等Context。各类Context的继承和持有关系详见[不同类型Context的继承和持有关系](../reference/apis-ability-kit/js-apis-inner-application-context.md#不同类型context的继承和持有关系)。
+[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md)是应用中对象的上下文，其提供了应用的一些基础信息，例如[resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)（资源管理）、[applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md)（当前应用信息）、[dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context)（应用文件路径）、[area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)（文件分区）等。
 
-> **说明**
+## 不同类型Context的对比
+
+[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)组件和各种[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)派生类组件都有各自不同的Context类。分别有基类Context、[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)、[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)、[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)、[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)<!--Del-->、[ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md)<!--DelEnd-->等Context。各类Context的继承和持有关系详见[不同类型Context的继承和持有关系](../reference/apis-ability-kit/js-apis-inner-application-context.md#不同类型context的继承和持有关系)。
+
+不同类型Context的获取方式与使用场景说明，如下表所示。
+
+> **说明：**
 >
-> [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md)是指UI实例上下文，用于关联窗口与UI页面。与本文档中的应用上下文Context无直接关联，不存在继承或持有关系。
+> 不同类型的Context具有不同的能力，不可相互替代或强行转换。例如，[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)绑定了[setFontSizeScale](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextsetfontsizescale13)方法，但[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)中没有此方法。因此，即使将UIAbilityContext强行转换为ApplicationContext，也无法调用setFontSizeScale方法。
 
-- 应用Context的获取方式
-  - 获取[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。每个[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)中都包含了一个Context属性，提供操作应用组件、获取应用组件的配置信息等能力。
+   **表1** 不同类型Context的说明
 
-    ```ts
-    import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+  | Context类型 | 说明 | 获取方式 | 使用场景 |
+  | -------- | -------- | -------- | -------- |
+  | [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) | 应用的全局上下文，提供应用级别的信息和能力。| - 从API version 14开始，可以直接使用[getApplicationContext](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationgetapplicationcontext14)获取。<br>- API version 14以前版本，只能使用其他Context实例的[getApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextgetapplicationcontext)方法获取。 | - [获取当前应用的基本信息](#获取基本信息)。<br>- [获取应用级别的文件路径](#获取应用文件路径)。<br>- [获取和修改加密分区](#获取和修改加密分区)。<br>- [注册生命周期监听](#监听应用前后台变化)。 |
+  | [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md) | 模块级别的上下文，提供模块级别的信息和能力。| - 如果需要获取当前AbilityStage的Context，可以直接通过AbilityStage实例获取[context](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystagecontext)属性。<br> - 如果需要获取同一应用中其他Module的Context，可以通过[createModuleContext](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)方法。 | - 获取当前模块的基本信息。<br>- [获取模块的文件路径](#获取应用文件路径)。|
+  | [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | UIAbility组件对应的上下文，提供UIAbility对外的信息和能力。| - 通过UIAbility实例直接获取[context](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#属性)属性。<br>- 在UIAbility的窗口中加载的UI组件实例，需要使用UIContext的[getHostContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)方法。 | - 获取当前UIAbility基本信息。<br>- 启动其他应用或原子化服务、连接/断连系统应用创建的ServiceExtensionAbility等。<br>- 销毁自身的UIAbility。 |
+  | [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md) | ExtensionAbility组件对应的上下文，每种类型的ExtensionContext提供不同的信息和能力。| 通过ExtensionAbility实例直接获取Context属性。 | 不同类型的ExtensionAbility对应的Context提供的能力不同。以输入法上下文[InputMethodExtensionContext](../reference/apis-ime-kit/js-apis-inputmethod-extension-context.md)为例，主要提供如下能力：<br>- 获取InputMethodExtensionAbility的基本信息。<br>- 销毁当前输入法。|
+| [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md) | ArkUI的UI实例上下文，提供UI操作相关的能力。与上述其他类型的Context无直接关系。 | - 在UI组件内获取UIContext，直接使用[getHostContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)方法。<br>- 在存在Window实例的情况下，使用Window提供的[getUIContext](../reference/apis-arkui/arkts-apis-window-Window.md#getuicontext10)方法。 | 主要用于UI实例中UI相关操作，例如：<br>- 获取当前UI实例的字体。<br>- 显示不同类型的弹框。<br>- 设置软键盘弹出时UI避让模式。 |
 
-    export default class EntryAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        let uiAbilityContext = this.context;
+## Context的获取方式
+
+开发者如果需要通过Context获取应用资源、应用路径等信息，或者使用Context提供的方法来实现应用跳转、设置环境变量、清理数据、获取权限等操作，需要先获取对应的Context。本节分别介绍不同类型Context的获取方式与使用场景。
+
+### 获取ApplicationContext（应用的全局上下文）
+
+[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)在基类Context的基础上提供了监听应用内应用组件的生命周期的变化、监听系统内存变化、监听应用内系统环境变化、设置应用语言、设置应用颜色模式、清除应用自身数据的同时撤销应用向用户申请的权限等能力，在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)、[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)、[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)中均可以获取。
+
+  ```ts
+  import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+
+  export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+      let applicationContext = this.context.getApplicationContext();
+      //...
+    }
+  }
+  ```
+
+### 获取AbilityStageContext（模块级别的上下文）
+
+[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)和基类Context相比，额外提供[HapModuleInfo](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#属性)、[Configuration](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#属性)等信息。
+
+  ```ts
+  import { AbilityStage } from '@kit.AbilityKit';
+
+  export default class MyAbilityStage extends AbilityStage {
+    onCreate(): void {
+      let abilityStageContext = this.context;
+      //...
+    }
+  }
+  ```
+
+### 获取本应用中其他Module的Context（模块级别的上下文）
+
+调用[createModuleContext(context: Context, moduleName: string)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)方法，获取本应用中其他Module的Context。获取到其他Module的Context之后，即可获取到相应Module的资源信息。
+
+  ```ts
+  import { common, application } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let storageEventCall = new LocalStorage();
+
+  @Entry(storageEventCall)
+  @Component
+  struct Page_Context {
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
+    build() {
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let moduleName2: string = 'entry';
+              application.createModuleContext(this.context, moduleName2)
+                .then((data: common.Context) => {
+                  console.info(`CreateModuleContext success, data: ${JSON.stringify(data)}`);
+                  if (data !== null) {
+                    this.getUIContext().getPromptAction().showToast({
+                      message: ('成功获取Context')
+                    });
+                  }
+                })
+                .catch((err: BusinessError) => {
+                  console.error(`CreateModuleContext failed, err code:${err.code}, err msg: ${err.message}`);
+                });
+            })
+          }
+          //...
+        }
         //...
       }
+      //...
     }
-    ```
+  }
+  ```
 
-     > **说明：**
-     >
-     > 页面中获取UIAbility实例的上下文信息请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
-  - 获取特定场景[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)。以FormExtensionContext为例，表示卡片服务的上下文环境，继承自ExtensionContext，提供卡片服务相关的接口能力。
+### 获取UIAbilityContext（UIAbility组件对应的上下文）
 
-    ```ts
-    import { FormExtensionAbility, formBindingData } from '@kit.FormKit';
-    import { Want } from '@kit.AbilityKit';
+[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)类拥有自身的上下文信息，该信息为[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)类的实例，[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)类拥有abilityInfo、currentHapModuleInfo等属性。通过UIAbilityContext可以获取UIAbility的相关配置信息，如包代码路径、Bundle名称、Ability名称和应用程序需要的环境状态等属性信息，以及可以获取操作UIAbility实例的方法（如[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability)、[connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)、[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself)等）。
+如果需要在页面中获得当前Ability的Context，可使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md)中的[getHostContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)接口获取当前页面关联的UIAbilityContext或[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)。
 
-    export default class MyFormExtensionAbility extends FormExtensionAbility {
-      onAddForm(want: Want) {
-        let formExtensionContext = this.context;
-        // ...
-        let dataObj1: Record<string, string> = {
-          'temperature': '11c',
-          'time': '11:00'
-        };
-        let obj1: formBindingData.FormBindingData = formBindingData.createFormBindingData(dataObj1);
-        return obj1;
-      }
+- 在UIAbility中可以通过`this.context`获取UIAbility实例的上下文信息。
+  
+  ```ts
+  import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+
+  export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+      // 获取UIAbility实例的上下文
+      let context = this.context;
+      // ...
     }
-    ```
-  - 获取[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)（Module级别的Context）。和基类Context相比，额外提供[HapModuleInfo](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#属性)、[Configuration](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#属性)等信息。
+  }
+  ```
+  
+- 在页面中获取UIAbility实例的上下文信息，包括导入依赖资源context模块和在组件中定义一个context变量两个部分。
+  
+  ```ts
+  import { common, Want } from '@kit.AbilityKit';
 
-    ```ts
-    import { AbilityStage } from '@kit.AbilityKit';
+  @Entry
+  @Component
+  struct Page_EventHub {
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-    export default class MyAbilityStage extends AbilityStage {
-      onCreate(): void {
-        let abilityStageContext = this.context;
+    startAbilityTest(): void {
+      let want: Want = {
+        // Want参数信息
+      };
+      this.context.startAbility(want);
+    }
+
+    // 页面展示
+    build() {
+      // ...
+    }
+  }
+  ```
+
+  也可以在导入依赖资源context模块后，在具体使用[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)前进行变量定义。
+
+  
+  ```ts
+  import { common, Want } from '@kit.AbilityKit';
+
+  @Entry
+  @Component
+  struct Page_UIAbilityComponentsBasicUsage {
+    startAbilityTest(): void {
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+      let want: Want = {
+        // Want参数信息
+      };
+      context.startAbility(want);
+    }
+
+    // 页面展示
+    build() {
+      // ...
+    }
+  }
+  ```
+
+- 当业务完成后，开发者如果想要终止当前[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例，可以通过调用[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself)方法实现。
+
+  ```ts
+  import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  @Entry
+  @Component
+  struct Page_UIAbilityComponentsBasicUsage {
+    // 页面展示
+    build() {
+      Column() {
         //...
+        Button('FuncAbilityB')
+          .onClick(() => {
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            try {
+              context.terminateSelf((err: BusinessError) => {
+                if (err.code) {
+                  // 处理业务逻辑错误
+                  console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}.`);
+                  return;
+                }
+                // 执行正常业务
+                console.info(`terminateSelf succeed.`);
+              });
+            } catch (err) {
+              // 捕获同步的参数错误
+              let code = (err as BusinessError).code;
+              let message = (err as BusinessError).message;
+              console.error(`terminateSelf failed, code is ${code}, message is ${message}.`);
+            }
+          })
       }
     }
-    ```
-  - 获取[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)（应用级别的Context）。ApplicationContext在基类Context的基础上提供了订阅应用内应用组件的生命周期的变化、订阅系统内存变化、订阅应用内系统环境变化、设置应用语言、设置应用颜色模式、清除应用自身数据的同时撤销应用向用户申请的权限等能力，在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)、[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)、[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)中均可以获取。
+  }
+  ```
 
-    ```ts
-    import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+### 获取ExtensionAbilityContext (组件级的Context)
 
-    export default class EntryAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        let applicationContext = this.context.getApplicationContext();
-        //...
-      }
-    }
-    ```
+获取特定场景[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)。以FormExtensionContext为例，表示卡片服务的上下文环境，继承自ExtensionContext，提供卡片服务相关的接口能力。
 
+```ts
+import { FormExtensionAbility, formBindingData } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onAddForm(want: Want) {
+    let formExtensionContext = this.context;
+    // ...
+    let dataObj1: Record<string, string> = {
+      'temperature': '11c',
+      'time': '11:00'
+    };
+    let obj1: formBindingData.FormBindingData = formBindingData.createFormBindingData(dataObj1);
+    return obj1;
+  }
+}
+```
+  
 
 ## Context的典型使用场景
 
 
-本章节通过如下典型场景来介绍Context的用法：
+本章节通过以下具体场景来介绍Context的用法：
 
+- [获取基本信息](#获取基本信息)
 - [获取应用文件路径](#获取应用文件路径)
 - [获取和修改加密分区](#获取和修改加密分区)
-- [获取本应用中其他module的context](#获取本应用中其他module的context)
-- [订阅进程内UIAbility生命周期变化](#订阅进程内uiability生命周期变化)
+- [监听应用前后台变化](#监听应用前后台变化)
+- [监听UIAbility生命周期变化](#监听uiability生命周期变化)
 
+### 获取基本信息
+
+继承自[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md)的不同类型Context，默认会继承父类的方法和属性，还会拥有自己独立的方法与属性。
+
+通过Context属性可以获取当前应用、模块、UIAbility或ExtensionAbility的基本信息（例如资源管理对象、应用程序信息等），下面以UIAbility的信息获取为例：
+
+如果需要跨包获取资源对象，可以参考[资源访问](../quick-start/resource-categories-and-access.md#资源访问)。
+
+  ```ts
+  import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+
+  export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+      // 获取ResourceManager（资源管理）
+      let resourceManager = this.context.getApplicationContext().resourceManager;
+      // 获取applicationInfo（当前应用信息）
+      let applicationInfo = this.context.getApplicationContext().applicationInfo;
+      //...
+    }
+  }
+  ```
 
 ### 获取应用文件路径
 
@@ -110,8 +296,47 @@
   | resourceDir<sup>11+<sup> | 资源目录。<br/>**说明：**<br/> 需要开发者手动在`\<module-name>\resource`路径下创建`resfile`目录。 | 不涉及 | <路径前缀>/el1/bundle/**\<module-name>**/resources/resfile |
   | cloudFileDir<sup>12+</sup> | 云文件目录。 | <路径前缀>/el2/cloud | <路径前缀>/el2/cloud/ |
 
-  本节以使用ApplicationContext获取filesDir为例，介绍如何获取应用文件路径，并在对应文件路径下新建文件和读写文件。示例代码如下：
+本节以使用ApplicationContext获取cacheDir和filesDir为例，分别介绍如何获取应用缓存目录，以及如何获取应用文件目录，并用于新建文件和读写文件。
 
+- **获取应用缓存目录**
+
+  ```ts
+  import { common } from '@kit.AbilityKit';
+
+  const TAG: string = '[Page_Context]';
+  const DOMAIN_NUMBER: number = 0xFF00;
+
+  @Entry
+  @Component
+  struct Index {
+    @State message: string = 'Hello World';
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
+    build() {
+      Row() {
+        Column() {
+          Text(this.message)
+          // ...
+          Button() {
+            Text('create file')
+              // ...
+              .onClick(() => {
+                let applicationContext = this.context.getApplicationContext();
+                // 获取应用缓存路径
+                let cacheDir = applicationContext.cacheDir;
+              })
+          }
+          // ...
+        }
+        // ...
+      }
+      // ...
+    }
+  }
+  ```
+
+- **获取应用文件目录**
+  
   ```ts
   import { common } from '@kit.AbilityKit';
   import { buffer } from '@kit.ArkTS';
@@ -170,12 +395,11 @@
   }
   ```
 
-
 ### 获取和修改加密分区
 
 应用文件加密是一种保护数据安全的方法，可以使得文件在未经授权访问的情况下得到保护。在不同的场景下，应用需要不同程度的文件保护。
 
-在实际应用中，开发者需要根据不同场景的需求选择合适的加密分区，从而保护应用数据的安全。通过合理使用不同级别的加密分区，可以有效提高应用数据的安全性。关于不同分区的权限说明，详见[ContextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md)的[AreaMode](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)。
+在实际应用中，开发者需要根据不同场景的需求选择合适的加密分区，从而保护应用数据的安全。通过合理使用不同级别的加密分区，可以有效提升应用数据的安全性。关于不同分区的权限说明，详见[ContextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md)的[AreaMode](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)。
 
 - EL1：对于私有文件，如闹铃、壁纸等，应用可以将这些文件放到设备级加密分区（EL1）中，以保证在用户输入密码前就可以被访问。
 - EL2：对于更敏感的文件，如个人隐私信息等，应用可以将这些文件放到更高级别的加密分区（EL2）中，以保证更高的安全性。
@@ -267,62 +491,45 @@ struct Page_Context {
 }
 ```
 
+### 监听应用前后台变化
+  
+开发者可以使用[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)的相关能力，监听应用的前后台变化。当应用前后台切换时，可以收到相应回调函数的通知，从而执行一些依赖前后台的方法，或者进行应用前后台切换频率等数据统计。
 
-### 获取本应用中其他Module的Context
+以[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)中的使用为例进行说明。
 
-调用[createModuleContext(context: Context, moduleName: string)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)方法，获取本应用中其他Module的Context。获取到其他Module的Context之后，即可获取到相应Module的资源信息。
+```ts
+import { UIAbility, ApplicationStateChangeCallback } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  ```ts
-  import { common, application } from '@kit.AbilityKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  let storageEventCall = new LocalStorage();
-
-  @Entry(storageEventCall)
-  @Component
-  struct Page_Context {
-    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-    build() {
-      Column() {
-        //...
-        List({ initialIndex: 0 }) {
-          ListItem() {
-            Row() {
-              //...
-            }
-            .onClick(() => {
-              let moduleName2: string = 'entry';
-              application.createModuleContext(this.context, moduleName2)
-                .then((data: common.Context) => {
-                  console.info(`CreateModuleContext success, data: ${JSON.stringify(data)}`);
-                  if (data !== null) {
-                    this.getUIContext().getPromptAction().showToast({
-                      message: ('成功获取Context')
-                    });
-                  }
-                })
-                .catch((err: BusinessError) => {
-                  console.error(`CreateModuleContext failed, err code:${err.code}, err msg: ${err.message}`);
-                });
-            })
-          }
-          //...
-        }
-        //...
+export default class LifecycleAbility extends UIAbility {
+  onCreate() {
+    let applicationStateChangeCallback: ApplicationStateChangeCallback = {
+      onApplicationForeground() {
+        console.info('applicationStateChangeCallback onApplicationForeground');
+      },
+      onApplicationBackground() {
+        console.info('applicationStateChangeCallback onApplicationBackground');
       }
-      //...
     }
+
+    // 1.获取applicationContext
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      // 2.通过applicationContext注册应用前后台状态监听
+      applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+    } catch (paramError) {
+      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+    }
+    console.log('Register applicationStateChangeCallback');
   }
-  ```
+}
+```
 
+### 监听UIAbility生命周期变化
 
-### 订阅进程内UIAbility生命周期变化
+开发者可以通过[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)监听UIAbility生命周期变化。当[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)生命周期变化时，如UIAbility创建、切换至前台、切换至后台、销毁等情况，UIAbility会收到相应回调函数的通知，从而执行依赖UIAbility生命周期的方法，也可以统计指定页面停留时间和访问频率等信息。
 
-在应用内的DFX统计场景中，如需要统计对应页面停留时间和访问频率等信息，可以使用订阅进程内[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)生命周期变化功能。
-
-通过[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)提供的能力，可以订阅进程内UIAbility生命周期变化。当进程内的UIAbility生命周期变化时，如创建、可见/不可见、获焦/失焦、销毁等，会触发相应的回调函数。每次注册回调函数时，都会返回一个监听生命周期的ID，此ID会自增+1。当超过监听上限数量2^63-1时，会返回-1。以[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)中的使用为例进行说明。
-
+每次注册回调函数时，都会返回一个监听生命周期的ID，此ID会自增1。当超过监听上限数量2^63-1时，会返回-1。以[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)中的使用为例进行说明。
 
 ```ts
 import { AbilityConstant, AbilityLifecycleCallback, UIAbility, Want } from '@kit.AbilityKit';
