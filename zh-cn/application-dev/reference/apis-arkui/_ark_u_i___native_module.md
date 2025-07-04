@@ -3820,7 +3820,7 @@ enum ArkUI_NodeAttributeType
 | NODE_PROGRESS_TOTAL  | 进度条的总长属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：进度条总长。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：进度条总长。 |
 | NODE_PROGRESS_COLOR  | 进度条显示进度值的颜色属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：颜色数值，0xargb格式，形如 0xFFFF0000 表示红色。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：颜色数值，0xargb格式。 |
 | NODE_PROGRESS_TYPE  | 进度条的类型属性，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：进度条类型枚举值[ArkUI_ProgressType](#arkui_progresstype)，默认值为ARKUI_PROGRESS_TYPE_LINEAR。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：进度条类型枚举值[ArkUI_ProgressType](#arkui_progresstype)。 |
-| NODE_PROGRESS_LINEAR_STYLE | 线性进度条样式，支持属性设置，属性重置和属性获取接口，如果进度条类型不是线性样式则不生效。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用{@link [ArkUI_ProgressLinearStyleOption](#arkui_progresslinearstyleoption)}对象设置组件样式。 <br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用{@link [ArkUI_ProgressLinearStyleOption](#arkui_progresslinearstyleoption)}对象获取组件样式。|
+| NODE_PROGRESS_LINEAR_STYLE | 线性进度条样式，支持属性设置，属性重置和属性获取接口，如果进度条类型不是线性样式则不生效。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用{@link [ArkUI_ProgressLinearStyleOption](#arkui_progresslinearstyleoption)}对象设置组件样式。 <br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用{@link [ArkUI_ProgressLinearStyleOption](#arkui_progresslinearstyleoption)}对象获取组件样式。<br/>**起始版本：** 15|
 | NODE_CHECKBOX_SELECT  | CheckBox多选框是否选中，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].i32：1表示选中，0表示不选中。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：1表示选中，0表示不选中。 |
 | NODE_CHECKBOX_SELECT_COLOR  | CheckBox多选框选中状态颜色，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：多选框选中状态颜色, 类型为0xargb，如0xFF1122FF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：多选框选中状态颜色, 类型为0xargb，如0xFF1122FF。 |
 | NODE_CHECKBOX_UNSELECT_COLOR  | CheckBox多选框非选中状态边框颜色，支持属性设置，属性重置和属性获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].u32：边框颜色, 类型为0xargb，如0xFF1122FF。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].u32：边框颜色, 类型为0xargb，如0xFF1122FF。 |
@@ -4383,7 +4383,7 @@ enum ArkUI_ProgressType
 | ARKUI_PROGRESS_TYPE_LINEAR  | 线性样式。  |
 | ARKUI_PROGRESS_TYPE_RING  | 环形无刻度样式。  |
 | ARKUI_PROGRESS_TYPE_ECLIPSE  | 圆形样式。  |
-| ARKUI_PROGRESS_TYPE_SCALE_RING  | 唤醒有刻度样式。  |
+| ARKUI_PROGRESS_TYPE_SCALE_RING  | 环形有刻度样式。  |
 | ARKUI_PROGRESS_TYPE_CAPSULE  | 胶囊样式。  |
 
 
