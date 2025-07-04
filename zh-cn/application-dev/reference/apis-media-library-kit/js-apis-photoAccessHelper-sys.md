@@ -3050,13 +3050,13 @@ setFavorite(favoriteState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+错误码201，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201     | Permission denied.         |
 | 202        |  Called by non-system application.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -3118,13 +3118,13 @@ setFavorite(favoriteState: boolean): Promise&lt;void&gt;
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+错误码201，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201     | Permission denied.         |
 | 202        |  Called by non-system application.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -3182,13 +3182,13 @@ setHidden(hiddenState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+错误码201，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201     | Permission denied.         |
 | 202        |  Called by non-system application.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -3252,13 +3252,13 @@ setHidden(hiddenState: boolean): Promise&lt;void&gt;
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+错误码201，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201     | Permission denied.         |
 | 202        |  Called by non-system application.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -3459,13 +3459,13 @@ setUserComment(userComment: string): Promise&lt;void&gt;
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+错误码201，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201     | Permission denied.         |
 | 202        |  Called by non-system application.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -3523,13 +3523,13 @@ setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+错误码201，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201     | Permission denied.         |
 | 202        |  Called by non-system application.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
