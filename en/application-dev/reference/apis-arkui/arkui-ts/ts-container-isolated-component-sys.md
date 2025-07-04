@@ -57,9 +57,12 @@ Creates an **IsolatedComponent** component to display the .abc file executed in 
 | options | [IsolatedOptions](#isolatedoptions)                | Yes  | Construction parameters.|
 
 ## IsolatedOptions
+
 Describes the optional construction parameters during **IsolatedComponent** construction.
 
-**Parameters**
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name              | Type                                | Mandatory| Description                                                                                                     |
 | ----                 | ---------------------------------------- | ---- | ---------------                                                                                               |
@@ -155,7 +158,7 @@ This example demonstrates the basic usage of the **IsolatedComponent** component
           // 1. Verify the .abc file.
           Button("verifyAbc").onClick(() => {
             let abcFilePath = `${this.context.filesDir}/${this.fileName}.abc`;
-            console.log("abcFilePath: " + abcFilePath);
+            console.info("abcFilePath: " + abcFilePath);
             VerifyAbc([abcFilePath], false);
           }).height(100).width(100)
 

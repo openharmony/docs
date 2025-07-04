@@ -988,7 +988,7 @@ Sets the opacity of the tab bar.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| opacity | number | Yes| Opacity of the tab bar. The value range is [0.0, 1.0].|
+| opacity | number | Yes| Opacity of the tab bar. The value range is [0.0, 1.0]. A value less than 0.0 is handed as **0.0**. A value greater than **1.0** is handed as **1.0**.<br> Default value: **1.0**.|
 
 ## Example
 

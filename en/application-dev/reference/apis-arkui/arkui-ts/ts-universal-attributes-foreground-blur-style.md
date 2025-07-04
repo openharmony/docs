@@ -78,7 +78,7 @@ Applies a foreground blur style to the component. Compared to [foregroundBlurSty
 
 >  **NOTE**
 >
->  **foregroundBlurStyle** is a real-time blurring API that performs rendering frame by frame, which incurs significant performance overhead. When both the blur content and blur radius remain unchanged, it is recommended that you use the static blur API [blur](../../apis-arkgraphics2d/js-apis-effectKit.md#blur). For best practices, see [Image Blurring Optimization – C When to Use](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-fuzzy-scene-performance-optimization#section4945532519).
+>  **foregroundBlurStyle** is a real-time blurring API that performs rendering frame by frame, which incurs significant performance overhead. When both the blur content and blur radius remain unchanged, it is recommended that you use the static blur API [blur](../../apis-arkgraphics2d/js-apis-effectKit.md#blur). For best practices, see [Image Blurring Optimization – When to Use](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-fuzzy-scene-performance-optimization#section4945532519).
 
 ## ForegroundBlurStyleOptions
 Inherited from [BlurStyleOptions](#blurstyleoptions).
