@@ -1634,6 +1634,10 @@ vp2px(value : number) : number
 | ------ | -------------- |
 | number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
 
+> **说明：**
+>
+> 本接口需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+
 **示例：**
 
 <!--code_no_check-->
@@ -1666,6 +1670,10 @@ px2vp(value : number) : number
 | 类型   | 说明           |
 | ------ | -------------- |
 | number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
+
+> **说明：**
+>
+> 本接口需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **示例：**
 
@@ -1702,6 +1710,10 @@ fp2px(value : number) : number
 | ------ | -------------- |
 | number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
 
+> **说明：**
+>
+> 本接口需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+
 **示例：**
 
 <!--code_no_check-->
@@ -1737,6 +1749,10 @@ px2fp(value : number) : number
 | ------ | -------------- |
 | number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
 
+> **说明：**
+>
+> 本接口需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+
 **示例：**
 
 <!--code_no_check-->
@@ -1768,6 +1784,10 @@ lpx2px(value : number) : number
 | ------ | -------------- |
 | number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
 
+> **说明：**
+>
+> 本接口需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+
 **示例：**
 
 <!--code_no_check-->
@@ -1798,6 +1818,10 @@ px2lpx(value : number) : number
 | 类型   | 说明           |
 | ------ | -------------- |
 | number | 转换后的数值。<br/>取值范围：(-∞, +∞) |
+
+> **说明：**
+>
+> 本接口需要在windowStage.loadContent后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
 
 **示例：**
 
