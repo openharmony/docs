@@ -671,17 +671,28 @@ stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt;
   ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
+  
+   // 根据实际业务逻辑获取目标马达, 例如查找本地马达，此处示例仅做展示，开发者需要自行调整筛选逻辑。
+   const targetVibrator = vibratorInfoList.find((vibrator: vibrator.VibratorInfo) => {
+       return vibrator.isLocalVibrator;
+   });
+   if (!targetVibrator) {
+       return;
+   }
+   // 调用 vibrator.startVibration 开始振动。
+   // ...
 
    // 使用try catch对可能出现的异常进行捕获
    try {
-     vibrator.stopVibration({ deviceId: 1, vibratorId: 3 }).then(() => {
-       console.info('Succeed in stopping vibration');
-     }, (error: BusinessError) => {
-       console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-     });
+       // 根据实际业务场景停止马达振动。
+       vibrator.stopVibration({ deviceId: targetVibrator.deviceId, vibratorId: targetVibrator.vibratorId }).then(() => {
+         console.info('Succeed in stopping vibration');
+       }, (error: BusinessError) => {
+         console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+       });
    } catch (error) {
-     let e: BusinessError = error as BusinessError;
-     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+       let e: BusinessError = error as BusinessError;
+       console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
    }
   ```
 
