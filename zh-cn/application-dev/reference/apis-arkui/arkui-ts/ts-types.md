@@ -278,6 +278,8 @@
 
 ## ResourceColor
 
+type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Resource](#resource)
+
 颜色类型，用于描述资源颜色类型。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -740,7 +742,7 @@ type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 | 参数名 | 类型                                                | 必填 | 说明                                                         |
 | ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | ratios | Array&lt;number&gt;                                 | 是   | 阈值数组。其中，每个阈值代表组件可见面积（即组件在屏幕显示区的面积，只计算父组件内的面积，超出父组件部分不会计算）与组件自身面积的比值。每个阈值的取值范围为[0.0, 1.0]，如果开发者设置的阈值超出该范围，则会实际取值0.0或1.0。 |
-| expectedUpdateInterval | number | 否 | 预期更新间隔，单位为ms。定义了开发者期望的更新间隔。默认值：1000。|
+| expectedUpdateInterval | number | 否 | 定义了开发者期望的计算间隔，单位为ms。默认值：1000|
 
 ## VisibleAreaChangeCallback<sup>12+</sup>
 
@@ -1031,7 +1033,7 @@ setTextSelection选中文字时的配置。
 >
 >  **使用场景：**
 > 
-> - 使用[自定义组件的自定义布局](ts-custom-component-layout.md#自定义组件的自定义布局)时，对其中的子组件的内容未知，不能确定设置固定的长度和宽度，可以为其的宽度或高度设置LayoutPolicy.fixAtIdealSize，使得子组件不受到父组件的影响，只受到自定义布局限制的影响。
+> - 使用[自定义组件的自定义布局](ts-custom-component-layout.md)时，对其中的子组件的内容未知，不能确定设置固定的长度和宽度，可以为其的宽度或高度设置LayoutPolicy.fixAtIdealSize，使得子组件不受到父组件的影响，只受到自定义布局限制的影响。
 
 ## TextContentControllerOptions<sup>15+</sup>
 

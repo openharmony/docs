@@ -35,7 +35,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 **错误码**：
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -52,6 +52,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
+   // 使用try catch对可能出现的异常进行捕获
    try {
      // 查询是否支持'haptic.notice.success'
      vibrator.isSupportEffect('haptic.notice.success', (err: BusinessError, state: boolean) => {
@@ -191,7 +192,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 **错误码**：
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -207,7 +208,8 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
    ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-
+   
+   // 使用try catch对可能出现的异常进行捕获
    try {
      // 查询是否支持'haptic.notice.success'
      vibrator.isSupportEffect('haptic.notice.success', (err: BusinessError, state: boolean) => {
@@ -337,7 +339,7 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -352,6 +354,7 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
+   // 使用try catch对可能出现的异常进行捕获
    try {
      // 按照指定时长振动
      vibrator.startVibration({
@@ -453,7 +456,7 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -468,6 +471,7 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
+   // 使用try catch对可能出现的异常进行捕获
    try {
      // 按照指定时长振动
      vibrator.startVibration({
@@ -557,7 +561,7 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -568,7 +572,8 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
    ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-  
+
+   // 使用try catch对可能出现的异常进行捕获
    try {
      // 停止所有模式的马达振动
      vibrator.stopVibration((error: BusinessError) => {
@@ -604,7 +609,7 @@ stopVibration(): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -615,7 +620,8 @@ stopVibration(): Promise&lt;void&gt;
    ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-  
+
+   // 使用try catch对可能出现的异常进行捕获
    try {
      // 停止所有模式的马达振动
      vibrator.stopVibration().then(() => {
@@ -653,7 +659,7 @@ stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -677,6 +683,8 @@ stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt;
    // ...
 
    // 根据实际业务场景停止振动。
+
+   // 使用try catch对可能出现的异常进行捕获
    try {
        vibrator.stopVibration({ deviceId: targetVibrator.deviceId, vibratorId: targetVibrator.vibratorId }).then(() => {
          console.info('Succeed in stopping vibration');
@@ -687,7 +695,7 @@ stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt;
        let e: BusinessError = error as BusinessError;
        console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
    }
-   ```
+  ```
 
 ## vibrator.stopVibrationSync<sup>12+</sup>
 
@@ -703,7 +711,7 @@ stopVibrationSync(): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -715,7 +723,8 @@ stopVibrationSync(): void
    ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-  
+
+   // 使用try catch对可能出现的异常进行捕获
    try {
      // 停止任何形式的马达振动
      vibrator.stopVibrationSync()
@@ -743,7 +752,7 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -755,7 +764,8 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
    ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-  
+
+   // 使用try catch对可能出现的异常进行捕获
    try {
      // 查询是否支持'haptic.notice.success'
      vibrator.isSupportEffect('haptic.notice.success', (err: BusinessError, state: boolean) => {
@@ -814,7 +824,7 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -827,6 +837,7 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
+   // 使用try catch对可能出现的异常进行捕获
    try {
      // 查询是否支持'haptic.notice.success'
      vibrator.isSupportEffect('haptic.notice.success').then((state: boolean) => {
@@ -880,7 +891,7 @@ isSupportEffectSync(effectId: string): boolean
 
 **错误码**：
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -893,6 +904,7 @@ isSupportEffectSync(effectId: string): boolean
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
+   // 使用try catch对可能出现的异常进行捕获
    try {
      // 查询是否支持预设'haptic.notice.success'
      let ret = vibrator.isSupportEffectSync('haptic.notice.success');
@@ -920,7 +932,7 @@ getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -939,6 +951,7 @@ getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo;
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
+   // 使用try catch对可能出现的异常进行捕获
    try {
      const effectInfo: vibrator.EffectInfo = vibrator.getEffectInfoSync('haptic.clock.timer', { deviceId: 1, vibratorId: 3});
      console.log(`isEffectSupported: ${effectInfo.isEffectSupported}`);
@@ -1003,7 +1016,7 @@ on(type: 'vibratorStateChange', callback: Callback&lt;VibratorStatusEvent&gt;): 
 
 **错误码**：
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -1021,6 +1034,7 @@ on(type: 'vibratorStateChange', callback: Callback&lt;VibratorStatusEvent&gt;): 
      console.log('vibrator state callback info:', JSON.stringify(data));
    }
 
+   // 使用try catch对可能出现的异常进行捕获
    try {
      // 订阅 vibratorStateChange事件
      vibrator.on('vibratorStateChange', vibratorStateChangeCallback);
@@ -1048,7 +1062,7 @@ off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;)
 
 **错误码**：
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -1065,6 +1079,7 @@ off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;)
    const vibratorStateChangeCallback = (data: vibrator.VibratorStatusEvent) => {
      console.log('vibrator state callback info:', JSON.stringify(data));
    }
+   // 使用try catch对可能出现的异常进行捕获
    try {
      // 取消订阅 vibratorStateChange事件
      vibrator.off('vibratorStateChange', vibratorStateChangeCallback);
@@ -1147,7 +1162,7 @@ isHdHapticSupported(): boolean
 
 **错误码**：
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -1159,6 +1174,7 @@ isHdHapticSupported(): boolean
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
+   // 使用try catch对可能出现的异常进行捕获
    try {
      // 查询是否支持高清振动
      let ret = vibrator.isHdHapticSupported();
@@ -1195,7 +1211,7 @@ addContinuousEvent(time: number, duration: number, options?: ContinuousParam): V
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -1208,6 +1224,7 @@ addContinuousEvent(time: number, duration: number, options?: ContinuousParam): V
    import { BusinessError } from '@kit.BasicServicesKit';
 
    let builder = new vibrator.VibratorPatternBuilder();
+   // 使用try catch对可能出现的异常进行捕获
    try {
      let pointsMe: vibrator.VibratorCurvePoint[] = [
 	     { time: 0, intensity: 0, frequency: -7 },
@@ -1259,7 +1276,7 @@ addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilde
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -1272,6 +1289,7 @@ addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilde
    import { BusinessError } from '@kit.BasicServicesKit';
 
    let builder = new vibrator.VibratorPatternBuilder();
+   // 使用try catch对可能出现的异常进行捕获
    try {
      let param: vibrator.TransientParam = {
 	     intensity: 80,
@@ -1390,7 +1408,7 @@ build(): VibratorPattern;
 | [VibrateTime](#vibratetime9)          | 按照指定时长触发马达振动。<br/>**原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。 |
 | [VibratePreset](#vibratepreset9)      | 按照预置振动类型触发马达振动。                               |
 | [VibrateFromFile](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。                         |
-| VibrateFromPattern<sup>18+</sup>      | 按照自定义振动效果触发马达振动。                             |
+| [VibrateFromPattern<sup>18+</sup>](#vibratefrompattern18)      | 按照自定义振动效果触发马达振动。                             |
 
 ## VibrateTime<sup>9+</sup>
 

@@ -665,11 +665,11 @@ bundleManager.getInstalledBundleList(wantTemp, accountId).then((result) => {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称                     | 类型                   | 必填 | 说明                                                         |
-| ------------------------ | ---------------------- | ---- | ------------------------------------------------------------ |
-| userId                   | number                 | 否   | 指示用户id，默认值：调用方所在用户，取值范围：大于等于0。    |
-| installFlag              | number                 | 否   | 安装标志。枚举值：0：应用初次安装，1：应用覆盖安装，2：应用免安装，默认值为应用初次安装。 |
-| parameters<sup>19+</sup> | Record&lt;string, string&gt; | 否   | 扩展参数，默认值为空。key取值支持"ohos.bms.param.enterpriseForAllUser"，若对应的value值为"true"，表示为所有用户安装应用。 |
+| 名称                     | 类型                   | 只读 | 可选 | 说明                                                         |
+| ------------------------ | ---------------------- | ---- | ---- | ------------------------------------------------------------ |
+| userId                   | number                 | 否   | 是 | 指示用户id，默认值：调用方所在用户，取值范围：大于等于0。    |
+| installFlag              | number                 | 否   | 是 |安装标志。枚举值：0：应用初次安装，1：应用覆盖安装，2：应用免安装，默认值为应用初次安装。 |
+| parameters<sup>19+</sup> | Record&lt;string, string&gt; | 否   | 是 | 扩展参数，默认值为空。key取值支持"ohos.bms.param.enterpriseForAllUser"，若对应的value值为"true"，表示为所有用户安装应用。 |
 
 ## bundleManager.addInstallationAllowedAppDistributionTypes<sup>20+</sup>
 

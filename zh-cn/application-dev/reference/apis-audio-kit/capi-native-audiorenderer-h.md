@@ -44,13 +44,13 @@
 | [OH_AudioStream_Result OH_AudioRenderer_SetVolume(OH_AudioRenderer* renderer, float volume)](#oh_audiorenderer_setvolume) | - | 设置当前音频流音量值。 |
 | [OH_AudioStream_Result OH_AudioRenderer_SetVolumeWithRamp(OH_AudioRenderer* renderer, float volume, int32_t durationMs)](#oh_audiorenderer_setvolumewithramp) | - | 在指定时间范围内使用渐变更改音量。 |
 | [OH_AudioStream_Result OH_AudioRenderer_GetVolume(OH_AudioRenderer* renderer, float* volume)](#oh_audiorenderer_getvolume) | - | 获取当前音频流音量值。 |
-| [OH_AudioStream_Result OH_AudioRenderer_GetUnderflowCount(OH_AudioRenderer* renderer, uint32_t* count)](#oh_audiorenderer_getunderflowcount) | - | 查询当前播放音频流欠载数。 |
+| [OH_AudioStream_Result OH_AudioRenderer_GetUnderflowCount(OH_AudioRenderer* renderer, uint32_t* count)](#oh_audiorenderer_getunderflowcount) | - | 获取当前播放音频流欠载数。 |
 | [OH_AudioStream_Result OH_AudioRenderer_GetChannelLayout(OH_AudioRenderer* renderer,OH_AudioChannelLayout* channelLayout)](#oh_audiorenderer_getchannellayout) | - | 查询当前音频流声道布局。 |
 | [OH_AudioStream_Result OH_AudioRenderer_GetEffectMode(OH_AudioRenderer* renderer,OH_AudioStream_AudioEffectMode* effectMode)](#oh_audiorenderer_geteffectmode) | - | 查询当前音频流音效模式。 |
 | [OH_AudioStream_Result OH_AudioRenderer_SetEffectMode(OH_AudioRenderer* renderer,OH_AudioStream_AudioEffectMode effectMode)](#oh_audiorenderer_seteffectmode) | - | 设置当前音频流音效模式。 |
 | [OH_AudioStream_Result OH_AudioRenderer_GetRendererPrivacy(OH_AudioRenderer* renderer,OH_AudioStream_PrivacyType* privacy)](#oh_audiorenderer_getrendererprivacy) | - | 查询当前播放音频流是否会被其它应用录制。 |
 | [OH_AudioStream_Result OH_AudioRenderer_SetSilentModeAndMixWithOthers(OH_AudioRenderer* renderer, bool on)](#oh_audiorenderer_setsilentmodeandmixwithothers) | - | 设置静音并发播放模式。 |
-| [OH_AudioStream_Result OH_AudioRenderer_GetSilentModeAndMixWithOthers(OH_AudioRenderer* renderer, bool* on)](#oh_audiorenderer_getsilentmodeandmixwithothers) | - | 查询当前音频流是否开启静音并发播放。 |
+| [OH_AudioStream_Result OH_AudioRenderer_GetSilentModeAndMixWithOthers(OH_AudioRenderer* renderer, bool* on)](#oh_audiorenderer_getsilentmodeandmixwithothers) | - | 获取当前音频流是否开启静音并发播放。 |
 | [OH_AudioStream_Result OH_AudioRenderer_SetDefaultOutputDevice(OH_AudioRenderer* renderer, OH_AudioDevice_Type deviceType)](#oh_audiorenderer_setdefaultoutputdevice) | - | 设置默认本机内置发声设备。<br> 本接口仅适用于音频流类型[OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage)为语音消息、VoIP语音通话或者VoIP视频通话的场景使用，以及可选的设备类型为听筒、扬声器和系统默认设备。 |
 | [typedef void (\*OH_AudioRenderer_OnInterruptCallback)(OH_AudioRenderer* renderer, void* userData,OH_AudioInterrupt_ForceType type, OH_AudioInterrupt_Hint hint)](#oh_audiorenderer_oninterruptcallback) | OH_AudioRenderer_OnInterruptCallback | 音频流中断事件回调函数。 |
 | [typedef void (\*OH_AudioRenderer_OnErrorCallback)(OH_AudioRenderer* renderer, void* userData,OH_AudioStream_Result error)](#oh_audiorenderer_onerrorcallback) | OH_AudioRenderer_OnErrorCallback | 音频流错误事件回调函数。 |
@@ -689,7 +689,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetUnderflowCount(OH_AudioRenderer* rende
 
 **描述**
 
-查询当前播放音频流欠载数。
+获取当前播放音频流欠载数。
 
 **起始版本：** 12
 
@@ -821,6 +821,8 @@ OH_AudioStream_Result OH_AudioRenderer_SetSilentModeAndMixWithOthers(OH_AudioRen
 
 设置静音并发播放模式。
 
+当设置为true，打开静音并发播放模式，系统将让此音频流静音播放，并且不会打断其他音频流。设置为false，将关闭静音并发播放，音频流可根据系统焦点策略抢占焦点。
+
 **起始版本：** 12
 
 
@@ -845,7 +847,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetSilentModeAndMixWithOthers(OH_AudioRen
 
 **描述**
 
-查询当前音频流是否开启静音并发播放。
+获取当前音频流是否开启静音并发播放。
 
 **起始版本：** 12
 
@@ -855,7 +857,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetSilentModeAndMixWithOthers(OH_AudioRen
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AudioRenderer](capi-ohaudio-oh-audiorendererstruct.md)* renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 |
-| bool* on | 用于返回当前流的静音并发状态。 |
+| bool* on | 用于返回当前流的静音并发状态。返回true表示打开，返回false表示关闭。 |
 
 **返回：**
 

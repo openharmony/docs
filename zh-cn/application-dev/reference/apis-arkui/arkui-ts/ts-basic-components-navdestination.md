@@ -10,7 +10,7 @@
 >
 > - NavDestination组件必须配合Navigation使用，作为Navigation目的页面的根节点，单独使用只能作为普通容器组件，不具备路由相关属性能力。
 >
-> - 如果页面栈中间页面的生命周期发生变化，跳转之前的栈顶Destination的生命周期(onWillShow, onShown, onHidden, onWillDisappear)与跳转之后的栈顶Destination的生命周期(onWillShow, onShown, onHidden, onWillDisappear)均在最后触发。
+> - 如果路由栈中间页面的生命周期发生变化，跳转之前的栈顶Destination的生命周期(onWillShow, onShown, onHidden, onWillDisappear)与跳转之后的栈顶Destination的生命周期(onWillShow, onShown, onHidden, onWillDisappear)均在最后触发。
 >
 > - NavDestination未设置主副标题并且没有返回键时，不显示标题栏。
 >
@@ -302,7 +302,7 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| recoverable  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | NavDestination是否可恢复，默认为不可恢复。<br/>默认值：false<br/>true：页面栈可恢复。<br/>false：页面栈不可恢复。 |
+| recoverable  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | NavDestination是否可恢复，默认为不可恢复。<br/>默认值：false<br/>true：路由栈可恢复。<br/>false：路由栈不可恢复。 |
 
 >  **使用说明：**
 >
@@ -473,7 +473,7 @@ NavDestination类型。
 | 名称   | 值 | 说明                                     |
 | ---- | --- | ---------------------------------------- |
 | STANDARD | 0 | 标准模式的NavDestination。                       |
-| DIALOG | 1 | 默认透明，进出页面栈不影响下层NavDestination的生命周期。<br />API version 13之前，默认无系统转场动画。从API version 13开始，支持系统转场动画。  |
+| DIALOG | 1 | 默认透明，进出路由栈不影响下层NavDestination的生命周期。<br />API version 13之前，默认无系统转场动画。从API version 13开始，支持系统转场动画。  |
 
 ## NavigationSystemTransitionType<sup>14+</sup>枚举说明
 
@@ -530,7 +530,7 @@ onHidden(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 onWillAppear(callback: Callback\<void>)
 
-当该Destination挂载之前触发此回调。在该回调中允许修改页面栈，当前帧生效。
+当该Destination挂载之前触发此回调。在该回调中允许修改路由栈，当前帧生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -570,7 +570,7 @@ onWillDisappear(callback: Callback\<void>)
 
 onBackPressed(callback:&nbsp;()&nbsp;=&gt;&nbsp;boolean)
 
-当与Navigation绑定的页面栈中存在内容时，此回调生效。当点击返回键时，触发该回调。
+当与Navigation绑定的导航控制器中存在内容时，此回调生效。当点击返回键时，触发该回调。
 
 返回值为true时，表示重写返回键逻辑，返回值为false时，表示回退到上一个页面。
 
@@ -687,7 +687,7 @@ NavDestination上下文信息。
 | 名称   | 类型     | 必填   |  说明     |
 | ---- | ------ | ----- | ------ |
 | pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是 | 跳转NavDestination时指定的参数。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 是 | 当前NavDestination所处的页面栈。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 是 | 当前NavDestination所处的导航控制器。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | navDestinationId<sup>12+</sup> | string | 否 | 当前NavDestination的唯一ID，由系统自动生成，和组件通用属性id无关。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ### getConfigInRouteMap<sup>12+</sup>
@@ -1320,7 +1320,7 @@ struct HomeBody {
 
 ### 示例4（NavDestination配置页面方向和对应状态栏、导航条显隐）
 
-以下示例主要演示每个NavDestination可以配置指定的页面方向和状态栏，导航栏显隐状态
+以下示例主要演示每个NavDestination可以配置指定的页面方向和状态栏，导航条显隐状态。
 
 ```ts
 import { window } from '@kit.ArkUI';

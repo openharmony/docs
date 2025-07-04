@@ -1,6 +1,6 @@
 # @ohos.app.form.formProvider (formProvider) (System API)
 
-The **FormProvider** module provides APIs related to the widget provider. You can use the APIs to update a widget, set the next refresh time for a widget, obtain widget information, and request a widget release.
+The **formProvider** module provides APIs to obtain widget information, update widgets, set the update time, and request a widget release.
 
 > **NOTE**
 >
@@ -316,6 +316,120 @@ try {
         console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
       }
     }
+  }).catch((error: BusinessError) => {
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
+}
+```
+
+## activateSceneAnimation<sup>20+</sup>
+
+activateSceneAnimation(formId: string): Promise&lt;void&gt;
+
+Requests to activate a widget. This API takes effect only for [scene-based widgets](../../form/arkts-ui-widget-configuration.md#sceneanimationparams-field). This API uses a promise to return the result. An interactive widget can be in the active or inactive state. In the inactive state, the widget is the same as a common widget. In the active state, the widget can start the **LiveFormExtensionAbility** process developed by the widget host to implement animations.
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- |-------|
+| formId | string | Yes| Widget ID.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 801 | Capability not supported.function activateSceneAnimation can not work correctly due to limited device capabilities. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form cannot be operated by the current application. |
+| 16501011 | The form can not support this operation, please check your fom_config's sceneAnimationParams configuration infomation is correct or not. |
+
+**Example**
+
+```ts
+import { formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let formId: string = '12400633174999288';
+
+try {
+  formProvider.activateSceneAnimation(formId).then(() => {
+    console.info('activateSceneAnimation succeed.');
+  }).catch((error: BusinessError) => {
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
+}
+```
+
+## deactivateSceneAnimation<sup>20+</sup>
+
+deactivateSceneAnimation(formId: string): Promise&lt;void&gt;
+
+Requests to deactivate a widget. This API takes effect only for [scene-based widgets](../../form/arkts-ui-widget-configuration.md#sceneanimationparams-field). This API uses a promise to return the result. An interactive widget can be in the active or inactive state. In the inactive state, the widget is the same as a common widget. In the active state, the widget can start the **LiveFormExtensionAbility** process developed by the widget host to implement animations.
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- |-------|
+| formId | string | Yes| Widget ID.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 801 | Capability not supported.function deactivateSceneAnimation can not work correctly due to limited device capabilities. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form cannot be operated by the current application. |
+| 16501011 | The form can not support this operation, please check your fom_config's sceneAnimationParams configuration infomation is correct or not. |
+
+**Example**
+
+```ts
+import { formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let formId: string = '12400633174999288';
+
+try {
+  formProvider.deactivateSceneAnimation(formId).then(() => {
+    console.info('deactivateSceneAnimation succeed.');
   }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });

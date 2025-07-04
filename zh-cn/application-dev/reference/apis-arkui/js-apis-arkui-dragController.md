@@ -282,7 +282,7 @@ struct DragControllerPage {
 | extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。默认值为空。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标。不配置时，左右居中，顶部向下偏移20%。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 设置拖拽过程中背板图处理模式及数量角标的显示。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| dataLoadParams<sup>20+</sup>| [unifiedDataChannel.DataLoadParams](../apis-arkdata/js-apis-data-unifiedDataChannel.md#dataloadparams20)                                | 否   | 设置拖起方延迟提供数据。使用此方法向系统提供数据加载参数，而不是直接提供完整的数据对象。当用户在目标应用程序上落入时，系统将使用此参数从起拖方请求实际数据。默认值为空。 <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| dataLoadParams<sup>20+</sup>| [unifiedDataChannel.DataLoadParams](../apis-arkdata/js-apis-data-unifiedDataChannel.md#dataloadparams20)                                | 否   | 设置拖起方延迟提供数据。使用此方法向系统提供数据加载参数，而不是直接提供完整的数据对象。当用户在目标应用程序上落入时，系统将使用此参数从起拖方请求实际数据。与data同时设置时，dataLoadParams生效。默认值为空。 <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## dragController.createDragAction<sup>(deprecated)</sup>
 
@@ -450,7 +450,7 @@ startDrag(): Promise&lt;void&gt;
 | -------- | ------------- |
 | 100001   | Internal handling failed. |
 
-**示例：**
+**示例1：**
 
 > **说明：**
 >
@@ -510,6 +510,181 @@ struct DragControllerPage {
   }
 }
 ```
+
+**示例2：**
+
+在[DragInfo](#draginfo)中配置dataLoadParams，设置拖起方延迟提供数据。
+
+```ts
+import { unifiedDataChannel, uniformTypeDescriptor, uniformDataStruct } from '@kit.ArkData';
+import { fileUri, fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+import { dragController } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct ImageExample {
+  private dragAction: dragController.DragAction | null = null;
+  customBuilders: Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  @State uri: string = "";
+  @State blockArr: string[] = [];
+  uiContext = this.getUIContext();
+  udKey: string = '';
+
+  @Builder
+  DraggingBuilder() {
+    Video({ src: $rawfile('test1.mp4'), controller: new VideoController() })
+      .width(100)
+      .height(100)
+  }
+
+  build() {
+    Column() {
+      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+        Button('touch to execute drag')
+          .margin(10)
+          .onTouch((event?: TouchEvent) => {
+            if (event) {
+              if (event.type == TouchType.Down) {
+                this.customBuilders.splice(0, this.customBuilders.length);
+                this.customBuilders.push(() => {
+                  this.DraggingBuilder()
+                });
+                const context: Context | undefined = this.uiContext.getHostContext();
+                if (context) {
+                  let loadHandler: unifiedDataChannel.DataLoadHandler = () => {
+                    let data =
+                      context.resourceManager.getRawFdSync('test1.mp4');
+                    let filePath = context.filesDir + '/test1.mp4';
+                    let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+                    let bufferSize = data.length as number;
+                    let buf = new ArrayBuffer(bufferSize);
+                    fs.readSync(data.fd, buf, { offset: data.offset, length: bufferSize });
+                    fs.writeSync(file.fd, buf, { offset: 0, length: bufferSize });
+                    fs.closeSync(file.fd);
+                    context.resourceManager.closeRawFdSync('test1.mp4')
+                    this.uri = fileUri.getUriFromPath(filePath);
+                    let videoMp: uniformDataStruct.FileUri = {
+                      uniformDataType: 'general.file-uri',
+                      oriUri: this.uri,
+                      fileType: 'general.video',
+                    }
+                    let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
+                    let unifiedData = new unifiedDataChannel.UnifiedData();
+                    unifiedRecord.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, videoMp);
+                    unifiedData.addRecord(unifiedRecord);
+                    return unifiedData;
+                  }
+
+                  let dragInfo: dragController.DragInfo = {
+                    pointerId: 0,
+                    extraParams: '',
+                    dataLoadParams: {
+                      loadHandler: loadHandler,
+                      dataLoadInfo: { types: new Set([uniformTypeDescriptor.UniformDataType.VIDEO]), recordCount: 1 }
+                    }
+                  }
+
+                  let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
+                    console.info("ndq Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+                  }
+                  try {
+                    this.dragAction = this.getUIContext()
+                      .getDragController()
+                      .createDragAction(this.customBuilders,
+                        dragInfo)
+                    if (!this.dragAction) {
+                      console.info("listener dragAction is null");
+                      return;
+                    }
+                    this.dragAction.on('statusChange', func);
+                    this.dragAction.startDrag().then(() => {
+                    }).catch((err: Error) => {
+                      console.error("start drag Error:" + err.message);
+                    })
+                  } catch (err) {
+                    console.error("create dragAction Error:" + err.message);
+                  }
+                }
+              }
+            }
+          })
+      }
+      .margin({ bottom: 20 })
+
+      Row() {
+        Column() {
+          Text('可释放区域')
+            .fontSize('15dp')
+            .height('10%')
+          List() {
+            ForEach(this.blockArr, (item: string, index) => {
+              ListItem() {
+                Video({ src: item, controller: new VideoController() })
+                  .width(100)
+                  .height(100)
+                  .border({ width: 1 })
+              }
+              .margin({ left: 30, top: 30 })
+            }, (item: string) => item)
+          }
+          .border({ width: 1 })
+          .height('90%')
+          .width('100%')
+          .allowDrop([uniformTypeDescriptor.UniformDataType.VIDEO])
+          .onDrop((event?: DragEvent, extraParams?: string) => {
+            let context = this.uiContext.getHostContext() as common.UIAbilityContext;
+            let pathDir: string = context.distributedFilesDir;
+            let destUri = fileUri.getUriFromPath(pathDir);
+            let progressListener: unifiedDataChannel.DataProgressListener =
+              (progress: unifiedDataChannel.ProgressInfo, dragData: UnifiedData | null) => {
+                if (dragData != null) {
+                  let arr: Array<unifiedDataChannel.UnifiedRecord> = dragData.getRecords();
+                  if (arr.length > 0) {
+                    if (arr[0].getType() === uniformTypeDescriptor.UniformDataType.VIDEO) {
+                      this.blockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
+                    }
+                  } else {
+                    console.info('dragData arr is null');
+                  }
+                } else {
+                  console.info('dragData is undefined');
+                }
+                console.info(`percentage: ${progress.progress}`);
+              };
+            let options: DataSyncOptions = {
+              destUri: destUri,
+              fileConflictOptions: unifiedDataChannel.FileConflictOptions.OVERWRITE,
+              progressIndicator: unifiedDataChannel.ProgressIndicator.DEFAULT,
+              dataProgressListener: progressListener,
+            }
+            try {
+              this.udKey = (event as DragEvent).startDataLoading(options);
+              console.info('udKey: ', this.udKey);
+            } catch (e) {
+              console.error(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+            }
+          }, { disableDataPrefetch: true })
+        }
+        .height("50%")
+        .width("90%")
+        .border({ width: 1 })
+      }
+
+      Button('取消数据传输')
+        .onClick(() => {
+          try {
+            this.getUIContext().getDragController().cancelDataLoading(this.udKey);
+          } catch (e) {
+            console.error(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+          }
+        })
+        .margin({ top: 10 })
+    }.width('100%')
+  }
+}
+```
+![zh-cn_executeDrag5](figures/dragControllerDataLoading.gif)
 
 ### on('statusChange')<sup>11+</sup>
 

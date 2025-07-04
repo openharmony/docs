@@ -3794,4 +3794,4 @@ Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count)
 
 | 类型 | 说明 |
 | -- | -- |
-| [Input_Result](capi-oh-input-manager-h.md#input_result) | [INPUT_SUCCESS](#input_result) 表示查询成功。<br> [INPUT_PARAMETER_ERROR](capi-oh-input-manager-h.md#input_result) 表示参数错误。 |
+| [Input_Result](capi-oh-input-manager-h.md#input_result) | OH_Input_QueryMaxTouchPoints的执行结果：<br>[INPUT_SUCCESS](#input_result) 表示查询成功。<br> [INPUT_PARAMETER_ERROR](capi-oh-input-manager-h.md#input_result) 表示参数错误。 |

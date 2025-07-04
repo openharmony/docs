@@ -4,7 +4,7 @@ sensor模块提供了获取传感器数据的能力，包括获取传感器属�
 
 > **说明：**
 >
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。订阅前可使用[getSingleSensor](#sensorgetsinglesensor9)接口获取该传感器的信息，订阅传感器数据时确保on订阅和off取消订阅成对出现。
 
 
 ## 导入模块
@@ -34,9 +34,9 @@ on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AccelerometerResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
-**错误码**： 
+**错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -50,6 +50,7 @@ on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -85,7 +86,7 @@ on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Acceleromete
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -99,6 +100,7 @@ on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Acceleromete
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -135,7 +137,7 @@ on(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, option
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -148,6 +150,7 @@ on(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, option
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.AMBIENT_LIGHT, (data: sensor.LightResponse) => {
     console.info('Succeeded in getting the ambient light intensity: ' + data.intensity);
@@ -179,7 +182,7 @@ on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureR
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -192,6 +195,7 @@ on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureR
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
     console.info('Succeeded in invoking on. Temperature: ' + data.temperature);
@@ -223,7 +227,7 @@ on(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;, option
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -236,6 +240,7 @@ on(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;, option
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.BAROMETER, (data: sensor.BarometerResponse) => {
     console.info('Succeeded in invoking on. Atmospheric pressure: ' + data.pressure);
@@ -267,7 +272,7 @@ on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;, options?: 
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -280,6 +285,7 @@ on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;, options?: 
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -317,7 +323,7 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, option
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -331,6 +337,7 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, option
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.GYROSCOPE, (data: sensor.GyroscopeResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -367,7 +374,7 @@ on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalib
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -381,6 +388,7 @@ on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalib
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -418,7 +426,7 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -431,6 +439,7 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.HALL, (data: sensor.HallResponse) => {
     console.info('Succeeded in invoking on. Hall status: ' + data.status);
@@ -465,7 +474,7 @@ on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, optio
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -479,6 +488,7 @@ on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, optio
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.HEART_RATE, (data: sensor.HeartRateResponse) => {
     console.info('Succeeded in invoking on. Heart rate: ' + data.heartRate);
@@ -510,7 +520,7 @@ on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;, options?
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -523,6 +533,7 @@ on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;, options?
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.HUMIDITY, (data: sensor.HumidityResponse) => {
     console.info('Succeeded in invoking on. Humidity: ' + data.humidity);
@@ -557,7 +568,7 @@ on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAcceleromete
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -571,6 +582,7 @@ on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAcceleromete
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, (data: sensor.LinearAccelerometerResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -604,7 +616,7 @@ on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -617,6 +629,7 @@ on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -638,7 +651,7 @@ on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFie
 
 订阅未校准地磁传感器数据。
 
-**系统能力：** SystemCapability.Sensors.Sensor 
+**系统能力**：SystemCapability.Sensors.Sensor 
 
 **参数**：
 
@@ -650,7 +663,7 @@ on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFie
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -663,6 +676,7 @@ on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFie
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -697,7 +711,7 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, op
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -718,6 +732,7 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, op
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.ORIENTATION, (data: sensor.OrientationResponse) => {
     console.info('Succeeded in the device rotating at an angle around the Z axis: ' + data.alpha);
@@ -745,7 +760,7 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -767,6 +782,7 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.PEDOMETER, (data: sensor.PedometerResponse) => {
     console.info('Succeeded in invoking on. Step count: ' + data.steps);
@@ -801,7 +817,7 @@ on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionR
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -815,6 +831,7 @@ on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionR
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
     console.info('Succeeded in invoking on. Pedometer scalar: ' + data.scalar);
@@ -834,7 +851,7 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
 
 订阅接近光传感器数据。
 
-**系统能力**：SystemCapability.Sensors.Sensor 
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数**：
 
@@ -846,7 +863,7 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -859,6 +876,7 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.PROXIMITY, (data: sensor.ProximityResponse) => {
     console.info('Succeeded in invoking on. Distance: ' + data.distance);
@@ -891,7 +909,7 @@ on(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -904,6 +922,7 @@ on(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
     console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -939,7 +958,7 @@ on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionRes
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -952,6 +971,7 @@ on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionRes
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
     console.info('Succeeded in invoking on. Scalar data: ' + data.scalar);
@@ -984,7 +1004,7 @@ on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -997,6 +1017,7 @@ on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
     console.info('Succeeded in invoking on. Wear status: ' + data.value);
@@ -1027,7 +1048,7 @@ on(type: 'sensorStatusChange', callback: Callback&lt;SensorStatusEvent&gt;): voi
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1039,6 +1060,7 @@ on(type: 'sensorStatusChange', callback: Callback&lt;SensorStatusEvent&gt;): voi
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on('sensorStatusChange', (data: sensor.SensorStatusEvent) => {
     console.info('sensorStatusChange : ' + JSON.stringify(data));
@@ -1074,7 +1096,7 @@ once(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&g
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1088,6 +1110,7 @@ once(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&g
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -1119,7 +1142,7 @@ once(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Accelerome
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1133,6 +1156,7 @@ once(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Accelerome
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -1165,7 +1189,7 @@ once(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): voi
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1178,6 +1202,7 @@ once(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): voi
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.AMBIENT_LIGHT, (data: sensor.LightResponse) => {
     console.info('Succeeded in invoking once. the ambient light intensity: ' + data.intensity);
@@ -1205,7 +1230,7 @@ once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatur
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1218,6 +1243,7 @@ once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatur
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
     console.info('Succeeded in invoking once. Temperature: ' + data.temperature);
@@ -1234,7 +1260,7 @@ once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): voi
 
 获取一次气压计传感器数据。
 
-**系统能力：** SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数**：
 
@@ -1245,7 +1271,7 @@ once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): voi
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1258,6 +1284,7 @@ once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): voi
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.BAROMETER, (data: sensor.BarometerResponse) => {
     console.info('Succeeded in invoking once. Atmospheric pressure: ' + data.pressure);
@@ -1285,7 +1312,7 @@ once(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1298,6 +1325,7 @@ once(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -1329,7 +1357,7 @@ once(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): voi
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1343,6 +1371,7 @@ once(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): voi
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.GYROSCOPE, (data: sensor.GyroscopeResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -1374,7 +1403,7 @@ once(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncal
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1388,6 +1417,7 @@ once(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncal
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -1420,7 +1450,7 @@ once(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1433,6 +1463,7 @@ once(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;): void
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.HALL, (data: sensor.HallResponse) => {
     console.info('Succeeded in invoking once. Status: ' + data.status);
@@ -1462,7 +1493,7 @@ once(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): vo
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1476,6 +1507,7 @@ once(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): vo
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.HEART_RATE, (data: sensor.HeartRateResponse) => {
     console.info('Succeeded in invoking once. Heart rate: ' + data.heartRate);
@@ -1503,7 +1535,7 @@ once(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1516,6 +1548,7 @@ once(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.HUMIDITY, (data: sensor.HumidityResponse) => {
     console.info('Succeeded in invoking once. Humidity: ' + data.humidity);
@@ -1545,7 +1578,7 @@ once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerome
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1559,6 +1592,7 @@ once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerome
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.LINEAR_ACCELEROMETER, (data: sensor.LinearAccelerometerResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -1588,7 +1622,7 @@ once(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1601,6 +1635,7 @@ once(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -1630,7 +1665,7 @@ once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticF
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1643,6 +1678,7 @@ once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticF
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -1675,7 +1711,7 @@ once(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;):
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1688,6 +1724,7 @@ once(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;):
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.ORIENTATION, (data: sensor.OrientationResponse) => {
     console.info('Succeeded in the device rotating at an angle around the X axis: ' + data.beta);
@@ -1719,7 +1756,7 @@ once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): voi
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1733,6 +1770,7 @@ once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): voi
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.PEDOMETER, (data: sensor.PedometerResponse) => {
     console.info('Succeeded in invoking once. Step count: ' + data.steps);
@@ -1762,7 +1800,7 @@ once(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectio
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1776,6 +1814,7 @@ once(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectio
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
     console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
@@ -1803,7 +1842,7 @@ once(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): voi
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1816,6 +1855,7 @@ once(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): voi
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.PROXIMITY, (data: sensor.ProximityResponse) => {
     console.info('Succeeded in invoking once. Distance: ' + data.distance);
@@ -1843,7 +1883,7 @@ once(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorRespons
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1856,6 +1896,7 @@ once(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorRespons
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -1886,7 +1927,7 @@ once(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionR
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1899,6 +1940,7 @@ once(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionR
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
     console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
@@ -1926,7 +1968,7 @@ once(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1939,6 +1981,7 @@ once(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.once(sensor.SensorId.WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
     console.info('Succeeded in invoking once. Wear status: ' + data.value);
@@ -1953,7 +1996,7 @@ try {
 
 ### ACCELEROMETER<sup>9+</sup> 
 
-off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&gt;): void
+off(type: SensorId.ACCELEROMETER, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;AccelerometerResponse&gt;): void
 
 取消订阅加速度传感器数据。
 
@@ -1968,11 +2011,12 @@ off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&g
 | 参数名                           | 类型                                                         | 必填 | 说明                                                         |
 |-------------------------------| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type                          | [SensorId](#sensorid9).ACCELEROMETER                         | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。               |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback                      | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1993,6 +2037,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.ACCELEROMETER, callback1);
   sensor.on(sensor.SensorId.ACCELEROMETER, callback2);
@@ -2053,6 +2098,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -2082,6 +2128,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -2112,7 +2159,7 @@ off(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;Accelerome
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2133,6 +2180,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, callback1);
   sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, callback2);
@@ -2191,6 +2239,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -2220,6 +2269,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -2248,7 +2298,7 @@ off(type: SensorId.AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): voi
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2268,6 +2318,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.AMBIENT_LIGHT, callback1);
   sensor.on(sensor.SensorId.AMBIENT_LIGHT, callback2);
@@ -2323,6 +2374,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -2352,6 +2404,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -2380,7 +2433,7 @@ off(type: SensorId.AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatur
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2400,6 +2453,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, callback1);
   sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, callback2);
@@ -2455,6 +2509,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -2484,6 +2539,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -2513,7 +2569,7 @@ off(type: SensorId.BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): voi
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2533,6 +2589,7 @@ function callback2(data: object) {
     console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
     sensor.on(sensor.SensorId.BAROMETER, callback1);
     sensor.on(sensor.SensorId.BAROMETER, callback2);
@@ -2588,6 +2645,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -2617,6 +2675,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -2645,7 +2704,7 @@ off(type: SensorId.GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2665,6 +2724,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.GRAVITY, callback1);
   sensor.on(sensor.SensorId.GRAVITY, callback2);
@@ -2721,6 +2781,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -2750,6 +2811,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -2782,7 +2844,7 @@ off(type: SensorId.GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): voi
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2803,6 +2865,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.GYROSCOPE, callback1);
   sensor.on(sensor.SensorId.GYROSCOPE, callback2);
@@ -2863,6 +2926,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -2892,6 +2956,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -2922,7 +2987,7 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncal
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2943,6 +3008,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED, callback1);
   sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED, callback2);
@@ -3001,6 +3067,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -3030,6 +3097,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -3058,7 +3126,7 @@ off(type: SensorId.HALL, callback?: Callback&lt;HallResponse&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3078,6 +3146,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.HALL, callback1);
   sensor.on(sensor.SensorId.HALL, callback2);
@@ -3133,6 +3202,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -3162,6 +3232,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -3192,7 +3263,7 @@ off(type: SensorId.HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): vo
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3213,6 +3284,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.HEART_RATE, callback1);
   sensor.on(sensor.SensorId.HEART_RATE, callback2);
@@ -3271,6 +3343,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -3300,6 +3373,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -3328,7 +3402,7 @@ off(type: SensorId.HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3348,6 +3422,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.HUMIDITY, callback1);
   sensor.on(sensor.SensorId.HUMIDITY, callback2);
@@ -3403,6 +3478,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -3432,6 +3508,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -3462,7 +3539,7 @@ off(type: SensorId.LINEAR_ACCELEROMETER, callback?: Callback&lt;LinearAccelerome
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3483,6 +3560,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, callback1);
   sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, callback2);
@@ -3541,6 +3619,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -3570,6 +3649,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -3598,7 +3678,7 @@ off(type: SensorId.MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3618,6 +3698,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.MAGNETIC_FIELD, callback1);
   sensor.on(sensor.SensorId.MAGNETIC_FIELD, callback2);
@@ -3673,6 +3754,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -3702,6 +3784,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -3730,7 +3813,7 @@ off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticF
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3750,6 +3833,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback1);
   sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback2);
@@ -3805,6 +3889,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -3834,6 +3919,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -3864,7 +3950,7 @@ off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;):
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3884,6 +3970,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.ORIENTATION, callback1);
   sensor.on(sensor.SensorId.ORIENTATION, callback2);
@@ -3941,6 +4028,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -3970,6 +4058,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -4000,7 +4089,7 @@ off(type: SensorId.PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): voi
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4021,6 +4110,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.PEDOMETER, callback1);
   sensor.on(sensor.SensorId.PEDOMETER, callback2);
@@ -4079,6 +4169,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -4108,6 +4199,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -4138,7 +4230,7 @@ off(type: SensorId.PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectio
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4159,6 +4251,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.PEDOMETER_DETECTION, callback1);
   sensor.on(sensor.SensorId.PEDOMETER_DETECTION, callback2);
@@ -4217,6 +4310,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -4246,6 +4340,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -4274,7 +4369,7 @@ off(type: SensorId.PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): voi
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4294,6 +4389,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.PROXIMITY, callback1);
   sensor.on(sensor.SensorId.PROXIMITY, callback2);
@@ -4349,6 +4445,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -4378,6 +4475,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -4406,7 +4504,7 @@ off(type: SensorId.ROTATION_VECTOR, callback?: Callback&lt;RotationVectorRespons
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4426,6 +4524,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.ROTATION_VECTOR, callback1);
   sensor.on(sensor.SensorId.ROTATION_VECTOR, callback2);
@@ -4481,6 +4580,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -4510,6 +4610,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -4527,7 +4628,7 @@ off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionR
 
 取消订阅有效运动传感器数据。
 
-**系统能力**:SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数**：
 
@@ -4538,7 +4639,7 @@ off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionR
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4558,6 +4659,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, callback1);
   sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, callback2);
@@ -4613,6 +4715,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -4642,6 +4745,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -4670,7 +4774,7 @@ off(type: SensorId.WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4690,6 +4794,7 @@ function callback2(data: object) {
   console.info('Succeeded in getting callback2 data: ' + JSON.stringify(data));
 }
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.on(sensor.SensorId.WEAR_DETECTION, callback1);
   sensor.on(sensor.SensorId.WEAR_DETECTION, callback2);
@@ -4745,6 +4850,7 @@ const sensorInfoParam: sensor.SensorInfoParam = {};
 
 function sensorSubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     // 查询所有的传感器
     const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
@@ -4774,6 +4880,7 @@ function sensorSubscribe(): Ret {
 
 function sensorUnsubscribe(): Ret {
   let ret: Ret = Ret.OK;
+  // 使用try catch对可能出现的异常进行捕获
   try {
     sensor.off(sensorType, sensorInfoParam, sensorCallback);
   } catch (error) {
@@ -4802,7 +4909,7 @@ off(type: 'sensorStatusChange', callback?: Callback&lt;SensorStatusEvent&gt;): v
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4814,6 +4921,7 @@ off(type: 'sensorStatusChange', callback?: Callback&lt;SensorStatusEvent&gt;): v
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   const statusChangeCallback = (data: sensor.SensorStatusEvent) => {
     console.info('sensorStatusChange : ' + JSON.stringify(data));
@@ -4941,7 +5049,7 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number, callbac
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4954,6 +5062,7 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number, callbac
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.getGeomagneticInfo({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000,
       (err: BusinessError, data: sensor.GeomagneticResponse) => {
@@ -4998,7 +5107,7 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number): Promis
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5011,6 +5120,7 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number): Promis
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   const promise = sensor.getGeomagneticInfo({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000);
   promise.then((data: sensor.GeomagneticResponse) => {
@@ -5048,7 +5158,7 @@ getDeviceAltitude(seaPressure: number, currentPressure: number, callback: AsyncC
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5061,6 +5171,7 @@ getDeviceAltitude(seaPressure: number, currentPressure: number, callback: AsyncC
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   let seaPressure = 1013.2;
   let currentPressure = 1500.0;
@@ -5100,7 +5211,7 @@ getDeviceAltitude(seaPressure: number, currentPressure: number): Promise&lt;numb
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5113,6 +5224,7 @@ getDeviceAltitude(seaPressure: number, currentPressure: number): Promise&lt;numb
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   let seaPressure = 1013.2;
   let currentPressure = 1500.0;
@@ -5145,7 +5257,7 @@ getInclination(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&l
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5158,6 +5270,7 @@ getInclination(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&l
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   // inclinationMatrix可以为3*3，或者4*4
   let inclinationMatrix = [
@@ -5200,7 +5313,7 @@ try {
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5213,6 +5326,7 @@ try {
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   // inclinationMatrix可以为3*3，或者4*4
   let inclinationMatrix = [
@@ -5251,7 +5365,7 @@ try {
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5264,6 +5378,7 @@ try {
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   // 旋转矩阵可以为3*3，或者4*4
   let currentRotationMatrix = [
@@ -5317,7 +5432,7 @@ getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix:
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5330,6 +5445,7 @@ getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix:
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   // 旋转矩阵可以为3*3，或者4*4
   let currentRotationMatrix = [
@@ -5376,7 +5492,7 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&l
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5389,6 +5505,7 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&l
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
   sensor.getRotationMatrix(rotationVector, (err: BusinessError, data: Array<number>) => {
@@ -5428,7 +5545,7 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;numb
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5441,6 +5558,7 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;numb
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
   const promise = sensor.getRotationMatrix(rotationVector);
@@ -5476,7 +5594,7 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5489,6 +5607,7 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   let rotationMatrix = [
     1, 0, 0,
@@ -5533,7 +5652,7 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5546,6 +5665,7 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   let rotationMatrix = [
     1, 0, 0,
@@ -5583,7 +5703,7 @@ getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Ar
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5596,6 +5716,7 @@ getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Ar
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
   sensor.getQuaternion(rotationVector, (err: BusinessError, data: Array<number>) => {
@@ -5635,7 +5756,7 @@ getQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&g
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5648,6 +5769,7 @@ getQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&g
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
     let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
     const promise = sensor.getQuaternion(rotationVector);
@@ -5681,7 +5803,7 @@ getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;A
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5694,6 +5816,7 @@ getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;A
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   let preRotationMatrix = [
     1, 0, 0,
@@ -5740,7 +5863,7 @@ getOrientation(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5753,6 +5876,7 @@ getOrientation(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   let preRotationMatrix = [
     1, 0, 0,
@@ -5791,7 +5915,7 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5804,6 +5928,7 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   let gravity = [-0.27775216, 0.5351276, 9.788099];
   let geomagnetic = [210.87253, -78.6096, -111.44444];
@@ -5843,7 +5968,7 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5856,6 +5981,7 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   let gravity = [-0.27775216, 0.5351276, 9.788099];
   let geomagnetic = [210.87253, -78.6096, -111.44444];
@@ -5887,7 +6013,7 @@ getSensorList(callback: AsyncCallback&lt;Array&lt;Sensor&gt;&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5900,6 +6026,7 @@ getSensorList(callback: AsyncCallback&lt;Array&lt;Sensor&gt;&gt;): void
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.getSensorList((err: BusinessError, data: Array<sensor.Sensor>) => {
     if (err) {
@@ -5932,7 +6059,7 @@ try {
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5945,6 +6072,7 @@ try {
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.getSensorList().then((data: Array<sensor.Sensor>) => {
     for (let i = 0; i < data.length; i++) {
@@ -5975,7 +6103,7 @@ getSensorListSync(): Array&lt;Sensor&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -5987,6 +6115,7 @@ getSensorListSync(): Array&lt;Sensor&gt;
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   let ret = sensor.getSensorListSync()
   for (let i = 0; i < ret.length; i++) {
@@ -6015,7 +6144,7 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6029,6 +6158,7 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.getSingleSensor(sensor.SensorId.ACCELEROMETER, (err: BusinessError, data: sensor.Sensor) => {
     if (err) {
@@ -6065,7 +6195,7 @@ try {
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6079,6 +6209,7 @@ try {
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   sensor.getSingleSensor(sensor.SensorId.ACCELEROMETER).then((data: sensor.Sensor) => {
     console.info('Succeeded in getting sensor: ' + JSON.stringify(data));
@@ -6113,7 +6244,7 @@ getSingleSensorSync(type: SensorId): Sensor
 
 **错误码**：
 
-以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。错误码和错误信息会以异常的形式抛出，调用接口时需要使用try catch对可能出现的异常进行捕获操作。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6127,6 +6258,7 @@ getSingleSensorSync(type: SensorId): Sensor
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 使用try catch对可能出现的异常进行捕获
 try {
   let ret = sensor.getSingleSensorSync(sensor.SensorId.ACCELEROMETER);
   console.info('Succeeded in getting sensor: ' + JSON.stringify(ret));
@@ -6140,7 +6272,7 @@ try {
 
 表示当前支持订阅或取消订阅的传感器类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 | 名称                        | 值   | 说明                                                         |
 | --------------------------- | ---- | ------------------------------------------------------------ |
@@ -6171,7 +6303,7 @@ try {
 
 传感器传入设置参数，多传感器情况下通过deviceId、sensorIndex控制指定传感器。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 参数名 | 类型                   | 必填 | 说明                      |
@@ -6184,7 +6316,7 @@ try {
 
 设备状态变化事件数据。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 参数名 | 类型                    | 说明         |
@@ -6200,7 +6332,7 @@ try {
 
 表示要订阅或取消订阅的传感器类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称                                       | 值   | 说明                   |
@@ -6233,7 +6365,7 @@ try {
 
 **原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 | 名称    | 值 | 说明                     |
 | --------- | ---- | ------------------------ |
@@ -6248,7 +6380,7 @@ try {
 
 **原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 | 名称      | 类型   | 只读 | 可选 | 说明                     |
 | --------- | ------ | ---- | ---- | ------------------------ |
@@ -6259,7 +6391,7 @@ try {
 
 指示传感器信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 | 名称                          | 类型      | 只读 | 可选 | 说明               |
 |-----------------------------|---------|----|----|------------------|
@@ -6284,7 +6416,7 @@ try {
 
 **原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                                       |
@@ -6298,7 +6430,7 @@ try {
 
 线性加速度传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                     |
@@ -6312,7 +6444,7 @@ try {
 
 未校准加速度计传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称  | 类型   | 只读 | 可选 | 说明                                           |
@@ -6329,7 +6461,7 @@ try {
 
 重力传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                     |
@@ -6345,7 +6477,7 @@ try {
 
 **原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称  | 类型   | 只读 | 可选 | 说明                                                  |
@@ -6359,7 +6491,7 @@ try {
 
 旋转矢量传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称 | 类型   | 只读 | 可选 | 说明              |
@@ -6376,7 +6508,7 @@ try {
 
 **原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                                   |
@@ -6390,7 +6522,7 @@ try {
 
 未校准陀螺仪传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称  | 类型   | 只读 | 可选 | 说明                                       |
@@ -6407,7 +6539,7 @@ try {
 
 有效运动传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称   | 类型   | 只读 | 可选 | 说明                                                         |
@@ -6419,7 +6551,7 @@ try {
 
 接近光传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称     | 类型   | 只读 | 可选 | 说明                                                       |
@@ -6431,7 +6563,7 @@ try {
 
 环境光传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称                            | 类型   | 只读 | 可选 | 说明                                                         |
@@ -6445,7 +6577,7 @@ try {
 
 霍尔传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称   | 类型   | 只读 | 可选 | 说明                                                         |
@@ -6457,7 +6589,7 @@ try {
 
 磁场传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称 | 类型   | 只读 | 可选 | 说明                         |
@@ -6471,7 +6603,7 @@ try {
 
 未校准磁场传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称  | 类型   | 只读 | 可选 | 说明                                   |
@@ -6488,7 +6620,7 @@ try {
 
 计步传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称  | 类型   | 只读 | 可选 | 说明             |
@@ -6500,7 +6632,7 @@ try {
 
 湿度传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称     | 类型   | 只读 | 可选 | 说明                                                      |
@@ -6512,7 +6644,7 @@ try {
 
 计步检测传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称   | 类型   | 只读 | 可选 | 说明                                                         |
@@ -6524,7 +6656,7 @@ try {
 
 温度传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称        | 类型   | 只读 | 可选 | 说明                       |
@@ -6536,7 +6668,7 @@ try {
 
 气压计传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称     | 类型   | 只读 | 可选 | 说明                   |
@@ -6548,7 +6680,7 @@ try {
 
 心率传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称      | 类型   | 只读 | 可选 | 说明                                    |
@@ -6560,7 +6692,7 @@ try {
 
 佩戴检测传感器数据，继承于[Response](#response)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 
 | 名称  | 类型   | 只读 | 可选 | 说明                                             |
@@ -6574,7 +6706,7 @@ try {
 
 **原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 | 名称     | 类型                                                        | 只读 | 可选 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -6589,7 +6721,7 @@ type SensorFrequency = 'game' | 'ui' | 'normal'
 
 **原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 | 类型     | 说明                                                         |
 | -------- | ------------------------------------------------------------ |
@@ -6601,7 +6733,7 @@ type SensorFrequency = 'game' | 'ui' | 'normal'
 
 设置旋转矩阵响应对象。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 | 名称        | 类型                | 只读 | 可选 | 说明       |
 | ----------- | ------------------- | ---- | ---- | ---------- |
@@ -6613,7 +6745,7 @@ type SensorFrequency = 'game' | 'ui' | 'normal'
 
 设置坐标选项对象。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 | 名称 | 类型   | 只读 | 可选 | 说明        |
 | ---- | ------ | ---- | ---- | ----------- |
@@ -6625,7 +6757,7 @@ type SensorFrequency = 'game' | 'ui' | 'normal'
 
 设置地磁响应对象。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 | 名称            | 类型   | 只读 | 可选 | 说明                                               |
 | --------------- | ------ | ---- | ---- | -------------------------------------------------- |
@@ -6641,7 +6773,7 @@ type SensorFrequency = 'game' | 'ui' | 'normal'
 
 指示地理位置。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 | 名称      | 类型   | 只读 | 可选 | 说明       |
 | --------- | ------ | ---- | ---- | ---------- |

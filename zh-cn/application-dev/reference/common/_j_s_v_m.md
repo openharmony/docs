@@ -1618,7 +1618,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileWasmModule (JSVM_Env env, const uint8_t *
 | wasmBytecodeLength | WebAssembly 字节码的长度，单位：字节。 | 
 | cacheData | 可选的 WebAssembly 缓存。 | 
 | cacheDataLength | 可选的 WebAssembly 缓存长度，单位：字节。 | 
-| cacheRejected | 输出参数，表示提供的 WebAssembly 缓存是否被引擎拒绝。 | 
+| cacheRejected | 代码缓存是否被编译拒绝，取值为true表示缓存被拒绝，取值为false表示缓存被接受。 | 
 | wasmModule | 输出参数，表示生成的 WebAssembly 模块。 | 
 
 **返回：**
@@ -1810,7 +1810,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateBigintWords (JSVM_Env env, int signBit, si
 | 名称 | 描述 | 
 | -------- | -------- |
 | env | 调用JSVM-API的环境。 | 
-| signBit | 确定生成的BigInt是正数还是负数。 | 
+| signBit | 表示生成的BigInt是正数还是负数。 | 
 | wordCount | words数组的长度。 | 
 | words | uint64_t little-endian 64位字数组。 | 
 | result | 代表JavaScript BigInt类型的JSVM_Value。 | 

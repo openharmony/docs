@@ -85,7 +85,7 @@ FormComponent (value: FormInfo)
 | Dimension_2_2              | 2*2 卡片 |
 | Dimension_2_4              | 2*4 卡片 |
 | Dimension_4_4              | 4*4 卡片 |
-| Dimension_2_1<sup>9+</sup> | 2*1 卡片 |
+| Dimension_2_1<sup>(deprecated)</sup> | 2*1 卡片 <br>**说明:** 该字段从API version 9开始支持，从API version 20开始废弃。|
 | Dimension_1_1<sup>11+</sup> | 1*1 卡片 |
 | Dimension_6_4<sup>12+</sup> | 6*4 卡片 |
 | Dimension_2_3<sup>18+</sup> | 2*3 卡片为穿戴设备使用 |

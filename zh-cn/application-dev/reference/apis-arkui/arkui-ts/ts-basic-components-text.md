@@ -29,7 +29,7 @@ Text(content?: string | Resource , value?: TextOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | 否 | 文本内容。包含子组件Span且未设置[属性字符串](ts-universal-styled-string.md#属性字符串)时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>默认值：' ' |
+| content | string \| [Resource](ts-types.md#resource) | 否 | 文本内容。包含子组件Span且未设置[属性字符串](ts-universal-styled-string.md)时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>默认值：' ' |
 | value<sup>11+</sup> | [TextOptions](#textoptions11) | 否 | 文本组件初始化选项。|
 
 ## 属性
@@ -86,7 +86,7 @@ textVerticalAlign(textVerticalAlign: Optional\<TextVerticalAlign>)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                       |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| textVerticalAlign  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextVerticalAlign](ts-text-common.md#textverticalalign20)> | 否   | 文本段落在垂直方向的对齐方式。<br/>默认值：TextVerticalAlign.BASELINE |
+| textVerticalAlign  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextVerticalAlign](ts-text-common.md#textverticalalign20)> | 是   | 文本段落在垂直方向的对齐方式。<br/>默认值：TextVerticalAlign.BASELINE |
 
 ### textOverflow
 
@@ -416,7 +416,13 @@ copyOption(value: CopyOptions)
 
 设置组件是否支持文本可复制粘贴。
 
-设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作，此时Text会监听onClick事件，手势事件为非冒泡事件，若需要点击Text组件区域响应父组件的点击手势事件，建议在父组件上使用[parallelGesture](ts-gesture-settings.md#绑定手势识别)绑定手势识别，也可参考[示例7设置文本识别](#示例7设置文本识别)。
+设置copyOption为CopyOptions.InApp或者CopyOptions.LocalDevice时：
+
+- 长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作。
+
+- 默认情况下，长按选中文本可拖拽。若要取消此功能，可将 `draggable` 设置为 `false`。
+
+此时Text会监听onClick事件，手势事件为非冒泡事件，若需要点击Text组件区域响应父组件的点击手势事件，建议在父组件上使用[parallelGesture](ts-gesture-settings.md#绑定手势识别)绑定手势识别，也可参考[示例7设置文本识别](#示例7设置文本识别)。
 
 由于卡片没有长按事件，此场景下长按文本，不会弹出文本选择菜单。
 
@@ -640,9 +646,11 @@ decoration:{
 
 当copyOption设置为CopyOptions.None时，点击实体弹出的菜单不包含选择文本、复制、翻译、分享和搜索功能。当copyOption不为CopyOptions.None，且textSelectable设置为TextSelectableMode.UNSELECTABLE时，仍然具有实体复制功能，但不包含选择文本功能。
 
-从API version 20开始，支持在文本选择菜单与鼠标右键菜单中显示实体识别选项。当enableDataDetector设置为true，且[copyOption](#copyoption9)设置为CopyOptions.LocalDevice时，AI菜单功能生效。菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url(打开链接)、email(新建邮件)、phoneNumber(呼叫)、address(导航至该位置)、dateTime(新建日程提醒)。
+从API version 20开始，支持选中文本后，在文本选择菜单与鼠标右键菜单中显示实体识别选项。当enableDataDetector设置为true，且[copyOption](#copyoption9)设置为CopyOptions.LocalDevice或CopyOptions.CROSS_DEVICE时，AI菜单功能生效。菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url（打开链接）、email（新建邮件）、phoneNumber（呼叫）、address（导航至该位置）、dateTime（新建日程提醒）。
 
 AI菜单生效时，需选中范围内，包括一个完整的AI实体，才能展示对应的选项。
+
+从API version 20开始，支持选中文本后，在文本选择菜单与鼠标右键菜单中显示问问小艺选项。当[copyOption](#copyoption9)设置为CopyOptions.LocalDevice或CopyOptions.CROSS_DEVICE时，若enableDataDetector设置为false，显示问问小艺选项。若enableDataDetector设置为true，此时选中范围内，没有包括一个完整的AI实体或包括超过一个完整的AI实体，才能展示对应的选项。相关选项为[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的askAI（问问小艺）。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -735,6 +743,7 @@ fontFeature(value: string)
 | value  | string | 是   | 文字特性效果。 |
 
 fontFeature属性列表：
+
 ![alt text](figures/arkts-fontfeature.png)
 
 设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
@@ -1105,6 +1114,8 @@ shaderStyle(shader: ShaderStyle)
 
 ## TextResponseType<sup>11+</sup>枚举说明
 
+选择菜单的响应类型。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 值 |  说明          |
@@ -1131,8 +1142,6 @@ shaderStyle(shader: ShaderStyle)
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
 
 | 名称 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -1279,8 +1288,6 @@ Marquee初始化参数。
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
 
 | 名称                | 类型                                              | 必填 | 说明                                                                                  |
 |--------------------|-------------------------------------------------|----|-------------------------------------------------------------------------------------|

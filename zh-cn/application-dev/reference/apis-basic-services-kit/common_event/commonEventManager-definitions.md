@@ -18,7 +18,7 @@
 > 
 > <!--Del-->系统应用可以监听自身应用和其他应用的重启事件。<!--DelEnd-->
 > 
-> 三方应用默认只能监听自身应用的重启事件。如果需要监听其他应用的重启事件，需要申请ohos.permission.LISTEN_BUNDLE_CHANGE权限。
+> 三方应用只能监听自身应用的重启事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -33,6 +33,12 @@
 表示用户清除应用包数据。
 
 在设备上指定用户清除应用包数据，将会触发事件通知服务发布该系统公共事件。
+
+> **说明：** 
+> 
+> <!--Del-->系统应用可以监听自身应用和其他应用的数据清理事件。<!--DelEnd-->
+> 
+> 三方应用只能监听自身应用的数据清理事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -51,7 +57,7 @@
 > 
 > <!--Del-->系统应用可以监听自身应用和其他应用的快速修复事件。<!--DelEnd-->
 > 
-> 三方应用默认只能监听自身应用的安快速修复事件。如果需要监听其他应用的快速修复事件，需要申请ohos.permission.LISTEN_BUNDLE_CHANGE权限。
+> 三方应用只能监听自身应用的安快速修复事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -85,7 +91,7 @@
 > 
 > <!--Del-->系统应用可以监听自身应用和其他应用的安装事件。<!--DelEnd-->
 > 
-> 三方应用默认只能监听自身应用的安装事件。如果需要监听其他应用的安装事件，需要申请ohos.permission.LISTEN_BUNDLE_CHANGE权限。
+> 三方应用只能监听自身应用的安装事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -104,7 +110,7 @@
 > 
 > <!--Del-->系统应用可以监听自身应用和其他应用的卸载事件。<!--DelEnd-->
 > 
-> 三方应用默认只能监听自身应用的卸载事件。如果需要监听其他应用的卸载事件，需要申请ohos.permission.LISTEN_BUNDLE_CHANGE权限。
+> 三方应用只能监听自身应用的卸载事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -145,7 +151,7 @@
 > 
 > <!--Del-->系统应用可以监听自身应用和其他应用的更改事件。<!--DelEnd-->
 > 
-> 三方应用默认只能监听自身应用的更改事件。如果需要监听其他应用的更改事件，需要申请ohos.permission.LISTEN_BUNDLE_CHANGE权限。
+> 三方应用只能监听自身应用的更改事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -164,7 +170,7 @@
 > 
 > <!--Del-->系统应用可以监听自身应用和其他应用的缓存清理事件。<!--DelEnd-->
 > 
-> 三方应用默认只能监听自身应用的缓存清理事件。如果需要监听其他应用的缓存清理事件，需要申请ohos.permission.LISTEN_BUNDLE_CHANGE权限。
+> 三方应用只能监听自身应用的缓存清理事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -266,11 +272,11 @@
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅者所需权限：** ohos.permission.RECEIVER_SPLIT_SCREEN
+**订阅者所需权限：** 无
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**取值：** "usual.event.SPLIT_SCREEN"
+**取值：** "common.event.SPLIT_SCREEN"
 
 
 

@@ -28,7 +28,7 @@ Node将自定义节点的二级模块API组织在一起，方便开发者进行�
 
 ## Graphics
 
-[Graphics](./js-apis-arkui-graphics.md#graphics)模块：提供自定义节点相关属性设置的定义。
+[Graphics](./js-apis-arkui-graphics.md)模块：提供自定义节点相关属性设置的定义。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -1325,7 +1325,7 @@ getDragController(): DragController
 
 |类型|说明|
 |----|----|
-|[DragController](js-apis-arkui-dragController.md#ohosarkuidragcontroller-dragcontroller)| 获取DragController对象。|
+|[DragController](js-apis-arkui-dragController.md)| 获取DragController对象。|
 
 **示例：**
 
@@ -1388,21 +1388,23 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 | 参数名  | 类型            | 必填 | 说明                                                         |
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
-| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>如果在filters参数中包含以上一个或者多个字段，则未包含的字段会在组件属性查询结果中被过滤掉。如果用户未传入filters参数或者filters参数为空数组，则以上字段全部不会在组件属性查询结果中被过滤掉。<br/>从API version 20开始，支持该过滤字段：<br/>"isLayoutInspector"：是否显示自定义组件的属性。<br/>其余字段仅供测试场景使用。 |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>如果在filters参数中包含以上一个或者多个字段，则未包含的字段会在组件属性查询结果中被过滤掉。如果用户未传入filters参数或者filters参数为空数组，则以上字段全部不会在组件属性查询结果中被过滤掉。<br/>从API version 20开始，支持该过滤字段：<br/>"isLayoutInspector"：返回组件树是否包含[自定义组件](../../ui/state-management/arkts-create-custom-components.md)。如果用户未传入filters参数或者filters数组不包含isLayoutInspector，返回的组件树将缺少自定义组件的信息。<br/>其余字段仅供测试场景使用。 |
 
 **返回值：** 
 
 | 类型   | 说明                               |
 | ------ | ---------------------------------- |
-| string | 获取组件树及组件属性的JSON字符串。 |
+| string | 获取组件树及组件属性的JSON字符串。组件中每个字段的含义请参考[getInspectorInfo](./js-apis-arkui-frameNode.md#getinspectorinfo12)的返回值说明。 |
 
 **错误码**：
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 错误码ID | 错误信息 | 处理建议 |
+| ------- | -------- | -------- |
+| 401      | invalid param count  | 参数个数错误，确保传入的参数个数正确 |
+| 401      | invalid param type  | 参数类型错误，确保传入的参数类型正确 |
+| 401      | get inspector failed  | 查询结果出错。系统内部存在异常，需要联系华为工程师处理。 |
 
 **示例：**
 
@@ -1490,22 +1492,25 @@ getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
 | id      | string          | 是   | 指定的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)id。 |
 | depth   | number          | 是   | 获取子组件的层数。当取值0时，获取指定的组件及其所有的子孙组件的属性。当取值1时，仅获取指定的组件的属性。当取值2时，指定的组件及其1层子组件的属性。以此类推。 |
-| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>其余字段仅供测试场景使用。 |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>如果在filters参数中包含以上一个或者多个字段，则未包含的字段会在组件属性查询结果中被过滤掉。如果用户未传入filters参数或者filters参数为空数组，则以上字段全部不会在组件属性查询结果中被过滤掉。<br/>其余字段仅供测试场景使用。 |
 
 **返回值：** 
 
 | 类型   | 说明                                         |
 | ------ | -------------------------------------------- |
-| string | 获取指定的组件及其子组件的属性的JSON字符串。 |
+| string | 获取指定的组件及其子组件的属性的JSON字符串。组件中每个字段的含义请参考[getInspectorInfo](./js-apis-arkui-frameNode.md#getinspectorinfo12)的返回值说明。 |
 
 
 **错误码**：
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 错误码ID | 错误信息 | 处理建议 |
+| ------- | -------- | -------- |
+| 401      | invalid param count  | 参数个数错误，确保传入的参数个数正确 |
+| 401      | invalid param type  | 参数类型错误，确保传入的参数类型正确 |
+| 401      | invalid filter depth  | depth参数需要大于或者等于0 |
+| 401      | get inspector failed  | 查询结果出错。如果传入的id不存在，接口会抛出此错误。请确保传入正确的组件id。 |
 
 **示例：**
 
@@ -1513,6 +1518,43 @@ getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\
 ```ts
 uiContext.getFilteredInspectorTreeById('testId', 0, ['id', 'src', 'content']);
 ```
+
+<!--code_no_check-->
+```ts
+import { UIContext } from '@kit.ArkUI';
+@Entry
+@Component
+struct ComponentPage {
+  build() {
+    Column() {
+      Text("Hello World")
+        .fontSize(20)
+        .id("TEXT")
+      Button('getFilteredInspectorTreeById').onClick(() => {
+        const uiContext: UIContext = this.getUIContext();
+        try {
+          let inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1);
+          console.log(`result1: ${inspectorStr}`);
+          inspectorStr = JSON.stringify(JSON.parse(inspectorStr)['$children'][0]);
+          console.log(`result2: ${inspectorStr}`);
+        } catch(e) {
+          console.log(`getFilteredInspectorTreeById error: ${e}`);
+        }
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+返回的JSON字符串结构如下：
+<!--code_no_check-->
+```ts
+result1: {"$type":"root","width":"1260.000000","height":"2720.000000","$resolution":"3.250000","$children":[{"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"borderStyle":"BorderStyle.Solid","borderColor":"#FF000000","borderWidth":"0.00vp","borderRadius":{"topLeft":"0.00vp","topRight":"0.00vp","bottomLeft":"0.00vp","bottomRight":"0.00vp"}}}]}
+result2: {"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"borderStyle":"BorderStyle.Solid","borderColor":"#FF000000","borderWidth":"0.00vp","borderRadius":{"topLeft":"0.00vp","topRight":"0.00vp","bottomLeft":"0.00vp","bottomRight":"0.00vp"}}}
+```
+若需获取getFilteredInspectorTreeById方法中首个参数id指定的组件，须参照示例代码将getFilteredInspectorTreeById方法结果先转换为json对象，随后提取$children数组的首项。
+
 
 ### getCursorController<sup>12+</sup>
 
@@ -3119,6 +3161,8 @@ let componentUtils: ComponentUtils = uiContext.getComponentUtils();
 let modePosition = componentUtils.getRectangleById("onClick");
 let localOffsetWidth = modePosition.size.width;
 let localOffsetHeight = modePosition.size.height;
+let localOffsetX = modePosition.localOffset.x;// 获取组件相对于父组件的x轴偏移
+let localOffsetY = modePosition.localOffset.y;// 获取组件相对于父组件的y轴偏移
 ```
 
 ## UIInspector
@@ -4120,7 +4164,7 @@ off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitch
 
 on(type: 'willClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
+监听点击事件指令下发情况。回调类型为[GestureEventListenerCallback](#gestureeventlistenercallback12)。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4178,7 +4222,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
+监听点击事件指令下发情况。回调类型为[GestureEventListenerCallback](#gestureeventlistenercallback12)。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4236,7 +4280,7 @@ observer.off('didClick', callback);
 
 on(type: 'willClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
+监听点击事件指令下发情况。回调类型为[ClickEventListenerCallback](#clickeventlistenercallback12)。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4294,7 +4338,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
+监听点击事件指令下发情况。回调类型为[ClickEventListenerCallback](#clickeventlistenercallback12)。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4805,7 +4849,7 @@ on(type: 'nodeRenderState', nodeIdentity: NodeIdentity, callback: NodeRenderStat
 
 注意节点数量的限制。出于性能考虑，在单个UI实例中，注册节点太多，将会抛出异常。
 
-通常，当组件被移动到屏幕外时，会收到RENDER_OUT的通知。但在某些情况下，即使组件移动到屏幕外也不会触发RENDER_OUT通知。例如，具有缓存功能的组件[Swiper](./arkui-ts/ts-container-swiper.md#swiper)，即使[cachedCount](./arkui-ts/ts-container-swiper.md#cachedcount15)属性中的参数isShown配置为true，也不会触发RENDER_OUT通知。
+通常，当组件被移动到屏幕外时，会收到RENDER_OUT的通知。但在某些情况下，即使组件移动到屏幕外也不会触发RENDER_OUT通知。例如，具有缓存功能的组件[Swiper](./arkui-ts/ts-container-swiper.md)，即使[cachedCount](./arkui-ts/ts-container-swiper.md#cachedcount15)属性中的参数isShown配置为true，也不会触发RENDER_OUT通知。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -7793,7 +7837,7 @@ openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 
 | 类型                | 说明                                    |
 | ------------------- | --------------------------------------- |
-| Promise&lt;void&gt; | 返回供closeCustomDialog使用的对话框id。 |
+| Promise&lt;number&gt; | 返回供closeCustomDialog使用的对话框id。 |
 
 **错误码：**
 
@@ -8174,7 +8218,7 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 >
 > 2. 由于[updatePopup](#updatepopup18)和[closePopup](#closepopup18)依赖content去更新或者关闭指定的popup弹窗，开发者需自行维护传入的content。
 >
-> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则[ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent-1)应采用带有四个参数的构造函数constructor，其中options参数应传递{ nestingBuilderSupported: true }。
+> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md)组件），则[ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent-1)应采用带有四个参数的构造函数constructor，其中options参数应传递{ nestingBuilderSupported: true }。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -8383,7 +8427,7 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 >
 > 2. 由于[updateMenu](#updatemenu18)和[closeMenu](#closemenu18)依赖content去更新或者关闭指定的menu弹窗，开发者需自行维护传入的content。
 >
-> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则[ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent-1)应采用带有四个参数的构造函数constructor，其中options参数应传递{ nestingBuilderSupported: true }。
+> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md)组件），则[ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent-1)应采用带有四个参数的构造函数constructor，其中options参数应传递{ nestingBuilderSupported: true }。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -10112,7 +10156,7 @@ setAutoFocusTransfer(isAutoFocusTransfer: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| isAutoFocusTransfer | boolean| 是 | 设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](js-apis-router.md#routerpushurldeprecated)、[Navigation](arkui-ts/ts-basic-components-navigation.md#navigation)、[Menu](arkui-ts/ts-basic-components-menu.md#menu)、[Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)、[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)等。true表示需要主动获取焦点，false表示不需要主动获取焦点。默认值为true。 |
+| isAutoFocusTransfer | boolean| 是 | 设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](js-apis-router.md#routerpushurldeprecated)、[Navigation](arkui-ts/ts-basic-components-navigation.md)、[Menu](arkui-ts/ts-basic-components-menu.md)、[Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)、[Popup](arkui-ts/ohos-arkui-advanced-Popup.md)等。true表示需要主动获取焦点，false表示不需要主动获取焦点。默认值为true。 |
 
 ```ts
 @CustomDialog

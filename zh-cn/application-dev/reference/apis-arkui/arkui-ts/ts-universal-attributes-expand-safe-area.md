@@ -507,7 +507,7 @@ struct IgnoreLayoutSafeAreaTest2 {
           .backgroundColor('rgb(39, 135, 217)')
           .width(LayoutPolicy.matchParent)  // 自适应宽度
           .height(LayoutPolicy.matchParent) // 自适应高度
-          .ignoreLayoutSafeArea([LayoutSafeAreaType.ALL], [LayoutSafeAreaEdge.END, LayoutSafeAreaEdge.BOTTOM])  // 设置布局区域延伸取右和下方向，至全部避让区ALL
+          .ignoreLayoutSafeArea([LayoutSafeAreaType.SYSTEM], [LayoutSafeAreaEdge.END, LayoutSafeAreaEdge.BOTTOM])  // 设置布局区域延伸取右和下方向，至系统避让区SYSTEM
 
         Row()
           .backgroundColor('rgb(0, 74, 175)')
@@ -537,7 +537,7 @@ import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component
-struct IgnoreLayoutSafeAreaTest2 {
+struct IgnoreLayoutSafeAreaTest3 {
   build() {
     Row(){
       Column(){
@@ -570,7 +570,7 @@ struct IgnoreLayoutSafeAreaTest2 {
         .height(100)
         .backgroundColor('rgb(39, 135, 217)')
         .align(Alignment.TopStart)
-        .expandSafeArea()
+        .expandSafeArea()  // 设置绘制区域延伸，自身绘制区域上抬，子组件相对屏幕位置不变
 
         Text("expandSafeArea").fontColor(Color.White)
       }
@@ -588,7 +588,7 @@ struct IgnoreLayoutSafeAreaTest2 {
         .height(100)
         .backgroundColor('rgb(39, 135, 217)')
         .align(Alignment.TopStart)
-        .ignoreLayoutSafeArea()
+        .ignoreLayoutSafeArea()  // 设置布局区域延伸，自身布局区域上抬，子组件相对容器位置不变
 
         Text("ignoreLayoutSafeArea").fontColor(Color.White)
       }

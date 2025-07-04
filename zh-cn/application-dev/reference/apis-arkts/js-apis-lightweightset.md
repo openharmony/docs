@@ -573,7 +573,7 @@ lightWeightSet.add("sparrow");
 let iter = lightWeightSet.values();
 let index = 0;
 while(index < lightWeightSet.length) {
-  console.log(JSON.stringify(iter.next().value));
+  console.info(JSON.stringify(iter.next().value));
   index++;
 }
 ```
@@ -619,7 +619,7 @@ let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("sparrow");
 lightWeightSet.add("gull");
 lightWeightSet.forEach((value ?: string, key ?: string) => {
-  console.log("value:" + value, "key:" + key);
+  console.info("value:" + value, "key:" + key);
 });
 ```
 ```ts
@@ -666,7 +666,7 @@ lightWeightSet.add("sparrow");
 let iter = lightWeightSet.entries();
 let index = 0;
 while(index < lightWeightSet.length) {
-  console.log(JSON.stringify(iter.next().value));
+  console.info(JSON.stringify(iter.next().value));
   index++;
 }
 ```
@@ -715,14 +715,14 @@ lightWeightSet.add("sparrow");
 // 使用方法一：
 let nums: Array<string> = lightWeightSet.toArray()
 for (let item of nums) {
-  console.log("value:" + item);
+  console.info("value:" + item);
 }
 
 // 使用方法二：
 let iter = lightWeightSet[Symbol.iterator]();
 let temp: IteratorResult<string> = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:" + temp.value);
   temp = iter.next();
 }
 ```

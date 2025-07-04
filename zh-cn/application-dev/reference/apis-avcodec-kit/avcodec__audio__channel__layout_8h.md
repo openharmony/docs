@@ -7,6 +7,8 @@
 
 **库：** libnative_media_codecbase.so
 
+**引用文件：** <multimedia/player_framework/avcodec_audio_channel_layout.h>
+
 **起始版本：** 9
 
 **废弃版本：** 11

@@ -445,6 +445,13 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     OH_AVFormat *format = OH_AVFormat_Create();
     // 支持动态请求IDR帧。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true);
+    // SQR码控支持动态配置最大码率参数和质量稳定码率因子参数。
+    if (rateMode == static_cast<int32_t>(OH_BitrateMode::BITRATE_MODE_SQR)) {
+        int32_t sqrFactor = 25; // 质量稳定码率因子。
+        int64_t maxBitRate = 10000000; // 最大码率参数，单位为bps。
+        OH_AVFormat_SetLongValue(format, OH_MD_KEY_MAX_BITRATE, maxBitRate);
+        OH_AVFormat_SetIntValue(format, OH_MD_KEY_SQR_FACTOR, sqrFactor);
+    }
     int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理。

@@ -2,7 +2,7 @@
 
 ## 应用运行过程中出现高概率闪退怎么进行定位解决
 
-- 具体问题：在使用鸿蒙Node-Api(napi)开发过程中，应用运行过程中出现高概率闪退，出现cppcrash栈，栈顶为系统库libark_jsruntime.so，崩溃栈前几帧也有libace_napi.z.so，怎么进行定位解决？
+- 具体问题：在使用Node-API开发过程中，应用运行过程中出现高概率闪退，出现cppcrash栈，栈顶为系统库libark_jsruntime.so，崩溃栈前几帧也有libace_napi.z.so，怎么进行定位解决？
 复现概率高，每次崩溃栈略有区别，但是共性都是：崩溃栈顶是系统库的libark_jsruntime.so或者libace_napi.z.so    
 - 崩溃信息如下：  
 ```sh

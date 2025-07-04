@@ -265,7 +265,7 @@ SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置�
     SymbolGlyph(this.replaceFlag ? $r('sys.symbol.eye_slash') : $r('sys.symbol.eye'))
       .fontSize(96)
       .renderingStrategy(this.renderMode)
-      .symbolEffect(new DisableSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace)
+      .symbolEffect(new DisableSymbolEffect(EffectScope.LAYER), this.triggerValueReplace)
     Button('trigger').onClick(() => {
       this.replaceFlag = !this.replaceFlag;
       this.triggerValueReplace = this.triggerValueReplace + 1;

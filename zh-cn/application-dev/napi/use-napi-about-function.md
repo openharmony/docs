@@ -52,6 +52,7 @@ static napi_value GetCbContext(napi_env env, napi_callback_info info)
     return thisArg;
 }
 ```
+<!-- @[napi_get_cb_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -62,6 +63,7 @@ export const getCbArgs: <T>(arg: T) => T;
 export const getCbArgQuantity: (str: string, num: number) => number;
 export const getCbContext: () => Object;
 ```
+<!-- @[napi_get_cb_info_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS 侧示例代码
 
@@ -101,6 +103,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_cb_info get arg quantity:%
 // 获取上下文
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_cb_info get thisArg:%{public}s ', testNapi.getCbContext().toString());
 ```
+<!-- @[ark_napi_get_cb_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/ets/pages/Index.ets) -->
 
 ## napi_call_function
 
@@ -142,6 +145,7 @@ static napi_value ObjCallFunction(napi_env env, napi_callback_info info)
     return result;
 }
 ```
+<!-- @[napi_call_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -150,6 +154,7 @@ static napi_value ObjCallFunction(napi_env env, napi_callback_info info)
 export const callFunction: (func: Function) => number;
 export const objCallFunction: (obj: Object, func: Function) => number;
 ```
+<!-- @[napi_call_function_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS 侧示例代码
 
@@ -169,6 +174,7 @@ const person = new Person();
 hilog.info(0x0000, 'testTag', 'Test Node-API call_function:%{public}d', testNapi.callFunction(returnNumber));
 hilog.info(0x0000, 'testTag', 'Test Node-API call_function:%{public}d', testNapi.objCallFunction(person,person.age));
 ```
+<!-- @[ark_napi_call_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/ets/pages/Index.ets) -->
 
 ## napi_create_function
 
@@ -203,6 +209,7 @@ static napi_value Init(napi_env env, napi_value exports) {
 }
 EXTERN_C_END
 ```
+<!-- @[napi_create_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -210,6 +217,7 @@ EXTERN_C_END
 // index.d.ts
 export const calculateArea: (width: number, height: number) => number;
 ```
+<!-- @[napi_create_function_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS 侧示例代码
 
@@ -219,6 +227,7 @@ import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API create_function:%{public}d ', testNapi.calculateArea(1.2, 4));
 ```
+<!-- @[ark_napi_create_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIFunction/entry/src/main/ets/pages/Index.ets) -->
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 

@@ -9,8 +9,11 @@
 
 - [aboutToDisappear](../../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)：aboutToDisappear函数在自定义组件析构销毁之前执行。不允许在aboutToDisappear函数中改变状态变量，特别是@Link变量的修改可能会导致应用程序行为不稳定。
 
+> **说明：**
+>
+> 页面生命周期及其相关内容参考[页面路由](../arkts-routing.md#生命周期)。
 
-生命周期流程如下图所示。
+自定义组件生命周期流程如下图所示。
 
 
 ![custom-component-lifecycle-demo1](figures/custom-component-lifecycle-demo1.png)

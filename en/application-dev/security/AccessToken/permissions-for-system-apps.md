@@ -5019,6 +5019,20 @@ Allows the private space application to mount public directories from the main s
 
 **Valid since**：20
 
+## ohos.permission.MOUNT_HDCDEBUG_PATH
+
+Allows an applications to mount hdc debugging paths.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20
+
 ## ohos.permission.ACCESS_CAMERA_SCENARIOS_CARD
 
 Allows an applications to access the remote photography card services.

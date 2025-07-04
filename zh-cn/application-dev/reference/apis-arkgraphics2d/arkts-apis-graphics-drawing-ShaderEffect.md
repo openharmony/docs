@@ -147,8 +147,7 @@ let shaderEffect = drawing.ShaderEffect.createColorShader(0xFFFF0000);
 
 ### createLinearGradient<sup>12+</sup>
 
-static createLinearGradient(startPt: common2D.Point, endPt: common2D.Point, colors: Array
-\<number>, mode: TileMode, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect
+static createLinearGradient(startPt: common2D.Point, endPt: common2D.Point, colors: Array\<number>, mode: TileMode, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect
 
 创建着色器，在两个指定点之间生成线性渐变。
 
@@ -195,7 +194,7 @@ let shaderEffect = drawing.ShaderEffect.createLinearGradient(startPt, endPt, [0x
 
 ### createRadialGradient<sup>12+</sup>
 
-static createRadialGradient(centerPt: common2D.Point, radius: number, colors: Array\<number>, mode: TileMode, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect;
+static createRadialGradient(centerPt: common2D.Point, radius: number, colors: Array\<number>, mode: TileMode, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect
 
 创建着色器，使用给定的圆心和半径生成径向渐变。径向渐变是指颜色从圆心逐渐向外扩散形成的渐变。
 
@@ -241,9 +240,7 @@ let shaderEffect = drawing.ShaderEffect.createRadialGradient(centerPt, 100, [0xF
 
 ### createSweepGradient<sup>12+</sup>
 
-static createSweepGradient(centerPt: common2D.Point, colors: Array\<number>,
-  mode: TileMode, startAngle: number, endAngle: number, pos?: Array\<number> | null,
-  matrix?: Matrix | null): ShaderEffect;
+static createSweepGradient(centerPt: common2D.Point, colors: Array\<number>, mode: TileMode, startAngle: number, endAngle: number, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect
 
 创建着色器。该着色器以给定中心点为圆心，在顺时针或逆时针方向上生成颜色扫描渐变。
 
@@ -290,8 +287,7 @@ let shaderEffect = drawing.ShaderEffect.createSweepGradient(centerPt, [0xFF00FF0
 
 ### createConicalGradient<sup>12+</sup>
 
-static createConicalGradient(startPt: common2D.Point, startRadius: number, endPt: common2D.Point, endRadius: number, colors: Array\<number>, mode: TileMode, 
-pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect;
+static createConicalGradient(startPt: common2D.Point, startRadius: number, endPt: common2D.Point, endRadius: number, colors: Array\<number>, mode: TileMode, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect
 
 创建着色器，在给定两个圆之间生成径向渐变。
 

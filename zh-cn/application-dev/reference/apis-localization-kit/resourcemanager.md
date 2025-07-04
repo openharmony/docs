@@ -43,7 +43,7 @@
 | [ResourceManager_ErrorCode](#resourcemanager_errorcode) {<br/>SUCCESS = 0, ERROR_CODE_INVALID_INPUT_PARAMETER = 401, ERROR_CODE_RES_ID_NOT_FOUND = 9001001, ERROR_CODE_RES_NOT_FOUND_BY_ID = 9001002,<br/>ERROR_CODE_RES_NAME_NOT_FOUND = 9001003, ERROR_CODE_RES_NOT_FOUND_BY_NAME = 9001004, ERROR_CODE_RES_PATH_INVALID = 9001005, ERROR_CODE_RES_REF_TOO_MUCH = 9001006,<br/>ERROR_CODE_RES_ID_FORMAT_ERROR = 9001007, ERROR_CODE_RES_NAME_FORMAT_ERROR = 9001008, ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED = 9001009, ERROR_CODE_OVERLAY_RES_PATH_INVALID = 9001010,<br/>ERROR_CODE_OUT_OF_MEMORY = 9001100<br/>} | 资源管理错误码。 | 
 | [ScreenDensity](#screendensity) {<br/>SCREEN_SDPI = 120, SCREEN_MDPI = 160, SCREEN_LDPI = 240, SCREEN_XLDPI = 320,<br/>SCREEN_XXLDPI = 480, SCREEN_XXXLDPI = 640<br/>} | 屏幕密度类型的枚举。 | 
 | [ResourceManager_Direction](#resourcemanager_direction) { DIRECTION_VERTICAL = 0, DIRECTION_HORIZONTAL = 1 } | 屏幕方向的枚举。 | 
-| [ResourceManager_ColorMode](#resourcemanager_colormode) { DARK = 0, LIGHT = 1 } | 颜色模式的枚举。 | 
+| [ResourceManager_ColorMode](#resourcemanager_colormode) { COLOR_MODE_DARK = 0, COLOR_MODE_LIGHT = 1 } | 颜色模式的枚举。 | 
 | [ResourceManager_DeviceType](#resourcemanager_devicetype) {<br/>DEVICE_TYPE_PHONE = 0X00, DEVICE_TYPE_TABLET = 0x01, DEVICE_TYPE_CAR = 0x02, DEVICE_TYPE_PC = 0x03,<br/>DEVICE_TYPE_TV = 0x04, DEVICE_TYPE_WEARABLE = 0x06, DEVICE_TYPE_2IN1 = 0x07<br/>} | 设备类型的枚举。 | 
 
 
@@ -164,8 +164,8 @@ enum ResourceManager_ColorMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| DARK | 表示深色模式。 | 
-| LIGHT | 表示浅色模式。 | 
+| COLOR_MODE_DARK | 表示深色模式。 | 
+| COLOR_MODE_LIGHT | 表示浅色模式。 | 
 
 
 ### ResourceManager_DeviceType

@@ -1,10 +1,10 @@
 # Pasteboard Subsystem Changelog
 
-OpenHarmony 4.0.3.2 has the following changes in the APIs of the pasteboard subsystem:
+Compared with earlier versions, OpenHarmony 4.0.3.2 has the following API changes in its pasteboard subsystem:
 
-## cl.pasteboard.1 convertToTextV9 API Change
+## cl.pasteboard.1 convertToTextV9 Changed
 
-Renamed **convertToTextV9** **toPlainText()** and changed the API from asynchronous to synchronous.
+Renamed the **convertToTextV9** API to **toPlainText()** due to naming specifications and return mode and changed the API from asynchronous to synchronous.
 
 **Change Impact**
 
@@ -28,13 +28,13 @@ Applications developed using the **convertToTextV9** API in versions earlier tha
   ```ts
   toPlainText(): string;
   ```
-
+ 
 
 **Adaptation Guide**
 
 Replace **convertToTextV9**, an asynchronous API, with **toPlainText**, a synchronous API.
 
-## cl.pasteboard.2 ShareOption Enum Name Change
+## cl.pasteboard.2 Enum names of ShareOption Changed and Unsupported Properties Deleted
 
 Changed the enum names of **ShareOption** from UpperCamelCase to all caps.
 

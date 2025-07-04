@@ -17,7 +17,7 @@
 
 ### ​手势拖拽流程
 
-对于手势长按触发拖拽的场景，ArkUI在发起拖拽前会校验当前组件是否具备拖拽功能。对于具备默认可拖出能力的组件（[Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md)、[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)、[TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)、[RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md)、[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)、[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)、<!--Del-->[FormComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)、<!--DelEnd-->[Hyperlink](../reference/apis-arkui/arkui-ts/ts-container-hyperlink.md)）需要判断是否设置了[draggable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#draggable)为true（系统通过[系统资源](../quick-start/resource-categories-and-access.md#系统资源)初始化默认可拖出组件的[draggable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#draggable)属性默认值）。其他组件则需额外确认是否已设置onDragStart回调函数。在满足上述条件后，长按时间达到或超过500ms即可触发拖拽，而长按800ms时，系统开始执行预览图的浮起动效。若与Menu功能结合使用，并通过isShow控制其显示与隐藏，建议避免在用户操作800ms后才控制菜单显示，此举可能引发非预期的行为。
+对于手势长按触发拖拽的场景，ArkUI在发起拖拽前会校验当前组件是否具备拖拽功能。对于具备默认可拖出能力的组件（[Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md)、[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)、[TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)、[RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md)、[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)、[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)、[Hyperlink](../reference/apis-arkui/arkui-ts/ts-container-hyperlink.md)）需要判断是否设置了[draggable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#draggable)为true（系统通过[系统资源](../quick-start/resource-categories-and-access.md#系统资源)初始化默认可拖出组件的[draggable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#draggable)属性默认值）。其他组件则需额外确认是否已设置onDragStart回调函数。在满足上述条件后，长按时间达到或超过500ms即可触发拖拽，而长按800ms时，系统开始执行预览图的浮起动效。若与Menu功能结合使用，并通过isShow控制其显示与隐藏，建议避免在用户操作800ms后才控制菜单显示，此举可能引发非预期的行为。
 
 手势拖拽（手指/手写笔）触发拖拽流程：
 
@@ -1282,7 +1282,7 @@ Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -
     }
   
     // 处理BEGIN状态
-    handleBeginState(context: dragController.SpringLoadingContext): boolean {
+    handleBeginState(context: SpringLoadingContext): boolean {
       // 检查用户所拖拽的数据类型是否自己能够处理的
       if (this.checkDataType(context?.dragInfos?.dataSummary)) {
         return true;
@@ -1293,16 +1293,16 @@ Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -
     }
   
     // Spring Loading处理入口
-    handleSpringLoading(context: dragController.SpringLoadingContext) {
+    handleSpringLoading(context: SpringLoadingContext) {
       // BEGIN 状态时检查拖拽数据类型
-      if (context.state == dragController?.DragSpringLoadingState.BEGIN) {
+      if (context.state == dragController.DragSpringLoadingState.BEGIN) {
         if (this.handleBeginState(context)) {
           // 我们已经在onDragEnter时刷新了提醒色，进入Spring Loading状态时，恢复UI，提醒用户继续保持不动
           this.buttonBackgroundColor = this.normalColor;
         }
         return;
       }
-      if (context.state == dragController?.DragSpringLoadingState.UPDATE) {
+      if (context.state == dragController.DragSpringLoadingState.UPDATE) {
         // 奇数次UPDATE通知刷新提醒UI，偶数次复原UI
         if (context.currentNotifySequence % 2 != 0) {
           this.buttonBackgroundColor = this.reminderColor;
@@ -1312,12 +1312,12 @@ Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -
         return;
       }
       // 处理Spring Loading结束，触发视图切换
-      if (context.state == dragController?.DragSpringLoadingState.END) {
+      if (context.state == dragController.DragSpringLoadingState.END) {
         this.isShowSheet = true;
         return;
       }
       // 处理CANCEL状态，复原UI
-      if (context.state == dragController?.DragSpringLoadingState.CANCEL) {
+      if (context.state == dragController.DragSpringLoadingState.CANCEL) {
         this.buttonBackgroundColor = this.normalColor;
         return;
       }
@@ -1347,7 +1347,7 @@ Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -
             // 当用户拖拽离开按钮范围，恢复UI
             this.buttonBackgroundColor = this.normalColor
           })
-          .onDragSpringLoading((context: dragController.SpringLoadingContext)=>{
+          .onDragSpringLoading((context: SpringLoadingContext)=>{
             this.handleSpringLoading(context);
           })
       }.width('100%').height('100%')

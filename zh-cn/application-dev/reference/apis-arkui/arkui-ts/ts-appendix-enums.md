@@ -441,10 +441,10 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 说明     |
-| ---------- | ------ |
-| Vertical   | 方向为纵向。 |
-| Horizontal | 方向为横向。 |
+| 名称         | 值 | 说明     |
+| ---------- | -- | ------ |
+| Vertical   | 0 | 方向为纵向。 |
+| Horizontal | 1 | 方向为横向。 |
 
 ## HorizontalAlign
 

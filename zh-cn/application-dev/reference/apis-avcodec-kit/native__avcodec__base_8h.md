@@ -7,9 +7,13 @@
 
 **库：** libnative_media_codecbase.so
 
+**引用文件：** <multimedia/player_framework/native_avcodec_base.h>
+
 **起始版本：** 9
 
 **相关模块：**[CodecBase](_codec_base.md)
+
+**相关示例：**[AVCodec](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
 
 
 ## 汇总
@@ -115,6 +119,7 @@
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](_codec_base.md#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。 | 
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](_codec_base.md#oh_avcodec_mimetype_audio_opus) | OPUS音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->  | 
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](_codec_base.md#oh_avcodec_mimetype_audio_g711mu) | G711MU音频编解码器的MIME类型。 | 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711A](_codec_base.md#oh_avcodec_mimetype_audio_g711a) | G711A音频解码器的MIME类型。 | 
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_RAW](_codec_base.md#oh_avcodec_mimetype_audio_raw) | RAW音频码流的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](_codec_base.md#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_VVC](_codec_base.md#oh_avcodec_mimetype_video_vvc) | VVC(H.266)视频编解码器的MIME类型。 | 
@@ -159,7 +164,7 @@
 | const char \* [OH_MD_KEY_LYRICS](_codec_base.md#oh_md_key_lyrics) | 媒体文件歌词的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_TRACK_COUNT](_codec_base.md#oh_md_key_track_count) | 媒体文件轨道数量的键，值类型为int32_t。 | 
 | const char \* [OH_MD_KEY_CHANNEL_LAYOUT](_codec_base.md#oh_md_key_channel_layout) | 所需编码通道布局的键。值类型为int64_t，此键仅适用于编码器。 | 
-| const char \* [OH_MD_KEY_BITS_PER_CODED_SAMPLE](_codec_base.md#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为int32_t，支持flac编码器，请参见[OH_BitsPerSample](_codec_base.md#oh_bitspersample)。 | 
+| const char \* [OH_MD_KEY_BITS_PER_CODED_SAMPLE](_codec_base.md#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为int32_t。<br>API 20前，FLAC编码必须设置此参数，设置为1即可；未设置此参数配置FLAC编码器时，调用OH_AudioCodec_Configure会返回错误码AV_ERR_INVALID_VAL。该值无实际作用，不会影响编码结果。从API 20开始，无需设置此参数。| 
 | const char \* [OH_MD_KEY_AAC_IS_ADTS](_codec_base.md#oh_md_key_aac_is_adts) | aac格式的键，aac格式分为ADTS格式和LATM格式。值类型为int32_t，aac解码器支持。 |
 | const char \* [OH_MD_KEY_SBR](_codec_base.md#oh_md_key_sbr) | aac sbr模式的键，值类型为int32_t，aac编码器支持。 | 
 | const char \* [OH_MD_KEY_COMPLIANCE_LEVEL](_codec_base.md#oh_md_key_compliance_level) | flac兼容性等级的键，值类型为int32_t，仅在音频编码使用。 | 
@@ -190,6 +195,7 @@
 | const char \* [OH_MD_KEY_VIDEO_PIC_WIDTH](_codec_base.md#oh_md_key_video_pic_width) | 描述视频帧真实宽度的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_HEIGHT](_codec_base.md#oh_md_key_video_pic_height) | 描述视频帧真实高度的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](_codec_base.md#oh_md_key_video_enable_low_latency) | 使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示其它情况。  | 
+| const char \* [OH_MD_KEY_ENABLE_SYNC_MODE](_codec_base.md#oh_md_key_enable_sync_mode) | 使能视频编解码同步模式的键，值类型为int32_t，1表示使能，0表示其它情况。该键是可选，在Configure阶段使用。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](_codec_base.md#oh_md_key_video_encoder_qp_max) | 描述视频编码器允许的最大量化参数的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](_codec_base.md#oh_md_key_video_encoder_qp_min) | 描述视频编码器允许的最小量化参数的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE](_codec_base.md#oh_md_key_video_encoder_qp_average) | 描述视频帧平均量化参数的键，值类型为int32_t。 |

@@ -98,7 +98,7 @@ thatSer.setAttributes("importance", "high");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result); // <note importance="high"/>
+console.info(result); // <note importance="high"/>
 ```
 
 ### addEmptyElement
@@ -139,7 +139,7 @@ let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.addEmptyElement("d");
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result); // <d/>
+console.info(result); // <d/>
 ```
 
 ### setDeclaration
@@ -162,7 +162,7 @@ let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result);
+console.info(result);
 // <?xml version="1.0" encoding="utf-8"?>
 ```
 
@@ -208,7 +208,7 @@ thatSer.setText("Happy");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result);
+console.info(result);
 // <note>Happy</note>
 ```
 
@@ -238,7 +238,7 @@ thatSer.setText("Happy");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result);
+console.info(result);
 // <note>Happy</note>
 ```
 
@@ -283,7 +283,7 @@ thatSer.startElement("note");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result);
+console.info(result);
 // <h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
@@ -321,7 +321,7 @@ let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setComment("Hello, World!");
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result); // <!--Hello, World!-->
+console.info(result); // <!--Hello, World!-->
 ```
 
 ### setCDATA
@@ -362,7 +362,7 @@ let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setCDATA('root SYSTEM')
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result); // <![CDATA[root SYSTEM]]>
+console.info(result); // <![CDATA[root SYSTEM]]>
 ```
 
 ### setText
@@ -402,7 +402,7 @@ thatSer.setText("Happy");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result); // <note importance="high">Happy</note>
+console.info(result); // <note importance="high">Happy</note>
 ```
 
 ### setDocType
@@ -439,7 +439,7 @@ let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDocType('root SYSTEM "http://www.test.org/test.dtd"');
 let uint8 = new Uint8Array(arrayBuffer);
 let result = util.TextDecoder.create().decodeToString(uint8);
-console.log(result); // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
+console.info(result); // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
 ```
 
 ## XmlDynamicSerializer<sup>20+</sup>
@@ -998,7 +998,7 @@ let uint8 = textEncoder.encodeInto(strxml);
 
 function func(key: xml.EventType, value: xml.ParseInfo) {
   if (key == xml.EventType.CDSECT) {
-    console.log(JSON.stringify(value.getText()));
+    console.info(JSON.stringify(value.getText()));
   }
   return true;
 }
@@ -1053,7 +1053,7 @@ let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer, 'UTF
 let str = '';
 function func(name: string, value: string) {
   str = name + value;
-  console.log(str);
+  console.info(str);
   return true;
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func}
@@ -1121,8 +1121,8 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value:1 key:2 value:45 key:4 value:50 key:3 value:57 key:1 value:57
 ```
 
@@ -1165,8 +1165,8 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value:0 key:2 value:1 key:2 value:2 key:4 value:2 key:3 value:2 key:3 value:1 key:1 value:0
 ```
 
@@ -1201,8 +1201,8 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value:1 key:2 value:1 key:4 value:1 key:3 value:1 key:1 value:1
 ```
 
@@ -1237,8 +1237,8 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value: key:2 value:note key:4 value: key:3 value:note key:1 value:
 ```
 ### getNamespace
@@ -1276,8 +1276,8 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:false, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value: key:2 value: key:2 value:http://www.w3.org key:4 value: key:3 value:http://www.w3.org key:3 value: key:1 value:
 ```
 ### getPrefix
@@ -1315,8 +1315,8 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:false, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value: key:2 value: key:2 value:h key:4 value: key:3 value:h key:3 value: key:1 value:
 ```
 
@@ -1351,8 +1351,8 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value: key:2 value: key:4 value:Happy key:3 value: key:1 value:
 ```
 ### isEmptyElementTag
@@ -1390,8 +1390,8 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value:false key:2 value:false key:2 value:true key:3 value:false key:3 value:false key:1 value:false
 ```
 ### isWhitespace
@@ -1429,8 +1429,8 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value:true key:2 value:false key:2 value:true key:10 value:true key:3 value:true key:3 value:true key:1 value:true
 ```
 ### getAttributeCount
@@ -1463,8 +1463,8 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
   return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
-that.parse(options);
-console.log(str);
+that.parseXml(options);
+console.info(str);
 // key:0 value:0 key:2 value:2 key:3 value:2 key:1 value:0
 ```
 

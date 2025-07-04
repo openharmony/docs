@@ -10,10 +10,10 @@
 
 - 音频录制
 
-  通过录制传入PCM，然后编码出对应格式的码流，最后[封装](audio-video-muxer.md#媒体数据封装)成想要的格式。
+  通过录制传入PCM，然后编码出对应格式的码流，最后[封装](audio-video-muxer.md)成想要的格式。
 - 音频编辑
 
-  编辑PCM后导出音频文件的场景，需要编码成对应音频格式后再[封装](audio-video-muxer.md#媒体数据封装)成文件。
+  编辑PCM后导出音频文件的场景，需要编码成对应音频格式后再[封装](audio-video-muxer.md)成文件。
 > **说明：**
 >
 > AAC编码器默认采用的VBR可变码率模式，与配置的预期参数可能存在偏差。
@@ -232,14 +232,15 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S32LE;
     // 配置音频compliance level (默认值0，取值范围-2~2)。
     constexpr int32_t COMPLIANCE_LEVEL = 0;
-    // 配置音频精度（必须） SAMPLE_S16LE和SAMPLE_S24LE和SAMPLE_S32LE。
-    constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
+    
     OH_AVFormat *format = OH_AVFormat_Create();
     // 写入format。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, DEFAULT_CHANNEL_COUNT);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, DEFAULT_SAMPLERATE);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_BITS_PER_CODED_SAMPLE, BITS_PER_CODED_SAMPLE); 
+    // 配置音频精度。API 20前，FLAC编码必须设置此参数，设置为1即可；未设置此参数配置FLAC编码器时，调用OH_AudioCodec_Configure会返回错误码AV_ERR_INVALID_VAL。该值无实际作用，不会影响编码结果。从API 20开始，无需设置此参数。
+    // constexpr int32_t BITS_PER_CODED_SAMPLE = 1;
+    // OH_AVFormat_SetIntValue(format, OH_MD_KEY_BITS_PER_CODED_SAMPLE, BITS_PER_CODED_SAMPLE);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_FORMAT); 
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_CHANNEL_LAYOUT, CHANNEL_LAYOUT);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_COMPLIANCE_LEVEL, COMPLIANCE_LEVEL); 

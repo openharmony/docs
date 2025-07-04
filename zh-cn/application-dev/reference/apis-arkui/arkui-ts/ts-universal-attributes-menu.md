@@ -1,12 +1,12 @@
 # 菜单控制
 
-为组件绑定弹出式菜单，菜单项以垂直列表形式显示，支持长按、点击或鼠标右键触发。
+为组件绑定弹出式菜单，支持长按、点击或鼠标右键来触发菜单的弹出，菜单项以垂直列表形式显示。
 
 >  **说明：**
 >
 >  - 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  - CustomBuilder不支持使用bindMenu和bindContextMenu弹出菜单。多级菜单可使用[Menu组件](ts-basic-components-menu.md)。
+>  - CustomBuilder不支持使用bindMenu和bindContextMenu弹出菜单。可以使用[Menu组件](ts-basic-components-menu.md)来实现多级菜单。
 >
 >  - 弹出菜单的文本内容不支持长按选中。
 >
@@ -28,7 +28,7 @@
 
 bindMenu(content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions): T
 
-给组件绑定菜单，点击后弹出菜单。弹出菜单项支持图标+文本排列和自定义两种功能。
+给组件绑定菜单，点击后弹出菜单。弹出的菜单项支持图标+文本排列以及自定义组件两种功能。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -51,7 +51,7 @@ bindMenu(content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions):
 
 bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions): T
 
-给组件绑定菜单，点击后弹出菜单。弹出菜单项支持图标+文本排列和自定义两种功能。
+给组件绑定菜单，点击后弹出菜单。弹出的菜单项支持图标+文本排列以及自定义组件两种功能。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -134,7 +134,7 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 | icon<sup>10+</sup>       | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 菜单项图标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | enabled<sup>11+</sup>    | boolean                                                      | 否   | 菜单条目是否可进行交互。<br/>默认值：true，菜单条目可以进行交互。<br/>值为false时，菜单条目不可以进行交互。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | action                   | ()&nbsp;=&gt;&nbsp;void                                      | 是   | 点击菜单项的事件回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| symbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 设置菜单项图标。通过Modifier配置菜单项图标，配置该项时，原icon图标不显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| symbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 设置菜单项图标。通过Modifier配置菜单项图标，若同时配置symbolIcon和icon的情况下，icon图标不显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## MenuOptions<sup>10+</sup>
 
@@ -1114,3 +1114,49 @@ struct Index {
 ```
 
 ![menuMask](figures/menuMask.jpg)
+
+### 示例17（bindMenu设置下拉菜单外描边样式）
+
+该示例为bindMenu通过配置outlineWidth和outlineColor属性设置下拉菜单外描边样式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ content: "菜单选项" })
+      MenuItem({ content: "菜单选项" })
+      MenuItem({ content: "菜单选项" })
+    }
+  }
+
+  build() {
+    Column({ space: 50 }) {
+      Column() {
+        Column() {
+          Text('click for Menu')
+            .width(200)
+            .height(100)
+            .textAlign(TextAlign.Center)
+            .margin(100)
+            .fontSize(30)
+            .bindMenu(this.MyMenu,
+              {
+                outlineWidth: '5vp',
+                outlineColor: Color.Blue
+              })
+        }
+      }
+      .width('100%')
+      .height('100%')
+      .backgroundColor('#F0F2F5')
+    }
+  }
+}
+
+```
+
+![menu-outline](figures/menuOutline.png)

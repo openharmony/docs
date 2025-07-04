@@ -12,7 +12,9 @@
 
 > **说明**
 >
-> stage模型多工程情况下，共有的资源文件放到AppScope下的resources目录。 
+> - 资源目录和资源组目录下的文件均被视为资源文件，在应用打包时不会进行混淆。
+>
+> - stage模型多工程情况下，共有的资源文件放到AppScope下的resources目录。
 
 资源目录和资源组目录示例：
 ```
@@ -324,12 +326,12 @@ string资源配置attr属性示例如下，其中string1字符串被标记为不
 <!--Del-->
 #### bundle不同，跨bundle访问（仅支持系统应用使用）
 
-- 通过[createBundleContext(context, bundleName)](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
+- 通过[createBundleContext(context, bundleName)](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)通过资源ID值或资源名称访问各类资源。
 <!--DelEnd-->
 
 #### bundle相同，跨module访问
 
-- 通过[createModuleContext(context, moduleName)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
+- 通过[createModuleContext(context, moduleName)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)通过资源ID值或资源名称访问各类资源。
 
 - 通过`$r`或`$rawfile`访问资源。具体操作如下：
 

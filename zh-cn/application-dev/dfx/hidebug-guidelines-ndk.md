@@ -1,6 +1,6 @@
 # 使用HiDebug获取调试信息（C/C++）
 
-本模块可用于应用进程的内存、CPU、GPU等相关数据的获取，开启进程trace采集等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试，调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
+本模块可用于应用进程的内存、CPU、GPU等相关数据的获取，开启进程trace采集等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试、调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
 
 ## 接口说明
 | 接口名                          | 描述                              |
@@ -108,7 +108,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            Text(this.message)
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-             .onClick(testNapi.testHiDebugNdk);//添加点击事件，触发testHiDebugNdk方法。
+             .onClick(testNapi.testHiDebugNdk);// 添加点击事件，触发testHiDebugNdk方法。
          }
          .width('100%')
        }
@@ -154,7 +154,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     void InitSignalHandle();
     void BacktraceFrames();
 
-    #endif //MYAPPLICATION_TESTBACKTRACE_H
+    #endif // MYAPPLICATION_TESTBACKTRACE_H
     ```
 3. 编辑“test_backtrace.cpp”文件如下：
 
@@ -167,7 +167,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     #include "hidebug/hidebug.h"
     #include "hilog/log.h"
 
-    #define MAX_FRAME_SIZE 256 //最大栈回溯深度，应根据业务场景调整该值。
+    #define MAX_FRAME_SIZE 256 // 最大栈回溯深度，应根据业务场景调整该值。
 
     namespace {
         constexpr auto LOG_PRINT_DOMAIN = 0xFF00;
@@ -339,7 +339,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            TestNativeFrames(i - 1);
            return;
        }
-       std::this_thread::sleep_for(std::chrono::seconds(3)); //模拟主线程阻塞。
+       std::this_thread::sleep_for(std::chrono::seconds(3)); // 模拟主线程阻塞。
    }
 
    __attribute((noinline)) __attribute((optnone)) napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
@@ -400,7 +400,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
              .fontWeight(FontWeight.Bold)
              .onClick(() => {
                 testJsFrame(3);
-             });//添加点击事件，触发testHiDebugNdk方法。
+             });// 添加点击事件，触发testHiDebugNdk方法。
          }
          .width('100%')
        }
@@ -413,7 +413,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 9. 在DevEco Studio的底部，切换到“Log”窗口，设置日志的过滤条件为“TestTag”。
 
-   此时窗口将显示通过主线程当前调用栈的相关日志，由于回栈时基于LR寄存器（保存的函数返回地址），故无法获取到当前调用函数的栈信息。
+   此时窗口将显示主线程当前调用栈的相关日志，由于回栈时基于LR寄存器（保存的函数返回地址），故无法获取到当前调用函数的栈信息。
 
    ```Text
     ...

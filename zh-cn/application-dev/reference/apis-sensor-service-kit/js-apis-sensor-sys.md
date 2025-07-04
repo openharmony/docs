@@ -412,8 +412,8 @@ function sensorUnsubscribe(): Ret {
 
 | 名称             | 类型   | 只读 | 可选 | 说明                          |
 | ---------------- | ------ | ---- | ---- | ----------------------------- |
-| lightIntensity   | number | 是   | 是   | 表示光的强度，单位 : 勒克斯。 |
-| colorTemperature | number | 是   | 是   | 表示色温，单位 : 开尔文。     |
+| lightIntensity   | number | 是   | 否   | 表示光的强度，单位 : 勒克斯。 |
+| colorTemperature | number | 是   | 否   | 表示色温，单位 : 开尔文。     |
 
 ## SarResponse<sup>10+ </sup>
 
@@ -426,7 +426,7 @@ function sensorUnsubscribe(): Ret {
 
 | 名称            | 类型   | 只读 | 可选 | 说明                            |
 | --------------- | ------ | ---- | ---- | ------------------------------- |
-| absorptionRatio | number | 是   | 是   | 表示具体的吸收率，单位 : W/kg。 |
+| absorptionRatio | number | 是   | 否   | 表示具体的吸收率，单位 : W/kg。 |
 
 
 ## SensorInfoParam<sup>19+</sup>

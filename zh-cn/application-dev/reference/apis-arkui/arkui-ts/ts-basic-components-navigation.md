@@ -8,7 +8,7 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 >
 > - 该组件从API version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM, SafeAreaType.KEYBOARD, SafeAreaType.CUTOUT], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
 >
-> - [NavBar](#navbar12)嵌套使用Navigation时，内层Navigation的生命周期不和外层Navigation以及[全模态](ts-universal-attributes-modal-transition.md#全屏模态转场)的生命周期进行联动。
+> - [NavBar](#navbar12)嵌套使用Navigation时，内层Navigation的生命周期不和外层Navigation以及[全模态](ts-universal-attributes-modal-transition.md)的生命周期进行联动。
 >
 > - Navigation未设置主副标题并且没有返回键时，不显示标题栏。
 
@@ -37,7 +37,7 @@ Navigation()
 
 Navigation(pathInfos: NavPathStack)
 
-绑定路由栈到Navigation组件，适用于使用[NavPathStack](#navpathstack10)配合[navDestination](#navdestination10)属性进行页面路由。
+绑定导航控制器到Navigation组件，适用于使用[NavPathStack](#navpathstack10)配合[navDestination](#navdestination10)属性进行页面路由。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -47,7 +47,32 @@ Navigation(pathInfos: NavPathStack)
 
 | 参数名       | 类型                            | 必填   | 说明   |
 | --------- | ------------------------------- | ---- | ------ |
+| pathInfos | [NavPathStack](#navpathstack10) | 是    | 导航控制器对象。 |
+
+### Navigation<sup>20+</sup>
+
+Navigation(pathInfos: NavPathStack, homeDestination: HomePathInfo)
+
+绑定路由栈到Navigation组件，并且指定一个NavDestination作为Navigation的导航栏（主页），适用于使用[NavPathStack](#navpathstack10)配合[navDestination](#navdestination10)属性或者系统路由表进行页面路由。使用示例参考[示例16（Navigation使用NavDestination作为导航栏）](#示例16navigation使用navdestination作为导航栏)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名       | 类型                            | 必填   | 说明   |
+| --------- | ------------------------------- | ---- | ------ |
 | pathInfos | [NavPathStack](#navpathstack10) | 是    | 路由栈信息。 |
+| homeDestination | [HomePathInfo](#homepathinfo20) | 是    | 主页NavDestination信息。 |
+
+> **说明：**
+>
+> 如果使用了主页NavDestination，则Navigation有如下变化：
+>
+> - 开发者写在Navigation组件内的内容不会被创建。
+>
+> - 对于Navigation的各种属性，如果主页NavDestination有对应功能的属性，则Navigation的属性不生效。
 
 ## 属性
 
@@ -448,7 +473,7 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 >
 > 1. 不建议混合使用systemBarStyle属性和window设置状态栏样式的相关接口，例如：[setWindowSystemBarProperties](../arkts-apis-window-Window.md#setwindowsystembarproperties9)。
 > 2. 初次设置Navigation/NavDestination的systemBarStyle属性时，会备份当前状态栏样式用于后续的恢复场景。
-> 3. Navigation总是以首页（页面栈内没有NavDestination时）或者栈顶NavDestination设置的状态栏样式为准。
+> 3. Navigation总是以首页（路由栈内没有NavDestination时）或者栈顶NavDestination设置的状态栏样式为准。
 > 4. Navigation首页或者任何栈顶NavDestination页面，如果设置了有效的systemBarStyle，则会使用设置的样式，反之如果之前已经备份了样式，则使用备份的样式，否则不做任何处理。
 > 5. [Split](#navigationmode9枚举说明)模式下的Navigation，如果内容区没有NavDestination，则遵从Navigation首页的设置，反之则遵从栈顶NavDestination的设置。
 > 6. 仅支持在主窗口的主页面中使用systemBarStyle设置状态栏样式。
@@ -460,7 +485,7 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 
 recoverable(recoverable: Optional&lt;boolean&gt;)
 
-配置Navigation是否可恢复。如配置为可恢复，当应用进程异常退出并重新冷启动时，可自动创建该Navigation，并恢复至异常退出时的页面栈。
+配置Navigation是否可恢复。如配置为可恢复，当应用进程异常退出并重新冷启动时，可自动创建该Navigation，并恢复至异常退出时的路由栈。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -468,7 +493,7 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| recoverable  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | Navigation是否可恢复，默认为不可恢复。<br/>默认值：false。<br/>true：页面栈可恢复。<br/>false：页面栈不可恢复。|
+| recoverable  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | Navigation是否可恢复，默认为不可恢复。<br/>默认值：false。<br/>true：路由栈可恢复。<br/>false：路由栈不可恢复。|
 
 >  **使用说明：**
 >
@@ -656,7 +681,7 @@ customNavContentTransition(delegate:(from: NavContentInfo, to: NavContentInfo, o
 
 ## NavPathStack<sup>10+</sup>
 
-Navigation路由栈，从API version 12开始，NavPathStack允许被继承。开发者可以在派生类中新增属性方法，也可以重写基类NavPathStack的方法。派生类对象可以替代基类NavPathStack对象使用。使用示例参见[示例10](#示例10定义路由栈派生类)。
+Navigation导航控制器，从API version 12开始，NavPathStack允许被继承。开发者可以在派生类中新增属性方法，也可以重写基类NavPathStack的方法。派生类对象可以替代基类NavPathStack对象使用。Navigation中的NavDeatination页面存在于NavPathStack中，以栈的结构管理，我们称为路由栈。使用示例参见[示例10](#示例10定义导航控制器派生类)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -664,10 +689,10 @@ Navigation路由栈，从API version 12开始，NavPathStack允许被继承。�
 
 > **说明：**
 >
-> 1.连续调用多个页面栈操作方法时，中间过程会被忽略，显示最终的栈操作结果。<br/>
+> 1.连续调用多个导航控制器操作方法时，中间过程会被忽略，显示最终的栈操作结果。<br/>
 > 例如：在Page1页面先pop再push一个Page1，系统会认为操作前和操作后的结果一致而不进行任何操作，如果需要强行push一个Page1实例，可以使用NEW_INSTANCE模式。
 >
-> 2.不建议开发者通过监听生命周期的方式管理自己的页面栈。
+> 2.不建议开发者通过监听生命周期的方式管理自己的导航控制器。
 >
 > 3.在应用处于后台状态下，调用NavPathStack的栈操作方法，会在应用再次回到前台状态时触发刷新。
 
@@ -713,7 +738,7 @@ pushPath(info: NavPathInfo, options?: NavigationOptions): void
 | 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
-| options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
+| options | [NavigationOptions](#navigationoptions12) | 否    | 路由栈操作选项。 |
 
 ### pushPathByName<sup>10+</sup>
 
@@ -801,7 +826,7 @@ pushDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void
 | 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
-| options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
+| options | [NavigationOptions](#navigationoptions12) | 否    | 路由栈操作选项。 |
 
 **返回值：**
 
@@ -895,7 +920,7 @@ pushDestinationByName(name: string, param: Object, onPop: Callback\<PopInfo>, an
 
 replacePath(info: NavPathInfo, animated?: boolean): void
 
-将当前页面栈栈顶退出，将info指定的NavDestination页面信息入栈。
+将当前路由栈栈顶退出，将info指定的NavDestination页面信息入栈。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -912,7 +937,7 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 
 replacePath(info: NavPathInfo, options?: NavigationOptions): void
 
-替换页面栈操作，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+替换路由栈操作，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -923,13 +948,13 @@ replacePath(info: NavPathInfo, options?: NavigationOptions): void
 | 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息。 |
-| options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
+| options | [NavigationOptions](#navigationoptions12) | 否    | 路由栈操作选项。 |
 
 ### replacePathByName<sup>11+</sup>
 
 replacePathByName(name: string, param: Object, animated?: boolean): void
 
-将当前页面栈栈顶退出，将name指定的页面入栈。
+将当前路由栈栈顶退出，将name指定的页面入栈。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -947,7 +972,7 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 
 replaceDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void&gt;
 
-替换页面栈操作。使用Promise异步回调返回接口调用结果，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+替换路由栈操作。使用Promise异步回调返回接口调用结果，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -958,7 +983,7 @@ replaceDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;v
 | 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
-| options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
+| options | [NavigationOptions](#navigationoptions12) | 否    | 路由栈操作选项。 |
 
 **返回值：**
 
@@ -981,7 +1006,7 @@ replaceDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;v
 
 removeByIndexes(indexes: Array<number\>): number
 
-将页面栈内索引值在indexes中的NavDestination页面删除。
+将路由栈内索引值在indexes中的NavDestination页面删除。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1003,7 +1028,7 @@ removeByIndexes(indexes: Array<number\>): number
 
 removeByName(name: string): number
 
-将页面栈内指定name的NavDestination页面删除。
+将路由栈内指定name的NavDestination页面删除。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1025,7 +1050,7 @@ removeByName(name: string): number
 
 removeByNavDestinationId(navDestinationId: string): boolean
 
-将页面栈内指定navDestinationId的NavDestination页面删除。navDestinationId可以在NavDestination的[onReady](ts-basic-components-navdestination.md#onready11)回调中获取，也可以在[NavDestinationInfo](../js-apis-arkui-observer.md#navdestinationinfo)中获取。
+将路由栈内指定navDestinationId的NavDestination页面删除。navDestinationId可以在NavDestination的[onReady](ts-basic-components-navdestination.md#onready11)回调中获取，也可以在[NavDestinationInfo](../js-apis-arkui-observer.md#navdestinationinfo)中获取。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1309,7 +1334,7 @@ getIndexByName(name: string): Array<number\>
 
 | 类型             | 说明                                |
 | -------------- | --------------------------------- |
-| Array<number\> | 返回全部名为name的NavDestination页面的位置索引。 当页面栈中不存在此name，返回空数组。索引取值范围为[0, 页面栈大小-1] |
+| Array<number\> | 返回全部名为name的NavDestination页面的位置索引。 当路由栈中不存在此name，返回空数组。索引取值范围为[0, 路由栈大小-1] |
 
 ### size<sup>10+</sup>
 
@@ -1411,8 +1436,8 @@ setPathStack(pathStack: Array\<NavPathInfo\>, animated?: boolean): void
 >  **说明：**
 >
 > 1. 开发者可以在原有栈的基础上批量添加或删除页面。批量入栈的页面中，只有可见的页面会触发创建，其他页面虽已入栈但不会立即创建，当这些页面变为可见时，才会触发创建。
-> 2. 通过批量入栈功能更新的页面栈，各页面的生命周期事件触发顺序为从栈顶到底部依次触发，这与其它入栈接口从栈底到顶部的触发顺序不同。
-> 3. 开发者可以通过[NavPathInfo](#navpathinfo10)中的页面唯一标识符navDestinationId来操作已有页面，该id由系统默认生成且全局唯一（可以通过[getPathStack](#getpathstack19)接口获取，不可主动赋新值）。若该id在当前页面栈中不存在，则表示新增页面，若在当前页面栈中存在，同时对应的name相同，则表示复用已有页面。
+> 2. 通过批量入栈功能更新的路由栈，各页面的生命周期事件触发顺序为从栈顶到底部依次触发，这与其它入栈接口从栈底到顶部的触发顺序不同。
+> 3. 开发者可以通过[NavPathInfo](#navpathinfo10)中的页面唯一标识符navDestinationId来操作已有页面，该id由系统默认生成且全局唯一（可以通过[getPathStack](#getpathstack19)接口获取，不可主动赋新值）。若该id在当前路由栈中不存在，则表示新增页面，若在当前路由栈中存在，同时对应的name相同，则表示复用已有页面。
 
 ## NavPathInfo<sup>10+</sup>
 
@@ -1527,7 +1552,7 @@ finishTransition(): void;
 
 cancelTransition?(): void;
 
-取消本次交互转场，恢复到页面跳转前的页面栈(不支持取消不可交互转场动画)。
+取消本次交互转场，恢复到页面跳转前的路由栈(不支持取消不可交互转场动画)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1796,7 +1821,7 @@ Navigation自定义标题。
 
 ## LaunchMode<sup>12+</sup>枚举说明
 
-页面栈操作模式。
+路由栈操作模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1811,7 +1836,7 @@ Navigation自定义标题。
 
 ## NavigationOptions<sup>12+</sup>
 
-页面栈操作选项。
+路由栈操作选项。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1819,7 +1844,7 @@ Navigation自定义标题。
 
 | 名称     | 类型            | 必填   | 说明              |
 | ------ | ------------- | ---- | --------------- |
-| launchMode | [LaunchMode](#launchmode12枚举说明)  | 否    | 页面栈的操作模式。<br/>默认值：LaunchMode.STANDARD |
+| launchMode | [LaunchMode](#launchmode12枚举说明)  | 否    | 路由栈的操作模式。<br/>默认值：LaunchMode.STANDARD |
 | animated   | boolean  | 否    | 是否支持转场动画。<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。|
 
 ## MoreButtonOptions<sup>19+</sup>
@@ -1849,6 +1874,19 @@ type SystemBarStyle = SystemBarStyle
 | 类型     | 说明               |
 | -------- | ------------------ |
 | [SystemBarStyle](../arkts-apis-window-i.md#systembarstyle12)   | 状态栏文字颜色。默认值：`'#0xE5FFFFFF'`。|
+
+## HomePathInfo<sup>20+</sup>
+
+主页NavDestination的信息。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型      | 只读    |  可选   | 说明                   |
+| ----- | ------- | ---- | ---- | ----------------- |
+| name  | string  | 否 |   否    | 主页NavDestination的页面名称。 |
+| param | Object | 否 |   是    | 主页NavDestination的页面详细参数。 |
 
 ## 示例
 
@@ -1963,7 +2001,7 @@ struct NavigationExample {
 
 
 
-### 示例2（使用路由栈方法）
+### 示例2（使用导航控制器方法）
 
 该示例主要演示NavPathStack中方法的使用及路由拦截。
 
@@ -3323,7 +3361,7 @@ export function PageOneBuilder(name: string) {
 
 该示例主要演示如下两点功能：
 
-1. NavPathStack无需声明为状态变量，也可以实现页面栈操作功能。
+1. NavPathStack无需声明为状态变量，也可以实现路由栈操作功能。
 
 2. NavDestination通过onReady事件能够拿到对应的NavPathInfo和所属的NavPathStack。
 
@@ -3621,7 +3659,7 @@ struct NavigationExample {
 ![titlebar_stack.gif](figures/titlebar_stack.gif)
 
 
-### 示例10（定义路由栈派生类）
+### 示例10（定义导航控制器派生类）
 
 该示例主要演示如何定义NavPathStack的派生类和派生类在Navigation中的基本用法。
 
@@ -4517,3 +4555,87 @@ struct NavigationExample {
 ```
 
 ![zh-cn_image_navigation_toolbar_adaptation_landscape](figures/zh-cn_image_navigation_toolbar_adaptation_landscape.gif)
+
+### 示例16（Navigation使用NavDestination作为导航栏）
+
+该示例代码主要展示Navigation可以使用NavDestination作为导航栏（主页）。
+
+```ts
+@Component
+struct PageHome {
+  private stack: NavPathStack | undefined = undefined;
+
+  build() {
+    NavDestination() {
+      Stack({alignContent: Alignment.Center}) {
+        Button('push PageOne').onClick(() => {
+          this.stack?.pushPath({name: 'PageOne'});
+        })
+      }.width('100%').height('100%')
+    }.title('PageHome')
+    .onReady((ctx: NavDestinationContext) => {
+      this.stack = ctx.pathStack;
+    })
+  }
+}
+
+@Builder
+function PageHomeBuilder() {
+  PageHome()
+}
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Stack({alignContent: Alignment.Center}) {
+        Text('PageOne')
+      }.width('100%').height('100%')
+    }.title('PageOne')
+  }
+}
+
+@Builder
+function PageOneBuilder() {
+  PageOne()
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  build() {
+    // 在这里配置主页NavDestination信息
+    Navigation(this.stack, { name: 'PageHome' }) {
+    }
+    .width('100%').height('100%')
+  }
+}
+```
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"。
+```json
+// src/main/resources/base/profile/route_map.json
+{
+  "routerMap": [
+    {
+      "name": "PageHome",
+      "pageSourceFile": "src/main/ets/pages/Index.ets",
+      "buildFunction": "PageHomeBuilder",
+      "data": {
+        "description": "this is PageHome"
+      }
+    },
+    {
+      "name": "PageOne",
+      "pageSourceFile": "src/main/ets/pages/Index.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is PageOne"
+      }
+    }
+  ]
+}
+```
+
+![zh-cn_image_navigation_home_NavDestination](figures/zh-cn_image_navigation_home_NavDestination.gif)

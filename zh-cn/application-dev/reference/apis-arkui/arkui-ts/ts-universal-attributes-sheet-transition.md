@@ -133,7 +133,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 
 5. 不支持指定其他显示层级接口，如showInSubWindow = true、mode = SheetMode.EMBEDDED。侧边弹窗的层级同SheetMode.OVERLAY，只支持在当前UIContext内顶层显示，在所有页面之上。和弹窗类组件显示在一个层级。
 
-6. 无避让软键盘能力，需自定义避让。也无悬停态避让能力。
+6. 无悬停态避让能力。
 
 
 **侧边弹窗样式不支持的接口**
@@ -146,7 +146,6 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | uiContext | 不支持指定显示层级。|
 | mode | 不支持指定显示层级。 |
 | scrollSizeMode | 无挡位能力。  |
-| keyboardAvoidMode | 无避让软键盘能力，需自定义避让。 |
 | enableHoverMode  | 无悬停态避让能力。|
 | hoverModeArea    | 无悬停态避让能力。|
 | detentSelection | 无挡位能力。 |
@@ -226,7 +225,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | TRANSLATE_AND_RESIZE    | 1    | 设置半模态先上抬面板避让软键盘；<br/>当上抬至最大高度仍不足以避让软键盘时，则通过压缩整体内容完成避让。<br />**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 | RESIZE_ONLY    | 2    | 设置半模态通过压缩整体内容避让软键盘。<br />**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 | TRANSLATE_AND_SCROLL    | 3    | 设置半模态先上抬面板避让软键盘；<br/>当上抬至最大高度仍不足以避让软键盘时，则通过滚动内容完成避让。<br />**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
-| POPUP_SHEET<sup>20+</sup>    | 4    | 设置半模态popup样式弹窗避让软键盘。<br /> 1. 避让软键盘时，在popup样式弹窗当前显示位置无法容纳弹窗尺寸的前提下，遵循先垂直翻转避让，后尝试90°水平旋转避让的规则调整显示位置，以预设方向为下方为例，调整避让顺序依次为：下、上、右、左。<br />2. 如果设置的对齐方式导致组件布局超出窗口范围，将根据该对齐方式在水平或垂直方向上进行位移，直至组件完全显示在窗口内。<br />3. 避让软键盘时，如果在四个方向上均无法容纳当前的popup样式弹窗，处理方式遵循开发者设置的placementOnTarget属性：<br />（1）若属性值为true，将依据设定的placement，向其镜像方向平移，直至弹窗能够完全显示。<br />（2）若属性值为false，则在四个方向中，选择能够完全展示弹窗宽度且剩余高度最大的方向，通过调整半模态高度以适应当前方向，确保弹窗能够放下，同时保持预设placement对应的对齐方式不变。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| POPUP_SHEET<sup>20+</sup>    | 4    | 设置半模态popup样式弹窗避让软键盘。<br /> 1. 避让软键盘时，在popup样式弹窗当前显示位置无法容纳弹窗尺寸的前提下，遵循先垂直翻转避让，后尝试90°水平旋转避让的规则调整显示位置，以预设方向为下方为例，调整避让顺序依次为：下、上、右、左。<br />2. 如果设置的对齐方式导致组件布局超出窗口范围，将根据该对齐方式在水平或垂直方向上进行位移，直至组件完全显示在窗口内。<br />3. 避让软键盘时，如果在四个方向上均无法容纳当前的popup样式弹窗，处理方式遵循开发者设置的placementOnTarget属性：<br />（1）若属性值为true，将依据设定的placement，向其镜像方向平移，直至弹窗能够完全显示。<br />（2）若属性值为false，则在四个方向中，选择能够完全展示弹窗宽度且剩余高度最大的方向，通过调整半模态高度以适应当前方向，确保弹窗能够放下，同时保持预设placement对应的对齐方式不变。<br />4. 若此时半模态不是跟手样式，则不具备避让软键盘能力。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 > **说明：**
 >

@@ -1585,7 +1585,7 @@ console.info(`BlendMode: ${mode}`);
 
 setVolumeWithRamp(volume: number, duration: number): void
 
-设置音量渐变模式。同步返回结果。
+在指定时间范围内设置音量渐变模式。同步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -1629,7 +1629,7 @@ setSilentModeAndMixWithOthers(on: boolean): void
 
 | 参数名 | 类型                                     | 必填 | 说明                   |
 | ------ | ---------------------------------------- | ---- |----------------------|
-| on | boolean | 是   | 打开/关闭静音并发播放模式。true表示打开，false表示关闭。 |
+| on | boolean | 是   | 打开/关闭静音并发播放模式。true表示设置当前播放的音频流静音播放，并且不会打断其它音频流播放。false表示取消当前播放的音频流静音播放，音频流可根据系统焦点策略抢占焦点。 |
 
 **示例：**
 

@@ -105,8 +105,7 @@
     - [自定义渲染 (XComponent)](napi-xcomponent-guidelines.md)
   - 设置组件导航和页面路由<!--arkts-set-navigation-routing-->
     - [组件导航和页面路由概述](arkts-navigation-introduction.md)
-    - [组件导航 (Navigation)(推荐)](arkts-navigation-navigation.md)
-    - [实现组件导航转场](arkts-navigation-transition.md)
+    - [组件导航(Navigation) (推荐)](arkts-navigation-navigation.md)
     - [页面路由 (@ohos.router)(不推荐)](arkts-routing.md)
     - [Router切换Navigation](arkts-router-to-navigation.md)
   - 使用文本<!--arkts-use-text-->
@@ -142,7 +141,8 @@
         - [绑定全模态页面 (bindContentCover)](arkts-contentcover-page.md)
      - [即时反馈 (Toast)](arkts-create-toast.md)
      - [设置浮层 (OverlayManager)](arkts-create-overlaymanager.md)
-  - 显示图形<!--arkts-draw-graphics-->
+  - 几何图形绘制<!--arkts-draw-graphics-->
+    - [几何图形绘制概述](arkts-shape-overview.md)
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
     - [形状裁剪 (clipShape)](arkts-clip-shape.md)
     - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
@@ -185,11 +185,12 @@
       - [单一手势](arkts-gesture-events-single-gesture.md)
       - [组合手势](arkts-gesture-events-combined-gestures.md)
       - [多层级手势事件](arkts-gesture-events-multi-level-gesture.md)
-      - [手势拦截](arkts-gesture-events-gesture-judge.md)
+      - [手势冲突处理](arkts-gesture-events-gesture-judge.md)
     - [支持统一拖拽](arkts-common-events-drag-event.md)
     - [支持焦点处理](arkts-common-events-focus-event.md)
   - 使用自定义能力<!--arkts-user-defined-capabilities-->
     - [自定义能力概述](arkts-user-defined.md)
+    - [自定义组合](arkts-user-defined-composition.md)
     - 自定义节点<!--arkts-nodes-->
       - [自定义节点概述](arkts-user-defined-node.md)
       - [自定义占位节点](arkts-user-defined-place-holder.md)

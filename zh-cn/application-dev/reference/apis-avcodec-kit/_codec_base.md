@@ -19,6 +19,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_AVCODEC_MIMETYPE_AUDIO_FLAC](#oh_avcodec_mimetype_audio_flac) | FLAC音频编解码器的MIME类型。                           |
 | [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | OPUS音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->        |
 | [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | G711MU音频编解码器的MIME类型。                         |
+| [OH_AVCODEC_MIMETYPE_AUDIO_G711A](#oh_avcodec_mimetype_audio_g711a) | G711A音频解码器的MIME类型。                         |
 | [OH_AVCODEC_MIMETYPE_AUDIO_RAW](#oh_avcodec_mimetype_audio_raw) | RAW音频码流的MIME类型。                         |
 | [OH_AVCODEC_MIMETYPE_AUDIO_VORBIS](#oh_avcodec_mimetype_audio_vorbis) | VORBIS音频解码器的MIME类型。                           |
 | [OH_AVCODEC_MIMETYPE_AUDIO_MPEG](#oh_avcodec_mimetype_audio_mpeg) | MP3音频编解码器的MIME类型。                              |
@@ -83,6 +84,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width)       | 描述视频帧真实宽度的键，值类型为int32_t。该键是可选的。        |
 | [OH_MD_KEY_VIDEO_PIC_HEIGHT](#oh_md_key_video_pic_height)    | 描述视频帧真实高度的键，值类型为int32_t。该键是可选的。        |
 | [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency)   | 使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示其它情况。该键是可选，在Configure阶段使用。 |
+| [OH_MD_KEY_ENABLE_SYNC_MODE](#oh_md_key_enable_sync_mode)   | 使能视频编解码同步模式的键，值类型为int32_t，1表示使能，0表示其它情况。该键是可选，在Configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | 视频编码码率模式，值类型为int32_t，请参见[OH_BitrateMode](#oh_bitratemode-1)。该键是可选的。 |
 | [OH_MD_KEY_QUALITY](#oh_md_key_quality)                      | 所需编码质量的键。值类型为int32_t，此键仅适用于配置在恒定质量模式下的编码器。该键是可选的。 |
 | [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame)      | 请求立即编码I帧的键。值类型为int32_t。该键是可选的。            |
@@ -109,8 +111,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left)     | 描述裁剪矩形左坐标(x)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_CROP_RIGHT](#oh_md_key_video_crop_right)     | 描述裁剪矩形右坐标(x)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR](#oh_md_key_video_decoder_output_enable_vrr)     | 解码器是否打开视频可变帧率功能的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
-| [OH_MD_KEY_SQR_FACTOR](#oh_md_key_sqr_factor)     | 描述SQR码控模式的质量参数，值越小，编码输出文件越大，质量越好，值类型为int32_t。该键值是可选的且只用于视频编码。 |
-| [OH_MD_KEY_MAX_BITRATE](#oh_md_key_max_bitrate)     | 描述SQR码控模式的最大码率，单位bps，值类型为int64_t。该键值是可选的且只用于视频编码。 |
+| [OH_MD_KEY_SQR_FACTOR](#oh_md_key_sqr_factor)     | 描述SQR码控模式的质量参数，取值范围为[0, 51]（同编码量化参数QP），值越小，编码输出码率越大，质量越好，值类型为int32_t。该键值是可选的且只用于视频编码。 |
+| [OH_MD_KEY_MAX_BITRATE](#oh_md_key_max_bitrate)     | 描述SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同[OH_MD_KEY_BITRATE](#oh_md_key_bitrate)），单位bps，值类型为int64_t。该键值是可选的且只用于视频编码。 |
 | [OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS](#oh_md_key_video_encoder_roi_params)    | 描述ROI编码参数，包括ROI区域和deltaQp，值类型为string。该键值是可选的且只用于视频编码。 |
 | [OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL](#oh_md_key_video_encoder_enable_pts_based_ratecontrol)    | 使能基于显示时间戳(PTS)的码控模式的键，值类型为int32_t，1表示使能，0表示其它情况。该键值是可选的且只用于视频编码，默认值为0。如果使能，则必须在每个视频帧中携带PTS信息，并发送到编码器。在Configure阶段使用。 |
 
@@ -123,7 +125,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate)      | 音频采样率键，值类型为int32_t。                             |
 | [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](#oh_md_key_audio_compression_level) | 音频编解码压缩水平的键，只在音频编码使用，值类型为int32_t。该键是可选的。     |
 | [OH_MD_KEY_CHANNEL_LAYOUT](#oh_md_key_channel_layout)        | 所需编码通道布局的键。值类型为int64_t，此键仅适用于编码器。请参见[OH_AudioChannelLayout](_core.md#oh_audiochannellayout-1)。  |
-| [OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为int32_t，支持flac编码器，请参见[OH_BitsPerSample](#oh_bitspersample-1)。该键是可选的。 |
+| [OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为int32_t。该键是可选的。<br>API 20前，FLAC编码必须设置此参数，设置为1即可；未设置此参数配置FLAC编码器时，调用OH_AudioCodec_Configure会返回错误码AV_ERR_INVALID_VAL。该值无实际作用，不会影响编码结果。从API 20开始，无需设置此参数。|
 | [OH_MD_KEY_SBR](#oh_md_key_sbr)                              | aac sbr模式的键，值类型为int32_t，aac编码器支持。该键是可选的。 |
 | [OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level)    | flac兼容性等级的键，值类型为int32_t，仅在音频编码使用。该键是可选的。          |
 | [OH_MD_KEY_AAC_IS_ADTS](#oh_md_key_aac_is_adts)              | aac格式的键，aac格式分为ADTS格式和LATM格式。值类型为int32_t，aac解码器支持。该键是可选的。  |
@@ -263,6 +265,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_FLAC](#oh_avcodec_mimetype_audio_flac) | FLAC音频编解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | OPUS音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->  |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | G711MU音频编解码器的MIME类型。 |
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711A](#oh_avcodec_mimetype_audio_g711a) | G711A音频解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_VORBIS](#oh_avcodec_mimetype_audio_vorbis) | VORBIS音频解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_MPEG](#oh_avcodec_mimetype_audio_mpeg) | MP3音频编解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_VIVID](#oh_avcodec_mimetype_audio_vivid) | Audio Vivid音频解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->  |
@@ -305,14 +308,15 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left) | 描述裁剪矩形左坐标(x)值的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_RIGHT](#oh_md_key_video_crop_right) | 描述裁剪矩形右坐标(x)值的键，值类型为int32_t。 | 
 | const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR](#oh_md_key_video_decoder_output_enable_vrr) | 解码器是否打开视频可变帧率功能的键，值类型为int32_t。 |
-| const char \* [OH_MD_KEY_SQR_FACTOR](#oh_md_key_sqr_factor)     | 描述SQR码控模式的质量参数，值越小，编码输出文件越大，质量越好，值类型为int32_t。 |
-| const char \* [OH_MD_KEY_MAX_BITRATE](#oh_md_key_max_bitrate)     | 描述SQR码控模式的最大码率，单位bps，值类型为int64_t。 |
+| const char \* [OH_MD_KEY_SQR_FACTOR](#oh_md_key_sqr_factor)     | 描述SQR码控模式的质量参数，取值范围为[0, 51]（同编码量化参数QP），值越小，编码输出码率越大，质量越好，值类型为int32_t。 |
+| const char \* [OH_MD_KEY_MAX_BITRATE](#oh_md_key_max_bitrate)     | 描述SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同[OH_MD_KEY_BITRATE](#oh_md_key_bitrate)），单位bps，值类型为int64_t。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS](#oh_md_key_video_encoder_roi_params)    | 描述ROI编码参数，包括ROI区域和deltaQp，值类型为string。 |
 | const char \* [OH_MD_KEY_VIDEO_STRIDE](#oh_md_key_video_stride) | 描述视频帧宽跨距的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height) | 描述视频帧高跨距的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width) | 描述视频帧真实宽度的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_HEIGHT](#oh_md_key_video_pic_height) | 描述视频帧真实高度的键，值类型为int32_t。  | 
-| const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency) | 使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示其它情况。如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。   | 
+| const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency) | 使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示其它情况。如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。   |
+| const char \* [OH_MD_KEY_ENABLE_SYNC_MODE](#oh_md_key_enable_sync_mode) | 使能视频编解码同步模式的键，值类型为int32_t，1表示使能，0表示其它情况。该键是可选，在Configure阶段使用。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL](#oh_md_key_video_encoder_enable_pts_based_ratecontrol) | 使能基于显示时间戳(PTS)的码控模式的键，值类型为int32_t，1表示使能，0表示其它情况。如果使能，则必须在每个视频帧中携带PTS信息，并发送到编码器。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | 视频编码码率模式，值类型为int32_t，请参见[OH_BitrateMode](#oh_bitratemode-1)。 |
 | const char \* [OH_MD_KEY_QUALITY](#oh_md_key_quality) | 所需编码质量的键。值类型为int32_t，此键仅适用于配置在恒定质量模式下的编码器。 |
@@ -338,7 +342,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate) | 音频采样率键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](#oh_md_key_audio_compression_level) | 音频编解码压缩水平的键，只在音频编码使用，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_CHANNEL_LAYOUT](#oh_md_key_channel_layout) | 所需编码通道布局的键。值类型为int64_t，此键仅适用于编码器。 |
-| const char \* [OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为int32_t，支持flac编码器，请参见[OH_BitsPerSample](#oh_bitspersample-1)。 |
+| const char \* [OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为int32_t。<br>API 20前，FLAC编码必须设置此参数，设置为1即可；未设置此参数配置FLAC编码器时，调用OH_AudioCodec_Configure会返回错误码AV_ERR_INVALID_VAL。该值无实际作用，不会影响编码结果。从API 20开始，无需设置此参数。|
 | const char \* [OH_MD_KEY_SBR](#oh_md_key_sbr) | aac sbr模式的键，值类型为int32_t，aac编码器支持。 |
 | const char \* [OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level) | flac兼容性等级的键，值类型为int32_t，仅在音频编码使用。 |
 | const char \* [OH_MD_KEY_AAC_IS_ADTS](#oh_md_key_aac_is_adts) | aac格式的键，aac格式分为ADTS格式和LATM格式。值类型为int32_t，aac解码器支持。 |
@@ -1797,6 +1801,19 @@ G711MU音频编解码器的MIME类型。
 **起始版本：** 11
 
 
+### OH_AVCODEC_MIMETYPE_AUDIO_G711A
+
+```
+const char *OH_AVCODEC_MIMETYPE_AUDIO_G711A
+```
+**描述**
+G711A音频解码器的MIME类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 20
+
+
 ### OH_AVCODEC_MIMETYPE_AUDIO_RAW
 
 ```
@@ -2192,7 +2209,9 @@ const char* OH_MD_KEY_BITRATE
 const char* OH_MD_KEY_BITS_PER_CODED_SAMPLE
 ```
 **描述**
-每个编码样本位数的键，值类型为int32_t，支持flac编码器，请参见[OH_BitsPerSample](#oh_bitspersample-1)。
+每个编码样本位数的键，值类型为int32_t。
+
+API 20前，FLAC编码必须设置此参数，设置为1即可；未设置此参数配置FLAC编码器时，调用OH_AudioCodec_Configure会返回错误码AV_ERR_INVALID_VAL。该值无实际作用，不会影响编码结果。从API 20开始，无需设置此参数。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2698,6 +2717,24 @@ const char* OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY
 **起始版本：** 12
 
 
+### OH_MD_KEY_ENABLE_SYNC_MODE
+
+```
+const char* OH_MD_KEY_ENABLE_SYNC_MODE
+```
+**描述**
+使能视频编解码同步模式的键，值类型为int32_t，1表示使能，0表示其它情况。该键是可选，默认值为0。
+
+如果使能，需要注意：
+1. 编解码器不可设置回调函数。
+2. 必须使用缓冲区查询接口替代回调。
+3. 只能在Configure阶段使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 20
+
+
 ### OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE
 
 ```
@@ -3169,7 +3206,9 @@ const char* OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR
 const char* OH_MD_KEY_SQR_FACTOR
 ```
 **描述**
-指定SQR码控模式的质量参数，值越小，编码输出文件越大，质量越好。
+指定SQR码控模式的质量参数，取值范围为[0, 51]（同编码量化参数QP），值越小，编码输出码率越大，质量越好。
+
+在Configure/SetParameter阶段使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -3181,7 +3220,9 @@ const char* OH_MD_KEY_SQR_FACTOR
 const char* OH_MD_KEY_MAX_BITRATE
 ```
 **描述**
-指定SQR码控模式的最大码率，单位bps。
+指定SQR码控模式的最大码率，使用[OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange)方法获取取值范围（同[OH_MD_KEY_BITRATE](#oh_md_key_bitrate)），单位bps。
+
+在Configure/SetParameter阶段使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
