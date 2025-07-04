@@ -4911,7 +4911,7 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 
 setWindowShadowEnabled(enable: boolean): Promise&lt;void&gt;
 
-设置主窗口是否显示阴影，使用promise异步回调，仅在2in1设备上支持。未调用该接口时，主窗口默认显示阴影。
+设置主窗口是否显示阴影，使用Promise异步回调，仅支持2in1设备。未调用该接口时，主窗口默认显示阴影。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
