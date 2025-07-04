@@ -1687,3 +1687,55 @@ struct Index {
   }
 }
 ```
+
+## inputMonitor.queryTouchEvents()<sup>20+</sup>
+
+queryTouchEvents(count: number): Promise&lt;Array&lt;TouchEvent&gt;&gt;
+
+查询最近的触屏事件，最多支持查询 100 条事件，使用Promise异步回调。
+
+**需要权限：** ohos.permission.INPUT_MONITORING
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
+
+**参数：**
+
+| 参数名   | 类型                                                      | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| count     | number                                                    | 是   | 要查询的触屏事件数量。取值范围为1-100的整数。 |
+
+**返回值：**
+
+| 类型          | 说明                                |
+| :------------ | :---------------------------------- |
+| Promise&lt;Array&lt;[TouchEvent](js-apis-touchevent-sys.md#touchevent)&gt;&gt; | Promise对象，返回查询到的触屏事件。包含以下有效信息：<br/>- actionTime：触屏事件发生的时间，表示从1970.1.1 00:00:00 GMT逝去的微秒数。<br/>- [SourceType](js-apis-touchevent.md#sourcetype)：触摸来源的设备类型。<br/>- [isInject](js-apis-touchevent-sys.md#touchevent)：表示该触屏事件是否为注入事件。<br/>- pressure：压力值，取值范围是[0.0, 1.0]，0.0表示不支持。<br/>- tiltX：相对YZ平面的角度，取值的范围[-90, 90]，其中正值是向右倾斜。<br/>- tiltY：相对XZ平面的角度，取值的范围[-90, 90]，其中正值是向下倾斜。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Permission denied, non-system app called system api.         |
+
+**示例：**
+
+```js
+import { inputMonitor, TouchEvent } from '@kit.InputKit'
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  inputMonitor.queryTouchEvents(10).then((events: Array<TouchEvent>) => {
+    events.forEach((event, index) => {
+      console.info(`Touch event ${index}: actionTime=${event.actionTime}, sourceType=${event.sourceType}`);
+    });
+  }).catch((error: BusinessError) => {
+    console.error('queryTouchEvents promise error: ' + JSON.stringify(error));
+  });
+} catch (error) {
+  const code = (error as BusinessError).code;
+  const message = (error as BusinessError).message;
+  console.error(`queryTouchEvents failed, error code: ${code}, message: ${message}.`);
+}
+```
