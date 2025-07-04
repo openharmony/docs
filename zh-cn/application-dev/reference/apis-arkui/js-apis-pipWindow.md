@@ -846,9 +846,9 @@ try {
 ```
 
 ### getPiPSettingSwitch<sup>20+</sup>
-getPiPSettingSwitch(): Promise&lt;[boolean]&gt;
+getPiPSettingSwitch(): Promise&lt;boolean&gt;
 
-获取设置中自动启动画中画开关状态。
+获取设置中自动启动画中画开关状态，仅支持手机和pad设备。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -858,7 +858,7 @@ getPiPSettingSwitch(): Promise&lt;[boolean]&gt;
 
 | 类型                   | 说明                  |
 |----------------------|---------------------|
-| Promise&lt;[boolean]&gt;  | Promise对象，返回当前自动启动画中画开关状态。 |
+| Promise&lt;boolean&gt;  | Promise对象，返回当前自动启动画中画开关状态。 |
 
 **错误码：**
 
