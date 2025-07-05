@@ -132,15 +132,15 @@ Registers the listener for the push event.
 **Example**
 
 ```ts
-import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI'
+import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 
 function onPushListener(source: Want, template: PluginComponentTemplate, data: pluginComponentManager.KVObject, extraData: pluginComponentManager.KVObject) {
-  console.log("onPushListener template.source=" + template.source)
-  console.log("onPushListener source=" + JSON.stringify(source))
-  console.log("onPushListener template=" + JSON.stringify(template))
-  console.log("onPushListener data=" + JSON.stringify(data))
-  console.log("onPushListener extraData=" + JSON.stringify(extraData))
+  console.info("onPushListener template.source=" + template.source);
+  console.info("onPushListener source=" + JSON.stringify(source));
+  console.info("onPushListener template=" + JSON.stringify(template));
+  console.info("onPushListener data=" + JSON.stringify(data));
+  console.info("onPushListener extraData=" + JSON.stringify(extraData));
 }
 ```
 
@@ -166,17 +166,17 @@ Registers the listener for the request event.
 **Example**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 
 function onRequestListener(source: Want, name: string, data: pluginComponentManager.KVObject) {
   console.error("onRequestListener");
-  console.log("onRequestListener source=" + JSON.stringify(source));
-  console.log("onRequestListener name=" + name);
-  console.log("onRequestListener data=" + JSON.stringify(data));
+  console.info("onRequestListener source=" + JSON.stringify(source));
+  console.info("onRequestListener name=" + name);
+  console.info("onRequestListener data=" + JSON.stringify(data));
   let RtnData: Record<string, string | pluginComponentManager.KVObject> = {
     'template': "ets/pages/plugin.js",
-    'data': data
+    'data': data,
   }
   return RtnData;
 }
@@ -201,7 +201,7 @@ Pushes the component and data to the component user.
 **Example**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 pluginComponentManager.push(
   {
     want: {
@@ -211,15 +211,15 @@ pluginComponentManager.push(
     name: "plugintemplate",
     data: {
       "key_1": "plugin component test",
-      "key_2": 34234
+      "key_2": 34234,
     },
     extraData: {
-      "extra_str": "this is push event"
+      "extra_str": "this is push event",
     },
     jsonPath: "",
   },
   (err, data) => {
-    console.log("push_callback: push ok!");
+    console.info("push_callback: push ok!");
   }
 )
 ```
@@ -245,7 +245,7 @@ Requests the component from the component provider.
 **Example**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 pluginComponentManager.request(
   {
     want: {
@@ -255,15 +255,15 @@ pluginComponentManager.request(
     name: "plugintemplate",
     data: {
       "key_1": "plugin component test",
-      "key_2": 1111111
+      "key_2": 1111111,
     },
     jsonPath: "",
   },
   (err, data) => {
-    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-    console.log("request_callback: data=" + JSON.stringify(data.data))
-    console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
+    console.info("request_callback: componentTemplate.ability=" + data.componentTemplate.ability);
+    console.info("request_callback: componentTemplate.source=" + data.componentTemplate.source);
+    console.info("request_callback: data=" + JSON.stringify(data.data));
+    console.info("request_callback: extraData=" + JSON.stringify(data.extraData));
   }
 )
 ```
@@ -288,25 +288,25 @@ Listens for events of the request type and returns the requested data, or listen
 **Example**
 
 ```ts
-import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI'
+import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 function onPushListener(source:Want, template:PluginComponentTemplate, data:pluginComponentManager.KVObject, extraData:pluginComponentManager.KVObject) {
-  console.log("onPushListener template.source=" + template.source)
-  console.log("onPushListener source=" + JSON.stringify(source))
-  console.log("onPushListener template=" + JSON.stringify(template))
-  console.log("onPushListener data=" + JSON.stringify(data))
-  console.log("onPushListener extraData=" + JSON.stringify(extraData))
+  console.info("onPushListener template.source=" + template.source);
+  console.info("onPushListener source=" + JSON.stringify(source));
+  console.info("onPushListener template=" + JSON.stringify(template));
+  console.info("onPushListener data=" + JSON.stringify(data));
+  console.info("onPushListener extraData=" + JSON.stringify(extraData));
 }
 function onRequestListener(source:Want, name:string, data:pluginComponentManager.KVObject) {
   console.error("onRequestListener");
-  console.log("onRequestListener source=" + JSON.stringify(source));
-  console.log("onRequestListener name=" + name);
-  console.log("onRequestListener data=" + JSON.stringify(data));
-  let RtnData:Record<string,string|pluginComponentManager.KVObject> = { 'template': "ets/pages/plugin.js", 'data': data }
+  console.info("onRequestListener source=" + JSON.stringify(source));
+  console.info("onRequestListener name=" + name);
+  console.info("onRequestListener data=" + JSON.stringify(data));
+  let RtnData:Record<string,string|pluginComponentManager.KVObject> = { 'template': "ets/pages/plugin.js", 'data': data };
   return RtnData;
 }
-pluginComponentManager.on("push", onPushListener)
-pluginComponentManager.on("request", onRequestListener)
+pluginComponentManager.on("push", onPushListener);
+pluginComponentManager.on("request", onRequestListener);
 ```
 
 ## About the external.json File

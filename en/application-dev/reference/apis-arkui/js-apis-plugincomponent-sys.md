@@ -11,7 +11,7 @@ The **PluginComponentManager** module provides APIs for the **PluginComponent** 
 ## Modules to Import
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 ```
 
 ### PushParameterForStage
@@ -70,12 +70,12 @@ Pushes the component and data to the component user.
 **Example**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 pluginComponentManager.push(
   {
     owner: {
       bundleName: "com.example.provider",
-      abilityName: "com.example.provider.MainAbility"
+      abilityName: "com.example.provider.MainAbility",
     },
     target: {
       bundleName: "com.example.user",
@@ -119,12 +119,12 @@ Requests the component from the component provider.
 **Example**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 pluginComponentManager.request(
   {
     owner: {
       bundleName: "com.example.user",
-      abilityName: "com.example.user.MainAbility"
+      abilityName: "com.example.user.MainAbility",
     },
     target: {
       bundleName: "com.example.provider",
@@ -137,8 +137,8 @@ pluginComponentManager.request(
     jsonPath: "",
   },
   (err, data) => {
-    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
+    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability);
+    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source);
   }
 )
 ```
