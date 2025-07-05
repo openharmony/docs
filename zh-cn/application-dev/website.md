@@ -1267,6 +1267,9 @@
           - [振动开发概述](device/sensor/vibrator-overview.md)
           - [振动开发指导(ArkTS)](device/sensor/vibrator-guidelines.md)
           - [振动开发指导(C/C++)](device/sensor/vibrator-guidelines-capi.md)
+      - Mechanic Kit（机械设备管理服务）<!--mechanic-kit-->
+        - [Mechanic Kit简介](mechanicManager/mechanic-kit-intro.md)
+        - [Mechanic Kit开发指南](mechanicManager/mechanic-kit-guide.md)
     - 调测调优<!--system-debug-optimize-->
       - Performance Analysis Kit（性能分析服务）<!--performance-analysis-kit-->
         - [Performance Analysis Kit简介](dfx/performance-analysis-kit-overview.md)
