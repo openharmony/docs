@@ -155,7 +155,7 @@ JSVM CreateArrayWithLength success
 ```
 ### OH_JSVM_CreateTypedarray
 
-在现有的 ArrayBuffer上 创建一个 JavaScript TypedArray 对象,TypedArray 对象在底层数据缓冲区上提供类似数组的视图，其中每个元素都具有相同的底层二进制标量数据类型。
+在现有的 ArrayBuffer上 创建一个 JavaScript TypedArray 对象，TypedArray 对象在底层数据缓冲区上提供类似数组的视图，其中每个元素都具有相同的底层二进制标量数据类型。
 
 cpp 部分代码：
 
