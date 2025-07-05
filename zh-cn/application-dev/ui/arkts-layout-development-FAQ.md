@@ -1,6 +1,6 @@
-## 故障处理类
+# UI显示异常问题案例
 
-**标题：通过ComponentUtils.getRectangleById获取的tabBar组件坐标尺寸异常**
+## 案例一：通过ComponentUtils.getRectangleById获取的tabBar组件坐标尺寸异常
 
 **问题现象**
 

@@ -229,11 +229,6 @@
     - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
     - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](arkts-isolated-components.md)
     <!--DelEnd-->
-  - UI开发调优<!--ui-inspector-profiler-->
-    - [预览](ui-ide-previewer.md)
-    - [调试](ui-inspector-profiler.md)
-  - UI高性能开发<!--ui-performance-->
-    - [UI性能优化概览](ui-performance-overview.md)
 - UI开发 (基于NDK构建UI)<!--arkts-use-ndk-->
   - [NDK接口概述](ndk-build-ui-overview.md)
   - [接入ArkTS页面](ndk-access-the-arkts-page.md)
@@ -257,10 +252,6 @@
   - [查询和操作自定义节点](ndk-node-query-operate.md)
   - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md)
   - [在NDK中保证多实例场景功能正常](ndk-scope-task.md)
-- UI开发调试维测
-  - UI显示异常
-    - [定位工具](arkts-layout-development-Tool.md)
-    - [定位方法和解决方案](arkts-layout-development-FAQ.md)
 - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明<!--js-framework-overview-->
@@ -334,5 +325,18 @@
         - [动画帧](ui-js-animate-frame.md)
   - [自定义组件](ui-js-custom-components.md)
   - [WebGL](../webgl/Readme-CN.md)
+- UI开发调试调优<!--ui-debug-->
+  - UI稳定性故障调试<!--ui-stability-->
+    - [稳定性故障分析导读](arkts-stability-guide.md)
+    - [崩溃问题案例](arkts-stability-crash-issues.md)
+    - [无响应问题案例](arkts-stability-freeze-issues.md)
+  - UI显示异常<!--ui-display-exception-->
+    - [定位工具](arkts-layout-development-Tool.md)
+    - [问题案例](arkts-layout-development-FAQ.md)
+  - UI开发调优<!--ui-inspector-profiler-->
+    - [预览](ui-ide-previewer.md)
+    - [调试](ui-inspector-profiler.md)
+  - UI高性能开发<!--ui-performance-->
+    - [UI性能优化概览](ui-performance-overview.md)
 - [窗口管理](../windowmanager/Readme-CN.md)
 - [屏幕管理](../displaymanager/Readme-CN.md)
