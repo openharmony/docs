@@ -71,6 +71,11 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(createDate())JS";
 ```
 
+预期结果：
+```
+JSVM CreateDate success:Mon Jul 7 10:42:34 2025
+```
+
 ### OH_JSVM_GetDateValue
 
 获取给定JavaScript Date的时间值的Double基础类型值。
@@ -111,6 +116,11 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(getDateValue(new Date(Date.now())))JS";
 ```
 
+预期结果：
+```
+JSVM GetDateValue success:Mon Jul 7 10:47:08 2025
+```
+
 ### OH_JSVM_IsDate
 
 判断一个JavaScript对象是否为Date类型对象。
@@ -142,4 +152,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 // 样例测试js
 const char *srcCallNative = R"JS(isDate(new Date(Date.now())))JS";
+```
+
+预期结果：
+```
+JSVM IsDate success:1
 ```

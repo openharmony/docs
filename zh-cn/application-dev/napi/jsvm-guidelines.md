@@ -82,7 +82,7 @@ for (int i = 0; i < 100000; i++)
 **错误示例**：
 
 ```c++
-// 线程1执行，在env1创建string对象，值为"bar"、
+// 线程1执行，在env1创建string对象，值为"value1"、
 OH_JSVM_CreateStringUtf8(env1, "value1", JSVM_AUTO_LENGTH , &string);
 // 线程2执行，在env2创建object对象，并将上述的string对象设置到object对象中
 JSVM_Status status = OH_JSVM_CreateObject(env2, &object);
