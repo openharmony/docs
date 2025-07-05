@@ -1845,7 +1845,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let netExtAttribute: string = "xxx";
 let netHandle = connection.getDefaultNetSync();
-connection.setNetExtAttributeSync(netHandle, netExtAttribute);
+if (netHandle.netId != 0) {
+  connection.setNetExtAttributeSync(netHandle, netExtAttribute);
+}
 ```
 
 ## connection.getNetExtAttribute<sup>20+</sup>
@@ -1941,8 +1943,10 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let netHandle = connection.getDefaultNetSync();
-let netExtAttribute: string = connection.getNetExtAttributeSync(netHandle);
-console.log("getNetExtAttribute: " + netExtAttribute);
+if (netHandle.netId != 0) {
+  let netExtAttribute: string = connection.getNetExtAttributeSync(netHandle);
+  console.log("getNetExtAttribute: " + netExtAttribute);
+}
 ```
 
 ## NetConnection
