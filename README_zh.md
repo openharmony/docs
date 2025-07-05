@@ -30,30 +30,25 @@
 
  - OpenHarmony 5.0.0 Release版本（API Level 12）：点击[此处](zh-cn/release-notes/OpenHarmony-v5.0.0-release.md)了解版本详情。
 
+
+
+
+### 已停止维护的历史版本
+
+
  - OpenHarmony 4.1 Release版本（API Level 11）：点击[此处](zh-cn/release-notes/OpenHarmony-v4.1-release.md)了解版本详情。
 
  - OpenHarmony 4.0 Release版本（API Level 10）：点击[此处](zh-cn/release-notes/OpenHarmony-v4.0-release.md)了解版本详情。
 
  - OpenHarmony 3.2 Release版本（API Level 9）：点击[此处](zh-cn/release-notes/OpenHarmony-v3.2-release.md)了解版本详情。
     
-    该版本已更新至OpenHarmony 3.2.3 Release，点击[此处](zh-cn/release-notes/OpenHarmony-v3.2.3-release.md)了解版本详情。 
-
  - OpenHarmony 3.1 Release版本：点击[此处](zh-cn/release-notes/OpenHarmony-v3.1-release.md)了解版本详情。
-
-    该版本已更新至OpenHarmony 3.1.7 Release，点击[此处](zh-cn/release-notes/OpenHarmony-v3.1.7-release.md)了解版本详情。
 
  - OpenHarmony 3.0 LTS版本：点击[此处](zh-cn/release-notes/OpenHarmony-v3.0-LTS.md)了解版本详情。
 
-    该版本已更新至OpenHarmony 3.0.8 LTS，点击[此处](zh-cn/release-notes/OpenHarmony-v3.0.8-LTS.md)了解版本详情。
-
-
-
-### 已停止维护的历史版本
-
-OpenHarmony-1.0.1-Release
-
+ - OpenHarmony-1.0.1-Release
 如需了解更多版本详情，请点击[此处](zh-cn/release-notes/)。
-如需了解各版本的维护策略，请点击[此处](zh-cn/release-notes/release-definitions/Release-version-definitions.md)。
+如需了解各版本的维护策略，请点击[此处](https://gitee.com/openharmony/release-management)。
 
 
 ## 第三方开源软件及许可说明
