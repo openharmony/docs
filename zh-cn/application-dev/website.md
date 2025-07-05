@@ -1269,7 +1269,8 @@
           - [振动开发指导(C/C++)](device/sensor/vibrator-guidelines-capi.md)
       - Mechanic Kit（机械设备管理服务）<!--mechanic-kit-->
         - [Mechanic Kit简介](mechanicManager/mechanic-kit-intro.md)
-        - [Mechanic Kit开发指南](mechanicManager/mechanic-kit-guide.md)
+        - [智能拍摄跟踪开发指南](mechanicManager/camera-tracking-guide.md)
+        - [设备转动控制开发指南](mechanicManager/rotation-control-guide.md)
     - 调测调优<!--system-debug-optimize-->
       - Performance Analysis Kit（性能分析服务）<!--performance-analysis-kit-->
         - [Performance Analysis Kit简介](dfx/performance-analysis-kit-overview.md)
