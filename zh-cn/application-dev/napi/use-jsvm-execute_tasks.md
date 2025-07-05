@@ -147,7 +147,7 @@ JSVM API TEST: Called Finally
 
 cpp 部分代码
 
-```
+```cpp
 // OH_JSVM_SetMicrotaskPolicy的样例方法
 static int SetMicrotaskPolicy(JSVM_VM vm, JSVM_Env env) {
     // 默认或将策略设置为 JSVM_MICROTASK_AUTO 的行为

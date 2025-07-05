@@ -34,6 +34,7 @@
         JSVM_WOULD_DEADLOCK,                  /* 将死锁状态 */
         JSVM_NO_EXTERNAL_BUFFERS_ALLOWED,     /* 不允许外部缓冲区 */
         JSVM_CANNOT_RUN_JS,                   /* 不能执行JS */
+        JSVM_INVALID_TYPE,                    /* 非法类型 */
         JSVM_JIT_MODE_EXPECTD,                /* 期望在JIT模式下执行 */
     } JSVM_Status;
 ```
@@ -516,11 +517,10 @@ static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] na
         OH_JSVM_OpenHandleScope(env, &handleScope);
 
         std::string sourceCodeStr = "\
-{\
-let value = add(4.96, 5.28);\
-consoleinfo('Result is:' + value);\
-}\
-";
+        {\
+            let value = add(4.96, 5.28);\
+            consoleinfo('Result is:' + value);\
+        }";
         // compile js script
         JSVM_Value sourceCodeValue;
         OH_JSVM_CreateStringUtf8(env, sourceCodeStr.c_str(), sourceCodeStr.size(), &sourceCodeValue);
@@ -991,9 +991,9 @@ OH_JSVM_CloseHandleScope(env, scope);
 |OH_JSVM_CreateExternal | 创建一个包装了外部指针的 JavaScript 对象 |
 |OH_JSVM_CreateObject | 创建一个默认的JavaScript Object对象 |
 |OH_JSVM_CreateSymbol | 根据给定的描述符创建一个 Symbol 对象 |
-|OH_JSVM_SymbolFor | 在全局注册表中搜索具有给定描述的现有Symbol,如果该Symbol已经存在，它将被返回，否则将在注册表中创建一个新Symbol |
-|OH_JSVM_CreateTypedarray | 在现有的 ArrayBuffer 上创建一个 JavaScript TypedArray 对象,TypedArray 对象在底层数据缓冲区上提供类似数组的视图，其中每个元素都具有相同的底层二进制标量数据类型 |
-|OH_JSVM_CreateDataview | 在现有的 ArrayBuffer 上创建一个 JavaScript DataView 对象,DataView 对象在底层数据缓冲区上提供类似数组的视图 |
+|OH_JSVM_SymbolFor | 在全局注册表中搜索具有给定描述的现有Symbol，如果该Symbol已经存在，它将被返回，否则将在注册表中创建一个新Symbol |
+|OH_JSVM_CreateTypedarray | 在现有的 ArrayBuffer 上创建一个 JavaScript TypedArray 对象，TypedArray 对象在底层数据缓冲区上提供类似数组的视图，其中每个元素都具有相同的底层二进制标量数据类型 |
+|OH_JSVM_CreateDataview | 在现有的 ArrayBuffer 上创建一个 JavaScript DataView 对象，DataView 对象在底层数据缓冲区上提供类似数组的视图 |
 |OH_JSVM_CreateInt32 | 根据 Int32_t 类型对象创建 JavaScript number 对象 |
 |OH_JSVM_CreateUint32 | 根据 Uint32_t 类型对象创建 JavaScript number 对象 |
 |OH_JSVM_CreateInt64 | 根据 Int64_t 类型对象创建 JavaScript number 对象 |
@@ -2085,8 +2085,8 @@ OH_JSVM_CreateArrayBufferFromBackingStoreData(env, backingStore, 100, 30, 20, &a
 // 在 JS 中使用创建的 ArrayBuffer
 JSVM_Value js_global;
 JSVM_Value name;
-OH_JSVM_GetGlobal(jsvm_env, &js_global);
-OH_JSVM_CreateStringUtf8(jsvm_env, "buffer", JSVM_AUTO_LENGTH, &name);
+OH_JSVM_GetGlobal(env, &js_global);
+OH_JSVM_CreateStringUtf8(env, "buffer", JSVM_AUTO_LENGTH, &name);
 OH_JSVM_SetProperty(env, js_global, name, arrayBuffer);
 
 JSVM_Script script;
@@ -2496,4 +2496,4 @@ static napi_value GetInstanceData(napi_env env1, napi_callback_info info)
 |OH_JSVM_PerformMicrotaskCheckpoint| 执行任务队列里的微任务 |
 
 场景示例：
-[启动任务队列，执行任务。](use-jsvm-execute_tasks.md)
+[使用JSVM-API接口进行任务队列相关开发](use-jsvm-execute_tasks.md)
