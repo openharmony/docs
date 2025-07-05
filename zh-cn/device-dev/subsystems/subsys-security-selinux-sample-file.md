@@ -4,7 +4,7 @@
 
 **适用场景**
 
-为避免对文件系统恶意破环，OpenHarmony将部分镜像挂载为只读，如system.img、vendor.img，这些镜像内的文件在编译阶段就会被赋予SELinux标签。
+为避免对文件系统恶意破坏，OpenHarmony将部分镜像挂载为只读，如system.img、vendor.img，这些镜像内的文件在编译阶段就会被赋予SELinux标签。
 
 **配置指导**
 1. 在file_contexts中，建立文件绝对路径与文件标签的映射关系，可以使用正则表达式。
