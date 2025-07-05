@@ -429,7 +429,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
@@ -444,7 +444,7 @@ connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle)
 
 ## connection.setAppNet<sup>9+</sup>
 
-setAppNet(netHandle: NetHandle): Promise\<void>
+setAppNet(netHandle: NetHandle): Promise\<void\>
 
 将App异步绑定到特定的网络，绑定后App只能通过netHandle对应的网络访问网络。使用Promise方式作为异步方法。
 
@@ -462,7 +462,7 @@ setAppNet(netHandle: NetHandle): Promise\<void>
 
 | 类型                                        | 说明                          |
 | ------------------------------------------- | ----------------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -484,7 +484,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
 
@@ -645,7 +645,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
@@ -699,7 +699,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
 
@@ -754,7 +754,7 @@ let connectionproperties: connection.ConnectionProperties;
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   netHandle = connection.getDefaultNetSync();
@@ -803,7 +803,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
@@ -861,7 +861,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
@@ -919,7 +919,7 @@ let getNetCapabilitiesSync: connection.NetCapabilities;
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
 
@@ -1757,7 +1757,7 @@ let pacUrl = connection.getPacUrl();
 
 ## connection.setNetExtAttribute<sup>20+</sup>
 
-setNetExtAttribute(netHandle: NetHandle, netExtAttribute: string): Promise<void>
+setNetExtAttribute(netHandle: NetHandle, netExtAttribute: string): Promise\<void\>
 
 为netHandle对应的网络设置扩展属性，标识网络的安全级别。使用 Promise 作为异步方法。
 
@@ -1797,7 +1797,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandle的netId为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   let netExtAttribute: string = "xxx";
@@ -1852,7 +1852,7 @@ if (netHandle.netId != 0) {
 
 ## connection.getNetExtAttribute<sup>20+</sup>
 
-getNetExtAttribute(netHandle: NetHandle): Promise<string>
+getNetExtAttribute(netHandle: NetHandle): Promise\<string\>
 
 获取netHandle对应网络的扩展属性，以确定网络的安全级别。使用 Promise 作为异步方法。
 
@@ -1891,7 +1891,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandle的netId为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   connection.getNetExtAttribute(netHandle).then((netExtAttribute: string) => {
@@ -2343,7 +2343,7 @@ interface Data {
 
   connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常情况，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
   }
   let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
   let udp : socket.UDPSocket = socket.constructUDPSocketInstance();
@@ -2410,7 +2410,7 @@ bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void\>
 
 | 类型           | 说明                   |
 | -------------- | ---------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2436,7 +2436,7 @@ interface Data {
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，netHandler的netId为0，属于异常场景。可根据实际情况添加处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
