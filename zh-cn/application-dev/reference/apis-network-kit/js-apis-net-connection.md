@@ -1797,7 +1797,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandle的netId为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
     return;
   }
   let netExtAttribute: string = "xxx";
@@ -1891,7 +1891,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandle的netId为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
     return;
   }
   connection.getNetExtAttribute(netHandle).then((netExtAttribute: string) => {
@@ -2436,7 +2436,7 @@ interface Data {
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandler的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -2517,7 +2517,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandler的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   let host = "xxxx";
@@ -2572,7 +2572,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandler的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   let host = "xxxx";
@@ -2619,7 +2619,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandler的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   let host = "xxxx";
@@ -2674,7 +2674,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandler的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   let host = "xxxx";
