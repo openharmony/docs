@@ -481,7 +481,7 @@ off(type: 'rotationAxesStatusChange', callback?: Callback\<RotationAxesStateChan
 | 参数名     | 类型                    | 必填 | 说明   |
 | ---------- | ---------------------- | ---- | ----- |
 | type | 'rotationAxesStatusChange' | 是 | 取消注册监听事件的类型。取值为：'rotationAxesStatusChange'。 |
-| callback | Callback\<[RotationAxesStateChangeInfo](#rotationaxesstatechangeinfo)> | 否 |  回调函数，返回机械体设备旋转轴状态变化信息。不填时默认为取消注册监听所有旋转轴状态变化事件。 |
+| callback | Callback\<[RotationAxesStateChangeInfo](#rotationaxesstatechangeinfo)> | 否 |  mechanicManager.off('rotationAxesStatusChange')注册的回调函数。不填时默认取消所有注册的回调函数。 |
 
 **错误码：**
 
@@ -629,8 +629,8 @@ console.info(`'Query the rotation axis status successfully，axis state: ' + ${a
 | 名称         | 值  | 说明              |
 | ----------- | ---- | --------------- |
 | NOT_LIMITED | 0 | 无限制 |
-| NEGATIVE_LIMITED | 1 | 负方向受限。 |
-| POSITIVE_LIMITED | 2 | 正方向受限。 |
+| NEGATIVE_LIMITED | 1 | 负方向受限，可以向相反方向转动。 |
+| POSITIVE_LIMITED | 2 | 正方向受限，可以向相反方向转动。 |
 
 ## RotationAxesStateChangeInfo
 

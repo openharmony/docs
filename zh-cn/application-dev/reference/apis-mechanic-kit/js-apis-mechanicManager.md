@@ -60,7 +60,7 @@ off(type: 'attachStateChange', callback?: Callback\<AttachStateChangeInfo>): voi
 | 参数名     | 类型           | 必填 | 说明   |
 | ---------- | ------------- | ---- | ----- |
 | type | 'attachStateChange' | 是 | 取消注册监听事件的类型。取值为：'attachStateChange'。|
-| callback | Callback\<[AttachStateChangeInfo](#attachstatechangeinfo)> | 否 | 回调函数，返回机械体设备连接变化信息。不填时默认为取消注册监听所有连接状态变化事件。 |
+| callback | Callback\<[AttachStateChangeInfo](#attachstatechangeinfo)> | 否 | mechanicManager.off('attachStateChange')注册的回调函数。不填时默认取消所有注册的回调函数。 |
 
 **错误码：**
 
@@ -223,7 +223,7 @@ off(type: 'trackingStateChange', callback?: Callback\<TrackingEventInfo>): void
 | 参数名     | 类型                    | 必填 | 说明   |
 | ---------- | ---------------------- | ---- | ----- |
 | type | 'trackingStateChange' | 是 | 取消注册注册监听事件的类型。取值为：'trackingStateChange'。 |
-| callback | Callback\<[TrackingEventInfo](#trackingeventinfo)> | 否 | 回调函数，返回跟踪事件信息。不填时默认为取消注册监听所有跟踪状态变化事件。 |
+| callback | Callback\<[TrackingEventInfo](#trackingeventinfo)> | 否 | mechanicManager.off('trackingStateChange')注册的回调函数。不填时默认取消所有注册的回调函数。 |
 
 **错误码：**
 
