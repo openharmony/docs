@@ -1759,7 +1759,7 @@ let pacUrl = connection.getPacUrl();
 
 setNetExtAttribute(netHandle: NetHandle, netExtAttribute: string): Promise<void>
 
-为netHandle对应的网络设置网络扩展属性以标识网络的安全级别，使用Promise方式作为异步方法。
+为netHandle对应的网络设置扩展属性，标识网络的安全级别。使用 Promise 作为异步方法。
 
 **需要权限**：ohos.permission.SET_NET_EXT_ATTRIBUTE
 
@@ -1813,7 +1813,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 setNetExtAttributeSync(netHandle: NetHandle, netExtAttribute: string): void
 
-使用同步方法为netHandle对应的网络设置网络扩展属性以标识网络的安全级别。
+使用同步方法为netHandle对应的网络设置扩展属性，标识网络的安全级别。
 
 **需要权限**：ohos.permission.SET_NET_EXT_ATTRIBUTE
 
@@ -1854,7 +1854,7 @@ if (netHandle.netId != 0) {
 
 getNetExtAttribute(netHandle: NetHandle): Promise<string>
 
-获取netHandle对应网络的网络扩展属性以获取网络的安全级别，使用Promise方式作为异步方法。
+获取netHandle对应网络的扩展属性，以确定网络的安全级别。使用 Promise 作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -1906,7 +1906,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 getNetExtAttributeSync(netHandle: NetHandle): string
 
-使用同步方法获取netHandle对应网络的网络扩展属性以获取网络的安全级别。
+使用同步方法获取netHandle对应网络的扩展属性，以确定网络的安全级别。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -1922,7 +1922,7 @@ getNetExtAttributeSync(netHandle: NetHandle): string
 
 | 类型   | 说明                     |
 | ------ | ----------------------- |
-| string | Promise对象。以Promise形式返回的网络扩展属性。|
+| string | 以同步方式返回的网络扩展属性。|
 
 
 **错误码：**
