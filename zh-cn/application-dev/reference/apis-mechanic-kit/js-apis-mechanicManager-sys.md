@@ -30,7 +30,7 @@ setUserOperation(operation: Operation, mac: string, params: string): void
 | ---------- | ---------------------- | ---- | ----- |
 | operation | [Operation](#operation) | 是 | 操作类型。 |
 | mac | string | 是 | MAC地址。 |
-| params | string | 是 | 用户输入的操作参数。 |
+| params | string | 是 | 操作参数。 |
 
 **错误码：**
 
