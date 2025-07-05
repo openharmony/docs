@@ -265,7 +265,7 @@ mechanicManager.off('trackingStateChange');
 
 1. 一台支持MechanicKit协议的机械体配件设备。
 
-2. 一部搭载OpenHarmony系统且相机驱动支持目标检测的设备。
+2. 一部搭载OpenHarmony系统的设备。
 
 3. 机械体配件设备与OpenHarmony主设备完成蓝牙连接。
 
