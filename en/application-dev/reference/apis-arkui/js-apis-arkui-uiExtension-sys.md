@@ -11,10 +11,12 @@ The **uiExtension** module provides APIs for the EmbeddedUIExtensionAbility (or 
 ## Modules to Import
 
 ```
-import { uiExtension } from '@kit.ArkUI'
+import { uiExtension } from '@kit.ArkUI';
 ```
 
 ## WindowProxy
+
+Implements the UIExtension host window proxy.
 
 ### hideNonSecureWindows
 
@@ -66,18 +68,18 @@ export default class EntryAbility extends UIExtensionAbility {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
     // Hide insecure windows.
     extensionHostWindow.hideNonSecureWindows(true).then(()=> {
-      console.log(`Succeeded in hiding the non-secure windows.`);
+      console.info(`Succeeded in hiding the non-secure windows.`);
     }).catch((err: BusinessError)=> {
-      console.log(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
+      console.error(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
     })
   }
   onSessionDestroy(session: UIExtensionContentSession) {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
     // Unhide insecure windows.
     extensionHostWindow.hideNonSecureWindows(false).then(()=> {
-      console.log(`Succeeded in showing the non-secure windows.`);
+      console.info(`Succeeded in showing the non-secure windows.`);
     }).catch((err: BusinessError)=> {
-      console.log(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
+      console.error(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
     })
   }
 }
@@ -128,18 +130,18 @@ export default class EntryAbility extends UIExtensionAbility {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
     // Add the watermark flag.
     extensionHostWindow.setWaterMarkFlag(true).then(() => {
-      console.log(`Succeeded in setting water mark flag of window.`);
+      console.info(`Succeeded in setting water mark flag of window.`);
     }).catch((err: BusinessError) => {
-      console.log(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
+      console.error(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
     })
   }
   onSessionDestroy(session: UIExtensionContentSession) {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
     // Delete the watermark flag.
     extensionHostWindow.setWaterMarkFlag(false).then(() => {
-      console.log(`Succeeded in deleting water mark flag of window.`);
+      console.info(`Succeeded in deleting water mark flag of window.`);
     }).catch((err: BusinessError) => {
-      console.log(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
+      console.error(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
     })
   }
 }

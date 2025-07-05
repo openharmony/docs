@@ -50,7 +50,7 @@ Measures the width of the given text.
 >You are advised to use the [getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) instance associated with the current UI context.
 
 ```ts
-import { MeasureText } from '@kit.ArkUI'
+import { MeasureText } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -59,7 +59,7 @@ struct Index {
     // You are advised to this.getUIContext().getMeasureUtils().measureText().
     textContent: "Hello World",
     fontSize: '50px'
-  })
+  });
 
   build() {
     Row() {
@@ -103,7 +103,7 @@ Measures the width and height of the given text.
 >You are advised to use the [getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) instance associated with the current UI context.
 
 ```ts
-import { MeasureText } from '@kit.ArkUI'
+import { MeasureText } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -112,7 +112,7 @@ struct Index {
     // You are advised to this.getUIContext().getMeasureUtils().measureText().
     textContent: "Hello World",
     fontSize: '50px'
-  })
+  });
 
   build() {
     Row() {

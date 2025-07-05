@@ -67,7 +67,7 @@ let matrix = matrix4.init(
   [1.0, 0.0, 0.0, 0.0,
     0.0, 1.0, 0.0, 0.0,
     0.0, 0.0, 1.0, 0.0,
-    0.0, 0.0, 0.0, 1.0])
+    0.0, 0.0, 0.0, 1.0]);
 
 @Entry
 @Component
@@ -110,8 +110,8 @@ let matrix1 = matrix4.init(
   [1.0, 0.0, 0.0, 0.0,
     0.0, 1.0, 0.0, 0.0,
     0.0, 0.0, 1.0, 0.0,
-    0.0, 0.0, 0.0, 1.0])
-let matrix2 = matrix4.identity()
+    0.0, 0.0, 0.0, 1.0]);
+let matrix2 = matrix4.identity();
 
 @Entry
 @Component
@@ -166,9 +166,9 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().scale({ x: 1.5 })
-  private matrix2 = this.matrix1.copy().translate({ x: 200 })
-  imageSize: Length = '300px'
+  private matrix1 = matrix4.identity().scale({ x: 1.5 });
+  private matrix2 = this.matrix1.copy().translate({ x: 200 });
+  imageSize: Length = '300px';
 
   build() {
     Column({ space: "50px" }) {
@@ -222,8 +222,8 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({ x: 200 })
-  private matrix2 = matrix4.identity().scale({ x: 2 })
+  private matrix1 = matrix4.identity().translate({ x: 200 });
+  private matrix2 = matrix4.identity().scale({ x: 2 });
 
   build() {
     Column() {
@@ -423,7 +423,7 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().skew(2, 3)
+  private matrix1 = matrix4.identity().skew(2, 3);
 
   build() {
     Column() {
@@ -479,7 +479,7 @@ struct Test {
       y: 1,
       z: 2,
       angle: 30
-    })
+    });
 
   build() {
     Column() {
@@ -582,7 +582,7 @@ Maps the vertex coordinates of a polygon to those of another polygon.
 **Example**
 
 ```ts
-import { matrix4 } from '@kit.ArkUI'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -590,7 +590,7 @@ struct Index {
   private matrix1 = matrix4.identity().setPolyToPoly({
     src: [{ x: 0, y: 0 }, { x: 500, y: 0 }, { x: 0, y: 500 }, { x: 500, y: 500 }],
     dst: [{ x: 0, y: 0 }, { x: 500, y: 0 }, { x: 0, y: 500 }, { x: 750, y: 1000 }], pointCount: 4
-  })
+  });
 
   build() {
     Stack() {
@@ -702,9 +702,9 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({ x: 100 })
+  private matrix1 = matrix4.identity().translate({ x: 100 });
   // Perform the scale operation on the copy matrix of matrix1, which does not affect matrix1.
-  private matrix2 = this.matrix1.copy().scale({ x: 2 })
+  private matrix2 = this.matrix1.copy().scale({ x: 2 });
 
   build() {
     Column() {

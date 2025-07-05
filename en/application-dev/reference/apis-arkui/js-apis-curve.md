@@ -68,7 +68,7 @@ curves.initCurve(Curve.EaseIn) // Create a default ease-in curve, where the inte
 ```
 
 
-##  curves.stepsCurve<sup>9+</sup>
+## curves.stepsCurve<sup>9+</sup>
 
 stepsCurve(count: number, end: boolean): ICurve
 
@@ -133,7 +133,7 @@ curves.cubicBezierCurve(0.1, 0.0, 0.1, 1.0) // Create a cubic Bezier curve.
 ```
 
 
-##  curves.springCurve<sup>9+</sup>
+## curves.springCurve<sup>9+</sup>
 
 springCurve(velocity: number, mass: number, stiffness: number, damping: number): ICurve
 
@@ -167,7 +167,7 @@ curves.springCurve(10, 1, 228, 30) // Create a spring curve.
 ```
 
 
-##  curves.springMotion<sup>9+</sup>
+## curves.springMotion<sup>9+</sup>
 
 springMotion(response?: number, dampingFraction?: number, overlapDuration?: number): ICurve
 
@@ -203,7 +203,7 @@ curves.springMotion(0.5, 0.6, 0) // Create a spring animation curve with the spe
 ```
 
 
-##  curves.responsiveSpringMotion<sup>9+</sup>
+## curves.responsiveSpringMotion<sup>9+</sup>
 
 responsiveSpringMotion(response?: number, dampingFraction?: number, overlapDuration?: number): ICurve
 
@@ -301,7 +301,6 @@ let curve = curves.customCurve(interpolate) // Create a custom interpolation cur
 ## ICurve<sup>9+</sup>
 
 Curve.
-
 
 ### interpolate<sup>9+</sup>
 
@@ -407,13 +406,13 @@ Creates a spring curve. This API is deprecated since API version 9. You are advi
 
 ```ts
 // xxx.ets
-import { curves } from '@kit.ArkUI'
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct ImageComponent {
-  @State widthSize: number = 200
-  @State heightSize: number = 200
+  @State widthSize: number = 200;
+  @State heightSize: number = 200;
 
   build() {
     Column() {
