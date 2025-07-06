@@ -561,6 +561,141 @@ struct Child {
 }
 ```
 
+### makeBinding<sup>20+</sup>
+static makeBinding\<T\>(getter: GetterCallback\<T\>): Binding\<T\>
+
+创建只读的单向数据绑定实例，用于构建\@Builder函数中参数类型为`Binding`的对应实参。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明     |
+| ------ | ---- | ---- | ------------ |
+| getter | [GetterCallback\<T\>](#gettercallback20)    | 是   | 获取值的回调函数，每次访问值都会重新执行函数，获取最新值。 |
+
+**返回值：**
+
+| 类型 | 说明                                             |
+| ---- | ------------------------------------------------ |
+| [Binding\<T\>](#binding20)    | 仅包含一个`value`属性，用于获取当前绑定的值。只能读取值，不能直接修改。 |
+
+**示例：**
+
+```ts
+import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+
+@Builder
+function CustomButton(num1: Binding<number>) {
+  Row() {
+    Button(`Custom Button: ${num1.value}`)
+      .onClick(() => {
+        // num1.value += 1; 会报错，Binding类型不支持修改
+      })
+  }
+}
+
+@Entry
+@ComponentV2
+struct CompV2 {
+  @Local number1: number = 5;
+  @Local number2: number = 10;
+
+  build() {
+    Column() {
+      Text('parent component')
+
+      CustomButton(
+        /**
+         * 创建只读绑定实例
+         * @param getter - 返回this.number1的函数
+         * @returns 只读的Binding<number>对象
+         *
+         * 特点：
+         * 1. 每次访问.value时重新计算
+         * 2. 不能直接修改值
+         */
+        UIUtils.makeBinding<number>(
+          () => this.number1 // GetterCallback
+        )
+      )
+    }
+  }
+}
+```
+
+### makeBinding<sup>20+</sup>
+static makeBinding\<T\>(getter: GetterCallback\<T\>, setter: SetterCallback\<T\>): MutableBinding\<T\>
+
+创建可修改的双向数据绑定实例，用于构建\@Builder函数中参数类型为`MutableBinding`的对应实参。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明     |
+| ------ | ---- | ---- | ------------ |
+| getter | [GetterCallback\<T\>](#gettercallback20)    | 是   | 获取值的回调函数，每次访问值都会重新执行函数，获取最新值。 |
+| setter | [SetterCallback\<T\>](#settercallback20)    | 是   | 定义如何更新值，当`.value`被修改时自动调用此函数。 |
+
+**返回值：**
+
+| 类型 | 说明                                             |
+| ---- | ------------------------------------------------ |
+| [MutableBinding\<T\>](#mutablebinding20)    | 包含一个`value`属性，支持通过`.value`读取和修改数据，设置值时会检查类型是否匹配泛型`T`。 |
+
+**示例：**
+
+```ts
+import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+
+@Builder
+function CustomButton(num2: MutableBinding<number>) {
+  Row() {
+    Button(`Custom Button: ${num2.value}`)
+      .onClick(() => {
+        // MutableBinding类型支持修改
+        num2.value += 1;
+      })
+  }
+}
+
+@Entry
+@ComponentV2
+struct CompV2 {
+  @Local number1: number = 5;
+  @Local number2: number = 10;
+
+  build() {
+    Column() {
+      Text('parent component')
+
+      CustomButton(
+        /**
+         * 创建可变绑定
+         * @param getter - 返回this.number2的函数
+         * @param setter - 当绑定值修改时调用的回调
+         * @returns 可变的MutableBinding<number>对象
+         *
+         * 特点：
+         * 1. 支持读取和写入操作
+         * 2. 修改.value时会自动调用setter回调
+         */
+        UIUtils.makeBinding<number>(
+          () => this.number2, // GetterCallback
+          (val: number) => {
+            this.number2 = val;
+          }) // SetterCallback
+      )
+    }
+  }
+}
+```
+
 ## StorageDefaultCreator\<T\>
 
 type StorageDefaultCreator\<T\> = () => T
@@ -846,6 +981,246 @@ struct Index {
         .onClick(() => {
           this.data.sampleChild.id++;
         })
+    }
+  }
+}
+```
+
+## GetterCallback<sup>20+</sup>
+
+type GetterCallback\<T\> = () => T
+
+获取值的回调方法。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型 | 说明                                             |
+| ---- | ------------------------------------------------ |
+| T    | T类型的值。 |
+
+**示例：**
+
+```ts
+import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+
+@Builder
+function CustomButton(num1: Binding<number>) {
+  Row() {
+    Button(`Custom Button: ${num1.value}`)
+      .onClick(() => {
+        // num1.value += 1; 会报错，Binding类型不支持修改
+      })
+  }
+}
+
+@Entry
+@ComponentV2
+struct CompV2 {
+  @Local number1: number = 5;
+  @Local number2: number = 10;
+
+  build() {
+    Column() {
+      Text('parent component')
+
+      CustomButton(
+        // 对于UIUtils.makeBinding函数的第一个参数需要传入GetterCallback
+        UIUtils.makeBinding<number>(
+          () => this.number1 // GetterCallback
+        )
+      )
+    }
+  }
+}
+```
+
+## SetterCallback<sup>20+</sup>
+
+type SetterCallback\<T\> = (newValue: T) => void
+
+设置值的回调方法。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明     |
+| ------ | ---- | ---- | ------------ |
+| newValue | T    | 是   | 类型为T的参数。   |
+
+**示例：**
+
+```ts
+import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+
+@Builder
+function CustomButton(num2: MutableBinding<number>) {
+  Row() {
+    Button(`Custom Button: ${num2.value}`)
+      .onClick(() => {
+        // MutableBinding支持可变，可以修改num2.value
+        num2.value += 1;
+      })
+  }
+}
+
+@Entry
+@ComponentV2
+struct CompV2 {
+  @Local number1: number = 5;
+  @Local number2: number = 10;
+
+  build() {
+    Column() {
+      Text('parent component')
+
+      CustomButton(
+        // 对于UIUtils.makeBinding函数的第二个参数需要传入SetterCallback
+        UIUtils.makeBinding<number>(
+          () => this.number2, // GetterCallback
+          (val: number) => {
+            this.number2 = val;
+          }) // SetterCallback
+      )
+    }
+  }
+}
+```
+
+## Binding<sup>20+</sup>
+
+只读数据绑定的泛型类，可以绑定任意类型的数据。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### value<sup>20+</sup>
+get value(): T
+
+提供get访问器，用于获取绑定的值。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型             | 描述                                                         |
+| -------------------- | ------------------------------------------------------------ |
+| T |返回值类型为泛型参数T，与Binding\<T\>定义的类型一致。|
+
+**示例：**
+
+```ts
+import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+
+@Builder
+function CustomButton(num1: Binding<number>) {
+  // CustomButton的第一个参数为Binding，一个只读数据绑定的泛型类
+  Row() {
+    // num1.value Binding类可以使用绑定的值
+    Button(`Custom Button: ${num1.value}`)
+      .onClick(() => {
+        // num1.value += 1; 会报错，只读数据绑定的泛型类不能修改值
+      })
+  }
+}
+
+@Entry
+@ComponentV2
+struct CompV2 {
+  @Local number1: number = 5;
+  @Local number2: number = 10;
+
+  build() {
+    Column() {
+      Text('parent component')
+
+      CustomButton(
+        UIUtils.makeBinding<number>(
+          () => this.number1 // GetterCallback
+        )
+      )
+    }
+  }
+}
+```
+
+## MutableBinding<sup>20+</sup>
+
+可变数据绑定的泛型类，允许对绑定值进行读写操作，提供完整的get和set访问器。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### value<sup>20+</sup>
+set value(newValue: T): void
+
+提供set访问器，用于设置当前绑定值的值。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| newValue  | T | 是   | 参数类型为泛型参数T，与MutableBinding\<T\>定义的类型一致。 |
+
+### value<sup>20+</sup>
+get value(): T
+
+提供get访问器，用于获取当前绑定值。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型             | 描述                                                         |
+| -------------------- | ------------------------------------------------------------ |
+| T |返回值类型为泛型参数T，与Binding\<T\>定义的类型一致。|
+
+**示例：**
+
+```ts
+import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+
+@Builder
+function CustomButton(num2: MutableBinding<number>) {
+  // CustomButton的第二个参数为MutableBinding，一个可变数据绑定的泛型类
+  Row() {
+    Button(`Custom Button: ${num2.value}`)
+      .onClick(() => {
+        // 可变数据绑定的泛型类可以修改绑定的值
+        num2.value += 1;
+      })
+  }
+}
+
+@Entry
+@ComponentV2
+struct CompV2 {
+  @Local number1: number = 5;
+  @Local number2: number = 10;
+
+  build() {
+    Column() {
+      Text('parent component')
+
+      CustomButton(
+        UIUtils.makeBinding<number>(
+          () => this.number2, // GetterCallback
+          (val: number) => {
+            this.number2 = val;
+          }) // SetterCallback
+      )
     }
   }
 }
