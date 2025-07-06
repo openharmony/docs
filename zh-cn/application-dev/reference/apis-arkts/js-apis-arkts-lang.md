@@ -21,6 +21,8 @@ ISendable类型的对象是ArkTS中的Object类型的实例。
 
 ISendable主要用在开发者自定义Sendable数据结构的场景中，ArkTS语言标准库中的容器类型隐式地继承并实现了ISendable。
 
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Utils.Lang
 
 **示例：**
