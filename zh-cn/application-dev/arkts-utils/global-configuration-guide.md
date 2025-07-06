@@ -15,40 +15,40 @@
    
    @Sendable
    class Config {
-     lock: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock
+     lock: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
      isLogin: boolean = false;
      loginUser?: string;
-     wifiOn: boolean = false
+     wifiOn: boolean = false;
    
      async login(user: string) {
        return this.lock.lockAsync(() => {
          this.isLogin = true;
-         this.loginUser = user
+         this.loginUser = user;
        }, ArkTSUtils.locks.AsyncLockMode.EXCLUSIVE)
      }
    
      async logout(user?: string) {
        return this.lock.lockAsync(() => {
-         this.isLogin = false
-         this.loginUser = ""
+         this.isLogin = false;
+         this.loginUser = "";
        }, ArkTSUtils.locks.AsyncLockMode.EXCLUSIVE)
      }
    
      async getIsLogin(): Promise<boolean> {
        return this.lock.lockAsync(() => {
-         return this.isLogin
+         return this.isLogin;
        }, ArkTSUtils.locks.AsyncLockMode.SHARED)
      }
    
      async getUser(): Promise<string> {
        return this.lock.lockAsync(() => {
-         return this.loginUser!
+         return this.loginUser!;
        }, ArkTSUtils.locks.AsyncLockMode.SHARED)
      }
    
      async setWifiState(state: boolean) {
        return this.lock.lockAsync(() => {
-         this.wifiOn = state
+         this.wifiOn = state;
        }, ArkTSUtils.locks.AsyncLockMode.EXCLUSIVE)
      }
    
@@ -59,27 +59,28 @@
      }
    }
    
-   export let config = new Config()
+   export let config = new Config();
    ```
    <!-- @[global_config](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/Config.ets) -->
 
 2. UI主线程及子线程访问全局配置项。
 
    ```ts
-   import { config } from './Config'
+   // Index.ets
+   import { config } from './Config';
    import { taskpool } from '@kit.ArkTS';
    
    @Concurrent
    async function download() {
      if (!await config.isWifiOn()) {
-       console.info("wifi is off")
+       console.info("wifi is off");
        return false;
      }
      if (!await config.getIsLogin()) {
-       console.info("not login")
+       console.info("not login");
        return false;
      }
-     console.info(`User[${await config.getUser()}] start download ...`)
+     console.info(`User[${await config.getUser()}] start download ...`);
      return true;
    }
    
@@ -120,8 +121,8 @@
              })
              .onClick(async () => {
                if (!await config.getIsLogin() && this.input) {
-                 this.message = "login: " + this.input
-                 config.login(this.input)
+                 this.message = "login: " + this.input;
+                 config.login(this.input);
                }
              })
              .backgroundColor(0xcccccc)
@@ -134,8 +135,8 @@
              })
              .onClick(async () => {
                if (await config.getIsLogin()) {
-                 this.message = "not login"
-                 config.logout()
+                 this.message = "not login";
+                 config.logout();
                }
              })
              .backgroundColor(0xcccccc)
@@ -148,7 +149,7 @@
              })
            Toggle({ type: ToggleType.Switch })
              .onChange(async (isOn: boolean) => {
-               await config.setWifiState(isOn)
+               await config.setWifiState(isOn);
                this.wifiState = isOn ? "wifi on" : "wifi off";
              })
            Text("download")
@@ -159,7 +160,7 @@
                middle: { anchor: '__container__', align: HorizontalAlign.Center }
              })
              .onClick(async () => {
-               let ret = await taskpool.execute(download)
+               let ret = await taskpool.execute(download);
                this.downloadResult = ret ? "download success" : "download fail";
              })
            Text(this.downloadResult)
