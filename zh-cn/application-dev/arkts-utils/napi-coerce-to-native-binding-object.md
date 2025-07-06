@@ -439,7 +439,7 @@ Native Transferable对象有两种模式：共享模式和转移模式。本示�
    
      // 由于默认的传输模式为共享模式，testNapi跨线程传递后，主线程可以继续访问Native对象的值
      let size:number = testNapi.getSetSize();
-     // 输出的日志为“host thread size is 6
+     // 输出的日志为“host thread size is 6”
      console.info("host thread size is " + size);
    
      let task4 = new taskpool.Task(erase, 3);
