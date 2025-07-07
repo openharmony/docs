@@ -217,8 +217,6 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 | videoCodec        | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8) | 否 | 是   | 输出视频的编码格式，当前仅支持AVC和HEVC。若源视频编码格式为HEVC，则默认设置为HEVC，否则默认设置为AVC。|
 | videoFrameWidth        | number | 否 |  是   | 输出视频帧的宽，单位为像素（px），支持范围[240-3840]。默认设置为源视频帧的宽。|
 | videoFrameHeight        | number | 否 |  是   | 输出视频帧的高，单位为像素（px），支持范围[240-2160]。默认设置为源视频帧的高。|
-| enableBFrame<sup>20+</sup> | boolean | 否 |  是   | 转码使能B帧编码。true表示开启B帧编码，默认为不开启B帧编码。<br>实际支持情况取决于视频编码格式和设备芯片能力。对于不支持B帧编码的视频编码格式或设备，将忽略B帧，按不使能B帧进行编码。|
-
 
 ## AVMetadata<sup>11+</sup>
 
