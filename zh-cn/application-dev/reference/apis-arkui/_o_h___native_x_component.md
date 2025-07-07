@@ -1083,7 +1083,7 @@ int32_t OH_NativeXComponent_GetHistoricalPoints (OH_NativeXComponent * component
 
 **描述:**
 
-获取ArkUI XComponent的历史接触点。
+获取当前XComponent触摸事件的历史点信息。由于部分输入设备上报触点的频率非常高（最高可达每1 ms上报一次），而对输入事件的响应通常是为了使UI界面发生变化以响应用户操作，如果将触摸事件按照上报触点的频率如此高频率上报给应用，大多会造成冗余，因此触摸事件在一帧内只会上报一次给应用。在当前帧内上报的触点均作为历史点保存，如果应用需要直接处理这些数据，可调用该接口获取历史点信息。
 
 **参数:**
 
@@ -1091,7 +1091,8 @@ int32_t OH_NativeXComponent_GetHistoricalPoints (OH_NativeXComponent * component
 | ---------- | ----------------------------- |
 | component  | 表示指向OH_NativeXComponent实例的指针。 |
 | window     | 表示NativeWindow句柄。              |
-| historicalPoints | 指示指向当前历史接触点的指针。                |
+| size       | 表示当前历史接触点数组的长度。      |
+| historicalPoints | 表示指向当前历史接触点数组的指针。                |
 
 **返回:**
 
@@ -2910,7 +2911,7 @@ OH_NativeXComponent_TouchEventType OH_NativeXComponent_TouchEvent::type = OH_Nat
 ### type [3/3]
 
 ```
-OH_NativeXComponent_HistoricalPoint OH_NativeXComponent_TouchEvent::type = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN
+OH_NativeXComponent_TouchEventType OH_NativeXComponent_HistoricalPoint::type = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN
 ```
 
 **描述:**
