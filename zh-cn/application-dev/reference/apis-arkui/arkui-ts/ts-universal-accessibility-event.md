@@ -1,6 +1,6 @@
-# 无障碍事件
+# 无障碍控制操作
 
-在开启无障碍模式后，需要判断是否拦截无障碍事件。
+在开启无障碍模式后，需要判断是否拦截无障碍控制操作。
 
 >**说明：**
 >
@@ -51,7 +51,7 @@ type AccessibilityFocusCallback = (isFocus: boolean) => void
 
 onAccessibilityActionIntercept(callback: AccessibilityActionInterceptCallback): T
 
-该接口在无障碍模式下，可在无障碍事件触发前通知注册的回调函数，由注册方决定是否拦截该次无障碍事件。
+该接口在无障碍模式下，可在无障碍控制操作触发前通知注册的回调函数，由注册方决定是否拦截该次无障碍动作，对不支持Click的组件注册也无法触发回调。
 
 **卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
 
@@ -63,7 +63,7 @@ onAccessibilityActionIntercept(callback: AccessibilityActionInterceptCallback): 
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityActionInterceptCallback](ts-universal-accessibility-event.md#accessibilityactioninterceptcallback20) | 是   | 在无障碍事件触发前，向注册回调函数方通知，由注册方决定是否拦截该次无障碍事件。 |
+| callback | [AccessibilityActionInterceptCallback](ts-universal-accessibility-event.md#accessibilityactioninterceptcallback20) | 是   | 在无障碍控制操作触发前，向注册回调函数方通知，由注册方决定是否拦截该次无障碍控制操作。<br> 入参设置undefined时取消回调注册。 |
 
 **返回值：**
 
@@ -87,17 +87,17 @@ type AccessibilityActionInterceptCallback = (action: AccessibilityAction) => Acc
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
-| action | [AccessibilityAction](ts-universal-accessibility-event.md#accessibilityaction20枚举说明) | 是 | 当前触发的无障碍事件类型。 |
+| action | [AccessibilityAction](ts-universal-accessibility-event.md#accessibilityaction20枚举说明) | 是 | 当前触发的无障碍控制操作类型。 |
 
 **返回值：**
 
 | 类型    | 说明              |
 | ------ | ---------------- |
-| [AccessibilityActionInterceptResult](ts-universal-accessibility-event.md#accessibilityactioninterceptresult20枚举说明) | 无障碍事件拦截结果。 |
+| [AccessibilityActionInterceptResult](ts-universal-accessibility-event.md#accessibilityactioninterceptresult20枚举说明) | 无障碍控制操作拦截结果。 |
 
 ## AccessibilityAction<sup>20+</sup>枚举说明
 
-定义组件当前触发的无障碍事件类型。
+定义组件当前触发的无障碍控制操作类型。
 
 **卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
 
@@ -107,12 +107,12 @@ type AccessibilityActionInterceptCallback = (action: AccessibilityAction) => Acc
 
 | 名称 | 值  | 说明             |
 | ---- | ---- | ------------------ |
-| UNDEFINED_ACTION | 0 | 未定义的无障碍事件。 |
-| ACCESSIBILITY_CLICK | 1 | 无障碍点击事件。 |
+| UNDEFINED_ACTION | 0 | 未定义的无障碍操作。 |
+| ACCESSIBILITY_CLICK | 1 | 无障碍点击操作。 |
 
 ## AccessibilityActionInterceptResult<sup>20+</sup>枚举说明
 
-定义AccessibilityActionInterceptCallback的无障碍事件拦截结果。
+定义AccessibilityActionInterceptCallback的无障碍控制操作拦截结果。
 
 **卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
 
@@ -122,9 +122,9 @@ type AccessibilityActionInterceptCallback = (action: AccessibilityAction) => Acc
 
 | 名称 | 值  | 说明             |
 | ---- | ---- | ------------------ |
-| ACTION_INTERCEPT | 0 | 拦截当前组件接收的无障碍事件。 |
-| ACTION_CONTINUE | 1 | 继续执行当前组件接收的无障碍事件。 |
-| ACTION_RISE | 2 | 判断本组件当前接收的无障碍事件是否拦截并冒泡查询有onAccessibilityActionIntercept注册的祖先组件并执行其回调，以祖先组件的返回值，来确定本组件的拦截结果。如果祖先组件的拦截结果仍然是ACTION_RISE，则继续冒泡查询和执行。 |
+| ACTION_INTERCEPT | 0 | 拦截当前组件接收的无障碍控制操作，回调处理结束后，不允许当前组件响应无障碍控制操作。 |
+| ACTION_CONTINUE | 1 | 拦截当前组件接收的无障碍控制操作, 回调处理结束后，仍然需要组件做出响应，执行当前组件的处理逻辑。 |
+| ACTION_RISE | 2 | 拦截执行当前组件接收的无障碍控制操作，回调处理结束后，仍然需要组件做出响应，执行当前组件的处理逻辑，并且将ACTION信息往父组件传递，传递到下一个使用了onAccessibilityActionIntercept的组件，触发当前组件中注册的回调，但不触发组件处理逻辑。处理完成后，可以继续使用RISE向父组件传递ACTION。 |
 
 ## 示例
 
