@@ -57,8 +57,8 @@
 
 > **说明：**
 >
-> - ImageReceiver组件中解析图像数据设置的Size、Format等属性必须和相机预览输出流previewProfile中配置的Size、Format保持一致，ImageRecevier图片像素格式请参考[PixelMapFormat](../../reference/apis-image-kit/js-apis-image.md#pixelmapformat7)，相机预览输出流previewProfile输出格式请参考[CameraFormat](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraformat)。
-> - 由于一多设备产品差异性，应用开发者在创建相机预览输出流前，必须先通过[getSupportedOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedoutputcapability11)方法获取当前设备支持的预览流previewProfile，再根据实际业务需求选择[CameraFormat](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraformat)和[Size](../../reference/apis-camera-kit/arkts-apis-camera-i.md#size)适合的预览流previewProfile。
+> - 在创建[PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md)图片实例时设置的Size、Format等属性必须和相机预览输出流previewProfile中配置的Size、Format属性保持一致，ImageRecevier图片像素格式请参考[PixelMapFormat](../../reference/apis-image-kit/arkts-apis-image-e.md#pixelmapformat7)，相机预览输出流previewProfile输出格式请参考[CameraFormat](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraformat)。
+> - 由于一多设备产品差异性，应用开发者在创建相机预览输出流前，必须先通过[getSupportedOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedoutputcapability11)方法获取当前设备支持的预览输出流previewProfile，再根据实际业务需求选择[CameraFormat](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraformat)和[Size](../../reference/apis-camera-kit/arkts-apis-camera-i.md#size)适合的预览输出流previewProfile。
 
 
     ```ts
