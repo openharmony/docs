@@ -1133,7 +1133,8 @@ int32_t OH_NativeXComponent_GetHistoricalPoints (OH_NativeXComponent * component
 | ---------- | ----------------------------- |
 | component  | 表示指向OH_NativeXComponent实例的指针。 |
 | window     | 表示NativeWindow句柄。              |
-| historicalPoints | 指示指向当前历史接触点的指针。                |
+| size       | 表示当前历史接触点数组的长度。      |
+| historicalPoints | 表示指向当前历史接触点数组的指针。                |
 
 **返回:**
 
