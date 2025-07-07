@@ -512,7 +512,7 @@ getEthernetDeviceInfos(): Promise\<Array\<EthernetDeviceInfos>>
 
 | 类型                | 说明                                                        |
 | ------------------- | ----------------------------------------------------------- |
-| Promise\<Array\<[EthernetDeviceInfos](#EthernetDeviceInfos20)>>  | 以Promise形式返回执行结果。成功返回以太网设备信息列表，失败返回对应错误码。 |
+| Promise\<Array\<[EthernetDeviceInfos](#ethernetdeviceinfos20)>>  | 以Promise形式返回执行结果。成功返回以太网设备信息列表，失败返回对应错误码。 |
 
 **错误码：**
 
