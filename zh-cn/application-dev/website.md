@@ -3619,6 +3619,8 @@
           - [RawDir](reference/apis-localization-kit/capi-rawfile-rawdir.md)
           - [RawFileDescriptor](reference/apis-localization-kit/capi-rawfile-rawfiledescriptor.md)
           - [RawFileDescriptor64](reference/apis-localization-kit/capi-rawfile-rawfiledescriptor64.md)
+          - [RawFile](reference/apis-localization-kit/capi-rawfile-rawfile.md)
+          - [RawFile64](reference/apis-localization-kit/capi-rawfile-rawfile64.md)
           - [NativeResourceManager](reference/apis-localization-kit/capi-rawfile-nativeresourcemanager.md)
           - [ResourceManager_Configuration](reference/apis-localization-kit/capi-resourcemanager-resourcemanager-configuration.md)
       - 错误码<!--localization-arkts-errcode-->
