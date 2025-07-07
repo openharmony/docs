@@ -136,7 +136,7 @@ lightWeightMap.set("sparrow", 356);
 let map: LightWeightMap<string, number> = new LightWeightMap();
 map.set("sparrow", 356);
 let result = lightWeightMap.hasAll(map); 
-console.log("result = ", result); // result = true
+console.info("result = ", result); // result = true
 ```
 
 

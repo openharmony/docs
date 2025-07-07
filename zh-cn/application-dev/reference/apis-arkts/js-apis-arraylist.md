@@ -179,7 +179,7 @@ has(element: T): boolean
 let arrayList: ArrayList<string> = new ArrayList();
 arrayList.add("squirrel");
 let result: boolean = arrayList.has("squirrel");
-console.log("result = ", result); // result = true
+console.info("result = ", result); // result = true
 ```
 
 ### getIndexOf
@@ -224,7 +224,7 @@ arrayList.add(1);
 arrayList.add(2);
 arrayList.add(4);
 let result: number = arrayList.getIndexOf(2); 
-console.log("result = ", result); // result = 0
+console.info("result = ", result); // result = 0
 ```
 
 ### getLastIndexOf
@@ -269,7 +269,7 @@ arrayList.add(1);
 arrayList.add(2);
 arrayList.add(4);
 let result: number = arrayList.getLastIndexOf(2);
-console.log("result = ", result); // result = 5
+console.info("result = ", result); // result = 5
 ```
 
 ### removeByIndex
@@ -314,7 +314,7 @@ arrayList.add(5);
 arrayList.add(2);
 arrayList.add(4);
 let result: number = arrayList.removeByIndex(2);
-console.log("result = ", result); // result = 5
+console.info("result = ", result); // result = 5
 ```
 
 ### remove
@@ -356,7 +356,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: boolean = arrayList.remove(2);
-console.log(result); // result =  true
+console.info(result); // result =  true
 ```
 
 ### removeByRange
@@ -587,7 +587,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: ArrayList<number> = arrayList.subArrayList(2, 4);
-console.log("result = ", result.length); // result = 2
+console.info("result = ", result.length); // result = 2
 ```
 
 ### clear
@@ -653,7 +653,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result:  ArrayList<number> = arrayList.clone();
-console.log("result = ", result.length); // result = 4
+console.info("result = ", result.length); // result = 4
 ```
 
 ### getCapacity
@@ -689,7 +689,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: number = arrayList.getCapacity();
-console.log("result = ", result); // result = 10
+console.info("result = ", result); // result = 10
 ```
 
 ### convertToArray
@@ -725,7 +725,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: Array<number> = arrayList.convertToArray();
-console.log("result = ", result); // result =  2,4,5,4
+console.info("result = ", result); // result =  2,4,5,4
 ```
 
 ### isEmpty
@@ -761,7 +761,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: boolean = arrayList.isEmpty();
-console.log("result = ", result); // result =  false
+console.info("result = ", result); // result =  false
 ```
 
 ### \[index: number\]<sup>12+</sup>
@@ -804,7 +804,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: number = arrayList[2];
-console.log("result = ", result); // result =  5
+console.info("result = ", result); // result =  5
 ```
 
 ### increaseCapacityTo
@@ -842,7 +842,7 @@ arrayList.add(5);
 arrayList.add(4);
 arrayList.increaseCapacityTo(2);
 arrayList.increaseCapacityTo(8);
-console.log("result = ", arrayList.length); // result = 4
+console.info("result = ", arrayList.length); // result = 4
 ```
 
 ### trimToCurrentLength
@@ -872,7 +872,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.trimToCurrentLength();
-console.log("result = ", arrayList.length); // result = 4
+console.info("result = ", arrayList.length); // result = 4
 ```
 
 ### [Symbol.iterator]

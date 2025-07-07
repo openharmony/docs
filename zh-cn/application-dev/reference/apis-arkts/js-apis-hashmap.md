@@ -90,7 +90,7 @@ isEmpty(): boolean
 ```ts
 const hashMap: HashMap<string, number> = new HashMap();
 let result = hashMap.isEmpty();
-console.log("result = ", result) // result = true
+console.info("result = ", result) // result = true
 ```
 
 

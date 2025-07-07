@@ -213,7 +213,7 @@ deque.insertEnd(5);
 deque.insertFront(2);
 deque.insertFront(4);
 let result = deque.popFirst();
-console.log("result = ", result) // result =  4
+console.info("result = ", result) // result =  4
 ```
 
 ### popLast

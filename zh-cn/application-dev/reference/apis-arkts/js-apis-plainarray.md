@@ -90,7 +90,7 @@ isEmpty(): boolean
 ```ts
 const plainArray: PlainArray<string> = new PlainArray();
 let result = plainArray.isEmpty();
-console.log("result = ", result); // result = true
+console.info("result = ", result); // result = true
 ```
 
 
@@ -131,7 +131,7 @@ has(key: number): boolean
 let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 let result = plainArray.has(1);
-console.log("result = ", result); // result = true
+console.info("result = ", result); // result = true
 ```
 
 
@@ -214,7 +214,7 @@ let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfKey(2);
-console.log("result = ", result); // result = 1
+console.info("result = ", result); // result = 1
 ```
 
 
@@ -296,7 +296,7 @@ let plainArray: PlainArray<string> = new PlainArray();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getKeyAt(1);
-console.log("result = ", result); // result = 2
+console.info("result = ", result); // result = 2
 ```
 
 ### getValueAt
