@@ -27,6 +27,8 @@
     - [RawDir](capi-rawfile-rawdir.md)
     - [RawFileDescriptor](capi-rawfile-rawfiledescriptor.md)
     - [RawFileDescriptor64](capi-rawfile-rawfiledescriptor64.md)
+    - [RawFile](capi-rawfile-rawfile.md)
+    - [RawFile64](capi-rawfile-rawfile64.md)
     - [NativeResourceManager](capi-rawfile-nativeresourcemanager.md)
     - [ResourceManager_Configuration](capi-resourcemanager-resourcemanager-configuration.md)
 - 错误码<!--localization-arkts-errcode-->
