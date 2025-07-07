@@ -8,7 +8,7 @@ LiveFormExtensionAbility模块提供互动卡片功能，包括创建、销毁�
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块不允许调用部分API，具体请参考[附录](js-apis-app-form-LiveFormExtensionAbility.md#附录)。
+> 本模块设置了API黑名单，调用黑名单中的API将导致功能异常，详情请参见[附录](js-apis-app-form-LiveFormExtensionAbility.md#附录)。
 
 ## 导入模块
 
@@ -113,7 +113,7 @@ export default class LiveFormExtAbility extends LiveFormExtensionAbility {
 
 ### 附录
 
-本模块不允许调用的API清单如下。
+本模块设置了API黑名单如下。
 
 | Kit名称 | 模块名称 |
 | ------- | ------- |
