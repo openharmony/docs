@@ -57,13 +57,13 @@ AAC、Flac、MP3、G711mu<!--RP3--><!--RP3End-->。
 
 | 媒体格式  | 封装格式                      | 轨道格式                      |
 | -------- | :----------------------------| :----------------------------|
-| 音视频     | mp4                        |<!--RP4-->视频轨：AVC(H.264)、MPEG4，音频轨：AAC、MPEG(MP3)，字幕轨：WEBVTT，辅助轨：AUXL(AAC、MP3)，timed metadata轨<!--RP4End-->|
-| 音视频     | fmp4                       |<!--RP5-->视频轨：AVC(H.264)，音频轨：AAC、MPEG(MP3)<!--RP5End-->|
-| 音视频     | mkv                        |<!--RP6-->视频轨：AVC(H.264)，音频轨：AAC、MPEG(MP3)、OPUS<!--RP6End-->|
-| 音视频     | mpeg-ts                    |<!--RP7-->视频轨：AVC(H.264)、MPEG2、MPEG4，音频轨：AAC、MPEG(MP3)<!--RP7End-->|
-| 音视频     | flv                        |<!--RP8-->视频轨：AVC(H.264)，音频轨：AAC<!--RP8End-->|
-| 音视频     | mpeg-ps                    |视频轨：AVC(H.264)、MPEG2，音频轨：MPEG(MP2、MP3)|
-| 音视频     | avi                        |视频轨：H.263、AVC(H.264)、MPEG2、MPEG4，音频轨：AAC、MPEG(MP2、MP3)、PCM|
+| 音视频     | mp4                        |<!--RP4-->视频轨：AVC(H.264)、MPEG4<br>音频轨：AAC、MPEG(MP3)<br>字幕轨：WEBVTT<br>辅助轨：AUXL(AAC、MP3)<br>timed metadata轨<!--RP4End-->|
+| 音视频     | fmp4                       |<!--RP5-->视频轨：AVC(H.264)<br>音频轨：AAC、MPEG(MP3)<!--RP5End-->|
+| 音视频     | mkv                        |<!--RP6-->视频轨：AVC(H.264)<br>音频轨：AAC、MPEG(MP3)、OPUS<!--RP6End-->|
+| 音视频     | mpeg-ts                    |<!--RP7-->视频轨：AVC(H.264)、MPEG2、MPEG4<br>音频轨：AAC、MPEG(MP3)<!--RP7End-->|
+| 音视频     | flv                        |<!--RP8-->视频轨：AVC(H.264)<br>音频轨：AAC<!--RP8End-->|
+| 音视频     | mpeg-ps                    |视频轨：AVC(H.264)、MPEG2<br>音频轨：MPEG(MP2、MP3)|
+| 音视频     | avi                        |视频轨：H.263、AVC(H.264)、MPEG2、MPEG4<br>音频轨：AAC、MPEG(MP2、MP3)、PCM|
 | 音频       | m4a                        |<!--RP9-->音频轨：AAC<!--RP9End-->|
 | 音频       | aac                        |音频轨：AAC|
 | 音频       | mp3                        |音频轨：MPEG(MP3)|
