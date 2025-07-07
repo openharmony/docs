@@ -16,7 +16,7 @@
 
 | 名称 | typedef关键字 | 描述                                                                                                                                                                      |
 | -- | -- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [RawFileDescriptor](capi-rawfile-awfiledescriptor.md) | RawFileDescriptor | 提供rawfile文件描述符信息。RawFileDescriptor是[OH_ResourceManager_GetRawFileDescriptor](#oh_resourcemanager_getrawfiledescriptor)的输出参数,涵盖了rawfile文件的文件描述符以及在HAP包中的起始位置和长度。         |
+| [RawFileDescriptor](capi-rawfile-rawfiledescriptor.md) | RawFileDescriptor | 提供rawfile文件描述符信息。RawFileDescriptor是[OH_ResourceManager_GetRawFileDescriptor](#oh_resourcemanager_getrawfiledescriptor)的输出参数,涵盖了rawfile文件的文件描述符以及在HAP包中的起始位置和长度。         |
 | [RawFileDescriptor64](capi-rawfile-rawfiledescriptor64.md) | RawFileDescriptor64 | 提供较大rawfile文件描述符信息。RawFileDescriptor64是[OH_ResourceManager_GetRawFileDescriptor64](#oh_resourcemanager_getrawfiledescriptor64)的输出参数,涵盖了rawfile文件的文件描述符以及在HAP包中的起始位置和长度。 |
 | [RawFile](capi-rawfile-rawfile.md) | RawFile | 提供对rawfile的访问功能。                                                                                                                                                        |
 | [RawFile64](capi-rawfile-rawfile64.md) | RawFile64 | 提供对较大rawfile的访问功能。                                                                                                                                                      |
@@ -215,7 +215,7 @@ bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDesc
 | 参数项                                               | 描述 |
 |---------------------------------------------------| -- |
 | const [RawFile](capi-rawfile-rawfile.md) *rawFile | 表示指向[RawFile](capi-rawfile-rawfile.md)的指针。 |
-| [RawFileDescriptor](capi-rawfile-awfiledescriptor.md) &descriptor                 | 显示rawfile文件描述符，以及在HAP包中的起始位置和长度。 |
+| [RawFileDescriptor](capi-rawfile-rawfiledescriptor.md) &descriptor                 | 显示rawfile文件描述符，以及在HAP包中的起始位置和长度。 |
 
 **返回：**
 
@@ -240,7 +240,7 @@ bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descri
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [RawFileDescriptor](capi-rawfile-awfiledescriptor.md) &descriptor | 包含rawfile文件描述符，以及在HAP包中的起始位置和长度。 |
+| const [RawFileDescriptor](capi-rawfile-rawfiledescriptor.md) &descriptor | 包含rawfile文件描述符，以及在HAP包中的起始位置和长度。 |
 
 **返回：**
 
@@ -265,7 +265,7 @@ bool OH_ResourceManager_ReleaseRawFileDescriptorData(const RawFileDescriptor *de
 
 | 参数项 | 描述 |
 | -- | -- |
-| [const RawFileDescriptor](capi-rawfile-awfiledescriptor.md) *descriptor | 包含rawfile文件描述符，以及在HAP包中的起始位置和长度。 |
+| [const RawFileDescriptor](capi-rawfile-rawfiledescriptor.md) *descriptor | 包含rawfile文件描述符，以及在HAP包中的起始位置和长度。 |
 
 **返回：**
 
