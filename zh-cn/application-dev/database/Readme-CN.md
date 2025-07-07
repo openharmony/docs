@@ -35,7 +35,7 @@
 - 跨应用数据共享<!--cross-app-data-share-->
   - [跨应用数据共享概述](data-share-overview.md)
   <!--Del-->
-  - 一对多跨应用数据共享 (仅对系统应用开放)）<!--one-to-many-data-share-->
+  - 一对多跨应用数据共享 (仅对系统应用开放)<!--one-to-many-data-share-->
     - [通过DataShareExtensionAbility实现数据共享 (ArkTS)](share-data-by-datashareextensionability.md)
     - [通过数据管理服务实现数据共享静默访问 (ArkTS)](share-data-by-silent-access.md)
   <!--DelEnd-->

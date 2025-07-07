@@ -49,6 +49,6 @@
       - [复杂文本绘制与显示（C/C++）](complex-text-c.md)
 - [NativeBuffer开发指导 (C/C++)](native-buffer-guidelines.md)
 - [NativeImage开发指导 (C/C++)](native-image-guidelines.md)
-- [NativeVsync开发指导 (C/C++)](native-vsync-guidelines.md)
+- [NativeVSync开发指导 (C/C++)](native-vsync-guidelines.md)
 - [NativeWindow开发指导 (C/C++)](native-window-guidelines.md)
 - [图形开发术语](graphic-term.md)
