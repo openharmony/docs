@@ -390,6 +390,8 @@
     - [自定义组件的生命周期](arkui-ts/ts-custom-component-lifecycle.md)
     - [自定义组件的自定义布局](arkui-ts/ts-custom-component-layout.md)
     - [自定义组件内置方法](arkui-ts/ts-custom-component-api.md)
+  - 互操作
+    - [compatibleComponent (ArkTS1.2)(系统接口)](arkui-ts/ts-interop-compatible-component.md)
   - 状态管理与渲染控制<!--state-management-and-rendering-control-->
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
     - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
