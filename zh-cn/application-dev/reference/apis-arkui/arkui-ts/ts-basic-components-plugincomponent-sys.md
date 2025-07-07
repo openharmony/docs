@@ -186,7 +186,7 @@ onError(callback:&nbsp;PluginErrorCallback)
             console.info("onComplete");
           })
           .onError((info: Info) => {
-            console.info("onComplete" + info.errcode + ":" + info.msg);
+            console.error("onError" + info.errcode + ":" + info.msg);
           })
       }
       .width('100%')

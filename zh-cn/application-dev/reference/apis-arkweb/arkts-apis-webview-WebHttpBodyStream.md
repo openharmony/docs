@@ -8,6 +8,12 @@ POST、PUT请求的数据体，支持BYTES、FILE、BLOB、CHUNKED类型的数�
 >
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
+## 导入模块
+
+```ts
+import { webview } from '@kit.ArkWeb';
+```
+
 ## initialize<sup>12+</sup>
 
 initialize(): Promise\<void\>

@@ -10,6 +10,12 @@
 >
 > - 目前调用WebStorage下的方法，都需要先加载Web组件。
 
+## 导入模块
+
+```ts
+import { webview } from '@kit.ArkWeb';
+```
+
 ## deleteOrigin
 
 static deleteOrigin(origin: string): void

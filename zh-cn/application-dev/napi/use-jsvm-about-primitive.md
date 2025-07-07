@@ -376,7 +376,7 @@ JSVM OH_JSVM_GetGlobal success
 
 ### OH_JSVM_GetNull
 
-用于获取JavaScript null
+用于获取 JavaScript null 对象
 
 cpp 部分代码：
 
@@ -417,7 +417,7 @@ JSVM OH_JSVM_GetNull success
 
 ### OH_JSVM_GetUndefined
 
-用于获取JavaScript undefined
+用于获取 JavaScript undefined 对象
 
 cpp 部分代码：
 

@@ -94,7 +94,7 @@ textOverflow(options: TextOverflowOptions)
 
 设置文本超长时的显示方式。
 
-当[TextOverflowOptions](#textoverflowoptions18对象说明)设置为TextOverflow.None、TextOverflow.Clip或TextOverflowEllipsis时：
+当[TextOverflowOptions](#textoverflowoptions18对象说明)设置为TextOverflow.None、TextOverflow.Clip或TextOverflow.Ellipsis时：
 
 - 设置为TextOverflow.None、TextOverflow.Clip，文本超长时按最大行截断显示。
 
