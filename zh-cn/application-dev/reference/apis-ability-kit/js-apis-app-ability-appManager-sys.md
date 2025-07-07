@@ -1943,10 +1943,7 @@ getKeepAliveAppServiceExtensions(): Promise\<Array\<KeepAliveBundleInfo>>
 
 获取所有保活的AppServiceExtensionAbility应用信息，此信息由[KeepAliveBundleInfo](#keepalivebundleinfo14)定义。使用Promise异步回调。
 
-> **说明：**
->
-> - 本接口当前仅支持2in1设备。
-> - 仅当应用安装在userId为1的用户下，且应用中entry类型的HAP的module.json5配置文件中的mainElement字段配置为AppServiceExtensionAbility时，该接口才生效。
+本接口当前仅支持2in1设备。
 
 **需要权限**：ohos.permission.MANAGE_APP_KEEP_ALIVE
 
