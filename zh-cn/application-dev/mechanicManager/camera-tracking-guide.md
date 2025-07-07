@@ -1,5 +1,8 @@
 # 智能拍摄跟踪开发指南
 
+为了帮助开发者更好地理解和应用 MechanicKit，本指南将提供智能拍摄跟踪的实现方式。
+通过场景化的示例，开发者可以快速上手 MechanicKit，构建出功能丰富的设备交互应用。
+
 ## 接口介绍
 
 机械设备管理API的接口使用指导请参见[MechanicManager  API参考](../reference/apis-mechanicManager-kit/js-apis-mechanicManager.md)。
@@ -30,13 +33,13 @@
 
 ### 管理设备连接状态
 
-#### 导入机械设备管理模块文件
+1. 导入机械设备管理模块文件
 
 ```ts
 import mechanicManager from '@kit.MechanicKit';
 ```
 
-#### 获取已连接的机械设备列表
+2. 获取已连接的机械设备列表
 
 ```ts
 import mechanicManager from '@ohos.distributedHardware.mechanicManager';
@@ -66,7 +69,7 @@ try {
 }
 ```
 
-#### 监听设备连接状态变化
+3. 监听设备连接状态变化
 
 ```ts
 const attachStateChangeCallback = (info: mechanicManager.AttachStateChangeInfo) => {
@@ -85,7 +88,7 @@ const attachStateChangeCallback = (info: mechanicManager.AttachStateChangeInfo) 
 mechanicManager.on('attachStateChange', attachStateChangeCallback);
 ```
 
-#### 处理设备连接和断开事件
+4. 处理设备连接和断开事件
 
 ```ts
 function handleDeviceAttached(mechInfo: mechanicManager.MechInfo) {
@@ -101,7 +104,7 @@ function handleDeviceDetached(mechInfo: mechanicManager.MechInfo) {
 }
 ```
 
-#### 取消监听
+5. 取消监听
 
 ```ts
 // 取消特定回调的监听
@@ -111,9 +114,9 @@ mechanicManager.off('attachStateChange', attachStateChangeCallback);
 mechanicManager.off('attachStateChange');
 ```
 
-#### 控制设备智能跟踪拍摄
+### 控制设备智能跟踪拍摄
 
-##### 启用摄像头智能跟踪功能
+1. 启用摄像头智能跟踪功能
 
 ```ts
 try {
@@ -133,7 +136,7 @@ try {
 }
 ```
 
-#### 监听跟踪变化
+2. 监听跟踪变化
 
 ```ts
 const trackingStateCallback = (eventInfo : mechanicManager.TrackingEventInfo) => {
@@ -157,7 +160,7 @@ const trackingStateCallback = (eventInfo : mechanicManager.TrackingEventInfo) =>
 mechanicManager.on('trackingStateChange', trackingStateCallback);
 ```
 
-#### 处理跟踪事件
+3. 处理跟踪事件
 
 ```ts
 function handleTrackingEnabled() {
@@ -196,7 +199,7 @@ function updateLayoutUI(layout : mechanicManager.CameraTrackingLayout) {
 }
 ```
 
-#### 取消监听
+4. 取消监听
 
 ```ts
 // 取消跟踪状态监听

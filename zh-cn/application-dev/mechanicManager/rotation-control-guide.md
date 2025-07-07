@@ -1,5 +1,8 @@
 # 设备转动控制开发指南
 
+为了帮助开发者更好地理解和应用 MechanicKit，本指南将提供设备转动控制的实现方式。
+通过场景化的示例，开发者可以快速上手 MechanicKit，构建出功能丰富的设备交互应用。
+
 ## 接口介绍
 
 机械设备管理公开API接口使用指导请参见[MechanicManager  API参考](../reference/apis-mechanicManager-kit/js-apis-mechanicManager.md)。
@@ -37,13 +40,13 @@
 
 ### 管理设备连接状态
 
-#### 导入机械设备管理模块文件
+1. 导入机械设备管理模块文件
 
 ```ts
 import mechanicManager from '@kit.MechanicKit';
 ```
 
-#### 获取已连接的机械设备列表
+2. 获取已连接的机械设备列表
 
 ```ts
 let savedMechanicIds: int[] = [];
@@ -71,7 +74,7 @@ try {
 }
 ```
 
-#### 监听设备连接状态变化
+3. 监听设备连接状态变化
 
 ```ts
 const attachStateChangeCallback = (info: mechanicManager.AttachStateChangeInfo) => {
@@ -90,7 +93,7 @@ const attachStateChangeCallback = (info: mechanicManager.AttachStateChangeInfo) 
 mechanicManager.on('attachStateChange', attachStateChangeCallback);
 ```
 
-#### 处理设备连接和断开事件
+4. 处理设备连接和断开事件
 
 ```ts
 mechanicManager.on('attachStateChange', attachStateChangeCallback);
@@ -108,7 +111,7 @@ function handleDeviceDetached(mechInfo:  mechanicManager.MechInfo) {
 }
 ```
 
-#### 取消监听
+5. 取消监听
 
 ```ts
 // 取消特定回调的监听
@@ -118,9 +121,9 @@ mechanicManager.off('attachStateChange', attachStateChangeCallback);
 mechanicManager.off('attachStateChange');
 ```
 
-#### 控制设备转动
+### 控制设备转动
 
-##### 查询设备当前状态和限制
+1. 查询设备当前状态和限制
 
 ```ts
 try {
@@ -163,7 +166,7 @@ try {
 }
 ```
 
-#### 执行相对角度旋转
+2. 执行相对角度旋转
 
 ```ts
 //执行转动控制前需要先关闭跟踪拍摄功能
@@ -222,7 +225,7 @@ async function rotateByRelativeAngles() {
 }
 ```
 
-#### 以指定速度持续转动
+3. 以指定速度持续转动
 
 ```ts
 async function rotateBySpeed() {
@@ -257,7 +260,7 @@ async function rotateBySpeed() {
 }
 ```
 
-#### 监听旋转轴状态变化
+4. 监听旋转轴状态变化
 
 ```ts
 const rotationAxesCallback = (info: mechanicManager.RotationAxesStateChangeInfo) => {
@@ -279,7 +282,7 @@ const rotationAxesCallback = (info: mechanicManager.RotationAxesStateChangeInfo)
 mechanicManager.on('rotationAxesStatusChange', rotationAxesCallback);
 ```
 
-#### 停止设备运动
+5. 停止设备运动
 
 ```ts
 async function stopDeviceMoving() {
