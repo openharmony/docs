@@ -71,7 +71,7 @@
    |conditionUpdate|表示卡片的支持的条件刷新（仅对系统应用的ArkTS卡片生效）。取值范围如下：<br/>-&nbsp;network：表示支持网络刷新。|字符串|可缺省，缺省值为空字符串。|
    |[funInteractionParams](#funinteractionparams标签)| 趣味交互类型互动卡片扩展字段。| 对象 | 可缺省，缺省为空。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。|
    |[sceneAnimationParams](#sceneanimationparams标签)| 场景动效类型互动卡片扩展字段。| 对象 | 可缺省，缺省为空。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。|
-   | resizable | 表示卡片是否支持调整大小。<br/>-&nbsp;true：支持调整大小。<br/>-&nbsp;false：不支持调整大小。| 布尔类型 | 可缺省，缺省值为false。 |
+   | resizable | 表示卡片是否可以调整大小。<br/>-&nbsp;true：可以调整大小。<br/>-&nbsp;false：不可以调整大小。| 布尔类型 | 可缺省，缺省值为false。 |
    | groupId | 表示功能相似大小不同的一组卡片的共同id。 | 字符串 | 可缺省，缺省值为false。 |
 
 ### isDynamic标签
