@@ -731,7 +731,7 @@ onCopy(callback: Callback\<CopyEvent\>)
 | offset                | number                                   | 是    | 删除内容的偏移位置。          |
 | direction             | [RichEditorDeleteDirection](#richeditordeletedirection) | 是    | 删除操作的方向。            |
 | length                | number                                   | 是    | 删除内容长度。             |
-| richEditorDeleteSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult) \| [RichEditorImageSpanResult](#richeditorimagespanresult)> | 是    | 删除的文本或图片Span的信息。 |
+| richEditorDeleteSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult)  \| [RichEditorImageSpanResult](#richeditorimagespanresult)> | 是    | 删除的文本或图片Span的信息。 |
 
 
 ## RichEditorDeleteDirection
@@ -1220,7 +1220,7 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 
 | 参数名     | 类型                                     | 必填   | 说明  |
 | ------- | ---------------------------------------- | ---- | ----- |
-| value   | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)\|[ResourceStr](ts-types.md#resourcestr) | 是    | 图片内容。 |
+| value   | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) \|[ResourceStr](ts-types.md#resourcestr) | 是    | 图片内容。 |
 | options | [RichEditorImageSpanOptions](#richeditorimagespanoptions) | 否    | 图片选项。 |
 
 **返回值：**
@@ -1333,7 +1333,7 @@ updateParagraphStyle(value: RichEditorParagraphStyleOptions): void
 
 ### getSpans
 
-getSpans(value?: RichEditorRange): Array<RichEditorImageSpanResult| RichEditorTextSpanResult>
+getSpans(value?: RichEditorRange): Array<RichEditorImageSpanResult | RichEditorTextSpanResult>
 
 获取span信息。
 
@@ -1553,7 +1553,7 @@ onContentChanged(listener: StyledStringChangedListener): void
 | 名称        | 类型                                       | 必填   | 说明      |
 | --------- | ---------------------------------------- | ---- | ------- |
 | selection | [number, number]                         | 是    | 选中范围。   |
-| spans     | Array<[RichEditorTextSpanResult](#richeditortextspanresult)\| [RichEditorImageSpanResult](#richeditorimagespanresult)> | 是    | span信息。 |
+| spans     | Array<[RichEditorTextSpanResult](#richeditortextspanresult) \| [RichEditorImageSpanResult](#richeditorimagespanresult)> | 是    | span信息。 |
 
 ## RichEditorRange
 
