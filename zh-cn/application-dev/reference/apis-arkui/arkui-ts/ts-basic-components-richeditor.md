@@ -105,7 +105,7 @@ copyOptions(value: CopyOptions)
 
 copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择菜单。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。
 
-设置copyOptions为CopyOptions.None时，禁用复制、剪切、翻译、搜索、帮写功能。
+设置copyOptions为CopyOptions.None时，禁用复制、剪切、翻译、分享、搜索、帮写功能。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -330,7 +330,7 @@ barState(state: BarState)
 
 maxLength(maxLength: Optional\<number\>)
 
-设置文本的最大输入字符数。
+设置组件内容的最大长度。当内容（包含文本、图片、Symbol和Builder）的总长度达到此值时，将无法继续添加内容。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1624,7 +1624,7 @@ SymbolSpan样式选项。
 
 段落样式选项。
 
-继承自[RichEditorSpanStyleOptions](#richeditorspanstyleoptions)。
+继承自[RichEditorRange](#richeditorrange)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1806,7 +1806,7 @@ RichEditor span信息。
 | 类型   | 说明       |
 | ------ | ---------- |
 | [RichEditorImageSpanResult](#richeditorimagespanresult) | 后端返回的图片信息。 |
-| [RichEditorTextSpanResult](#richeditortextspanresult) | 后端返回的文本样式信息。 |
+| [RichEditorTextSpanResult](#richeditortextspanresult) | 后端返回的文本信息。 |
 
 ## SelectionMenuOptions<sup>10+</sup>
 
@@ -1978,7 +1978,7 @@ type OnHoverCallback = (status: boolean, event: HoverEvent) => void
 | 参数名     | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | status  | boolean                            | 是   | 表示鼠标是否悬浮在组件上，鼠标进入组件时为true，离开组件时为false。|
-| event   | [HoverEvent](ts-universal-events-hover.md#hoverevent10对象说明) | 是   | 设置阻塞事件冒泡属性。 |
+| event   | [HoverEvent](ts-universal-events-hover.md#hoverevent10对象说明) | 是   | 设置悬浮事件。 |
 
 ## RichEditorTextSpan
 
@@ -2223,7 +2223,6 @@ struct RichEditorExample {
                   fontSize: 30
                 }
               })
-              this.controller.setCaretOffset(this.controller.getCaretOffset() + item.toString().length)
             })
           }
         })
@@ -5018,7 +5017,7 @@ struct Index {
 ![StyledString](figures/StyledString(example20).gif)
 
 ### 示例22（获取布局信息）
-通过[getLayoutManager](#getlayoutmanager12)接口获取布局管理器对象，通过[getLineCount](ts-text-common.md#getlinecount)接口获取组件内容的总行数，通过[getGlyphPositionAtCoordinate](ts-text-common.md#getglyphpositionatcoordinate)接口获取较为接近给定坐标的字形的位置信息，通过[getLineMetrics](ts-text-common.md#getlinemetrics)接口获取指定行的行信息、文本样式信息、以及字体属性信息。
+通过[getLayoutManager](#getlayoutmanager12)接口获取布局管理器对象，通过[getLineCount](ts-text-common.md#getlinecount)接口获取组件内容或[placeholder](#placeholder12)的总行数，通过[getGlyphPositionAtCoordinate](ts-text-common.md#getglyphpositionatcoordinate)接口获取较为接近给定坐标的字形的位置信息，通过[getLineMetrics](ts-text-common.md#getlinemetrics)接口获取指定行的行信息、文本样式信息、以及字体属性信息。
 
 ```ts
 @Entry
