@@ -39,7 +39,7 @@ on(type: 'attachStateChange', callback: Callback\<AttachStateChangeInfo>): void
 
 ```ts
 let callback = (result: mechanicManager.AttachStateChangeInfo) => {
-  console.info(`'callback result: ' ${result}`);
+  console.info(`'callback result:' ${result}`);
 };
 
 console.info('Register');
@@ -74,7 +74,7 @@ off(type: 'attachStateChange', callback?: Callback\<AttachStateChangeInfo>): voi
 
 ```ts
 let callback = (result: mechanicManager.AttachStateChangeInfo) => {
-  console.info(`'callback result: ' ${result}`);
+  console.info(`'callback result:' ${result}`);
 };
 
 console.info('Unregister');
@@ -109,7 +109,7 @@ getAttachedMechDevices(): MechInfo[]
 ```ts
 console.info('Query device list');
 let mechanicInfos = mechanicManager.getAttachedMechDevices();
-console.info(`'device list: '  ${mechanicInfos}`);
+console.info(`'device list:' ${mechanicInfos}`);
 ```
 
 ## mechanicManager.setCameraTrackingEnabled
@@ -172,7 +172,7 @@ getCameraTrackingEnabled(): boolean
 ```ts
 console.info('Get tracking status');
 let enabled = mechanicManager.getCameraTrackingEnabled();
-console.info(`'current tracking status: '  ${enabled}`);
+console.info(`'current tracking status:' ${enabled}`);
 ```
 
 ## mechanicManager.on('trackingStateChange')
@@ -202,7 +202,7 @@ on(type: 'trackingStateChange', callback: Callback\<TrackingEventInfo>): void
 
 ```ts
 let callback = (result: mechanicManager.TrackingEventInfo) => {
-  console.info(`'callback result: ' ${result}`);
+  console.info(`'callback result:' ${result}`);
 };
 
 console.info('Register');
@@ -237,7 +237,7 @@ off(type: 'trackingStateChange', callback?: Callback\<TrackingEventInfo>): void
 
 ```ts
 let callback = (result: mechanicManager.TrackingEventInfo) => {
-  console.info(`'callback result: ' ${result}`);
+  console.info(`'callback result:' ${result}`);
 };
 
 console.info('Unregister');
@@ -273,7 +273,7 @@ getCameraTrackingLayout(): CameraTrackingLayout
 ```ts
 console.info('Query layout');
 let layout = mechanicManager.getCameraTrackingLayout();
-console.info(`'Query layout successful，current layout: ' ${layout}`);
+console.info(`'Query layout successful，current layout:' ${layout}`);
 ```
 
 ## MechInfo

@@ -29,7 +29,7 @@ setUserOperation(operation: Operation, mac: string, params: string): void
 | 参数名     | 类型                    | 必填 | 说明   |
 | ---------- | ---------------------- | ---- | ----- |
 | operation | [Operation](#operation) | 是 | 操作类型。 |
-| mac | string | 是 | MAC地址。 |
+| mac | string | 是 | 机械体设备MAC地址。 |
 | params | string | 是 | 操作参数。 |
 
 **错误码：**
@@ -129,7 +129,7 @@ let degree: mechanicManager.RotationAngles = {
 }
 mechanicManager.rotate(0, degree, 500)
   .then((result: mechanicManager.Result) => {
-    console.info(`'Rotate result：'  ${result}`);
+    console.info(`'Rotate result:' ${result}`);
   });
 console.info('End rotation');
 ```
@@ -178,7 +178,7 @@ let degree: mechanicManager.EulerAngles = {
 }
 mechanicManager.rotateToEulerAngles(0, degree, 500)
   .then((result: mechanicManager.Result) => {
-    console.info(`'Rotate result：'  ${result}`);
+    console.info(`'Rotate result:' ${result}`);
   });
 console.info('End rotation');
 ```
@@ -220,7 +220,7 @@ getMaxRotationTime(mechId: int): int
 ```ts
 console.info('Query maximum rotation time');
 let maxTime = mechanicManager.getMaxRotationTime(0);
-console.info(`'Query maximum rotation time successful，maximum time: '  ${maxTime}`);
+console.info(`'Query maximum rotation time successful,maximum time:' ${maxTime}`);
 ```
 
 ## mechanicManager.getMaxRotationSpeed
@@ -260,7 +260,7 @@ getMaxRotationSpeed(mechId: int): RotationSpeed
 ```ts
 console.info('Query rotation speed');
 let speedLimit: mechanicManager.RotationSpeed = mechanicManager.getMaxRotationSpeed(0);
-console.info(`'Query rotation speed successful，Speed limit information: '  ${speedLimit}`);
+console.info(`'Query rotation speed successful,Speed limit information:' ${speedLimit}`);
 ```
 
 ## mechanicManager.rotateBySpeed
@@ -279,7 +279,7 @@ rotateBySpeed(mechId: int, speed: RotationSpeed, duration: int): Promise\<Result
 | ---------- | ---------------------- | ---- | ----- |
 | mechId | int | 是 | 机械体设备ID。 |
 | speed | [RotationSpeed](#rotationspeed) | 是 | 指定旋转速度。最大旋转速度不超过getMaxRotationSpeed的返回值大小，如果超过最大速度，默认取最大值。 |
-| duration | int | 是 | 旋转持续时间，单位：ms。最大时间不超过getMaxRotationTime的返回值大小。 |
+| duration | int | 是 | 旋转持续时间，单位：ms。最大时间不超过getMaxRotationTime的返回值大小，如果超过最大时间，默认取最大值。 |
 
 **错误码：**
 
@@ -302,7 +302,7 @@ let degree: mechanicManager.RotationSpeed = {
 }
 mechanicManager.rotateBySpeed(0, degree, 500)
   .then((result) => {
-    console.info(`'Rotate result：'  ${result}`);
+    console.info(`'Rotate result:' ${result}`);
   });
 console.info('Rotate finish');
 ```
@@ -311,7 +311,7 @@ console.info('Rotate finish');
 
 stopMoving(mechId: int): Promise\<void>
 
-停止机械体设备的移动。使用Promise异步回调
+停止机械体设备的移动。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Mechanic.Core
 
@@ -347,14 +347,18 @@ mechanicManager.stopMoving(0)
   .then(() => {
     console.info('Get stop complete');
   });
-console.info('Stop succeeding');
+console.info('Stop succeeded');
 ```
 
 ## mechanicManager.getCurrentAngles
 
 getCurrentAngles(mechId: int): EulerAngles
 
-获取机械体设备的当前角度（相对于参考点）。
+获取指定机械体设备相对于初始位置的当前旋转角度。
+
+> **说明：**
+>
+> 初始位置：机械设备初始化的位置，坐标为（0， 0， 0）。
 
 **系统能力**：SystemCapability.Mechanic.Core
 
@@ -387,7 +391,7 @@ getCurrentAngles(mechId: int): EulerAngles
 ```ts
 console.info('Query current location');
 let currentAngles: mechanicManager.EulerAngles = mechanicManager.getCurrentAngles(0);
-console.info(`'Query current location，location: '  ${currentAngles}`);
+console.info(`'Query current location，location:' ${currentAngles}`);
 ```
 
 ## mechanicManager.getRotationLimits
@@ -427,7 +431,7 @@ getRotationLimits(mechId: int): RotationLimits
 ```ts
 console.info('Query rotation limit information');
 let degreeLimit: mechanicManager.RotationLimits = mechanicManager.getRotationLimits(0);
-console.info(`'Query the rotation limit information successfully，limit information: ' ${degreeLimit}`);
+console.info(`'Query the rotation limit information successfully,limit information:' ${degreeLimit}`);
 ```
 
 ## mechanicManager.on('rotationAxesStatusChange')
@@ -461,7 +465,7 @@ on(type: 'rotationAxesStatusChange', callback: Callback\<RotationAxesStateChange
 ```ts
 console.info('Register Axis Status listener');
 mechanicManager.on("rotationAxesStatusChange", (result: mechanicManager.RotationAxesStateChangeInfo) => {
-  console.info(`'result: ', ${result}`);
+  console.info(`'result:' ${result}`);
 });
 console.info('Successful registration');
 ```
@@ -497,7 +501,7 @@ off(type: 'rotationAxesStatusChange', callback?: Callback\<RotationAxesStateChan
 ```ts
 console.info('Unregister Axis Status listener');
 mechanicManager.off("rotationAxesStatusChange", (result: mechanicManager.RotationAxesStateChangeInfo) => {
-  console.info(`'result: '  ${result}`);
+  console.info(`'result:' ${result}`);
 });
 console.info('Unregister successfully');
 ```
@@ -539,7 +543,7 @@ getRotationAxesStatus(mechId: int): RotationAxesStatus
 ```ts
 console.info('Query the rotation axis status');
 let axisStatus: mechanicManager.RotationAxesStatus = mechanicManager.getRotationAxesStatus(0);
-console.info(`'Query the rotation axis status successfully，axis state: ' + ${axisStatus}`);
+console.info(`'Query the rotation axis status successfully,axis state:' ${axisStatus}`);
 ```
 
 ## RotationAngles
