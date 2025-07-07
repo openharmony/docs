@@ -86,6 +86,7 @@
         - [静态方式加载native模块](arkts-import-native-module.md)
         - [基于Node-API加载模块](load-module-base-nodeapi.md)
         - [模块加载副作用及优化](arkts-module-side-effects.md)
+    - [ArkTS运行时常见问题](arkts-runtime-faq.md)
 - ArkTS编译工具链<!--arkts-compilation-tool-chain-->
     - [ArkTS编译工具链概述](compilation-tool-chain-overview.md)
     - 方舟字节码<!--arkts-bytecode-->
