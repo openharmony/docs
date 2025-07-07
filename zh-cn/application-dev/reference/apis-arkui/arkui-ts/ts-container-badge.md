@@ -104,6 +104,8 @@ BadgeParamWithString继承自[BadgeParam](#badgeparam对象说明)，具有Badge
 
 ## BadgePosition枚举说明
 
+提示点显示位置。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -117,6 +119,8 @@ BadgeParamWithString继承自[BadgeParam](#badgeparam对象说明)，具有Badge
 | Left | 2 | 圆点显示在左侧纵向居中。 |
 
 ## BadgeStyle对象说明
+
+Badge的样式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

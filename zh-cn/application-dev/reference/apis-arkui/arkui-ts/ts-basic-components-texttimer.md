@@ -30,6 +30,8 @@ TextTimer(options?: TextTimerOptions)
 
 ## TextTimerOptions对象说明
 
+用于构建TextTimer组件的选项。
+
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -274,6 +276,8 @@ reset()
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## TextTimerConfiguration<sup>12+</sup>对象说明
+
+ContentModifier接口使用的TextTimer配置。
 
 开发者需要自定义class实现ContentModifier接口。
 
