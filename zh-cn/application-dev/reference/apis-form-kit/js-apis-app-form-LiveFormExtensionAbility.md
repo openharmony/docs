@@ -113,7 +113,7 @@ export default class LiveFormExtAbility extends LiveFormExtensionAbility {
 
 ### 附录
 
-本模块设置了API黑名单如下。
+本模块设置的API黑名单如下。
 
 | Kit名称 | 模块名称 |
 | ------- | ------- |
