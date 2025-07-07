@@ -31,7 +31,7 @@
 
 操作菜单通过UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[showActionMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#showactionmenu11)接口实现，支持在回调或开发者自定义类中使用。
 
-操作菜单中的title字段的字体最大放大倍数为2。
+操作菜单中，title字段的字体最大放大倍数为2。
 
 创建并显示操作菜单后，菜单的响应结果会异步返回选中按钮在buttons数组中的索引。
 
@@ -70,7 +70,7 @@ try {
 
 对话框通过UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[showDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdialog)接口实现，支持在回调或开发者自定义类中使用。
 
-对话框中的title字段的字体最大放大倍数为2。
+对话框中，title字段的字体最大放大倍数为2。
 
 创建并显示对话框，对话框响应后异步返回选中按钮在buttons数组中的索引。
 
@@ -111,7 +111,7 @@ try {
 
 选择器弹窗通常用于在用户进行某些操作（如点击按钮）时显示特定的信息或选项。
 
-选择器弹窗中的selected字段的字体最大放大倍数为2。
+选择器弹窗中，selected字段的字体最大放大倍数为2。
 
 ### 日历选择器弹窗 (CalendarPickerDialog)
 
@@ -343,7 +343,7 @@ struct TextPickerDialogExample {
 
 列表选择器弹窗通过UIContext中的[showActionSheet](../reference/apis-arkui/js-apis-arkui-UIContext.md#showactionsheet)接口实现。
 
-列表选择弹窗中的title字段的字体最大放大倍数为2。
+列表选择弹窗中，title字段的字体最大放大倍数为2。
 
 该示例通过配置width、height、transition等接口，定义了弹窗的样式以及弹出动效。
 
@@ -415,7 +415,7 @@ struct showActionSheetExample {
 
 警告弹窗通过UIContext中的[showAlertDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertdialog)接口实现。
 
-警告弹窗中的title和subtitle字段的字体最大放大倍数为2。
+警告弹窗中，title和subtitle字段的字体最大放大倍数为2。
 
 该示例通过配置width、height、transition等接口，定义了多个按钮弹窗的样式以及弹出动效。
 
