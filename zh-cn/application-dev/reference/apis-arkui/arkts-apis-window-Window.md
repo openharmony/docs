@@ -852,7 +852,7 @@ setWindowContainerColor(activeColor: string, inactiveColor: string): void
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | -- | ----------------------------------------------------------------------- |
 | activeColor | string | 是 | 窗口容器处于焦点态时的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。|
-| inactiveColor | string | 是 | 窗口容器处于非焦点态时的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。<br>非焦点态背景色不支持设置透明度alpha值，即ARGB颜色中的透明度alpha值必须固定为`'FF'`|
+| inactiveColor | string | 是 | 窗口容器处于非焦点态时的背景色为十六进制RGB颜色或ARGB颜色（透明度固定为`'FF'`），不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。|
 
 **错误码：**
 
