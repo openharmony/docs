@@ -223,6 +223,24 @@ The form can not support this operation, please check your fom_config's sceneAni
 
 检查当前卡片对应[互动卡片配置项sceneAnimationParams](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)是否正确。
 
+## 16501012 卡片尺寸信息错误
+
+**错误信息**
+
+The dimension parameter is incorrect.
+
+**错误描述**
+
+当前卡片不支持该尺寸时，系统会报此错误码。
+
+**可能原因**
+
+指定卡片尺寸不支持，或传入无效卡片尺寸。
+
+**处理步骤**
+
+确认入参卡片尺寸是否正确。
+
 ## 2293761 内部服务错误
 
 **错误信息**
