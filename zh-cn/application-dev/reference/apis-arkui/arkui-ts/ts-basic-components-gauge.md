@@ -39,6 +39,8 @@ Gauge(options: GaugeOptions)
 
 ## GaugeOptions<sup>18+</sup>对象说明
 
+数据量规图表选项。
+
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -244,6 +246,8 @@ GaugeShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptions10
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ## GaugeIndicatorOptions<sup>11+</sup>对象说明
+
+数据量规图表指针选项。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

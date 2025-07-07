@@ -30,6 +30,8 @@ DataPanel(options: DataPanelOptions)
 
 ## DataPanelOptions对象说明
 
+数据面板选项。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -44,6 +46,8 @@ DataPanel(options: DataPanelOptions)
 
 
 ## DataPanelType<sup>8+</sup>枚举说明
+
+数据面板的类型。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
