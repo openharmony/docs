@@ -1385,7 +1385,7 @@ enum OH_MediaType
 | MEDIA_TYPE_AUD  | 音频轨。   | 
 | MEDIA_TYPE_VID  | 视频轨。   | 
 | MEDIA_TYPE_SUBTITILE  | 字幕轨。 <br>**起始版本：** 12   |
-| MEDIA_TYPE_TIMED_METADATA  | 时间元数据信息轨。 <br>**起始版本：** 20   |
+| MEDIA_TYPE_TIMED_METADATA  | timed metadata轨。 <br>**起始版本：** 20   |
 | MEDIA_TYPE_AUXILIARY  | 辅助轨。 <br>**起始版本：** 20   |
 
 ### OH_MPEG2Level
