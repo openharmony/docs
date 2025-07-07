@@ -3,25 +3,25 @@
 - UI开发 (ArkTS声明式开发范式)<!--arkts-ui-development-->
   - [UI开发（ArkTS声明式开发范式）概述](arkts-ui-development-overview.md)
   - 学习UI范式基本语法<!--arkts-ui-paradigm-basic-syntax-->
-    - [基本语法概述](../ui/state-management/arkts-basic-syntax-overview.md)
-    - [声明式UI描述](../ui/state-management/arkts-declarative-ui-description.md)
+    - [基本语法概述](state-management/arkts-basic-syntax-overview.md)
+    - [声明式UI描述](state-management/arkts-declarative-ui-description.md)
     - 自定义组件<!--arkts-custom-components-->
-      - [创建自定义组件](../ui/state-management/arkts-create-custom-components.md)
-      - [自定义组件生命周期](../ui/state-management/arkts-page-custom-components-lifecycle.md)
-      - [自定义组件的自定义布局](../ui/state-management/arkts-page-custom-components-layout.md)
-      - [自定义组件成员属性访问限定符使用限制](../ui/state-management/arkts-custom-components-access-restrictions.md)
+      - [创建自定义组件](state-management/arkts-create-custom-components.md)
+      - [自定义组件生命周期](state-management/arkts-page-custom-components-lifecycle.md)
+      - [自定义组件的自定义布局](state-management/arkts-page-custom-components-layout.md)
+      - [自定义组件成员属性访问限定符使用限制](state-management/arkts-custom-components-access-restrictions.md)
     - 组件扩展<!--arkts-extend-components-->
-      - [组件扩展概述](../ui/state-management/arkts-extend-components-overview.md)
-      - [\@Builder装饰器：自定义构建函数](../ui/state-management/arkts-builder.md)
-      - [\@LocalBuilder装饰器：维持组件关系](../ui/state-management/arkts-localBuilder.md)
-      - [\@BuilderParam装饰器：引用\@Builder函数](../ui/state-management/arkts-builderparam.md)
-      - [wrapBuilder：封装全局@Builder](../ui/state-management/arkts-wrapBuilder.md)
-    - [\@Styles装饰器：定义组件重用样式](../ui/state-management/arkts-style.md)
-    - [\@Extend装饰器：定义扩展组件样式](../ui/state-management/arkts-extend.md)
-    - [stateStyles：多态样式](../ui/state-management/arkts-statestyles.md)
-    - [@AnimatableExtend装饰器：定义可动画属性](../ui/state-management/arkts-animatable-extend.md)
-    - [@Require装饰器：校验构造传参](../ui/state-management/arkts-require.md)
-    - [@Reusable装饰器：组件复用](../ui/state-management/arkts-reusable.md)
+      - [组件扩展概述](state-management/arkts-extend-components-overview.md)
+      - [\@Builder装饰器：自定义构建函数](state-management/arkts-builder.md)
+      - [\@LocalBuilder装饰器：维持组件关系](state-management/arkts-localBuilder.md)
+      - [\@BuilderParam装饰器：引用\@Builder函数](state-management/arkts-builderparam.md)
+      - [wrapBuilder：封装全局@Builder](state-management/arkts-wrapBuilder.md)
+    - [\@Styles装饰器：定义组件重用样式](state-management/arkts-style.md)
+    - [\@Extend装饰器：定义扩展组件样式](state-management/arkts-extend.md)
+    - [stateStyles：多态样式](state-management/arkts-statestyles.md)
+    - [@AnimatableExtend装饰器：定义可动画属性](state-management/arkts-animatable-extend.md)
+    - [@Require装饰器：校验构造传参](state-management/arkts-require.md)
+    - [@Reusable装饰器：组件复用](state-management/arkts-reusable.md)
   - 学习UI范式状态管理<!--arkts-state-management-->
     - [状态管理概述](state-management/arkts-state-management-overview.md)
     - 状态管理（V1）<!--arkts-state-management-v1-->
@@ -177,7 +177,7 @@
       - [键鼠事件](arkts-common-events-device-input-event.md)
       - [焦点事件](arkts-common-events-focus-event.md)
       - [拖拽事件](arkts-common-events-drag-event.md)
-      - [表冠事件](arkts-common-events-crown-event.md)（圆形屏幕推荐使用）
+      - [表冠事件（圆形屏幕推荐使用）](arkts-common-events-crown-event.md)
     - 使用手势事件<!--arkts-gesture-events-->
       - [绑定手势方法](arkts-gesture-events-binding.md)
       - [单一手势](arkts-gesture-events-single-gesture.md)
