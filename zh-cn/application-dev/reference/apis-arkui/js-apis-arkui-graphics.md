@@ -210,7 +210,7 @@ const transform: Matrix4 = [
 | ---- | ------ | ---- | ---- | ----------------- |
 | size | [Size](#size) | 是  | 否  | 画布的宽度和高度。 |
 | sizeInPixel | [Size](#size) | 是  | 否  | 画布的宽度和高度，以px为单位。 |
-| canvas | [drawing.Canvas](../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas)| 是  | 否  | 用于绘制的画布。 |
+| canvas | [drawing.Canvas](../apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md)| 是  | 否  | 用于绘制的画布。 |
 
 ### size
 
