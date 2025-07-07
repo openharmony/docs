@@ -10,6 +10,12 @@
 >
 > - 静态方法必须在用户界面（UI）线程上使用。
 
+## 导入模块
+
+```ts
+import { webview } from '@kit.ArkWeb';
+```
+
 ## setAdsBlockRules<sup>12+</sup>
 
 static setAdsBlockRules(rulesFile: string, replace: boolean): void
