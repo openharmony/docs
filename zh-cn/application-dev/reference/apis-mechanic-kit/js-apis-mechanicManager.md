@@ -273,7 +273,7 @@ getCameraTrackingLayout(): CameraTrackingLayout
 ```ts
 console.info('Query layout');
 let layout = mechanicManager.getCameraTrackingLayout();
-console.info(`'Query layout successful，current layout:' ${layout}`);
+console.info(`'Query layout successful, current layout:' ${layout}`);
 ```
 
 ## MechInfo

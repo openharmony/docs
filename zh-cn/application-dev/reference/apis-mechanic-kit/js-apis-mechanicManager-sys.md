@@ -220,7 +220,7 @@ getMaxRotationTime(mechId: int): int
 ```ts
 console.info('Query maximum rotation time');
 let maxTime = mechanicManager.getMaxRotationTime(0);
-console.info(`'Query maximum rotation time successful,maximum time:' ${maxTime}`);
+console.info(`'Query maximum rotation time successful, maximum time:' ${maxTime}`);
 ```
 
 ## mechanicManager.getMaxRotationSpeed
@@ -260,7 +260,7 @@ getMaxRotationSpeed(mechId: int): RotationSpeed
 ```ts
 console.info('Query rotation speed');
 let speedLimit: mechanicManager.RotationSpeed = mechanicManager.getMaxRotationSpeed(0);
-console.info(`'Query rotation speed successful,Speed limit information:' ${speedLimit}`);
+console.info(`'Query rotation speed successful, speed limit information:' ${speedLimit}`);
 ```
 
 ## mechanicManager.rotateBySpeed
@@ -391,14 +391,14 @@ getCurrentAngles(mechId: int): EulerAngles
 ```ts
 console.info('Query current location');
 let currentAngles: mechanicManager.EulerAngles = mechanicManager.getCurrentAngles(0);
-console.info(`'Query current location，location:' ${currentAngles}`);
+console.info(`'Query current location, location:' ${currentAngles}`);
 ```
 
 ## mechanicManager.getRotationLimits
 
 getRotationLimits(mechId: int): RotationLimits
 
-获取指定机械体设备相对于参考点（初始化的位置，坐标为（0， 0， 0））的最大旋转角度。
+获取指定机械体设备相对于初始位置的最大旋转角度。
 
 **系统能力**：SystemCapability.Mechanic.Core
 
@@ -431,7 +431,7 @@ getRotationLimits(mechId: int): RotationLimits
 ```ts
 console.info('Query rotation limit information');
 let degreeLimit: mechanicManager.RotationLimits = mechanicManager.getRotationLimits(0);
-console.info(`'Query the rotation limit information successfully,limit information:' ${degreeLimit}`);
+console.info(`'Query the rotation limit information successfully, limit information:' ${degreeLimit}`);
 ```
 
 ## mechanicManager.on('rotationAxesStatusChange')
@@ -543,7 +543,7 @@ getRotationAxesStatus(mechId: int): RotationAxesStatus
 ```ts
 console.info('Query the rotation axis status');
 let axisStatus: mechanicManager.RotationAxesStatus = mechanicManager.getRotationAxesStatus(0);
-console.info(`'Query the rotation axis status successfully,axis state:' ${axisStatus}`);
+console.info(`'Query the rotation axis status successfully, axis state:' ${axisStatus}`);
 ```
 
 ## RotationAngles
@@ -562,7 +562,7 @@ console.info(`'Query the rotation axis status successfully,axis state:' ${axisSt
 
 ## EulerAngles
 
-相对于初始位置（初始化状态，坐标（0， 0 ， 0））的绝对欧拉角。
+相对于初始位置的绝对欧拉角。
 
 **系统能力**：SystemCapability.Mechanic.Core
 
@@ -590,7 +590,7 @@ console.info(`'Query the rotation axis status successfully,axis state:' ${axisSt
 
 ## RotationLimits
 
-相对于参考点的旋转角度限制。
+相对于初始位置的旋转角度限制。
 
 **系统能力**：SystemCapability.Mechanic.Core
 
