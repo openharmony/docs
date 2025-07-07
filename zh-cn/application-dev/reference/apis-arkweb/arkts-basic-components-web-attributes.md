@@ -487,11 +487,30 @@ mediaPlayGestureAccess(access: boolean)
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .mediaPlayGestureAccess(this.access)
       }
     }
   }
+  ```
+
+加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>视频播放页面</title>
+  </head>
+  <body>
+  <h1>视频播放</h1>
+  <video id="testVideo" controls autoplay>
+      // 需要在video标签中配置autoplay属性，允许视频自动播放
+      // 在resources的rawfile目录放置任意一个mp4媒体文件，并将其命名为example.mp4
+      <source src="example.mp4" type="video/mp4">
+  </video>
+  </body>
+  </html>
   ```
 
 ## multiWindowAccess<sup>9+</sup>
