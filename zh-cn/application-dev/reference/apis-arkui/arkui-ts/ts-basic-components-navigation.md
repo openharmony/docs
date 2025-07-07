@@ -433,7 +433,7 @@ minContentWidth(value: Dimension)
 
 ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;LayoutSafeAreaEdge&gt;)
 
-控制组件的布局，使其扩展到非安全区域
+控制组件的布局，使其扩展到非安全区域。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
