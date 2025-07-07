@@ -11,23 +11,23 @@
 
 | 接口名                                                               | 描述                       |
 | -------------------------------------------------------------------- | -------------------------- |
-|on(type: 'attachStateChange', callback: Callback\<AttachStateChangeInfo>): void | 注册attachStateChange事件的回调监听，等待连接状态变化。|
-|off(type: 'attachStateChange', callback?: Callback\<AttachStateChangeInfo>): void | 取消注册attachStateChange事件的回调监听。|
-|getAttachedMechDevices(): MechInfo[] | 获取已连接的机械体设备列表。|
-|setUserOperation(operation: Operation, mac: string, params: string): void | 设置用户操作。|
-|setCameraTrackingEnabled(isEnabled: boolean): void | 启用或禁用摄像头跟踪。|
-|getCameraTrackingEnabled(): boolean | 检查是否启用了摄像头跟踪。|
-|getCameraTrackingLayout(): CameraTrackingLayout | 获取此机械设备摄像头跟踪布局。|
-|rotate(mechId: int, angles: RotationAngles, duration: int): Promise\<Result> | 将机械体设备旋转到相对角度。|
-|rotateToEulerAngles(mechId: int, angles: EulerAngles, duration: int): Promise\<Result> | 将机械体设备旋转到绝对角度。|
-|getMaxRotationTime(mechId: int): int | 获取机械体设备的最大连续旋转持续时间。|
-|getMaxRotationSpeed(mechId: int): RotationSpeed | 获取机械设备的最大旋转速度。|
-|stopMoving(mechId: int): Promise\<void> | 停止机械体设备的移动。|
-|getCurrentAngles(mechId: int): EulerAngles | 获取机械体设备的当前角度。|
-|getRotationLimits(mechId: int): RotationLimits | 获取指定机械体设备相对于参考点的最大旋转角度。|
-|getRotationAxesStatus(mechId: int): RotationAxesStatus | 获取旋转轴的状态。|
-|on(type: 'rotationAxesStatusChange', callback: Callback\<RotationAxesStateChangeInfo>): void | 注册rotationAxesStatusChange事件的回调监听。|
-|off(type: 'rotationAxesStatusChange', callback?: Callback\<RotationAxesStateChangeInfo>): void | 取消注册rotationAxesStatusChange事件的回调监听。 |
+|on(type: 'attachStateChange', callback: Callback\<AttachStateChangeInfo>): void | 注册attachStateChange事件的回调监听，等待连接状态变化。<br>**说明**：从API version 20开始支持。|
+|off(type: 'attachStateChange', callback?: Callback\<AttachStateChangeInfo>): void | 取消注册attachStateChange事件的回调监听。<br>**说明**：从API version 20开始支持。|
+|getAttachedMechDevices(): MechInfo[] | 获取已连接的机械体设备列表。<br>**说明**：从API version 20开始支持。|
+|setUserOperation(operation: Operation, mac: string, params: string): void | 设置用户操作。<br>**说明**：从API version 20开始支持。|
+|setCameraTrackingEnabled(isEnabled: boolean): void | 启用或禁用摄像头跟踪。<br>**说明**：从API version 20开始支持。|
+|getCameraTrackingEnabled(): boolean | 检查是否启用了摄像头跟踪。<br>**说明**：从API version 20开始支持。|
+|getCameraTrackingLayout(): CameraTrackingLayout | 获取此机械设备摄像头跟踪布局。<br>**说明**：从API version 20开始支持。|
+|rotate(mechId: int, angles: RotationAngles, duration: int): Promise\<Result> | 将机械体设备旋转到相对角度。<br>**说明**：从API version 20开始支持。|
+|rotateToEulerAngles(mechId: int, angles: EulerAngles, duration: int): Promise\<Result> | 将机械体设备旋转到绝对角度。<br>**说明**：从API version 20开始支持。|
+|getMaxRotationTime(mechId: int): int | 获取机械体设备的最大连续旋转持续时间。<br>**说明**：从API version 20开始支持。|
+|getMaxRotationSpeed(mechId: int): RotationSpeed | 获取机械设备的最大旋转速度。<br>**说明**：从API version 20开始支持。|
+|stopMoving(mechId: int): Promise\<void> | 停止机械体设备的移动。<br>**说明**：从API version 20开始支持。|
+|getCurrentAngles(mechId: int): EulerAngles | 获取机械体设备的当前角度。<br>**说明**：从API version 20开始支持。|
+|getRotationLimits(mechId: int): RotationLimits | 获取指定机械体设备相对于参考点的最大旋转角度。<br>**说明**：从API version 20开始支持。|
+|getRotationAxesStatus(mechId: int): RotationAxesStatus | 获取旋转轴的状态。<br>**说明**：从API version 20开始支持。|
+|on(type: 'rotationAxesStatusChange', callback: Callback\<RotationAxesStateChangeInfo>): void | 注册rotationAxesStatusChange事件的回调监听。<br>**说明**：从API version 20开始支持。|
+|off(type: 'rotationAxesStatusChange', callback?: Callback\<RotationAxesStateChangeInfo>): void | 取消注册rotationAxesStatusChange事件的回调监听。<br>**说明**：从API version 20开始支持。|
 
 ## 开发步骤
 
@@ -35,19 +35,19 @@
 
 1. 一台支持MechanicKit协议的机械体配件设备。
 
-2. 一部搭载OpenHarmony系统的设备。
-
-3. 机械体配件设备与OpenHarmony主设备完成蓝牙连接。
+2. 机械体配件设备与开发设备完成蓝牙连接。
 
 ### 管理设备连接状态
 
-1. 导入机械设备管理模块文件
+动态管理设备连接状态，确保设备连接或断开时应用能及时响应。
+
+1. 导入机械设备管理模块文件。
 
 ```ts
 import mechanicManager from '@kit.MechanicKit';
 ```
 
-2. 获取已连接的机械设备列表
+2. 获取已连接的机械设备列表。
 
 ```ts
 let savedMechanicIds: int[] = [];
@@ -61,6 +61,7 @@ try {
     console.log(`Device Name: ${device.mechName}`);
     console.log(`Device Type: ${device.mechDeviceType}`);
 
+//保存设备类型为GIMBAL_DEVICE的设备的MechId
     if (device.mechDeviceType === mechanicManager.MechDeviceType.GIMBAL_DEVICE) {
       savedMechanicIds.push(device.mechId);
       console.log(`GIMBAL_TYPE device saved ID: ${device.mechId}`);
@@ -75,7 +76,7 @@ try {
 }
 ```
 
-3. 监听设备连接状态变化
+3. 监听设备连接状态变化。
 
 ```ts
 const attachStateChangeCallback = (info: mechanicManager.AttachStateChangeInfo) => {
@@ -94,7 +95,7 @@ const attachStateChangeCallback = (info: mechanicManager.AttachStateChangeInfo) 
 mechanicManager.on('attachStateChange', attachStateChangeCallback);
 ```
 
-4. 处理设备连接和断开事件
+4. 处理设备连接和断开事件。
 
 ```ts
 mechanicManager.on('attachStateChange', attachStateChangeCallback);
@@ -112,19 +113,18 @@ function handleDeviceDetached(mechInfo:  mechanicManager.MechInfo) {
 }
 ```
 
-5. 取消监听
+5. 取消监听。
 
 ```ts
 // 取消特定回调的监听
 mechanicManager.off('attachStateChange', attachStateChangeCallback);
-
-// 或者取消所有 attachStateChange 监听
-mechanicManager.off('attachStateChange');
 ```
 
 ### 控制设备转动
 
-1. 查询设备当前状态和限制
+精准控制机械体设备转动，例如角度调整、运动轨迹控制等，帮助开发者实现灵活的机械体设备操作功能。
+
+1. 查询设备当前状态和限制。
 
 ```ts
 try {
@@ -167,7 +167,7 @@ try {
 }
 ```
 
-2. 执行相对角度旋转
+2. 执行相对角度旋转。
 
 ```ts
 //执行转动控制前需要先关闭跟踪拍摄功能
@@ -226,7 +226,7 @@ async function rotateByRelativeAngles() {
 }
 ```
 
-3. 以指定速度持续转动
+3. 以指定速度持续转动。
 
 ```ts
 async function rotateBySpeed() {
@@ -261,7 +261,7 @@ async function rotateBySpeed() {
 }
 ```
 
-4. 监听旋转轴状态变化
+4. 监听旋转轴状态变化。
 
 ```ts
 const rotationAxesCallback = (info: mechanicManager.RotationAxesStateChangeInfo) => {
@@ -283,7 +283,7 @@ const rotationAxesCallback = (info: mechanicManager.RotationAxesStateChangeInfo)
 mechanicManager.on('rotationAxesStatusChange', rotationAxesCallback);
 ```
 
-5. 停止设备运动
+5. 停止设备运动。
 
 ```ts
 async function stopDeviceMoving() {
@@ -301,10 +301,10 @@ async function stopDeviceMoving() {
 
 为了确保机械设备管理功能正常工作，请按照以下步骤进行调试验证：
 
-**环境准备**
+**建立连接**
 
-1. 确保机械体配件设备设备与OpenHarmony设备通过蓝牙成功配对并建立连接。
-2. 将OpenHarmony设备正确放置在机械体配件设备上。
+1. 确保机械体配件设备设备与开发设备通过蓝牙成功配对并建立连接。
+2. 将开发设备正确放置在机械体配件设备上。
 
 **功能验证步骤**
 
