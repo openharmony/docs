@@ -2002,40 +2002,44 @@ struct Example {
     }
     this.getFileBuffer(context).then((buf: ArrayBuffer | undefined) => {
       let imageSource = image.createImageSource(buf);
+      if (!imageSource) {
+        return;
+      }
       // 从图像源中读取图片的EXIF方向信息。
       imageSource.getImageProperty(image.PropertyKey.ORIENTATION).then((orientation) => {
         this.rotateOrientation = this.getOrientation(orientation);
         this.text1 = this.text1 + orientation;
-      })
-      let options: image.DecodingOptions = {
-        'editable': true,
-        'desiredPixelFormat': image.PixelMapFormat.RGBA_8888,
-      }
-      imageSource.createPixelMap(options).then((pixelMap: image.PixelMap) => {
-        this.pixelMap = pixelMap;
+        let options: image.DecodingOptions = {
+          'editable': true,
+          'desiredPixelFormat': image.PixelMapFormat.RGBA_8888,
+        }
+        imageSource.createPixelMap(options).then((pixelMap: image.PixelMap) => {
+          this.pixelMap = pixelMap;
+          imageSource.release();
+        });
+      }).catch(() => {
+        imageSource.release();
       });
     })
   }
 
   build() {
-    Column() {
-      Row({ space: 40 }) {
-        Column({ space: 10 }) {
-          Text('before').fontSize(20).fontWeight(700)
-          Image($rawfile('hello.jpg'))
-            .width(150)
-            .height(150)
-          Text(this.text1);
-        }
+    Column({ space: 40 }) {
+      Column({ space: 10 }) {
+        Text('before').fontSize(20).fontWeight(700)
+        Image($rawfile('hello.jpg'))
+          .width(100)
+          .height(100)
+        Text(this.text1)
+      }
 
-        Column({ space: 10 }) {
-          Text('after').fontSize(20).fontWeight(700)
-          Image(this.pixelMap)
-            .width(150)
-            .height(150)
-            .orientation(this.rotateOrientation)
-          Text(this.text2);
-        }
+      Column({ space: 10 }) {
+        Text('after').fontSize(20).fontWeight(700)
+        Image(this.pixelMap)
+          .width(100)
+          .height(100)
+          .orientation(this.rotateOrientation)
+        Text(this.text2)
       }
     }
     .height('80%')
