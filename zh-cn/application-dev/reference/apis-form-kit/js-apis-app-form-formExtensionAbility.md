@@ -425,12 +425,11 @@ onSizeChanged(formId: string, newDimension: formInfo.FormDimension, newRect: for
 **示例：**
 
 ```ts
-import { FormExtensionAbility } from '@kit.FormKit';
+import { FormExtensionAbility, formInfo } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onSizeChanged(formId: string, newDimension: formInfo.FormDimension, newRect: formInfo.Rect) {
-    console.log(`FormExtensionAbility onSizeChanged, formId: ${formId}, newDimension: ${newDimension},
-      newRect: ${JSON.stringify(newRect)}`);
+    console.info(`FormExtensionAbility onSizeChanged, formId: ${formId}, newDimension: ${newDimension}`);
   }
 }
 ```
