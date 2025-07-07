@@ -278,7 +278,7 @@ rotateBySpeed(mechId: int, speed: RotationSpeed, duration: int): Promise\<Result
 | 参数名     | 类型                    | 必填 | 说明   |
 | ---------- | ---------------------- | ---- | ----- |
 | mechId | int | 是 | 机械体设备ID。 |
-| speed | [RotationSpeed](#rotationspeed) | 是 | 指定旋转速度。最大旋转速度不超过getMaxRotationSpeed的返回值大小。 |
+| speed | [RotationSpeed](#rotationspeed) | 是 | 指定旋转速度。最大旋转速度不超过getMaxRotationSpeed的返回值大小，如果超过最大速度，默认取最大值。 |
 | duration | int | 是 | 旋转持续时间，单位：ms。最大时间不超过getMaxRotationTime的返回值大小。 |
 
 **错误码：**
