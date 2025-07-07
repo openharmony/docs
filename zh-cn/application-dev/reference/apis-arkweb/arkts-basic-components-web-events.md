@@ -4324,3 +4324,48 @@ onNativeEmbedMouseEvent(callback: (event: NativeEmbedMouseInfo) => void)
 </body>
 </html>
   ```
+
+## onOverrideErrorPage<sup>20+</sup>
+
+onOverrideErrorPage(callback: OnOverrideErrorPageCallback)
+
+网页加载遇到错误时触发，只有主资源出错才会回调该接口，可以使用该接口自定义错误展示页。
+
+此外，该功能需通过调用[setErrorPageEnabled](./arkts-apis-webview-WebviewController.md#seterrorpageenabled20)接口启用默认错误页后，才会生效。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型                                     | 必填   | 说明            |
+| ------- | ---------------------------------------- | ---- | --------------- |
+| callback | [OnOverrideErrorPageCallback](./arkts-basic-components-web-t.md#onoverrideerrorpagecallback20) | 是    | 网页加载遇到错误时触发。      |
+
+**示例：**
+
+  ```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  build() {
+    Column() {
+      Web({ src: "www.error-test.com", controller: this.controller })
+       .onControllerAttached(() => {
+            this.controller.setErrorPageEnabled(true);
+            if (!this.controller.getErrorPageEnabled()) {
+                this.controller.setErrorPageEnabled(true);
+            }
+        })
+        .onOverrideErrorPage(event => {
+              let htmlStr = "<html><h1>error occur : ";
+              htmlStr += event.error.getErrorCode();
+              htmlStr += "</h1></html>";
+              return htmlStr;
+        })
+    }
+  }
+}
+  ```
