@@ -894,6 +894,7 @@ export default class EntryAbility extends UIAbility {
         let inactiveColor: string = '#FF000000';
         try {
           windowClass.setWindowContainerColor(activeColor, inactiveColor);
+          console.info('Succeeded in setting window container color.');
         } catch (exception) {
           console.error(`Failed to set the window container color. Cause code: ${exception.code}, message: ${exception.message}`);
         };
