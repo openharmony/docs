@@ -1270,7 +1270,9 @@
       - Mechanic Kit（机械设备管理服务）<!--mechanic-kit-->
         - [Mechanic Kit简介](mechanicManager/mechanic-kit-intro.md)
         - [智能拍摄跟踪开发指南](mechanicManager/camera-tracking-guide.md)
+        <!--Del-->
         - [设备转动控制开发指南](mechanicManager/rotation-control-guide.md)
+        <!--DelEnd-->
     - 调测调优<!--system-debug-optimize-->
       - Performance Analysis Kit（性能分析服务）<!--performance-analysis-kit-->
         - [Performance Analysis Kit简介](dfx/performance-analysis-kit-overview.md)
