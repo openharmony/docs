@@ -42,8 +42,14 @@ AI推理框架和应用开发者也可以无需调用NNRt构图接口，直接�
 
 ## 与相关Kit的关系
 
+MSLite和NNRt是OpenHarmony的开源Kit，是要承载跨平台支撑的能力。
+
+CANN是仅面向海思AI硬件（狭义上讲是麒麟，广义上讲是麒麟加昇腾）的开放计算架构，定位上比MSLite和NNRt更底层。MSLite和NNRt会调用CANN的能力，三者存在包装关系。
+
 Neural Network Runtime Kit可支持系统内置的MindSpore Lite推理框架（MindSpore Lite Kit），MindSpore Lite已开放了配置NNRt的Native接口。
 
 MindSpore Lite对接NNRt可无需构图，两者共享同一份模型图格式（MindIR），因此使用MindSpore Lite在NNRt上加载模型将快于其他AI推理框架。
 
 此外，MindSpore Lite也支持通用硬件CPU/GPU与NNRt AI加速硬件之间的模型异构推理功能。
+
+总体上来说，MSLite和NNRt是更上层的封装，有更好的易用性，支持跨平台，CANN仅支持单一平台，易用性更弱，但极致性能功耗更优化。
