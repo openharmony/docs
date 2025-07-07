@@ -19236,6 +19236,8 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnError(ArkUI_EmbeddedComponentOption* 
 
 设置EmbeddedComponent组件的onError回调。
 
+EmbeddedComponent组件在运行过程中发生异常时触发本回调。
+
 **起始版本：** 20
 
 **参数:**
@@ -19256,6 +19258,8 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated(ArkUI_EmbeddedComponentOpt
 **描述**
 
 设置EmbeddedComponent组件的onTerminated回调。
+
+EmbeddedComponent组件正常退出时触发本回调。
 
 **起始版本：** 20
 
