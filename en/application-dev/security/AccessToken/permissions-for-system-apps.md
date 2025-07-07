@@ -5060,3 +5060,17 @@ Allows a system application to trigger local WantAgent instances.
 **Supported devices**：General
 
 **Valid since**：20
+
+## ohos.permission.kernel.LOAD_INDEPENDENT_LIBRARY
+
+Allows an HAP to load independent binary .so files with different owner IDs.
+
+With this permission, the HAP can load independent binary .so files with a developer certificate or an ad-hoc signature.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20
