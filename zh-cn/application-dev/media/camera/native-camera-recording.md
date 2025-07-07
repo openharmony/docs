@@ -36,7 +36,7 @@
 
 4. 创建录像输出流。
 
-   根据传入的SurfaceId，通过videoProfiles，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过createVideoOutput()方法创建录像输出流。
+   根据传入的SurfaceId，通过CameraOutputCapability类中的videoProfiles，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过createVideoOutput()方法创建录像输出流。
 
    ```c++
    Camera_VideoOutput* CreateVideoOutput(Camera_Manager* cameraManager, char* videoSurfaceIdStr,
