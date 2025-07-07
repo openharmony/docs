@@ -108,7 +108,7 @@ class C {
 let c: C = {name : "Dylan", age : "13"};
 let result4 = list.add(c);
 let result5 = list.add(false);
-console.log("result = ", result5) // result =  true
+console.info("result = ", result5) // result =  true
 ```
 
 ### insert
@@ -272,7 +272,7 @@ list.add(1);
 list.add(2);
 list.add(4);
 let result = list.getLastIndexOf(2);
-console.log("result = ", result); // result = 5
+console.info("result = ", result); // result = 5
 ```
 
 ### getIndexOf
@@ -317,7 +317,7 @@ list.add(1);
 list.add(2);
 list.add(4);
 let result = list.getIndexOf(2); 
-console.log("result = ", result); // result = 0
+console.info("result = ", result); // result = 0
 ```
 
 ### equal
@@ -447,7 +447,7 @@ list.add(4);
 list.add(5);
 list.add(4);
 let result = list.remove(2);
-console.log("result = ", result); // result = true
+console.info("result = ", result); // result = true
 ```
 
 ### replaceAllElements

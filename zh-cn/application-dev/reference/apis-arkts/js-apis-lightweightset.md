@@ -171,7 +171,7 @@ lightWeightSet.add("sparrow");
 let set: LightWeightSet<string> = new LightWeightSet();
 set.add("gull");
 let result = lightWeightSet.addAll(set);
-console.log("result = ", result); // result =  true
+console.info("result = ", result); // result =  true
 ```
 
 

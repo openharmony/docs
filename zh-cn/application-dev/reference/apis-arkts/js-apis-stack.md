@@ -136,7 +136,7 @@ stack.push(5);
 stack.push(2);
 stack.push(4);
 let result = stack.pop(); 
-console.log("result = " + result); // result = 4
+console.info("result = " + result); // result = 4
 ```
 
 ### peek
