@@ -8,7 +8,7 @@
 
 ### 数字格式化
 
-数字格式化通过[NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat)的[format](../reference/apis-localization-kit/js-apis-intl.md#formatdeprecated)接口实现，具体开发步骤如下：
+数字格式化通过[NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat)的[format](../reference/apis-localization-kit/js-apis-intl.md#format-1)接口实现，具体开发步骤如下：
 
 1. 导入模块。
    ```ts
