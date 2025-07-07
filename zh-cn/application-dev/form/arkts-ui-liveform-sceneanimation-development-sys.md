@@ -41,7 +41,7 @@
 ## 卡片长时间保持激活态
 
 系统应用支持通过接口控制卡片状态切换，卡片可长时间保持激活态。卡片状态切换由[formProvider.activateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#activatesceneanimation20)和[formProvider.deactivateSceneAnimation](../reference/apis-form-kit/js-apis-app-form-formProvider-sys.md#deactivatesceneanimation20)接口控制。
-此外，卡片通过formProvider.activateSceneAnimation切换到激活态后，卡片动效渲染区域和卡片自身渲染区域等大，且不支持调用[formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)接口请求动效。
+此外，卡片通过formProvider.activateSceneAnimation切换到激活态后，卡片动效渲染区域和卡片自身渲染区域等大，此时调用[formProvider.requestOverflow](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20)接口请求溢出动效不生效。
 
 ### 开发流程
 1. 导入模块
