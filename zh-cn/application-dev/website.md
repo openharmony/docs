@@ -5286,19 +5286,26 @@
         - [@ohos.ai.mindSporeLite (端侧AI框架)](reference/apis-mindspore-lite-kit/js-apis-mindSporeLite.md)
       - C API<!--mindspore-lite-c-->
         - 模块<!--mindspore-lite-module-->
-          - [MindSpore](reference/apis-mindspore-lite-kit/_mind_spore.md)
+          - [MindSpore](reference/apis-mindspore-lite-kit/capi-mindspore.md)
         - 头文件<!--mindspore-lite-headerfile-->
-          - [context.h](reference/apis-mindspore-lite-kit/context_8h.md)
-          - [data_type.h](reference/apis-mindspore-lite-kit/data__type_8h.md)
-          - [format.h](reference/apis-mindspore-lite-kit/format_8h.md)
-          - [model.h](reference/apis-mindspore-lite-kit/model_8h.md)
-          - [status.h](reference/apis-mindspore-lite-kit/status_8h.md)
-          - [tensor.h](reference/apis-mindspore-lite-kit/tensor_8h.md)
-          - [types.h](reference/apis-mindspore-lite-kit/types_8h.md)
+          - [context.h](reference/apis-mindspore-lite-kit/capi-context-h.md)
+          - [data_type.h](reference/apis-mindspore-lite-kit/capi-data-type-h.md)
+          - [format.h](reference/apis-mindspore-lite-kit/capi-format-h.md)
+          - [model.h](reference/apis-mindspore-lite-kit/capi-model-h.md)
+          - [status.h](reference/apis-mindspore-lite-kit/capi-status-h.md)
+          - [tensor.h](reference/apis-mindspore-lite-kit/capi-tensor-h.md)
+          - [types.h](reference/apis-mindspore-lite-kit/capi-types-h.md)
         - 结构体<!--mindspore-lite-struct-->
-          - [OH_AI_CallBackParam](reference/apis-mindspore-lite-kit/_o_h___a_i___call_back_param.md)
-          - [OH_AI_ShapeInfo](reference/apis-mindspore-lite-kit/_o_h___a_i___shape_info.md)
-          - [OH_AI_TensorHandleArray](reference/apis-mindspore-lite-kit/_o_h___a_i___tensor_handle_array.md)
+          - [OH_AI_TensorHandleArray](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-tensorhandlearray.md)
+          - [OH_AI_ShapeInfo](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-shapeinfo.md)
+          - [OH_AI_CallBackParam](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-callbackparam.md)
+          - [NNRTDeviceDesc](reference/apis-mindspore-lite-kit/capi-mindspore-nnrtdevicedesc.md)
+          - [OH_AI_ContextHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-contexthandle.md)
+          - [OH_AI_DeviceInfoHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-DeviceInfoHandle.md)
+          - [OH_AI_TensorHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-tensorHandle.md)
+          - [OH_AI_AllocatorHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-allocatorhandle.md)
+          - [OH_AI_ModelHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-modelhandle.md)
+          - [OH_AI_TrainCfgHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-traincfghandle.md)
     - Neural Network Runtime Kit（Neural Network运行时服务）<!--neural-network-runtime-api-->
       - C API<!--neural-network-runtime-c-->
         - 模块<!--neural-network-runtime-module-->
