@@ -341,6 +341,7 @@
           - [静态方式加载native模块](arkts-utils/arkts-import-native-module.md)
           - [基于Node-API加载模块](arkts-utils/load-module-base-nodeapi.md)
           - [模块加载副作用及优化](arkts-utils/arkts-module-side-effects.md)
+        - [ArkTS运行时常见问题](arkts-utils/arkts-runtime-faq.md)
       - ArkTS编译工具链<!--arkts-compilation-tool-chain-->
         - [ArkTS编译工具链概述](arkts-utils/compilation-tool-chain-overview.md)
         - 方舟字节码<!--arkts-bytecode-->
@@ -1381,6 +1382,12 @@
           - [振动开发概述](device/sensor/vibrator-overview.md)
           - [振动开发指导(ArkTS)](device/sensor/vibrator-guidelines.md)
           - [振动开发指导(C/C++)](device/sensor/vibrator-guidelines-capi.md)
+      - Mechanic Kit（机械设备管理服务）<!--mechanic-kit-->
+        - [Mechanic Kit简介](mechanicManager/mechanic-kit-intro.md)
+        - [智能拍摄跟踪开发指南](mechanicManager/camera-tracking-guide.md)
+        <!--Del-->
+        - [设备转动控制开发指南](mechanicManager/rotation-control-guide.md)
+        <!--DelEnd-->
     - 调测调优<!--system-debug-optimize-->
       - Performance Analysis Kit（性能分析服务）<!--performance-analysis-kit-->
         - [Performance Analysis Kit简介](dfx/performance-analysis-kit-overview.md)
@@ -1809,7 +1816,6 @@
         - [发布实况窗类型通知（仅对系统应用开放）](notification/live-view-notification.md)
         <!--DelEnd-->
         - [为通知添加行为意图](notification/notification-with-wantagent.md)
-        - [为跨设备协同通知添加快捷回复](notification/notification-quickreply.md)
       - [更新通知](notification/notification-update.md)
       - [取消通知](notification/notification-cancel.md)
       <!--Del-->
@@ -2669,7 +2675,7 @@
             - [自定义事件拦截](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md)
             - [自定义事件分发](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-child-touch-test.md)
           - 无障碍相关<!--accessibility-related-->
-            - [无障碍事件](reference/apis-arkui/arkui-ts/ts-universal-accessibility-event.md)
+            - [无障碍控制操作](reference/apis-arkui/arkui-ts/ts-universal-accessibility-event.md)
             - [无障碍悬浮事件](reference/apis-arkui/arkui-ts/ts-universal-accessibility-hover-event.md)
           - 组件变化事件<!--component-change-->
             - [挂载卸载事件](reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md)
@@ -3826,11 +3832,11 @@
             - [tagSession (标准NFC-Tag TagSession)](reference/apis-connectivity-kit/js-apis-tagSession.md)
         - C API<!--connectivity-c-->
           - 模块<!--connectivity-module-->
-            - [Bluetooth](reference/apis-connectivity-kit/_bluetooth.md)
-            - [Wifi](reference/apis-connectivity-kit/_wifi.md)
+            - [Bluetooth](reference/apis-connectivity-kit/capi-bluetooth.md)
+            - [Wifi](reference/apis-connectivity-kit/capi-wifi.md)
           - 头文件<!--connectivity-headerfile-->
-            - [oh_bluetooth.h](reference/apis-connectivity-kit/oh__bluetooth_8h.md)
-            - [oh_wifi.h](reference/apis-connectivity-kit/oh__wifi_8h.md)
+            - [oh_bluetooth.h](reference/apis-connectivity-kit/capi-oh-bluetooth-h.md)
+            - [oh_wifi.h](reference/apis-connectivity-kit/capi-oh-wifi-h.md)
         - 错误码<!--connectivity-arkts-errcode-->
           - [Bluetooth错误码](reference/apis-connectivity-kit/errorcode-bluetoothManager.md)
           - [WIFI错误码](reference/apis-connectivity-kit/errorcode-wifi.md)
@@ -4358,6 +4364,14 @@
         - 错误码<!--sensor-service-arkts-errcode-->
           - [Sensor错误码](reference/apis-sensor-service-kit/errorcode-sensor.md)
           - [Vibrator错误码](reference/apis-sensor-service-kit/errorcode-vibrator.md)
+      - Mechanic Kit（机械体设备控制服务）<!--mechanic-api-->
+        - ArkTS API<!--mechanic-arkts-->
+          - [@ohos.distributedHardware.mechanicManager (机械体控制模块)](reference/apis-mechanic-kit/js-apis-mechanicManager.md)
+          <!--Del-->
+          - [@ohos.distributedHardware.mechanicManager (机械体控制模块)(系统接口)](reference/apis-mechanic-kit/js-apis-mechanicManager-sys.md)
+          <!--DelEnd-->
+        - 错误码<!--mechanic-service-arkts-errcode-->
+          - [Mechanic错误码](reference/apis-mechanic-kit/errorcode-mechanic.md)
     - 调测调优<!--system-debug-optimize-api-->
 
       - Performance Analysis Kit（性能分析服务）<!--performance-analysis-api-->
@@ -5292,19 +5306,26 @@
         - [@ohos.ai.mindSporeLite (端侧AI框架)](reference/apis-mindspore-lite-kit/js-apis-mindSporeLite.md)
       - C API<!--mindspore-lite-c-->
         - 模块<!--mindspore-lite-module-->
-          - [MindSpore](reference/apis-mindspore-lite-kit/_mind_spore.md)
+          - [MindSpore](reference/apis-mindspore-lite-kit/capi-mindspore.md)
         - 头文件<!--mindspore-lite-headerfile-->
-          - [context.h](reference/apis-mindspore-lite-kit/context_8h.md)
-          - [data_type.h](reference/apis-mindspore-lite-kit/data__type_8h.md)
-          - [format.h](reference/apis-mindspore-lite-kit/format_8h.md)
-          - [model.h](reference/apis-mindspore-lite-kit/model_8h.md)
-          - [status.h](reference/apis-mindspore-lite-kit/status_8h.md)
-          - [tensor.h](reference/apis-mindspore-lite-kit/tensor_8h.md)
-          - [types.h](reference/apis-mindspore-lite-kit/types_8h.md)
+          - [context.h](reference/apis-mindspore-lite-kit/capi-context-h.md)
+          - [data_type.h](reference/apis-mindspore-lite-kit/capi-data-type-h.md)
+          - [format.h](reference/apis-mindspore-lite-kit/capi-format-h.md)
+          - [model.h](reference/apis-mindspore-lite-kit/capi-model-h.md)
+          - [status.h](reference/apis-mindspore-lite-kit/capi-status-h.md)
+          - [tensor.h](reference/apis-mindspore-lite-kit/capi-tensor-h.md)
+          - [types.h](reference/apis-mindspore-lite-kit/capi-types-h.md)
         - 结构体<!--mindspore-lite-struct-->
-          - [OH_AI_CallBackParam](reference/apis-mindspore-lite-kit/_o_h___a_i___call_back_param.md)
-          - [OH_AI_ShapeInfo](reference/apis-mindspore-lite-kit/_o_h___a_i___shape_info.md)
-          - [OH_AI_TensorHandleArray](reference/apis-mindspore-lite-kit/_o_h___a_i___tensor_handle_array.md)
+          - [OH_AI_TensorHandleArray](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-tensorhandlearray.md)
+          - [OH_AI_ShapeInfo](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-shapeinfo.md)
+          - [OH_AI_CallBackParam](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-callbackparam.md)
+          - [NNRTDeviceDesc](reference/apis-mindspore-lite-kit/capi-mindspore-nnrtdevicedesc.md)
+          - [OH_AI_ContextHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-contexthandle.md)
+          - [OH_AI_DeviceInfoHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-DeviceInfoHandle.md)
+          - [OH_AI_TensorHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-tensorHandle.md)
+          - [OH_AI_AllocatorHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-allocatorhandle.md)
+          - [OH_AI_ModelHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-modelhandle.md)
+          - [OH_AI_TrainCfgHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-traincfghandle.md)
     - Neural Network Runtime Kit（Neural Network运行时服务）<!--neural-network-runtime-api-->
       - C API<!--neural-network-runtime-c-->
         - 模块<!--neural-network-runtime-module-->

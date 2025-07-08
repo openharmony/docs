@@ -36,7 +36,7 @@
 
 4. 创建录像输出流。
 
-   根据传入的SurfaceId，通过CameraOutputCapability类中的videoProfiles，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过createVideoOutput()方法创建录像输出流。
+   根据传入的SurfaceId，通过[OH_CameraManager_GetSupportedCameraOutputCapability](../../reference/apis-camera-kit/capi-camera-manager-h.md#oh_cameramanager_getsupportedcameraoutputcapability)接口获取[Camera_OutputCapability](../../reference/apis-camera-kit/capi-oh-camera-camera-outputcapability.md)能力，可以通过[Camera_OutputCapability](../../reference/apis-camera-kit/capi-oh-camera-camera-outputcapability.md)中的videoProfiles，获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过OH_CameraManager_CreateVideoOutput方法创建录像输出流。
 
    ```c++
    Camera_VideoOutput* CreateVideoOutput(Camera_Manager* cameraManager, char* videoSurfaceIdStr,
@@ -55,7 +55,7 @@
 
 5. 开始录像。
    
-   通过videoOutput的[OH_VideoOutput_Start()](../../reference/apis-camera-kit/capi-video-output-h.md#oh_videooutput_start)方法启动录像输出流。
+   通过[OH_VideoOutput_Start()](../../reference/apis-camera-kit/capi-video-output-h.md#oh_videooutput_start)方法启动录像输出流。
 
    ```c++
    // 启动录像输出流。
@@ -71,7 +71,7 @@
 
 6. 停止录像。
      
-   通过videoOutput的[OH_VideoOutput_Stop()](../../reference/apis-camera-kit/capi-video-output-h.md#oh_videooutput_stop)方法停止录像输出流。
+   通过[OH_VideoOutput_Stop()](../../reference/apis-camera-kit/capi-video-output-h.md#oh_videooutput_stop)方法停止录像输出流。
 
    ```c++
    // 停止录像输出流。

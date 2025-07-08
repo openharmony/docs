@@ -135,7 +135,8 @@ stack.push(4);
 stack.push(5);
 stack.push(2);
 stack.push(4);
-let result = stack.pop();
+let result = stack.pop(); 
+console.info("result = " + result); // result = 4
 ```
 
 ### peek
@@ -219,7 +220,7 @@ let result = stack.locate(2);
 forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
 thisArg?: Object): void
 
-通过回调函数来遍历Stack实例对象上的元素及其下标。
+在遍历Stack实例对象中每一个元素的过程中，对每个元素执行回调函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -260,6 +261,12 @@ stack.push(4);
 stack.forEach((value : number, index ?: number) :void => {
   console.info("value:" + value, "index:" + index);
 });
+/**
+ * value:2 index:0
+ * value:4 index:1
+ * value:5 index:2
+ * value:4 index:3
+ */
 ```
 
 ### isEmpty

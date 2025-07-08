@@ -42,14 +42,16 @@ stateStyles(value: StateStyles): T
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 状态名称 | 类型 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- |
-| normal | ()=&gt;void | 否 | 组件无状态时的样式。 |
-| pressed | ()=&gt;void | 否 | 组件按下状态的样式。 |
-| disabled | ()=&gt;void | 否 | 组件禁用状态的样式。 |
-| focused | ()=&gt;void | 否 | 组件获焦状态的样式。 |
-| clicked | ()=&gt;void | 否 | 组件点击状态的样式。 |
-| selected<sup>10+</sup> | ()=&gt;void | 否 | 组件选中状态的样式。<br/> |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| normal | any | 否 | 是 | 组件无状态时的样式。只支持传入@style修饰的样式代码块。 |
+| pressed | any | 否 | 是 | 组件按下状态的样式。只支持传入@style修饰的样式代码块。 |
+| disabled | any | 否 | 是 | 组件禁用状态的样式。只支持传入@style修饰的样式代码块。 |
+| focused | any | 否 | 是 | 组件获焦状态的样式。只支持传入@style修饰的样式代码块。 |
+| clicked | any | 否 | 是 | 组件点击状态的样式。只支持传入@style修饰的样式代码块。 |
+| selected<sup>10+</sup> | object | 否 | 是 | 组件选中状态的样式。只支持传入@style修饰的样式代码块。<br/> |
 
 **selected选中状态说明**
 
@@ -163,7 +165,7 @@ struct StyleExample {
       Text("control disabled")
         .onClick(() => {
           this.isEnable = !this.isEnable
-          console.log(`${this.isEnable}`)
+          console.info(`${this.isEnable}`)
         })
     }
     .width(350).height(300)

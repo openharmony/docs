@@ -930,7 +930,7 @@ try {
 | disposedType | [DisposedType](#disposedrule11) | 否   | 否 | 对应用的拦截规则。 |
 | controlType | [ControlType](#controltype11) | 否   | 否 | 拦截指定应用程序的不同策略。 |
 | elementList | Array\<[ElementName](js-apis-bundleManager-elementName.md)> | 否   | 否 | 拦截指定应用程序能力的列表。 |
-| priority | number | 否   | 否 | 拦截规则的优先级。 |
+| priority | number | 否   | 否 | 拦截规则的优先级，用于规则列表查询结果排序。取值为整数，数值越小，排序越靠前。 |
 
 ### ComponentType<sup>11+</sup>
 
@@ -984,7 +984,7 @@ try {
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | want | [Want](js-apis-app-ability-want.md)     | 否   | 否   | 指定应用被拦截时，跳转到的页面。 |
 | UninstallComponentType | [UninstallComponentType](#uninstallcomponenttype15)  | 否   | 否   | 拦截时将拉起能力的类型。 |
-| priority | number | 否 | 否 | 拦截规则的优先级。 |
+| priority | number | 否 | 否 | 拦截规则的优先级，用于规则列表查询结果排序。取值为整数，数值越小，排序越靠前。 |
 
 ### UninstallComponentType<sup>15+</sup>
 

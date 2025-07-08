@@ -103,7 +103,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 
 参考以下示例，获取一个音频的元数据和专辑封面。
 
-1. 新建工程，下载[完整示例工程](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVMetadataExtractor/AVMetadataExtractorNDK)，并将示例工程的资源复制到对应目录。
+1. 新建工程，下载[完整示例工程](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVMetadataExtractor/AVMetadataExtractorNDK)，并将示例工程的资源复制到对应目录。
     ```
     AVMetadataExtractorNDK
     entry/src/main/ets/

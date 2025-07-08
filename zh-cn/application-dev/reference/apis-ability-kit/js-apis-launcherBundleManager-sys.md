@@ -527,6 +527,7 @@ startShortcutWithReason(shortcutInfo: ShortcutInfo, startReason: string, options
 被拉起方可以通过[LaunchParam](js-apis-app-ability-abilityConstant.md#launchparam)的launchReasonMessage字段获取到启动原因，并根据启动原因进行业务逻辑处理。
 
 **需要权限：** ohos.permission.START_SHORTCUT 和 ohos.permission.SET_LAUNCH_REASON_MESSAGE
+(如果调用方有ohos.permission.START_SHORTCUT权限，没有ohos.permission.SET_LAUNCH_REASON_MESSAGE权限，Ability可以被拉起，但是携带的快捷方式启动原因无效)
 
 **系统接口：** 此接口为系统接口。
 
