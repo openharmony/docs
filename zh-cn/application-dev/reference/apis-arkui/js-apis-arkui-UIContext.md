@@ -3065,6 +3065,10 @@ getSystemFontList(): Array\<string>
 
 获取系统支持的字体名称列表。
 
+>  **说明：**
+>
+>  该接口仅在2in1设备上生效。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -3074,10 +3078,6 @@ getSystemFontList(): Array\<string>
 | 类型             | 说明        |
 | -------------- | --------- |
 | Array\<string> | 系统的字体名列表。 |
-
->  **说明：**
->
->  该接口仅在2in1设备上生效。
 
 **示例：** 
 
