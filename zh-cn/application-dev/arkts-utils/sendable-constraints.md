@@ -388,7 +388,7 @@ let arr4: number[] = new collections.Array<number>(1, 2, 3); // 编译报错
 
 ### 禁止非Sendable类型强制转换为Sendable
 
-除了Object类型，非Sendable类型不能强转成Sendable类型。非Sendable类型通过as强转成Sendable类型后，实际数据仍为非Sendable类型，会导致错误使用。Sendable类型在不违反Sendable规则的前提下，需要和非Sendable类型行为兼容，因此Sendable类型可以as强转成非Sendable类型。
+除了Object类型，非Sendable类型不能强转成Sendable类型。非Sendable类型通过as强转成Sendable类型后，实际数据仍为非Sendable类型，会导致错误使用。Sendable类型在不违反Sendable规则的前提下，需要和非Sendable类型行为兼容，因此Sendable类型可以通过as强转成非Sendable类型。
 
 **正例：**
 
