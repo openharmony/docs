@@ -214,3 +214,51 @@ import { formInfo } from '@kit.FormKit';
 |-----|-----|------|----|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | abilityName | string | 是 | 否  | 场景动效 extensionAbility 名称，如卡片提供方LiveFormExtensionAbility名称。                                     |
 | disabledDesktopBehaviors | string | 是 | 是  | 支持的取值包括SWIPE_DESKTOP（滑动桌面）、PULL_DOWN_SEARCH（下拉全搜）、LONG_CLICK（长按）、DRAG（拖动）。可以取值一个或多个，不同行为通过 \| 拼接，例如SWIPE_DESKTOP\|PULL_DOWN_SEARCH。缺省表示不禁用任何行为。 |
+
+## GetFormRectInfoCallback<sup>20+</sup>
+
+### (formId: string)
+
+(formId: string): Promise&lt;formInfo.Rect&gt;
+
+卡片位置、尺寸查询回调。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|-----|-----|------|------------------|
+| formId | string | 是 | 卡片Id。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[formInfo.Rect](js-apis-app-form-formInfo.md#rect20)&gt; | Promise对象，返回卡片相对屏幕左上角的的位置信息和卡片尺寸信息，单位vp。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                  |
+|-------|-----------------------------------------------------------------------------------------------------------|
+| 202   | The application is not a system application.                                                              |
+
+**示例：**
+
+```ts
+import { formInfo } from '@kit.FormKit';
+
+// 卡片使用方需要对查询请求进行处理，计算并返回卡片尺寸、位置信息
+let getFormRectInfoCallback: formInfo.GetFormRectInfoCallback =
+  (formId: string): Promise<formInfo.Rect> => {
+    return new Promise<formInfo.Rect>((resolve: Function) => {
+      console.log(`formId is ${formId}`);
+      let formRect: formInfo.Rect = {left: 0, top: 0, width: 0, height: 0};
+      resolve(formRect);
+    })
+  };
+```

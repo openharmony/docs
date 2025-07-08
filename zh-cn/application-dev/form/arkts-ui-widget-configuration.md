@@ -101,6 +101,20 @@
 | subBundleName     | 字符串 | 否  | 趣味交互场景[独立分包名](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-independent-subpackage-0000002076341729)，默认为空。|
 | keepStateDuration | 数值  | 否  | 趣味交互场景无交互时，激活态保持时长。默认值为10000，单位ms。取值为[0,10000]的整数，超过取值范围则取默认值10000。                                               |
 
+```json
+{
+  "forms": [
+    {
+       // ...
+      "funInteractionParams": {
+         "targetBundleName": "com.example.funInteraction",
+         "subBundleName": "com.example.subFunInteraction"
+      }
+    }
+  ]
+}
+```
+
 ### sceneAnimationParams标签
 
 此标签标识场景动效类型互动卡片配置。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。
@@ -158,11 +172,7 @@
          ],
          "formConfigAbility": "ability://EntryAbility",
          "isDynamic": true,
-         "metadata": [],
-         "funInteractionParams": {
-            "targetBundleName": "com.example.funInteraction",
-            "subBundleName": "com.example.subFunInteraction"
-         }
+         "metadata": []
        }
      ]
    }
