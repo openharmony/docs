@@ -184,6 +184,7 @@
 | [int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent)](#oh_input_injectmouseevent) | - | 注入鼠标事件。 |
 | [int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayid) | - | 获取鼠标事件的屏幕Id。 |
 | [Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count)](#oh_input_querymaxtouchpoints) | - | 查询设备支持的最大触屏报点数。 |
+| [Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, double *displayY)](#oh_input_getpointerlocation) | - | 查询鼠标光标位置。 |
 
 ## 枚举类型说明
 
@@ -389,6 +390,8 @@ enum Input_Result
 | INPUT_INJECTION_OPERATION_FREQUENT = 3900006 |  重复请求。<br>**起始版本：** 20。 |
 | INPUT_INJECTION_AUTHORIZED = 3900007 |  当前应用已经授权。<br>**起始版本：** 20。 |
 | INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008 |  其它应用已经授权。<br>**起始版本：** 20。 |
+| INPUT_APP_NOT_FOCUSED = 3900009 |  当前应用不是焦点应用。<br>**起始版本：** 20。 |
+| INPUT_DEVICE_NO_POINTER = 3900010 |  设备无鼠标。<br>**起始版本：** 20。 |
 
 
 ## 函数说明
@@ -3795,3 +3798,29 @@ Input_Result OH_Input_QueryMaxTouchPoints(int32_t *count)
 | 类型 | 说明 |
 | -- | -- |
 | [Input_Result](capi-oh-input-manager-h.md#input_result) | OH_Input_QueryMaxTouchPoints的执行结果：<br>[INPUT_SUCCESS](#input_result) 表示查询成功。<br> [INPUT_PARAMETER_ERROR](capi-oh-input-manager-h.md#input_result) 表示参数错误。 |
+
+### OH_Input_GetPointerLocation()
+
+```
+Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, double *displayY);
+```
+
+**描述**
+
+查询鼠标光标位置
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| int32_t *displayId | 鼠标位置的displayId。 |
+| double *displayX | 鼠标位置的displayX。 |
+| double *displayY | 鼠标位置的displayY。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Input_Result](capi-oh-input-manager-h.md#input_result) | 返回结果码，参见[Input_Result](capi-oh-input-manager-h.md#input_result)。<br>      INPUT_SUCCESS = 0 查询成功。<br>      INPUT_PARAMETER_ERROR = 401  参数错误，参数为空。<br>      INPUT_SERVICE_EXCEPTION = 3800001  服务器错误。<br>      INPUT_APP_NOT_FOCUSED = 3900009 不是焦点应用。<br>      INPUT_DEVICE_NO_POINTER = 3900010 设备无鼠标。 |
