@@ -8,14 +8,14 @@ Layout constraints refer to constraints on the aspect ratio and display priority
 
 ## aspectRatio
 
-aspectRatio(value: number)
+aspectRatio(value: number): T
 
 Sets the aspect ratio of the component, which can be obtained using the following formula: width/height.
 - If only **width** and **aspectRatio** are set, the height is calculated using the following formula: width/aspectRatio.
 - If only **height** and **aspectRatio** are set, the width is calculated using the following formula: height x aspectRatio.
 - If **width**, **height**, and **aspectRatio** are all set, the explicitly set height is ignored, and the effective height is calculated using the following formula: width/aspectRatio.
 
-After **aspectRatio** is set, the width and height of the component are constrained by the size of the parent component's content area.
+After **aspectRatio** is set, the component's width and height will be limited by the size of the parent component's content area. The priority of [constraintSize](ts-universal-attributes-size.md#constraintsize) is higher than that of **aspectRatio**.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -29,9 +29,15 @@ After **aspectRatio** is set, the width and height of the component are constrai
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | Yes  | Aspect ratio of the component.<br>The default value varies by API version.<br>API version 9 and earlier: **1.0**<br><br>API version 10: none<br>**NOTE**<br>This parameter takes effect only when a valid value greater than 0 is specified.<br>For example, if a **Row** component has only its width set and does not have any child component, then when **aspectRatio** is not set or is set to a negative value, the height of the **Row** component is 0.|
 
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
+
 ## displayPriority
 
-displayPriority(value: number)
+displayPriority(value: number): T
 
 Sets the display priority for the component in the layout container.
 
@@ -46,6 +52,12 @@ Sets the display priority for the component in the layout container.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | Yes  | Display priority of the component in the layout container.<br>Default value: **1**<br>**NOTE**<br>This parameter is only effective in [Row](./ts-container-row.md), [Column](./ts-container-column.md), and [Flex (single-line)](./ts-container-flex.md) container components.<br> The digits after the decimal point are not counted in determining the display priority. That is, numbers in the [x, x + 1) range are considered to represent the same priority. For example, **1.0** and **1.9** represent the same priority.<br>If the **displayPriority** value of all child components is not greater than 1, there is no difference in priority.<br>When the **displayPriority** value of a child component is greater than 1, a larger value indicates higher priority. If the parent container does not have enough space, child components with lower priority are hidden. If child components of a certain priority are hidden, those with an even lower priority are also hidden.|
+
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
 
 ## Example
 
@@ -114,7 +126,7 @@ struct AspectRatioExample {
 
 ### Example 2: Setting the Component Display Priority
 
-This example shows how to use **displayPriority** to assign display priorities to child components.
+This example shows how to use **displayPriority** to set the display priority for child components.
 
 ```ts
 class ContainerInfo {

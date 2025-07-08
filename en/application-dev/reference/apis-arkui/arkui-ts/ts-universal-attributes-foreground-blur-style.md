@@ -33,7 +33,7 @@ Applies a foreground blur style to the component.
 
 foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOptions): T
 
-Applies a foreground blur style to the component. Compared to [foregroundBlurStyle](#foregroundblurstyle), the **style** parameter supports the **undefined** type.
+Applies a foreground blur style to the component. Compared with [foregroundBlurStyle](#foregroundblurstyle), this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -56,7 +56,7 @@ Applies a foreground blur style to the component. Compared to [foregroundBlurSty
 
 foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOptions, sysOptions?: SystemAdaptiveOptions): T
 
-Applies a foreground blur style to the component. Compared to [foregroundBlurStyle<sup>18+</sup>](#foregroundblurstyle18), this API adds the **sysOptions** parameter, which allows for system adaptive adjustments.
+Applies a foreground blur style to the component. Compared with [foregroundBlurStyle<sup>18+</sup>](#foregroundblurstyle18), this API adds the **sysOptions** parameter, which allows for system adaptive adjustments.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 

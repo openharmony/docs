@@ -16,7 +16,7 @@ Called when a click event occurs.
 
 When the click event is triggered by a keyboard or game controller, the value of **SourceTool** is **Unknown**.
 
-Compared to the original **onClick** API, this API has the **distanceThreshold** parameter that specifies the finger movement threshold for click events. If the finger's movement exceeds the set threshold, the gesture recognition will fail.
+Compared with the original **onClick** API, this API has the **distanceThreshold** parameter that specifies the finger movement threshold for click events. If the finger's movement exceeds the set threshold, the gesture recognition will fail.
 For scenarios where there is no restriction on the finger movement distance during a click, the original API is recommended. If there is a requirement for the finger to stay within a certain area during the click, this API is recommended.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.

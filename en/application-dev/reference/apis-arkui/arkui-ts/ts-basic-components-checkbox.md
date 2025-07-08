@@ -32,6 +32,8 @@ Creates a check box.
 
 ## CheckboxOptions
 
+Provides information about the check box.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name | Type| Mandatory | Description|
@@ -51,6 +53,7 @@ select(value: boolean)
 Sets whether the check box is selected.
 
 Since API version 10, this attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).
+
 Since API version 18, this attribute supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
@@ -63,15 +66,15 @@ Since API version 18, this attribute supports two-way binding through [!!](../..
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether the check box is selected.<br>Default value: **false**<br>**true**: The check box is selected. **false**: The check box is not selected.|
+| value  | boolean | Yes  | Whether the check box is selected.<br>Default value: **false**<br>**true**: The check box is selected. <br>**false**: The check box is not selected.|
 
 ### select<sup>18+</sup>
 
 select(isSelected: Optional\<boolean>)
 
-Sets whether the check box is selected. Compared to [select](#select), this API supports the **undefined** type for the **isSelected** parameter.
+Sets whether the check box is selected. Compared with [select](#select), this API supports the **undefined** type for the **isSelected** parameter.
 
-This attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md). This attribute supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md).
+This attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md) and [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -83,7 +86,7 @@ This attribute supports two-way binding through [$$](../../../ui/state-managemen
 
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| isSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether the check box is selected.<br>If **isSelected** is set to **undefined**, the default value **false** is used.<br>**true**: The check box is selected. **false**: The check box is not selected.|
+| isSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether the check box is selected.<br>If **isSelected** is set to **undefined**, the default value **false** is used.<br>**true**: The check box is selected. <br>**false**: The check box is not selected.|
 
 ### selectedColor
 
@@ -101,13 +104,13 @@ Sets the color of the check box when it is selected.
 
 | Name| Type                                      | Mandatory| Description                                                        |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the check box when it is selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**<br>An invalid value is handled as the default value.|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the check box when it is selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**.<br>An invalid value is handled as the default value.|
 
 ### selectedColor<sup>18+</sup>
 
 selectedColor(resColor: Optional\<ResourceColor>)
 
-Sets the color of the check box when it is selected. Compared to [selectedColor](#selectedcolor), this API supports the **undefined** type for the **resColor** parameter.
+Sets the color of the check box when it is selected. Compared with [selectedColor](#selectedcolor), this API supports the **undefined** type for the **resColor** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -135,13 +138,13 @@ Sets the border color of the check box when it is not selected.
 
 | Name| Type                                      | Mandatory| Description                    |
 | ------ | ------------------------------------------ | ---- | -------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Border color of the check box when it is not selected.<br>Default value: **$r('sys.color.ohos_id_color_switch_outline_off')**|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Border color of the check box when it is not selected.<br>Default value: **$r('sys.color.ohos_id_color_switch_outline_off')**.|
 
 ### unselectedColor<sup>18+</sup>
 
 unselectedColor(resColor: Optional\<ResourceColor>)
 
-Sets the border color of the check box when it is not selected. Compared to [unselectedColor](#unselectedcolor10)<sup>10+</sup>, this API supports the **undefined** type for the **resColor** parameter.
+Sets the border color of the check box when it is not selected. Compared with [unselectedColor](#unselectedcolor10)<sup>10+</sup>, this API supports the **undefined** type for the **resColor** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -173,7 +176,7 @@ Sets the check mark style of the check box.
 
 mark(style: Optional\<MarkStyle>)
 
-Sets the check mark style of the check box. Compared to [mark](#mark10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
+Sets the check mark style of the check box. Compared with [mark](#mark10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -189,7 +192,7 @@ Sets the check mark style of the check box. Compared to [mark](#mark10)<sup>10+<
 
 shape(value: CheckBoxShape)
 
-Sets the shape of the check box.
+Sets the shape of the check box. To adjust the style of the current check box, use [contentModifier](#contentmodifier12).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 11.
 
@@ -207,7 +210,7 @@ Sets the shape of the check box.
 
 shape(shape: Optional\<CheckBoxShape>)
 
-Sets the shape of the check box. Compared to [shape](#shape11)<sup>11+</sup>, this API supports the **undefined** type for the **shape** parameter.
+Sets the shape of the check box. Compared with [shape](#shape11)<sup>11+</sup>, this API supports the **undefined** type for the **shape** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -225,7 +228,7 @@ Sets the shape of the check box. Compared to [shape](#shape11)<sup>11+</sup>, th
 
 contentModifier(modifier: ContentModifier\<CheckBoxConfiguration>)
 
-Creates a content modifier.
+Creates a content modifier. Setting this attribute will invalidate other attribute settings.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -241,7 +244,7 @@ Creates a content modifier.
 
 contentModifier(modifier: Optional<ContentModifier\<CheckBoxConfiguration>>)
 
-Creates a content modifier. Compared to [contentModifier](#contentmodifier12)<sup>12+</sup>, this API supports the **undefined** type for the **modifier** parameter.
+Creates a content modifier. Compared with [contentModifier](#contentmodifier12)<sup>12+</sup>, this API supports the **undefined** type for the **modifier** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -279,7 +282,7 @@ Invoked when the selected state of the check box changes.
 
 onChange(callback: Optional\<OnCheckboxChangeCallback>)
 
-Invoked when the selected state of the check box changes. Compared to [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
+Invoked when the selected state of the check box changes. Compared with [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -322,8 +325,8 @@ You need a custom class to implement the **ContentModifier** API.
 | Name| Type   |    Read Only   |    Optional     |  Description             |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | name | string | No| No|Name of the check box.|
-| selected | boolean| No| No| Whether the check box is selected.<br>If the **select** attribute is not set, the default value **false** is used.<br>If the **select** attribute is set, the attribute value is used here.|
-| triggerChange |Callback\<boolean>| No| No|Changes the selected state of the check box.<br>The value **true** means that the check box changes from unselected to selected, and **false** means that the check box changes from selected to unselected.|
+| selected | boolean| No| No| Whether the check box is selected.<br>**true**: The check box is selected. <br>**false**: The check box is not selected.<br>If the **select** attribute is not set, the default value **false** is used.<br>If the **select** attribute is set, the attribute value is used here.|
+| triggerChange |Callback\<boolean>| No| No|Triggers a change in the check box selection state. <br>The value **true** indicates a change from unselected to selected, and **false** indicates a change from selected to unselected.|
 
 ## Example
 
@@ -343,14 +346,14 @@ struct CheckboxExample {
         .selectedColor(0xed6f21)
         .shape(CheckBoxShape.CIRCLE)
         .onChange((value: boolean) => {
-          console.info('Checkbox1 change is' + value)
+          console.info('Checkbox1 change is' + value);
         })
       Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
         .select(false)
         .selectedColor(0x39a2db)
         .shape(CheckBoxShape.ROUNDED_SQUARE)
         .onChange((value: boolean) => {
-          console.info('Checkbox2 change is' + value)
+          console.info('Checkbox2 change is' + value);
         })
     }
   }
@@ -378,7 +381,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox1 change is'+ value)
+              console.info('Checkbox1 change is'+ value);
             })
             .mark({
               strokeColor:Color.Black,
@@ -395,7 +398,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox2 change is' + value)
+              console.info('Checkbox2 change is' + value);
             })
             .width(30)
             .height(30)
@@ -413,46 +416,63 @@ struct Index {
 ![](figures/checkbox2.gif)
 
 ### Example 3: Customizing the Check Box Style
-This example implements a custom check box. This check box comes in the custom pentagon style. When selected, the check box shows a red triangle pattern inside, and the title displays the word "Selected;" when deselected, the check box hides the red triangle pattern inside, and the title displays the word "Unselected."
+This example demonstrates how to implement a custom check box using [contentModifier](#contentmodifier12). This check box comes in the custom pentagon style. When selected, the check box shows a red triangle pattern inside, and the title displays the word "Selected;" when deselected, the check box hides the red triangle pattern inside, and the title displays the word "Unselected."
 
 ```ts
 // xxx.ets
 class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
-  selectedColor: Color = Color.White
+  selectedColor: Color = Color.White;
+
   constructor(selectedColor: Color) {
     this.selectedColor = selectedColor;
   }
-  applyContent() : WrappedBuilder<[CheckBoxConfiguration]>
-  {
-    return wrapBuilder(buildCheckbox)
+
+  applyContent(): WrappedBuilder<[CheckBoxConfiguration]> {
+    return wrapBuilder(buildCheckbox);
   }
 }
 
-@Builder function buildCheckbox(config: CheckBoxConfiguration) {
-  Column({space:10}) {
-      Text(config.name  + (config.selected ? "(Selected)" : " (Unselected)")).margin({right : 70, top : 50})
-      Text(config.enabled ? "enabled true" : "enabled false").margin({right : 110})
-      Shape() {
-        Path().width(100).height(100).commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z').fillOpacity(0).strokeWidth(3).onClick(()=>{
+@Builder
+function buildCheckbox(config: CheckBoxConfiguration) {
+  Column({ space: 10 }) {
+    Text(config.name + (config.selected ? "(Selected)" : "(Unselected)")).margin({ right: 70, top: 50 })
+    Text(config.enabled ? "enabled true" : "enabled false").margin({ right: 110 })
+    Shape() {
+      Path()
+        .width(100)
+        .height(100)
+        .commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z')
+        .fillOpacity(0)
+        .strokeWidth(3)
+        .onClick(() => {
           if (config.selected) {
-            config.triggerChange(false)
+            config.triggerChange(false);
           } else {
-            config.triggerChange(true)
+            config.triggerChange(true);
           }
-        }).opacity(config.enabled ? 1 : 0.1)
-        Path().width(10).height(10).commands('M50 0 L100 100 L0 100 Z')
-          .visibility(config.selected ? Visibility.Visible : Visibility.Hidden)
-          .fill(config.selected ? (config.contentModifier as MyCheckboxStyle).selectedColor : Color.Black)
-          .stroke((config.contentModifier as MyCheckboxStyle).selectedColor)
-          .margin({left:10,top:10})
-          .opacity(config.enabled ? 1 : 0.1)
-      }
-      .width(300)
-      .height(200)
-      .viewPort({ x: 0, y: 0, width: 310, height: 310 })
-      .strokeLineJoin(LineJoinStyle.Miter)
-      .strokeMiterLimit(5)
-      .margin({left:50})
+        })
+        .opacity(config.enabled ? 1 : 0.1)
+      Path()
+        .width(10)
+        .height(10)
+        .commands('M50 0 L100 100 L0 100 Z')
+        .visibility(config.selected ? Visibility.Visible : Visibility.Hidden)
+        .fill(config.selected ? (config.contentModifier as MyCheckboxStyle).selectedColor : Color.Black)
+        .stroke((config.contentModifier as MyCheckboxStyle).selectedColor)
+        .margin({ left: 10, top: 10 })
+        .opacity(config.enabled ? 1 : 0.1)
+    }
+    .width(300)
+    .height(200)
+    .viewPort({
+      x: 0,
+      y: 0,
+      width: 310,
+      height: 310
+    })
+    .strokeLineJoin(LineJoinStyle.Miter)
+    .strokeMiterLimit(5)
+    .margin({ left: 50 })
   }
 }
 
@@ -460,24 +480,25 @@ class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
 @Component
 struct Index {
   @State checkboxEnabled: boolean = true;
+
   build() {
     Column({ space: 100 }) {
-        Checkbox({ name: 'Check box status', group: 'checkboxGroup' })
+      Checkbox({ name: 'Check box status', group: 'checkboxGroup' })
         .contentModifier(new MyCheckboxStyle(Color.Red))
         .onChange((value: boolean) => {
-          console.info('Checkbox change is' + value)
+          console.info('Checkbox change is' + value);
         }).enabled(this.checkboxEnabled)
 
       Row() {
         Toggle({ type: ToggleType.Switch, isOn: true }).onChange((value: boolean) => {
           if (value) {
-            this.checkboxEnabled = true
+            this.checkboxEnabled = true;
           } else {
-            this.checkboxEnabled = false
+            this.checkboxEnabled = false;
           }
         })
       }.position({ x: 50, y: 130 })
-    }.margin({top : 30})
+    }.margin({ top: 30 })
   }
 }
 ```
@@ -509,7 +530,7 @@ struct CheckboxExample {
           Checkbox({ name: 'checkbox1', group: 'checkboxGroup', indicatorBuilder:()=>{this.indicatorBuilder(9)}})
             .shape(CheckBoxShape.CIRCLE)
             .onChange((value: boolean) => {
-              console.info('Checkbox1 change is'+ value)
+              console.info('Checkbox1 change is'+ value);
             })
             .mark({
               strokeColor:Color.Black,
@@ -524,7 +545,7 @@ struct CheckboxExample {
           Checkbox({ name: 'checkbox2', group: 'checkboxGroup', indicatorBuilder:()=>{this.indicatorBuilder(100)}})
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox2 change is' + value)
+              console.info('Checkbox2 change is' + value);
             })
             .width(30)
             .height(30)
@@ -538,5 +559,164 @@ struct CheckboxExample {
 }
 ```
 
-
 ![](figures/checkbox4.gif)
+
+### Example 5: Obtaining the Check Box Selection Information
+
+This example demonstrates how to obtain selection information by selecting check boxes and check box groups.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CheckboxExample {
+  @State arrOne: Array<string> = ['1', '2', '3'];
+  @State arrTwo: Array<string> = ['1', '2', '3', '4'];
+  @State arrThree: Array<string> = ['1', '2', '3', '4', '5', '6'];
+  @State selected: boolean = false;
+  @State infoOne: string = '';
+  @State infoTwo: string = '';
+  @State infoThree: string = '';
+
+  build() {
+    Column() {
+      // Select All button for the first group
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        CheckboxGroup({ group: 'checkboxGroupOne' })
+          .selectAll(this.selected)
+          .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
+          .selectedColor('#007DFF')
+          .onChange((itemName: CheckboxGroupResult) => {
+            this.infoOne = "checkboxGroupOne" + JSON.stringify(itemName);
+            console.info("checkboxGroupOne" + JSON.stringify(itemName));
+          })
+        Text('checkboxGroupOne Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+      }
+
+      // Options for the first group
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        Column() {
+          ForEach(this.arrOne, (item: string) => {
+            Row() {
+              Checkbox({ name: 'checkbox' + item, group: 'checkboxGroupOne' })
+                .selectedColor('#007DFF')
+                .shape(CheckBoxShape.ROUNDED_SQUARE)
+                .onChange((value: boolean) => {
+                  console.info('Checkbox' + item + 'change is' + value);
+                })
+                .margin({ left: 20 })
+              Text('Checkbox' + item)
+                .fontSize(14)
+                .lineHeight(20)
+                .fontColor('#182431')
+                .fontWeight(500)
+                .margin({ left: 10 })
+            }
+          }, (item: string) => item)
+        }
+      }.margin({ bottom: 15 })
+
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        CheckboxGroup({ group: 'checkboxGroupTwo' })
+          .selectAll(this.selected)
+          .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
+          .selectedColor('#007DFF')
+          .onChange((itemName: CheckboxGroupResult) => {
+            this.infoTwo = "checkboxGroupTwo" + JSON.stringify(itemName);
+            console.info("checkboxGroupTwo" + JSON.stringify(itemName));
+          })
+        Text('checkboxGroupTwo Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+      }
+
+      // Options for the second group
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        Column() {
+          ForEach(this.arrTwo, (item: string) => {
+            Row() {
+              Checkbox({ name: 'checkbox' + item, group: 'checkboxGroupTwo' })
+                .selectedColor('#007DFF')
+                .shape(CheckBoxShape.ROUNDED_SQUARE)
+                .onChange((value: boolean) => {
+                  console.info('Checkbox' + item + 'change is' + value);
+                })
+                .margin({ left: 20 })
+              Text('Checkbox' + item)
+                .fontSize(14)
+                .lineHeight(20)
+                .fontColor('#182431')
+                .fontWeight(500)
+                .margin({ left: 10 })
+            }
+          }, (item: string) => item)
+        }
+      }.margin({ bottom: 15 })
+
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        CheckboxGroup({ group: 'checkboxGroupThree' })
+          .selectAll(this.selected)
+          .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
+          .selectedColor('#007DFF')
+          .onChange((itemName: CheckboxGroupResult) => {
+            this.infoThree = "checkboxGroupThree" + JSON.stringify(itemName);
+            console.info("checkboxGroupThree" + JSON.stringify(itemName));
+          })
+        Text('checkboxGroupThree Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+      }
+
+      // Options for the third group
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        Column() {
+          ForEach(this.arrThree, (item: string) => {
+            Row() {
+              Checkbox({ name: 'checkbox' + item, group: 'checkboxGroupThree' })
+                .selectedColor('#007DFF')
+                .shape(CheckBoxShape.ROUNDED_SQUARE)
+                .onChange((value: boolean) => {
+                  console.info('Checkbox' + item + 'change is' + value);
+                })
+                .margin({ left: 20 })
+              Text('Checkbox' + item)
+                .fontSize(14)
+                .lineHeight(20)
+                .fontColor('#182431')
+                .fontWeight(500)
+                .margin({ left: 10 })
+            }
+          }, (item: string) => item)
+        }
+      }.margin({ bottom: 15 })
+
+      // Global Select All button
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        Row() {
+          CheckboxGroup({ group: 'checkboxGroup' })
+            .checkboxShape(CheckBoxShape.CIRCLE)
+            .selectedColor('#007DFF')
+            .width(30)
+            .margin({ left: 10 })
+            .onChange(() => {
+              this.selected = !this.selected
+            })
+          Text('Select All')
+            .fontSize(14)
+            .lineHeight(20)
+            .fontColor('#182431')
+            .fontWeight(500)
+            .margin({ left: 10 })
+        }
+      }.margin({ bottom: 15 })
+
+      // Obtain the selection information.
+      Button('get selected info')
+        .margin({ top: 10 })
+        .onClick(() => {
+          this.getUIContext().getPromptAction().showToast({
+            message: 'selected info: ' + this.infoOne + '\n' + this.infoTwo + '\n' + this.infoThree
+          })
+        })
+    }.padding(10)
+  }
+}
+```
+
+![checkbox5](figures/checkbox5.gif)

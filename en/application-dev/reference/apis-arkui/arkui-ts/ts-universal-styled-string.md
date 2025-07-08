@@ -828,7 +828,7 @@ A constructor used to create an image object.
 
 constructor(attachment: Optional\<AttachmentType\>)
 
-A constructor used to create an image object. Compared to the constructor with a **value** type parameter, this constructor with an **attachment** type parameter supports images of **undefined** and [ResourceStr](ts-types.md#resourcestr) types.
+A constructor used to create an image object. Compared with the constructor with a **value** type parameter, this constructor with an **attachment** type parameter supports images of **undefined** and [ResourceStr](ts-types.md#resourcestr) types.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 

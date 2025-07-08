@@ -35,7 +35,7 @@ Applies a foreground blur effect to the component.
 
 blur(blurRadius: Optional\<number>, options?: BlurOptions): T
 
-Applies a foreground blur effect to the component. Compared to [blur](#blur), this API supports the **undefined** type for the **blurRadius** parameter.
+Applies a foreground blur effect to the component. Compared with [blur](#blur), this API supports the **undefined** type for the **blurRadius** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -60,7 +60,7 @@ Applies a foreground blur effect to the component. Compared to [blur](#blur), th
 
 blur(blurRadius: Optional\<number>, options?: BlurOptions, sysOptions?: SystemAdaptiveOptions): T
 
-Applies a foreground blur effect to the component. Compared to [blur<sup>18+</sup>](#blur18), this API adds the **sysOptions** parameter, which allows for system adaptive adjustments.
+Applies a foreground blur effect to the component. Compared with [blur<sup>18+</sup>](#blur18), this API adds the **sysOptions** parameter, which allows for system adaptive adjustments.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 19.
 
@@ -110,7 +110,7 @@ Applies a shadow effect to the component.
 
 shadow(options: Optional\<ShadowOptions | ShadowStyle>): T
 
-Applies a shadow effect to the component. Compared to [shadow](#shadow), this API supports the **undefined** type for the **options** parameter.
+Applies a shadow effect to the component. Compared with [shadow](#shadow), this API supports the **undefined** type for the **options** parameter.
 
 **Widget capability**: Since API version 18, this API is supported in ArkTS widgets. Yet, the [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10) type is not supported in ArkTS widgets.
 
@@ -158,7 +158,7 @@ Applies a grayscale effect to the component.
 
 grayscale(grayscale: Optional\<number>): T
 
-Applies a grayscale effect to the component. Compared to [grayscale](#grayscale), this API supports the **undefined** type for the **grayscale** parameter.
+Applies a grayscale effect to the component. Compared with [grayscale](#grayscale), this API supports the **undefined** type for the **grayscale** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -206,7 +206,7 @@ Applies a brightness effect to the component.
 
 brightness(brightness: Optional\<number>): T
 
-Applies a brightness effect to the component. Compared to [brightness](#brightness), this API supports the **undefined** type for the **brightness** parameter.
+Applies a brightness effect to the component. Compared with [brightness](#brightness), this API supports the **undefined** type for the **brightness** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -254,7 +254,7 @@ Applies a saturation effect to the component.
 
 saturate(saturate: Optional\<number>): T
 
-Applies a saturation effect to the component. Compared to [saturate](#saturate), the **saturate** parameter supports the **undefined** type.
+Applies a saturation effect to the component. Compared with [saturate](#saturate), the **saturate** parameter supports the **undefined** type.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -302,7 +302,7 @@ Applies a contrast effect to the component.
 
 contrast(contrast: Optional\<number>): T
 
-Applies a contrast effect to the component. Compared to [contrast](#contrast), this API supports the **undefined** type for the **contrast** parameter.
+Applies a contrast effect to the component. Compared with [contrast](#contrast), this API supports the **undefined** type for the **contrast** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -350,7 +350,7 @@ Inverts the image.
 
 invert(options: Optional\<number | InvertOptions>): T
 
-Inverts the image. Compared to [invert](#invert), this API supports the **undefined** type for the **options** parameter.
+Inverts the image. Compared with [invert](#invert), this API supports the **undefined** type for the **options** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -398,7 +398,7 @@ Converts the image to a sepia tone, reducing color intensity to create a warm, v
 
 sepia(sepia: Optional\<number>): T
 
-Converts the image to a sepia tone, reducing color intensity to create a warm, vintage image style. Compared to [sepia](#sepia), this API supports the **undefined** type for the **sepia** parameter.
+Converts the image to a sepia tone, reducing color intensity to create a warm, vintage image style. Compared with [sepia](#sepia), this API supports the **undefined** type for the **sepia** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -446,7 +446,7 @@ Rotates the hue of the component.
 
 hueRotate(rotation: Optional\<number | string>): T
 
-Rotates the hue of the component. Compared to [hueRotate](#huerotate), this API supports the **undefined** type for the **rotation** parameter.
+Rotates the hue of the component. Compared with [hueRotate](#huerotate), this API supports the **undefined** type for the **rotation** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -494,7 +494,7 @@ Applies a color blend effect to the component.
 
 colorBlend(color: Optional\<Color | string | Resource>): T
 
-Applies a color blend effect to the component. Compared to [colorBlend<sup>7+</sup>](#colorblend7), this API supports the **undefined** type for the **color** parameter.
+Applies a color blend effect to the component. Compared with [colorBlend<sup>7+</sup>](#colorblend7), this API supports the **undefined** type for the **color** parameter.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -541,7 +541,7 @@ Applies a linear gradient foreground blur effect to the component.
 
 linearGradientBlur(value: Optional\<number>, options: Optional\<LinearGradientBlurOptions>): T
 
-Applies a linear gradient foreground blur effect to the component. Compared to [linearGradientBlur<sup>12+</sup>](#lineargradientblur12), the **value** parameter supports the **undefined** type.
+Applies a linear gradient foreground blur effect to the component. Compared with [linearGradientBlur<sup>12+</sup>](#lineargradientblur12), the **value** parameter supports the **undefined** type.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -586,7 +586,7 @@ Sets whether the component and its child components are rendered off the screen 
 
 renderGroup(isGroup: Optional\<boolean>): T
 
-Sets whether the component and its child components are rendered off the screen as a whole before being blended with its parent. Compared to [renderGroup<sup>10+</sup>](#rendergroup10), this API supports the **undefined** type for the **isGroup** parameter.
+Sets whether the component and its child components are rendered off the screen as a whole before being blended with its parent. Compared with [renderGroup<sup>10+</sup>](#rendergroup10), this API supports the **undefined** type for the **isGroup** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -633,7 +633,7 @@ Defines how the component's content (including the content of it child component
 
 blendMode(mode: Optional\<BlendMode>, type?: BlendApplyType): T
 
-Defines how the component's content (including the content of it child components) is blended with the existing content on the canvas (possibly offscreen canvas) below. Compared to [blendMode<sup>11+</sup>](#blendmode11), this API supports the **undefined** type for the **mode** parameter.
+Defines how the component's content (including the content of it child components) is blended with the existing content on the canvas (possibly offscreen canvas) below. Compared with [blendMode<sup>11+</sup>](#blendmode11), this API supports the **undefined** type for the **mode** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -697,7 +697,7 @@ Sets whether to draw shadows of child nodes in the component at the same layer, 
 
 useShadowBatching(use: Optional\<boolean>): T
 
-Sets whether to draw shadows of child nodes in the component at the same layer, so that the shadows of elements at the same layer overlap. Compared to [useShadowBatching<sup>11+</sup>](#useshadowbatching11), this API supports the **undefined** type for the **use** parameter.
+Sets whether to draw shadows of child nodes in the component at the same layer, so that the shadows of elements at the same layer overlap. Compared with [useShadowBatching<sup>11+</sup>](#useshadowbatching11), this API supports the **undefined** type for the **use** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -743,7 +743,7 @@ Applies a spherical effect to the component.
 
 sphericalEffect(effect: Optional\<number>): T
 
-Applies a spherical effect to the component. Compared to [sphericalEffect<sup>12+</sup>](#sphericaleffect12), this API supports the **undefined** type for the **effect** parameter.
+Applies a spherical effect to the component. Compared with [sphericalEffect<sup>12+</sup>](#sphericaleffect12), this API supports the **undefined** type for the **effect** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -787,7 +787,7 @@ Applies a light up effect to the component.
 
 lightUpEffect(degree: Optional\<number>): T
 
-Applies a light up effect to the component. Compared to [lightUpEffect<sup>12+</sup>](#lightupeffect12), this API supports the **undefined** type for the **degree** parameter.
+Applies a light up effect to the component. Compared with [lightUpEffect<sup>12+</sup>](#lightupeffect12), this API supports the **undefined** type for the **degree** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -831,7 +831,7 @@ Applies a pixel stretch effect to the component.
 
 pixelStretchEffect(options: Optional\<PixelStretchEffectOptions>): T
 
-Applies a pixel stretch effect to the component. Compared to [pixelStretchEffect<sup>12+</sup>](#pixelstretcheffect12), this API supports the **undefined** type for the **options** parameter.
+Applies a pixel stretch effect to the component. Compared with [pixelStretchEffect<sup>12+</sup>](#pixelstretcheffect12), this API supports the **undefined** type for the **options** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -1048,7 +1048,7 @@ Sets whether to freeze the component. When frozen, the component and its childre
 
 freeze(freeze: Optional\<boolean>): T
 
-Sets whether to freeze the component. When frozen, the component and its children are cached for repeated drawing after offscreen rendering, without updating internal attributes. Compared to [freeze](#freeze12), this API supports the **undefined** type for the **freeze** parameter.
+Sets whether to freeze the component. When frozen, the component and its children are cached for repeated drawing after offscreen rendering, without updating internal attributes. Compared with [freeze](#freeze12), this API supports the **undefined** type for the **freeze** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
