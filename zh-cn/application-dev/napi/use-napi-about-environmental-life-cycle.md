@@ -77,7 +77,7 @@ export const setInstanceData: (data: number) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 let data = 5;
 let value = testNapi.setInstanceData(data);
@@ -116,7 +116,7 @@ export const getInstanceData: () => number;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 let data = 5;
 testNapi.setInstanceData(data);
