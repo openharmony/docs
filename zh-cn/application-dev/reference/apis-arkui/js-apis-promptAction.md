@@ -54,13 +54,15 @@ openToast(options: ShowToastOptions): Promise&lt;number&gt;
 > 直接使用openToast可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[openToast](js-apis-arkui-UIContext.md#opentoast18)实现。
 
 ```ts
-import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { PromptAction, UIContext } from "@ohos.arkui.UIContext";
 
 @Entry
 @Component
 struct toastExample {
   @State toastId: number = 0;
+  uiContext: UIContext = this.getUIContext();
+  promptAction: PromptAction = this.uiContext.getPromptAction();
 
   build() {
     Column() {
@@ -68,28 +70,28 @@ struct toastExample {
         .height(100)
         .type(ButtonType.Capsule)
         .onClick(() => {
-          promptAction.openToast({
+          this.promptAction.openToast({
             message: 'Toast Massage',
             duration: 10000,
           }).then((toastId: number) => {
             this.toastId = toastId;
           })
             .catch((error: BusinessError) => {
-              console.error(`openToast error code is ${error.code}, message is ${error.message}`)
+              console.error(`openToast error code is ${error.code}, message is ${error.message}`);
             })
         })
-      Blank().height(50);
+      Blank().height(50)
       Button('Close Toast')
         .height(100)
         .type(ButtonType.Capsule)
         .onClick(() => {
           try {
-            promptAction.closeToast(this.toastId);
+            this.promptAction.closeToast(this.toastId);
           } catch (error) {
             let message = (error as BusinessError).message;
             let code = (error as BusinessError).code;
             console.error(`CloseToast error code is ${code}, message is ${message}`);
-          };
+          }
         })
     }.height('100%').width('100%').justifyContent(FlexAlign.Center)
   }
