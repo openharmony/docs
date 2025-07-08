@@ -1,10 +1,10 @@
 # TaskPool任务与宿主线程通信
 
-如果一个Task不仅需要返回最终的执行结果，还需要定时通知宿主线程状态和数据的变化，或者需要分段返回大量数据（例如，从数据库中读取大量数据），可以通过以下方式实现。
+如果Task不仅需要返回最终执行结果，还需定时通知宿主线程状态和数据变化，或分段返回大量数据（如从数据库读取大量数据），可按以下方式实现。
 
 下面以多个图片加载任务结果实时返回为例说明。
 
-1. 首先，实现一个方法，用来接收Task发送的消息。
+1. 实现接收Task消息的方法。
 
    ```ts
    // TaskSendDataUsage.ets
@@ -14,7 +14,7 @@
    ```
    <!-- @[receive_task_message](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/TaskSendDataUsage.ets) -->
 
-2. 然后，在需要执行的Task中，添加sendData()接口将消息发送给宿主线程。
+2. 在需要执行的Task中，添加sendData()接口将消息发送给宿主线程。
 
    ```ts
    // IconItemSource.ets
