@@ -843,7 +843,7 @@ setWindowContainerColor(activeColor: string, inactiveColor: string): void
 
 设置主窗口容器在焦点态和非焦点态时的背景色，仅支持2in1设备。在Stage模型下，该接口需在调用[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)后使用。
 
-窗口容器背景色是整个窗口的最外层背景色，它覆盖了窗口的全部区域，包括标题栏和内容区域的背景，与窗口背景色形成区别。
+窗口容器背景色是整个窗口的最外层背景色，它覆盖了窗口的全部区域，包括标题栏和内容区域的背景。当同时使用该接口和[setWindowBackgroundColor()](#setwindowbackgroundcolor9)设置背景色时，内容区域将显示窗口背景色，标题栏将显示窗口容器背景色。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
