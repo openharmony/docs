@@ -58,11 +58,11 @@
       },
       // 任务快照变化
       onMissionSnapshotChanged: (mission: number) => {
-        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionMovedToFront-------');
+        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionSnapshotChanged-------');
       },
       // 任务被移动到前台
       onMissionMovedToFront: (mission: number) => {
-        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionClosed-------');
+        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionMovedToFront-------');
       },
       // 任务图标变化
       onMissionIconUpdated: (mission: number, icon: image.PixelMap) => {
@@ -131,13 +131,14 @@
     missionManager.getMissionSnapShot('', this.missionId,
       (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
         if (error === null) {
+          hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
           this.getUIContext().getPromptAction().showToast({
             message: 'obtain_snapshot_success_toast'
           });
+        } else {
+          hilog.error(DOMAIN_NUMBER, TAG,
+              `getMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
         }
-        hilog.error(DOMAIN_NUMBER, TAG,
-          `getMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
-        hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
       });
     ```
     ```ts
@@ -145,13 +146,14 @@
     missionManager.getLowResolutionMissionSnapShot('', this.missionId,
       (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
         if (error === null) {
+          hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
           this.getUIContext().getPromptAction().showToast({
             message: 'obtain_low_snapshot_success_toast'
           });
+        } else {
+          hilog.error(DOMAIN_NUMBER, TAG,
+              `getLowResolutionMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
         }
-        hilog.error(DOMAIN_NUMBER, TAG,
-          `getLowResolutionMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
-        hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
       });
     ```
     ```ts
