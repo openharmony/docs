@@ -100,7 +100,7 @@ struct Index {
               .fontSize(50)
               .fontWeight(FontWeight.Bold)
               .onClick(() => {
-                let w: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
+                let w: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ets');
                 w.onmessage = (): void => {
                   // 接收Worker子线程的结果
                 }
@@ -140,9 +140,10 @@ struct Index {
     ```
     
     ```ts
-    // MyWorker.ts代码
+    // Worker.ets
     import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS';
-    import Handle from './handle';  // 返回句柄
+    // 返回句柄
+    import Handle from './handle';
     
     let workerPort : ThreadWorkerGlobalScope = worker.workerPort;
     
