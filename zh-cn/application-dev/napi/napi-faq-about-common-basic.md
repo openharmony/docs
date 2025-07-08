@@ -23,7 +23,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule()
   
 - 排查建议：  
 1. 可根据以下文档进行排查：     
-[ArkTS侧import xxx from libxxx.so后，使用xxx报错显示undefined/not callable或明确的Error message](napi-faq-about-common-basic.md#ArkTS侧报错显示undefined)  
+[ArkTS侧import xxx from libxxx.so后，使用xxx报错显示undefined/not callable或明确的Error message](napi-faq-about-common-basic.md#arkts侧报错显示undefined)  
 [模块注册与模块命名](napi-guidelines.md#模块注册与模块命名)  
 2. 同时也可参考动态加载能力是否可以满足该场景  
 [napi_load_module_with_info支持的场景](use-napi-load-module-with-info.md#napi_load_module_with_info支持的场景)  
