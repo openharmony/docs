@@ -1,6 +1,6 @@
 # 使用TaskPool执行独立的耗时任务
 
-对于独立运行的耗时任务，任务执行完毕后将结果返回给宿主线程，没有上下文依赖，可采用以下方式实现。
+对于独立运行的耗时任务，任务完成后将结果返回给宿主线程。可采用以下方式实现。
 
 下面通过图片加载来说明。
 
@@ -44,7 +44,7 @@
    ```
    <!-- @[implement_child_thread_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IndependentTask.ets) -->
 
-2. 使用TaskPool中的execute方法执行上述任务，加载图片。
+2. 使用TaskPool的execute方法执行任务，加载图片。
 
    ```ts
    // Index.ets

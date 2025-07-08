@@ -4,9 +4,9 @@
 
 开发过程和示例如下：
 
-1. DevEco Studio支持一键生成Worker，在对应的{moduleName}目录下任意位置，点击鼠标右键 &gt; New &gt; Worker，即可自动生成Worker的模板文件及配置信息。本文以创建“Worker”为例。
+1. DevEco Studio支持一键生成Worker，在对应的{moduleName}目录下任意位置，单击鼠标右键 &gt; New &gt; Worker，即可自动生成Worker的模板文件及配置信息。本文以创建“Worker”为例。
 
-   此外，还支持手动创建Worker文件，具体方式和相关注意事项请参见[创建Worker的注意事项](worker-introduction.md#创建worker的注意事项)。
+   此外，还支持手动创建Worker文件。具体方式和注意事项请参见[创建Worker的注意事项](worker-introduction.md#创建worker的注意事项)。
 
 2. 导入Worker模块。
 
@@ -15,7 +15,7 @@
    import { worker } from '@kit.ArkTS';
    ```
 
-3. 在宿主线程中通过调用ThreadWorker的[constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9)方法创建Worker对象，当前线程为宿主线程。
+3. 在宿主线程中通过调用ThreadWorker的[constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9)方法创建Worker对象，创建Worker对象的线程为宿主线程。
 
    ```ts
    // Index.ets
