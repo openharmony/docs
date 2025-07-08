@@ -212,7 +212,7 @@
 
 参考以下示例，使用worker线程的方式来实现异步线程进行转码。
 
-1. 新建工程，下载[完整示例工程](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVTranscoder/AsyncTranscoder)，并将示例工程的资源复制到对应目录。
+1. 新建工程，下载[完整示例工程](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVTranscoder/AsyncTranscoder)，并将示例工程的资源复制到对应目录。
     ```
     AsyncTranscoder
     entry/build-profile.json5 (配置字段信息将Worker线程文件打包到应用)
