@@ -71,8 +71,8 @@
    |conditionUpdate|表示卡片的支持的条件刷新（仅对系统应用的ArkTS卡片生效）。取值范围如下：<br/>-&nbsp;network：表示支持网络刷新。|字符串|可缺省，缺省值为空字符串。|
    |[funInteractionParams](#funinteractionparams标签)| 趣味交互类型互动卡片扩展字段。| 对象 | 可缺省，缺省为空。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。|
    |[sceneAnimationParams](#sceneanimationparams标签)| 场景动效类型互动卡片扩展字段。| 对象 | 可缺省，缺省为空。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。|
-   | resizable | 表示卡片是否可以调整大小。<br/>-&nbsp;true：可以调整大小。<br/>-&nbsp;false：不可以调整大小。| 布尔类型 | 可缺省，缺省值为false。 |
-   | groupId | 表示功能相似大小不同的一组卡片的共同id。当多张卡片的groupId相同且resizable都为true时，表示允许用户在这多张卡片之间调整大小。 | 字符串 | 可缺省，缺省值为false。 |
+   | resizable | 表示卡片使用用户是否可以拖拽卡片调整大小。调整值必须在该卡片或者同groupId卡片supportDimensions配置的列表中。<br/>-&nbsp;true：可以调整大小。<br/>-&nbsp;false：不可以调整大小。<br/>**说明：**<br/>从API version 20开始，支持该字段。 | 布尔类型 | 可缺省，缺省值为false。 |
+   | groupId | 表示功能相似大小不同的一组卡片的共同id。当多张卡片的groupId相同且resizable都为true时，表示允许卡片使用用户在这多张卡片之间调整大小。<br/>**说明：**<br/>从API version 20开始，支持该字段。 | 字符串 | 可缺省，缺省值为false。 |
 
 ### isDynamic标签
 

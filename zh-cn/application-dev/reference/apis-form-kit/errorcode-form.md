@@ -239,7 +239,8 @@ The dimension parameter is incorrect.
 
 **处理步骤**
 
-确认入参卡片尺寸是否正确。
+1.检查入参卡片尺寸是否在[FormDimension](js-apis-app-form-formInfo.md#formdimension)范围内。
+2.检查入参卡片尺寸是否在卡片[supportDimensions](../../form/arkts-ui-widget-configuration.md#配置文件字段说明)配置的列表中
 
 ## 2293761 内部服务错误
 
