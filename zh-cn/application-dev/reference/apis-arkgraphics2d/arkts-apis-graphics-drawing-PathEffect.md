@@ -2,11 +2,13 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 本模块使用屏幕物理像素单位px。
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
+
+路径效果对象。
 
 ## 导入模块
 
@@ -14,11 +16,7 @@
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## PathEffect<sup>12+</sup>
-
-路径效果对象。
-
-### createDashPathEffect<sup>12+</sup>
+## createDashPathEffect<sup>12+</sup>
 
 static createDashPathEffect(intervals:  Array\<number>, phase: number): PathEffect
 
@@ -62,7 +60,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createPathDashEffect<sup>18+</sup>
+## createPathDashEffect<sup>18+</sup>
 
 static createPathDashEffect(path: Path, advance: number, phase: number, style: PathDashStyle): PathEffect
 
@@ -131,7 +129,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createSumPathEffect<sup>18+</sup>
+## createSumPathEffect<sup>18+</sup>
 
 static createSumPathEffect(firstPathEffect: PathEffect, secondPathEffect: PathEffect): PathEffect
 
@@ -169,7 +167,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createCornerPathEffect<sup>12+</sup>
+## createCornerPathEffect<sup>12+</sup>
 
 static createCornerPathEffect(radius: number): PathEffect
 
@@ -211,7 +209,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createDiscretePathEffect<sup>18+</sup>
+## createDiscretePathEffect<sup>18+</sup>
 
 static createDiscretePathEffect(segLength: number, dev: number, seedAssist?: number): PathEffect
 
@@ -247,7 +245,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createComposePathEffect<sup>18+</sup>
+## createComposePathEffect<sup>18+</sup>
 
 static createComposePathEffect(outer: PathEffect, inner: PathEffect): PathEffect
 

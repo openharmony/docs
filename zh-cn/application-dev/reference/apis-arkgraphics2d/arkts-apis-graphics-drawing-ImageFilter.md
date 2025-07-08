@@ -2,11 +2,13 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 本模块使用屏幕物理像素单位px。
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
+
+图像滤波器。
 
 ## 导入模块
 
@@ -14,11 +16,7 @@
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## ImageFilter<sup>12+</sup>
-
-图像滤波器。
-
-### createBlurImageFilter<sup>12+</sup>
+## createBlurImageFilter<sup>12+</sup>
 
 static createBlurImageFilter(sigmaX: number, sigmaY: number, tileMode: TileMode, imageFilter?: ImageFilter | null ): ImageFilter
 
@@ -56,7 +54,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 
 let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, drawing.TileMode.CLAMP);
 ```
-### createFromImage<sup>20+</sup>
+## createFromImage<sup>20+</sup>
 
 static createFromImage(pixelmap: image.PixelMap, srcRect?: common2D.Rect | null, dstRect?: common2D.Rect | null): ImageFilter
 
@@ -97,7 +95,7 @@ class DrawingRenderNode extends RenderNode {
   }
 }
 ```
-### createBlendImageFilter<sup>20+</sup>
+## createBlendImageFilter<sup>20+</sup>
 
 static createBlendImageFilter(mode: BlendMode, background: ImageFilter, foreground: ImageFilter): ImageFilter
 
@@ -140,7 +138,7 @@ let y = 30.0;
 let offsetFilter2 = drawing.ImageFilter.createOffsetImageFilter(x, y, null);
 let blendImageFilter = drawing.ImageFilter.createBlendImageFilter(drawing.BlendMode.SRC_IN, offsetFilter1, offsetFilter2);
 ```
-### createComposeImageFilter<sup>20+</sup>
+## createComposeImageFilter<sup>20+</sup>
 
 static createComposeImageFilter(cOuter: ImageFilter, cInner: ImageFilter): ImageFilter
 
@@ -179,7 +177,7 @@ let redRemovalFilter = drawing.ColorFilter.createMatrixColorFilter(colorMatrix);
 let colorFilter = drawing.ImageFilter.createFromColorFilter(redRemovalFilter, null);
 let composedImageFilter = drawing.ImageFilter.createComposeImageFilter(colorFilter, blurFilter);
 ```
-### createFromColorFilter<sup>12+</sup>
+## createFromColorFilter<sup>12+</sup>
 
 static createFromColorFilter(colorFilter: ColorFilter, imageFilter?: ImageFilter | null): ImageFilter
 
@@ -216,7 +214,7 @@ let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, drawing.TileMod
 let clolorfilter = drawing.ColorFilter.createSRGBGammaToLinear();
 let imgFilter1 = drawing.ImageFilter.createFromColorFilter(clolorfilter, imgFilter);
 ```
-### createOffsetImageFilter<sup>20+</sup>
+## createOffsetImageFilter<sup>20+</sup>
 
 static createOffsetImageFilter(dx: number, dy: number, input?: ImageFilter | null): ImageFilter
 
@@ -248,7 +246,7 @@ let dy = 10.0;
 let offsetFilter = drawing.ImageFilter.createOffsetImageFilter(dx, dy, null);
 ```
 
-### createFromShaderEffect<sup>20+</sup>
+## createFromShaderEffect<sup>20+</sup>
 
 static createFromShaderEffect(shader: ShaderEffect): ImageFilter
 

@@ -2,19 +2,11 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 本模块使用屏幕物理像素单位px。
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
-
-## 导入模块
-
-```ts
-import { drawing } from '@kit.ArkGraphics2D';
-```
-
-## RectUtils<sup>20+</sup>
 
 提供了处理矩形的工具。
 
@@ -24,7 +16,13 @@ import { drawing } from '@kit.ArkGraphics2D';
 
 2. 边界计算与调整，如获取包含关系、计算与更新矩形之间交集和并集，更新边界值等。
 
-### makeEmpty<sup>20+</sup>
+## 导入模块
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+```
+
+## makeEmpty<sup>20+</sup>
 
 static makeEmpty(): common2D.Rect
 
@@ -46,7 +44,7 @@ import { drawing, common2D } from '@kit.ArkGraphics2D';
 let rect = drawing.RectUtils.makeEmpty();
 ```
 
-### makeLtrb<sup>20+</sup>
+## makeLtrb<sup>20+</sup>
 
 static makeLtrb(left: number, top: number, right: number, bottom: number): common2D.Rect
 
@@ -77,7 +75,7 @@ import { drawing, common2D } from '@kit.ArkGraphics2D';
 let rect = drawing.RectUtils.makeLtrb(10, 10, 20, 20);
 ```
 
-### makeCopy<sup>20+</sup>
+## makeCopy<sup>20+</sup>
 
 static makeCopy(src: common2D.Rect): common2D.Rect
 
@@ -110,7 +108,7 @@ console.info('rect2.right: ', rect2.right);
 console.info('rect2.bottom: ', rect2.bottom);
 ```
 
-### getWidth<sup>20+</sup>
+## getWidth<sup>20+</sup>
 
 static getWidth(rect: common2D.Rect): number
 
@@ -140,7 +138,7 @@ let width = drawing.RectUtils.getWidth(rect);
 console.info('width ：', width);
 ```
 
-### getHeight<sup>20+</sup>
+## getHeight<sup>20+</sup>
 
 static getHeight(rect: common2D.Rect): number
 
@@ -168,7 +166,7 @@ let rect = drawing.RectUtils.makeLtrb(10, 10, 20, 20);
 let height = drawing.RectUtils.getHeight(rect);
 ```
 
-### centerX<sup>20+</sup>
+## centerX<sup>20+</sup>
 
 static centerX(rect: common2D.Rect): number
 
@@ -196,7 +194,7 @@ let rect = drawing.RectUtils.makeLtrb(20, 30, 30, 40);
 let x = drawing.RectUtils.centerX(rect);
 ```
 
-### centerY<sup>20+</sup>
+## centerY<sup>20+</sup>
 
 static centerY(rect: common2D.Rect): number
 
@@ -224,7 +222,7 @@ let rect = drawing.RectUtils.makeLtrb(20, 30, 30, 40);
 let x = drawing.RectUtils.centerY(rect);
 ```
 
-### contains<sup>20+</sup>
+## contains<sup>20+</sup>
 
 static contains(rect: common2D.Rect, other: common2D.Rect): boolean
 
@@ -255,7 +253,7 @@ let isContains = drawing.RectUtils.contains(rect2, rect);
 console.info('isContains: ', isContains);
 ```
 
-### contains<sup>20+</sup>
+## contains<sup>20+</sup>
 
 static contains(rect: common2D.Rect, left: number, top: number, right: number, bottom: number): boolean
 
@@ -288,7 +286,7 @@ let isContains = drawing.RectUtils.contains(rect, 10, 20, 30, 40);
 console.info('isContains :', isContains);
 ```
 
-### contains<sup>20+</sup>
+## contains<sup>20+</sup>
 
 static contains(rect: common2D.Rect, x: number, y: number): boolean
 
@@ -319,7 +317,7 @@ let isContains = drawing.RectUtils.contains(rect, 10, 20);
 console.info('isContains: ', isContains);
 ```
 
-### inset<sup>20+</sup>
+## inset<sup>20+</sup>
 
 static inset(rect: common2D.Rect, left: number, top: number, right: number, bottom: number): void
 
@@ -349,7 +347,7 @@ console.info('rect.right: ', rect.right);
 console.info('rect.bottom: ', rect.bottom);
 ```
 
-### intersect<sup>20+</sup>
+## intersect<sup>20+</sup>
 
 static intersect(rect: common2D.Rect, other: common2D.Rect): boolean
 
@@ -384,7 +382,7 @@ console.info('rect.right: ', rect.right);
 console.info('rect.bottom: ', rect.bottom);
 ```
 
-### isIntersect<sup>20+</sup>
+## isIntersect<sup>20+</sup>
 
 static isIntersect(rect: common2D.Rect, other: common2D.Rect): boolean
 
@@ -415,7 +413,7 @@ let isIntersect = drawing.RectUtils.isIntersect(rect, rect2);
 console.info('isIntersect :', isIntersect);
 ```
 
-### union<sup>20+</sup>
+## union<sup>20+</sup>
 
 static union(rect: common2D.Rect, other: common2D.Rect): void
 
@@ -443,7 +441,7 @@ console.info('rect.right: ', rect.right);
 console.info('rect.bottom: ', rect.bottom);
 ```
 
-### isEmpty<sup>20+</sup>
+## isEmpty<sup>20+</sup>
 
 static isEmpty(rect: common2D.Rect): boolean
 
@@ -475,7 +473,7 @@ isEmpty = drawing.RectUtils.isEmpty(rect);
 console.info('isEmpty :', isEmpty);
 ```
 
-### offset<sup>20+</sup>
+## offset<sup>20+</sup>
 
 static offset(rect: common2D.Rect, dx: number, dy: number): void
 
@@ -503,7 +501,7 @@ console.info('rect.right: ', rect.right);
 console.info('rect.bottom: ', rect.bottom);
 ```
 
-### offsetTo<sup>20+</sup>
+## offsetTo<sup>20+</sup>
 
 static offsetTo(rect: common2D.Rect, newLeft: number, newTop: number): void
 
@@ -531,7 +529,7 @@ console.info('rect.right: ', rect.right);
 console.info('rect.bottom: ', rect.bottom);
 ```
 
-### setRect<sup>20+</sup>
+## setRect<sup>20+</sup>
 
 static setRect(rect: common2D.Rect, other: common2D.Rect): void
 
@@ -559,7 +557,7 @@ console.info('rect2.right: ', rect2.right);
 console.info('rect2.bottom: ', rect2.bottom);
 ```
 
-### setLtrb<sup>20+</sup>
+## setLtrb<sup>20+</sup>
 
 static setLtrb(rect: common2D.Rect, left: number, top: number, right: number, bottom: number): void
 
@@ -589,7 +587,7 @@ console.info('rect.right: ', rect.right);
 console.info('rect.bottom: ', rect.bottom);
 ```
 
-### setEmpty<sup>20+</sup>
+## setEmpty<sup>20+</sup>
 
 static setEmpty(rect: common2D.Rect): void
 
@@ -615,7 +613,7 @@ console.info('rect.right: ', rect.right);
 console.info('rect.bottom: ', rect.bottom);
 ```
 
-### sort<sup>20+</sup>
+## sort<sup>20+</sup>
 
 static sort(rect: common2D.Rect): void
 
@@ -643,7 +641,7 @@ console.info('rect.right: ', rect.right);
 console.info('rect.bottom: ', rect.bottom);
 ```
 
-### isEqual<sup>20+</sup>
+## isEqual<sup>20+</sup>
 
 static isEqual(rect: common2D.Rect, other: common2D.Rect): boolean
 
