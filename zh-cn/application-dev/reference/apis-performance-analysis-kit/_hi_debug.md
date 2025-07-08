@@ -947,6 +947,11 @@ HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemory (uint32_t * value)
 
 获取应用gpu显存大小。
 
+> **注意：**
+>
+> 由于该接口涉及多次跨进程通信，其耗时可能超过1秒。为了避免引入性能问题，请勿在主线程中直接调用该接口。
+>
+
 **起始版本：** 14
 
 **参数:**

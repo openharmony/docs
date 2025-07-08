@@ -1029,7 +1029,8 @@ getGraphicsMemorySync(): number
 
 > **注意：**
 >
-> 该接口涉及多次跨进程通信，可能存在性能问题，推荐使用异步接口`getGraphicsMemory`。
+> 由于该接口涉及多次跨进程通信，其耗时可能超过1秒。为了避免引入性能问题，请勿在主线程调用该接口，推荐使用异步接口`getGraphicsMemory`。
+>
 
 **原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
