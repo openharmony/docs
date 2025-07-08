@@ -8,15 +8,13 @@
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
 
+采样选项对象。
+
 ## 导入模块
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
 ```
-
-## SamplingOptions<sup>12+</sup>
-
-采样选项对象。
 
 ## constructor<sup>12+</sup>
 
