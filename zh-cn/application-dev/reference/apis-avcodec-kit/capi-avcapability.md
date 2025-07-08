@@ -1,0 +1,14 @@
+# AVCapability
+
+## 概述
+
+AVCapability模块提供用于编解码能力查询的函数。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 10
+## 文件汇总
+
+| 名称 | 描述 |
+| -- | -- |
+| [native_avcapability.h](capi-native-avcapability-h.md) | 声明用于编解码能力查询到的Native API。 |
