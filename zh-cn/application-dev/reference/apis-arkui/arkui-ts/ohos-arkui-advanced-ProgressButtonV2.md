@@ -115,7 +115,7 @@ import { LengthMetrics, ProgressButtonV2 } from '@kit.ArkUI';
 struct Index {
   @Local progressIndex: number = 0;
   @Local textState: string = '下载';
-  @Local ButtonWidth: LengthMetrics = LengthMetrics.vp(200);
+  @Local buttonWidth: LengthMetrics = LengthMetrics.vp(200);
   @Local isRunning: boolean = false;
   @Local enableState: boolean = true;
 
@@ -125,7 +125,7 @@ struct Index {
         Column({ space: 20 }) {
           ProgressButtonV2({
             progress: this.progressIndex,
-            progressButtonWidth: this.ButtonWidth,
+            progressButtonWidth: this.buttonWidth,
             content: this.textState,
             isEnabled: this.enableState,
             onClicked: () => {
