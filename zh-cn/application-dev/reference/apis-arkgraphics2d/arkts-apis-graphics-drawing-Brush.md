@@ -44,7 +44,7 @@ constructor(brush: Brush)
 
 | 参数名 | 类型        | 必填 | 说明              |
 | ------| ----------- | ---- | ---------------- |
-| brush     | [Brush](#brush) | 是   | 待复制的画刷对象。 |
+| brush     | [Brush](arkts-apis-graphics-drawing-Brush.md) | 是   | 待复制的画刷对象。 |
 
 **错误码：**
 

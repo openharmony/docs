@@ -2,7 +2,9 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本Class首批接口从API version 12开始支持。
 >
 > - 本模块使用屏幕物理像素单位px。
 >
@@ -53,7 +55,7 @@ constructor(matrix: Matrix)
 
 | 参数名         | 类型                                       | 必填   | 说明                  |
 | ----------- | ---------------------------------------- | ---- | ------------------- |
-| matrix      | [Matrix](#matrix12)                  | 是    | 被拷贝的矩阵。|
+| matrix      | [Matrix](arkts-apis-graphics-drawing-Matrix.md)                  | 是    | 被拷贝的矩阵。|
 
 **示例：**
 
@@ -311,7 +313,7 @@ preConcat(matrix: Matrix): void
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| matrix  | [Matrix](#matrix12) | 是   | 表示矩阵对象，位于乘法表达式右侧。 |
+| matrix  | [Matrix](arkts-apis-graphics-drawing-Matrix.md) | 是   | 表示矩阵对象，位于乘法表达式右侧。 |
 
 **错误码：**
 
@@ -343,7 +345,7 @@ setMatrix(matrix: Array\<number\> \| Matrix): void
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| matrix | Array\<number\> \| [Matrix](#matrix12) | 是   | 用于更新的数组或矩阵。 |
+| matrix | Array\<number\> \| [Matrix](arkts-apis-graphics-drawing-Matrix.md) | 是   | 用于更新的数组或矩阵。 |
 
 **示例：**
 
@@ -366,8 +368,8 @@ setConcat(matrixA: Matrix, matrixB: Matrix): void
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| matrixA  | [Matrix](#matrix12) | 是   | 用于运算的矩阵A。 |
-| matrixB  | [Matrix](#matrix12) | 是   | 用于运算的矩阵B。 |
+| matrixA  | [Matrix](arkts-apis-graphics-drawing-Matrix.md) | 是   | 用于运算的矩阵A。 |
+| matrixB  | [Matrix](arkts-apis-graphics-drawing-Matrix.md) | 是   | 用于运算的矩阵B。 |
 
 **示例：**
 
@@ -391,7 +393,7 @@ postConcat(matrix: Matrix): void
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| matrix | [Matrix](#matrix12) | 是   | 用于运算的矩阵。 |
+| matrix | [Matrix](arkts-apis-graphics-drawing-Matrix.md) | 是   | 用于运算的矩阵。 |
 
 **示例：**
 
@@ -423,7 +425,7 @@ isEqual(matrix: Matrix): Boolean
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| matrix  | [Matrix](#matrix12) | 是   | 另一个矩阵。 |
+| matrix  | [Matrix](arkts-apis-graphics-drawing-Matrix.md) | 是   | 另一个矩阵。 |
 
 **返回值：**
 
@@ -467,7 +469,7 @@ invert(matrix: Matrix): Boolean
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| matrix  | [Matrix](#matrix12) | 是   | 矩阵对象，用于存储获取到的逆矩阵。 |
+| matrix  | [Matrix](arkts-apis-graphics-drawing-Matrix.md) | 是   | 矩阵对象，用于存储获取到的逆矩阵。 |
 
 **返回值：**
 

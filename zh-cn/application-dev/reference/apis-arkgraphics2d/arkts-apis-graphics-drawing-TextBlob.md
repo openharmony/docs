@@ -37,7 +37,7 @@ static makeFromPosText(text: string, len: number, points: common2D.Point[], font
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [TextBlob](#textblob) | TextBlob对象。 |
+| [TextBlob](arkts-apis-graphics-drawing-TextBlob.md) | TextBlob对象。 |
 
 
 **错误码：**
@@ -118,7 +118,7 @@ static makeFromString(text: string, font: Font, encoding?: TextEncoding): TextBl
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [TextBlob](#textblob) | TextBlob对象。 |
+| [TextBlob](arkts-apis-graphics-drawing-TextBlob.md) | TextBlob对象。 |
 
 **错误码：**
 
@@ -169,7 +169,7 @@ static makeFromRunBuffer(pos: Array\<TextBlobRunBuffer>, font: Font, bounds?: co
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [TextBlob](#textblob) | TextBlob对象。 |
+| [TextBlob](arkts-apis-graphics-drawing-TextBlob.md) | TextBlob对象。 |
 
 **错误码：**
 

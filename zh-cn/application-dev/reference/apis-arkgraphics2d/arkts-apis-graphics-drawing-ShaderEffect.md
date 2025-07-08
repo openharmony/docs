@@ -2,7 +2,9 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本Class首批接口从API version 12开始支持。
 >
 > - 本模块使用屏幕物理像素单位px。
 >
@@ -28,15 +30,15 @@ static createComposeShader(dstShaderEffect: ShaderEffect, srcShaderEffect: Shade
 
 | 参数名 | 类型                                               | 必填 | 说明           |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| dstShaderEffect  | [ShaderEffect](#shadereffect12) | 是   | 在混合模式中作为目标色的着色器。 |
-| srcShaderEffect  | [ShaderEffect](#shadereffect12) | 是   | 在混合模式中作为源色的着色器。   |
+| dstShaderEffect  | [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 是   | 在混合模式中作为目标色的着色器。 |
+| srcShaderEffect  | [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 是   | 在混合模式中作为源色的着色器。   |
 | blendMode  | [BlendMode](arkts-apis-graphics-drawing-e.md#blendmode) | 是   | 混合模式。 |
 
 **返回值：**
 
 | 类型    | 说明                       |
 | ------- | ------------------------- |
-| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+| [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 返回创建的着色器对象。 |
 
 **错误码：**
 
@@ -78,7 +80,7 @@ static createImageShader(pixelmap: image.PixelMap, tileX: TileMode, tileY: TileM
 
 | 类型    | 说明                       |
 | ------- | ------------------------- |
-| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+| [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 返回创建的着色器对象。 |
 
 **错误码：**
 
@@ -125,7 +127,7 @@ static createColorShader(color: number): ShaderEffect
 
 | 类型    | 说明                       |
 | ------- | ------------------------- |
-| [ShaderEffect](#shadereffect12) | 返回具有单一颜色的着色器对象。 |
+| [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 返回具有单一颜色的着色器对象。 |
 
 **错误码：**
 
@@ -170,7 +172,7 @@ static createLinearGradient(startPt: common2D.Point, endPt: common2D.Point, colo
 
 | 类型    | 说明                       |
 | ------- | ------------------------- |
-| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+| [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 返回创建的着色器对象。 |
 
 **错误码：**
 
@@ -217,7 +219,7 @@ static createRadialGradient(centerPt: common2D.Point, radius: number, colors: Ar
 
 | 类型    | 说明                       |
 | ------- | ------------------------- |
-| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+| [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 返回创建的着色器对象。 |
 
 **错误码：**
 
@@ -264,7 +266,7 @@ static createSweepGradient(centerPt: common2D.Point, colors: Array\<number>, mod
 
 | 类型    | 说明                       |
 | ------- | ------------------------- |
-| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+| [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 返回创建的着色器对象。 |
 
 **错误码：**
 
@@ -312,7 +314,7 @@ static createConicalGradient(startPt: common2D.Point, startRadius: number, endPt
 
 | 类型    | 说明                       |
 | ------- | ------------------------- |
-| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+| [ShaderEffect](arkts-apis-graphics-drawing-ShaderEffect.md) | 返回创建的着色器对象。 |
 
 **错误码：**
 

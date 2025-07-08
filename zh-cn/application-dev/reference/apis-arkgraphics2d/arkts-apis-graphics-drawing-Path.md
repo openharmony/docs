@@ -44,7 +44,7 @@ constructor(path: Path)
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| path | [Path](#path) | 是   | 待复制的路径对象。                 |
+| path | [Path](arkts-apis-graphics-drawing-Path.md) | 是   | 待复制的路径对象。                 |
 
 **示例：**
 
@@ -71,7 +71,7 @@ set(src: Path): void
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| src | [Path](#path) | 是   | 用于更新的路径。                 |
+| src | [Path](arkts-apis-graphics-drawing-Path.md) | 是   | 用于更新的路径。                 |
 
 **示例：**
 
@@ -650,7 +650,7 @@ addPath(path: Path, matrix?: Matrix | null): void
 
 | 参数名         | 类型                                       | 必填   | 说明                  |
 | ----------- | ---------------------------------------- | ---- | ------------------- |
-| path        | [Path](#path) | 是    | 表示源路径对象。      |
+| path        | [Path](arkts-apis-graphics-drawing-Path.md) | 是    | 表示源路径对象。      |
 | matrix   | [Matrix](arkts-apis-graphics-drawing-Matrix.md)\|null  | 否   | 表示矩阵对象，默认为单位矩阵。 |
 
 **错误码：**
@@ -927,7 +927,7 @@ offset(dx: number, dy: number): Path
 
 | 类型   | 说明                |
 | ------ | ------------------ |
-| [Path](#path) | 返回当前路径偏移(dx,dy)后生成的新路径对象。 |
+| [Path](arkts-apis-graphics-drawing-Path.md) | 返回当前路径偏移(dx,dy)后生成的新路径对象。 |
 
 **错误码：**
 
@@ -960,7 +960,7 @@ op(path: Path, pathOp: PathOp): boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| path    | [Path](#path) | 是   | 路径对象，用于与当前路径合并。 |
+| path    | [Path](arkts-apis-graphics-drawing-Path.md) | 是   | 路径对象，用于与当前路径合并。 |
 | pathOp  | [PathOp](arkts-apis-graphics-drawing-e.md#pathop12)   | 是    | 路径操作类型枚举。    |
 
 **返回值：**
@@ -1206,7 +1206,7 @@ getSegment(forceClosed: boolean, start: number, stop: number, startWithMoveTo: b
 | start | number | 是   | 表示与路径起始点的距离，距离路径起始点start距离的位置即为截取路径片段的起始点，小于0时会被视作0，大于等于stop时会截取失败。该参数为浮点数。               |
 | stop | number | 是   | 表示与路径起始点的距离，距离路径起始点stop距离的位置即为截取路径片段的终点，小于等于start时会截取失败，大于路径长度时会被视作路径长度。该参数为浮点数。                  |
 | startWithMoveTo | boolean | 是   | 表示是否在目标路径执行[moveTo](#moveto)移动到截取路径片段的起始点位置。true表示执行，false表示不执行。                |
-| dst | [Path](#path) | 是   | 目标路径，截取成功时会将得到的路径片段追加到目标路径上，截取失败时不做改变。               |
+| dst | [Path](arkts-apis-graphics-drawing-Path.md) | 是   | 目标路径，截取成功时会将得到的路径片段追加到目标路径上，截取失败时不做改变。               |
 
 **返回值：**
 
@@ -1426,9 +1426,9 @@ interpolate(other: Path, weight: number, interpolatedPath: Path): boolean
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| other | [Path](#path) | 是 | 表示另一条路径对象。 |
+| other | [Path](arkts-apis-graphics-drawing-Path.md) | 是 | 表示另一条路径对象。 |
 | weight | number | 是 | 表示插值权重，必须在[0.0, 1.0]范围内。该参数为浮点数。 |
-| interpolatedPath | [Path](#path) | 是 | 表示用于存储插值结果的目标路径对象。 |
+| interpolatedPath | [Path](arkts-apis-graphics-drawing-Path.md) | 是 | 表示用于存储插值结果的目标路径对象。 |
 
 **返回值：**
 
@@ -1476,7 +1476,7 @@ isInterpolate(other: Path): boolean
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| other | [Path](#path) | 是 | 表示另一条路径对象。 |
+| other | [Path](arkts-apis-graphics-drawing-Path.md) | 是 | 表示另一条路径对象。 |
 
 **返回值：**
 

@@ -63,7 +63,7 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -111,7 +111,7 @@ inAllDevices(): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **示例：**
 
@@ -139,7 +139,7 @@ equalTo(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -177,7 +177,7 @@ notEqualTo(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -208,7 +208,7 @@ beginWrap(): RdbPredicates
 
 | 类型                                 | 说明                      |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回带有左括号的Rdb谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回带有左括号的Rdb谓词。 |
 
 **示例：**
 
@@ -234,7 +234,7 @@ endWrap(): RdbPredicates
 
 | 类型                                 | 说明                      |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回带有右括号的Rdb谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回带有右括号的Rdb谓词。 |
 
 **示例：**
 
@@ -260,7 +260,7 @@ or(): RdbPredicates
 
 | 类型                                 | 说明                      |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回带有或条件的Rdb谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回带有或条件的Rdb谓词。 |
 
 **示例：**
 
@@ -284,7 +284,7 @@ and(): RdbPredicates
 
 | 类型                                 | 说明                      |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回带有和条件的Rdb谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回带有和条件的Rdb谓词。 |
 
 **示例：**
 
@@ -315,7 +315,7 @@ contains(field: string, value: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -352,7 +352,7 @@ beginsWith(field: string, value: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -389,7 +389,7 @@ endsWith(field: string, value: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -425,7 +425,7 @@ isNull(field: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -460,7 +460,7 @@ isNotNull(field: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -496,7 +496,7 @@ like(field: string, value: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -533,7 +533,7 @@ glob(field: string, value: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -571,7 +571,7 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -609,7 +609,7 @@ notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -646,7 +646,7 @@ greaterThan(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -683,7 +683,7 @@ lessThan(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -720,7 +720,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -757,7 +757,7 @@ lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -793,7 +793,7 @@ orderByAsc(field: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -828,7 +828,7 @@ orderByDesc(field: string): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -857,7 +857,7 @@ distinct(): RdbPredicates
 
 | 类型                                 | 说明                           |
 | ------------------------------------ | ------------------------------ |
-| [RdbPredicates](#rdbpredicates) | 返回可用于过滤重复记录的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回可用于过滤重复记录的谓词。 |
 
 **示例：**
 
@@ -884,7 +884,7 @@ limitAs(value: number): RdbPredicates
 
 | 类型                                 | 说明                                 |
 | ------------------------------------ | ------------------------------------ |
-| [RdbPredicates](#rdbpredicates) | 返回可用于设置最大数据记录数的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回可用于设置最大数据记录数的谓词。 |
 
 **错误码：**
 
@@ -919,7 +919,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 | 类型                                 | 说明                                 |
 | ------------------------------------ | ------------------------------------ |
-| [RdbPredicates](#rdbpredicates) | 返回具有指定返回结果起始位置的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回具有指定返回结果起始位置的谓词。 |
 
 **错误码：**
 
@@ -954,7 +954,7 @@ groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
 | 类型                                 | 说明                   |
 | ------------------------------------ | ---------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回分组查询列的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回分组查询列的谓词。 |
 
 **错误码：**
 
@@ -990,7 +990,7 @@ indexedBy(field: string): RdbPredicates
 
 | 类型                                 | 说明                                  |
 | ------------------------------------ | ------------------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回具有指定索引列的RdbPredicates。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回具有指定索引列的RdbPredicates。 |
 
 **错误码：**
 
@@ -1026,7 +1026,7 @@ in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -1063,7 +1063,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 | 类型                                 | 说明                       |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -1100,7 +1100,7 @@ notContains(field: string, value: string): RdbPredicates
 
 | 类型                            | 说明                       |
 | ------------------------------- | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -1137,7 +1137,7 @@ notLike(field: string, value: string): RdbPredicates
 
 | 类型                            | 说明                       |
 | ------------------------------- | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
@@ -1174,7 +1174,7 @@ having(conditions:string, args?: Array\<ValueType>): RdbPredicates
 
 | 类型                            | 说明                       |
 | ------------------------------- | -------------------------- |
-| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+| [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 返回与指定字段匹配的谓词。 |
 
 **错误码：**
 
