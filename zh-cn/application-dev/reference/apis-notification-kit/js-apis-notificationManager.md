@@ -1223,7 +1223,7 @@ notificationManager.cancelGroup(groupName).then(() => {
 
 isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): void
 
-在使用[通知模板](js-apis-inner-notification-notificationTemplate.md)发布通知前，可以通过该接口查询是否支持对应的通知模板。使用callback异步回调；调用失败返回错误对象。
+在使用[通知模板](js-apis-inner-notification-notificationTemplate.md)发布通知前，可以通过该接口查询是否支持对应的通知模板。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1232,7 +1232,7 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 | 参数名       | 类型                     | 必填 | 说明                       |
 | ------------ | ------------------------ | ---- | -------------------------- |
 | templateName | string                   | 是   | 模板名称。当前仅支持'downloadTemplate'。                   |
-| callback     | AsyncCallback\<boolean\> | 是   | 查询模板是否存在的回调函数（true：存在，false：不存在）。 |
+| callback     | AsyncCallback\<boolean\> | 是   | 回调函数。返回true表示支持该模板；返回false表示不支持该模板；调用失败返回错误对象。 |
 
 **错误码：**
 
