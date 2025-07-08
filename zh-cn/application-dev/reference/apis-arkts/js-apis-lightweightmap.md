@@ -135,7 +135,8 @@ lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let map: LightWeightMap<string, number> = new LightWeightMap();
 map.set("sparrow", 356);
-let result = lightWeightMap.hasAll(map);
+let result = lightWeightMap.hasAll(map); 
+console.info("result = ", result); // result = true
 ```
 
 

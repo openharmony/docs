@@ -172,6 +172,7 @@ has(value: T): boolean
 let treeSet : TreeSet<number> = new TreeSet();
 treeSet.add(123);
 let result = treeSet.has(123);
+console.info("result = " + result); // result = true
 ```
 
 ### getFirstValue
