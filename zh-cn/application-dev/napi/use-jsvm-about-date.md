@@ -8,21 +8,21 @@ JSVM-API中date相关接口用于处理JavaScript Date对象，并在JSVM模块�
 
 在JSVM-API中，JavaScript Date对象的数据表示从UTC时间1970年1月1日0时0分0秒起至现在的总毫秒数。
 
-JavaScript Date对象提供了一种在JavaScript中表示和操作日期和时间的方式。它们允许开发者创建表示特定时刻的日期对象，执行各种日期和时间相关的计算（如添加或减去时间间隔），以及格式化日期为字符串以供显示。
+JavaScript Date对象在JavaScript中用于表示和操作日期和时间。它们允许开发者创建表示特定时刻的日期对象，执行日期和时间计算（如添加或减去时间间隔），以及格式化日期为字符串以供显示。
 
-在JSVM-API中，通过提供与Date对象交互的函数，JSVM模块能够更紧密地与JavaScript环境集成，执行更复杂的日期和时间相关操作。
+在JSVM-API中，通过提供与Date对象交互的函数，JSVM模块能够更紧密地与JavaScript环境集成，执行复杂的日期和时间相关操作。
 
 ## 接口说明
 
 | 接口                       | 功能说明                       |
 |----------------------------|--------------------------------|
-| OH_JSVM_CreateDate           | 创建了一个表示给定毫秒数的Date对象。  |
+| OH_JSVM_CreateDate           | 创建一个表示给定毫秒数的Date对象。|
 | OH_JSVM_GetDateValue        | 获取给定JavaScript Date的时间值的Double基础类型值。  |
 | OH_JSVM_IsDate               | 判断一个JavaScript对象是否为Date类型对象。|
 
 ## 使用示例
 
-JSVM-API接口开发流程请参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅展示接口对应的C++相关代码。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅展示接口对应C++相关代码。
 
 ### OH_JSVM_CreateDate
 
