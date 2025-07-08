@@ -129,7 +129,7 @@ export default class EntryAbility extends UIAbility {
 
 createModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
 
-为指定Moudle创建资源管理对象。
+为指定Module创建资源管理对象。
 
 **系统接口**：此接口为系统接口。
 
