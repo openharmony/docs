@@ -2,11 +2,13 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 本模块使用屏幕物理像素单位px。
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
+
+圆角矩形对象。
 
 ## 导入模块
 
@@ -14,11 +16,7 @@
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## RoundRect<sup>12+</sup>
-
-圆角矩形对象。
-
-### constructor<sup>20+</sup>
+## constructor<sup>20+</sup>
 
 constructor(roundRect: RoundRect)
 
@@ -42,7 +40,7 @@ let roundRect = new drawing.RoundRect(rect, 50, 50);
 let roundRect2 = new drawing.RoundRect(roundRect);
 ```
 
-### constructor<sup>12+</sup>
+## constructor<sup>12+</sup>
 
 constructor(rect: common2D.Rect, xRadii: number, yRadii: number)
 
@@ -74,7 +72,7 @@ import { common2D, drawing } from '@kit.ArkGraphics2D';
 let rect: common2D.Rect = {left : 100, top : 100, right : 500, bottom : 300};
 let roundRect = new drawing.RoundRect(rect, 50, 50);
 ```
-### setCorner<sup>12+</sup>
+## setCorner<sup>12+</sup>
 
 setCorner(pos: CornerPos, x: number, y: number): void
 
@@ -107,7 +105,7 @@ let roundRect : drawing.RoundRect = new drawing.RoundRect({left: 0, top: 0, righ
 roundRect.setCorner(drawing.CornerPos.TOP_LEFT_POS, 150, 150);
 ```
 
-### getCorner<sup>12+</sup>
+## getCorner<sup>12+</sup>
 
 getCorner(pos: CornerPos): common2D.Point
 
@@ -146,7 +144,7 @@ console.info("getCorner---"+cornerRadius.x)
 console.info("getCorner---"+cornerRadius.y)
 ```
 
-### offset<sup>12+</sup>
+## offset<sup>12+</sup>
 
 offset(dx: number, dy: number): void
 

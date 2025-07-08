@@ -2,11 +2,13 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 本模块使用屏幕物理像素单位px。
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
+
+着色器。画刷和画笔设置着色器后，会使用着色器效果而不是颜色属性去绘制，但此时画笔和画刷的透明度属性仍然生效。
 
 ## 导入模块
 
@@ -14,11 +16,7 @@
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## ShaderEffect<sup>12+</sup>
-
-着色器。画刷和画笔设置着色器后，会使用着色器效果而不是颜色属性去绘制，但此时画笔和画刷的透明度属性仍然生效。
-
-### createComposeShader<sup>20+</sup>
+## createComposeShader<sup>20+</sup>
 
 static createComposeShader(dstShaderEffect: ShaderEffect, srcShaderEffect: ShaderEffect, blendMode: BlendMode): ShaderEffect
 
@@ -58,7 +56,7 @@ let srcShader = drawing.ShaderEffect.createColorShader(0xFFFF0000);
 let shader = drawing.ShaderEffect.createComposeShader(dstShader, srcShader, drawing.BlendMode.SRC);
 ```
 
-### createImageShader<sup>20+</sup>
+## createImageShader<sup>20+</sup>
 
 static createImageShader(pixelmap: image.PixelMap, tileX: TileMode, tileY: TileMode, samplingOptions: SamplingOptions, matrix?: Matrix | null): ShaderEffect
 
@@ -109,7 +107,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createColorShader<sup>12+</sup>
+## createColorShader<sup>12+</sup>
 
 static createColorShader(color: number): ShaderEffect
 
@@ -145,7 +143,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 let shaderEffect = drawing.ShaderEffect.createColorShader(0xFFFF0000);
 ```
 
-### createLinearGradient<sup>12+</sup>
+## createLinearGradient<sup>12+</sup>
 
 static createLinearGradient(startPt: common2D.Point, endPt: common2D.Point, colors: Array\<number>, mode: TileMode, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect
 
@@ -192,7 +190,7 @@ let endPt: common2D.Point = { x: 300, y: 300 };
 let shaderEffect = drawing.ShaderEffect.createLinearGradient(startPt, endPt, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
 ```
 
-### createRadialGradient<sup>12+</sup>
+## createRadialGradient<sup>12+</sup>
 
 static createRadialGradient(centerPt: common2D.Point, radius: number, colors: Array\<number>, mode: TileMode, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect
 
@@ -238,7 +236,7 @@ let centerPt: common2D.Point = { x: 100, y: 100 };
 let shaderEffect = drawing.ShaderEffect.createRadialGradient(centerPt, 100, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
 ```
 
-### createSweepGradient<sup>12+</sup>
+## createSweepGradient<sup>12+</sup>
 
 static createSweepGradient(centerPt: common2D.Point, colors: Array\<number>, mode: TileMode, startAngle: number, endAngle: number, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect
 
@@ -285,7 +283,7 @@ let centerPt: common2D.Point = { x: 100, y: 100 };
 let shaderEffect = drawing.ShaderEffect.createSweepGradient(centerPt, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT, 100, 200);
 ```
 
-### createConicalGradient<sup>12+</sup>
+## createConicalGradient<sup>12+</sup>
 
 static createConicalGradient(startPt: common2D.Point, startRadius: number, endPt: common2D.Point, endRadius: number, colors: Array\<number>, mode: TileMode, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect
 

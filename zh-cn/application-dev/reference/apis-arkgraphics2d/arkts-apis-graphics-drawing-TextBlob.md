@@ -8,17 +8,15 @@
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
 
+由一个或多个具有相同字体的字符组成的字块。
+
 ## 导入模块
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## TextBlob
-
-由一个或多个具有相同字体的字符组成的字块。
-
-### makeFromPosText<sup>12+</sup>
+## makeFromPosText<sup>12+</sup>
 
 static makeFromPosText(text: string, len: number, points: common2D.Point[], font: Font): TextBlob
 
@@ -73,7 +71,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### uniqueID<sup>12+</sup>
+## uniqueID<sup>12+</sup>
 
 uniqueID(): number
 
@@ -100,7 +98,7 @@ let id = textBlob.uniqueID();
 console.info("uniqueID---------------" +id);
 ```
 
-### makeFromString
+## makeFromString
 
 static makeFromString(text: string, font: Font, encoding?: TextEncoding): TextBlob
 
@@ -151,7 +149,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### makeFromRunBuffer
+## makeFromRunBuffer
 
 static makeFromRunBuffer(pos: Array\<TextBlobRunBuffer>, font: Font, bounds?: common2D.Rect): TextBlob
 
@@ -209,7 +207,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### bounds
+## bounds
 
 bounds(): common2D.Rect
 

@@ -4,17 +4,15 @@
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。谓词间支持多语句拼接，拼接时默认使用and()连接。不支持Sendable跨线程传递。
+
 ## 导入模块
 
 ```ts
 import { relationalStore } from '@kit.ArkData';
 ```
 
-## RdbPredicates
-
-表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。谓词间支持多语句拼接，拼接时默认使用and()连接。不支持Sendable跨线程传递。
-
-### constructor
+## constructor
 
 constructor(name: string)
 
@@ -42,7 +40,7 @@ constructor(name: string)
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 ```
 
-### inDevices
+## inDevices
 
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
@@ -100,7 +98,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.inDevices(deviceIds);
 ```
 
-### inAllDevices
+## inAllDevices
 
 inAllDevices(): RdbPredicates
 
@@ -122,7 +120,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.inAllDevices();
 ```
 
-### equalTo
+## equalTo
 
 equalTo(field: string, value: ValueType): RdbPredicates
 
@@ -160,7 +158,7 @@ predicates.equalTo("NAME", "Lisa");
 ```
 
 
-### notEqualTo
+## notEqualTo
 
 notEqualTo(field: string, value: ValueType): RdbPredicates
 
@@ -198,7 +196,7 @@ predicates.notEqualTo("NAME", "Lisa");
 ```
 
 
-### beginWrap
+## beginWrap
 
 beginWrap(): RdbPredicates
 
@@ -224,7 +222,7 @@ predicates.equalTo("NAME", "Lisa")
   .endWrap();
 ```
 
-### endWrap
+## endWrap
 
 endWrap(): RdbPredicates
 
@@ -250,7 +248,7 @@ predicates.equalTo("NAME", "Lisa")
   .endWrap();
 ```
 
-### or
+## or
 
 or(): RdbPredicates
 
@@ -274,7 +272,7 @@ predicates.equalTo("NAME", "Lisa")
   .equalTo("NAME", "Rose");
 ```
 
-### and
+## and
 
 and(): RdbPredicates
 
@@ -298,7 +296,7 @@ predicates.equalTo("NAME", "Lisa")
   .equalTo("SALARY", 200.5);
 ```
 
-### contains
+## contains
 
 contains(field: string, value: string): RdbPredicates
 
@@ -335,7 +333,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.contains("NAME", "os");
 ```
 
-### beginsWith
+## beginsWith
 
 beginsWith(field: string, value: string): RdbPredicates
 
@@ -372,7 +370,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.beginsWith("NAME", "Li");
 ```
 
-### endsWith
+## endsWith
 
 endsWith(field: string, value: string): RdbPredicates
 
@@ -409,7 +407,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.endsWith("NAME", "se");
 ```
 
-### isNull
+## isNull
 
 isNull(field: string): RdbPredicates
 
@@ -444,7 +442,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.isNull("NAME");
 ```
 
-### isNotNull
+## isNotNull
 
 isNotNull(field: string): RdbPredicates
 
@@ -479,7 +477,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.isNotNull("NAME");
 ```
 
-### like
+## like
 
 like(field: string, value: string): RdbPredicates
 
@@ -516,7 +514,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.like("NAME", "%os%");
 ```
 
-### glob
+## glob
 
 glob(field: string, value: string): RdbPredicates
 
@@ -553,7 +551,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.glob("NAME", "?h*g");
 ```
 
-### between
+## between
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
@@ -591,7 +589,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.between("AGE", 10, 50);
 ```
 
-### notBetween
+## notBetween
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
@@ -629,7 +627,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notBetween("AGE", 10, 50);
 ```
 
-### greaterThan
+## greaterThan
 
 greaterThan(field: string, value: ValueType): RdbPredicates
 
@@ -666,7 +664,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThan("AGE", 18);
 ```
 
-### lessThan
+## lessThan
 
 lessThan(field: string, value: ValueType): RdbPredicates
 
@@ -703,7 +701,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThan("AGE", 20);
 ```
 
-### greaterThanOrEqualTo
+## greaterThanOrEqualTo
 
 greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
@@ -740,7 +738,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThanOrEqualTo("AGE", 18);
 ```
 
-### lessThanOrEqualTo
+## lessThanOrEqualTo
 
 lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
@@ -777,7 +775,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThanOrEqualTo("AGE", 20);
 ```
 
-### orderByAsc
+## orderByAsc
 
 orderByAsc(field: string): RdbPredicates
 
@@ -812,7 +810,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.orderByAsc("NAME");
 ```
 
-### orderByDesc
+## orderByDesc
 
 orderByDesc(field: string): RdbPredicates
 
@@ -847,7 +845,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.orderByDesc("AGE");
 ```
 
-### distinct
+## distinct
 
 distinct(): RdbPredicates
 
@@ -868,7 +866,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose").distinct(); // 对NAME列值为Rose的结果集去重
 ```
 
-### limitAs
+## limitAs
 
 limitAs(value: number): RdbPredicates
 
@@ -903,7 +901,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose").limitAs(3);
 ```
 
-### offsetAs
+## offsetAs
 
 offsetAs(rowOffset: number): RdbPredicates
 
@@ -938,7 +936,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose").limitAs(-1).offsetAs(3);
 ```
 
-### groupBy
+## groupBy
 
 groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
@@ -973,7 +971,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.groupBy(["AGE", "NAME"]);
 ```
 
-### indexedBy
+## indexedBy
 
 indexedBy(field: string): RdbPredicates
 
@@ -1009,7 +1007,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.indexedBy("SALARY");
 ```
 
-### in
+## in
 
 in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
@@ -1046,7 +1044,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("AGE", [18, 20]);
 ```
 
-### notIn
+## notIn
 
 notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
@@ -1083,7 +1081,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notIn("NAME", ["Lisa", "Rose"]);
 ```
 
-### notContains<sup>12+</sup>
+## notContains<sup>12+</sup>
 
 notContains(field: string, value: string): RdbPredicates
 
@@ -1120,7 +1118,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notContains("NAME", "os");
 ```
 
-### notLike<sup>12+</sup>
+## notLike<sup>12+</sup>
 
 notLike(field: string, value: string): RdbPredicates
 
@@ -1157,7 +1155,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notLike("NAME", "os");
 ```
 
-### having<sup>20+</sup>
+## having<sup>20+</sup>
 
 having(conditions:string, args?: Array\<ValueType>): RdbPredicates
 

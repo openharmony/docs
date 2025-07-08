@@ -8,17 +8,15 @@
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
 
+颜色滤波器。
+
 ## 导入模块
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## ColorFilter
-
-颜色滤波器。
-
-### createBlendModeColorFilter
+## createBlendModeColorFilter
 
 createBlendModeColorFilter(color: common2D.Color, mode: BlendMode) : ColorFilter
 
@@ -56,7 +54,7 @@ const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 let colorFilter = drawing.ColorFilter.createBlendModeColorFilter(color, drawing.BlendMode.SRC);
 ```
 
-### createBlendModeColorFilter<sup>18+</sup>
+## createBlendModeColorFilter<sup>18+</sup>
 
 static createBlendModeColorFilter(color: common2D.Color | number, mode: BlendMode) : ColorFilter
 
@@ -93,7 +91,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 let colorFilter = drawing.ColorFilter.createBlendModeColorFilter(0xffff0000, drawing.BlendMode.SRC);
 ```
 
-### createComposeColorFilter
+## createComposeColorFilter
 
 createComposeColorFilter(outer: ColorFilter, inner: ColorFilter) : ColorFilter
 
@@ -133,7 +131,7 @@ let colorFilter2 = drawing.ColorFilter.createBlendModeColorFilter(color, drawing
 let colorFilter = drawing.ColorFilter.createComposeColorFilter(colorFilter1, colorFilter2);
 ```
 
-### createLinearToSRGBGamma
+## createLinearToSRGBGamma
 
 createLinearToSRGBGamma() : ColorFilter
 
@@ -155,7 +153,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 let colorFilter = drawing.ColorFilter.createLinearToSRGBGamma();
 ```
 
-### createSRGBGammaToLinear
+## createSRGBGammaToLinear
 
 createSRGBGammaToLinear() : ColorFilter
 
@@ -177,7 +175,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 let colorFilter = drawing.ColorFilter.createSRGBGammaToLinear();
 ```
 
-### createLumaColorFilter
+## createLumaColorFilter
 
 createLumaColorFilter() : ColorFilter
 
@@ -199,7 +197,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 let colorFilter = drawing.ColorFilter.createLumaColorFilter();
 ```
 
-### createMatrixColorFilter<sup>12+</sup>
+## createMatrixColorFilter<sup>12+</sup>
 
 static createMatrixColorFilter(matrix: Array\<number>): ColorFilter
 
@@ -240,7 +238,7 @@ let matrix: Array<number> = [
 ];
 let colorFilter = drawing.ColorFilter.createMatrixColorFilter(matrix);
 ```
-### createLightingColorFilter<sup>20+</sup>
+## createLightingColorFilter<sup>20+</sup>
 
 static createLightingColorFilter(mutColor: common2D.Color | number, addColor: common2D.Color | number): ColorFilter
 
