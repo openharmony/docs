@@ -2742,71 +2742,6 @@ createNode(context: UIContext, nodeType: 'Swiper'): Swiper
 ```ts
 typeNode.createNode(uiContext, 'Swiper');
 ```
-
-### getAttribute('Swiper')<sup>20+</sup>
-getAttribute(node: FrameNode, nodeType: 'Swiper'): SwiperAttribute | undefined
-
-获取Swiper节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
-| nodeType | 'Swiper' | 是 | 获取Swiper节点类型的属性。 |
-
-**返回值：**
-
-| 类型                  | 说明      |
-| ------------------ | ------------------ |
-| SwiperAttribute&nbsp;\|&nbsp;undefined | Swiper节点类型的属性，若获取失败，则返回undefined。 |
-
-**示例：** 
-
-<!--code_no_check-->
-
-```ts
-typeNode.getAttribute(node, 'Swiper');
-```
-
-### bindController('Swiper')<sup>20+</sup>
-bindController(node: FrameNode, controller: SwiperController, nodeType: 'Swiper'): void
-
-将控制器SwiperController绑定到Swiper节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 绑定控制器的目标节点。 |
-| controller | [SwiperController](arkui-ts/ts-container-swiper.md#swipercontroller) | 是   | Swiper容器组件的控制器。 |
-| nodeType | 'Swiper' | 是 | 绑定控制器的目标节点的节点类型为Swiper。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[自定义节点错误码](./errorcode-node.md)。
-
-| 错误码ID | 错误信息                         |
-| -------- | -------------------------------- |
-| 100023   | Parameter error. Possible causes: 1. The component type of the node is incorrect. 2. The node is null or undefined. 3. The controller is null or undefined. |
-| 100021   | The FrameNode is not modifiable. |
-
-**示例：** 
-
-<!--code_no_check-->
-
-```ts
-typeNode.bindController(node, swiperController, 'Swiper');
-```
-
 ### Progress<sup>12+</sup>
 type Progress = TypedFrameNode&lt;ProgressInterface, ProgressAttribute&gt;
 
@@ -3339,70 +3274,6 @@ getEvent(node: FrameNode, nodeType: 'List'): UIListEvent | undefined
 typeNode.getEvent(node, 'List');
 ```
 
-### getAttribute('List')<sup>20+</sup>
-getAttribute(node: FrameNode, nodeType: 'List'): ListAttribute | undefined
-
-获取List节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
-| nodeType | 'List' | 是 | 获取List节点类型的属性。 |
-
-**返回值：**
-
-| 类型                  | 说明      |
-| ------------------ | ------------------ |
-| ListAttribute&nbsp;\|&nbsp;undefined | List节点类型的属性，若获取失败，则返回undefined。 |
-
-**示例：** 
-
-<!--code_no_check-->
-
-```ts
-typeNode.getAttribute(node, 'List');
-```
-
-### bindController('List')<sup>20+</sup>
-bindController(node: FrameNode, controller: Scroller, nodeType: 'List'): void
-
-将滚动控制器Scroller绑定到List节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 绑定滚动控制器的目标节点。 |
-| controller | [Scroller](arkui-ts/ts-container-scroll.md#scroller) | 是   | 滚动控制器。 |
-| nodeType | 'List' | 是 | 绑定滚动控制器的目标节点的节点类型为List。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[自定义节点错误码](./errorcode-node.md)。
-
-| 错误码ID | 错误信息                         |
-| -------- | -------------------------------- |
-| 100023   | Parameter error. Possible causes: 1. The component type of the node is incorrect. 2. The node is null or undefined. 3. The controller is null or undefined. |
-| 100021   | The FrameNode is not modifiable. |
-
-**示例：** 
-
-<!--code_no_check-->
-
-```ts
-typeNode.bindController(node, scroller, 'List');
-```
-
 ### ListItem<sup>12+</sup>
 type ListItem = TypedFrameNode&lt;ListItemInterface, ListItemAttribute&gt;
 
@@ -3444,36 +3315,6 @@ createNode(context: UIContext, nodeType: 'ListItem'): ListItem
 
 ```ts
 typeNode.createNode(uiContext, 'ListItem');
-```
-
-### getAttribute('ListItem')<sup>20+</sup>
-getAttribute(node: FrameNode, nodeType: 'ListItem'): ListItemAttribute | undefined
-
-获取ListItem节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
-| nodeType | 'ListItem' | 是 | 获取ListItem节点类型的属性。 |
-
-**返回值：**
-
-| 类型                  | 说明      |
-| ------------------ | ------------------ |
-| ListItemAttribute&nbsp;\|&nbsp;undefined | ListItem节点类型的属性，若获取失败，则返回undefined。 |
-
-**示例：** 
-
-<!--code_no_check-->
-
-```ts
-typeNode.getAttribute(node, 'ListItem');
 ```
 
 ### TextInput<sup>12+</sup>
@@ -3698,36 +3539,6 @@ createNode(context: UIContext, nodeType: 'ListItemGroup'): ListItemGroup
 typeNode.createNode(uiContext, 'ListItemGroup');
 ```
 
-### getAttribute('ListItemGroup')<sup>20+</sup>
-getAttribute(node: FrameNode, nodeType: 'ListItemGroup'): ListItemGroupAttribute | undefined
-
-获取ListItemGroup节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
-| nodeType | 'ListItemGroup' | 是 | 获取ListItemGroup节点类型的属性。 |
-
-**返回值：**
-
-| 类型                  | 说明      |
-| ------------------ | ------------------ |
-| ListItemGroupAttribute&nbsp;\|&nbsp;undefined | ListItemGroup节点类型的属性，若获取失败，则返回undefined。 |
-
-**示例：** 
-
-<!--code_no_check-->
-
-```ts
-typeNode.getAttribute(node, 'ListItemGroup');
-```
-
 ### WaterFlow<sup>12+</sup>
 type WaterFlow = TypedFrameNode&lt;WaterFlowInterface, WaterFlowAttribute&gt;
 
@@ -3801,70 +3612,6 @@ getEvent(node: FrameNode, nodeType: 'WaterFlow'): UIWaterFlowEvent | undefined
 typeNode.getEvent(node, 'WaterFlow');
 ```
 
-### getAttribute('WaterFlow')<sup>20+</sup>
-getAttribute(node: FrameNode, nodeType: 'WaterFlow'): WaterFlowAttribute | undefined
-
-获取WaterFlow节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
-| nodeType | 'WaterFlow' | 是 | 获取WaterFlow节点类型的属性。 |
-
-**返回值：**
-
-| 类型                  | 说明      |
-| ------------------ | ------------------ |
-| WaterFlowAttribute&nbsp;\|&nbsp;undefined | WaterFlow节点类型的属性，若获取失败，则返回undefined。 |
-
-**示例：** 
-
-<!--code_no_check-->
-
-```ts
-typeNode.getAttribute(node, 'WaterFlow');
-```
-
-### bindController('WaterFlow')<sup>20+</sup>
-bindController(node: FrameNode, controller: Scroller, nodeType: 'WaterFlow'): void
-
-将滚动控制器Scroller绑定到WaterFlow节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 绑定滚动控制器的目标节点。 |
-| controller | [Scroller](arkui-ts/ts-container-scroll.md#scroller) | 是   | 滚动控制器。 |
-| nodeType | 'WaterFlow' | 是 | 绑定滚动控制器的目标节点的节点类型为WaterFlow。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[自定义节点错误码](./errorcode-node.md)。
-
-| 错误码ID | 错误信息                         |
-| -------- | -------------------------------- |
-| 100023   | Parameter error. Possible causes: 1. The component type of the node is incorrect. 2. The node is null or undefined. 3. The controller is null or undefined. |
-| 100021   | The FrameNode is not modifiable. |
-
-**示例：** 
-
-<!--code_no_check-->
-
-```ts
-typeNode.bindController(node, scroller, 'WaterFlow');
-```
-
 ### FlowItem<sup>12+</sup>
 type FlowItem = TypedFrameNode&lt;FlowItemInterface, FlowItemAttribute&gt;
 
@@ -3906,36 +3653,6 @@ createNode(context: UIContext, nodeType: 'FlowItem'): FlowItem
 
 ```ts
 typeNode.createNode(uiContext, 'FlowItem');
-```
-
-### getAttribute('FlowItem')<sup>20+</sup>
-getAttribute(node: FrameNode, nodeType: 'FlowItem'): FlowItemAttribute | undefined
-
-获取FlowItem节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
-| nodeType | 'FlowItem' | 是 | 获取FlowItem节点类型的属性。 |
-
-**返回值：**
-
-| 类型                  | 说明      |
-| ------------------ | ------------------ |
-| FlowItemAttribute&nbsp;\|&nbsp;undefined | FlowItem节点类型的属性，若获取失败，则返回undefined。 |
-
-**示例：** 
-
-<!--code_no_check-->
-
-```ts
-typeNode.getAttribute(node, 'FlowItem');
 ```
 
 ### XComponent<sup>12+</sup>
@@ -4240,70 +3957,6 @@ getEvent(node: FrameNode, nodeType: 'Grid'): UIGridEvent | undefined
 typeNode.getEvent(node, 'Grid');
 ```
 
-### getAttribute('Grid')<sup>20+</sup>
-getAttribute(node: FrameNode, nodeType: 'Grid'): GridAttribute | undefined
-
-获取Grid节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
-| nodeType | 'Grid' | 是 | 获取Grid节点类型的属性。 |
-
-**返回值：**
-
-| 类型                  | 说明      |
-| ------------------ | ------------------ |
-| GridAttribute&nbsp;\|&nbsp;undefined | Grid节点类型的属性，若获取失败，则返回undefined。 |
-
-**示例：** 
-
-<!--code_no_check-->
-
-```ts
-typeNode.getAttribute(node, 'Grid');
-```
-
-### bindController('Grid')<sup>20+</sup>
-bindController(node: FrameNode, controller: Scroller, nodeType: 'Grid'): void
-
-将滚动控制器Scroller绑定到Grid节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 绑定滚动控制器的目标节点。 |
-| controller | [Scroller](arkui-ts/ts-container-scroll.md#scroller) | 是   | 滚动控制器。 |
-| nodeType | 'Grid' | 是 | 绑定滚动控制器的目标节点的节点类型为Grid。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[自定义节点错误码](./errorcode-node.md)。
-
-| 错误码ID | 错误信息                         |
-| -------- | -------------------------------- |
-| 100023   | Parameter error. Possible causes: 1. The component type of the node is incorrect. 2. The node is null or undefined. 3. The controller is null or undefined. |
-| 100021   | The FrameNode is not modifiable. |
-
-**示例：** 
-
-<!--code_no_check-->
-
-```ts
-typeNode.bindController(node, scroller, 'Grid');
-```
-
 ### GridItem<sup>14+</sup>
 type GridItem = TypedFrameNode&lt;GridItemInterface, GridItemAttribute&gt;
 
@@ -4345,36 +3998,6 @@ createNode(context: UIContext, nodeType: 'GridItem'): GridItem
 
 ```ts
 typeNode.createNode(uiContext, 'GridItem');
-```
-
-### getAttribute('GridItem')<sup>20+</sup>
-getAttribute(node: FrameNode, nodeType: 'GridItem'): GridItemAttribute | undefined
-
-获取GridItem节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
-| nodeType | 'GridItem' | 是 | 获取GridItem节点类型的属性。 |
-
-**返回值：**
-
-| 类型                  | 说明      |
-| ------------------ | ------------------ |
-| GridItemAttribute&nbsp;\|&nbsp;undefined | GridItem节点类型的属性，若获取失败，则返回undefined。 |
-
-**示例：** 
-
-<!--code_no_check-->
-
-```ts
-typeNode.getAttribute(node, 'GridItem');
 ```
 
 ### TextClock<sup>14+</sup>
