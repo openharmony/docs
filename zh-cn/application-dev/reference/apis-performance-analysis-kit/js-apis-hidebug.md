@@ -85,7 +85,7 @@ getPss(): bigint
 
 > **注意：**
 > 
-> 由于/proc/{pid}/smaps_rollup的读取比较耗时，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
+> 由于/proc/{pid}/smaps_rollup的读取耗时较长，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -132,7 +132,7 @@ getSharedDirty(): bigint
 
 > **注意：**
 > 
-> 由于/proc/{pid}/smaps_rollup的读取比较耗时，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
+> 由于/proc/{pid}/smaps_rollup的读取耗时较长，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -158,7 +158,7 @@ getPrivateDirty(): bigint
 
 > **注意：**
 >
-> 由于/proc/{pid}/smaps_rollup的读取比较耗时，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
+> 由于/proc/{pid}/smaps_rollup的读取耗时较长，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -182,6 +182,10 @@ getCpuUsage(): number
 获取进程的CPU使用率。
 
 如占用率为50%，则返回0.5。
+
+> **注意：**
+>
+> 由于该接口涉及跨进程通信，耗时较长，为了避免引入性能问题，建议不要在主线程中直接调用该接口。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -317,6 +321,10 @@ try {
 dumpJsHeapData(filename: string) : void
 
 虚拟机堆导出。
+
+> **注意：**
+>
+> 由于虚拟机堆导出极其耗时，建议不要在上架版本中调用该接口，以避免应用卡死、闪退，影响用户体验。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -456,6 +464,10 @@ console.info(`totalHeap = ${vmMemory.totalHeap}, heapUsed = ${vmMemory.heapUsed}
 getAppThreadCpuUsage(): ThreadCpuUsage[]
 
 获取应用线程CPU使用情况。
+
+> **注意：**
+>
+> 由于该接口涉及跨进程通信，耗时较长，为了避免引入性能问题，建议不要在主线程中直接调用该接口。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -613,6 +625,10 @@ getSystemCpuUsage() : number
 
 例如，当系统资源CPU占用为50%时，将返回0.5。
 
+> **注意：**
+>
+> 由于该接口涉及跨进程通信，耗时较长，为了避免引入性能问题，建议不要在主线程中直接调用该接口。
+
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
@@ -700,7 +716,7 @@ getAppNativeMemInfo(): NativeMemInfo
 
 > **注意：**
 >
-> 由于/proc/{pid}/smaps_rollup的读取比较耗时，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
+> 由于/proc/{pid}/smaps_rollup的读取耗时较长，建议不要在主线程中使用该接口，可通过[@ohos.taskpool](../apis-arkts/js-apis-taskpool.md)或[@ohos.worker](../apis-arkts/js-apis-worker.md)开启异步线程以避免应用出现卡顿。
 
 **返回值：**
 
@@ -1029,7 +1045,7 @@ getGraphicsMemorySync(): number
 
 > **注意：**
 >
-> 该接口涉及多次跨进程通信，可能存在性能问题，推荐使用异步接口`getGraphicsMemory`。
+> 由于该接口涉及多次跨进程通信，其耗时可能达到秒级。为了避免引入性能问题，建议不要在主线程调用该接口，推荐使用异步接口`getGraphicsMemory`。
 
 **原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
