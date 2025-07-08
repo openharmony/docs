@@ -119,29 +119,6 @@ mp4封装格式：
    | OH_MD_KEY_RANGE_FLAG               | 值域标志              |   -   |   -   |  可选  |  可选  |   -   |   -   |   -   |
    | OH_MD_KEY_VIDEO_IS_HDR_VIVID       | 视频轨是否为HDR VIVID |   -   |   -   |   -    |  可选  |   -   |   -   |   -   |
 
-mp4封装辅助轨格式：
-   |                key                 |         描述         |   aac  |   mp3  |  H.264  |  H.265  |
-   | ---------------------------------- | :------------------: | :----: | :----: | :----: | :----: |
-   | OH_MD_KEY_TRACK_TYPE               | 轨道媒体类型          |  必须  |  必须  |  必须   |  必须   |
-   | OH_MD_KEY_TRACK_REFERENCE_TYPE     | 轨道引用类型          |  必须  |  必须  |  必须   |  必须   |
-   | OH_MD_KEY_TRACK_DESCRIPTION        | 轨道标识              |  必须  |  必须  |  必须   |  必须   |
-   | OH_MD_KEY_REFERENCE_TRACK_IDS      | 引用轨道编号          |  必须  |  必须  |  必须   |  必须   |
-   | OH_MD_KEY_AUD_SAMPLE_RATE          | 采样率                |  必须  |  必须  |   -    |   -    |
-   | OH_MD_KEY_AUD_CHANNEL_COUNT        | 声道数                |  必须  |  必须  |   -    |   -    |
-   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | 输出音频流格式         |  可选  |  可选  |   -    |   -    |
-   | OH_MD_KEY_CHANNEL_LAYOUT           | 通道布局              |  可选  |  可选  |   -    |   -    |
-   | OH_MD_KEY_PROFILE                  | 编码档次              |  可选  |   -   |   -    |   -    |
-   | OH_MD_KEY_BITRATE                  | 码率                  |  可选  |  可选  |  可选  |  可选  |
-   | OH_MD_KEY_CODEC_CONFIG             | 编解码器特定数据       |  可选  |   -   |  可选  |  可选  |
-   | OH_MD_KEY_WIDTH                    | 宽度                  |   -   |   -   |  必须  |  必须  |
-   | OH_MD_KEY_HEIGHT                   | 高度                  |   -   |   -   |  必须  |  必须  |
-   | OH_MD_KEY_FRAME_RATE               | 视频流帧率            |   -   |   -   |  可选  |  可选  |
-   | OH_MD_KEY_COLOR_PRIMARIES          | 视频色域              |   -   |   -   |  可选  |  可选  |
-   | OH_MD_KEY_TRANSFER_CHARACTERISTICS | 视频传递函数          |   -   |   -   |  可选  |  可选  |
-   | OH_MD_KEY_MATRIX_COEFFICIENTS      | 视频矩阵系数          |   -   |   -   |  可选  |  可选  |
-   | OH_MD_KEY_RANGE_FLAG               | 值域标志              |   -   |   -   |  可选  |  可选  |
-   | OH_MD_KEY_VIDEO_IS_HDR_VIVID       | 视频轨是否为HDR VIVID |   -   |   -   |   -    |  可选  |
-
 m4a封装格式：
    |                key                 |         描述         |   aac  |  jpg   |  png   |  bmp   |
    | ---------------------------------- | :------------------: | :----: | :----: | :----: | :----: |
