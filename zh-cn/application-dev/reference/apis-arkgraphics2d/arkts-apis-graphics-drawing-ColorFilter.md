@@ -35,7 +35,7 @@ createBlendModeColorFilter(color: common2D.Color, mode: BlendMode) : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回颜色滤波器。 |
+| [ColorFilter](arkts-apis-graphics-drawing-ColorFilter.md) | 返回颜色滤波器。 |
 
 **错误码：**
 
@@ -73,7 +73,7 @@ static createBlendModeColorFilter(color: common2D.Color | number, mode: BlendMod
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回颜色滤波器。 |
+| [ColorFilter](arkts-apis-graphics-drawing-ColorFilter.md) | 返回颜色滤波器。 |
 
 **错误码：**
 
@@ -103,14 +103,14 @@ createComposeColorFilter(outer: ColorFilter, inner: ColorFilter) : ColorFilter
 
 | 参数名 | 类型                        | 必填 | 说明                             |
 | ------ | --------------------------- | ---- | -------------------------------- |
-| outer  | [ColorFilter](#colorfilter) | 是   | 组合滤波器中后生效的颜色滤波器。 |
-| inner  | [ColorFilter](#colorfilter) | 是   | 组合滤波器中先生效的颜色滤波器。 |
+| outer  | [ColorFilter](arkts-apis-graphics-drawing-ColorFilter.md) | 是   | 组合滤波器中后生效的颜色滤波器。 |
+| inner  | [ColorFilter](arkts-apis-graphics-drawing-ColorFilter.md) | 是   | 组合滤波器中先生效的颜色滤波器。 |
 
 **返回值：**
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回颜色滤波器。 |
+| [ColorFilter](arkts-apis-graphics-drawing-ColorFilter.md) | 返回颜色滤波器。 |
 
 **错误码：**
 
@@ -143,7 +143,7 @@ createLinearToSRGBGamma() : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回颜色滤波器。 |
+| [ColorFilter](arkts-apis-graphics-drawing-ColorFilter.md) | 返回颜色滤波器。 |
 
 **示例：**
 
@@ -165,7 +165,7 @@ createSRGBGammaToLinear() : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回颜色滤波器。 |
+| [ColorFilter](arkts-apis-graphics-drawing-ColorFilter.md) | 返回颜色滤波器。 |
 
 **示例：**
 
@@ -187,7 +187,7 @@ createLumaColorFilter() : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回颜色滤波器。 |
+| [ColorFilter](arkts-apis-graphics-drawing-ColorFilter.md) | 返回颜色滤波器。 |
 
 **示例：**
 
@@ -215,7 +215,7 @@ static createMatrixColorFilter(matrix: Array\<number>): ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回颜色滤波器。 |
+| [ColorFilter](arkts-apis-graphics-drawing-ColorFilter.md) | 返回颜色滤波器。 |
 
 **错误码：**
 
@@ -257,7 +257,7 @@ static createLightingColorFilter(mutColor: common2D.Color | number, addColor: co
 
 | 类型                        | 说明                |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回一个颜色滤波器。 |
+| [ColorFilter](arkts-apis-graphics-drawing-ColorFilter.md) | 返回一个颜色滤波器。 |
 
 **示例：**
 

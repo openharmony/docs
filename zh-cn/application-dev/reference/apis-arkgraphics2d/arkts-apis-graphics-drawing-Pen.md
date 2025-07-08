@@ -44,7 +44,7 @@ constructor(pen: Pen)
 
 | 参数名 | 类型        | 必填 | 说明              |
 | ------| ----------- | ---- | ---------------- |
-| pen     | [Pen](#pen) | 是   | 待复制的画笔对象。 |
+| pen     | [Pen](arkts-apis-graphics-drawing-Pen.md) | 是   | 待复制的画笔对象。 |
 
 **错误码：**
 

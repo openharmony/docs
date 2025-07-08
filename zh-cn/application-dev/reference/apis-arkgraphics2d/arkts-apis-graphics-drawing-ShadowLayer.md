@@ -2,7 +2,9 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本Class首批接口从API version 12开始支持。
 >
 > - 本模块使用屏幕物理像素单位px。
 >
@@ -37,7 +39,7 @@ static create(blurRadius: number, x: number, y: number, color: common2D.Color): 
 
 | 类型                        | 说明                  |
 | --------------------------- | -------------------- |
-| [ShadowLayer](#shadowlayer12) | 返回创建的阴影层对象。 |
+| [ShadowLayer](arkts-apis-graphics-drawing-ShadowLayer.md) | 返回创建的阴影层对象。 |
 
 **错误码：**
 
@@ -83,7 +85,7 @@ static create(blurRadius: number, x: number, y: number, color: common2D.Color | 
 
 | 类型                        | 说明                  |
 | --------------------------- | -------------------- |
-| [ShadowLayer](#shadowlayer12) | 返回创建的阴影层对象。 |
+| [ShadowLayer](arkts-apis-graphics-drawing-ShadowLayer.md) | 返回创建的阴影层对象。 |
 
 **错误码：**
 

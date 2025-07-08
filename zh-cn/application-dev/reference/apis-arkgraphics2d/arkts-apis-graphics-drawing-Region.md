@@ -2,7 +2,9 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本Class首批接口从API version 12开始支持。
 >
 > - 本模块使用屏幕物理像素单位px。
 >
@@ -54,7 +56,7 @@ constructor(region: Region)
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| region     | [Region](#region12) | 是   | 用于拷贝的区域。 |
+| region     | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 用于拷贝的区域。 |
 
 **示例：**
 
@@ -125,7 +127,7 @@ isEqual(other: Region): boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| other      | [Region](#region12) | 是   | 区域对象。 |
+| other      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 区域对象。 |
 
 **返回值：**
 
@@ -387,7 +389,7 @@ isRegionContained(other: Region) : boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| other      | [Region](#region12) | 是   | 区域对象。 |
+| other      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 区域对象。 |
 
 **返回值：**
 
@@ -442,7 +444,7 @@ op(region: Region, regionOp: RegionOp) : boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| region      | [Region](#region12) | 是   | 区域对象。 |
+| region      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 区域对象。 |
 | regionOp      | [RegionOp](arkts-apis-graphics-drawing-e.md#regionop12) | 是   | 区域合并操作类型。 |
 
 **返回值：**
@@ -552,7 +554,7 @@ quickRejectRegion(region: Region): boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| region      | [Region](#region12) | 是   | 指定的区域对象。 |
+| region      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 指定的区域对象。 |
 
 **返回值：**
 
@@ -598,7 +600,7 @@ setPath(path: Path, clip: Region) : boolean
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
 | path      | [Path](arkts-apis-graphics-drawing-Path.md) | 是   | 路径对象。 |
-| clip      | [Region](#region12) | 是   | 区域对象。 |
+| clip      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 区域对象。 |
 
 **返回值：**
 
@@ -652,7 +654,7 @@ setRegion(region: Region): void
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| region      | [Region](#region12) | 是   | 用于赋值的区域。 |
+| region      | [Region](arkts-apis-graphics-drawing-Region.md) | 是   | 用于赋值的区域。 |
 
 **示例：**
 
