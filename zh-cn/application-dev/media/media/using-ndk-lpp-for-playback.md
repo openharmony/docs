@@ -54,7 +54,7 @@ target_link_libraries(sample PUBLIC liblowpower_avsink.so)
 #include <hilog/log.h>
 ```
 
-并需要在 CMake 脚本中链接如下动态库:
+并需要在CMake脚本中链接如下动态库:
 
 ```
 target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
@@ -145,7 +145,7 @@ target_link_libraries(sample PUBLIC ${BASE_LIBRARY})
 
 ## 运行完整示例
 
-1. 新建工程，下载[示例工程](https://gitee.com/harmonyos_samples/guide-snippets/tree/master/MediaKit/LowPowerAVSInk/lowPowerAVSinkSample)，并将示例工程的以下资源复制到对应目录。
+1. 新建工程。下载[示例工程](https://gitee.com/harmonyos_samples/guide-snippets/tree/master/MediaKit/LowPowerAVSInk/lowPowerAVSinkSample)，并将示例工程的以下资源复制到对应目录。
 
    ```
    lpp_demo-sample/entry/src/main/          
