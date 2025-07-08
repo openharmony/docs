@@ -3057,6 +3057,8 @@ updateFormSize(formId: string, newDimension: formInfo.FormDimension, newRect: fo
 
 调整卡片大小
 
+**需要权限**：ohos.permission.REQUIRE_FORM
+
 **系统能力：** SystemCapability.Ability.Form
 
 **系统接口：** 此接口为系统接口。
@@ -3089,7 +3091,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
-  let newDimension = 1;
+  let newDimension = FormDimension.Dimension_1_2;
   let newRect: formInfo.Rect = {left: 1, top: 2, width: 100, height: 100};
   formHost.updateFormSize(formId, newDimension, newRect);
 } catch (error) {

@@ -419,8 +419,8 @@ onSizeChanged(formId: string, newDimension: formInfo.FormDimension, newRect: for
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
 | formId | string | 是   | 卡片标识。 |
-| newDimension | [formInfo.FormDimension](js-apis-app-form-formInfo.md#formdimension) | 是 | 外观规格 |
-| newRect | [formInfo.Rect](js-apis-app-form-formInfo.md#rect20) | 是 | 卡片位置信息 |
+| newDimension | [formInfo.FormDimension](js-apis-app-form-formInfo.md#formdimension) | 是 | 外观规格。 |
+| newRect | [formInfo.Rect](js-apis-app-form-formInfo.md#rect20) | 是 | 卡片位置信息。 |
 
 **示例：**
 

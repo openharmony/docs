@@ -72,7 +72,7 @@
    |[funInteractionParams](#funinteractionparams标签)| 趣味交互类型互动卡片扩展字段。| 对象 | 可缺省，缺省为空。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。|
    |[sceneAnimationParams](#sceneanimationparams标签)| 场景动效类型互动卡片扩展字段。| 对象 | 可缺省，缺省为空。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。|
    | resizable | 表示卡片是否可以调整大小。<br/>-&nbsp;true：可以调整大小。<br/>-&nbsp;false：不可以调整大小。| 布尔类型 | 可缺省，缺省值为false。 |
-   | groupId | 表示功能相似大小不同的一组卡片的共同id。 | 字符串 | 可缺省，缺省值为false。 |
+   | groupId | 表示功能相似大小不同的一组卡片的共同id。当多张卡片的groupId相同且resizable都为true时，表示允许用户在这多张卡片之间调整大小。 | 字符串 | 可缺省，缺省值为false。 |
 
 ### isDynamic标签
 
