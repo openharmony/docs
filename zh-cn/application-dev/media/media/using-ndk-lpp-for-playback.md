@@ -65,23 +65,29 @@ target_link_libraries(sample PUBLIC ${BASE_LIBRARY})
 开发者通过引入[lowpower_audio_sink_base.h](../../reference/apis-media-kit/capi-lowpower-audio-sink-base-h.md)、[lowpower_audio_sink.h](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md)、[lowpower_video_sink.h](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md)、 [lowpower_video_sink_base.h](../../reference/apis-media-kit/capi-lowpower-video-sink-base-h.md) 头文件，使用音视频播放相关API。
 
 1. 创建播放器<br>
-根据实际情况，可通过[OH_AVSource_CreateWithDataSource()](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource_createwithdatasource)/[OH_AVSource_CreateWithFD()](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource_createwithfd)/[OH_AVSource_CreateWithURI()](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource_createwithuri)来创建[OH_AVSource](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource) ，通过`OH_AVSource`调用[OH_AVDemuxer_CreateWithSource()](../../reference/apis-avcodec-kit/_a_v_demuxer.md#oh_avdemuxer_createwithsource)，创建解封装器，获取视频的元信息。根据以上信息，调用  [OH_LowPowerAudioSink_CreateByMime](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_createbymime)或[OH_LowPowerVideoSink_CreateByMime](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_createbymime)来创建播放器。
+根据实际情况，应用可使用自研解封装或可通过[OH_AVSource_CreateWithDataSource()](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource_createwithdatasource)/[OH_AVSource_CreateWithFD()](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource_createwithfd)/[OH_AVSource_CreateWithURI()](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource_createwithuri)来创建[OH_AVSource](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource) ，通过`OH_AVSource`调用[OH_AVDemuxer_CreateWithSource()](../../reference/apis-avcodec-kit/_a_v_demuxer.md#oh_avdemuxer_createwithsource)，创建解封装器，获取视频的元信息。
     ```
     source_ = OH_AVSource_CreateWithFD(info.inputFd, info.inputFileOffset, info.inputFileSize);
     demuxer_ = OH_AVDemuxer_CreateWithSource(source_);
     int32_t ret = GetTrackInfo(sourceFormat, info);
     ```
 
-2. 设置回调监听函数<br>
-调用[OH_LowPowerAudioSinkCallback_Create](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosinkcallback_create)或[OH_LowPowerVideoSinkCallback_Create](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosinkcallback_create)创建[OH_LowPowerAudioSinkCallback](../../reference/apis-media-kit/capi-lowpower-audio-sink-base-h.md#oh_lowpoweraudiosinkcallback)或[OH_LowPowerVideoSinkCallback](../../reference/apis-media-kit/capi-lowpower-video-sink-base-h.md#oh_lowpowervideosinkcallback)的回调函数的整合，通过setListener函数向该结构体添加对应的回调函数，完成registerCallback的一次性注册。
+2. 根据视频元信息信息，调用  [OH_LowPowerAudioSink_CreateByMime](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_createbymime)或[OH_LowPowerVideoSink_CreateByMime](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_createbymime)来创建播放器。
     ```
-        lppAudioStreamerCallback_ = OH_LowPowerAudioSinkCallback_Create();
-        OH_LowPowerAudioSinkCallback_SetDataNeededListener(lppAudioStreamerCallback_, LppCallback::OnDataNeeded, lppUserData);
-        OH_LowPowerAudioSinkCallback_SetPositionUpdateListener(lppAudioStreamerCallback_, LppCallback::OnPositionUpdated, lppUserData);
-        ret = OH_LowPowerAudioSink_RegisterCallback(lppAudioStreamer_, lppAudioStreamerCallback_);
+    lppVideoStreamer_ = OH_LowPowerVideoSink_CreateByMime(codecMime.c_str());
+    lppAudioStreamer_ = OH_LowPowerAudioSink_CreateByMime(codecMime.c_str());
     ```
 
-3. 配置播放器<br>
+3. 设置回调监听函数<br>
+调用[OH_LowPowerAudioSinkCallback_Create](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosinkcallback_create)或[OH_LowPowerVideoSinkCallback_Create](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosinkcallback_create)创建[OH_LowPowerAudioSinkCallback](../../reference/apis-media-kit/capi-lowpower-audio-sink-base-h.md#oh_lowpoweraudiosinkcallback)或[OH_LowPowerVideoSinkCallback](../../reference/apis-media-kit/capi-lowpower-video-sink-base-h.md#oh_lowpowervideosinkcallback)的回调函数的整合，通过setListener函数向该结构体添加对应的回调函数，完成registerCallback的一次性注册。
+    ```
+    lppAudioStreamerCallback_ = OH_LowPowerAudioSinkCallback_Create();
+    OH_LowPowerAudioSinkCallback_SetDataNeededListener(lppAudioStreamerCallback_, LppCallback::OnDataNeeded, lppUserData);
+    OH_LowPowerAudioSinkCallback_SetPositionUpdateListener(lppAudioStreamerCallback_, LppCallback::OnPositionUpdated, lppUserData);
+    ret = OH_LowPowerAudioSink_RegisterCallback(lppAudioStreamer_, lppAudioStreamerCallback_);
+    ```
+
+4. 配置播放器<br>
 根据之前通过解封装获得的元信息，创建并配置 [OH_AVFormat](../../reference/apis-avcodec-kit/_core.md#oh_avformat)。通过configure接口 [OH_LowPowerAudioSink_Configure](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_configure) / [OH_LowPowerVideoSink_Configure](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_configure)进行播放器的配置，详细参数可参考实例代码。视频流需要使用[OH_LowPowerVideoSink_SetVideoSurface](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_setvideosurface)接口来设置显示窗口。
     ```
     OH_AVFormat *format = OH_AVFormat_Create();
@@ -95,20 +101,20 @@ target_link_libraries(sample PUBLIC ${BASE_LIBRARY})
     int ret = OH_LowPowerVideoSink_Configure(lppVideoStreamer_, format);
     ```
 
-4. 准备播放<br>
+5. 准备播放<br>
 调用prepare方法，[OH_LowPowerAudioSink_Prepare](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_prepare)或[OH_LowPowerVideoSink_Prepare](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_prepare)进入'准备'阶段，然后调用[OH_LowPowerVideoSink_SetSyncAudioSink](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_setsyncaudiosink)设置音画同步。
     ```
     OH_LowPowerVideoSink_Prepare(lppVideoStreamer_);
     ```
 
-5. 开始播放<br>
+6. 开始播放<br>
 调用[OH_LowPowerAudioSink_Start](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_start)或[OH_LowPowerVideoSink_StartRenderer](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_startrenderer)开始渲染。视频流需要在渲染开始前调用[OH_LowPowerVideoSink_StartDecoder](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_startdecoder)开始解码或调用[ OH_LowPowerVideoSink_RenderFirstFrame](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_renderfirstframe)开始解码并送显首帧'接口'进入解码。
     ```
     OH_LowPowerVideoSink_StartDecoder(lppVideoStreamer_);
     OH_LowPowerVideoSink_StartRenderer(lppVideoStreamer_);
     ```
 
-6. 播放控制（可选）<br>
+7. 播放控制（可选）<br>
 暂停：[OH_LowPowerAudioSink_Pause](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_pause)或 [OH_LowPowerVideoSink_Pause](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_pause)<br>
 恢复播放：[OH_LowPowerAudioSink_Resume](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_resume)或 [OH_LowPowerVideoSink_Resume](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_resume)<br>
 停止：[OH_LowPowerAudioSink_Stop](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_stop)或[OH_LowPowerVideoSink_Stop](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_stop)<br>
@@ -116,8 +122,59 @@ target_link_libraries(sample PUBLIC ${BASE_LIBRARY})
 设置播放速度：[OH_LowPowerAudioSink_SetPlaybackSpeed](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_setplaybackspeed)或[OH_LowPowerVideoSink_SetPlaybackSpeed](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_setplaybackspeed) <br>
 清空缓存数据，可用于seek操作：[OH_LowPowerAudioSink_Flush](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_flush)或[OH_LowPowerVideoSink_Flush](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_flush) <br>
 
-7. 更换资源（可选）<br>
+8. 更换资源（可选）<br>
 调用[OH_LowPowerAudioSink_Reset](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_reset)或[OH_LowPowerVideoSink_Reset](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_reset)重置资源，允许更换资源，重新配置播放器。
 
-8. 退出播放 <br>
+9. 退出播放 <br>
 调用[OH_LowPowerAudioSink_Destroy](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_destroy)或[OH_LowPowerVideoSink_Destroy](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_destroy)销毁实例，AVPlayer进入'RELEASED'状态，退出播放。
+
+## 运行完整示例
+
+1. 新建工程，下载[示例工程](https://gitee.com/harmonyos_samples/guide-snippets/tree/master/MediaKit/LowPowerAVSInk/lowPowerAVSinkSample)，并将示例工程的以下资源复制到对应目录。
+    ```
+    lpp_demo-sample/entry/src/main/          
+    ├── cpp                                # Native层
+    │   ├── capbilities                    # 能力接口和实现
+    │   │   ├── include                    # 能力接口
+    │   │   ├── demuxer.cpp                # 解封装实现
+    │   │   ├── lpp_audio_streamer.cpp     # 低功耗音频流实现
+    │   │   └── lpp_video_streamer.cpp     # 低功耗视频流实现
+    │   ├── common                         # 公共模块
+    │   │   ├── dfx                        # 日志
+    │   │   ├── lpp_callback.cpp           # 低功耗音视频回调实现   
+    │   │   ├── lpp_callback.h             # 低功耗音视频回调接口
+    │   │   └── sample_info.h              # 功能实现公共类
+    │   ├── render                         # 送显模块接口和实现 * window player设置
+    │   │   ├── include                    # 送显模块接口
+    │   │   ├── egl_core.cpp               # 送显参数设置 *
+    │   │   ├── plugin_manager.cpp         # 送显模块管理实现
+    │   │   └── plugin_render.cpp          # 送显逻辑实现
+    │   ├── sample                         # Native层
+    │   │   ├── player                     # Native层播放接口和实现
+    │   │   │   ├── Player.cpp             # Native层播放功能调用逻辑的实现
+    │   │   │   ├── Player.h               # Native层播放功能调用逻辑的接口
+    │   │   │   ├── PlayerNative.cpp       # Native层 播放的入口
+    │   │   │   └── PlayerNative.h         # Native层暴露上来的接口
+    │   ├── types                          # 
+    │   │   └── libplayer                  # 播放模块暴露给UI层的接口
+    │   └── CMakeLists.txt                 # 编译入口
+    ├── ets                                # UI层
+    │   ├── common                         # 公共模块
+    │   │   ├── utils                      # 共用的工具类
+    │   │   │   ├── DateTimeUtils.ets      # 获取当前时间
+    │   │   │   └── Logger.ts              # 日志工具
+    │   |   └───CommonConstants.ets        # 参数常量
+    │   ├── entryability                   # 应用的入口
+    │   │   └── EntryAbility.ts            # 申请权限弹窗实现
+    │   ├── pages                          # EntryAbility 包含的页面
+    │   │   └── Index.ets                  # 首页/播放页面
+    ├── resources                          # 用于存放应用所用到的资源文件
+    │   ├── base                           # 该目录下的资源文件会被赋予唯一的ID
+    │   │   ├── element                    # 用于存放字体和颜色 
+    │   │   ├── media                      # 用于存放图片
+    │   │   └── profile                    # 应用入口首页
+    │   ├── en_US                          # 设备语言是美式英文时，优先匹配此目录下资源
+    │   └── zh_CN                          # 设备语言是简体中文时，优先匹配此目录下资源
+    └── module.json5                       # 模块配置信息
+    ```
+2. 编译新建工程并运行。
