@@ -18,6 +18,8 @@ getCount(): number
 
 获取文件检索结果中的文件总数。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **返回值：**
@@ -61,6 +63,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 isAfterLast(): boolean
 
 检查结果集是否指向最后一行。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -111,6 +115,8 @@ close(): void
 
 释放FetchResult实例并使其失效，无法再调用其他方法。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **错误码：**
@@ -152,6 +158,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 getFirstObject(callback: AsyncCallback&lt;T&gt;): void
 
 获取文件检索结果中的第一个文件资产。此方法使用callback形式返回结果。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -202,6 +210,8 @@ getFirstObject(): Promise&lt;T&gt;
 
 获取文件检索结果中的第一个文件资产。此方法使用promise方式来异步返回。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **返回值：**
@@ -246,6 +256,8 @@ getNextObject(callback: AsyncCallback&lt;T&gt;): void
 
 获取文件检索结果中的下一个文件资产。此方法使用callback形式返回结果。
 在调用此方法之前，必须使用[isAfterLast()](#isafterlast)来检查当前位置是否为最后一行。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -300,6 +312,8 @@ getNextObject(): Promise&lt;T&gt;
 获取文件检索结果中的下一个文件资产。此方法使用promise方式来异步返回。
 在调用此方法之前，必须使用[isAfterLast()](#isafterlast)来检查当前位置是否为最后一行。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **返回值：**
@@ -346,6 +360,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 getLastObject(callback: AsyncCallback&lt;T&gt;): void
 
 获取文件检索结果中的最后一个文件资产。此方法使用callback方式来返回。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -396,6 +412,8 @@ getLastObject(): Promise&lt;T&gt;
 
 获取文件检索结果中的最后一个文件资产。此方法使用Promise方式来返回。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **返回值：**
@@ -439,6 +457,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 getObjectByPosition(index: number, callback: AsyncCallback&lt;T&gt;): void
 
 获取文件检索结果中具有指定索引的文件资产。此方法使用callback来返回。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -490,6 +510,8 @@ getObjectByPosition(index: number): Promise&lt;T&gt;
 
 获取文件检索结果中指定索引的文件资产。此方法返回Promise形式的文件Asset。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -540,6 +562,8 @@ getAllObjects(callback: AsyncCallback&lt;Array&lt;T&gt;&gt;): void
 
 获取文件检索结果中的所有文件资产。此方法使用callback形式返回结果。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -588,6 +612,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 getAllObjects(): Promise&lt;Array&lt;T&gt;&gt;
 
 获取文件检索结果中的所有文件资产。此方法使用promise方式来异步返回。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 

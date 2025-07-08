@@ -42,6 +42,7 @@ Actor并发模型中，线程不共享内存，需通过线程间通信机制传
 class Queue {
   // ...
   push(value: number) {
+    // ...
   }
 
   empty(): boolean {
@@ -53,6 +54,7 @@ class Queue {
     // ...
     return value;
   }
+  // ...
 }
 
 class Mutex {
@@ -63,7 +65,9 @@ class Mutex {
   }
 
   unlock() {
+    // ...
   }
+  // ...
 }
 
 class BufferQueue {

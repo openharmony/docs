@@ -75,7 +75,7 @@ static void *CreateArkRuntimeFunc(void *arg)
 ```
 <!-- @[native_load_arkts_module](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/cpp/napi_init.cpp) -->
 
-主要步骤包括：创建执行环境、加载模块、查找并调用模块函数（也可以直接通过Node-API接口创建Sendable对象），最后销毁执行环境。关于第二步加载模块的详细信息，请参见[使用Node-API接口进行模块加载](../napi/use-napi-load-module-with-info.md)。关于第三步查找并调用函数及更多Node-API接口能力，请参见[Node-API](../reference/native-lib/napi.md#node-api)。
+主要步骤包括：创建执行环境、加载模块、查找并调用模块函数（也可以直接通过Node-API接口创建Sendable对象），最后销毁执行环境。关于第二步加载模块的详细信息，请参见[使用Node-API接口进行模块加载](../napi/use-napi-load-module-with-info.md)。关于第三步查找并调用函数及更多Node-API接口能力，请参见[Node-API](../reference/native-lib/napi.md)。
 
 ## 在C++线程之间操作Sendable共享对象
 

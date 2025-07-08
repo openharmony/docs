@@ -10,6 +10,12 @@ Web组件地理位置权限管理对象。
 >
 > - 目前调用GeolocationPermissions下的方法，都需要先加载Web组件。
 
+## 导入模块
+
+```ts
+import { webview } from '@kit.ArkWeb';
+```
+
 ## 需要权限
 
 访问地理位置时需添加权限：ohos.permission.LOCATION、ohos.permission.APPROXIMATELY_LOCATION、ohos.permission.LOCATION_IN_BACKGROUND，具体权限说明请参考[位置服务](../apis-location-kit/js-apis-geolocation.md)。

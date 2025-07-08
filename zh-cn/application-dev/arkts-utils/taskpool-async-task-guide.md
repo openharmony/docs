@@ -44,7 +44,7 @@
            .onClick(() => {
              // 创建并发度为5的异步队列，等待队列个数为5。
              let asyncRunner:taskpool.AsyncRunner = new taskpool.AsyncRunner("async", 5, 5);
-             // 每秒触发一次采集任务
+             // 1秒后触发采集任务
              setTimeout(() => {
                let task:taskpool.Task = new taskpool.Task(collectFrame);
                 asyncRunner.execute(task);

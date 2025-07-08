@@ -228,3 +228,24 @@ type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => We
 | 类型               | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
 | [WebKeyboardOptions](./arkts-basic-components-web-i.md#webkeyboardoptions12) | 回调函数通过返回[WebKeyboardOptions](./arkts-basic-components-web-i.md#webkeyboardoptions12)来决定ArkWeb内核拉起不同类型的软键盘。 |
+
+## OnOverrideErrorPageCallback<sup>20+</sup>
+
+type OnOverrideErrorPageCallback= (webResourceRequest: WebResourceRequest, error: WebResourceError) => string
+
+onOverrideErrorPage的回调函数，网页加载失败时触发。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| webResourceRequest | [WebResourceRequest](./arkts-basic-components-web-WebResourceRequest.md) | 是 | 网页请求的封装信息。      |
+| error   | [WebResourceError](./arkts-basic-components-web-WebResourceError.md)    | 是 | 加载失败的错误信息。 |
+
+**返回值：**
+
+| 类型      | 说明                       |
+| ------- | ------------------------ |
+| string | 返回以Base64编码的HTML文本内容。 |
