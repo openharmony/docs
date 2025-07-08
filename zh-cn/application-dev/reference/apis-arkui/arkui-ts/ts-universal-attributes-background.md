@@ -73,7 +73,7 @@ background配置选项。
 | 名称          | 类型   | 必填 | 说明                                                         |
 | ------------- | ------ | ---- | ------------------------------------------------------------ |
 | align<sup>10+</sup>          | [Alignment](ts-appendix-enums.md#alignment) | 否   | 自定义背景与组件的对齐方式。该属性仅对CustomBuilder类型的背景生效。如果设置了ignoresLayoutSafeAreaEdges，则背景的布局区域为包含了扩展安全区的范围。<br/>默认值：Alignment.Center<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| ignoresLayoutSafeAreaEdges | Array<[LayoutSafeAreaEdge](ts-types.md#layoutsafeareaedge12)> | 否   | 配置背景要扩展到的安全区。未配置该属性时，CustomBuilder背景不扩展，ResourceColor背景扩展至父组件全部安全区。<br/> 默认值：LayoutSafeAreaEdge.All <br/>**说明：**<br/>动态调整该属性会按照设置的扩展区域重新生成背景。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| ignoresLayoutSafeAreaEdges | Array<[LayoutSafeAreaEdge](ts-types.md#layoutsafeareaedge12)> | 否   | 配置背景要扩展到的安全区。<br/> 默认值：<br/>- CustomBuilder背景：[]，不扩展。<br/>- ResourceColor背景：[LayoutSafeAreaEdge.ALL]，扩展至所有方向。<br/>**说明：**<br/>动态调整该属性会按照设置的扩展区域重新生成背景。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 > **说明：**
 >
