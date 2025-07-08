@@ -30,7 +30,7 @@
 | [OH_AudioStream_Result OH_AudioRenderer_GetStreamId(OH_AudioRenderer* renderer, uint32_t* streamId)](#oh_audiorenderer_getstreamid) | - | 查询当前输出音频流ID。 |
 | [OH_AudioStream_Result OH_AudioRenderer_GetChannelCount(OH_AudioRenderer* renderer, int32_t* channelCount)](#oh_audiorenderer_getchannelcount) | - | 查询当前输出音频流通道数。 |
 | [OH_AudioStream_Result OH_AudioRenderer_GetSampleFormat(OH_AudioRenderer* renderer,OH_AudioStream_SampleFormat* sampleFormat)](#oh_audiorenderer_getsampleformat) | - | 查询当前输出音频流采样格式。 |
-| [OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode(OH_AudioRenderer* renderer,OH_AudioStream_LatencyMode* latencyMode)](#oh_audiorenderer_getlatencymode) | - | 查询当前音频流时延模式。 |
+| [OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode(OH_AudioRenderer* renderer,OH_AudioStream_LatencyMode* latencyMode)](#oh_audiorenderer_getlatencymode) | - | 查询当前输出音频流时延模式。 |
 | [OH_AudioStream_Result OH_AudioRenderer_GetRendererInfo(OH_AudioRenderer* renderer,OH_AudioStream_Usage* usage)](#oh_audiorenderer_getrendererinfo) | - | 查询当前输出音频流的使用类型。 |
 | [OH_AudioStream_Result OH_AudioRenderer_GetEncodingType(OH_AudioRenderer* renderer,OH_AudioStream_EncodingType* encodingType)](#oh_audiorenderer_getencodingtype) | - | 查询当前输出音频流编码类型。 |
 | [OH_AudioStream_Result OH_AudioRenderer_GetFramesWritten(OH_AudioRenderer* renderer, int64_t* frames)](#oh_audiorenderer_getframeswritten) | - | 查询自创建流以来已写入的帧数。 |
