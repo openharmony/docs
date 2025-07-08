@@ -383,6 +383,16 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001511580868](figures/zh-cn_image_0000001511580868.png)
 
+- 通过[fontFamily](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#fontfamily)属性设置字体列表。应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../reference/apis-arkui/js-apis-font.md)。
+
+  ```ts
+  Text("This is the text content with fontFamily")
+    .fontSize(30)
+    .fontFamily('HarmonyOS Sans')
+  ```
+  
+  ![Text_font_family](figures/Text_font_family.png)
+
 - 从API version 20开始，支持通过[optimizeTrailingSpace](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#optimizetrailingspace20)设置是否在文本布局过程中优化每行末尾的空格，可解决行尾空格影响对齐显示效果问题。
 
   ```ts
