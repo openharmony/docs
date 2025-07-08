@@ -94,10 +94,10 @@ onRequestFailure(elementName: ElementName, message: string): void
 
       let completionHandler: CompletionHandler = {
         onRequestSuccess: (elementName: bundleManager.ElementName, message: string): void => {
-          console.log(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start succeeded: ${message}`);
+          console.info(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start succeeded: ${message}`);
         },
         onRequestFailure: (elementName: bundleManager.ElementName, message: string): void => {
-          console.log(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start failed: ${message}`);
+          console.error(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start failed: ${message}`);
         }
       };
 
