@@ -4,9 +4,13 @@
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> - 本Class首批接口从API version 18开始支持。
+>
 > - 本模块使用屏幕物理像素单位px。
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
+
+表示路径操作迭代器，可通过遍历迭代器读取path的操作指令。
 
 ## 导入模块
 
@@ -14,11 +18,7 @@
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## PathIterator<sup>18+</sup>
-
-表示路径操作迭代器，可通过遍历迭代器读取path的操作指令。
-
-### constructor<sup>18+</sup>
+## constructor<sup>18+</sup>
 
 constructor(path: Path)
 
@@ -41,7 +41,7 @@ let path: drawing.Path = new drawing.Path();
 let iter: drawing.PathIterator = new drawing.PathIterator(path);
 ```
 
-### next<sup>18+</sup>
+## next<sup>18+</sup>
 
 next(points: Array<common2D.Point>, offset?: number): PathIteratorVerb
 
@@ -91,7 +91,7 @@ for (let j = 0; j < pointCount[verb] + offset; j++) {
 console.info(outputMessage);
 ```
 
-### peek<sup>18+</sup>
+## peek<sup>18+</sup>
 
 peek(): PathIteratorVerb
 
@@ -115,7 +115,7 @@ let iter: drawing.PathIterator = new drawing.PathIterator(path);
 let res = iter.peek();
 ```
 
-### hasNext<sup>18+</sup>
+## hasNext<sup>18+</sup>
 
 hasNext(): boolean
 

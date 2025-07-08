@@ -4,19 +4,17 @@
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+提供管理关系数据库（RDB）方法的接口。
+
+在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据。
+
 ## 导入模块
 
 ```ts
 import { relationalStore } from '@kit.ArkData';
 ```
 
-## RdbStore
-
-提供管理关系数据库（RDB）方法的接口。
-
-在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据。
-
-### 属性
+## 属性
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -83,7 +81,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-### insert
+## insert
 
 insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void
 
@@ -165,7 +163,7 @@ if (store != undefined) {
 }
 ```
 
-### insert<sup>10+</sup>
+## insert<sup>10+</sup>
 
 insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callback: AsyncCallback&lt;number&gt;):void
 
@@ -249,7 +247,7 @@ if (store != undefined) {
 }
 ```
 
-### insert
+## insert
 
 insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 
@@ -336,7 +334,7 @@ if (store != undefined) {
 }
 ```
 
-### insert<sup>10+</sup>
+## insert<sup>10+</sup>
 
 insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promise&lt;number&gt;
 
@@ -424,7 +422,7 @@ if (store != undefined) {
 }
 ```
 
-### insertSync<sup>12+</sup>
+## insertSync<sup>12+</sup>
 
 insertSync(table: string, values: ValuesBucket,  conflict?: ConflictResolution):number
 
@@ -513,7 +511,7 @@ if (store != undefined) {
 }
 ```
 
-### insertSync<sup>12+</sup>
+## insertSync<sup>12+</sup>
 
 insertSync(table: string, values: sendableRelationalStore.ValuesBucket, conflict?: ConflictResolution):number
 
@@ -585,7 +583,7 @@ if (store != undefined) {
 }
 ```
 
-### batchInsert
+## batchInsert
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;):void
 
@@ -677,7 +675,7 @@ if (store != undefined) {
 }
 ```
 
-### batchInsert
+## batchInsert
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&gt;
 
@@ -793,7 +791,7 @@ for (let i = 0; i < 100; i++) { // 构造一个BucketArray用于写入
 await store!.batchInsert("test", valueBucketArray); // 执行批量写入
 ```
 
-### batchInsertSync<sup>12+</sup>
+## batchInsertSync<sup>12+</sup>
 
 batchInsertSync(table: string, values: Array&lt;ValuesBucket&gt;):number
 
@@ -889,7 +887,7 @@ if (store != undefined) {
 }
 ```
 
-### batchInsertWithConflictResolution<sup>18+</sup>
+## batchInsertWithConflictResolution<sup>18+</sup>
 
 batchInsertWithConflictResolution(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): Promise&lt;number&gt;
 
@@ -985,7 +983,7 @@ if (store != undefined) {
 }
 ```
 
-### batchInsertWithConflictResolutionSync<sup>18+</sup>
+## batchInsertWithConflictResolutionSync<sup>18+</sup>
 
 batchInsertWithConflictResolutionSync(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): number
 
@@ -1082,7 +1080,7 @@ if (store != undefined) {
 }
 ```
 
-### update
+## update
 
 update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
@@ -1166,7 +1164,7 @@ if (store != undefined) {
 }
 ```
 
-### update<sup>10+</sup>
+## update<sup>10+</sup>
 
 update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolution, callback: AsyncCallback&lt;number&gt;):void
 
@@ -1251,7 +1249,7 @@ if (store != undefined) {
 }
 ```
 
-### update
+## update
 
 update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 
@@ -1340,7 +1338,7 @@ if (store != undefined) {
 }
 ```
 
-### update<sup>10+</sup>
+## update<sup>10+</sup>
 
 update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolution):Promise&lt;number&gt;
 
@@ -1430,7 +1428,7 @@ if (store != undefined) {
 }
 ```
 
-### updateSync<sup>12+</sup>
+## updateSync<sup>12+</sup>
 
 updateSync(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictResolution):number
 
@@ -1521,7 +1519,7 @@ if (store != undefined) {
 }
 ```
 
-### delete
+## delete
 
 delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
@@ -1579,7 +1577,7 @@ if (store != undefined) {
 }
 ```
 
-### delete
+## delete
 
 delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
@@ -1642,7 +1640,7 @@ if (store != undefined) {
 }
 ```
 
-### deleteSync<sup>12+</sup>
+## deleteSync<sup>12+</sup>
 
 deleteSync(predicates: RdbPredicates):number
 
@@ -1706,7 +1704,7 @@ if (store != undefined) {
 }
 ```
 
-### query<sup>10+</sup>
+## query<sup>10+</sup>
 
 query(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
 
@@ -1758,7 +1756,7 @@ if (store != undefined) {
 }
 ```
 
-### query
+## query
 
 query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
@@ -1811,7 +1809,7 @@ if (store != undefined) {
 }
 ```
 
-### query
+## query
 
 query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
@@ -1869,7 +1867,7 @@ if (store != undefined) {
 }
 ```
 
-### querySync<sup>12+</sup>
+## querySync<sup>12+</sup>
 
 querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 
@@ -1928,7 +1926,7 @@ if (store != undefined) {
 }
 ```
 
-### remoteQuery
+## remoteQuery
 
 remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt; , callback: AsyncCallback&lt;ResultSet&gt;): void
 
@@ -2003,7 +2001,7 @@ if (store != undefined && deviceId != undefined) {
 }
 ```
 
-### remoteQuery
+## remoteQuery
 
 remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
 
@@ -2083,7 +2081,7 @@ if (store != undefined && deviceId != undefined) {
 }
 ```
 
-### querySql<sup>10+</sup>
+## querySql<sup>10+</sup>
 
 querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 
@@ -2155,7 +2153,7 @@ const querySql2 = "select * from test where id in (select id from test1)";
 let resultSet2 = await store.querySql(querySql2);
 ```
 
-### querySql
+## querySql
 
 querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
@@ -2210,7 +2208,7 @@ if (store != undefined) {
 }
 ```
 
-### querySql
+## querySql
 
 querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt;
 
@@ -2281,7 +2279,7 @@ const vectorValue: Float32Array = new Float32Array([1.5, 2.5]);
 let resultSet = await store.querySql(querySql, [vectorValue, 1, vectorValue, vectorValue]); 
 ```
 
-### querySqlSync<sup>12+</sup>
+## querySqlSync<sup>12+</sup>
 
 querySqlSync(sql: string, bindArgs?: Array&lt;ValueType&gt;):ResultSet
 
@@ -2338,7 +2336,7 @@ if (store != undefined) {
 }
 ```
 
-### executeSql<sup>10+</sup>
+## executeSql<sup>10+</sup>
 
 executeSql(sql: string, callback: AsyncCallback&lt;void&gt;):void
 
@@ -2400,7 +2398,7 @@ if (store != undefined) {
 }
 ```
 
-### executeSql
+## executeSql
 
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
@@ -2463,7 +2461,7 @@ if (store != undefined) {
 }
 ```
 
-### executeSql
+## executeSql
 
 executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
@@ -2531,7 +2529,7 @@ if (store != undefined) {
 }
 ```
 
-### execute<sup>12+</sup>
+## execute<sup>12+</sup>
 
 execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 
@@ -2641,7 +2639,7 @@ await store!.execute(insertSql, [0, vectorValue]);
 await store!.execute("insert into test values(1, '[3.5, 1.8]');");
 ```
 
-### execute<sup>12+</sup>
+## execute<sup>12+</sup>
 
 execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;ValueType&gt;
 
@@ -2716,7 +2714,7 @@ if (store != null) {
 }
 ```
 
-### executeSync<sup>12+</sup>
+## executeSync<sup>12+</sup>
 
 executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 
@@ -2809,7 +2807,7 @@ if (store != undefined) {
 }
 ```
 
-### getModifyTime<sup>10+</sup>
+## getModifyTime<sup>10+</sup>
 
 getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[], callback: AsyncCallback&lt;ModifyTime&gt;): void
 
@@ -2868,7 +2866,7 @@ if (store != undefined) {
 }
 ```
 
-### getModifyTime<sup>10+</sup>
+## getModifyTime<sup>10+</sup>
 
 getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[]): Promise&lt;ModifyTime&gt;
 
@@ -2934,7 +2932,7 @@ if (store != undefined) {
 }
 ```
 
-### beginTransaction
+## beginTransaction
 
 beginTransaction():void
 
@@ -2991,7 +2989,7 @@ if (store != undefined) {
 }
 ```
 
-### beginTrans<sup>12+</sup>
+## beginTrans<sup>12+</sup>
 
 beginTrans(): Promise&lt;number&gt;
 
@@ -3056,7 +3054,7 @@ if (store != null) {
 }
 ```
 
-### createTransaction<sup>14+</sup>
+## createTransaction<sup>14+</sup>
 
 createTransaction(options?: TransactionOptions): Promise&lt;Transaction&gt;
 
@@ -3118,7 +3116,7 @@ if (store != undefined) {
 }
 ```
 
-### commit
+## commit
 
 commit():void
 
@@ -3174,7 +3172,7 @@ if (store != undefined) {
 }
 ```
 
-### commit<sup>12+</sup>
+## commit<sup>12+</sup>
 
 commit(txId : number):Promise&lt;void&gt;
 
@@ -3241,7 +3239,7 @@ if (store != null) {
 }
 ```
 
-### rollBack
+## rollBack
 
 rollBack():void
 
@@ -3306,7 +3304,7 @@ if (store != undefined) {
 }
 ```
 
-### rollback<sup>12+</sup>
+## rollback<sup>12+</sup>
 
 rollback(txId : number):Promise&lt;void&gt;
 
@@ -3373,7 +3371,7 @@ if (store != null) {
 }
 ```
 
-### backup
+## backup
 
 backup(destName:string, callback: AsyncCallback&lt;void&gt;):void
 
@@ -3431,7 +3429,7 @@ if (store != undefined) {
 }
 ```
 
-### backup
+## backup
 
 backup(destName:string): Promise&lt;void&gt;
 
@@ -3494,7 +3492,7 @@ if (store != undefined) {
 }
 ```
 
-### restore
+## restore
 
 restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void
 
@@ -3551,7 +3549,7 @@ if (store != undefined) {
 }
 ```
 
-### restore
+## restore
 
 restore(srcName:string): Promise&lt;void&gt;
 
@@ -3614,7 +3612,7 @@ if (store != undefined) {
 }
 ```
 
-### setDistributedTables
+## setDistributedTables
 
 setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -3656,7 +3654,7 @@ if (store != undefined) {
 }
 ```
 
-### setDistributedTables
+## setDistributedTables
 
  setDistributedTables(tables: Array&lt;string&gt;): Promise&lt;void&gt;
 
@@ -3703,7 +3701,7 @@ if (store != undefined) {
 }
 ```
 
-### setDistributedTables<sup>10+</sup>
+## setDistributedTables<sup>10+</sup>
 
 setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, callback: AsyncCallback&lt;void&gt;): void
 
@@ -3747,7 +3745,7 @@ if (store != undefined) {
 }
 ```
 
-### setDistributedTables<sup>10+</sup>
+## setDistributedTables<sup>10+</sup>
 
 setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, config: DistributedConfig, callback: AsyncCallback&lt;void&gt;): void
 
@@ -3794,7 +3792,7 @@ if (store != undefined) {
 }
 ```
 
-### setDistributedTables<sup>10+</sup>
+## setDistributedTables<sup>10+</sup>
 
  setDistributedTables(tables: Array&lt;string>, type?: DistributedType, config?: DistributedConfig): Promise&lt;void>
 
@@ -3846,7 +3844,7 @@ if (store != undefined) {
 }
 ```
 
-### obtainDistributedTableName
+## obtainDistributedTableName
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
@@ -3909,7 +3907,7 @@ if (store != undefined && deviceId != undefined) {
 }
 ```
 
-### obtainDistributedTableName
+## obtainDistributedTableName
 
  obtainDistributedTableName(device: string, table: string): Promise&lt;string&gt;
 
@@ -3975,7 +3973,7 @@ if (store != undefined && deviceId != undefined) {
 }
 ```
 
-### sync
+## sync
 
 sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void
 
@@ -4041,7 +4039,7 @@ if (store != undefined) {
 }
 ```
 
-### sync
+## sync
 
  sync(mode: SyncMode, predicates: RdbPredicates): Promise&lt;Array&lt;[string, number]&gt;&gt;
 
@@ -4110,7 +4108,7 @@ if (store != undefined) {
 }
 ```
 
-### cloudSync<sup>10+</sup>
+## cloudSync<sup>10+</sup>
 
 cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -4152,7 +4150,7 @@ if (store != undefined) {
 }
 ```
 
-### cloudSync<sup>10+</sup>
+## cloudSync<sup>10+</sup>
 
 cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
@@ -4199,7 +4197,7 @@ if (store != undefined) {
 }
 ```
 
-### cloudSync<sup>10+</sup>
+## cloudSync<sup>10+</sup>
 
 cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetails&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -4244,7 +4242,7 @@ if (store != undefined) {
 };
 ```
 
-### cloudSync<sup>10+</sup>
+## cloudSync<sup>10+</sup>
 
 cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
@@ -4294,7 +4292,7 @@ if (store != undefined) {
 };
 ```
 
-### on('dataChange')
+## on('dataChange')
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
@@ -4345,7 +4343,7 @@ try {
 }
 ```
 
-### on('dataChange')<sup>10+</sup>
+## on('dataChange')<sup>10+</sup>
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;): void
 
@@ -4441,7 +4439,7 @@ try {
 }
 ```
 
-### on<sup>10+</sup>
+## on<sup>10+</sup>
 
 on(event: string, interProcess: boolean, observer: Callback\<void>): void
 
@@ -4489,7 +4487,7 @@ try {
 }
 ```
 
-### on('autoSyncProgress')<sup>11+</sup>
+## on('autoSyncProgress')<sup>11+</sup>
 
 on(event: 'autoSyncProgress', progress: Callback&lt;ProgressDetails&gt;): void
 
@@ -4534,7 +4532,7 @@ try {
 }
 ```
 
-### on('statistics')<sup>12+</sup>
+## on('statistics')<sup>12+</sup>
 
 on(event: 'statistics', observer: Callback&lt;SqlExecutionInfo&gt;): void
 
@@ -4603,7 +4601,7 @@ try {
 }
 ```
 
-### on('sqliteErrorOccurred')<sup>20+</sup>
+## on('sqliteErrorOccurred')<sup>20+</sup>
 
 on(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): void
 
@@ -4667,7 +4665,7 @@ try {
 
 ```
 
-### on('perfStat')<sup>20+</sup>
+## on('perfStat')<sup>20+</sup>
 
 on(event: 'perfStat', observer: Callback&lt;SqlExecutionInfo&gt;): void
 
@@ -4734,7 +4732,7 @@ try {
 }
 ```
 
-### off('dataChange')
+## off('dataChange')
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
@@ -4795,7 +4793,7 @@ try {
 }
 ```
 
-### off('dataChange')<sup>10+</sup>
+## off('dataChange')<sup>10+</sup>
 
 off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;): void
 
@@ -4857,7 +4855,7 @@ try {
 }
 ```
 
-### off<sup>10+</sup>
+## off<sup>10+</sup>
 
 off(event: string, interProcess: boolean, observer?: Callback\<void>): void
 
@@ -4915,7 +4913,7 @@ try {
 }
 ```
 
-### off('autoSyncProgress')<sup>11+</sup>
+## off('autoSyncProgress')<sup>11+</sup>
 
 off(event: 'autoSyncProgress', progress?: Callback&lt;ProgressDetails&gt;): void
 
@@ -4970,7 +4968,7 @@ try {
 }
 ```
 
-### off('statistics')<sup>12+</sup>
+## off('statistics')<sup>12+</sup>
 
 off(event: 'statistics', observer?: Callback&lt;SqlExecutionInfo&gt;): void
 
@@ -5011,7 +5009,7 @@ try {
 }
 ```
 
-### off('sqliteErrorOccurred')<sup>20+</sup>
+## off('sqliteErrorOccurred')<sup>20+</sup>
 
 off(event: 'sqliteErrorOccurred', observer?: Callback&lt;ExceptionMessage&gt;): void
 
@@ -5051,7 +5049,7 @@ try {
 }
 ```
 
-### off('perfStat')<sup>20+</sup>
+## off('perfStat')<sup>20+</sup>
 
 off(event: 'perfStat', observer?: Callback&lt;SqlExecutionInfo&gt;): void
 
@@ -5090,7 +5088,7 @@ try {
 }
 ```
 
-### emit<sup>10+</sup>
+## emit<sup>10+</sup>
 
 emit(event: string): void
 
@@ -5125,7 +5123,7 @@ if (store != undefined) {
 }
 ```
 
-### cleanDirtyData<sup>11+</sup>
+## cleanDirtyData<sup>11+</sup>
 
 cleanDirtyData(table: string, cursor: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -5182,7 +5180,7 @@ if (store != undefined) {
 }
 ```
 
-### cleanDirtyData<sup>11+</sup>
+## cleanDirtyData<sup>11+</sup>
 
 cleanDirtyData(table: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -5238,7 +5236,7 @@ if (store != undefined) {
 }
 ```
 
-### cleanDirtyData<sup>11+</sup>
+## cleanDirtyData<sup>11+</sup>
 
 cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
 
@@ -5299,7 +5297,7 @@ if (store != undefined) {
 }
 ```
 
-### attach<sup>12+</sup>
+## attach<sup>12+</sup>
 
 attach(fullPath: string, attachName: string, waitTime?: number) : Promise&lt;number&gt;
 
@@ -5371,7 +5369,7 @@ if (store != undefined) {
 }
 ```
 
-### attach<sup>12+</sup>
+## attach<sup>12+</sup>
 
 attach(context: Context, config: StoreConfig, attachName: string, waitTime?: number) : Promise&lt;number&gt;
 
@@ -5488,7 +5486,7 @@ if (store != undefined) {
 }
 ```
 
-### detach<sup>12+</sup>
+## detach<sup>12+</sup>
 
 detach(attachName: string, waitTime?: number) : Promise&lt;number&gt;
 
@@ -5553,7 +5551,7 @@ if (store != undefined) {
 }
 ```
 
-### lockRow<sup>12+</sup>
+## lockRow<sup>12+</sup>
 
 lockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 
@@ -5620,7 +5618,7 @@ if (store != undefined) {
 }
 ```
 
-### unlockRow<sup>12+</sup>
+## unlockRow<sup>12+</sup>
 
 unlockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 
@@ -5687,7 +5685,7 @@ if (store != undefined) {
 }
 ```
 
-### queryLockedRow<sup>12+</sup>
+## queryLockedRow<sup>12+</sup>
 
 queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
@@ -5760,7 +5758,7 @@ if (store != undefined) {
   });
 }
 ```
-### close<sup>12+</sup>
+## close<sup>12+</sup>
 
 close(): Promise&lt;void&gt;
 
@@ -5797,7 +5795,7 @@ if (store != undefined) {
 }
 ```
 
-### rekey<sup>20+</sup>
+## rekey<sup>20+</sup>
 
 rekey(cryptoParam?: CryptoParam): Promise\<void>
 
