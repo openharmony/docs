@@ -526,12 +526,12 @@ let copyoption: fs.CopyOptions = {
 }
 try {
   fs.copy(srcDirUriLocal, dstDirUriLocal, copyoption).then(()=>{
-    console.info("Succeeded in copying. ");
+    console.info("Succeeded in copying.");
   }).catch((err: BusinessError)=>{
-    console.error(`Failed to copy: ${JSON.stringify(err)}`);
+    console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
   })
 } catch(err) {
-  console.error(`Failed to copy: ${JSON.stringify(err)}`);
+  console.error(`Failed to copy.Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -573,13 +573,13 @@ let dstDirUriLocal: string = fileUri.getUriFromPath(dstDirPathLocal);
 try {
   fs.copy(srcDirUriLocal, dstDirUriLocal, (err: BusinessError) => {
     if (err) {
-      console.error(`Failed to copy: ${JSON.stringify(err)}`);
+      console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info("Succeeded in copying. ");
+    console.info("Succeeded in copying.");
   })
 } catch(err) {
-  console.error(`Failed to copy: ${JSON.stringify(err)}`);
+  console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -629,13 +629,13 @@ try {
   }
   fs.copy(srcDirUriLocal, dstDirUriLocal, copyoption, (err: BusinessError) => {
     if (err) {
-      console.error(`Failed to copy: ${JSON.stringify(err)}`);
+      console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info("Succeeded in copying. ");
+    console.info("Succeeded in copying.");
   })
 } catch(err) {
-  console.error(`Failed to copy: ${JSON.stringify(err)}`);
+  console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -3340,8 +3340,8 @@ moveDirSync(src: string, dest: string, mode?: number): void
 
 **示例：**
 
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
 let srcPath = pathDir + "/srcDir";
 let destPath = pathDir + "/destDir";
@@ -3358,7 +3358,7 @@ try {
     console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
   }
 }
-  ```
+```
 
 ## fs.moveFile
 
@@ -4135,7 +4135,7 @@ createReadStream(path: string, options?: ReadStreamOptions ): ReadStream
 **示例：**
 
   ```ts
- // 创建文件可读流
+  // 创建文件可读流
   const rs = fs.createReadStream(`${pathDir}/read.txt`);
   // 创建文件可写流
   const ws = fs.createWriteStream(`${pathDir}/write.txt`);
@@ -4177,7 +4177,7 @@ createWriteStream(path: string, options?: WriteStreamOptions): WriteStream
 **示例：**
 
   ```ts
- // 创建文件可读流
+  // 创建文件可读流
   const rs = fs.createReadStream(`${pathDir}/read.txt`);
   // 创建文件可写流
   const ws = fs.createWriteStream(`${pathDir}/write.txt`);
@@ -4929,7 +4929,7 @@ isSymbolicLink(): boolean
 **示例：**
 
   ```ts
-  let filePath = pathDir + "/test";
+  let filePath = pathDir + "/test.txt";
   let isSymbolicLink = fs.statSync(filePath).isSymbolicLink();
   ```
 
