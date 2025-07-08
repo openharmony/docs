@@ -4,9 +4,13 @@
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> - 本Class首批接口从API version 15开始支持。
+>
 > - 本模块使用屏幕物理像素单位px。
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
+
+本模块定义的工具类，仅提供静态的方法，主要完成其他模块和[common2D](js-apis-graphics-common2D.md)中定义的数据结构的转换功能等操作。
 
 ## 导入模块
 
@@ -14,11 +18,7 @@
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## Tool<sup>15+</sup>
-
-本模块定义的工具类，仅提供静态的方法，主要完成其他模块和[common2D](js-apis-graphics-common2D.md)中定义的数据结构的转换功能等操作。
-
-### makeColorFromResourceColor<sup>15+</sup>
+## makeColorFromResourceColor<sup>15+</sup>
 
 static makeColorFromResourceColor(resourceColor: ResourceColor): common2D.Color
 

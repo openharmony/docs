@@ -2,15 +2,9 @@
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
-## 导入模块
-
-```ts
-import { relationalStore } from '@kit.ArkData';
-```
-
-## Transaction<sup>14+</sup>
+> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本Interface首批接口从API version 14开始支持。
 
 提供以事务方式管理数据库的方法。事务对象是通过[createTransaction](arkts-apis-data-relationalStore-RdbStore.md#createtransaction14)接口创建的，不同事务对象之间的操作是隔离的，不同类型事务的区别见[TransactionType](arkts-apis-data-relationalStore-e.md#transactiontype14) 。
 
@@ -55,7 +49,13 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-### commit<sup>14+</sup>
+## 导入模块
+
+```ts
+import { relationalStore } from '@kit.ArkData';
+```
+
+## commit<sup>14+</sup>
 
 commit(): Promise&lt;void&gt;
 
@@ -113,7 +113,7 @@ if (store != undefined) {
 }
 ```
 
-### rollback<sup>14+</sup>
+## rollback<sup>14+</sup>
 
 rollback(): Promise&lt;void&gt;
 
@@ -160,7 +160,7 @@ if (store != undefined) {
 }
 ```
 
-### insert<sup>14+</sup>
+## insert<sup>14+</sup>
 
 insert(table: string, values: ValuesBucket, conflict?: ConflictResolution): Promise&lt;number&gt;
 
@@ -247,7 +247,7 @@ if (store != undefined) {
 }
 ```
 
-### insertSync<sup>14+</sup>
+## insertSync<sup>14+</sup>
 
 insertSync(table: string, values: ValuesBucket | sendableRelationalStore.ValuesBucket, conflict?: ConflictResolution): number
 
@@ -335,7 +335,7 @@ if (store != undefined) {
 }
 ```
 
-### batchInsert<sup>14+</sup>
+## batchInsert<sup>14+</sup>
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&gt;
 
@@ -429,7 +429,7 @@ if (store != undefined) {
 }
 ```
 
-### batchInsertSync<sup>14+</sup>
+## batchInsertSync<sup>14+</sup>
 
 batchInsertSync(table: string, values: Array&lt;ValuesBucket&gt;): number
 
@@ -524,7 +524,7 @@ if (store != undefined) {
 }
 ```
 
-### batchInsertWithConflictResolution<sup>18+</sup>
+## batchInsertWithConflictResolution<sup>18+</sup>
 
 batchInsertWithConflictResolution(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): Promise&lt;number&gt;
 
@@ -622,7 +622,7 @@ if (store != undefined) {
 }
 ```
 
-### batchInsertWithConflictResolutionSync<sup>18+</sup>
+## batchInsertWithConflictResolutionSync<sup>18+</sup>
 
 batchInsertWithConflictResolutionSync(table: string, values: Array&lt;ValuesBucket&gt;, conflict: ConflictResolution): number
 
@@ -721,7 +721,7 @@ if (store != undefined) {
 }
 ```
 
-### update<sup>14+</sup>
+## update<sup>14+</sup>
 
 update(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictResolution): Promise&lt;number&gt;
 
@@ -811,7 +811,7 @@ if (store != undefined) {
 }
 ```
 
-### updateSync<sup>14+</sup>
+## updateSync<sup>14+</sup>
 
 updateSync(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictResolution): number
 
@@ -902,7 +902,7 @@ if (store != undefined) {
 }
 ```
 
-### delete<sup>14+</sup>
+## delete<sup>14+</sup>
 
 delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
@@ -965,7 +965,7 @@ if (store != undefined) {
 }
 ```
 
-### deleteSync<sup>14+</sup>
+## deleteSync<sup>14+</sup>
 
 deleteSync(predicates: RdbPredicates): number
 
@@ -1029,7 +1029,7 @@ if (store != undefined) {
 }
 ```
 
-### query<sup>14+</sup>
+## query<sup>14+</sup>
 
 query(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
 
@@ -1098,7 +1098,7 @@ if (store != undefined) {
 }
 ```
 
-### querySync<sup>14+</sup>
+## querySync<sup>14+</sup>
 
 querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;): ResultSet
 
@@ -1169,7 +1169,7 @@ if (store != undefined) {
 }
 ```
 
-### querySql<sup>14+</sup>
+## querySql<sup>14+</sup>
 
 querySql(sql: string, args?: Array&lt;ValueType&gt;): Promise&lt;ResultSet&gt;
 
@@ -1236,7 +1236,7 @@ if (store != undefined) {
 }
 ```
 
-### querySqlSync<sup>14+</sup>
+## querySqlSync<sup>14+</sup>
 
 querySqlSync(sql: string, args?: Array&lt;ValueType&gt;): ResultSet
 
@@ -1304,7 +1304,7 @@ if (store != undefined) {
 }
 ```
 
-### execute<sup>14+</sup>
+## execute<sup>14+</sup>
 
 execute(sql: string, args?: Array&lt;ValueType&gt;): Promise&lt;ValueType&gt;
 
@@ -1374,7 +1374,7 @@ if (store != undefined) {
 }
 ```
 
-### executeSync<sup>14+</sup>
+## executeSync<sup>14+</sup>
 
 executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 
