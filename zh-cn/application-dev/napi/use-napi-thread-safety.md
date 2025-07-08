@@ -169,6 +169,6 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
        }, 5000);
      });
    }
-    nativeModule.startThread(callback);
+   nativeModule.startThread(callback);
    ```
    <!-- @[napi_thread_safety_ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/Index.ets) -->
