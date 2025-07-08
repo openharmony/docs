@@ -79,10 +79,10 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@kit.InputKit';
 
 | 名称      | 值  | 说明    |
 | ------- | ------| ----- |
-| UNKNOWN<sup>11+</sup> | 0 | 未知类型。  |
-| MOUSE<sup>11+</sup>  | 1 | 鼠标。 |
-| JOYSTICK<sup>11+</sup> | 2 | 摇杆。 |
-| TOUCHPAD<sup>11+</sup> | 3 | 触摸板。 |
+| UNKNOWN | 0 | 未知类型。  |
+| MOUSE  | 1 | 鼠标。 |
+| JOYSTICK | 2 | 摇杆。 |
+| TOUCHPAD | 3 | 触摸板。 |
 
 ## MouseEvent
 
