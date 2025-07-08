@@ -139,7 +139,7 @@ ArcButton有上弧形按钮和下弧形按钮两种类型。使用[position](../
 
 ## 场景示例
 
-  在亮度设置界面，进度条显示当前亮度为30%。点击重置后，亮度值将被重置为默认的50%。
+在亮度设置界面，进度条显示当前亮度为30%。点击重置后，亮度值将被重置为默认的50%。
 
   ```ts
 import { LengthMetrics, LengthUnit, ArcButton, ArcButtonOptions, ArcButtonStyleMode } from '@kit.ArkUI';
@@ -147,8 +147,8 @@ import { LengthMetrics, LengthUnit, ArcButton, ArcButtonOptions, ArcButtonStyleM
 @Entry
 @ComponentV2
 struct BrightnessPage {
-  @Local brightnessValue: number = 30
-  private defaultBrightnessValue: number = 50
+  @Local brightnessValue: number = 30;
+  private defaultBrightnessValue: number = 50;
 
   build() {
     RelativeContainer() {
@@ -183,12 +183,11 @@ struct BrightnessPage {
         .id('id_brightness_slider')
         .margin({ left: 16, right: 16 })
         .onChange((value: number, mode: SliderChangeMode) => {
-          this.brightnessValue = value
+          this.brightnessValue = value;
         })
         .alignRules({
           center: { anchor: 'id_brightness_min_text', align: VerticalAlign.Center },
-          start: { anchor: 'id_brightness_min_text', align: HorizontalAlign.End },
-          end: { anchor: 'id_brightness_max_text', align: HorizontalAlign.Start }
+          start: { anchor: 'id_brightness_min_text', align: HorizontalAlign.End }
         })
 
       ArcButton({
@@ -197,7 +196,7 @@ struct BrightnessPage {
           styleMode: ArcButtonStyleMode.EMPHASIZED_LIGHT,
           fontSize: new LengthMetrics(19, LengthUnit.FP),
           onClick: () => {
-            this.brightnessValue = this.defaultBrightnessValue
+            this.brightnessValue = this.defaultBrightnessValue;
           }
         })
       })
