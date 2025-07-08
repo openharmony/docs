@@ -360,7 +360,7 @@ activateSceneAnimation(formId: string): Promise&lt;void&gt;
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-| 16501011 | The form can not support this operation, please check your fom_config's sceneAnimationParams configuration infomation is correct or not. |
+| 16501011 | The form can not support this operation. |
 
 **示例：**
 
@@ -417,7 +417,7 @@ deactivateSceneAnimation(formId: string): Promise&lt;void&gt;
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form cannot be operated by the current application. |
-| 16501011 | The form can not support this operation, please check your fom_config's sceneAnimationParams configuration infomation is correct or not. |
+| 16501011 | The form can not support this operation. |
 
 **示例：**
 
