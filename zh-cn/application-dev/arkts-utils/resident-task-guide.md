@@ -71,7 +71,8 @@
        }
      } else if (type === 'stop') {
        isRunning = false;
-       workerPort.close();  // 关闭Worker
+       // 关闭Worker
+       workerPort.close();
      }
    }
    // 模拟常驻任务
