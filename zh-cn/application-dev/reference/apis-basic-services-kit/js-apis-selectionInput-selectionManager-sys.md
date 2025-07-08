@@ -1,11 +1,12 @@
-# @ohos.selectionInput.selectionManager (划词管理)
+# @ohos.selectionInput.selectionManager (划词管理)(系统接口)
 
 本模块提供划词管理能力，包括创建窗口、显示窗口、移动窗口、隐藏窗口、销毁窗口、监听鼠标划词事件、获取选中文本等。
 
 > **说明：**
 >
-> 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 仅支持集成了划词扩展的应用调用。
+> - 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 仅支持集成了划词扩展的应用调用。
+> - 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -90,7 +91,7 @@ createPanel(ctx: Context, info: PanelInfo): Promise\<Panel>
 
 创建划词面板。使用Promise异步回调。
 
-单个划词应用仅允许创建一个[主面板类型](./js-apis-selectionInput-selectionPanel.md)和一个[菜单面板类型](./js-apis-selectionInput-selectionPanel.md)的窗口。
+单个划词应用仅允许创建一个[主面板类型](./js-apis-selectionInput-selectionPanel-sys.md)和一个[菜单面板类型](./js-apis-selectionInput-selectionPanel-sys.md)的窗口。
 
 **系统能力：** SystemCapability.SelectionInput.Selection
 
@@ -99,7 +100,7 @@ createPanel(ctx: Context, info: PanelInfo): Promise\<Panel>
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
 | ctx     | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前划词面板依赖的上下文信息。 |
-| info    | [PanelInfo](./js-apis-selectionInput-selectionPanel.md)   | 是   | 划词面板信息。 |
+| info    | [PanelInfo](./js-apis-selectionInput-selectionPanel-sys.md)   | 是   | 划词面板信息。 |
 
 **返回值：**
 | 类型   | 说明                                                                 |
