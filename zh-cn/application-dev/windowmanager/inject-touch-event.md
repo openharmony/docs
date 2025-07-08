@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-开发者可以WindowManager模块提供的能力去将多模触摸事件注入给目标窗口，仅支持注入同进程窗口，且该注入不会触发窗口焦点和层级变化，不会触发窗口拖拽，事件会直接发送给ArkUI。该接口需要在指定窗口loadcontent之后调用。
+开发者可以WindowManager模块提供的能力去将多模触摸事件注入给目标窗口，仅支持注入同进程窗口，且该注入不会触发窗口焦点和层级变化，不会触发窗口拖拽，事件会直接发送给ArkUI。该接口需要在指定窗口加载UI之后调用。
 
 
 ## 接口说明
@@ -29,7 +29,7 @@ target_link_libraries(entry PUBLIC libnative_window_manager.so libohinput.so)
 
 | 参数名 | 描述 | 
 | -------- | -------- |
-| windowId | 目标窗口ID，限制同进程窗口，否则返回错误码1300002；且该窗口需完成loadcontent，否则返回错误码1300003。 | 
+| windowId | 目标窗口ID，限制同进程窗口，否则返回错误码1300002；且该窗口需完成加载UI，否则返回错误码1300003。 | 
 | touchEvent | 多模触摸事件，具体可见[Input_TouchEvent](../reference/apis-input-kit/capi-input-input-touchevent.md)，事件定义在oh_input_manager.h中。调用[OH_Input_CreateTouchEvent](../reference/apis-input-kit/capi-oh-input-manager-h.md#oh_input_createtouchevent)接口可以创建touchevent对象，使用完需要调用[OH_Input_DestroyTouchEvent](../reference/apis-input-kit/capi-oh-input-manager-h.md#oh_input_createtouchevent)接口销毁touchEvent对象。touchEvent包含多个参数，在下表会展开说明。 |
 | windowX | 注入事件相对于注入窗口的落点横坐标。该参数应为大于等于0的整数，否则返回错误码1300003。 |
 | windowY | 注入事件相对于注入窗口的落点纵坐标。该参数应为大于等于0的整数，否则返回错误码1300003。 |
@@ -47,7 +47,7 @@ target_link_libraries(entry PUBLIC libnative_window_manager.so libohinput.so)
 | displayId | [OH_Input_SetTouchEventDisplayId](../reference/apis-input-kit/capi-oh-input-manager-h.md#oh_input_settoucheventdisplayid) | 事件注入屏幕ID | -1 | 其它无限制，但是应该尽量保证与接口参数windowId有相互对应关系，推荐使用[getWindowProperties()](../reference/apis-arkui/arkts-apis-window-Window.md#getwindowproperties9)方法获取displayId属性。 |
 
 - 仅支持注入同进程窗口，且该注入不会触发窗口焦点和层级变化，不会触发窗口拖拽，事件会直接发送给ArkUI。
-- 该接口需要在指定窗口loadcontent之后调用。
+- 该接口需要在指定窗口加载UI之后调用。
 
 ## 示例代码
 以下示例代码中介绍了如何将多模触摸事件注入给目标窗口，以注入一次事件为例。
