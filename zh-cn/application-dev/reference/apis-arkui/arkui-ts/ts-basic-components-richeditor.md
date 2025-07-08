@@ -94,7 +94,7 @@ bindSelectionMenu(spanType: RichEditorSpanType, content: CustomBuilder, response
 | ------------ | ------------------------------------------------------------ | ---- | --------------------------------------------------------- |
 | spanType     | [RichEditorSpanType](#richeditorspantype)                    | 是   | 菜单的类型。<br/>默认值：<br/>RichEditorSpanType.TEXT    |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)                  | 是   | 菜单的内容。                                              |
-| responseType | &nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp;\|&nbsp;[RichEditorResponseType](#richeditorresponsetype11) | 是   | 菜单的响应类型。<br/> 默认值：<br/>ResponseType.LongPress |
+| responseType | &nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp; \| &nbsp;[RichEditorResponseType](#richeditorresponsetype11) | 是   | 菜单的响应类型。<br/> 默认值：<br/>ResponseType.LongPress |
 | options      | [SelectionMenuOptions](#selectionmenuoptions10)              | 否   | 菜单的选项。                                              |
 
 ### copyOptions
@@ -731,7 +731,7 @@ onCopy(callback: Callback\<CopyEvent\>)
 | offset                | number                                   | 是    | 删除内容的偏移位置。          |
 | direction             | [RichEditorDeleteDirection](#richeditordeletedirection) | 是    | 删除操作的方向。            |
 | length                | number                                   | 是    | 删除内容长度。             |
-| richEditorDeleteSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult)  \| [RichEditorImageSpanResult](#richeditorimagespanresult)> | 是    | 删除的文本或图片Span的信息。 |
+| richEditorDeleteSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult) \| [RichEditorImageSpanResult](#richeditorimagespanresult)> | 是    | 删除的文本或图片Span的信息。 |
 
 
 ## RichEditorDeleteDirection
@@ -1220,7 +1220,7 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 
 | 参数名     | 类型                                     | 必填   | 说明  |
 | ------- | ---------------------------------------- | ---- | ----- |
-| value   | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) \|[ResourceStr](ts-types.md#resourcestr) | 是    | 图片内容。 |
+| value   | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) \| [ResourceStr](ts-types.md#resourcestr) | 是    | 图片内容。 |
 | options | [RichEditorImageSpanOptions](#richeditorimagespanoptions) | 否    | 图片选项。 |
 
 **返回值：**
@@ -1703,7 +1703,7 @@ SymbolSpan样式选项。
 | fontColor                | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。<br/> 默认值：$r('sys.color.font_primary')。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | fontSize                 | [Length](ts-types.md#length) \| number            | 否    | 设置字体大小，Length为number类型时，使用fp单位。字体默认大小16。不支持设置百分比字符串。字体大小设置为0时，显示默认字体大小。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | fontStyle                | [FontStyle](ts-appendix-enums.md#fontstyle) | 否    | 字体样式。<br/>默认值：FontStyle.Normal。          <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| fontWeight               | number \|  [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否    | 字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| fontWeight               | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否    | 字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | fontFamily               | [ResourceStr](ts-types.md#resourcestr) | 否    | 设置字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 <br/>默认字体:'HarmonyOS Sans'。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | decoration               | [DecorationStyleInterface](ts-universal-styled-string.md#decorationstyleinterface) | 否    | 设置文本装饰线的样式、颜色和粗细。<br/>type默认值：TextDecorationType.None <br/>color默认值：跟随字体颜色。<br/>style默认值：TextDecorationStyle.SOLID <br/>thicknessScale默认值：1.0 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 否    | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>仅支持设置阴影模糊半径、颜色和偏移量，不支持智能取色。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -2005,7 +2005,7 @@ type OnHoverCallback = (status: boolean, event: HoverEvent) => void
 | 名称               | 类型                                                                | 必填  | 说明               |
 |------------------|-------------------------------------------------------------------|-----|------------------|
 | spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | 是   | Span位置。|
-| value            | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)\|[ResourceStr](ts-types.md#resourcestr)  | 是   | 图片内容。|
+| value            | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) \| [ResourceStr](ts-types.md#resourcestr)  | 是   | 图片内容。|
 | imageStyle       | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 否 | 图片样式。|
 
 ## RichEditorUrlStyle<sup>19+</sup>
