@@ -12,7 +12,7 @@
 
 ### addGesture
 
-addGesture(gesture: GestureHandler\<T>, priority?: GesturePriority, mask?: GestureMask): void
+addGesture\<T>(gesture: GestureHandler\<T>, priority?: GesturePriority, mask?: GestureMask): void
 
 添加手势。
 
@@ -30,7 +30,7 @@ addGesture(gesture: GestureHandler\<T>, priority?: GesturePriority, mask?: Gestu
 
 ### addParallelGesture
 
-addParallelGesture(gesture: GestureHandler\<T>, mask?: GestureMask): void
+addParallelGesture\<T>(gesture: GestureHandler\<T>, mask?: GestureMask): void
 
 绑定可与子组件手势同时触发的手势。
 
