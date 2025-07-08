@@ -500,7 +500,7 @@ ethernet.off('interfaceStateChange');
 
 getEthernetDeviceInfos(): Promise\<Array\<EthernetDeviceInfos>>
 
-获取以太网设备信息，使用Promise方式作为异步方法。
+获取以太网设备信息，使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -516,6 +516,8 @@ getEthernetDeviceInfos(): Promise\<Array\<EthernetDeviceInfos>>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[以太网连接错误码](errorcode-net-ethernet.md)。
+
 | 错误码ID | 错误信息                                |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
@@ -529,12 +531,12 @@ import { ethernet } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getEthernetDeviceInfos().then((data: Array<ethernet.EthernetDeviceInfos>) => {
-  console.log("getEthernetDeviceInfos promise data.length = " + JSON.stringify(data.length));
+  console.info("getEthernetDeviceInfos data.length = " + JSON.stringify(data.length));
   for (let i = 0; i < data.length; i++) {
-    console.log("getEthernetDeviceInfos promise  = " + JSON.stringify(data[i]));
+    console.info("getEthernetDeviceInfos = " + JSON.stringify(data[i]));
   }
-}).catch((error:BusinessError) => {
-  console.error("getEthernetDeviceInfos promise error = " + JSON.stringify(error));
+}).catch((err: BusinessError) => {
+  console.error("getEthernetDeviceInfos err = " + err.code);
 });
 ```
 
@@ -592,15 +594,15 @@ ethernet.getEthernetDeviceInfos().then((data: Array<ethernet.EthernetDeviceInfos
 
 **系统能力**：SystemCapability.Communication.NetManager.Ethernet
 
-| 名称           | 类型                    | 必填 | 说明                                                         |
-| ------------   | ----------------------- | ---|------------------------------------------------------------ |
-| ifaceName      | string                  | 是 | 网络接口名。      |
-| deviceName     | string                  | 是 | 设备名称。    |
-| connectionMode | [DeviceConnectionType](#deviceconnectiontype20)  | 是 | 设备连接模式。 |
-| supplierName   | string                  | 是 | 供应商名称。 |
-| supplierId     | string                  | 是 | 供应商标识号。 |
-| productName    | string                  | 是 | 产品名称。 |
-| maximumRate    | string                  | 是 | 最大连接速率。 |
+| 名称           | 类型                    | 只读 | 可选 | 说明                                                         |
+| ------------   | ----------------------- | ---| ---|------------------------------------------------------------ |
+| ifaceName      | string                  | 否 | 否 | 网络接口名。      |
+| deviceName     | string                  | 否 | 否 | 设备名称。    |
+| connectionMode | [DeviceConnectionType](#deviceconnectiontype20)  | 否 | 否 | 设备连接模式。 |
+| supplierName   | string                  | 否 | 否 | 供应商名称。 |
+| supplierId     | string                  | 否 | 否 | 供应商标识号。 |
+| productName    | string                  | 否 | 否 | 产品名称。 |
+| maximumRate    | string                  | 否 | 否 | 最大连接速率。 |
 
 ## DeviceConnectionType<sup>20+</sup>
 
@@ -613,4 +615,4 @@ ethernet.getEthernetDeviceInfos().then((data: Array<ethernet.EthernetDeviceInfos
 | 名称                  | 值   | 说明                        |
 | --------------------- | ---- | -------------------------- |
 | BUILT_IN              | 0    | 以太网设备为内置连接模式。 |
-| EXTERNAL              | 1    | 以太网设备为外接连接模式。 |
+| EXTERNAL              | 1    | 以太网设备为外接连接模式。例如，以太网设备通过USB连接。 |
