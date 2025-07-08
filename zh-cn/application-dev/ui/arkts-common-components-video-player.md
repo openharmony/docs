@@ -12,7 +12,7 @@ Video通过调用接口来创建，接口调用形式如下：
 
 ## 加载视频资源
 
-Video组件支持加载本地视频和网络视频。视频的数据源具体请参考[VideoOptions对象说明](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#videooptions对象说明)。
+Video组件支持加载本地视频和网络视频。具体的数据源配置请参考[VideoOptions对象说明](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#videooptions对象说明)。
 
 
 ### 加载本地视频
@@ -46,7 +46,7 @@ Video组件支持加载本地视频和网络视频。视频的数据源具体请
   ```
 
 
-- [Data Ability](../application-models/dataability-overview.md)提供的视频路径带有dataability://前缀，使用时确保对应视频资源存在即可。
+- [Data Ability](../application-models/dataability-overview.md)提供的视频路径带有dataability://前缀，使用时确保对应视频资源存在。
 
   ```ts
   // xxx.ets
@@ -146,7 +146,7 @@ export struct VideoPlayer {
 
 ## 事件调用
 
-  Video组件回调事件主要包括播放开始、暂停结束、播放失败、播放停止、视频准备和操作进度条等事件，除此之外，Video组件也支持通用事件的调用，如点击、触摸等事件的调用。详细事件请参考[事件说明](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#事件)。
+  Video组件回调事件主要包括播放开始、播放暂停、播放结束、播放失败、播放停止、视频准备和操作进度条等事件，除此之外，Video组件也支持通用事件的调用，如点击、触摸等事件的调用。详细事件请参考[事件说明](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#事件)。
 
 ```ts
 // xxx.ets
@@ -227,7 +227,6 @@ Video控制器主要用于控制视频的状态，包括播放、暂停、停止
     @State videoSrc: Resource = $rawfile('videoTest.mp4')
     @State previewUri: string = 'common/videoIcon.png'
     @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
-    @State isAutoPlay: boolean = false
     @State showControls: boolean = true
     @State sliderStartTime: string = ''
     @State currentTime: number = 0
