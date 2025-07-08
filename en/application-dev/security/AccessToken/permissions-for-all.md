@@ -498,4 +498,6 @@ This permission applies only to independent binary programs, not to HAPs.
 
 **Authorization mode**: system_grant
 
+**Supported devices**: PC/2in1
+
 **Valid since**: 20

@@ -5071,6 +5071,8 @@ With this permission, the HAP can load independent binary .so files with a devel
 
 **Authorization mode**: system_grant
 
+**Enable via ACL**：true
+
 **Supported devices**: PC/2in1
 
 **Valid since**: 20
