@@ -3541,7 +3541,7 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Pr
 
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | Promise对象，返回指定组件的Lablel值。 |
+| Promise\<string> | Promise对象，返回指定组件的label值。 |
 
 **错误码：**
 
@@ -3605,7 +3605,7 @@ getAbilityLabelSync(bundleName: string, moduleName: string, abilityName: string)
 
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
-| string | 指定组件的Lablel值。 |
+| string | 指定组件的label值。 |
 
 **错误码：**
 
