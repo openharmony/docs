@@ -251,6 +251,32 @@
 **取值：** "usual.event.USER_SWITCHED"
 
 
+### COMMON_EVENT_USER_LOCKING
+
+表示用户即将被锁定的公共事件的动作。
+
+锁定用户前将会触发事件通知服务发布该系统公共事件，事件携带系统账号ID。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**取值：** "usual.event.USER_LOCKING"
+
+
+### COMMON_EVENT_USER_LOCKED
+
+表示用户锁定完成的公共事件的动作。
+
+完成锁定用户将会触发事件通知服务发布该系统公共事件，事件携带系统账号ID。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**取值：** "usual.event.USER_LOCKED"
+
+
 ## Core File Kit
 
 文件管理子系统面向应用发布如下系统公共事件，应用如需订阅系统公共事件，请参考公共事件[接口文档](../js-apis-commonEventManager.md)。
