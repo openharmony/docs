@@ -985,6 +985,59 @@ struct RadialGradientMaskExample {
   }
 }
 ```
+### createWaveGradientMask<sup>20+</sup>
+static createWaveGradientMask(center: common2D.Point, width: number, propagationRadius: number, blurRadius: number, turbulenceStrength?: number): Mask;
+
+通过输入单波波源中心点的位置、单波圆环宽度、扩散外径、模糊半径和湍流置换强度参数创建单波遮罩效果[Mask](#mask20)实例，具体的效果由输入的参数决定。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名  | 类型                                      | 必填 | 说明                       |
+| ------- | ---------------------------------------- | ---- | ------------------------- |
+| center | [common2D.Point](js-apis-graphics-common2D.md#point12)  | 是 | 设置单波波源的中心点，[0, 0]为屏幕左上角，[1, 1]为屏幕的右下角。<br/>取值范围[-10, 10]，可取浮点数，超出边界会在实现时自动截断。 |
+| width | number  | 是 | 设置单波圆环的宽度，宽度为0则没有遮罩效果。<br/>取值范围[0, 5]，可取浮点数，超出边界会在实现时自动截断。 |
+| propagationRadius | number  | 是 | 设置单波圆环的扩散外径。<br/>取值范围[0, 10]，可取浮点数，超出边界会在实现时自动截断。 |
+| blurRadius | number  | 是 | 设置单波圆环的模糊外径，模糊半径为0则是实边圆环，否则是虚边圆环。<br/>取值范围[0, 5]，可取浮点数，超出边界会在实现时自动截断。 |
+| turbulenceStrength | number  | 否 | 设置单波圆环的湍流强度，强度为0则是规则圆环，否则圆环边缘会湍流扭曲。<br/>取值范围[-1, 1]，可取浮点数，超出边界会在实现时自动截断。 |
+
+**返回值：**
+
+| 类型                          | 说明                                               |
+| ----------------------------- | ------------------------------------------------- |
+| [Mask](#mask20) | 返回单个水波形状分布效果的灰度Mask。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import uiEffect from '@ohos.graphics.uiEffect'
+// center: [0.5, 0.5]；width: 0.01; propagationRadius: 0.5; blurRadius: 0.1; turbulenceStrength: 0.1
+let mask = uiEffect.Mask.createWaveGradientMask({x: 0.5, y: 0.5}, 0.01, 0.5, 0.1, 0.1);
+@Entry
+@Component
+struct RadialGradientMaskExample {
+  build() {
+    Stack() {
+      Image('test.jpg')
+      Column()
+        .width('100%')
+        .height('100%')
+        // Mask作为Filter的入参实现对应的效果，该效果中Mask是在屏幕中心向四周扩散的水波环
+        .backgroundFilter(uiEffect.createFilter().edgeLight(1.0, null, mask))
+    }
+  }
+}
+```
 ## BrightnessBlenderParam
 BrightnessBlender参数列表。
 
