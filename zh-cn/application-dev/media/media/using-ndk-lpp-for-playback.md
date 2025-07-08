@@ -1,8 +1,8 @@
 # 使用LPP播放器播放音视频 (C/C++)
 
-使用LPP（low power player）播放器可以实现从媒体源到渲染的音视频通路能力。本指南将以完整地播放一个本地视频作为示例，向开发者讲解使用LowPowerPlayer播放音视频。
+使用LPP（low power player）播放器可以实现从媒体源到渲染的音视频通路能力。本指南通过播放本地视频的示例，讲解如何使用LowPowerPlayer播放音视频。
 
-播放流程包含：创建解封装器、创建播放器、设置回调监听函数、设置播放参数（音量/倍速/焦点模式）、播放控制（播放/暂停/停止/音量/倍速）、重置、销毁播放器实例。
+播放流程包含：创建解封装器、创建播放器、设置回调监听函数、配置播放参数、播放控制（播放/暂停/继续/倍速/音量/停止/重置）、销毁播放器实例。
 
 **图1** 播放状态变化示意图  
 ![LPP status change](figures/lpp-status-change-ndk.png)
@@ -15,7 +15,7 @@
 
 - 当应用在播放过程中时，播放的媒体数据涉及音频，根据系统音频管理策略（参考[处理音频焦点变化](../audio/audio-playback-concurrency.md#处理音频焦点变化)事件）可知这会被其他应用打断，建议通过[OH_LowPowerAudioSinkCallback_SetInterruptListener](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosinkcallback_setinterruptlistener)主动监听音频打断事件，根据其回调参数提示做出相应的处理，避免出现应用状态与预期效果不一致的问题。
 
-- 面对设备同时连接多个音频输出设备的情况时，建议通过[OH_LowPowerAudioSinkCallback_SetDeviceChangeListener](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosinkcallback_setdevicechangelistener)主动监听音频输出设备改变事件，从而做出相应处理。
+- 当设备同时连接多个音频输出设备时，建议通过[OH_LowPowerAudioSinkCallback_SetDeviceChangeListener](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosinkcallback_setdevicechangelistener)主动监听音频输出设备改变事件，并做出相应处理。
 
 - 当应用在执行过程中，可能出现系统内部异常。如网络异常、内存不足、媒体服务死亡不可用等，建议通过 [OH_LowPowerAudioSinkCallback_SetErrorListener](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosinkcallback_seterrorlistener)或[OH_LowPowerVideoSinkCallback_SetErrorListener](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosinkcallback_seterrorlistener)对应接口设置错误监听回调函数，根据不同错误类型和错误信息，做出相应处理，避免出现播放异常。
 
@@ -24,7 +24,7 @@
 - 需要注意函数的调用时机。根据`状态示意图`和`详细的接口文档`进行合理调用。在程序执行完成后，调用`OH_***_Create`方法的同时必须调用对应的`OH_***_Destroy`方法，进行资源释放。
 
 - 用户在注册回调函数时，可在最后一个参数`void *userData`中来配置自定义数据，以便在回调函数中执行某些设置（如状态改变等）。<br>
-其他回调函数 : <br>
+其他回调函数：<br>
 [OH_LowPowerAudioSinkCallback_SetPositionUpdateListener](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosinkcallback_setpositionupdatelistener)：可获取播放进度。<br>[OH_LowPowerAudioSinkCallback_SetEosListener](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosinkcallback_seteoslistener)或[OH_LowPowerVideoSinkCallback_SetEosListener](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosinkcallback_seteoslistener)：播放结束触发。 <br>
 [OH_LowPowerVideoSinkCallback_SetRenderStartListener](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosinkcallback_setrenderstartlistener)：视频开始渲染。 <br>
 [OH_LowPowerVideoSink_SetTargetStartFrame](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_settargetstartframe)：到达目标帧。 <br>
@@ -52,7 +52,7 @@ target_link_libraries(sample PUBLIC liblowpower_avsink.so)
 ```
 target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 ```
-在使用该模块，需要使用解封装、基础解码、显示渲染等能力时，需要链接的库如下所示：
+使用该模块时，需要链接的库如下所示：解封装、基础解码、显示渲染等能力。
 ```
 set(BASE_LIBRARY
     libnative_media_codecbase.so libnative_media_core.so libnative_media_vdec.so libnative_window.so
@@ -82,7 +82,7 @@ target_link_libraries(sample PUBLIC ${BASE_LIBRARY})
     ```
 
 3. 配置播放器<br>
-根据之前通过解封装获得的元信息，创建并配置 [OH_AVFormat](../../reference/apis-avcodec-kit/_core.md#oh_avformat)。通过configure接口 [OH_LowPowerAudioSink_Configure](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_configure) / [OH_LowPowerVideoSink_Configure](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_configure)进行播放器的配置，详细参数可参考实例代码。视频流需要[OH_LowPowerVideoSink_SetVideoSurface](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_setvideosurface)接口来设置画面需要显示的窗口。
+根据之前通过解封装获得的元信息，创建并配置 [OH_AVFormat](../../reference/apis-avcodec-kit/_core.md#oh_avformat)。通过configure接口 [OH_LowPowerAudioSink_Configure](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_configure) / [OH_LowPowerVideoSink_Configure](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_configure)进行播放器的配置，详细参数可参考实例代码。视频流需要使用[OH_LowPowerVideoSink_SetVideoSurface](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_setvideosurface)接口来设置显示窗口。
     ```
     OH_AVFormat *format = OH_AVFormat_Create();
 
