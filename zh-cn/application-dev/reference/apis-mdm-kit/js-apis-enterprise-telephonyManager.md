@@ -23,7 +23,7 @@ setSimDisabled(admin: Want, slotId: number): void
 
 禁用指定卡槽的SIM卡。
 
-**需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY，具体参考[访问控制-申请应用权限](../../security/AccessToken/permissions-for-mdm-apps.md)。
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -71,7 +71,7 @@ setSimEnabled(admin: Want, slotId: number): void
 
 解除指定卡槽的SIM卡禁用。
 
-**需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY，具体参考[访问控制-申请应用权限](../../security/AccessToken/permissions-for-mdm-apps.md)。
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -119,7 +119,7 @@ isSimDisabled(admin: Want, slotId: number): boolean
 
 查询指定卡槽是否禁用。
 
-**需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY，具体参考[访问控制-申请应用权限](../../security/AccessToken/permissions-for-mdm-apps.md)。
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 

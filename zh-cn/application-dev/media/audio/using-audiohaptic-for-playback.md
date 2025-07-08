@@ -104,4 +104,4 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
 
 针对音振协同开发，有以下相关实例可供参考：
 
-- [音振协同示例（ArkTS）（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AudioHaptic)
+- [音振协同示例（ArkTS）（API11）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AudioHaptic)

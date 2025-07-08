@@ -1,6 +1,6 @@
 # 管理全局音频输入设备
 
-有时设备同时连接多个音频输入设备，需要指定音频输入设备进行音频录制，此时需要使用AudioRoutingManager接口进行输入设备的管理，API说明可以参考[AudioRoutingManager API文档](../../reference/apis-audio-kit/arkts-apis-audio-AudioRoutingManager.md)。
+本模块提供音频输入设备管理能力，包括查询输入设备信息、监听设备连接状态变化等。具体API说明可参考文档[AudioRoutingManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioRoutingManager.md)。
 
 ## 创建AudioRoutingManager实例
 
