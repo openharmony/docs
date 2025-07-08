@@ -14,7 +14,7 @@ Not supported
 
 CheckboxGroup(options?: CheckboxGroupOptions)
 
-Creates a check box group so that you can select or deselect all check boxes in the group at once. Check boxes and check box groups that share the same group name belong to the same group.
+Creates a check box group for controlling the select-all or deselect-all state of check boxes within the group. Check boxes and check box groups with the same **group** value belong to the same group.
 
 When this API is used with components that come with a pre-loading mechanism, such as the **List** component, those check boxes that have not been created yet need to be manually selected or unselected.
 
@@ -32,6 +32,8 @@ When this API is used with components that come with a pre-loading mechanism, su
 
 ## CheckboxGroupOptions
 
+Provides information about the check box group.
+
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -40,7 +42,7 @@ When this API is used with components that come with a pre-loading mechanism, su
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| group | string | No| Group name.<br>**NOTE**<br>If there are multiple check box groups with the same group name, only the first check box group takes effect.|
+| group | string | No| Group name.<br>**NOTE**<br>Among multiple check box groups with the same group name, only the first one takes effect.|
 
 ## Attributes
 
@@ -50,7 +52,9 @@ In addition to the [universal attributes](ts-component-general-attributes.md), t
 
 selectAll(value: boolean)
 
-Sets whether to select all. If the **select** attribute is set for a [Checkbox](ts-basic-components-checkbox.md) component in the same group, the setting of the **Checkbox** has a higher priority.
+Sets whether to select all check boxes in the group. If the **select** attribute is set for a [Checkbox](ts-basic-components-checkbox.md) component in the same group, the setting of the **Checkbox** has a higher priority.
+
+When used with components that have caching functionality (such as [List](ts-container-list.md)), the selection state of uncreated check boxes must be controlled by the developer.
 
 Since API version 10, this attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).
 Since API version 18, this attribute supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
@@ -65,15 +69,17 @@ Since API version 18, this attribute supports two-way binding through [!!](../..
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to select all.<br>Default value: **false**<br>**true**: Select all check boxes in the group. **false**: Do not select any check box in the group.|
+| value  | boolean | Yes  | Whether to select all.<br>Default value: **false**.<br>The value **true** means to select all check boxes in the group, and **false** means to deselect all check boxes in the group.|
 
 ### selectAll<sup>18+</sup>
 
 selectAll(isAllSelected: Optional\<boolean>)
 
-Sets whether to select all. If the **select** attribute is set for a [Checkbox](ts-basic-components-checkbox.md) component in the same group, the setting of the **Checkbox** has a higher priority. Compared to [selectAll](#selectall), this API supports the **undefined** type for the **isAllSelected** parameter.
+Sets whether to select all. If the **select** attribute is set for a [Checkbox](ts-basic-components-checkbox.md) component in the same group, the setting of the **Checkbox** has a higher priority. Compared to [selectAll](#selectall), the **isAllSelected** parameter supports the **undefined** type.
 
-This attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md) or [!!](../../../ui/state-management/arkts-new-binding.md).
+When used with components that have caching functionality (such as [List](ts-container-list.md)), the selection state of uncreated check boxes must be controlled by the developer.
+
+This attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md) and [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -85,7 +91,7 @@ This attribute supports two-way binding through [$$](../../../ui/state-managemen
 
 | Name       | Type                                                        | Mandatory| Description                                                        |
 | ------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| isAllSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether to select all.<br>If **isAllSelected** is set to **undefined**, the default value **false** is used.<br>**true**: Select all check boxes in the group. **false**: Do not select any check box in the group.|
+| isAllSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether to select all.<br>If **isAllSelected** is set to **undefined**, the default value **false** is used.<br>The value **true** means to select all check boxes in the group, and **false** means to deselect all check boxes in the group.|
 
 ### selectedColor
 
@@ -109,7 +115,7 @@ Sets the color of the selected check box.
 
 selectedColor(resColor: Optional\<ResourceColor>)
 
-Sets the color of the selected check box. Compared to [selectedColor](#selectedcolor), this API supports the **undefined** type for the **resColor** parameter.
+Sets the color of the selected check box. Compared with [selectedColor](#selectedcolor), this API supports the **undefined** type for the **resColor** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -143,7 +149,7 @@ Sets the border color of the check box when it is not selected.
 
 unselectedColor(resColor: Optional\<ResourceColor>)
 
-Sets the border color of the check box when it is not selected. Compared to [unselectedColor](#unselectedcolor10)<sup>10+</sup>, this API supports the **undefined** type for the **resColor** parameter.
+Sets the border color of the check box when it is not selected. Compared with [unselectedColor](#unselectedcolor10)<sup>10+</sup>, this API supports the **undefined** type for the **resColor** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -175,7 +181,7 @@ Sets the check mark style of the check box.
 
 mark(style: Optional\<MarkStyle>)
 
-Sets the check mark style of the check box. Compared to [mark](#mark10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
+Sets the check mark style of the check box. Compared with [mark](#mark10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -203,13 +209,13 @@ Sets the check box shape of the check box group.
 
 | Name| Type                                                 | Mandatory| Description                                                        |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [CheckBoxShape](ts-appendix-enums.md#checkboxshape11) | Yes  | Check box shape of the check box group.<br>Default value: **CheckBoxShape.CIRCLE**<br>**NOTE**<br>The shape of the check box group component follows the settings configured.<br>All check boxes within the check box group that do not have an individual shape set will conform to the shape of the check box group.<br>If a check box within the check box group has an individual shape set, that shape takes precedence over the check box group's shape.|
+| value  | [CheckBoxShape](ts-appendix-enums.md#checkboxshape11) | Yes  | Check box shape of the check box group.<br>Default value: **CheckBoxShape.CIRCLE**.<br>**NOTE**<br>The **CheckboxGroup** component is displayed according to the set shape.<br>All check boxes in the **CheckboxGroup** component that do not have their shape individually set will inherit the shape of the **CheckboxGroup**.<br>Check boxes in the **CheckboxGroup** component that have their shape individually set will prioritize their own shape setting over the shape of the **CheckboxGroup**.|
 
 ### checkboxShape<sup>18+</sup>
 
 checkboxShape(shape: Optional\<CheckBoxShape>)
 
-Sets the check box shape of the check box group. Compared to [checkboxShape](#checkboxshape12)<sup>12+</sup>, this API supports the **undefined** type for the **shape** parameter.
+Sets the check box shape of the check box group. Compared with [checkboxShape](#checkboxshape12)<sup>12+</sup>, this API supports the **undefined** type for **shape** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -221,7 +227,7 @@ Sets the check box shape of the check box group. Compared to [checkboxShape](#ch
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| shape  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | Yes  | Check box shape of the check box group.<br>If **shape** is set to **undefined**, the default value **CheckBoxShape.CIRCLE** is used.<br>**NOTE**<br>The shape of the check box group component follows the settings configured.<br>All check boxes within the check box group that do not have an individual shape set will conform to the shape of the check box group.<br>If a check box within the check box group has an individual shape set, that shape takes precedence over the check box group's shape.|
+| shape  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | Yes  | Check box shape of the check box group.<br>If **shape** is set to **undefined**, the default value **CheckBoxShape.CIRCLE** is used.<br>**NOTE**<br>The **CheckboxGroup** component is displayed according to the set shape.<br>All check boxes in the **CheckboxGroup** component that do not have their shape individually set will inherit the shape of the **CheckboxGroup**.<br>Check boxes in the **CheckboxGroup** component that have their shape individually set will prioritize their own shape setting over the shape of the **CheckboxGroup**.|
 
 ## Events
 
@@ -249,7 +255,7 @@ Triggered when the selected status of the check box group or any check box where
 
 onChange(callback: Optional\<OnCheckboxGroupChangeCallback>)
 
-Triggered when the selected status of the check box group or any check box wherein changes. Compared to [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
+Triggered when the selected status of the check box group or any check box wherein changes. Compared with [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -283,6 +289,8 @@ Information about the check box group.
 
 ## CheckboxGroupResult
 
+Name and status of a check box group.
+
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -295,6 +303,8 @@ Information about the check box group.
 | status | [SelectStatus](#selectstatus) | No| No| Selected status.|
 
 ## SelectStatus
+
+Enumerates the selection states of check boxes in the check box group.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
@@ -328,7 +338,7 @@ struct CheckboxExample {
             .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
             .selectedColor('#007DFF')
             .onChange((itemName: CheckboxGroupResult) => {
-              console.info("checkbox group content" + JSON.stringify(itemName))
+              console.info("checkbox group content" + JSON.stringify(itemName));
             })
           Text('Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }
@@ -339,7 +349,7 @@ struct CheckboxExample {
             .selectedColor('#007DFF')
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox1 change is' + value)
+              console.info('Checkbox1 change is' + value);
             })
           Text('Checkbox1').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }.margin({ left: 36 })
@@ -350,7 +360,7 @@ struct CheckboxExample {
             .selectedColor('#007DFF')
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox2 change is' + value)
+              console.info('Checkbox2 change is' + value);
             })
           Text('Checkbox2').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }.margin({ left: 36 })
@@ -361,7 +371,7 @@ struct CheckboxExample {
             .selectedColor('#007DFF')
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox3 change is' + value)
+              console.info('Checkbox3 change is' + value);
             })
           Text('Checkbox3').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }.margin({ left: 36 })
@@ -390,7 +400,7 @@ struct Index {
             .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
             .selectedColor(Color.Orange)
             .onChange((itemName: CheckboxGroupResult) => {
-              console.info("checkbox group content" + JSON.stringify(itemName))
+              console.info("checkbox group content" + JSON.stringify(itemName));
             })
             .mark({
               strokeColor:Color.Black,
@@ -407,7 +417,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox1 change is'+ value)
+              console.info('Checkbox1 change is'+ value);
             })
             .mark({
               strokeColor:Color.Black,
@@ -424,7 +434,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox2 change is' + value)
+              console.info('Checkbox2 change is' + value);
             })
             .width(30)
             .height(30)
@@ -435,7 +445,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox3 change is' + value)
+              console.info('Checkbox3 change is' + value);
             })
             .width(30)
             .height(30)

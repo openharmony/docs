@@ -122,7 +122,7 @@ Sets the width of the sidebar. If a value less than 0 is set, the default value 
 
 sideBarWidth(value: Length)
 
-Sets the width of the sidebar. If a value less than 0 is set, the default value is used. The value must comply with the width constraints. If it is not within the valid range, the valid value closest to the set one is used. Compared to [sideBarWidth](#sidebarwidth), this API supports percentage strings and other [pixel units](ts-pixel-units.md) for the **value** parameter.
+Sets the width of the sidebar. If a value less than 0 is set, the default value is used. The value must comply with the width constraints. If it is not within the valid range, the valid value closest to the set one is used. Compared with [sideBarWidth](#sidebarwidth), this API supports percentage strings and other [pixel units](ts-pixel-units.md) for the **value** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -156,7 +156,7 @@ Sets the minimum width of the sidebar. If a value less than 0 is set, the defaul
 
 minSideBarWidth(value: Length)
 
-Sets the minimum width of the sidebar. If a value less than 0 is set, the default value is used. The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used. Compared to [minSideBarWidth](#minsidebarwidth), this API supports percentage strings and other [pixel units](ts-pixel-units.md) for the **value** parameter.
+Sets the minimum width of the sidebar. If a value less than 0 is set, the default value is used. The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used. Compared with [minSideBarWidth](#minsidebarwidth), this API supports percentage strings and other [pixel units](ts-pixel-units.md) for the **value** parameter.
 
 **minSideBarWidth**, whether it is specified or kept at the default value, takes precedence over **minWidth** of the sidebar child components.
 

@@ -32,7 +32,7 @@ Sets the click feedback effect of the component.
 
 clickEffect(effect: Optional\<ClickEffect | null>): T
 
-Sets the click feedback effect of the component. Compared to [clickEffect](#clickeffect), this API supports the **undefined** type for the **effect** parameter.
+Sets the click feedback effect of the component. Compared with [clickEffect](#clickeffect), this API supports the **undefined** type for the **effect** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
