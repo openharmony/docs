@@ -513,7 +513,6 @@ mediaPlayGestureAccess(access: boolean)
   </html>
   ```
 
-
 ## multiWindowAccess<sup>9+</sup>
 
 multiWindowAccess(multiWindow: boolean)
