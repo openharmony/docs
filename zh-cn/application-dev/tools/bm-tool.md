@@ -1080,11 +1080,11 @@ error: install failed due to singleton not same.
 
 **错误描述**
 
-应用更新时，应用已安装的HAP包和更新包app.json5配置文件中singleton配置（从API verison 9开始废弃）不一致。
+应用更新时，应用已安装的HAP包和更新包app.json5配置文件中singleton配置（从API version 9开始废弃）不一致。
 
 **可能原因**
 
-应用已安装的HAP包和更新包app.json5配置文件中singleton配置（从API verison 9开始废弃）不一致。
+应用已安装的HAP包和更新包app.json5配置文件中singleton配置（从API version 9开始废弃）不一致。
 
 **处理步骤**
 

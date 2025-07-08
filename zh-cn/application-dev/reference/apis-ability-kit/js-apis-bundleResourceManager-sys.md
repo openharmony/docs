@@ -29,7 +29,7 @@ import { bundleResourceManager } from '@kit.AbilityKit';
 | 名称                                                     | 值         | 说明                                                         |
 | -------------------------------------------------------- | ---------- | ------------------------------------------------------------ |
 | GET_RESOURCE_INFO_ALL                                    | 0x00000001 | 用于同时获取icon和label信息。                                |
-| GET_RESOURCE_INFO_WITH_LABEL                             | 0x00000002 | 用于获取仅包含label信息，iocn信息为空。                      |
+| GET_RESOURCE_INFO_WITH_LABEL                             | 0x00000002 | 用于获取仅包含label信息，icon信息为空。                      |
 | GET_RESOURCE_INFO_WITH_ICON                              | 0x00000004 | 用于获取仅包含icon信息，label信息为空。                      |
 | GET_RESOURCE_INFO_WITH_SORTED_BY_LABEL                   | 0x00000008 | 用于获取根据label排序后的信息。它不能单独使用需要与GET_RESOURCE_INFO_ALL 或 GET_RESOURCE_INFO_WITH_LABEL一起使用。 |
 | GET_RESOURCE_INFO_WITH_DRAWABLE_DESCRIPTOR<sup>12+</sup> | 0x00000010 | 用于获取应用图标的[drawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor-sys.md)对象。 |
