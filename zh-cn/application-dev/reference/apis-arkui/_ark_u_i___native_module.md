@@ -420,12 +420,12 @@
 | int32_t [OH_ArkUI_AnimatorOption_RegisterOnFinishCallback](#oh_arkui_animatoroption_registeronfinishcallback) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, void \*userData, void(\*callback)(ArkUI_AnimatorEvent \*event)) | 设置animator动画完成时回调。  | 
 | int32_t [OH_ArkUI_AnimatorOption_RegisterOnCancelCallback](#oh_arkui_animatoroption_registeroncancelcallback) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, void \*userData, void(\*callback)(ArkUI_AnimatorEvent \*event)) | 设置animator动画被取消时回调。  | 
 | int32_t [OH_ArkUI_AnimatorOption_RegisterOnRepeatCallback](#oh_arkui_animatoroption_registeronrepeatcallback) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, void \*userData, void(\*callback)(ArkUI_AnimatorEvent \*event)) | 设置animator动画重复时回调。  | 
-| int32_t [OH_ArkUI_Animator_ResetAnimatorOption](#oh_arkui_animator_resetanimatoroption) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animator, [ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 更新animator动画。  | 
-| int32_t [OH_ArkUI_Animator_Play](#oh_arkui_animator_play) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animator) | 启动animator动画。  | 
-| int32_t [OH_ArkUI_Animator_Finish](#oh_arkui_animator_finish) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animator) | 结束animator动画。  | 
-| int32_t [OH_ArkUI_Animator_Pause](#oh_arkui_animator_pause) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animator) | 暂停animator动画。  | 
-| int32_t [OH_ArkUI_Animator_Cancel](#oh_arkui_animator_cancel) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animator) | 取消animator动画。  | 
-| int32_t [OH_ArkUI_Animator_Reverse](#oh_arkui_animator_reverse) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animator) | 以相反的顺序播放animator动画。  | 
+| int32_t [OH_ArkUI_Animator_ResetAnimatorOption](#oh_arkui_animator_resetanimatoroption) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animatorHandle, [ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 更新animator动画。  | 
+| int32_t [OH_ArkUI_Animator_Play](#oh_arkui_animator_play) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animatorHandle) | 启动animator动画。  | 
+| int32_t [OH_ArkUI_Animator_Finish](#oh_arkui_animator_finish) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animatorHandle) | 结束animator动画。  | 
+| int32_t [OH_ArkUI_Animator_Pause](#oh_arkui_animator_pause) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animatorHandle) | 暂停animator动画。  | 
+| int32_t [OH_ArkUI_Animator_Cancel](#oh_arkui_animator_cancel) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animatorHandle) | 取消animator动画。  | 
+| int32_t [OH_ArkUI_Animator_Reverse](#oh_arkui_animator_reverse) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animatorHandle) | 以相反的顺序播放animator动画。  | 
 | [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_Curve_CreateCurveByType](#oh_arkui_curve_createcurvebytype) ([ArkUI_AnimationCurve](#arkui_animationcurve) curve) | 插值曲线的初始化函数，可以根据入参创建一个插值曲线对象。  | 
 | [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_Curve_CreateStepsCurve](#oh_arkui_curve_createstepscurve) (int32_t count, bool end) | 构造阶梯曲线对象。  | 
 | [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_Curve_CreateCubicBezierCurve](#oh_arkui_curve_createcubicbeziercurve) (float x1, float y1, float x2, float y2) | 构造三阶贝塞尔曲线对象。  | 
@@ -6560,7 +6560,7 @@ void OH_ArkUI_AnimateOption_SetTempo (ArkUI_AnimateOption * option, float value 
 ### OH_ArkUI_Animator_Cancel()
 
 ```
-int32_t OH_ArkUI_Animator_Cancel (ArkUI_AnimatorHandle animator)
+int32_t OH_ArkUI_Animator_Cancel (ArkUI_AnimatorHandle animatorHandle)
 ```
 **描述：**
 
@@ -6570,7 +6570,7 @@ int32_t OH_ArkUI_Animator_Cancel (ArkUI_AnimatorHandle animator)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| animator | animator动画对象。  | 
+| animatorHandle | animator动画对象。  | 
 
 **返回：**
 
@@ -6580,7 +6580,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_Animator_Finish()
 
 ```
-int32_t OH_ArkUI_Animator_Finish (ArkUI_AnimatorHandle animator)
+int32_t OH_ArkUI_Animator_Finish (ArkUI_AnimatorHandle animatorHandle)
 ```
 **描述：**
 
@@ -6590,7 +6590,7 @@ int32_t OH_ArkUI_Animator_Finish (ArkUI_AnimatorHandle animator)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| animator | animator动画对象。  | 
+| animatorHandle | animator动画对象。  | 
 
 **返回：**
 
@@ -6600,7 +6600,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_Animator_Pause()
 
 ```
-int32_t OH_ArkUI_Animator_Pause (ArkUI_AnimatorHandle animator)
+int32_t OH_ArkUI_Animator_Pause (ArkUI_AnimatorHandle animatorHandle)
 ```
 **描述：**
 
@@ -6610,7 +6610,7 @@ int32_t OH_ArkUI_Animator_Pause (ArkUI_AnimatorHandle animator)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| animator | animator动画对象。  | 
+| animatorHandle | animator动画对象。  | 
 
 **返回：**
 
@@ -6620,7 +6620,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_Animator_Play()
 
 ```
-int32_t OH_ArkUI_Animator_Play (ArkUI_AnimatorHandle animator)
+int32_t OH_ArkUI_Animator_Play (ArkUI_AnimatorHandle animatorHandle)
 ```
 **描述：**
 
@@ -6630,7 +6630,7 @@ int32_t OH_ArkUI_Animator_Play (ArkUI_AnimatorHandle animator)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| animator | animator动画对象。  | 
+| animatorHandle | animator动画对象。  | 
 
 **返回：**
 
@@ -6640,7 +6640,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_Animator_ResetAnimatorOption()
 
 ```
-int32_t OH_ArkUI_Animator_ResetAnimatorOption (ArkUI_AnimatorHandle animator, ArkUI_AnimatorOption * option )
+int32_t OH_ArkUI_Animator_ResetAnimatorOption (ArkUI_AnimatorHandle animatorHandle, ArkUI_AnimatorOption * option )
 ```
 **描述：**
 
@@ -6650,7 +6650,7 @@ int32_t OH_ArkUI_Animator_ResetAnimatorOption (ArkUI_AnimatorHandle animator, Ar
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| animator | animator动画对象。  | 
+| animatorHandle | animator动画对象。  | 
 | option | animator动画参数。  | 
 
 **返回：**
@@ -6661,7 +6661,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_Animator_Reverse()
 
 ```
-int32_t OH_ArkUI_Animator_Reverse (ArkUI_AnimatorHandle animator)
+int32_t OH_ArkUI_Animator_Reverse (ArkUI_AnimatorHandle animatorHandle)
 ```
 **描述：**
 
@@ -6671,7 +6671,7 @@ int32_t OH_ArkUI_Animator_Reverse (ArkUI_AnimatorHandle animator)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| animator | animator动画对象。  | 
+| animatorHandle | animator动画对象。  | 
 
 **返回：**
 
@@ -8006,7 +8006,7 @@ void OH_ArkUI_Curve_DisposeCurve (ArkUI_CurveHandle curveHandle)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| curve | 曲线的插值对象指针。  | 
+| curveHandle | 曲线的插值对象指针。  | 
 
 
 ### OH_ArkUI_CustomProperty_Destroy()
