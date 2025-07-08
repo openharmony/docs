@@ -1020,7 +1020,7 @@ FractionStop = [ number, number ]
 | 名称            |  类型                                           | 必填  | 说明                                                     |
 | -------------- | ------------------------------------------------| ----- | --------------------------------------------------------|
 | syncLoad       | boolean                                         | 否    | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false，fasle表示异步加载图片，true表示同步加载图片。      |
-| repeat         | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 否    | 设置背景图片的重复样式。                                   |
+| repeat         | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 否    | 设置背景图片的重复样式。默认值为ImageRepeat.NoRepeat。                     |
 
 ## freeze<sup>12+</sup>
 
