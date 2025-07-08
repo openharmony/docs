@@ -273,7 +273,7 @@ target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 
 ## 运行完整示例
 
-1. 新建工程，下载[示例工程](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVTranscoder/AVTranscoderNDK)，并将示例工程的以下资源复制到对应目录。
+1. 新建工程，下载[示例工程](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVTranscoder/AVTranscoderNDK)，并将示例工程的以下资源复制到对应目录。
 
     ```
     AVTranscoderNDK
