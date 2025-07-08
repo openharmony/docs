@@ -8,7 +8,7 @@
 
    ```ts
    // TaskSendDataUsage.ets
-   function notice(data: number): void {
+   export function notice(data: number): void {
      console.info("子线程任务已执行完，共加载图片: ", data);
    }
    ```
@@ -61,7 +61,11 @@
    这样宿主线程就可以通过notice()接口接收到Task发送的数据。
 
    ```ts
-   // TaskSendDataUsage.ets
+   // Index.ets
+   import { taskpool } from '@kit.ArkTS';
+   import { IconItemSource } from './IconItemSource';
+   import { loadPictureSendData, notice } from './TaskSendDataUsage';
+   
    @Entry
    @Component
    struct Index {
@@ -73,12 +77,12 @@
            Text(this.message)
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-             .onClick(() => {
-               let iconItemSourceList: IconItemSource[];
+             .onClick(async () => {
+               let iconItemSourceList: IconItemSource[] = [];
                let loadPictureTask: taskpool.Task = new taskpool.Task(loadPictureSendData, 30);
                // 设置notice方法接收Task发送的消息
                loadPictureTask.onReceiveData(notice);
-               taskpool.execute(loadPictureTask).then((res: object) => {
+               await taskpool.execute(loadPictureTask).then((res: object) => {
                  iconItemSourceList = res as IconItemSource[];
                })
              })

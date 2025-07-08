@@ -31,7 +31,8 @@ I/O密集型任务的性能关键在于I/O操作的速度和效率，而非CPU�
 
     @Concurrent
     async function concurrentTest(context: common.UIAbilityContext): Promise<boolean> {
-      let filePath1: string = context.filesDir + "/path1.txt"; // 应用文件路径
+      // 应用文件路径
+      let filePath1: string = context.filesDir + "/path1.txt";
       let filePath2: string = context.filesDir + "/path2.txt";
       // 循环写文件操作
       let fileList: Array<string> = [];
