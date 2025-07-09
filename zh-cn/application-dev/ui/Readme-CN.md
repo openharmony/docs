@@ -2,6 +2,9 @@
 - [ArkUI简介](arkui-overview.md)
 - UI开发 (ArkTS声明式开发范式)<!--arkts-ui-development-->
   - [UI开发（ArkTS声明式开发范式）概述](arkts-ui-development-overview.md)
+  - 从ArkTS1.1到ArkTS1.2的UI适配指导<!--ui-arkts-migration-guide-->
+    - ArkTS1.2不再支持的UI接口<!--ui-deprecated-apis-->
+      - [绘制组件](arkts-v1.2-deprecated-drawing-apis.md)
   - 开发布局<!--arkts-layout-development-->
     - [布局概述](arkts-layout-development-overview.md)
     - 构建布局<!--arkts-build-layout-->
