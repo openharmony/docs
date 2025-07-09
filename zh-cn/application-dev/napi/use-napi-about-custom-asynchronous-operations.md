@@ -110,7 +110,7 @@ export const asynchronousWork: (object: Object, obj: Object, fun: Function, num:
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 import process from '@ohos.process';
 try {
