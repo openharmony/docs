@@ -127,8 +127,11 @@
 
 **示例：**  
   ```typescript
-  function createBigInt(ctor: BooleanConstructor) {
+  function createBoolean(ctor: BooleanConstructor) {
     return ctor(true);
+  }
+  function createBooleanDirect() {
+    return Boolean(true);
   }
   ```
 
@@ -147,7 +150,7 @@
 
 **示例：**  
   ```typescript
-  function createBigInt() {
+  function createBoolean() {
     return Boolean(true);
   }
   ```
@@ -158,7 +161,7 @@
 ## DateConstructor
 
 ### 变更梗概
-- [DateConstructor-构造函数调用变更](#dateconstructo-构造函数调用变更)
+- [DateConstructor-构造函数调用变更](#dateconstructor-构造函数调用变更)
 
 ### 变更详情
 
@@ -175,6 +178,9 @@
   ```typescript
   function createDate(ctor: DateConstructor) {
     return ctor();
+  }
+  function createDateDirect() {
+    return Date();
   }
   ```
 
@@ -327,8 +333,11 @@
 
 **示例：**  
   ```typescript
-  function create(ctor: RangeErrorConstructor) {
+  function createError(ctor: RangeErrorConstructor) {
     return ctor("invalid range");
+  }
+  function createErrorDirect() {
+    return RangeError("invalid range");
   }
   ```
 
@@ -376,8 +385,11 @@
 
 **示例：**  
   ```typescript
-  function create(ctor: ReferenceErrorConstructor) {
+  function createError(ctor: ReferenceErrorConstructor) {
     return ctor("undefined variable");
+  }
+  function createErrorDirect() {
+    return ReferenceError("undefined variable");
   }
   ```
 
@@ -418,7 +430,7 @@
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | `pattern` | `RegExp | string` | 是 | 正则表达式模式或字符串形式的模式。 |
+  | `pattern` | `RegExp \| string` | 是 | 正则表达式模式或字符串形式的模式。 |
   
 **返回值：**
   | 类型 | 说明 |
@@ -427,8 +439,11 @@
 
 **示例：**  
   ```typescript
-  function create(ctor: RegExpConstructor) {
+  function createRegExp(ctor: RegExpConstructor) {
     return ctor("regexp");
+  }
+  function createRegExpDirect() {
+    return RegExp("regexp");
   }
   ```
 
@@ -438,7 +453,7 @@
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | `pattern` | `RegExp | string` | 是 | 正则表达式模式或字符串形式的模式。 |
+  | `pattern` | `RegExp \| string` | 是 | 正则表达式模式或字符串形式的模式。 |
 
 **返回值：**
   | 类型 | 说明 |
@@ -463,7 +478,7 @@
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | `pattern` | `RegExp | string` | 是 | 正则表达式模式或字符串形式的模式。 |
+  | `pattern` | `RegExp \| string` | 是 | 正则表达式模式或字符串形式的模式。 |
   | `flags` | `string` | 否 | 正则表达式的标志，默认值为null。 |
 
 **返回值：**
@@ -473,8 +488,11 @@
 
 **示例：**  
   ```typescript
-  function create(ctor: RegExpConstructor) {
-    return ctor("regexp");
+  function createRegExp(ctor: RegExpConstructor) {
+    return ctor("regexp", "i");
+  }
+  function createRegExpDirect() {
+    return RegExp("regexp", "i");
   }
   ```
 
@@ -484,7 +502,7 @@
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | `pattern` | `RegExp | string` | 是 | 正则表达式模式或字符串形式的模式。 |
+  | `pattern` | `RegExp \| string` | 是 | 正则表达式模式或字符串形式的模式。 |
   | `flags` | `string` | 否 | 正则表达式的标志，默认值为null。 |
 
 **返回值：**
@@ -520,8 +538,11 @@
 
 **示例：**  
   ```typescript
-  function create(ctor: RegExpConstructor) {
+  function createRegExp(ctor: RegExpConstructor) {
     return ctor("regexp");
+  }
+  function createRegExpDirect() {
+    return RegExp("regexp");
   }
   ```
 

@@ -41,7 +41,7 @@
 **示例：**  
   ```typescript
   let a = new BigInt64Array(3);
-  let iter = a.$_iterator;
+  let iter = a.$_iterator();
   ```
 
 - 适配建议：
@@ -242,7 +242,7 @@ predicate函数返回值说明：
 **返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
-  | `bigint | undefined` | 如果找到满足`predicate`的元素，则返回该元素，否则返回`undefined`。 |
+  | `bigint \| undefined` | 如果找到满足`predicate`的元素，则返回该元素，否则返回`undefined`。 |
 
 **示例：**  
   ```typescript
@@ -426,7 +426,7 @@ callbackfn函数参数说明：
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | `callbackfn` | `(value: bigint, index: number, array: BigInt64Array) => void` | 是 | 为数组中的每个元素执行的函数。 |
+  | `callbackfn` | `function` | 是 | 为数组中的每个元素执行的函数。 |
 
 callbackfn函数参数说明：
   | 参数名 | 类型 | 必填 | 说明 |

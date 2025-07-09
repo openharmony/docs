@@ -40,7 +40,7 @@
 **示例：**  
   ```typescript
   let a = new Float64Array(3);
-  let iter = a.$_iterator;
+  let iter = a.$_iterator();
   ```
 
 **适配建议：** 
@@ -228,7 +228,7 @@ predicate函数返回值说明：
 
 ### find变更
 **ArkTS1.1版本签名：**  
-  `find(predicate: (value: number, index: number, obj: Float64Array) => boolean, thisArg?: any): number | undefined`
+  `find(predicate: (value: number, index: number, array: Float64Array) => boolean, thisArg?: any): number | undefined`
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -251,7 +251,7 @@ predicate函数返回值说明：
 **返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
-  | `number | undefined` | 如果找到满足`predicate`的元素，则返回该元素，否则返回`undefined`。 |
+  | `number \| undefined` | 如果找到满足`predicate`的元素，则返回该元素，否则返回`undefined`。 |
 
 **示例：**  
   ```typescript
@@ -269,7 +269,7 @@ predicate函数返回值说明：
   ```
 
 **ArkTS1.2版本签名：**  
-  `find(predicate: (value: number, index: number, obj: Float64Array) => boolean): number | undefined`
+  `find(predicate: (value: number, index: number, array: Float64Array) => boolean): number | undefined`
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -484,7 +484,7 @@ callbackfn函数参数说明：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | `callbackfn` | `function` | 是 | 为数组中的每个元素调用的函数，返回新数组中的元素。 |
-  | `thisArg` | `any` | 否 | 执行`callbackfn`时`this`指向的对象，默认值为undefined，默认值为undefined。 |
+  | `thisArg` | `any` | 否 | 执行`callbackfn`时`this`指向的对象，默认值为undefined。 |
 
 callbackfn函数参数说明：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -665,7 +665,7 @@ predicate函数返回值说明：
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | `arrayLike` | `ArrayLike<U>` | 是 | 类似数组或可迭代的对象。 |
+  | `arrayLike` | `ArrayLike<T>` | 是 | 类似数组或可迭代的对象。 |
   | `mapfn` | `function` | 是 | 为`arrayLike`中的每个元素调用的函数，返回新数组中的元素。 |
   | `thisArg` | `any` | 否 | 执行`mapfn`时`this`指向的对象，默认值为undefined。 |
 

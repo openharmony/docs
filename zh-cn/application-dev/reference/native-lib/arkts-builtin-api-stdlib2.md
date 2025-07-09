@@ -18,16 +18,16 @@
 ## __GLOBAL
 
 ### 变更梗概
-- [ClassDecorator类型变更](#classdecorator类型变更)
-- [MethodDecorator类型变更](#methoddecorator类型变更)
-- [ParameterDecorator类型变更](#parameterdecorator类型变更)
-- [PropertyDecorator类型变更](#propertydecorator类型变更)
-- [PropertyKey类型变更](#propertykey类型变更)
-- [FlatArray类型变更](#flatarray类型变更)
+- [__GLOBAL-ClassDecorator类型变更](#__global-classdecorator类型变更)
+- [__GLOBAL-MethodDecorator类型变更](#__global-methoddecorator类型变更)
+- [__GLOBAL-ParameterDecorator类型变更](#__global-parameterdecorator类型变更)
+- [__GLOBAL-PropertyDecorator类型变更](#__global-propertydecorator类型变更)
+- [__GLOBAL-PropertyKey类型变更](#__global-propertykey类型变更)
+- [__GLOBAL-FlatArray类型变更](#__global-flatarray类型变更)
 
 ### 变更详情
 
-#### ClassDecorator类型变更
+#### __GLOBAL-ClassDecorator类型变更
 **ArkTS1.1版本签名：**  
   `declare type ClassDecorator = <TFunction extends Function>(target: TFunction) => TFunction | void`
 
@@ -54,7 +54,7 @@
 **适配建议：** 
   使用注解 (Annotation) 替代装饰器功能。
 
-#### MethodDecorator类型变更
+#### __GLOBAL-MethodDecorator类型变更
 **ArkTS1.1版本签名：**  
   `declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void`
 
@@ -87,7 +87,7 @@
 **适配建议：** 
   使用注解(Annotation)替代装饰器功能。
 
-#### ParameterDecorator类型变更
+#### __GLOBAL-ParameterDecorator类型变更
 **ArkTS1.1版本签名：**  
   `declare type ParameterDecorator = (target: Object, propertyKey: string | symbol, parameterIndex: number) => void`
 
@@ -114,7 +114,7 @@
 **适配建议：** 
   使用注解(Annotation)替代装饰器功能。
 
-#### PropertyDecorator类型变更
+#### __GLOBAL-PropertyDecorator类型变更
 **ArkTS1.1版本签名：**  
   `declare type PropertyDecorator = (target: Object, propertyKey: string | symbol) => void`
 
@@ -141,7 +141,7 @@
 **适配建议：** 
   使用注解(Annotation)替代装饰器功能。
 
-#### PropertyKey类型变更
+#### __GLOBAL-PropertyKey类型变更
 **ArkTS1.1版本签名：**  
   `declare type PropertyKey = string | number | symbol`
 
@@ -161,7 +161,7 @@
 **适配建议：** 
   仅使用字符串作为对象属性键。
 
-#### FlatArray类型变更
+#### __GLOBAL-FlatArray类型变更
 **ArkTS1.1版本签名：**  
   `type FlatArray<Arr, Depth extends number> = {"done": Arr,"recur": Arr extends ReadonlyArray<infer InnerArr> ? FlatArray<InnerArr, [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20][Depth]>: Arr}[Depth extends -1 ? "done" : "recur"]`
 
@@ -241,7 +241,7 @@
 
 **示例：**  
   ```typescript
-  let err: AggregateError = new AggregateError([1， 2])
+  let err: AggregateError = new AggregateError([1, 2])
   let errors: Object[] = err.errors
   ```
 
@@ -316,7 +316,7 @@
 ## Error
 - ArkTS1.2构造函数新增参数options。
 
-## Error构造函数入参变更
+#### Error构造函数入参变更
 **ArkTS1.1版本签名：**  
   `constructor(message?: string): Error`
 
@@ -330,6 +330,16 @@
   | -------- | -------- |
   | Error | 新的Error对象。 |
 
+**示例：**  
+  ```typescript
+  function createError(ctor: ErrorConstructor) {
+    return ctor("some error");
+  }
+  function createErrorDirect() {
+    return Error("some error");
+  }
+  ```
+
 **ArkTS1.2版本签名：**  
   `constructor(message?: String, options?: ErrorOptions): Error`
 
@@ -342,10 +352,17 @@
 **适配建议：** 
   ArkTS1.2相比ArkTS1.1接口签名有变更，但对开发者接口行为无变更。
 
+**示例：**  
+  ```typescript
+  function createError() {
+    return Error("some error");
+  }
+  ```
+
 ## ArrayBuffer
 - any类型变更为Object，返回值类型为布尔类型。
 
-## ArrayBuffer-isView方法签名变更
+#### ArrayBuffer-isView方法签名变更
 **ArkTS1.1版本签名：**  
   `static isView(arg: any): arg is ArrayBufferView`
 
@@ -357,7 +374,7 @@
 **返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
-  | U[] | 类型守卫，通知编译器在某个条件为true时，arg是一个ArrayBufferView类型。 |
+  | `arg is ArrayBufferView` | 类型守卫，通知编译器在某个条件为true时，arg是一个ArrayBufferView类型。 |
 
 **示例：**  
   ```typescript
@@ -508,7 +525,7 @@
 **示例：**  
   ```typescript
   function f(a:number,b:string){
-    console.info(arguments.length);
+    console.info(arguments.length.toString());
   }
   ```
 
@@ -721,10 +738,56 @@
   ```
 
 **ArkTS1.2版本签名：**  
-  N/A
+  ArkTs1.2 Iterator中没有return()接口
 
 **适配建议：** 
   不使用return方法。
+
+#### Iterator-throw方法变更
+**ArkTS1.1版本签名：**  
+  `throw?(e?: any): IteratorResult<T, TReturn>`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | e | any | 否 | 可选的错误对象，默认值为undefined。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | IteratorResult\<T, TReturn\> | 迭代结果对象。 |
+
+**示例：**  
+  ```typescript
+  class C implements Iterator<number|undefined> {
+    private done = false;
+
+    next(): IteratorResult<number|undefined> {
+      if (this.done) {
+        return { value: undefined, done: false };
+      }
+      this.done = true;
+      return { value: 1, done: false };
+    }
+
+    throw(e: Error): IteratorResult<number> {
+      console.error("Error: " + e);
+      return { value: undefined, done: true };
+    }
+
+    return(value?: number): IteratorResult<number> {
+      return { value: value ?? undefined, done: true };
+    }
+  }
+  let a = new C();
+  a.throw(new Error("test"));
+  ```
+
+**ArkTS1.2版本签名：**  
+  ArkTs1.2 Iterator中没有throw()接口
+ 
+**适配建议：** 
+  不使用throw方法。
 
 ## IteratorResult
 
@@ -849,37 +912,6 @@
 **适配建议：** 
   没有generate function，不使用IteratorYieldResult。
 
-#### Iterator-throw方法变更
-**ArkTS1.1版本签名：**  
-  `throw?(e?: any): IteratorResult<T, TReturn>`
-
-**参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | e | any | 否 | 可选的错误对象，默认值为undefined。 |
-
-**返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | IteratorResult\<T, TReturn\> | 迭代结果对象。 |
-
-**示例：**  
-  ```typescript
-  class C implements Iterator<number|undefined> {
-    throw(e: Error): IteratorResult<number> {
-      console.error("Error: " + e);
-      return { value: undefined, done: true };
-    }
-  }
-  let a = new C();
-  a.throw(new Error("test"));
-  ```
-
-**ArkTS1.2版本签名：**  
-  N/A
- 
-**适配建议：** 
-  不使用throw方法。
 
 ## IterableIterator
 
@@ -889,7 +921,7 @@
 ### 变更详情
 
 #### IterableIterator-Symbol.iterator变更
-- ArkTS1.1 版本签名：  
+**ArkTS1.1 版本签名：**  
   `[Symbol.iterator](): IterableIterator<T>`
 
 **返回值：**
@@ -916,9 +948,11 @@
   ```typescript
   class C<T> implements IterableIterator<T> {
     $_iterator(): IterableIterator<T> {
-      //....
+      return new C<T>();
     }
-    // ...
+    next(): IteratorResult<T> {
+      return new IteratorResult<T>();
+    }
   }
   ```
 

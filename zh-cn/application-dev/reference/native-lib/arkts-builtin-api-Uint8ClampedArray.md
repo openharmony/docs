@@ -39,7 +39,7 @@
 **示例：**
   ```typescript
   let a = new Uint8ClampedArray(3);
-  let iter = a.$_iterator;
+  let iter = a.$_iterator();
   ```
 
 **适配建议：** 建议仅使用for...of访问迭代器，不要显式访问迭代器。
@@ -437,7 +437,7 @@ callbackfn函数参数说明：
       this.base = base;
     }
     foo(value: number, index: number, arr: Uint8ClampedArray) {
-      console.info(value + this.base)
+      console.info((value + this.base).toString())
     }
   }
   let arr: Uint8ClampedArray = new Uint8ClampedArray([1, 2, 3]);

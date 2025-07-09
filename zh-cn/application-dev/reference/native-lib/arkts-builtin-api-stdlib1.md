@@ -128,6 +128,27 @@ callbackfn函数参数说明：
   | -------- | -------- |
   | WeakMap\<K, V> | 一个键类型是K、值类型是V的WeakMap实例。 |
 
+**示例：**
+```typescript
+  interface PrivateData {
+      secret: string;
+  }
+
+  const privateData = new WeakMap<object, PrivateData>();
+
+  class MyClass {
+      constructor(secret: string) {
+          privateData.set(this, { secret });
+      }
+
+      getSecret(): string {
+          const data = privateData.get(this);
+          return data ? data.secret : "no secret";
+      }
+  }
+  const instance = new MyClass("my secret");
+  console.log(instance.getSecret()); // "my secret"
+```
 **ArkTS1.2版本签名：**  
   `constructor<K extends object = object, V = Object | null | undefined>(entries?: readonly [K, V][] | null): WeakMap<K, V>`
 
@@ -142,6 +163,28 @@ callbackfn函数参数说明：
   | 类型 | 说明 |
   | -------- | -------- |
   | WeakMap\<K, V> | 一个键类型是K、值类型是V的WeakMap实例。 |
+
+**示例：**
+```typescript
+  interface PrivateData {
+      secret: string;
+  }
+
+  const privateData = new WeakMap<object, PrivateData>();
+
+  class MyClass {
+      constructor(secret: string) {
+          privateData.set(this, { secret });
+      }
+
+      getSecret(): string {
+          const data = privateData.get(this);
+          return data ? data.secret : "no secret";
+      }
+  }
+  const instance = new MyClass("my secret");
+  console.log(instance.getSecret()); // "my secret"
+```
 
 **适配建议：** 
   ArkTS1.2相比ArkTS1.1接口签名有变更，但对开发者接口行为无变更。
@@ -242,10 +285,10 @@ callbackfn函数参数说明：
 
 ### 变更梗概
 - [String-Symbol.iterator变更](#string-symboliterator变更)
-- [raw方法变更](#raw方法变更)
-- [replace方法变更](#replace方法变更)
-- [replaceAll方法变更](#replaceall方法变更)
-- [string-构造函数变更为invoke方法](#string-构造函数变更为invoke方法)
+- [String-raw方法变更](#string-raw方法变更)
+- [String-replace方法变更](#string-replace方法变更)
+- [String-replaceAll方法变更](#string-replaceall方法变更)
+- [String-构造函数变更为invoke方法](#string-构造函数变更为invoke方法)
 
 ### 变更详情
 
@@ -260,7 +303,7 @@ callbackfn函数参数说明：
 
 **示例：**  
   ```typescript
-  let str = "hello";
+  let str = new String("hello");
   Reflect.get(str, Symbol.iterator);
   ```
 
@@ -281,7 +324,7 @@ callbackfn函数参数说明：
 **适配建议：** 
   使用for...of遍历字符串。
 
-#### raw方法变更
+#### String-raw方法变更
 **ArkTS1.1版本签名：**  
   `static raw(template: { raw: readonly string[] | ArrayLike<string>}, ...substitutions: any[]): string`
 
@@ -302,12 +345,12 @@ callbackfn函数参数说明：
   ```
 
 **ArkTS1.2版本签名：**  
-  N/A
+  ArkTs1.2 没有String.raw
 
 **适配建议：** 
   使用普通字符串替代。
 
-#### replace方法变更
+#### String-replace方法变更
 - 参数类型any变更为Object。
 
 **ArkTS1.1版本签名：**  
@@ -335,6 +378,22 @@ replacer返回值说明：
   | -------- | -------- |
   | string | 一个新的字符串。 |
 
+**示例：**
+```typescript**示例：**
+```typescript
+const str = "apple, orange, apple, banana";
+const result = str.replaceAll("apple", "kiwi");
+
+console.log(result); // "kiwi, orange, kiwi, banana"
+```
+const str = "apple, orange, apple, banana";
+const result1 = str.replace("apple", "kiwi");
+console.log(result1); // "kiwi, orange, apple, banana"
+
+const result2 = str.replace(/apple/g, "kiwi");
+console.log(result2); // "kiwi, orange, kiwi, banana"
+```
+
 **ArkTS1.2版本签名：**  
   `replace(searchValue: StringOrRegExp, replacer: (substr: String, args: Object[]) => String): String`
 
@@ -360,10 +419,21 @@ replacer返回值说明：
   | -------- | -------- |
   | String | 一个新的字符串。 |
 
+**示例：**
+```typescript
+const str = "apple, orange, apple, banana";
+const result1 = str.replace("apple", "kiwi");
+console.log(result1); // "kiwi, orange, apple, banana"
+
+const reg = new RegExp("apple","g")
+const result2 = str.replace(reg, "kiwi");
+console.log(result2); // "kiwi, orange, kiwi, banana"
+```
+
 **适配建议：** 
   ArkTS1.2相比ArkTS1.1接口签名有变更，但对开发者接口行为无变更。
 
-#### replaceAll方法变更
+#### String-replaceAll方法变更
 - 参数类型any变更为Object。
 
 **ArkTS1.1版本签名：**  
@@ -373,7 +443,7 @@ replacer返回值说明：
   | 参数名 | 类型 | 必填 | 说明 |
   |--------|------|------|------|
   | searchValue | string \| RegExp | 是 | 可以是字符串或者一个带有Symbol.replace方法的对象，如正则表达式。 |
-  | replacer | (substring: string, ...args: any[]) => string | 是 | 一个函数，将为每个匹配调用该函数，并将其返回值用作替换文本。。 |
+  | replacer | (substring: string, ...args: any[]) => string | 是 | 一个函数，将为每个匹配调用该函数，并将其返回值用作替换文本。 |
 
 replacer函数参数说明：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -391,6 +461,13 @@ replacer返回值说明：
   | -------- | -------- |
   | string | 一个新的字符串。 |
 
+**示例：**
+```typescript
+const str = "apple, orange, apple, banana";
+const result = str.replaceAll("apple", "kiwi");
+
+console.log(result); // "kiwi, orange, kiwi, banana"
+```
 **ArkTS1.2版本签名：**  
   `replaceAll(searchValue: StringOrRegExp, replacer: (substr: String, args: Object[]) => String): String`
 
@@ -416,10 +493,18 @@ replacer返回值说明：
   | -------- | -------- |
   | String | 一个新的字符串。 |
 
+**示例：**
+```typescript
+const str = "apple, orange, apple, banana";
+const result = str.replaceAll("apple", "kiwi");
+
+console.log(result); // "kiwi, orange, kiwi, banana"
+```
+
 **适配建议：** 
   ArkTS1.2相比ArkTS1.1接口签名有变更，但对开发者接口行为无变更。
 
-#### string-构造函数变更为invoke方法
+#### String-构造函数变更为invoke方法
 **ArkTS1.1版本签名：**  
   `(value?: any): string`
 
@@ -486,7 +571,7 @@ replacer返回值说明：
 ## Object
 
 ### 变更梗概
-- [getOwnPropertyNames方法变更](#getownpropertynames方法变更)
+- [Object-getOwnPropertyNames方法变更](#object-getownpropertynames方法变更)
 - [Object-构造函数变更](#object-构造函数变更)
 - [Object-entries变更](#object-entries变更)
 - [Object-values变更](#object-values变更)
@@ -496,8 +581,8 @@ replacer返回值说明：
 
 ### 变更详情
 
-#### getOwnPropertyNames方法变更
-- ArkTS1.1 版本签名：  
+#### Object-getOwnPropertyNames方法变更
+**ArkTS1.1版本签名：**  
   `static getOwnPropertyNames(o: any): string[]`
 
 **参数：**
@@ -520,7 +605,7 @@ replacer返回值说明：
   Object.getOwnPropertyNames(a);
   ```
 
-- ArkTS1.2 版本签名:  
+**ArkTS1.2版本签名：**  
   不支持。
 
 **适配建议：** 
@@ -691,7 +776,7 @@ replacer返回值说明：
   ```
 
 **ArkTS1.2版本签名：**  
-  N/A
+  ArkTs1.2 没有valueOf()接口
 
 **适配建议：** 
   直接使用对象本身，不需要调用valueOf。
@@ -711,7 +796,7 @@ replacer返回值说明：
   ```
 
 **ArkTS1.2版本签名：**  
-  N/A
+  ArkTs1.2 不支持泛型Object
 
 **适配建议：** 
   使用具体类型替代泛型Object。
@@ -737,7 +822,7 @@ replacer返回值说明：
   ```
 
 **ArkTS1.2版本签名：**  
-  N/A
+  ArkTs1.2 不支持泛型Object
  
 **适配建议：** 
   使用具体类型替代泛型Object。

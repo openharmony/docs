@@ -269,8 +269,8 @@ predicate函数返回值说明：
   let arr: Array<number> = new Array<number>(1, 2, 3);
   let a = new C(2);
   let b = new C(3);
-  arr.every(a.compare, a); // [1]
-  arr.every(a.compare, b); // [1, 2]
+  arr.filter(a.compare, a); // [1]
+  arr.filter(a.compare, b); // [1, 2]
   ```
 
 **ArkTS1.2版本签名：**  
@@ -609,7 +609,7 @@ callbackfn函数参数说明：
         this.base = base;
     }
     foo(value: number, index: number, arr: Array<number>) {
-        console.info(value + this.base)
+        console.info((value + this.base).toString())
     }
   }
   
@@ -701,8 +701,8 @@ callbackfn函数返回值说明：
   let arr: Array<number> = new Array<number>(1, 2, 3);
   let a = new C(2);
   let b = new C(3);
-  arr.map(a.foo, a);
-  arr.map(a.foo, b);
+  arr.map(a.foo, a); // [3, 4, 5]
+  arr.map(a.foo, b); // [4, 5, 6]
   ```
 
 **ArkTS1.2版本签名：**  
@@ -746,8 +746,8 @@ callbackfn函数返回值说明：
     let arr: Array<number> = new Array<number>(1, 2, 3);
     let a = new C(2);
     let b = new C(3);
-    a.call(arr);
-    b.call(arr);
+    a.call(arr); // [3, 4, 5]
+    b.call(arr); // [4, 5, 6]
   }
   ```
 
@@ -756,8 +756,8 @@ callbackfn函数返回值说明：
 
 ### from方法签名变更
 **ArkTS1.1版本签名：**  
-  `static from<T, U>(arrayLike: ArrayLike<T>, mapfn: (v: T, k: number) => U, thisArg?: any): U[]`
-  `static from<T, U>(iterable: Iterable<T> | ArrayLike<T>, mapfn: (v: T, k: number) => U, thisArg?: any): U[]`
+  - `static from<T, U>(arrayLike: ArrayLike<T>, mapfn: (v: T, k: number) => U, thisArg?: any): U[]`
+  - `static from<T, U>(iterable: Iterable<T> | ArrayLike<T>, mapfn: (v: T, k: number) => U, thisArg?: any): U[]`
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -797,8 +797,8 @@ mapfn函数返回值说明：
   let arr: Array<number> = new Array<number>(1, 2, 3);
   let a = new C(2);
   let b = new C(3);
-  let arr2 = Array.from(arr, a.foo, a);
-  let arr3 = Array.from(arr, a.foo, b);
+  let arr2 = Array.from(arr, a.foo, a); // [3, 4, 5]
+  let arr3 = Array.from(arr, a.foo, b); // [4, 5, 6]
   ```
 
 **ArkTS1.2版本签名：**  
@@ -843,8 +843,8 @@ mapfn函数返回值说明：
     let arr: Array<number> = new Array<number>(1, 2, 3);
     let a = new C(2);
     let b = new C(3);
-    a.call(arr);
-    b.call(arr);
+    a.call(arr); // [3, 4, 5]
+    b.call(arr); // [4, 5, 6]
   }
   ```
 
@@ -917,8 +917,8 @@ predicate函数返回值说明：
   let arr: ReadonlyArray<number> = new Array<number>(1, 2, 3);
   let a = new C(2);
   let b = new C(3);
-  arr.some(a.foo, a);
-  arr.some(a.foo, b);
+  arr.some(a.foo, a); // true
+  arr.some(a.foo, b); // false
   ```
 
 **ArkTS1.2版本签名：**  
@@ -962,8 +962,8 @@ predicate函数返回值说明：
   let arr: ReadonlyArray<number> = new Array<number>(1, 2, 3);
   let a = new C(2);
   let b = new C(3);
-  console.info(a.call(arr));
-  console.info(b.call(arr));
+  console.info(a.call(arr)); // true
+  console.info(b.call(arr)); // false
   ```
 
 - 适配建议：
@@ -985,6 +985,14 @@ predicate函数返回值说明：
   | -------- | -------- |
   | arg is any[] | 类型守卫，通知编译器当某个条件为true时，arg是一个any[]类型。 |
 
+**示例：**  
+  ``` typescript
+  let arr: number[] = [1, 2, 3, 4, 5]
+  let num: number = 1
+  console.log(Array.isArray(arr))  // ture
+  console.log(Array.isArray(num))  // false
+  ```
+
 **ArkTS1.2版本签名：**  
   `static isArray(o: Object | null | undefined): boolean`
 
@@ -997,6 +1005,14 @@ predicate函数返回值说明：
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 表示是否是数组。true表示是数组，false表示不是数组。 |
+
+**示例：**  
+  ``` typescript
+  let arr: number[] = [1, 2, 3, 4, 5]
+  let num: number = 1
+  console.log(Array.isArray(arr))  // ture
+  console.log(Array.isArray(num))  // false
+  ```
 
 - 适配建议：
   ArkTS1.2相比ArkTS1.1接口签名有变更，但对开发者接口行为无变更。
