@@ -22,7 +22,7 @@ ForEach(this.nums,(item) => {
 
 **Reference**
 
-[Overview of Rendering Control](../quick-start/arkts-rendering-control-overview.md)
+[Overview of Rendering Control](../ui/state-management/arkts-rendering-control-overview.md)
 
 
 ## What is the difference between an @Builder decorated method and a regular method? (API version 9)
@@ -33,7 +33,7 @@ The \@Builder decorated method allows for use of a custom component, while regul
 
 **Reference**
 
-[@BuilderParam](../quick-start/arkts-builderparam.md)
+[@BuilderParam](../ui/state-management/arkts-builderparam.md)
 
 
 ## How do I define @BuilderParam decorated attributes? (API version 9)
@@ -50,7 +50,7 @@ The \@Builder decorated method allows for use of a custom component, while regul
 
 **Reference**
 
-[@BuilderParam](../quick-start/arkts-builderparam.md)
+[@BuilderParam](../ui/state-management/arkts-builderparam.md)
 
 
 ## How do I listen for object changes in an array? (API version 9)
@@ -98,7 +98,7 @@ To listen for object changes in an array, use the \@Observed and \@ObjectLink de
 
 **Reference**
 
-[\@Observed and \@ObjectLink: Observing Property Changes in Nested Class Objects](../quick-start/arkts-observed-and-objectlink.md)
+[\@Observed and \@ObjectLink: Observing Property Changes in Nested Class Objects](../ui/state-management/arkts-observed-and-objectlink.md)
 
 
 ## How do I transfer values through the parent component to \@Link decorated variables in a child component? (API version 9)
@@ -154,7 +154,7 @@ The \@Link semantics are derived from the **'$'** operator. In other words, **\$
 
 **Reference**
 
-[@Link](../quick-start/arkts-link.md)
+[@Link](../ui/state-management/arkts-link.md)
 
 
 ## How does a component synchronize state with its grandchild components? (API version 9)
@@ -732,7 +732,7 @@ Use @Build and @BuilderParam in ArkTS.
 
 **Reference**
 
-[@BuilderParam Decorator: @Builder Function Reference](../quick-start/arkts-builderparam.md)
+[@BuilderParam Decorator: @Builder Function Reference](../ui/state-management/arkts-builderparam.md)
 
 
 ## Why is text not centered vertically when lineHeight is set? (API version 9)
@@ -790,7 +790,7 @@ When the state of the **Radio** component changes, the bound variable is not aut
 
 **Reference**
 
-[$$ Syntax: Two-Way Synchronization of Built-in Components](../quick-start/arkts-two-way-sync.md)
+[$$ Syntax: Two-Way Synchronization of Built-in Components](../ui/state-management/arkts-two-way-sync.md)
 
 ## What should I do if ForEach does not work on a real device?
 
@@ -832,7 +832,7 @@ As AppStorage must run on the UI thread, it does not allow for object sharing wi
 
 **Reference**
 
-[AppStorage: Application-wide UI State Storage](../quick-start/arkts-appstorage.md)
+[AppStorage: Application-wide UI State Storage](../ui/state-management/arkts-appstorage.md)
 
 ## How do I register custom fonts? Where can I find the recommended font resources? How do I obtain them? (API version 10)
 
@@ -876,5 +876,5 @@ ArkUI also provides @BuilderParam, a decorator used to decorate a custom compone
 
 **Reference**
 
-1. [@Builder Decorator: Custom Builder Function](../quick-start/arkts-builder.md)
-2. [@BuilderParam Decorator: @Builder Function Reference](../quick-start/arkts-builderparam.md)
+1. [@Builder Decorator: Custom Builder Function](../ui/state-management/arkts-builder.md)
+2. [@BuilderParam Decorator: @Builder Function Reference](../ui/state-management/arkts-builderparam.md)

@@ -9,9 +9,11 @@
 
 ## APIs
 
-SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: number })
+SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: number, isFingerCountLimited?: boolean })
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -20,11 +22,13 @@ SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: num
 | fingers | number | No| Minimum number of fingers to trigger a swipe gesture. The value ranges from 1 to 10.<br>Default value: **1**|
 | direction | [swipeDirection](#swipedirection)| No| Swipe direction.<br>Default value: **SwipeDirection.All**|
 | speed | number | No| Minimum speed of the swipe gesture.<br>Default value: 100 vp/s<br>**NOTE**<br>If the value is less than or equal to 0, it will be converted to the default value.|
-| isFingerCountLimited<sup>15+</sup> | boolean | No| Whether to enforce the exact number of fingers touching the screen. With the value **true**, the gesture recognition fails if the number of fingers touching the screen does not match the configured value of **fingers**.<br>Default value: **false**|
+| isFingerCountLimited<sup>15+</sup> | boolean | No| Whether to enforce the exact number of fingers touching the screen. With the value **true**, the gesture recognition fails if the number of fingers touching the screen does not match the configured value of **fingers**.<br>**true**: Enforce the exact number of fingers touching the screen.<br>**false**: Do not enforce the exact number of fingers touching the screen.<br>Default Value: **false**.|
 
 ## SwipeDirection
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Description|
 | -------- | -------- |
@@ -36,11 +40,19 @@ SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: num
 
 ## Events
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+>  **NOTE**
+>
+>  In **fingerList** of [GestureEvent](ts-gesture-settings.md#gestureevent), the index of a finger corresponds to its position, that is, the ID of a finger in **fingerList[index]** refers to its index. If a finger is pressed first and does not participate in triggering of the current gesture, its position in **fingerList** is left empty. You are advised to use **fingerInfos** when possible.
+
 | Name| Description|
 | -------- | -------- |
 | onAction(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the swipe gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## Attributes
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
@@ -56,8 +68,8 @@ This example demonstrates the recognition of a swipe gesture using **SwipeGestur
 @Entry
 @Component
 struct SwipeGestureExample {
-  @State rotateAngle: number = 0
-  @State speed: number = 1
+  @State rotateAngle: number = 0;
+  @State speed: number = 1;
 
   build() {
     Column() {

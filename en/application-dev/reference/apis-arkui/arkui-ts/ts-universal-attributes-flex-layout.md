@@ -1,13 +1,13 @@
 # Flex Layout
 
 >  **NOTE**
->  - The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  - The initial APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  - The flex layout is valid only when the parent container is a [Flex](ts-container-flex.md), [Column](ts-container-column.md), [Row](ts-container-row.md), or [GridRow](ts-container-gridrow.md) (only for **alignSelf**) component.
+>  - The flex layout is valid only when the parent container is a [Flex](ts-container-flex.md), [Column](ts-container-column.md), [Row](ts-container-row.md), or [GridRow](ts-container-gridrow.md) (only for [alignSelf](#alignself)) component.
 
 ## flexBasis
 
-flexBasis(value: number | string)
+flexBasis(value: number | string): T
 
 Sets the base size of the component.
 
@@ -23,9 +23,15 @@ Sets the base size of the component.
 | ------ | -------------------------- | ---- | ------------------------------------------------------------ |
 | value  | number \| string | Yes  | Base size of the component in the main axis of the parent container.<br>Default value: **'auto'** (indicating that the base size of the component in the main axis is the original size of the component)<br>For the string type, the value must be a string that can be converted into a number (for example, **'10'**), a string that includes a length unit (for example, **'10px'**), or the literal string **'auto'**; percentage-based strings are not supported.<br>For the number type, the value range is (0, +∞), and the unit is vp.<br>Invalid values are treated as the default value **'auto'**.|
 
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
+
 ## flexGrow
 
-flexGrow(value: number)
+flexGrow(value: number): T
 
 Sets the percentage of the parent container's remaining space that is allocated to the component.
 
@@ -39,11 +45,17 @@ Sets the percentage of the parent container's remaining space that is allocated 
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Percentage of the parent container's remaining space that is allocated to the component.<br>Value range: (0,+∞).<br>Default value: **0**|
+| value  | number | Yes  | Percentage of the parent container's remaining space that is allocated to the component.<br>Value range: (0, +∞).<br>Default value: **0**.|
+
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
 
 ## flexShrink
 
-flexShrink(value: number)
+flexShrink(value: number): T
 
 Sets the percentage of the parent container's shrink size that is allocated to the component. When the parent container is **Column** or **Row**, you must set the size along the main axis.
 
@@ -57,11 +69,17 @@ Sets the percentage of the parent container's shrink size that is allocated to t
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Percentage of the parent container's shrink size that is allocated to the component.<br>If the parent container is [Column](ts-container-column.md) or [Row](ts-container-row.md), the value range is (0, +∞), and the default value is **0**.<br> If the parent container is [Flex](ts-container-flex.md), the default value is **1**.<br>When [constraintSize](ts-universal-attributes-size.md#constraintsize) is applied to the [Column](ts-container-column.md) and [Row](ts-container-row.md) components without the main axis size specified (through [width](ts-universal-attributes-size.md#width), [height](ts-universal-attributes-size.md#height), or [size](ts-universal-attributes-size.md#size)), these components use their default layout behavior, adapting to the size of their child component along the main axis. In this case, **flexShrink** does not take effect.|
+| value  | number | Yes  | Percentage of the parent container's shrink size that is allocated to the component.<br>If the parent container is [Column](ts-container-column.md) or [Row](ts-container-row.md), the default value is **0**, and the value range is (0, +∞).<br> If the parent container is [Flex](ts-container-flex.md), the default value is **1**.<br>[constraintSize](ts-universal-attributes-size.md#constraintsize) limits the component's size range. For [Column](ts-container-column.md) and [Row](ts-container-row.md) components without explicit main axis size specified (through [width](ts-universal-attributes-size.md#width), [height](ts-universal-attributes-size.md#height), or [size](ts-universal-attributes-size.md#size)), the default layout behavior (adapt-to-fit child components) applies, and **flexShrink** has no effect.|
+
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
 
 ## alignSelf
 
-alignSelf(value: ItemAlign)
+alignSelf(value: ItemAlign): T
 
 Sets the alignment mode of the child components along the cross axis of the parent container.
 
@@ -75,8 +93,13 @@ Sets the alignment mode of the child components along the cross axis of the pare
 
 | Name| Type                                       | Mandatory| Description                                                        |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | Yes  | Alignment mode of the child components along the cross axis of the parent container. The setting overwrites the **alignItems** setting of the parent container ([Flex](ts-container-flex.md), [Column](ts-container-column.md), [Row](ts-container-row.md), or [GridRow](ts-container-gridrow.md)).<br>[GridCol](./ts-container-gridcol.md) can have the **alignsSelf** attribute bound to change its own layout along the cross axis.<br>Default value: **ItemAlign.Auto**|
+| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | Yes  | Alignment mode of the child components along the cross axis of the parent container. The setting overwrites the **alignItems** setting of the parent container ([Flex](ts-container-flex.md), [Column](ts-container-column.md), [Row](ts-container-row.md), or [GridRow](ts-container-gridrow.md)).<br>[GridCol](./ts-container-gridcol.md) can have the **alignSelf** attribute bound to change its own layout along the cross axis.<br>Default value: **ItemAlign.Auto**|
 
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
 
 ## Example
 

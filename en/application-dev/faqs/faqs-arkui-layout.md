@@ -90,7 +90,7 @@ If the default key generator is used, the framework automatically generates a ke
 
 **Reference**
 
-[ForEach: Rendering of Repeated Content](../quick-start/arkts-rendering-control-foreach.md)
+[ForEach: Rendering of Repeated Content](../ui/state-management/arkts-rendering-control-foreach.md)
 
 ## How do I decouple a dialog box from pages? What are the best practices? (API 10)
 
@@ -114,7 +114,7 @@ A custom global build function is accessible throughout the application. As such
 
 1. [Custom Dialog Box (CustomDialog)](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
 2. [Popup Control](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md)
-3. [@Builder Decorator: Custom Builder Function](../quick-start/arkts-builder.md)
+3. [@Builder Decorator: Custom Builder Function](../ui/state-management/arkts-builder.md)
 
 ## What should I do if there are white and dark lines between two adjacent components of the same color? (API version 11)
 

@@ -8,9 +8,9 @@ You can set custom properties on components. These custom properties can be obta
 
 ## customProperty
 
-customProperty(name: string, value: Optional\<Object>)
+customProperty(name: string, value: Optional\<Object>): T
 
-Sets a custom property for this component. This API does not work for [custom components](../../../quick-start/arkts-create-custom-components.md#creating-a-custom-component).
+Sets a custom property for this component. This API does not work for [custom components](../../../ui/state-management/arkts-create-custom-components.md#creating-a-custom-component).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -18,12 +18,18 @@ Sets a custom property for this component. This API does not work for [custom co
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                | Mandatory | Description                                                        |
+| Name| Type                                                | Mandatory| Description                                                        |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| name  | string | Yes  | Name of the custom property. |
-| value  | Optional\<Object> | Yes  | Value of the custom property. |
+| name  | string | Yes  | Name of the custom property.|
+| value  | Optional\<Object> | Yes  | Value of the custom property.|
+
+**Return value**
+
+| Type| Description|
+| --- | --- |
+| T | Current component.|
 
 
 ## Optional<sup>12+</sup>
