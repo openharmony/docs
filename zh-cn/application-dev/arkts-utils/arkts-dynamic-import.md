@@ -3,13 +3,13 @@
 动态import支持条件延迟加载，支持部分反射功能，可以提升页面的加载速度；动态import支持加载HSP模块/HAR模块/OHPM包/Native库等，并且HAR模块间只有变量动态import时还可以进行模块解耦。
 
 ## 技术适用场景介绍
-应用开发的有些场景中，如果希望根据条件导入模块或者按需导入模块，可以使用动态导入代替[静态导入](../quick-start/introduction-to-arkts.md#导入)。下面是可能会需要动态导入的场景：
+应用开发的有些场景中，如果希望根据条件导入模块或者按需导入模块，可以使用动态import代替[静态import](../quick-start/introduction-to-arkts.md#导入)。下面是可能会需要动态import的场景：
 
-* 当静态导入的模块明显降低了代码的加载速度且被使用的可能性低，或者并不需要马上使用它。
-* 当静态导入的模块明显占用了大量的系统内存且被使用的可能性低。
+* 当静态import的模块明显降低了代码的加载速度且很少被使用，或者并不需要马上使用它。
+* 当静态import的模块明显占用了大量的系统内存且很少被使用。
 * 当被导入的模块，在加载时并不存在，需要异步获取。
-* 当被导入的模块说明符，需要动态构建。静态导入只能使用静态说明符。
-* 当被导入的模块有副作用（这里的副作用，可以理解为模块中会直接运行的代码），这些副作用只有在触发了某些条件才被需要时。
+* 当需要动态构建模块说明符时，应使用动态import。静态import仅支持静态说明符。
+* 当导入的模块存在副作用（即模块中包含直接运行的代码），这些副作用仅在满足特定条件时才需要。
 
 ## 业务扩展场景介绍
 动态import在业务上除了能实现条件延迟加载，还可以实现部分反射功能。实例如下，HAP动态import HAR包harlibrary，并调用类Calc的静态成员函数staticAdd()、成员函数instanceAdd()，以及全局方法addHarLibrary()。
@@ -69,7 +69,7 @@ import('harlibrary').then((ns:ESObject) => {
 ```
 
 ## 动态import实现方案介绍
-动态import根据入参是常量还是变量，分成动态import常量表达式和动态import变量表达式两大特性规格。
+动态import根据入参是常量或变量，分为动态import常量表达式和动态import变量表达式两大特性规格。
 以下是动态import支持的规格列表：
 
 | 动态import场景 | 动态import详细分类             | 说明                                                     |
@@ -88,7 +88,7 @@ import('harlibrary').then((ns:ESObject) => {
 
 >**说明：**
 > 
-> 1.当前所有import中使用的模块名是依赖方oh-package.json5的dependencies中的别名。
+> 1.当前所有import中使用的模块名都是依赖方oh-package.json5文件中dependencies项的别名。
 > 2.本地模块在依赖方的dependencies中配置的别名建议与moduleName以及packageName三者一致。moduleName指的是被依赖的HSP/HAR的module.json5中配置的名字，packageName指的是被依赖的HSP/HAR的oh-package.json5中配置的名字。
 > 3.import一个模块名，实际的行为是import该模块的入口文件，一般为Index.ets/ts。
 
@@ -98,7 +98,7 @@ import('harlibrary').then((ns:ESObject) => {
 
 动态import常量表达式是指动态import的入参为常量的场景。下面以HAP引用其他模块的API的示例来说明典型用法。
 
-说明：本文示例代码中Index.ets等路径是按照当前DevEco Studio的模块配置设置，如后续发生变化，请调整位置及其他文件相对路径。
+本文示例代码中的路径，如Index.ets，是根据当前DevEco Studio的模块配置设置的。如果后续有变化，请调整文件的位置和相对路径。
 
 - **HAP常量动态import HAR模块名**
 
@@ -117,7 +117,7 @@ import('harlibrary').then((ns:ESObject) => {
     console.info(ns.add(3, 5));
   });
 
-  // 可使用 await 处理动态导入 (必须在 async 函数内使用)
+  // 可使用 await 处理动态import (必须在 async 函数内使用)
   async function asyncDynamicImport() {
     let ns:ESObject = await import('myhar');
     console.info(ns.add(3, 5));
@@ -290,8 +290,8 @@ import('harlibrary').then((ns:ESObject) => {
 
 ### 动态import变量表达式
 
-DevEco Studio中模块间的依赖关系通过oh-package.json5中的dependencies进行配置。dependencies列表中所有模块默认都会进行安装（本地模块）或下载（远程模块），但是不会默认参与编译。HAP/HSP编译时会以入口文件（一般为Index.ets/ts）开始搜索依赖关系，搜索到的模块或文件才会加入编译。
-在编译期，静态import和常量动态import可以被打包工具rollup及其插件识别解析，加入依赖树中，参与编译流程，最终生成方舟字节码。但是，如果是变量动态import，该变量值可能需要进行运算或外部传入才能得到，在编译态无法解析其内容，也就无法加入编译。为了将这部分模块/文件加入编译，还需要额外增加一个runtimeOnly的buildOption配置，用于配置动态import的变量实际的模块名或文件路径。
+DevEco Studio中模块间的依赖关系通过oh-package.json5中的dependencies字段进行配置。dependencies列表中所有的模块默认都会进行安装（本地模块）或下载（远程模块），但是不会默认参与编译。HAP/HSP编译时会以入口文件（一般为Index.ets/Index.ts）开始搜索依赖关系，搜索到的模块或文件才会加入编译。
+在编译期，静态import和常量动态import可以被打包工具rollup及其插件识别解析，加入依赖树中，参与编译流程，最终生成方舟字节码。但是，如果是变量动态import，该变量值可能需要进行运算或外部传入才能得到，在编译态无法解析其内容，也就无法加入编译。为了将这部分模块/文件加入编译，还需要额外增加一个runtimeOnly的buildOption配置，用于指定动态import的变量实际的模块名或文件路径。
 
 **1. runtimeOnly字段schema配置格式**
 
@@ -534,10 +534,10 @@ import(filePath).then((obj: ESObject) => {
   packageName = '@ohos.hilog';
   import(packageName).then((ns:ESObject) => { ns.default.info(0x0000, 'testTag', '%{public}s', 'DynamicImport @ohos.hilog.'); });
   ```
-变量动态import加载API时无需配置runtimeOnly。
+通过变量动态import加载API时无需配置runtimeOnly。
 
 ### HAR模块间动态import依赖解耦
-当应用包含多个HAR包，且HAR包之间依赖关系比较复杂。在DevEco Studio中配置依赖关系时，可能会形成循环依赖。这时，如果HAR之间的依赖关系中仅有变量动态import，可以将HAR包之间直接依赖关系转移到HAP/HSP中配置，HAR包之间无需配置依赖关系，从而达到HAR包间依赖解耦的目的。如下示意图：
+当应用包含多个HAR包，HAR包之间的依赖关系比较复杂。在DevEco Studio中配置依赖关系时，可能会形成循环依赖。这时，如果HAR之间的依赖关系中仅有变量动态import，可以将HAR包之间直接依赖关系转移到HAP/HSP中配置，HAR包之间无需配置依赖关系，从而达到HAR包间依赖解耦的目的。如下示意图：
 
 ![变量动态import HAR包形成循环依赖](figures/dynamicimport1.png)
 
@@ -547,17 +547,17 @@ HAR之间的依赖关系转移至HAP/HSP后：
 
 
 **1. 使用限制**
-- 仅限本地源码HAR包之间形成循环依赖时可使用该规避方案。
+- 仅限在本地源码HAR包之间存在循环依赖时，使用该规避方案。
 - 被转移依赖的HAR之间只能通过变量动态import，不能有静态import或常量动态import。
-- 转移依赖时，dependencies和runtimeOnly依赖配置要同时转移。
+- 转移依赖时，需同时转移dependencies和runtimeOnly依赖配置。
 - HSP不支持转移依赖。即：HAP->HSP1->HSP2->HSP3，这里的HSP2和HSP3不能转移到HAP上面。
-- 转移依赖的整个链路上只能有HAR，不能跨越HSP转移。即：HAP->HAR1->HAR2->HSP->HAR3->HAR4，HAR1对HAR2的依赖可以转移到HAP上，HAR3对HAR4的依赖可以转移到HSP上。但是，不能将HAR3或HAR4转移到HAP上。
-- 如果存在引用其他工程模块、远程包、集成hsp，需保证useNormalizedOHMUrl配置一致，同时配置为true或false，否则可能引起运行时报错：Cannot find dynamic-import module library。
+- 转移依赖的整个链路上只能有HAR包，不能跨越HSP转移。即：HAP->HAR1->HAR2->HSP->HAR3->HAR4。HAR1对HAR2的依赖可以转移到HAP上，HAR3对HAR4的依赖可以转移到HSP上。但是，不能将HAR3或HAR4转移到HAP上。
+- 如果引用了其他工程模块、远程包或集成HSP，需确保useNormalizedOHMUrl配置一致，同时设置为true或false，否则可能导致运行错误：Cannot find dynamic-import module library。
 
 
 **2. 使用实例**
 
-下面的实例HAP变量动态import HAR包har1，har1变量动态import另一个HAR包har2。
+下面的实例中，HAP变量动态import HAR包har1，而har1变量动态import另一个HAR包har2。
 
 ```json5
 // HAP's oh-package.json5
@@ -632,7 +632,7 @@ export function addHar2(a:number, b:number):number {
 }
 ```
 
-har1对har2的依赖dependencies和runtimeOnly配置转移到HAP中，har1不需要配置对har2的dependencies和runtimeOnly配置：
+将har1对har2的dependencies和runtimeOnly配置转移到HAP中，har1无需配置对har2的dependencies和runtimeOnly配置。
 
 ```json5
 // HAP's oh-package.json5
