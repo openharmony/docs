@@ -997,7 +997,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 createAnimator(options: AnimatorOptions | SimpleAnimatorOptions): AnimatorResult
 
-Creates an **AnimatorResult** object for animations. Compared to the previous [createAnimator](#createanimator) API, this API adds support for the [SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions18) type.
+Creates an **AnimatorResult** object for animations. Compared with the previous [createAnimator](#createanimator) API, this API adds support for the [SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions18) type.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 

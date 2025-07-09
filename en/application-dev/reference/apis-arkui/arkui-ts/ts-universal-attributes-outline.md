@@ -36,7 +36,7 @@ Sets the outline attributes in one declaration.
 
 outline(options: Optional\<OutlineOptions>): T
 
-Sets the outline attributes in one declaration. Compared to [outline](#outline), this API supports the **undefined** type for the **options** parameter.
+Sets the outline attributes in one declaration. Compared with [outline](#outline), this API supports the **undefined** type for the **options** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -100,7 +100,7 @@ Sets the style of the outline.
 
 outlineStyle(style: Optional\<OutlineStyle | EdgeOutlineStyles>): T
 
-Sets the style of the outline. Compared to [outlineStyle](#outlinestyle), this API supports the **undefined** type for the **style** parameter.
+Sets the style of the outline. Compared with [outlineStyle](#outlinestyle), this API supports the **undefined** type for the **style** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -148,7 +148,7 @@ Sets the thickness of the outline.
 
 outlineWidth(width: Optional\<Dimension | EdgeOutlineWidths>): T
 
-Sets the thickness of the outline. Compared to [[outlineWidth](#outlinewidth), this API supports the **undefined** type for the **width** parameter.
+Sets the thickness of the outline. Compared with [[outlineWidth](#outlinewidth), this API supports the **undefined** type for the **width** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -196,7 +196,7 @@ Sets the color of the outline.
 
 outlineColor(color: Optional\<ResourceColor | EdgeColors>): T
 
-Sets the color of the outline. Compared to [outlineColor](#outlinecolor), this API supports the **undefined** type for the **color** parameter.
+Sets the color of the outline. Compared with [outlineColor](#outlinecolor), this API supports the **undefined** type for the **color** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -244,7 +244,7 @@ Sets the radius of the outline corners.
 
 outlineRadius(radius: Optional\<Dimension | OutlineRadiuses>): T
 
-Sets the radius of the outline corners. Compared to [outlineRadius](#outlineradius), this API supports the **undefined** type for the **radius** parameter.
+Sets the radius of the outline corners. Compared with [outlineRadius](#outlineradius), this API supports the **undefined** type for the **radius** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 

@@ -563,6 +563,8 @@ svg类型图源不支持该属性。
 
 ## ImageInterpolation
 
+图片的插值效果。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -577,6 +579,8 @@ svg类型图源不支持该属性。
 | Low    | 双线性插值。                     |
 
 ## ImageRenderMode
+
+图片的渲染模式。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -603,6 +607,8 @@ svg类型图源不支持该属性。
 | lattice<sup>12+</sup> | [DrawingLattice](#drawinglattice12) |  否  | 矩形网格对象。<br>**说明：**<br> 通过@ohos.graphics.drawing的createImageLattice接口创建Lattice类型作为入参。将图像划分为矩形网格，同时处于偶数列和偶数行上的网格图像是固定的，不会被拉伸。<br>该参数对[backgroundImageResizable](ts-universal-attributes-background.md#backgroundimageresizable12)接口不生效。<br> 传入数字时默认单位为px。 |
 
 ## EdgeWidths参数说明
+
+边框宽度类型，用于描述组件边框不同方向的宽度。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -648,6 +654,8 @@ svg类型图源不支持该属性。
 | LEFT | 4 | 将当前图片向左旋转90度后显示。<br/>![imageRotateOrientation_4](figures/imageRotateOrientation_4.png)         |
 
 ## ImageSourceSize<sup>18+</sup>对象说明
+
+图片解码尺寸。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 

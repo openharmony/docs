@@ -73,6 +73,11 @@ getArraybufferInfo(new ArrayBuffer(10));
 )JS";
 ```
 
+预期结果：
+```
+JSVM GetArraybufferInfo: success
+```
+
 ### OH_JSVM_IsArraybuffer
 
 判断一个 JavaScript 对象是否为 Arraybuffer 类型对象。
@@ -116,6 +121,12 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(
 isArrayBuffer(new ArrayBuffer(8));
 )JS";
+```
+
+预期结果：
+```
+JSVM IsArrayBuffer: success
+JSVM IsArrayBuffer: 1
 ```
 
 ### OH_JSVM_DetachArraybuffer
@@ -186,6 +197,13 @@ isDetachedArraybuffer(arrayBuffer);
 )JS";
 ```
 
+预期结果：
+```
+JSVM DetachArraybuffer: success
+JSVM IsDetachedArraybuffer: success
+JSVM IsArrayBuffer: 1
+```
+
 ### OH_JSVM_CreateArraybuffer
 
 创建一个指定大小的 ArrayBuffer 对象。
@@ -234,4 +252,10 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(
 createArraybuffer(8);
 )JS";
+```
+
+预期结果：
+```
+JSVM CreateArraybuffer: success
+JSVM ArrayBuffer length: 8
 ```

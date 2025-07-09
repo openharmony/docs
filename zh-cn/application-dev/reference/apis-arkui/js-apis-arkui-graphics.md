@@ -20,7 +20,7 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 只读 | 可写 | 说明                   |
+| 名称   | 类型   | 只读 | 可选 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
 | width  | number | 是   | 是   | 组件大小的宽度。<br/>单位：vp<br/>取值范围：[0, +∞) |
 | height | number | 是   | 是   | 组件大小的高度。<br/>单位：vp<br/>取值范围：[0, +∞) |
@@ -309,7 +309,7 @@ struct Index {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型 | 只读 | 可写 | 说明             |
+| 名称   | 类型 | 只读 | 可选 | 说明             |
 | ------ | ---- | ---- | ---- | ---------------- |
 | left   | T    | 是   | 是   | 左侧边框的属性。 |
 | top    | T    | 是   | 是   | 顶部边框的属性。 |
@@ -340,7 +340,7 @@ struct Index {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型 | 只读 | 可写 | 说明             |
+| 名称   | 类型 | 只读 | 可选 | 说明             |
 | ------ | ---- | ---- | ---- | ---------------- |
 | width   | T    | 是   | 是   | 宽度的属性。 |
 | height    | T    | 是   | 是   | 高度的属性。 |
@@ -368,7 +368,7 @@ struct Index {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型 | 只读 | 可写 | 说明             |
+| 名称   | 类型 | 只读 | 可选 | 说明             |
 | ------------ | ---------------------------------------- | ---- | ---- | ------ |
 | value       | number | 是   | 是   | 长度属性的值。   |
 | unit | [LengthUnit](#lengthunit12)                                   | 是   | 是   | 长度属性的单位，默认为VP。|
@@ -769,7 +769,7 @@ struct ColorMetricsSample {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 类型 | 只读 | 可写 | 说明                   |
+| 名称        | 类型 | 只读 | 可选 | 说明                   |
 | ----------- | ---- | ---- | ---- | ---------------------- |
 | topLeft     | T    | 是   | 是   | 左上边框的圆角属性。   |
 | topRight    | T    | 是   | 是   | 右上边框的圆角属性。 |
@@ -826,7 +826,7 @@ type Rect = common2D.Rect
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                          | 只读 | 可写 | 说明             |
+| 名称    | 类型                          | 只读 | 可选 | 说明             |
 | ------- | ----------------------------- | ---- | ---- | ---------------- |
 | rect    | [Rect](#rect12)                 | 是   | 是   | 设置矩形的属性。 |
 | corners | [CornerRadius](#cornerradius12) | 是   | 是   | 设置圆角的属性。 |
@@ -839,7 +839,7 @@ type Rect = common2D.Rect
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型   | 只读 | 可写 | 说明                      |
+| 名称    | 类型   | 只读 | 可选 | 说明                      |
 | ------- | ------ | ---- | ---- | ------------------------- |
 | centerX | number | 是   | 是   | 圆心x轴的位置，单位为px。 |
 | centerY | number | 是   | 是   | 圆心y轴的位置，单位为px。 |
@@ -853,7 +853,7 @@ type Rect = common2D.Rect
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                                                         | 类型   | 只读 | 可写 | 说明                                                         |
+| 名称                                                         | 类型   | 只读 | 可选 | 说明                                                         |
 | ------------------------------------------------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | [commands](./arkui-ts/ts-drawing-components-path.md#commands) | string | 是   | 是   | 路径绘制的指令字符串。像素单位的转换方法请参考[像素单位转换](./arkui-ts/ts-pixel-units.md#像素单位转换)。<br/>单位：px |
 

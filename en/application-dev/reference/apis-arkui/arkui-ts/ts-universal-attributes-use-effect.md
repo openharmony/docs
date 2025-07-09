@@ -4,7 +4,7 @@ The **useEffect** attribute is used to combine the drawing of special effects, s
 
 > **NOTE**
 >
-> This attribute is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
 >
 
 ## useEffect
@@ -56,7 +56,7 @@ Specifies whether to apply the effect defined by <!--Del-->the parent [EffectCom
 
 useEffect(useEffect: Optional\<boolean>, effectType?: EffectType): T
 
-Specifies whether to apply the effect defined by <!--Del-->the parent [EffectComponent](ts-container-effectcomponent-sys.md) or <!--DelEnd-->the window. Compared to [useEffect<sup>14+</sup>](#useeffect), the **useEffect** parameter supports the **undefined** type.
+Specifies whether to apply the effect defined by <!--Del-->the parent [EffectComponent](ts-container-effectcomponent-sys.md) or <!--DelEnd-->the window. Compared with [useEffect<sup>14+</sup>](#useeffect), this API supports the **undefined** type for the **useEffect** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 

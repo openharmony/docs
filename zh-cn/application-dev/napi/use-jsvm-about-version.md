@@ -70,3 +70,12 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 待执行的js代码
 static const char *srcCallNative = R"JS(getVersion();getVMInfo();)JS";
 ```
+
+预期结果：
+```
+JSVM GetVersion success:9
+JSVM API apiVersion: 1
+JSVM API engine: v8
+JSVM API version: 13.2.152.41
+JSVM API cachedDataVersionTag: 0x81ff9402
+```
