@@ -4901,7 +4901,7 @@ on(type: 'nodeRenderState', nodeIdentity: NodeIdentity, callback: NodeRenderStat
 
 ```ts
 // 在页面Component中使用
-import { NodeRenderState } from '@ohos.arkui.UIContext';
+import { NodeRenderState } from '@kit.ArkUI';
 
 @Entry
 @Component
