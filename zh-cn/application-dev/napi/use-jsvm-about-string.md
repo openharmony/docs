@@ -81,9 +81,9 @@ const char *srcCallNative = R"JS(
 <!-- @[oh_jsvm_get_value_string_utf8](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf8/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
-
+```cpp
 ![GetValueStringUtf8](figures/jsvm_about_string_GetValueStringUtf8.png)
-
+```
 **注意事项**：`getValueStringUtf8(arg)`入参`arg`非字符串型数据时接口会调用失败。
 
 ### OH_JSVM_CreateStringUtf8
@@ -131,9 +131,9 @@ const char *srcCallNative = R"JS(
 <!-- @[oh_jsvm_create_string_utf8](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf8/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
-
+```cpp
 ![CreateStringUtf8](figures/jsvm_about_string_CreateStringUtf8.png)
-
+```
 ### OH_JSVM_GetValueStringUtf16
 
 OH_JSVM_GetValueStringUtf16，将JavaScript的字符类型的数据转换为utf16编码的字符。
@@ -195,9 +195,9 @@ const char *srcCallNative = R"JS(
 <!-- @[oh_jsvm_get_value_string_utf16](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf16/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
-
+```cpp
 ![GetValueStringUtf16](figures/jsvm_about_string_GetValueStringUtf16.png)
-
+```
 **注意事项**：`getValueStringUtf16(arg)`入参`arg`非字符串型数据时接口会调用失败。
 
 ### OH_JSVM_CreateStringUtf16
@@ -252,9 +252,9 @@ const char *srcCallNative = R"JS(
 <!-- @[oh_jsvm_create_string_utf16](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf16/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
-
+```cpp
 ![CreateStringUtf16](figures/jsvm_about_string_CreateStringUtf16.png)
-
+```
 ### OH_JSVM_GetValueStringLatin1
 
 OH_JSVM_GetValueStringLatin1接口可以将JavaScript的字符类型的数据转换为ISO-8859-1编码的字符。
@@ -306,10 +306,10 @@ const char *srcCallNative = R"JS(
 <!-- @[oh_jsvm_get_value_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringlatin1/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
-
+```cpp
 *ISO-8859-1编码不支持中文，传入中文字符会导致乱码*
 ![GetValueStringLatin1](figures/jsvm_about_string_GetValueStringLatin1.png)
-
+```
 **注意事项**：`getValueStringLatin1(arg)`入参`arg`必须为字符串类型，否则将导致调用失败。
 
 ### OH_JSVM_CreateStringLatin1
@@ -361,5 +361,6 @@ const char *srcCallNative = R"JS(
 <!-- @[oh_jsvm_create_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringlatin1/src/main/cpp/hello.cpp) -->
 
 预期输出结果：
-
+```cpp
 ![CreateStringLatin1](figures/jsvm_about_string_CreateStringLatin1.png)
+```
