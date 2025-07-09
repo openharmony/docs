@@ -2911,7 +2911,6 @@ on(type: 'formOverflow', callback: Callback&lt;formInfo.OverflowRequest&gt;): vo
 | 错误码ID | 错误信息                                                                                                  |
 |-------|-----------------------------------------------------------------------------------------------------------|
 | 202   | The application is not a system application.                                                              |
-| 801   | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
 
 **示例：**
 
@@ -2952,7 +2951,6 @@ off(type: 'formOverflow', callback?: Callback&lt;formInfo.OverflowRequest&gt;): 
 | 错误码ID | 错误信息                                                                                                |
 | --- |-----------------------------------------------------------------------------------------------------------|
 | 202 | The application is not a system application.                                                              |
-| 801 | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
 
 **示例：**
 
@@ -2993,7 +2991,6 @@ on(type: 'changeSceneAnimationState', callback: Callback&lt;formInfo.ChangeScene
 | 错误码ID | 错误信息                                                                                                  |
 |-------|-----------------------------------------------------------------------------------------------------------|
 | 202   | The application is not a system application.                                                              |
-| 801   | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
 
 **示例：**
 
@@ -3034,7 +3031,6 @@ off(type: 'changeSceneAnimationState', callback: Callback&lt;formInfo.changeScen
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 801 | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
 
 **示例：**
 
@@ -3051,13 +3047,11 @@ try {
 }
 ```
 
-## formHost.updateFormSize<sup>20+</sup>
+## formHost.on('getFormRect')<sup>20+</sup>
 
-updateFormSize(formId: string, newDimension: formInfo.FormDimension, newRect: formInfo.Rect): void
+on(type: 'getFormRect', callback: formInfo.GetFormRectInfoCallback): void
 
-更新卡片尺寸。
-
-**需要权限**：ohos.permission.REQUIRE_FORM
+订阅卡片位置尺寸查询请求事件。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -3065,23 +3059,18 @@ updateFormSize(formId: string, newDimension: formInfo.FormDimension, newRect: fo
 
 **参数：**
 
-| 参数名 | 类型    | 必填 | 说明    |
-| ------ | ------ | ---- | ------- |
-| formId | string | 是   | 卡片标识。 |
-| newDimension | [formInfo.FormDimension](js-apis-app-form-formInfo.md#formdimension) | 是 | 卡片尺寸，如Dimension_1_2，表示1 x 2卡片。 |
-| newRect | [formInfo.Rect](js-apis-app-form-formInfo.md#rect20) | 是 | 卡片位置信息，包括卡片左上角顶点的xy坐标和卡片的宽高。 |
+| 参数名 | 类型    | 必填 | 说明                                                   |
+| ------ | ------ | ---- |------------------------------------------------------|
+| type | string | 是   | 事件回调类型，支持的事件为'getFormRect'，表示卡片位置尺寸查询。|
+| callback |[formInfo.GetFormRectInfoCallback](js-apis-app-form-formInfo-sys.md#getformrectinfocallback20) | 是 | 回调函数，卡片使用方对查询请求进行处理，返回卡片相对屏幕左上角的位置信息和卡片尺寸信息，单位vp。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 201 | Permissions denied. |
-| 202 | Caller is not system app. |
-| 16501000 | An internal functional error occurred. |
-| 16501001 | The ID of the form to be operated does not exist. |
-| 16501012 | The dimension parameter is incorrect. |
+| 错误码ID | 错误信息                                                                                                  |
+|-------|-----------------------------------------------------------------------------------------------------------|
+| 202   | The application is not a system application.                                                              |
 
 **示例：**
 
@@ -3090,10 +3079,52 @@ import { formHost, formInfo } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let formId: string = '12400633174999288';
-  let newDimension = FormDimension.Dimension_1_2;
-  let newRect: formInfo.Rect = {left: 1, top: 2, width: 100, height: 100};
-  formHost.updateFormSize(formId, newDimension, newRect);
+  formHost.on('getFormRect', (formId: string): Promise<formInfo.Rect> => {
+    // 卡片使用方需要对查询请求进行处理，计算并返回卡片尺寸、位置信息
+    return new Promise<formInfo.Rect>((resolve: Function) => {
+      console.log(`formHost on getFormRect, formId is ${formId}`);
+      let formRect: formInfo.Rect = {left: 0, top: 0, width: 0, height: 0};
+      resolve(formRect);
+    })
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## formHost.off('getFormRect')<sup>20+</sup>
+
+off(type: 'getFormRect', callback?: formInfo.GetFormRectInfoCallback): void
+
+取消订阅卡片位置尺寸查询请求事件。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ |----| ------- |
+| type | string | 是  | 事件回调类型，支持的事件为'getFormRect'，表示卡片位置尺寸查询。|
+| callback |[formInfo.GetFormRectInfoCallback](js-apis-app-form-formInfo-sys.md#getformrectinfocallback20) | 否  | 回调函数，对应已订阅卡片位置尺寸查询请求。缺省时，表示注销所有已注册卡片位置、尺寸查询事件回调。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+
+**示例：**
+
+```ts
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formHost.off('getFormRect');
 } catch (error) {
   console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }

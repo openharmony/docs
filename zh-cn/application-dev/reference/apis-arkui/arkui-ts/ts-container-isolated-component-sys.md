@@ -189,7 +189,7 @@ onError(callback:ErrorCallback)
               .width(300)
               .height(300)
               .onError((err) => {
-                console.info("onError : " + JSON.stringify(err));
+                console.error("onError : " + JSON.stringify(err));
               })
           }
         }

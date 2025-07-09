@@ -4,9 +4,13 @@
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> - 本Class首批接口从API version 12开始支持。
+>
 > - 本模块使用屏幕物理像素单位px。
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
+
+路径效果对象。
 
 ## 导入模块
 
@@ -14,11 +18,7 @@
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## PathEffect<sup>12+</sup>
-
-路径效果对象。
-
-### createDashPathEffect<sup>12+</sup>
+## createDashPathEffect<sup>12+</sup>
 
 static createDashPathEffect(intervals:  Array\<number>, phase: number): PathEffect
 
@@ -37,7 +37,7 @@ static createDashPathEffect(intervals:  Array\<number>, phase: number): PathEffe
 
 | 类型                      | 说明                   |
 | ------------------------- | --------------------- |
-| [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
+| [PathEffect](arkts-apis-graphics-drawing-PathEffect.md) | 返回创建的路径效果对象。 |
 
 **错误码：**
 
@@ -62,7 +62,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createPathDashEffect<sup>18+</sup>
+## createPathDashEffect<sup>18+</sup>
 
 static createPathDashEffect(path: Path, advance: number, phase: number, style: PathDashStyle): PathEffect
 
@@ -83,7 +83,7 @@ static createPathDashEffect(path: Path, advance: number, phase: number, style: P
 
 | 类型                      | 说明                   |
 | ------------------------- | --------------------- |
-| [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
+| [PathEffect](arkts-apis-graphics-drawing-PathEffect.md) | 返回创建的路径效果对象。 |
 
 **错误码：**
 
@@ -131,7 +131,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createSumPathEffect<sup>18+</sup>
+## createSumPathEffect<sup>18+</sup>
 
 static createSumPathEffect(firstPathEffect: PathEffect, secondPathEffect: PathEffect): PathEffect
 
@@ -143,14 +143,14 @@ static createSumPathEffect(firstPathEffect: PathEffect, secondPathEffect: PathEf
 
 | 参数名     | 类型           | 必填    | 说明                                               |
 | ---------- | ------------- | ------- | -------------------------------------------------- |
-| firstPathEffect | [PathEffect](#patheffect12) | 是 | 表示第一个路径效果。 |
-| secondPathEffect | [PathEffect](#patheffect12) | 是 | 表示第二个路径效果。 |
+| firstPathEffect | [PathEffect](arkts-apis-graphics-drawing-PathEffect.md) | 是 | 表示第一个路径效果。 |
+| secondPathEffect | [PathEffect](arkts-apis-graphics-drawing-PathEffect.md) | 是 | 表示第二个路径效果。 |
 
 **返回值：**
 
 | 类型                      | 说明                   |
 | ------------------------- | --------------------- |
-| [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
+| [PathEffect](arkts-apis-graphics-drawing-PathEffect.md) | 返回创建的路径效果对象。 |
 
 **示例：**
 
@@ -169,7 +169,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createCornerPathEffect<sup>12+</sup>
+## createCornerPathEffect<sup>12+</sup>
 
 static createCornerPathEffect(radius: number): PathEffect
 
@@ -187,7 +187,7 @@ static createCornerPathEffect(radius: number): PathEffect
 
 | 类型                      | 说明                   |
 | ------------------------- | --------------------- |
-| [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
+| [PathEffect](arkts-apis-graphics-drawing-PathEffect.md) | 返回创建的路径效果对象。 |
 
 **错误码：**
 
@@ -211,7 +211,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createDiscretePathEffect<sup>18+</sup>
+## createDiscretePathEffect<sup>18+</sup>
 
 static createDiscretePathEffect(segLength: number, dev: number, seedAssist?: number): PathEffect
 
@@ -231,7 +231,7 @@ static createDiscretePathEffect(segLength: number, dev: number, seedAssist?: num
 
 | 类型                      | 说明                   |
 | ------------------------- | --------------------- |
-| [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
+| [PathEffect](arkts-apis-graphics-drawing-PathEffect.md) | 返回创建的路径效果对象。 |
 
 **示例：**
 
@@ -247,7 +247,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createComposePathEffect<sup>18+</sup>
+## createComposePathEffect<sup>18+</sup>
 
 static createComposePathEffect(outer: PathEffect, inner: PathEffect): PathEffect
 
@@ -259,14 +259,14 @@ static createComposePathEffect(outer: PathEffect, inner: PathEffect): PathEffect
 
 | 参数名 | 类型                        | 必填 | 说明                             |
 | ------ | --------------------------- | ---- | -------------------------------- |
-| outer  | [PathEffect](#patheffect12) | 是   | 组合路径效果中外部路径效果。 |
-| inner  | [PathEffect](#patheffect12) | 是   | 组合路径效果中内部路径效果。 |
+| outer  | [PathEffect](arkts-apis-graphics-drawing-PathEffect.md) | 是   | 组合路径效果中外部路径效果。 |
+| inner  | [PathEffect](arkts-apis-graphics-drawing-PathEffect.md) | 是   | 组合路径效果中内部路径效果。 |
 
 **返回值：**
 
 | 类型                      | 说明                   |
 | ------------------------- | --------------------- |
-| [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
+| [PathEffect](arkts-apis-graphics-drawing-PathEffect.md) | 返回创建的路径效果对象。 |
 
 **示例：**
 

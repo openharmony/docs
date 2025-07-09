@@ -471,7 +471,7 @@ struct attributePressedDemo {
   build() {
     Row() {
       Column() {
-        ChildCompoent()
+        ChildComponent()
           .attributeModifier(this.modifier)
       }
       .width('100%')
@@ -481,7 +481,7 @@ struct attributePressedDemo {
 }
 
 @Component
-struct ChildCompoent {
+struct ChildComponent {
   build() {
     Text("common").fontColor(Color.Green).fontSize(28).textAlign(TextAlign.Center)
       .width('35%')

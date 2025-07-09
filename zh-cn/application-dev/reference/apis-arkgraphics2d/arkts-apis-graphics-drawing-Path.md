@@ -8,17 +8,15 @@
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
 
+由直线、圆弧、二阶贝塞尔、三阶贝塞尔组成的复合几何路径。
+
 ## 导入模块
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## Path
-
-由直线、圆弧、二阶贝塞尔、三阶贝塞尔组成的复合几何路径。
-
-### constructor<sup>12+</sup>
+## constructor<sup>12+</sup>
 
 constructor()
 
@@ -34,7 +32,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 let path: drawing.Path = new drawing.Path();
 ```
 
-### constructor<sup>12+</sup>
+## constructor<sup>12+</sup>
 
 constructor(path: Path)
 
@@ -46,7 +44,7 @@ constructor(path: Path)
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| path | [Path](#path) | 是   | 待复制的路径对象。                 |
+| path | [Path](arkts-apis-graphics-drawing-Path.md) | 是   | 待复制的路径对象。                 |
 
 **示例：**
 
@@ -61,7 +59,7 @@ path.close();
 let path1: drawing.Path =  new drawing.Path(path);
 ```
 
-### set<sup>20+</sup>
+## set<sup>20+</sup>
 
 set(src: Path): void
 
@@ -73,7 +71,7 @@ set(src: Path): void
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| src | [Path](#path) | 是   | 用于更新的路径。                 |
+| src | [Path](arkts-apis-graphics-drawing-Path.md) | 是   | 用于更新的路径。                 |
 
 **示例：**
 
@@ -88,7 +86,7 @@ let path1: drawing.Path = new drawing.Path();
 path1.set(path);
 ```
 
-### moveTo
+## moveTo
 
 moveTo(x: number, y: number) : void
 
@@ -120,7 +118,7 @@ let path = new drawing.Path();
 path.moveTo(10,10);
 ```
 
-### lineTo
+## lineTo
 
 lineTo(x: number, y: number) : void
 
@@ -153,7 +151,7 @@ path.moveTo(10,10);
 path.lineTo(10, 15);
 ```
 
-### arcTo
+## arcTo
 
 arcTo(x1: number, y1: number, x2: number, y2: number, startDeg: number, sweepDeg: number): void
 
@@ -190,7 +188,7 @@ path.moveTo(10,10);
 path.arcTo(10, 15, 10, 10, 10, 10);
 ```
 
-### quadTo
+## quadTo
 
 quadTo(ctrlX: number, ctrlY: number, endX: number, endY: number): void
 
@@ -225,7 +223,7 @@ path.moveTo(10,10);
 path.quadTo(10, 15, 10, 10);
 ```
 
-### conicTo<sup>12+</sup>
+## conicTo<sup>12+</sup>
 
 conicTo(ctrlX: number, ctrlY: number, endX: number, endY: number, weight: number): void
 
@@ -260,7 +258,7 @@ const path = new drawing.Path();
 path.conicTo(200, 400, 100, 200, 0);
 ```
 
-### cubicTo
+## cubicTo
 
 cubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: number, endY: number): void
 
@@ -297,7 +295,7 @@ path.moveTo(10,10);
 path.cubicTo(100, 100, 80, 150, 300, 150);
 ```
 
-### rMoveTo<sup>12+</sup>
+## rMoveTo<sup>12+</sup>
 
 rMoveTo(dx: number, dy: number): void
 
@@ -329,7 +327,7 @@ const path = new drawing.Path();
 path.rMoveTo(10, 10);
 ```
 
-### rLineTo<sup>12+</sup>
+## rLineTo<sup>12+</sup>
 
 rLineTo(dx: number, dy: number): void
 
@@ -361,7 +359,7 @@ const path = new drawing.Path();
 path.rLineTo(400, 200);
 ```
 
-### rQuadTo<sup>12+</sup>
+## rQuadTo<sup>12+</sup>
 
 rQuadTo(dx1: number, dy1: number, dx2: number, dy2: number): void
 
@@ -395,7 +393,7 @@ const path = new drawing.Path();
 path.rQuadTo(100, 0, 0, 200);
 ```
 
-### rConicTo<sup>12+</sup>
+## rConicTo<sup>12+</sup>
 
 rConicTo(ctrlX: number, ctrlY: number, endX: number, endY: number, weight: number): void
 
@@ -430,7 +428,7 @@ const path = new drawing.Path();
 path.rConicTo(200, 400, 100, 200, 0);
 ```
 
-### rCubicTo<sup>12+</sup>
+## rCubicTo<sup>12+</sup>
 
 rCubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: number, endY: number): void
 
@@ -466,7 +464,7 @@ const path = new drawing.Path();
 path.rCubicTo(200, 0, 0, 200, -20, 0);
 ```
 
-### addArc<sup>12+</sup>
+## addArc<sup>12+</sup>
 
 addArc(rect: common2D.Rect, startAngle: number, sweepAngle: number): void
 
@@ -504,7 +502,7 @@ const rect: common2D.Rect = {left:100, top:100, right:500, bottom:500};
 path.addArc(rect, 90, 180);
 ```
 
-### addCircle<sup>12+</sup>
+## addCircle<sup>12+</sup>
 
 addCircle(x: number, y: number, radius: number, pathDirection?: PathDirection): void
 
@@ -539,7 +537,7 @@ let path = new drawing.Path();
 path.addCircle(100, 200, 50, drawing.PathDirection.CLOCKWISE);
 ```
 
-### addOval<sup>12+</sup>
+## addOval<sup>12+</sup>
 
 addOval(rect: common2D.Rect, start: number, pathDirection?: PathDirection): void
 
@@ -573,7 +571,7 @@ const rect: common2D.Rect = {left:100, top:100, right:500, bottom:500};
 path.addOval(rect, 5, drawing.PathDirection.CLOCKWISE);
 ```
 
-### addRect<sup>12+</sup>
+## addRect<sup>12+</sup>
 
 addRect(rect: common2D.Rect, pathDirection?: PathDirection): void
 
@@ -606,7 +604,7 @@ const rect: common2D.Rect = {left:100, top:100, right:500, bottom:500};
 path.addRect(rect, drawing.PathDirection.CLOCKWISE);
 ```
 
-### addRoundRect<sup>12+</sup>
+## addRoundRect<sup>12+</sup>
 
 addRoundRect(roundRect: RoundRect, pathDirection?: PathDirection): void
 
@@ -640,7 +638,7 @@ let roundRect = new drawing.RoundRect(rect, 50, 50);
 path.addRoundRect(roundRect, drawing.PathDirection.CLOCKWISE);
 ```
 
-### addPath<sup>12+</sup>
+## addPath<sup>12+</sup>
 
 addPath(path: Path, matrix?: Matrix | null): void
 
@@ -652,7 +650,7 @@ addPath(path: Path, matrix?: Matrix | null): void
 
 | 参数名         | 类型                                       | 必填   | 说明                  |
 | ----------- | ---------------------------------------- | ---- | ------------------- |
-| path        | [Path](#path) | 是    | 表示源路径对象。      |
+| path        | [Path](arkts-apis-graphics-drawing-Path.md) | 是    | 表示源路径对象。      |
 | matrix   | [Matrix](arkts-apis-graphics-drawing-Matrix.md)\|null  | 否   | 表示矩阵对象，默认为单位矩阵。 |
 
 **错误码：**
@@ -677,7 +675,7 @@ let dstPath = new drawing.Path();
 dstPath.addPath(path, matrix);
 ```
 
-### transform<sup>12+</sup>
+## transform<sup>12+</sup>
 
 transform(matrix: Matrix): void
 
@@ -713,7 +711,7 @@ path.addRoundRect(roundRect, drawing.PathDirection.CLOCKWISE);
 path.transform(matrix);
 ```
 
-### contains<sup>12+</sup>
+## contains<sup>12+</sup>
 
 contains(x: number, y: number): boolean
 
@@ -754,7 +752,7 @@ console.info("test contains: " + path.contains(0, 0));
 console.info("test contains: " + path.contains(60, 60));
 ```
 
-### setLastPoint<sup>20+</sup>
+## setLastPoint<sup>20+</sup>
 
 setLastPoint(x: number, y: number): void
 
@@ -785,7 +783,7 @@ path.setLastPoint(50, 50);
 console.info('isEmpty:', isEmpty);
 ```
 
-### setFillType<sup>12+</sup>
+## setFillType<sup>12+</sup>
 
 setFillType(pathFillType: PathFillType): void
 
@@ -816,7 +814,7 @@ const path = new drawing.Path();
 path.setFillType(drawing.PathFillType.WINDING);
 ```
 
-### getFillType<sup>20+</sup>
+## getFillType<sup>20+</sup>
 
 getFillType(): PathFillType
 
@@ -840,7 +838,7 @@ let type = path.getFillType();
 console.info("type :" + type);
 ```
 
-### getBounds<sup>12+</sup>
+## getBounds<sup>12+</sup>
 
 getBounds(): common2D.Rect
 
@@ -869,7 +867,7 @@ console.info("test rect.right: " + rect.right);
 console.info("test rect.bottom: " + rect.bottom);
 ```
 
-### addPolygon<sup>12+</sup>
+## addPolygon<sup>12+</sup>
 
 addPolygon(points: Array\<common2D.Point>, close: boolean): void
 
@@ -910,7 +908,7 @@ const path = new drawing.Path();
 path.addPolygon(pointsArray, false);
 ```
 
-### offset<sup>12+</sup>
+## offset<sup>12+</sup>
 
 offset(dx: number, dy: number): Path
 
@@ -929,7 +927,7 @@ offset(dx: number, dy: number): Path
 
 | 类型   | 说明                |
 | ------ | ------------------ |
-| [Path](#path) | 返回当前路径偏移(dx,dy)后生成的新路径对象。 |
+| [Path](arkts-apis-graphics-drawing-Path.md) | 返回当前路径偏移(dx,dy)后生成的新路径对象。 |
 
 **错误码：**
 
@@ -950,7 +948,7 @@ path.lineTo(300, 300);
 const dst = path.offset(200, 200);
 ```
 
-### op<sup>12+</sup>
+## op<sup>12+</sup>
 
 op(path: Path, pathOp: PathOp): boolean
 
@@ -962,7 +960,7 @@ op(path: Path, pathOp: PathOp): boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| path    | [Path](#path) | 是   | 路径对象，用于与当前路径合并。 |
+| path    | [Path](arkts-apis-graphics-drawing-Path.md) | 是   | 路径对象，用于与当前路径合并。 |
 | pathOp  | [PathOp](arkts-apis-graphics-drawing-e.md#pathop12)   | 是    | 路径操作类型枚举。    |
 
 **返回值：**
@@ -990,7 +988,7 @@ path.addCircle(100, 200, 100, drawing.PathDirection.CLOCKWISE);
 console.info("get pathOp: ", path2.op(path, drawing.PathOp.DIFFERENCE));
 ```
 
-### close
+## close
 
 close(): void
 
@@ -1009,7 +1007,7 @@ path.cubicTo(10, 10, 10, 10, 15, 15);
 path.close();
 ```
 
-### reset
+## reset
 
 reset(): void
 
@@ -1028,7 +1026,7 @@ path.cubicTo(10, 10, 10, 10, 15, 15);
 path.reset();
 ```
 
-### rewind<sup>20+</sup>
+## rewind<sup>20+</sup>
 
 rewind(): void
 
@@ -1048,7 +1046,7 @@ let empty = path.isEmpty();
 console.info('empty : ', empty);
 ```
 
-### isEmpty<sup>20+</sup>
+## isEmpty<sup>20+</sup>
 
 isEmpty(): boolean
 
@@ -1073,7 +1071,7 @@ let isEmpty = path.isEmpty();
 console.info('isEmpty:', isEmpty);
 ```
 
-### isRect<sup>20+</sup>
+## isRect<sup>20+</sup>
 
 isRect(rect: common2D.Rect | null): boolean
 
@@ -1111,7 +1109,7 @@ isRect = path.isRect(rect);
 console.info('isRect: ', isRect);
 ```
 
-### getLength<sup>12+</sup>
+## getLength<sup>12+</sup>
 
 getLength(forceClosed: boolean): number
 
@@ -1142,7 +1140,7 @@ let len = path.getLength(false);
 console.info("path length = " + len);
 ```
 
-### getPositionAndTangent<sup>12+</sup>
+## getPositionAndTangent<sup>12+</sup>
 
 getPositionAndTangent(forceClosed: boolean, distance: number, position: common2D.Point, tangent: common2D.Point): boolean
 
@@ -1192,7 +1190,7 @@ if (path.getPositionAndTangent(false, 0.1, position, tangent)) {
 }
 ```
 
-### getSegment<sup>18+</sup>
+## getSegment<sup>18+</sup>
 
 getSegment(forceClosed: boolean, start: number, stop: number, startWithMoveTo: boolean, dst: Path): boolean
 
@@ -1208,7 +1206,7 @@ getSegment(forceClosed: boolean, start: number, stop: number, startWithMoveTo: b
 | start | number | 是   | 表示与路径起始点的距离，距离路径起始点start距离的位置即为截取路径片段的起始点，小于0时会被视作0，大于等于stop时会截取失败。该参数为浮点数。               |
 | stop | number | 是   | 表示与路径起始点的距离，距离路径起始点stop距离的位置即为截取路径片段的终点，小于等于start时会截取失败，大于路径长度时会被视作路径长度。该参数为浮点数。                  |
 | startWithMoveTo | boolean | 是   | 表示是否在目标路径执行[moveTo](#moveto)移动到截取路径片段的起始点位置。true表示执行，false表示不执行。                |
-| dst | [Path](#path) | 是   | 目标路径，截取成功时会将得到的路径片段追加到目标路径上，截取失败时不做改变。               |
+| dst | [Path](arkts-apis-graphics-drawing-Path.md) | 是   | 目标路径，截取成功时会将得到的路径片段追加到目标路径上，截取失败时不做改变。               |
 
 **返回值：**
 
@@ -1229,7 +1227,7 @@ let dstPath: drawing.Path = new drawing.Path();
 console.info("getSegment-----result:  "+ path.getSegment(true, 10.0, 20.0, true, dstPath));
 ```
 
-### isClosed<sup>12+</sup>
+## isClosed<sup>12+</sup>
 
 isClosed(): boolean
 
@@ -1258,7 +1256,7 @@ if (path.isClosed()) {
 }
 ```
 
-### getMatrix<sup>12+</sup>
+## getMatrix<sup>12+</sup>
 
 getMatrix(forceClosed: boolean, distance: number, matrix: Matrix, flags: PathMeasureMatrixFlags): boolean
 
@@ -1303,7 +1301,7 @@ if(path.getMatrix(false, 10, matrix, drawing.PathMeasureMatrixFlags.GET_TANGENT_
 }
 ```
 
-### buildFromSvgString<sup>12+</sup>
+## buildFromSvgString<sup>12+</sup>
 
 buildFromSvgString(str: string): boolean
 
@@ -1345,7 +1343,7 @@ if(path.buildFromSvgString(svgStr)) {
 }
 ```
 
-### getPathIterator<sup>18+</sup>
+## getPathIterator<sup>18+</sup>
 
 getPathIterator(): PathIterator
 
@@ -1368,7 +1366,7 @@ let path: drawing.Path = new drawing.Path();
 let iter = path.getPathIterator();
 ```
 
-### approximate<sup>20+</sup>
+## approximate<sup>20+</sup>
 
 approximate(acceptableError: number): Array\<number>
 
@@ -1416,7 +1414,7 @@ for (let i = 0; i < points.length; i += 3) {
 }
 ```
 
-### interpolate<sup>20+</sup>
+## interpolate<sup>20+</sup>
 
 interpolate(other: Path, weight: number, interpolatedPath: Path): boolean
 
@@ -1428,9 +1426,9 @@ interpolate(other: Path, weight: number, interpolatedPath: Path): boolean
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| other | [Path](#path) | 是 | 表示另一条路径对象。 |
+| other | [Path](arkts-apis-graphics-drawing-Path.md) | 是 | 表示另一条路径对象。 |
 | weight | number | 是 | 表示插值权重，必须在[0.0, 1.0]范围内。该参数为浮点数。 |
-| interpolatedPath | [Path](#path) | 是 | 表示用于存储插值结果的目标路径对象。 |
+| interpolatedPath | [Path](arkts-apis-graphics-drawing-Path.md) | 是 | 表示用于存储插值结果的目标路径对象。 |
 
 **返回值：**
 
@@ -1466,7 +1464,7 @@ if (path.interpolate(other, 0.0, interpolatedPath)) {
 }
 ```
 
-### isInterpolate<sup>20+</sup>
+## isInterpolate<sup>20+</sup>
 
 isInterpolate(other: Path): boolean
 
@@ -1478,7 +1476,7 @@ isInterpolate(other: Path): boolean
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| other | [Path](#path) | 是 | 表示另一条路径对象。 |
+| other | [Path](arkts-apis-graphics-drawing-Path.md) | 是 | 表示另一条路径对象。 |
 
 **返回值：**
 

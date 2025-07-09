@@ -88,7 +88,7 @@
 
 2. Q：`OH_JSVM_CreateFunction`等函数调用失败，返回值为`JSVM_PENDING_EXCEPTION`
 
-   A：`JSVM_PENDING_EXCEPTION`表明当前虚拟机环境中存在未处理的异常，可能是由于本次调用产生的`JS`异常，也可能是之前调用产生的未被清理的异常。可以通过在函数调用前插入`OH_JSVM_GetAndClearLastException`排查之前是否有未清除的异常。如果为之前的未清理异常，检查是否有JSVM接口调用未处理异常返回值；如未本次产生的异常，需清理异常，避免影响后续的函数调用。获取并清理异常的函数为`OH_JSVM_GetAndClearLastException`
+   A：`JSVM_PENDING_EXCEPTION`表明当前虚拟机环境中存在未处理的异常，可能是由于本次调用产生的`JS`异常，也可能是之前调用产生的未被清理的异常。可以通过在函数调用前插入`OH_JSVM_GetAndClearLastException`排查之前是否有未清除的异常。如果为之前的未清理异常，检查是否有JSVM接口调用未处理异常返回值；如果为本次产生的异常，需清理异常，避免影响后续的函数调用。获取并清理异常的函数为`OH_JSVM_GetAndClearLastException`
 
 3. Q：JS执行时无法找到 `OH_JSVM_DefineClass` 定义的类
 

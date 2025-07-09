@@ -4,7 +4,7 @@
 
 ## 卡片数据交互
 
-ArkTS卡片框架提供卡片提供方（例如：应用）和卡片的数据交互能力。其中卡片通过[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)传递数据给卡片提供方，卡片提供方可以通过[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderupdateform)接口传递数据给卡片。卡片提供方将数据提供给卡片后，可以用于卡片页面刷新等。
+ArkTS卡片框架提供卡片提供方（例如：应用）和卡片的数据交互能力。其中卡片通过[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction-1)传递数据给卡片提供方，卡片提供方可以通过[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderupdateform)接口传递数据给卡片。卡片提供方将数据提供给卡片后，可以用于卡片页面刷新等。
 
 由于卡片提供方和卡片为相互独立的进程，两者间的数据共享只能通过[LocalStorageProp](../ui/state-management/arkts-localstorage.md#localstorageprop)传递，不能使用getContext方法。因此卡片提供方推送数据后，卡片UI需要通过LocalStorageProp接收数据，且接收数据时，卡片数据会被转换成string类型。
 

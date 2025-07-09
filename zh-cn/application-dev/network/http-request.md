@@ -53,7 +53,6 @@
 
     调用createHttp()方法，创建HttpRequest对象。
 
-    <!--code_no_check-->
     ```ts
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // 每一个httpRequest对应一个HTTP请求任务，不可复用。

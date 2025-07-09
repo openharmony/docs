@@ -7,7 +7,7 @@ SQLite是一款轻量级、嵌入式、无服务器的关系型数据库管理�
 ## 环境要求
 
 - 开发者在使用本工具前需开启开发者模式，且需要获取HDC工具，执行HDC shell。
-- 正常连接设备。
+- 连接设备。当前版本不支持在非root权限的设备上使用此调试工具，仅支持在[模拟器](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-run-emulator)中调用。具备root权限的命令提示符为#，非root权限的命令提示符为$。
 
 ## 操作准备
 

@@ -456,6 +456,7 @@ let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.remove("sparrow"); // 删除数据
+console.info("result = " + result); // result = 356
 ```
 
 

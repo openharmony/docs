@@ -2,7 +2,13 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本Interface首批接口从API version 9开始支持。
+
+窗口管理器。管理各个基本窗口单元，即[Window](arkts-apis-window-Window.md)实例。
+
+下列API示例中都需在[onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)函数中使用WindowStage的实例调用对应方法。
 
 ## 导入模块
 
@@ -10,13 +16,7 @@
 import { window } from '@kit.ArkUI';
 ```
 
-## WindowStage<sup>9+</sup>
-
-窗口管理器。管理各个基本窗口单元，即[Window](arkts-apis-window-Window.md)实例。
-
-下列API示例中都需在[onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)函数中使用WindowStage的实例调用对应方法。
-
-### getMainWindow<sup>9+</sup>
+## getMainWindow<sup>9+</sup>
 
 getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 
@@ -69,7 +69,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### getMainWindow<sup>9+</sup>
+## getMainWindow<sup>9+</sup>
 
 getMainWindow(): Promise&lt;Window&gt;
 
@@ -120,7 +120,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### getMainWindowSync<sup>9+</sup>
+## getMainWindowSync<sup>9+</sup>
 
 getMainWindowSync(): Window
 
@@ -167,7 +167,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### createSubWindow<sup>9+</sup>
+## createSubWindow<sup>9+</sup>
 
 createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 
@@ -231,7 +231,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### createSubWindow<sup>9+</sup>
+## createSubWindow<sup>9+</sup>
 
 createSubWindow(name: string): Promise&lt;Window&gt;
 
@@ -292,7 +292,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### createSubWindowWithOptions<sup>11+</sup>
+## createSubWindowWithOptions<sup>11+</sup>
 
 createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
 
@@ -360,7 +360,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### getSubWindow<sup>9+</sup>
+## getSubWindow<sup>9+</sup>
 
 getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 
@@ -412,7 +412,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### getSubWindow<sup>9+</sup>
+## getSubWindow<sup>9+</sup>
 
 getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 
@@ -462,7 +462,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### loadContent<sup>9+</sup>
+## loadContent<sup>9+</sup>
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
@@ -522,7 +522,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### loadContent<sup>9+</sup>
+## loadContent<sup>9+</sup>
 
 loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
@@ -586,7 +586,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### loadContent<sup>9+</sup>
+## loadContent<sup>9+</sup>
 
 loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -642,7 +642,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### loadContentByName<sup>11+</sup>
+## loadContentByName<sup>11+</sup>
 
 loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
@@ -726,7 +726,7 @@ export struct Index {
 }
 ```
 
-### loadContentByName<sup>11+</sup>
+## loadContentByName<sup>11+</sup>
 
 loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -805,7 +805,7 @@ export struct Index {
 }
 ```
 
-### loadContentByName<sup>11+</sup>
+## loadContentByName<sup>11+</sup>
 
 loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 
@@ -886,7 +886,7 @@ export struct Index {
 }
 ```
 
-### on('windowStageEvent')<sup>9+</sup>
+## on('windowStageEvent')<sup>9+</sup>
 
 on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void
 
@@ -938,7 +938,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### off('windowStageEvent')<sup>9+</sup>
+## off('windowStageEvent')<sup>9+</sup>
 
 off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&gt;): void
 
@@ -997,7 +997,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### on('windowStageLifecycleEvent')<sup>20+</sup>
+## on('windowStageLifecycleEvent')<sup>20+</sup>
 
 on(eventType: 'windowStageLifecycleEvent', callback: Callback&lt;WindowStageLifecycleEventType&gt;): void
 
@@ -1057,7 +1057,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### off('windowStageLifecycleEvent')<sup>20+</sup>
+## off('windowStageLifecycleEvent')<sup>20+</sup>
 
 off(eventType: 'windowStageLifecycleEvent', callback?: Callback&lt;WindowStageLifecycleEventType&gt;): void
 
@@ -1113,7 +1113,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### on('windowStageClose')<sup>14+</sup>
+## on('windowStageClose')<sup>14+</sup>
 
 on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
 
@@ -1174,7 +1174,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### off('windowStageClose')<sup>14+</sup>
+## off('windowStageClose')<sup>14+</sup>
 
 off(eventType: 'windowStageClose', callback?: Callback&lt;void&gt;): void
 
@@ -1232,7 +1232,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setDefaultDensityEnabled<sup>12+</sup>
+## setDefaultDensityEnabled<sup>12+</sup>
 
 setDefaultDensityEnabled(enabled: boolean): void
 
@@ -1295,7 +1295,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setCustomDensity<sup>15+</sup>
+## setCustomDensity<sup>15+</sup>
 
 setCustomDensity(density: number): void
 
@@ -1344,7 +1344,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setWindowModal<sup>14+</sup>
+## setWindowModal<sup>14+</sup>
 
 setWindowModal(isModal: boolean): Promise&lt;void&gt;
 
@@ -1410,7 +1410,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### removeStartingWindow<sup>14+</sup>
+## removeStartingWindow<sup>14+</sup>
 
 removeStartingWindow(): Promise&lt;void&gt;
 
@@ -1465,7 +1465,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setWindowRectAutoSave<sup>14+</sup>
+## setWindowRectAutoSave<sup>14+</sup>
 
 setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 
@@ -1539,7 +1539,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowRectAutoSave<sup>17+</sup>
+## setWindowRectAutoSave<sup>17+</sup>
 
 setWindowRectAutoSave(enabled: boolean, isSaveBySpecifiedFlag: boolean): Promise&lt;void&gt;
 
@@ -1614,7 +1614,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### isWindowRectAutoSave<sup>14+</sup>
+## isWindowRectAutoSave<sup>14+</sup>
 
 isWindowRectAutoSave(): Promise&lt;boolean&gt;
 
@@ -1667,7 +1667,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setSupportedWindowModes<sup>15+</sup>
+## setSupportedWindowModes<sup>15+</sup>
 
 setSupportedWindowModes(supportedWindowModes: Array<bundleManager.SupportWindowMode>): Promise&lt;void&gt;
 
@@ -1733,7 +1733,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setSupportedWindowModes<sup>20+</sup>
+## setSupportedWindowModes<sup>20+</sup>
 
 setSupportedWindowModes(supportedWindowModes: Array<bundleManager.SupportWindowMode>, grayOutMaximizeButton: boolean): Promise&lt;void&gt;
 
