@@ -1959,4 +1959,4 @@ struct Index {
 }
 ```
 
-![enableProvideConsumeCrossing](figures/builderNode_consume.png)
+![enableProvideConsumeCrossing](figures/BuilderNode_Consume.gif)
