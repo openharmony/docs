@@ -186,7 +186,7 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 | 参数名         | 类型     | 必填 | 说明        |
 | -------------- | ------  | ---- | ----------- |
 | formId         | string  | 是   | 卡片标识。     |
-| isReleaseCache | boolean | 是   | 是否释放缓存。 |
+| isReleaseCache | boolean | 是   | 表示是否释放缓存。<br>true: 表示释放缓存。<br>false: 表示不释放缓存。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当释放指定的卡片成功，error为undefined；否则为错误对象。 |
 
 **错误码：**
@@ -237,7 +237,7 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 | 参数名         | 类型     | 必填 | 说明        |
 | -------------- | ------  | ---- | ----------- |
 | formId         | string  | 是   | 卡片标识。     |
-| isReleaseCache | boolean | 否   | 是否释放缓存，默认为false。  |
+| isReleaseCache | boolean | 否   | 表示是否释放缓存，默认为false。<br>true: 表示释放缓存。<br>false: 表示不释放缓存。  |
 
 **返回值：**
 
@@ -1661,7 +1661,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | 是   | 卡片标识列表。 |
-| isVisible | boolean | 是   | 是否可见。 |
+| isVisible | boolean | 是   | 表示卡片是否可见。<br>true: 表示卡片可见。<br>false: 表示卡片不可见。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当通知卡片是否可见成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -1711,7 +1711,7 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | 是   | 卡片标识列表。 |
-| isVisible | boolean | 是   | 是否可见。 |
+| isVisible | boolean | 是   | 表示卡片是否可见。<br>true: 表示卡片可见。<br>false: 表示卡片不可见。 |
 
 **返回值：**
 
@@ -1766,7 +1766,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | 是   | 卡片标识列表。 |
-| isEnableUpdate | boolean | 是   | 是否使能更新。 |
+| isEnableUpdate | boolean | 是   | 表示卡片是否使能更新状态。<br>true: 表示卡片使能更新状态。false: 表示卡片没有使能更新状态。|
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当通知卡片是否启用更新状态成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -1816,7 +1816,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | 是   | 卡片标识列表。 |
-| isEnableUpdate | boolean | 是   | 是否使能更新。 |
+| isEnableUpdate | boolean | 是   | 表示卡片是否使能更新状态。<br>true: 表示卡片使能更新状态。<br>false: 表示卡片没有使能更新状态。 |
 
 **返回值：**
 
@@ -1977,7 +1977,7 @@ notifyFormsPrivacyProtected(formIds: Array\<string>, isProtected: boolean, callb
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formIds | Array\<string\> | 是   | 需要修改隐私保护的卡片标识列表。 |
-| isProtected | boolean | 是   | 是否进行隐私保护。 |
+| isProtected | boolean | 是   | 表示卡片是否进行隐私保护状态。<br>true: 表示卡片要进行隐私保护状态。<br>false: 表示卡片不需要进行隐私保护状态。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当指定卡片设置隐私保护属性成功，error为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -2026,7 +2026,7 @@ notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Pro
 | 参数名      | 类型            | 必填 | 说明                             |
 | ----------- | --------------- | ---- | -------------------------------- |
 | formIds     | Array\<string\> | 是   | 需要修改隐私保护的卡片标识列表。 |
-| isProtected | boolean         | 是   | 是否进行隐私保护。               |
+| isProtected | boolean         | 是   | 表示卡片是否进行隐私保护状态。<br>true: 表示卡片要进行隐私保护状态。<br>false: 表示卡片不需要进行隐私保护状态。 |
 
 **返回值：**
 
