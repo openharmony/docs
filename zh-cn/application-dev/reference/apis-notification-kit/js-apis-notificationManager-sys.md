@@ -4794,7 +4794,7 @@ notificationManager.isDistributedEnabledBySlot(slot, deviceType).then((data: boo
 
 setSilentReminderEnabled(bundle: BundleOption, enabled: boolean): Promise\<void\>
 
-设置静默提醒的开关状态，使用Promise进行异步回调。
+设置静默提醒的开关状态。使用Promise进行异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4850,7 +4850,7 @@ notificationManager.setSilentReminderEnabled(bundle, true).then(() => {
 
 isSilentReminderEnabled(bundle: BundleOption): Promise\<SwitchState\>
 
-查询静默提醒的开关状态，使用Promise进行异步回调。
+查询静默提醒的开关状态。使用Promise进行异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
