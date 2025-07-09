@@ -81,19 +81,20 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```
 
 #### 样例JS
-
+```cpp
 const char *srcCallNative = R"JS( 
    function Fruit(name) {
        this.name = name;
    }
    newInstance(Fruit, "apple");
 )JS";
-
+```
 #### 执行结果
 
 在LOG中输出下面的结果：
+```cpp
 NewInstance:{"name":"apple"}
-
+```
 ### OH_JSVM_GetNewTarget
 
 用于获取函数的元属性new.target值。在JavaScript中，new.target是一个特殊的元属性，用于检测函数或构造函数是否是通过 'new' 运算符被调用的。
@@ -180,15 +181,15 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```
 
 #### 样例JS
-
+```cpp
 const char *srcCallNative = R"JS( 
     defineClass();
 )JS";
-
+```
 #### 执行结果
 
 在LOG中输出下面的结果：
-
+```cpp
 Create Instance
 
 NAPI MyObject::New newTarget != nullptr
@@ -200,7 +201,7 @@ Create Instance
 NAPI MyObject::New newTarget == nullptr
 
 NewInstance:{"name":"lilei"}
-
+```
 ### OH_JSVM_Wrap
 
 在JavaScript对象中封装原生实例。稍后可以使用OH_JSVM_Unwrap()解包原生实例
@@ -292,17 +293,17 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```
 
 #### 样例JS
-
+```cpp
 const char *srcCallNative = R"JS( 
     class Obj {};
     wrapObject(new Obj());
     removeWrap(new Obj());
 )JS";
-
+```
 #### 执行结果
 
 在LOG中输出下面的结果：
-
+```cpp
 JSVM wrap
 
 JSVM name: lilei
@@ -314,7 +315,7 @@ JSVM removeWrap
 JSVM OH_JSVM_RemoveWrap success
 
 JSVM deref_item
-
+```
 ### OH_JSVM_DefineClassWithOptions
 **Note:** 传入的父类class必须是通过OH_JSVM_DefineClass系列接口创建出来的，不然会被视为无效参数，返回JSVM_INVALID_ARG错误码。
 目前支持以下的DefineClassOptions:
@@ -491,9 +492,12 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 ```
 #### 样例JS
-
+```cpp
 const char *srcCallNative = R"JS(testDefineClassWithOptions();)JS";
+```
 #### 执行结果
 
 在LOG中输出下面的结果：
+```cpp
 Run OH_JSVM_DefineClassWithOptions: Success
+```

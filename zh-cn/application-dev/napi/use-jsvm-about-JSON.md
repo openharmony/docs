@@ -87,8 +87,8 @@ JSVM_PropertyDescriptor descriptor[] = {
 ```
 
 ## 预期结果
-
+```ts
 Test JSVM jsonParseNumber: 10.555000
 
 Test JSVM jsonParseNumber: {"first":"one","second":"two","third":"three"}
-
+```

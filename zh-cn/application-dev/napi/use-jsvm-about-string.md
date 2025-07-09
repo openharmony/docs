@@ -80,9 +80,9 @@ const char *srcCallNative = R"JS(
 ```
 
 预期输出结果
-
+```ts
 ![GetValueStringUtf8](figures/jsvm_about_string_GetValueStringUtf8.png)
-
+```
 **注意事项**：`getValueStringUtf8(arg)`入参`arg`非字符串型数据时接口会调用失败。
 
 ### OH_JSVM_CreateStringUtf8
@@ -129,9 +129,9 @@ const char *srcCallNative = R"JS(
 ```
 
 预期输出结果
-
+```ts
 ![CreateStringUtf8](figures/jsvm_about_string_CreateStringUtf8.png)
-
+```
 ### OH_JSVM_GetValueStringUtf16
 
 OH_JSVM_GetValueStringUtf16，将JavaScript的字符类型的数据转换为utf16编码的字符。
@@ -192,9 +192,9 @@ const char *srcCallNative = R"JS(
 ```
 
 预期输出结果
-
+```ts
 ![GetValueStringUtf16](figures/jsvm_about_string_GetValueStringUtf16.png)
-
+```
 **注意事项**：`getValueStringUtf16(arg)`入参`arg`非字符串型数据时接口会调用失败。
 
 ### OH_JSVM_CreateStringUtf16
@@ -248,9 +248,9 @@ const char *srcCallNative = R"JS(
 ```
 
 预期输出结果
-
+```ts
 ![CreateStringUtf16](figures/jsvm_about_string_CreateStringUtf16.png)
-
+```
 ### OH_JSVM_GetValueStringLatin1
 
 OH_JSVM_GetValueStringLatin1接口可以将JavaScript的字符类型的数据转换为ISO-8859-1编码的字符。
@@ -301,10 +301,10 @@ const char *srcCallNative = R"JS(
 ```
 
 预期输出结果
-
+```ts
 *ISO-8859-1编码不支持中文，传入中文字符会乱码*
 ![GetValueStringLatin1](figures/jsvm_about_string_GetValueStringLatin1.png)
-
+```
 **注意事项**：`getValueStringLatin1(arg)`入参`arg`非字符串型数据时接口会调用失败。
 
 ### OH_JSVM_CreateStringLatin1
@@ -355,5 +355,6 @@ const char *srcCallNative = R"JS(
 ```
 
 预期输出结果
-
+```ts
 ![CreateStringLatin1](figures/jsvm_about_string_CreateStringLatin1.png)
+```

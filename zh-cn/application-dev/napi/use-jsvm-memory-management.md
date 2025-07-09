@@ -67,7 +67,7 @@ const char *srcCallNative = R"JS(adjustExternalMemory())JS";
 在LOG中输出下面的信息：
 JSVM OH_JSVM_AdjustExternalMemory: success
 JSVM Allocate memory size: 1048576
-
+```
 ### OH_JSVM_MemoryPressureNotification
 
 通知虚拟机系统内存不足并有选择地触发垃圾回收
@@ -110,5 +110,7 @@ const char *srcCallNative = R"JS(memoryPressureNotification())JS";
 ```
 输出结果
 在LOG中输出下面的信息：
+```ts
 JSVM OH_JSVM_MemoryPressureNotification: success
 JSVM Current JSVM memory pressure level: 2
+```
