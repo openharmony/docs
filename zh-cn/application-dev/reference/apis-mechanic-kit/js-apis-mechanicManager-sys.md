@@ -615,9 +615,9 @@ console.info(`'Query the rotation axis status successfully, axis state:' ${axisS
 
 | 名称   | 类型 | 只读 | 可选 | 说明|
 | ----- | ---- | ---- | --- | --- |
-| yawEnabled | boolean | 否 | 否 | 是否启用了偏航轴，true表示偏航轴已启用，false表示偏航轴已禁用。 |
-| rollEnabled | boolean | 否 | 否 | 是否启用了横滚轴，true表示横滚轴已启用，false表示横滚轴已禁用。 |
-| pitchEnabled | boolean | 否 | 否 | 是否启用了俯仰轴，true表示俯仰轴已启用，false表示俯仰轴已禁用。 |
+| yawEnabled | boolean | 否 | 否 | 是否启用了偏航轴，true表示已启用，false表示已禁用。 |
+| rollEnabled | boolean | 否 | 否 | 是否启用了横滚轴，true表示已启用，false表示已禁用。 |
+| pitchEnabled | boolean | 否 | 否 | 是否启用了俯仰轴，true表示已启用，false表示已禁用。 |
 | yawLimited | [RotationAxisLimited](#rotationaxislimited) | 否 | 是 | 偏航轴限位状态。 |
 | rollLimited | [RotationAxisLimited](#rotationaxislimited) | 否 | 是 | 横滚轴限位状态。 |
 | pitchLimited | [RotationAxisLimited](#rotationaxislimited) | 否 | 是 | 俯仰轴限位状态。 |
