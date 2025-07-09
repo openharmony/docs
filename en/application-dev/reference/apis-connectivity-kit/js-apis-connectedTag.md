@@ -12,7 +12,7 @@ The **connectedTag** module provides APIs for using active tags. You can use the
 import { connectedTag } from '@kit.ConnectivityKit';
 ```
 
-## connectedTag.init
+## connectedTag.init<sup>(deprecated)</sup>
 
 init(): boolean
 
@@ -52,11 +52,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |801 | Capability not supported.          |
 |3200101 | Connected NFC tag running state is abnormal in service. |
 
-## connectedTag.uninit
+## connectedTag.uninit<sup>(deprecated)</sup>
 
 uninit(): boolean
 
 Uninitializes the active tag resources.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. Use [uninitialize](#connectedtaguninitialize9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -88,11 +92,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |801 | Capability not supported.          |
 |3200101 | Connected NFC tag running state is abnormal in service. |
 
-## connectedTag.readNdefTag
+## connectedTag.readNdefTag<sup>(deprecated)</sup>
 
 readNdefTag(): Promise&lt;string&gt;
 
 Reads the content of this active tag. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. Use [uninitialize](#connectedtaguninitialize9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -113,7 +121,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connectedTag.readNdefTag().then((data) => {
     console.log("connectedTag readNdefTag Promise data = " + data);
 }).catch((err: BusinessError)=> {
-    console.log("connectedTag readNdefTag Promise err: " + err);
+    console.error("connectedTag readNdefTag Promise err: " + err);
 });
 ```
 
@@ -152,15 +160,19 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connectedTag.read().then((data) => {
     console.log("connectedTag read Promise data = " + data);
 }).catch((err: BusinessError)=> {
-    console.log("connectedTag read Promise err: " + err);
+    console.error("connectedTag read Promise err: " + err);
 });
 ```
 
-## connectedTag.readNdefTag
+## connectedTag.readNdefTag<sup>(deprecated)</sup>
 
 readNdefTag(callback: AsyncCallback&lt;string&gt;): void
 
 Reads the content of this active tag. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. Use [uninitialize](#connectedtaguninitialize9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -179,7 +191,7 @@ import { connectedTag } from '@kit.ConnectivityKit';
 
 connectedTag.readNdefTag((err, data)=> {
     if (err) {
-        console.log("connectedTag readNdefTag AsyncCallback err: " + err);
+        console.error("connectedTag readNdefTag AsyncCallback err: " + err);
     } else {
         console.log("connectedTag readNdefTag AsyncCallback data: " + data);
     }
@@ -219,18 +231,22 @@ import { connectedTag } from '@kit.ConnectivityKit';
 
 connectedTag.read((err, data)=> {
     if (err) {
-        console.log("connectedTag read AsyncCallback err: " + err);
+        console.error("connectedTag read AsyncCallback err: " + err);
     } else {
         console.log("connectedTag read AsyncCallback data: " + data);
     }
 });
 ```
 
-## connectedTag.writeNdefTag
+## connectedTag.writeNdefTag<sup>(deprecated)</sup>
 
 writeNdefTag(data: string): Promise&lt;void&gt;
 
 Writes data to this active tag. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. Use [connectedTag.write](#connectedtagwrite9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -256,9 +272,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData).then(() => {
-    console.log("connectedTag writeNdefTag Promise success.");
+    console.log("connectedTag.writeNdefTag Promise success.");
 }).catch((err: BusinessError)=> {
-    console.log("connectedTag writeNdefTag Promise err: " + err);
+    console.error("connectedTag.writeNdefTag Promise err: " + err);
 });
 ```
 
@@ -303,17 +319,21 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData).then(() => {
-    console.log("connectedTag write NdefTag Promise success.");
+    console.log("connectedTag.writeNdefTag Promise success.");
 }).catch((err: BusinessError)=> {
-    console.log("connectedTag write NdefTag Promise err: " + err);
+    console.error("connectedTag.writeNdefTag Promise err: " + err);
 });
 ```
 
-## connectedTag.writeNdefTag
+## connectedTag.writeNdefTag<sup>(deprecated)</sup>
 
 writeNdefTag(data: string, callback: AsyncCallback&lt;void&gt;): void
 
 Writes data to this active tag. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. Use [connectedTag.write](#connectedtagwrite9) instead.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -323,7 +343,7 @@ Writes data to this active tag. This API uses an asynchronous callback to return
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| data | string | Yes| Content of the active tag. The maximum length is 1024 bytes.|
+| data | string | Yes| Data to be written to the active tag. The maximum length is 1024 bytes.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the active tag content obtained.|
 
 **Example**
@@ -334,9 +354,9 @@ import { connectedTag } from '@kit.ConnectivityKit';
 let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData, (err)=> {
     if (err) {
-        console.log("connectedTag writeNdefTag AsyncCallback err: " + err);
+        console.error("connectedTag.writeNdefTag AsyncCallback err: " + err);
     } else {
-        console.log("connectedTag writeNdefTag AsyncCallback success.");
+        console.log("connectedTag.writeNdefTag AsyncCallback success.");
     }
 });
 ```
@@ -377,9 +397,9 @@ import { connectedTag } from '@kit.ConnectivityKit';
 let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData, (err)=> {
     if (err) {
-        console.log("connectedTag write NdefTag AsyncCallback err: " + err);
+        console.error("connectedTag.writeNdefTag AsyncCallback err: " + err);
     } else {
-        console.log("connectedTag write NdefTag AsyncCallback success.");
+        console.log("connectedTag.writeNdefTag AsyncCallback success.");
     }
 });
 ```
@@ -427,16 +447,17 @@ import { connectedTag } from '@kit.ConnectivityKit';
 connectedTag.on("notify", (rfState : number)=> {
   console.log("connectedTag on Callback rfState: " + rfState);
 });
-
-let initStatus = connectedTag.init();
-console.log("connectedTag init status: " + initStatus);
-
-// Add nfc connected tag business operations here...
-// connectedTag.writeNdefTag(rawData)
-// connectedTag.readNdefTag()
-
-let uninitStatus = connectedTag.uninit();
-console.log("connectedTag uninit status: " + uninitStatus);
+try {
+    connectedTag.initialize();
+    let tag = [3, 1, 0];
+    console.log("connectedTag write: tag=" + tag);
+    await connectedTag.write(tag);
+    let data = await connectedTag.read();
+    console.log("connectedTag read: data=" + data);
+    connectedTag.uninitialize();
+} catch (error) {
+    console.error("connectedTag error: " + error);
+}
 
 // Unregister the event.
 connectedTag.off("notify", (rfState : number)=> {

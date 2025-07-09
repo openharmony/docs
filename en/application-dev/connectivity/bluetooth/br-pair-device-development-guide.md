@@ -1,17 +1,14 @@
 # Device Pairing
 
 ## Introduction
-
-This document describes how to develop the profile for proactive device pairing and connection.
+This document provides guidance on how to develop profile capabilities for actively pairing and connecting devices.
 
 ## How to Develop
 
 ### Applying for the Required Permission
-
 Apply for the **ohos.permission.ACCESS_BLUETOOTH** permission. For details about how to configure and apply for permissions, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md) and [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 ### Importing Required Modules
-
 Import the **connection**, **a2dp**, **hfp**, **hid**, **baseProfile**, **constant**, and error code modules.
 ```ts
 import { connection, a2dp, hfp, hid, baseProfile, constant } from '@kit.ConnectivityKit';
@@ -37,17 +34,14 @@ try {
 ```
 
 ### Initiating Pairing
-
 If the pairing status of the target device is [BOND_STATE_INVALID](../../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#bondstate), the current device can proactively pair with the target device.
-
-You can obtain the target device through the device discovery process. For details, see [Traditional Bluetooth Device Discovery](br-discovery-development-guide.md) or [Bluetooth Low Energy Device Discovery](ble-development-guide.md).
+- You can obtain the target device through the device discovery process. For details, see [Bluetooth Discovery](br-discovery-development-guide.md) or [BLE Device Discovery](ble-development-guide.md).
 
 During the pairing process, a dialog box is displayed. The dialog box style varies according to the pairing type. The following figure shows the **Confirm Passkey** dialog box. The pairing can proceed only when the user agrees to the authorization.
 
 ![pair request dialog](figures/pair-request-dialog.png)
 
 **Figure 1** Bluetooth pairing request dialog box
-
 ```ts
 // Obtain the device address through the device discovery process.
 let device = 'XX:XX:XX:XX:XX:XX';
@@ -65,7 +59,7 @@ try {
 ```
 
 ### Connecting to the Profile of a Paired Device
-After successful pairing, an application can call [connectAllowedProfiles](../../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectionconnectallowedprofiles16) to connect to the profile supported by the target device. The profile can only be A2DP, HFP, or HID. If you need to use the SPP connection, see [SPP-based Data Transmission Development](spp-development-guide.md).
+After successful pairing, an application can call [connectAllowedProfiles](../../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectionconnectallowedprofiles16) to connect to the profile supported by the target device. The profile can only be A2DP, HFP, or HID. If you need to use the SPP connection, see [SPP-based Connection and Data Transmission](spp-development-guide.md).
 
 - The Bluetooth subsystem queries and saves all profiles supported by the target device during pairing.
 - After the pairing is complete, the application can call [getRemoteProfileUuids](../../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectiongetremoteprofileuuids12) to query the profiles supported by the target device. If an applicable profile exists, the application can initiate a connection to the profile within 30 seconds after successful pairing.
@@ -78,7 +72,7 @@ let a2dpSrc = a2dp.createA2dpSrcProfile();
 let hfpAg = hfp.createHfpAgProfile();
 let hidHost = hid.createHidHostProfile();
 
-//Define the callback function for A2DP connection status changes.
+// Define the callback for A2DP connection status change events.
 function onA2dpConnectStateChange(data: baseProfile.StateChangeParam) {
   console.info(`A2DP State: ${JSON.stringify(data)}`);
 }
@@ -112,25 +106,24 @@ try {
 ```
 
 ## Sample Code
-
 ```ts
 import { connection, a2dp, hfp, hid, baseProfile, constant } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export class PairDeviceManager {
-  device: string | null = null;
+  device: string = '';
   pairState: connection.BondState = connection.BondState.BOND_STATE_INVALID;
   a2dpSrc = a2dp.createA2dpSrcProfile();
   hfpAg = hfp.createHfpAgProfile();
   hidHost = hid.createHidHostProfile();
 
   // Define the callback for pairing status change events.
-  onBondStateEvent(data: connection.BondStateParam) {
+  onBondStateEvent = (data: connection.BondStateParam) => {
     console.info('pair result: '+ JSON.stringify(data));
     if (data && data.deviceId == this.device) {
       this.pairState = data.state; // Save the pairing status of the target device.
     }
-  }
+  };
 
   // Initiate pairing. The device address can be obtained through the device discovery process.
   public startPair(device: string) {
@@ -155,19 +148,19 @@ export class PairDeviceManager {
   }
 
   // Define the callback for A2DP connection status change events.
-  onA2dpConnectStateChange(data: baseProfile.StateChangeParam) {
+  onA2dpConnectStateChange = (data: baseProfile.StateChangeParam) => {
     console.info(`A2DP State: ${JSON.stringify(data)}`);
-  }
+  };
 
   // Define the callback for HFP connection status change events.
-  onHfpConnectStateChange(data: baseProfile.StateChangeParam) {
+  onHfpConnectStateChange = (data: baseProfile.StateChangeParam) => {
     console.info(`HFP State: ${JSON.stringify(data)}`);
-  }
+  };
 
   // Define the callback for HID connection status change events.
-  onHidConnectStateChange(data: baseProfile.StateChangeParam) {
+  onHidConnectStateChange = (data: baseProfile.StateChangeParam) => {
     console.info(`HID State: ${JSON.stringify(data)}`);
-  }
+  };
 
   // Initiate a connection.
   public async connect(device: string) {
