@@ -215,7 +215,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
                 }
                 if (inFile_->eof()) {
                     inputDone = 1;
-                    break;
                 }
                 break;
             }
@@ -258,7 +257,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
                 }
                 if (info.flags & AVCODEC_BUFFER_FLAGS_EOS) {
                     outputDone = 1;
-                    break;
                 }
                 
                 // 解码输出数据处理。
@@ -315,7 +313,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         if (!inputDone) {
             result = DecoderInput(videoDec, timeoutUs);
         }
-        if (!outputDone ) {
+        if (!outputDone) {
             result = DecoderOutput(videoDec, timeoutUs);
         }
     }
@@ -531,7 +529,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
                 }
                 if (inFile_->eof()) {
                     inputDone = 1;
-                    break;
                 }
                 break;
             }
@@ -573,7 +570,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
                 }
                 if (info.flags & AVCODEC_BUFFER_FLAGS_EOS) {
                     outputDone = 1;
-                    break;
                 }
                 
                 // 释放已完成处理的信息，index为对应buffer队列的下标。
@@ -621,7 +617,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         if (!inputDone) {
             result = DecoderInput(videoDec, timeoutUs);
         }
-        if (!outputDone ) {
+        if (!outputDone) {
             result = DecoderOutput(videoDec, timeoutUs);
         }
     }
