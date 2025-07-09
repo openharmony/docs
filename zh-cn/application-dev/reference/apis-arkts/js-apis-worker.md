@@ -1633,6 +1633,8 @@ workerPort.onmessageerror = (err: MessageEvents) => {
 **示例：**
 
 ```ts
+import { worker, Event } from "@kit.ArkTS"
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 workerInstance.addEventListener("alert", (event: Event) => {
