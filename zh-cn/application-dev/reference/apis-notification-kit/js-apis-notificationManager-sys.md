@@ -4834,22 +4834,6 @@ setSilentReminderEnabled(bundle: BundleOption, enabled: boolean): Promise\<void\
 ```ts
 import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-冗余表达[2]
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。(4820)
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。(4875)
-混合规则[2]
-设置静默提醒的开关状态，使用Promise进行异步回调。 (4797)
-查询静默提醒的开关状态，使用Promise进行异步回调。 (4853)
-原文
-设置静默提醒的开关状态，使用Promise进行异步回调。
-违反规则
-混合规则
-违反原因
-违反以下规则：冗余表达,语句通顺,模糊词
-修复建议
-设置静默提醒开关状态，使用Promise处理异步回调。
-
-检查记录
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let bundle: notificationManager.BundleOption = {
