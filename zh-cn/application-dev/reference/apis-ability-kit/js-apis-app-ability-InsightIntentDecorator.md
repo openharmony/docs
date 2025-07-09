@@ -102,8 +102,7 @@ import { InsightIntentLink, LinkParamCategory } from '@kit.AbilityKit';
       },
       'result': {}
     }
-  },
-  example: '{songName: Song}'
+  }
 })
 export class ClassForLink {
   private _playback: string = 'intention_test';
@@ -140,7 +139,7 @@ export class ClassForLink {
 
 > **说明：**
 >
-> 如果根据schema与intentVersion字段，在标准意图列表存在匹配的标准意图，系统会将intentName、llmDescription、keywords、parameters、result、example字段均设置为标准意图的相应字段值。
+> 如果根据schema与intentVersion字段，在标准意图列表存在匹配的标准意图，系统会将intentName、llmDescription、keywords、parameters、result字段均设置为标准意图的相应字段值。
 
 | 名称               | 类型            | 只读         | 可选 | 说明                                                         |
 | ------------------ | ----------------| ---------- | ---- | ------------------------------------------------------------ |
@@ -155,7 +154,6 @@ export class ClassForLink {
 | keywords           | string[]     | 否          | 是   | 表示意图的搜索关键字。                                       |
 | parameters         | Record<string, Object>| 否 | 是   | 表示意图参数的数据格式声明，用于意图调用时定义入参的数据格式。取值参见[各垂域意图Schema](https://developer.huawei.com/consumer/cn/doc/service/intents-schema-0000001901962713) |
 | result           | Record<string, Object>     | 否          | 是   | 表示意图调用返回结果的数据格式声明，用于定义意图调用返回结果的数据格式。                                       |
-| example         | string | 否 | 是   | 表示意图调用的调用参数样例。             |
 
 ## LinkIntentDecoratorInfo
 
