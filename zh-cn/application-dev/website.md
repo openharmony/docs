@@ -1983,6 +1983,8 @@
               - [JSVM 通用调优实践](napi/jsvm-optimizations.md)
         - JSVM性能调试指导<!--jsvm-performance-->
             - [使用HiSmartPerf采集V8 trace](napi/use-jsvm-about-v8-trace.md)
+      - Longque-JS-API<!--longque-->
+        - [Longque-JS-API使用指导](napi/use-longque-js-api.md)
       - OpenMP支持<!--openmp-->
         - [OpenMP简介](napi/openmp-overview.md)
         - [OpenMP应用构建和运行指南](napi/openmp-guideline.md)
@@ -3427,6 +3429,8 @@
           - [ArkWeb_WebMessageAPI](reference/apis-arkweb/capi-web-arkweb-webmessageapi.md)
           - [ArkWeb_CookieManagerAPI](reference/apis-arkweb/capi-web-arkweb-cookiemanagerapi.md)
           - [ArkWeb_JavaScriptValueAPI](reference/apis-arkweb/capi-web-arkweb-javascriptvalueapi.md)
+      - Longque JS API<!--longque-js-api-->
+        - [Longque-JS-API](reference/apis-arkweb/arkts-apis-longque.md)
       - 错误码<!--arkweb-arkts-errcode-->
         - [Webview错误码](reference/apis-arkweb/errorcode-webview.md)
     - Background Tasks Kit（后台任务开发服务）<!--background-tasks-api-->
