@@ -91,7 +91,7 @@ onWindowReady(window: window.Window): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| window | [window.Window](arkts-apis-window-Window.md#window) | 是 | 当前窗口实例。 |
+| window | [window.Window](arkts-apis-window-Window.md) | 是 | 当前窗口实例。 |
 
 
 **示例：**

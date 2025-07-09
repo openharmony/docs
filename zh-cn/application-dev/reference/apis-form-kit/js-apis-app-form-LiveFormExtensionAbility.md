@@ -135,7 +135,7 @@ export default class LiveFormExtAbility extends LiveFormExtensionAbility {
 | NotificationKit | [@ohos.notification (Notification模块)](../apis-notification-kit/js-apis-notification.md)<br>[@ohos.notificationManager (NotificationManager模块)](../apis-notification-kit/js-apis-notificationManager.md)<!--Del--><br>[@ohos.notificationSubscribe (NotificationSubscribe模块)(系统接口)](../apis-notification-kit/js-apis-notificationSubscribe-sys.md)<!--DelEnd--> |
 | TelephonyKit | [@ohos.telephony.call (拨打电话)](../apis-telephony-kit/js-apis-call.md)<br>[@ohos.telephony.data (蜂窝数据)](../apis-telephony-kit/js-apis-telephony-data.md)<br>[@ohos.telephony.observer (observer)](../apis-telephony-kit/js-apis-observer.md)<br>[@ohos.telephony.radio (网络搜索)](../apis-telephony-kit/js-apis-radio.md)<br>[@ohos.telephony.sim (SIM卡管理)](../apis-telephony-kit/js-apis-sim.md)<br>[@ohos.telephony.sms (短信服务)](../apis-telephony-kit/js-apis-sms.md) |
 | UserAuthenticationKit | [@ohos.userIAM.userAuth (用户认证)](../apis-user-authentication-kit/js-apis-useriam-userauth.md)<!--Del--><br>[@ohos.userIAM.faceAuth (人脸认证)(系统接口)](../apis-user-authentication-kit/js-apis-useriam-faceauth-sys.md)<!--DelEnd--> |
-| ArkUI | [@ohos.window (窗口)](../apis-arkui/js-apis-window.md) |
+| ArkUI | [@ohos.window (窗口)](../apis-arkui/arkts-apis-window.md) |
 |<!--DelRow--> AccessibilityKit | [@ohos.accessibility.config (系统辅助功能配置)(系统接口)](../apis-accessibility-kit/js-apis-accessibility-config-sys.md) |
 |<!--DelRow--> FormKit | [@ohos.app.form.formHost (formHost)(系统接口)](../apis-form-kit/js-apis-app-form-formHost-sys.md)<br>[@ohos.application.formHost (formHost)(系统接口)](../apis-form-kit/js-apis-application-formHost-sys.md) |
 <!--RP1--><!--RP1End-->

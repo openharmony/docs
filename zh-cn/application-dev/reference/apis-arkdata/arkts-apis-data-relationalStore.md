@@ -12,10 +12,10 @@
 
 该模块提供以下关系型数据库相关的常用功能：
 
-- [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)：数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
-- [RdbStore](arkts-apis-data-relationalStore-RdbStore.md#rdbstore)：提供管理关系数据库（RDB）方法的接口。
-- [ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
-- [Transaction](arkts-apis-data-relationalStore-Transaction.md#transaction14)：提供管理事务对象的接口。
+- [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)：数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
+- [RdbStore](arkts-apis-data-relationalStore-RdbStore.md)：提供管理关系数据库（RDB）方法的接口。
+- [ResultSet](arkts-apis-data-relationalStore-ResultSet.md)：提供用户调用关系型数据库查询接口之后返回的结果集合。
+- [Transaction](arkts-apis-data-relationalStore-Transaction.md)：提供管理事务对象的接口。
 
 > **说明：**
 > 
