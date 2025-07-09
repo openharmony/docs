@@ -55,7 +55,7 @@ Stack(options?: StackOptions)
 
 alignContent(value: Alignment)
 
-设置子组件在容器内的对齐方式。该属性与[通用属性align](ts-universal-attributes-location.md#align)同时设置时，后设置的属性生效。
+设置子组件在容器内的对齐方式。该属性与[通用属性align](ts-universal-attributes-location.md#align)同时设置时，后设置的属性生效。该属性与接口的构造入参同时设置时，生效属性上的设置效果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
