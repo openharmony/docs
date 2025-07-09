@@ -8,5 +8,5 @@
 - [管理系统窗口（仅Stage模型支持）](system-window-stage.md)
 - [WindowExtensionAbility（仅对系统应用开放）](windowextensionability.md)
 <!--DelEnd-->
-- [使用NativeWindowEventFilter过滤多模输入事件（C/C++）](native-window-event-filter.md)
+- [使用NativeWindowEvent过滤和注入多模输入事件（C/C++）](native-window-event.md)
 - [使用OH_WindowManager_InjectTouchEvent将多模触摸事件注入给目标窗口（C/C++）](inject-touch-event.md)
