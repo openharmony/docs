@@ -107,7 +107,7 @@
     try {
       let remoteDeviceDriver: deviceManager.RemoteDeviceDriver = await deviceManager.bindDriverWithDeviceId(deviceId,
         (err: BusinessError, id: number) => {
-        hilog.info(0, 'testTag', `device[${id}] id disconnect, err: ${JSON.stringify(err)}}`);
+        hilog.info(0, 'testTag', `device[${id}] id disconnect, err: ${JSON.stringify(err)}`);
       });
       return remoteDeviceDriver.remote;
     } catch (error) {
@@ -143,7 +143,7 @@
         await this.remote.sendMessageRequest(REQUEST_CODE, data, reply, option);
         // 获取驱动返回信息"Hello world"
         this.message = reply.readString();
-        hilog.info(0, 'testTag', `sendMessageRequest, message: ${this.message}}`);
+        hilog.info(0, 'testTag', `sendMessageRequest, message: ${this.message}`);
       } catch (error) {
         hilog.error(0, 'testTag', `sendMessageRequest failed, err: ${JSON.stringify(error)}`);
       }
