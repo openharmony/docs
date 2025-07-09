@@ -391,7 +391,7 @@ enum Input_Result
 | INPUT_INJECTION_AUTHORIZED = 3900007 |  当前应用已经授权。<br>**起始版本：** 20。 |
 | INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008 |  其它应用已经授权。<br>**起始版本：** 20。 |
 | INPUT_APP_NOT_FOCUSED = 3900009 |  当前应用不是焦点应用。<br>**起始版本：** 20。 |
-| INPUT_DEVICE_NO_POINTER = 3900010 |  设备无鼠标。<br>**起始版本：** 20。 |
+| INPUT_DEVICE_NO_POINTER = 3900010 |  无鼠标类输入外设。<br>**起始版本：** 20。 |
 
 
 ## 函数说明
