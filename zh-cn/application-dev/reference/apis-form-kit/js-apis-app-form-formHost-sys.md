@@ -3134,7 +3134,7 @@ try {
 
 updateFormSize(formId: string, newDimension: formInfo.FormDimension, newRect: formInfo.Rect): void
 
-更新卡片尺寸。
+调整卡片尺寸。
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
@@ -3147,7 +3147,7 @@ updateFormSize(formId: string, newDimension: formInfo.FormDimension, newRect: fo
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formId | string | 是   | 卡片标识。 |
-| newDimension | [formInfo.FormDimension](js-apis-app-form-formInfo.md#formdimension) | 是 | 卡片尺寸，如Dimension_1_2，表示1 x 2卡片。 |
+| newDimension | [formInfo.FormDimension](js-apis-app-form-formInfo.md#formdimension) | 是 | 卡片尺寸，例如 Dimension_1_2，表示 1 x 2 卡片。 |
 | newRect | [formInfo.Rect](js-apis-app-form-formInfo.md#rect20) | 是 | 卡片位置信息，包括卡片左上角顶点的xy坐标和卡片的宽高。 |
 
 **错误码：**
@@ -3157,7 +3157,7 @@ updateFormSize(formId: string, newDimension: formInfo.FormDimension, newRect: fo
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
-| 202 | Caller is not system app. |
+| 202 | Permissions denied.Called by non-system application. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501012 | The dimension parameter is incorrect. |
@@ -3170,7 +3170,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
-  let newDimension = FormDimension.Dimension_1_2;
+  let newDimension = formInfo.FormDimension.Dimension_1_2;
   let newRect: formInfo.Rect = {left: 1, top: 2, width: 100, height: 100};
   formHost.updateFormSize(formId, newDimension, newRect);
 } catch (error) {
