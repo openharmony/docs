@@ -2085,8 +2085,6 @@ Subscribes to playback events of a given media asset ID.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
-**ArkTS version**: This API applies only to ArkTS 1.2.
-
 **Parameters**
 
 | Name  | Type                | Mandatory| Description                                                        |
@@ -2122,8 +2120,6 @@ Unsubscribes from playback events of a given media asset ID.
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**ArkTS version**: This API applies only to ArkTS 1.2.
 
 **Parameters**
 
@@ -8554,8 +8550,6 @@ You can use the union of the strings listed in the following table.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
-
-**ArkTS version**: This API applies only to ArkTS 1.1.
 
 | Type            | Description        |
 | ---------------- | ------------ |
