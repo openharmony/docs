@@ -4,7 +4,13 @@
 
 [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)是EMBEDDED_UI类型的[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)组件，提供了跨进程界面嵌入的能力。
 
-EmbeddedUIExtensionAbility需要和[EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md)一起配合使用，开发者可以在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的页面中通过EmbeddedComponent嵌入本应用的EmbeddedUIExtensionAbility提供的UI。EmbeddedUIExtensionAbility会在独立于UIAbility的进程中运行，完成其页面的布局和渲染。通常用于有进程隔离诉求的模块化开发场景。
+EmbeddedUIExtensionAbility需要和[EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md)一起配合使用，开发者可以在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的页面中通过EmbeddedComponent嵌入本应用的EmbeddedUIExtensionAbility提供的UI。EmbeddedUIExtensionAbility在独立进程中运行，完成其页面的布局和渲染，与UIAbility数据不互通，适用于有进程隔离诉求的模块化开发场景。
+
+在下面的示例中，UIAbility运行在主进程，其中包含多个EmbeddedComponet。每个EmbeddedComponet对应一个EmbeddedUIExtensionAbility。多个EmbeddedUIExtensionAbility可以分别用于实现办公软件中的文档、表格、演示文件。
+
+**图1** EmbeddedUIExtensionAbility示意图
+
+![embeddeduiextension-intro](figures/embeddeduiextensionability-intro.png)
 
 ## 约束限制
 
