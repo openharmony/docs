@@ -32,9 +32,9 @@ MindSpore Lite AI模型部署流程是：
 >
 > - 由于支持转换PyTorch模型的编译选项默认关闭，因此下载的安装包不支持转换PyTorch模型，只能通过源码编译方式获取。
 >
-> - 模型中有transpose与convolution算子融合，需要通过源码编译方式获取。
+> - 模型中有transpose与convolution算子融合，需要通过源码编译方式获取。否则可能会发生类似警告：node infer shape failed, node is Default/Conv2DFusion-xxx。
 >
-> - 自定义[关闭clip算子融合](#关闭指定算子融合)时，需要通过源码编译方式获取。
+> - 当指定NPU后端进行推理时，需要自定义[关闭clip算子融合](#关闭指定算子融合)，模型转换工具需要通过源码编译方式获取。否则可能会发生类似报错：BuildKirinNPUModel# Create full model kernel failed。
 
 1. 编译环境要求如下：
 
