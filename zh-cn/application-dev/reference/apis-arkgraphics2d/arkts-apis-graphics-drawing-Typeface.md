@@ -57,7 +57,7 @@ makeFromCurrent(typefaceArguments: TypefaceArguments): Typeface
 
 | 类型   | 说明                  |
 | ------ | -------------------- |
-| [Typeface](#typeface) | 返回字体对象（异常情况下会返回空指针）。 |
+| [Typeface](arkts-apis-graphics-drawing-Typeface.md) | 返回字体对象（异常情况下会返回空指针）。 |
 
 **示例：**
 
@@ -98,7 +98,7 @@ static makeFromFile(filePath: string): Typeface
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| [Typeface](#typeface) | 返回Typeface对象。 |
+| [Typeface](arkts-apis-graphics-drawing-Typeface.md) | 返回Typeface对象。 |
 
 **错误码：**
 
@@ -145,7 +145,7 @@ static makeFromRawFile(rawfile: Resource): Typeface
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| [Typeface](#typeface) | 返回Typeface对象（异常情况下会返回空指针）。 |
+| [Typeface](arkts-apis-graphics-drawing-Typeface.md) | 返回Typeface对象（异常情况下会返回空指针）。 |
 
 **示例：**
 
@@ -184,7 +184,7 @@ static makeFromFileWithArguments(filePath: string, typefaceArguments: TypefaceAr
 
 | 类型   | 说明                  |
 | ------ | -------------------- |
-| [Typeface](#typeface) | 返回字体对象（异常情况下会返回空指针）。 |
+| [Typeface](arkts-apis-graphics-drawing-Typeface.md) | 返回字体对象（异常情况下会返回空指针）。 |
 
 **示例：**
 
@@ -225,7 +225,7 @@ static makeFromRawFileWithArguments(rawfile: Resource, typefaceArguments: Typefa
 
 | 类型   | 说明                 |
 | ------ | ------------------- |
-| [Typeface](#typeface) | 返回字体对象（异常情况下会返回空指针）。 |
+| [Typeface](arkts-apis-graphics-drawing-Typeface.md) | 返回字体对象（异常情况下会返回空指针）。 |
 
 **示例：**
 

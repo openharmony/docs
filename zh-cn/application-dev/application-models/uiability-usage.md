@@ -6,7 +6,7 @@
 
 ## 指定UIAbility的启动页面
 
-应用中的[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)在启动过程中，需要指定启动页面，否则应用启动后会因为没有默认加载页面而导致白屏。可以在UIAbility的[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)生命周期回调中，通过[WindowStage](../reference/apis-arkui/arkts-apis-window-WindowStage.md#windowstage9)对象的[loadContent()](../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9)方法设置启动页面。
+应用中的[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)在启动过程中，需要指定启动页面，否则应用启动后会因为没有默认加载页面而导致白屏。可以在UIAbility的[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)生命周期回调中，通过[WindowStage](../reference/apis-arkui/arkts-apis-window-WindowStage.md)对象的[loadContent()](../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9)方法设置启动页面。
 
 
 ```ts
