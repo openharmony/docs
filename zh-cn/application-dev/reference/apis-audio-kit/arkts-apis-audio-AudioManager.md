@@ -1170,7 +1170,7 @@ isDeviceActive(deviceType: ActiveDeviceType): Promise&lt;boolean&gt;
 
 **返回值：**
 
-| Type                   | Description                           |
+| 类型                   | 说明                                   |
 | ---------------------- |---------------------------------------|
 | Promise&lt;boolean&gt; | Promise对象。返回true表示设备已激活；返回false表示设备未激活。 |
 
