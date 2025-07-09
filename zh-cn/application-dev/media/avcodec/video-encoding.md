@@ -195,8 +195,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 ### Surface模式
 
-参考以下示例代码，开发者可以完成Surface模式下视频编码的全流程。此处以surface数据输入，编码成H.264格式为例。
-本模块目前仅支持异步模式的数据轮转。
+参考以下示例代码，开发者可以完成Surface模式下视频编码的全流程，实现异步模式的数据轮转。此处以输入surface数据，编码成H.264格式为例。
 
 1. 添加头文件。
 
@@ -626,8 +625,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 ### Buffer模式
 
-参考以下示例代码，开发者可以完成Buffer模式下视频编码的全流程。此处以YUV文件输入，编码成H.264格式为例。
-本模块目前仅支持异步模式的数据轮转。
+参考以下示例代码，开发者可以完成Buffer模式下视频编码的全流程，实现异步模式的数据轮转。此处以输入YUV文件，编码成H.264格式为例。
 
 1. 添加头文件。
 
@@ -808,7 +806,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 8. 调用OH_VideoEncoder_PushInputBuffer()写入编码图像。
 
     送入输入队列进行编码，以下示例中：
-    - widthStride: 获取到的buffer数据的跨距。
+    - widthStride: 获取到的buffer数据的宽跨距。
+    - heightStride：获取到的buffer数据的高跨距。
     
     bufferInfo的成员变量：
     - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针；
