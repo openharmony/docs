@@ -131,10 +131,12 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 #### 样例测试JS
+```cpp
 const char *srcCallNative = R"JS(triggerGC();)JS";
-
+```
 #### 执行结果
 在LOG中输出下面结果：
+```cpp
 == before GC ==
 gc type: 4
 gc flag: 4
@@ -143,3 +145,4 @@ gc type: 4
 gc flag: 4
 data: 2024
 JSVM Trigger GC: success
+```
