@@ -8,7 +8,7 @@ LiveFormExtensionAbility模块提供互动卡片功能，包括创建、销毁�
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块设置了API黑名单，调用黑名单中的API将导致功能异常，详情请参见[附录](js-apis-app-form-LiveFormExtensionAbility.md#附录)。
+> 本模块设置了不允许调用的API名单，调用名单中的API将导致功能异常，详情请参见[附录](js-apis-app-form-LiveFormExtensionAbility.md#附录)。
 
 ## 导入模块
 
@@ -111,9 +111,9 @@ export default class LiveFormExtAbility extends LiveFormExtensionAbility {
 | rect | [formInfo.Rect](js-apis-app-form-formInfo.md#rect20) | 否 | 否 | 卡片位置和大小信息。 |
 | borderRadius | number | 否 | 否 | 卡片圆角半径信息。取值大于0，单位vp。 |
 
-### 附录
+## 附录
 
-本模块设置的API黑名单如下。
+本模块的API不允许名单如下。
 
 | Kit名称 | 模块名称 |
 | ------- | ------- |
@@ -128,14 +128,14 @@ export default class LiveFormExtAbility extends LiveFormExtensionAbility {
 | CoreFileKit | [@ohos.file.picker (选择器)](../apis-core-file-kit/js-apis-file-picker.md)<!--Del--><br>[@ohos.filemanagement.userFileManager (用户数据管理)(系统接口)](../apis-core-file-kit/js-apis-userFileManager-sys.md)<!--DelEnd--> |
 | MediaLibraryKit | [@ohos.file.sendablePhotoAccessHelper (基于Sendable对象的相册管理模块)](../apis-media-library-kit/js-apis-sendablePhotoAccessHelper.md)<br>[@ohos.file.AlbumPickerComponent (Album Picker组件)](../apis-media-library-kit/ohos-file-AlbumPickerComponent.md)<br>[@ohos.file.PhotoPickerComponent (PhotoPicker组件)](../apis-media-library-kit/ohos-file-PhotoPickerComponent.md)<br>[@ohos.file.RecentPhotoComponent (最近图片组件)](../apis-media-library-kit/ohos-file-RecentPhotoComponent.md)<br>[@ohos.multimedia.movingphotoview (动态照片)](../apis-media-library-kit/ohos-multimedia-movingphotoview.md) |
 | PerformanceAnalysisKit | [@ohos.hidebug (Debug调试)](../apis-performance-analysis-kit/js-apis-hidebug.md) |
-| AudioKit | [@ohos.multimedia.audio (音频管理)](../apis-audio-kit/js-apis-audio.md) |
-| CameraKit | [@ohos.multimedia.cameraPicker (相机选择器)](../apis-camera-kit/js-apis-cameraPicker.md)<br>[@ohos.multimedia.camera (相机管理)](../apis-camera-kit/js-apis-camera.md) |
-| AVSessionKit | [@ohos.multimedia.avCastPicker (投播组件)](../apis-avsession-kit/ohos-multimedia-avcastpicker.md)<br>[@ohos.multimedia.avsession (媒体会话管理)](../apis-avsession-kit/js-apis-avsession.md) |
-| MediaKit | [@ohos.multimedia.media (媒体服务)](../apis-media-kit/js-apis-media.md) |
+| AudioKit | [@ohos.multimedia.audio (音频管理)](../apis-audio-kit/arkts-apis-audio.md) |
+| CameraKit | [@ohos.multimedia.cameraPicker (相机选择器)](../apis-camera-kit/js-apis-cameraPicker.md)<br>[@ohos.multimedia.camera (相机管理)](../apis-camera-kit/arkts-apis-camera.md) |
+| AVSessionKit | [@ohos.multimedia.avCastPicker (投播组件)](../apis-avsession-kit/ohos-multimedia-avcastpicker.md)<br>[@ohos.multimedia.avsession (媒体会话管理)](../apis-avsession-kit/arkts-apis-avsession.md) |
+| MediaKit | [@ohos.multimedia.media (媒体服务)](../apis-media-kit/arkts-apis-media.md) |
 | NotificationKit | [@ohos.notification (Notification模块)](../apis-notification-kit/js-apis-notification.md)<br>[@ohos.notificationManager (NotificationManager模块)](../apis-notification-kit/js-apis-notificationManager.md)<!--Del--><br>[@ohos.notificationSubscribe (NotificationSubscribe模块)(系统接口)](../apis-notification-kit/js-apis-notificationSubscribe-sys.md)<!--DelEnd--> |
 | TelephonyKit | [@ohos.telephony.call (拨打电话)](../apis-telephony-kit/js-apis-call.md)<br>[@ohos.telephony.data (蜂窝数据)](../apis-telephony-kit/js-apis-telephony-data.md)<br>[@ohos.telephony.observer (observer)](../apis-telephony-kit/js-apis-observer.md)<br>[@ohos.telephony.radio (网络搜索)](../apis-telephony-kit/js-apis-radio.md)<br>[@ohos.telephony.sim (SIM卡管理)](../apis-telephony-kit/js-apis-sim.md)<br>[@ohos.telephony.sms (短信服务)](../apis-telephony-kit/js-apis-sms.md) |
 | UserAuthenticationKit | [@ohos.userIAM.userAuth (用户认证)](../apis-user-authentication-kit/js-apis-useriam-userauth.md)<!--Del--><br>[@ohos.userIAM.faceAuth (人脸认证)(系统接口)](../apis-user-authentication-kit/js-apis-useriam-faceauth-sys.md)<!--DelEnd--> |
-| ArkUI | [@ohos.window (窗口)](../apis-arkui/js-apis-window.md) |
+| ArkUI | [@ohos.window (窗口)](../apis-arkui/arkts-apis-window.md) |
 |<!--DelRow--> AccessibilityKit | [@ohos.accessibility.config (系统辅助功能配置)(系统接口)](../apis-accessibility-kit/js-apis-accessibility-config-sys.md) |
 |<!--DelRow--> FormKit | [@ohos.app.form.formHost (formHost)(系统接口)](../apis-form-kit/js-apis-app-form-formHost-sys.md)<br>[@ohos.application.formHost (formHost)(系统接口)](../apis-form-kit/js-apis-application-formHost-sys.md) |
 <!--RP1--><!--RP1End-->
