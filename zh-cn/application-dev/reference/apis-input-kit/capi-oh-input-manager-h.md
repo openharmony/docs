@@ -3823,4 +3823,4 @@ Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, d
 
 | 类型 | 说明 |
 | -- | -- |
-| [Input_Result](#input_result) | OH_Input_GetPointerLocation的执行结果：<br>      [INPUT_SUCCESS](#input_result) 表示查询成功返回。<br>      [INPUT_PARAMETER_ERROR](#input_result) 表示参数错误。<br>      [INPUT_SERVICE_EXCEPTION](#input_result) 表示服务异常时返回。<br>      [INPUT_APP_NOT_FOCUSED](#input_result) 表示当前应用不是焦点返回。<br>      [INPUT_DEVICE_NO_POINTER](#input_result) 表示设备没有鼠标时返回。 |
+| [Input_Result](#input_result) | OH_Input_GetPointerLocation的执行结果：<br>      [INPUT_SUCCESS](#input_result) 表示查询成功。<br>      [INPUT_PARAMETER_ERROR](#input_result) 表示参数错误。<br>      [INPUT_SERVICE_EXCEPTION](#input_result) 表示服务异常。<br>      [INPUT_APP_NOT_FOCUSED](#input_result) 表示当前应用不是焦点应用。<br>      [INPUT_DEVICE_NO_POINTER](#input_result) 表示无鼠标类输入外设。 |
