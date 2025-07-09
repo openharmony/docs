@@ -1,5 +1,4 @@
 # telephony_radio_type.h
-<!--Kit_Telephony Kit--><!--System_电话服务-->
 
 ## 概述
 

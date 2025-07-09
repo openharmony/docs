@@ -1,5 +1,4 @@
 # Telephony
-<!--Kit_Telephony Kit--><!--System_电话服务-->
 
 ## 概述
 
