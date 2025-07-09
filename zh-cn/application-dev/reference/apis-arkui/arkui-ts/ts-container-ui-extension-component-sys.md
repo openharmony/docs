@@ -74,6 +74,10 @@ onReceive(callback: ReceiveCallback)
 
 收到被拉起的Ability发送的数据时触发的回调。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -137,7 +141,7 @@ onError(callback:[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#e
 | ---------------------------- | ------ | ------ | ------------------------------------------------------------ |
 | err                        | [BusinessError](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 否 | 报错信息。    |
 
-### onTerminated<sup>12+<sup>
+### onTerminated<sup>12+</sup>
 
 onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 
@@ -158,7 +162,7 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 > - 若UIExtensionAbility通过调用`terminateSelfWithResult`退出，其携带的信息会传给回调函数的入参。
 > - 若UIExtensionAbility通过调用`terminateSelf`退出，上述回调函数的入参中，"code"取默认值"0"，"want"为"undefined"。
 
-### onDrawReady<sup>18+<sup>
+### onDrawReady<sup>18+</sup>
 
 onDrawReady(callback: Callback\<void>)
 
@@ -174,7 +178,7 @@ onDrawReady(callback: Callback\<void>)
 | ---------------------------- | ------ | ------ | ------------------------------------------------------------ |
 | callback                        | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback) \<void> | 否 | 回调函数，UIExtensionAbility绘制第一帧时触发本回调，类型为void。    |
 
-### TerminationInfo<sup>12+<sup>
+### TerminationInfo<sup>12+</sup>
 
 用于表示被拉起的UIExtensionAbility通过调用`terminateSelfWithResult`或者`terminateSelf`正常退出时的返回结果。
 
@@ -182,15 +186,19 @@ onDrawReady(callback: Callback\<void>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-|  名称 | 类型   | 必填 | 说明                                                 |
-| ------- | ------ | ------ |---------------------------------------------------  |
-| code    | number | 否 | 被拉起UIExtensionAbility退出时返回的结果码。 |
-| want    | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)   | 否 | 被拉起UIExtensionAbility退出时返回的数据。   |
+|  名称 | 类型   | 只读 |可选 | 说明                                                 |
+| ------- | ------ | ------ | ------ |---------------------------------------------------  |
+| code    | number | 否 | 是 | 被拉起UIExtensionAbility退出时返回的结果码。 |
+| want    | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)   | 否 | 是 | 被拉起UIExtensionAbility退出时返回的数据。   |
 
-## ReceiveCallback<sup>18+<sup>
+## ReceiveCallback<sup>18+</sup>
 type ReceiveCallback = Callback\<Record\<string, Object\>\>
 
 用于封装被拉起的Ability发送的数据。
+
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -209,13 +217,14 @@ type ReceiveCallback = Callback\<Record\<string, Object\>\>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称               | 类型                                 | 必填 | 说明                                                                                                      |
-| ----                 | ---------------------------------------- | ---- | ---------------                                                                                               |
-| isTransferringCaller | boolean                                  | 否   | 在使用UIExtensionComponent嵌套时，设置当前UIExtensionComponent是否转发上一级的Caller信息。</br> 默认值：false |
-| placeholder<sup>12+<sup> | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 设置占位符，在UIExtensionComponent与UIExtensionAbility建立连接前显示。 |
-| dpiFollowStrategy<sup>12+<sup> | [DpiFollowStrategy](ts-container-ui-extension-component-sys.md#dpifollowstrategy12)                  | 否   | 提供接口支持设置DPI跟随宿主或跟随UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_DPI |
-| areaChangePlaceholder<sup>14+<sup> | Record<string, [ComponentContent](../js-apis-arkui-ComponentContent.md)>       | 否   | 设置尺寸变化占位符，在UIExtensionComponent尺寸发生变化并且UIExtension内部渲染未完成时显示, key值支持"FOLD_TO_EXPAND"(折叠展开尺寸变化)、"UNDEFINED"(默认尺寸变化)。 |
-| windowModeFollowStrategy<sup>18+<sup> | [WindowModeFollowStrategy](ts-container-ui-extension-component-sys.md#windowmodefollowstrategy18)    | 否   | 提供接口以支持设置窗口Mode，使其能够跟随宿主或UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_WINDOW_MODE |
+
+| 名称               | 类型                             | 只读 | 可选 | 说明                                                                                                      |
+| ----                 | ---------------------------------------- | ---- | ---- | ---------------                                                                                               |
+| isTransferringCaller | boolean                                  | 否 | 是  | 在使用UIExtensionComponent嵌套时，设置当前UIExtensionComponent是否转发上一级的Caller信息。</br> 默认值：false |
+| placeholder<sup>12+</sup> | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否 | 是   | 设置占位符，在UIExtensionComponent与UIExtensionAbility建立连接前显示。 |
+| dpiFollowStrategy<sup>12+</sup> | [DpiFollowStrategy](ts-container-ui-extension-component-sys.md#dpifollowstrategy12)                 | 否 | 是   | 提供接口支持设置DPI跟随宿主或跟随UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_DPI |
+| areaChangePlaceholder<sup>14+</sup> | Record<string, [ComponentContent](../js-apis-arkui-ComponentContent.md)>      | 否 | 是   | 设置尺寸变化占位符，在UIExtensionComponent尺寸发生变化并且UIExtension内部渲染未完成时显示, key值支持"FOLD_TO_EXPAND"(折叠展开尺寸变化)、"UNDEFINED"(默认尺寸变化)。 |
+| windowModeFollowStrategy<sup>18+</sup> | [WindowModeFollowStrategy](ts-container-ui-extension-component-sys.md#windowmodefollowstrategy18)   | 否 | 是   | 提供接口以支持设置窗口Mode，使其能够跟随宿主或UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_WINDOW_MODE |
 
 ## DpiFollowStrategy<sup>12+</sup>
 
@@ -251,6 +260,10 @@ send(data: Record\<string, Object\>): void
 
 用于在双方建立连接成功后，组件使用方向被拉起的Ability发送数据的场景，提供异步发送数据。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -266,6 +279,10 @@ send(data: Record\<string, Object\>): void
 sendSync(data: Record\<string, Object\>): Record\<string, Object\>
 
 用于在双方建立连接成功后，组件使用方向被拉起的Ability发送数据的场景，提供同步发送数据。
+
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -297,6 +314,10 @@ on(type: 'asyncReceiverRegister', callback: Callback\<UIExtensionProxy\>): void
 
 用于在双方建立连接成功后，组件使用方订阅被拉起的Ability发生异步注册的场景。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -313,6 +334,10 @@ on(type: 'asyncReceiverRegister', callback: Callback\<UIExtensionProxy\>): void
 on(type: 'syncReceiverRegister', callback: Callback\<UIExtensionProxy\>): void;
 
 用于在双方建立连接成功后，组件使用方订阅被拉起的Ability发生同步注册的场景。
+
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -331,6 +356,10 @@ off(type: 'asyncReceiverRegister', callback?: Callback\<UIExtensionProxy\>): voi
 
 用于在双方建立连接成功后，组件使用方取消订阅被拉起的Ability发生异步注册的场景。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -347,6 +376,10 @@ off(type: 'asyncReceiverRegister', callback?: Callback\<UIExtensionProxy\>): voi
 off(type: 'syncReceiverRegister', callback?: Callback\<UIExtensionProxy\>): void
 
 用于在双方建立连接成功后，组件使用方取消订阅被拉起的Ability发生同步注册的场景。
+
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
 **系统接口：** 此接口为系统接口。
 
