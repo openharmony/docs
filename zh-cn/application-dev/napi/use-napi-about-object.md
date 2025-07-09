@@ -88,7 +88,7 @@ let applePrototype = testNapi.getPrototype(person);
 if (applePrototype === Person.prototype) {
   hilog.info(0x0000, 'Node-API', 'get_prototype_success');
 } else {
-  hilog.info(0x0000, 'Node-API', 'get_prototype_fail');
+  hilog.error(0x0000, 'Node-API', 'get_prototype_fail');
 }
 ```
 
