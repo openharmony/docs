@@ -5073,7 +5073,7 @@ type NotificationLiveViewContent = _NotificationLiveViewContent
 
 | 名称                 | 值  | 说明                               |
 | --------------------| --- | --------------------------------- |
-| USER_MODIFIED_OFF   | 0   | 表示用户明确设置的关闭状态。            |
-| USER_MODIFIED_ON    | 1   | 表示用户明确设置的开启状态。                 |
-| SYSTEM_DEFAULT_OFF  | 2   | 表示在任何用户设置前的初始关闭状态。            |
-| SYSTEM_DEFAULT_ON   | 3   | 表示在任何用户设置前的初始开启状态。                 |
+| USER_MODIFIED_OFF   | 0   | 表示用户设置的关闭状态。            |
+| USER_MODIFIED_ON    | 1   | 表示用户设置的开启状态。                 |
+| SYSTEM_DEFAULT_OFF  | 2   | 表示在用户设置前的初始关闭状态。            |
+| SYSTEM_DEFAULT_ON   | 3   | 表示在用户设置前的初始开启状态。                 |
