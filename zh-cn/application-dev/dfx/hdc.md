@@ -1224,6 +1224,16 @@ hdc server和hdc daemon启动后，默认会互相发送心跳数据包，收到
 | Linux | /tmp/hdc_cmd/ | - |
 | MacOS | $TMPDIR/hdc_cmd/ | - |
 
+### OHOS_HDC_ENCRYPT_CHANNEL
+
+默认：通道加密功能关闭。
+
+用于设置hdc server和hdc daemon之间的TCP连接通道加密功能开关。
+
+设置为"1"表示开启TCP连接的通道加密功能；不设置或者设置为其它数字表示关闭通道加密功能。
+
+从API version 20开始，支持该参数。
+
 ### 环境变量配置方法
 
 以配置OHOS_HDC_CMD_RECORD环境变量为例，将其值设为 1，介绍环境变量配置方法。
