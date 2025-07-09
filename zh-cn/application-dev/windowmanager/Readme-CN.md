@@ -9,4 +9,3 @@
 - [WindowExtensionAbility（仅对系统应用开放）](windowextensionability.md)
 <!--DelEnd-->
 - [使用NativeWindowEvent过滤和注入多模输入事件（C/C++）](native-window-event.md)
-- [使用OH_WindowManager_InjectTouchEvent将多模触摸事件注入给目标窗口（C/C++）](inject-touch-event.md)

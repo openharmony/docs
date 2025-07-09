@@ -23,6 +23,9 @@ int32_t OH_NativeWindowManager_RegisterKeyEventFilter(int32_t windowId, OH_Nativ
 int32_t OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t windowId)
 ```
 
+#### 描述
+为指定的窗口注册过滤回调函数和取消指定窗口上的过滤回调函数。
+
 #### 开发步骤
 ##### 在CMake脚本中链接动态库
 ```
@@ -116,6 +119,9 @@ EXTERN_C_END
 int32_t OH_WindowManager_InjectTouchEvent(int32_t windowId, Input_TouchEvent* touchEvent, int32_t windowX, int32_t windowY)
 ```
 
+#### 描述
+为指定的窗口注入触摸事件，仅支持注入同进程窗口，不会触发窗口焦点和层级变化，也不会触发窗口拖拽，事件会直接发送给ArkUI。该接口需要在指定窗口加载UI后调用。
+
 #### 开发步骤
 ##### 在CMake脚本中链接动态库
 ```
@@ -151,7 +157,7 @@ target_link_libraries(entry PUBLIC libnative_window_manager.so libohinput.so)
 | windowId | [OH_Input_SetTouchEventWindowId](../reference/apis-input-kit/capi-oh-input-manager-h.md#oh_input_settoucheventwindowid) | 事件注入窗口ID | -1 | 若参数不为默认值且不等于 [OH_WindowManager_InjectTouchEvent](../reference/apis-arkui/capi-oh-window-h.md#oh_windowmanager_injecttouchevent)接口参数windowId，将校验传入参数错误。 |
 | displayId | [OH_Input_SetTouchEventDisplayId](../reference/apis-input-kit/capi-oh-input-manager-h.md#oh_input_settoucheventdisplayid) | 事件注入屏幕ID | -1 | 无限制，但是应该尽量保证与接口参数windowId有相互对应关系，推荐使用[getWindowProperties()](../reference/apis-arkui/arkts-apis-window-Window.md#getwindowproperties9)方法获取displayId属性。 |
 
-- 仅支持注入同进程窗口。且注入不会触发窗口焦点、层级变化和窗口拖拽，事件直接发送给ArkUI。
+- 仅支持注入同进程窗口。注入不会触发窗口焦点、层级变化和窗口拖拽，事件直接发送给ArkUI。
 - 该接口需要在指定窗口加载UI后调用。
 
 #### 示例代码
