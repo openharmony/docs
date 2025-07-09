@@ -301,10 +301,10 @@ SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置�
   @State isActive: boolean = true;
 
   options: ShadowOptions = {
-    radius: 30.0,
+    radius: 10.0,
     color: Color.Blue,
-    offsetX: 20,
-    offsetY: 20,
+    offsetX: 10,
+    offsetY: 10,
   };
 
   Column() {
@@ -325,7 +325,7 @@ SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置�
   ```ts
   radialGradientOptions: RadialGradientOptions = {
     center: ["50%", "50%"],
-    radius: 20,
+    radius: "20%",
     colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
     repeating: true,
   };
