@@ -40,7 +40,7 @@ export default {
             ctx.drawImage(img, 0, 0, 360, 250);
         };
         img.onerror = function () {
-            console.log('Image load fail');
+            console.error('Image load fail');
         };
     }
 }
