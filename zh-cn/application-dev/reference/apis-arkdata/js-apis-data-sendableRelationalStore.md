@@ -257,6 +257,7 @@ fromSendableValues(values: collections.Array\<ValueType>): NonSendableValues
 **示例：**
 
 ```ts
+import { sendableRelationalStore } from '@kit.ArkData';
 import { collections } from '@kit.ArkTS';
 const array = new collections.Array<sendableRelationalStore.ValueType>();
 array.push("a");
@@ -296,7 +297,7 @@ toSendableValues(values: NonSendableValues): collections.Array\<ValueType>
 **示例：**
 
 ```ts
-import { relationalStore } from '@kit.ArkData';
+import { relationalStore, sendableRelationalStore } from '@kit.ArkData';
 const array: relationalStore.ValueType[] = [];
 array.push(1);
 array.push(2);
