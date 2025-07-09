@@ -94,7 +94,7 @@ drawBehind?(drawContext: DrawContext): void
 
 ### drawForeground<sup>20+</sup>
 
-drawForeground?(drawContext: DrawContext): void
+drawForeground(drawContext: DrawContext): void
 
 自定义绘制前景的接口，若重载该方法则可进行前景的自定义绘制。需要对其组件的前景层进行绘制时重载该方法。
 
