@@ -43,7 +43,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 
 ## 开发步骤
 
-以[PlainText](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#plaintext)、[HTML](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#html)、[PixelMap](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#pixelmap15)三种数据进行多对多数据共享的过程为例说明开发步骤，数据提供方可以通过UMDF提供的insertData接口将数据写入公共数据通路，获取到的返回值（生成的数据的唯一标识符），可用于对其插入的数据进行更新和删除操作。数据访问方则可以通过UDMF提供的查询接口获取当前公共数据通路的全量数据。
+以[PlainText](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#plaintext)、[HTML](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#html)、[PixelMap](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#pixelmap15)三种数据进行多对多数据共享的过程为例说明开发步骤，数据提供方可以通过UDMF提供的insertData接口将数据写入公共数据通路，获取到的返回值（生成的数据的唯一标识符），可用于对其插入的数据进行更新和删除操作。数据访问方则可以通过UDMF提供的查询接口获取当前公共数据通路的全量数据。
 
 ### 数据提供方
 
