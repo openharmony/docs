@@ -9425,3 +9425,96 @@ struct WebComponent {
   }
 }
 ```
+
+## enablePrivateNetworkAccess<sup>20+</sup>
+
+static enablePrivateNetworkAccess(enable: boolean): void
+
+设置私有网络访问检查功能（Private Network Access）的启用状态。
+
+启用后，Web组件将对私有网络请求（如访问本地服务器或内网资源）进行CORS预检。它会先发送OPTIONS预检请求，获取目标服务器的显式授权，然后传输实际数据。禁用此功能将跳过安全检查。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                                                     |
+| -------- | ------- | ---- | -------------------------------------------------------- |
+| enable | boolean | 是   | 是否启用私有网络访问检查功能开关。true表示启用，false表示禁用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .onControllerAttached(() => {
+          // 设置为false时ArkWeb将不再检查私有网络请求是否合法
+          webview.WebviewController.enablePrivateNetworkAccess(false);
+        })
+    }
+  }
+}
+```
+
+## isPrivateNetworkAccessEnabled<sup>20+</sup>
+
+static isPrivateNetworkAccessEnabled(): boolean
+
+获取Web组件是否启用了私有网络访问检查功能。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| boolean | 返回Web组件是否启用了私有网络访问检查功能。
+true表示已启用；false表示已禁用。 |
+
+**示例：**
+
+```ts
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('isPrivateNetworkAccessEnabled')
+        .onClick(() => {
+          try {
+            let isEnabled: boolean = webview.WebviewController.isPrivateNetworkAccessEnabled();
+            console.log("isPrivateNetworkAccessEnabled:", isEnabled);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+        .onControllerAttached(() => {
+          // 设置为false时ArkWeb将不再检查私有网络请求是否合法
+          webview.WebviewController.enablePrivateNetworkAccess(false);
+        })
+    }
+  }
+}
+```
