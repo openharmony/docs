@@ -10,3 +10,12 @@
 
 **所在头文件：** [native_avcapability.h](capi-native-avcapability-h.md)
 
+
+## 汇总
+
+### 成员变量
+
+| 名称 | 描述 |
+| -- | -- |
+| int32_t minVal | 最小值。 |
+| int32_t maxVal | 最大值。 |
