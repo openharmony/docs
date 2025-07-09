@@ -28,7 +28,11 @@
 
   filename：工程中resources/rawfile目录下的文件名称。
 
-  **说明：** 在引用资源类型时，注意其数据类型要与属性方法本身的类型一致，例如某个属性方法支持设置string | Resource，那么在使用Resource引用类型时，其数据类型也应当为string。
+>  **说明：**
+>
+>  引用资源类型时，需确保资源类型对象内的数据类型与当前以资源类型作为参数的属性方法本身的类型一致。例如某个属性方法支持设置string | Resource，那么在使用Resource引用类型时，其数据类型也应当为string。
+>
+>  引用资源类型时，需确保资源类型对象用法为当前支持的用法，否则当前以资源类型作为参数的属性效果将和不设置该属性相同。
 
 ## Length
 
@@ -651,9 +655,9 @@ type ResourceColor = [Color](ts-appendix-enums.md#color) | number | string | [Re
 
 扩展布局安全区域的枚举类型。
 
-| 名称     | 描述                                       |
-| -------- | ------------------------------------------ |
-| SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
+| 名称     | 值   | 说明                                             |
+| -------- | --- |------------------------------------------ |
+| SYSTEM   |  0 |设置后，组件的布局范围可扩展至[组件级安全区（safeAreaPadding）](./ts-universal-attributes-size.md#safeareapadding14)和页面级安全区（状态栏、导航栏、挖孔区）。   |
 
 ## LayoutSafeAreaEdge<sup>12+</sup>
 
