@@ -690,7 +690,7 @@
         - [管理系统窗口（仅Stage模型支持）](windowmanager/system-window-stage.md)
         - [WindowExtensionAbility（仅对系统应用开放）](windowmanager/windowextensionability.md)
         <!--DelEnd-->
-        - [使用NativeWindowEvent过滤和注入多模输入事件（C/C++）](windowmanager/native-window-event.md)
+        - [使用WindowManager管理多模输入事件（C/C++）](windowmanager/native-window-event-filter.md)
       - 屏幕管理<!--display-manager-->
         - [屏幕管理简介](displaymanager/displayManager-overview.md)
         - [使用OH_DisplayManager实现屏幕基础信息查询和状态监听 (C/C++)](displaymanager/native-display-manager.md)
