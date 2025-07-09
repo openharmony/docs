@@ -1093,7 +1093,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 | 参数名     | 类型                                 | 必填 | 说明                                                         |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket)        | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的更新条件。                    |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的更新条件。                    |
 | callback   | AsyncCallback&lt;number&gt;          | 是   | 指定的callback回调方法。返回受影响的行数。                   |
 
 **错误码：**
@@ -1177,7 +1177,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 | 参数名     | 类型                                        | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
 | conflict   | [ConflictResolution](arkts-apis-data-relationalStore-e.md#conflictresolution10)| 是   | 指定冲突解决模式。                                           |
 | callback   | AsyncCallback&lt;number&gt;                 | 是   | 指定的callback回调方法。返回受影响的行数。                   |
 
@@ -1262,7 +1262,7 @@ update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 | 参数名       | 类型                                 | 必填 | 说明                                                         |
 | ------------ | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | values       | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket)        | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的更新条件。                    |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的更新条件。                    |
 
 **返回值**：
 
@@ -1351,7 +1351,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 | 参数名     | 类型                                        | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
 | conflict   | [ConflictResolution](arkts-apis-data-relationalStore-e.md#conflictresolution10)| 是   | 指定冲突解决模式。                                           |
 
 **返回值**：
@@ -1441,7 +1441,7 @@ updateSync(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictR
 | 参数名     | 类型                                        | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](arkts-apis-data-relationalStore-t.md#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)             | 是   | RdbPredicates的实例对象指定的更新条件。                      |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)             | 是   | RdbPredicates的实例对象指定的更新条件。                      |
 | conflict   | [ConflictResolution](arkts-apis-data-relationalStore-e.md#conflictresolution10)| 否   | 指定冲突解决模式。默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。 |
 
 **返回值**：
@@ -1531,7 +1531,7 @@ delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
 | 参数名     | 类型                                 | 必填 | 说明                                      |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的删除条件。 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的删除条件。 |
 | callback   | AsyncCallback&lt;number&gt;          | 是   | 指定callback回调函数。返回受影响的行数量。 |
 
 **错误码：**
@@ -1589,7 +1589,7 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
 | 参数名     | 类型                                 | 必填 | 说明                                      |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的删除条件。 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的删除条件。 |
 
 **返回值**：
 
@@ -1652,7 +1652,7 @@ deleteSync(predicates: RdbPredicates):number
 
 | 参数名     | 类型                            | 必填 | 说明                                    |
 | ---------- | ------------------------------- | ---- | --------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的删除条件。 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的删除条件。 |
 
 **返回值**：
 
@@ -1716,8 +1716,8 @@ query(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)                         | 是   | RdbPredicates的实例对象指定的查询条件。                   |
-| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)                         | 是   | RdbPredicates的实例对象指定的查询条件。                   |
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -1768,9 +1768,9 @@ query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCa
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)                         | 是   | RdbPredicates的实例对象指定的查询条件。                   |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)                         | 是   | RdbPredicates的实例对象指定的查询条件。                   |
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
-| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -1821,7 +1821,7 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 
 | 参数名     | 类型                                 | 必填 | 说明                                             |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。        |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的查询条件。        |
 | columns    | Array&lt;string&gt;                  | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
 **错误码：**
@@ -1839,7 +1839,7 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 
 | 类型                                                    | 说明                                               |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -1879,7 +1879,7 @@ querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 
 | 参数名     | 类型                            | 必填 | 说明                                                         |
 | ---------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。                      |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的查询条件。                      |
 | columns    | Array&lt;string&gt;             | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。默认值为空。 |
 
 **错误码：**
@@ -1897,7 +1897,7 @@ querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 
 | 类型                    | 说明                                |
 | ----------------------- | ----------------------------------- |
-| [ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset) | 如果操作成功，则返回ResultSet对象。 |
+| [ResultSet](arkts-apis-data-relationalStore-ResultSet.md) | 如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -1944,9 +1944,9 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 | ---------- | -------------------------------------------- | ---- | --------------------------------------------------------- |
 | device     | string                                       | 是   | 指定的远程设备ID。                                        |
 | table      | string                                       | 是   | 指定的目标表名。                                          |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)              | 是   | RdbPredicates的实例对象，指定查询的条件。                 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)              | 是   | RdbPredicates的实例对象，指定查询的条件。                 |
 | columns    | Array&lt;string&gt;                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。          |
-| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -2019,14 +2019,14 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
 | device     | string                               | 是   | 指定的远程设备ID。                   |
 | table      | string                               | 是   | 指定的目标表名。                                 |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象，指定查询的条件。      |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象，指定查询的条件。      |
 | columns    | Array&lt;string&gt;                  | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
 **返回值**：
 
 | 类型                                                         | 说明                                               |
 | ------------------------------------------------------------ | -------------------------------------------------- |
-| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -2098,7 +2098,7 @@ querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 | 参数名   | 类型                                         | 必填 | 说明                                    |
 | -------- | -------------------------------------------- | ---- |---------------------------------------|
 | sql      | string                                       | 是   | 指定要执行的SQL语句。                          |
-| callback | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| callback | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -2171,7 +2171,7 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | sql      | string                                       | 是   | 指定要执行的SQL语句。                                        |
 | bindArgs | Array&lt;[ValueType](arkts-apis-data-relationalStore-t.md#valuetype)&gt;         | 是   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数需为空数组。 |
-| callback | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。    |
+| callback | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。    |
 
 **错误码：**
 
@@ -2231,7 +2231,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 | 类型                                                    | 说明                                               |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -2298,7 +2298,7 @@ querySqlSync(sql: string, bindArgs?: Array&lt;ValueType&gt;):ResultSet
 
 | 类型                    | 说明                                |
 | ----------------------- | ----------------------------------- |
-| [ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset) | 如果操作成功，则返回ResultSet对象。 |
+| [ResultSet](arkts-apis-data-relationalStore-ResultSet.md) | 如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -3078,7 +3078,7 @@ createTransaction(options?: TransactionOptions): Promise&lt;Transaction&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Transaction](arkts-apis-data-relationalStore-Transaction.md#transaction14)&gt; | Promise对象，返回事务对象。 |
+| Promise&lt;[Transaction](arkts-apis-data-relationalStore-Transaction.md)&gt; | Promise对象，返回事务对象。 |
 
 **错误码：**
 
@@ -3988,7 +3988,7 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 | 参数名     | 类型                                               | 必填 | 说明                                                         |
 | ---------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | mode       | [SyncMode](arkts-apis-data-relationalStore-e.md#syncmode)                             | 是   | 指同步模式。该值可以是relationalStore.SyncMode.SYNC_MODE_PUSH、relationalStore.SyncMode.SYNC_MODE_PULL。                               |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)               | 是   | 约束同步数据和设备。                                         |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)               | 是   | 约束同步数据和设备。                                         |
 | callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 指定的callback回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
 
 **错误码：**
@@ -4054,7 +4054,7 @@ if (store != undefined) {
 | 参数名     | 类型                                 | 必填 | 说明                           |
 | ---------- | ------------------------------------ | ---- | ------------------------------ |
 | mode       | [SyncMode](arkts-apis-data-relationalStore-e.md#syncmode)               | 是   | 指同步模式。该值可以是relationalStore.SyncMode.SYNC_MODE_PUSH、relationalStore.SyncMode.SYNC_MODE_PULL。 |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 约束同步数据和设备。           |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | 约束同步数据和设备。           |
 
 **返回值**：
 
@@ -5567,7 +5567,7 @@ lockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 
 | 参数名     | 类型                                 | 必填 | 说明                                      |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的锁定条件。 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的锁定条件。 |
 
 **返回值**：
 
@@ -5634,7 +5634,7 @@ unlockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 
 | 参数名     | 类型                                 | 必填 | 说明                                      |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的锁定条件。 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的锁定条件。 |
 
 **返回值**：
 
@@ -5698,7 +5698,7 @@ queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise
 
 | 参数名     | 类型                                 | 必填 | 说明                                             |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。        |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | RdbPredicates的实例对象指定的查询条件。        |
 | columns    | Array&lt;string&gt;                  | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
 **错误码：**
@@ -5731,7 +5731,7 @@ queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise
 
 | 类型                                                    | 说明                                               |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 

@@ -1014,7 +1014,7 @@ if (resultSet != undefined) {
 
 getRows(maxCount: number, position?: number): Promise<Array\<ValuesBucket>>
 
-从结果集中获取指定数量的数据，使用Promise异步回调。禁止与[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)的其他接口并发调用，否则获取的数据可能非预期。
+从结果集中获取指定数量的数据，使用Promise异步回调。禁止与[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)的其他接口并发调用，否则获取的数据可能非预期。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
