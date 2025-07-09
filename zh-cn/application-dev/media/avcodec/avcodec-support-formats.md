@@ -90,7 +90,7 @@ DRM解密能力支持的解封装格式：<!--RP10-->mp4(H.264，AAC)、mpeg-ts(
 | m4a      | -                     | AAC              | jpeg、png、bmp |
 | mp3      | -                     | MPEG（MP3）      | -              |
 | amr      | -                     | AMR(amrnb、amrwb) | -             |
-| wav      | -                     | G711mu(pcm-mulaw) | -             |
+| wav      | -                     | G711mu(pcm-mulaw) 、raw(pcm)| -             |
 | aac      | -                     | AAC               | -             |
 
 > **说明：**
@@ -176,13 +176,13 @@ mp3封装格式：
    | OH_MD_KEY_HEIGHT                   | 高度                  |   -   |  必须  |
 
 wav封装格式：
-   |                key                 |         描述         | g711mu  |
-   | ---------------------------------- | :------------------: | :----: |
-   | OH_MD_KEY_AUD_SAMPLE_RATE          | 采样率                |  必须  |
-   | OH_MD_KEY_AUD_CHANNEL_COUNT        | 声道数                |  必须  |
-   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | 输出音频流格式         |  可选  |
-   | OH_MD_KEY_CHANNEL_LAYOUT           | 通道布局              |  可选  |
-   | OH_MD_KEY_BITRATE                  | 码率                  |  必须  |
+   |                key                 |         描述         | g711mu  | raw  |
+   | ---------------------------------- | :------------------: | :----: | :----: |
+   | OH_MD_KEY_AUD_SAMPLE_RATE          | 采样率                |  必须  |  必须  |
+   | OH_MD_KEY_AUD_CHANNEL_COUNT        | 声道数                |  必须  |  必须  |
+   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | 输出音频流格式         |  可选  |  必须  |
+   | OH_MD_KEY_CHANNEL_LAYOUT           | 通道布局              |  可选  |  可选  |
+   | OH_MD_KEY_BITRATE                  | 码率                  |  必须  |  可选  |
 
 aac封装格式：
    |                key                 |         描述         |  aac   |
