@@ -51,11 +51,13 @@ setPolicySync(admin: Want, appId: string, policyName: string, policyValue: strin
 **示例：**
 
 ```ts
+import { browser } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 // 此处参数appId的赋值应替换为开发者自己指定的浏览器的应用ID
@@ -105,11 +107,13 @@ getPoliciesSync(admin: Want, appId: string): string
 **示例：**
 
 ```ts
+import { browser } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 // 此处参数appId的赋值应替换为开发者自己指定的浏览器的应用ID
@@ -156,12 +160,15 @@ setManagedBrowserPolicy(admin: Want, bundleName: string, policyName: string, pol
 **示例：**
 
 ```ts
+import { browser } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.testbrowser';
 let policyName: string = 'InsecurePrivateNetworkRequestsAllowed';
 let policyValue: string = '{"level":"mandatory","scope":"machine","source":"platform","value":true}';
@@ -208,13 +215,16 @@ getManagedBrowserPolicy(admin: Want, bundleName: string): ArrayBuffer
 **示例：**
 
 ```ts
+import { browser } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { util } from '@kit.ArkTS';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.testbrowser';
 
 try {
@@ -246,6 +256,7 @@ getSelfManagedBrowserPolicyVersion(): string
 **示例：**
 
 ```ts
+import { browser } from '@kit.MDMKit';
 
 try {
   let version: string = browser.getSelfManagedBrowserPolicyVersion();
@@ -273,6 +284,7 @@ getSelfManagedBrowserPolicy(): ArrayBuffer
 **示例：**
 
 ```ts
+import { browser } from '@kit.MDMKit';
 import { util } from '@kit.ArkTS';
 
 try {
