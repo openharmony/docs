@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```ts
-import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit'
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
 ```
 
 ## EnterpriseAdminExtensionAbility.onAdminEnabled
@@ -30,6 +30,8 @@ onAdminEnabled(): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAdminEnabled() {
   }
@@ -49,6 +51,8 @@ onAdminDisabled(): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAdminDisabled() {
   }
@@ -74,6 +78,8 @@ onBundleAdded(bundleName: string): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onBundleAdded(bundleName: string) {
     console.info(`Succeeded in calling onBundleAdded callback, added bundle name : ${bundleName}`);
@@ -101,6 +107,8 @@ onBundleAdded(bundleName: string, accountId: number): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onBundleAdded(bundleName: string, accountId: number) {
     console.info(`Succeeded in calling onBundleAdded callback, added bundle name : ${bundleName}, accountId: ${accountId}`);
@@ -127,6 +135,8 @@ onBundleRemoved(bundleName: string): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onBundleRemoved(bundleName: string) {
     console.info(`Succeeded in calling onBundleRemoved callback, removed bundle name : ${bundleName}`);
@@ -154,6 +164,8 @@ onBundleRemoved(bundleName: string, accountId: number): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onBundleRemoved(bundleName: string, accountId: number) {
     console.info(`Succeeded in calling onBundleRemoved callback, removed bundle name : ${bundleName}, accountId: ${accountId}`);
@@ -180,6 +192,8 @@ onAppStart(bundleName: string): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAppStart(bundleName: string) {
     console.info(`Succeeded in calling onAppStart callback, started bundle name : ${bundleName}`);
@@ -206,6 +220,8 @@ onAppStop(bundleName: string): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAppStop(bundleName: string) {
     console.info(`Succeeded in calling onAppStop callback, stopped bundle name : ${bundleName}`);
@@ -231,7 +247,9 @@ onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
 import { systemManager } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo) {
     console.info(`Succeeded in calling onSystemUpdate callback, version name  : ${systemUpdateInfo.versionName}`);
@@ -252,6 +270,8 @@ EnterpriseAdminExtensionAbility启动事件回调。
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onStart() {
     console.info(`Succeeded in calling onStart callback.`);
@@ -276,6 +296,8 @@ onAccountAdded(accountId: number): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAccountAdded(accountId: number) {
     console.info(`Succeeded in calling onAccountAdded callback, added accountId: ${accountId}`);
@@ -300,6 +322,8 @@ onAccountSwitched(accountId: number): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAccountSwitched(accountId: number) {
     console.info(`Succeeded in calling onAccountSwitched callback, switched accountId: ${accountId}`);
@@ -324,6 +348,8 @@ onAccountRemoved(accountId: number): void
 **示例：**
 
 ```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAccountRemoved(accountId: number) {
     console.info(`Succeeded in calling onAccountRemoved callback, removed accountId: ${accountId}`);

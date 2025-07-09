@@ -56,7 +56,9 @@ isWifiActiveSync(admin: Want): boolean
 **示例：**
 
 ```ts
+import { wifiManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -103,14 +105,17 @@ setWifiProfileSync(admin: Want, profile: WifiProfile): void
 **示例：**
 
 ```ts
+import { wifiManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  //需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 let profile: wifiManager.WifiProfile = {
+  //需根据实际情况进行替换
   'ssid': 'name',
   'preSharedKey': 'passwd',
   'securityType': wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
@@ -128,12 +133,12 @@ try {
 
 addAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 
-添加Wi-Fi白名单。添加白名单后当前设备仅允许连接该名单下的Wi-Fi。
+添加Wi-Fi允许名单。添加允许名单后当前设备仅允许连接该名单下的Wi-Fi。
 
 以下情况下，调用本接口会报策略冲突：
 
 1. 已经通过[setDiallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了设备Wi-Fi能力。通过[setDiallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)解除Wi-Fi禁用后，可解除冲突。
-2. 已经通过[addDisallowedWifiList](#wifimanageradddisallowedwifilist19)接口添加了Wi-Fi黑名单。通过[removeDisallowedWifiList](#wifimanagerremovedisallowedwifilist19)移除Wi-Fi黑名单后，可解除冲突。
+2. 已经通过[addDisallowedWifiList](#wifimanageradddisallowedwifilist19)接口添加了Wi-Fi禁用名单。通过[removeDisallowedWifiList](#wifimanagerremovedisallowedwifilist19)移除Wi-Fi禁用名单后，可解除冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -146,7 +151,7 @@ addAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 | 参数名       | 类型                                                       | 必填 | 说明                                                         |
 | ------------ | -------------------------------------------------------    | ---- | ------------------------------------------------------------ |
 | admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)    | 是   | 企业设备管理扩展组件。                                       |
-| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                   | 是   | Wi-Fi白名单数组。数组总长度不能超过200。例如，若当前白名单数组中已有100个Wi-Fi，则最多支持通过该接口再添加100个。 |
+| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                   | 是   | Wi-Fi允许名单数组。数组总长度不能超过200。例如，若当前允许名单数组中已有100个Wi-Fi，则最多支持通过该接口再添加100个。 |
 
 **错误码**：
 
@@ -162,6 +167,7 @@ addAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 **示例：**
 
 ```ts
+import { wifiManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -186,7 +192,7 @@ try {
 
 removeAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 
-移除Wi-Fi白名单。若移除白名单中的部分Wi-Fi，则当前设备仅允许连接剩下未移除的Wi-Fi。若移除白名单中的所有Wi-Fi，则当前设备可以连接任意Wi-Fi。
+移除Wi-Fi允许名单。若移除允许名单中的部分Wi-Fi，则当前设备仅允许连接剩下未移除的Wi-Fi。若移除允许名单中的所有Wi-Fi，则当前设备可以连接任意Wi-Fi。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -199,7 +205,7 @@ removeAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 | 参数名       | 类型                                                    | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | 待移除的Wi-Fi白名单数组。数组总长度不能超过200。                                            |
+| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | 待移除的Wi-Fi允许名单数组。数组总长度不能超过200。                                            |
 
 **错误码**：
 
@@ -214,6 +220,7 @@ removeAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 **示例：**
 
 ```ts
+import { wifiManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -238,7 +245,7 @@ try {
 
 getAllowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
 
-获取Wi-Fi白名单。
+获取Wi-Fi允许名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -256,7 +263,7 @@ getAllowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
 
 | 类型                               | 说明                      |
 | ---------------------------------- | ------------------------- |
-| Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt; | Wi-Fi白名单数组。 |
+| Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt; | Wi-Fi允许名单数组。 |
 
 **错误码**：
 
@@ -271,6 +278,7 @@ getAllowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
 **示例：**
 
 ```ts
+import { wifiManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -290,12 +298,12 @@ try {
 
 addDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 
-添加Wi-Fi黑名单。添加黑名单后当前设备不允许连接该名单下的Wi-Fi。
+添加Wi-Fi禁用名单。添加禁用名单后当前设备不允许连接该名单下的Wi-Fi。
 
 以下情况下，调用本接口会报策略冲突：
 
 1. 已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了设备Wi-Fi能力。通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)解除Wi-Fi禁用后，可解除冲突。
-2. 已经通过[addAllowedWifiList](#wifimanageraddallowedwifilist19)接口添加了Wi-Fi白名单。通过[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)移除Wi-Fi白名单后，可解除冲突。
+2. 已经通过[addAllowedWifiList](#wifimanageraddallowedwifilist19)接口添加了Wi-Fi允许名单。通过[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)移除Wi-Fi允许名单后，可解除冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -308,7 +316,7 @@ addDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 | 参数名       | 类型                                                    | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | Wi-Fi黑名单数组。数组总长度不能超过200。例如，若当前黑名单数组中已有100个Wi-Fi，则最多支持通过该接口再添加100个。 |
+| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | Wi-Fi禁用名单数组。数组总长度不能超过200。例如，若当前禁用名单数组中已有100个Wi-Fi，则最多支持通过该接口再添加100个。 |
 
 **错误码**：
 
@@ -324,6 +332,7 @@ addDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 **示例：**
 
 ```ts
+import { wifiManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -348,7 +357,7 @@ try {
 
 removeDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 
-移除Wi-Fi黑名单。若移除黑名单中的部分Wi-Fi，则当前设备不允许连接黑名单内剩余的Wi-Fi。若移除黑名单中的所有Wi-Fi，则当前设备可以连接任意的Wi-Fi。
+移除Wi-Fi禁用名单。若移除禁用名单中的部分Wi-Fi，则当前设备不允许连接禁用名单内剩余的Wi-Fi。若移除禁用名单中的所有Wi-Fi，则当前设备可以连接任意的Wi-Fi。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -361,7 +370,7 @@ removeDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 | 参数名       | 类型                                                    | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | 待移除的Wi-Fi黑名单数组。数组总长度不能超过200。                      |
+| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | 待移除的Wi-Fi禁用名单数组。数组总长度不能超过200。                      |
 
 **错误码**：
 
@@ -376,6 +385,7 @@ removeDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 **示例：**
 
 ```ts
+import { wifiManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -400,7 +410,7 @@ try {
 
 getDisallowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
 
-获取Wi-Fi黑名单。
+获取Wi-Fi禁用名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -418,7 +428,7 @@ getDisallowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
 
 | 类型                               | 说明                      |
 | ---------------------------------- | ------------------------- |
-| Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt; | Wi-Fi黑名单数组。 |
+| Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt; | Wi-Fi禁用名单数组。 |
 
 **错误码**：
 
@@ -433,6 +443,7 @@ getDisallowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
 **示例：**
 
 ```ts
+import { wifiManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -642,8 +653,9 @@ import { Want } from '@kit.AbilityKit';
 import { wifiManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -694,8 +706,9 @@ import { Want } from '@kit.AbilityKit';
 import { wifiManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {

@@ -49,11 +49,13 @@ setLocationPolicy(admin: Want, policy: LocationPolicy): void
 **示例：**
 
 ```ts
+import { locationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -100,11 +102,13 @@ getLocationPolicy(admin: Want): LocationPolicy
 **示例：**
 
 ```ts
+import { locationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
