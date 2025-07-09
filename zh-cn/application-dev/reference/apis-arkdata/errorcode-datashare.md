@@ -107,3 +107,40 @@ DataShareHelper实例被关闭后，继续使用该实例会产生此错误码�
 **处理步骤**
 
 重新创建DataShareHelper实例，再进行使用。
+
+## 15700014 配置共享参数错误
+
+**错误信息**
+
+The parameter format is incorrect or the value range is invalid.
+
+**错误描述**
+
+1. 参数格式错误。
+
+2. 参数值超出取值范围。
+
+**可能原因**
+
+1. URI长度超过256字节。
+
+2. proxyData的value长度超过4096字节。
+
+3. 接口传入的URI数组长度超过32。
+
+4. 接口传入的proxyData数组长度超过32。
+
+5. URI格式校验失败。
+
+**处理步骤**
+
+1. 检查接口传入的URI数组或者proxyData数组中是否有URI的长度超过256字节。
+
+2. 检查接口传入的proxyData数组中是否有proxyData的value长度超过4096字节。
+
+3. 检查接口传入的URI数组的长度是否超过32。
+
+4. 检查接口传入的proxyData数组的长度是否超过32。
+
+5. 检查接口传入的URI数组或者proxyData数组中的URI是否满足格式校验：<br/>
+    URI的固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写。

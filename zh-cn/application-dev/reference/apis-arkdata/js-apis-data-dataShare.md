@@ -74,7 +74,7 @@ export default class EntryAbility extends UIAbility {
 
 | 名称       | 类型                                                         | 只读 | 可选 | 说明           |
 | ---------- | ----------------------------------------------------------- | ----| ---- | -------------- |
-| uri        | string                                                      | 否 | 否  | 共享配置的全局唯一标识。固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复，字符串长度不超过256个字节。 |
+| uri        | string                                                      | 否 | 否  | 共享配置的全局唯一标识。固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复。字符串长度不超过256个字节。 |
 | value      | [ValueType](js-apis-data-valuesBucket.md#valuetype)         | 否 | 是   | 共享配置的值。不填则为空字符串。字符串长度不超过4096个字节。当首次发布共享配置时，如果未填写，将默认设置为空字符串。在更新共享配置时，如果未填写，共享配置的值将不会被更新。     |
 | allowList  | string\[]                                         | 否 | 是   | 允许订阅和读取共享配置的应用程序列表。不填则为空的字符串数组。数组最大长度为256，超过256的部分不生效。数组中每个元素为应用的[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，单个appIdentifier最大长度128字节，超过128字节的appIdentifier不会生效。当首次发布共享配置时，如果未填写，将默认为空的允许列表。在更新共享配置时，如果未填写，共享配置的允许列表将不会被更新。一个空的允许列表表示只有发布者能够访问该共享配置。 |
 
@@ -86,9 +86,9 @@ export default class EntryAbility extends UIAbility {
 
 | 名称       | 类型                                                         | 只读 | 可选 | 说明           |
 | ---------- | ----------------------------------------------------------- | ----| ---- | -------------- |
-| type       | [ChangeType](#changetype20)                                | 是 | 否    | 通知变更的类型。 |
-| uri       | string                                                        | 是 | 否    | 通知变更指定URI。|
-| value     | [ValueType](js-apis-data-valuesBucket.md#valuetype)             | 是 | 否     | 更新的数据。     |
+| type       | [ChangeType](#changetype20)                                | 否 | 否    | 通知变更的类型。 |
+| uri       | string                                                        | 否 | 否    | 通知变更指定URI。|
+| value     | [ValueType](js-apis-data-valuesBucket.md#valuetype)             | 否 | 否     | 更新的数据。     |
 
 ## DataProxyErrorCode<sup>20+</sup>
 
@@ -111,8 +111,8 @@ export default class EntryAbility extends UIAbility {
 
 | 名称       | 类型                                                         | 只读 | 可选 | 说明           |
 | ---------- | ----------------------------------------------------------- | ---- | ---- | -------------- |
-| uri        | string                                                      | 是 | 否   | 被操作的URI。固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复，字符串长度不超过256个字节。 |
-| result  |  [DataProxyErrorCode](#dataproxyerrorcode20)                   | 是 | 否   | 操作结果的错误码。|
+| uri        | string                                                      | 否 | 否   | 被操作的URI。固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复，字符串长度不超过256个字节。 |
+| result  |  [DataProxyErrorCode](#dataproxyerrorcode20)                   | 否 | 否   | 操作结果的错误码。|
 
 ## DataProxyGetResult<sup>20+</sup>
 
@@ -122,10 +122,10 @@ export default class EntryAbility extends UIAbility {
 
 | 名称       | 类型                                                         | 只读 | 可选 | 说明           |
 | ---------- | ----------------------------------------------------------- | ---- | ---- | -------------- |
-| uri        | string                                                      | 是 | 否 | 被操作的URI。固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复，字符串长度不超过256个字节。 |
-| result  |  [DataProxyErrorCode](#dataproxyerrorcode20)                   | 是 | 否 | 操作结果的错误码。|
-| value  |  [ValueType](js-apis-data-valuesBucket.md#valuetype) \| undefined  | 是 | 否 | 如果获取操作成功，则为共享配置的值；如果获取操作失败，则未定义。|
-| allowList  |  string\[] \| undefined                             | 是 | 否   | 如果获取操作成功，则为共享配置的允许列表；如果获取操作失败，则未定义。只有发布者才能获取允许列表，其他应用只能获取值。|
+| uri        | string                                                      | 否 | 否 | 被操作的URI。固定格式为`"datashareproxy://{bundleName}/{path}"`，其中bundleName为配置发布方应用的bundleName，path可随意填写，但同一应用内不允许重复，字符串长度不超过256个字节。 |
+| result  |  [DataProxyErrorCode](#dataproxyerrorcode20)                   | 否 | 否 | 操作结果的错误码。|
+| value  |  [ValueType](js-apis-data-valuesBucket.md#valuetype) \| undefined  | 否 | 否 | 如果获取操作成功，则为共享配置的值；如果获取操作失败，则未定义。|
+| allowList  |  string\[] \| undefined                             | 否 | 否   | 如果获取操作成功，则为共享配置的允许列表；如果获取操作失败，则未定义。只有发布者才能获取允许列表，其他应用只能获取值。|
 
 ## DataProxyType<sup>20+</sup>
 
@@ -184,6 +184,7 @@ on(event: 'dataChange', uris: string[], config: DataProxyConfig, callback: Async
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
 | 15700000 | Inner error. Possible causes: The service is not ready or is being restarted abnormally.|
+| 15700014 | The parameter format is incorrect or the value range is invalid.|
 
 **示例：**
 
@@ -238,6 +239,7 @@ off(event: 'dataChange', uris: string[], config: DataProxyConfig, callback?: Asy
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
 | 15700000 | Inner error. Possible causes: The service is not ready or is being restarted abnormally.|
+| 15700014 | The parameter format is incorrect or the value range is invalid.|
 
 **示例：**
 
@@ -266,7 +268,7 @@ results.forEach((result) => {
 
 publish(data: ProxyData[], config: DataProxyConfig): Promise&lt;DataProxyResult[]&gt;
 
-发布共享配置项。发布后，发布者和允许列表中指定的应用可以访问该共享配置项。如果要发布的URI已经存在，则更新对应的共享配置项。只有发布者才允许更新共享配置项，每个应用支持最多32个共享配置。
+发布共享配置项。发布后，发布者和允许列表中指定的应用可以访问该共享配置项。如果要发布的URI已经存在，则更新对应的共享配置项。如果发布的配置项中存在任一URI的长度超出上限或者格式校验失败，则当前发布操作失败。只有发布者才允许更新共享配置项，每个应用支持最多32个共享配置。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -290,6 +292,7 @@ publish(data: ProxyData[], config: DataProxyConfig): Promise&lt;DataProxyResult[
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
 | 15700000 | Inner error. Possible causes: The service is not ready or is being restarted abnormally.|
+| 15700014 | The parameter format is incorrect or the value range is invalid.|
 
 **示例：**
 
@@ -343,6 +346,7 @@ delete(uris: string[], config: DataProxyConfig): Promise&lt;DataProxyResult[]&gt
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
 | 15700000 | Inner error. Possible causes: The service is not ready or is being restarted abnormally.|
+| 15700014 | The parameter format is incorrect or the value range is invalid.|
 
 **示例：**
 
@@ -389,6 +393,7 @@ get(uris: string[], config: DataProxyConfig): Promise&lt;DataProxyGetResult[]&gt
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
 | 15700000 | Inner error. Possible causes: The service is not ready or is being restarted abnormally.|
+| 15700014 | The parameter format is incorrect or the value range is invalid.|
 
 **示例：**
 
