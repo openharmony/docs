@@ -3807,7 +3807,7 @@ Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, d
 
 **描述**
 
-获取指针位置。
+查询鼠标光标位置。
 
 **起始版本：** 20
 
@@ -3815,9 +3815,9 @@ Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, d
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t *displayId | 鼠标在屏幕位置的displayId。 |
-| double *displayX | 鼠标在屏幕位置的displayX。 |
-| double *displayY | 鼠标在屏幕位置的displayY。 |
+| int32_t *displayId | 鼠标所在当前屏幕的屏幕Id。 |
+| double *displayX | 鼠标所在当前屏幕的X坐标。 |
+| double *displayY | 鼠标所在当前屏幕的Y坐标。 |
 
 **返回：**
 
