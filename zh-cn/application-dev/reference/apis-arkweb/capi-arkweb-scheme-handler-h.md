@@ -230,7 +230,7 @@ typedef void (*ArkWeb_HttpBodyStreamReadCallback)(const ArkWeb_HttpBodyStream* h
 
 **描述：**
 
-当OH_ArkWebHttpBodyStream_AsyncRead读取操作完成时的回调函数。
+当OH_ArkWebHttpBodyStream_Read读取操作完成时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -700,7 +700,7 @@ void OH_ArkWebHttpBodyStream_Read(const ArkWeb_HttpBodyStream* httpBodyStream, u
 
 **描述：**
 
-将请求的上传数据读取到buffer。<br>buffer的大小必须大于bufLen。我们将从工作线程读取数据到buffer，因此在回调函数返回之前，不应在其他线程中使用buffer，以避免并发问题。
+将请求的上传数据读取到buffer。buffer的大小必须大于bufLen。我们将从工作线程读取数据到buffer，因此在回调函数返回之前，不应在其他线程中使用buffer，以避免并发问题。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -723,7 +723,7 @@ void OH_ArkWebHttpBodyStream_AsyncRead(const ArkWeb_HttpBodyStream* httpBodyStre
 
 **描述：**
 
-将请求的上传数据读取到buffer。buffer的大小必须大于bufLen。我们将从工作线程读取数据到buffer，因此在回调函数返回之前，不应在其他线程中使用buffer，以避免并发问题。
+将请求的上传数据读取到buffer。buffer的大小必须大于bufLen。buffer的大小必须大于bufLen。我们将从工作线程读取数据到buffer，因此在回调函数返回之前，不应在其他线程中使用buffer，以避免并发问题。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
