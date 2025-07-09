@@ -4896,7 +4896,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-notificationManager.isSilentReminderEnabled(bundle).then((data: SwitchState) => {
+notificationManager.isSilentReminderEnabled(bundle).then((data: notificationManager.SwitchState) => {
     hilog.info(0x0000, 'testTag', '%{public}s', `isSilentReminderEnabled success, switchState:  ${JSON.stringify(data)}.`);
 }).catch((err: BusinessError) => {
     hilog.error(0x0000, 'testTag', '%{public}s', `isSilentReminderEnabled failed, code is ${err.code}, message is ${err.message}`);
