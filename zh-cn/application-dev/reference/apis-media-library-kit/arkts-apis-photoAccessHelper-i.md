@@ -185,7 +185,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 | ---- | ------- | ---- |  ---- | ----- |
 | albumBeforeChange | [AlbumChangeInfo](#albumchangeinfo20) \| null | 否 | 否 | 变更前的相册数据。如果是新增相册，albumBeforeChange为null。 |
 | albumAfterChange  | [AlbumChangeInfo](#albumchangeinfo20) \| null | 否 | 否  | 变更后的相册数据。如果是删除相册，albumAfterChange为null。 |
-| isDeleted         | boolean  | 否 | 否 | 相册是否被删除。true表示相册被删除，false表示相册未被删除。  |
 
 ## AlbumChangeInfos<sup>20+</sup>
 
