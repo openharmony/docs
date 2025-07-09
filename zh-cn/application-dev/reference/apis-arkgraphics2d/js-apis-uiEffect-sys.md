@@ -1001,7 +1001,7 @@ static createWaveGradientMask(center: common2D.Point, width: number, propagation
 | width | number  | 是 | 设置单波圆环的宽度，宽度为0则没有遮罩效果。<br/>取值范围[0, 5]，可取浮点数，超出边界会在实现时自动截断。 |
 | propagationRadius | number  | 是 | 设置单波圆环的扩散外径。<br/>取值范围[0, 10]，可取浮点数，超出边界会在实现时自动截断。 |
 | blurRadius | number  | 是 | 设置单波圆环的模糊外径，模糊半径为0则是实边圆环，否则是虚边圆环。<br/>取值范围[0, 5]，可取浮点数，超出边界会在实现时自动截断。 |
-| turbulenceStrength | number  | 否 | 设置单波圆环的湍流强度，强度为0则是规则圆环，否则圆环边缘会湍流扭曲。<br/>取值范围[-1, 1]，可取浮点数，超出边界会在实现时自动截断。 |
+| turbulenceStrength | number  | 否 | 设置单波圆环的湍流强度，默认值为0，强度为0则是规则圆环，否则圆环边缘会湍流扭曲。<br/>取值范围[-1, 1]，可取浮点数，超出边界会在实现时自动截断。 |
 
 **返回值：**
 
@@ -1025,7 +1025,7 @@ import uiEffect from '@ohos.graphics.uiEffect'
 let mask = uiEffect.Mask.createWaveGradientMask({x: 0.5, y: 0.5}, 0.01, 0.5, 0.1, 0.1);
 @Entry
 @Component
-struct RadialGradientMaskExample {
+struct WaveGradientMaskExample {
   build() {
     Stack() {
       Image('test.jpg')
