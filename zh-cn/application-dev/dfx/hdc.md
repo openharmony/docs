@@ -1225,11 +1225,12 @@ hdc server和hdc daemon启动后，默认会互相发送心跳数据包，收到
 | MacOS | $TMPDIR/hdc_cmd/ | - |
 
 ### OHOS_HDC_ENCRYPT_CHANNEL
-默认：hdc TCP连接关闭加密通道。
 
-用于设置hdc server和hdc daemon之间的TCP连接方式是否启用加密通道。
+默认：通道加密功能关闭。
 
-设置为"1"表示开启TCP连接的加密通道；不设置或者设置为其它数字表示启用非加密通道。
+用于设置hdc server和hdc daemon之间的TCP连接通道加密功能开关。
+
+设置为"1"表示开启TCP连接的通道加密功能；不设置或者设置为其它数字表示关闭通道加密功能。
 
 从API version20开始，支持该参数。
 
