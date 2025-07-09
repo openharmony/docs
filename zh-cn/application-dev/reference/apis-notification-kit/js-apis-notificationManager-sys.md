@@ -4807,23 +4807,22 @@ setSilentReminderEnabled(bundle: BundleOption, enabled: boolean): Promise\<void\
 | 参数名   | 类型                                                         | 必填 | 说明                     |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------ |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
-| enabled | boolean | 是   | 是否开启通知静默提醒开关。取值为true表示打开，取值为false表示关闭。 |
+| enabled | boolean | 是   | 表示是否开启通知静默提醒开关。true表示打开，false表示关闭。 |
 
 **返回值：**
 
 | 类型            | 说明                     | 
 |-----------------|-------------------------|
-| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象，无返回结果。 | 
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission verification failed. A non-system application calls a system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -4869,17 +4868,16 @@ isSilentReminderEnabled(bundle: BundleOption): Promise\<SwitchState\>
 
 | 类型            | 说明                     | 
 |-----------------|-------------------------|
-| Promise\<[SwitchState](#switchstate)\> | 以Promise形式返回指定应用的通知静默提醒开关状态。 | 
+| Promise\<[SwitchState](#switchstate)\> | Promise对象，返回指定应用的通知静默提醒开关状态。 | 
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission verification failed. A non-system application calls a system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -5067,7 +5065,7 @@ type NotificationLiveViewContent = _NotificationLiveViewContent
 | --- | --- |
 | [_NotificationLiveViewContent](js-apis-inner-notification-notificationContent-sys.md#notificationliveviewcontent11) | 描述普通实况通知。 |
 
-## SwitchState
+## SwitchState<sup>20+</sup>
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -5076,6 +5074,6 @@ type NotificationLiveViewContent = _NotificationLiveViewContent
 | 名称                 | 值  | 说明                               |
 | --------------------| --- | --------------------------------- |
 | USER_MODIFIED_OFF   | 0   | 表示用户明确设置的关闭状态。            |
-| USER_MODIFIED_ON    | 1   | 表示用户明确设置的关闭状态。                 |
+| USER_MODIFIED_ON    | 1   | 表示用户明确设置的开启状态。                 |
 | SYSTEM_DEFAULT_OFF  | 2   | 表示在任何用户设置前的初始关闭状态。            |
 | SYSTEM_DEFAULT_ON   | 3   | 表示在任何用户设置前的初始开启状态。                 |
