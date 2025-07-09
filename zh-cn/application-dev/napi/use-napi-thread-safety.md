@@ -149,7 +149,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
 
    ``` ts
    // 接口对应的.d.ts描述
-    export const startThread: (callback: () => Promise<string>) => void;
+   export const startThread: (callback: () => Promise<string>) => void;
 
    // ArkTS侧调用接口
    import nativeModule from 'libentry.so'; // 通过import的方式，引入Native能力
@@ -157,9 +157,9 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
    let callback = (): Promise<string> => {
      return new Promise((resolve) => {
        setTimeout(() => {
-           resolve("string from promise");
-         }, 5000);
-       });
-    }
-    nativeModule.startThread(callback);
+         resolve("string from promise");
+       }, 5000);
+     });
+   }
+   nativeModule.startThread(callback);
    ```

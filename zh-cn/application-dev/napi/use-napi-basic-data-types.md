@@ -71,7 +71,7 @@ export const getValueUint32: <T>(data: T) => number | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let value = testNapi.getValueUint32<number>(111111111111);
@@ -122,7 +122,7 @@ export const getValueInt32: (value: number | string) => number | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 // 传入非数字“ss”时函数返回undefined
@@ -178,7 +178,7 @@ export const getValueInt64: (value: number | string) => number | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 // 输入不超过int64表示范围的数字，会返回该数字
@@ -229,7 +229,7 @@ export const getDouble: (value: number | string) => number | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 // 输入数字，返回该数字
 hilog.info(0x0000, 'Node-API', 'get_value_double_number %{public}d', testNapi.getDouble(80.885));
@@ -273,7 +273,7 @@ export const createInt32: () => number;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag','Test Node-API napi_create_int32：' + testNapi.createInt32());
@@ -316,7 +316,7 @@ export const createUInt32: () => number;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag','Test Node-API napi_create_uint32: ' + testNapi.createUInt32());
@@ -357,7 +357,7 @@ export const createInt64: () => number;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag','Test Node-API napi_create_int64: ' + testNapi.createInt64());
@@ -396,7 +396,7 @@ export const createDouble: () => number;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag','Test Node-API napi_create_double: ' + testNapi.createDouble());
