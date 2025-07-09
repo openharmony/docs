@@ -127,7 +127,11 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
 
 ### \@Entry
 
-\@Entry装饰的自定义组件将作为UI页面的入口。在单个UI页面中，最多可以使用\@Entry装饰一个自定义组件。\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)的参数。
+\@Entry装饰的自定义组件将作为UI页面的入口。在单个UI页面中，最多可以使用\@Entry装饰一个自定义组件。
+
+**ArkTS1.1**
+
+\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)的参数。
 
   > **说明：**
   >
@@ -145,6 +149,7 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
   ```
 
 #### EntryOptions<sup>10+</sup>
+**该接口仅适用于ArkTS1.1**
 
   命名路由跳转选项。
 
@@ -152,7 +157,7 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
   | ------ | ------ | ---- | ------------------------------------------------------------ |
   | routeName | string | 否 | 表示作为命名路由页面的名字。 |
   | storage | [LocalStorage](arkts-localstorage.md) | 否 | 页面级的UI状态存储。 |
-  | useSharedStorage<sup>12+</sup> | boolean | 否 | 是否使用LocalStorage.getShared()接口返回的[LocalStorage](arkts-localstorage.md)实例对象，默认值false。 |
+  | useSharedStorage<sup>12+</sup> | boolean | 否 | 是否使用LocalStorage.getShared()接口返回的[LocalStorage](arkts-localstorage.md)实例对象，默认值false。<br>true：使用共享的[LocalStorage](arkts-localstorage.md)实例对象。<br>false：不使用共享的[LocalStorage](arkts-localstorage.md)实例对象。 |
 
   > **说明：**
   >
@@ -165,6 +170,31 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
   }
   ```
 
+
+**ArkTS1.2**
+
+\@Entry搭配自定义组件\@Component时，可以接受三个参数：
+
+| 名称   | 类型   | 必填 | 说明                                                           |
+| ------ | ------ | ---- | ------------------------------------------------------------- |
+| routeName | string | 否 | 表示作为命名路由页面的名字。 |
+| storage | string | 否 | 返回[LocalStorage](arkts-localstorage.md)实例对象的函数名。 |
+| useSharedStorage | boolean | 否 | 是否使用UIContext.getSharedLocalStorage()接口返回的共享的[LocalStorage](arkts-localstorage.md)实例对象，默认值false。<br>true：使用共享的[LocalStorage](arkts-localstorage.md)实例对象。<br>false：不使用共享的[LocalStorage](arkts-localstorage.md)实例对象。 |
+
+
+  ```ts
+  import { Component, Entry } from '@ohos.arkui.component';
+  import { LocalStorage } from '@ohos.arkui.stateManagement';
+
+  const myStorage: () => LocalStorage = () => new LocalStorage();
+
+  @Entry({routeName: 'myPage', storage: 'myStorage'})
+  @Component
+  struct MyComponent {
+    build() {
+    }
+  }
+  ```
 
 ### \@Reusable
 
