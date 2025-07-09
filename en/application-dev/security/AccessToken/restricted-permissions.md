@@ -652,3 +652,17 @@ With this permission, the application can obtain the device name on the About sc
 **Supported devices**:  Phone | PC/2in1 | Tablet
 
 **Valid since**: 20
+
+<!--Del-->
+## ohos.permission.atomicService.MANAGE_STORAGE
+
+Allows an atomic service to request differentiated storage space.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
+<!--DelEnd-->
