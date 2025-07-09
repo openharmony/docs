@@ -1,5 +1,4 @@
 # 视频编码同步模式
-<!--AVCodec Kit--><!--音视频编解码服务-->
 
 开发者可以调用本模块的Native API接口，完成同步模式的视频编码。
 
@@ -81,7 +80,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 ### Surface模式
 
-参考以下示例代码，开发者可以完成Surface模式下视频编码的全流程，实现同步模式的数据轮转。此处以surface数据输入，编码成H.264格式为例。
+参考以下示例代码，开发者可以完成Surface模式下视频编码的全流程，实现同步模式的数据轮转。此处以输入surface数据，编码成H.264格式为例。
 
 
 1. 创建编码器实例。
@@ -90,7 +89,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     - videoEnc：视频编码器实例的指针。
     - capability：编码器能力查询实例的指针。
-    - OH_AVCODEC_MIMETYPE_VIDEO_AVC：AVC格式视频编解码器。
+    - [OH_AVCODEC_MIMETYPE_VIDEO_AVC](../../reference/apis-avcodec-kit/_codec_base.md#oh_avcodec_mimetype_video_avc)：AVC格式视频编解码器。
 
     ```c++
     // 创建硬件编码器实例。
@@ -129,9 +128,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     > **注意：**
     >
-    > 1. 使能视频编码同步模式，必须要配置OH_MD_KEY_ENABLE_SYNC_MODE为1。
-    > 2. 同步模式在调用OH_VideoEncoder_Configure接口前不能调用OH_VideoEncoder_RegisterCallback或OH_VideoEncoder_RegisterParameterCallback接口，否则为异步模式。
-    > 3. 不支持Surface模式的随帧通路的同步模式。
+    > - 使能视频编码同步模式，必须要配置OH_MD_KEY_ENABLE_SYNC_MODE为1。
+    > - 同步模式在调用OH_VideoEncoder_Configure接口前不能调用OH_VideoEncoder_RegisterCallback或OH_VideoEncoder_RegisterParameterCallback接口，否则为异步模式。
+    > - 不支持Surface模式的随帧通路的同步模式。
     >
 
 3. 设置surface。
@@ -207,7 +206,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
                    return false;
                 }
                 outputFile->write(reinterpret_cast<char *>(addr), info.size);
-                // 释放已完成写入的数据，index为对应输出队列下标
+                // 释放已完成写入的数据，index为对应输出队列下标。
                 ret = OH_VideoEncoder_FreeOutputBuffer(videoEnc, index);
                 if (ret != AV_ERR_OK) {
                     // 异常处理。
@@ -346,7 +345,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 ### Buffer模式
 
-参考以下示例代码，开发者可以完成Buffer模式下视频编码的全流程，实现同步模式的数据轮转。此处以YUV文件输入，编码成H.264格式为例。
+参考以下示例代码，开发者可以完成Buffer模式下视频编码的全流程，实现同步模式的数据轮转。此处以输入YUV文件，编码成H.264格式为例。
 
 1. 创建编码器实例。
 
@@ -384,8 +383,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     > **注意：**
     >
-    > 1. 使能视频编码同步模式，必须要配置OH_MD_KEY_ENABLE_SYNC_MODE为1。
-    > 2. 同步模式在调用OH_VideoEncoder_Configure接口前不能调用OH_VideoEncoder_RegisterCallback或OH_VideoEncoder_RegisterParameterCallback接口，否则为异步模式。
+    > - 使能视频编码同步模式，必须要配置OH_MD_KEY_ENABLE_SYNC_MODE为1。
+    > - 同步模式在调用OH_VideoEncoder_Configure接口前不能调用OH_VideoEncoder_RegisterCallback或OH_VideoEncoder_RegisterParameterCallback接口，否则为异步模式。
     >
 
 3. 调用OH_VideoEncoder_Prepare()编码器就绪。

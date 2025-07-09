@@ -195,7 +195,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 ### Surface模式
 
-参考以下示例代码，开发者可以完成Surface模式下视频编码的全流程，实现异步模式的数据轮转。此处以surface数据输入，编码成H.264格式为例。
+参考以下示例代码，开发者可以完成Surface模式下视频编码的全流程，实现异步模式的数据轮转。此处以输入surface数据，编码成H.264格式为例。
 
 1. 添加头文件。
 
@@ -625,7 +625,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 ### Buffer模式
 
-参考以下示例代码，开发者可以完成Buffer模式下视频编码的全流程，实现异步模式的数据轮转。此处以YUV文件输入，编码成H.264格式为例。
+参考以下示例代码，开发者可以完成Buffer模式下视频编码的全流程，实现异步模式的数据轮转。此处以输入YUV文件，编码成H.264格式为例。
 
 1. 添加头文件。
 
