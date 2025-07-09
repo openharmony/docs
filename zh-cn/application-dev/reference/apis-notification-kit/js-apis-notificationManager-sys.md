@@ -4868,7 +4868,7 @@ isSilentReminderEnabled(bundle: BundleOption): Promise\<SwitchState\>
 
 | 类型            | 说明                     | 
 |-----------------|-------------------------|
-| Promise\<[SwitchState](#switchstate)\> | Promise对象，返回指定应用的通知静默提醒开关状态。 | 
+| Promise\<[SwitchState](#switchstate20)\> | Promise对象，返回指定应用的通知静默提醒开关状态。 | 
 
 **错误码**：
 
