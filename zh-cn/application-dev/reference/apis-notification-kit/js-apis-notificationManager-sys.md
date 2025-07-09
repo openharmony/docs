@@ -4821,8 +4821,8 @@ setSilentReminderEnabled(bundle: BundleOption, enabled: boolean): Promise\<void\
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 202      | Permission verification failed. A non-system application calls a system API. |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -4876,8 +4876,8 @@ isSilentReminderEnabled(bundle: BundleOption): Promise\<SwitchState\>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 202      | Permission verification failed. A non-system application calls a system API. |
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
