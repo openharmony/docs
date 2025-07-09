@@ -55,10 +55,10 @@ DataPanel(options: DataPanelOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 说明 |
-| -------| ------------ |
-| Line   | 线型数据面板。 |
-| Circle | 环形数据面板。 |
+| 名称 | 值 | 说明 |
+| -------| - | ------------ |
+| Line   | 0 | 线型数据面板。 |
+| Circle | 1 | 环形数据面板。 |
 
 
 ## 属性
