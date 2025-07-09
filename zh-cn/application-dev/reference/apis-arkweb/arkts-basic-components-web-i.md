@@ -2,7 +2,7 @@
 
 > **说明：**
 >
-> - 本模块接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
@@ -148,6 +148,7 @@ Web同层渲染的配置。
 | url | string | 是 | 当前显示弹窗所在网页的URL。                       |
 | message | string | 是 | 弹窗中显示的信息。                       |
 | result | [JsResult](./arkts-basic-components-web-JsResult.md) | 是 | 通知Web组件用户操作行为。                       |
+| isReload<sup>20+</sup> | boolean | 否 | 页面是否刷新。<br>当页面因刷新即将离开时，isReload参数被设置为true；当页面因关闭即将离开时，isReload参数被设置为false。<br>默认值：false。|
 
 ## OnConfirmEvent<sup>12+</sup>
 
@@ -160,7 +161,6 @@ Web同层渲染的配置。
 | url | string | 是 | 当前显示弹窗所在网页的URL。                       |
 | message | string | 是 | 弹窗中显示的信息。                       |
 | result | [JsResult](./arkts-basic-components-web-JsResult.md) | 是 | 通知Web组件用户操作行为。                       |
-| isReload<sup>20+</sup> | boolean | 否 | 页面是否刷新。<br>当页面因刷新即将离开时，isReload参数被设置为true；当页面因关闭即将离开时，isReload参数被设置为false。<br>默认值：false。|
 
 ## OnPromptEvent<sup>12+</sup>
 

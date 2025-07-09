@@ -4,7 +4,8 @@
 
 > **说明：**
 >
-> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件首批接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## onAlert
@@ -4275,6 +4276,7 @@ onNativeEmbedMouseEvent(callback: (event: NativeEmbedMouseInfo) => void)
     @State mouseButton: string = '';
     controller: webview.WebviewController = new webview.WebviewController();
     private nodeController: MyNodeController = new MyNodeController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Column() {
@@ -4287,8 +4289,8 @@ onNativeEmbedMouseEvent(callback: (event: NativeEmbedMouseInfo) => void)
                 this.nodeController.setRenderOption({
                   surfaceId: embed.surfaceId as string,
                   renderType: NodeRenderType.RENDER_TYPE_TEXTURE,
-                  width: px2vp(embed.info?.width),
-                  height: px2vp(embed.info?.height)
+                  width: this.uiContext!.px2vp(embed.info?.width),
+                  height: this.uiContext!.px2vp(embed.info?.height)
                 });
                 this.nodeController.rebuild();
               }
@@ -4310,19 +4312,19 @@ onNativeEmbedMouseEvent(callback: (event: NativeEmbedMouseInfo) => void)
   ```
   <!-- index.html -->
   <!Document>
-<html>
-<head>
-    <title>同层渲染测试</title>
-    <meta name="viewport">
-</head>
-<body>
-<div>
-    <div id="bodyId">
-        <embed id="nativeButton" type = "native/button" width="800" height="800" style = "background-color:red"/>
-    </div>
-</div>
-</body>
-</html>
+  <html>
+  <head>
+      <title>同层渲染测试</title>
+      <meta name="viewport">
+  </head>
+  <body>
+  <div>
+      <div id="bodyId">
+          <embed id="nativeButton" type ="native/button" width="800" height="800" style="background-color:red"/>
+      </div>
+  </div>
+  </body>
+  </html>
   ```
 
 ## onOverrideErrorPage<sup>20+</sup>
