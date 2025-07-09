@@ -3297,7 +3297,6 @@
           - [注册节点渲染状态监听错误码](reference/apis-arkui/errorcode-node-render-monitor.md)
           - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
           - [Canvas错误码](reference/apis-arkui/errorcode-canvas.md)
-          - [自定义节点错误码](reference/apis-arkui/errorcode-node.md)
           - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
           - [NodeAdapter错误码](reference/apis-arkui/errorcode-nodeadapter.md)
