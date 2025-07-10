@@ -121,11 +121,13 @@ OHIPCParcel对象数据拼接。
 
 **返回：**
 
-成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](_o_h_i_p_c_error_code.md)；
+返回错误信息请查看[OH_IPC_ErrorCode](_o_h_i_p_c_error_code.md#oh_ipc_errorcode)。
 
-参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](_o_h_i_p_c_error_code.md)；
+成功返回：OH_IPC_SUCCESS
 
-拼接失败返回[OH_IPC_ErrorCode#OH_IPC_PARCEL_WRITE_ERROR](_o_h_i_p_c_error_code.md)。
+参数不合法时返回：OH_IPC_CHECK_PARAM_ERROR
+
+拼接失败返回：OH_IPC_PARCEL_WRITE_ERROR
 
 
 ### OH_IPCParcel_Create()
