@@ -48,6 +48,23 @@
 
 **变更信息**：API 10-14时，其权限级别为system_core，仅面向MDM应用开放；从API 14开始，权限级别变更为system_basic，开发范围变更为企业普通应用。
 
+## ohos.permission.FILE_GUARD_FILE_WRITE
+
+允许企业应用修改文件。
+
+获取该权限后，应用可以获取用户数据中指定文件的写权限，并修改文件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 允许应用跨系统本地账号交互。
