@@ -292,7 +292,7 @@ bool OH_AVCapability_IsEncoderBitrateModeSupported(OH_AVCapability *capability, 
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVCapability](capi-avcapability-oh-avcapability.md) *capability | 编码器能力指针。如果给的是解码器能力指针，会导致未定义行为。 |
-| [OH_BitrateMode](capi-native-avcodec-base-h.md#oh_bitratemode) bitrateMode | 比特率模式。 |
+| [OH_BitrateMode](_codec_base.md#oh_bitratemode-1) bitrateMode | 比特率模式。 |
 
 **返回：**
 
