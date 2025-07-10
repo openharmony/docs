@@ -28,7 +28,7 @@ This error code is reported when a memory operation fails.
 
 **Error Message**
 
-Parcel operation failed.
+Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.
 
 **Description**
 
@@ -36,7 +36,8 @@ This error code is reported when parcel data fails to be read or written during 
 
 **Possible Causes**
 
-An exception occurs when invoking the **MessageParcel** object to read or write an object.
+1. The data object fails to be read or written during IPC.
+2. The memory fails to be allocated for the read or write operation.
 
 **Solution**
 

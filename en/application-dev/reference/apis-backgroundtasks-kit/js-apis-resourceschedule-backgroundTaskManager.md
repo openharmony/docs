@@ -46,7 +46,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9900001 | Caller information verification failed for a transient task. |
@@ -87,7 +87,7 @@ Obtains the remaining time of a transient task. This API uses an asynchronous ca
 | Name      | Type                         | Mandatory  | Description                                      |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
 | requestId | number                      | Yes   | Request ID of the transient task.                              |
-| callback  | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the remaining time, in milliseconds.|
+| callback  | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the remaining time of the transient task, in milliseconds.|
 
 **Error codes**
 
@@ -97,7 +97,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9900001 | Caller information verification failed for a transient task. |
@@ -138,7 +138,7 @@ Obtains the remaining time of a transient task. This API uses a promise to retur
 
 | Type                   | Description                                      |
 | --------------------- | ---------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the remaining time, in milliseconds.|
+| Promise&lt;number&gt; | Promise that returns the remaining time of the transient task, in milliseconds.|
 
 **Error codes**
 
@@ -148,7 +148,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9900001 | Caller information verification failed for a transient task. |
@@ -190,7 +190,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | --------- | ------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9900001 | Caller information verification failed for a transient task. |
@@ -213,7 +213,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
-Requests a continuous task of a specific type. This API uses an asynchronous callback to return the result.
+Requests a continuous task of a specific type. This API uses an asynchronous callback to return the result. After a continuous task is successfully requested, there will be a notification message without prompt tone.
 
 **Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -240,7 +240,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202 | Not System App. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -302,7 +302,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
-Requests a continuous task of a specific type. This API uses a promise to return the result.
+Requests a continuous task of a specific type. This API uses a promise to return the result. After a continuous task is successfully requested, there will be a notification message without prompt tone.
 
 **Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -334,7 +334,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202 | Not System App. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -411,10 +411,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message            |
 | ---- | --------------------- |
-| 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -475,10 +474,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message            |
 | ---- | --------------------- |
-| 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -511,7 +509,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;ContinuousTaskNotification&gt;
 
-Requests continuous tasks of multiple types. This API uses a promise to return the result.
+Requests continuous tasks of multiple types. This API uses a promise to return the result. After a continuous task is successfully requested, there will be a notification message without prompt tone.
 
 **Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -531,7 +529,7 @@ Requests continuous tasks of multiple types. This API uses a promise to return t
 
 | Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<ContinuousTaskNotification> | Promise that returns a [continuous-task notification](#continuoustasknotification12).|
+| Promise\<ContinuousTaskNotification> | Promise that returns an object of the [ContinuousTaskNotification](#continuoustasknotification12) type.|
 
 **Error codes**
 
@@ -542,7 +540,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -642,7 +640,7 @@ export default class EntryAbility extends UIAbility {
 
 updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;ContinuousTaskNotification&gt;
 
-Updates continuous tasks of multiple types. This API uses a promise to return the result.
+Updates continuous tasks of multiple types. This API uses a promise to return the result. After a continuous task is successfully updated, there will be a notification message without prompt tone.
 
 **Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -661,7 +659,7 @@ Updates continuous tasks of multiple types. This API uses a promise to return th
 
 | Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<ContinuousTaskNotification> | Promise that returns a [continuous-task notification](#continuoustasknotification12).|
+| Promise\<ContinuousTaskNotification> | Promise that returns an object of the [ContinuousTaskNotification](#continuoustasknotification12) type.|
 
 **Error codes**
 
@@ -672,7 +670,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
@@ -722,7 +720,7 @@ Subscribes to continuous task cancellation events. This API uses an asynchronous
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | type   | string                            | Yes   | Cancels a continuous task. The value is fixed at **'continuousTaskCancel'**.|
-| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason15)>       | Yes   | Callback used to return the reason why a continuous task is canceled.|
+| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason15)>       | Yes   | Callback used to return information such as the reason for canceling a continuous task.|
 
 **Error codes**
 
@@ -731,7 +729,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Callback parameter error; 2. Register a exist callback type; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible cause: 1. Callback parameter error; 2. Register a exist callback type; 3. Parameter verification failed. |
 
 **Example**
 
@@ -779,7 +777,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Callback parameter error; 2. Unregister type has not register; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible cause: 1. Callback parameter error; 2. Unregister type has not register; 3. Parameter verification failed. |
 
 **Example**
 
@@ -810,10 +808,10 @@ Defines the information about the transient task.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
-| Name            | Type    | Mandatory  | Description                                      |
-| --------------- | ------ | ---- | ---------------------------------------- |
-| requestId       | number | Yes   | Request ID of the transient task.                              |
-| actualDelayTime | number | Yes   | Actual duration of the transient task that the application requests, in milliseconds.<br> **Note**: The maximum duration is 3 minutes in normal cases. In the case of a [low battery](../apis-basic-services-kit/js-apis-battery-info.md), the maximum duration is decreased to 1 minute.|
+| Name            | Type    | Read-Only  | Optional  | Description                                      |
+| --------------- | ------ | ---- | ---- | ---------------------------------------- |
+| requestId       | number | No   | No   | Request ID of the transient task.                              |
+| actualDelayTime | number | No   | No   | Actual duration of the transient task requested by the application, in milliseconds.<br> **Note**: The maximum duration is 3 minutes in normal cases. In the case of a [low battery](../apis-basic-services-kit/js-apis-battery-info.md), the maximum duration is decreased to 1 minute.|
 
 ## BackgroundMode
 
@@ -840,7 +838,7 @@ Describes the information about a continuous-task notification.
 
 | Name            | Type    | Read-Only    | Optional  | Description                                      |
 | --------------- | ------ | ---- | ---- | ---------------------------------------- |
-| slotType       | [notificationManager.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | No   | No   | Slot type of a continuous-task notification.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| slotType       | [notificationManager.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | No   | No   | Slot type of a continuous-task notification.<br>**Note**: After a continuous task is successfully requested or updated, no prompt tone is played.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | contentType | [notificationManager.ContentType](../apis-notification-kit/js-apis-notificationManager.md#contenttype) | No   | No   | Content type of a continuous-task notification.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | notificationId | number | No   | No   | ID of the continuous-task notification.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | continuousTaskId<sup>15+</sup> | number | No   | Yes   | ID of a continuous task|
@@ -851,10 +849,10 @@ Describes the information about the cancellation of a continuous task.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| Name            | Type    | Mandatory  | Description                                      |
-| --------------- | ------ | ---- | ---------------------------------------- |
-| reason | [ContinuousTaskCancelReason](#continuoustaskcancelreason15) | Yes   | Reason for canceling the continuous task.|
-| id | number | Yes   | ID of the continuous task canceled.|
+| Name            | Type    | Read-Only  | Optional  | Description                                      |
+| --------------- | ------ | ---- | ---- | ---------------------------------------- |
+| reason | [ContinuousTaskCancelReason](#continuoustaskcancelreason15) | No   | No   | Reason for canceling the continuous task.|
+| id | number | No   | No   | ID of the continuous task canceled.|
 
 ## ContinuousTaskCancelReason<sup>15+</sup>
 

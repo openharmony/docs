@@ -36,7 +36,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 | 9700005 | Calling startWork failed. |
@@ -91,7 +91,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -145,7 +145,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -191,7 +191,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -230,7 +230,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 
 ## workScheduler.obtainAllWorks<sup>10+<sup>
@@ -255,7 +255,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 
 **Example**
@@ -294,7 +294,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 
 **Example**
@@ -325,7 +325,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 
 **Example**
@@ -366,7 +366,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -393,7 +393,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -439,7 +439,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -469,16 +469,16 @@ Defines the information about the deferred task.
 | bundleName      | string                            | Yes   | Bundle name of the application where the deferred task is located.          |
 | abilityName     | string                            | Yes   | Ability name in the bundle.|
 | networkType     | [NetworkType](#networktype)       | No   | Network type.            |
-| isCharging      | boolean                           | No   | Whether the device needs to enter the charging state to trigger deferred task scheduling.<br>- **true**: The device needs to enter the charging state to trigger deferred task scheduling.<br>- **false**: The device does not need to enter the charging state to trigger deferred task scheduling.|
+| isCharging      | boolean                           | No   | Whether the device needs to enter the charging state.<br>- **true**: The device needs to enter the charging state to trigger deferred task scheduling.<br>- **false** (default): The device does not need to enter the charging state to trigger deferred task scheduling.|
 | chargerType     | [ChargingType](#chargingtype)     | No   | Charging type.            |
 | batteryLevel    | number                            | No   | Battery level.             |
 | batteryStatus   | [BatteryStatus](#batterystatus)   | No   | Battery status.            |
 | storageRequest  | [StorageRequest](#storagerequest) | No   | Storage status.            |
-| isRepeat        | boolean                           | No   | Whether the task is repeated.<br>- **true**: The task is repeated.<br>- **false**: The task is not repeated.|
+| isRepeat        | boolean                           | No   | Whether the task is repeated.<br>- **true**: The task is repeated.<br>- **false** (default): The task is not repeated.|
 | repeatCycleTime | number                            | No   | Repeat interval, in milliseconds.            |
 | repeatCount     | number                            | No   | Number of repeat times.            |
-| isPersisted     | boolean                           | No   | Whether the registered deferred task can be saved in the system.<br>- **true**: The task can be saved. That is, the task can be restored after the system restarts.<br>- **false**: The task cannot be saved.|
-| isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state to trigger deferred task scheduling.<br>- **true**: The device needs to enter the idle state to trigger deferred task scheduling.<br>- **false**: The device does not need to enter the idle state to trigger deferred task scheduling.  |
+| isPersisted     | boolean                           | No   | Whether the registered deferred task can be saved in the system.<br>- **true**: The task can be saved. That is, the task can be restored after the system restarts.<br>- **false** (default): The task cannot be saved.|
+| isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state to trigger deferred task scheduling.<br>- **true**: The device needs to enter the idle state to trigger deferred task scheduling.<br>- **false** (default): The device does not need to enter the idle state to trigger deferred task scheduling.  |
 | idleWaitTime    | number                            | No   | Time to wait in the idle state before triggering deferred task scheduling, in milliseconds.          |
 | parameters      | Record<string, number \| string \| boolean>  | No   | Carried parameters.|
 

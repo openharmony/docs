@@ -212,3 +212,51 @@ The development of deferred task scheduling consists of two steps: implementing 
    }
    ```
 
+### Verifying Deferred Task Scheduling
+1. Check whether the deferred task is successfully requested.
+
+   After the **startWork** API is successfully called, you can run the following command to check whether the deferred task is successfully requested. If the result returned by the [hidumper](../dfx/hidumper.md) command contains the application's **bundleName**, **abilityName**, and **workId**, the deferred task with the **workId** has been successfully requested.
+
+   ```ts
+   $ hidumper -s 1904 -a '-a'
+   uid: 20010045:
+   {
+   "workId":u20010045_1,
+   "bundleName":com.example.application,
+   "status":0,
+   "paused":false,
+   "priority":10000,
+   "conditionMap":{
+   },
+   "workInfo":
+   {
+           "abilityName" : "MyWorkSchedulerExtensionAbility",
+           "appIndex" : 0,
+           "bundleName" : "com.example.application",
+           "callBySystemApp" : false,
+           "conditions" :
+           {
+                   "network" : 2
+           },
+           "extension" : true,
+           "parameters" : null,
+           "parametersType" : null,
+           "persisted" : false,
+           "preinstalled" : false,
+           "uriKey" : "",
+           "workId" : 1
+   }}
+   ```
+
+2. Check whether the **onWorkStart** and **onWorkStop** methods of WorkSchedulerExtensionAbility are correctly implemented and can be successfully called.
+
+   After the deferred task is requested, its callback can be triggered only when the required conditions are met. To quickly perform the verification, trigger the callback manually with the following [hidumper](../dfx/hidumper.md) command.
+
+   ```ts
+   $ hidumper -s 1904 -a '-t com.example.application MyWorkSchedulerExtensionAbility'
+
+   -------------------------------[ability]-------------------------------
+
+
+   ----------------------------------WorkSchedule----------------------------------
+   ```
