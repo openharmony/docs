@@ -32,7 +32,7 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 | 类型      | 说明                          |
 | -----------| ---------------------------- |
-| number     | 表示值类型为数字，可取任意值。     |
+| Array&lt;number&gt;    | 表示值类型为数字数组，元素取值范围见对应曲线描述。     |
 
 当曲线类型为LINEAR，动画曲线参数选填，且不生效。
 
