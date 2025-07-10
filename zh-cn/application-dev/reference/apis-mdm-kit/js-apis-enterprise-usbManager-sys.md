@@ -121,7 +121,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
-let policy: usbManager.UsbPolicy = usbManager.UsbPolicy.READ_WRITE；
+let policy: usbManager.UsbPolicy = usbManager.UsbPolicy.READ_WRITE;
 
 usbManager.setUsbPolicy(wantTemp, policy).then(() => {
   console.info('Succeeded in setting usb policy');

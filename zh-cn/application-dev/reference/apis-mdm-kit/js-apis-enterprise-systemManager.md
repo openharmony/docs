@@ -333,17 +333,17 @@ let notify: systemManager.NotifyDescription = {
   // 需根据实际情况进行替换
   "installTips": "installTips",
   "installTipsDetail": "installTips detail"
-}；
+};
 let description: systemManager.PackageDescription = {
   // 需根据实际情况进行替换
   "notify": notify
-}；
+};
 let updatePackages: Array<systemManager.Package> = [{
   // 需根据实际情况进行替换
   "type": systemManager.PackageType.FIRMWARE,
   "path": "path",
   "fd": 60
-}]；
+}];
 let updatePackageInfo: systemManager.UpdatePackageInfo = {
   // 需根据实际情况进行替换
   "version" : "1.0",

@@ -549,7 +549,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility'
 };
 // 需根据实际情况进行替换
-let bundleName: string = 'com.example.exampleapplication'；
+let bundleName: string = 'com.example.exampleapplication';
 
 try {
   // 需根据实际情况进行替换

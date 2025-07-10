@@ -334,7 +334,7 @@ let wantTemp: Want = {
 };
 
 // 需根据实际情况进行替换
-let exclusionStr: string = "192.168,baidu.com"；
+let exclusionStr: string = "192.168,baidu.com";
 let exclusionArray: Array<string> = exclusionStr.split(',');
 let httpProxy: connection.HttpProxy = {
   host: "192.168.xx.xxx",
@@ -784,7 +784,7 @@ let domainFilterRule: networkManager.DomainFilterRule = {
   "domainName": "www.example.com",
   "appUid": "9696",
   "action": networkManager.Action.DENY
-}；
+};
 
 // 移除指定的规则
 networkManager.removeDomainFilterRule(wantTemp, domainFilterRule);

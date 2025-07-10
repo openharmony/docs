@@ -447,7 +447,7 @@ try {
 
 getDisallowedUninstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
 
-获取当前/指定用户下包卸载禁止名单接口。
+获取当前/指定用户下包卸载禁止名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 

@@ -854,7 +854,7 @@ let filterRule: networkManager.AddFilterRule = {
   "direction": networkManager.Direction.OUTPUT,
   "action": networkManager.Action.DENY,
   "protocol": networkManager.Protocol.UDP
-}；
+};
 
 networkManager.addIptablesFilterRule(wantTemp, filterRule, (err) => {
   if (err) {
@@ -925,7 +925,7 @@ let filterRule: networkManager.AddFilterRule = {
   "direction": networkManager.Direction.OUTPUT,
   "action": networkManager.Action.DENY,
   "protocol": networkManager.Protocol.UDP
-}；
+};
 
 networkManager.addIptablesFilterRule(wantTemp, filterRule).then(() => {
   console.info(`Succeeded in setting iptables filter rule`);
@@ -986,7 +986,7 @@ let filterRule: networkManager.RemoveFilterRule = {
   "direction": networkManager.Direction.OUTPUT,
   "action": networkManager.Action.DENY,
   "protocol": networkManager.Protocol.UDP
-}；
+};
 
 networkManager.removeIptablesFilterRule(wantTemp, filterRule, (err) => {
   if (err) {
@@ -1055,7 +1055,7 @@ let filterRule: networkManager.RemoveFilterRule = {
   "direction": networkManager.Direction.OUTPUT,
   "action": networkManager.Action.DENY,
   "protocol": networkManager.Protocol.UDP
-}；
+};
 
 networkManager.removeIptablesFilterRule(wantTemp, filterRule).then(() => {
   console.info(`Succeeded in removing iptables filter rule`);
