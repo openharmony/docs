@@ -6,7 +6,7 @@ An application is suspended after it runs in the background for a short period o
 
 ## Available APIs
 
-The following table lists the common APIs. For details, see [API Reference](../reference/apis-backgroundtasks-kit/_transient_task.md#transienttask).
+The following table lists the common APIs. For details, see [API Reference](../reference/apis-backgroundtasks-kit/capi-transient-task-api-h.md#functions).
 
 
 | Name| Description|
