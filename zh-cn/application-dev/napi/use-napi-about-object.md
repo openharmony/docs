@@ -90,7 +90,7 @@ let applePrototype = testNapi.getPrototype(person);
 if (applePrototype === Person.prototype) {
   hilog.info(0x0000, 'Node-API', 'get_prototype_success');
 } else {
-  hilog.info(0x0000, 'Node-API', 'get_prototype_fail');
+  hilog.error(0x0000, 'Node-API', 'get_prototype_fail');
 }
 ```
 <!-- @[ark_napi_get_prototype](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIObject/entry/src/main/ets/pages/napiGetPrototype.ts) -->
