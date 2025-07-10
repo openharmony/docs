@@ -19,7 +19,7 @@ import { InputMethodExtensionAbility } from '@kit.IMEKit';
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-### context
+### 属性
 
 输入法Extension ability的上下文信息。
 
