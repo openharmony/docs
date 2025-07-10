@@ -341,7 +341,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
    需开发者填充完整的输入数据后调用。
 
-   如果是结束，需要对flags标识成AVCODEC_BUFFER_FLAGS_EOS。
+   结束时需要对flags标识成AVCODEC_BUFFER_FLAGS_EOS。
 
     ```c++
     bool inputFinished = false;
@@ -451,6 +451,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 12. 调用OH_AudioCodec_Destroy()销毁解码器实例，释放资源。
 
     > **说明：**
+    >
     > 禁止重复销毁解码器。
 
     ```c++

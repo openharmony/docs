@@ -82,7 +82,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
    设置必选项：采样率、位深、声道数、码率、声道布局和同步模式配置。
 
-   flac编码： 需要标识兼容性级别（Compliance Level）。
+   flac编码：需要标识兼容性级别（Compliance Level）。
    
    各音频编码类型参数范围说明：
    | 音频编码类型 | 采样率(Hz)                                                                       |       声道数       |
@@ -331,6 +331,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 9. 调用OH_AudioCodec_Destroy()销毁编码器实例，释放资源。
 
     > **说明：**
+    >
     > 禁止重复销毁编码器。
 
     ```c++

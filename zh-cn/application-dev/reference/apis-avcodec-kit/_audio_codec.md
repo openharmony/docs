@@ -52,7 +52,6 @@ AudioCodec模块提供用于音频编解码功能的函数。
 
 ## 函数说明
 
-zhxjzgenfi4jnh-vagqfphh1
 ### OH_AudioCodec_Configure()
 
 ```
@@ -200,7 +199,7 @@ OH_AVErrCode OH_AudioCodec_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index)
 OH_AVBuffer *OH_AudioCodec_GetInputBuffer(OH_AVCodec *codec, uint32_t index)
 ```
 **描述**
-输入索引值，获取对应音频编解码器中，该索引值对应的输入缓冲区，可在获取到的缓冲区中填充新的输入数据。
+输入索引值，获取对应音频编解码器中该索引值对应的输入缓冲区，可在获取到的缓冲区中填充新的输入数据。
 该缓冲区填充后，使用[OH_AudioCodec_PushInputBuffer](#oh_audiocodec_pushinputbuffer)输入对应索引值，将缓冲区数据送到编解码器。
 送到编解码器后，该索引值对应的输入缓冲区无法再次访问。
 
@@ -226,7 +225,7 @@ OH_AVBuffer *OH_AudioCodec_GetInputBuffer(OH_AVCodec *codec, uint32_t index)
 OH_AVBuffer *OH_AudioCodec_GetOutputBuffer(OH_AVCodec *codec, uint32_t index)
 ```
 **描述**
-输入索引值，获取对应音频编解码器中，该索引值对应的输出缓冲区。
+输入索引值，获取对应音频编解码器中该索引值对应的输出缓冲区。
 使用完缓冲区后，需要调用[OH_AudioCodec_FreeOutputBuffer](#oh_audiocodec_freeoutputbuffer)接口进行释放。释放后无法再次使用，长期不释放会阻塞编解码流程。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioCodec
