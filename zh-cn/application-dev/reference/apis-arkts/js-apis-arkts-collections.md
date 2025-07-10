@@ -463,8 +463,7 @@ const mapper = new Map([
   ['2', 'b'],
 ]);
 let newArray: collections.Array<string> = collections.Array.from(mapper.values());
-console.info(newArray.toString());
-// 预期输出： a,b
+console.info(newArray.toString()); // 预期输出： a,b
 ```
 
 ### from<sup>18+</sup>
@@ -503,9 +502,8 @@ static from\<T>(arrayLike: ArrayLike\<T> | Iterable\<T>, mapFn: ArrayFromMapFn\<
 
 ```ts
 let array : Array<number> = [1, 2, 3]; // 原生Array<T>，T是Sendable数据类型。
-let newarray = collections.Array.from<number>(array, (value, index) => value + index); // 返回新的 Array<T>
-console.info(newarray.toString());
-// 预期输出： 1, 3, 5
+let newArray = collections.Array.from<number>(array, (value, index) => value + index); // 返回新的 Array<T>
+console.info(newArray.toString()); // 预期输出： 1, 3, 5
 ```
 
 ### from<sup>18+</sup>
@@ -544,9 +542,8 @@ static from\<U, T>(arrayLike: ArrayLike\<U> | Iterable\<U>, mapFn: ArrayFromMapF
 
 ```ts
 let array : Array<number> = [1, 2, 3]; // 原生Array<T>
-let newarray = collections.Array.from<number, string>(array, (value, index) => value + "." + index); // 返回新的 Array<T>
-console.info(newarray.toString());
-// 预期输出： 1.0, 2.1, 3.2
+let newArray = collections.Array.from<number, string>(array, (value, index) => value + "." + index); // 返回新的 Array<T>
+console.info(newArray.toString()); // 预期输出： 1.0, 2.1, 3.2
 ```
 
 ### isArray<sup>18+</sup>
@@ -584,8 +581,7 @@ static isArray(value: Object | undefined | null): boolean
 ```ts
 let arr: collections.Array<string> = new collections.Array('a', 'b', 'c', 'd');
 let result: boolean = collections.Array.isArray(arr);
-console.info(result + '');
-// 预期输出： true
+console.info(result + ''); // 预期输出： true
 ```
 
 ### of<sup>18+</sup>
@@ -622,8 +618,7 @@ static of\<T>(...items: T\[]): Array\<T>
 
 ```ts
 let arr: collections.Array<string> = collections.Array.of('a', 'b', 'c', 'd');
-console.info(arr.toString());
-// 预期输出： a, b, c, d
+console.info(arr.toString()); // 预期输出： a, b, c, d
 ```
 
 ### copyWithin<sup>18+</sup>
@@ -664,8 +659,7 @@ copyWithin(target: number, start: number, end?: number): Array\<T>
 ```ts
 let array: collections.Array<number> = collections.Array.from([1, 2, 3, 4, 5, 6, 7, 8]);
 let copied: collections.Array<number> = array.copyWithin(3, 1, 3);
-console.info(copied.toString());
-// 预期输出： 1, 2, 3, 2, 3, 6, 7, 8
+console.info(copied.toString()); // 预期输出： 1, 2, 3, 2, 3, 6, 7, 8
 ```
 
 ### lastIndexOf<sup>18+</sup>
@@ -705,14 +699,10 @@ lastIndexOf(searchElement: T, fromIndex?: number): number
 
 ```ts
 let array: collections.Array<number> = collections.Array.from([3, 5, 9]);
-console.info(array.lastIndexOf(3) + '');
-// 预期输出： 0
-console.info(array.lastIndexOf(7) + '');
-// 预期输出： -1
-console.info(array.lastIndexOf(9, 2) + '');
-// 预期输出： 2
-console.info(array.lastIndexOf(9, -2) + '');
-// 预期输出： -1
+console.info(array.lastIndexOf(3) + ''); // 预期输出： 0
+console.info(array.lastIndexOf(7) + ''); // 预期输出： -1
+console.info(array.lastIndexOf(9, 2) + ''); // 预期输出： 2
+console.info(array.lastIndexOf(9, -2) + ''); // 预期输出： -1
 ```
 
 ### some<sup>18+</sup>
@@ -749,8 +739,7 @@ some(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
 
 ```ts
 let newArray: collections.Array<number> = collections.Array.from([-10, 20, -30, 40, -50]);
-console.info(newArray.some((element: number) => element < 0) + '');
-// 预期输出： true
+console.info(newArray.some((element: number) => element < 0) + ''); // 预期输出： true
 ```
 
 ### reduceRight<sup>18+</sup>
@@ -790,8 +779,7 @@ reduceRight(callbackFn: ArrayReduceCallback\<T, T, Array\<T>>): T
 ```ts
 let array = new collections.Array<number>(1, 2, 3, 4, 5);
 let reducedValue = array.reduceRight((accumulator, value) => accumulator + value); // 累加所有元素
-console.info(reducedValue + '');
-// 预期输出： 15
+console.info(reducedValue + ''); // 预期输出： 15
 ```
 
 ### reduceRight<sup>18+</sup>
@@ -833,8 +821,7 @@ reduceRight\<U = T>(callbackFn: ArrayReduceCallback\<U, T, Array\<T>>, initialVa
 // 此处使用一个初始值为0的累加器，并将其与Array中的每个元素相加，最终返回累加后的总和
 let array = new collections.Array<number>(1, 2, 3, 4, 5);
 let reducedValue = array.reduceRight<number>((accumulator: number, value: number) => accumulator + value, 0); // 累加所有元素，初始值为0
-console.info(reducedValue + '');
-// 预期输出： 15
+console.info(reducedValue + ''); // 预期输出： 15
 ```
 
 ### pop
@@ -1009,8 +996,7 @@ reverse(): Array\<T>
 ```ts
 let array = new collections.Array<number>(1, 2, 3, 4, 5);
 let reversed = array.reverse();
-console.info(array.toString());
-// 预期输出： 5, 4, 3, 2, 1
+console.info(array.toString()); // 预期输出： 5, 4, 3, 2, 1
 ```
 
 ### unshift
@@ -1082,8 +1068,7 @@ ArkTS数组转换为字符串。
 ```ts
 let array = new collections.Array<number>(1, 2, 3, 4, 5);
 let stringArray = array.toString();
-console.info(stringArray);
-// 预期输出：1,2,3,4,5
+console.info(stringArray); // 预期输出：1,2,3,4,5
 ```
 
 ### slice
@@ -1892,8 +1877,7 @@ every(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
 
 ```ts
 let newArray: collections.Array<number> = collections.Array.from([-10, 20, -30, 40, -50]);
-console.info(newArray.every((element: number) => element > 0) + '');
-// 预期输出：false
+console.info(newArray.every((element: number) => element > 0) + ''); // 预期输出：false
 ```
 
 ### toLocaleString<sup>18+</sup>
@@ -1927,8 +1911,7 @@ toLocaleString(): string
 // 当前应用所在系统为法国地区
 let array = new collections.Array<number | string>(1000, 'Test', 53621);
 let stringArray = array.toLocaleString();
-console.info(stringArray);
-// 预期输出：1,000,Test,53,621
+console.info(stringArray); // 预期输出：1,000,Test,53,621
 ```
 
 ### splice
@@ -2152,6 +2135,7 @@ entries(): IterableIterator<[K, V]>
 | 错误码ID | 错误信息                                              |
 | -------- | ----------------------------------------------------- |
 | 10200011 | The entries method cannot be bound with non-sendable. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -2209,6 +2193,7 @@ keys(): IterableIterator\<K>
 | 错误码ID | 错误信息                                           |
 | -------- | -------------------------------------------------- |
 | 10200011 | The keys method cannot be bound with non-sendable. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -2247,6 +2232,7 @@ values(): IterableIterator\<V>
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
 | 10200011 | The values method cannot be bound with non-sendable. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -2671,6 +2657,7 @@ entries(): IterableIterator<[T, T]>
 | 错误码ID | 错误信息                                              |
 | -------- | ----------------------------------------------------- |
 | 10200011 | The entries method cannot be bound with non-sendable. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -2706,6 +2693,7 @@ keys(): IterableIterator\<T>
 | 错误码ID | 错误信息                                           |
 | -------- | -------------------------------------------------- |
 | 10200011 | The keys method cannot be bound with non-sendable. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -2741,6 +2729,7 @@ values(): IterableIterator\<T>
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
 | 10200011 | The values method cannot be bound with non-sendable. |
+| 10200201 | Concurrent modification error. |
 
 **示例：**
 
@@ -3480,7 +3469,7 @@ let array: collections.Uint32Array = collections.Uint32Array.from<string>(
 ```
 
 ### from
-static from(iterable: Iterable\<number>, mapFn?: TypedArrayFromMapFn\<number, number>): TypedArray
+static from(arrayLike: Iterable\<number>, mapFn?: TypedArrayFromMapFn\<number, number>): TypedArray
 
 从一个可迭代对象中创建一个ArkTS TypedArray对象。
 
@@ -3491,7 +3480,7 @@ static from(iterable: Iterable\<number>, mapFn?: TypedArrayFromMapFn\<number, nu
 **参数：**
 | 参数名  | 类型   | 必填 | 说明                                |
 | ------- | ------ | ---- | -----------------------------------|
-| iterable | Iterable\<number> | 是 | 用于构造的可迭代对象。   |
+| arrayLike | Iterable\<number> | 是 | 用于构造的可迭代对象。   |
 | mapFn | [TypedArrayFromMapFn](#typedarrayfrommapfn)\<number, number> | 否 | 映射函数。如果省略，则不对元素进行加工处理。|
 
 **返回值：**
@@ -3551,8 +3540,7 @@ static of(...items: number[]): TypedArray
 
 ```ts
 let arr: collections.Uint32Array = collections.Uint32Array.of(1, 2, 3, 4);
-console.info(arr.toString());
-// 预期输出：1,2,3,4
+console.info(arr.toString()); // 预期输出：1,2,3,4
 ```
 
 ### toString<sup>18+</sup>
@@ -3585,8 +3573,7 @@ ArkTS TypedArray转换为字符串。
 ```ts
 let array = new collections.Uint32Array([1, 2, 3, 4, 5]);
 let stringArray = array.toString();
-console.info(stringArray);
-// 预期输出：1,2,3,4,5
+console.info(stringArray); // 预期输出：1,2,3,4,5
 ```
 
 ### toLocaleString<sup>18+</sup>
@@ -3620,8 +3607,7 @@ toLocaleString(): string
 // 当前应用所在系统为法国地区
 let array = new collections.Uint32Array([1000, 2000, 3000]);
 let stringArray = array.toLocaleString();
-console.info(stringArray);
-// 预期输出：1,000,2,000,3,000
+console.info(stringArray); // 预期输出：1,000,2,000,3,000
 ```
 
 ### copyWithin
@@ -4020,14 +4006,10 @@ lastIndexOf(searchElement: number, fromIndex?: number): number
 
 ```ts
 let array: collections.Uint32Array = collections.Uint32Array.from([3, 5, 9]);
-console.info(array.lastIndexOf(3) + '');
-// 预期输出：0
-console.info(array.lastIndexOf(7) + '');
-// 预期输出：-1
-console.info(array.lastIndexOf(9, 2) + '');
-// 预期输出：2
-console.info(array.lastIndexOf(9, -2) + '');
-// 预期输出：-1
+console.info(array.lastIndexOf(3) + ''); // 预期输出：0
+console.info(array.lastIndexOf(7) + ''); // 预期输出：-1
+console.info(array.lastIndexOf(9, 2) + ''); // 预期输出：2
+console.info(array.lastIndexOf(9, -2) + ''); // 预期输出：-1
 ```
 
 ### join
@@ -4180,8 +4162,7 @@ reduceRight(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>): 
 ```ts
 let array: collections.Uint32Array = collections.Uint32Array.from([1, 2, 3, 4, 5]);
 let reducedValue: number = array.reduceRight((accumulator: number, value: number) => accumulator + value);
-console.info(reducedValue + '');
-// 预期输出： 15
+console.info(reducedValue + ''); // 预期输出： 15
 ```
 
 ### reduce
@@ -4261,8 +4242,7 @@ reduceRight\<U = number>(callbackFn: TypedArrayReduceCallback\<U, number, TypedA
 ```ts
 let array: collections.Uint32Array = collections.Uint32Array.from([1, 2, 3, 4, 5]);
 let reducedValue: number = array.reduceRight((accumulator: number, value: number) => accumulator + value, 1);
-console.info(reducedValue + '');
-// 预期输出： 16
+console.info(reducedValue + ''); // 预期输出： 16
 ```
 
 ### reduce
