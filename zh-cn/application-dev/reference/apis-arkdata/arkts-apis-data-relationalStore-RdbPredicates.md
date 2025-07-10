@@ -989,7 +989,6 @@ indexedBy(field: string): RdbPredicates
 
 **返回值**：
 
-
 | 类型                                 | 说明                                  |
 | ------------------------------------ | ------------------------------------- |
 | [RdbPredicates](#rdbpredicates) | 返回具有指定索引列的RdbPredicates。 |
