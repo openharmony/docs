@@ -1060,7 +1060,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, phot
 
   try {
     let outputText: string;
-    if (photoTypeNumber !== 1 && photoTypeNumber !== 2) {
+    if (photoTypeNumber !== PhotoType.IMAGE && photoTypeNumber !== PhotoType.VIDEO) {
       outputText = 'Does not support querying formats other than images or videos';
       return;
     }
