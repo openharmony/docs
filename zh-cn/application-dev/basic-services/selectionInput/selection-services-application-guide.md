@@ -101,17 +101,12 @@
 
 6. 配置`module.json5`文件。
 
-    在`requestPermissions`字段中添加应用所需权限，并在`extensionAbilities`字段中配置划词扩展类文件路径。
+    在`extensionAbilities`字段中配置划词扩展类文件路径。
 
     ```json
     {
       "module": {
-      ...
-        "requestPermissions": [
-          {
-            "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
-          }
-        ],
+      // ...
         "extensionAbilities": [
           {
             "name": "SelectionExtensionAbility",
