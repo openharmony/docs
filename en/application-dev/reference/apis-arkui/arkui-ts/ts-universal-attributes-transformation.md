@@ -28,7 +28,7 @@ Rotates the component.
 
 rotate(options: Optional\<RotateOptions>)
 
-Rotates the component. Compared to [rotate](#rotate), this API supports the **undefined** type for the **options** parameter.
+Rotates the component. Compared with [rotate](#rotate), this API supports the **undefined** type for the **options** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -64,7 +64,7 @@ Translates the component.
 
 translate(translate: Optional\<TranslateOptions>)
 
-Translates the component. Compared to [translate](#translate), this API supports the **undefined** type for the **translate** parameter.
+Translates the component. Compared with [translate](#translate), this API supports the **undefined** type for the **translate** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -100,7 +100,7 @@ Scales the component.
 
 scale(options: Optional\<ScaleOptions>)
 
-Scales the component. Compared to [scale](#scale), this API supports the **undefined** type for the **options** parameter.
+Scales the component. Compared with [scale](#scale), this API supports the **undefined** type for the **options** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -134,7 +134,7 @@ Sets the transformation matrix of the component.
 
 transform(transform: Optional\<object>)
 
-Sets the transformation matrix of the component. Compared to [transform](#transform), this API supports the **undefined** type for the **transform** parameter.
+Sets the transformation matrix of the component. Compared with [transform](#transform), this API supports the **undefined** type for the **transform** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 

@@ -79,7 +79,7 @@ Sets the playback duration. This attribute does not take effect when a separate 
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Playback duration.<br>If the value is **0**, no image is played.<br>The value change takes effect only at the start of the next cycle.<br>Unit: ms<br>Default value: **1000**|
+| value  | number | Yes  | Playback duration.<br>If the value is **0**, no image is played.<br>Negative numbers are not supported.<br>The value change takes effect only at the start of the next cycle.<br>Unit: ms<br>Default value: **1000**|
 
 ### reverse
 
@@ -115,7 +115,7 @@ Sets whether the image size is fixed at the component size.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether the image size is fixed at the component size.<br> **true**: The image size is fixed at the component size. In this case, the width, height, top, and left attributes of the image are invalid.<br> **false**: The width, height, top, and left attributes of each image must be set separately.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether the image size is fixed at the component size.<br> **true**: The image size is fixed at the component size. In this case, the width, height, top, and left attributes of the image are invalid.<br> **false**: The width, height, top, and left attributes of each image must be set separately. If the image size does not match the component size, the image will not be stretched.<br>Default value: **true**|
 
 ### preDecode<sup>(deprecated)</sup>
 
@@ -191,12 +191,12 @@ Sets whether the component should automatically pause or resume based on its vis
 
 | Name  | Type  | Mandatory| Description|
 | -------- | -------------- | -------- | -------- |
-| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | Yes   | Image path. The image format can be .jpg, .jpeg, .svg, .png, .bmp, .webp, .ico, or .heif. The [Resource](ts-types.md#resource) type is supported since API version 9, and the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type is supported since API version 12.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.|
+| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)<sup>12+</sup> | Yes   | Image path. The image format can be .jpg, .jpeg, .svg, .png, .bmp, .webp, .ico, or .heif. The [Resource](ts-types.md#resource) type is supported since API version 9, and the [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) type is supported since API version 12.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.|
 | width    | number \| string | No | Image width. For the string type, numeric string values with optional units, for example, **"2"** or **"2px"**, are supported.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.      |
 | height   | number \| string | No | Image height. For the string type, numeric string values with optional units, for example, **"2"** or **"2px"**, are supported.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.       |
 | top      | number \| string | No | Vertical coordinate of the image relative to the upper left corner of the widget For the string type, numeric string values with optional units, for example, **"2"** or **"2px"**, are supported.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10. |
 | left     | number \| string | No | Horizontal coordinate of the image relative to the upper left corner of the widget For the string type, numeric string values with optional units, for example, **"2"** or **"2px"**, are supported.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.  |
-| duration | number          | No    | Playback duration of each image frame, in milliseconds.<br>Default value: **0**        |
+| duration | number          | No    | Playback duration of each image frame, in milliseconds.<br>Default value: **0**<br>Negative numbers are not supported.        |
 
 ## Events
 
@@ -293,9 +293,13 @@ struct ImageAnimatorExample {
             src: $r('app.media.img4')
           }
         ])
-        .duration(2000)
-        .state(this.state).reverse(this.reverse)
-        .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
+        .duration(4000)
+        .state(this.state)
+        .reverse(this.reverse)
+        .fillMode(FillMode.None)
+        .iterations(this.iterations)
+        .width(340)
+        .height(240)
         .margin({ top: 100 })
         .onStart(() => {
           console.info('Start')
@@ -318,10 +322,10 @@ struct ImageAnimatorExample {
           this.state = AnimationStatus.Running
         }).margin(5)
         Button('pause').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Paused     // Display the image of the current frame.
+          this.state = AnimationStatus.Paused // Display the image of the current frame.
         }).margin(5)
         Button('stop').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Stopped    // Display the image of the initial frame.
+          this.state = AnimationStatus.Stopped // Display the image of the initial frame.
         }).margin(5)
       }
 
@@ -341,6 +345,8 @@ struct ImageAnimatorExample {
 }
 ```
 
+![imageAnimator_resource](figures/imageAnimator_resource.gif)
+
 ### Example 2: Playing an Animation Using Images of the PixelMap Type
 
 This example demonstrates how to play an animation using the **ImageAnimator** component with images of the PixelMap type.
@@ -356,18 +362,24 @@ struct ImageAnimatorExample {
   @State state: AnimationStatus = AnimationStatus.Initial;
   @State reverse: boolean = false;
   @State iterations: number = 1;
-  @State images:Array<ImageFrameInfo> = [];
+  @State images: Array<ImageFrameInfo> = [];
+
   async aboutToAppear() {
     this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')));
-    this.images.push({src:this.imagePixelMap[0]});
+    this.images.push({ src: this.imagePixelMap[0] });
   }
+
   build() {
     Column({ space: 10 }) {
       ImageAnimator()
         .images(this.images)
         .duration(2000)
-        .state(this.state).reverse(this.reverse)
-        .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
+        .state(this.state)
+        .reverse(this.reverse)
+        .fillMode(FillMode.None)
+        .iterations(this.iterations)
+        .width(340)
+        .height(240)
         .margin({ top: 100 })
         .onStart(() => {
           console.info('Start');
@@ -390,12 +402,13 @@ struct ImageAnimatorExample {
           this.state = AnimationStatus.Running;
         }).margin(5)
         Button('pause').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Paused;    // Display the image of the current frame.
+          this.state = AnimationStatus.Paused; // Display the image of the current frame.
         }).margin(5)
         Button('stop').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Stopped;   // Display the image of the initial frame.
+          this.state = AnimationStatus.Stopped; // Display the image of the initial frame.
         }).margin(5)
       }
+
       Row() {
         Button('reverse').width(100).padding(5).onClick(() => {
           this.reverse = !this.reverse;
@@ -464,8 +477,14 @@ struct ImageAnimatorAutoPauseTest {
             ])
             .borderRadius(10)
             .monitorInvisibleArea(true)
-            .clip(true).duration(4000).state(this.state).reverse(this.reverse)
-            .fillMode(FillMode.Forwards).iterations(this.iterations).width(340).height(240)
+            .clip(true)
+            .duration(4000)
+            .state(this.state)
+            .reverse(this.reverse)
+            .fillMode(FillMode.Forwards)
+            .iterations(this.iterations)
+            .width(340)
+            .height(240)
             .margin({ top: 100 })
             .onStart(() => {
               this.preCallBack = "Start";
@@ -511,6 +530,7 @@ struct ImageAnimatorAutoPauseTest {
       .onScrollStop(() => {
         console.info('Scroll Stop');
       })
+
       Text("Last triggered callback (Pause/Start): " + this.preCallBack)
         .margin({ top: 60, left: 20 })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)
@@ -518,4 +538,4 @@ struct ImageAnimatorAutoPauseTest {
 }
 ```
 
-![imageAnimatorMonitorInvisibleAreaExample](figures/imageAnimatorMonitorInvisibleArea.gif)
+
