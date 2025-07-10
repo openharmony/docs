@@ -231,7 +231,7 @@ type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => We
 
 ## OnOverrideErrorPageCallback<sup>20+</sup>
 
-type OnOverrideErrorPageCallback= (webResourceRequest: WebResourceRequest, error: WebResourceError) => string
+type OnOverrideErrorPageCallback = (errorPageEvent: OnErrorReceiveEvent) => string
 
 onOverrideErrorPage的回调函数，网页加载失败时触发。
 
@@ -241,11 +241,10 @@ onOverrideErrorPage的回调函数，网页加载失败时触发。
 
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| webResourceRequest | [WebResourceRequest](./arkts-basic-components-web-WebResourceRequest.md) | 是 | 网页请求的封装信息。      |
-| error   | [WebResourceError](./arkts-basic-components-web-WebResourceError.md)    | 是 | 加载失败的错误信息。 |
+| errorPageEvent | [OnErrorReceiveEvent](./arkts-basic-components-web-i.md#onerrorreceiveevent12) | 是 | 网页加载遇到错误时返回的相关信息。      |
 
 **返回值：**
 
 | 类型      | 说明                       |
 | ------- | ------------------------ |
-| string | 返回以Base64编码的HTML文本内容。 |
+| string | 以Base64编码的HTML文本内容。 |
