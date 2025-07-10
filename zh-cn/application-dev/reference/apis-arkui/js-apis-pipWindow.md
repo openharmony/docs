@@ -846,47 +846,6 @@ try {
 }
 ```
 
-### getPiPSettingSwitch<sup>20+</sup>
-getPiPSettingSwitch(): Promise&lt;boolean&gt;
-
-获取设置中自动启动画中画开关的状态，仅支持手机和平板设备。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**返回值：**
-
-| 类型                   | 说明                  |
-|----------------------|---------------------|
-| Promise&lt;boolean&gt;  | Promise对象，返回当前自动启动画中画开关状态，true表示开启，false表示关闭。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息                                                                                                        |
-|-------|-------------------------------------------------------------------------------------------------------------|
-| 801   | Capability not supported. Failed to call the API due to limited device capabilities.                                                       |
-| 1300014    | PiP internal error.                                    |
-
-**示例：**
-
-```ts
-let pipSwitchStatus: boolean | undefined = undefined;
-try {
-  let promise : Promise<boolean> = this.pipController.getPiPSettingSwitch();
-  promise.then((data) => {
-    pipSwitchStatus = data;
-    console.info('Succeeded in getting pip switch status. switchStatus: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to get pip switch status. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to get pip switch status. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
 ### on('stateChange')
 
 on(type: 'stateChange', callback: (state: PiPState, reason: string) => void): void
@@ -1162,6 +1121,7 @@ off(type: 'pipWindowSizeChange', callback?: Callback&lt;PiPWindowSize&gt;): void
 | ------- | -------------------------------------------- |
 | 401     | Params error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
+| 1300014    | PiP internal error.                                    |
 
 **示例：**
 
