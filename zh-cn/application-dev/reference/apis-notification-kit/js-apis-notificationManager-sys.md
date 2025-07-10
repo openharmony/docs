@@ -4817,7 +4817,7 @@ setSilentReminderEnabled(bundle: BundleOption, enabled: boolean): Promise\<void\
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[通知错误码](./errorcode-notification.md)、[包管理子系统通用错误码](../../reference/apis-ability-kit/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4872,7 +4872,7 @@ isSilentReminderEnabled(bundle: BundleOption): Promise\<SwitchState\>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)，[通知错误码](./errorcode-notification.md)，[包管理子系统通用错误码](../../reference/apis-ability-kit/errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[通知错误码](./errorcode-notification.md)、[包管理子系统通用错误码](../../reference/apis-ability-kit/errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
