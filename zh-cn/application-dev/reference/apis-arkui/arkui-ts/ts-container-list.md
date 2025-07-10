@@ -1869,6 +1869,7 @@ struct ListExample {
 
 该示例通过maintainVisibleContentPosition接口，实现了上滑无限加载历史消息场景。
 
+<!--code_no_check-->
 ```ts
 import { ListDataSource } from './ListDataSource';
 
