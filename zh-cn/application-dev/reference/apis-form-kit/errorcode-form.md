@@ -227,11 +227,11 @@ The form can not support this operation.
 
 **错误信息**
 
-The dimension parameter is incorrect.
+The form host uses an incorrect dimension.
 
 **错误描述**
 
-当前卡片没有配置该尺寸时，系统会报此错误码。
+卡片使用方传入错误的卡片尺寸。
 
 **可能原因**
 
@@ -239,8 +239,7 @@ The dimension parameter is incorrect.
 
 **处理步骤**
 
-1.检查入参卡片尺寸是否在[FormDimension](js-apis-app-form-formInfo.md#formdimension)范围内。
-2.检查入参卡片尺寸是否在卡片[supportDimensions](../../form/arkts-ui-widget-configuration.md#配置文件字段说明)配置的列表中
+检查入参卡片尺寸是否在[FormDimension](js-apis-app-form-formInfo.md#formdimension)和[supportDimensions](../../form/arkts-ui-widget-configuration.md#配置文件字段说明)配置列表。
 
 ## 2293761 内部服务错误
 
