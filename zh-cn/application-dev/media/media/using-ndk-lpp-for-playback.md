@@ -39,7 +39,7 @@
 target_link_libraries(sample PUBLIC liblowpower_avsink.so)
 ```
 
-头文件引入
+头文件引入。
 
 ```
 #include "multimedia/player_framework/lowpower_audio_sink_base.h"
@@ -54,7 +54,7 @@ target_link_libraries(sample PUBLIC liblowpower_avsink.so)
 #include <hilog/log.h>
 ```
 
-并需要在CMake脚本中链接如下动态库:
+并需要在CMake脚本中链接如下动态库：
 
 ```
 target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
