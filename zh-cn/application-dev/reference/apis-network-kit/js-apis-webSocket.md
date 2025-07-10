@@ -1585,6 +1585,8 @@ type HttpProxy = connection.HttpProxy
 
 ## ClientConnectionCloseCallback<sup>19+</sup>
 
+type ClientConnectionCloseCallback = (clientConnection: WebSocketConnection, closeReason: CloseResult) => void
+
 关闭WebSocketServer连接时，订阅close事件得到的指定客户端的关闭结果。
 
 **系统能力**：SystemCapability.Communication.NetStack
