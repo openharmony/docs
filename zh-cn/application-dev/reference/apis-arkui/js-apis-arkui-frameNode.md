@@ -749,27 +749,6 @@ struct Index {
 请参考[节点操作示例](#节点操作示例)。
 
 
-### getGlobalPositionOnDisplay<sup>20+</sup> 
-
-getGlobalPositionOnDisplay(): Position
-
-获取FrameNode相对于全局屏幕的位置偏移，单位为VP。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型     | 说明                            |
-| -------- | ------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于全局屏幕的位置偏移，单位为VP。 |
-
-**示例：**
-
-请参考[节点操作示例](#节点操作示例)。
-
-
 ### getPositionToParentWithTransform<sup>12+</sup>
 
 getPositionToParentWithTransform(): Position
@@ -5032,11 +5011,6 @@ class MyNodeController extends NodeController {
     console.log(TEST_TAG + JSON.stringify(positionToScreen));
   }
 
-  getGlobalPositionOnDisplay() {
-    let positionOnGlobalDisplay = this.rootNode?.getGlobalPositionOnDisplay();
-    console.log(TEST_TAG + JSON.stringify(positionOnGlobalDisplay));
-  }
-
   getPositionToWindowWithTransform() {
     let positionToWindowWithTransform = this.rootNode?.getPositionToWindowWithTransform();
     console.log(TEST_TAG + JSON.stringify(positionToWindowWithTransform));
@@ -5256,11 +5230,6 @@ struct Index {
           .width(300)
           .onClick(() => {
             this.myNodeController.getPositionToScreen();
-          })
-        Button("getGlobalPositionOnDisplay")
-          .width(300)
-          .onClick(() => {
-            this.myNodeController.getGlobalPositionOnDisplay();
           })
         Button("getPositionToParentWithTransform")
           .width(300)
