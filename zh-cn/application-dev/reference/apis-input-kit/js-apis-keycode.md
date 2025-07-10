@@ -24,7 +24,6 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_UNKNOWN                  |  -1 | 未知按键。                        |
 | KEYCODE_HOME                     |  1 | 功能（Home）键。                  |
 | KEYCODE_BACK                     |  2 | 返回键。                         |
-| KEYCODE_HEADSETHOOK<sup>20+</sup>              |  6 | 有线耳机播放/暂停键。                         |
 | KEYCODE_SEARCH<sup>13+</sup> | 9 | 搜索键。 |
 | KEYCODE_MEDIA_PLAY_PAUSE        |  10 | 多媒体键：播放/暂停。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
 | KEYCODE_MEDIA_STOP               |  11 | 多媒体键：停止。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
