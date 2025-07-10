@@ -118,5 +118,18 @@
        let err = error as BusinessError;
        console.error(`Failed to add videoOutput. error: ${err}`);
      }
+     try {
+       await photoSession.commitConfig();
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to commitConfig. error: ${err}`);
+     }
+   
+     try {
+       await photoSession.start();
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to start. error: ${err}`);
+     }
    }
    ```
