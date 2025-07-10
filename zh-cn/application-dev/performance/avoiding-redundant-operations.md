@@ -103,7 +103,7 @@ struct PositiveOfOnDidScroll {
 // Trace场景反例
 @Component
 struct NegativeOfTrace {
-  aboutToAppear {
+  aboutToAppear() {
     hitrace.startTrace("HITRACE_TAG_APP", 1002);
     // 业务代码
     // ...
@@ -120,7 +120,7 @@ struct NegativeOfTrace {
 // Trace场景正例
 @Component
 struct PositiveOfTrace {
-  aboutToAppear {
+  aboutToAppear() {
     // 业务代码
     // ...
   }
@@ -141,7 +141,7 @@ struct PositiveOfTrace {
 @State string2: string = 'b';
 @Component
 struct NegativeOfDebug {
-  aboutToAppear {
+  aboutToAppear() {
     hilog.debug(1003, 'Debug', (this.string1 + this.string2));
     // 业务代码
     // ...
