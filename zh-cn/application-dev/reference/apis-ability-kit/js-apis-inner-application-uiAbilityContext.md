@@ -2207,7 +2207,7 @@ export default class EntryAbility extends UIAbility {
 
 openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;): Promise&lt;void&gt;
 
-通过<!--RP2-->[App Linking](../../application-models/app-linking-startup.md)<!--RP2End-->或[Deep Linking](../../application-models/deep-linking-startup.md)方式启动UIAbility。使用Promise异步回调。仅支持在主线程调用。
+通过<!--RP2-->[App Linking](../../application-models/app-linking-startup.md)<!--RP2End-->或[Deep Linking](../../application-models/deep-linking-startup.md)方式启动UIAbility，并通过回调函数接收被拉起的UIAbility退出时的返回结果。使用Promise异步回调。仅支持在主线程调用。
 
 通过在link字段中传入标准格式的URL，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理App Linking链接：
 - "actions"列表中包含"ohos.want.action.viewData"。
