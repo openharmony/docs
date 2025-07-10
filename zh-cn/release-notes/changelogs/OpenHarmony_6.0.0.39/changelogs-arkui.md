@@ -161,3 +161,70 @@ struct DrawModifierExample {
   }
 }
 ```
+
+## cl.arkui.3 CanvasRenderer的font接口支持自定义字体行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+增强基础能力，CanvasRenderer的font接口支持设置自定义字体。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+变更前，CanvasRenderer的font接口设置自定义字体不生效，绘制字体显示为默认字体。
+
+变更后，CanvasRenderer的font接口设置自定义字体生效，绘制字体显示为自定义字体。
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+// xxx.ets
+@Entry
+@Component
+struct FontDemo {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('rgb(213,213,213)')
+        .onReady(() => {
+          let fontCollection = text.FontCollection.getGlobalInstance();
+          fontCollection.loadFontSync('HarmonyOS_Sans_Thin_Italic', $rawfile("HarmonyOS_Sans_Thin_Italic.ttf"))
+          this.context.font = "50px HarmonyOS_Sans_Thin_Italic"
+          this.context.fillText("Hello World", 20, 60)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+|                   变更前                   |                 变更后                  |
+| :----------------------------------------: | :-------------------------------------: |
+| ![](figures/canvasFontBefore.jpg) | ![](figures/canvasFontAfter.jpg) |
+
+**起始API Level**
+
+API 8
+
+**变更发生版本**
+
+从OpenHarmony SDK 6.0.0.39开始。
+
+**变更的接口/组件**
+
+CanvasRenderingContext2D和OffscreenCanvasRenderingContext2D的font接口。
+
+**适配指导**
+
+变更后，CanvasRenderer的font接口设置自定义字体生效。若需保持变更前的默认字体行为，可以不设置自定义字体。
