@@ -147,10 +147,10 @@ import { window } from '@kit.ArkUI';
 
 const DOMAIN = 0x0000;
 
-@Entry({ storage : LocalStorage.getShared() })
+@Entry({ storage : new LocalStorage() })
 @Component
 struct Index {
-  storage = LocalStorage.getShared()
+  storage = new LocalStorage()
 
   build() {
     Row() {
