@@ -30,6 +30,10 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
+| 类型      | 说明                          |
+| -----------| ---------------------------- |
+| number     | 表示值类型为数字，可取任意值。     |
+
 当曲线类型为LINEAR，动画曲线参数选填，且不生效。
 
 当曲线类型为INTERPOLATION_SPRING时，动画曲线参数需设置为长度为4的数组：[velocity,mass,stiffness,damping]。
