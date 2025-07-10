@@ -20,10 +20,6 @@ PluginComponent(options: PluginComponentOptions)
 
 创建插件组件，用于显示外部应用提供的UI。
 
-> **说明：**
->
-> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
-
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -44,22 +40,18 @@ PluginComponent(options: PluginComponentOptions)
 
 | 参数       | 类型   | 描述                        |
 | ---------- | ------ | --------------------------- |
-| template   | [PluginComponentTemplate](#plugincomponenttemplate9类型说明) | 组件模板，用于跟提供方定义的组件绑定。                |
-| data       | any    | 传给插件组件提供方使用的数据。 |
+| template<sup>9+</sup>   | [PluginComponentTemplate](#plugincomponenttemplate9类型说明) | 组件模板，用于跟提供方定义的组件绑定。                |
+| data<sup>9+</sup>       | any    | 传给插件组件提供方使用的数据。 |
 
 ## PluginComponentTemplate<sup>9+</sup>类型说明
-
-定义用于构造插件组件的模板。
-
-> **说明：**
->
-> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
 | 参数       | 类型   | 描述                        |
 | ---------- | ------ | --------------------------- |
 | source     | string | 组件模板名。                |
 | bundleName | string | 提供方Ability的bundleName。 |
+
 ## 属性
+
 必须显式设置组件宽高为非0有效值。
 
 **说明：**
@@ -99,7 +91,7 @@ onComplete(callback:&nbsp;VoidCallback)
 
 | 参数名  | 类型                                                     | 必填 | 说明                                                     |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | [VoidCallback](../../apis-basic-services-kit/js-apis-base.md#callback) | 是   | 回调函数，组件加载完成时触发的回调。 |
+| callback<sup>9+</sup> | [VoidCallback](../../apis-basic-services-kit/js-apis-base.md#callback) | 是   | 回调函数，组件加载完成时触发的回调。 |
 
 ### onError
 
@@ -119,15 +111,11 @@ onError(callback:&nbsp;PluginErrorCallback)
 
 | 参数名    | 类型                                                         | 必填 | 说明                                            |
 | --------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| callback  | [PluginErrorCallback](#pluginerrorcallback18类型说明)          | 是   | 发生错误时调用回调。 |
+| callback<sup>9+</sup>  | [PluginErrorCallback](#pluginerrorcallback18类型说明)          | 是   | 发生错误时调用回调。 |
 
 ## PluginErrorCallback<sup>18+</sup>类型说明
 
 发生错误时调用回调。
-
-> **说明：**
->
-> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
 | 参数     | 类型               | 描述                        |
 | -------- | ------------------ | --------------------------- |
@@ -143,8 +131,8 @@ onError(callback:&nbsp;PluginErrorCallback)
 
 | 参数       | 类型   | 描述                        |
 | ---------- | ------ | -------------------------- |
-| errcode    | number | 错误码。                    |
-| msg        | string | 错误信息。                  |
+| errcode<sup>9+</sup>    | number | 错误码。                    |
+| msg<sup>9+</sup>        | string | 错误信息。                  |
 
 错误码1为默认错误码，错误信息和处理建议详见下表：
 
