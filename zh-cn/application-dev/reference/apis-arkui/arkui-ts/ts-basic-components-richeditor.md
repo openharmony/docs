@@ -68,6 +68,8 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
