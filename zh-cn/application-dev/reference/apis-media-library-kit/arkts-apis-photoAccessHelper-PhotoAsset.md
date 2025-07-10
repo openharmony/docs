@@ -657,6 +657,8 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getReadOnlyFdDemo');
   // 需要保证设备中存在可读取图片视频文件。
@@ -718,6 +720,8 @@ getReadOnlyFd(): Promise&lt;number&gt;
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getReadOnlyFdDemo');
   try {
