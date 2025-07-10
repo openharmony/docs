@@ -104,16 +104,6 @@ import { window } from '@kit.ArkUI';
 | REGULAR | 2    | 表示适中的模糊类型。 |
 | THICK   | 3    | 表示较厚的模糊类型。 |
 
-## AnimationType<sup>20+</sup>
-
-窗口动画类型枚举。
-
-**系统能力：**  SystemCapability.Window.SessionManager
-
-| 名称    | 值   | 说明                       |
-| ------- | ---- | -------------------------- |
-| FADE_IN | 1    | 表示窗口动画类型为淡入。淡入动画在窗口显示过程中生效。 |
-
 ## SystemBarRegionTint<sup>8+</sup>
 
 单个导航栏或状态栏回调信息。
@@ -187,35 +177,6 @@ import { window } from '@kit.ArkUI';
 | x    | number   | 否   | 是  | X轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 | y    | number   | 否   | 是  | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 | z    | number   | 否   | 是  | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
-
-
-## StartAnimationSystemParams<sup>20+</sup>
-
-启动动画配置。
-
-不同应用间跳转场景不生效，仍保持系统默认动效。
-
-仅在手机设备或平板设备的非自由多窗模式下生效。
-
-仅对全屏应用生效。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-| 名称             | 类型                                                                     | 只读 | 可选 | 说明                                                         |
-| ---------------- | ----------------------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type             | [AnimationType](#animationtype20)                 | 否   | 否   | 窗口动画类型。|
-| animationConfig  | [WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20) | 否   | 是   | 窗口动画参数配置。默认动画曲线为WindowAnimationCurve.LINEAR，duration为0。          |
-
-## WindowCreateParams<sup>20+</sup>
-
-应用启动时的窗口参数配置。
-
-**系统能力：** SystemCapability.Window.SessionManager
-| 名称             | 类型                                                                     | 只读 | 可选 | 说明                                                         |
-| ---------------- | ----------------------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| systemAnimationsParams             | [StartAnimationSystemParams](#startanimationsystemparams20)                 | 否   | 是   | 启动动画参数配置。默认值为undefined，若不配置将保持系统默认动效。|
 
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
