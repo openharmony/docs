@@ -220,7 +220,7 @@ text(txt: string, pattern?: MatchPattern): On
 
 > **说明**
 >
-> 如果控件的无障碍属性[accessibilityLevel](../apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md#accessibilitylevel)设置为'no'或'no-hide-descendants'，无法使用本接口指定目标控件的文本属性用于查找控件，可以使用[On.originalText()](#originaltext20)接口实现。
+> 如果控件的无障碍属性[accessibilityLevel](../apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md#accessibilitylevel)设置为'no'或'no-hide-descendants'，无法使用本接口指定目标控件的文本属性用于查找控件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -978,49 +978,6 @@ belongingDisplay(displayId: number): On
  let on:On = ON.belongingDisplay(0); // 使用静态构造器ON创建On对象，指定目标控件所属屏幕ID
 ```
 
-### originalText<sup>20+</sup>
-
-originalText(text: string, pattern?: MatchPattern): On
-
-指定目标控件的文本属性，支持多种匹配模式，返回On对象自身。
-
-> **说明**
->
-> 如果控件的无障碍属性[accessibilityLevel](../apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md#accessibilitylevel)设置为'no'或'no-hide-descendants'，可以使用本接口指定目标控件的文本属性用于查找控件，使用[On.text()](#text9)接口不生效。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名  | 类型                          | 必填 | 说明                                                |
-| ------- | ----------------------------- | ---- | --------------------------------------------------- |
-| text     | string                        | 是   | 指定控件文本，用于匹配目标控件文本。                |
-| pattern | [MatchPattern](#matchpattern) | 否   | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
-
-**返回值：**
-
-| 类型       | 说明                               |
-| ---------- | ---------------------------------- |
-| [On](#on9) | 返回指定目标控件文本属性的On对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17000007      | Parameter verification failed.|
-
-**示例：**
-
-```ts
-import { On, ON } from '@kit.TestKit';
-
-let on:On = ON.originalText('123'); // 使用静态构造器ON创建On对象，指定目标控件的originalText属性
-```
-
 ## Component<sup>9+</sup>
 
 UiTest框架在API9中，Component类代表了UI界面上的一个控件，提供控件属性获取，控件点击，滑动查找，文本注入等API。
@@ -1178,7 +1135,7 @@ getText(): Promise\<string>
 
 > **说明**
 >
-> 如果控件的无障碍属性[accessibilityLevel](../apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md#accessibilitylevel)设置为'no'或'no-hide-descendants'，无法使用本接口获取控件的文本信息，可以使用[Component.getOriginalText()](#getoriginaltext20)获取控件的文本信息。
+> 如果控件的无障碍属性[accessibilityLevel](../apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md#accessibilitylevel)设置为'no'或'no-hide-descendants'，无法使用本接口获取控件的文本信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1714,7 +1671,7 @@ inputText(text: string, mode: InputTextMode): Promise\<void>
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-| 801      | Capability not support, function can not work correctly due to limited device capabilities.|
+| 801      | Capability not supported, function can not work correctly due to limited device capabilities.|
 
 **示例：**
 ```ts
@@ -2176,47 +2133,6 @@ async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('TextInput'));
   let displayId = await button.getDisplayId();
-}
-```
-
-### getOriginalText<sup>20+</sup>
-
-getOriginalText(): Promise\<string>
-
-获取控件对象的文本信息，使用Promise异步回调。
-
-> **说明**
->
-> 如果控件的无障碍属性[accessibilityLevel](../apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md#accessibilitylevel)设置为'no'或'no-hide-descendants'，可以使用本接口获取控件的文本信息，无法使用[Component.getText()](#gettext9)获取控件的文本信息。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**返回值：**
-
-| 类型             | 说明                              |
-| ---------------- | --------------------------------- |
-| Promise\<string> | Promise对象，返回控件的文本信息。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 17000004 | The window or component is invisible or destroyed.           |
-
-**示例：**
-
-```ts
-import { Component, Driver, ON } from '@kit.TestKit';
-
-async function demo() {
-  let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('Button'));
-  let text = await button.getOriginalText();
 }
 ```
 
