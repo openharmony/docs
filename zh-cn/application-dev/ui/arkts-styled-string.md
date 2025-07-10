@@ -300,62 +300,148 @@
 以下代码示例展示了如何创建ParagraphStyle并应用。如果将ParagraphStyle附加到段落开头、末尾或之间的任何位置，均会应用样式，非段落区间内则不会应用样式。
 
   ```ts
-  import { LengthMetrics } from '@kit.ArkUI';
-  titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
-  //段落首行缩进15vp
-  paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });
-  //行高样式对象
-  lineHeightStyle1: LineHeightStyle= new LineHeightStyle(new LengthMetrics(24));
-  //创建含段落样式的对象paragraphStyledString1
-  paragraphStyledString1: MutableStyledString = new MutableStyledString("段落标题\n正文第一段落开始0123456789正文第一段落结束。", [
-    {
-      start: 0,
-      length: 4,
-      styledKey: StyledStringKey.PARAGRAPH_STYLE,
-      styledValue: this.titleParagraphStyleAttr
-    },
-    {
-      start: 0,
-      length: 4,
-      styledKey: StyledStringKey.LINE_HEIGHT,
-      styledValue: new LineHeightStyle(new LengthMetrics(50))
-    },{
-    start: 0,
-    length: 4,
-    styledKey: StyledStringKey.FONT,
-    styledValue: new TextStyle({ fontSize: LengthMetrics.vp(24), fontWeight: FontWeight.Bolder })
-  },
-    {
-      start: 5,
-      length: 3,
-      styledKey: StyledStringKey.PARAGRAPH_STYLE,
-      styledValue: this.paragraphStyleAttr1
-    },
-    {
-      start: 5,
-      length: 20,
-      styledKey: StyledStringKey.LINE_HEIGHT,
-      styledValue: this.lineHeightStyle1
+  import { LengthMetrics} from '@kit.ArkUI';
+
+  // xxx.ets
+  @Entry
+  @Component
+  struct Index {
+    titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
+    // 段落首行缩进15vp
+    paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });
+    // 行高样式对象
+    lineHeightStyle1: LineHeightStyle = new LineHeightStyle(new LengthMetrics(24));
+    // 创建含段落样式的对象paragraphStyledString1
+    paragraphStyledString1: MutableStyledString =
+      new MutableStyledString("段落标题\n正文第一段落开始0123456789正文第一段落结束。", [
+        {
+          start: 0,
+          length: 4,
+          styledKey: StyledStringKey.PARAGRAPH_STYLE,
+          styledValue: this.titleParagraphStyleAttr
+        },
+        {
+          start: 0,
+          length: 4,
+          styledKey: StyledStringKey.LINE_HEIGHT,
+          styledValue: new LineHeightStyle(new LengthMetrics(50))
+        }, {
+        start: 0,
+        length: 4,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontSize: LengthMetrics.vp(24), fontWeight: FontWeight.Bolder })
+      },
+        {
+          start: 5,
+          length: 3,
+          styledKey: StyledStringKey.PARAGRAPH_STYLE,
+          styledValue: this.paragraphStyleAttr1
+        },
+        {
+          start: 5,
+          length: 20,
+          styledKey: StyledStringKey.LINE_HEIGHT,
+          styledValue: this.lineHeightStyle1
+        }
+      ]);
+    controller: TextController = new TextController();
+
+    async onPageShow() {
+      this.controller.setStyledString(this.paragraphStyledString1);
     }
-  ]);
+
+    build() {
+      Column() {
+        // 显示属性字符串
+        Text(undefined, { controller: this.controller })
+      }
+      .width('100%')
+    }
+  }
   ```
+
+  ![styled_string_paragraph1](figures/styled_string_paragraph1.png)
 
   除了可以在创建属性字符串时就预设样式，也可以后续通过[replaceStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#replacestyle)清空原样式替换新样式，同时需要在附加的文本组件controller上主动触发更新绑定的属性字符串。
 
   ```ts
   import { LengthMetrics } from '@kit.ArkUI';
-  //段落不设置缩进配置最大行数及超长显示方式
-  paragraphStyleAttr3: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.End, maxLines: 1, wordBreak: WordBreak.BREAK_ALL, overflow: TextOverflow.Ellipsis});
-  // 后续某个节点触发更新段落样式
-  controller: TextController = new TextController();
-  this.paragraphStyledString1.replaceStyle({
-    start: 5,
-    length: 3,
-    styledKey: StyledStringKey.PARAGRAPH_STYLE,
-    styledValue: this.paragraphStyleAttr3
-  });
-  this.controller.setStyledString(this.paragraphStyledString1);
+
+  // xxx.ets
+  @Entry
+  @Component
+  struct Index {
+    titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
+    // 段落首行缩进15vp
+    paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });
+    // 行高样式对象
+    lineHeightStyle1: LineHeightStyle = new LineHeightStyle(new LengthMetrics(24));
+    // 创建含段落样式的对象paragraphStyledString1
+    paragraphStyledString1: MutableStyledString =
+      new MutableStyledString("段落标题\n正文第一段落开始0123456789正文第一段落结束，通过replaceStyle清空原样式替换新样式。", [
+        {
+          start: 0,
+          length: 4,
+          styledKey: StyledStringKey.PARAGRAPH_STYLE,
+          styledValue: this.titleParagraphStyleAttr
+        },
+        {
+          start: 0,
+          length: 4,
+          styledKey: StyledStringKey.LINE_HEIGHT,
+          styledValue: new LineHeightStyle(new LengthMetrics(50))
+        }, {
+        start: 0,
+        length: 4,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontSize: LengthMetrics.vp(24), fontWeight: FontWeight.Bolder })
+      },
+        {
+          start: 5,
+          length: 3,
+          styledKey: StyledStringKey.PARAGRAPH_STYLE,
+          styledValue: this.paragraphStyleAttr1
+        },
+        {
+          start: 5,
+          length: 20,
+          styledKey: StyledStringKey.LINE_HEIGHT,
+          styledValue: this.lineHeightStyle1
+        }
+      ]);
+    paragraphStyleAttr3: ParagraphStyle = new ParagraphStyle({
+      textAlign: TextAlign.End,
+      maxLines: 1,
+      wordBreak: WordBreak.BREAK_ALL,
+      overflow: TextOverflow.Ellipsis
+    });
+    controller: TextController = new TextController();
+
+    async onPageShow() {
+      this.controller.setStyledString(this.paragraphStyledString1);
+    }
+
+    build() {
+      Column() {
+        // 显示属性字符串
+        Text(undefined, { controller: this.controller }).width(300)
+        Button('替换段落样式')
+          .onClick(() => {
+            this.paragraphStyledString1.replaceStyle({
+              start: 5,
+              length: 3,
+              styledKey: StyledStringKey.PARAGRAPH_STYLE,
+              styledValue: this.paragraphStyleAttr3
+            });
+            this.controller.setStyledString(this.paragraphStyledString1);
+          })
+      }
+      .width('100%')
+    }
+  }
   ```
+
+  ![styled_string_paragraph2](figures/styled_string_paragraph2.gif)
 
 ## 使用图片
 
@@ -407,11 +493,11 @@
     }
 
     leadingMarginValue: ParagraphStyle = new ParagraphStyle({ leadingMargin: LengthMetrics.vp(5)});
-    //行高样式对象
+    // 行高样式对象
     lineHeightStyle1: LineHeightStyle= new LineHeightStyle(new LengthMetrics(24));
-    //Bold样式
+    // Bold样式
     boldTextStyle: TextStyle = new TextStyle({ fontWeight: FontWeight.Bold });
-    //创建含段落样式的对象paragraphStyledString1
+    // 创建含段落样式的对象paragraphStyledString1
     paragraphStyledString1: MutableStyledString = new MutableStyledString("\n品牌相纸 高清冲印30张\n限时直降5.15元 限量增送", [
       {
         start: 0,
@@ -565,7 +651,7 @@
         blue: 255
       });
       canvas.attachBrush(brush);
-      canvas.drawTextBlob(textBlob, options.x, options.lineBottom - 30);
+      canvas.drawTextBlob(textBlob, options.x, options.baseline);
       brush.setColor({
         alpha: 255,
         red: 255,
@@ -575,7 +661,7 @@
       canvas.attachBrush(brush);
       const textBlob1 =
         drawing.TextBlob.makeFromString(this.word.substring(5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
-      canvas.drawTextBlob(textBlob1, options.x + gUIContext.vp2px(100), options.lineBottom - 30);
+      canvas.drawTextBlob(textBlob1, options.x + gUIContext.vp2px(100), options.baseline);
 
       canvas.detachBrush();
     }
@@ -613,9 +699,18 @@
   @Component
   struct styled_string_demo6 {
     customSpan3: MyCustomSpan = new MyCustomSpan("99VIP88%off", 200, 40, 30);
-    textStyle: MutableStyledString = new MutableStyledString("123");
+    customSpanStyledString: MutableStyledString = new MutableStyledString(this.customSpan3);
     textController: TextController = new TextController();
     isPageShow: boolean = true;
+    @State backgroundColor1: ResourceColor | undefined = undefined;
+    gestureStyleAttr: GestureStyle = new GestureStyle({
+      onClick: () => {
+        this.backgroundColor1 = Color.Green;
+      },
+      onLongPress: () => {
+        this.backgroundColor1 = Color.Grey;
+      }
+    });
 
     aboutToAppear() {
       gUIContext = this.getUIContext();
@@ -626,12 +721,19 @@
         return;
       }
       this.isPageShow = false;
-      this.textController.setStyledString(new StyledString(this.customSpan3));
+      this.customSpanStyledString.setStyle({
+        start: 0,
+        length: 1,
+        styledKey: StyledStringKey.GESTURE,
+        styledValue: this.gestureStyleAttr
+      })
+      this.textController.setStyledString(this.customSpanStyledString);
     }
 
     build() {
       Row() {
         Column() {
+          Button("响应属性字符串事件改变背景色").backgroundColor(this.backgroundColor1).width('80%').margin(10)
           Text(undefined, { controller: this.textController })
             .copyOption(CopyOptions.InApp)
             .fontSize(30)
@@ -642,7 +744,7 @@
     }
   }
   ```
-![CustomSpanDemo](figures/StyledString_CustomSpan_Scene.PNG)
+  ![styled_string_event](figures/styled_string_event.gif)
 
 ## 格式转换
 
@@ -799,11 +901,11 @@ import { LengthMetrics } from '@kit.ArkUI';
 @Component
 struct Index {
   alignCenterParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
-  //行高样式对象
+  // 行高样式对象
   lineHeightStyle1: LineHeightStyle = new LineHeightStyle(LengthMetrics.vp(24));
-  //Bold样式
+  // Bold样式
   boldTextStyle: TextStyle = new TextStyle({ fontWeight: FontWeight.Bold });
-  //创建含段落样式的对象paragraphStyledString1
+  // 创建含段落样式的对象paragraphStyledString1
   paragraphStyledString1: MutableStyledString =
     new MutableStyledString("您的豪华钻石已过期1天\n续费可继续享受会员专属权益", [
       {
