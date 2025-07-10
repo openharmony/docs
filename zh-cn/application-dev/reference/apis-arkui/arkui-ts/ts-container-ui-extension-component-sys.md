@@ -66,17 +66,13 @@ UIExtensionAbility连接完成时的回调，之后可使用proxy向被拉起的
 
 | 参数名                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ------ | ------------------------------------------------------- |
-| callback                        | UIExtensionProxy | 否 | 用于向对端Ability发送数据。                          |
+| callback                        | Callback\<UIExtensionProxy\> | 否 | 用于向对端Ability发送数据。                          |
 
 ### onReceive
 
 onReceive(callback: ReceiveCallback)
 
 收到被拉起的Ability发送的数据时触发的回调。
-
-> **说明：**
->
-> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -86,7 +82,7 @@ onReceive(callback: ReceiveCallback)
 
 | 参数名                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ------ | ------------------------------------------------------- |
-| callback<sup>10+</sup>                        | [ReceiveCallback](#receivecallback18) | 否 | 收到来自对端Ability的数据。                 |
+| callback                        | [ReceiveCallback](#receivecallback18) | 否 | 收到来自对端Ability的数据。                 |
 
 ### onResult<sup>(deprecated)</sup>
 
@@ -256,10 +252,6 @@ send(data: Record\<string, Object\>): void
 
 用于在双方建立连接成功后，组件使用方向被拉起的Ability发送数据的场景，提供异步发送数据。
 
-> **说明：**
->
-> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
-
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -268,7 +260,7 @@ send(data: Record\<string, Object\>): void
 
 | 参数名  | 类型                                     | 必填   | 说明            |
 | ---- | ---------------------------------------- | ---- | --------------- |
-| data<sup>10+</sup> | Record\<string, Object\> | 是    | 异步发送给被拉起的扩展Ability的数据。 |
+| data | Record\<string, Object\> | 是    | 异步发送给被拉起的扩展Ability的数据。 |
 
 ### sendSync<sup>11+</sup>
 
@@ -276,10 +268,6 @@ sendSync(data: Record\<string, Object\>): Record\<string, Object\>
 
 用于在双方建立连接成功后，组件使用方向被拉起的Ability发送数据的场景，提供同步发送数据。
 
-> **说明：**
->
-> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
-
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -288,7 +276,7 @@ sendSync(data: Record\<string, Object\>): Record\<string, Object\>
 
 | 参数名  | 类型                                     | 必填   | 说明            |
 | ---- | ---------------------------------------- | ---- | --------------- |
-| data<sup>11+</sup> | Record\<string, Object\> | 是    | 同步发送给被拉起的扩展Ability的数据。 |
+| data | Record\<string, Object\> | 是    | 同步发送给被拉起的扩展Ability的数据。 |
 
 **返回值：**
 
@@ -310,10 +298,6 @@ on(type: 'asyncReceiverRegister', callback: Callback\<UIExtensionProxy\>): void
 
 用于在双方建立连接成功后，组件使用方订阅被拉起的Ability发生异步注册的场景。
 
-> **说明：**
->
-> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
-
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -322,8 +306,8 @@ on(type: 'asyncReceiverRegister', callback: Callback\<UIExtensionProxy\>): void
 
 | 参数名  | 类型 |必填 | 说明 |
 | ------ | -------- |---- | ------- |
-| type<sup>11+</sup>   | string | 是 | 代表订阅扩展Ability发生异步注册回调。 |
-| callback<sup>11+</sup>   | Callback\<UIExtensionProxy\> | 是 | 订阅扩展Ability注册setReceiveDataCallback后触发的回调。 |
+| type   | string | 是 | 代表订阅扩展Ability发生异步注册回调。 |
+| callback   | Callback\<UIExtensionProxy\> | 是 | 订阅扩展Ability注册setReceiveDataCallback后触发的回调。 |
 
 ### on('syncReceiverRegister')<sup>11+</sup>
 
@@ -331,10 +315,6 @@ on(type: 'syncReceiverRegister', callback: Callback\<UIExtensionProxy\>): void;
 
 用于在双方建立连接成功后，组件使用方订阅被拉起的Ability发生同步注册的场景。
 
-> **说明：**
->
-> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
-
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -343,8 +323,8 @@ on(type: 'syncReceiverRegister', callback: Callback\<UIExtensionProxy\>): void;
 
 | 参数名  | 类型 |必填 | 说明 |
 | ------ | -------- |---- | ------- |
-| type<sup>11+</sup>   | string | 是 | 订阅扩展Ability发生同步注册回调。 |
-| callback<sup>11+</sup>   | Callback\<UIExtensionProxy\> | 是 | 扩展Ability注册setReceiveDataForResultCallback后触发的回调。 |
+| type   | string | 是 | 订阅扩展Ability发生同步注册回调。 |
+| callback   | Callback\<UIExtensionProxy\> | 是 | 扩展Ability注册setReceiveDataForResultCallback后触发的回调。 |
 
 ### off('asyncReceiverRegister')<sup>11+</sup>
 
@@ -352,10 +332,6 @@ off(type: 'asyncReceiverRegister', callback?: Callback\<UIExtensionProxy\>): voi
 
 用于在双方建立连接成功后，组件使用方取消订阅被拉起的Ability发生异步注册的场景。
 
-> **说明：**
->
-> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
-
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -364,8 +340,8 @@ off(type: 'asyncReceiverRegister', callback?: Callback\<UIExtensionProxy\>): voi
 
 | 参数名  | 类型 | 必填 | 说明 |
 | ------ | -------- | ----- | ------- |
-| type<sup>11+</sup>   | string | 是 | 取消订阅扩展Ability发生异步注册回调。 |
-| callback<sup>11+</sup> | Callback\<UIExtensionProxy\> | 否 | 为空代表取消订阅所有扩展Ability异步注册后触发回调。<br> 非空代表取消订阅异步对应回调。 |
+| type   | string | 是 | 取消订阅扩展Ability发生异步注册回调。 |
+| callback | Callback\<UIExtensionProxy\> | 否 | 为空代表取消订阅所有扩展Ability异步注册后触发回调。<br> 非空代表取消订阅异步对应回调。 |
 
 ### off('syncReceiverRegister')<sup>11+</sup>
 
@@ -373,10 +349,6 @@ off(type: 'syncReceiverRegister', callback?: Callback\<UIExtensionProxy\>): void
 
 用于在双方建立连接成功后，组件使用方取消订阅被拉起的Ability发生同步注册的场景。
 
-> **说明：**
->
-> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
-
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -385,8 +357,8 @@ off(type: 'syncReceiverRegister', callback?: Callback\<UIExtensionProxy\>): void
 
 | 参数名  | 类型 | 必填 | 说明 |
 | ------ | -------- | ----- | ------- |
-| type<sup>11+</sup>   | string | 是 | 取消订阅扩展Ability发生同步注册回调。 |
-| callback<sup>11+</sup> | Callback\<UIExtensionProxy\> | 否 | 为空代表取消订阅所有扩展Ability同步注册后触发回调<br> 非空代表取消订阅同步对应回调。 |
+| type   | string | 是 | 取消订阅扩展Ability发生同步注册回调。 |
+| callback | Callback\<UIExtensionProxy\> | 否 | 为空代表取消订阅所有扩展Ability同步注册后触发回调<br> 非空代表取消订阅同步对应回调。 |
 
 ## 示例
 
