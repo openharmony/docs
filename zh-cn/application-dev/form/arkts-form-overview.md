@@ -44,7 +44,7 @@ ArkTS卡片分为动态卡片与静态卡片两种类型。
 | 动态卡片 | 除了支持UI组件和布局能力，还支持通用事件能力和自定义动效能力。 | 用于有复杂业务逻辑和交互的场景。例如：卡片页面图片的刷新、卡片内容的刷新等。| 功能丰富但内存开销较大。|
 
 ### 动态卡片
-ArkTS卡片中提供了[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口用于动态卡片内部和提供方应用间的交互，当前支持router、message和call三种类型的事件，仅在卡片控件的点击事件中可以调用。
+ArkTS卡片中提供了[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction-1)接口用于动态卡片内部和提供方应用间的交互，当前支持router、message和call三种类型的事件，仅在卡片控件的点击事件中可以调用。
 
 **图4** 动态卡片事件实现原理  
 ![WidgetPostCardAction](figures/WidgetPostCardAction.png)
