@@ -5101,11 +5101,11 @@ struct RichEditorExample {
   options: RichEditorOptions = { controller: this.controller };
   @State endIndex: number | undefined = 0;
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
-    const idsToFilter = [
+    const idsToFilter: TextMenuItemId[] = [
       TextMenuItemId.TRANSLATE,
       TextMenuItemId.SHARE,
       TextMenuItemId.SEARCH,
-      TextMenuItemId.AI_WRITE
+      TextMenuItemId.AI_WRITER
     ]
     const items = menuItems.filter(item => !idsToFilter.some(id => id.equals(item.id)))
     let item1: TextMenuItem = {
