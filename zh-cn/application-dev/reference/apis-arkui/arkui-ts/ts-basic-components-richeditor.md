@@ -4193,7 +4193,7 @@ struct RichEditorDemo {
       }.margin({top:50})
       RichEditor({ controller: this.controller })
         .onReady(()=>{
-          this.controller.addTextSpan('测试文字测试文字测试文字测试文字测试文字测试文字');
+          this.controller.addTextSpan('通过caretColor和selectedBackgroundColor属性设置光标和选中背景色');
         })
         .width("100%")
         .border({ width: 1, radius: 5 })
