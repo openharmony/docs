@@ -130,6 +130,25 @@ The device pairing fails.
 
 Turn on Bluetooth again to start the pairing process.
 
+## 2900009
+
+**Error Message**
+
+Fails to start scan as it is out of hardware resources.
+
+**Description**
+
+Starting a scan fails due to insufficient hardware resources.
+
+**Possible Causes**
+
+An excessive number of scan channels have been activated by this application or other applications, resulting in insufficient hardware resources.
+
+**Solution**
+
+If this application has never started a scan, you can turn Bluetooth off and then back on to release the scanning resources occupied by other applications.
+If this application has already started a scan on another channel, you can call the **stopScan** API to halt the scan. After the hardware resources are released, restart the current scan.
+
 ## 2900010
 
 **Error Message**
