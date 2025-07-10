@@ -196,6 +196,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     constexpr OH_AudioChannelLayout CHANNEL_LAYOUT = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
     // 配置音频位深（必须）。
     constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S16LE;
+
     OH_AVFormat *format = OH_AVFormat_Create();
     // 写入format。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, DEFAULT_CHANNEL_COUNT);
@@ -288,7 +289,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
    每次输入的采样点数(SAMPLES_PER_FRAME)取值方法如下：
 
-   AAC LC编码每帧包含1024个PCM样点，建议单次输入1024个样点的数据量。
+   AAC-LC编码每帧包含1024个PCM样点，建议单次输入1024个样点的数据量。
 
    <!--RP5--><!--RP5End-->
 
@@ -308,12 +309,15 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
    > **说明：**
    > 单次编码输入的数据量（单位：字节）为：采样点数（SAMPLES_PER_FRAME） * 声道数 * 单个采样点的占用字节。
+   >
    > flac编码的样点数建议根据采样率按照表格传入，大于这个值会返回错误码，如果小于有可能出现编码文件损坏问题。
 
    ```c++
     // 声道数，对于amr编码声道数只支持单声道的音频输入。
     constexpr int32_t DEFAULT_CHANNEL_COUNT = 2;
-    // 每帧输入数据的长度，声道数 * 每帧样点数 * 每个样点的字节数（以采样格式SAMPLE_S16LE为例）。
+    // 采样点数，这里以AAC-LC为例，采样点数为1024。
+    constexpr int32_t SAMPLES_PER_FRAME = 1024;
+    // 单次编码输入的数据量（单位：字节）为：采样点数 * 声道数 * 单个采样点的占用字节（以采样格式SAMPLE_S16LE为例）。
     // 如果最后一帧数据不满足长度，建议进行丢弃或填充处理。
     constexpr int32_t INPUT_FRAME_BYTES = SAMPLES_PER_FRAME * DEFAULT_CHANNEL_COUNT * sizeof(short);
     uint32_t index = signal_->inQueue_.front();
