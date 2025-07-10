@@ -30,11 +30,15 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
+| 类型      | 说明                          |
+| -----------| ---------------------------- |
+| Array&lt;number&gt;    | 表示值类型为数字数组，元素取值范围见对应曲线描述。     |
+
 当曲线类型为LINEAR，动画曲线参数选填，且不生效。
 
 当曲线类型为INTERPOLATION_SPRING时，动画曲线参数需设置为长度为4的数组：[velocity,mass,stiffness,damping]。
 
-- velocity：表示初始速度，类型为number，必填。
+- velocity：表示初始速度，类型为number，必填，取值范围为(-∞, +∞)。
 
   用于描述外部因素对弹性动效产生的影响参数，目的是保证对象从之前的运动状态平滑地过渡到弹性动效。该速度是归一化速度，其值等于动画开始时的实际速度除以动画属性改变值。
 
