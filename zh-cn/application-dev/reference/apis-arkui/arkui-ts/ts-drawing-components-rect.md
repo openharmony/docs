@@ -432,12 +432,12 @@ struct RectExample {
       // 绘制90% * 50矩形，圆角半径为5
       Rect({ width: '90%', height: '50', radius: '5' })//使用string类型
         .fill(Color.Green)
-      // 绘制90% * 50的矩形框，圆角半径为5
+      // 绘制200 * 50的矩形框，圆角半径为5
       Rect({ width: 200, height: 50, radius: 5 })//使用number类型
         .fillOpacity(0)
         .stroke(Color.Red)
         .strokeWidth(3)
-      // 绘制90% * 50矩形, 圆角宽80, 圆角高20
+      // 绘制200 * 50矩形, 圆角宽80, 圆角高20
       Rect({
         width: $r('app.string.RectWidth'), //使用Resource类型，需用户自定义
         height: $r('app.string.RectHeight'),
