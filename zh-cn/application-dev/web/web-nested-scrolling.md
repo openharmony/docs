@@ -161,7 +161,7 @@ struct NestedScroll {
     ```ts
 	  this.webController.scrollBy(0, offset)
     ```
-8. 设置Web组件[bypassVsyncCondition](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#bypassvsynccondition20)为WebBypassVsyncCondition.SCROLLBY_FROM_ZERO_OFFSET，加快Web组件首帧滚动绘制
+8. 设置Web组件[bypassVsyncCondition](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#bypassvsynccondition20)为WebBypassVsyncCondition.SCROLLBY_FROM_ZERO_OFFSET，加快Web组件首帧滚动绘制。
     ```ts
 	  .bypassVsyncCondition(WebBypassVsyncCondition.SCROLLBY_FROM_ZERO_OFFSET)
     ```
