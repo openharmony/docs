@@ -43,6 +43,7 @@
     - [适配指导案例](arkts-more-cases.md)
   - 从ArkTS1.1到ArkTS1.2的适配指导<!--arkts1.1-to-arkts1.2-migration-->
     - [ArkTS1.2用户指导](arkts-v1.2-user-guide.md)
+    - [ArkTS1.2迁移工具使用指导](introduction-to-migration-helper.md)
     - [ArkTS1.2语法迁移规则](arkts-v1.1-v1.2-migration-rules.md)
     - [ArkTS1.2并发迁移规则](arkts-v1.1-v1.2-concurrency-rules.md)
     - [ArkTS1.2与ArkTS1.1互操作迁移规则](arkts-v1.1-v1.2-interop-rules.md)
