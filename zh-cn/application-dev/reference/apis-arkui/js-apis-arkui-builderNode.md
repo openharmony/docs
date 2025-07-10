@@ -1178,7 +1178,7 @@ offsetA为builderNode相对于父组件的偏移，offsetB为命中位置相对�
 >
 > 传入的坐标值需要转换为px，坐标转换示例可以参考下面示例代码。
 >
-> 鼠标左键点击事件会转换成触摸事件，转发时需注意不要在外层同时绑定触摸事件和鼠标事件，规格可查看[onTouch](arkui-ts/ts-universal-events-touch.md#ontouch)。
+> 鼠标左键点击事件将转换为触摸事件，转发时应注意不在外层同时绑定触摸事件与鼠标事件，否则可能导致坐标偏移。这是由于在事件转换过程中，SourceType不会发生变化，规格可查看[onTouch](arkui-ts/ts-universal-events-touch.md#ontouch)。
 >
 > 注入事件为[轴事件](arkui-ts/ts-universal-events-axis.md#axisevent)时，由于轴事件中缺少旋转轴信息与捏合轴信息，因此注入的事件无法触发[pinch捏合手势](arkui-ts/ts-basic-gestures-pinchgesture.md)与[rotate旋转手势](arkui-ts/ts-basic-gestures-rotationgesture.md)。
 >
@@ -1206,7 +1206,7 @@ offsetA为builderNode相对于父组件的偏移，offsetB为命中位置相对�
 
 | 类型    | 说明               |
 | ------- | ------------------ |
-| boolean | 事件是否被消费。true表示事件已被消费，false表示事件未被消费。 |
+| boolean | 事件是否被成功派发。如果事件被成功派发则返回true，否则返回false。 |
 
 ### inheritFreezeOptions<sup>20+</sup>
 
@@ -1231,12 +1231,13 @@ inheritFreezeOptions(enabled: boolean): void
 该示例演示了在自定义组件中截获鼠标事件并进行坐标转换的完整流程。组件通过onMouse回调读取本地x/y，再结合FrameNode.getPositionToParent()得到的偏移量，调用vp2px将相对坐标转换为像素坐标，更新MouseEvent的windowX/windowY、displayX/displayY。最后通过rootNode.postInputEvent(event)将转换后的鼠标事件分发给子节点进行处理。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction, InputEventType } from '@kit.ArkUI';
+import { NodeController, BuilderNode, FrameNode, UIContext, InputEventType } from '@kit.ArkUI';
 
 class Params {
   text: string = "this is a text"
   uiContext: UIContext | null = null
 }
+
 @Builder
 function ButtonBuilder(params: Params) {
   Column() {
@@ -1247,30 +1248,30 @@ function ButtonBuilder(params: Params) {
       .fontSize(20)
       .width("45%")
       .height("30%")
-      .offset({x: 100, y: 100})
-      .onMouse((event) => {
-        let promptAction: PromptAction = params.uiContext!.getPromptAction();
-        promptAction.showToast({
-          message: 'onMouse',
-          duration: 3000
-        });
-        console.log('onMouse')
+      .offset({ x: 100, y: 100 })
+      .onMouse(() => {
+        console.info('onMouse')
+      })
+      .onTouch(() => {
+        console.info('onTouch')
       })
   }
   .width(500)
   .height(300)
   .backgroundColor(Color.Gray)
 }
+
 class MyNodeController extends NodeController {
   private rootNode: BuilderNode<[Params]> | null = null;
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(ButtonBuilder);
+
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
     this.rootNode.build(this.wrapBuilder, { text: "This is a string", uiContext })
     return this.rootNode.getFrameNode();
   }
 
-  postInputEvent(event: InputEventType, uiContext: UIContext): boolean {
+  postMouseEvent(event: InputEventType, uiContext: UIContext): boolean {
     if (this.rootNode == null) {
       return false;
     }
@@ -1278,15 +1279,45 @@ class MyNodeController extends NodeController {
     let offsetX: number | null | undefined = node?.getPositionToParent().x;
     let offsetY: number | null | undefined = node?.getPositionToParent().y;
 
-    if (event.source == SourceType.Mouse) {
-      let mouseEvent = event as MouseEvent;
+    let mouseEvent = event as MouseEvent;
+    if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
+      mouseEvent.windowX = uiContext.vp2px(offsetX + mouseEvent.x)
+      mouseEvent.windowY = uiContext.vp2px(offsetY + mouseEvent.y)
+      mouseEvent.displayX = uiContext.vp2px(offsetX + mouseEvent.x)
+      mouseEvent.displayY = uiContext.vp2px(offsetY + mouseEvent.y)
+      mouseEvent.x = uiContext.vp2px(mouseEvent.x)
+      mouseEvent.y = uiContext.vp2px(mouseEvent.y)
+    }
+
+    let result = this.rootNode.postInputEvent(event);
+    return result;
+  }
+
+  postTouchEvent(event: InputEventType, uiContext: UIContext): boolean {
+    if (this.rootNode == null) {
+      return false;
+    }
+    let node: FrameNode | null = this.rootNode.getFrameNode();
+    let offsetX: number | null | undefined = node?.getPositionToParent().x;
+    let offsetY: number | null | undefined = node?.getPositionToParent().y;
+
+    let touchevent = event as TouchEvent;
+    let changedTouchLen = touchevent.changedTouches.length;
+    for (let i = 0; i < changedTouchLen; i++) {
       if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
-        mouseEvent.windowX = uiContext.vp2px(offsetX + mouseEvent.x)
-        mouseEvent.windowY = uiContext.vp2px(offsetY + mouseEvent.y)
-        mouseEvent.displayX = uiContext.vp2px(offsetX + mouseEvent.x)
-        mouseEvent.displayY = uiContext.vp2px(offsetY + mouseEvent.y)
-        mouseEvent.x = uiContext.vp2px(mouseEvent.x)
-        mouseEvent.y = uiContext.vp2px(mouseEvent.y)
+        touchevent.changedTouches[i].windowX = uiContext.vp2px(offsetX + touchevent.changedTouches[i].x);
+        touchevent.changedTouches[i].windowY = uiContext.vp2px(offsetY + touchevent.changedTouches[i].y);
+        touchevent.changedTouches[i].displayX = uiContext.vp2px(offsetX + touchevent.changedTouches[i].x);
+        touchevent.changedTouches[i].displayY = uiContext.vp2px(offsetY + touchevent.changedTouches[i].y);
+      }
+    }
+    let touchesLen = touchevent.touches.length;
+    for (let i = 0; i < touchesLen; i++) {
+      if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
+        touchevent.touches[i].windowX = uiContext.vp2px(offsetX + touchevent.touches[i].x);
+        touchevent.touches[i].windowY = uiContext.vp2px(offsetY + touchevent.touches[i].y);
+        touchevent.touches[i].displayX = uiContext.vp2px(offsetX + touchevent.touches[i].x);
+        touchevent.touches[i].displayY = uiContext.vp2px(offsetY + touchevent.touches[i].y);
       }
     }
 
@@ -1294,10 +1325,12 @@ class MyNodeController extends NodeController {
     return result;
   }
 }
+
 @Entry
 @Component
 struct MyComponent {
   private nodeController: MyNodeController = new MyNodeController();
+
   build() {
     Stack() {
       NodeContainer(this.nodeController)
@@ -1309,10 +1342,15 @@ struct MyComponent {
         .backgroundColor(Color.Transparent)
         .onMouse((event) => {
           if (event != undefined) {
-            this.nodeController.postInputEvent(event, this.getUIContext());
+            this.nodeController.postMouseEvent(event, this.getUIContext());
           }
         })
-    }.offset({top: 100})
+        .onTouch((event) => {
+          if (event != undefined) {
+            this.nodeController.postTouchEvent(event, this.getUIContext());
+          }
+        })
+    }.offset({ top: 100 })
   }
 }
 ```
@@ -1347,7 +1385,7 @@ function ButtonBuilder(params: Params) {
           message: 'onTouch',
           duration: 3000
         });
-        console.log('onTouch')
+        console.info('onTouch')
       })
   }
   .width(500)
@@ -1451,7 +1489,7 @@ function ButtonBuilder(params: Params) {
           message: 'onAxisEvent',
           duration: 3000
         });
-        console.log('onAxisEvent')
+        console.info('onAxisEvent')
       })
   }
   .width(500)
