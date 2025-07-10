@@ -83,7 +83,7 @@ struct Index {
 ![zh-cn_image_0000001665553957](figures/zh-cn_image_0000001665553957.png)
 
 
-大于600vp小于等于840vp布局：
+大于600vp且小于等于840vp的布局：
 
 
 ![zh-cn_image_0000001616957408](figures/zh-cn_image_0000001616957408.png)
