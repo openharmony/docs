@@ -14,7 +14,9 @@ IPC/RPC的订阅机制适用于以下场景：</br>
 1. IPC通信，Proxy对象需要感知远端Stub对象所在进程的状态。
 2. RPC通信，Proxy对象需要感知远端Stub对象所在进程的状态，或者RPC通信依赖的软总线连接断开。
 当Proxy感知到Stub端死亡后，应该清理本地Proxy对象以及相关资源。
-> **注意：** RPC不支持匿名Stub对象（没有向SAMgr注册）的死亡通知，IPC支持匿名Stub对象的死亡通知。
+> **注意：** 
+> 
+> RPC不支持匿名Stub对象（没有向SAMgr注册）的死亡通知，IPC支持匿名Stub对象的死亡通知。
 
 ## ArkTS侧接口
 
