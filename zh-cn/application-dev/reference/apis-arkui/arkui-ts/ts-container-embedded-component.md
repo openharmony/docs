@@ -72,7 +72,7 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 
 onError(callback: ErrorCallback)
 
-被拉起的EmbeddedUIExtensionAbility在运行过程中发生异常时触发本回调。
+被拉起的EmbeddedUIExtensionAbility在运行过程中发生异常时触发本回调。可通过回调参数中的code、name和message获取错误信息并做处理，业务错误码详细介绍请参见[UIExtension错误码](../errorcode-uiextension.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -103,10 +103,10 @@ onError(callback: ErrorCallback)
 
 ### 属性
 
-| 名称 | 类型                                                       | 必填 | 说明                                                 |
-| ---- | ---------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| code | number                                                     | 是   | 被拉起EmbeddedUIExtensionAbility退出时返回的结果码。 |
-| want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 被拉起EmbeddedUIExtensionAbility退出时返回的数据。   |
+| 名称 | 类型                      | 只读 | 可选 | 说明                                                 |
+| ---- | -------------------------| ---- | ---- | ---------------------------------------------------- |
+| code | number                                                     | 否 | 否 | 被拉起EmbeddedUIExtensionAbility退出时返回的结果码。 |
+| want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 是 | 被拉起EmbeddedUIExtensionAbility退出时返回的数据。   |
 
 ## 示例（加载EmbeddedComponent）
 
