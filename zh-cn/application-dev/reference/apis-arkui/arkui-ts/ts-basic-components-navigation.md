@@ -49,31 +49,6 @@ Navigation(pathInfos: NavPathStack)
 | --------- | ------------------------------- | ---- | ------ |
 | pathInfos | [NavPathStack](#navpathstack10) | 是    | 导航控制器对象。 |
 
-### Navigation<sup>20+</sup>
-
-Navigation(pathInfos: NavPathStack, homeDestination: HomePathInfo)
-
-绑定路由栈到Navigation组件，并且指定一个NavDestination作为Navigation的导航栏（主页），适用于使用[NavPathStack](#navpathstack10)配合[navDestination](#navdestination10)属性或者系统路由表进行页面路由。使用示例参考[示例16（Navigation使用NavDestination作为导航栏）](#示例16navigation使用navdestination作为导航栏)。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名       | 类型                            | 必填   | 说明   |
-| --------- | ------------------------------- | ---- | ------ |
-| pathInfos | [NavPathStack](#navpathstack10) | 是    | 路由栈信息。 |
-| homeDestination | [HomePathInfo](#homepathinfo20) | 是    | 主页NavDestination信息。 |
-
-> **说明：**
->
-> 如果使用了主页NavDestination，则Navigation有如下变化：
->
-> - 开发者写在Navigation组件内的内容不会被创建。
->
-> - 对于Navigation的各种属性，如果主页NavDestination有对应功能的属性，则Navigation的属性不生效。
-
 ## 属性
 
 除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
@@ -1874,19 +1849,6 @@ type SystemBarStyle = SystemBarStyle
 | 类型     | 说明               |
 | -------- | ------------------ |
 | [SystemBarStyle](../arkts-apis-window-i.md#systembarstyle12)   | 状态栏文字颜色。默认值：`'#0xE5FFFFFF'`。|
-
-## HomePathInfo<sup>20+</sup>
-
-主页NavDestination的信息。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    | 类型      | 只读    |  可选   | 说明                   |
-| ----- | ------- | ---- | ---- | ----------------- |
-| name  | string  | 否 |   否    | 主页NavDestination的页面名称。 |
-| param | Object | 否 |   是    | 主页NavDestination的页面详细参数。 |
 
 ## 示例
 
@@ -4555,87 +4517,3 @@ struct NavigationExample {
 ```
 
 ![zh-cn_image_navigation_toolbar_adaptation_landscape](figures/zh-cn_image_navigation_toolbar_adaptation_landscape.gif)
-
-### 示例16（Navigation使用NavDestination作为导航栏）
-
-该示例代码主要展示Navigation可以使用NavDestination作为导航栏（主页）。
-
-```ts
-@Component
-struct PageHome {
-  private stack: NavPathStack | undefined = undefined;
-
-  build() {
-    NavDestination() {
-      Stack({alignContent: Alignment.Center}) {
-        Button('push PageOne').onClick(() => {
-          this.stack?.pushPath({name: 'PageOne'});
-        })
-      }.width('100%').height('100%')
-    }.title('PageHome')
-    .onReady((ctx: NavDestinationContext) => {
-      this.stack = ctx.pathStack;
-    })
-  }
-}
-
-@Builder
-function PageHomeBuilder() {
-  PageHome()
-}
-
-@Component
-struct PageOne {
-  build() {
-    NavDestination() {
-      Stack({alignContent: Alignment.Center}) {
-        Text('PageOne')
-      }.width('100%').height('100%')
-    }.title('PageOne')
-  }
-}
-
-@Builder
-function PageOneBuilder() {
-  PageOne()
-}
-
-@Entry
-@Component
-struct Index {
-  private stack: NavPathStack = new NavPathStack();
-
-  build() {
-    // 在这里配置主页NavDestination信息
-    Navigation(this.stack, { name: 'PageHome' }) {
-    }
-    .width('100%').height('100%')
-  }
-}
-```
-在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"。
-```json
-// src/main/resources/base/profile/route_map.json
-{
-  "routerMap": [
-    {
-      "name": "PageHome",
-      "pageSourceFile": "src/main/ets/pages/Index.ets",
-      "buildFunction": "PageHomeBuilder",
-      "data": {
-        "description": "this is PageHome"
-      }
-    },
-    {
-      "name": "PageOne",
-      "pageSourceFile": "src/main/ets/pages/Index.ets",
-      "buildFunction": "PageOneBuilder",
-      "data": {
-        "description": "this is PageOne"
-      }
-    }
-  ]
-}
-```
-
-![zh-cn_image_navigation_home_NavDestination](figures/zh-cn_image_navigation_home_NavDestination.gif)
