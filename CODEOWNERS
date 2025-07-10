@@ -327,7 +327,7 @@ zh-cn/application-dev/device/externaldevice-guidelines.md @li-yan339
 
 
 [开发-Form Kit]
-zh-cn/application-dev/form/  @ylsnow  @cmz001  @Brilliantry_Rui  
+zh-cn/application-dev/form/  @Brilliantry_Rui @ylsnow  @cmz001   @zhaoshaohua_eiln
 
 
 [开发-DFX]
@@ -347,16 +347,16 @@ zh-cn/application-dev/inputmethod/inputmethod_application_guide.md @illybyy @mur
 zh-cn/application-dev/inputmethod/switch_inputmehod_guide.md @illybyy @murphy1984  @zhang_yixin13 @SuperShrimp 
 
 [开发-Input kit]
-zh-cn/application-dev/device/input  @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/inputdevice-guidelines.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/pointerstyle-guidelines.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/inputmonitor-guidelines.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/inputeventclient-guidelines.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/inputconsumer-guidelines.md @Brilliantry_Rui @mayunteng @ustblx @hanruofei
-zh-cn/application-dev/device/shortkey-guidelines.md  @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/input-overview.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/monitor-guidelines.md @Brilliantry_Rui @mayunteng @ustblx @hanruofei
-zh-cn/application-dev/device/interceptor-guidelines.md @Brilliantry_Rui @mayunteng @ustblx @hanruofei
+zh-cn/application-dev/device/input  @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/inputdevice-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/pointerstyle-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/inputmonitor-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/inputeventclient-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/inputconsumer-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/shortkey-guidelines.md  @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/input-overview.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/monitor-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/interceptor-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
 
 [开发-IPC Kit]
 zh-cn/application-dev/connectivity/ipc-rpc-overview.md @zhang_yixin13 @xdx1921  @zhaopeng_gitee @zhang-yang123321
@@ -720,9 +720,9 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-counter.md	@ile
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md	 @laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flowitem.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-folderstack.md @laigerendaqiu	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@Brilliantry_Rui @ylsnow  @cmz001 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md			@Brilliantry_Rui @ylsnow @cmz001 
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md @Brilliantry_Rui @ylsnow @cmz001 
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@Brilliantry_Rui @ylsnow  @cmz001   @zhaoshaohua_eiln 
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md			@Brilliantry_Rui @ylsnow @cmz001  @zhaoshaohua_eiln 
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md @Brilliantry_Rui @ylsnow @cmz001  @zhaoshaohua_eiln 
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcol.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridrow.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
@@ -900,7 +900,7 @@ zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedul
 zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md  @Brilliantry_Rui @zhouben25 @fenglili18  
 zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md  @Brilliantry_Rui @zhouben25 @fenglili18  
 zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md  @Brilliantry_Rui @zhouben25 @fenglili18  
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceStandby-sys.md  @Brilliantry_Rui @zhouben25 @fenglili18  
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceStandby-sys.md  @Brilliantry_Rui @zhouben25 @fenglili18  @geng_wd  @wzzqishi  
 zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md  @Brilliantry_Rui @zhouben25 @fenglili18 
 zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md  @Brilliantry_Rui @zhouben25 @fenglili18 
 zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md  @Brilliantry_Rui @zhouben25 @fenglili18 
@@ -1066,7 +1066,7 @@ zh-cn/application-dev/reference/apis-ime-kit/ @illybyy @murphy1984 @zhang_yixin1
 
 
 [API参考-Input Kit]
-zh-cn/application-dev/reference/apis-input-kit/ @Brilliantry_Rui @mayunteng @ustblx @hanruofei
+zh-cn/application-dev/reference/apis-input-kit/ @Brilliantry_Rui  @hanruofei @Lyuxin
 
 
 [API参考-IPC Kit]
@@ -1580,16 +1580,16 @@ zh-cn/application-dev/inputmethod/inputmethod_application_guide.md @illybyy @mur
 zh-cn/application-dev/inputmethod/switch_inputmehod_guide.md @illybyy @murphy1984  @zhang_yixin13 @SuperShrimp 
 
 [开发-Input kit]
-zh-cn/application-dev/device/input  @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/inputdevice-guidelines.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/pointerstyle-guidelines.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/inputmonitor-guidelines.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/inputeventclient-guidelines.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/inputconsumer-guidelines.md @Brilliantry_Rui @mayunteng @ustblx @hanruofei
-zh-cn/application-dev/device/shortkey-guidelines.md  @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/input-overview.md @Brilliantry_Rui @mayunteng  @ustblx @hanruofei
-zh-cn/application-dev/device/monitor-guidelines.md @Brilliantry_Rui @mayunteng @ustblx @hanruofei
-zh-cn/application-dev/device/interceptor-guidelines.md @Brilliantry_Rui @mayunteng @ustblx @hanruofei
+zh-cn/application-dev/device/input  @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/inputdevice-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/pointerstyle-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/inputmonitor-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/inputeventclient-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/inputconsumer-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/shortkey-guidelines.md  @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/input-overview.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/monitor-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
+zh-cn/application-dev/device/interceptor-guidelines.md @Brilliantry_Rui  @hanruofei @Lyuxin
 
 [开发-IPC Kit]
 zh-cn/application-dev/connectivity/ipc-rpc-overview.md @zhang_yixin13 @xdx1921  @zhaopeng_gitee @zhang-yang123321
@@ -2299,7 +2299,7 @@ zh-cn/application-dev/reference/apis-ime-kit/ @illybyy @murphy1984 @zhang_yixin1
 
 
 [API参考-Input Kit]
-zh-cn/application-dev/reference/apis-input-kit/ @Brilliantry_Rui @mayunteng @ustblx @hanruofei
+zh-cn/application-dev/reference/apis-input-kit/ @Brilliantry_Rui  @hanruofei @Lyuxin
 
 
 [API参考-IPC Kit]
