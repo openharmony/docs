@@ -140,7 +140,7 @@ struct AnimateToImmediatelyExample {
 
 freezeUINode(id: string, isFrozen: boolean): void
 
-使用id设置组件冻结状态，防止自身脏区标记并进行布局更新。
+通过id设置组件冻结状态，防止组件被标记为脏从而触发布局更新。
 
 **原子化服务API:** 从API version 18 开始，该接口支持在原子化服务中使用。
 
@@ -155,13 +155,13 @@ freezeUINode(id: string, isFrozen: boolean): void
 
 **错误码：**
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+以下错误码详情请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The caller is not a system application. |
 
-```js
+```ts
 @Entry
 @Component
 struct Index {
@@ -185,9 +185,11 @@ struct Index {
         .tabBar('green')
         .id('tab1')
         .onWillHide(() => {
+          // id为tab1的TabContent隐藏的时候设置该节点的冻结状态为true。
           this.getUIContext().freezeUINode('tab1', true);
         })
         .onWillShow(() => {
+          // id为tab1的TabContent显示的时候设置该节点的冻结状态为false。
           this.getUIContext().freezeUINode('tab1', false);
         })
 
@@ -200,13 +202,19 @@ struct Index {
         .tabBar('blue')
         .id('tab2')
         .onWillHide(() => {
+          // id为tab2的TabContent隐藏的时候设置该节点的冻结状态为true。
           this.getUIContext().freezeUINode('tab2', true);
         })
         .onWillShow(() => {
+          // 当id为tab2的TabContent显示的时候，将id为tab1的节点的冻结状态设置为true。
+          // 通过状态变量改变id为tab1的节点中Column的宽度。因该节点的冻结状态为true，标脏至TabContent时终止标记，不触发布局。
           this.getUIContext().freezeUINode('tab1', true);
           this.columnWidth1 = '50%';
+          // 配置延时任务。
           setTimeout(() => {
+            // 将id为tab1的节点的冻结状态设置为false，重新触发标记和布局。
             this.getUIContext().freezeUINode('tab1', false);
+            // 通过状态变量更新tab1内部Column节点的宽度，设置this.columnWidth1为'20%'。
             this.columnWidth1 = '20%';
           }, 5000)
         })
@@ -220,9 +228,11 @@ struct Index {
         .tabBar('yellow')
         .id('tab3')
         .onWillHide(() => {
+          // 当id为tab3的TabContent隐藏的时候设置该节点的冻结状态为true。
           this.getUIContext().freezeUINode('tab3', true);
         })
         .onWillShow(() => {
+          // id为tab3的TabContent显示的时候设置该节点的冻结状态为false。
           this.getUIContext().freezeUINode('tab3', false);
         })
 
@@ -248,7 +258,7 @@ struct Index {
 
 freezeUINode(uniqueId: number, isFrozen: boolean): void
 
-使用uniqueId设置组件冻结状态，防止自身脏区标记并进行布局更新。
+通过uniqueId设置组件的冻结状态，防止组件被标记为脏从而触发布局更新。
 
 **原子化服务API:** 从API version 18 开始，该接口支持在原子化服务中使用。
 
@@ -258,7 +268,7 @@ freezeUINode(uniqueId: number, isFrozen: boolean): void
 
 | 参数名     | 类型    | 必填   | 说明      |
 | --- | --- | --- | --- |
-| uniqueId | number | 是 | 组件的number。|
+| uniqueId | number | 是 | 组件的uniqueId。|
 | isFrozen | boolean | 是 | 是否设置冻结。<br/>true表示设置冻结，false表示设置不冻结。<br/>默认值为false。|
 
 **错误码：**
@@ -269,7 +279,7 @@ freezeUINode(uniqueId: number, isFrozen: boolean): void
 | -------- | -------- |
 | 202 | The caller is not a system application. |
 
-```js
+```ts
 @Entry
 @Component
 struct Index {
@@ -293,13 +303,17 @@ struct Index {
         .tabBar('green')
         .id('tab1')
         .onWillHide(() => {
+          // 通过id查询以获取对应节点的uniqueId。
           const node = this.getUIContext().getFrameNodeById('tab1');
           const uniqueId = node?.getUniqueId();
+          // 当id为tab1的TabContent隐藏的时候，通过uniqueId设置该节点的冻结状态为true。
           this.getUIContext().freezeUINode(uniqueId, true);
         })
         .onWillShow(() => {
+          // 通过id查询以获取对应节点的uniqueId。
           const node = this.getUIContext().getFrameNodeById('tab1');
           const uniqueId = node?.getUniqueId();
+          // 当id为tab1的TabContent显示的时候，通过uniqueId设置该节点的冻结状态为false。
           this.getUIContext().freezeUINode(uniqueId, false)
         })
 
@@ -312,17 +326,24 @@ struct Index {
         .tabBar('blue')
         .id('tab2')
         .onWillHide(() => {
+          // 通过id查询以获取对应节点的uniqueId。
           const node = this.getUIContext().getFrameNodeById('tab2');
           const uniqueId = node?.getUniqueId();
+          // 当id为tab2的TabContent隐藏的时候，通过uniqueId设置该节点的冻结状态为true。
           this.getUIContext().freezeUINode(uniqueId, true);
         })
         .onWillShow(() => {
+          // 通过id查询以获取对应节点的uniqueId。
           const node = this.getUIContext().getFrameNodeById('tab1');
           const uniqueId = node?.getUniqueId();
+          // 当id为tab2的TabContent显示的时候，通过uniqueId设置id为tab1的节点的冻结状态为true。
+          // 通过状态变量改变id为tab1的节点内部Column节点的宽度。由于id为tab1的节点冻结状态为true，标脏至该TabContent时会终止标记，并且不会从该节点开始触发布局。
           this.getUIContext().freezeUINode(uniqueId, true);
-
           this.columnWidth1 = '50%';
+
+          // 设置延时任务。
           setTimeout(() => {
+            // 将id为tab1的节点的冻结状态设置为false，以重新触发标记和布局。
             this.getUIContext().freezeUINode(uniqueId, false);
             this.columnWidth1 = '20%';
           }, 5000)
@@ -337,13 +358,17 @@ struct Index {
         .tabBar('yellow')
         .id('tab3')
         .onWillHide(() => {
+          // 通过id查询以获取对应节点的uniqueId。
           const node = this.getUIContext().getFrameNodeById('tab3');
           const uniqueId = node?.getUniqueId();
+          // 当id为tab3的TabContent隐藏时，通过uniqueId将该节点的冻结状态设置为true。
           this.getUIContext().freezeUINode(uniqueId, true);
         })
         .onWillShow(() => {
+          // 通过id查询以获取对应节点的uniqueId。
           const node = this.getUIContext().getFrameNodeById('tab3');
           const uniqueId = node?.getUniqueId();
+          // 当id为tab3的TabContent显示的时候，通过uniqueId设置该节点的冻结状态为false。
           this.getUIContext().freezeUINode(uniqueId, false);
         })
 
