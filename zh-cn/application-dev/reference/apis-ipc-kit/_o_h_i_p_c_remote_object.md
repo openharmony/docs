@@ -398,15 +398,17 @@ IPC消息发送函数。
 
 **返回：**
 
-发送成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](_o_h_i_p_c_error_code.md)；
+返回错误信息请查看[OH_IPC_ErrorCode](_o_h_i_p_c_error_code.md#oh_ipc_errorcode)。
 
-参数不合法时返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](_o_h_i_p_c_error_code.md)；
+发送成功返回：OH_IPC_SUCCESS
 
-远端OHIPCRemoteStub对象死亡返回[OH_IPC_ErrorCode#OH_IPC_DEAD_REMOTE_OBJECT](_o_h_i_p_c_error_code.md)；
+参数不合法时返回：OH_IPC_CHECK_PARAM_ERROR
 
-code超出范围返回[OH_IPC_ErrorCode#OH_IPC_CODE_OUT_OF_RANGE](_o_h_i_p_c_error_code.md)；
+远端OHIPCRemoteStub对象死亡返回：OH_IPC_DEAD_REMOTE_OBJECT
 
-其它返回[OH_IPC_ErrorCode#OH_IPC_INNER_ERROR](_o_h_i_p_c_error_code.md)或用户自定义错误码。
+code超出范围返回：OH_IPC_CODE_OUT_OF_RANGE
+
+其它返回：OH_IPC_INNER_ERROR或用户自定义错误码
 
 
 ### OH_IPCRemoteStub_Create()
