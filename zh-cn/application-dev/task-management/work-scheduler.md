@@ -137,7 +137,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
        // console.info(`work info parameters: ${JSON.parse(workInfo.parameters?.toString()).key1}`)
      }
    
-     // 延迟任务结束回调
+     // 延迟任务结束回调。当延迟任务2分钟超时或应用调用stopWork接口取消任务时，触发该回调。
      onWorkStop(workInfo: workScheduler.WorkInfo) {
        console.info(`onWorkStop, workInfo is ${JSON.stringify(workInfo)}`);
      }
