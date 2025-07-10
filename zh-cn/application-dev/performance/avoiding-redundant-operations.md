@@ -160,9 +160,13 @@ hilog.debug(msg);
 // debug日志打印正例
 @Component
 struct PositiveOfDebug {
-  aboutToAppear {
+  aboutToAppear() {
     // 业务代码
     // ...
+  }
+
+  // 业务代码
+  // ...
 }
 ```
 
@@ -218,7 +222,8 @@ struct PositiveOfOnClick {
       .onClick(() => {
         // 业务逻辑
         // ...
-    })
+      })
+  }
 }
 ```
 
