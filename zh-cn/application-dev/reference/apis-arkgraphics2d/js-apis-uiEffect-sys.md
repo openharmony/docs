@@ -33,7 +33,7 @@ createBrightnessBlender(param: BrightnessBlenderParam): BrightnessBlender
 
 | 类型                                     | 说明                     |
 | ---------------------------------------- | ----------------------- |
-| [BrightnessBlender ](#brightnessblender) | 返回设置了提亮效果参数的BrightnessBlender。 |
+| [BrightnessBlender](#brightnessblender) | 返回设置了提亮效果参数的BrightnessBlender。 |
 
 **示例：**
 
@@ -41,6 +41,49 @@ createBrightnessBlender(param: BrightnessBlenderParam): BrightnessBlender
 let blender : uiEffect.BrightnessBlender =
   uiEffect.createBrightnessBlender({cubicRate:1.0, quadraticRate:1.0, linearRate:1.0, degree:1.0, saturation:1.0,
     positiveCoefficient:[2.3, 4.5, 2.0], negativeCoefficient:[0.5, 2.0, 0.5], fraction:0.0})
+```
+
+## uiEffect.createHdrBrightnessBlender<sup>20+</sup>
+createHdrBrightnessBlender(param: BrightnessBlenderParam): HdrBrightnessBlender
+
+创建[HdrBrightnessBlender](#hdrbrightnessblender20)实例用于给组件添加支持HDR的提亮效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名  | 类型                                              | 必填 | 说明                        |
+| ------ | ------------------------------------------------- | ---- | --------------------------- |
+| param  | [BrightnessBlenderParam](#brightnessblenderparam) | 是   | 实现提亮效果的参数。 |
+
+**返回值：**
+
+| 类型                                     | 说明                     |
+| ---------------------------------------- | ----------------------- |
+| [HdrBrightnessBlender](#hdrbrightnessblender20) | 返回具有提亮效果的混合器（支持HDR）。 |
+
+**示例：**
+
+```ts
+import { uiEffect } from "@kit.ArkGraphics2D"
+
+let blender : uiEffect.HdrBrightnessBlender =
+  uiEffect.createHdrBrightnessBlender({cubicRate:1.0, quadraticRate:1.0, linearRate:1.0, degree:1.0, saturation:1.0,
+    positiveCoefficient:[2.3, 4.5, 2.0], negativeCoefficient:[0.5, 2.0, 0.5], fraction:0.0})
+
+@Entry
+@Component
+struct example {
+  build() {
+    RelativeContainer() {
+      Image($r("app.media.screenshot"))
+        .width("100%")
+        .height("100%")
+        .advancedBlendMode(blender)
+    }
+  }
+}
 ```
 
 ## Filter
@@ -782,7 +825,7 @@ struct Index {
 
 ## Blender<sup>13+</sup>
 
-type Blender = BrightnessBlender
+type Blender = BrightnessBlender | HdrBrightnessBlender
 
 混合器类型，用于描述混合效果。
 
@@ -793,6 +836,7 @@ type Blender = BrightnessBlender
 | 类型                          | 说明                                               |
 | ----------------------------- | ------------------------------------------------- |
 | [BrightnessBlender](#brightnessblender) | 具有提亮效果的混合器。 |
+| [HdrBrightnessBlender](#hdrbrightnessblender20)<sup>20+</sup> | 具有提亮效果的混合器（支持HDR）。 |
 
 ## BrightnessBlender
 提亮混合器，用于将提亮效果添加到指定的组件上。在调用BrightnessBlender前，需要先通过[createBrightnessBlender](#uieffectcreatebrightnessblender)创建一个BrightnessBlender实例。
@@ -811,6 +855,15 @@ type Blender = BrightnessBlender
 | positiveCoefficient | [number, number, number]   | 否   | 否   | 基于基准饱和度的RGB正向调整参数。<br/>每个number的取值范围[-20, 20]。 |
 | negativeCoefficient | [number, number, number]   | 否   | 否   | 基于基准饱和度的RGB负向调整参数。<br/>每个number的取值范围[-20, 20]。 |
 | fraction            | number                     | 否   | 否   | 提亮效果的混合比例。<br/>取值范围[0, 1]，超出边界会在实现时自动截断。  |
+
+## HdrBrightnessBlender<sup>20+</sup>
+支持HDR的提亮混合器（继承自[BrightnessBlender](#brightnessblender)），用于将提亮效果添加到指定的组件上。在调用HdrBrightnessBlender前，需要先通过[createHdrBrightnessBlender](#uieffectcreatehdrbrightnessblender20)创建一个HdrBrightnessBlender实例。
+
+该混合器参数可参考[BrightnessBlender](#brightnessblender)。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
 
 ## Color<sup>20+</sup>
 
