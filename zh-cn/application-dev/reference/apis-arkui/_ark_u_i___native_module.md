@@ -316,8 +316,6 @@
 | float [OH_ArkUI_DragEvent_GetPreviewRectHeight](#oh_arkui_dragevent_getpreviewrectheight) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取预览图的高。  |
 | float [OH_ArkUI_DragEvent_GetTouchPointXToWindow](#oh_arkui_dragevent_gettouchpointxtowindow) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取跟手点相对于window的x轴坐标。  |
 | float [OH_ArkUI_DragEvent_GetTouchPointYToWindow](#oh_arkui_dragevent_gettouchpointytowindow) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取跟手点相对于window的y轴坐标。  |
-| float [OH_ArkUI_DragEvent_GetTouchPointXToGlobalDisplay](#oh_arkui_dragevent_gettouchpointxtoglobaldisplay) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取跟手点相对于全局屏幕的x轴坐标。<br/>**起始版本：** 20  |
-| float [OH_ArkUI_DragEvent_GetTouchPointYToGlobalDisplay](#oh_arkui_dragevent_gettouchpointytoglobaldisplay) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取跟手点相对于全局屏幕的y轴坐标。<br/>**起始版本：** 20  |
 | float [OH_ArkUI_DragEvent_GetTouchPointXToDisplay](#oh_arkui_dragevent_gettouchpointxtodisplay) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取跟手点相对于当前Display的x轴坐标。  |
 | float [OH_ArkUI_DragEvent_GetTouchPointYToDisplay](#oh_arkui_dragevent_gettouchpointytodisplay) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取跟手点相对于当前Display的y轴坐标。  |
 | float [OH_ArkUI_DragEvent_GetVelocityX](#oh_arkui_dragevent_getvelocityx) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 获取当前拖拽的x轴方向拖动速度。  |
@@ -594,7 +592,6 @@
 | int32_t [OH_ArkUI_NodeUtils_GetLayoutPosition](#oh_arkui_nodeutils_getlayoutposition) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*localOffset) | 获取组件布局区域相对父组件的位置。 布局区域相对位置不包含图形变化属性，如平移。  |
 | int32_t [OH_ArkUI_NodeUtils_GetLayoutPositionInWindow](#oh_arkui_nodeutils_getlayoutpositioninwindow) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*globalOffset) | 获取组件布局区域相对窗口的位置。 布局区域相对位置不包含图形变化属性，如平移。  |
 | int32_t [OH_ArkUI_NodeUtils_GetLayoutPositionInScreen](#oh_arkui_nodeutils_getlayoutpositioninscreen) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*screenOffset) | 获取组件布局区域相对屏幕的位置。 布局区域相对位置不包含图形变化属性，如平移。  |
-| int32_t [OH_ArkUI_NodeUtils_GetLayoutPositionInGlobalDisplay](#oh_arkui_nodeutils_getlayoutpositioninglobaldisplay) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*offset) | 获取组件布局区域相对全局屏幕的位置。 布局区域相对位置不包含图形变化属性，如平移。  |
 | int32_t [OH_ArkUI_NodeUtils_GetPositionWithTranslateInWindow](#oh_arkui_nodeutils_getpositionwithtranslateinwindow) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*translateOffset) | 获取组件在窗口中的位置，包含了图形平移变化属性。  |
 | int32_t [OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen](#oh_arkui_nodeutils_getpositionwithtranslateinscreen) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*translateOffset) | 获取组件在屏幕中的位置，包含了图形平移变化属性。  |
 | void [OH_ArkUI_NodeUtils_AddCustomProperty](#oh_arkui_nodeutils_addcustomproperty) ([ArkUI_NodeHandle](#arkui_nodehandle) node, const char \*name, const char \*value) | 设置组件的自定义属性。该接口仅在主线程生效。  |
@@ -10210,28 +10207,6 @@ float OH_ArkUI_DragEvent_GetTouchPointXToDisplay (ArkUI_DragEvent * event)
 
 float 返回拖拽跟手点相对于当前Display的x轴坐标，单位为PX，传入参数无效时返回默认值 0。
 
-### OH_ArkUI_DragEvent_GetTouchPointXToGlobalDisplay()
-
-```
-float OH_ArkUI_DragEvent_GetTouchPointXToGlobalDisplay (ArkUI_DragEvent * event)
-```
-
-**描述：**
-
-从ArkUI_DragEvent中获取跟手点相对于全局屏幕的x轴坐标。
-
-**起始版本：** 20
-
-**参数:**
-
-| 名称  | 描述                      |
-| ----- | ------------------------- |
-| event | ArkUI_DragEvent事件指针。 |
-
-**返回：**
-
-返回拖拽跟手点相对于全局Display的x轴坐标，单位为PX，传入参数无效时返回默认值0。
-
 
 ### OH_ArkUI_DragEvent_GetTouchPointXToWindow()
 
@@ -10275,28 +10250,6 @@ float OH_ArkUI_DragEvent_GetTouchPointYToDisplay (ArkUI_DragEvent * event)
 **返回：**
 
 float 返回拖拽跟手点相对于当前Display的y轴坐标，单位为PX，传入参数无效时返回默认值 0。
-
-### OH_ArkUI_DragEvent_GetTouchPointYToGlobalDisplay()
-
-```
-float OH_ArkUI_DragEvent_GetTouchPointYToGlobalDisplay (ArkUI_DragEvent * event)
-```
-
-**描述：**
-
-从ArkUI_DragEvent中获取跟手点相对于全局屏幕的y轴坐标。
-
-**起始版本：** 20
-
-**参数:**
-
-| 名称  | 描述                      |
-| ----- | ------------------------- |
-| event | ArkUI_DragEvent事件指针。 |
-
-**返回：**
-
-返回拖拽跟手点相对于全局Display的y轴坐标，单位为PX，传入参数无效时返回默认值0。
 
 
 ### OH_ArkUI_DragEvent_GetTouchPointYToWindow()
@@ -15123,29 +15076,6 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInScreen (ArkUI_NodeHandle node, Ark
 | -------- | -------- |
 | node | ArkUI_NodeHandle指针。  |
 | screenOffset | 组件handle相对屏幕的偏移值，单位：px。  |
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
-
-
-### OH_ArkUI_NodeUtils_GetLayoutPositionInGlobalDisplay()
-
-```
-int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInGlobalDisplay (ArkUI_NodeHandle node, ArkUI_IntOffset * offset )
-```
-**描述：**
-
-获取组件布局区域相对全局屏幕的位置。 布局区域相对位置不包含图形变化属性，如平移。
-
-**起始版本：** 20
-
-**参数:**
-
-| 名称 | 描述 |
-| -------- | -------- |
-| node | ArkUI_NodeHandle指针。  |
-| offset | 组件handle相对全局屏幕的偏移值，单位：px。  |
 
 **返回：**
 

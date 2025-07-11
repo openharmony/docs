@@ -630,38 +630,6 @@ getY(): number
 | ------ | --------------------------------------------------- |
 | number | 返回当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。 |
 
-### getGlobalDisplayX<sup>20+</sup>
-
-getGlobalDisplayX(): number
-
-当前拖拽点相对于全局屏幕的左上角的X坐标。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：** 
-
-| 类型   | 说明                                                |
-| ------ | --------------------------------------------------- |
-| number | 返回当前拖拽点相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞) |
-
-### getGlobalDisplayY<sup>20+</sup>
-
-getGlobalDisplayY(): number
-
-当前拖拽点相对于全局屏幕的左上角的Y坐标。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：** 
-
-| 类型   | 说明                                                |
-| ------ | --------------------------------------------------- |
-| number | 返回当前拖拽点相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞) |
-
 ## DragResult<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
