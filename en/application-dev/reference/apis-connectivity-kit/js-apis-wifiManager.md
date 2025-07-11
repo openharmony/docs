@@ -18,6 +18,8 @@ isWifiActive(): boolean
 
 Checks whether WLAN is enabled.
 
+**Required permissions**: ohos.permission.GET_WIFI_INFO
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
@@ -34,6 +36,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -48,39 +51,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
-```
-
-## wifiManager.enableWifi<sup>15+</sup>
-
-enableWifi(): void
-
-Enables the WLAN.
-
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications) or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION (available only to enterprise applications)
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | -------- |
-| 201 | Permission denied.          |
-| 801  | Capability not supported.|
-| 2501000 | Operation failed.          |
-| 2501003  | Operation failed because the service is being closed.|
-
-**Example**
-
-```ts
-  import { wifiManager } from '@kit.ConnectivityKit';
-  
-  try {
-    wifiManager.enableWifi();
-  }catch(error){
-    console.error("failed:" + JSON.stringify(error));
-  }
 ```
 
 ## wifiManager.scan<sup>9+</sup><sup>(deprecated)</sup>
@@ -355,7 +325,7 @@ Represents WLAN hotspot information.
 | capabilities | string | Yes| No| Hotspot capabilities.|
 | securityType | [WifiSecurityType](#wifisecuritytype9) | Yes| No| WLAN security type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | rssi | number | Yes| No| Received signal strength indicator (RSSI) of the hotspot, in dBm.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| band | number | Yes| No| Frequency band of the WLAN access point (AP). The value **1** indicates 2.4 GHz, and the value **2** indicates 5 GHz.|
+| band | number | Yes| No| Frequency band of the WLAN access point (AP). The value **1** indicates 2.4 GHz, and **2** indicates 5 GHz.|
 | frequency | number | Yes| No| Frequency of the WLAN AP.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | channelWidth | number | Yes| No| Channel width of the WLAN AP. For details, see [WifiChannelWidth](#wifichannelwidth9).|
 | centerFrequency0 | number | Yes| No| Center frequency of the hotspot.|
@@ -363,7 +333,7 @@ Represents WLAN hotspot information.
 | infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | Yes| No| Information elements.|
 | timestamp | number | Yes| No| Timestamp.|
 | supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | Yes| No| Highest Wi-Fi category supported by the hotspot.|
-| isHiLinkNetwork<sup>12+</sup> | boolean | Yes| No| Whether the hotspot supports HiLink. The value **true** indicates that the hotspot supports HiLink, and the value **false** indicates the opposite.|
+| isHiLinkNetwork<sup>12+</sup> | boolean | Yes| No| Whether the hotspot supports HiLink. The value **true** indicates that the hotspot supports HiLink. The value **false** means the opposite.|
 
 ## DeviceAddressType<sup>10+</sup>
 
@@ -563,7 +533,7 @@ Enumerates the Phase 2 authentication methods.
 
 ## WifiCategory<sup>12+</sup>
 
-Represents the highest Wi-Fi type supported by a hotspot.
+Enumerates the highest Wi-Fi category supported by the hotspot.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -572,8 +542,6 @@ Represents the highest Wi-Fi type supported by a hotspot.
 | DEFAULT | 1 | Default, that is, Wi-Fi types lower than Wi-Fi 6.|
 | WIFI6 | 2 | Wi-Fi 6|
 | WIFI6_PLUS | 3 | Wi-Fi 6+|
-| WIFI7<sup>15+</sup> | 4 | Wi-Fi 7|
-| WIFI7_PLUS<sup>15+</sup> | 5 | Wi-Fi 7+|
 
 ## wifiManager.addCandidateConfig<sup>9+</sup>
 
@@ -712,7 +680,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed.|
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled. |
 
 **Example**
 
@@ -760,7 +727,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled. |
 
 **Example**
 ```ts
@@ -774,46 +740,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
-```
-
-## wifiManager.removeDevice<sup>15+</sup>
-
-removeDevice(id: number): void
-
-Removes the network configuration.
-
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications) or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION (available only to enterprise applications)
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Parameters**
-
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | id | number | Yes| ID of the network configuration to remove.|
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | ---------------------------- |
-| 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled. |
-
-**Example**
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-  
-    try {
-      let id = 0;
-      wifiManager.removeDevice(id);	
-    }catch(error){
-      console.error("failed:" + JSON.stringify(error));
-    }
 ```
 
 ## wifiManager.getCandidateConfigs<sup>9+</sup>
@@ -896,7 +822,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled.|
+| 2501001  | Wifi is closed.|
 
 **Example**
 ```ts
@@ -911,188 +837,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	
 ```
 
-## wifiManager.addDeviceConfig<sup>15+</sup>
-
-addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
-
-Adds network configuration. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Parameters**
-
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The value of **bssidType** is random device address by default.|
-
-**Return value**
-
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the network configuration ID.|
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | ---------------------------- |
-| 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed.|
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled.|
-
-**Example**
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-	
-	try {
-		let config:wifiManager.WifiDeviceConfig = {
-			ssid : "****",
-			preSharedKey : "****",
-			securityType : 0
-		}
-		wifiManager.addDeviceConfig(config).then(result => {
-			console.info("result:" + JSON.stringify(result));
-		}).catch((err:number) => {
-			console.error("failed:" + JSON.stringify(err));
-		});
-	}catch(error){  
-		console.error("failed:" + JSON.stringify(error));
-	}
-```
-
-## wifiManager.addDeviceConfig<sup>15+</sup>
-
-addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;): void
-
-Adds network configuration. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Parameters**
-
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The value of **bssidType** is random device address by default.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | ---------------------------- |
-| 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed.|
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled.|
-
-**Example**
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-  
-    try {
-      let config:wifiManager.WifiDeviceConfig = {
-        ssid : "****",
-        preSharedKey : "****",
-        securityType : 0
-      }
-      wifiManager.addDeviceConfig(config,(error,result) => {
-        console.info("result:" + JSON.stringify(result));
-      });
-    }catch(error){
-      console.error("failed:" + JSON.stringify(error));
-    }
-
-```
-
-## wifiManager.getDeviceConfigs<sup>15+</sup>
-
-getDeviceConfigs(): &nbsp;Array&lt;WifiDeviceConfig&gt;
-
-Obtains network configuration.
-
-**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Return value**
-
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt; | Network configuration array.|
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | ---------------------------- |
-| 201 | Permission denied.                 |
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.| 
-
-**Example**
-
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-  
-    try {
-      let configs = wifiManager.getDeviceConfigs();
-      console.info("configs:" + JSON.stringify(configs));
-    }catch(error){
-      console.error("failed:" + JSON.stringify(error));
-    }
-	
-```
-
-## wifiManager.connectToNetwork<sup>15+</sup>
-
-connectToNetwork(networkId: number): void
-
-Connects to a hotspot.
-
-**Required permissions**: ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications) or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION (available only to enterprise applications)
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Parameters**
-
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | networkId | number | Yes| ID of the candidate network configuration.|
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | ---------------------------- |
-| 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled.|
-
-**Example**
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-  
-    try {
-      let networkId = 0;
-      wifiManager.connectToNetwork(networkId);
-    }catch(error){
-      console.error("failed:" + JSON.stringify(error));
-    }
-	
-```
 
 ## wifiManager.getSignalLevel<sup>9+</sup>
 
@@ -1109,7 +853,7 @@ Obtains the WLAN signal level.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | rssi | number | Yes| RSSI of the hotspot, in dBm.|
-  | band | number | Yes| Frequency band of the WLAN AP. The value **1** indicates 2.4 GHz, and the value **2** indicates 5 GHz.|
+  | band | number | Yes| Frequency band of the WLAN AP. The value **1** indicates 2.4 GHz, and **2** indicates 5 GHz.|
 
 **Return value**
 
@@ -1151,7 +895,7 @@ Obtains WLAN connection information. This API uses a promise to return the resul
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
-If **macType** to be obtained is **1** (device MAC address), the caller must have the **ohos.permission.GET_WIFI_LOCAL_MAC** permission, which is available only for system applications. Without this permission, a random MAC address is returned in **macAddress**.
+If **macType** to be obtained is **1** (device MAC address), the caller must have the ohos.permission.GET_WIFI_LOCAL_MAC permission, which is available only for system applications. Without this permission, a random MAC address is returned in **macAddress**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1172,7 +916,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled.|
+| 2501001  | Wi-Fi STA disabled. |
 
 ## wifiManager.getLinkedInfo<sup>9+</sup>
 
@@ -1182,7 +926,7 @@ Obtains WLAN connection information. This API uses an asynchronous callback to r
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
-If **macType** to be obtained is **1** (device MAC address), the caller must have the **ohos.permission.GET_WIFI_LOCAL_MAC** permission, which is available only for system applications. Without this permission, a random MAC address is returned in **macAddress**.
+If **macType** to be obtained is **1** (device MAC address), the caller must have the ohos.permission.GET_WIFI_LOCAL_MAC permission, which is available only for system applications. Without this permission, a random MAC address is returned in **macAddress**.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -1223,47 +967,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
   });
 ```
 
-## wifiManager.getLinkedInfoSync<sup>18+</sup>
-
-getLinkedInfoSync(): WifiLinkedInfo;
-
-Obtains the WLAN connection information. This API returns the result synchronously.
-
-**Required permissions**: ohos.permission.GET_WIFI_INFO
-
-If **macType** to be obtained is **1** (device MAC address), the caller must have the **ohos.permission.GET_WIFI_LOCAL_MAC** permission, which is available only for system applications. Without this permission, a random MAC address is returned in **macAddress**.
-
-**Atomic service API**: This API can be used in atomic services since API version 16.
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | [WifiLinkedInfo](#wifilinkedinfo9) | return the WLAN connection information.|
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | -------- |
-| 201 | Permission denied.                 |
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled.|
-
-**Example**
-```ts
-  import { wifiManager } from '@kit.ConnectivityKit';
-  try {
-    let linkInfo = wifiManager.getLinkedInfoSync();
-    console.info("get linked info:" + JSON.stringify(linkInfo));
-  } catch(error) {
-    console.error("get linked info failed:" + JSON.stringify(error));
-  }
-```
 
 ## WifiLinkedInfo<sup>9+</sup>
 
@@ -1276,7 +979,7 @@ Represents the WLAN connection information.
 | ssid | string | Yes| No| SSID of the hotspot, in UTF-8 format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | bssid | string | Yes| No| BSSID of the hotspot.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | rssi | number | Yes| No| Received signal strength indicator (RSSI) of the hotspot, in dBm.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| band | number | Yes| No| Frequency band of the WLAN AP. The value **1** indicates 2.4 GHz, and the value **2** indicates 5 GHz.|
+| band | number | Yes| No| Frequency band of the WLAN AP. The value **1** indicates 2.4 GHz, and **2** indicates 5 GHz.|
 | linkSpeed | number | Yes| No| Uplink speed of the WLAN AP, in Mbps/s.|
 | rxLinkSpeed<sup>10+</sup> | number | Yes| No| Downlink speed of the WLAN AP, in Mbps/s.|
 | maxSupportedTxLinkSpeed<sup>10+</sup> | number | Yes| No| Maximum uplink speed supported, in Mbps/s.|
@@ -1284,14 +987,14 @@ Represents the WLAN connection information.
 | frequency | number | Yes| No| Frequency of the WLAN AP.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | isHidden | boolean | Yes| No| Whether the WLAN AP is a hidden network. The value **true** indicates that the WLAN AP is a hidden network, and the value **false** indicates the opposite.|
 | isRestricted | boolean | Yes| No| Whether data volume is restricted at the WLAN AP. The value **true** indicates that data volume is restricted, and the value **false** indicates the opposite.|
-| macType | number | Yes| No| MAC address type. <br>The value **0** indicates a random MAC address, and the value **1** indicates device MAC address.|
-| macAddress | string | Yes| No| MAC address of the device.|
-| ipAddress | number | Yes| No| IP address of the device that sets up the WLAN connection (the Wi-Fi connection information and the status information of the local device can be viewed.)|
+| macType | number | Yes| No| MAC address type. <br>The value **0** indicates random MAC address, and **1** indicates device MAC address.|
+| macAddress | string | Yes| No| MAC address of the device. It can be obtained from the Wi-Fi connection information and device status information.|
+| ipAddress | number | Yes| No| IP address of the device that sets up the WLAN connection.|
 | connState | [ConnState](#connstate9) | Yes| No| WLAN connection state.|
 | channelWidth<sup>10+</sup> | [WifiChannelWidth](#wifichannelwidth9) | Yes| No| Channel bandwidth of the connected hotspot.|
 | wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | Yes| No| Wi-Fi standard used by the connected hotspot.|
 | supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | Yes| No| Highest Wi-Fi category supported by the hotspot.|
-| isHiLinkNetwork<sup>12+</sup> | boolean | Yes| No| Whether the hotspot supports HiLink. The value **true** indicates that the hotspot supports HiLink, and the value **false** indicates the opposite.|
+| isHiLinkNetwork<sup>12+</sup> | boolean | Yes| No| Whether the hotspot supports HiLink. The value **true** indicates that the hotspot supports HiLink. The value **false** means the opposite.|
 
 ## ConnState<sup>9+</sup>
 
@@ -1353,41 +1056,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 ```
 
 
-## wifiManager.disconnect<sup>15+</sup>
-
-disconnect(): void
-
-Disconnects from a WLAN.
-
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications) or
-   ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION (available only to enterprise applications)
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | -------- |
-| 201 | Permission denied.                 |
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled.|
-
-**Example**
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-
-	try {
-		wifiManager.disconnect();
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-
-```
-
-
 ## wifiManager.isFeatureSupported<sup>9+</sup>
 
 isFeatureSupported(featureId: number): boolean
@@ -1416,7 +1084,7 @@ Checks whether the device supports the specified WLAN feature.
 | 0x0040 | Wi-Fi Aware|
 | 0x8000 | WLAN AP/STA concurrency|
 | 0x8000000 | WPA3 Personal (WPA-3 SAE)|
-| 0x10000000 | WPA3-Enterprise Suite B|
+| 0x10000000 | WPA3-Enterprise Suite B |
 | 0x20000000 | Enhanced open feature| 
 
 **Return value**
@@ -1561,6 +1229,7 @@ Represents the IPv6 information.
 | primaryDNS | string | Yes| No| IPv6 address of the preferred DNS server.|
 | secondDNS | string | Yes| No| IPv6 address of the alternate DNS server.|
 
+
 ## wifiManager.getCountryCode<sup>9+</sup>
 
 getCountryCode(): string
@@ -1631,7 +1300,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | **ID**| **Error Message**|
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1674,7 +1342,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled. |
 
 **Example**
 
@@ -1689,44 +1356,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}
 ```
 
-
-## wifiManager.isHotspotActive<sup>15+</sup>
-
-isHotspotActive(): boolean
-
-Checks whether this hotspot is active.
-
-**Required permissions**: ohos.permission.GET_WIFI_INFO
-
-**System capability**: SystemCapability.Communication.WiFi.AP.Core
-
-**Return value**
-
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if WLAN is enabled; returns **false** otherwise.|
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | -------- |
-| 201 | Permission denied.                 |
-| 801 | Capability not supported.          |
-| 2601000  | Operation failed. |
-
-**Example**
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-
-	try {
-		let ret = wifiManager.isHotspotActive();
-		console.info("result:" + ret);		
-	} catch(error) {
-		console.error("failed:" + JSON.stringify(error));
-	}
-```
 
 
 ## wifiManager.getP2pLinkedInfo<sup>9+</sup>
@@ -1785,7 +1414,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
-| 2801001  | Wi-Fi STA disabled. |
 
 **Example**
 ```ts
@@ -1815,7 +1443,7 @@ Represents the P2P link information.
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate9) | Yes| No| P2P connection state.|
 | isGroupOwner | boolean | Yes| No| Whether the device is the group owner. The value **true** indicates that the device is the group owner, and the value **false** indicates the opposite.|
-| groupOwnerAddr | string | Yes| No| IP address of the group.| 
+| groupOwnerAddr | string | Yes| No| IP address of the group.|
 
 
 ## P2pConnectState<sup>9+</sup>
@@ -1957,7 +1585,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
-| 2801001  | Wi-Fi STA disabled. |
 
 **Example**
 ```ts
@@ -2060,7 +1687,6 @@ API version 11 and later: ohos.permission.GET_WIFI_INFO
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
-| 2801001  | Wi-Fi STA disabled. |
 
 **Example**
 ```ts
@@ -2105,7 +1731,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
-| 2801001  | Wi-Fi STA disabled. |
 
 **Example**
 ```ts
@@ -2136,7 +1761,7 @@ Represents P2P group configuration.
 | -------- | -------- | -------- | -------- | -------- |
 | deviceAddress | string | Yes| No| Device address.|
 | deviceAddressType<sup>10+</sup>| [DeviceAddressType](#deviceaddresstype10) | Yes| No| Device address type.|
-| netId | number | Yes| No| Network ID. The value **-1** indicates a temporary group, and the value **-2** indicates a persistent group.|
+| netId | number | Yes| No| Network ID. The value **-1** indicates a temporary group, and **-2** indicates a persistent group.|
 | passphrase | string | Yes| No| Passphrase of the group.|
 | groupName | string | Yes| No| Name of the group.|
 | goBand | [GroupOwnerBand](#groupownerband9) | Yes| No| Frequency band of the group.|
@@ -2174,7 +1799,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
-| 2801001  | Wi-Fi STA disabled. |
 
 **Example**
 ```ts
@@ -2215,7 +1839,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
-| 2801001  | Wi-Fi STA disabled. |
 
 **Example**
 ```ts
@@ -2303,7 +1926,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
-| 2801001  | Wi-Fi STA disabled. |
 
 **Example**
 ```ts
@@ -2337,7 +1959,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
-| 2801001  | Wi-Fi STA disabled. |
 
 **Example**
 ```ts
@@ -2369,7 +1990,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
-| 2801001  | Wi-Fi STA disabled. |
 
 **Example**
 ```ts
@@ -2757,6 +2377,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | **ID**| **Error Message**|
 | -------- | ---------------------------- |
 | 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
@@ -2785,6 +2406,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 | **ID**| **Error Message**|
 | -------- | ---------------------------- |
 | 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
@@ -2965,6 +2587,8 @@ Subscribes to P2P device status changes. When the service exits, call off(type: 
 
 **Required permissions**:
 
+API version 9: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
+
 API version 10 and later: ohos.permission.GET_WIFI_INFO
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
@@ -2993,6 +2617,12 @@ off(type: 'p2pDeviceChange', callback?: Callback&lt;WifiP2pDevice&gt;): void
 
 Unsubscribes from P2P device state changes.
 
+**Required permissions**:
+
+API version 9: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+
+API version 10 and later: No permission is required.
+
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
@@ -3008,7 +2638,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | ---------------------------- |
-| 201<sup>10+</sup> | Permission denied.                 |
+| 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
@@ -3035,6 +2665,8 @@ on(type: 'p2pPeerDeviceChange', callback: Callback&lt;WifiP2pDevice[]&gt;): void
 Subscribes to P2P peer device status changes. When the service exits, call off(type: 'p2pPeerDeviceChange', callback?: Callback&lt;WifiP2pDevice[]&gt;) to unregister the callback registered.
 
 **Required permissions**:
+
+API version 9: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
 
 API version 10 and later: ohos.permission.GET_WIFI_INFO
 
@@ -3064,6 +2696,12 @@ off(type: 'p2pPeerDeviceChange', callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
 
 Unsubscribes from P2P peer device state changes.
 
+**Required permissions**:
+
+API version 9: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+
+API version 10 and later: No permission is required.
+
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
@@ -3079,7 +2717,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | ---------------------------- |
-| 201<sup>10+</sup> | Permission denied.                 |
+| 201 | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
