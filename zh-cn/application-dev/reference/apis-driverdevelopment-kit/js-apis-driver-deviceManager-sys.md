@@ -15,7 +15,7 @@ import { deviceManager } from '@kit.DriverDevelopmentKit';
 
 ## deviceManager.queryDeviceInfo
 
-queryDeviceInfo(deviceId?: number): Array&lt;Readonly&lt;DeviceInfo&gt;&gt;
+queryDeviceInfo(deviceId?: long): Array&lt;Readonly&lt;DeviceInfo&gt;&gt;
 
 查询扩展外设详细信息列表。如果没有设备接入，那么将会返回一个空的列表。
 
@@ -29,7 +29,7 @@ queryDeviceInfo(deviceId?: number): Array&lt;Readonly&lt;DeviceInfo&gt;&gt;
 
 | 参数名      | 类型     | 必填  | 说明                     |
 |----------|--------|-----|------------------------|
-| deviceId | number | 否   | 设备ID，通过queryDevices获得。 |
+| deviceId | long | 否   | 设备ID，通过queryDevices获得。 |
 
 **返回值：**
 
@@ -124,7 +124,7 @@ try {
 
 | 名称              | 类型      | 必填  | 说明          |
 |-----------------|---------|-----|-------------|
-| deviceId        | number  | 是   | 设备ID。       |
+| deviceId        | long  | 是   | 设备ID。       |
 | isDriverMatched | boolean | 是   | 设备是否匹配到驱动。  |
 | driverUid       | string  | 否   | 设备匹配的驱动UID。 |
 
@@ -138,8 +138,8 @@ USB设备详细信息，继承自[DeviceInfo](#deviceinfo)。
 
 | 名称                | 类型                                                                 | 必填  | 说明               |
 |-------------------|--------------------------------------------------------------------|-----|------------------|
-| vendorId          | number                                                             | 是   | USB设备Vendor ID。  |
-| productId         | number                                                             | 是   | USB设备Product ID。 |
+| vendorId          | int                                                             | 是   | USB设备Vendor ID。  |
+| productId         | int                                                             | 是   | USB设备Product ID。 |
 | interfaceDescList | Array&lt;Readonly&lt;[USBInterfaceDesc](#usbinterfacedesc)&gt;&gt; | 是   | USB设备接口描述符列表。    |
 
 ## USBInterfaceDesc
@@ -152,10 +152,10 @@ USB设备接口描述符。
 
 | 名称               | 类型     | 必填  | 说明     |
 |------------------|--------|-----|--------|
-| bInterfaceNumber | number | 是   | 接口编号。  |
-| bClass           | number | 是   | 类型代码。  |
-| bSubClass        | number | 是   | 子类型代码。 |
-| bProtocol        | number | 是   | 协议代码。  |
+| bInterfaceNumber | int | 是   | 接口编号。  |
+| bClass           | int | 是   | 类型代码。  |
+| bSubClass        | int | 是   | 子类型代码。 |
+| bProtocol        | int | 是   | 协议代码。  |
 
 ## DriverInfo
 
@@ -184,5 +184,5 @@ USB设备驱动详细信息，继承自[DriverInfo](#driverinfo)。
 
 | 名称            | 类型                  | 必填  | 说明                      |
 |---------------|---------------------|-----|-------------------------|
-| productIdList | Array&lt;number&gt; | 是   | 驱动支持的USB设备product ID列表。 |
-| vendorIdList  | Array&lt;number&gt; | 是   | 驱动支持的USB设备vendor ID列表。  |
+| productIdList | Array&lt;int&gt; | 是   | 驱动支持的USB设备product ID列表。 |
+| vendorIdList  | Array&lt;int&gt; | 是   | 驱动支持的USB设备vendor ID列表。  |
