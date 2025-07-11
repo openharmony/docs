@@ -251,7 +251,7 @@ struct RefreshExample {
 struct RefreshExample {
   @State isRefreshing: boolean = false;
   @State promptText: string = "Refreshing...";
-  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+  @State arr: string[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
   build() {
     Column() {
@@ -259,7 +259,7 @@ struct RefreshExample {
         List() {
           ForEach(this.arr, (item: string) => {
             ListItem() {
-              Text('' + item)
+              Text(item)
                 .width('70%')
                 .height(80)
                 .fontSize(16)
@@ -621,8 +621,8 @@ struct ListRefreshLoad {
           setTimeout(() => {
             for (let i = 0; i < 10; i++) {
               this.arr.push(this.arr.length);
-              this.isLoading = false;
             }
+            this.isLoading = false;
           }, 700)
         }
       })
@@ -662,7 +662,7 @@ struct ListRefreshLoad {
 struct RefreshExample {
   @State isRefreshing: boolean = false;
   @State ratio: number | undefined = undefined;
-  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+  @State arr: string[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 
   build() {
     Column() {
