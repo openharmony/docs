@@ -9486,8 +9486,7 @@ static isPrivateNetworkAccessEnabled(): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | 返回Web组件是否启用了私有网络访问检查功能。
-true表示已启用；false表示已禁用。 |
+| boolean | 返回Web组件是否启用了私有网络访问检查功能。true表示已启用；false表示已禁用。 |
 
 **示例：**
 
