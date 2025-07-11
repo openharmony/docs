@@ -84,7 +84,7 @@ OH_AudioCommon_Result OH_AudioStreamManager_GetDirectPlaybackSupport(OH_AudioStr
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result)：<br>         AUDIOCOMMON_RESULT_SUCCESS = 0：函数执行成功。<br>         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101：<br>                                                        1. 参数audioStreamManager为nullptr；<br>                                                        2. 参数streamInfo为nullptr；<br>                                                        3. 参数usage无效；<br>                                                        4. 参数directPlaybackMode为nullptr。 |
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | AUDIOCOMMON_RESULT_SUCCESS = 0：函数执行成功。<br>         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101：<br>                                                        1. 参数audioStreamManager为nullptr；<br>                                                        2. 参数streamInfo为nullptr；<br>                                                        3. 参数usage无效；<br>                                                        4. 参数directPlaybackMode为nullptr。 |
 
 ### OH_AudioStreamManager_IsAcousticEchoCancelerSupported()
 
@@ -111,6 +111,6 @@ OH_AudioCommon_Result OH_AudioStreamManager_IsAcousticEchoCancelerSupported(OH_A
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | AAUDIOCOMMON_RESULT_SUCCESS = 0 ：函数执行成功。<br>     AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101 ：<br>                                                    1.参数audioStreamManager为nullptr；<br>                                                    2.参数sourceType无效；<br>                                                    3.参数supported为nullptr。 |
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | AUDIOCOMMON_RESULT_SUCCESS = 0 ：函数执行成功。<br>     AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101 ：<br>                                                    1.参数audioStreamManager为nullptr；<br>                                                    2.参数sourceType无效；<br>                                                    3.参数supported为nullptr。 |
 
 

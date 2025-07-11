@@ -1290,3 +1290,9 @@ struct TextBuilder {
 ```
 
 ![inheritFreezeOptions](figures/builderNode_inheritFreezeOptions.gif)
+
+## 设置BuilderNode支持内部@Consume接收外部的@Provide数据
+
+从API version 20开始，通过配置BuildOptions参数，BuilderNode内部自定义组件的[@Consume](./state-management/arkts-provide-and-consume.md)支持接收所在页面的[@Provide](./state-management/arkts-provide-and-consume.md)数据。
+
+参见[示例代码](../reference/apis-arkui/js-apis-arkui-builderNode.md#示例7buildernode支持内部consume接收外部的provide数据)。

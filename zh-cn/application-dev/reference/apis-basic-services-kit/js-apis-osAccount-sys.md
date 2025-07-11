@@ -617,7 +617,7 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 | 参数名    | 类型   | 必填 | 说明                                |
 | --------- | ------ | ---- | --------------------------------- |
 | localId   | number | 是   | 系统账号ID。 |
-| localName | string | 是   | 账号名，最大长度为1024。            |
+| localName | string | 是   | 账号名，最大长度为1024个字符。            |
 
 **返回值：**
 
@@ -2381,7 +2381,7 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 
 | 类型                                                              | 说明                                                 |
 | :---------------------------------------------------------------- | :-------------------------------------------------- |
-| Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise对象，返回执行者属性信息。 |
+| Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise对象，返回执行器属性信息。 |
 
 **错误码：**
 
@@ -3708,7 +3708,7 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo or credential. |
@@ -4365,7 +4365,7 @@ constructor()
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 **错误码：**
 
@@ -5500,10 +5500,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | FACE_AUTH_TIP_TOO_FAR         | 4     | 表示面部离设备太远。                       |
 | FACE_AUTH_TIP_TOO_HIGH        | 5     | 表示设备太高，仅捕捉面部上部。              |
 | FACE_AUTH_TIP_TOO_LOW         | 6     | 表示设备太低，仅捕捉面部下部。              |
-| FACE_AUTH_TIP_TOO_RIGHT       | 7     | 指示设备向右偏移，并且仅捕捉面部的右侧部分。 |
-| FACE_AUTH_TIP_TOO_LEFT        | 8     | 指示设备向左偏移，并且仅捕捉面部的左侧部分。 |
+| FACE_AUTH_TIP_TOO_RIGHT       | 7     | 表示设备向右偏移，并且仅捕捉面部的右侧部分。 |
+| FACE_AUTH_TIP_TOO_LEFT        | 8     | 表示设备向左偏移，并且仅捕捉面部的左侧部分。 |
 | FACE_AUTH_TIP_TOO_MUCH_MOTION | 9     | 表示面部信息收集过程中面部移动过快。         |
-| FACE_AUTH_TIP_POOR_GAZE       | 10    | 表示面未朝向设备。                         |
+| FACE_AUTH_TIP_POOR_GAZE       | 10    | 表示面部未朝向设备。                         |
 | FACE_AUTH_TIP_NOT_DETECTED    | 11    | 表示未检测到人脸。                         |
 
 ## FingerprintTips<sup>8+</sup>

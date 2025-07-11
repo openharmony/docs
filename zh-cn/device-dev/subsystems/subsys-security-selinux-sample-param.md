@@ -17,7 +17,7 @@ init.svc. u:object_r:init_svc_param:s0
 const.secure u:object_r:secure_param:s0
 ```
 
-当使用通配参数标签映射方法时，按最合适的前缀进行匹配，如paramter_contexts同时存在标签映射：
+当使用通配参数标签映射方法时，按最合适的前缀进行匹配，如parameter_contexts同时存在标签映射：
 ```text
 init. u:object_r:init_param:s0
 init.svc. u:object_r:init_svc_param:s0

@@ -144,7 +144,7 @@ SaveButtonAttribute提供设置自定义图标（setIcon）、自定义文本（
 
 ### setIcon<sup>20+</sup>
 
-setIcon(icon: Resource): SaveButtonAttribute
+setIcon(icon: Resource)
 
 设置保存控件的图标。
 
@@ -168,7 +168,7 @@ setIcon(icon: Resource): SaveButtonAttribute
 
 ### setText<sup>20+</sup>
 
-setText(text: string | Resource): SaveButtonAttribute
+setText(text: string | Resource)
 
 设置保存控件的文本。
 
@@ -192,7 +192,7 @@ setText(text: string | Resource): SaveButtonAttribute
 
 ### iconSize<sup>20+</sup>
 
-iconSize(size: Dimension | SizeOptions): SaveButtonAttribute
+iconSize(size: Dimension | SizeOptions)
 
 设置保存控件的图标尺寸。
 
@@ -214,7 +214,7 @@ iconSize(size: Dimension | SizeOptions): SaveButtonAttribute
 
 ### iconBorderRadius<sup>20+</sup>
 
-iconBorderRadius(radius: Dimension | BorderRadiuses): SaveButtonAttribute
+iconBorderRadius(radius: Dimension | BorderRadiuses)
 
 设置保存控件图标的边框圆角半径。
 
@@ -238,7 +238,7 @@ iconBorderRadius(radius: Dimension | BorderRadiuses): SaveButtonAttribute
 
 ### stateEffect<sup>20+</sup>
 
-stateEffect(enabled: boolean): SaveButtonAttribute
+stateEffect(enabled: boolean)
 
 设置保存控件的按压效果。
 
@@ -262,7 +262,7 @@ stateEffect(enabled: boolean): SaveButtonAttribute
 
 ### tipPosition<sup>20+</sup>
 
-tipPosition(position: SaveButtonTipPosition): SaveButtonAttribute
+tipPosition(position: SaveButtonTipPosition)
 
 设置保存控件系统提示弹框的位置信息。
 

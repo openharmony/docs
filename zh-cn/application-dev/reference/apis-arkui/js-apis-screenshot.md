@@ -50,7 +50,7 @@ import { screenshot } from '@kit.ArkUI';
 | 名称                 | 类型          | 只读 | 可选 | 说明                                                         |
 | -------------------- | ------------- | ---- | ---- | ------------------------------------------------------------ |
 | pickRect             | [Rect](#rect) | 否   | 否   | 表示截取图像的区域。                       |
-| pixelMap             | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 否   | 否   | 表示截取的图像PixelMap对象。 |
+| pixelMap             | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)  | 否   | 否   | 表示截取的图像PixelMap对象。 |
 
 ## screenshot.pick
 

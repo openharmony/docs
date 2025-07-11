@@ -335,7 +335,6 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 待创建的相册名参数规格为：
 - 相册名字符串长度为1~255。
 - 不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
-- 英文字符大小写不敏感。
 - 相册名不允许重名。
 
 > **说明：** 
@@ -397,7 +396,6 @@ createAlbum(name: string): Promise&lt;Album&gt;
 待创建的相册名参数规格为：
 - 相册名字符串长度为1~255。
 - 不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
-- 英文字符大小写不敏感。
 - 相册名不允许重名。
 
 > **说明：** 
@@ -5599,7 +5597,7 @@ class PhotoProxyImpl implements photoAccessHelper.PhotoProxy {
   // 应用实现PhotoProxy。
 }
 
-async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset) {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset, context: Context) {
   console.info('addResourceByPhotoProxyDemo');
   try {
     let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;

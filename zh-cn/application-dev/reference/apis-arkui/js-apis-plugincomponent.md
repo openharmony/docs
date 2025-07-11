@@ -20,10 +20,10 @@ Plugin组件模板参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型   | 必填 | 说明                        |
-| ------- | ------ | ---- | --------------------------- |
-| source  | string | 是   | 组件模板名。                |
-| ability | string | 是   | 提供方Ability的bundleName。 |
+| 名称    | 类型   | 只读 | 可选 | 说明                        |
+| ------- | ------ | ---- | ---- | --------------------------- |
+| source  | string | 否 | 否 | 组件模板名。                |
+| ability | string | 否 | 否 | 提供方Ability的bundleName。 |
 
 ## pluginComponentManager
 
@@ -39,9 +39,9 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型   | 必填 | 说明                        |
-| ------- | ------ | ---- | --------------------------- |
-|  [key: string]  | number \| string \| boolean \| [] \| [KVObject](#kvobject)  | 是   | 键值对形式存储。<br/>number：键值，表示值类型为数字。<br/> string：键值，表示值类型为字符串，可取空字符串。<br/> boolean：键值，表示值类型为布尔值。<br/> []：键值，可取值为[]。<br/>[KVObject](#kvobject)：键值，表示值类型为KVObject。            |
+| 名称    | 类型   | 只读 | 可选 | 说明                        |
+| ------- | ------ | ---- | ---- | --------------------------- |
+|  [key: string]  | number \| string \| boolean \| [] \| [KVObject](#kvobject)  | 否 | 否   | 键值对形式存储。<br/>number：键值，表示值类型为数字。<br/> string：键值，表示值类型为字符串，可取空字符串。<br/> boolean：键值，表示值类型为布尔值。<br/> []：键值，可取值为[]。<br/>[KVObject](#kvobject)：键值，表示值类型为KVObject。            |
 
 
 ### PushParameters
@@ -52,13 +52,13 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 类型                                  | 必填   | 说明                                       |
-| --------- | ----------------------------------- | ---- | ---------------------------------------- |
-| want      | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件使用方Ability信息。                          |
-| name      | string                              | 是    | 组件名称。                                    |
-| data      | [KVObject](#kvobject)               | 是    | 组件数据。                                   |
-| extraData | [KVObject](#kvobject)               | 是    | 附加数据。                                   |
-| jsonPath  | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。 |
+| 名称        | 类型                               | 只读 | 可选   | 说明                                       |
+| --------- | ----------------------------------- | ---- | ---- | ---------------------------------------- |
+| want      | [Want](../apis-ability-kit/js-apis-application-want.md) | 否 | 否    | 组件使用方Ability信息。                          |
+| name      | string                              | 否 | 否    | 组件名称。                                    |
+| data      | [KVObject](#kvobject)               | 否 | 否    | 组件数据。                                   |
+| extraData | [KVObject](#kvobject)               | 否 | 否    | 附加数据。                                   |
+| jsonPath  | string                              | 否 | 是    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。 |
 
 ### RequestParameters
 
@@ -68,12 +68,12 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 类型                                  | 必填   | 说明                                       |
-| -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| want     | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件提供方Ability信息。                          |
-| name     | string                              | 是    | 请求组件名称。                                  |
-| data     | [KVObject](#kvobject)               | 是    | 组件数据。                                    |
-| jsonPath | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。当jsonPath字段不为空时不触发Request通信。 |
+| 名称       | 类型                               | 必填 | 可选 | 说明                                       |
+| -------- | ----------------------------------- | ---- | ---- |---------------------------------------- |
+| want     | [Want](../apis-ability-kit/js-apis-application-want.md) | 否 | 否    | 组件提供方Ability信息。                          |
+| name     | string                              | 否 | 否    | 请求组件名称。                                  |
+| data     | [KVObject](#kvobject)               | 否 | 否    | 组件数据。                                    |
+| jsonPath | string                              | 否 | 是    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。当jsonPath字段不为空时不触发Request通信。 |
 
 ### RequestCallbackParameters
 
@@ -83,11 +83,11 @@ PluginManager.Request方法接收到的回调结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 类型                                       | 必填   | 说明    |
-| ----------------- | ---------------------------------------- | ---- | ----- |
-| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate) | 是    | 组件模板。 |
-| data              | [KVObject](#kvobject)                    | 是    | 组件数据。 |
-| extraData         | [KVObject](#kvobject)                    | 是    | 附加数据。 |
+| 名称              | 类型                                      | 只读 | 可选 | 说明  |
+| ----------------- | ---------------------------------------- | ---- | ---- | ----- |
+| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate) | 否 | 否    | 组件模板。 |
+| data              | [KVObject](#kvobject)                    | 否 | 否    | 组件数据。 |
+| extraData         | [KVObject](#kvobject)                    | 否 | 否    | 附加数据。 |
 
 ### RequestEventResult
 
@@ -97,11 +97,11 @@ PluginManager.Request方法接收到的回调结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 类型                    | 必填   | 说明    |
-| --------- | --------------------- | ---- | ----- |
-| template  | string                | 否    | 组件模板。 |
-| data      | [KVObject](#kvobject) | 否    | 组件数据。 |
-| extraData | [KVObject](#kvobject) | 否    | 附加数据。 |
+| 名称       | 类型                  | 只读 | 可选  | 说明    |
+| --------- | --------------------- | ---- | ---- | ----- |
+| template  | string                | 否 | 是    | 组件模板。 |
+| data      | [KVObject](#kvobject) | 否 | 是    | 组件数据。 |
+| extraData | [KVObject](#kvobject) | 否 | 是    | 附加数据。 |
 
 ### OnPushEventCallback
 

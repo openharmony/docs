@@ -108,6 +108,7 @@ class C {
 let c: C = {name : "Dylan", age : "13"};
 let result4 = list.add(c);
 let result5 = list.add(false);
+console.info("result = ", result5) // result =  true
 ```
 
 ### insert
@@ -271,6 +272,7 @@ list.add(1);
 list.add(2);
 list.add(4);
 let result = list.getLastIndexOf(2);
+console.info("result = ", result); // result = 5
 ```
 
 ### getIndexOf
@@ -314,7 +316,8 @@ list.add(2);
 list.add(1);
 list.add(2);
 list.add(4);
-let result = list.getIndexOf(2);
+let result = list.getIndexOf(2); 
+console.info("result = ", result); // result = 0
 ```
 
 ### equal
@@ -444,6 +447,7 @@ list.add(4);
 list.add(5);
 list.add(4);
 let result = list.remove(2);
+console.info("result = ", result); // result = true
 ```
 
 ### replaceAllElements
@@ -500,7 +504,7 @@ list.replaceAllElements((value: number) => {
 forEach(callbackFn: (value: T, index?: number, List?: List&lt;T&gt;) => void,
 thisArg?: Object): void
 
-通过回调函数来遍历List实例对象上的元素及其下标。
+在遍历List实例对象中每一个元素的过程中，对每个元素执行回调函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

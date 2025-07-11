@@ -170,7 +170,7 @@ outlineWidth(width: Optional\<Dimension | EdgeOutlineWidths>): T
 
 ## outlineColor
 
-outlineColor(value: ResourceColor | EdgeColors): T
+outlineColor(value: ResourceColor | EdgeColors | LocalizedEdgeColors): T
 
 设置元素的外描边颜色。
 
@@ -184,7 +184,7 @@ outlineColor(value: ResourceColor | EdgeColors): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                             |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明) | 是   | 设置元素的外描边颜色。<br/>默认值：Color.Black |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明)&nbsp;\|&nbsp;[LocalizedEdgeColors](#localizededgecolors对象说明12)<sup>12+</sup> | 是   | 设置元素的外描边颜色。<br/>默认值：Color.Black |
 
 **返回值：**
 
@@ -194,7 +194,7 @@ outlineColor(value: ResourceColor | EdgeColors): T
 
 ## outlineColor<sup>18+</sup>
 
-outlineColor(color: Optional\<ResourceColor | EdgeColors>): T
+outlineColor(color: Optional\<ResourceColor | EdgeColors | LocalizedEdgeColors>): T
 
 设置元素的外描边颜色。与[outlineColor](#outlinecolor)相比，color参数新增了对undefined类型的支持。
 
@@ -208,7 +208,7 @@ outlineColor(color: Optional\<ResourceColor | EdgeColors>): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| color  | Optional\<[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明)> | 是   | 设置元素的外描边颜色。<br/>默认值：Color.Black<br/>当color的值为undefined时，恢复为描边颜色为Color.Black的效果。 |
+| color  | Optional\<[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明)&nbsp;\|&nbsp;[LocalizedEdgeColors](#localizededgecolors对象说明12)> | 是   | 设置元素的外描边颜色。<br/>默认值：Color.Black<br/>当color的值为undefined时，恢复为描边颜色为Color.Black的效果。 |
 
 **返回值：**
 

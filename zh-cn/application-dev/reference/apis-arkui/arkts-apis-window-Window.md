@@ -4,19 +4,17 @@
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+当前窗口实例，窗口管理器管理的基本单元。
+
+下列API示例中都需先使用[getLastWindow()](arkts-apis-window-f.md#windowgetlastwindow9)、[createWindow()](arkts-apis-window-f.md#windowcreatewindow9)、[findWindow()](arkts-apis-window-f.md#windowfindwindow9)中的任一方法获取到Window实例（windowClass），再通过此实例调用对应方法。
+
 ## 导入模块
 
 ```ts
 import { window } from '@kit.ArkUI';
 ```
 
-## Window
-
-当前窗口实例，窗口管理器管理的基本单元。
-
-下列API示例中都需先使用[getLastWindow()](arkts-apis-window-f.md#windowgetlastwindow9)、[createWindow()](arkts-apis-window-f.md#windowcreatewindow9)、[findWindow()](arkts-apis-window-f.md#windowfindwindow9)中的任一方法获取到Window实例（windowClass），再通过此实例调用对应方法。
-
-### showWindow<sup>9+</sup>
+## showWindow<sup>9+</sup>
 
 showWindow(callback: AsyncCallback&lt;void&gt;): void
 
@@ -55,7 +53,7 @@ windowClass.showWindow((err: BusinessError) => {
 });
 ```
 
-### showWindow<sup>9+</sup>
+## showWindow<sup>9+</sup>
 
 showWindow(): Promise&lt;void&gt;
 
@@ -92,7 +90,7 @@ promise.then(() => {
 });
 ```
 
-### showWindow<sup>20+</sup>
+## showWindow<sup>20+</sup>
 
 showWindow(options: ShowWindowOptions): Promise&lt;void&gt;
 
@@ -163,7 +161,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### destroyWindow<sup>9+</sup>
+## destroyWindow<sup>9+</sup>
 
 destroyWindow(callback: AsyncCallback&lt;void&gt;): void
 
@@ -202,7 +200,7 @@ windowClass.destroyWindow((err) => {
 });
 ```
 
-### destroyWindow<sup>9+</sup>
+## destroyWindow<sup>9+</sup>
 
 destroyWindow(): Promise&lt;void&gt;
 
@@ -239,7 +237,7 @@ promise.then(() => {
 });
 ```
 
-### moveWindowTo<sup>9+</sup>
+## moveWindowTo<sup>9+</sup>
 
 moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -290,7 +288,7 @@ try {
 }
 ```
 
-### moveWindowTo<sup>9+</sup>
+## moveWindowTo<sup>9+</sup>
 
 moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
@@ -344,7 +342,7 @@ try {
 }
 ```
 
-### moveWindowToAsync<sup>12+</sup>
+## moveWindowToAsync<sup>12+</sup>
 
 moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
 
@@ -401,7 +399,7 @@ try {
 }
 ```
 
-### moveWindowToAsync<sup>15+</sup>
+## moveWindowToAsync<sup>15+</sup>
 
 moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
@@ -463,7 +461,7 @@ try {
 }
 ```
 
-### moveWindowToGlobal<sup>13+</sup>
+## moveWindowToGlobal<sup>13+</sup>
 
 moveWindowToGlobal(x: number, y: number): Promise&lt;void&gt;
 
@@ -521,7 +519,7 @@ try {
 }
 ```
 
-### moveWindowToGlobal<sup>15+</sup>
+## moveWindowToGlobal<sup>15+</sup>
 
 moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
@@ -584,7 +582,7 @@ try {
 }
 ```
 
-### resize<sup>9+</sup>
+## resize<sup>9+</sup>
 
 resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -642,7 +640,7 @@ try {
 }
 ```
 
-### resize<sup>9+</sup>
+## resize<sup>9+</sup>
 
 resize(width: number, height: number): Promise&lt;void&gt;
 
@@ -703,7 +701,7 @@ try {
 }
 ```
 
-### resizeAsync<sup>12+</sup>
+## resizeAsync<sup>12+</sup>
 
 resizeAsync(width: number, height: number): Promise&lt;void&gt;
 
@@ -768,7 +766,7 @@ try {
 }
 ```
 
-### getWindowProperties<sup>9+</sup>
+## getWindowProperties<sup>9+</sup>
 
 getWindowProperties(): WindowProperties
 
@@ -802,7 +800,7 @@ try {
 }
 ```
 
-### getWindowDensityInfo<sup>15+</sup>
+## getWindowDensityInfo<sup>15+</sup>
 
 getWindowDensityInfo(): WindowDensityInfo
 
@@ -837,7 +835,76 @@ try {
 }
 ```
 
-### getGlobalRect<sup>13+</sup>
+## setWindowContainerColor<sup>20+</sup>
+
+setWindowContainerColor(activeColor: string, inactiveColor: string): void
+
+设置主窗口容器在焦点态和非焦点态时的背景色，仅支持2in1设备。在Stage模型下，该接口需在调用[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)后使用。
+
+窗口容器背景色覆盖整个窗口区域，包括标题栏和内容区域。当同时使用该接口和`setWindowBackgroundColor()`设置背景色时，内容区域显示窗口背景色，标题栏显示窗口容器背景色。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**需要权限：** ohos.permission.SET_WINDOW_TRANSPARENT
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ----- | ------ | -- | ----------------------------------------------------------------------- |
+| activeColor | string | 是 | 窗口容器处于焦点态时的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。|
+| inactiveColor | string | 是 | 窗口容器处于非焦点态时的背景色，为十六进制RGB颜色或ARGB颜色（透明度固定为`'FF'`），不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation.                      |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent("pages/page2", (err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      // 获取应用主窗口。
+      let windowClass: window.Window | undefined = undefined;
+      windowStage.getMainWindow((err: BusinessError, data) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        windowClass = data;
+        let activeColor: string = '#00000000';
+        let inactiveColor: string = '#FF000000';
+        try {
+          windowClass.setWindowContainerColor(activeColor, inactiveColor);
+          console.info('Succeeded in setting window container color.');
+        } catch (exception) {
+          console.error(`Failed to set the window container color. Cause code: ${exception.code}, message: ${exception.message}`);
+        };
+      });
+    });
+  }
+}
+```
+
+## getGlobalRect<sup>13+</sup>
 
 getGlobalRect(): Rect
 
@@ -876,7 +943,7 @@ try {
 }
 ```
 
-### getWindowAvoidArea<sup>9+</sup>
+## getWindowAvoidArea<sup>9+</sup>
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
@@ -920,7 +987,7 @@ try {
 }
 ```
 
-### setSystemAvoidAreaEnabled<sup>18+</sup>
+## setSystemAvoidAreaEnabled<sup>18+</sup>
 
 setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 
@@ -990,7 +1057,7 @@ try {
 }
 ```
 
-### isSystemAvoidAreaEnabled<sup>18+</sup>
+## isSystemAvoidAreaEnabled<sup>18+</sup>
 
 isSystemAvoidAreaEnabled(): boolean
 
@@ -1051,7 +1118,7 @@ try {
 }
 ```
 
-### setTitleAndDockHoverShown<sup>14+</sup>
+## setTitleAndDockHoverShown<sup>14+</sup>
 
 setTitleAndDockHoverShown(isTitleHoverShown?: boolean, isDockHoverShown?: boolean): Promise&lt;void&gt;
 
@@ -1118,7 +1185,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowLayoutFullScreen<sup>9+</sup>
+## setWindowLayoutFullScreen<sup>9+</sup>
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
@@ -1187,7 +1254,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setImmersiveModeEnabledState<sup>12+</sup>
+## setImmersiveModeEnabledState<sup>12+</sup>
 
 setImmersiveModeEnabledState(enabled: boolean): void
 
@@ -1225,7 +1292,7 @@ try {
 }
 ```
 
-### getImmersiveModeEnabledState<sup>12+</sup>
+## getImmersiveModeEnabledState<sup>12+</sup>
 
 getImmersiveModeEnabledState(): boolean
 
@@ -1262,7 +1329,7 @@ try {
 }
 ```
 
-### isImmersiveLayout<sup>20+</sup>
+## isImmersiveLayout<sup>20+</sup>
 
 isImmersiveLayout(): boolean
 
@@ -1294,7 +1361,7 @@ try {
 }
 ```
 
-### setWindowDelayRaiseOnDrag<sup>19+</sup>
+## setWindowDelayRaiseOnDrag<sup>19+</sup>
 
 setWindowDelayRaiseOnDrag(isEnabled: boolean): void
 
@@ -1332,7 +1399,7 @@ try {
 }
 ```
 
-### setWindowSystemBarEnable<sup>9+</sup>
+## setWindowSystemBarEnable<sup>9+</sup>
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
@@ -1402,7 +1469,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setSpecificSystemBarEnabled<sup>11+</sup>
+## setSpecificSystemBarEnabled<sup>11+</sup>
 
 setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise&lt;void&gt;
 
@@ -1473,7 +1540,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowSystemBarProperties<sup>9+</sup>
+## setWindowSystemBarProperties<sup>9+</sup>
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
@@ -1549,7 +1616,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### getWindowSystemBarProperties<sup>12+</sup>
+## getWindowSystemBarProperties<sup>12+</sup>
 
 getWindowSystemBarProperties(): SystemBarProperties
 
@@ -1606,7 +1673,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setStatusBarColor<sup>18+</sup>
+## setStatusBarColor<sup>18+</sup>
 
 setStatusBarColor(color: ColorMetrics): Promise&lt;void&gt;
 
@@ -1676,7 +1743,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### getStatusBarProperty<sup>18+</sup>
+## getStatusBarProperty<sup>18+</sup>
 
 getStatusBarProperty(): StatusBarProperty
 
@@ -1733,7 +1800,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setPreferredOrientation<sup>9+</sup>
+## setPreferredOrientation<sup>9+</sup>
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1796,7 +1863,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setPreferredOrientation<sup>9+</sup>
+## setPreferredOrientation<sup>9+</sup>
 
 setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
@@ -1862,7 +1929,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### getPreferredOrientation<sup>12+</sup>
+## getPreferredOrientation<sup>12+</sup>
 
 getPreferredOrientation(): Orientation
 
@@ -1915,7 +1982,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### getUIContext<sup>10+</sup>
+## getUIContext<sup>10+</sup>
 
 getUIContext(): UIContext
 
@@ -1978,7 +2045,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setUIContent<sup>9+</sup>
+## setUIContent<sup>9+</sup>
 
 setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -2023,7 +2090,7 @@ try {
 }
 ```
 
-### setUIContent<sup>9+</sup>
+## setUIContent<sup>9+</sup>
 
 setUIContent(path: string): Promise&lt;void&gt;
 
@@ -2071,7 +2138,7 @@ try {
 }
 ```
 
-### loadContent<sup>9+</sup>
+## loadContent<sup>9+</sup>
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
@@ -2117,7 +2184,7 @@ windowClass.loadContent('pages/page2', storage, (err: BusinessError) => {
 });
 ```
 
-### loadContent<sup>9+</sup>
+## loadContent<sup>9+</sup>
 
 loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 
@@ -2166,7 +2233,7 @@ promise.then(() => {
 });
 ```
 
-### loadContentByName<sup>11+</sup>
+## loadContentByName<sup>11+</sup>
 
 loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
@@ -2241,7 +2308,7 @@ export struct Index {
 }
 ```
 
-### loadContentByName<sup>11+</sup>
+## loadContentByName<sup>11+</sup>
 
 loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -2311,7 +2378,7 @@ export struct Index {
 }
 ```
 
-### loadContentByName<sup>11+</sup>
+## loadContentByName<sup>11+</sup>
 
 loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 
@@ -2388,7 +2455,7 @@ export struct Index {
 }
 ```
 
-### isWindowShowing<sup>9+</sup>
+## isWindowShowing<sup>9+</sup>
 
 isWindowShowing(): boolean
 
@@ -2423,7 +2490,7 @@ try {
 }
 ```
 
-### on('windowSizeChange')<sup>7+</sup>
+## on('windowSizeChange')<sup>7+</sup>
 
 on(type:  'windowSizeChange', callback: Callback&lt;Size&gt;): void
 
@@ -2460,7 +2527,7 @@ try {
 }
 ```
 
-### off('windowSizeChange')<sup>7+</sup>
+## off('windowSizeChange')<sup>7+</sup>
 
 off(type: 'windowSizeChange', callback?: Callback&lt;Size&gt;): void
 
@@ -2503,7 +2570,7 @@ try {
 }
 ```
 
-### on('avoidAreaChange')<sup>9+</sup>
+## on('avoidAreaChange')<sup>9+</sup>
 
 on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
@@ -2542,7 +2609,7 @@ try {
 }
 ```
 
-### off('avoidAreaChange')<sup>9+</sup>
+## off('avoidAreaChange')<sup>9+</sup>
 
 off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 
@@ -2588,7 +2655,7 @@ try {
 }
 ```
 
-### on('keyboardHeightChange')<sup>7+</sup>
+## on('keyboardHeightChange')<sup>7+</sup>
 
 on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
@@ -2627,7 +2694,7 @@ try {
 }
 ```
 
-### off('keyboardHeightChange')<sup>7+</sup>
+## off('keyboardHeightChange')<sup>7+</sup>
 
 off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
@@ -2671,7 +2738,7 @@ try {
 }
 ```
 
-### on('keyboardWillShow')<sup>20+</sup>
+## on('keyboardWillShow')<sup>20+</sup>
 
 on(type: 'keyboardWillShow', callback: Callback&lt;KeyboardInfo&gt;): void
 
@@ -2715,7 +2782,7 @@ try {
 }
 ```
 
-### off('keyboardWillShow')<sup>20+</sup>
+## off('keyboardWillShow')<sup>20+</sup>
 
 off(type: 'keyboardWillShow', callback?: Callback&lt;KeyboardInfo&gt;): void
 
@@ -2760,7 +2827,7 @@ try {
 }
 ```
 
-### on('keyboardWillHide')<sup>20+</sup>
+## on('keyboardWillHide')<sup>20+</sup>
 
 on(type: 'keyboardWillHide', callback: Callback&lt;KeyboardInfo&gt;): void
 
@@ -2804,7 +2871,7 @@ try {
 }
 ```
 
-### off('keyboardWillHide')<sup>20+</sup>
+## off('keyboardWillHide')<sup>20+</sup>
 
 off(type: 'keyboardWillHide', callback?: Callback&lt;KeyboardInfo&gt;): void
 
@@ -2849,7 +2916,7 @@ try {
 }
 ```
 
-### on('keyboardDidShow')<sup>18+</sup>
+## on('keyboardDidShow')<sup>18+</sup>
 
 on(type: 'keyboardDidShow', callback: Callback&lt;KeyboardInfo&gt;): void
 
@@ -2891,7 +2958,7 @@ try {
 }
 ```
 
-### off('keyboardDidShow')<sup>18+</sup>
+## off('keyboardDidShow')<sup>18+</sup>
 
 off(type: 'keyboardDidShow', callback?: Callback&lt;KeyboardInfo&gt;): void
 
@@ -2935,7 +3002,7 @@ try {
 }
 ```
 
-### on('keyboardDidHide')<sup>18+</sup>
+## on('keyboardDidHide')<sup>18+</sup>
 
 on(type: 'keyboardDidHide', callback: Callback&lt;KeyboardInfo&gt;): void
 
@@ -2977,7 +3044,7 @@ try {
 }
 ```
 
-### off('keyboardDidHide')<sup>18+</sup>
+## off('keyboardDidHide')<sup>18+</sup>
 
 off(type: 'keyboardDidHide', callback?: Callback&lt;KeyboardInfo&gt;): void
 
@@ -3021,7 +3088,7 @@ try {
 }
 ```
 
-### on('touchOutside')<sup>11+</sup>
+## on('touchOutside')<sup>11+</sup>
 
 on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
 
@@ -3058,7 +3125,7 @@ try {
 }
 ```
 
-### off('touchOutside')<sup>11+</sup>
+## off('touchOutside')<sup>11+</sup>
 
 off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
@@ -3099,7 +3166,7 @@ try {
 }
 ```
 
-### on('screenshot')<sup>9+</sup>
+## on('screenshot')<sup>9+</sup>
 
 on(type: 'screenshot', callback: Callback&lt;void&gt;): void
 
@@ -3136,7 +3203,7 @@ try {
 }
 ```
 
-### off('screenshot')<sup>9+</sup>
+## off('screenshot')<sup>9+</sup>
 
 off(type: 'screenshot', callback?: Callback&lt;void&gt;): void
 
@@ -3177,7 +3244,7 @@ try {
 }
 ```
 
-### on('screenshotAppEvent')<sup>20+</sup>
+## on('screenshotAppEvent')<sup>20+</sup>
 
 on(type: 'screenshotAppEvent', callback: Callback&lt;ScreenshotEventType&gt;): void
 
@@ -3214,7 +3281,7 @@ try {
 }
 ```
 
-### off('screenshotAppEvent')<sup>20+</sup>
+## off('screenshotAppEvent')<sup>20+</sup>
 
 off(type: 'screenshotAppEvent', callback?: Callback&lt;ScreenshotEventType&gt;): void
 
@@ -3256,7 +3323,7 @@ try {
 }
 ```
 
-### on('dialogTargetTouch')<sup>10+</sup>
+## on('dialogTargetTouch')<sup>10+</sup>
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
@@ -3293,7 +3360,7 @@ try {
 }
 ```
 
-### off('dialogTargetTouch')<sup>10+</sup>
+## off('dialogTargetTouch')<sup>10+</sup>
 
 off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 
@@ -3334,7 +3401,7 @@ try {
 }
 ```
 
-### on('windowEvent')<sup>10+</sup>
+## on('windowEvent')<sup>10+</sup>
 
 on(type: 'windowEvent', callback: Callback&lt;WindowEventType&gt;): void
 
@@ -3371,7 +3438,7 @@ try {
 }
 ```
 
-### off('windowEvent')<sup>10+</sup>
+## off('windowEvent')<sup>10+</sup>
 
 off(type: 'windowEvent', callback?: Callback&lt;WindowEventType&gt;): void
 
@@ -3414,7 +3481,7 @@ try {
 }
 ```
 
-### on('displayIdChange')<sup>14+</sup>
+## on('displayIdChange')<sup>14+</sup>
 
 on(type: 'displayIdChange', callback: Callback&lt;number&gt;): void
 
@@ -3452,7 +3519,7 @@ try {
   console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
-### off('displayIdChange')<sup>14+</sup>
+## off('displayIdChange')<sup>14+</sup>
 
 off(type: 'displayIdChange', callback?: Callback&lt;number&gt;): void
 
@@ -3497,7 +3564,7 @@ try {
 }
 ```
 
-### on('windowVisibilityChange')<sup>11+</sup>
+## on('windowVisibilityChange')<sup>11+</sup>
 
 on(type: 'windowVisibilityChange', callback: Callback&lt;boolean&gt;): void
 
@@ -3537,7 +3604,7 @@ try {
 }
 ```
 
-### off('windowVisibilityChange')<sup>11+</sup>
+## off('windowVisibilityChange')<sup>11+</sup>
 
 off(type: 'windowVisibilityChange', callback?: Callback&lt;boolean&gt;): void
 
@@ -3583,7 +3650,7 @@ try {
 }
 ```
 
-### on('systemDensityChange')<sup>15+</sup>
+## on('systemDensityChange')<sup>15+</sup>
 
 on(type: 'systemDensityChange', callback: Callback&lt;number&gt;): void
 
@@ -3623,7 +3690,7 @@ try {
   console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
-### off('systemDensityChange')<sup>15+</sup>
+## off('systemDensityChange')<sup>15+</sup>
 
 off(type: 'systemDensityChange', callback?: Callback&lt;number&gt;): void
 
@@ -3668,7 +3735,7 @@ try {
 }
 ```
 
-### on('noInteractionDetected')<sup>12+</sup>
+## on('noInteractionDetected')<sup>12+</sup>
 
 on(type: 'noInteractionDetected', timeout: number, callback: Callback&lt;void&gt;): void
 
@@ -3709,7 +3776,7 @@ try {
 }
 ```
 
-### off('noInteractionDetected')<sup>12+</sup>
+## off('noInteractionDetected')<sup>12+</sup>
 
 off(type: 'noInteractionDetected', callback?: Callback&lt;void&gt;): void
 
@@ -3753,7 +3820,7 @@ try {
 }
 ```
 
-### on('windowStatusChange')<sup>11+</sup>
+## on('windowStatusChange')<sup>11+</sup>
 
 on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): void
 
@@ -3791,7 +3858,7 @@ try {
 }
 ```
 
-### off('windowStatusChange')<sup>11+</sup>
+## off('windowStatusChange')<sup>11+</sup>
 
 off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): void
 
@@ -3833,13 +3900,11 @@ try {
 }
 ```
 
-### on('windowStatusDidChange')<sup>20+</sup>
+## on('windowStatusDidChange')<sup>20+</sup>
 
 on(type: 'windowStatusDidChange', callback: Callback&lt;WindowStatusType&gt;): void
 
 开启窗口模式变化的监听，当窗口windowStatus发生变化后进行通知（此时窗口[Rect](arkts-apis-window-i.md#rect7)属性已经完成更新）。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3871,13 +3936,11 @@ try {
 }
 ```
 
-### off('windowStatusDidChange')<sup>20+</sup>
+## off('windowStatusDidChange')<sup>20+</sup>
 
 off(type: 'windowStatusDidChange', callback?: Callback&lt;WindowStatusType&gt;): void
 
 关闭窗口模式变化的监听。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3913,7 +3976,7 @@ try {
 }
 ```
 
-### setWindowGrayScale<sup>12+</sup>
+## setWindowGrayScale<sup>12+</sup>
 
 setWindowGrayScale(grayScale: number): Promise&lt;void&gt;
 
@@ -3973,7 +4036,7 @@ windowClass?.setUIContent('pages/Index', (error: BusinessError) => {
 });
 ```
 
-### on('windowTitleButtonRectChange')<sup>11+</sup>
+## on('windowTitleButtonRectChange')<sup>11+</sup>
 
 on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void
 
@@ -4016,7 +4079,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 })
 ```
 
-### off('windowTitleButtonRectChange')<sup>11+</sup>
+## off('windowTitleButtonRectChange')<sup>11+</sup>
 
 off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&gt;): void
 
@@ -4065,7 +4128,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 })
 ```
 
-### on('windowRectChange')<sup>12+</sup>
+## on('windowRectChange')<sup>12+</sup>
 
 on(type:  'windowRectChange', callback: Callback&lt;RectChangeOptions&gt;): void
 
@@ -4105,7 +4168,7 @@ try {
 }
 ```
 
-### off('windowRectChange')<sup>12+</sup>
+## off('windowRectChange')<sup>12+</sup>
 
 off(type: 'windowRectChange', callback?: Callback&lt;RectChangeOptions&gt;): void
 
@@ -4150,7 +4213,7 @@ try {
 }
 ```
 
-### on('subWindowClose')<sup>12+</sup>
+## on('subWindowClose')<sup>12+</sup>
 
 on(type:  'subWindowClose', callback: Callback&lt;void&gt;): void
 
@@ -4198,7 +4261,7 @@ try {
 }
 ```
 
-### off('subWindowClose')<sup>12+</sup>
+## off('subWindowClose')<sup>12+</sup>
 
 off(type: 'subWindowClose', callback?: Callback&lt;void&gt;): void
 
@@ -4243,7 +4306,7 @@ try {
 }
 ```
 
-### on('windowWillClose')<sup>15+</sup>
+## on('windowWillClose')<sup>15+</sup>
 
 on(type: 'windowWillClose', callback: Callback&lt;void, Promise&lt;boolean&gt;&gt;): void
 
@@ -4304,7 +4367,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### off('windowWillClose')<sup>15+</sup>
+## off('windowWillClose')<sup>15+</sup>
 
 off(type: 'windowWillClose', callback?: Callback&lt;void, Promise&lt;boolean&gt;&gt;): void
 
@@ -4366,7 +4429,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### on('windowHighlightChange')<sup>15+</sup>
+## on('windowHighlightChange')<sup>15+</sup>
 
 on(type: 'windowHighlightChange', callback: Callback&lt;boolean&gt;): void
 
@@ -4406,7 +4469,7 @@ try {
 }
 ```
 
-### off('windowHighlightChange')<sup>15+</sup>
+## off('windowHighlightChange')<sup>15+</sup>
 
 off(type: 'windowHighlightChange', callback?: Callback&lt;boolean&gt;): void
 
@@ -4452,7 +4515,7 @@ try {
 }
 ```
 
-### on('rotationChange')<sup>19+</sup>
+## on('rotationChange')<sup>19+</sup>
 
 on(type: 'rotationChange', callback: RotationChangeCallback&lt;RotationChangeInfo, RotationChangeResult | void&gt;): void
 
@@ -4524,7 +4587,7 @@ try {
 }
 ```
 
-### off('rotationChange')<sup>19+</sup>
+## off('rotationChange')<sup>19+</sup>
 
 off(type: 'rotationChange', callback?: RotationChangeCallback&lt;RotationChangeInfo, RotationChangeResult | void&gt;): void
 
@@ -4569,7 +4632,7 @@ try {
 }
 ```
 
-### on('uiExtensionSecureLimitChange')<sup>20+</sup>
+## on('uiExtensionSecureLimitChange')<sup>20+</sup>
 
 on(type: 'uiExtensionSecureLimitChange', callback: Callback&lt;boolean&gt;): void
 
@@ -4608,7 +4671,7 @@ try {
 }
 ```
 
-### off('uiExtensionSecureLimitChange')<sup>20+</sup>
+## off('uiExtensionSecureLimitChange')<sup>20+</sup>
 
 off(type: 'uiExtensionSecureLimitChange', callback?: Callback&lt;boolean&gt;): void
 
@@ -4653,7 +4716,7 @@ try {
 }
 ```
 
-### isWindowSupportWideGamut<sup>9+</sup>
+## isWindowSupportWideGamut<sup>9+</sup>
 
 isWindowSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -4692,7 +4755,7 @@ windowClass.isWindowSupportWideGamut((err: BusinessError, data) => {
 });
 ```
 
-### isWindowSupportWideGamut<sup>9+</sup>
+## isWindowSupportWideGamut<sup>9+</sup>
 
 isWindowSupportWideGamut(): Promise&lt;boolean&gt;
 
@@ -4729,7 +4792,7 @@ promise.then((data) => {
 });
 ```
 
-### setWindowColorSpace<sup>9+</sup>
+## setWindowColorSpace<sup>9+</sup>
 
 setWindowColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 
@@ -4774,7 +4837,7 @@ try {
 }
 ```
 
-### setWindowColorSpace<sup>9+</sup>
+## setWindowColorSpace<sup>9+</sup>
 
 setWindowColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
@@ -4822,7 +4885,7 @@ try {
 }
 ```
 
-### getWindowColorSpace<sup>9+</sup>
+## getWindowColorSpace<sup>9+</sup>
 
 getWindowColorSpace(): ColorSpace
 
@@ -4859,7 +4922,7 @@ try {
 }
 ```
 
-### setWindowBackgroundColor<sup>9+</sup>
+## setWindowBackgroundColor<sup>9+</sup>
 
 setWindowBackgroundColor(color: string | ColorMetrics): void
 
@@ -4910,7 +4973,7 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 });
 ```
 
-### setWindowShadowEnabled<sup>20+</sup>
+## setWindowShadowEnabled<sup>20+</sup>
 
 setWindowShadowEnabled(enable: boolean): Promise&lt;void&gt;
 
@@ -4982,7 +5045,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowBrightness<sup>9+</sup>
+## setWindowBrightness<sup>9+</sup>
 
 setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -5049,7 +5112,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowBrightness<sup>9+</sup>
+## setWindowBrightness<sup>9+</sup>
 
 setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
@@ -5119,7 +5182,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowFocusable<sup>9+</sup>
+## setWindowFocusable<sup>9+</sup>
 
 setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -5166,7 +5229,7 @@ try {
 }
 ```
 
-### setWindowFocusable<sup>9+</sup>
+## setWindowFocusable<sup>9+</sup>
 
 setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
@@ -5216,7 +5279,7 @@ try {
 }
 ```
 
-### setWindowKeepScreenOn<sup>9+</sup>
+## setWindowKeepScreenOn<sup>9+</sup>
 
 setWindowKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -5265,7 +5328,7 @@ try {
 }
 ```
 
-### setWindowKeepScreenOn<sup>9+</sup>
+## setWindowKeepScreenOn<sup>9+</sup>
 
 setWindowKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
@@ -5317,7 +5380,7 @@ try {
 }
 ```
 
-### setWindowPrivacyMode<sup>9+</sup>
+## setWindowPrivacyMode<sup>9+</sup>
 
 setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -5366,7 +5429,7 @@ try {
 }
 ```
 
-### setWindowPrivacyMode<sup>9+</sup>
+## setWindowPrivacyMode<sup>9+</sup>
 
 setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
@@ -5418,7 +5481,7 @@ try {
 }
 ```
 
-### setWindowTouchable<sup>9+</sup>
+## setWindowTouchable<sup>9+</sup>
 
 setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -5465,7 +5528,7 @@ try {
 }
 ```
 
-### setWindowTouchable<sup>9+</sup>
+## setWindowTouchable<sup>9+</sup>
 
 setWindowTouchable(isTouchable: boolean): Promise&lt;void&gt;
 
@@ -5515,7 +5578,7 @@ try {
 }
 ```
 
-### snapshot<sup>9+</sup>
+## snapshot<sup>9+</sup>
 
 snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
@@ -5556,7 +5619,7 @@ windowClass.snapshot((err: BusinessError, pixelMap: image.PixelMap) => {
 });
 ```
 
-### snapshot<sup>9+</sup>
+## snapshot<sup>9+</sup>
 
 snapshot(): Promise&lt;image.PixelMap&gt;
 
@@ -5595,7 +5658,7 @@ promise.then((pixelMap: image.PixelMap) => {
 });
 ```
 
-### snapshotSync<sup>20+</sup>
+## snapshotSync<sup>20+</sup>
 
 snapshotSync(): image.PixelMap
 
@@ -5636,7 +5699,7 @@ try {
 }
 ```
 
-### snapshotIgnorePrivacy<sup>18+</sup>
+## snapshotIgnorePrivacy<sup>18+</sup>
 
 snapshotIgnorePrivacy(): Promise&lt;image.PixelMap&gt;
 
@@ -5676,7 +5739,7 @@ promise.then((pixelMap: image.PixelMap) => {
 });
 ```
 
-### setAspectRatio<sup>10+</sup>
+## setAspectRatio<sup>10+</sup>
 
 setAspectRatio(ratio: number): Promise&lt;void&gt;
 
@@ -5743,7 +5806,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setAspectRatio<sup>10+</sup>
+## setAspectRatio<sup>10+</sup>
 
 setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -5808,7 +5871,7 @@ export default class EntryAbility extends UIAbility {
 
 ```
 
-### resetAspectRatio<sup>10+</sup>
+## resetAspectRatio<sup>10+</sup>
 
 resetAspectRatio(): Promise&lt;void&gt;
 
@@ -5865,7 +5928,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### resetAspectRatio<sup>10+</sup>
+## resetAspectRatio<sup>10+</sup>
 
 resetAspectRatio(callback: AsyncCallback&lt;void&gt;): void
 
@@ -5924,7 +5987,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### minimize<sup>11+</sup>
+## minimize<sup>11+</sup>
 
 minimize(callback: AsyncCallback&lt;void&gt;): void
 
@@ -5971,7 +6034,7 @@ windowClass.minimize((err: BusinessError) => {
 });
 ```
 
-### minimize<sup>11+</sup>
+## minimize<sup>11+</sup>
 
 minimize(): Promise&lt;void&gt;
 
@@ -6016,7 +6079,7 @@ promise.then(() => {
 });
 ```
 
-### maximize<sup>12+</sup>
+## maximize<sup>12+</sup>
 maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
 实现最大化功能。主窗口可调用此接口实现最大化功能；子窗口需在创建时设置子窗口参数maximizeSupported为true，再调用此接口可实现最大化功能。使用Promise异步回调。
@@ -6081,7 +6144,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setResizeByDragEnabled<sup>14+</sup>
+## setResizeByDragEnabled<sup>14+</sup>
 setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 禁止/使能通过拖拽方式缩放主窗口或启用装饰的子窗口的功能。使用callback异步回调。
@@ -6125,7 +6188,7 @@ try {
 }
 ```
 
-### setResizeByDragEnabled<sup>14+</sup>
+## setResizeByDragEnabled<sup>14+</sup>
 setResizeByDragEnabled(enable: boolean): Promise&lt;void&gt;
 
 禁止/使能通过拖拽方式缩放主窗口或启用装饰的子窗口的功能。使用Promise异步回调。
@@ -6175,7 +6238,7 @@ try {
 }
 ```
 
-### recover<sup>11+</sup>
+## recover<sup>11+</sup>
 
 recover(): Promise&lt;void&gt;
 
@@ -6233,7 +6296,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### restore<sup>14+</sup>
+## restore<sup>14+</sup>
 
 restore(): Promise&lt;void&gt;
 
@@ -6293,7 +6356,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### getWindowLimits<sup>11+</sup>
+## getWindowLimits<sup>11+</sup>
 
 getWindowLimits(): WindowLimits
 
@@ -6328,7 +6391,7 @@ try {
 }
 ```
 
-### setWindowLimits<sup>11+</sup>
+## setWindowLimits<sup>11+</sup>
 
 setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
@@ -6385,7 +6448,7 @@ try {
 }
 ```
 
-### setWindowLimits<sup>15+</sup>
+## setWindowLimits<sup>15+</sup>
 
 setWindowLimits(windowLimits: WindowLimits, isForcible: boolean): Promise&lt;WindowLimits&gt;
 
@@ -6444,7 +6507,7 @@ try {
 }
 ```
 
-### setWindowMask<sup>12+</sup>
+## setWindowMask<sup>12+</sup>
 
 setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;;
 
@@ -6505,7 +6568,7 @@ try {
 }
 ```
 
-### keepKeyboardOnFocus<sup>11+</sup>
+## keepKeyboardOnFocus<sup>11+</sup>
 
 keepKeyboardOnFocus(keepKeyboardFlag: boolean): void
 
@@ -6542,7 +6605,7 @@ try {
 }
 ```
 
-### setWindowDecorVisible<sup>11+</sup>
+## setWindowDecorVisible<sup>11+</sup>
 
 setWindowDecorVisible(isVisible: boolean): void
 
@@ -6593,7 +6656,7 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 });
 ```
 
-### getWindowDecorVisible<sup>18+</sup>
+## getWindowDecorVisible<sup>18+</sup>
 
 getWindowDecorVisible(): boolean
 
@@ -6633,7 +6696,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 })
 ```
 
-### setWindowTitle<sup>15+</sup>
+## setWindowTitle<sup>15+</sup>
 
 setWindowTitle(titleName: string): Promise&lt;void&gt;
 
@@ -6684,7 +6747,7 @@ try {
 }
 ```
 
-### setWindowTitleMoveEnabled<sup>14+</sup>
+## setWindowTitleMoveEnabled<sup>14+</sup>
 
 setWindowTitleMoveEnabled(enabled: boolean): void
 
@@ -6735,7 +6798,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setSubWindowModal<sup>12+</sup>
+## setSubWindowModal<sup>12+</sup>
 
 setSubWindowModal(isModal: boolean): Promise&lt;void&gt;
 
@@ -6809,7 +6872,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setSubWindowModal<sup>14+</sup>
+## setSubWindowModal<sup>14+</sup>
 
 setSubWindowModal(isModal: boolean, modalityType: ModalityType): Promise&lt;void&gt;
 
@@ -6888,7 +6951,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowDecorHeight<sup>11+</sup>
+## setWindowDecorHeight<sup>11+</sup>
 
 setWindowDecorHeight(height: number): void
 
@@ -6932,7 +6995,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 })
 ```
 
-### setDecorButtonStyle<sup>14+</sup>
+## setDecorButtonStyle<sup>14+</sup>
 
 setDecorButtonStyle(dectorStyle: DecorButtonStyle): void
 
@@ -6992,7 +7055,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### getDecorButtonStyle<sup>14+</sup>
+## getDecorButtonStyle<sup>14+</sup>
 
 getDecorButtonStyle(): DecorButtonStyle
 
@@ -7032,7 +7095,7 @@ try {
 }
 ```
 
-### getWindowDecorHeight<sup>11+</sup>
+## getWindowDecorHeight<sup>11+</sup>
 
 getWindowDecorHeight(): number
 
@@ -7072,7 +7135,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 })
 ```
 
-### getTitleButtonRect<sup>11+</sup>
+## getTitleButtonRect<sup>11+</sup>
 
 getTitleButtonRect(): TitleButtonRect
 
@@ -7127,7 +7190,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### getWindowStatus<sup>12+</sup>
+## getWindowStatus<sup>12+</sup>
 
 getWindowStatus(): WindowStatusType
 
@@ -7162,7 +7225,7 @@ try {
 }
 ```
 
-### isFocused<sup>12+</sup>
+## isFocused<sup>12+</sup>
 
 isFocused(): boolean
 
@@ -7197,7 +7260,7 @@ try {
 }
 ```
 
-### createSubWindowWithOptions<sup>12+</sup>
+## createSubWindowWithOptions<sup>12+</sup>
 
 createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
 
@@ -7258,7 +7321,7 @@ try {
 }
 ```
 
-### setParentWindow<sup>19+</sup>
+## setParentWindow<sup>19+</sup>
 
 setParentWindow(windowId: number): Promise&lt;void&gt;
 
@@ -7318,7 +7381,7 @@ try {
 }
 ```
 
-### getParentWindow<sup>19+</sup>
+## getParentWindow<sup>19+</sup>
 
 getParentWindow(): Window
 
@@ -7360,7 +7423,7 @@ try {
 }
 ```
 
-### setWindowTitleButtonVisible<sup>14+</sup>
+## setWindowTitleButtonVisible<sup>14+</sup>
 
 setWindowTitleButtonVisible(isMaximizeButtonVisible: boolean, isMinimizeButtonVisible: boolean, isCloseButtonVisible?: boolean): void
 
@@ -7422,7 +7485,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowTopmost<sup>14+</sup>
+## setWindowTopmost<sup>14+</sup>
 
 setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 
@@ -7519,7 +7582,7 @@ struct Index {
 }
 ```
 
-### raiseToAppTop<sup>14+</sup>
+## raiseToAppTop<sup>14+</sup>
 
 raiseToAppTop(): Promise&lt;void&gt;
 
@@ -7576,7 +7639,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setRaiseByClickEnabled<sup>14+</sup>
+## setRaiseByClickEnabled<sup>14+</sup>
 
 setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 
@@ -7648,7 +7711,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### enableLandscapeMultiWindow<sup>12+</sup>
+## enableLandscapeMultiWindow<sup>12+</sup>
 
 enableLandscapeMultiWindow(): Promise&lt;void&gt;
 
@@ -7706,7 +7769,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### disableLandscapeMultiWindow<sup>12+</sup>
+## disableLandscapeMultiWindow<sup>12+</sup>
 
 disableLandscapeMultiWindow(): Promise&lt;void&gt;
 
@@ -7764,7 +7827,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setDialogBackGestureEnabled<sup>12+</sup>
+## setDialogBackGestureEnabled<sup>12+</sup>
 
 setDialogBackGestureEnabled(enabled: boolean): Promise&lt;void&gt;
 
@@ -7862,7 +7925,7 @@ struct Index {
 }
 ```
 
-### enableDrag<sup>20+</sup>
+## enableDrag<sup>20+</sup>
 
 enableDrag(enable: boolean): Promise&lt;void&gt;
 
@@ -7913,7 +7976,7 @@ try {
 }
 ```
 
-### startMoving<sup>14+</sup>
+## startMoving<sup>14+</sup>
 
 startMoving(): Promise&lt;void&gt;
 
@@ -8011,7 +8074,7 @@ struct Index {
 }
 ```
 
-### startMoving<sup>15+</sup>
+## startMoving<sup>15+</sup>
 
 startMoving(offsetX: number, offsetY: number): Promise&lt;void&gt;
 
@@ -8113,7 +8176,7 @@ struct Index {
 }
 ```
 
-### stopMoving<sup>15+</sup>
+## stopMoving<sup>15+</sup>
 
 stopMoving(): Promise&lt;void&gt;
 
@@ -8171,7 +8234,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setGestureBackEnabled<sup>13+<sup>
+## setGestureBackEnabled<sup>13+<sup>
 
 setGestureBackEnabled(enabled: boolean): Promise&lt;void&gt;
 
@@ -8245,7 +8308,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### isGestureBackEnabled<sup>13+<sup>
+## isGestureBackEnabled<sup>13+<sup>
 
 isGestureBackEnabled(): boolean
 
@@ -8305,7 +8368,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowShadowRadius<sup>17+</sup>
+## setWindowShadowRadius<sup>17+</sup>
 
 setWindowShadowRadius(radius: number): void
 
@@ -8342,7 +8405,7 @@ try {
 }
 ```
 
-### setWindowCornerRadius<sup>17+</sup>
+## setWindowCornerRadius<sup>17+</sup>
 
 setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 
@@ -8400,7 +8463,7 @@ try{
 
 ```
 
-### getWindowCornerRadius<sup>17+</sup>
+## getWindowCornerRadius<sup>17+</sup>
 
 getWindowCornerRadius(): number
 
@@ -8438,7 +8501,7 @@ try {
 }
 ```
 
-### setExclusivelyHighlighted<sup>15+<sup>
+## setExclusivelyHighlighted<sup>15+<sup>
 
 setExclusivelyHighlighted(exclusivelyHighlighted: boolean): Promise&lt;void&gt;
 
@@ -8492,7 +8555,7 @@ try {
 }
 ```
 
-### isWindowHighlighted<sup>18+<sup>
+## isWindowHighlighted<sup>18+<sup>
 
 isWindowHighlighted(): boolean
 
@@ -8532,7 +8595,7 @@ try {
 }
 ```
 
-### setFollowParentMultiScreenPolicy<sup>17+<sup>
+## setFollowParentMultiScreenPolicy<sup>17+<sup>
 
 setFollowParentMultiScreenPolicy(enabled: boolean): Promise&lt;void&gt;
 
@@ -8591,7 +8654,7 @@ try {
 }
 ```
 
-### setFollowParentWindowLayoutEnabled<sup>17+</sup>
+## setFollowParentWindowLayoutEnabled<sup>17+</sup>
 
 setFollowParentWindowLayoutEnabled(enabled: boolean): Promise&lt;void&gt;
 
@@ -8671,7 +8734,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setRelativePositionToParentWindowEnabled<sup>20+<sup>
+## setRelativePositionToParentWindowEnabled<sup>20+<sup>
 
 setRelativePositionToParentWindowEnabled(enabled: boolean, anchor?: WindowAnchor, offsetX?: number, offsetY?: number): Promise&lt;void&gt;
 
@@ -8751,7 +8814,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowTransitionAnimation<sup>20+</sup>
+## setWindowTransitionAnimation<sup>20+</sup>
 
 setWindowTransitionAnimation(transitionType: WindowTransitionType, animation: TransitionAnimation): Promise&lt;void&gt;
 
@@ -8835,7 +8898,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### getWindowTransitionAnimation<sup>20+</sup>
+## getWindowTransitionAnimation<sup>20+</sup>
 
 getWindowTransitionAnimation(transitionType: WindowTransitionType): TransitionAnimation | undefined
 
@@ -8873,7 +8936,7 @@ getWindowTransitionAnimation(transitionType: WindowTransitionType): TransitionAn
 | 1300002  | This window state is abnormal.                               |
 | 1300003  | This window manager service works abnormally.                |
 | 1300004  | Unauthorized operation.                                      |
-| 1300016  | Parameter error. Possible cause: 1. Invalid parameter range; 2. Invalid parameter length. |
+| 1300016  | Parameter error. Possible cause: 1. Invalid parameter range. |
 
 **示例：**
 
@@ -8906,7 +8969,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setSubWindowZLevel<sup>18+</sup>
+## setSubWindowZLevel<sup>18+</sup>
 
 setSubWindowZLevel(zLevel: number): Promise&lt;void&gt;
 
@@ -8976,7 +9039,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### getSubWindowZLevel<sup>18+</sup>
+## getSubWindowZLevel<sup>18+</sup>
 
 getSubWindowZLevel(): number
 
@@ -9032,7 +9095,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-### setWindowSystemBarProperties<sup>(deprecated)</sup>
+## setWindowSystemBarProperties<sup>(deprecated)</sup>
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
@@ -9109,7 +9172,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowSystemBarEnable<sup>(deprecated)</sup>
+## setWindowSystemBarEnable<sup>(deprecated)</sup>
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
@@ -9180,7 +9243,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setWindowLayoutFullScreen<sup>(deprecated)</sup>
+## setWindowLayoutFullScreen<sup>(deprecated)</sup>
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -9250,7 +9313,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### show<sup>(deprecated)</sup>
+## show<sup>(deprecated)</sup>
 
 show(callback: AsyncCallback&lt;void&gt;): void
 
@@ -9283,7 +9346,7 @@ windowClass.show((err: BusinessError) => {
 });
 ```
 
-### show<sup>(deprecated)</sup>
+## show<sup>(deprecated)</sup>
 
 show(): Promise&lt;void&gt;
 
@@ -9314,7 +9377,7 @@ promise.then(() => {
 });
 ```
 
-### destroy<sup>(deprecated)</sup>
+## destroy<sup>(deprecated)</sup>
 
 destroy(callback: AsyncCallback&lt;void&gt;): void
 
@@ -9347,7 +9410,7 @@ windowClass.destroy((err: BusinessError) => {
 });
 ```
 
-### destroy<sup>(deprecated)</sup>
+## destroy<sup>(deprecated)</sup>
 
 destroy(): Promise&lt;void&gt;
 
@@ -9378,7 +9441,7 @@ promise.then(() => {
 });
 ```
 
-### moveTo<sup>(deprecated)</sup>
+## moveTo<sup>(deprecated)</sup>
 
 moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -9415,7 +9478,7 @@ windowClass.moveTo(300, 300, (err: BusinessError) => {
 });
 ```
 
-### moveTo<sup>(deprecated)</sup>
+## moveTo<sup>(deprecated)</sup>
 
 moveTo(x: number, y: number): Promise&lt;void&gt;
 
@@ -9455,7 +9518,7 @@ promise.then(() => {
 });
 ```
 
-### resetSize<sup>(deprecated)</sup>
+## resetSize<sup>(deprecated)</sup>
 
 resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -9501,7 +9564,7 @@ windowClass.resetSize(500, 1000, (err: BusinessError) => {
 });
 ```
 
-### resetSize<sup>(deprecated)</sup>
+## resetSize<sup>(deprecated)</sup>
 
 resetSize(width: number, height: number): Promise&lt;void&gt;
 
@@ -9550,7 +9613,7 @@ promise.then(() => {
 });
 ```
 
-### getProperties<sup>(deprecated)</sup>
+## getProperties<sup>(deprecated)</sup>
 
 getProperties(callback: AsyncCallback&lt;WindowProperties&gt;): void
 
@@ -9583,7 +9646,7 @@ windowClass.getProperties((err: BusinessError, data) => {
 });
 ```
 
-### getProperties<sup>(deprecated)</sup>
+## getProperties<sup>(deprecated)</sup>
 
 getProperties(): Promise&lt;WindowProperties&gt;
 
@@ -9614,7 +9677,7 @@ promise.then((data) => {
 });
 ```
 
-### getAvoidArea<sup>(deprecated)</sup>
+## getAvoidArea<sup>(deprecated)</sup>
 
 getAvoidArea(type: [AvoidAreaType](arkts-apis-window-e.md#avoidareatype7), callback: AsyncCallback&lt;[AvoidArea](arkts-apis-window-i.md#avoidarea7)&gt;): void
 
@@ -9649,7 +9712,7 @@ windowClass.getAvoidArea(type, (err: BusinessError, data) => {
 });
 ```
 
-### getAvoidArea<sup>(deprecated)</sup>
+## getAvoidArea<sup>(deprecated)</sup>
 
 getAvoidArea(type: [AvoidAreaType](arkts-apis-window-e.md#avoidareatype7)): Promise&lt;[AvoidArea](arkts-apis-window-i.md#avoidarea7)&gt;
 
@@ -9687,7 +9750,7 @@ promise.then((data) => {
 });
 ```
 
-### setFullScreen<sup>(deprecated)</sup>
+## setFullScreen<sup>(deprecated)</sup>
 
 setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -9741,7 +9804,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setFullScreen<sup>(deprecated)</sup>
+## setFullScreen<sup>(deprecated)</sup>
 
 setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
@@ -9798,7 +9861,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setLayoutFullScreen<sup>(deprecated)</sup>
+## setLayoutFullScreen<sup>(deprecated)</sup>
 
 setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -9852,7 +9915,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setLayoutFullScreen<sup>(deprecated)</sup>
+## setLayoutFullScreen<sup>(deprecated)</sup>
 
 setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
@@ -9909,7 +9972,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setSystemBarEnable<sup>(deprecated)</sup>
+## setSystemBarEnable<sup>(deprecated)</sup>
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
@@ -9965,7 +10028,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setSystemBarEnable<sup>(deprecated)</sup>
+## setSystemBarEnable<sup>(deprecated)</sup>
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
@@ -10024,7 +10087,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setSystemBarProperties<sup>(deprecated)</sup>
+## setSystemBarProperties<sup>(deprecated)</sup>
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
@@ -10084,7 +10147,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setSystemBarProperties<sup>(deprecated)</sup>
+## setSystemBarProperties<sup>(deprecated)</sup>
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
@@ -10147,7 +10210,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### loadContent<sup>(deprecated)</sup>
+## loadContent<sup>(deprecated)</sup>
 
 loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -10181,7 +10244,7 @@ windowClass.loadContent('pages/page2/page3', (err: BusinessError) => {
 });
 ```
 
-### loadContent<sup>(deprecated)</sup>
+## loadContent<sup>(deprecated)</sup>
 
 loadContent(path: string): Promise&lt;void&gt;
 
@@ -10218,7 +10281,7 @@ promise.then(() => {
 });
 ```
 
-### isShowing<sup>(deprecated)</sup>
+## isShowing<sup>(deprecated)</sup>
 
 isShowing(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -10251,7 +10314,7 @@ windowClass.isShowing((err: BusinessError, data) => {
 });
 ```
 
-### isShowing<sup>(deprecated)</sup>
+## isShowing<sup>(deprecated)</sup>
 
 isShowing(): Promise&lt;boolean&gt;
 
@@ -10282,7 +10345,7 @@ promise.then((data) => {
 });
 ```
 
-### on('systemAvoidAreaChange')<sup>(deprecated)</sup>
+## on('systemAvoidAreaChange')<sup>(deprecated)</sup>
 
 on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 
@@ -10310,7 +10373,7 @@ windowClass.on('systemAvoidAreaChange', (data) => {
 });
 ```
 
-### off('systemAvoidAreaChange')<sup>(deprecated)</sup>
+## off('systemAvoidAreaChange')<sup>(deprecated)</sup>
 
 off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 
@@ -10341,7 +10404,7 @@ windowClass.off('systemAvoidAreaChange', callback);
 windowClass.off('systemAvoidAreaChange');
 ```
 
-### isSupportWideGamut<sup>(deprecated)</sup>
+## isSupportWideGamut<sup>(deprecated)</sup>
 
 isSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -10374,7 +10437,7 @@ windowClass.isSupportWideGamut((err: BusinessError, data) => {
 });
 ```
 
-### isSupportWideGamut<sup>(deprecated)</sup>
+## isSupportWideGamut<sup>(deprecated)</sup>
 
 isSupportWideGamut(): Promise&lt;boolean&gt;
 
@@ -10405,7 +10468,7 @@ promise.then((data) => {
 });
 ```
 
-### setColorSpace<sup>(deprecated)</sup>
+## setColorSpace<sup>(deprecated)</sup>
 
 setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 
@@ -10440,7 +10503,7 @@ windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err: BusinessError) => 
 });
 ```
 
-### setColorSpace<sup>(deprecated)</sup>
+## setColorSpace<sup>(deprecated)</sup>
 
 setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
@@ -10478,7 +10541,7 @@ promise.then(() => {
 });
 ```
 
-### getColorSpace<sup>(deprecated)</sup>
+## getColorSpace<sup>(deprecated)</sup>
 
 getColorSpace(callback: AsyncCallback&lt;ColorSpace&gt;): void
 
@@ -10511,7 +10574,7 @@ windowClass.getColorSpace((err: BusinessError, data) => {
 });
 ```
 
-### getColorSpace<sup>(deprecated)</sup>
+## getColorSpace<sup>(deprecated)</sup>
 
 getColorSpace(): Promise&lt;ColorSpace&gt;
 
@@ -10542,7 +10605,7 @@ promise.then((data) => {
 });
 ```
 
-### setBackgroundColor<sup>(deprecated)</sup>
+## setBackgroundColor<sup>(deprecated)</sup>
 
 setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -10578,7 +10641,7 @@ windowClass.setBackgroundColor(color, (err: BusinessError) => {
 });
 ```
 
-### setBackgroundColor<sup>(deprecated)</sup>
+## setBackgroundColor<sup>(deprecated)</sup>
 
 setBackgroundColor(color: string): Promise&lt;void&gt;
 
@@ -10617,7 +10680,7 @@ promise.then(() => {
 });
 ```
 
-### setBrightness<sup>(deprecated)</sup>
+## setBrightness<sup>(deprecated)</sup>
 
 setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -10655,7 +10718,7 @@ windowClass.setBrightness(brightness, (err: BusinessError) => {
 });
 ```
 
-### setBrightness<sup>(deprecated)</sup>
+## setBrightness<sup>(deprecated)</sup>
 
 setBrightness(brightness: number): Promise&lt;void&gt;
 
@@ -10696,7 +10759,7 @@ promise.then(() => {
 });
 ```
 
-### setDimBehind<sup>(deprecated)</sup>
+## setDimBehind<sup>(deprecated)</sup>
 
 setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -10730,7 +10793,7 @@ windowClass.setDimBehind(0.5, (err: BusinessError) => {
 });
 ```
 
-### setDimBehind<sup>(deprecated)</sup>
+## setDimBehind<sup>(deprecated)</sup>
 
 setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 
@@ -10767,7 +10830,7 @@ promise.then(() => {
 });
 ```
 
-### setFocusable<sup>(deprecated)</sup>
+## setFocusable<sup>(deprecated)</sup>
 
 setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -10803,7 +10866,7 @@ windowClass.setFocusable(isFocusable, (err: BusinessError) => {
 });
 ```
 
-### setFocusable<sup>(deprecated)</sup>
+## setFocusable<sup>(deprecated)</sup>
 
 setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
@@ -10842,7 +10905,7 @@ promise.then(() => {
 });
 ```
 
-### setKeepScreenOn<sup>(deprecated)</sup>
+## setKeepScreenOn<sup>(deprecated)</sup>
 
 setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -10878,7 +10941,7 @@ windowClass.setKeepScreenOn(isKeepScreenOn, (err: BusinessError) => {
 });
 ```
 
-### setKeepScreenOn<sup>(deprecated)</sup>
+## setKeepScreenOn<sup>(deprecated)</sup>
 
 setKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
@@ -10916,7 +10979,7 @@ promise.then(() => {
 });
 ```
 
-### setOutsideTouchable<sup>(deprecated)</sup>
+## setOutsideTouchable<sup>(deprecated)</sup>
 
 setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -10952,7 +11015,7 @@ windowClass.setOutsideTouchable(true, (err: BusinessError) => {
 });
 ```
 
-### setOutsideTouchable<sup>(deprecated)</sup>
+## setOutsideTouchable<sup>(deprecated)</sup>
 
 setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
@@ -10991,7 +11054,7 @@ promise.then(() => {
 });
 ```
 
-### setPrivacyMode<sup>(deprecated)</sup>
+## setPrivacyMode<sup>(deprecated)</sup>
 
 setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -11026,7 +11089,7 @@ windowClass.setPrivacyMode(isPrivacyMode, (err: BusinessError) => {
 });
 ```
 
-### setPrivacyMode<sup>(deprecated)</sup>
+## setPrivacyMode<sup>(deprecated)</sup>
 
 setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
@@ -11064,7 +11127,7 @@ promise.then(() => {
 });
 ```
 
-### setTouchable<sup>(deprecated)</sup>
+## setTouchable<sup>(deprecated)</sup>
 
 setTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -11100,7 +11163,7 @@ windowClass.setTouchable(isTouchable, (err: BusinessError) => {
 });
 ```
 
-### setTouchable<sup>(deprecated)</sup>
+## setTouchable<sup>(deprecated)</sup>
 
 setTouchable(isTouchable: boolean): Promise&lt;void&gt;
 

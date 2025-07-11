@@ -39,6 +39,8 @@ Gauge(options: GaugeOptions)
 
 ## GaugeOptions<sup>18+</sup>对象说明
 
+数据量规图表选项。
+
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -244,6 +246,8 @@ GaugeShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptions10
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ## GaugeIndicatorOptions<sup>11+</sup>对象说明
+
+数据量规图表指针选项。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -721,30 +725,16 @@ struct GaugeExample {
     Scroll() {
       Column({ space: 15 }) {
         Row() {
-          Gauge({ value: 50, min: 1, max: 100 }) {
-            Column() {
-              Text('60')
-                .maxFontSize("180sp")
-                .minFontSize("160.0vp")
-                .fontWeight(FontWeight.Medium)
-                .fontColor("#ff182431")
-                .width('40%')
-                .height('30%')
-                .textAlign(TextAlign.Center)
-                .margin({ top: '22.2%' })
-                .textOverflow({ overflow: TextOverflow.Ellipsis })
-                .maxLines(1)
-            }.width('100%').height('100%')
-          }
-          .startAngle(225)
-          .endAngle(135)
-          .colors(Color.Red)
-          .width('80%')
-          .height('80%')
-          .strokeWidth(18)
-          .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
-          .padding(18)
-          .privacySensitive(true)
+          Gauge({ value: 60, min: 20, max: 100 })
+            .startAngle(225)
+            .endAngle(135)
+            .colors(Color.Red)
+            .width('80%')
+            .height('80%')
+            .strokeWidth(18)
+            .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
+            .padding(18)
+            .privacySensitive(true)
         }
       }
     }

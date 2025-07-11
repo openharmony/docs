@@ -205,15 +205,15 @@ Failed to set the live form background image.
 
 检查传入的背景图资源是否有效。
 
-## 16501011 当前卡片不支持互动卡片能力
+## 16501011 卡片不支持调用当前接口
 
 **错误信息**
 
-The form can not support this operation, please check your fom_config's sceneAnimationParams configuration infomation is correct or not.
+The form can not support this operation.
 
 **错误描述**
 
-当前卡片不支持互动卡片能力时，系统会报此错误码。
+卡片不支持调用当前接口，系统会报此错误码。
 
 **可能原因**
 
