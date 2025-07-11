@@ -14,9 +14,9 @@
 
 此变更不涉及应用适配。
 
-变更前：针对未标识卡片能力的接口或模块，卡片UI侧代码可以调用成功。
+变更前：针对未标识卡片能力的接口或模块，卡片可以调用成功。	
 
-变更后：针对未标识卡片能力的接口或模块，卡片UI侧代码会调用失败导致卡片加载显示失败，且系统会有拦截报错，报错信息为"module can't load in form,moduleName=" 或 "api not allowed, apiPath:"。
+变更后：针对未标识卡片能力的接口或模块，卡片会调用失败导致卡片加载显示失败，且系统会有拦截报错，报错信息为"module can't load in form,moduleName=" 或 "api not allowed, apiPath:"。
 
 **起始 API Level**
 
