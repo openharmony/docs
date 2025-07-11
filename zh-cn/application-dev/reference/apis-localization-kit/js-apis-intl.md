@@ -429,7 +429,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;    | 是    | 区域ID或区域ID数组。输入是区域ID数组时，使用第一个有效的区域ID。 |
-| options              | [NumberOptions](#numberoptionsdeprecated) | 否    | 创建数字格式化对象时可设置的配置项。               |
+| options              | [NumberOptions](#numberoptions) | 否    | 创建数字格式化对象时可设置的配置项。               |
 
 **示例：**
 ```ts
@@ -519,7 +519,7 @@ resolvedOptions(): NumberOptions
 
 | 类型                               | 说明                          |
 | -------------------------------- | --------------------------- |
-| [NumberOptions](#numberoptionsdeprecated) | 创建数字格式化对象时设置的配置项。 |
+| [NumberOptions](#numberoptions) | 创建数字格式化对象时设置的配置项。 |
 
 
 **示例：**
@@ -833,7 +833,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 | 参数名                  | 类型                                       | 必填   | 说明                           |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | 是    | 区域ID或区域ID数组。输入是区域ID数组时，使用第一个有效的区域ID。 |
-| options              | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptionsdeprecated) | 否    | 创建相对时间格式化对象时可配置的选项。     |
+| options              | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions8) | 否    | 创建相对时间格式化对象时可配置的选项。     |
 
 **示例：**
 ```ts
@@ -923,7 +923,7 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 | 类型                                       | 说明                                |
 | ---------------------------------------- | --------------------------------- |
-| [RelativeTimeFormatResolvedOptions](#relativetimeformatresolvedoptionsdeprecated) | 相对时间格式化对象的格式化配置项。 |
+| [RelativeTimeFormatResolvedOptions](#relativetimeformatresolvedoptions8) | 相对时间格式化对象的格式化配置项。 |
 
 **示例：**
 ```ts
