@@ -287,7 +287,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 7. 调用OH_AudioCodec_PushInputBuffer()，写入待编码器的数据。需开发者填充完整的输入数据后调用。
 
-   每次输入的采样点数(SAMPLES_PER_FRAME)取值方法如下：
+   每次输入的采样点数（SAMPLES_PER_FRAME）取值方法如下：
 
    AAC-LC编码每帧包含1024个PCM样点，建议单次输入1024个样点的数据量。
 
@@ -308,9 +308,10 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    | 96000 |  8192  |
 
    > **说明：**
+   >
    > 单次编码输入的数据量（单位：字节）为：采样点数（SAMPLES_PER_FRAME） * 声道数 * 单个采样点的占用字节。
    >
-   > flac编码的样点数建议根据采样率按照表格传入，大于这个值会返回错误码，如果小于有可能出现编码文件损坏问题。
+   > flac编码的样点数建议参考表格根据采样率对应的样点数进行设置，否则可能出现编码文件损坏问题。
 
    ```c++
     // 声道数，对于amr编码声道数只支持单声道的音频输入。
