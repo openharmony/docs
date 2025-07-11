@@ -78,7 +78,7 @@ task5(OUT A);
 
 ```cpp
 #include <iostream>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
 
 int main()
 {
@@ -111,7 +111,7 @@ int main()
 
 ```cpp
 #include <iostream>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
 
 void Fib(int x, int& y)
 {

@@ -78,7 +78,7 @@ task5(OUT A);
 
 ```c
 #include <stdio.h>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
 
 void func_TaskA(void* arg)
 {
@@ -153,7 +153,7 @@ int main()
 
 ```c
 #include <stdio.h>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
 
 typedef struct {
     int x;
