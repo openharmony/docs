@@ -402,7 +402,7 @@ getMediaType(): MediaType
 
 | 类型    | 说明     |
 |--------|--------|
-| [MediaType](#mediaType20) | 媒体类型，如果应用未调用过setMediaType设置mediatype，则此函数返回的默认值为AUDIO。|
+| [MediaType](#mediatype20) | 媒体类型，如果应用未调用过setMediaType设置mediatype，则此函数返回的默认值为AUDIO。|
 
 **错误码：**
 
