@@ -306,11 +306,11 @@ static getSystemLocale(): string
 
 ### getSystemLocaleInstance<sup>20+</sup>
 
-static getSystemLocaleInstance(): Intl.Locale;
+static getSystemLocaleInstance(): Intl.Locale
 
 获取系统当前设置的区域对象。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.I18n
 
@@ -321,6 +321,8 @@ static getSystemLocaleInstance(): Intl.Locale;
 
 **示例：**
   ```ts
+  import { i18n } from '@kit.LocalizationKit';
+
   let systemLocale: Intl.Locale = i18n.System.getSystemLocaleInstance();
   ```
 

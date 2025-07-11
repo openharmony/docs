@@ -414,7 +414,7 @@ let formatter: intl.NumberFormat = new intl.NumberFormat();
 ```
 
 
-### constructor<sup>6+</sup>
+### constructor
 
 constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 
@@ -429,7 +429,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;    | 是    | 区域ID或区域ID数组。输入是区域ID数组时，使用第一个有效的区域ID。 |
-| options              | [NumberOptions](#numberoptions6) | 否    | 创建数字格式化对象时可设置的配置项。               |
+| options              | [NumberOptions](#numberoptions) | 否    | 创建数字格式化对象时可设置的配置项。               |
 
 **示例：**
 ```ts
@@ -437,7 +437,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 let formatter: intl.NumberFormat = new intl.NumberFormat('en-GB', { style: 'decimal', notation: 'scientific' });
 ```
 
-### format<sup>6+</sup>
+### format
 
 format(number: number): string
 
@@ -505,7 +505,7 @@ let formattedRange: string = formatter.formatRange(0, 3); // formattedRange: 0�
 ```
 
 
-### resolvedOptions<sup>6+</sup>
+### resolvedOptions
 
 resolvedOptions(): NumberOptions
 
@@ -519,7 +519,7 @@ resolvedOptions(): NumberOptions
 
 | 类型                               | 说明                          |
 | -------------------------------- | --------------------------- |
-| [NumberOptions](#numberoptions6) | 创建数字格式化对象时设置的配置项。 |
+| [NumberOptions](#numberoptions) | 创建数字格式化对象时设置的配置项。 |
 
 
 **示例：**
@@ -531,7 +531,7 @@ let style: string | undefined = options.style; // style = 'decimal'
 let notation: string | undefined = options.notation; // notation = 'scientific'
 ```
 
-## NumberOptions<sup>6+</sup>
+## NumberOptions
 
 创建数字格式化对象时可设置的配置项。从API version 9开始，NumberOptions的属性由必填改为可选。
 
