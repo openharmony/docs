@@ -283,7 +283,7 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
     body.appendChild(element);
     ```
 
-3. 查看onErrorReceive、onHttpErrorReceive、onSslErrorEvent、onHttpAuthRequest、onClientAuthenticationRequest等错误上报接口是否有被调用。请根据返回的错误码，对照p[网络协议栈错误列表](../reference/apis-arkweb/arkts-apis-netErrorList.md)进行排查。
+3. 查看onErrorReceive、onHttpErrorReceive、onSslErrorEvent、onHttpAuthRequest、onClientAuthenticationRequest等错误上报接口是否有被调用。请根据返回的错误码，对照[网络协议栈错误列表](../reference/apis-arkweb/arkts-apis-netErrorList.md)进行排查。
 
     | 名称   | 说明  |                       
     | ----   | -------------------------------- |
