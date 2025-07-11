@@ -395,7 +395,7 @@ let timeStyle: string | undefined = options.timeStyle; // timeStyle = 'medium'
 | localeMatcher   | string  | 否    | 是     | 要使用的区域匹配算法，取值包括：<br>"lookup"：精确匹配。<br>"best&nbsp;fit"：最佳匹配。 |
 | formatMatcher   | string  | 否    | 是     | 要使用的格式匹配算法，取值包括：<br>"basic"：精确匹配。<br>"best&nbsp;fit"：最佳匹配。 |
 
-## NumberFormat
+## NumberFormat<sup>8+</sup>
 
 ### constructor<sup>8+</sup>
 
@@ -414,7 +414,7 @@ let formatter: intl.NumberFormat = new intl.NumberFormat();
 ```
 
 
-### constructor
+### constructor<sup>6+</sup>
 
 constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 
@@ -429,7 +429,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;    | 是    | 区域ID或区域ID数组。输入是区域ID数组时，使用第一个有效的区域ID。 |
-| options              | [NumberOptions](#numberoptions) | 否    | 创建数字格式化对象时可设置的配置项。               |
+| options              | [NumberOptions](#numberoptions6) | 否    | 创建数字格式化对象时可设置的配置项。               |
 
 **示例：**
 ```ts
@@ -437,7 +437,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 let formatter: intl.NumberFormat = new intl.NumberFormat('en-GB', { style: 'decimal', notation: 'scientific' });
 ```
 
-### format
+### format<sup>6+</sup>
 
 format(number: number): string
 
@@ -505,7 +505,7 @@ let formattedRange: string = formatter.formatRange(0, 3); // formattedRange: 0�
 ```
 
 
-### resolvedOptions
+### resolvedOptions<sup>6+</sup>
 
 resolvedOptions(): NumberOptions
 
@@ -519,7 +519,7 @@ resolvedOptions(): NumberOptions
 
 | 类型                               | 说明                          |
 | -------------------------------- | --------------------------- |
-| [NumberOptions](#numberoptions) | 创建数字格式化对象时设置的配置项。 |
+| [NumberOptions](#numberoptions6) | 创建数字格式化对象时设置的配置项。 |
 
 
 **示例：**
@@ -531,7 +531,7 @@ let style: string | undefined = options.style; // style = 'decimal'
 let notation: string | undefined = options.notation; // notation = 'scientific'
 ```
 
-## NumberOptions
+## NumberOptions<sup>6+</sup>
 
 创建数字格式化对象时可设置的配置项。从API version 9开始，NumberOptions的属性由必填改为可选。
 
@@ -566,7 +566,7 @@ let notation: string | undefined = options.notation; // notation = 'scientific'
 >
 >  - 各属性不同取值代表的含义或呈现效果，请参考[数字与度量衡国际化](../../internationalization/i18n-numbers-weights-measures.md)。
 
-## Collator<sup>(deprecated)</sup>
+## Collator<sup>8+</sup>
 
 ### constructor<sup>(deprecated)</sup>
 
@@ -604,7 +604,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | 是    | 区域ID或区域ID数组。输入是区域ID数组时，使用第一个有效的区域ID。  |
-| options              | [CollatorOptions](#collatoroptionsdeprecated) | 否    | 创建排序对象时可设置的配置项。       |
+| options              | [CollatorOptions](#collatoroptions8) | 否    | 创建排序对象时可设置的配置项。       |
 
 **示例：**
   ```ts
@@ -663,7 +663,7 @@ resolvedOptions(): CollatorOptions
 
 | 类型                                   | 说明                |
 | ------------------------------------ | ----------------- |
-| [CollatorOptions](#collatoroptionsdeprecated) | 返回排序对象的属性。 |
+| [CollatorOptions](#collatoroptions8) | 返回排序对象的属性。 |
 
 **示例：**
   ```ts
@@ -675,9 +675,7 @@ resolvedOptions(): CollatorOptions
   ```
 
 
-## CollatorOptions<sup>(deprecated)</sup>
-
-从API version 8开始支持，从API version 20开始不再维护。
+## CollatorOptions<sup>8+</sup>
 
 创建排序对象时可设置的配置项。
 
@@ -687,14 +685,15 @@ resolvedOptions(): CollatorOptions
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称                | 类型      | 必填   | 说明                                       |
-| ----------------- | ------- | ---- | ---------------------------------------- |
-| localeMatcher     | string  | 否    | 区域匹配算法，取值范围：<br>"lookup"：模糊匹配。<br>"best fit"：准确匹配。<br>默认值："best fit"。 |
-| usage             | string  | 否    | 比较的用途，取值范围：<br>"sort"：用作排序。<br>"search"：用作查找匹配的字符串。<br>默认值："sort"。        |
-| sensitivity       | string  | 否    | 表示字符串中的哪些差异会导致非零结果值，取值范围：<br>"base"：不同的字母比较不相等，比如：'a' ≠ 'b', 'a' = 'á', 'a' = 'A'。<br>"accent"：不同的字母或不同读音的相同字母比较不相等，比如'a' ≠ 'b', 'a' ≠ 'á', 'a' = 'A'。<br>"case"：不同的字母或相同字母大小写比较不相等，比如：'a' ≠ 'b', 'a' = 'á', 'a' ≠ 'A'。<br>"variant"：不同的字母或读音及其它有区别的标志或大小写都是不相等的，比如：'a' ≠ 'b', 'a' ≠ 'á', 'a' ≠ 'A'。<br>默认值："variant"。        |
-| collation         | string  | 否    | 区域的排序规则，取值包括：<br>"big5han"：拉丁字母使用的拼音排序。<br>"compat"：兼容性排序，仅用于阿拉伯语。<br>"dict"：词典风格排序，仅用于僧伽罗语。<br>"direct"：二进制码点排序。<br>"ducet"：按Unicode排序元素表排序。<br>"eor"：按欧洲排序规则排序。<br>"gb2312"：拼音排序，仅用于中文排序。<br>"phonebk"：电话本风格排序。<br>"phonetic"：发音排序。<br>"pinyin"：拼音排序。<br>"reformed"：瑞典语排序。<br>"searchjl"：韩语初始辅音搜索的特殊排序。<br>"stroke"：汉语的笔画排序。<br>"trad"：传统风格排序，如西班牙语。<br>"unihan"：统一汉字排序，用于日语、韩语、中文等汉字排序。<br>"zhuyin"：注音排序，仅用于中文排序。<br>默认值："default"。 |
-| numeric           | boolean | 否    | 数字排序，取值包括：<br>true：使用数字排序，比如：'1' &lt; '2' &lt; '10' &lt; '11'。<br>false：不使用数字排序，比如：'1' &lt; '10' &lt; '11' &lt; '2'。<br>默认值：false。          |
-| caseFirst         | string  | 否    | 区域的排序规则是否考虑大小写，取值包括：<br>"upper"：大写排前面。<br>"lower"：小写排前面。<br>"false"：使用区域默认的大小写排序规则。<br>默认值："false"。 |
+| 名称                | 类型      | 只读   | 可选   | 说明                                       |
+| ----------------- | ------- | ---- | ---- | ---------------------------------------- |
+| localeMatcher<sup>(deprecated)</sup>     | string  | 否    | 是    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.CollatorOptions.localeMatcher替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>区域匹配算法，取值范围：<br>"lookup"：模糊匹配。<br>"best fit"：准确匹配。<br>默认值："best fit"。 |
+| usage<sup>(deprecated)</sup>             | string  | 否    | 是    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.CollatorOptions.usage替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>比较的用途，取值范围：<br>"sort"：用作排序。<br>"search"：用作查找匹配的字符串。<br>默认值："sort"。        |
+| sensitivity<sup>(deprecated)</sup>       | string  | 否    | 是    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.CollatorOptions.sensitivity替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>表示字符串中的哪些差异会导致非零结果值，取值范围：<br>"base"：不同的字母比较不相等，比如：'a' ≠ 'b', 'a' = 'á', 'a' = 'A'。<br>"accent"：不同的字母或不同读音的相同字母比较不相等，比如'a' ≠ 'b', 'a' ≠ 'á', 'a' = 'A'。<br>"case"：不同的字母或相同字母大小写比较不相等，比如：'a' ≠ 'b', 'a' = 'á', 'a' ≠ 'A'。<br>"variant"：不同的字母或读音及其它有区别的标志或大小写都是不相等的，比如：'a' ≠ 'b', 'a' ≠ 'á', 'a' ≠ 'A'。<br>默认值："variant"。        |
+| ignorePunctuation<sup>(deprecated)</sup> | boolean | 否    | 是    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.CollatorOptions.ignorePunctuation替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>true表示忽略标点符号，false表示考虑标点符号。<br>默认值：false。        |
+| collation<sup>(deprecated)</sup>         | string  | 否    | 是    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.CollatorOptions.collation替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>区域的排序规则，取值包括：<br>"big5han"：拉丁字母使用的拼音排序。<br>"compat"：兼容性排序，仅用于阿拉伯语。<br>"dict"：词典风格排序，仅用于僧伽罗语。<br>"direct"：二进制码点排序。<br>"ducet"：按Unicode排序元素表排序。<br>"eor"：按欧洲排序规则排序。<br>"gb2312"：拼音排序，仅用于中文排序。<br>"phonebk"：电话本风格排序。<br>"phonetic"：发音排序。<br>"pinyin"：拼音排序。<br>"reformed"：瑞典语排序。<br>"searchjl"：韩语初始辅音搜索的特殊排序。<br>"stroke"：汉语的笔画排序。<br>"trad"：传统风格排序，如西班牙语。<br>"unihan"：统一汉字排序，用于日语、韩语、中文等汉字排序。<br>"zhuyin"：注音排序，仅用于中文排序。<br>默认值："default"。 |
+| numeric<sup>(deprecated)</sup>           | boolean | 否    | 是    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.CollatorOptions.numeric替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>数字排序，取值包括：<br>true：使用数字排序，比如：'1' &lt; '2' &lt; '10' &lt; '11'。<br>false：不使用数字排序，比如：'1' &lt; '10' &lt; '11' &lt; '2'。<br>默认值：false。          |
+| caseFirst<sup>(deprecated)</sup>         | string  | 否    | 是    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.CollatorOptions.caseFirst替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>区域的排序规则是否考虑大小写，取值包括：<br>"upper"：大写排前面。<br>"lower"：小写排前面。<br>"false"：使用区域默认的大小写排序规则。<br>默认值："false"。 |
 
 
 ## PluralRules<sup>8+</sup>
@@ -783,15 +782,15 @@ select(n: number): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称                       | 类型     | 可读   | 可写   | 说明                                       |
+| 名称                       | 类型     | 只读   | 可选   | 说明                                       |
 | ------------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| localeMatcher            | string | 是    | 是    | 区域匹配算法，取值包括："best&nbsp;fit",&nbsp;"lookup"。<br>默认值：best fit。 |
-| type                     | string | 是    | 是    | 排序的类型，取值包括："cardinal",&nbsp;"ordinal",<br>默认值：cardinal。<br>- cardinal：基数词，ordinal：序数词。  |
-| minimumIntegerDigits     | number | 是    | 是    | 表示要使用的最小整数位数，取值范围：1~21。<br>默认值：1。                  |
-| minimumFractionDigits    | number | 是    | 是    | 表示要使用的最小分数位数，取值范围：0~20。<br>默认值：0。                  |
-| maximumFractionDigits    | number | 是    | 是    | 表示要使用的最大分数位数，取值范围：1~21。<br>默认值：3。                  |
-| minimumSignificantDigits | number | 是    | 是    | 表示要使用的最小有效位数，取值范围：1~21。<br>默认值：1。                  |
-| maximumSignificantDigits | number | 是    | 是    | 表示要使用的最大有效位数，取值范围：1~21。<br>默认值：21。                |
+| localeMatcher            | string | 否    | 是    | 区域匹配算法，取值包括："best&nbsp;fit",&nbsp;"lookup"。<br>默认值：best fit。 |
+| type                     | string | 否    | 是    | 排序的类型，取值包括："cardinal",&nbsp;"ordinal",<br>默认值：cardinal。<br>- cardinal：基数词，ordinal：序数词。  |
+| minimumIntegerDigits     | number | 否    | 是    | 表示要使用的最小整数位数，取值范围：1~21。<br>默认值：1。                  |
+| minimumFractionDigits    | number | 否    | 是    | 表示要使用的最小分数位数，取值范围：0~20。<br>默认值：0。                  |
+| maximumFractionDigits    | number | 否    | 是    | 表示要使用的最大分数位数，取值范围：1~21。<br>默认值：3。                  |
+| minimumSignificantDigits | number | 否    | 是    | 表示要使用的最小有效位数，取值范围：1~21。<br>默认值：1。                  |
+| maximumSignificantDigits | number | 否    | 是    | 表示要使用的最大有效位数，取值范围：1~21。<br>默认值：21。                |
 
 
 ## RelativeTimeFormat<sup>8+</sup>
