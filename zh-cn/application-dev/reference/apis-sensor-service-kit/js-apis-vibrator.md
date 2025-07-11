@@ -1120,7 +1120,7 @@ off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;)
 
 | 名称                | 类型      | 只读 | 可选 | 说明                            |
 |-------------------|---------|----|----|-------------------------------|
-| isEffectSupported | boolean | 是  | 否  | 预制效果是否支持，true表示支持，false表示不支持。 |
+| isEffectSupported | boolean | 是  | 否  | 预制效果支持状态，true表示支持，false表示不支持。 |
 
 
 ## VibratorInfo<sup>19+</sup>
