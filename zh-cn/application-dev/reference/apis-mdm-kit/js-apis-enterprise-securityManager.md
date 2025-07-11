@@ -354,7 +354,7 @@ let policy: securityManager.PasswordPolicy = {
   complexityRegex: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$',
   validityPeriod: 1,
   additionalDescription: '至少八个字符，至少一个大写字母，一个小写字母，一个数字和一个特殊字符',
-}
+};
 try {
     securityManager.setPasswordPolicy(wantTemp, policy);
     console.info(`Succeeded in setting password policy.`);

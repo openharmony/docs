@@ -67,7 +67,7 @@ let enterpriseInfo: adminManager.EnterpriseInfo = {
   // 需根据实际情况进行替换
   name: 'enterprise name',
   description: 'enterprise description'
-}
+};
 
 adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_SUPER, (err) => {
   if (err) {
@@ -130,7 +130,7 @@ let enterpriseInfo: adminManager.EnterpriseInfo = {
   // 需根据实际情况进行替换
   name: 'enterprise name',
   description: 'enterprise description'
-}
+};
 
 adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100, (err) => {
   if (err) {
@@ -199,7 +199,7 @@ let enterpriseInfo: adminManager.EnterpriseInfo = {
   // 需根据实际情况进行替换
   name: 'enterprise name',
   description: 'enterprise description'
-}
+};
 
 adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100).catch(
   (err: BusinessError) => {
@@ -754,7 +754,7 @@ let enterpriseInfo: adminManager.EnterpriseInfo = {
   // 需根据实际情况进行替换
   name: 'enterprise name',
   description: 'enterprise description'
-}
+};
 
 adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, (err) => {
   if (err) {
@@ -819,7 +819,7 @@ let enterpriseInfo: adminManager.EnterpriseInfo = {
   // 需根据实际情况进行替换
   name: 'enterprise name',
   description: 'enterprise description'
-}
+};
 
 adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch((err: BusinessError) => {
   console.error(`Failed to set enterprise info. Code: ${err.code}, message: ${err.message}`);

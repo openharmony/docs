@@ -572,7 +572,7 @@ let firewallRule: networkManager.FirewallRule = {
   "direction": networkManager.Direction.OUTPUT,
   "action": networkManager.Action.DENY,
   "protocol": networkManager.Protocol.UDP
-}
+};
 
 networkManager.addFirewallRule(wantTemp, firewallRule);
 ```
@@ -629,7 +629,7 @@ let firewallRule: networkManager.FirewallRule = {
   "direction": networkManager.Direction.OUTPUT,
   "action": networkManager.Action.DENY,
   "protocol": networkManager.Protocol.UDP
-}
+};
 // 移除指定的规则
 networkManager.removeFirewallRule(wantTemp, firewallRule);
 
@@ -732,7 +732,7 @@ let domainFilterRule: networkManager.DomainFilterRule = {
   "domainName": "www.example.com",
   "appUid": "9696",
   "action": networkManager.Action.DENY
-}
+};
 
 networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
 ```

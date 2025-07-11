@@ -229,13 +229,13 @@ async function setDomainAccountPolicy() {
     authenticationValidityPeriod: 300,
     passwordValidityPeriod: 420,
     passwordExpirationNotification: 60
-  }
+  };
   // 设置全局域账号策略
   let accountInfo: osAccount.DomainAccountInfo = {
     domain: '',
     accountName: '',
     serverConfigId: ''
-  }
+  };
   try {
     accountManager.setDomainAccountPolicy(wantTemp, accountInfo, policy);
     console.info('Succeeded in setting global domainAccount policy.');
@@ -247,7 +247,7 @@ async function setDomainAccountPolicy() {
     domain: '',
     accountName: '',
     serverConfigId: ''
-  }
+  };
   // 需根据实际情况替换
   let userId: number = 100;
   await osAccount.getAccountManager().getOsAccountDomainInfo(userId)
@@ -319,7 +319,7 @@ async function getDomainAccountPolicy() {
     domain: '',
     accountName: '',
     serverConfigId: ''
-  }
+  };
   try {
     domainAccountPolicy = accountManager.getDomainAccountPolicy(wantTemp, accountInfo);
     console.info('Succeeded in getting global domain account policy.');
@@ -331,7 +331,7 @@ async function getDomainAccountPolicy() {
     domain: '',
     accountName: '',
     serverConfigId: ''
-  }
+  };
   // 需根据实际情况进行替换
   let userId: number = 100;
   await osAccount.getAccountManager()
