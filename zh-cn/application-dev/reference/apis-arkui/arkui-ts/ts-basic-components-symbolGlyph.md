@@ -599,9 +599,9 @@ struct Index {
 ```
 ![symbol](figures/symbolGlyph.gif)
 
-###  示例2（设置动效和阴影）
+###  示例2（设置动效）
 
-该示例通过symbolEffect属性展示了各种动效的效果以及结合symbolShadow的阴影效果。
+该示例通过symbolEffect属性展示了可变颜色动效和替换动效的效果。
 
 ```ts
 // xxx.ets
@@ -610,20 +610,7 @@ struct Index {
 struct Index {
   @State isActive: boolean = true;
   @State triggerValueReplace: number = 0;
-  @State triggerValueReplace1: number = 0;
-  @State triggerValueReplace2: number = 0;
-  @State renderMode: number = 1;
-
   replaceFlag: boolean = true;
-  replaceFlag1: boolean = true;
-  replaceFlag2: boolean = true;
-
-  options: ShadowOptions = {
-    radius: 30.0,
-    color: Color.Blue,
-    offsetX: 20,
-    offsetY: 20,
-  };
 
   build() {
     Column() {
@@ -633,68 +620,24 @@ struct Index {
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
             .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), this.isActive)
-          Button(this.isActive ? '关闭' : '播放')
-            .onClick(() => {
-              this.isActive = !this.isActive;
-            })
-        }
-        .margin({ right: 20 })
+          Button(this.isActive ? '关闭' : '播放').onClick(() => {
+            this.isActive = !this.isActive;
+          })
+        }.margin({ right: 20 })
+
         Column() {
           Text("替换动效")
           SymbolGlyph(this.replaceFlag ? $r('sys.symbol.checkmark_circle') : $r('sys.symbol.repeat_1'))
             .fontSize(96)
             .symbolEffect(new ReplaceSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace)
-          Button('trigger')
-            .onClick(() => {
-              this.replaceFlag = !this.replaceFlag;
-              this.triggerValueReplace = this.triggerValueReplace + 1;
-            })
+          Button('trigger').onClick(() => {
+            this.replaceFlag = !this.replaceFlag;
+            this.triggerValueReplace = this.triggerValueReplace + 1;
+          })
         }
-        .margin({ right: 20 })
       }
-
-      Row() {
-        Column() {
-          Text("禁用动效")
-          SymbolGlyph(this.replaceFlag1 ? $r('sys.symbol.eye_slash') : $r('sys.symbol.eye'))
-            .fontSize(96)
-            .renderingStrategy(this.renderMode)
-            .symbolEffect(new DisableSymbolEffect(EffectScope.LAYER), this.triggerValueReplace1)
-          Button('trigger')
-            .onClick(() => {
-              this.replaceFlag1 = !this.replaceFlag1;
-              this.triggerValueReplace1 = this.triggerValueReplace1 + 1;
-            })
-        }
-        .margin({ right: 20 })
-        Column() {
-          Text("快速替换动效")
-          SymbolGlyph(this.replaceFlag2 ? $r('sys.symbol.checkmark_circle') : $r('sys.symbol.repeat_1'))
-            .fontSize(96)
-            .symbolEffect(new QuickReplaceSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace2)
-          Button('trigger')
-            .onClick(() => {
-              this.replaceFlag2 = !this.replaceFlag2;
-              this.triggerValueReplace2 = this.triggerValueReplace2 + 1;
-            })
-        }
-        .margin({ right: 20 })
-        Column() {
-          Text("阴影能力")
-          SymbolGlyph($r('sys.symbol.ohos_wifi'))
-            .fontSize(96)
-            .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), this.isActive)
-            .symbolShadow(this.options)
-          Button(this.isActive ? '关闭' : '播放')
-            .onClick(() => {
-              this.isActive = !this.isActive;
-            })
-        }
-        .margin({ right: 20 })
-      }
-    }
-    .margin({
-      left: 45,
+    }.margin({
+      left: 30,
       top: 50
     })
   }
