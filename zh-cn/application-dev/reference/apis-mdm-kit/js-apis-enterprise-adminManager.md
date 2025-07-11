@@ -422,6 +422,19 @@ try {
 | ----------------- | ---- | ----- |
 | ADMIN_TYPE_BYOD  | 0x02 | BYOD设备管理应用。 |
 
+## Policy<sup>20+</sup>
+
+黑白名单的策略类型。 
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 名称                | 值  | 说明    |
+| ----------------- | ---- | ----- |
+| BLOCK_LIST  | 0 | 黑名单。 |
+| TRUST_LIST  | 1 | 白名单。 |
+
 ## 附录
 ### 可委托策略列表
 | 策略名称 | 对应接口                                                     | 说明 |
