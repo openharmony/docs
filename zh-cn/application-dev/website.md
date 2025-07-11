@@ -569,7 +569,6 @@
             - [自定义组件节点 (FrameNode)](ui/arkts-user-defined-arktsNode-frameNode.md)
             - [自定义渲染节点 (RenderNode)](ui/arkts-user-defined-arktsNode-renderNode.md)
             - [自定义声明式节点 (BuilderNode)](ui/arkts-user-defined-arktsNode-builderNode.md)
-            - [设置自定义节点跨语言属性](ui/arkts-user-defined-arktsNode-crossLanguage.md)
           - 自定义扩展<!--arkts-modifier-->
             - [自定义扩展概述](ui/arkts-user-defined-modifier.md)
             - [属性修改器 (AttributeModifier)](ui/arkts-user-defined-extension-attributeModifier.md)
@@ -3306,6 +3305,7 @@
           - [注册节点渲染状态监听错误码](reference/apis-arkui/errorcode-node-render-monitor.md)
           - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
           - [Canvas错误码](reference/apis-arkui/errorcode-canvas.md)
+          - [自定义节点错误码](reference/apis-arkui/errorcode-node.md)
           - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
           - [NodeAdapter错误码](reference/apis-arkui/errorcode-nodeadapter.md)
