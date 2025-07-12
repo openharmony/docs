@@ -195,7 +195,7 @@ import { media } from '@kit.MediaKit';
 let sessionId: number = 0; // 替换成拉起此进程的sessionId。
 
 try {
-  let privacyResult: string = await media.getAVScreenCaptureConfigurableParameters(sessionId, JSON.stringify(jsonData));
+  let privacyResult: string = await media.getAVScreenCaptureConfigurableParameters(sessionId);
 } catch (error: BusinessError) {
   console.error(`getAVScreenCaptureConfigurableParameters error, error message: ${error.message}`);
 }
