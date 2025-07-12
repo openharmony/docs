@@ -4,11 +4,13 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 本Class首批接口从API version 12开始支持。
 >
 > - 以下API需先使用UIContext中的[getCursorController()](arkts-apis-uicontext-uicontext.md#getcursorcontroller12)方法获取CursorController实例，再通过此实例调用对应方法。
 
-## restoreDefault
+## restoreDefault<sup>12+</sup>
 
 restoreDefault(): void
 
@@ -49,7 +51,7 @@ struct CursorControlExample {
 ```
 ![cursor-restoreDefault](figures/cursor-restoreDefault.gif)
 
-## setCursor
+## setCursor<sup>12+</sup>
 
 setCursor(value: PointerStyle): void
 

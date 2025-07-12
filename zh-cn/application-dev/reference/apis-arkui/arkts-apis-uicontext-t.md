@@ -20,7 +20,8 @@ type CustomBuilderWithId = (id: number)&nbsp;=&gt;&nbsp;void
 | -------- | -------- | -------- | -------- |
 | id | number | 是 | 组件ID。 |
 
-## ClickEventListenerCallback
+## ClickEventListenerCallback<sup>12+</sup>
+
 type ClickEventListenerCallback = (event: ClickEvent, node?: FrameNode) => void
 
 ArkTS GestureEvent事件监听函数类型。
@@ -37,6 +38,7 @@ ArkTS GestureEvent事件监听函数类型。
 | node | [FrameNode](js-apis-arkui-frameNode.md) | 否 | 触发事件监听的点击事件所绑定的组件。 |
 
 ## PanListenerCallback<sup>19+</sup>
+
 type PanListenerCallback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => void
 
 Pan手势事件监听函数类型。
@@ -53,7 +55,8 @@ Pan手势事件监听函数类型。
 | current | [GestureRecognizer](arkui-ts/ts-gesture-blocking-enhancement.md#gesturerecognizer) | 是   | 触发事件监听的手势识别器的相关信息。  |
 | node    | [FrameNode](js-apis-arkui-frameNode.md)         | 否   | 触发事件监听的手势事件所绑定的组件。 |
 
-## GestureEventListenerCallback
+## GestureEventListenerCallback<sup>12+</sup>
+
 type GestureEventListenerCallback = (event: GestureEvent, node?: FrameNode) => void
 
 ArkTS GestureEvent事件监听函数类型。
@@ -70,6 +73,7 @@ ArkTS GestureEvent事件监听函数类型。
 | node | [FrameNode](js-apis-arkui-frameNode.md) | 否 | 触发事件监听的手势事件所绑定的组件。 |
 
 ## NodeIdentity<sup>20+</sup>
+
 type NodeIdentity = string | number
 
 组件标识。
@@ -84,6 +88,7 @@ type NodeIdentity = string | number
 | number | 系统分配的唯一标识的节点UniqueID，可通过[getUniqueId](js-apis-arkui-frameNode.md#getuniqueid12)获取。  |
 
 ## NodeRenderStateChangeCallback<sup>20+</sup>
+
 type NodeRenderStateChangeCallback = (state: NodeRenderState, node?: FrameNode) => void
 
 定义了用于在UIObserver中监控某个特定节点渲染状态的回调类型。
@@ -96,7 +101,7 @@ type NodeRenderStateChangeCallback = (state: NodeRenderState, node?: FrameNode) 
 
 | 参数名  | 类型              | 必填 | 说明                                |
 | ------- | ----------------- | ---- | --------------------------------- |
-| state   | [NodeRenderState](#noderenderstate20)     | 是   | 触发事件监听的手势事件的相关信息。   |
+| state   | [NodeRenderState](arkts-apis-uicontext-e.md#noderenderstate20)     | 是   | 触发事件监听的手势事件的相关信息。   |
 | node    | [FrameNode](js-apis-arkui-frameNode.md)         | 否   | 触发事件监听的手势事件所绑定的组件，如果组件被释放将返回null。 |
 
 ## GestureListenerCallback<sup>20+</sup>
@@ -113,9 +118,9 @@ type GestureListenerCallback = (info: GestureTriggerInfo) => void
 
 | 参数名  | 类型              | 必填 | 说明                                |
 | ------- | ----------------- | ---- | --------------------------------- |
-| info   | [GestureTriggerInfo](#gesturetriggerinfo20)     | 是   |  交互触发的手势详情。 |
+| info   | [GestureTriggerInfo](arkts-apis-uicontext-i.md#gesturetriggerinfo20)     | 是   |  交互触发的手势详情。 |
 
-## PointerStyle
+## PointerStyle<sup>12+</sup>
 
 type PointerStyle = pointer.PointerStyle
 
@@ -129,7 +134,7 @@ type PointerStyle = pointer.PointerStyle
 | -- | -- |
 |[pointer.PointerStyle](../apis-input-kit/js-apis-pointer.md#pointerstyle) |光标样式。|
 
-## Context
+## Context<sup>12+</sup>
 
 type Context = common.Context
 

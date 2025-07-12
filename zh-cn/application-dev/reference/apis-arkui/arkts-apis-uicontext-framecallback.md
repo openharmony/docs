@@ -4,11 +4,13 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - 以下API需要配合[UIContext](#uicontext)中的[postFrameCallback](#postframecallback)和[postDelayedFrameCallback](#postdelayedframecallback)使用。开发者需要继承该类并重写[onFrame](#onframe)或[onIdle](#onidle)方法，实现具体的业务逻辑。
+> - 本Class首批接口从API version 12开始支持。
+>
+> - 以下API需要配合[UIContext](arkts-apis-uicontext-uicontext.md)中的[postFrameCallback](arkts-apis-uicontext-uicontext.md#postframecallback12)和[postDelayedFrameCallback](arkts-apis-uicontext-uicontext.md#postdelayedframecallback12)使用。开发者需要继承该类并重写[onFrame](#onframe12)或[onIdle](#onidle12)方法，实现具体的业务逻辑。
 
-## onFrame
+## onFrame<sup>12+</sup>
 
 onFrame(frameTimeInNano: number): void
 
@@ -64,7 +66,7 @@ struct Index {
 }
 ```
 
-## onIdle
+## onIdle<sup>12+</sup>
 
 onIdle(timeLeftInNano: number): void
 

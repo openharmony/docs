@@ -450,7 +450,7 @@ async function exampleIndex(context: common.UIAbilityContext) { // 需确保 con
 
 constructor(context: Context)
 
-创建AudioViewPicker对象，推荐使用该构造函数，获取context参考[getHostContext](../apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12)。
+创建AudioViewPicker对象，推荐使用该构造函数，获取context参考[getHostContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 

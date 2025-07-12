@@ -162,7 +162,7 @@ getComponentUtils(): ComponentUtils
 
 | 类型                                | 说明                    |
 | --------------------------------- | --------------------- |
-| [ComponentUtils](./arkts-apis-uicontext-componentutils.md) | 返回ComponentUtils实例对象。 |
+| [ComponentUtils](arkts-apis-uicontext-componentutils.md) | 返回ComponentUtils实例对象。 |
 
 **示例：** 
 
@@ -228,7 +228,7 @@ getMediaQuery(): MediaQuery
 
 | 类型                        | 说明                |
 | ------------------------- | ----------------- |
-| [MediaQuery](#mediaquery) | 返回MediaQuery实例对象。 |
+| [MediaQuery](arkts-apis-uicontext-mediaquery.md) | 返回MediaQuery实例对象。 |
 
 **示例：** 
 
@@ -253,7 +253,7 @@ getRouter(): Router
 
 | 类型                | 说明            |
 | ----------------- | ------------- |
-| [Router](#router) | 返回Router实例对象。 |
+| [Router](arkts-apis-uicontext-router.md) | 返回Router实例对象。 |
 
 **示例：**
 
@@ -276,9 +276,11 @@ getPromptAction(): PromptAction
 
 | 类型                            | 说明                  |
 | ----------------------------- | ------------------- |
-| [PromptAction](#promptaction) | 返回PromptAction实例对象。 |
+| [PromptAction](arkts-apis-uicontext-promptaction.md) | 返回PromptAction实例对象。 |
 
 **示例：**
+
+完整示例请参考[PromptAction](arkts-apis-uicontext-promptaction.md)中的示例。
 
 <!--code_no_check-->
 ```ts
@@ -299,20 +301,17 @@ getOverlayManager(): OverlayManager
 
 | 类型                           | 说明                 |
 | ----------------------------- | ------------------- |
-| [OverlayManager](#overlaymanager12) | 返回OverlayManager实例对象。 |
+| [OverlayManager](arkts-apis-uicontext-overlaymanager.md) | 返回OverlayManager实例对象。 |
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-uiContext.getOverlayManager();
-```
+完整示例请参考[OverlayManager](arkts-apis-uicontext-overlaymanager.md)中的示例。
 
 ## setOverlayManagerOptions<sup>15+</sup>
 
 setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
-设置[OverlayManager](#overlaymanager12)参数。用于在使用OverlayManager能力之前先初始化overlayManager的参数，包括是否需要渲染overlay根节点等属性。该方法需要在执行getOverlayManager方法之前执行生效，且该方法只生效一次。
+设置[OverlayManager](arkts-apis-uicontext-overlaymanager.md)参数。用于在使用OverlayManager能力之前先初始化overlayManager的参数，包括是否需要渲染overlay根节点等属性。该方法需要在执行getOverlayManager方法之前执行生效，且该方法只生效一次。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -322,7 +321,7 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 | 参数名   | 类型                                       | 必填   | 说明                                    |
 | ----- | ---------------------------------------- | ---- | ------------------------------------- |
-| options | [OverlayManagerOptions](#overlaymanageroptions15) | 是 | OverlayManager参数。|
+| options | [OverlayManagerOptions](arkts-apis-uicontext-i.md#overlaymanageroptions15) | 是 | OverlayManager参数。|
 
 **返回值：** 
 
@@ -332,16 +331,13 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-uiContext.setOverlayManagerOptions({ renderRootOverlay: true, enableBackPressedEvent: true });
-```
+完整示例请参考[OverlayManager](arkts-apis-uicontext-overlaymanager.md)中的示例。
 
 ## getOverlayManagerOptions<sup>15+</sup>
 
 getOverlayManagerOptions(): OverlayManagerOptions
 
-用于获取当前[OverlayManager](#overlaymanager12)参数。
+用于获取当前[OverlayManager](arkts-apis-uicontext-overlaymanager.md)参数。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -351,14 +347,11 @@ getOverlayManagerOptions(): OverlayManagerOptions
 
 | 类型                           | 说明                 |
 | ----------------------------- | ------------------- |
-| [OverlayManagerOptions](#overlaymanageroptions15) | 返回当前OverlayManagerOptions。 |
+| [OverlayManagerOptions](arkts-apis-uicontext-i.md#overlaymanageroptions15) | 返回当前OverlayManagerOptions。 |
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-uiContext.getOverlayManagerOptions();
-```
+完整示例请参考[OverlayManager](arkts-apis-uicontext-overlaymanager.md)中的示例。
 
 ## animateTo
 
@@ -534,7 +527,7 @@ getHostContext(): Context | undefined
 
 | 类型 | 说明                             |
 | ------ | ------------------------------- |
-| [Context](#context12)&nbsp;\|&nbsp;undefined | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。ability上下文不存在时返回undefined。 |
+| [Context](arkts-apis-uicontext-t.md#context)&nbsp;\|&nbsp;undefined | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。ability上下文不存在时返回undefined。 |
 
 **示例：**
 
@@ -694,7 +687,7 @@ getPageInfoByUniqueId(id: number): PageInfo
 
 | 类型                                       | 说明            |
 | ---------------------------------------- | ------------- |
-| [PageInfo](#pageinfo12) | 返回节点对应的Router和NavDestination信息。 |
+| [PageInfo](arkts-apis-uicontext-i.md#pageinfo12) | 返回节点对应的Router和NavDestination信息。 |
 
 **示例：**
 
@@ -1214,7 +1207,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 | 参数名      | 类型         | 必填   | 说明   |
 | -------- | ---------- | ---- | ---- |
-| value | [KeyboardAvoidMode](#keyboardavoidmode11)| 是    | 键盘避让时的页面避让模式。<br />默认值:KeyboardAvoidMode.OFFSET |
+| value | [KeyboardAvoidMode](arkts-apis-uicontext-e.md#keyboardavoidmode11)| 是    | 键盘避让时的页面避让模式。<br />默认值:KeyboardAvoidMode.OFFSET |
 
 **示例：**
 
@@ -1255,7 +1248,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 
 | 类型         | 说明   |
 | ---------- | ---- |
-| [KeyboardAvoidMode](#keyboardavoidmode11)| 返回当前的页面避让模式。|
+| [KeyboardAvoidMode](arkts-apis-uicontext-e.md#keyboardavoidmode11)| 返回当前的页面避让模式。|
 
 **示例：**
 
@@ -1298,7 +1291,7 @@ getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 
 | 类型                                              | 说明                                                         |
 | ------------------------------------------------- | ------------------------------------------------------------ |
-| Nullable<[AtomicServiceBar](#atomicservicebar11)> | 如果是原子化服务则返回AtomicServerBar类型，否则返回undefined。 |
+| Nullable<[AtomicServiceBar](arkts-apis-uicontext-atomicservicebar.md)> | 如果是原子化服务则返回AtomicServerBar类型，否则返回undefined。 |
 
 **示例：**
 
@@ -1338,7 +1331,7 @@ getDragController(): DragController
 
 **示例：**
 
-完整示例请参考[DragController](#dragcontroller11)中的示例。
+完整示例请参考[DragController](./arkts-apis-uicontext-dragcontroller.md)中的示例。
 
 ## keyframeAnimateTo<sup>11+</sup>
 
@@ -1375,7 +1368,7 @@ getFocusController(): FocusController
 
 **示例：**
 
-完整示例请参考[FocusController](js-apis-arkui-UIContext.md#focuscontroller12)中的示例。
+完整示例请参考[FocusController](arkts-apis-uicontext-focuscontroller.md)中的示例。
 
 ## getFilteredInspectorTree<sup>12+</sup>
 
@@ -1580,7 +1573,7 @@ getCursorController(): CursorController
 
 **示例：**
 
-完整示例请参考[CursorController](#cursorcontroller12)中的示例。
+完整示例请参考[CursorController](arkts-apis-uicontext-contextmenucontroller.md)中的示例。
 
 ## getContextMenuController<sup>12+</sup>
 
@@ -1648,7 +1641,7 @@ getComponentSnapshot(): ComponentSnapshot
 
 **示例：**
 
-完整示例请参考[ComponentSnapshot](#componentsnapshot12)中的示例。
+完整示例请参考[ComponentSnapshot](arkts-apis-uicontext-componentsnapshot.md)中的示例。
 
 ## vp2px<sup>12+</sup>
 
@@ -1958,9 +1951,8 @@ struct Index {
         }
         .onClick(() => {
           let uiContext: UIContext = this.getUIContext();
-          let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
           let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
+          console.info(`Window widthBp: ${widthBp}`);
         })
       }
       .width('100%')
@@ -2034,7 +2026,7 @@ postFrameCallback(frameCallback: FrameCallback): void
 
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
-| frameCallback | [FrameCallback](#framecallback12) | 是   | 下一帧需要执行的回调。 |
+| frameCallback | [FrameCallback](arkts-apis-uicontext-framecallback.md) | 是   | 下一帧需要执行的回调。 |
 
 **示例：**
 
@@ -2082,7 +2074,7 @@ postDelayedFrameCallback(frameCallback: FrameCallback, delayTime: number): void
 
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
-| frameCallback | [FrameCallback](#framecallback12) | 是   | 下一帧需要执行的回调。 |
+| frameCallback | [FrameCallback](arkts-apis-uicontext-framecallback.md) | 是   | 下一帧需要执行的回调。 |
 | delayTime | number | 是   | 延迟的时间，以毫秒为单位。传入null、undefined或小于0的值，会按0处理。 |
 
 **示例：**
@@ -2169,7 +2161,7 @@ openBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOp
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 半模态页面中显示的组件内容。 |
+| bindSheetContent | [ComponentContent\<T>](js-apis-arkui-ComponentContent.md) | 是 | 半模态页面中显示的组件内容。 |
 | sheetOptions | [SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) | 否    |   半模态页面样式。<br/>**说明：** <br/>1. 不支持设置SheetOptions.uiContext，该属性的值固定为当前实例的UIContext。<br/>2. 若不传递targetId，则不支持设置SheetOptions.preferType为POPUP样式，若设置了POPUP样式则使用CENTER样式替代。<br/>3. 若不传递targetId，则不支持设置SheetOptions.mode为EMBEDDED模式，默认为OVERLAY模式。<br/>4. 其余属性的默认值参考[SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)文档。 |
 | targetId | number | 否    |   需要绑定组件的ID，若不指定则不绑定任何组件。 |
 
@@ -2300,7 +2292,7 @@ updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheet
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 半模态页面中显示的组件内容。 |
+| bindSheetContent | [ComponentContent\<T>](js-apis-arkui-ComponentContent.md) | 是 | 半模态页面中显示的组件内容。 |
 | sheetOptions | [SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) | 是    |   半模态页面样式。<br/>**说明：** <br/>不支持更新SheetOptions.uiContext、SheetOptions.mode、回调函数。 |
 | partialUpdate | boolean | 否    |   半模态页面更新方式, 默认值为false。<br/>**说明：** <br/>1. true为增量更新，保留当前值，更新SheetOptions中的指定属性。 <br/>2. false为全量更新，除SheetOptions中的指定属性，其他属性恢复默认值。 |
 
@@ -2428,7 +2420,7 @@ closeBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>): Promi
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 半模态页面中显示的组件内容。 |
+| bindSheetContent | [ComponentContent\<T>](js-apis-arkui-ComponentContent.md) | 是 | 半模态页面中显示的组件内容。 |
 
 **返回值：**
 
@@ -2807,7 +2799,7 @@ struct Index {
 
 getTextMenuController(): TextMenuController
 
-获取[TextMenuController](#textmenucontroller16)对象，可通过该对象控制文本选择菜单。
+获取[TextMenuController](arkts-apis-uicontext-textmenucontroller.md)对象，可通过该对象控制文本选择菜单。
 
 **原子化服务API:** 从API version 16 开始，该接口支持在原子化服务中使用。
 
@@ -2817,11 +2809,11 @@ getTextMenuController(): TextMenuController
 
 |类型|说明|
 |----|----|
-|[TextMenuController](#textmenucontroller16)| 获取TextMenuController对象。|
+|[TextMenuController](arkts-apis-uicontext-textmenucontroller.md)| 获取TextMenuController对象。|
 
 **示例：**
 
-参考[TextMenuController](#textmenucontroller16)接口示例。
+参考[TextMenuController](arkts-apis-uicontext-textmenucontroller.md)接口示例。
 
 ## createUIContextWithoutWindow<sup>17+</sup>
 

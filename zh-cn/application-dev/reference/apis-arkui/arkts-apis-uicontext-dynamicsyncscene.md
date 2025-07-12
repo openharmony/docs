@@ -4,11 +4,13 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 本Class首批接口从API version 12开始支持。
 >
 > - 以下接口需先使用UIContext中的requireDynamicSyncScene()方法获取DynamicSyncScene对象，再通过此实例调用对应方法。
 
-## setFrameRateRange
+## setFrameRateRange<sup>12+</sup>
 
 setFrameRateRange(range: ExpectedFrameRateRange): void
 
@@ -76,7 +78,7 @@ struct Frame {
 }
 ```
 
-## getFrameRateRange
+## getFrameRateRange<sup>12+</sup>
 
 getFrameRateRange(): ExpectedFrameRateRange
 

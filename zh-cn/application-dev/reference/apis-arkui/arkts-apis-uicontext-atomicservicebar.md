@@ -1,16 +1,18 @@
-# Interfaces (AtomicServiceBar)
+# Interface (AtomicServiceBar)
 
 提供设置原子化服务menuBar的属性。
 
 > **说明：**
 >
-> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 本Interface首批接口从API version 11开始支持。
 >
 > - 以下接口需要先使用UIContext中的[getAtomicServiceBar](arkts-apis-uicontext-uicontext.md#getatomicservicebar11)方法获取到AtomicServiceBar对象，再通过该对象调用对应方法。
 >
 > - 从API version 12开始原子化服务menuBar样式变更，以下接口将失效。
 
-## setVisible
+## setVisible<sup>11+</sup>
 
 setVisible(visible: boolean): void
 
@@ -52,7 +54,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 }
 ```
 
-## setBackgroundColor
+## setBackgroundColor<sup>11+</sup>
 
 setBackgroundColor(color:Nullable<Color | number | string>): void
 
@@ -92,7 +94,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 }
 ```
 
-## setTitleContent
+## setTitleContent<sup>11+</sup>
 
 setTitleContent(content:string): void
 
@@ -133,7 +135,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 }
 ```
 
-## setTitleFontStyle
+## setTitleFontStyle<sup>11+</sup>
 
 setTitleFontStyle(font:FontStyle):void
 
@@ -174,7 +176,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 }
 ```
 
-## setIconColor
+## setIconColor<sup>11+</sup>
 
 setIconColor(color:Nullable<Color | number | string>): void
 

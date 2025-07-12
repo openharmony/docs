@@ -477,8 +477,8 @@ getWithRange(start: NodeIdentity, end: NodeIdentity, isStartRect: boolean, optio
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ------- |
-| start   | [NodeIdentity](./arkts-apis-uicontext-uicontext.md#nodeidentity20) | 是    | 范围开始的组件的ID。 |
-| end   | [NodeIdentity](./arkts-apis-uicontext-uicontext.md#nodeidentity20) | 是    | 范围结束的组件的ID。 |
+| start   | [NodeIdentity](arkts-apis-uicontext-t.md#nodeidentity20) | 是    | 范围开始的组件的ID。 |
+| end   | [NodeIdentity](arkts-apis-uicontext-t.md#nodeidentity20) | 是    | 范围结束的组件的ID。 |
 | isStartRect   | boolean | 是    | 范围是否以开始组件的外接矩形为准。<br/>true表示以开始组件的外接矩形为准，false表示以结束组件的外接矩形为准。<br/>默认值为true。 |
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数，不支持region参数。 |
 

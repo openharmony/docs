@@ -79,7 +79,7 @@
 
 ### 绑定组件信息
    
-   通过调用openPopup接口弹出气泡，需要提供绑定组件的信息[TargetInfo](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#targetinfo18)。若未传入有效的target，则无法弹出气泡。
+   通过调用openPopup接口弹出气泡，需要提供绑定组件的信息[TargetInfo](../reference/apis-arkui/arkts-apis-uicontext-i.md#targetinfo18)。若未传入有效的target，则无法弹出气泡。
    
    ```ts
    let frameNode: FrameNode | null = this.ctx.getFrameNodeByUniqueId(this.getUniqueId());

@@ -4,11 +4,13 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 本Class首批接口从API version 16开始支持。
 >
 > - 以下非静态API需先使用UIContext中的[getTextMenuController()](arkts-apis-uicontext-uicontext.md#gettextmenucontroller16)方法获取TextMenuController实例，再通过此实例调用对应方法。
 
-## setMenuOptions
+## setMenuOptions<sup>16+</sup>
 
 setMenuOptions(options: TextMenuOptions): void
 

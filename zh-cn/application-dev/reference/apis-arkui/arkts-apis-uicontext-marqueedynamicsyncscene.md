@@ -4,9 +4,11 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 14开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - MarqueeDynamicSyncScene继承自[DynamicSyncScene](arkts-apis-uicontext-dynamicsyncscene.md#dynamicsyncscene12)，对应[Marquee](arkui-ts/ts-basic-components-marquee.md)的动态帧率场景。
+> - 本Class首批接口从API version 14开始支持。
+>
+> - MarqueeDynamicSyncScene继承自[DynamicSyncScene](arkts-apis-uicontext-dynamicsyncscene.md)，对应[Marquee](arkui-ts/ts-basic-components-marquee.md)的动态帧率场景。
 
 ## 属性
 

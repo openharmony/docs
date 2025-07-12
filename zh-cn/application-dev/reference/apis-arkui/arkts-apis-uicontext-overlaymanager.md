@@ -4,7 +4,9 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 本Class首批接口从API version 12开始支持。
 >
 > - 以下API需先使用UIContext中的[getOverlayManager()](arkts-apis-uicontext-uicontext.md#getoverlaymanager12)方法获取到OverlayManager对象，再通过该对象调用对应方法。
 >
@@ -14,7 +16,7 @@
 >
 > - 与OverlayManager相关的属性推荐采用AppStorage来进行应用全局存储，以免切换页面后属性值发生变化从而导致业务错误。
 
-## addComponentContent
+## addComponentContent<sup>12+</sup>
 
 addComponentContent(content: ComponentContent, index?: number): void
 
@@ -231,7 +233,7 @@ struct Index {
 }
 ```
 
-## removeComponentContent
+## removeComponentContent<sup>12+</sup>
 
 removeComponentContent(content: ComponentContent): void
 
@@ -249,9 +251,9 @@ removeComponentContent(content: ComponentContent): void
 
 **示例：**
 
-请参考[addComponentContent示例](#addcomponentcontent)。
+请参考[addComponentContent示例](#addcomponentcontent12)。
 
-## showComponentContent
+## showComponentContent<sup>12+</sup>
 
 showComponentContent(content: ComponentContent): void
 
@@ -269,9 +271,9 @@ showComponentContent(content: ComponentContent): void
 
 **示例：**
 
-请参考[addComponentContent示例](#addcomponentcontent)。
+请参考[addComponentContent示例](#addcomponentcontent12)。
 
-## hideComponentContent
+## hideComponentContent<sup>12+</sup>
 
 hideComponentContent(content: ComponentContent): void
 
@@ -289,9 +291,9 @@ hideComponentContent(content: ComponentContent): void
 
 **示例：**
 
-请参考[addComponentContent示例](#addcomponentcontent)。
+请参考[addComponentContent示例](#addcomponentcontent12)。
 
-## showAllComponentContents
+## showAllComponentContents<sup>12+</sup>
 
 showAllComponentContents(): void
 
@@ -303,9 +305,9 @@ showAllComponentContents(): void
 
 **示例：**
 
-请参考[addComponentContent示例](#addcomponentcontent)。
+请参考[addComponentContent示例](#addcomponentcontent12)。
 
-## hideAllComponentContents
+## hideAllComponentContents<sup>12+</sup>
 
 hideAllComponentContents(): void
 
@@ -317,4 +319,4 @@ hideAllComponentContents(): void
 
 **示例：**
 
-请参考[addComponentContent示例](#addcomponentcontent)。
+请参考[addComponentContent示例](#addcomponentcontent12)。

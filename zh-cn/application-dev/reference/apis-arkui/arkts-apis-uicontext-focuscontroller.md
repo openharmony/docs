@@ -4,11 +4,13 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 本Class首批接口从API version 12开始支持。
 >
 > - 以下API需先使用UIContext中的[getFocusController()](arkts-apis-uicontext-uicontext.md#getfocuscontroller12)方法获取FocusController实例，再通过该实例调用对应方法。
 
-## clearFocus
+## clearFocus<sup>12+</sup>
 
 clearFocus(): void
 
@@ -65,7 +67,7 @@ struct ClearFocusExample {
 }
 ```
 
-## requestFocus
+## requestFocus<sup>12+</sup>
 
 requestFocus(key: string): void
 

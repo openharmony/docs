@@ -4,11 +4,13 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 本Class首批接口从API version 11开始支持。
 >
 > - 以下API需先使用UIContext中的[getDragController()](arkts-apis-uicontext-uicontext.md#getdragcontroller11)方法获取DragController实例，再通过此实例调用对应方法。
 
-## executeDrag
+## executeDrag<sup>11+</sup>
 
 executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo, callback: AsyncCallback&lt;dragController.DragEventParam&gt;): void
 
@@ -89,7 +91,7 @@ struct DragControllerPage {
 }
 ```
 
-## executeDrag
+## executeDrag<sup>11+</sup>
 
 executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo): Promise&lt;dragController.DragEventParam&gt;
 
@@ -200,7 +202,7 @@ struct DragControllerPage {
 }
 ```
 
-## createDragAction
+## createDragAction<sup>11+</sup>
 
 createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: dragController.DragInfo): dragController.DragAction
 
@@ -376,7 +378,7 @@ struct DragControllerPage {
 }
 ```
 
-## getDragPreview
+## getDragPreview<sup>11+</sup>
 
 getDragPreview(): dragController.DragPreview
 

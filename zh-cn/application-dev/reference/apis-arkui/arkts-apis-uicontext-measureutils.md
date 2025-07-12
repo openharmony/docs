@@ -4,7 +4,9 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 本Class首批接口从API version 12开始支持。
 >
 > - 以下API需先使用UIContext中的[getMeasureUtils()](arkts-apis-uicontext-uicontext.md#getmeasureutils12)方法获取MeasureUtils实例，再通过此实例调用对应方法。
 >
@@ -14,7 +16,7 @@
 >
 > 如果计算裁剪后的文本，在裁剪字符串时，建议按照unicode单位迭代，而非按照字符串length长度迭代。否则容易出现字符被截断，导致计算结果不准确的情况，常见emoji字符被截断。
 
-## measureText
+## measureText<sup>12+</sup>
 
 measureText(options: MeasureOptions): number
 
@@ -66,7 +68,7 @@ struct Index {
 }
 ```
 
-## measureTextSize
+## measureTextSize<sup>12+</sup>
 
 measureTextSize(options: MeasureOptions): SizeOptions
 

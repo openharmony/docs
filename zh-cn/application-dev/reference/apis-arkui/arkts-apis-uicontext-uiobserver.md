@@ -4,13 +4,15 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 本Class首批接口从API version 11开始支持。
 >
 > - 以下API需先使用UIContext中的[getUIObserver()](arkts-apis-uicontext-uicontext.md#getuiobserver11)方法获取到UIObserver对象，再通过该对象调用对应方法。
 >
 > - UIObserver仅能监听到本进程内的相关信息，不支持获取<!--Del-->[UIExtensionComponent](../../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)等<!--DelEnd-->跨进程场景的信息。
 
-## on('navDestinationUpdate')
+## on('navDestinationUpdate')<sup>11+</sup>
 
 on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo\>): void
 
@@ -80,7 +82,7 @@ struct Index {
 }
 ```
 
-## off('navDestinationUpdate')
+## off('navDestinationUpdate')<sup>11+</sup>
 
 off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationInfo\>): void
 
@@ -99,9 +101,9 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 
 **示例：** 
 
-参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate)示例。
+参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11)示例。
 
-## on('navDestinationUpdate')
+## on('navDestinationUpdate')<sup>11+</sup>
 
 on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<observer.NavDestinationInfo\>): void
 
@@ -172,7 +174,7 @@ struct Index {
 }
 ```
 
-## off('navDestinationUpdate')
+## off('navDestinationUpdate')<sup>11+</sup>
 
 off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<observer.NavDestinationInfo\>): void
 
@@ -192,7 +194,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 **示例：**
 
-参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate-1)示例。
+参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11-1)示例。
 
 ## on('navDestinationUpdateByUniqueId')<sup>20+</sup>
 
@@ -445,7 +447,7 @@ struct Index {
 }
 ```
 
-## on('routerPageUpdate')
+## on('routerPageUpdate')<sup>11+</sup>
 
 on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): void
 
@@ -473,7 +475,7 @@ observer.on('routerPageUpdate', (info) => {
 });
 ```
 
-## off('routerPageUpdate')
+## off('routerPageUpdate')<sup>11+</sup>
 
 off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): void
 
@@ -850,7 +852,7 @@ off(type: 'navDestinationSwitch', callback?: Callback\<observer.NavDestinationSw
 | type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
 | callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
 
-**示例代码参考上述UIObserver.on('navDestinationSwitch')接口的示例代码**
+**示例代码参考上述UIObserver.on('navDestinationSwitch')接口的示例代码。**
 
 ## on('navDestinationSwitch')<sup>12+</sup>
 
@@ -946,7 +948,7 @@ off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitch
 | observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12)        | 是   | 监听选项。   |
 | callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
 
-**示例代码参考上述UIObserver.on('navDestinationSwitch')接口的示例代码**
+**示例代码参考上述UIObserver.on('navDestinationSwitch')接口的示例代码。**
 
 ## on('willClick')<sup>12+</sup>
 
@@ -1654,7 +1656,7 @@ on(type: 'nodeRenderState', nodeIdentity: NodeIdentity, callback: NodeRenderStat
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'nodeRenderState'，用于监听节点渲染状态发生改变。 |
-| nodeIdentity | [NodeIdentity](#nodeidentity20) | 是   | 组件标识。   |
+| nodeIdentity | [NodeIdentity](arkts-apis-uicontext-t.md#nodeidentity20) | 是   | 组件标识。   |
 | callback | [NodeRenderStateChangeCallback](arkts-apis-uicontext-t.md#noderenderstatechangecallback20) | 是   | 回调函数。可以获得组件渲染状态改变事件的NodeRenderState和组件的FrameNode。   |
 
 **错误码：**
@@ -1791,7 +1793,7 @@ off(type: 'nodeRenderState', nodeIdentity: NodeIdentity, callback?: NodeRenderSt
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'nodeRenderState'，即节点渲染状态变化指令下发情况。 |
-| nodeIdentity | [NodeIdentity](#nodeidentity20) | 是   | 组件标识。   |
+| nodeIdentity | [NodeIdentity](arkts-apis-uicontext-t.md#nodeidentity20) | 是   | 组件标识。   |
 | callback | [NodeRenderStateChangeCallback](arkts-apis-uicontext-t.md#noderenderstatechangecallback20) | 否   | 需要被注销的回调函数。   |                               |
 
 **示例：**
@@ -1813,8 +1815,8 @@ addGlobalGestureListener(type: GestureListenerType, option: GestureObserverConfi
 | 参数名   | 类型         | 必填 | 说明          |
 | -------- | ----------- | ---- | ----------- |
 | type     | [GestureListenerType](arkts-apis-uicontext-e.md#gesturelistenertype20)     | 是   |要监听的手势类型。  |
-| option | [GestureObserverConfigs](#gestureobserverconfigs20) | 是   |  绑定全局监听器时的配置选项。  |
-| callback | [GestureListenerCallback](#gesturelistenercallback20) | 是   |  手势状态更新时的回调函数。  |  
+| option | [GestureObserverConfigs](arkts-apis-uicontext-i.md#gestureobserverconfigs20) | 是   |  绑定全局监听器时的配置选项。  |
+| callback | [GestureListenerCallback](arkts-apis-uicontext-t.md#gesturelistenercallback20) | 是   |  手势状态更新时的回调函数。  |  
 
 ## removeGlobalGestureListener<sup>20+</sup>
 
@@ -1831,7 +1833,7 @@ removeGlobalGestureListener(type: GestureListenerType, callback?: GestureListene
 | 参数名   | 类型     | 必填 | 说明       |
 | -------- | ---------- | ---- | --------- |
 | type     | [GestureListenerType](arkts-apis-uicontext-e.md#gesturelistenertype20)    | 是   | 要移除监听器的事件类型。 |
-| callback | [GestureListenerCallback](#gesturelistenercallback20) | 否   | 待移除的回调函数（未提供时将清除该手势类型的所有回调）。   |  
+| callback | [GestureListenerCallback](arkts-apis-uicontext-t.md#gesturelistenercallback20) | 否   | 待移除的回调函数（未提供时将清除该手势类型的所有回调）。   |  
 
 **示例：**
 

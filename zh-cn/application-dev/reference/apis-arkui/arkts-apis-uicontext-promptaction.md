@@ -6,6 +6,8 @@
 >
 > - 本模块首批接口从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
+> - 本Class首批接口从API version 10开始支持。
+>
 > - 以下API需先使用UIContext中的[getPromptAction()](arkts-apis-uicontext-uicontext.md#getpromptaction)方法获取到PromptAction对象，再通过该对象调用对应方法。
 
 ## showToast

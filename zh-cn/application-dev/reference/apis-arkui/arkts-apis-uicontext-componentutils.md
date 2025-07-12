@@ -6,6 +6,8 @@
 >
 > - 本模块首批接口从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
+> - 本Class首批接口从API version 10开始支持。
+>
 > - 以下API需先使用UIContext中的[getComponentUtils()](./arkts-apis-uicontext-uicontext.md#getcomponentutils)方法获取到ComponentUtils对象，再通过该对象调用对应方法。
 
 ## getRectangleById
@@ -13,6 +15,10 @@
 getRectangleById(id: string): componentUtils.ComponentInfo
 
 获取组件大小、位置、平移、缩放、旋转及仿射矩阵属性信息。
+
+> **说明：**
+>
+> 该接口需要在目标组件布局、完成以后获取目标组件区域大小信息，建议在[onAppear](./arkui-ts/ts-universal-events-show-hide.md#onappear)中使用该接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

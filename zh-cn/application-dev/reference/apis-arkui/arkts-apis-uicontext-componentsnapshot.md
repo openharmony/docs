@@ -4,13 +4,15 @@
 
 > **说明：**
 >
-> - 本模块首批接口从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 本Class首批接口从API version 12开始支持。
 >
 > - 以下API需先使用UIContext中的[getComponentSnapshot()](./arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12)方法获取ComponentSnapshot对象，再通过此实例调用对应方法。
 >
 > - 缩放、平移、旋转等图形变换属性只对被截图组件的子组件生效；对目标组件本身应用图形变换属性不生效，显示的是还是图形变换前的效果。
 
-## get
+## get<sup>12+</sup>
 
 get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnapshot.SnapshotOptions): void
 
@@ -76,7 +78,7 @@ struct SnapshotExample {
 }
 ```
 
-## get
+## get<sup>12+</sup>
 
 get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
@@ -149,7 +151,7 @@ struct SnapshotExample {
 }
 ```
 
-## createFromBuilder
+## createFromBuilder<sup>12+</sup>
 
 createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): void
 
@@ -239,7 +241,7 @@ struct ComponentSnapshotExample {
 }
 ```
 
-## createFromBuilder
+## createFromBuilder<sup>12+</sup>
 
 createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
@@ -334,7 +336,7 @@ struct ComponentSnapshotExample {
 }
 ```
 
-## getSync
+## getSync<sup>12+</sup>
 
 getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
