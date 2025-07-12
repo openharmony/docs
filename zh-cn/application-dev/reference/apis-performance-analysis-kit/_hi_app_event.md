@@ -1292,6 +1292,37 @@ HIAPPEVENT_INVALID_PARAM_VALUE：设定的配置项无效。
 具体可参考[HiAppEvent_ErrorCode](#hiappevent_errorcode)。
 
 
+### OH_HiAppEvent_SetConfigName()
+
+```
+int OH_HiAppEvent_SetConfigName (HiAppEvent_Config * config, const char * configName )
+```
+**描述**
+设置处理者的配置名称的接口。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| configName | 数据处理者的配置名称。只能包含大小写字母、数字、下划线和$，不能以数字开头，长度非空且不超过256个字符。  | 
+
+**返回：**
+
+HIAPPEVENT_SUCCESS：接口调用成功；
+
+HIAPPEVENT_PROCESSOR_IS_NULL：processor入参为空；
+
+HIAPPEVENT_INVALID_PARAM_VALUE：参数值无效；
+
+HIAPPEVENT_INVALID_UID：用户标识无效。
+
+HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH：参数值长度无效。
+
+具体可参考[HiAppEvent_ErrorCode](#hiappevent_errorcode)。
+
+
 ### OH_HiAppEvent_SetCustomConfig()
 
 ```
