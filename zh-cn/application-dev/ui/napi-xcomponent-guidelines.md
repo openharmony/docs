@@ -2380,4 +2380,4 @@ Native侧
 
 - [ArkTSXComponent（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)
 
-<!--RP1-->HML<!--RP1End-->
+<!--RP1--><!--RP1End-->
