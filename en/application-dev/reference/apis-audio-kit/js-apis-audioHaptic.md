@@ -54,6 +54,19 @@ Describes the options for the audio-haptic player.
 | muteAudio   | boolean      | No  | Whether to mute the audio. The value **true** means to mute the audio, and **false** means the opposite. If this parameter is not specified, the default value **false** is used.|
 | muteHaptics | boolean      | No  | Whether to mute haptics feedback. The value **true** means to mute haptics feedback, and **false** means the opposite. If this parameter is not specified, the default value **false** is used.|
 
+## AudioHapticFileDescriptor
+
+Describes audio haptic file descriptor.
+Caller needs to ensure the fd is valid and the offset and length are correct.
+
+**System capability**: SystemCapability.Multimedia.AudioHaptic.Core
+
+| Name     | Type           |Mandatory  | Description                             |
+| --------- | -------------- | ---- | --------------------------------- |
+| fd   | number      | Yes  | The file descriptor of the source. Normally must be >= 0.|
+| offset | number      | No  | The offset into the file where the data to be read. By default, the offset is 0.|
+| length | number      | No  | The length in bytes of the data to be read. By default, the length is the rest of bytes in the file from the offset.|
+
 ## AudioHapticManager
 
 Manages the audio-haptic feature. Before calling any API in **AudioHapticManager**, you must use [getAudioHapticManager](#audiohapticgetaudiohapticmanager) to create an **AudioHapticManager** instance.
@@ -97,6 +110,59 @@ let hapticUri = 'data/hapticTest.json'; // Change it to the URI of the target ha
 let id = 0;
 
 audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
+  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+  id = value;
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to register source ${err}`);
+});
+```
+
+### registerSourceFromFd
+
+registerSourceFromFd(audioFd: AudioHapticFileDescriptor, hapticFd: AudioHapticFileDescriptor): Promise&lt;number&gt;
+
+Register audio and haptic file represented by fd into manager. Audio and haptic works are paired while playing.
+After registering source, it will returns the source id. This method uses a promise to return the source id.
+
+**System capability**: SystemCapability.Multimedia.AudioHaptic.Core
+
+**Parameters**
+
+| Name  | Type                                     | Mandatory| Description                    |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| audioFd   | [AudioHapticFileDescriptor](#audioHapticFileDescriptor)               | Yes  | The file descriptor of audio source from file system. The file descriptor (fd) must be valid and open, and the associated offset and length must not exceed the actual file size.       |
+| hapticFd  | [AudioHapticFileDescriptor](#audioHapticFileDescriptor)               | Yes  | The file descriptor of haptic source from file system. The file descriptor (fd) must be valid and open, and the associated offset and length must not exceed the actual file size.       |
+
+**Return value**
+
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the source ID.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+const context = getContext(this) as common.UIAbilityContext;
+
+const audioFile = await context.resourceManager.getRawFd('audioTest.ogg'); // Change it to the file in rwafile folder.
+const audioFd: audioHaptic.AudioHapticFileDescriptor = {
+  fd: audioFile.fd,
+  offset: audioFile.offset,
+  length: audioFile.length,
+};
+
+const hapticFile = await context.resourceManager.getRawFd('hapticTest.json'); // Change it to the file in rwafile folder.
+const hapticFd: audioHaptic.AudioHapticFileDescriptor = {
+  fd: hapticFile.fd,
+  offset: hapticFile.offset,
+  length: hapticFile.length,
+};
+let id = 0;
+
+audioHapticManagerInstance.registerSourceFromFd(audioFd, hapticFd).then((value: number) => {
   console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
   id = value;
 }).catch ((err: BusinessError) => {
@@ -463,6 +529,271 @@ audioHapticPlayerInstance.release().then(() => {
   console.info(`Promise returned to indicate that release the audio haptic player successfully.`);
 }).catch ((err: BusinessError) => {
   console.error(`Failed to release the audio haptic player. ${err}`);
+});
+```
+
+### isHapticsIntensityAdjustmentSupported
+
+isHapticsIntensityAdjustmentSupported(): boolean
+
+Check whether the device supports haptics intensity adjustment.
+
+**System capability**: SystemCapability.Multimedia.AudioHaptic.Core
+
+**Return value**
+
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| boolean | Check result. The value **true** means that the device supports haptics intensity adjustment, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID  | Error Message                             |
+|---------|-----------------------------------|
+| 202 | Caller is not a system application. |
+
+**Example**
+
+```ts
+const result: boolean = audioHapticPlayerInstance.isHapticsIntensityAdjustmentSupported();
+```
+
+### isHapticsRampSupported
+
+isHapticsRampSupported(): boolean
+
+Check whether the device supports haptics intensity ramp effect.
+
+**System capability**: SystemCapability.Multimedia.AudioHaptic.Core
+
+**Return value**
+
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| boolean | Check result. The value **true** means that the device supports haptics intensity ramp effect, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID  | Error Message                             |
+|---------|-----------------------------------|
+| 202 | Caller is not a system application. |
+
+**Example**
+
+```ts
+const result: boolean = audioHapticPlayerInstance.isHapticsRampSupported();
+```
+
+### enableHapticsInSilentMode
+
+enableHapticsInSilentMode(enable: boolean): void
+
+Enables haptics when the ringer mode is silent mode.
+This API can be called only before the player starts or after it stops but before it is released.
+
+**System capability**: SystemCapability.Multimedia.AudioHaptic.Core
+
+**Parameters**
+
+| Name  | Type                                     | Mandatory| Description                    |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| enable     | boolean                                | Yes  | Whether to enable or disable haptics. The value **true** means to enable.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID  | Error Message                             |
+|---------|-----------------------------------|
+| 202      | Caller is not a system application. |
+| 5400102  | Operate not permit in current state. |
+
+**Example**
+
+```ts
+audioHapticPlayerInstance.enableHapticsInSilentMode(true);
+```
+
+### setVolume
+
+setVolume(volume: number): Promise&lt;void&gt;
+
+Sets the audio volume for this player. This API uses a promise to return the result. 
+This API must be called before the player is released.
+
+**System capability**: SystemCapability.Multimedia.AudioHaptic.Core
+
+**Parameters**
+
+| Name  | Type                                     | Mandatory| Description                    |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| volume     | number                                | Yes  | The value ranges from 0.00 to 1.00, where 1.00 indicates the maximum volume (100%).|
+
+**Return value**
+
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID  | Error Message                             |
+|---------|-----------------------------------|
+| 5400105  | Service died. |
+| 5400102  | Operate not permit in current state. |
+| 5400108  | Parameter out of range. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioHapticPlayerInstance.setVolume(0.5).then(() => {
+  console.info(`Promise returned to indicate that set volume successfully.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to set volume. ${err}`);
+});
+```
+
+### setHapticsIntensity
+
+setHapticsIntensity(intensity: number): Promise&lt;void&gt;
+
+Sets the haptics intensity for this player. This API uses a promise to return the result.
+This API must be called before the player is released, and it can be set only once in each playback.
+
+**System capability**: SystemCapability.Multimedia.AudioHaptic.Core
+
+**Parameters**
+
+| Name  | Type                                     | Mandatory| Description                    |
+| -------- | --------------------------------------| ---- | ------------------------ |
+| intensity | number                           | Yes  | Target haptics intensity. The value ranges from 0.00 to 1.00, where 1.00 indicates the maximum intensity (100%).|
+
+**Return value**
+
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID  | Error Message                             |
+|---------|-----------------------------------|
+| 202      | Caller is not a system application. |
+| 801      | Function is not supported in current device. |
+| 5400102  | Operate not permit in current state. |
+| 5400108  | Parameter out of range. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioHapticPlayerInstance.setHapticsIntensity(0.5).then(() => {
+  console.info(`Promise returned to indicate that set intensity successfully.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to set intensity. ${err}`);
+});
+```
+
+### setHapticsRamp
+
+setHapticsRamp(duration: number, startIntensity: number, endIntensity: number): Promise&lt;void&gt;
+
+Sets the haptics intensity ramp effect for this player. This API uses a promise to return the result.
+This API can be called only before the player starts or after it stops but before it is released.
+This API can be set only once.
+
+**System capability**: SystemCapability.Multimedia.AudioHaptic.Core
+
+**Parameters**
+
+| Name  | Type                                | Mandatory| Description                    |
+| -------- | ---------------------------------| ---- | ------------------------ |
+| duration | number                           | Yes  | Ramp duration, measured in milliseconds. The value should be an integer that is not less than 100.|
+| startIntensity | number                     | Yes  | Start intensity of the haptics ramp. The value ranges from 0.00 to 1.00, where 1.00 indicates the maximum intensity (100%).|
+| endIntensity   | number                     | Yes  | End intensity of the haptics ramp. The value ranges from 0.00 to 1.00, where 1.00 indicates the maximum intensity (100%).|
+
+**Return value**
+
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID  | Error Message                             |
+|---------|-----------------------------------|
+| 202      | Caller is not a system application. |
+| 801      | Function is not supported in current device. |
+| 5400102  | Operate not permit in current state. |
+| 5400108  | Parameter out of range. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const duration = 10000;
+const startIntensity = 0.5;
+const endIntensity = 1;
+
+audioHapticPlayerInstance.setHapticsRamp(duration, startIntensity, endIntensity).then(() => {
+  console.info(`Promise returned to indicate that set haptics ramp successfully.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to set haptics ramp. ${err}`);
+});
+```
+
+### setLoop
+
+setLoop(loop: boolean): Promise&lt;void&gt;
+
+Set the playback to be looping. This method uses a promise to return the result.
+This function should be called before player release.
+
+**System capability**: SystemCapability.Multimedia.AudioHaptic.Core
+
+**Parameters**
+
+| Name  | Type                                | Mandatory| Description                    |
+| -------- | ---------------------------------| ---- | ------------------------ |
+| loop     | boolean                           | Yes  | Whether to loop or not, value **true** means loop.|
+
+**Return value**
+
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID  | Error Message                             |
+|---------|-----------------------------------|
+| 5400102  | Operate not permit in current state. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioHapticPlayerInstance.setLoop(true).then(() => {
+  console.info(`Promise returned to indicate that set player loop successfully.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to set player loop. ${err}`);
 });
 ```
 

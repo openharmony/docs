@@ -54,6 +54,19 @@ let audioHapticManagerInstance: audioHaptic.AudioHapticManager = audioHaptic.get
 | muteAudio   | boolean      | 否   | 是否将音频静音，true表示将音频静音，false表示正常播放声音。若不填该参数，则默认为false。 |
 | muteHaptics | boolean      | 否   | 是否禁止振动，true表示将禁止振动，false表示正常振动。若不填该参数，则默认为false。 |
 
+## AudioHapticFileDescriptor
+
+描述音振文件描述符。
+开发者需要确保fd是可用的文件描述符，且offset和length的值都是正确的。
+
+**系统能力：**: SystemCapability.Multimedia.AudioHaptic.Core
+
+| 名称     | 类型           |必填  | 说明                             |
+| --------- | -------------- | ---- | --------------------------------- |
+| fd   | number      | 是  | 音振资源文件的文件描述符， 通常大于等于0。|
+| offset | number      | 否  | 文件中数据读取的偏移量。默认情况下，偏移量为0。|
+| length | number      | 否  | 读取数据的字节长度。默认情况下，长度为文件中从偏移量位置开始的剩余字节数。|
+
 ## AudioHapticManager
 
 管理音振协同功能。在调用AudioHapticManager的接口前，需要先通过[getAudioHapticManager](#audiohapticgetaudiohapticmanager)创建实例。
@@ -97,6 +110,59 @@ let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri�
 let id = 0;
 
 audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
+  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+  id = value;
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to register source ${err}`);
+});
+```
+
+### registerSourceFromFd
+
+registerSourceFromFd(audioFd: AudioHapticFileDescriptor, hapticFd: AudioHapticFileDescriptor): Promise&lt;number&gt;
+
+通过文件描述符（fd）注册音频和振动资源。音频与振动在播放时同步使用。
+注册完资源后，将返回一个资源ID。此方法通过 Promise异步返回源ID。
+
+**系统能力：**: SystemCapability.Multimedia.AudioHaptic.Core
+
+**参数：**
+
+| 参数名  | 类型                                     | 必填| 说明                    |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| audioFd   | [AudioHapticFileDescriptor](#audioHapticFileDescriptor)               | 是  | 描述音频文件的文件描述符对象。 需要是已打开的有效的fd，并且配套的offset length符合实际文件长度。       |
+| hapticFd  | [AudioHapticFileDescriptor](#audioHapticFileDescriptor)               | 是  | 描述振动文件的文件描述符对象。 需要是已打开的有效的fd，并且配套的offset length符合实际文件长度。       |
+
+**返回值：**
+
+| 类型               | 说明                           |
+| ------------------- | ------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回注册资源的source id。|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+const context = getContext(this) as common.UIAbilityContext;
+
+const audioFile = await context.resourceManager.getRawFd('audioTest.ogg'); // 需要改成rawfile目录下的对应文件。
+const audioFd: audioHaptic.AudioHapticFileDescriptor = {
+  fd: audioFile.fd,
+  offset: audioFile.offset,
+  length: audioFile.length,
+};
+
+const hapticFile = await context.resourceManager.getRawFd('hapticTest.json'); // 需要改成rawfile目录下的对应文件。
+const hapticFd: audioHaptic.AudioHapticFileDescriptor = {
+  fd: hapticFile.fd,
+  offset: hapticFile.offset,
+  length: hapticFile.length,
+};
+let id = 0;
+
+audioHapticManagerInstance.registerSourceFromFd(audioFd, hapticFd).then((value: number) => {
   console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
   id = value;
 }).catch ((err: BusinessError) => {
@@ -463,6 +529,271 @@ audioHapticPlayerInstance.release().then(() => {
   console.info(`Promise returned to indicate that release the audio haptic player successfully.`);
 }).catch ((err: BusinessError) => {
   console.error(`Failed to release the audio haptic player. ${err}`);
+});
+```
+
+### isHapticsIntensityAdjustmentSupported
+
+isHapticsIntensityAdjustmentSupported(): boolean
+
+查询当前设备是否支持调整振动振幅。
+
+**系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| boolean | 查询结果。 值 **true** 表示当前设备支持调整振动振幅， 值 **false**表示不支持。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID   | 错误信息                              |
+|---------|-----------------------------------|
+| 202 | Caller is not a system application. |
+
+**示例：**
+
+```ts
+const result: boolean = audioHapticPlayerInstance.isHapticsIntensityAdjustmentSupported();
+```
+
+### isHapticsRampSupported
+
+isHapticsRampSupported(): boolean
+
+查询当前设备是否支持调整振动渐变。
+
+**系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| boolean | 查询结果。 值 **true** 表示当前设备支持振动渐变， 值 **false**表示不支持。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID   | 错误信息                              |
+|---------|-----------------------------------|
+| 202 | Caller is not a system application. |
+
+**示例：**
+
+```ts
+const result: boolean = audioHapticPlayerInstance.isHapticsRampSupported();
+```
+
+### enableHapticsInSilentMode
+
+enableHapticsInSilentMode(enable: boolean): void
+
+静音模式下，音振协同播放器可以正常振动。
+该方法不能在播放中使用，且必须在释放音振播放器前使用。
+
+**系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
+
+**参数**
+
+| 参数名  | 类型                                     | 必填| 说明                    |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| enable     | boolean                                | 是  | 静音模式下开启或者关闭振动功能，值 **true** 表示开启。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID  | 错误信息                             |
+|---------|-----------------------------------|
+| 202      | Caller is not a system application. |
+| 5400102  | Operate not permit in current state. |
+
+**示例：**
+
+```ts
+audioHapticPlayerInstance.enableHapticsInSilentMode(true);
+```
+
+### setVolume
+
+setVolume(volume: number): Promise&lt;void&gt;
+
+设置音振协同播放器音量。使用Promise异步回调。
+该方法必须在音振协同播放器释放前调用。
+
+**系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
+
+**参数**
+
+| 参数名  | 类型                                     | 必填| 说明                    |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| volume     | number                                | 是  | 取值范围为 0.00 到 1.00，其中 1.00 表示最大音量（100%）。|
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID   | 错误信息                              |
+|---------|-----------------------------------|
+| 5400105  | Service died. |
+| 5400102  | Operate not permit in current state. |
+| 5400108  | Parameter out of range. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioHapticPlayerInstance.setVolume(0.5).then(() => {
+  console.info(`Promise returned to indicate that set volume successfully.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to set volume. ${err}`);
+});
+```
+
+### setHapticsIntensity
+
+setHapticsIntensity(intensity: number): Promise&lt;void&gt;
+
+设置音振协同播放器振幅。使用Promise异步回调。
+该方法必须在音振协同播放器释放前调用，且单次播放过程中只能调用一次。
+
+**系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
+
+**参数**
+
+| 参数名  | 类型                                     | 必填| 说明                    |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| intensity     | number                              | 是  | 取值范围为 0.00 到 1.00，其中 1.00 表示最大振幅（100%）。|
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID   | 错误信息                              |
+|---------|-----------------------------------|
+| 202      | Caller is not a system application. |
+| 801      | Function is not supported in current device. |
+| 5400102  | Operate not permit in current state. |
+| 5400108  | Parameter out of range. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioHapticPlayerInstance.setHapticsIntensity(0.5).then(() => {
+  console.info(`Promise returned to indicate that set intensity successfully.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to set intensity. ${err}`);
+});
+```
+
+### setHapticsRamp
+
+setHapticsRamp(duration: number, startIntensity: number, endIntensity: number): Promise&lt;void&gt;
+
+设置音振协同播放器渐变播放。使用Promise异步回调。
+该方法必须在音振协同播放器播放前或者播放后使用，且必须在音振协同播放器销毁前使用。
+该方法只能调用一次。
+
+**系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
+
+**参数**
+
+| 参数名  | 类型                                     | 必填| 说明                    |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| duration | number                           | 是  | 渐变时间段，单位为毫秒，值必须为整数，且不能小于100 |
+| startIntensity | number                     | 是  | 起始振动幅度，取值范围为 0.00 到 1.00，其中 1.00 表示最大振幅（100%）。|
+| endIntensity   | number                     | 是  | 结束振动幅度，取值范围为 0.00 到 1.00，其中 1.00 表示最大振幅（100%）。|
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID   | 错误信息                              |
+|---------|-----------------------------------|
+| 202      | Caller is not a system application. |
+| 801      | Function is not supported in current device. |
+| 5400102  | Operate not permit in current state. |
+| 5400108  | Parameter out of range. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const duration = 10000;
+const startIntensity = 0.5;
+const endIntensity = 1;
+
+audioHapticPlayerInstance.setHapticsRamp(duration, startIntensity, endIntensity).then(() => {
+  console.info(`Promise returned to indicate that set haptics ramp successfully.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to set haptics ramp. ${err}`);
+});
+```
+
+### setLoop
+
+setLoop(loop: boolean): Promise&lt;void&gt;
+
+设置音振协同播放器循环播放。使用Promise异步回调。
+该方法必须在音振协同播放器销毁前使用。
+
+**系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
+
+**参数**
+
+| 参数名  | 类型                                     | 必填| 说明                    |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| loop | boolean                           | 是  | 是否循环播放，值**true**表示循环播放。 |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID   | 错误信息                              |
+|---------|-----------------------------------|
+| 5400102  | Operate not permit in current state. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioHapticPlayerInstance.setLoop(true).then(() => {
+  console.info(`Promise returned to indicate that set player loop successfully.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to set player loop. ${err}`);
 });
 ```
 
