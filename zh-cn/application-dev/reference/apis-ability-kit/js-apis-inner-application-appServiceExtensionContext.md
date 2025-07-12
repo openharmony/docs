@@ -39,7 +39,7 @@ class AppServiceExtension extends AppServiceExtensionAbility {
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
-启动Ability。仅支持在主线程调用。使用Promise异步回调。
+启动UIAbility。仅支持在主线程调用。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -165,7 +165,7 @@ import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let commRemote: rpc.IRemoteObject; // 断开连接时需要释放
+let commRemote: rpc.IRemoteObject | null = null; // 断开连接时需要释放
 const TAG: string = '[AppServiceExtensionAbility]';
 
 class AppServiceExtension extends AppServiceExtensionAbility {
@@ -190,7 +190,18 @@ class AppServiceExtension extends AppServiceExtensionAbility {
 
     try {
       connection = this.context.connectServiceExtensionAbility(want, options);
+      this.context.disconnectServiceExtensionAbility(connection).then(() => {
+        commRemote = null;
+        // 执行正常业务
+        hilog.info(0x0000, TAG, '----------- disconnectServiceExtensionAbility success -----------');
+      })
+      .catch((error: BusinessError) => {
+        commRemote = null;
+        // 处理业务逻辑错误
+        hilog.error(0x0000, TAG, `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
+      });
     } catch (paramError) {
+      commRemote = null;
       // 处理入参错误异常
       hilog.error(0x0000, TAG, `error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
@@ -229,39 +240,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 **示例：**
 
-```ts
-import { AppServiceExtensionAbility } from '@kit.AbilityKit';
-import { rpc } from '@kit.IPCKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-let commRemote: rpc.IRemoteObject | null; // 断开连接时需要释放
-const TAG: string = '[AppServiceExtensionAbility]';
-
-class AppServiceExtension extends AppServiceExtensionAbility {
-  onCreate() {
-    // connection为connectServiceExtensionAbility中的返回值
-    let connection = 1;
-    try {
-      this.context.disconnectServiceExtensionAbility(connection)
-        .then(() => {
-          commRemote = null;
-          // 执行正常业务
-          hilog.info(0x0000, TAG, '----------- disconnectServiceExtensionAbility success -----------');
-        })
-        .catch((error: BusinessError) => {
-          commRemote = null;
-          // 处理业务逻辑错误
-          hilog.error(0x0000, TAG, `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
-        });
-    } catch (paramError) {
-      commRemote = null;
-      // 处理入参错误异常
-      hilog.error(0x0000, TAG, `error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
-    }
-  }
-}
-```
+参见[connectServiceExtensionAbility](#connectserviceextensionability)。
 
 ### terminateSelf
 

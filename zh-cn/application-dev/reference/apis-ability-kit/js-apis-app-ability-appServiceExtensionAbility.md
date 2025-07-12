@@ -118,6 +118,8 @@ onRequest(want: Want, startId: number): void
 - 如果该实例已创建，则会直接回调该接口。
 - 如果该实例此前未被创建，则会先创建实例并触发[onCreate()](#oncreate)回调，再回调该接口。
 
+当AppServiceExtensionAbility实例已创建时，如果调用方重复调用，系统会重复回调[onRequest()](#onrequest)接口。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**

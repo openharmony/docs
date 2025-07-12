@@ -19,8 +19,6 @@
 
 - 应用集成AppServiceExtensionAbility的组件需要申请ACL权限（ohos.permission.SUPPORT_APP_SERVICE_EXTENSION）。该ACL权限当前只对企业普通应用开放申请。
 
-- 如果[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)实例未启动，接口调用方必须为AppServiceExtensionAbility所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
-
 - AppServiceExtensionAbility内不支持调用[window](../reference/apis-arkui/arkts-apis-window.md)相关API。
 
 ## 运行机制
@@ -32,6 +30,20 @@
 - AppServiceExtensionAbility一旦通过start的方式被拉起，将不会自动退出，应用可以调用[stopAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#stopappserviceextensionability20)方法将AppServiceExtensionAbility退出。
 
 - AppServiceExtensionAbility以start方式启动，并且没有连接的时候，AppServiceExtensionAbility进程可能被挂起（请参考[Background Tasks Kit简介](../task-management/background-task-overview.md)）。
+
+- 如果[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)实例未启动，接口调用方必须为AppServiceExtensionAbility所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
+
+| 客户端操作 | 服务端状态 | 客户端是否配置在服务端appIdentifierAllowList中 | 拉起结果 | 说明 |
+| --------- | --------- | -------------------------------------------- | ------- | ---- |
+| startAppServiceExtensionAbility | 未启动     | 是                                       | 成功     | 服务端通过start方式启动，服务端状态变为已启动。 |
+| startAppServiceExtensionAbility | 未启动     | 否                                       | 失败     | 客户端不在允许列表中，无法调用启动服务。 |
+| startAppServiceExtensionAbility | 已启动     | 是                                       | 成功     | 服务端已经启动，start操作直接返回成功。 |
+| startAppServiceExtensionAbility | 已启动     | 否                                       | 失败     | 客户端不在允许列表中，无法调用启动服务。 |
+| connectAppServiceExtensionAbility | 未启动     | 是                                       | 成功     | 服务端通过connect方式启动，并建立连接。 |
+| connectAppServiceExtensionAbility | 未启动     | 否                                       | 失败     | 客户端不在允许列表中，无法启动服务端。 |
+| connectAppServiceExtensionAbility | 已启动     | 是                                       | 成功     | 服务端已启动，直接建立连接 |
+| connectAppServiceExtensionAbility | 已启动     | 否                                       | 失败     | 服务端已启动，直接建立连接。 |
+
 
 ## 实现一个后台服务
 
@@ -63,6 +75,14 @@
     class StubTest extends rpc.RemoteObject {
       constructor(des: string) {
         super(des);
+      }
+
+      onRemoteMessageRequest(code: number,
+        data: rpc.MessageSequence,
+        reply: rpc.MessageSequence,
+        options: rpc.MessageOption): boolean | Promise<boolean> {
+        // 处理客户端发送的消息
+        return true;
       }
     }
 
@@ -367,6 +387,7 @@
 
 客户端在[onConnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect)中获取到[rpc.IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject)对象后便可与Service进行通信。
 
+### 客户端
 使用[sendMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#sendmessagerequest9)接口向服务端发送消息。
 
 ```ts
@@ -378,6 +399,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 const TAG: string = '[Page_CollaborateAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 const REQUEST_CODE = 1;
+let connectionId: number;
+let want: Want = {
+  deviceId: '',
+  bundleName: 'com.samples.stagemodelabilitydevelop',
+  abilityName: 'AppServiceExtAbility'
+};
 let options: common.ConnectOptions = {
   onConnect(elementName, remote): void {
     hilog.info(DOMAIN_NUMBER, TAG, 'onConnect callback');
@@ -389,22 +416,18 @@ let options: common.ConnectOptions = {
     let data = new rpc.MessageSequence();
     let reply = new rpc.MessageSequence();
 
-    data.writeInt(99);
-    // 开发者可发送data到目标端应用进行相应操作
-    // @param code 表示客户端发送的服务请求代码。
-    // @param data 表示客户端发送的{@link MessageSequence}对象。
-    // @param reply 表示远程服务发送的响应消息对象。
-    // @param options 指示操作是同步的还是异步的。
-    // @return 如果操作成功返回{@code true}； 否则返回 {@code false}。
+    // 写入请求数据
+    data.writeInt(1);
+    data.writeInt(2);
 
     remote.sendMessageRequest(REQUEST_CODE, data, reply, option).then((ret: rpc.RequestResult) => {
-      let errCode = reply.readInt(); // 在成功连接的情况下，会收到来自目标端返回的信息（100）
-      let msg: number = 0;
-      if (errCode === 0) {
-        msg = reply.readInt();
+      if (ret.errCode === 0) {
+        hilog.info(DOMAIN_NUMBER, TAG, `sendRequest got result`);
+        let sum = ret.reply.readInt();
+        hilog.info(DOMAIN_NUMBER, TAG, `sendRequest success, sum:${sum}`);
+      } else {
+        hilog.error(DOMAIN_NUMBER, TAG, `sendRequest failed`);
       }
-      // 成功连接后台服务
-      hilog.info(DOMAIN_NUMBER, TAG, `sendRequest success, msg:${msg}`);
     }).catch((error: BusinessError) => {
       hilog.info(DOMAIN_NUMBER, TAG, `sendRequest failed, ${JSON.stringify(error)}`);
     });
@@ -416,7 +439,73 @@ let options: common.ConnectOptions = {
     hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback');
   }
 };
-// 调用connectAppServiceExtension相关代码
+
+// 调用connectAppServiceExtensionAbility相关代码
+//...
+
+@Entry
+@Component
+struct Page_CollaborateAbility {
+  build() {
+    Column() {
+      //...
+      List({ initialIndex: 0 }) {
+        ListItem() {
+          Row() {
+            //...
+          }
+          .onClick(() => {
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
+            connectionId = context.connectAppServiceExtensionAbility(want, options);
+            hilog.info(DOMAIN_NUMBER, TAG, `connectionId is : ${connectionId}`);
+          })
+        }
+    }
+    //...
+  }
+}
+```
+
+### 服务端
+使用[onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest10)接口接收客户端发送的消息。
+
+```ts
+import { AppServiceExtensionAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = '[AppServiceExtImpl]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+// 开发者需要在这个类型里对接口进行实现
+class Stub extends rpc.RemoteObject {
+  onRemoteMessageRequest(code, data, reply, options): boolean | Promise<boolean> {
+    hilog.info(DOMAIN_NUMBER, TAG, 'onRemoteMessageRequest');
+    let sum = data.readInt() + data.readInt();
+    reply.writeInt(sum);
+    return true;
+  }
+}
+
+// 服务端实现
+@Entry
+class AppServiceExtImpl extends AppServiceExtensionAbility {
+  onCreate(want: Want): void {
+    hilog.info(DOMAIN_NUMBER, TAG, 'AppServiceExtImpl onCreate');
+  }
+
+  onDestroy(): void {
+    hilog.info(DOMAIN_NUMBER, TAG, 'AppServiceExtImpl onDestroy');
+  }
+
+  onConnect(want: Want): rpc.IRemoteObject {
+    hilog.info(DOMAIN_NUMBER, TAG, 'AppServiceExtImpl onConnect');
+    return new Stub();
+  }
+
+  onDisconnect(): void {
+    hilog.info(DOMAIN_NUMBER, TAG, 'AppServiceExtImpl onDisconnect');
+  }
 ```
 
 ## 服务端对客户端身份校验
@@ -433,32 +522,75 @@ import { AppServiceExtensionAbility } from '@kit.AbilityKit';
 import { bundleManager } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { osAccount, BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = "[AppServiceExtImpl]";
 const DOMAIN_NUMBER: number = 0xFF00;
 
 // 开发者需要在这个类型里对接口进行实现
 class Stub extends rpc.RemoteObject {
+  private validAppIdentifier: string = "your_valid_app_identifier_here";
+
   onRemoteMessageRequest(
     code: number,
     data: rpc.MessageSequence,
     reply: rpc.MessageSequence,
     options: rpc.MessageOption): boolean | Promise<boolean> {
-    // 开发者自行实现业务逻辑
-    let callerUid = rpc.IPCSkeleton.getCallingUid();
-    bundleManager.getBundleNameByUid(callerUid).then((callerBundleName) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'getBundleNameByUid: ' + callerBundleName);
-      // 对客户端包名进行识别
-      if (callerBundleName !== 'com.samples.stagemodelabilitydevelop') { // 识别不通过
-        hilog.info(DOMAIN_NUMBER, TAG, 'The caller bundle is not in trustlist, reject');
-        return;
+    this.verifyClientIdentity().then((isValid: boolean) => {
+      if (isValid) {
+        console.info('Client authentication PASSED');
+      } else {
+        console.error('Client authentication FAILED');
+        // 实际项目中应断开连接或拒绝服务
       }
-      // 识别通过，执行正常业务逻辑
     }).catch((err: BusinessError) => {
-      hilog.error(DOMAIN_NUMBER, TAG, 'getBundleNameByUid failed: ' + err.message);
+      console.error(`Authentication error: ${err.code}, ${err.message}`);
     });
     return true;
+  }
+
+  private async verifyClientIdentity(): Promise<boolean> {
+    try {
+      // 获取调用方UID
+      const callerUid: number = rpc.IPCSkeleton.getCallingUid();
+      console.info(`Caller UID: ${callerUid}`);
+
+      // 获取用户ID
+      const userId: number = await this.getUserIdByUid(callerUid);
+      console.info(`User ID: ${userId}`);
+
+      // 获取调用方包名
+      const bundleName: string = await bundleManager.getBundleNameByUid(callerUid);
+      console.info(`Bundle Name: ${bundleName}`);
+
+      // 获取Bundle信息（需要GET_BUNDLE_INFO权限）
+      const bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+      const bundleInfo: bundleManager.BundleInfo = await bundleManager.getBundleInfo(bundleName, bundleFlags, userId);
+
+      // 验证签名信息
+      if (bundleInfo.signatureInfo && bundleInfo.signatureInfo.appIdentifier) {
+        const appIdentifier: string = bundleInfo.signatureInfo.appIdentifier;
+        console.info(`App Identifier: ${appIdentifier}`);
+        return appIdentifier === this.validAppIdentifier;
+      }
+      return false;
+    } catch (err) {
+      const error: BusinessError = err as BusinessError;
+      console.error(`Verification failed: ${error.code}, ${error.message}`);
+      return false;
+    }
+  }
+
+  private async getUserIdByUid(uid: number): Promise<number> {
+    try {
+      const accountManager = osAccount.getAccountManager();
+      const userId: number = await accountManager.getOsAccountLocalIdForUid(uid);
+      return userId;
+    } catch (err) {
+      const error: BusinessError = err as BusinessError;
+      console.error(`Get userId failed: ${error.code}, ${error.message}`);
+      throw error;
+    }
   }
 }
 
