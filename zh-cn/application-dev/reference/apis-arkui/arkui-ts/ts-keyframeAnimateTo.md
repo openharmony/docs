@@ -1,12 +1,12 @@
 # 关键帧动画 (keyframeAnimateTo)
 
-在[UIContext](../js-apis-arkui-UIContext.md#uicontext)中提供keyframeAnimateTo接口来指定若干个关键帧状态，实现分段的动画。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态，例如文字、[Canvas](ts-components-canvas-canvas.md)的内容等，如果要内容跟随宽高变化，可以使用[renderFit](ts-universal-attributes-renderfit.md)属性配置。
+在[UIContext](../arkts-apis-uicontext-uicontext.md)中提供keyframeAnimateTo接口来指定若干个关键帧状态，实现分段的动画。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态，例如文字、[Canvas](ts-components-canvas-canvas.md)的内容等，如果要内容跟随宽高变化，可以使用[renderFit](ts-universal-attributes-renderfit.md)属性配置。
 
 >  **说明：**
 >
 >  从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  该接口为[UIContext](../js-apis-arkui-UIContext.md#uicontext)类的成员函数，需要通过UIContext实例对象调用。
+>  该接口为[UIContext](../arkts-apis-uicontext-uicontext.md)类的成员函数，需要通过UIContext实例对象调用。
 
 keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState&gt;): void
 

@@ -713,7 +713,7 @@ RichEditor(this.infoShowOptions)
 
 ### 屏蔽系统服务类菜单
 
-- 通过[disableSystemServiceMenuItems](../reference/apis-arkui/js-apis-arkui-UIContext.md#disablesystemservicemenuitems20)屏蔽富文本选择菜单内所有系统服务菜单项。
+- 通过[disableSystemServiceMenuItems](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#disablesystemservicemenuitems20)屏蔽富文本选择菜单内所有系统服务菜单项。
 
   ```ts
   import { TextMenuController } from '@kit.ArkUI';
@@ -766,7 +766,7 @@ RichEditor(this.infoShowOptions)
 
   ![RichEditor_disable_system_service_menuItems](figures/RichEditor_disable_system_service_menuItems.gif)
 
-- 通过[disableMenuItems](../reference/apis-arkui/js-apis-arkui-UIContext.md#disablemenuitems20)屏蔽富文本选择菜单内指定的系统服务菜单项。
+- 通过[disableMenuItems](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#disablemenuitems20)屏蔽富文本选择菜单内指定的系统服务菜单项。
 
   ```ts
   import { TextMenuController } from '@kit.ArkUI';

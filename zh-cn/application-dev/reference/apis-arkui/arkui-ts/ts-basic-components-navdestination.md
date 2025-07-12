@@ -765,7 +765,7 @@ NavDestination自定义动画接口。
 | duration | number | 否 | 转场动画的持续时间，默认值为1000（毫秒）。 |
 | curve | [Curve](ts-appendix-enums.md#curve) | 否 | 动画的曲线类型，默认值为[Curve.EaseInOut](ts-appendix-enums.md#curve)。 |
 | delay | number | 否 | 转场动画的延迟。默认值为0（毫秒）。 |
-| event | Callback\<void> | 是 | 指定转场动效的闭包函数，系统会根据闭包中对组件UI状态的修改，生成对应的过渡动画。参见[animateTo](../js-apis-arkui-UIContext.md#animateto)中的event。 |
+| event | Callback\<void> | 是 | 指定转场动效的闭包函数，系统会根据闭包中对组件UI状态的修改，生成对应的过渡动画。参见[animateTo](../arkts-apis-uicontext-uicontext.md#animateto)中的event。 |
 
 ## NavDestinationTransitionDelegate<sup>15+</sup>
 

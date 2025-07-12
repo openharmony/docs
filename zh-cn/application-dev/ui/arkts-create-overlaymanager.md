@@ -4,7 +4,7 @@
 
 ![image](figures/overlayManager.png)
 
-可以通过使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中的[getOverlayManager](../reference/apis-arkui/js-apis-arkui-UIContext.md#getoverlaymanager12)方法获取当前UI上下文关联的[OverlayManager](../reference/apis-arkui/js-apis-arkui-UIContext.md#overlaymanager12)对象，再通过该对象调用对应方法。
+可以通过使用[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)中的[getOverlayManager](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getoverlaymanager12)方法获取当前UI上下文关联的[OverlayManager](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md)对象，再通过该对象调用对应方法。
 
 ## 规格约束
 
@@ -17,7 +17,7 @@
 
 ## 设置浮层
 
-在OverlayManager上[新增指定节点（addComponentContent）](../reference/apis-arkui/js-apis-arkui-UIContext.md#addcomponentcontent12)、[删除指定节点（removeComponentContent）](../reference/apis-arkui/js-apis-arkui-UIContext.md#removecomponentcontent12)、[显示所有节点（showAllComponentContents）](../reference/apis-arkui/js-apis-arkui-UIContext.md#showallcomponentcontents12)和[隐藏所有节点（hideAllComponentContents）](../reference/apis-arkui/js-apis-arkui-UIContext.md#hideallcomponentcontents12)。
+在OverlayManager上[新增指定节点（addComponentContent）](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#addcomponentcontent)、[删除指定节点（removeComponentContent）](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#removecomponentcontent)、[显示所有节点（showAllComponentContents）](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#showallcomponentcontents)和[隐藏所有节点（hideAllComponentContents）](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#hideallcomponentcontents)。
 
 ```ts
 import { ComponentContent, OverlayManager } from '@kit.ArkUI';
@@ -198,7 +198,7 @@ struct OverlayExample {
 ```
 ![overlayManager-demo2](figures/overlaymanager-demo_2.gif)
 
-从API version 18开始，可以通过调用UIContext中getOverlayManager方法获取OverlayManager对象，并利用该对象在指定层级上新增指定节点（[addComponentContentWithOrder](../reference/apis-arkui/js-apis-arkui-UIContext.md#addcomponentcontentwithorder18)），层次高的浮层会覆盖在层级低的浮层之上。
+从API version 18开始，可以通过调用UIContext中getOverlayManager方法获取OverlayManager对象，并利用该对象在指定层级上新增指定节点（[addComponentContentWithOrder](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#addcomponentcontentwithorder18)），层次高的浮层会覆盖在层级低的浮层之上。
 
 ```ts
 import { ComponentContent, LevelOrder, OverlayManager } from '@kit.ArkUI';
