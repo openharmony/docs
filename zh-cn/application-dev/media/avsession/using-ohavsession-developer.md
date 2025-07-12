@@ -4,7 +4,7 @@ OHAVSession系统提供的通过使用C API实现媒体会话提供方，从而�
 
 ## 使用入门
 
-开发者要使用 [OHAVSession](../../reference/apis-avsession-kit/capi-native-avsession-h.md)。实现媒体会话，需要添加对应的头文件。
+开发者要使用[OHAVSession](../../reference/apis-avsession-kit/capi-native-avsession-h.md)实现媒体会话，需要添加对应的头文件。
 
 ### 在 CMake 脚本中链接动态库
 
