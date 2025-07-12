@@ -213,13 +213,15 @@ int OH_IPCSkeleton_ResetCallingIdentity (char ** identity, int32_t * len, OH_IPC
 
 **返回：**
 
-成功返回[OH_IPC_ErrorCode#OH_IPC_SUCCESS](_o_h_i_p_c_error_code.md)；
+返回错误信息请查看[OH_IPC_ErrorCode](_o_h_i_p_c_error_code.md#oh_ipc_errorcode)。
 
-参数错误返回[OH_IPC_ErrorCode#OH_IPC_CHECK_PARAM_ERROR](_o_h_i_p_c_error_code.md)；
+成功返回：OH_IPC_SUCCESS
 
-内存分配失败返回[OH_IPC_ErrorCode#OH_IPC_MEM_ALLOCATOR_ERROR](_o_h_i_p_c_error_code.md)；
+参数错误返回：OH_IPC_CHECK_PARAM_ERROR
 
-其它情况返回[OH_IPC_ErrorCode#OH_IPC_INNER_ERROR](_o_h_i_p_c_error_code.md)。
+内存分配失败返回：OH_IPC_MEM_ALLOCATOR_ERROR
+
+其它情况返回：OH_IPC_INNER_ERROR
 
 
 ### OH_IPCSkeleton_SetCallingIdentity()
