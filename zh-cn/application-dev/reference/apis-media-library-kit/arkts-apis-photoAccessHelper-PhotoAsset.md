@@ -650,7 +650,7 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
-| 14000011       | System inner fail.         |
+| 14000011       | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.        |
 
 **示例：**
 
@@ -713,7 +713,7 @@ getReadOnlyFd(): Promise&lt;number&gt;
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
-| 14000011       | System inner fail.         |
+| 14000011       | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.        |
 
 **示例：**
 

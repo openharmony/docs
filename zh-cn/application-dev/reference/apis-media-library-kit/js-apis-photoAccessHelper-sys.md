@@ -3135,7 +3135,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
-| 14000011       | System inner fail.         |
+| 14000011       | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.        |
 
 **示例：**
 
@@ -3199,7 +3199,7 @@ open(mode: string): Promise&lt;number&gt;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
-| 14000011       | System inner fail.         |
+| 14000011       | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.        |
 
 **示例：**
 
@@ -4037,7 +4037,7 @@ requestEditData(callback: AsyncCallback&lt;string&gt;): void
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14000011   | System inner fail.        |
+| 14000011   | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.       |
 
 **示例：**
 
@@ -4099,7 +4099,7 @@ requestEditData(): Promise&lt;string&gt;
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14000011   | System inner fail.        |
+| 14000011   | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.       |
 
 **示例：**
 
@@ -4155,7 +4155,7 @@ getEditData(): Promise&lt;MediaAssetEditData&gt;
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14000011   | System inner fail.        |
+| 14000011   | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.       |
 
 **示例：**
 
@@ -4210,7 +4210,7 @@ requestSource(callback: AsyncCallback&lt;number&gt;): void
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14000011   | System inner fail.        |
+| 14000011   | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.       |
 
 **示例：**
 
@@ -4269,7 +4269,7 @@ requestSource(): Promise&lt;number&gt;
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14000011   | System inner fail.        |
+| 14000011   | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.       |
 
 **示例：**
 
@@ -4329,7 +4329,7 @@ commitEditedAsset(editData: string, uri: string, callback: AsyncCallback&lt;void
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011   | System inner fail.        |
+| 14000011   | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.       |
 
 **示例：**
 
@@ -4401,7 +4401,7 @@ commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt;
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011   | System inner fail.        |
+| 14000011   | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.       |
 
 **示例：**
 
@@ -7520,7 +7520,7 @@ getHighlightResource(resourceUri: string): Promise&lt;ArrayBuffer&gt;
 | 201      | Permission denied.                |
 | 202      | Called by non-system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011 | Internal system error.            |
+| 14000011 | Internal system error. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.           |
 
 **示例：**
 
