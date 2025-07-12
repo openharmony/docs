@@ -76,7 +76,6 @@ target_link_libraries(entry PUBLIC libohavsession.so)
     * set AVMetadata 设置AVMetadata对象
     */
    OH_AVSession_SetAVMetadata(avsession, ohMetadata);
-
    ```
    
    在不使用AVMetadata之后，开发者应该执行OH_AVMetadataBuilder_Destroy接口来销毁元数据，且不要继续使用。
