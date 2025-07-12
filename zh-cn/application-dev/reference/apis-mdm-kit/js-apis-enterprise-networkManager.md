@@ -54,11 +54,13 @@ getAllNetworkInterfacesSync(admin: Want): Array&lt;string&gt;
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -107,14 +109,17 @@ getIpAddressSync(admin: Want, networkInterface: string): string
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let result: string = networkManager.getIpAddressSync(wantTemp, 'eth0');
   console.info(`Succeeded in getting ip address, result : ${result}`);
 } catch (err) {
@@ -160,14 +165,17 @@ getMacSync(admin: Want, networkInterface: string): string
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let result: string = networkManager.getMacSync(wantTemp, 'eth0');
   console.info(`Succeeded in getting mac, result : ${result}`);
 } catch (err) {
@@ -213,14 +221,17 @@ isNetworkInterfaceDisabledSync(admin: Want, networkInterface: string): boolean
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let result: boolean = networkManager.isNetworkInterfaceDisabledSync(wantTemp, 'eth0');
   console.info(`Succeeded in querying network interface is disabled or not, result : ${result}`);
 } catch (err) {
@@ -261,15 +272,18 @@ setNetworkInterfaceDisabledSync(admin: Want, networkInterface: string, isDisable
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   networkManager.setNetworkInterfaceDisabledSync(wantTemp, 'eth0', true);
   console.info(`Succeeded in setting network interface disabled`);
 } catch (err) {
@@ -309,14 +323,18 @@ setGlobalProxySync(admin: Want, httpProxy: connection.HttpProxy): void
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
-let exclusionStr: string = "192.168,baidu.com"
+
+// 需根据实际情况进行替换
+let exclusionStr: string = "192.168,baidu.com";
 let exclusionArray: Array<string> = exclusionStr.split(',');
 let httpProxy: connection.HttpProxy = {
   host: "192.168.xx.xxx",
@@ -365,20 +383,25 @@ setGlobalProxyForAccount(admin: Want, httpProxy: connection.HttpProxy, accountId
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+
 let httpProxy: connection.HttpProxy = {
+  // 需根据实际情况进行替换
   host: '192.168.xx.xxx',
   port: 8080,
   exclusionList: ['192.168', 'baidu.com']
 };
 
 try {
+  // 参数需根据实际情况进行替换
   networkManager.setGlobalProxyForAccount(wantTemp, httpProxy, 100);
   console.info(`Succeeded in setting network global proxy.`);
 } catch (err) {
@@ -423,12 +446,14 @@ getGlobalProxySync(admin: Want): connection.HttpProxy
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -477,15 +502,18 @@ getGlobalProxyForAccount(admin: Want, accountId: number): connection.HttpProxy
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let result: connection.HttpProxy = networkManager.getGlobalProxyForAccount(wantTemp, 100);
   console.info(`Succeeded in getting network global proxy, result : ${JSON.stringify(result)}`);
 } catch (err) {
@@ -526,13 +554,16 @@ addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let firewallRule: networkManager.FirewallRule = {
+  // 需根据实际情况进行替换
   "srcAddr": "192.168.1.1-192.188.22.66",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
@@ -540,8 +571,8 @@ let firewallRule: networkManager.FirewallRule = {
   "appUid": "9696",
   "direction": networkManager.Direction.OUTPUT,
   "action": networkManager.Action.DENY,
-  "protocol": networkManager.Protocol.UDP,
-}
+  "protocol": networkManager.Protocol.UDP
+};
 
 networkManager.addFirewallRule(wantTemp, firewallRule);
 ```
@@ -579,14 +610,17 @@ removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
-// 移除指定的规则
+
 let firewallRule: networkManager.FirewallRule = {
+  // 需根据实际情况进行替换
   "srcAddr": "192.168.1.1-192.188.22.66",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
@@ -594,8 +628,9 @@ let firewallRule: networkManager.FirewallRule = {
   "appUid": "9696",
   "direction": networkManager.Direction.OUTPUT,
   "action": networkManager.Action.DENY,
-  "protocol": networkManager.Protocol.UDP,
-}
+  "protocol": networkManager.Protocol.UDP
+};
+// 移除指定的规则
 networkManager.removeFirewallRule(wantTemp, firewallRule);
 
 // 清空所有规则
@@ -639,11 +674,13 @@ getFirewallRules(admin: Want): Array\<FirewallRule>
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let firewallRule: Array<networkManager.FirewallRule>;
 firewallRule = networkManager.getFirewallRules(wantTemp);
@@ -682,17 +719,20 @@ addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let domainFilterRule: networkManager.DomainFilterRule = {
+  // 需根据实际情况进行替换
   "domainName": "www.example.com",
   "appUid": "9696",
-  "action": networkManager.Action.DENY,
-}
+  "action": networkManager.Action.DENY
+};
 
 networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
 ```
@@ -730,18 +770,23 @@ removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
-// 移除指定的规则
+
 let domainFilterRule: networkManager.DomainFilterRule = {
+  // 需根据实际情况进行替换
   "domainName": "www.example.com",
   "appUid": "9696",
-  "action": networkManager.Action.DENY,
-}
+  "action": networkManager.Action.DENY
+};
+
+// 移除指定的规则
 networkManager.removeDomainFilterRule(wantTemp, domainFilterRule);
 
 // 清空所有规则
@@ -785,11 +830,13 @@ getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
 **示例：**
 
 ```ts
+import { networkManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let domainFilterRule: Array<networkManager.DomainFilterRule>;
 domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
