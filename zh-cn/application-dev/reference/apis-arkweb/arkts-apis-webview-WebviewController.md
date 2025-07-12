@@ -9756,3 +9756,39 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
+## setWebDestroyMode<sup>20+</sup>
+
+setWebDestroyMode(mode: WebDestroyMode): void
+
+设置Web组件的销毁模式。当Web组件销毁时，销毁模式会影响Web内核资源释放的时机，例如JavaScript运行上下文、渲染上下文等。默认值：[WebDestroyMode.NORMAL_MODE](./arkts-apis-webview-e.md#webdestroymode20)（普通模式），由系统决定销毁时机。应用可设置[WebDestroyMode.FAST_MODE](./arkts-apis-webview-e.md#webdestroymode20)（快速模式），以立即销毁资源，从而提升特定场景的性能。
+
+> **说明：**
+>
+> [WebDestroyMode.FAST_MODE](./arkts-apis-webview-e.md#webdestroymode20)（快速模式）会改变Web组件销毁时机，应用需关注依赖Web组件销毁时机的错误实现，例如：Web组件销毁后仍调用WebviewController的未定义行为，与[WebDestroyMode.NORMAL_MODE](./arkts-apis-webview-e.md#webdestroymode20)（普通模式）相比，销毁时机提前，有更高的几率触发未关联绑定的异常（17100001），建议应用捕捉异常，或者通过[getAttachState](#getattachstate20)方法查询是否绑定状态，来避免稳定性问题。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| mode | [WebDestroyMode](./arkts-apis-webview-e.md#webdestroymode20) | 是 | 设置Web组件的销毁模式。<br>默认值：WebDestroyMode.NORMAL_MODE |
+
+**示例：**
+
+```ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate");
+    webview.WebviewController.initializeWebEngine();
+    // 设置快速销毁模式
+    webview.WebviewController.setWebDestroyMode(webview.WebDestroyMode.FAST_MODE);
+    AppStorage.setOrCreate("abilityWant", want);
+    console.log("EntryAbility onCreate done");
+  }
+}
+```
