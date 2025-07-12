@@ -69,6 +69,8 @@
                taskpool.execute(loadPictureTask).then((res: object) => {
                  // loadPicture方法的执行结果
                  iconItemSourceList = res as IconItemSource[];
+                 // The length of iconItemSourceList is 180
+                 console.info("The length of iconItemSourceList is " + iconItemSourceList.length);
                })
              })
          }
