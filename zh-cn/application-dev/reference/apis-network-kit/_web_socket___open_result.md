@@ -9,7 +9,7 @@ websocket客户端来自服务端连接成功的参数。
 
 **相关模块：**[Netstack](netstack.md)
 
-**所在头文件：** [net_websocket_type.h](net__websocket__type_8h.md#net_websocket_typeh)
+**所在头文件：** [net_websocket_type.h](net__websocket__type_8h.md)
 
 ## 汇总
 
