@@ -314,23 +314,34 @@ AVTranscoder主要用于将已压缩编码的视频文件按照指定参数转�
 
 <!--RP1--><!--RP1End-->
 - 支持的源视频格式：
+
+| 封装格式  | 视频编解码类型                | 轨道格式                      |
+| -------- | :----------------------------| :----------------------------|
+| mp4      | AVC(H.264)、<!--RP2-->HEVC(H.265)、<!--RP2End-->MPEG4|AAC、MPEG(MP3)|
+| fmp4     | AVC(H.264)<!--RP3-->、HEVC(H.265)<!--RP3End-->|AAC、MPEG(MP3)|
+| mkv      | AVC(H.264)<!--RP4-->、HEVC(H.265)<!--RP4End--> |AAC、MPEG(MP3)、OPUS|
+| mpeg-ts  | AVC(H.264)<!--RP5-->、HEVC(H.265)<!--RP5End-->、MPEG2、MPEG4 |AAC、MPEG(MP3)<!--RP6-->、Audio Vivid<!--RP6End-->|
+| flv      | AVC(H.264)<!--RP7-->、HEVC(H.265)<!--RP7End--> |AAC|
+| mpeg-ps  | AVC(H.264)、MPEG2 |    MPEG(MP2、MP3)|
+| avi      | H.263、AVC(H.264)、MPEG2、MPEG4  | AAC、MPEG(MP2、MP3)、PCM|
+
+具体支持情况可以参考：
   - [解封装格式](../avcodec/avcodec-support-formats.md#媒体数据解析)
   - [音频解码格式](../avcodec/avcodec-support-formats.md#音频解码)
   - [视频解码格式](../avcodec/avcodec-support-formats.md#视频解码)
-    <!--Del-->
-    > **说明：**
-    > 当前不支持H.265。
 
-    <!--DelEnd-->
 - 支持的目标视频格式：
+
+
+| 封装格式 | 视频编码类型        | 音频编码类型   |
+| -------- | ------------------| ---------------- | -------------- |
+| mp4      | AVC（H.264）<!--RP8-->HEVC(H.265)<!--RP8End-->    | AAC |
+
+具体支持情况可以参考：
   - [封装格式](../avcodec/avcodec-support-formats.md#媒体数据封装)
   - [音频编码格式](../avcodec/avcodec-support-formats.md#音频编码)
   - [视频编码格式](../avcodec/avcodec-support-formats.md#视频编码)
-    <!--Del-->
-    > **说明：**
-    > 当前不支持H.265。
-   
-    <!--DelEnd-->
+
 - 支持的轨道数：
   - 不支持字幕轨。若原视频存在字幕轨，转码后字幕轨将被丢弃。
   - 仅支持输出一条视频轨。若原视频存在多条视频轨，默认选择第一条视频轨进行转码。
