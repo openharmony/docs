@@ -243,7 +243,7 @@ async function CreatePixelMap() {
 
 ## image.createPixelMapUsingAllocator<sup>20+</sup>
 
-createPixelMapUsingAllocator(colors: ArrayBuffer, options: InitializationOptions, allocatorType?: AllocatorType): Promise\<PixelMap>
+createPixelMapUsingAllocator(colors: ArrayBuffer, param: InitializationOptions, allocatorType?: AllocatorType): Promise\<PixelMap>
 
 通过属性创建以及指定内存类型创建PixelMap，默认采用BGRA_8888格式处理数据。使用Promise异步回调。
 
@@ -254,7 +254,7 @@ createPixelMapUsingAllocator(colors: ArrayBuffer, options: InitializationOptions
 | 参数名   | 类型                                             | 必填 | 说明                       |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | colors   | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数。 |
-| options  | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度、尺寸、缩略值、像素格式和是否可编辑。 |
+| param  | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度、尺寸、缩略值、像素格式和是否可编辑。 |
 | allocatorType  | [AllocatorType](#allocatortype15)          | 否   | 指定创建pixelmap的内存类型，默认内存类型是AllocatorType.AUTO。<br> 1. image.AllocatorType.AUTO：不支持该内存类型的格式有UNKNOWN、YCBCR_P010、YCRCB_P010和ASTC_4x4。RGBA_1010102默认申请DMA内存。其他格式（RGB_565、RGBA_8888、BGRA_8888和RGBAF_16）尺寸大于512*512默认申请DMA内存，否则申请共享内存。<br>2. image.AllocatorType.DMA：RGBA_1010102、RGB_565、RGBA_8888、BGRA_8888和RGBAF_16支持DMA内存类型，其余格式不支持。<br>3. image.AllocatorType.SHARED：UNKNOWN、RGBA_1010102、YCBCR_P010、YCRCB_P010和ASTC_4x4不支持共享内存，其余格式支持。|
 
 **返回值：**
@@ -269,7 +269,7 @@ createPixelMapUsingAllocator(colors: ArrayBuffer, options: InitializationOptions
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  7600201    | Unsupported operation. e.g.,1. The picture does not has a gainmap. 2. MainPixelMap's allocator type is not DMA. |
+|  7600201    | Unsupported operation. |
 |  7600301    | Memory alloc failed. |
 |  7600302    | Memory copy failed. |
 
@@ -315,7 +315,7 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.|
+| 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.|
 | 62980097 | IPC error. Possible cause: 1.IPC communication failed. 2. Image upload exception. 3. Decode process exception. 4. Insufficient memory.|
 | 62980115 | Invalid input parameter.|
 | 62980105 | Failed to get the data.|
@@ -641,7 +641,7 @@ async function CreatePixelMapSync() {
 
 ## image.createPixelMapUsingAllocatorSync<sup>20+</sup>
 
-createPixelMapUsingAllocatorSync(colors: ArrayBuffer, options: InitializationOptions, allocatorType?: AllocatorType): PixelMap
+createPixelMapUsingAllocatorSync(colors: ArrayBuffer, param: InitializationOptions, allocatorType?: AllocatorType): PixelMap
 
 通过指定属性以及内存类型创建PixelMap，默认采用BGRA_8888格式处理数据，同步返回结果。
 
@@ -652,7 +652,7 @@ createPixelMapUsingAllocatorSync(colors: ArrayBuffer, options: InitializationOpt
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
 | colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数。 |
-| options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度、尺寸、缩略值、像素格式和是否可编辑。 |
+| param | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度、尺寸、缩略值、像素格式和是否可编辑。 |
 | allocatorType  | [AllocatorType](#allocatortype15)          | 否   | 指定创建pixelmap的内存类型，默认内存类型是AllocatorType.AUTO。<br> 1. image.AllocatorType.AUTO：不支持该内存类型的格式有UNKNOWN、YCBCR_P010、YCRCB_P010和ASTC_4x4。RGBA_1010102默认申请DMA内存。其他格式（RGB_565、RGBA_8888、BGRA_8888和RGBAF_16）尺寸大于512*512默认申请DMA内存，否则申请共享内存。<br>2. image.AllocatorType.DMA：RGBA_1010102、RGB_565、RGBA_8888、BGRA_8888和RGBAF_16支持DMA内存类型，其余格式不支持。<br>3. image.AllocatorType.SHARED：UNKNOWN、RGBA_1010102、YCBCR_P010、YCRCB_P010和ASTC_4x4不支持共享内存，其余格式支持。|
 
 **返回值：**
@@ -666,7 +666,7 @@ createPixelMapUsingAllocatorSync(colors: ArrayBuffer, options: InitializationOpt
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  7600201    | Unsupported operation. e.g.,1. The picture does not has a gainmap. 2. MainPixelMap's allocator type is not DMA. |
+|  7600201    | Unsupported operation. |
 |  7600301    | Memory alloc failed. |
 |  7600302    | Memory copy failed. |
 
@@ -685,7 +685,7 @@ async function CreatePixelMapSync() {
 
 ## image.createPixelMapUsingAllocatorSync<sup>20+</sup>
 
-createPixelMapUsingAllocatorSync(options: InitializationOptions, allocatorType?: AllocatorType): PixelMap
+createPixelMapUsingAllocatorSync(param: InitializationOptions, allocatorType?: AllocatorType): PixelMap
 
 通过属性创建PixelMap，同步返回PixelMap结果。
 
@@ -695,7 +695,7 @@ createPixelMapUsingAllocatorSync(options: InitializationOptions, allocatorType?:
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度、尺寸、缩略值、像素格式和是否可编辑。 |
+| param | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度、尺寸、缩略值、像素格式和是否可编辑。 |
 | allocatorType  | [AllocatorType](#allocatortype15)          | 否   | 指定创建pixelmap的内存类型，默认内存类型是AllocatorType.AUTO。<br> 1. image.AllocatorType.AUTO：不支持该内存类型的格式有UNKNOWN和ASTC_4x4。RGBA_1010102、YCBCR_P010、YCRCB_P010格式默认申请DMA内存。其他格式（RGB_565, RGBA_8888, BGRA_8888, RGBAF_16）尺寸大于512*512默认申请DMA内存，否则申请共享内存。<br>2. image.AllocatorType.DMA：RGB_565、RGBA_8888、BGRA_8888、RGBAF_16、RGBA_1010102、YCBCR_P010和YCRCB_P010支持DMA内存类型，其余格式不支持。<br>3. image.AllocatorType.SHARED：UNKNOWN、RGBA_1010102、YCBCR_P010、YCRCB_P010和ASTC_4x4不支持共享内存，其余格式支持。|
 
 **返回值：**
@@ -709,7 +709,7 @@ createPixelMapUsingAllocatorSync(options: InitializationOptions, allocatorType?:
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  7600201    | Unsupported operation. e.g.,1. The picture does not has a gainmap. 2. MainPixelMap's allocator type is not DMA. |
+|  7600201    | Unsupported operation. |
 |  7600301    | Memory alloc failed. |
 
 **示例：**
@@ -3913,7 +3913,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 | ------- | --------------------------------------------|
 | 62980115 | Invalid image parameter.              |
 | 62980097 | IPC error. Possible cause: 1.IPC communication failed. 2. Image upload exception. 3. Decode process exception. 4. Insufficient memory.              |
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.         |
+| 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.         |
 
 **示例：**
 
@@ -4692,7 +4692,7 @@ getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<stri
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;              |
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
+| 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980103 | The image data is not supported.         |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
@@ -4852,7 +4852,7 @@ getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey,
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;     |
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980110| The image source data is incorrect.            |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980116| Failed to decode the image.            |
@@ -5377,7 +5377,7 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980099 | The shared memory data is abnormal. |
 | 62980101 | The image data is abnormal. |
 | 62980103| The image data is not supported.             |
@@ -5438,7 +5438,7 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
+| 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.          |
 | 62980103 | The image data is not supported.         |
@@ -5494,7 +5494,7 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.            |
+| 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.            |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.         |
 | 62980103 | The image data is not supported.        |
@@ -5684,7 +5684,7 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980110| The image source data is incorrect.             |
 | 62980111| The image source data is incomplete.            |
 | 62980112 | The image format does not match. |
@@ -5730,7 +5730,7 @@ getDelayTimeList(): Promise<Array\<number>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
+| 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.        |
@@ -5774,7 +5774,7 @@ getFrameCount(callback: AsyncCallback\<number>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980110| The image source data is incorrect. |
 | 62980111| The image source data is incomplete. |
 | 62980112| The image format does not match. |
@@ -5819,7 +5819,7 @@ getFrameCount(): Promise\<number>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
+| 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.        |
@@ -5862,7 +5862,7 @@ getDisposalTypeList(): Promise\<Array\<number>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.      |
+| 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.      |
 | 62980101 | The image data is abnormal. |
 | 62980137 | Invalid media operation.        |
 | 62980149 | Invalid MIME type for the image source.      |
@@ -6018,7 +6018,7 @@ packToData(source: ImageSource, options: PackingOption): Promise\<ArrayBuffer>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401 | If the parameter is invalid. |
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -6088,7 +6088,7 @@ packToData(source: PixelMap, options: PackingOption): Promise\<ArrayBuffer>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401 | If the parameter is invalid. |
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -6518,7 +6518,7 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -6582,7 +6582,7 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -6642,7 +6642,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -6710,7 +6710,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
