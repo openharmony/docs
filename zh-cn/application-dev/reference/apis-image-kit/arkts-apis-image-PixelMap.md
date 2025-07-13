@@ -25,7 +25,7 @@ import { image } from '@kit.ImageKit';
 
 | 名称              | 类型    | 只读 | 可选 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | 是   | 否   | true表示图像像素可被编辑，false表示不可被编辑。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| isEditable<sup>7+</sup>        | boolean | 是   | 否   | true表示图像像素可被编辑，false表示不可被编辑。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | isStrideAlignment<sup>11+</sup> | boolean | 是   | 否   | true表示图像内存为DMA内存，false表示非DMA内存。 |
 
 ## readPixelsToBuffer<sup>7+</sup>
@@ -2531,7 +2531,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 | ------- | --------------------------------------------|
 | 62980115 | Invalid image parameter.              |
 | 62980097 | IPC error. Possible cause: 1.IPC communication failed. 2. Image upload exception. 3. Decode process exception. 4. Insufficient memory.              |
-| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.         |
+| 62980096 | The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.         |
 
 **示例：**
 
