@@ -462,7 +462,7 @@ setAppNet(netHandle: NetHandle): Promise\<void\>
 
 | 类型                                        | 说明                          |
 | ------------------------------------------- | ----------------------------- |
-| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1759,7 +1759,7 @@ let pacUrl = connection.getPacUrl();
 
 setNetExtAttribute(netHandle: NetHandle, netExtAttribute: string): Promise\<void\>
 
-为netHandle对应的网络设置扩展属性，标识网络的安全级别。使用 Promise 作为异步方法。
+为netHandle对应的网络设置扩展属性，标识网络的安全级别。使用Promise异步回调。
 
 **需要权限**：ohos.permission.SET_NET_EXT_ATTRIBUTE
 
@@ -1770,13 +1770,13 @@ setNetExtAttribute(netHandle: NetHandle, netExtAttribute: string): Promise\<void
 | 参数名    | 类型                                              | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | netHandle | NetHandle                                         | 是   | 数据网络的句柄。             |
-| netExtAttribute | string                                      | 是   | 需要设置的网络扩展属性                                         |
+| netExtAttribute | string                                      | 是   | 需要设置的网络扩展属性。                                         |
 
 **返回值：**
 
 | 类型                   | 说明                    |
 | ---------------------- | ----------------------- |
-| Promise\<void\> | Promise对象。无返回结果的Promise对象。|
+| Promise\<void\> | Promise对象，无返回结果。|
 
 **错误码：**
 
@@ -1802,9 +1802,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   }
   let netExtAttribute: string = "xxx";
   connection.setNetExtAttribute(netHandle, netExtAttribute).then(() => {
-    console.log("setNetExtAttribute success");
+    console.info("setNetExtAttribute success");
   }).catch((error: BusinessError) => {
-    console.error(JSON.stringify(error));
+    console.error("setNetExtAttribute failed, err: " + error.code);
   })
 });
 ```
@@ -1824,11 +1824,11 @@ setNetExtAttributeSync(netHandle: NetHandle, netExtAttribute: string): void
 | 参数名    | 类型                                              | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | netHandle | NetHandle                                         | 是   | 数据网络的句柄。             |
-| netExtAttribute | string                                      | 是   | 需要设置的网络扩展属性                                         |
+| netExtAttribute | string                                      | 是   | 需要设置的网络扩展属性。                                         |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                          |
 | ------- | --------------------------------- |
@@ -1854,7 +1854,7 @@ if (netHandle.netId != 0) {
 
 getNetExtAttribute(netHandle: NetHandle): Promise\<string\>
 
-获取netHandle对应网络的扩展属性，以确定网络的安全级别。使用 Promise 作为异步方法。
+获取netHandle对应网络的扩展属性，以确定网络的安全级别。使用Promise异步回调。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -1870,7 +1870,7 @@ getNetExtAttribute(netHandle: NetHandle): Promise\<string\>
 
 | 类型                   | 说明                    |
 | ---------------------- | ----------------------- |
-| Promise\<string\> | Promise对象。以Promise形式返回的网络扩展属性。
+| Promise\<string\> | Promise对象。以Promise形式返回的网络扩展属性。|
 
 **错误码：**
 
@@ -1895,9 +1895,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
     return;
   }
   connection.getNetExtAttribute(netHandle).then((netExtAttribute: string) => {
-    console.log("getNetExtAttribute: " + netExtAttribute);
+    console.info("getNetExtAttribute: " + netExtAttribute);
   }).catch((error: BusinessError) => {
-    console.error(JSON.stringify(error));
+    console.error("getNetExtAttribute failed, err: " + error.code);
   })
 });
 ```
@@ -1927,7 +1927,7 @@ getNetExtAttributeSync(netHandle: NetHandle): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                          |
 | ------- | --------------------------------- |
@@ -1945,7 +1945,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let netHandle = connection.getDefaultNetSync();
 if (netHandle.netId != 0) {
   let netExtAttribute: string = connection.getNetExtAttributeSync(netHandle);
-  console.log("getNetExtAttribute: " + netExtAttribute);
+  console.info("getNetExtAttribute: " + netExtAttribute);
 }
 ```
 
@@ -2410,7 +2410,7 @@ bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void\>
 
 | 类型           | 说明                   |
 | -------------- | ---------------------- |
-| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
