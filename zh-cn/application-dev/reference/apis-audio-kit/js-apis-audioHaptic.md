@@ -130,8 +130,8 @@ registerSourceFromFd(audioFd: AudioHapticFileDescriptor, hapticFd: AudioHapticFi
 
 | 参数名  | 类型                                     | 必填| 说明                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| audioFd | [AudioHapticFileDescriptor](#audioHapticFileDescriptor) | 是 | 已打开的有效文件描述符对象，用于描述音频文件。配套的offset和length需符合实际文件长度。 |
-| hapticFd | [AudioHapticFileDescriptor](#audioHapticFileDescriptor) | 是 | 已打开的有效文件描述符对象，用于描述振动文件。配套的offset和length必须符合实际文件长度。 |
+| audioFd | [AudioHapticFileDescriptor](#audiohapticfiledescriptor) | 是 | 已打开的有效文件描述符对象，用于描述音频文件。配套的offset和length需符合实际文件长度。 |
+| hapticFd | [AudioHapticFileDescriptor](#audiohapticfiledescriptor) | 是 | 已打开的有效文件描述符对象，用于描述振动文件。配套的offset和length必须符合实际文件长度。 |
 
 **返回值：**
 

@@ -130,8 +130,8 @@ Return the source ID using a promise after registering the source.
 
 | Name  | Type                                     | Mandatory| Description                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| audioFd   | [AudioHapticFileDescriptor](#audioHapticFileDescriptor)               | Yes  | A valid open file descriptor object for an audio file, where the associated offset and length must correspond to the actual file size.       |
-| hapticFd  | [AudioHapticFileDescriptor](#audioHapticFileDescriptor)               | Yes  | A valid open file descriptor object for a haptics file, where the associated offset and length must correspond to the actual file size.       |
+| audioFd   | [AudioHapticFileDescriptor](#audiohapticfiledescriptor)               | Yes  | A valid open file descriptor object for an audio file, where the associated offset and length must correspond to the actual file size.       |
+| hapticFd  | [AudioHapticFileDescriptor](#audiohapticfiledescriptor)               | Yes  | A valid open file descriptor object for a haptics file, where the associated offset and length must correspond to the actual file size.       |
 
 **Return value**
 
