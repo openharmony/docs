@@ -121,8 +121,8 @@ audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: numb
 
 registerSourceFromFd(audioFd: AudioHapticFileDescriptor, hapticFd: AudioHapticFileDescriptor): Promise&lt;number&gt;
 
-通过文件描述符（fd）注册音频和振动资源。音频与振动在播放时同步使用。
-注册完资源后，将返回一个资源ID。此方法通过 Promise异步返回源ID。
+通过文件描述符（fd）注册音频和振动资源，确保二者在播放时同步。
+注册资源后，将返回资源ID。此方法通过Promise异步返回。
 
 **系统能力：**: SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -130,14 +130,14 @@ registerSourceFromFd(audioFd: AudioHapticFileDescriptor, hapticFd: AudioHapticFi
 
 | 参数名  | 类型                                     | 必填| 说明                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| audioFd   | [AudioHapticFileDescriptor](#audioHapticFileDescriptor)               | 是  | 描述音频文件的文件描述符对象。 需要是已打开的有效的fd，并且配套的offset length符合实际文件长度。       |
-| hapticFd  | [AudioHapticFileDescriptor](#audioHapticFileDescriptor)               | 是  | 描述振动文件的文件描述符对象。 需要是已打开的有效的fd，并且配套的offset length符合实际文件长度。       |
+| audioFd | [AudioHapticFileDescriptor](#audioHapticFileDescriptor) | 是 | 已打开的有效文件描述符对象，描述音频文件。配套的offset和length需符合实际文件长度。 |
+| hapticFd | [AudioHapticFileDescriptor](#audioHapticFileDescriptor) | 是 | 已打开的有效文件描述符对象，描述振动文件。配套的offset和length需符合实际文件长度。 |
 
 **返回值：**
 
 | 类型               | 说明                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回注册资源的source id。|
+| Promise&lt;number&gt; | 返回注册资源的source id。|
 
 **示例：**
 
@@ -163,7 +163,7 @@ const hapticFd: audioHaptic.AudioHapticFileDescriptor = {
 let id = 0;
 
 audioHapticManagerInstance.registerSourceFromFd(audioFd, hapticFd).then((value: number) => {
-  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+  console.info(`Promise returned with registered source id ${value}.`);
   id = value;
 }).catch ((err: BusinessError) => {
   console.error(`Failed to register source ${err}`);
@@ -536,7 +536,7 @@ audioHapticPlayerInstance.release().then(() => {
 
 isHapticsIntensityAdjustmentSupported(): boolean
 
-查询当前设备是否支持调整振动振幅。
+查询当前设备是否支持调整振动幅度。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -544,7 +544,7 @@ isHapticsIntensityAdjustmentSupported(): boolean
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| boolean | 查询结果。 值 **true** 表示当前设备支持调整振动振幅， 值 **false**表示不支持。 |
+| boolean | 查询结果。值 **true** 表示当前设备支持调整振动幅度，值 **false** 表示不支持。 |
 
 **错误码：**
 
@@ -564,7 +564,7 @@ const result: boolean = audioHapticPlayerInstance.isHapticsIntensityAdjustmentSu
 
 isHapticsRampSupported(): boolean
 
-查询当前设备是否支持调整振动渐变。
+检查设备是否支持振动渐变调整。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -572,7 +572,7 @@ isHapticsRampSupported(): boolean
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| boolean | 查询结果。 值 **true** 表示当前设备支持振动渐变， 值 **false**表示不支持。 |
+| boolean | 查询结果。值 **true** 表示当前设备支持振动渐变，**false** 表示不支持。|
 
 **错误码：**
 
@@ -592,8 +592,8 @@ const result: boolean = audioHapticPlayerInstance.isHapticsRampSupported();
 
 enableHapticsInSilentMode(enable: boolean): void
 
-静音模式下，音振协同播放器可以正常振动。
-该方法不能在播放中使用，且必须在释放音振播放器前使用。
+静音模式下，音振协同播放器可以振动。
+该方法必须在释放音振播放器前使用，不能在播放中调用。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -622,8 +622,8 @@ audioHapticPlayerInstance.enableHapticsInSilentMode(true);
 
 setVolume(volume: number): Promise&lt;void&gt;
 
-设置音振协同播放器音量。使用Promise异步回调。
-该方法必须在音振协同播放器释放前调用。
+设置音振协同播放器的音量，使用Promise进行异步回调。
+该方法需在音振协同播放器释放前调用。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -665,8 +665,8 @@ audioHapticPlayerInstance.setVolume(0.5).then(() => {
 
 setHapticsIntensity(intensity: number): Promise&lt;void&gt;
 
-设置音振协同播放器振幅。使用Promise异步回调。
-该方法必须在音振协同播放器释放前调用，且单次播放过程中只能调用一次。
+设置音振协同播放器的振幅，并使用Promise进行异步回调。
+该方法必须在音振协同播放器释放前调用，单次播放过程中仅调用一次。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -709,9 +709,9 @@ audioHapticPlayerInstance.setHapticsIntensity(0.5).then(() => {
 
 setHapticsRamp(duration: number, startIntensity: number, endIntensity: number): Promise&lt;void&gt;
 
-设置音振协同播放器渐变播放。使用Promise异步回调。
-该方法必须在音振协同播放器播放前或者播放后使用，且必须在音振协同播放器销毁前使用。
-该方法只能调用一次。
+设置音振协同播放器渐变播放，使用Promise进行异步回调。
+该方法必须在音振协同播放器播放前后以及销毁前使用。
+该方法仅能调用一次。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -760,8 +760,8 @@ audioHapticPlayerInstance.setHapticsRamp(duration, startIntensity, endIntensity)
 
 setLoop(loop: boolean): Promise&lt;void&gt;
 
-设置音振协同播放器循环播放。使用Promise异步回调。
-该方法必须在音振协同播放器销毁前使用。
+设置音振协同播放器循环播放，并使用Promise进行异步回调。
+该方法需在音振协同播放器销毁前调用。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 

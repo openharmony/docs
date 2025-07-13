@@ -121,8 +121,8 @@ audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: numb
 
 registerSourceFromFd(audioFd: AudioHapticFileDescriptor, hapticFd: AudioHapticFileDescriptor): Promise&lt;number&gt;
 
-Register audio and haptic file represented by fd into manager. Audio and haptic works are paired while playing.
-After registering source, it will returns the source id. This method uses a promise to return the source id.
+Register the audio and haptic files represented by fd into the manager. The audio and haptic effects play in sync.
+After registering the source, this method returns the source ID using a promise.
 
 **System capability**: SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -130,8 +130,8 @@ After registering source, it will returns the source id. This method uses a prom
 
 | Name  | Type                                     | Mandatory| Description                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| audioFd   | [AudioHapticFileDescriptor](#audioHapticFileDescriptor)               | Yes  | The file descriptor of audio source from file system. The file descriptor (fd) must be valid and open, and the associated offset and length must not exceed the actual file size.       |
-| hapticFd  | [AudioHapticFileDescriptor](#audioHapticFileDescriptor)               | Yes  | The file descriptor of haptic source from file system. The file descriptor (fd) must be valid and open, and the associated offset and length must not exceed the actual file size.       |
+| audioFd   | [AudioHapticFileDescriptor](#audioHapticFileDescriptor)               | Yes  | Valid open file descriptor object for an audio file. Associated offset and length must correspond to actual file size.       |
+| hapticFd  | [AudioHapticFileDescriptor](#audioHapticFileDescriptor)               | Yes  | Valid open file descriptor object for an haptics file. Associated offset and length must correspond to actual file size.       |
 
 **Return value**
 
@@ -163,7 +163,7 @@ const hapticFd: audioHaptic.AudioHapticFileDescriptor = {
 let id = 0;
 
 audioHapticManagerInstance.registerSourceFromFd(audioFd, hapticFd).then((value: number) => {
-  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+  console.info(`Registered source with ID ${value}.`);
   id = value;
 }).catch ((err: BusinessError) => {
   console.error(`Failed to register source ${err}`);
@@ -544,7 +544,7 @@ Check whether the device supports haptics intensity adjustment.
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| boolean | Check result. The value **true** means that the device supports haptics intensity adjustment, and **false** means the opposite.|
+| boolean | The value **true** indicates that the device supports haptics intensity adjustment; **false** indicates the opposite.|
 
 **Error codes**
 
@@ -572,7 +572,7 @@ Check whether the device supports haptics intensity ramp effect.
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| boolean | Check result. The value **true** means that the device supports haptics intensity ramp effect, and **false** means the opposite.|
+| boolean | The value **true** indicates that the device supports haptics intensity ramp effect; **false** indicates the opposite.|
 
 **Error codes**
 
@@ -592,8 +592,8 @@ const result: boolean = audioHapticPlayerInstance.isHapticsRampSupported();
 
 enableHapticsInSilentMode(enable: boolean): void
 
-Enables haptics when the ringer mode is silent mode.
-This API can be called only before the player starts or after it stops but before it is released.
+Enables haptics while the ringer mode is set to silent mode.
+This API can be called before the player starts or after it stops but before it is released.
 
 **System capability**: SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -622,8 +622,8 @@ audioHapticPlayerInstance.enableHapticsInSilentMode(true);
 
 setVolume(volume: number): Promise&lt;void&gt;
 
-Sets the audio volume for this player. This API uses a promise to return the result. 
-This API must be called before the player is released.
+Sets the audio volume for this player and uses a promise to return the result.
+Call this API before releasing the player.
 
 **System capability**: SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -665,8 +665,8 @@ audioHapticPlayerInstance.setVolume(0.5).then(() => {
 
 setHapticsIntensity(intensity: number): Promise&lt;void&gt;
 
-Sets the haptics intensity for this player. This API uses a promise to return the result.
-This API must be called before the player is released, and it can be set only once in each playback.
+Sets the haptics intensity for this player, using a promise to return the result.
+Call this API before releasing the player, setting it only once per playback.
 
 **System capability**: SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -709,9 +709,9 @@ audioHapticPlayerInstance.setHapticsIntensity(0.5).then(() => {
 
 setHapticsRamp(duration: number, startIntensity: number, endIntensity: number): Promise&lt;void&gt;
 
-Sets the haptics intensity ramp effect for this player. This API uses a promise to return the result.
-This API can be called only before the player starts or after it stops but before it is released.
-This API can be set only once.
+Sets the haptics intensity ramp effect for this player using a promise to return the result.
+Call this API before the player starts or after it stops, but before it is released.
+This API must be called only once.
 
 **System capability**: SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -760,8 +760,8 @@ audioHapticPlayerInstance.setHapticsRamp(duration, startIntensity, endIntensity)
 
 setLoop(loop: boolean): Promise&lt;void&gt;
 
-Set the playback to be looping. This method uses a promise to return the result.
-This function should be called before player release.
+Set the playback to be looping; this method uses a promise to return the result.
+Call this API before releasing the player.
 
 **System capability**: SystemCapability.Multimedia.AudioHaptic.Core
 
