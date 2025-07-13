@@ -536,7 +536,7 @@ audioHapticPlayerInstance.release().then(() => {
 
 isHapticsIntensityAdjustmentSupported(): boolean
 
-查询设备是否支持调整振动幅度。
+查询设备是否可以调整振动幅度。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -544,7 +544,7 @@ isHapticsIntensityAdjustmentSupported(): boolean
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| boolean             | 值 **true** 表示设备支持调整振动幅度，**false** 表示设备不支持调整振动幅度。 |
+| boolean             | 值 **true** 表示设备可以调整振动幅度，**false** 表示设备不可以调整振动幅度。 |
 
 **错误码：**
 
@@ -564,7 +564,7 @@ const result: boolean = audioHapticPlayerInstance.isHapticsIntensityAdjustmentSu
 
 isHapticsRampSupported(): boolean
 
-查询设备是否支持振动渐变。
+查询设备是否可以设置振动渐变。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -572,7 +572,7 @@ isHapticsRampSupported(): boolean
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| boolean             | 值 **true** 表示设备支持振动渐变，**false** 表示设备不支持振动渐变。|
+| boolean             | 值 **true** 表示设备可以设置振动渐变，**false** 表示设备不可以设置振动渐变。|
 
 **错误码：**
 
