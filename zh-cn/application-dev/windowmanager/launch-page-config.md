@@ -68,7 +68,6 @@ startWindow字段提供了增强的启动页配置能力，可用于元素更复
    | startWindowBackgroundColor | string | 否 | 标识当前UIAbility组件增强启动背景色资源文件的索引，取值为长度不超过255字节的字符串。<br/>背景色填充整个窗口，显示层级最低，不建议采用透明色。<br/>如未配置该字段，则启动页增强配置文件不生效，采用简易启动页配置。 |
    | startWindowBackgroundImage | string | 是 | 标识当前UIAbility组件增强启动背景图片资源文件的索引，取值为长度不超过255字节的字符串。<br/>以整个窗口为容器，填充方式由startWindowBackgroundImageFit字段指定。 |
    | startWindowBackgroundImageFit | string | 是 | 标识当前UIAbility组件增强启动背景图片的填充方式，当前支持取值为：<br/>- "Contain"：保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。<br/>- "Cover"：保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br/>- "Auto"：图像会根据其自身尺寸和组件的尺寸进行适当缩放，以在保持比例的同时填充视图。<br/>- "Fill"：不保持宽高比进行放大缩小，使得图片充满显示边界。<br/>- "ScaleDown"：保持宽高比显示，图片缩小或者保持不变。<br/>- "None"：保持原有尺寸显示。<br/>如未配置该字段，默认采用Cover填充方式。 |
-  
    
 **图2** 增强启动页示意图
    
