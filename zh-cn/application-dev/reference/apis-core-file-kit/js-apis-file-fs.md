@@ -4687,9 +4687,8 @@ onCancel(): Promise&lt;string&gt;
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { TaskSignal } from '@ohos.file.fs';
 let copySignal: fs.TaskSignal = new TaskSignal();
-copySignal.onCancel().then(() => {
-    console.info("copyFileWithCancel success.");
-});
+let srcPath = copySignal.onCancel();
+console.info("copyFileWithCancel success." + srcPath);
 ```
 
 ## CopyOptions<sup>11+</sup>
