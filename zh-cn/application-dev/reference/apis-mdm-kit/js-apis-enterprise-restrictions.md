@@ -129,7 +129,7 @@ setDisallowedPolicyForAccount(admin: Want, feature: string, disallow: boolean, a
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
-| feature  | string                                                  | 是   | feature名称。<br/>- fingerprint：设备指纹认证能力，当前仅支持2in1设备使用。使用此参数时有以下规则：<br/>1. 通过[setDisallowedPolicy](#restrictionssetdisallowedpolicy)接口禁用了设备指纹认证能力，再使用本接口传入此参数，会报策略冲突。<br/>2. 通过本接口设置禁用/启用指定用户的设备指纹认证能力后，再通过[setDisallowedPolicy](#restrictionssetdisallowedpolicy)接口禁用设备指纹认证能力时，后者会覆盖前者的策略。此后再通过[setDisallowedPolicy](#restrictionssetdisallowedpolicy)接口启用设备指纹认证能力，则所有用户都允许使用设备指纹认证能力。<br/>- mtpClient<sup>20+</sup>：MTP客户端能力（仅包含写入），当前仅支持2in1设备使用。MTP（MediaTransferProtocol，媒体传输协议），该协议允许用户在移动设备上线性访问媒体文件。当已经通过[setDisallowedPolicy](#restrictionssetdisallowedpolicy)接口禁用了设备MTP客户端能力时，再通过本接口禁用某用户MTP客户端写入能力，会报策略冲突。 |
+| feature  | string                                                  | 是   | feature名称。<br/>- fingerprint：设备指纹认证能力，当前仅支持2in1设备使用。使用此参数时有以下规则：<br/>1. 通过[setDisallowedPolicy](#restrictionssetdisallowedpolicy)接口禁用了设备指纹认证能力，再使用本接口传入此参数，会报策略冲突。<br/>2. 通过本接口设置禁用/启用指定用户的设备指纹认证能力后，再通过[setDisallowedPolicy](#restrictionssetdisallowedpolicy)接口禁用设备指纹认证能力时，后者会覆盖前者的策略。此后再通过[setDisallowedPolicy](#restrictionssetdisallowedpolicy)接口启用设备指纹认证能力，则所有用户都允许使用设备指纹认证能力。<br/>- mtpClient<sup>20+</sup>：MTP客户端能力（仅包含写入），当前仅支持2in1设备使用。MTP（MediaTransferProtocol，媒体传输协议），该协议允许用户在移动设备上线性访问媒体文件。当已经通过[setDisallowedPolicy](#restrictionssetdisallowedpolicy)接口禁用了设备MTP客户端能力时，再通过本接口禁用某用户MTP客户端写入能力，会报策略冲突。<br/>- sudo<sup>20+</sup>：支持sudo功能管控策略配置，当前仅支持2in1设备使用。使用此参数时有以下作用：<br/>1. 按用户级下发企业空间或个人空间sudo能力的禁用策略，企业空间或个人空间不能使用sudo提权。<br/>2. 按用户级清空企业空间或个人空间sudo能力配置策略，恢复默认开启sudo能力。|
 | disallow | boolean                                                 | 是   | true表示禁用，false表示启用。                        |
 | accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
 
@@ -380,7 +380,7 @@ setUserRestriction(admin: Want, settingsItem: string, restricted: boolean): void
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
-| settingsItem  | string                                                  | 是   | 行为名称。<br/>- setApn：APN设置，当前仅支持手机、平板使用。<br/>- powerLongPress：长按电源键打开电源菜单，当前仅支持手机、平板使用。 |
+| settingsItem  | string                                                  | 是   | 行为名称。<br/>- setApn：APN设置，当前仅支持手机、平板使用。<br/>- powerLongPress：长按电源键打开电源菜单，当前仅支持手机、平板使用。<br/>- setEthernetIp：修改以太网IP地址，该设置仅在PC/2in1设备上生效。<br/>- setDeviceName：修改设备名称, 当前仅支持PC/2in设备、手机、平板使用。<br/>- setBiometricsAndScreenLock：修改锁屏密码, 当前仅支持PC/2in设备、手机、平板使用。|
 | restricted | boolean                                                 | 是   | 是否限制行为。true表示限制，false表示允许。                       |
 
 **错误码**：
@@ -409,5 +409,60 @@ try {
   console.info('Succeeded in restricting from setting apn');
 } catch (err) {
   console.error(`Failed to restrict from setting apn. Code is ${err.code}, message is ${err.message}`);
+}
+```
+## restrictions.getUserRestricted<sup>20+</sup>
+
+getUserRestricted(admin: Want, settingsItem: string): boolean
+
+获取指定设置项的禁用状态。
+
+
+**需要权限：** ohos.permission.ENTERPRISE_SET_USER_RESTRICTION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+
+**参数：**
+
+| 参数名  | 类型                                                    | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
+| settingsItem | string                                             | 是   | 指定设置项。<br/>- setEthernetIp：修改以太网IP地址，该设置仅在PC/2in1设备上生效。<br/>- setDeviceName：修改设备名称, 该设置仅在PC/2in1设备、手机、平板上生效。<br/>- setBiometricsAndScreenLock：修改锁屏密码, 该设置仅在PC/2in1设备、手机、平板上生效。|
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回true表示settingsItem对应的设置项被禁用，false表示settingsItem对应的设置项未被禁用。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { restrictions } from '@kit.MDMKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  let result: boolean = restrictions.getUserRestricted(wantTemp, 'setEthernetIp');
+  console.info('Succeeded in get user restrited');
+} catch (err) {
+  console.error(`Failed to get user restrited. Code is ${err.code}, message is ${err.message}`);
 }
 ```
