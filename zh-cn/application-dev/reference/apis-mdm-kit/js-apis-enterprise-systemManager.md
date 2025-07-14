@@ -440,6 +440,157 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
     console.error(`Get update auth data failed. Code is ${error.code},message is ${error.message}`);
   });
 ```
+
+
+## systemManager.addDisallowedNearLinkProtocols<sup>20+</sup>
+
+addDisallowedNearLinkProtocols(admin: Want, protocol: Array<NearLinkProtocol>, accountId: number)
+
+添加禁用指定用户的星闪协议。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
+| protocol  | Array<[NearLinkProtocol](#NearLinkProtocol)>               | 是   | 星闪协议枚举列表 |                       |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | the administrator application does not have permission to manage the device. |                 |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+let protocol: Array<NearLinkProtocol> = [systemManager.NearLinkProtocol.SSAP, systemManager.NearLinkProtocol.DATA_TRANSFER];
+
+try {
+  systemManager.addDisallowedNearLinkProtocols(wantTemp, protocol, 100);
+  console.info('Succeeded in adding nearlink protocols disabled');
+} catch (err) {
+  console.error(`Failed to adding nearlink protocols disabled. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## systemManager.removeDisallowedNearLinkProtocols<sup>20+</sup>
+
+removeDisallowedNearLinkProtocols(admin: Want, protocol: Array<NearLinkProtocol>, accountId: number)
+
+移除禁用指定用户的星闪协议。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
+| protocol  | Array<[NearLinkProtocol](#NearLinkProtocol)>               | 是   | 星闪协议枚举列表 |                       |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | the administrator application does not have permission to manage the device. |                 |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+let protocol: Array<NearLinkProtocol> = [systemManager.NearLinkProtocol.SSAP, systemManager.NearLinkProtocol.DATA_TRANSFER];
+
+try {
+  systemManager.removeDisallowedNearLinkProtocols(wantTemp, protocol, 100);
+  console.info('Succeeded in adding nearlink protocols disabled');
+} catch (err) {
+  console.error(`Failed to adding nearlink protocols disabled. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## systemManager.getDisallowedNearLinkProtocols<sup>20+</sup>
+
+getDisallowedNearLinkProtocols(admin: Want, accountId: number): Array<NearLinkProtocol>;
+获取指定用户禁用的星闪协议。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名  | 类型                                                    | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回true表示参数feature对应的特性被禁用，false表示参数feature对应的特性未被禁用。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | the administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  let result: Array<NearLinkProtocol> = systemManager.getDisallowedNearLinkProtocols(wantTemp, 100);
+  console.info(`Succeeded in querying is the nearlink protocol disabled : ${result}`);
+} catch (err) {
+  console.error(`Failed to set nearlink protocols disabled. Code is ${err.code}, message is ${err.message}`);
+}
+```
+  
 ## SystemUpdateInfo
 
 待更新的系统版本信息。
@@ -574,3 +725,14 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 | UPDATING           | -2 | 正在更新。 |
 | UPDATE_FAILURE     | -1 | 更新失败。 |
 | UPDATE_SUCCESS     | 0 | 更新成功。 |
+
+## NearLinkProtocol 
+
+系统更新状态。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称               | 值  | 说明    |
+| -----------------  | ---- | ----- |
+| SSAP   | 0 |  SSAP协议。 |
+| DATA_TRANSFER      |1| 数据传输协议。 |
