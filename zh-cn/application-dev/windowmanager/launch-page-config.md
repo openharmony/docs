@@ -61,7 +61,6 @@ startWindow字段提供了增强的启动页配置能力，可用于元素更复
 
    | 字段 | 类型 | 是否可缺省 | 含义 |
    | -------- | -------- | -------- | -------- |
-    | startWindowType | string | 是 | 标识当前UIAbility组件是否隐藏启动页。<br/>当前仅支持在2in1设备或平板设备的自由多窗模式下使用。<br/>不同取值含义如下：<br/>\- "REQUIRED_SHOW"：强制显示启动页。不受[Ability管理服务（即StartOptions中hideStartWindow字段）](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions)的影响。<br/>\- "REQUIRED_HIDE"：强制隐藏启动页。不受[Ability管理服务（即StartOptions中hideStartWindow字段）](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions)的影响。<br/>\- "OPTIONAL_SHOW"：可选显示，默认行为为显示启动页，如果[Ability管理服务（即StartOptions中hideStartWindow字段）](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions)设置隐藏启动页，则隐藏启动页。<br/>\- 如未配置该字段，默认取值为"REQUIRED_SHOW"，即强制显示启动页。 |
    | startWindowAppIcon | string | 是 | 标识当前UIAbility组件增强启动页面图标资源文件的索引，取值为长度不超过255字节的字符串。<br/>在窗口上部分展示，资源由系统侧进行缩放，使其完全显示在展示区域内，宽高比保持不变。<br/>图标资源展示区域的尺寸由系统侧根据窗口尺寸选取，取值为128vp\*128vp、192vp\*192vp或256vp\*256vp。<br/>与插画资源startWindowIllustration同时配置时，仅展示图标资源。 |
    | startWindowIllustration | string | 是 | 标识当前UIAbility组件增强启动页面插画资源文件的索引，取值为长度不超过255字节的字符串。<br/>在窗口上部分展示，如资源尺寸超出其展示区域，将由系统侧保持宽高比缩小，使得资源完全显示在其展示区域内；否则其尺寸保持不变。<br/>插画资源展示区域宽高比为1。<br/>与图标资源startWindowAppIcon同时配置时，仅展示图标资源。 |
    | startWindowBrandingImage | string | 是 | 标识当前UIAbility组件增强启动页面品牌标识资源文件的索引，取值为长度不超过255字节的字符串。<br/>在窗口下部分展示，如资源尺寸超出其展示区域，将由系统侧保持宽高比缩小，使得资源完全显示在其展示区域内；否则其尺寸保持不变。<br/>如果窗口高度不足300vp，此资源将被隐藏。 |
@@ -77,7 +76,6 @@ startWindow字段提供了增强的启动页配置能力，可用于元素更复
    
    ```json
    {
-     "startWindowType": "REQUIRED_SHOW",
      "startWindowAppIcon": "$media:icon",
      "startWindowIllustration": "$media:illustration",
      "startWindowBrandingImage": "$media:brand",
