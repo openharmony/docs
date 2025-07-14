@@ -38,7 +38,7 @@
 | flex-direction | string | row | 否 | flex容器主轴方向。可选项有：<br/>-&nbsp;column：垂直方向从上到下<br/>-&nbsp;row：水平方向从左到右 |
 | flex-wrap | string | nowrap | 否 | flex容器是单行还是多行显示，该值暂不支持动态修改。可选项有：<br/>-&nbsp;nowrap：不换行，单行显示。<br/>-&nbsp;wrap：换行，多行显示。 |
 | justify-content | string | flex-start | 否 | flex容器当前行的主轴对齐格式。可选项有：<br/>-&nbsp;flex-start：项目位于容器的开头。<br/>-&nbsp;flex-end：项目位于容器的结尾。<br/>-&nbsp;center：项目位于容器的中心。<br/>-&nbsp;space-between：项目位于各行之间留有空白的容器内。<br/>-&nbsp;space-around：项目位于各行之前、之间、之后都留有空白的容器内。 |
-| align-items | string | stretch<sup>5+</sup><br/>flex-start<sup>1-4</sup> | 否 | flex容器当前行的交叉轴对齐格式，可选值为：<br/>-&nbsp;stretch：弹性元素在交叉轴方向被拉伸到与容器相同的高度或宽度。<sup>5+</sup><br/>-&nbsp;flex-start：元素向交叉轴起点对齐。<br/>-&nbsp;flex-end：元素向交叉轴终点对齐。<br/>-&nbsp;center：元素在交叉轴居中。 |
+| align-items | string | stretch<sup>5+</sup><br/>flex-start<sup>1-4</sup> | 否 | flex容器当前行的交叉轴对齐格式，可选值为：<br/>-&nbsp;stretch<sup>5+</sup>：弹性元素在交叉轴方向被拉伸到与容器相同的高度或宽度。<br/>-&nbsp;flex-start：元素向交叉轴起点对齐。<br/>-&nbsp;flex-end：元素向交叉轴终点对齐。<br/>-&nbsp;center：元素在交叉轴居中。 |
 | display | string | flex | 否 | 确定该元素视图框的类型，该值暂不支持动态修改。可选值为：<br/>-&nbsp;flex：弹性布局<br/>-&nbsp;none：不渲染此元素 |
 | width | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | - | 否 | 设置组件自身的宽度。<br/>未设置时组件宽度默认为0。 |
 | height | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | - | 否 | 设置组件自身的高度。<br/>未设置时组件高度默认为0。 |
