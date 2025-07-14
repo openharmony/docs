@@ -49,7 +49,7 @@
     - [ArkTS高性能编程实践](quick-start/arkts-high-performance-programming.md)
     - 面向其他语言的ArkTS迁移指导<!--arkts-for-other-languages-->
       - [从Java到ArkTS的迁移指导](quick-start/getting-started-with-arkts-for-java-programmers.md)
-      - [从Swift到ArkTS的迁移指导](quick-start/getting-started-with-arkts-for-swift-programmers.md)    
+      - [从Swift到ArkTS的迁移指导](quick-start/getting-started-with-arkts-for-swift-programmers.md)
 - 开发<!--application-develop-->
   - 应用框架<!--app-framework-->
     - Ability Kit（程序框架服务）<!--ability-kit-->
@@ -126,7 +126,13 @@
           - [设置任务快照的图标和名称](application-models/mission-set-icon-name-for-task-snapshot.md)
         <!--DelEnd-->
         - [Stage模型应用配置文件](application-models/config-file-stage.md)
-        - [标准意图接入规范](application-models/insight-intent-access-specifications.md)
+        - 意图框架开发指导<!--insight-intent-->
+          - [意图框架概述](application-models/insight-intent-overview.md)
+          - 开发意图<!--insight-intent-development-->
+            - [意图开发概述](application-models/insight-intent-definition.md)
+            - [使用配置文件开发意图](application-models/insight-intent-config-development.md)
+            - [使用装饰器开发意图](application-models/insight-intent-decorator-development.md)
+          - [调试意图](application-models/insight-intent-debug.md)
       - FA模型开发指导<!--fa-model-development-->
         - [FA模型开发概述](application-models/fa-model-development-overview.md)
         - FA模型应用组件<!--fa-model-application-components-->
@@ -251,7 +257,7 @@
         - 多对多跨应用数据共享<!--many-to-many-data-share-->
           - [通过标准化数据通路实现数据共享 (ArkTS)](database/unified-data-channels.md)
           - [通过标准化数据通路实现数据共享 (C/C++)](database/unified-data-channels-c.md)
-      - [应用数据向量化 (ArkTS)](database/aip-data-intelligence-embedding.md) 
+      - [应用数据向量化 (ArkTS)](database/aip-data-intelligence-embedding.md)
       - [SQLite调试工具](database/sqlite-database-debug-tool.md)
       - [ArkData术语](database/data-terminology.md)
     - ArkTS（方舟编程语言）<!--arkts-->
@@ -341,6 +347,7 @@
           - [静态方式加载native模块](arkts-utils/arkts-import-native-module.md)
           - [基于Node-API加载模块](arkts-utils/load-module-base-nodeapi.md)
           - [模块加载副作用及优化](arkts-utils/arkts-module-side-effects.md)
+        - [ArkTS运行时常见问题](arkts-utils/arkts-runtime-faq.md)
       - ArkTS编译工具链<!--arkts-compilation-tool-chain-->
         - [ArkTS编译工具链概述](arkts-utils/compilation-tool-chain-overview.md)
         - 方舟字节码<!--arkts-bytecode-->
@@ -685,11 +692,12 @@
         - [窗口开发概述](windowmanager/window-overview.md)
         - [管理应用窗口（Stage模型）](windowmanager/application-window-stage.md)
         - [管理应用窗口（FA模型）](windowmanager/application-window-fa.md)
+        - [窗口元数据配置](windowmanager/window-config-m.md)
         <!--Del-->
         - [管理系统窗口（仅Stage模型支持）](windowmanager/system-window-stage.md)
         - [WindowExtensionAbility（仅对系统应用开放）](windowmanager/windowextensionability.md)
         <!--DelEnd-->
-        - [使用NativeWindowEventFilter过滤多模输入事件（C/C++）](windowmanager/native-window-event-filter.md)
+        - [使用WindowManager管理多模输入事件（C/C++）](windowmanager/native-window-event-filter.md)
       - 屏幕管理<!--display-manager-->
         - [屏幕管理简介](displaymanager/displayManager-overview.md)
         - [使用OH_DisplayManager实现屏幕基础信息查询和状态监听 (C/C++)](displaymanager/native-display-manager.md)
@@ -845,7 +853,7 @@
             - [卡片编辑开发指导](form/arkts-ui-widget-event-formeditextensionability.md)
           - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
             - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
-        <!--Del--> 
+        <!--Del-->
         - [ArkTS卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
         <!--DelEnd-->
         - 互动卡片开发<!--arkts-ui-liveform-->
@@ -1318,6 +1326,9 @@
           - [应用文件上传下载](basic-services/request/app-file-upload-download.md)
         - 压缩与解压<!--compress-->
           - [压缩与解压](basic-services/compress/deflate-and-inflate.md)
+        - 划词服务<!--selectioninput-->
+          - [划词服务概述](basic-services/selectionInput/selection-services-intro.md)
+          - [实现一个划词应用](basic-services/selectionInput/selection-services-application-guide.md)
       - Function Flow Runtime Kit（任务并发调度服务）<!--ffrt-kit-->
         - [Function Flow Runtime Kit概述](ffrt/ffrt-overview.md)
         - [Function Flow Runtime并发范式](ffrt/ffrt-concurrency-paradigm.md)
@@ -1334,8 +1345,8 @@
       - Input Kit（多模输入服务）<!--input-kit-->
         - [Input Kit简介](device/input/input-overview.md)
         - [输入设备开发指导](device/input/inputdevice-guidelines.md)
+        - [按键拦截监听开发指导](device/input/keypressed-guidelines.md)
         - [鼠标光标开发指导](device/input/pointerstyle-guidelines.md)
-        - [按键拦截监听开发指导](device/input/keypressed-guidelines.md)        
         <!--Del-->
         - [输入监听开发指导](device/input/inputmonitor-guidelines.md)
         - [事件注入开发指导](device/input/inputeventclient-guidelines.md)
@@ -1377,6 +1388,12 @@
           - [振动开发概述](device/sensor/vibrator-overview.md)
           - [振动开发指导(ArkTS)](device/sensor/vibrator-guidelines.md)
           - [振动开发指导(C/C++)](device/sensor/vibrator-guidelines-capi.md)
+      - Mechanic Kit（机械设备管理服务）<!--mechanic-kit-->
+        - [Mechanic Kit简介](mechanicManager/mechanic-kit-intro.md)
+        - [智能拍摄跟踪开发指南](mechanicManager/camera-tracking-guide.md)
+        <!--Del-->
+        - [设备转动控制开发指南](mechanicManager/rotation-control-guide.md)
+        <!--DelEnd-->
     - 调测调优<!--system-debug-optimize-->
       - Performance Analysis Kit（性能分析服务）<!--performance-analysis-kit-->
         - [Performance Analysis Kit简介](dfx/performance-analysis-kit-overview.md)
@@ -1502,7 +1519,9 @@
         - [使用OHAudio开发音频播放功能(C/C++)](media/audio/using-ohaudio-for-playback.md)
         - [使用AudioHaptic开发音振协同播放功能](media/audio/using-audiohaptic-for-playback.md)
         - [播放音量管理](media/audio/volume-management.md)
+        - [提升音频性能体验](media/audio/audio-performance.md)
         - [音频时延管理](media/audio/audio-latency.md)
+        - [音频工作组管理](media/audio/audio-workgroup.md)
         - [音效管理](media/audio/audio-effect-management.md)
         - [空间音频管理](media/audio/public-audio-spatialization-management.md)
         <!--Del-->
@@ -1513,7 +1532,6 @@
         <!--Del-->
         - [分布式音频播放(仅对系统应用开放)](media/audio/distributed-audio-playback.md)
         <!--DelEnd-->
-        - [音频工作组管理](media/audio/audio-workgroup.md)
       - 音频录制<!--audio-recording-->
         - [音频录制开发概述](media/audio/audio-recording-overview.md)
         - [使用AudioCapturer开发音频录制功能](media/audio/using-audiocapturer-for-recording.md)
@@ -1539,6 +1557,7 @@
         - [音频编码](media/avcodec/audio-encoding.md)
         - [音频解码](media/avcodec/audio-decoding.md)
         - [视频编码](media/avcodec/video-encoding.md)
+        - [视频编码同步模式](media/avcodec/synchronous-video-encoding.md)
         - [时域可分层视频编码](media/avcodec/video-encoding-temporal-scalability.md)
         - [典型场景的视频编码配置](media/avcodec/video-encoding-configuration-typical-scenarios.md)
         - [ROI视频编码](media/avcodec/video-encoding-ROI.md)
@@ -1556,7 +1575,7 @@
         - [媒体会话提供方](media/avsession/using-avsession-developer.md)
         - [媒体会话提供方(C/C++)](media/avsession/using-ohavsession-developer.md)
         - [应用接入AVSession场景介绍](media/avsession/avsession-access-scene.md)
-        - [后台播放](media/avsession/avsession-background-scene.md) 
+        - [后台播放](media/avsession/avsession-background-scene.md)
         <!--Del-->
         - [媒体会话控制方(仅对系统应用开放)](media/avsession/using-avsession-controller.md)
         <!--DelEnd-->
@@ -1805,7 +1824,6 @@
         - [发布实况窗类型通知（仅对系统应用开放）](notification/live-view-notification.md)
         <!--DelEnd-->
         - [为通知添加行为意图](notification/notification-with-wantagent.md)
-        - [为跨设备协同通知添加快捷回复](notification/notification-quickreply.md)
       - [更新通知](notification/notification-update.md)
       - [取消通知](notification/notification-cancel.md)
       <!--Del-->
@@ -1855,7 +1873,7 @@
       - [多态组件](key-features/multi-device-app-dev/polymorphic-controls.md)
       - [资源使用](key-features/multi-device-app-dev/resource-usage.md)
     - [功能开发的一多能力介绍](key-features/multi-device-app-dev/development-intro.md)
-    - [一多开发实例（短信）](key-features/multi-device-app-dev/case.md)  
+    - [一多开发实例（短信）](key-features/multi-device-app-dev/case.md)
     - [常见问题](key-features/multi-device-app-dev/multi-faq.md)
   <!--DelEnd-->
   - NDK开发<!--ndk-development-->
@@ -1881,34 +1899,34 @@
           - [使用Node-API进行扩展能力功能开发](napi/use-napi-about-extension.md)
           - [使用Node-API进行array相关开发](napi/use-napi-about-array.md)
           - [使用Node-API进行arraybuffer相关开发](napi/use-napi-about-arraybuffer.md)
-          - [使用Node-API进行bigInt相关开发](napi/use-napi-about-bigint.md)
-          - [使用Node-API进行buffer相关开发](napi/use-napi-about-buffer.md)
-          - [使用Node-API进行basic_data_types相关开发](napi/use-napi-basic-data-types.md)
+          - [使用Node-API接口操作bigint类型值](napi/use-napi-about-bigint.md)
+          - [使用Node-API接口进行buffer相关开发](napi/use-napi-about-buffer.md)
+          - [使用Node-API接口创建基本数据类型](napi/use-napi-basic-data-types.md)
           - [使用Node-API进行class相关开发](napi/use-napi-about-class.md)
-          - [使用Node-API进行cleanuphook相关开发](napi/use-napi-about-cleanuphook.md)
-          - [使用Node-API进行date相关开发](napi/use-napi-about-date.md)
-          - [使用Node-API进行错误处理开发](napi/use-napi-about-error.md)
-          - [使用Node-API进行environmental-life-cycle相关开发](napi/use-napi-about-environmental-life-cycle.md)
-          - [使用Node-API进行function相关开发](napi/use-napi-about-function.md)
-          - [使用Node-API进行life-cycle相关开发](napi/use-napi-life-cycle.md)
-          - [使用Node-API进行object相关开发](napi/use-napi-about-object.md)
-          - [使用Node-API进行other-practical-tools相关开发](napi/use-napi-about-other-practical-tools.md)
-          - [使用Node-API进行primitive相关开发](napi/use-napi-about-primitive.md)
-          - [使用Node-API进行promise相关开发](napi/use-napi-about-promise.md)
-          - [使用Node-API进行property相关开发](napi/use-napi-about-property.md)
-          - [使用Node-API进行string相关开发](napi/use-napi-about-string.md)
+          - [使用Node-API接口注册和使用环境清理钩子](napi/use-napi-about-cleanuphook.md)
+          - [使用Node-API接口进行Date相关开发](napi/use-napi-about-date.md)
+          - [使用Node-API接口进行错误处理开发](napi/use-napi-about-error.md)
+          - [使用Node-API接口关联数据，使其生命周期与当前环境的生命周期相关联](napi/use-napi-about-environmental-life-cycle.md)
+          - [使用Node-API接口进行函数创建和调用](napi/use-napi-about-function.md)
+          - [使用Node-API接口进行生命周期相关开发](napi/use-napi-life-cycle.md)
+          - [使用Node-API接口进行object相关开发](napi/use-napi-about-object.md)
+          - [使用Node-API其他实用接口](napi/use-napi-about-other-practical-tools.md)
+          - [使用Node-API接口进行primitive类相关开发](napi/use-napi-about-primitive.md)
+          - [使用Node-API接口处理异步操作](napi/use-napi-about-promise.md)
+          - [使用Node-API接口设置ArkTS对象的属性](napi/use-napi-about-property.md)
+          - [使用Node-API接口创建和获取string值](napi/use-napi-about-string.md)
           - [使用Node-API进行自定义异步操作相关开发](napi/use-napi-about-custom-asynchronous-operations.md)
         - Node-API典型使用场景<!--napi-scenarios-->
           - [使用Node-API接口进行异步任务开发](napi/use-napi-asynchronous-task.md)
           - [使用Node-API接口进行线程安全开发](napi/use-napi-thread-safety.md)
           - [Native与ArkTS对象绑定](napi/use-napi-object-wrap.md)
-          - [Native与sendable ArkTS对象绑定](napi/use-sendable-napi.md)
+          - [Native与Sendable ArkTS对象绑定](napi/use-sendable-napi.md)
           - [使用Node-API接口创建ArkTS运行时环境](napi/use-napi-ark-runtime.md)
           - [使用Node-API接口在主线程中进行模块加载](napi/use-napi-load-module.md)
           - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](napi/use-napi-event-loop.md)
           - [使用Node-API接口进行模块加载](napi/use-napi-load-module-with-info.md)
           - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](napi/use-call-threadsafe-function-with-priority.md)
-          - [使用Node-API接口创建、切换和销毁上下文环境](napi/use-napi-about-context.md)
+          - [使用扩展的Node-API接口在当前线程中创建、切换和销毁上下文环境](napi/use-napi-about-context.md)
           - [使用Node-API接口产生的异常日志/崩溃分析](napi/use-napi-about-crash.md)
           - [使用Node-API调用返回值为promise的ArkTS方法](napi/use-napi-method-promise.md)
         - Node-API常见问题汇总<!--napi-questions-->
@@ -1966,6 +1984,8 @@
               - [JSVM 通用调优实践](napi/jsvm-optimizations.md)
         - JSVM性能调试指导<!--jsvm-performance-->
             - [使用HiSmartPerf采集V8 trace](napi/use-jsvm-about-v8-trace.md)
+      - Longque-JS-API<!--longque-->
+        - [Longque-JS-API使用指导](napi/use-longque-js-api.md)
       - OpenMP支持<!--openmp-->
         - [OpenMP简介](napi/openmp-overview.md)
         - [OpenMP应用构建和运行指南](napi/openmp-guideline.md)
@@ -2390,6 +2410,7 @@
       - ArkTS API<!--arkdata-arkts-->
         - [@ohos.data.commonType (数据通用类型)](reference/apis-arkdata/js-apis-data-commonType.md)
         - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis-arkdata/js-apis-data-ability.md)
+        - [@ohos.data.dataShare (数据共享)](reference/apis-arkdata/js-apis-data-dataShare.md)
         - [@ohos.data.dataSharePredicates (数据共享谓词)](reference/apis-arkdata/js-apis-data-dataSharePredicates.md)
         - [@ohos.data.distributedDataObject (分布式数据对象)](reference/apis-arkdata/js-apis-data-distributedobject.md)
         - [@ohos.data.distributedKVStore (分布式键值数据库)](reference/apis-arkdata/js-apis-distributedKVStore.md)
@@ -2664,7 +2685,7 @@
             - [自定义事件拦截](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md)
             - [自定义事件分发](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-child-touch-test.md)
           - 无障碍相关<!--accessibility-related-->
-            - [无障碍事件](reference/apis-arkui/arkui-ts/ts-universal-accessibility-event.md)
+            - [无障碍控制操作](reference/apis-arkui/arkui-ts/ts-universal-accessibility-event.md)
             - [无障碍悬浮事件](reference/apis-arkui/arkui-ts/ts-universal-accessibility-hover-event.md)
           - 组件变化事件<!--component-change-->
             - [挂载卸载事件](reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md)
@@ -3337,7 +3358,7 @@
           - [Class (WebSchemeHandler)](reference/apis-arkweb/arkts-apis-webview-WebSchemeHandler.md)
           - [Class (WebSchemeHandlerRequest)](reference/apis-arkweb/arkts-apis-webview-WebSchemeHandlerRequest.md)
           - [Class (WebSchemeHandlerResponse)](reference/apis-arkweb/arkts-apis-webview-WebSchemeHandlerResponse.md)
-          - [Class (WebStorage)](reference/apis-arkweb/arkts-apis-webview-WebStorage.md)  
+          - [Class (WebStorage)](reference/apis-arkweb/arkts-apis-webview-WebStorage.md)
           - [Interface (BackForwardList)](reference/apis-arkweb/arkts-apis-webview-BackForwardList.md)
           - [Interface (NativeMediaPlayerBridge)](reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerBridge.md)
           - [Interface (NativeMediaPlayerHandler)](reference/apis-arkweb/arkts-apis-webview-NativeMediaPlayerHandler.md)
@@ -3409,6 +3430,8 @@
           - [ArkWeb_WebMessageAPI](reference/apis-arkweb/capi-web-arkweb-webmessageapi.md)
           - [ArkWeb_CookieManagerAPI](reference/apis-arkweb/capi-web-arkweb-cookiemanagerapi.md)
           - [ArkWeb_JavaScriptValueAPI](reference/apis-arkweb/capi-web-arkweb-javascriptvalueapi.md)
+      - Longque JS API<!--longque-js-api-->
+        - [Longque-JS-API](reference/apis-arkweb/arkts-apis-longque.md)
       - 错误码<!--arkweb-arkts-errcode-->
         - [Webview错误码](reference/apis-arkweb/errorcode-webview.md)
     - Background Tasks Kit（后台任务开发服务）<!--background-tasks-api-->
@@ -3821,11 +3844,11 @@
             - [tagSession (标准NFC-Tag TagSession)](reference/apis-connectivity-kit/js-apis-tagSession.md)
         - C API<!--connectivity-c-->
           - 模块<!--connectivity-module-->
-            - [Bluetooth](reference/apis-connectivity-kit/_bluetooth.md)
-            - [Wifi](reference/apis-connectivity-kit/_wifi.md)
+            - [Bluetooth](reference/apis-connectivity-kit/capi-bluetooth.md)
+            - [Wifi](reference/apis-connectivity-kit/capi-wifi.md)
           - 头文件<!--connectivity-headerfile-->
-            - [oh_bluetooth.h](reference/apis-connectivity-kit/oh__bluetooth_8h.md)
-            - [oh_wifi.h](reference/apis-connectivity-kit/oh__wifi_8h.md)
+            - [oh_bluetooth.h](reference/apis-connectivity-kit/capi-oh-bluetooth-h.md)
+            - [oh_wifi.h](reference/apis-connectivity-kit/capi-oh-wifi-h.md)
         - 错误码<!--connectivity-arkts-errcode-->
           - [Bluetooth错误码](reference/apis-connectivity-kit/errorcode-bluetoothManager.md)
           - [WIFI错误码](reference/apis-connectivity-kit/errorcode-wifi.md)
@@ -4079,14 +4102,14 @@
             - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
             - [DeviceInfo](reference/apis-basic-services-kit/_device_info.md)
             - [OsAccount](reference/apis-basic-services-kit/capi-osaccount.md)
-            - [OH_BatteryInfo](reference/apis-basic-services-kit/oh__batteryinfo.md)
+            - [OH_BatteryInfo](reference/apis-basic-services-kit/capi-oh-batteryinfo.md)
             - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
             - [OH_Print](reference/apis-basic-services-kit/_o_h___print.md)
             - [Pasteboard](reference/apis-basic-services-kit/capi-pasteboard.md)
             - [TimeService](reference/apis-basic-services-kit/_time_service.md)
           - 头文件<!--basic-services-headerfile-->
             - [deviceinfo.h](reference/apis-basic-services-kit/deviceinfo_8h.md)
-            - [ohbattery_info.h](reference/apis-basic-services-kit/ohbattery__info_8h.md)
+            - [ohbattery_info.h](reference/apis-basic-services-kit/capi-ohbattery-info-h.md)
             - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
             - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
             - [oh_pasteboard.h](reference/apis-basic-services-kit/capi-oh-pasteboard-h.md)
@@ -4230,6 +4253,7 @@
           - [@ohos.enterprise.usbManager（USB管理）](reference/apis-mdm-kit/js-apis-enterprise-usbManager.md)
           - [@ohos.enterprise.wifiManager（WiFi管理）](reference/apis-mdm-kit/js-apis-enterprise-wifiManager.md)
           - [@ohos.enterprise.EnterpriseAdminExtensionAbility（企业设备管理扩展能力）](reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md)
+          - [@ohos.enterprise.telephony（通话管理）](reference/apis-mdm-kit/js-apis-enterprise-telephonyManager.md)
           <!--Del-->
           - [@ohos.enterprise.accountManager（账户管理）(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-accountManager-sys.md)
           - [@ohos.enterprise.adminManager (企业设备管理)(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-adminManager-sys.md)
@@ -4353,6 +4377,14 @@
         - 错误码<!--sensor-service-arkts-errcode-->
           - [Sensor错误码](reference/apis-sensor-service-kit/errorcode-sensor.md)
           - [Vibrator错误码](reference/apis-sensor-service-kit/errorcode-vibrator.md)
+      - Mechanic Kit（机械体设备控制服务）<!--mechanic-api-->
+        - ArkTS API<!--mechanic-arkts-->
+          - [@ohos.distributedHardware.mechanicManager (机械体控制模块)](reference/apis-mechanic-kit/js-apis-mechanicManager.md)
+          <!--Del-->
+          - [@ohos.distributedHardware.mechanicManager (机械体控制模块)(系统接口)](reference/apis-mechanic-kit/js-apis-mechanicManager-sys.md)
+          <!--DelEnd-->
+        - 错误码<!--mechanic-service-arkts-errcode-->
+          - [Mechanic错误码](reference/apis-mechanic-kit/errorcode-mechanic.md)
     - 调测调优<!--system-debug-optimize-api-->
 
       - Performance Analysis Kit（性能分析服务）<!--performance-analysis-api-->
@@ -4408,6 +4440,7 @@
           - [HiDebug错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug.md)
           - [HiDebug CpuUsage错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug-cpuusage.md)
           - [HiCollie错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hicollie.md)
+          - [JsLeakWatcher错误码](reference/apis-performance-analysis-kit/errorcode-jsleakwatcher.md)
           <!--Del-->
           - [系统事件错误码](reference/apis-performance-analysis-kit/errorcode-hisysevent-sys.md)
           - [维测日志错误码](reference/apis-performance-analysis-kit/errorcode-loglibrary-sys.md)
@@ -5286,19 +5319,26 @@
         - [@ohos.ai.mindSporeLite (端侧AI框架)](reference/apis-mindspore-lite-kit/js-apis-mindSporeLite.md)
       - C API<!--mindspore-lite-c-->
         - 模块<!--mindspore-lite-module-->
-          - [MindSpore](reference/apis-mindspore-lite-kit/_mind_spore.md)
+          - [MindSpore](reference/apis-mindspore-lite-kit/capi-mindspore.md)
         - 头文件<!--mindspore-lite-headerfile-->
-          - [context.h](reference/apis-mindspore-lite-kit/context_8h.md)
-          - [data_type.h](reference/apis-mindspore-lite-kit/data__type_8h.md)
-          - [format.h](reference/apis-mindspore-lite-kit/format_8h.md)
-          - [model.h](reference/apis-mindspore-lite-kit/model_8h.md)
-          - [status.h](reference/apis-mindspore-lite-kit/status_8h.md)
-          - [tensor.h](reference/apis-mindspore-lite-kit/tensor_8h.md)
-          - [types.h](reference/apis-mindspore-lite-kit/types_8h.md)
+          - [context.h](reference/apis-mindspore-lite-kit/capi-context-h.md)
+          - [data_type.h](reference/apis-mindspore-lite-kit/capi-data-type-h.md)
+          - [format.h](reference/apis-mindspore-lite-kit/capi-format-h.md)
+          - [model.h](reference/apis-mindspore-lite-kit/capi-model-h.md)
+          - [status.h](reference/apis-mindspore-lite-kit/capi-status-h.md)
+          - [tensor.h](reference/apis-mindspore-lite-kit/capi-tensor-h.md)
+          - [types.h](reference/apis-mindspore-lite-kit/capi-types-h.md)
         - 结构体<!--mindspore-lite-struct-->
-          - [OH_AI_CallBackParam](reference/apis-mindspore-lite-kit/_o_h___a_i___call_back_param.md)
-          - [OH_AI_ShapeInfo](reference/apis-mindspore-lite-kit/_o_h___a_i___shape_info.md)
-          - [OH_AI_TensorHandleArray](reference/apis-mindspore-lite-kit/_o_h___a_i___tensor_handle_array.md)
+          - [OH_AI_TensorHandleArray](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-tensorhandlearray.md)
+          - [OH_AI_ShapeInfo](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-shapeinfo.md)
+          - [OH_AI_CallBackParam](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-callbackparam.md)
+          - [NNRTDeviceDesc](reference/apis-mindspore-lite-kit/capi-mindspore-nnrtdevicedesc.md)
+          - [OH_AI_ContextHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-contexthandle.md)
+          - [OH_AI_DeviceInfoHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-DeviceInfoHandle.md)
+          - [OH_AI_TensorHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-tensorHandle.md)
+          - [OH_AI_AllocatorHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-allocatorhandle.md)
+          - [OH_AI_ModelHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-modelhandle.md)
+          - [OH_AI_TrainCfgHandle](reference/apis-mindspore-lite-kit/capi-mindspore-oh-ai-traincfghandle.md)
     - Neural Network Runtime Kit（Neural Network运行时服务）<!--neural-network-runtime-api-->
       - C API<!--neural-network-runtime-c-->
         - 模块<!--neural-network-runtime-module-->

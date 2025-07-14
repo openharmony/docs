@@ -90,7 +90,7 @@ constructor(context: Context, window: window.Window)
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | context | Context| 是   | 应用上下文（仅支持UIAbilityContext）。Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| window  | [window.Window](../apis-arkui/arkts-apis-window-Window.md#window)  | 是   | 应用创建的窗口实例。 |
+| window  | [window.Window](../apis-arkui/arkts-apis-window-Window.md)  | 是   | 应用创建的窗口实例。 |
 
 > **说明：**
 >

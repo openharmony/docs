@@ -81,8 +81,8 @@ Image Kit提供图片编解码、图片接收、图片编辑和处理等能力�
 
 针对图片开发，有以下相关实例可供参考：
 
-- [图片显示及处理（ArkTS）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Image)
+- [图片显示及处理（ArkTS）（API12）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Image)
 
-- [图片显示（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/ImageShow)
+- [图片显示（ArkTS）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/ImageShow)
 
-- [图片裁剪与分割（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/GamePuzzle)
+- [图片裁剪与分割（ArkTS）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/GamePuzzle)

@@ -15,7 +15,7 @@
 
 **相关模块：**[Core](_core.md)
 
-**相关示例：**[AVCodec](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
+**相关示例：**[AVCodec](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
 
 
 ## 汇总
@@ -33,7 +33,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVPixelFormat](_core.md#oh_avpixelformat-1) {<br/>AV_PIXEL_FORMAT_YUVI420 = 1,<br/>AV_PIXEL_FORMAT_NV12 = 2,<br/>AV_PIXEL_FORMAT_NV21 = 3,<br/>AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br/>AV_PIXEL_FORMAT_RGBA = 5<br/>} | 视频像素格式的枚举类。 | 
+| [OH_AVPixelFormat](_core.md#oh_avpixelformat-1) {<br/>AV_PIXEL_FORMAT_YUVI420 = 1,<br/>AV_PIXEL_FORMAT_NV12 = 2,<br/>AV_PIXEL_FORMAT_NV21 = 3,<br/>AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br/>AV_PIXEL_FORMAT_RGBA = 5,<br/>AV_PIXEL_FORMAT_RGBA1010102 = 6<br/>} | 视频像素格式的枚举类。 | 
 
 
 ### 函数
@@ -58,5 +58,5 @@
 | bool [OH_AVFormat_GetDoubleValue](_core.md#oh_avformat_getdoublevalue) (struct [OH_AVFormat](_core.md#oh_avformat) \*format, const char \*key, double \*out) | 从OH_AVFormat的key获取double类型的值。 | 
 | bool [OH_AVFormat_GetStringValue](_core.md#oh_avformat_getstringvalue) (struct [OH_AVFormat](_core.md#oh_avformat) \*format, const char \*key, const char \*\*out) | 从OH_AVFormat的key获取string类型的值。 | 
 | bool [OH_AVFormat_GetBuffer](_core.md#oh_avformat_getbuffer) (struct [OH_AVFormat](_core.md#oh_avformat) \*format, const char \*key, uint8_t \*\*addr, size_t \*size) | 从OH_AVFormat中读取指定长度的数据块。 | 
-| bool [OH_AVFormat_GetIntBuffer](_core.md#oh_avformat_getintbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t \*\*addr, size_t \*size) | 从OH_AVFormat中读取一个int32_t数据的数组。 | 
+| bool [OH_AVFormat_GetIntBuffer](_core.md#oh_avformat_getintbuffer) (struct [OH_AVFormat](_core.md#oh_avformat) \*format, const char \*key, int32_t \*\*addr, size_t \*size) | 从OH_AVFormat中读取一个int32_t数据的数组。 | 
 | const char \* [OH_AVFormat_DumpInfo](_core.md#oh_avformat_dumpinfo) (struct [OH_AVFormat](_core.md#oh_avformat) \*format) | 返回OH_AVFormat中包含的key-value组成的字符串。 | 

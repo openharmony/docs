@@ -31,13 +31,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 @Concurrent
 function adjustImageValue(arrayBuffer: ArrayBuffer): ArrayBuffer {
-  // 对arrayBuffer进行操作
-  return arrayBuffer;  // 返回值默认转移
+  // 对arrayBuffer进行操作，返回值默认转移
+  return arrayBuffer;
 }
 
 function createImageTask(arrayBuffer: ArrayBuffer, isParamsByTransfer: boolean): taskpool.Task {
   let task: taskpool.Task = new taskpool.Task(adjustImageValue, arrayBuffer);
-  if (!isParamsByTransfer) { // 是否使用转移方式
+  // 是否使用转移方式
+  if (!isParamsByTransfer) {
     // 传递空数组[]，全部arrayBuffer参数传递均采用拷贝方式
     task.setTransferList([]);
   }

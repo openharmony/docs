@@ -66,9 +66,10 @@ const char *srcCallNative = R"JS(adjustExternalMemory())JS";
 <!-- @[oh_jsvm_adjust_external_memory](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/adjustexternalmemory/src/main/cpp/hello.cpp) -->
 输出结果：
 在LOG中输出以下信息：
+```cpp
 JSVM OH_JSVM_AdjustExternalMemory: success
 JSVM Allocate memory size: 1048576
-
+```
 ### OH_JSVM_MemoryPressureNotification
 
 通知虚拟机系统内存不足并有选择地触发垃圾回收
@@ -112,5 +113,7 @@ const char *srcCallNative = R"JS(memoryPressureNotification())JS";
 <!-- @[oh_jsvm_memory_pressure_notification](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/memorypressurenotification/src/main/cpp/hello.cpp) -->
 输出结果：
 在LOG中输出以下信息：
+```cpp
 JSVM OH_JSVM_MemoryPressureNotification: success
 JSVM Current JSVM memory pressure level: 2
+```

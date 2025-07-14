@@ -136,7 +136,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-往相册中添加图片或视频前，需预置相册和文件资源。此方法通过callback方式返回结果。
+向用户相册中添加图片或视频前，需预置相册和文件资源。此方法通过callback方式返回结果。
 
 > **说明：** 
 >
@@ -201,7 +201,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
-向相册添加图片或视频前，需预置相册和文件资源。此方法通过Promise返回结果。
+向用户相册添加图片或视频前，需预置相册和文件资源。此方法通过Promise返回结果。
 
 > **说明：** 
 >
@@ -270,7 +270,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-从相册移除图片或视频前，需预置相册和文件资源。该方法以callback形式返回结果。
+从用户相册移除图片或视频前，需预置相册和文件资源。该方法以callback形式返回结果。
 
 > **说明：** 
 >
@@ -335,7 +335,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
-从相册中移除图片或视频前，需预置相册和文件资源。此方法通过Promise返回结果。
+从用户相册中移除图片或视频前，需预置相册和文件资源。此方法通过Promise返回结果。
 
 > **说明：** 
 >

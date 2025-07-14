@@ -110,6 +110,7 @@ class C {
 let c: C = {name : "Dylan", age : "13"};
 let result3 = linkedList.add(c);
 let result4 = linkedList.add(false);
+console.info("result = ", result4) // result =  true
 ```
 
 ### addFirst

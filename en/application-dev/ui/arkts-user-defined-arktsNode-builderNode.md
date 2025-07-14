@@ -2,7 +2,7 @@
 
 ## Overview
 
-[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md) is a custom declarative nodedesigned to seamlessly mount built-in components. With BuilderNode, you can build a custom component tree within stateless UI environments through the [global custom builder function](../quick-start/arkts-builder.md#global-custom-builder-function), which is decorated by @Builder. Once your custom component tree is established, you can obtain its root [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md) by calling [getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode). The root node can be directly returned by [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md) and mounted under a [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md). **BuilderNode** facilitates embedding of embedding declarative components within **FrameNode** and [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md) trees for mixed display. **BuilderNode** also offers a feature for exporting textures, which can be used for rendering within the same layer of the [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md) is a custom declarative nodedesigned to seamlessly mount built-in components. With BuilderNode, you can build a custom component tree within stateless UI environments through the [global custom builder function](../ui/state-management/arkts-builder.md#global-custom-builder-function), which is decorated by @Builder. Once your custom component tree is established, you can obtain its root [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md) by calling [getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode). The root node can be directly returned by [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md) and mounted under a [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md). **BuilderNode** facilitates embedding of embedding declarative components within **FrameNode** and [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md) trees for mixed display. **BuilderNode** also offers a feature for exporting textures, which can be used for rendering within the same layer of the [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
 
 The ArkTS built-in component tree constructed by **BuilderNode** can be used together with custom nodes, such as FrameNodes and RenderNodes, to achieve the mixed display effect. **BuilderNode** offers a suite of APIs designed to integrate built-in components within third-party frameworks. This is particularly beneficial for scenarios where these frameworks require interaction with custom nodes
 
@@ -20,7 +20,7 @@ A BuilderNode can be used only as a leaf node. If an update is required, you are
 
 > **NOTE**
 > 
-> - The BuilderNode only supports a single [global custom build function(../quick-start/arkts-builder.md#global-custom-builder-function) decorated by @Builder and wrapped by [wrapBuilder](../quick-start/arkts-wrapBuilder.md).
+> - The BuilderNode only supports a single [global custom build function(../ui/state-management/arkts-builder.md#global-custom-builder-function) decorated by @Builder and wrapped by [wrapBuilder](../ui/state-management/arkts-wrapBuilder.md).
 > 
 > - A newly created BuilderNode can only obtain a **FrameNode** object pointing to the root node through [getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode) after [build](../reference/apis-arkui/js-apis-arkui-builderNode.md#build); otherwise, it returns **null**.
 > 
@@ -34,7 +34,7 @@ A BuilderNode can be used only as a leaf node. If an update is required, you are
 
 ## Creating a BuilderNode Object
 
-When creating a **BuilderNode** object, which is a template class, you must specify a type that matches the type of the [WrappedBuilder](../quick-start/arkts-wrapBuilder.md) used in the **build** method later on. Mismatches can cause compilation warnings and failures.
+When creating a **BuilderNode** object, which is a template class, you must specify a type that matches the type of the [WrappedBuilder](../ui/state-management/arkts-wrapBuilder.md) used in the **build** method later on. Mismatches can cause compilation warnings and failures.
 
 ## Creating a Built-in Component Tree
 
@@ -192,7 +192,7 @@ struct Index {
 
 Create a built-in component tree using the **build** API of a **BuilderNode** object. The tree is constructed based on the **WrappedBuilder** object passed in, and the root node of the component tree is retained.
 
-Custom component updates follow the update mechanisms of [state management](../quick-start/arkts-state-management-overview.md). For custom components used directly in a **WrappedBuilder** object, their parent component is the **BuilderNode** object. Therefore, to update child components defined in the **WrappedBuilder** objects, you need to define the relevant state variables with the [\@Prop](../quick-start/arkts-prop.md) or [\@ObjectLink](../quick-start/arkts-observed-and-objectlink.md) decorator, in accordance with the specifications of state management and the needs of your application development.
+Custom component updates follow the update mechanisms of [state management](../ui/state-management/arkts-state-management-overview.md). For custom components used directly in a **WrappedBuilder** object, their parent component is the **BuilderNode** object. Therefore, to update child components defined in the **WrappedBuilder** objects, you need to define the relevant state variables with the [\@Prop](../ui/state-management/arkts-prop.md) or [\@ObjectLink](../ui/state-management/arkts-observed-and-objectlink.md) decorator, in accordance with the specifications of state management and the needs of your application development.
 
 
 To update nodes within a BuilderNode:<br>Use the **update** API to update individual nodes within the BuilderNode.
@@ -713,7 +713,7 @@ struct Index {
 
 ## Cross-Page Reuse Considerations
 
-With use of [routing](../reference/apis-arkui/js-apis-router.md) APIs such as [router.replaceUrl](../reference/apis-arkui/js-apis-router.md#routerreplaceurl9), [router.back](../reference/apis-arkui/js-apis-router.md#routerback), [router.clear](../reference/apis-arkui/js-apis-router.md#routerclear), and [router.replaceNamedRoute](../reference/apis-arkui/js-apis-router.md#routerreplacenamedroute10) to navigate between pages, issues may arise when you reuse a cached BuilderNode from a page that is about to be destroyed. Specifically, the reused BuilderNode might not update its data correctly, or newly created nodes might not display as expected. For example, when you use [router.replaceNamedRoute](../reference/apis-arkui/js-apis-router.md#routerreplacenamedroute10), consider the following scenario: When the **router replace** button is clicked, the page switches to PageTwo, and the flag **isShowText** is set to **false**.
+With use of [routing](../reference/apis-arkui/js-apis-router.md) APIs such as [router.replaceUrl](../reference/apis-arkui/js-apis-arkui-UIContext.md#replaceurl), [router.back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back), [router.clear](../reference/apis-arkui/js-apis-arkui-UIContext.md#clear), and [router.replaceNamedRoute](../reference/apis-arkui/js-apis-arkui-UIContext.md#replacenamedroute) to navigate between pages, issues may arise when you reuse a cached BuilderNode from a page that is about to be destroyed. Specifically, the reused BuilderNode might not update its data correctly, or newly created nodes might not display as expected. For example, when you use [router.replaceNamedRoute](../reference/apis-arkui/js-apis-arkui-UIContext.md#replacenamedroute), consider the following scenario: When the **router replace** button is clicked, the page switches to PageTwo, and the flag **isShowText** is set to **false**.
 
 ```ts
 // ets/pages/Index.ets
@@ -923,7 +923,7 @@ struct Index {
 
 ## Using the LocalStorage in the BuilderNode
 
-Since API version 12, custom components can receive [LocalStorage](../quick-start/arkts-localstorage.md) instances. You can use LocalStorage related decorators such as [@LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop) and [@LocalStorageLink](../quick-start/arkts-localstorage.md#localstoragelink) by [passing LocalStorage instances](../quick-start/arkts-localstorage.md#example-of-providing-a-custom-component-with-access-to-a-localstorage-instance).
+Since API version 12, custom components can receive [LocalStorage](../ui/state-management/arkts-localstorage.md) instances. You can use LocalStorage related decorators such as [@LocalStorageProp](../ui/state-management/arkts-localstorage.md#localstorageprop) and [@LocalStorageLink](../ui/state-management/arkts-localstorage.md#localstoragelink) by [passing LocalStorage instances](../ui/state-management/arkts-localstorage.md#example-of-providing-a-custom-component-with-access-to-a-localstorage-instance).
 
 ```ts
 import { BuilderNode, NodeController, UIContext } from '@kit.ArkUI';

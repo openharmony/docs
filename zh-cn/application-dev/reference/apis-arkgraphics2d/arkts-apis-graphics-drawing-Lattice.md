@@ -4,9 +4,13 @@
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> - 本Class首批接口从API version 12开始支持。
+>
 > - 本模块使用屏幕物理像素单位px。
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
+
+矩形网格对象。该对象用于将图片按照矩形网格进行划分。
 
 ## 导入模块
 
@@ -14,11 +18,7 @@
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## Lattice<sup>12+</sup>
-
-矩形网格对象。该对象用于将图片按照矩形网格进行划分。
-
-### createImageLattice<sup>12+</sup>
+## createImageLattice<sup>12+</sup>
 
 static createImageLattice(xDivs: Array\<number>, yDivs: Array\<number>, fXCount: number, fYCount: number, fBounds?: common2D.Rect | null, fRectTypes?: Array\<RectType> | null, fColors?: Array\<common2D.Color> | null): Lattice
 
@@ -68,7 +68,7 @@ class DrawingRenderNode extends RenderNode {
 ```
 ![zh-ch_Lattice.png](figures/zh-ch_Lattice.png)
 
-### createImageLattice<sup>18+</sup>
+## createImageLattice<sup>18+</sup>
 
 static createImageLattice(xDivs: Array\<number>, yDivs: Array\<number>, fXCount: number, fYCount: number, fBounds?: common2D.Rect | null, fRectTypes?: Array\<RectType> | null, fColors?: Array\<number> | null): Lattice
 

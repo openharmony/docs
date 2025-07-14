@@ -44,7 +44,7 @@
 
 3. 相机初始化及拍照触发参考[拍照(C/C++)](./native-camera-shooting.md)。
 
-4. 注册**分段式(PhotoAssetAvailable)**拍照回调，对比单端式拍照，仅注册的拍照回调接口不同。
+4. 注册分段式（PhotoAssetAvailable）拍照回调，对比单端式拍照，仅注册的拍照回调接口不同。
 
    > **注意：**
    >

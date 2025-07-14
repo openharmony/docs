@@ -121,7 +121,7 @@ alt(value:&nbsp;string&nbsp;|&nbsp;Resource &nbsp;|&nbsp;PixelMap)
 
 | 参数名 | 类型                                                     | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)<sup>12+</sup> | 是   | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg、gif和heif类型），支持[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)类型图片，不支持网络图片。<br/>默认值：null |
+| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)<sup>12+</sup> | 是   | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg、gif和heif类型），支持[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)类型图片，不支持网络图片。<br/>默认值：null<br/>由有效值（可正常解析并加载的图片资源）切换为无效值（无法解析或加载的图片路径）时，组件保持显示此前成功加载的图片内容，不进行清除或重置操作。 |
 
 ### objectFit
 
@@ -584,6 +584,8 @@ svg类型图源不支持该属性。
 
 ## ImageInterpolation
 
+图片的插值效果。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -598,6 +600,8 @@ svg类型图源不支持该属性。
 | High   | 3 | Cubic插值，插值质量最高，可能会影响图片渲染的速度。 |
 
 ## ImageRenderMode
+
+图片的渲染模式。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -624,6 +628,8 @@ svg类型图源不支持该属性。
 | lattice<sup>12+</sup> | [DrawingLattice](#drawinglattice12) |  否  | 矩形网格对象。<br>**说明：**<br> 通过@ohos.graphics.drawing的createImageLattice接口创建Lattice类型作为入参。将图像划分为矩形网格，同时处于偶数列和偶数行上的网格图像是固定的，不会被拉伸。<br>该参数对[backgroundImageResizable](ts-universal-attributes-background.md#backgroundimageresizable12)接口不生效。<br> 传入数字时默认单位为px。 |
 
 ## EdgeWidths参数说明
+
+边框宽度类型，用于描述组件边框不同方向的宽度。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -671,6 +677,8 @@ svg类型图源不支持该属性。
 | LEFT_MIRRORED<sup>20+</sup> | 8 | 将当前图片水平翻转再顺时针旋转270度后显示。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。<br/>![imageRotateOrientation_8](figures/imageRotateOrientation_8.png) |
 
 ## ImageSourceSize<sup>18+</sup>对象说明
+
+图片解码尺寸。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -1366,7 +1374,7 @@ struct ImageExample3 {
         .height(100)
         .colorFilter(this.drawingColorFilterSecond)
         .onClick(()=>{
-          this.drawingColorFilterSecond = new ColorFilter(this.ColorFilterMatrix);
+          this.drawingColorFilterSecond = new ColorFilter(this.colorFilterMatrix);
         })
 
       //当加载图片为SVG格式时
@@ -2002,40 +2010,44 @@ struct Example {
     }
     this.getFileBuffer(context).then((buf: ArrayBuffer | undefined) => {
       let imageSource = image.createImageSource(buf);
+      if (!imageSource) {
+        return;
+      }
       // 从图像源中读取图片的EXIF方向信息。
       imageSource.getImageProperty(image.PropertyKey.ORIENTATION).then((orientation) => {
         this.rotateOrientation = this.getOrientation(orientation);
         this.text1 = this.text1 + orientation;
-      })
-      let options: image.DecodingOptions = {
-        'editable': true,
-        'desiredPixelFormat': image.PixelMapFormat.RGBA_8888,
-      }
-      imageSource.createPixelMap(options).then((pixelMap: image.PixelMap) => {
-        this.pixelMap = pixelMap;
+        let options: image.DecodingOptions = {
+          'editable': true,
+          'desiredPixelFormat': image.PixelMapFormat.RGBA_8888,
+        }
+        imageSource.createPixelMap(options).then((pixelMap: image.PixelMap) => {
+          this.pixelMap = pixelMap;
+          imageSource.release();
+        });
+      }).catch(() => {
+        imageSource.release();
       });
     })
   }
 
   build() {
-    Column() {
-      Row({ space: 40 }) {
-        Column({ space: 10 }) {
-          Text('before').fontSize(20).fontWeight(700)
-          Image($rawfile('hello.jpg'))
-            .width(150)
-            .height(150)
-          Text(this.text1);
-        }
+    Column({ space: 40 }) {
+      Column({ space: 10 }) {
+        Text('before').fontSize(20).fontWeight(700)
+        Image($rawfile('hello.jpg'))
+          .width(100)
+          .height(100)
+        Text(this.text1)
+      }
 
-        Column({ space: 10 }) {
-          Text('after').fontSize(20).fontWeight(700)
-          Image(this.pixelMap)
-            .width(150)
-            .height(150)
-            .orientation(this.rotateOrientation)
-          Text(this.text2);
-        }
+      Column({ space: 10 }) {
+        Text('after').fontSize(20).fontWeight(700)
+        Image(this.pixelMap)
+          .width(100)
+          .height(100)
+          .orientation(this.rotateOrientation)
+        Text(this.text2)
       }
     }
     .height('80%')

@@ -232,7 +232,7 @@
 
 参考以下示例，完成“开始转码-暂停转码-恢复转码-转码完成”的完整流程。
   
-1. 新建工程，下载[完整示例工程](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVTranscoder/AVTranscoderArkTS)，并将示例工程的资源复制到对应目录。
+1. 新建工程，下载[完整示例工程](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVTranscoder/AVTranscoderArkTS)，并将示例工程的资源复制到对应目录。
     ```
     AVTranscoderArkTS
     entry/src/main/ets/

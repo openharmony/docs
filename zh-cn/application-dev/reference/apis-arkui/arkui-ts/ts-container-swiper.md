@@ -458,6 +458,8 @@ nextMargin(value: Length, ignoreBlank?:boolean)
 
 当主轴方向为纵向布局时，nextMargin/prevMargin中任意一个大于子组件测算的高度，nextMargin和prevMargin均不显示。
 
+使用nextMargin/prevMargin接口时，不要对子组件进行[尺寸范围限制](ts-universal-attributes-size.md#constraintsize)，否则子节点主轴将不会被拉伸到预期长度，边距失去效果。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -478,6 +480,8 @@ prevMargin(value: Length, ignoreBlank?:boolean)
 当主轴方向为横向布局时，nextMargin/prevMargin中任意一个大于子组件测算的宽度，nextMargin和prevMargin均不显示。
 
 当主轴方向为纵向布局时，nextMargin/prevMargin中任意一个大于子组件测算的高度，nextMargin和prevMargin均不显示。
+
+使用nextMargin/prevMargin接口时，不要对子组件进行[尺寸范围限制](ts-universal-attributes-size.md#constraintsize)，否则子节点主轴将不会被拉伸到预期长度，边距失去效果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1588,6 +1592,24 @@ Swiper滑动行为拦截事件，在滑动前触发。Swiper会依据该事件�
 | ------ | ---- | ---- | ---- |
 | handler | [ContentWillScrollCallback](#contentwillscrollcallback15) | 是 | Swiper滑动时触发的回调。 |
 
+### onScrollStateChanged<sup>20+</sup>
+
+onScrollStateChanged(event: Callback\<ScrollState>)
+
+Swiper滑动状态变化事件回调，在跟手滑动、离手动画、停止三种滑动状态变化时触发，返回值为当前滑动状态。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| event  | [Callback](./ts-types.md#callback12)\<[ScrollState](ts-container-list.md#scrollstate枚举说明)> | 是   | 滑动状态变化的回调。 |
+
 ## OnSwiperAnimationStartCallback<sup>18+</sup>
 
 type OnSwiperAnimationStartCallback = (index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => void
@@ -1847,6 +1869,9 @@ struct SwiperExample {
       .curve(Curve.Linear)
       .onChange((index: number) => {
         console.info(index.toString());
+      })
+      .onScrollStateChanged((event: ScrollState) => {
+        console.info("event: " + event);
       })
       .onGestureSwipe((index: number, extraInfo: SwiperAnimationEvent) => {
         console.info("index: " + index);

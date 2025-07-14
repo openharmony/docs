@@ -335,7 +335,6 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 待创建的相册名参数规格为：
 - 相册名字符串长度为1~255。
 - 不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
-- 英文字符大小写不敏感。
 - 相册名不允许重名。
 
 > **说明：** 
@@ -397,7 +396,6 @@ createAlbum(name: string): Promise&lt;Album&gt;
 待创建的相册名参数规格为：
 - 相册名字符串长度为1~255。
 - 不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
-- 英文字符大小写不敏感。
 - 相册名不允许重名。
 
 > **说明：** 
@@ -2893,6 +2891,209 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 }
 ```
 
+### getPhotoAlbums<sup>20+</sup> 
+
+getPhotoAlbums(options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
+
+根据指定的选项获取系统、用户和来源相册。使用Promise异步回调。
+
+在获取相册之前，确保相册已存在。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限：** ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名    | 类型                | 必填 | 说明                                                         |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| options  | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions)         | 否   |  检索选项，不填时默认根据相册类型检索。              |
+
+**返回值：**
+
+| 类型                  | 说明                        |
+| --------------------- | --------------------------- |
+| Promise&lt;[FetchResult](arkts-apis-photoAccessHelper-FetchResult.md)&lt;[Album](#album)&gt;&gt; | Promise对象，返回获取相册的结果集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 23800301 | Internal system error. It is recommended to retry and check the logs.<br>Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+
+**示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+  console.info('getPhotoAlbumsDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  phAccessHelper.getPhotoAlbums(fetchOptions).then( async (fetchResult) => {
+    if (fetchResult === undefined) {
+      console.error('getPhotoAlbumsPromise fetchResult is undefined');
+      return;
+    }
+    let albums: photoAccessHelper.Album[] = await fetchResult.getAllObjects();
+    console.info(`getPhotoAlbumsPromise successfully, albums length: ${albums.length}`);
+    fetchResult.close();
+  }).catch((err: BusinessError) => {
+    console.error(`getPhotoAlbumsPromise failed with err: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+### getPhotoAlbumOrder<sup>20+</sup> 
+
+getPhotoAlbumOrder(orderStyle: number, options?: FetchOptions): Promise&lt;FetchResult&lt;AlbumOrder&gt;&gt;
+
+获取系统、用户和来源相册的排序信息。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限：** ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名    | 类型                | 必填 | 说明                                                         |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| orderStyle  | number         | 是   |  选择相册的排序风格。<br>0：Phone风格。1：PC风格。        |
+| options  | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions)         | 否   |  检索选项，不填时默认根据相册类型检索。              |
+
+**返回值：**
+
+| 类型                  | 说明                        |
+| --------------------- | --------------------------- |
+| Promise&lt;[FetchResult](arkts-apis-photoAccessHelper-FetchResult.md)&lt;[AlbumOrder](#albumorder20)&gt;&gt; | Promise对象，返回获取相册排序的结果集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The input parameter is not within the valid range. |
+| 23800301 | Internal system error. It is recommended to retry and check the logs.<br>Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+**示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+  console.info('getPhotoAlbumOrderDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let orderStyle: number = 0;
+  phAccessHelper.getPhotoAlbumOrder(orderStyle, fetchOptions).then( async (fetchResult) => {
+    if (fetchResult === undefined) {
+      console.error('getPhotoAlbumOrderPromise fetchResult is undefined');
+      return;
+    }
+    let albumOrders: photoAccessHelper.AlbumOrder[] = await fetchResult.getAllObjects();
+    console.info(`getPhotoAlbumOrderPromise successfully, albumOrders length: ${albumOrders.length}`);
+    fetchResult.close();
+  }).catch((err: BusinessError) => {
+    console.error(`getPhotoAlbumOrderPromise failed with err: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+### setPhotoAlbumOrder<sup>20+</sup> 
+
+setPhotoAlbumOrder(orderStyle: number, albumOrders: Array&lt;AlbumOrder&gt;): Promise&lt;void&gt;
+
+设置系统、用户和来源相册的排序。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限：** ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名    | 类型                | 必填 | 说明                                                         |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| orderStyle  | number         | 是   |  选择相册的排序风格。<br>0：Phone风格。1：PC风格。        |
+| albumOrders | Array&lt;[AlbumOrder](#albumorder20)&gt; | 是   | 待设置的相册排序结果数组。 |
+
+**返回值：**
+
+| 类型                  | 说明                        |
+| --------------------- | --------------------------- |
+| Promise&amp;lt;void&amp;gt;| Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The input parameter is not within the valid range. |
+| 23800301 | Internal system error. It is recommended to retry and check the logs.<br>Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+**示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+  console.info('setPhotoAlbumOrderDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let orderStyle: number = 0;
+  phAccessHelper.getPhotoAlbumOrder(orderStyle, fetchOptions).then( async (fetchResult) => {
+    if (fetchResult === undefined) {
+      console.error('getPhotoAlbumOrderPromise fetchResult is undefined');
+      return;
+    }
+    let albumOrder: photoAccessHelper.AlbumOrder = await fetchResult.getFirstObject();
+    albumOrder.albumOrder = 10;
+    albumOrder.orderSection = 0;
+    albumOrder.orderType = 1;
+    albumOrder.orderStatus = 1;
+    await phAccessHelper.setPhotoAlbumOrder(orderStyle, [albumOrder]);
+    console.info('setPhotoAlbumOrderPromise successfully.');
+    fetchResult.close();
+  }).catch((err: BusinessError) => {
+    console.error(`setPhotoAlbumOrderPromise failed with err: ${err.code}, ${err.message}`);
+  });
+}
+```
+
 ## PhotoAsset
 
 提供封装文件属性的方法。
@@ -2934,7 +3135,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
-| 14000011       | System inner fail.         |
+| 14000011       | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.        |
 
 **示例：**
 
@@ -2998,7 +3199,7 @@ open(mode: string): Promise&lt;number&gt;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
-| 14000011       | System inner fail.         |
+| 14000011       | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.        |
 
 **示例：**
 
@@ -3836,7 +4037,7 @@ requestEditData(callback: AsyncCallback&lt;string&gt;): void
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14000011   | System inner fail.        |
+| 14000011   | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.       |
 
 **示例：**
 
@@ -3898,7 +4099,7 @@ requestEditData(): Promise&lt;string&gt;
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14000011   | System inner fail.        |
+| 14000011   | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.       |
 
 **示例：**
 
@@ -3954,7 +4155,7 @@ getEditData(): Promise&lt;MediaAssetEditData&gt;
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14000011   | System inner fail.        |
+| 14000011   | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.       |
 
 **示例：**
 
@@ -4009,7 +4210,7 @@ requestSource(callback: AsyncCallback&lt;number&gt;): void
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14000011   | System inner fail.        |
+| 14000011   | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.       |
 
 **示例：**
 
@@ -4068,7 +4269,7 @@ requestSource(): Promise&lt;number&gt;
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14000011   | System inner fail.        |
+| 14000011   | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.       |
 
 **示例：**
 
@@ -4128,7 +4329,7 @@ commitEditedAsset(editData: string, uri: string, callback: AsyncCallback&lt;void
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011   | System inner fail.        |
+| 14000011   | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.       |
 
 **示例：**
 
@@ -4200,7 +4401,7 @@ commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt;
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011   | System inner fail.        |
+| 14000011   | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.       |
 
 **示例：**
 
@@ -5599,7 +5800,7 @@ class PhotoProxyImpl implements photoAccessHelper.PhotoProxy {
   // 应用实现PhotoProxy。
 }
 
-async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset) {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset, context: Context) {
   console.info('addResourceByPhotoProxyDemo');
   try {
     let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
@@ -7319,7 +7520,7 @@ getHighlightResource(resourceUri: string): Promise&lt;ArrayBuffer&gt;
 | 201      | Permission denied.                |
 | 202      | Called by non-system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011 | Internal system error.            |
+| 14000011 | Internal system error. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.           |
 
 **示例：**
 
@@ -9830,3 +10031,21 @@ async example() {
 | ------------------------- | ---- | -------------------------------- |
 | DEFAULT_COVER        | 0    | 默认封面。     |
 | MANUAL_COVER         | 1    | 手动设置的封面。     |
+
+## AlbumOrder<sup>20+</sup>
+
+相册排序信息。
+
+### 属性
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称           | 类型    | 只读   | 可选  | 说明   |
+| ------------ | ------ | ---- | ---- | ------- |
+| albumId      | number | 否   | 否  | 相册ID。     |
+| albumOrder   | number | 否   | 否  | 相册排序值。  |
+| orderSection | number | 否   | 否  | 相册排序区域。|
+| orderType    | number | 否   | 否  | 相册排序类型。|
+| orderStatus  | number | 否   | 否  | 相册排序状态。|

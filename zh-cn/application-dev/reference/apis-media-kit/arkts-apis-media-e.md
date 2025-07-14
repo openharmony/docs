@@ -1,6 +1,7 @@
 # Enums
 
 > **说明：**
+>
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## AVErrorCode<sup>9+</sup>
@@ -77,7 +78,6 @@ Codec MIME类型枚举。
 | AUDIO_G711MU<sup>12+</sup>   | 'audio/g711mu'     | 表示音频/G711-mulaw类型。 |
 | AUDIO_AMR_NB<sup>18+</sup>   | 'audio/3gpp'     | 表示音频/amr-nb类型。 |
 | AUDIO_AMR_WB<sup>18+</sup>   | 'audio/amr-wb'     | 表示音频/amr-wb类型。 |
-| AUDIO_G711A<sup>20+</sup>    | 'audio/g711a'      | 表示音频/G711-alaw类型。 |
 
 ## MediaDescriptionKey<sup>8+</sup>
 

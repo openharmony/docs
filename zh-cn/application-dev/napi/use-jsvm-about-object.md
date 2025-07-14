@@ -259,7 +259,8 @@ cpp部分代码：
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
 // OH_JSVM_Typeof的样例方法
-static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info) {
+static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info)
+{
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
@@ -267,50 +268,50 @@ static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info) {
     OH_JSVM_Typeof(env, args[0], &valueType);
     JSVM_Value type = nullptr;
     switch (valueType) {
-    case JSVM_UNDEFINED:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is undefined");
-        OH_JSVM_CreateStringUtf8(env, "Input type is undefined", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_NULL:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is null");
-        OH_JSVM_CreateStringUtf8(env, "Input type is null", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_BOOLEAN:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is boolean");
-        OH_JSVM_CreateStringUtf8(env, "Input type is boolean", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_NUMBER:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is number");
-        OH_JSVM_CreateStringUtf8(env, "Input type is number", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_STRING:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is string");
-        OH_JSVM_CreateStringUtf8(env, "Input type is string", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_SYMBOL:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is symbol");
-        OH_JSVM_CreateStringUtf8(env, "Input type is symbol", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_OBJECT:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is object");
-        OH_JSVM_CreateStringUtf8(env, "Input type is object", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_FUNCTION:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is function");
-        OH_JSVM_CreateStringUtf8(env, "Input type is function", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_EXTERNAL:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is external");
-        OH_JSVM_CreateStringUtf8(env, "Input type is external", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_BIGINT:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is bigint");
-        OH_JSVM_CreateStringUtf8(env, "Input type is bigint", JSVM_AUTO_LENGTH, &type);
-        break;
-    default:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type does not match any");
-        OH_JSVM_CreateStringUtf8(env, " ", JSVM_AUTO_LENGTH, &type);
-        break;
+        case JSVM_UNDEFINED:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is undefined");
+            OH_JSVM_CreateStringUtf8(env, "Input type is undefined", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_NULL:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is null");
+            OH_JSVM_CreateStringUtf8(env, "Input type is null", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_BOOLEAN:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is boolean");
+            OH_JSVM_CreateStringUtf8(env, "Input type is boolean", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_NUMBER:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is number");
+            OH_JSVM_CreateStringUtf8(env, "Input type is number", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_STRING:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is string");
+            OH_JSVM_CreateStringUtf8(env, "Input type is string", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_SYMBOL:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is symbol");
+            OH_JSVM_CreateStringUtf8(env, "Input type is symbol", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_OBJECT:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is object");
+            OH_JSVM_CreateStringUtf8(env, "Input type is object", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_FUNCTION:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is function");
+            OH_JSVM_CreateStringUtf8(env, "Input type is function", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_EXTERNAL:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is external");
+            OH_JSVM_CreateStringUtf8(env, "Input type is external", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_BIGINT:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is bigint");
+            OH_JSVM_CreateStringUtf8(env, "Input type is bigint", JSVM_AUTO_LENGTH, &type);
+            break;
+        default:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type does not match any");
+            OH_JSVM_CreateStringUtf8(env, " ", JSVM_AUTO_LENGTH, &type);
+            break;
     }
     return type;
 }

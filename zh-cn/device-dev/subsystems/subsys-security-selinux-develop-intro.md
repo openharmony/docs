@@ -26,7 +26,7 @@ OpenHarmony SELinux策略文件存放在`//base/security/selinux_adapter/sepolic
 | virtfs_contexts | 虚拟文件标签映射文件，体现虚拟文件路径与标签的映射关系。 |
 | sehap_contexts | 应用标签映射文件，体现应用关键信息与应用进程标签、应用数据目录标签的映射关系。 |
 | parameter_contexts | 参数标签映射文件，体现参数与标签的映射关系。 |
-| sevice_contexts | SA服务标签映射文件，体现SA服务与标签的映射关系。 |
+| service_contexts | SA服务标签映射文件，体现SA服务与标签的映射关系。 |
 | hdf_service_contexts | HDF服务标签映射文件，体现HDF服务与标签的映射关系。 |
 
 ## 基础策略文件介绍

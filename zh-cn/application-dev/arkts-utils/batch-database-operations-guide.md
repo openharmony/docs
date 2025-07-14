@@ -65,7 +65,8 @@ async function query(context: Context): Promise<Array<relationalStore.ValuesBuck
 
   // 获取结果集
   let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("test");
-  let resultSet = await store.query(predicates);  // 查询所有数据
+  // 查询所有数据
+  let resultSet = await store.query(predicates);
   console.info(`Query data successfully! row count:${resultSet.rowCount}`);
   let index = 0;
   let result = new Array<relationalStore.ValuesBucket>(resultSet.rowCount)
@@ -230,7 +231,8 @@ struct Index {
    
      // 获取结果集
      let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("test");
-     let resultSet = await store.query(predicates); // 查询所有数据
+     // 查询所有数据
+     let resultSet = await store.query(predicates);
      console.info(`Query data successfully! row count:${resultSet.rowCount}`);
      let index = 0;
      let result = collections.Array.create<SharedValuesBucket | undefined>(resultSet.rowCount, undefined)
@@ -433,7 +435,8 @@ struct Index {
 
      // 获取结果集
      let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("test");
-     let resultSet = await store.query(predicates); // 查询所有数据
+     // 查询所有数据
+     let resultSet = await store.query(predicates);
      console.info(`Query data successfully! row count:${resultSet.rowCount}`);
      let index = 0;
      let result = collections.Array.create<SharedValuesBucket | undefined>(resultSet.rowCount, undefined)

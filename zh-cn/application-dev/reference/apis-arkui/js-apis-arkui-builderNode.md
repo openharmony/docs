@@ -10,9 +10,11 @@
 > 
 > 当前不支持在预览器中使用BuilderNode。
 > 
-> BuilderNode下的自定义组件支持使用[@Prop](../../ui/state-management/arkts-prop.md)装饰器，不支持使用[@Reusable](../../ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../ui/state-management/arkts-link.md)、[@Provide](../../ui/state-management/arkts-provide-and-consume.md)、[@Consume](../../ui/state-management/arkts-provide-and-consume.md)装饰器。
+> BuilderNode下的自定义组件支持使用[@Prop](../../ui/state-management/arkts-prop.md)装饰器，不支持使用[@Reusable](../../ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../ui/state-management/arkts-link.md)。
 > 
 > 从API version 12开始，自定义组件支持接收[LocalStorage](../../ui/state-management/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../ui/state-management/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../ui/state-management/arkts-localstorage.md#localstoragelink)。
+> 
+> 从API version 20开始，通过配置[BuildOptions](#buildoptions12)，内部自定义组件的[@Consume](../../ui/state-management/arkts-provide-and-consume.md)支持接收所在页面的[@Provide](../../ui/state-management/arkts-provide-and-consume.md)数据。
 > 
 > 其余装饰器行为未定义，不建议使用。
 
@@ -208,7 +210,8 @@ build的可选参数。
 | 名称          | 类型                                   | 必填 | 说明                                                         |
 | ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | nestingBuilderSupported |boolean | 否   | 是否支持Builder嵌套Builder进行使用。其中，false表示Builder使用的入参一致，true表示Builder使用的入参不一致。默认值：false<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| localStorage<sup>20+</sup> |[LocalStorage](../../ui/state-management/arkts-localstorage.md) | 否   | 给当前builderNode设置localStorage，挂载在此builderNode下的自定义组件共享该localStorage，如果自定义组件构造函数同时也传入localStorage，优先使用构造函数中传入的localStorage。默认值：null<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务
+| localStorage<sup>20+</sup> |[LocalStorage](../../ui/state-management/arkts-localstorage.md) | 否   | 给当前BuilderNode设置LocalStorage，挂载在此BuilderNode下的自定义组件共享该LocalStorage。如果自定义组件构造函数同时也传入LocalStorage，优先使用构造函数中传入的LocalStorage。默认值：null。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| enableProvideConsumeCrossing<sup>20+</sup> | boolean | 否 | 定义BuilderNode内自定义组件的@Consume是否与所在页面的@Provide状态互通。true表示支持，false表示不支持。默认值：false。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ### InputEventType<sup>20+</sup>
 
@@ -1209,7 +1212,7 @@ offsetA为builderNode相对于父组件的偏移，offsetB为命中位置相对�
 
 inheritFreezeOptions(enabled: boolean): void
 
-查询当前builderNode对象是否设置为继承父组件中自定义组件的冻结策略。如果设置继承状态为false，则builderNode对象的冻结策略为false。在这种情况下，节点在不活跃状态下不会被冻结。
+查询当前BuilderNode对象是否设置为继承父组件中自定义组件的冻结策略。如果设置继承状态为false，则BuilderNode对象的冻结策略为false。在这种情况下，节点在不活跃状态下不会被冻结。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1219,7 +1222,7 @@ inheritFreezeOptions(enabled: boolean): void
 
 | 参数名 | 类型   | 必填 | 说明                                                                     |
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
-| enabled  | boolean | 是  | builderNode对象是否设置为继承父组件中自定义组件的冻结策略。true为继承父组件中自定义组件的冻结策略，false为不继承父组件中自定义组件的冻结策略。 |
+| enabled  | boolean | 是  | BuilderNode对象是否设置为继承父组件中自定义组件的冻结策略。true为继承父组件中自定义组件的冻结策略，false为不继承父组件中自定义组件的冻结策略。 |
 
 ## 示例
 
@@ -1228,8 +1231,7 @@ inheritFreezeOptions(enabled: boolean): void
 该示例演示了在自定义组件中截获鼠标事件并进行坐标转换的完整流程。组件通过onMouse回调读取本地x/y，再结合FrameNode.getPositionToParent()得到的偏移量，调用vp2px将相对坐标转换为像素坐标，更新MouseEvent的windowX/windowY、displayX/displayY。最后通过rootNode.postInputEvent(event)将转换后的鼠标事件分发给子节点进行处理。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction  } from '@kit.ArkUI';
-import { InputEventType } from '@ohos.arkui.node';
+import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction, InputEventType } from '@kit.ArkUI';
 
 class Params {
   text: string = "this is a text"
@@ -1322,8 +1324,7 @@ struct MyComponent {
 该示例演示了在自定义组件中截获触摸事件并对触点坐标进行转换的完整流程。在onTouch回调中，遍历TouchEvent的changedTouches和touches数组，对每个触点的x/y加上组件偏移量并调用vp2px转换为像素，更新各自的windowX/windowY、displayX/displayY。最后同样通过rootNode.postInputEvent(event)将转换后的触摸事件分发给子节点处理。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction  } from '@kit.ArkUI';
-import { InputEventType } from '@ohos.arkui.node';
+import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction, InputEventType  } from '@kit.ArkUI';
 
 class Params {
   text: string = "this is a text"
@@ -1427,8 +1428,7 @@ struct MyComponent {
 该示例演示了在自定义组件中截获滚轮或触控板轴事件并进行坐标转换的完整流程。在onAxisEvent回调中，先获取事件的相对x/y，再加上组件偏移量后调用vp2px转换为像素，更新AxisEvent的windowX/windowY、displayX/displayY，最后通过rootNode.postInputEvent(event)将转换后的轴事件分发给子节点进行处理。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction } from '@kit.ArkUI';
-import { InputEventType } from '@ohos.arkui.node';
+import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction, InputEventType } from '@kit.ArkUI';
 
 class Params {
   text: string = "this is a text"
@@ -1885,3 +1885,76 @@ struct TextBuilder {
 ```
 
 ![inheritFreezeOptions](figures/builderNode_inheritFreezeOptions.gif)
+
+### 示例7（BuilderNode支持内部@Consume接收外部的@Provide数据）
+
+设置BuilderNode的BuildOptions中enableProvideConsumeCrossing为true，以实现BuilderNode内部自定义组件的@Consume与所在自定义组件的@Provide数据互通。
+
+```ts
+import { BuilderNode, NodeContent } from '@kit.ArkUI';
+
+@Component
+struct ConsumeChild {
+  @Consume @Watch("ChangeData") message: string = ""
+
+  ChangeData() {
+    console.log(`ChangeData ${this.message}`);
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .fontWeight(FontWeight.Bold)
+        .fontSize(20)
+      Button("Click to change message to append C")
+        .fontWeight(FontWeight.Bold)
+        .onClick(() => {
+          this.message = this.message + "C"
+        })
+    }
+  }
+}
+
+@Builder
+function CreateText(textMessage: string) {
+  Column() {
+    Text(textMessage)
+      .fontWeight(FontWeight.Bold)
+      .fontSize(20)
+    ConsumeChild()
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @Provide message: string = 'Hello World';
+  private content: NodeContent = new NodeContent();
+  private builderNode: BuilderNode<[string]> = new BuilderNode<[string]>(this.getUIContext());
+
+  aboutToAppear(): void {
+    this.builderNode.build(wrapBuilder(CreateText), "Test Consume", { enableProvideConsumeCrossing: true })
+    this.content.addFrameNode(this.builderNode.getFrameNode())
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .fontWeight(FontWeight.Bold)
+        .fontSize(20)
+      Button("Click to change message to append I")
+        .fontWeight(FontWeight.Bold)
+        .onClick(() => {
+          this.message = this.message + "I";
+        })
+      Column() {
+        ContentSlot(this.content)
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![enableProvideConsumeCrossing](figures/builderNode_consume.png)

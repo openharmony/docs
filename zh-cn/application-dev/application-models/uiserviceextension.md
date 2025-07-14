@@ -114,7 +114,7 @@ struct Index {
                     let msg = (err as BusinessError).message;
                     console.error(`sendData failed, err code:${code}, err msg:${msg}.`);
                   }
-                });
+                })
                 .catch((err: BusinessError) => {
                   console.error(`connectUIServiceExtensionAbility failed, err code: ${err.code}, err msg: ${err.message}.`);
                 });

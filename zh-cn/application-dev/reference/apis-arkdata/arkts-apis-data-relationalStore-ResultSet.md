@@ -4,19 +4,17 @@
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
+
+下列API示例中，都需先使用[query](arkts-apis-data-relationalStore-RdbStore.md#query)、[querySql](arkts-apis-data-relationalStore-RdbStore.md#querysql)、[remoteQuery](arkts-apis-data-relationalStore-RdbStore.md#remotequery-1)、[queryLockedRow](arkts-apis-data-relationalStore-RdbStore.md#querylockedrow12)等query类方法中任一方法获取到ResultSet实例，再通过此实例调用对应方法。
+
 ## 导入模块
 
 ```ts
 import { relationalStore } from '@kit.ArkData';
 ```
 
-## ResultSet
-
-提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
-
-下列API示例中，都需先使用[query](arkts-apis-data-relationalStore-RdbStore.md#query)、[querySql](arkts-apis-data-relationalStore-RdbStore.md#querysql)、[remoteQuery](arkts-apis-data-relationalStore-RdbStore.md#remotequery-1)、[queryLockedRow](arkts-apis-data-relationalStore-RdbStore.md#querylockedrow12)等query类方法中任一方法获取到ResultSet实例，再通过此实例调用对应方法。
-
-### 属性
+## 属性
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -32,7 +30,7 @@ import { relationalStore } from '@kit.ArkData';
 | isStarted    | boolean             | 是   | 检查指针是否移动过，true表示指针已移动过，false表示指针未移动过。             |
 | isClosed     | boolean             | 是   | 检查当前结果集是否关闭，true表示结果集已关闭，false表示结果集未关闭。         |
 
-### getColumnIndex
+## getColumnIndex
 
 getColumnIndex(columnName: string): number
 
@@ -90,7 +88,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getColumnName
+## getColumnName
 
 getColumnName(columnIndex: number): string
 
@@ -147,7 +145,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getColumnType<sup>18+</sup>
+## getColumnType<sup>18+</sup>
 
 getColumnType(columnIdentifier: number | string): Promise\<ColumnType>
 
@@ -211,7 +209,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getColumnTypeSync<sup>18+</sup>
+## getColumnTypeSync<sup>18+</sup>
 
 getColumnTypeSync(columnIdentifier: number | string): ColumnType
 
@@ -275,7 +273,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### goTo
+## goTo
 
 goTo(offset:number): boolean
 
@@ -330,7 +328,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### goToRow
+## goToRow
 
 goToRow(position: number): boolean
 
@@ -385,7 +383,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### goToFirstRow
+## goToFirstRow
 
 goToFirstRow(): boolean
 
@@ -434,7 +432,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### goToLastRow
+## goToLastRow
 
 goToLastRow(): boolean
 
@@ -482,7 +480,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### goToNextRow
+## goToNextRow
 
 goToNextRow(): boolean
 
@@ -530,7 +528,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### goToPreviousRow
+## goToPreviousRow
 
 goToPreviousRow(): boolean
 
@@ -578,7 +576,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getValue<sup>12+</sup>
+## getValue<sup>12+</sup>
 
 getValue(columnIndex: number): ValueType
 
@@ -633,7 +631,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getBlob
+## getBlob
 
 getBlob(columnIndex: number): Uint8Array
 
@@ -689,7 +687,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getString
+## getString
 
 getString(columnIndex: number): string
 
@@ -744,7 +742,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getLong
+## getLong
 
 getLong(columnIndex: number): number
 
@@ -799,7 +797,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getDouble
+## getDouble
 
 getDouble(columnIndex: number): number
 
@@ -854,7 +852,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getAsset<sup>10+</sup>
+## getAsset<sup>10+</sup>
 
 getAsset(columnIndex: number): Asset
 
@@ -909,7 +907,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getAssets<sup>10+</sup>
+## getAssets<sup>10+</sup>
 
 getAssets(columnIndex: number): Assets
 
@@ -964,7 +962,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getRow<sup>11+</sup>
+## getRow<sup>11+</sup>
 
 getRow(): ValuesBucket
 
@@ -1012,11 +1010,11 @@ if (resultSet != undefined) {
 }
 ```
 
-### getRows<sup>18+</sup>
+## getRows<sup>18+</sup>
 
 getRows(maxCount: number, position?: number): Promise<Array\<ValuesBucket>>
 
-从结果集中获取指定数量的数据，使用Promise异步回调。禁止与[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)的其他接口并发调用，否则获取的数据可能非预期。
+从结果集中获取指定数量的数据，使用Promise异步回调。禁止与[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)的其他接口并发调用，否则获取的数据可能非预期。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1087,7 +1085,7 @@ async function proccessRows(resultSet: relationalStore.ResultSet) {
 }
 ```
 
-### getSendableRow<sup>12+</sup>
+## getSendableRow<sup>12+</sup>
 
 getSendableRow(): sendableRelationalStore.ValuesBucket
 
@@ -1173,7 +1171,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### isColumnNull
+## isColumnNull
 
 isColumnNull(columnIndex: number): boolean
 
@@ -1228,7 +1226,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getValueForFlutter<sup>20+</sup>
+## getValueForFlutter<sup>20+</sup>
 
 getValueForFlutter(columnIndex: number): ValueType
 
@@ -1274,7 +1272,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### getRowForFlutter<sup>20+</sup>
+## getRowForFlutter<sup>20+</sup>
 
 getRowForFlutter(): ValuesBucket
 
@@ -1313,7 +1311,7 @@ if (resultSet != undefined) {
 }
 ```
 
-### close
+## close
 
 close(): void
 

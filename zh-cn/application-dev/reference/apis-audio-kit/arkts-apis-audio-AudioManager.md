@@ -1,6 +1,7 @@
 # Interface (AudioManager)
 
 > **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 管理音频音量和设备。
@@ -1169,7 +1170,7 @@ isDeviceActive(deviceType: ActiveDeviceType): Promise&lt;boolean&gt;
 
 **返回值：**
 
-| Type                   | Description                           |
+| 类型                   | 说明                                   |
 | ---------------------- |---------------------------------------|
 | Promise&lt;boolean&gt; | Promise对象。返回true表示设备已激活；返回false表示设备未激活。 |
 
@@ -1393,7 +1394,7 @@ on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAc
 | --------- |---------------------------------------------------------| ---- | ------------------------------------------------------------ |
 | type      | string                                                  | 是   | 事件回调类型，支持的事件为'interrupt'，当音频焦点状态发生变化时，触发该事件。 |
 | interrupt | [AudioInterrupt](arkts-apis-audio-i.md#audiointerruptdeprecated)             | 是   | 音频打断事件类型的参数。                                     |
-| callback  | Callback<[AudioInterrupt](arkts-apis-audio-i.md#interruptactiondeprecated)> | 是   | 回调函数，返回打断事件信息。 |
+| callback  | Callback<[InterruptAction](arkts-apis-audio-i.md#interruptactiondeprecated)> | 是   | 回调函数，返回打断事件信息。 |
 
 **示例：**
 
@@ -1435,7 +1436,7 @@ off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<Interrupt
 | --------- |---------------------------------------------------------| ---- | ------------------------------------------------------------ |
 | type      | string                                                  | 是   | 事件回调类型，支持的事件为'interrupt'，当取消监听音频打断事件时，触发该事件。 |
 | interrupt | [AudioInterrupt](arkts-apis-audio-i.md#audiointerruptdeprecated)                       | 是   | 音频打断事件类型的参数。                                     |
-| callback  | Callback<[AudioInterrupt](arkts-apis-audio-i.md#interruptactiondeprecated)> | 否   | 回调函数，返回打断事件信息。 |
+| callback  | Callback<[InterruptAction](arkts-apis-audio-i.md#interruptactiondeprecated)> | 否   | 回调函数，返回打断事件信息。 |
 
 **示例：**
 

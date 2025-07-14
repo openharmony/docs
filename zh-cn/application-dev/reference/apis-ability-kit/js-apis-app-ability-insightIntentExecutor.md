@@ -35,7 +35,11 @@ import { InsightIntentExecutor } from '@kit.AbilityKit';
 onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, pageLoader: window.WindowStage):
   insightIntent.ExecuteResult | Promise<insightIntent.ExecuteResult>
 
-当意图调用是将UIAbility在前台显示时，触发该回调。支持同步返回和使用Promise异步返回。
+当意图调用的目的是将UIAbility显示在前台时，触发该回调。支持同步返回和使用Promise异步返回。
+
+- 若UIAbility冷启动，意图调用时UIAbility生命周期触发顺序：onCreate、onWindowStageCreate、onExecuteInUIAbilityForegroundMode、onForeground。
+- 若UIAbility热启动，且启动时UIAbility处于后台，意图调用时UIAbility生命周期触发顺序：onNewWant、onExecuteInUIAbilityForegroundMode、onForeground。
+- 若UIAbility热启动，且启动时UIAbility处于前台，意图调用时UIAbility生命周期触发顺序：onExecuteInUIAbilityForegroundMode。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -49,7 +53,7 @@ onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, 
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 意图调用名称。 |
 | param | Record<string, Object> | 是 | 意图调用参数。 |
-| pageLoader | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | 页面加载器。 |
+| pageLoader | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 页面加载器。 |
 
 **返回值：**
 
@@ -145,7 +149,10 @@ onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, 
 onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>):
     insightIntent.ExecuteResult | Promise<insightIntent.ExecuteResult>
 
-当意图调用是将UIAbility在后台拉起时，触发该回调。支持同步返回和使用Promise异步返回。
+当意图调用的目的是将UIAbility从后台拉起时，触发该回调。支持同步返回和使用Promise异步返回。
+
+- 若UIAbility冷启动，意图调用时UIAbility生命周期触发顺序：onCreate、onExecuteInUIAbilityBackgroundMode、onBackground。
+- 若UIAbility热启动，意图调用时UIAbility生命周期触发顺序：onExecuteInUIAbilityBackgroundMode。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -216,6 +223,8 @@ onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageL
   insightIntent.ExecuteResult | Promise<insightIntent.ExecuteResult>
 
 当意图调用是拉起UIExtensionAbility时，触发该回调。支持同步返回和使用Promise异步返回。
+
+意图调用时UIExtensionAbility生命周期触发顺序：onCreate、onSessionCreate、onExecuteInUIExtensionAbility、onForeground。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -316,6 +325,8 @@ onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>):
     insightIntent.ExecuteResult | Promise<insightIntent.ExecuteResult>
 
 当意图调用是拉起ServiceExtensionAbility时，触发该回调。支持同步返回和使用Promise异步返回。
+
+- 意图调用时ServiceExtensionAbility生命周期触发顺序：onCreate、onRequest、onExecuteInServiceExtensionAbility。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 

@@ -145,9 +145,8 @@ listener.on('change', onPortrait);
 
 Stage模型下的示例：
 
-
-```ts
 <!--deprecated_code_no_check-->
+```ts
 import { mediaquery, window } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
@@ -212,9 +211,8 @@ struct MediaQueryExample {
 
 FA模型下的示例：
 
-
-```ts
 <!--deprecated_code_no_check-->
+```ts
 import { mediaquery } from '@kit.ArkUI';
 import { featureAbility } from '@kit.AbilityKit';
 

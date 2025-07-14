@@ -8,7 +8,7 @@
 
 **配置指导**
 
-1. 在service_contexts文件内，新增SAID与SA标签的映射关系，
+1. 在service_contexts文件内，新增SAID与SA标签的映射关系。
     ```text
     10      u:object_r:sa_render_service:s0
     ```
@@ -27,7 +27,7 @@
 
 **配置指导**
 
-1. 在service_contexts文件内，新增HDF服务名与HDF标签的映射关系，
+1. 在service_contexts文件内，新增HDF服务名与HDF标签的映射关系。
     ```text
     thermal_interface_service  u:object_r:hdf_thermal_interface_service:s0
     ```

@@ -4,7 +4,7 @@ ArrayList是一种线性数据结构，底层基于数组实现。ArrayList会�
 
 ArrayList和[Vector](js-apis-vector.md)相似，都是基于数组实现。它们都可以动态调整容量，但Vector每次扩容增加1倍。
 
-ArrayList和[LinkedList](js-apis-linkedlist.md)相比，ArrayList的随机访问效率更高。但由于ArrayList的增删操作会影响数组内其他元素的移动，LinkedList的增加和删除操作效率更高。
+ArrayList和[LinkedList](js-apis-linkedlist.md)相比，ArrayList的随机访问效率更高。但由于ArrayList的增删操作可能会影响数组内其他元素的移动，LinkedList的增加和删除操作效率更高。
 
 **推荐使用场景：** 当需要频繁读取集合中的元素时，推荐使用ArrayList。
 
@@ -111,7 +111,7 @@ let result5 = arrayList.add(false);
 
 insert(element: T, index: number): void
 
-在长度范围内任意位置插入指定元素。
+在长度范围内指定位置index插入元素element。如果index超出范围，则插入失败。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -179,6 +179,7 @@ has(element: T): boolean
 let arrayList: ArrayList<string> = new ArrayList();
 arrayList.add("squirrel");
 let result: boolean = arrayList.has("squirrel");
+console.info("result = ", result); // result = true
 ```
 
 ### getIndexOf
@@ -222,7 +223,8 @@ arrayList.add(2);
 arrayList.add(1);
 arrayList.add(2);
 arrayList.add(4);
-let result: number = arrayList.getIndexOf(2);
+let result: number = arrayList.getIndexOf(2); 
+console.info("result = ", result); // result = 0
 ```
 
 ### getLastIndexOf
@@ -267,6 +269,7 @@ arrayList.add(1);
 arrayList.add(2);
 arrayList.add(4);
 let result: number = arrayList.getLastIndexOf(2);
+console.info("result = ", result); // result = 5
 ```
 
 ### removeByIndex
@@ -311,6 +314,7 @@ arrayList.add(5);
 arrayList.add(2);
 arrayList.add(4);
 let result: number = arrayList.removeByIndex(2);
+console.info("result = ", result); // result = 5
 ```
 
 ### remove
@@ -352,13 +356,14 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: boolean = arrayList.remove(2);
+console.info(result); // result =  true
 ```
 
 ### removeByRange
 
 removeByRange(fromIndex: number, toIndex: number): void
 
-删除指定范围内的元素，包括起始值但不包括终止值。
+删除指定范围内的元素，区间包含fromIndex，但不包含toIndex，即左闭右开区间[fromIndex, toIndex)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -446,7 +451,7 @@ arrayList.replaceAllElements((value: number): number => {
 forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
 thisArg?: Object): void
 
-使用回调函数遍历ArrayList实例对象的元素及其对应的下标。
+在遍历ArrayList实例对象中每一个元素的过程中，对每个元素执行回调函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -487,6 +492,12 @@ arrayList.add(4);
 arrayList.forEach((value: number, index?: number) => {
   console.info("value:" + value, "index:" + index);
 });
+/**
+ * value:2 index:0
+ * value:4 index:1
+ * value:5 index:2
+ * value:4 index:3
+ * /
 ```
 
 ### sort
@@ -538,7 +549,7 @@ arrayList.sort();
 
 subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 
-根据下标截取ArrayList中的一段元素，并返回这一段ArrayList实例，包括起始值但不包括终止值。
+根据下标截取ArrayList中的一段元素，并返回这一段ArrayList实例，区间包含fromIndex，但不包含toIndex，即左闭右开区间[fromIndex, toIndex)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -576,6 +587,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: ArrayList<number> = arrayList.subArrayList(2, 4);
+console.info("result = ", result.length); // result = 2
 ```
 
 ### clear
@@ -641,6 +653,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result:  ArrayList<number> = arrayList.clone();
+console.info("result = ", result.length); // result = 4
 ```
 
 ### getCapacity
@@ -676,6 +689,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: number = arrayList.getCapacity();
+console.info("result = ", result); // result = 10
 ```
 
 ### convertToArray
@@ -711,6 +725,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: Array<number> = arrayList.convertToArray();
+console.info("result = ", result); // result =  2,4,5,4
 ```
 
 ### isEmpty
@@ -746,6 +761,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: boolean = arrayList.isEmpty();
+console.info("result = ", result); // result =  false
 ```
 
 ### \[index: number\]<sup>12+</sup>
@@ -788,6 +804,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: number = arrayList[2];
+console.info("result = ", result); // result =  5
 ```
 
 ### increaseCapacityTo
@@ -825,6 +842,7 @@ arrayList.add(5);
 arrayList.add(4);
 arrayList.increaseCapacityTo(2);
 arrayList.increaseCapacityTo(8);
+console.info("result = ", arrayList.length); // result = 4
 ```
 
 ### trimToCurrentLength
@@ -854,6 +872,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.trimToCurrentLength();
+console.info("result = ", arrayList.length); // result = 4
 ```
 
 ### [Symbol.iterator]
@@ -894,7 +913,12 @@ let numbers: Array<number> = arrayList.convertToArray();
 for (let item of numbers) {
   console.info(`value : ${item}`);
 }
-
+/**
+ * value : 2
+ * value : 4
+ * value : 5
+ * value : 4
+ * */
 // 使用方法二：
 let iter = arrayList[Symbol.iterator]();
 let temp: IteratorResult<number> = iter.next();
@@ -902,4 +926,10 @@ while(!temp.done) {
     console.info(`value:${temp.value}`);
     temp = iter.next();
 }
+/**
+ * value:2
+ * value:4
+ * value:5
+ * value:4
+ * */
 ```

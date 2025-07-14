@@ -1067,7 +1067,7 @@ TextArea组件在文本超长时显示效果。默认值为CLIP，按最大行�
 
 ## NumericTextTransition<sup>20+</sup>
 
-数字翻牌动效，不支持渐变色和Text跑马灯模式，只支持正整数，与其它文字混排时数字翻牌不生效。
+数字翻牌动效。仅限正整数，不支持小数和负数。不支持渐变色和Text跑马灯模式。不支持选中，[copyOption](../arkui-ts/ts-basic-components-text.md#copyoption9)属性无效。当文本存在子组件时或通过属性字符串设置时，数字翻牌失效。
 
 NumericTextTransition继承自[ContentTransition](#contenttransition20)。
 

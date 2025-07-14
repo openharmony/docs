@@ -41,7 +41,7 @@ hashSet.add(2);
 hashSet.add(3);
 hashSet.add(4);
 hashSet.add(5);
-let res = hashSet.length;
+let res = hashSet.length;  // result =  5
 ```
 
 ### constructor
@@ -145,7 +145,7 @@ let result = hashSet.has("squirrel");
 
 add(value: T): boolean
 
-向HashSet添加数据。
+向HashSet添加元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -292,7 +292,7 @@ while(!temp.done) {
 
 forEach(callbackFn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
 
-通过回调函数来遍历实例对象的元素及其对应的下标。
+在遍历过程中对每个元素调用一次回调函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

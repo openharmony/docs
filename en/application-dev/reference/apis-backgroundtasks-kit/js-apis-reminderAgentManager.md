@@ -399,7 +399,7 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot) | Yes| notificationManager\.slot instance. Only **notificationType** can be set.|
+| slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot-1) | Yes| notificationManager\.slot instance. Only **notificationType** can be set.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the notification slot is added, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -442,7 +442,7 @@ Adds a notification slot. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot) | Yes| notificationManager\.slot instance. Only **notificationType** can be set.|
+| slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot-1) | Yes| notificationManager\.slot instance. Only **notificationType** can be set.|
 
 **Return value**
 
@@ -742,6 +742,58 @@ reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
 });
 ```
 
+## reminderAgentManager.updateReminder<sup>20+</sup>
+
+updateReminder(reminderId: number, reminderReq: ReminderRequest): Promise\<void>
+
+Updates the agent-powered reminder with the specified ID. This API uses a promise to return the result. Only [valid (not yet expired) reminders](../../task-management/agent-powered-reminder.md#constraints) that are not displayed in the notification panel can be updated.
+
+**Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
+
+**System capability**: SystemCapability.Notification.ReminderAgent
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                              |
+| ---------- | ------ | ---- | ---------------------------------- |
+| reminderId | number | Yes  | ID of the reminder to be updated, which is the return value of [publishReminder](#reminderagentmanagerpublishreminder).|
+| reminderReq | [ReminderRequest](#reminderrequest) | Yes  | Request instance used to set detailed information such as the reminder type and ringing duration.|
+
+**Return value**
+
+| Type                  | Description                             |
+| ---------------------- | --------------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                    |
+| -------- | ---------------------------- |
+| 201      | Permission denied.           |
+| 1700003  | The reminder does not exist. |
+| 1700007  | If the input parameter is not valid parameter. |
+
+**Example**
+
+```ts
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let timer: reminderAgentManager.ReminderRequestTimer = {
+  reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
+  triggerTimeInSeconds: 10
+}
+
+let reminderId: number = 1;
+reminderAgentManager.updateReminder(reminderId, timer).then(() => {
+  console.info("update reminder succeed");
+}).catch((err: BusinessError) => {
+  console.error("promise err code:" + err.code + " message:" + err.message);
+});
+```
+
 ## ActionButtonType
 
 Enumerates the types of buttons displayed for a reminder.
@@ -764,6 +816,17 @@ Enumerates the reminder types.
 | REMINDER_TYPE_TIMER | 0 | Countdown reminder.|
 | REMINDER_TYPE_CALENDAR | 1 | Calendar reminder.|
 | REMINDER_TYPE_ALARM | 2 | Alarm reminder.|
+
+## RingChannel<sup>20+</sup>
+
+Enumerates the audio playback channels for the custom prompt tone.
+
+**System capability**: SystemCapability.Notification.ReminderAgent
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| RING_CHANNEL_ALARM | 0 | Alarm channel.|
+| RING_CHANNEL_MEDIA | 1 | Media channel.|
 
 
 ## ActionButton
@@ -832,10 +895,11 @@ Defines the request for publishing a reminder.
 | notificationId | number | No| Notification ID used by the reminder. You must pass in a notification ID. If there are reminders with the same notification ID, the later one will overwrite the earlier one.|
 | groupId<sup>11+</sup> | string | No| Group ID used for the reminder. If "Don't ask again" or similar information is selected for the reminder, other reminders with the same group ID are also canceled.|
 | slotType | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | No| Type of the slot used by the reminder.|
-| tapDismissed<sup>10+</sup> | boolean | No| Whether the reminder is automatically cleared. For details, see [NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest). |
-| autoDeletedTime<sup>10+</sup> | number | No| Time when the reminder is automatically cleared. For details, see [NotificationRequest.autoDeletedTime](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest).|
+| tapDismissed<sup>10+</sup> | boolean | No| Whether the reminder is automatically cleared. For details, see [NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1).<br> - **true** (default): The reminder is automatically cleared after the notification or button is tapped.<br> - **false**: The reminder is retained after the notification or button is tapped.|
+| autoDeletedTime<sup>10+</sup> | number | No| Time when the reminder is automatically cleared. For details, see [NotificationRequest.autoDeletedTime](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1).|
 | snoozeSlotType<sup>11+</sup> | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | No| Type of the slot used by the snoozed reminder. (It is not applicable to countdown reminders.)|
 | customRingUri<sup>11+</sup> | string | No| URI of the custom prompt tone. The prompt tone file must be stored in the **resources/rawfile** directory and supports formats such as M4A, AAC, MP3, OGG, WAV, FLAC, and AMR.|
+| ringChannel<sup>20+</sup> | [RingChannel](#ringchannel20) | No| Audio channel of the custom prompt tone. The default channel is the alarm channel.|
 
 ## ReminderRequestCalendar
 
