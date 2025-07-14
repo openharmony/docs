@@ -14,7 +14,9 @@
 
 ```C++
 #include "CryptoArchitectureKit/crypto_architecture_kit.h"
+#include "CryptoArchitectureKit/crypto_key_agreement.h"
 #include <stdio.h>
+#include <cstring>
 
 static OH_Crypto_ErrCode doTestEcdhKeyAgreement()
 {
