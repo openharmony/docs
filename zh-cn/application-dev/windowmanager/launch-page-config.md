@@ -47,7 +47,7 @@ startWindow字段提供了增强的启动页配置能力，可用于元素更复
 > 
 > - 启动页中的图片资源支持的文件格式同[Image组件](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)，考虑到解码性能和显示效果，建议启动页中使用jpg或png格式的图片资源。
 
-1. 在创建的UIAbility模板中，上述startWindow字段未配置，开发者可以新增startWindow字段指向二级配置json文件，以启用启动页增强配置。
+1. 在创建的UIAbility模板中，开发者可以新增startWindow字段指向二级配置json文件，以启用启动页增强配置。
 
    其中，json文件需要由开发者自行创建并放置到工程目录下。推荐的文件名及路径为resources/base/profile/start_window.json，此时需在module.json5的abilities标签中配置如下：
 
