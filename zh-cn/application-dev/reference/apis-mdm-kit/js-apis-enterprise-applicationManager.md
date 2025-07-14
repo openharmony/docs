@@ -326,6 +326,228 @@ try {
 }
 ```
 
+## applicationManager.addAutoStartApps<sup>20+</sup>
+
+addAutoStartApps(admin: Want, autoStartApps: Array<Want>, accountId: number, disallowModify: boolean): void
+
+添加开机自启动应用名单,设置用户禁止取消应用自启。该能力当前仅支持2in1设备。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名        | 类型                                                         | 必填 | 说明                                   |
+| ------------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                         |
+| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。数组长度上限为10。 |
+| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
+| disallowModify | boolean | 是   | true 禁止用户取消自启，false 允许用户取消自启<br>配置后，用户可通过设置-应用和元服务-应用启动管理，管理应用的自启动 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+// 用户可根据需要，自行修改
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+// 用户可根据需要，自行修改
+let autoStartApps: Array<Want> = [
+  {
+    bundleName: 'com.example.autoStartApplication',
+    abilityName: 'EntryAbility',
+  }
+];
+
+try {
+  applicationManager.addAutoStartApps(wantTemp, autoStartApps, 100, true);
+  console.info(`Succeeded in adding auto start applications and set disllowModify.`);
+} catch(err) {
+  console.error(`Failed to add auto start applications and set disallowModify. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## applicationManager.removeAutoStartApps<sup>20+</sup>
+
+removeAutoStartApps(admin: Want, autoStartApps: Array<Want>, accountId: number): void
+
+删除开机自启动应用名单。该能力当前仅支持2in1设备。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名        | 类型                                                         | 必填 | 说明             |
+| ------------- | ------------------------------------------------------------ | ---- | ---------------- |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。   |
+| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。 |
+| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+// 用户可根据需要，自行修改 
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+// 用户可根据需要，自行修改
+let autoStartApps: Array<Want> = [
+  {
+    bundleName: 'com.example.autoStartApplication',
+    abilityName: 'EntryAbility',
+  }
+];
+
+try {
+  applicationManager.removeAutoStartApps(wantTemp, autoStartApps, 100);
+  console.info(`Succeeded in removing auto start applications.`);
+} catch(err) {
+  console.error(`Failed to remove auto start applications. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## applicationManager.getAutoStartApps<sup>20+</sup>
+
+getAutoStartApps(admin: Want, accountId: number): Array<Want>
+
+查询开机自启动应用名单。该能力当前仅支持2in1设备。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明           |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
+
+**返回值：**
+
+| 类型                                                         | 说明                 |
+| ------------------------------------------------------------ | -------------------- |
+| Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 应用自启动名单数组。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+// 用户可根据需要，自行修改
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  let res: Array<Want> = applicationManager.getAutoStartApps(wantTemp, 100);
+  console.info(`Succeeded in adding auto start apps: ${JSON.stringify(res)}`);
+} catch(err) {
+  console.error(`Failed to auto start apps. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## applicationManager.isModifyAutoStartAppsDisallowed<sup>20+</sup>
+
+isModifyAutoStartAppsDisallowed(admin: Want, autoStartApp: Want, accountId: number): boolean
+
+查询应用是否禁止取消自启。该能力当前仅支持2in1设备。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明           |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| autoStartApp | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 开机自启动应用。 |
+| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
+
+**返回值：**
+
+| 类型                                                         | 说明                 |
+| ------------------------------------------------------------ | -------------------- |
+| boolean | 是否禁止取消应用自启。true 禁止取消自启，false 允许取消自启|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+// 用户可根据需要，自行修改
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+// 用户可根据需要，自行修改
+let autoStartApp: Want = {
+  bundleName: 'com.example.autoStartApplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  let res: boolean = applicationManager.isModifyAutoStartAppsDisallowed(wantTemp, autoStartApp, 100);
+  console.info(`Succeeded in is disallowModify auto start app: ${JSON.stringify(res)}`);
+} catch(err) {
+  console.error(`Failed to get is disallowModify auto start app. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
 ## applicationManager.addKeepAliveApps<sup>14+</sup>
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): void
@@ -375,6 +597,58 @@ try {
   console.info('Succeeded in adding keep alive apps.');
 } catch (err) {
   console.error(`Failed to add keep alive apps. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## applicationManager.addKeepAliveApps<sup>20+</sup>
+
+addKeepAliveApps(admin: Want, bundleNames: Array<string>, accountId: number, disallowModify: boolean): void
+
+添加保活应用，设置用户禁止取消应用保活，当前仅支持2in1设备。如果将应用添加至应用运行黑名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名    | 类型                                                    | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
+| bundleNames    | Array&lt;string&gt;                                     | 是   | 应用包名数组，指定需要添加保活的应用，最大支持5个。                                   |
+| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
+| disallowModify | boolean | 是   | true 禁止用户取消保活，false 允许用户取消保活<br>配置后，用户可在toB设备中，通过设置-应用和元服务-应用常驻管理，管理应用常驻保活 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 9200010  | A conflict policy has been configured. |
+| 9201005  | Add keep alive applications failed. |
+| 201  | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let bundleNames: Array<string> = ['com.example.myapplication'];
+
+try {
+  applicationManager.addKeepAliveApps(wantTemp, bundleNames, 100, true);
+  console.info('Succeeded in adding keep alive apps and set disallowModify.');
+} catch (err) {
+  console.error(`Failed to add keep alive apps and set disallowModify. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -479,6 +753,62 @@ try {
   console.info('Succeeded in getting keep alive apps.');
 } catch (err) {
   console.error(`Failed to get keep alive apps. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## applicationManager.isModifyKeepAliveAppsDisallowed<sup>20+</sup>
+
+isModifyKeepAliveAppsDisallowed(admin: Want, accountId: number, bundleName: string): boolean
+
+查询应用是否禁止取消保活。该能力当前仅支持2in1设备。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明           |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
+| bundleName | string | 是 | 查询的应用包名。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                 |
+| ------------------------------------------------------------ | -------------------- |
+| boolean | 是否禁止取消应用保活。true 禁止取消保活，false 允许取消保活|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+// 用户可根据需要，自行修改
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+// 用户可根据需要，自行修改
+let keepAliveApp: string = 'com.example.keepAliveApplication'
+
+try {
+  let res: boolean = applicationManager.isModifyKeepAliveAppsDisallowed(wantTemp, 100, keepAliveApp);
+  console.info(`Succeeded in is disallowModify keep alive app: ${JSON.stringify(res)}`);
+} catch(err) {
+  console.error(`Failed to get is disallowModify keep alive app. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
