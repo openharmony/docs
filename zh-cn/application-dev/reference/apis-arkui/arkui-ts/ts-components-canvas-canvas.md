@@ -145,4 +145,4 @@ struct CanvasExample {
   }
 }
 ```
-  ![zh-cn_image_0000001194032666](figures/canvas_drawingRenderingContext.png)
+  ![zh-cn_image_0000001194032666](figures/CanvasDemo2.png)
