@@ -31,7 +31,6 @@
 | [typedef void (\*OH_CaptureSession_OnError)(Camera_CaptureSession* session, Camera_ErrorCode errorCode)](#oh_capturesession_onerror) | OH_CaptureSession_OnError | 在[CaptureSession_Callbacks](capi-oh-camera-capturesession-callbacks.md)中被调用的捕获会话错误回调。 |
 | [typedef void (\*OH_CaptureSession_OnSmoothZoomInfo)(Camera_CaptureSession* session,Camera_SmoothZoomInfo* smoothZoomInfo)](#oh_capturesession_onsmoothzoominfo) | OH_CaptureSession_OnSmoothZoomInfo | 拍照会话平滑变焦信息回调，触发平滑变焦后该回调会返回。 |
 | [typedef void (\*OH_CaptureSession_OnAutoDeviceSwitchStatusChange)(Camera_CaptureSession* session,Camera_AutoDeviceSwitchStatusInfo* autoDeviceSwitchStatusInfo)](#oh_capturesession_onautodeviceswitchstatuschange) | OH_CaptureSession_OnAutoDeviceSwitchStatusChange | 捕获会话设备切换状态回调。 |
-| [typedef void (\*OH_CaptureSession_OnSystemPressureLevel)(Camera_CaptureSession* session,Camera_SystemPressureLevel* systemPressureLevel)](#oh_capturesession_onsystempressurelevel) | OH_CaptureSession_OnSystemPressureLevel | 捕获系统压力状态变化回调。 |
 | [Camera_ErrorCode OH_CaptureSession_RegisterCallback(Camera_CaptureSession* session,CaptureSession_Callbacks* callback)](#oh_capturesession_registercallback) | - | 注册捕获会话事件回调。 |
 | [Camera_ErrorCode OH_CaptureSession_UnregisterCallback(Camera_CaptureSession* session,CaptureSession_Callbacks* callback)](#oh_capturesession_unregistercallback) | - | 注销捕获会话事件回调。 |
 | [Camera_ErrorCode OH_CaptureSession_RegisterSmoothZoomInfoCallback(Camera_CaptureSession* session,OH_CaptureSession_OnSmoothZoomInfo smoothZoomInfoCallback)](#oh_capturesession_registersmoothzoominfocallback) | - | 注册平滑变焦信息事件回调。 |
@@ -95,8 +94,6 @@
 | [Camera_ErrorCode OH_CaptureSession_UnregisterAutoDeviceSwitchStatusCallback(Camera_CaptureSession* session,OH_CaptureSession_OnAutoDeviceSwitchStatusChange autoDeviceSwitchStatusChange)](#oh_capturesession_unregisterautodeviceswitchstatuscallback) | - | 注销设备切换事件回调。 |
 | [Camera_ErrorCode OH_CaptureSession_IsAutoDeviceSwitchSupported(Camera_CaptureSession* session, bool* isSupported)](#oh_capturesession_isautodeviceswitchsupported) | - | 检查是否支持自动设备切换。 |
 | [Camera_ErrorCode OH_CaptureSession_EnableAutoDeviceSwitch(Camera_CaptureSession* session, bool enabled)](#oh_capturesession_enableautodeviceswitch) | - | 是否启用相机设备的自动切换。 |
-| [Camera_ErrorCode OH_CaptureSession_RegisterSystemPressureLevelCallback(Camera_CaptureSession* session,OH_CaptureSession_OnSystemPressureLevel systemPressureLevel)](#oh_capturesession_registersystempressurelevelcallback) | - | 注册系统压力状态回调。 |
-| [Camera_ErrorCode OH_CaptureSession_UnregisterSystemPressureLevelCallback(Camera_CaptureSession* session,OH_CaptureSession_OnSystemPressureLevel systemPressureLevel)](#oh_capturesession_unregistersystempressurelevelcallback) | - | 注销系统压力状态回调。 |
 | [Camera_ErrorCode OH_CaptureSession_SetQualityPrioritization(Camera_CaptureSession* session, Camera_QualityPrioritization qualityPrioritization)](#oh_capturesession_setqualityprioritization) | - | 设置录像质量优先级。<br> 默认为高质量，设置为功耗平衡将降低录像质量以减少功耗。实际功耗收益因平台而异。 |
 | [Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* session, bool* isSupported)](#oh_capturesession_ismacrosupported) | - | 检查是否支持微距能力。 |
 | [Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, bool enabled)](#oh_capturesession_enablemacro) | - | 是否启用相机设备的微距能力。 |
@@ -192,26 +189,6 @@ typedef void (*OH_CaptureSession_OnAutoDeviceSwitchStatusChange)(Camera_CaptureS
 | -- | -- |
 | [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
 | [Camera_AutoDeviceSwitchStatusInfo](capi-oh-camera-camera-autodeviceswitchstatusinfo.md)* autoDeviceSwitchStatusInfo | 回调传递的设备切换状态信息。 |
-
-### OH_CaptureSession_OnSystemPressureLevel()
-
-```
-typedef void (*OH_CaptureSession_OnSystemPressureLevel)(Camera_CaptureSession* session,Camera_SystemPressureLevel* systemPressureLevel)
-```
-
-**描述**
-
-捕获系统压力状态变化回调。
-
-**起始版本：** 20
-
-
-**参数：**
-
-| 参数项 | 描述 |
-| -- | -- |
-| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
-| [Camera_SystemPressureLevel](capi-camera-h.md#camera_systempressurelevel)* systemPressureLevel | 回调传递的系统压力等级。 |
 
 ### OH_CaptureSession_RegisterCallback()
 
@@ -1862,58 +1839,6 @@ Camera_ErrorCode OH_CaptureSession_EnableAutoDeviceSwitch(Camera_CaptureSession*
 | 类型 | 说明 |
 | -- | -- |
 | [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。<br>         CAMERA_SESSION_NOT_CONFIG：捕获会话未配置。<br>         CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。 |
-
-### OH_CaptureSession_RegisterSystemPressureLevelCallback()
-
-```
-Camera_ErrorCode OH_CaptureSession_RegisterSystemPressureLevelCallback(Camera_CaptureSession* session,OH_CaptureSession_OnSystemPressureLevel systemPressureLevel)
-```
-
-**描述**
-
-注册系统压力状态回调。
-
-**起始版本：** 20
-
-
-**参数：**
-
-| 参数项 | 描述 |
-| -- | -- |
-| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
-| [OH_CaptureSession_OnSystemPressureLevel](#oh_capturesession_onsystempressurelevel) systemPressureLevel | 要注册的系统压力状态回调。 |
-
-**返回：**
-
-| 类型 | 说明 |
-| -- | -- |
-| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。 |
-
-### OH_CaptureSession_UnregisterSystemPressureLevelCallback()
-
-```
-Camera_ErrorCode OH_CaptureSession_UnregisterSystemPressureLevelCallback(Camera_CaptureSession* session,OH_CaptureSession_OnSystemPressureLevel systemPressureLevel)
-```
-
-**描述**
-
-注销系统压力状态回调。
-
-**起始版本：** 20
-
-
-**参数：**
-
-| 参数项 | 描述 |
-| -- | -- |
-| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
-| [OH_CaptureSession_OnSystemPressureLevel](#oh_capturesession_onsystempressurelevel) systemPressureLevel | 要注销的系统压力状态回调。 |
-
-**返回：**
-
-| 类型 | 说明 |
-| -- | -- |
-| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。 |
 
 ### OH_CaptureSession_SetQualityPrioritization()
 
