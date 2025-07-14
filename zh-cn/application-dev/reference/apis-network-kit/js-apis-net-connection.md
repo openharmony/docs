@@ -1762,13 +1762,13 @@ let pacUrl = connection.getPacUrl();
 
 > **说明：**
 >
-> （1）设备从无网络到有网络会触发netAvailable事件、netCapabilitiesChange事件和netConnectionPropertiesChange事件；
+>（1）设备从无网络状态转变为有网络状态时，将触发netAvailable事件、netCapabilitiesChange事件和netConnectionPropertiesChange事件；
 >
-> （2）在收到netAvailable事件之后，设备从有网络到无网络状态会触发netLost事件；
+>（2）接收到netAvailable事件后，若设备从有网络状态转变为无网络状态，将触发netLost事件；
 >
-> （3）若没有收到netAvailable事件，则会直接收到netUnavailable事件；
+>（3）若未接收到netAvailable事件，则将直接接收到netUnavailable事件；
 >
-> （4）设备从WiFi到蜂窝会触发netLost事件（WiFi丢失）之后触发 netAvailable事件（蜂窝可用）；
+>（4）设备从WiFi网络切换至蜂窝网络时，将先触发netLost事件（WiFi丢失），随后触发netAvailable事件（蜂窝可用）。
 
 ### register
 
