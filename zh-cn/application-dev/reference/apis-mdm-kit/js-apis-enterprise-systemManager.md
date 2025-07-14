@@ -444,7 +444,7 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 ## systemManager.addDisallowedNearLinkProtocols<sup>20+</sup>
 
-addDisallowedNearLinkProtocols(admin: Want, protocol: Array&lt;[NearLinkProtocol](#NearLinkProtocol)&gt;, accountId: number)
+addDisallowedNearLinkProtocols(admin: Want, protocol: Array&lt;[NearLinkProtocol](#nearlinkprotocol)&gt;, accountId: number)
 
 添加禁用指定用户的星闪协议。
 
@@ -457,7 +457,7 @@ addDisallowedNearLinkProtocols(admin: Want, protocol: Array&lt;[NearLinkProtocol
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
-| protocol  | Array&lt;[NearLinkProtocol](#NearLinkProtocol)&gt;               | 是   | 星闪协议枚举列表 |                       |
+| protocol  | Array&lt;[NearLinkProtocol](#nearlinkprotocol)&gt;               | 是   | 星闪协议枚举列表 |                       |
 | accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
 
 **错误码**：
@@ -493,7 +493,7 @@ try {
 
 ## systemManager.removeDisallowedNearLinkProtocols<sup>20+</sup>
 
-removeDisallowedNearLinkProtocols(admin: Want, protocol: Array&lt;[NearLinkProtocol](#NearLinkProtocol)&gt;, accountId: number)
+removeDisallowedNearLinkProtocols(admin: Want, protocol: Array&lt;[NearLinkProtocol](#nearlinkprotocol)&gt;, accountId: number)
 
 移除禁用指定用户的星闪协议。
 
@@ -506,7 +506,7 @@ removeDisallowedNearLinkProtocols(admin: Want, protocol: Array&lt;[NearLinkProto
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
-| protocol  | Array&lt;[NearLinkProtocol](#NearLinkProtocol)&gt;               | 是   | 星闪协议枚举列表 |                       |
+| protocol  | Array&lt;[NearLinkProtocol](#nearlinkprotocol)&gt;               | 是   | 星闪协议枚举列表 |                       |
 | accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
 
 **错误码**：
@@ -542,7 +542,7 @@ try {
 
 ## systemManager.getDisallowedNearLinkProtocols<sup>20+</sup>
 
-getDisallowedNearLinkProtocols(admin: Want, accountId: number): Array&lt;[NearLinkProtocol](#NearLinkProtocol)&gt;;
+getDisallowedNearLinkProtocols(admin: Want, accountId: number): Array&lt;[NearLinkProtocol](#nearlinkprotocol)&gt;;
 获取指定用户禁用的星闪协议。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
@@ -728,7 +728,7 @@ try {
 
 ## NearLinkProtocol 
 
-系统更新状态。
+NearLink协议枚举。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
