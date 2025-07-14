@@ -54,7 +54,7 @@ let audioHapticManagerInstance: audioHaptic.AudioHapticManager = audioHaptic.get
 | muteAudio   | boolean      | 否   | 是否将音频静音，true表示将音频静音，false表示正常播放声音。若不填该参数，则默认为false。 |
 | muteHaptics | boolean      | 否   | 是否禁止振动，true表示将禁止振动，false表示正常振动。若不填该参数，则默认为false。 |
 
-## AudioHapticFileDescriptor
+## AudioHapticFileDescriptor<sup>20+</sup>
 
 描述音振文件描述符。
 
