@@ -393,7 +393,7 @@ NONE模式
 
 ### 示例7（滚动类容器扩展安全区）
 
-该示例通过在滚动类容器内调用expandSafeArea属性实现沉浸式效果,滚动容器Scroll内的Swiper可以延伸到状态栏上。
+该示例通过在滚动类容器内调用expandSafeArea属性实现沉浸式效果,Scroll内的Swiper可以延伸到状态栏上。
 
 ```ts
 class SwiperDataSource implements IDataSource {
