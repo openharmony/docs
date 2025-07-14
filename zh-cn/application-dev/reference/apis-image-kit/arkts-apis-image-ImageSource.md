@@ -548,56 +548,6 @@ async function CreatePicture() {
 }
 ```
 
-### createPictureAtIndex<sup>20+</sup>
-
-createPictureAtIndex(index: number): Promise\<Picture>
-
-通过指定序号的图片（目前仅支持GIF格式）创建Picture对象。使用Promise异步回调。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImageSource
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明                                              |
-| ------ | ------ | ---- | ------------------------------------------------ |
-| index  | number | 是   | 解码图片序号。图片序号有效的取值范围为：[0，帧数-1]。 |
-
-**返回值：**
-
-| 类型                         | 说明                         |
-| ---------------------------- | ---------------------------- |
-| Promise\<[Picture](arkts-apis-image-Picture.md)> | Promise对象，返回Picture。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
-
-| 错误码ID | 错误信息                                                      |
-| -------- | ------------------------------------------------------------ |
-| 7700101  | Bad source. |
-| 7700102  | Unsupported MIME type. |
-| 7700103  | Image too large. |
-| 7700203  | Unsupported options. For example, index is invalid. |
-| 7700301  | Decoding failed. |
-
-**示例：**
-
-```ts
-import { image } from '@kit.ImageKit';
-
-async function CreatePictures() {
-  let frameCount: number = await imageSourceApi.getFrameCount();
-  for (let index = 0; index < frameCount; index++) {
-    try {
-      let pictureObj: image.Picture = await imageSourceApi.createPictureAtIndex(index);
-      console.info('Create picture succeeded for frame: ' + index);
-    } catch (e) {
-      console.error('Create picture failed for frame: ' + index);
-    }
-  }
-}
-```
-
 ## createPixelMap<sup>7+</sup>
 
 createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
