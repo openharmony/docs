@@ -132,6 +132,7 @@
             - [意图开发概述](application-models/insight-intent-definition.md)
             - [使用配置文件开发意图](application-models/insight-intent-config-development.md)
             - [使用装饰器开发意图](application-models/insight-intent-decorator-development.md)
+            - [附录：标准意图接入规范](application-models/insight-intent-access-specifications.md)
           - [调试意图](application-models/insight-intent-debug.md)
       - FA模型开发指导<!--fa-model-development-->
         - [FA模型开发概述](application-models/fa-model-development-overview.md)
