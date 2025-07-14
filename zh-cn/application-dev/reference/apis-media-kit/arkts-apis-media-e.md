@@ -78,7 +78,6 @@ Codec MIME类型枚举。
 | AUDIO_G711MU<sup>12+</sup>   | 'audio/g711mu'     | 表示音频/G711-mulaw类型。 |
 | AUDIO_AMR_NB<sup>18+</sup>   | 'audio/3gpp'     | 表示音频/amr-nb类型。 |
 | AUDIO_AMR_WB<sup>18+</sup>   | 'audio/amr-wb'     | 表示音频/amr-wb类型。 |
-| AUDIO_G711A<sup>20+</sup>    | 'audio/g711a'      | 表示音频/G711-alaw类型。 |
 
 ## MediaDescriptionKey<sup>8+</sup>
 
