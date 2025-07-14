@@ -2985,11 +2985,10 @@ enum ArkUI_HitTestMode
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| ARKUI_HIT_TEST_MODE_DEFAULT  | 默认触摸测试效果。  |
-| ARKUI_HIT_TEST_MODE_BLOCK  | 自身响应触摸测试。  |
-| ARKUI_HIT_TEST_MODE_TRANSPARENT  | 自身和子节点都响应触摸测试。  |
-| ARKUI_HIT_TEST_MODE_NONE  | 自身不响应触摸测试。  |
-
+| ARKUI_HIT_TEST_MODE_DEFAULT  | 默认触摸测试效果。自身及子节点响应触摸测试，但阻塞兄弟节点的触摸测试，不影响祖先节点的触摸测试。  |
+| ARKUI_HIT_TEST_MODE_BLOCK  | 自身响应触摸测试，阻塞子节点、兄弟节点和祖先节点的触摸测试。  |
+| ARKUI_HIT_TEST_MODE_TRANSPARENT  | 自身和子节点都响应触摸测试，不会阻塞兄弟节点和祖先节点的触摸测试。  |
+| ARKUI_HIT_TEST_MODE_NONE  | 自身不响应触摸测试，不会阻塞子节点、兄弟节点和祖先节点的触摸测试。  |
 
 ### ArkUI_HorizontalAlignment
 
@@ -9872,7 +9871,7 @@ int32_t OH_ArkUI_DragEvent_GetModifierKeyStates (ArkUI_DragEvent * event, uint64
 ```
 **描述：**
 
-获取功能键按压状态。
+获取功能键按压状态。此接口不支持在手写笔场景下使用。
 
 **起始版本：** 12
 
