@@ -58,7 +58,7 @@ Currently, the following screens in Settings can be directly opened:
 
 
 ### Contacts
-[Contacts Kit](../contacts/contacts-intro.md) provides the Contacts Picker, which is used to start the Contacts application and read contact data. For details, see [Selecting Contacts](../contacts/contacts-intro.md#contact-selection-restricted-permission).
+[Contacts Kit](../contacts/contacts-intro.md) provides the Contacts Picker, which is used to start the Contacts application and read contact data. For details, see [Contact Selection with Picker](../contacts/contacts-intro.md#contact-selection-with-picker).
 
 <!--RP2-->
 ### Camera
