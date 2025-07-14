@@ -288,6 +288,7 @@ import { fileIo } from '@kit.CoreFileKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { JSON } from '@kit.ArkTS';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 const TAG = 'PhotoEditorCaller';
 
