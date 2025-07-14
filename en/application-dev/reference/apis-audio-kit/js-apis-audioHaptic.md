@@ -54,19 +54,6 @@ Describes the options for the audio-haptic player.
 | muteAudio   | boolean      | No  | Whether to mute the audio. The value **true** means to mute the audio, and **false** means the opposite. If this parameter is not specified, the default value **false** is used.|
 | muteHaptics | boolean      | No  | Whether to mute haptics feedback. The value **true** means to mute haptics feedback, and **false** means the opposite. If this parameter is not specified, the default value **false** is used.|
 
-## AudioHapticFileDescriptor
-
-Describes audio haptic file descriptor.
-Caller needs to ensure the fd is valid and the offset and length are correct.
-
-**System capability**: SystemCapability.Multimedia.AudioHaptic.Core
-
-| Name     | Type           |Mandatory  | Description                             |
-| --------- | -------------- | ---- | --------------------------------- |
-| fd   | number      | Yes  | The file descriptor of the source. Normally must be >= 0.|
-| offset | number      | No  | The offset into the file where the data to be read. By default, the offset is 0.|
-| length | number      | No  | The length in bytes of the data to be read. By default, the length is the rest of bytes in the file from the offset.|
-
 ## AudioHapticManager
 
 Manages the audio-haptic feature. Before calling any API in **AudioHapticManager**, you must use [getAudioHapticManager](#audiohapticgetaudiohapticmanager) to create an **AudioHapticManager** instance.
@@ -111,59 +98,6 @@ let id = 0;
 
 audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
   console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
-  id = value;
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to register source ${err}`);
-});
-```
-
-### registerSourceFromFd
-
-registerSourceFromFd(audioFd: AudioHapticFileDescriptor, hapticFd: AudioHapticFileDescriptor): Promise&lt;number&gt;
-
-Register the audio and haptic files into the manager. Ensure The effects play in sync.
-Return the source ID using a promise after registering the source.
-
-**System capability**: SystemCapability.Multimedia.AudioHaptic.Core
-
-**Parameters**
-
-| Name  | Type                                     | Mandatory| Description                    |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| audioFd   | [AudioHapticFileDescriptor](#audiohapticfiledescriptor)               | Yes  | A valid open file descriptor object for an audio file, where the associated offset and length must correspond to the actual file size.       |
-| hapticFd  | [AudioHapticFileDescriptor](#audiohapticfiledescriptor)               | Yes  | A valid open file descriptor object for a haptics file, where the associated offset and length must correspond to the actual file size.       |
-
-**Return value**
-
-| Type               | Description                           |
-| ------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the source ID.|
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
-
-const context = getContext(this) as common.UIAbilityContext;
-
-const audioFile = await context.resourceManager.getRawFd('audioTest.ogg'); // Change it to the file in rwafile folder.
-const audioFd: audioHaptic.AudioHapticFileDescriptor = {
-  fd: audioFile.fd,
-  offset: audioFile.offset,
-  length: audioFile.length,
-};
-
-const hapticFile = await context.resourceManager.getRawFd('hapticTest.json'); // Change it to the file in rwafile folder.
-const hapticFd: audioHaptic.AudioHapticFileDescriptor = {
-  fd: hapticFile.fd,
-  offset: hapticFile.offset,
-  length: hapticFile.length,
-};
-let id = 0;
-
-audioHapticManagerInstance.registerSourceFromFd(audioFd, hapticFd).then((value: number) => {
-  console.info(`Registered source with ID ${value}.`);
   id = value;
 }).catch ((err: BusinessError) => {
   console.error(`Failed to register source ${err}`);
@@ -529,90 +463,6 @@ audioHapticPlayerInstance.release().then(() => {
   console.info(`Promise returned to indicate that release the audio haptic player successfully.`);
 }).catch ((err: BusinessError) => {
   console.error(`Failed to release the audio haptic player. ${err}`);
-});
-```
-
-### setVolume
-
-setVolume(volume: number): Promise&lt;void&gt;
-
-This method sets the audio volume for this player and returns the result using a promise.
-Call this API before the player is released.
-
-**System capability**: SystemCapability.Multimedia.AudioHaptic.Core
-
-**Parameters**
-
-| Name  | Type                                     | Mandatory| Description                    |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| volume     | number                                | Yes  | The value ranges from 0.00 to 1.00, where 1.00 indicates the maximum volume (100%).|
-
-**Return value**
-
-| Type               | Description                           |
-| ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
-
-| ID  | Error Message                             |
-|---------|-----------------------------------|
-| 5400105  | Service died. |
-| 5400102  | Operate not permit in current state. |
-| 5400108  | Parameter out of range. |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-audioHapticPlayerInstance.setVolume(0.5).then(() => {
-  console.info('Promise returned to indicate that set volume successfully.');
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to set volume. ${err}`);
-});
-```
-
-### setLoop
-
-setLoop(loop: boolean): Promise&lt;void&gt;
-
-Set the playback to loop, this method returns the result using a promise.
-Call this API before release.
-
-**System capability**: SystemCapability.Multimedia.AudioHaptic.Core
-
-**Parameters**
-
-| Name  | Type                                | Mandatory| Description                    |
-| -------- | ---------------------------------| ---- | ------------------------ |
-| loop     | boolean                           | Yes  | Whether to loop or not, value **true** means loop.|
-
-**Return value**
-
-| Type               | Description                           |
-| ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
-
-| ID  | Error Message                             |
-|---------|-----------------------------------|
-| 5400102  | Operate not permit in current state. |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-audioHapticPlayerInstance.setLoop(true).then(() => {
-  console.info('Promise returned to indicate that set player loop successfully.');
-}).catch ((err: BusinessError) => {
-  console.error(`Failed to set player loop. ${err}`);
 });
 ```
 

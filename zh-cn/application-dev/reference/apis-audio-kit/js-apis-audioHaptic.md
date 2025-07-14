@@ -57,15 +57,18 @@ let audioHapticManagerInstance: audioHaptic.AudioHapticManager = audioHaptic.get
 ## AudioHapticFileDescriptor
 
 描述音振文件描述符。
-开发者需要确保fd是可用的文件描述符，且offset和length的值都是正确的。
+
+>**注意：**
+>
+> 开发者需要确保fd是可用的文件描述符，且offset和length的值都是正确的。
 
 **系统能力：**: SystemCapability.Multimedia.AudioHaptic.Core
 
-| 名称     | 类型           |必填  | 说明                             |
-| --------- | -------------- | ---- | --------------------------------- |
-| fd   | number      | 是  | 音振资源文件的文件描述符， 通常大于等于0。|
-| offset | number      | 否  | 文件中数据读取的偏移量。默认情况下，偏移量为0。|
-| length | number      | 否  | 读取数据的字节长度。默认情况下，长度为文件中从偏移量位置开始的剩余字节数。|
+| 名称     | 类型           |只读  | 可选  | 说明                             |
+| --------- | -------------- | ---- | ---- | --------------------------------- |
+| fd        | number         | 否   | 否   | 音振资源文件的文件描述符，通常大于等于0。|
+| offset    | number         | 否   | 是   | 文件中数据读取的偏移量。默认情况下，偏移量为0。|
+| length    | number         | 否   | 是   | 读取数据的字节长度。默认情况下，长度为文件中从偏移量位置开始的剩余字节数。|
 
 ## AudioHapticManager
 
@@ -117,7 +120,7 @@ audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: numb
 });
 ```
 
-### registerSourceFromFd
+### registerSourceFromFd<sup>20+</sup>
 
 registerSourceFromFd(audioFd: AudioHapticFileDescriptor, hapticFd: AudioHapticFileDescriptor): Promise&lt;number&gt;
 
@@ -137,7 +140,7 @@ registerSourceFromFd(audioFd: AudioHapticFileDescriptor, hapticFd: AudioHapticFi
 
 | 类型               | 说明                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;number&gt; | 返回注册资源的source id。|
+| Promise&lt;number&gt; | 返回注册资源的资源ID。|
 
 **示例：**
 
@@ -532,12 +535,15 @@ audioHapticPlayerInstance.release().then(() => {
 });
 ```
 
-### setVolume
+### setVolume<sup>20+</sup>
 
 setVolume(volume: number): Promise&lt;void&gt;
 
-设置音振播放器的音量。使用Promise进行异步回调。
-该方法需在音振播放器释放前调用。
+设置音振播放器的音量。使用Promise异步回调。
+
+>**注意：**
+>
+> 该方法需在音振播放器释放前调用。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -545,13 +551,13 @@ setVolume(volume: number): Promise&lt;void&gt;
 
 | 参数名  | 类型                                     | 必填| 说明                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| volume     | number                                | 是  | 取值范围为 0.00 到 1.00，其中 1.00 表示最大音量（100%）。|
+| volume     | number                                | 是  | 取值范围为[0.00, 1.00]，其中1.00表示最大音量（100%）。|
 
 **返回值：**
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -575,12 +581,15 @@ audioHapticPlayerInstance.setVolume(0.5).then(() => {
 });
 ```
 
-### setLoop
+### setLoop<sup>20+</sup>
 
 setLoop(loop: boolean): Promise&lt;void&gt;
 
-设置音振播放器循环播放。使用Promise进行异步回调。
-该方法需在音振播放器销毁前调用。
+设置音振播放器循环播放。使用Promise异步回调。
+
+>**注意：**
+>
+> 该方法需在音振播放器销毁前调用。
 
 **系统能力：** SystemCapability.Multimedia.AudioHaptic.Core
 
@@ -588,13 +597,13 @@ setLoop(loop: boolean): Promise&lt;void&gt;
 
 | 参数名  | 类型                                     | 必填| 说明                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| loop | boolean                           | 是  | 是否循环播放，值**true**表示循环播放。 |
+| loop | boolean                           | 是  | 是否循环播放。true表示循环播放，false表示不循环播放。 |
 
 **返回值：**
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
