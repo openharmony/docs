@@ -16,7 +16,7 @@ import { serialManager } from '@kit.BasicServicesKit';
 
 ## serialManager.addSerialRight
 
-addSerialRight(tokenId: number, portId: number): void;
+addSerialRight(tokenId: int, portId: int): void;
 
 为应用程序添加访问串口设备权限。
 
@@ -32,8 +32,8 @@ serialManager.requestSerialRight会触发弹窗请求用户授权；addSerialRig
 
 | 参数名     | 类型     | 必填 | 说明                                  |
 |---------|--------|----|-------------------------------------|
-| tokenId | number | 是  | 需要访问权限的tokenId。                  |
-| portId  | number | 是  | 端口号。 |
+| tokenId | int | 是  | 需要访问权限的tokenId。                  |
+| portId  | int | 是  | 端口号。 |
 
 **错误码：**
 
@@ -63,7 +63,7 @@ if (portList === undefined || portList.length === 0) {
   return;
 }
 
-let portId: number = portList[0].portId;
+let portId: int = portList[0].portId;
 // 串口增加权限
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 bundleManager.getBundleInfoForSelf(bundleFlags).then((bundleInfo) => {

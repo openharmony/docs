@@ -39,12 +39,12 @@ if (portList === undefined || portList.length === 0) {
   console.info('usbSerial portList is empty');
   return;
 }
-let portId: number = portList[0].portId;
+let portId: int = portList[0].portId;
 ```
 
 ## serialManager.hasSerialRight
 
-hasSerialRight(portId: number): boolean;
+hasSerialRight(portId: int): boolean;
 
 检查应用程序是否具有访问串口设备的权限。应用退出后再拉起时，需要重新申请授权。
 
@@ -54,7 +54,7 @@ hasSerialRight(portId: number): boolean;
 
 | 参数名    | 类型     | 必填 | 说明                                  |
 |--------|--------|----|-------------------------------------|
-| portId | number | 是  | 端口号。 |
+| portId | int | 是  | 端口号。 |
 
 **返回值：**
 
@@ -86,7 +86,7 @@ if (portList === undefined || portList.length === 0) {
   console.info('portList is empty');
   return;
 }
-let portId: number = portList[0].portId;
+let portId: int = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (serialManager.hasSerialRight(portId)) {
@@ -98,7 +98,7 @@ if (serialManager.hasSerialRight(portId)) {
 
 ## serialManager.requestSerialRight
 
-requestSerialRight(portId: number): Promise&lt;boolean&gt;
+requestSerialRight(portId: int): Promise&lt;boolean&gt;
 
 请求应用程序访问串口设备的权限。应用退出自动移除对串口设备的访问权限，在应用重启后需要重新申请授权。
 
@@ -108,7 +108,7 @@ requestSerialRight(portId: number): Promise&lt;boolean&gt;
 
 | 参数名    | 类型     | 必填 | 说明                                  |
 |--------|--------|----|-------------------------------------|
-| portId | number | 是  | 端口号。 |
+| portId | int | 是  | 端口号。 |
 
 **返回值：**
 
@@ -140,7 +140,7 @@ if (portList === undefined || portList.length === 0) {
   console.info('usbSerial portList is empty');
   return;
 }
-let portId: number = portList[0].portId;
+let portId: int = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
@@ -158,7 +158,7 @@ if (!serialManager.hasSerialRight(portId)) {
 
 ## serialManager.open
 
-open(portId: number): void;
+open(portId: int): void;
 
 打开串口设备。
 
@@ -168,7 +168,7 @@ open(portId: number): void;
 
 | 参数名    | 类型     | 必填 | 说明          |
 |--------|--------|----|-------------|
-| portId | number | 是  | 端口号。 |
+| portId | int | 是  | 端口号。 |
 
 **错误码：**
 
@@ -195,7 +195,7 @@ if (portList === undefined || portList.length === 0) {
   console.info('usbSerial portList is empty');
   return;
 }
-let portId: number = portList[0].portId;
+let portId: int = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
@@ -221,7 +221,7 @@ try {
 
 ## serialManager.getAttribute
 
-getAttribute(portId: number): Readonly&lt;[SerialAttribute](#serialattribute)&gt;;
+getAttribute(portId: int): Readonly&lt;[SerialAttribute](#serialattribute)&gt;;
 
 获取指定串口的配置参数。
 
@@ -231,7 +231,7 @@ getAttribute(portId: number): Readonly&lt;[SerialAttribute](#serialattribute)&gt
 
 | 参数名    | 类型     | 必填 | 说明          |
 |--------|--------|----|-------------|
-| portId | number | 是  | 端口号。 |
+| portId | int | 是  | 端口号。 |
 
 **返回值：**
 
@@ -263,7 +263,7 @@ if (portList === undefined || portList.length === 0) {
   console.info('usbSerial portList is empty');
   return;
 }
-let portId: number = portList[0].portId;
+let portId: int = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
@@ -301,7 +301,7 @@ try {
 
 ## serialManager.setAttribute
 
-setAttribute(portId: number, attribute: [SerialAttribute](#serialattribute)): void;
+setAttribute(portId: int, attribute: [SerialAttribute](#serialattribute)): void;
 
 设置串口的配置参数。如果未调用该方法，使用默认配置参数（波特率：9600bps；据位：8；校验位：0；停止位：1）。
 
@@ -311,7 +311,7 @@ setAttribute(portId: number, attribute: [SerialAttribute](#serialattribute)): vo
 
 | 参数名       | 类型                                  | 必填 | 说明          |
 |-----------|-------------------------------------|----|-------------|
-| portId    | number                              | 是  | 端口号。 |
+| portId    | int                              | 是  | 端口号。 |
 | attribute | [SerialAttribute](#serialattribute) | 是  | 串口参数。     |
 
 **错误码：**
@@ -338,7 +338,7 @@ if (portList === undefined || portList.length === 0) {
   console.info('usbSerial portList is empty');
   return;
 }
-let portId: number = portList[0].portId;
+let portId: int = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
@@ -378,7 +378,7 @@ try {
 
 ## serialManager.read
 
-read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;;
+read(portId: int, buffer: Uint8Array, timeout?: int): Promise&lt;int&gt;;
 
 从串口设备异步读取数据。
 
@@ -388,15 +388,15 @@ read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt
 
 | 参数名     | 类型         | 必填 | 说明               |
 |---------|------------|----|------------------|
-| portId  | number     | 是  | 端口号。      |
+| portId  | int     | 是  | 端口号。      |
 | buffer  | Uint8Array | 是  | 读取数据的缓冲区。 |
-| timeout | number     | 否  | 读取的超时时间（以毫秒为单位）。 |
+| timeout | int     | 否  | 读取的超时时间（以毫秒为单位）。 |
 
 **返回值：**
 
 | 类型                    | 说明             |
 |-----------------------|----------------|
-| Promise&lt;number&gt; | Promise对象，返回读取数据长度。 |
+| Promise&lt;int&gt; | Promise对象，返回读取数据长度。 |
 
 **错误码：**
 
@@ -424,7 +424,7 @@ if (portList === undefined || portList.length === 0) {
   console.info('usbSerial portList is empty');
   return;
 }
-let portId: number = portList[0].portId;
+let portId: int = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
@@ -449,7 +449,7 @@ try {
 
 // 异步读取
 let readBuffer: Uint8Array = new Uint8Array(64);
-serialManager.read(portId, readBuffer, 2000).then((size: number) => {
+serialManager.read(portId, readBuffer, 2000).then((size: int) => {
   console.info('read usbSerial success, readBuffer: ' + readBuffer.toString());
 }).catch((error: Error) => {
   console.error('read usbSerial error, ' + JSON.stringify(error));
@@ -458,7 +458,7 @@ serialManager.read(portId, readBuffer, 2000).then((size: number) => {
 
 ## serialManager.readSync
 
-readSync(portId: number, buffer: Uint8Array, timeout?: number): number;
+readSync(portId: int, buffer: Uint8Array, timeout?: int): int;
 
 从串口设备同步读取数据。
 
@@ -468,15 +468,15 @@ readSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 
 | 参数名     | 类型         | 必填 | 说明               |
 |---------|------------|----|------------------|
-| portId  | number     | 是  | 端口号。|
+| portId  | int     | 是  | 端口号。|
 | buffer  | Uint8Array | 是  | 读取数据的缓冲区。 |
-| timeout | number     | 否  | 读取的超时时间（以毫秒为单位）。 |
+| timeout | int     | 否  | 读取的超时时间（以毫秒为单位）。 |
 
 **返回值：**
 
 | 类型     | 说明          |
 |--------|-------------|
-| number | 返回读取数据长度。 |
+| int | 返回读取数据长度。 |
 
 **错误码：**
 
@@ -504,7 +504,7 @@ if (portList === undefined || portList.length === 0) {
   console.info('usbSerial portList is empty');
   return;
 }
-let portId: number = portList[0].portId;
+let portId: int = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
@@ -539,7 +539,7 @@ try {
 
 ## serialManager.write
 
-write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;;
+write(portId: int, buffer: Uint8Array, timeout?: int): Promise&lt;int&gt;;
 
 向串口设备异步写入数据。
 
@@ -549,15 +549,15 @@ write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&g
 
 | 参数名     | 类型         | 必填 | 说明               |
 |---------|------------|----|------------------|
-| portId  | number     | 是  | 端口号。      |
+| portId  | int     | 是  | 端口号。      |
 | buffer  | Uint8Array | 是  | 写入数据的缓冲区。 |
-| timeout | number     | 否  | 写入的超时时间（以毫秒为单位）。 |
+| timeout | int     | 否  | 写入的超时时间（以毫秒为单位）。 |
 
 **返回值：**
 
 | 类型                    | 说明          |
 |-----------------------|-------------|
-| Promise&lt;number&gt; | Promise对象，返回写入数据长度。 |
+| Promise&lt;int&gt; | Promise对象，返回写入数据长度。 |
 
 **错误码：**
 
@@ -585,7 +585,7 @@ if (portList === undefined || portList.length === 0) {
   console.info('usbSerial portList is empty');
   return;
 }
-let portId: number = portList[0].portId;
+let portId: int = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
@@ -610,7 +610,7 @@ try {
 
 // 异步写入
 let writeBuffer: Uint8Array = new Uint8Array(buffer.from('Hello World', 'utf-8').buffer)
-serialManager.write(portId, writeBuffer, 2000).then((size: number) => {
+serialManager.write(portId, writeBuffer, 2000).then((size: int) => {
   console.info('write usbSerial success, writeBuffer: ' + writeBuffer.toString());
 }).catch((error: Error) => {
   console.error('write usbSerial error, ' + JSON.stringify(error));
@@ -619,7 +619,7 @@ serialManager.write(portId, writeBuffer, 2000).then((size: number) => {
 
 ## serialManager.writeSync
 
-writeSync(portId: number, buffer: Uint8Array, timeout?: number): number;
+writeSync(portId: int, buffer: Uint8Array, timeout?: int): int;
 
 向串口设备同步写数据。
 
@@ -629,15 +629,15 @@ writeSync(portId: number, buffer: Uint8Array, timeout?: number): number;
 
 | 参数名     | 类型         | 必填 | 说明               |
 |---------|------------|----|------------------|
-| portId  | number     | 是  | 端口号。     |
+| portId  | int     | 是  | 端口号。     |
 | buffer  | Uint8Array | 是  | 写入目标缓冲区。 |
-| timeout | number     | 否  | 写入的超时时间（以毫秒为单位）。|
+| timeout | int     | 否  | 写入的超时时间（以毫秒为单位）。|
 
 **返回值：**
 
 | 类型     | 说明          |
 |--------|-------------|
-| number | 返回写入数据长度。 |
+| int | 返回写入数据长度。 |
 
 **错误码：**
 
@@ -665,7 +665,7 @@ if (portList === undefined || portList.length === 0) {
   console.info('usbSerial portList is empty');
   return;
 }
-let portId: number = portList[0].portId;
+let portId: int = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
@@ -700,7 +700,7 @@ try {
 
 ## serialManager.close
 
-close(portId: number): void;
+close(portId: int): void;
 
 关闭串口。
 
@@ -710,7 +710,7 @@ close(portId: number): void;
 
 | 参数名    | 类型     | 必填 | 说明          |
 |--------|--------|----|-------------|
-| portId | number | 是  | 端口号。 |
+| portId | int | 是  | 端口号。 |
 
 **错误码：**
 
@@ -736,7 +736,7 @@ if (portList === undefined || portList.length === 0) {
   console.info('usbSerial portList is empty');
   return;
 }
-let portId: number = portList[0].portId;
+let portId: int = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
@@ -770,7 +770,7 @@ try {
 
 ## serialManager.cancelSerialRight
 
-cancelSerialRight(portId: number): void;
+cancelSerialRight(portId: int): void;
 
 移除应用程序运行时访问串口设备的权限。此接口会调用close关闭已打开的串口。
 
@@ -780,7 +780,7 @@ cancelSerialRight(portId: number): void;
 
 | 参数名    | 类型     | 必填 | 说明                                  |
 |--------|--------|----|-------------------------------------|
-| portId | number | 是  | 端口号。 |
+| portId | int | 是  | 端口号。 |
 
 **错误码：**
 
@@ -807,7 +807,7 @@ if (portList === undefined || portList.length === 0) {
   console.info('usbSerial portList is empty');
   return;
 }
-let portId: number = portList[0].portId;
+let portId: int = portList[0].portId;
 
 // 检测设备是否可被应用访问
 if (!serialManager.hasSerialRight(portId)) {
@@ -839,10 +839,10 @@ try {
 
 | 名称       | 类型     | 必填 | 说明        |
 |----------|--------|----|-----------|
-| baudrate | number | 是  | 串口波特率。  |
-| dataBits | number | 否  | 串口数据位。  |
-| parity   | number | 否  | 串口奇偶校验。 |
-| stopBits | number | 否  | 串口停止位。  |
+| baudrate | [BaudRates](#baudrates) | 是  | 串口波特率。  |
+| dataBits | [DataBits](#databits) | 否  | 串口数据位。  |
+| parity   | [Parity](#parity) | 否  | 串口奇偶校验。 |
+| stopBits | [StopBits](#stopbits) | 否  | 串口停止位。  |
 
 ## SerialPort
 
@@ -852,7 +852,7 @@ try {
 
 | 名称     | 类型     | 必填 | 说明    |
 |--------|--------|----|-------|
-| portId | number | 是  | 端口号。 |
+| portId | int | 是  | 端口号。 |
 | deviceName   | string | 是  | 串口设备名称。 |
 
 ## BaudRates
