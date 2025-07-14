@@ -22,7 +22,7 @@
 import bundleState from '@ohos.bundleState'
 ```
 
-## bundleState.queryBundleStateInfos
+## bundleState.queryBundleStateInfos<sup>(deprecated)</sup>
 
 queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;BundleActiveInfoResponse&gt;): void
 
@@ -58,7 +58,7 @@ bundleState.queryBundleStateInfos(0, 20000000000000, (err: BusinessError ,
 });
 ```
 
-## bundleState.queryBundleStateInfos
+## bundleState.queryBundleStateInfos<sup>(deprecated)</sup>
 
 queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoResponse&gt;
 
@@ -96,7 +96,7 @@ bundleState.queryBundleStateInfos(0, 20000000000000).then((res: bundleState.Bund
 });
 ```
 
-## bundleState.queryBundleStateInfoByInterval
+## bundleState.queryBundleStateInfoByInterval<sup>(deprecated)</sup>
 
 queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt;): void
 
@@ -135,7 +135,7 @@ bundleState.queryBundleStateInfoByInterval(bundleState.IntervalType.BY_OPTIMIZED
 });
 ```
 
-## bundleState.queryBundleStateInfoByInterval
+## bundleState.queryBundleStateInfoByInterval<sup>(deprecated)</sup>
 
 queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number): Promise&lt;Array&lt;BundleStateInfo&gt;&gt;
 
@@ -177,7 +177,7 @@ bundleState.queryBundleStateInfoByInterval(bundleState.IntervalType.BY_OPTIMIZED
 });
 ```
 
-## bundleState.queryBundleActiveStates
+## bundleState.queryBundleActiveStates<sup>(deprecated)</sup>
 
 queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void
 
@@ -215,7 +215,7 @@ bundleState.queryBundleActiveStates(0, 20000000000000, (err: BusinessError, res:
 });
 ```
 
-## bundleState.queryBundleActiveStates
+## bundleState.queryBundleActiveStates<sup>(deprecated)</sup>
 
 queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveState&gt;&gt;
 
@@ -256,7 +256,7 @@ bundleState.queryBundleActiveStates(0, 20000000000000).then((res: Array<bundleSt
 });
 ```
 
-## bundleState.queryAppUsagePriorityGroup
+## bundleState.queryAppUsagePriorityGroup<sup>(deprecated)</sup>
 
 queryAppUsagePriorityGroup(): Promise&lt;number&gt;
 
@@ -284,7 +284,7 @@ bundleState.queryAppUsagePriorityGroup().then((res: number) => {
 });
 ```
 
-## bundleState.queryAppUsagePriorityGroup
+## bundleState.queryAppUsagePriorityGroup<sup>(deprecated)</sup>
 
 queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
 
@@ -314,7 +314,7 @@ bundleState.queryAppUsagePriorityGroup((err: BusinessError, res: number) => {
 });
 ```
 
-## bundleState.queryCurrentBundleActiveStates
+## bundleState.queryCurrentBundleActiveStates<sup>(deprecated)</sup>
 
 queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void
 
@@ -350,7 +350,7 @@ bundleState.queryCurrentBundleActiveStates(0, 20000000000000, (err: BusinessErro
 });
 ```
 
-## bundleState.queryCurrentBundleActiveStates
+## bundleState.queryCurrentBundleActiveStates<sup>(deprecated)</sup>
 
 queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveState&gt;&gt;
 
@@ -439,7 +439,7 @@ merge(toMerge: BundleStateInfo): void
 | indexOfLink           | string | 否    | 快捷方式id。|
 | nameOfClass           | string | 否    | 类名。|
 
-## BundleActiveInfoResponse
+## BundleActiveInfoResponse<sup>(deprecated)</sup>
 
 提供应用使用时长的具体信息。
 
@@ -449,7 +449,7 @@ merge(toMerge: BundleStateInfo): void
 | ------------------------------ | ---------------------------------------- | ---- | -------------- |
 | [key: string]: BundleStateInfo | [key: string]: [BundleStateInfo](#bundlestateinfo) | 是    | 不同应用的使用时长统计信息。 |
 
-## IntervalType
+## IntervalType<sup>(deprecated)</sup>
 
 提供应用使用时长的查询类型。
 
