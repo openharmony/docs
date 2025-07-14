@@ -208,7 +208,7 @@ let hapticUri = 'data/hapticTest.json'; // Change it to the URI of the target ha
 let id = 0;
 
 audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
-  console.info(`Promise returned to indicate that the source id of the registered source is ${value}.`);.`);.`);
+  console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
   id = value;
 }).catch ((err: BusinessError) => {
   console.error(`Failed to register source ${err}`);
