@@ -315,30 +315,6 @@
 | config  | [WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20) | 是   | 本次转场动画配置。                                           |
 | opacity | number                                            | 否   | 不透明度，转场动画作用的窗口属性，值为0时窗口完全透明。当动画类型为WindowTransitionType.DESTROY时，代表动画终点的不透明度。取值范围0~1，在动画结束时恢复为1。 |
 
-## StartAnimationParams<sup>20+</sup>
-
-启动动画配置。
-
-仅对同应用的不同ability间跳转生效。
-
-仅在手机设备或平板设备的非自由多窗模式下生效。
-
-仅对全屏应用生效。
-
-**系统能力：** SystemCapability.Window.SessionManager
-| 名称             | 类型                                                                     | 只读 | 可选 | 说明                                                         |
-| ---------------- | ----------------------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type             | [AnimationType](arkts-apis-window-e.md#animationtype20)                 | 否   | 否   | 窗口动画类型。|
-
-## WindowCreateParams<sup>20+</sup>
-
-应用启动时的窗口参数配置。
-
-**系统能力：** SystemCapability.Window.SessionManager
-| 名称             | 类型                                                                     | 只读 | 可选 | 说明                                                         |
-| ---------------- | ----------------------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| animationsParams             | [StartAnimationParams](arkts-apis-window-i.md#startanimationparams20)                 | 否   | 是   | 启动动画参数配置。默认值为undefined，若不配置将保持系统默认动效。 |
-
 ## Callback<sup>15+</sup>
 
 ### (data: T)<sup>15+</sup>

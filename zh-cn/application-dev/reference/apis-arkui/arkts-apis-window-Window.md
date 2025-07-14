@@ -118,10 +118,10 @@ showWindow(options: ShowWindowOptions): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801     | Capability not supported. Function showWindow can not work correctly due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
-| 1300016 | Parameter validation error. Possible cause: 1. The value of the parameter is out of the allowed range; 2. The length of the parameter exceeds the allowed length; 3. The parameter format is incorrect. |
 
 **示例：**
 
@@ -8785,7 +8785,7 @@ getWindowTransitionAnimation(transitionType: WindowTransitionType): TransitionAn
 | 1300002  | This window state is abnormal.                               |
 | 1300003  | This window manager service works abnormally.                |
 | 1300004  | Unauthorized operation.                                      |
-| 1300016  | Parameter error. Possible cause: 1. Invalid parameter range; 2. Invalid parameter length. |
+| 1300016  | Parameter error. Possible cause: 1. Invalid parameter range. |
 
 **示例：**
 

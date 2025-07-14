@@ -460,6 +460,10 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
+| 类型      | 说明                          |
+| -----------| ---------------------------- |
+| number     | 表示值类型为数字，可取任意值。     |
+
 当曲线类型为LINEAR，动画曲线参数选填，且不生效。
 
 当曲线类型为INTERPOLATION_SPRING时，动画曲线参数需设置为长度为4的数组：[velocity,mass,stiffness,damping]。
@@ -10321,7 +10325,7 @@ getWindowTransitionAnimation(transitionType: WindowTransitionType): TransitionAn
 | 1300002  | This window state is abnormal.                               |
 | 1300003  | This window manager service works abnormally.                |
 | 1300004  | Unauthorized operation.                                      |
-| 1300016  | Parameter error. Possible cause: 1. Invalid parameter range; 2. Invalid parameter length. |
+| 1300016  | Parameter error. Possible cause: 1. Invalid parameter range. |
 
 **示例：**
 
