@@ -20,8 +20,8 @@ import { image } from '@kit.ImageKit';
 
 | 名称     | 类型                         | 只读 | 可选 | 说明               |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
-| capacity | number                       | 是   | 否   | 同时访问的图像数。 |
-| format   | [ImageFormat](arkts-apis-image-e.md#imageformat9) | 是   | 否   | 图像格式。         |
+| capacity<sup>9+</sup> | number                       | 是   | 否   | 同时访问的图像数。 |
+| format<sup>9+</sup>   | [ImageFormat](arkts-apis-image-e.md#imageformat9) | 是   | 否   | 图像格式。         |
 
 ## dequeueImage<sup>9+</sup>
 
