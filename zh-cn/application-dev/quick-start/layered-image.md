@@ -27,7 +27,7 @@
           }
         }
     ```
-4. 如果在module.json5配置文件的[abilities标签](module-configuration-file.md#abilities标签)中配置了icon和label，且该对应的ability中skills标签下面的entities中包含"entity.system.home"、actions中包含"ohos.want.action.home"或者"action.system.home"，在module.json5文件中，需要将abilities标签下的icon配置值修改为分层图标的资源配置路径。配置要求参考[图标生成机制](../application-models/application-component-configuration-stage.md#生成机制)。
+4. 如果在module.json5配置文件的[abilities标签](module-configuration-file.md#abilities标签)中配置了icon和label，且该对应的ability中skills标签下面的entities中包含"entity.system.home"、actions中包含"ohos.want.action.home"或者"action.system.home"，在module.json5文件中，需要将abilities标签下的icon配置值修改为分层图标的资源配置路径，此时，module.json5图标配置优先级高于app.json5，icon和label配置以module.json5为准，具体请参考[图标生成机制](../application-models/application-component-configuration-stage.md#生成机制)。
 
      ```json
         {
