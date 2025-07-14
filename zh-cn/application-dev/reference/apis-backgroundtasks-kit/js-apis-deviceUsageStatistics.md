@@ -15,7 +15,7 @@
 import bundleState from '@ohos.bundleState'
 ```
 
-## bundleState.isIdleState
+## bundleState.isIdleState<sup>(deprecated)</sup>
 
 isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -44,7 +44,7 @@ bundleState.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean) =>
 });
 ```
 
-## bundleState.isIdleState
+## bundleState.isIdleState<sup>(deprecated)</sup>
 
 isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
