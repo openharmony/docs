@@ -180,3 +180,4 @@ power.isScreenOn()
 | MODE_POWER_SAVE         | 601  | 表示省电模式。         |
 | MODE_PERFORMANCE        | 602  | 表示性能模式。         |
 | MODE_EXTREME_POWER_SAVE | 603  | 表示超级省电模式。     |
+| MODE_CUSTOM_POWER_SAVE<sup>20+</sup>  | 650  | 表示自定义省电模式。     |
