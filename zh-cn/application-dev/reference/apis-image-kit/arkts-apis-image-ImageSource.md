@@ -548,7 +548,7 @@ async function CreatePicture() {
 }
 ```
 
-### createPictureAtIndex<sup>20+</sup>
+## createPictureAtIndex<sup>20+</sup>
 
 createPictureAtIndex(index: number): Promise\<Picture>
 
