@@ -585,7 +585,7 @@ static makeBinding\<T\>(getter: GetterCallback\<T\>): Binding\<T\>
 **示例：**
 
 ```ts
-import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+import { Binding, MutableBinding, UIUtils } from '@kit.ArkUI';
 
 @Builder
 function CustomButton(num1: Binding<number>) {
@@ -651,7 +651,7 @@ static makeBinding\<T\>(getter: GetterCallback\<T\>, setter: SetterCallback\<T\>
 **示例：**
 
 ```ts
-import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+import { Binding, MutableBinding, UIUtils } from '@kit.ArkUI';
 
 @Builder
 function CustomButton(num2: MutableBinding<number>) {
@@ -1005,7 +1005,7 @@ type GetterCallback\<T\> = () => T
 **示例：**
 
 ```ts
-import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+import { Binding, MutableBinding, UIUtils } from '@kit.ArkUI';
 
 @Builder
 function CustomButton(num1: Binding<number>) {
@@ -1057,7 +1057,7 @@ type SetterCallback\<T\> = (newValue: T) => void
 **示例：**
 
 ```ts
-import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+import { Binding, MutableBinding, UIUtils } from '@kit.ArkUI';
 
 @Builder
 function CustomButton(num2: MutableBinding<number>) {
@@ -1117,7 +1117,7 @@ get value(): T
 **示例：**
 
 ```ts
-import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+import { Binding, MutableBinding, UIUtils } from '@kit.ArkUI';
 
 @Builder
 function CustomButton(num1: Binding<number>) {
@@ -1190,7 +1190,7 @@ get value(): T
 **示例：**
 
 ```ts
-import { Binding, MutableBinding, UIUtils } from `@kit.ArkUI`;
+import { Binding, MutableBinding, UIUtils } from '@kit.ArkUI';
 
 @Builder
 function CustomButton(num2: MutableBinding<number>) {
