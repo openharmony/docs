@@ -1359,7 +1359,7 @@ getImagePackerSupportedFormats(): string[]
 
 | 类型     | 说明                                       |
 | -------- | ------------------------------------------ |
-| string[] | 支持解码的图片格式（mime type）列表。 |
+| string[] | 支持编码的图片格式（mime type）列表。 |
 
 **示例：**
 
