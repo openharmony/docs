@@ -15,13 +15,13 @@ If you bind the **Popup** attribute to a **\<Button>** component, each time the 
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
 
   build() {
     Column() {
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with PopupOptions',
@@ -41,19 +41,19 @@ You can use the **onStateChange** parameter to add an event callback for popup s
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
 
   build() {
     Column() {
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with PopupOptions',
           onStateChange: (e)=> {// Return the current popup state.
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           }
         })
@@ -72,32 +72,32 @@ You can add a maximum of two buttons to a popup through the **primaryButton** an
 @Entry
 @Component
 struct PopupExample22 {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
 
   build() {
     Column() {
       Button('PopupOptions').margin({ top: 200 })
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with PopupOptions',
           primaryButton: {
             value: 'Confirm',
             action: () => {
-              this.handlePopup = !this.handlePopup
-              console.info('confirm Button click')
+              this.handlePopup = !this.handlePopup;
+              console.info('confirm Button click');
             }
           },
           secondaryButton: {
             value: 'Cancel',
             action: () => {
-              this.handlePopup = !this.handlePopup
+              this.handlePopup = !this.handlePopup;
             }
           },
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           }
         })
@@ -117,8 +117,8 @@ You implement the entrance and exit animation effects of popups through **transi
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
-  @State customPopup: boolean = false
+  @State handlePopup: boolean = false;
+  @State customPopup: boolean = false;
 
   // Define the popup content in the popup builder.
   @Builder popupBuilder() {
@@ -132,7 +132,7 @@ struct PopupExample {
       // PopupOptions for setting the popup
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with transitionEffect',
@@ -140,7 +140,7 @@ struct PopupExample {
           showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           },
           // Set the popup animation to a combination of opacity and translation effects, with no exit animation.
@@ -154,7 +154,7 @@ struct PopupExample {
       // CustomPopupOptions for setting the popup
       Button('CustomPopupOptions')
         .onClick(() => {
-          this.customPopup = !this.customPopup
+          this.customPopup = !this.customPopup;
         })
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
@@ -162,7 +162,7 @@ struct PopupExample {
           showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.customPopup = false
+              this.customPopup = false;
             }
           },
           // Set the popup entrance and exit animations to be a scaling effect.
@@ -184,7 +184,7 @@ You can create a custom popup with **builder** in **CustomPopupOptions**, defini
 @Entry
 @Component
 struct Index {
-  @State customPopup: boolean = false
+  @State customPopup: boolean = false;
   // Define the popup content in the popup builder.
   @Builder popupBuilder() {
     Row({ space: 2 }) {
@@ -197,15 +197,15 @@ struct Index {
       Button('CustomPopupOptions')
         .position({x:100,y:200})
         .onClick(() => {
-          this.customPopup = !this.customPopup
+          this.customPopup = !this.customPopup;
         })
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder, // Content of the popup.
           placement:Placement.Bottom, // Position of the popup.
-          popupColor:Color.Pink // Background color of the popup.
+          popupColor:Color.Pink, // Background color of the popup.
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.customPopup = false
+              this.customPopup = false;
             }
           }
         })
@@ -235,13 +235,13 @@ The following example demonstrates how to configure a popup's style using **popu
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
 
   build() {
     Column({ space: 100 }) {
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           width: 200,
