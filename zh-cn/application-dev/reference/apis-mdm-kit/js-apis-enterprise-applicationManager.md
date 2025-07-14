@@ -1,6 +1,6 @@
 # @ohos.enterprise.applicationManager（应用管理）
 
-本模块提供应用管理能力，包括添加应用运行黑名单、获取应用运行黑名单、移除应用运行黑名单等。
+本模块提供应用管理能力，包括添加应用运行禁止名单、获取应用运行禁止名单、移除应用运行禁止名单等。
 
 > **说明：**
 >
@@ -21,7 +21,7 @@ import { applicationManager } from '@kit.MDMKit';
 
 addDisallowedRunningBundlesSync(admin: Want, appIds: Array\<string>, accountId?: number): void
 
-添加应用至应用运行黑名单，添加至黑名单的应用不允许在当前/指定用户下运行。
+添加应用至应用运行禁止名单，添加至禁止名单的应用不允许在当前/指定用户下运行。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -51,12 +51,15 @@ addDisallowedRunningBundlesSync(admin: Want, appIds: Array\<string>, accountId?:
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
@@ -71,7 +74,7 @@ try {
 
 removeDisallowedRunningBundlesSync(admin: Want, appIds:  Array\<string>, accountId?: number): void
 
-将应用从当前/指定用户下的应用运行黑名单中移除。
+将应用从当前/指定用户下的应用运行禁止名单中移除。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -101,12 +104,15 @@ removeDisallowedRunningBundlesSync(admin: Want, appIds:  Array\<string>, account
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
@@ -121,7 +127,7 @@ try {
 
 getDisallowedRunningBundlesSync(admin: Want, accountId?: number): Array&lt;string>
 
-获取当前/指定用户下的应用运行黑名单。
+获取当前/指定用户下的应用运行禁止名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -140,7 +146,7 @@ getDisallowedRunningBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 
 | 类型                | 说明                             |
 | ------------------- | -------------------------------- |
-| Array&lt;string&gt; | 返回当前/指定用户下的应用运行黑名单。 |
+| Array&lt;string&gt; | 返回当前/指定用户下的应用运行禁止名单。 |
 
 **错误码**：
 
@@ -156,11 +162,13 @@ getDisallowedRunningBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -202,16 +210,19 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let autoStartApps: Array<Want> = [
   {
+    // 需根据实际情况进行替换
     bundleName: 'com.example.autoStartApplication',
-    abilityName: 'EntryAbility',
+    abilityName: 'EntryAbility'
   }
 ];
 
@@ -254,16 +265,19 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let autoStartApps: Array<Want> = [
   {
+    // 需根据实际情况进行替换
     bundleName: 'com.example.autoStartApplication',
-    abilityName: 'EntryAbility',
+    abilityName: 'EntryAbility'
   }
 ];
 
@@ -311,11 +325,13 @@ getAutoStartApps(admin: Want): Array\<Want>
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -330,7 +346,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): void
 
-添加保活应用，当前仅支持2in1设备。如果将应用添加至应用运行黑名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
+添加保活应用，当前仅支持2in1设备。如果将应用添加至应用运行禁止名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -362,12 +378,15 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): v
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleNames: Array<string> = ['com.example.myapplication'];
 
 try {
@@ -412,12 +431,15 @@ removeKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number)
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleNames: Array<string> = ['com.example.myapplication'];
 
 try {
@@ -467,11 +489,13 @@ getKeepAliveApps(admin: Want, accountId: number): Array&lt;string>
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -520,12 +544,15 @@ import { Want } from '@kit.AbilityKit';
 import { applicationManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
-let bundleName: string = 'com.example.exampleapplication'；
+// 需根据实际情况进行替换
+let bundleName: string = 'com.example.exampleapplication';
 
 try {
+  // 需根据实际情况进行替换
   applicationManager.clearUpApplicationData(wantTemp, bundleName, 0, 100);
   console.info('Succeeded in clear up application data.');
 } catch (err) {
@@ -571,10 +598,11 @@ import { applicationManager } from '@kit.MDMKit';
 let wantTemp: Want = {
   // 需根据实际情况进行替换
   bundleName: 'com.example.edmtest',
-  abilityName: 'com.example.edmtest.EnterpriseAdminAbility',
+  abilityName: 'com.example.edmtest.EnterpriseAdminAbility'
 };
 
 try {
+  // 需根据实际情况进行替换
   let bundleNames: Array<string> = ['com.example.test'];
   applicationManager.setAllowedKioskApps(wantTemp, bundleNames);
   console.info('Succeeded in setting allowed kiosk apps.');
@@ -626,7 +654,7 @@ import { applicationManager } from '@kit.MDMKit';
 let wantTemp: Want = {
   // 需根据实际情况进行替换
   bundleName: 'com.example.edmtest',
-  abilityName: 'com.example.edmtest.EnterpriseAdminAbility',
+  abilityName: 'com.example.edmtest.EnterpriseAdminAbility'
 };
 
 try {
@@ -665,6 +693,7 @@ isAppKioskAllowed(bundleName: string): boolean
 import { applicationManager } from '@kit.MDMKit';
 
 try {
+  // 需根据实际情况进行替换
   let isAllowed: boolean = applicationManager.isAppKioskAllowed('com.example.test');
   console.info(`Succeeded in querying if the app is allowed kiosk, isAllowed: ${isAllowed}`);
 } catch (err) {
