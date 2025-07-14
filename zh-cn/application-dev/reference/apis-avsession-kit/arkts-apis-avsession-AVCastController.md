@@ -1357,6 +1357,66 @@ off(type: 'validCommandChange', callback?: Callback\<Array\<AVCastControlCommand
 aVCastController.off('validCommandChange');
 ```
 
+## on('videoSizeChange')<sup>12+</sup>
+on(type: 'videoSizeChange', callback: (width: number, height: number) => void): void;
+
+媒体控制器监听视频尺寸变化变化的事件。
+
+系统能力： SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'videoSizeChange'`：当检测到会话的合法命令发生改变时，触发该事件。 |
+| callback | (width: number, height: number) => void   | 是   | 回调函数。                    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+
+**示例：**
+
+```ts
+aVCastController.on('videoSizeChange', (width: number, height: number) => {
+  console.info(`videoSizeChange : SUCCESS : size : ${width}, ${height}`);
+});
+```
+
+## off('videoSizeChange')<sup>12+</sup>
+
+off(type: 'videoSizeChange'): void;
+
+媒体控制器取消监听视频尺寸变化的事件。
+
+系统能力： SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'videoSizeChange'`：当检测到会话的合法命令发生改变时，触发该事件。 |
+| callback | (width: number, height: number) => void   | 是   | 回调函数。                    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+aVCastController.off('videoSizeChange');
+```
+
 ## on('error')<sup>10+</sup>
 
 on(type: 'error', callback: ErrorCallback): void

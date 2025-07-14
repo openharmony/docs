@@ -21,8 +21,8 @@ import { avSession } from '@kit.AVSessionKit';
 
 | 名称      | 类型   | 只读 | 可选 | 说明                          |
 | :-------- | :----- | :--- | :--- | :---------------------------- |
-| sessionId | string | 是   | 否   | AVSession对象唯一的会话标识。 |
-| sessionType| [AVSessionType](arkts-apis-avsession-t.md#avsessiontype10) | 是   | 否   | AVSession会话类型。 |
+| sessionId<sup>10+</sup> | string | 是   | 否   | AVSession对象唯一的会话标识。 |
+| sessionType<sup>10+</sup> apis-avsession-kit/arkts-apis-avsession-AVSessionController.md| [AVSessionType](arkts-apis-avsession-t.md#avsessiontype10) | 是   | 否   | AVSession会话类型。 |
 
 **示例：**
 
