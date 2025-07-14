@@ -395,7 +395,7 @@ let timeStyle: string | undefined = options.timeStyle; // timeStyle = 'medium'
 | localeMatcher   | string  | 否    | 是     | 要使用的区域匹配算法，取值包括：<br>"lookup"：精确匹配。<br>"best&nbsp;fit"：最佳匹配。 |
 | formatMatcher   | string  | 否    | 是     | 要使用的格式匹配算法，取值包括：<br>"basic"：精确匹配。<br>"best&nbsp;fit"：最佳匹配。 |
 
-## NumberFormat<sup>8+</sup>
+## NumberFormat
 
 ### constructor<sup>8+</sup>
 

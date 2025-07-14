@@ -282,7 +282,7 @@ static getSystemRegion(): string
 
 ### getSystemLocale<sup>(deprecated)</sup>
 
-从API version 9开始支持，从API version 20开始不再维护，建议使用[System.getSystemLocaleInstance](#getSystemLocaleInstance20)代替。
+从API version 9开始支持，从API version 20开始不再维护，建议使用[System.getSystemLocaleInstance](#getsystemlocaleinstance20)代替。
 
 static getSystemLocale(): string
 
@@ -3822,7 +3822,7 @@ getSystemLocale(): string
 
 获取系统区域ID。
 
-从API version 9开始不再维护，建议使用[System.getSystemLocaleInstance](#getSystemLocaleInstance20)代替。
+从API version 9开始不再维护，建议使用[System.getSystemLocaleInstance](#getsystemlocaleinstance20)代替。
 
 **系统能力：** SystemCapability.Global.I18n
 
