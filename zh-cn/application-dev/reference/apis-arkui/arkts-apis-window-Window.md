@@ -4634,7 +4634,7 @@ try {
 
 ## on('uiExtensionSecureLimitChange')<sup>20+</sup>
 
-on(type: 'uiExtensionSecureLimitChange', callback: Callback&lt;boolean&gt;): void
+on(eventType: 'uiExtensionSecureLimitChange', callback: Callback&lt;boolean&gt;): void
 
 开启窗口内uiExtension安全限制变化事件的监听, 建议在窗口创建后立即监听。
 
@@ -4646,7 +4646,7 @@ on(type: 'uiExtensionSecureLimitChange', callback: Callback&lt;boolean&gt;): voi
 
 | 参数名   | 类型                           | 必填 | 说明                                                     |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
-| type     | string                         | 是   | 监听事件，固定为'uiExtensionSecureLimitChange'，即窗口内uiExtension安全限制变化事件。 |
+| eventType     | string                         | 是   | 监听事件，固定为'uiExtensionSecureLimitChange'，即窗口内uiExtension安全限制变化事件。 |
 | callback | Callback&lt;boolean&gt; | 是   | 回调函数。当窗口内uiExtension安全限制变化时触发回调。当返回参数为true表示窗口内uiExtension开启了隐藏不安全窗口；当返回参数为false表示窗口内uiExtension关闭了隐藏不安全窗口。若窗口内存在多个uiExtension，当返回参数为true表示窗口内至少一个uiExtension开启了隐藏不安全窗口；当返回参数为false表示窗口内所有uiExtension关闭了隐藏不安全窗口。 |
 
 **错误码：**
@@ -4673,7 +4673,7 @@ try {
 
 ## off('uiExtensionSecureLimitChange')<sup>20+</sup>
 
-off(type: 'uiExtensionSecureLimitChange', callback?: Callback&lt;boolean&gt;): void
+off(eventType: 'uiExtensionSecureLimitChange', callback?: Callback&lt;boolean&gt;): void
 
 关闭窗口内uiextension安全限制变化事件的监听。
 
@@ -4685,7 +4685,7 @@ off(type: 'uiExtensionSecureLimitChange', callback?: Callback&lt;boolean&gt;): v
 
 | 参数名   | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                         | 是   | 监听事件，固定为'uiExtensionSecureLimitChange'，即窗口内uiExtension安全限制变化事件。     |
+| eventType     | string                         | 是   | 监听事件，固定为'uiExtensionSecureLimitChange'，即窗口内uiExtension安全限制变化事件。     |
 | callback | Callback&lt;boolean&gt; | 否   | 回调函数。若传入参数，则关闭该监听。若未传入参数，则关闭所有窗口安全限制变化的监听。 |
 
 **错误码：**
