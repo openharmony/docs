@@ -1698,8 +1698,6 @@
         - 媒体信息查询<!--media-info-c-->
           - [使用AVMetadataExtractor获取元数据(C/C++)](media/media/using-ndk-avmetadataextractor-for-media.md)
           - [使用AVImageGenerator获取视频帧(C/C++)](media/media/using-ndk-avimagegenerator-for-video.md)
-        - 视频转码<!--media-transcoder-c-->
-          - [使用AVTranscoder实现视频转码(C/C++)](media/media/using-ndk-avtranscoder-for-transcodering.md)
     - Media Library Kit（媒体文件管理服务）<!--medialibrary-kit-->
       - [Media Library Kit 简介](media/medialibrary/photoAccessHelper-overview.md)
       - [使用Picker选择媒体库资源](media/medialibrary/photoAccessHelper-photoviewpicker.md)
@@ -4857,7 +4855,6 @@
           - [AVMetadataExtractor](reference/apis-media-kit/capi-avmetadataextractor.md)
           - [AVPlayer](reference/apis-media-kit/capi-avplayer.md)
           - [AVRecorder](reference/apis-media-kit/capi-avrecorder.md)
-          - [AVTranscoder](reference/apis-media-kit/capi-avtranscoder.md)
           - [AVScreenCapture](reference/apis-media-kit/capi-avscreencapture.md)
           - [AVSinkBase](reference/apis-media-kit/capi-avsinkbase.md)
           - [LowPowerAudioSink](reference/apis-media-kit/capi-lowpoweraudiosink.md)
@@ -4872,8 +4869,6 @@
           - [avplayer_base.h](reference/apis-media-kit/capi-avplayer-base-h.md)
           - [avrecorder.h](reference/apis-media-kit/capi-avrecorder-h.md)
           - [avrecorder_base.h](reference/apis-media-kit/capi-avrecorder-base-h.md)
-          - [avtranscoder.h](reference/apis-media-kit/capi-avtranscoder-h.md)
-          - [avtranscoder_base.h](reference/apis-media-kit/capi-avtranscoder-base-h.md)
           - [native_avscreen_capture.h](reference/apis-media-kit/capi-native-avscreen-capture-h.md)
           - [native_avscreen_capture_base.h](reference/apis-media-kit/capi-native-avscreen-capture-base-h.md)
           - [native_avscreen_capture_errors.h](reference/apis-media-kit/capi-native-avscreen-capture-errors-h.md)
@@ -4899,8 +4894,6 @@
           - [OH_AVRecorder_Range](reference/apis-media-kit/capi-avrecorder-oh-avrecorder-range.md)
           - [OH_AVRecorder_EncoderInfo](reference/apis-media-kit/capi-avrecorder-oh-avrecorder-encoderinfo.md)
           - [OH_AVRecorder](reference/apis-media-kit/capi-avrecorder-oh-avrecorder.md)
-          - [OH_AVTranscoder](reference/apis-media-kit/capi-avtranscoder-oh-avtranscoder.md)
-          - [OH_AVTranscoder_Config](reference/apis-media-kit/capi-avtranscoder-oh-avtranscoder-config.md)
           - [OH_AudioCaptureInfo](reference/apis-media-kit/capi-avscreencapture-oh-audiocaptureinfo.md)
           - [OH_AudioEncInfo](reference/apis-media-kit/capi-avscreencapture-oh-audioencinfo.md)
           - [OH_AudioInfo](reference/apis-media-kit/capi-avscreencapture-oh-audioinfo.md)
