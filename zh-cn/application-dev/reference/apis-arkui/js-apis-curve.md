@@ -235,7 +235,7 @@ curves.responsiveSpringMotion() // 创建一个默认弹性跟手动画曲线
 ```
 
 
-##  curves.interpolatingSpring<sup>10+</sup>
+## curves.interpolatingSpring<sup>10+</sup>
 
 interpolatingSpring(velocity: number, mass: number, stiffness: number, damping: number): ICurve
 
