@@ -26,7 +26,7 @@ title参数的规格如下：
 
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| title                  | string                          | 否  | 图片或者视频的标题。  |
+| title                  | string                          | 否  | 图片或者视频的标题。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | subtype<sup>12+</sup>  | [PhotoSubtype](arkts-apis-photoAccessHelper-e.md#photosubtype12) | 否  | 图片或者视频的文件子类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 
 ## FetchOptions
@@ -37,8 +37,8 @@ title参数的规格如下：
 
 | 名称                   | 类型                | 可读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询。<br>对于照片，如果该参数为空，默认查询'uri'、'media_type'、'subtype'和'display_name'，使用[get](arkts-apis-photoAccessHelper-PhotoAsset.md#get)接口获取当前对象的其他属性时将会报错。示例：fetchColumns: ['uri', 'title']。<br>对于相册，如果该参数为空，默认查询'uri'和'album_name'。 |
-| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。 |
+| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询。<br>对于照片，如果该参数为空，默认查询'uri'、'media_type'、'subtype'和'display_name'，使用[get](arkts-apis-photoAccessHelper-PhotoAsset.md#get)接口获取当前对象的其他属性时将会报错。示例：fetchColumns: ['uri', 'title']。<br>对于相册，如果该参数为空，默认查询'uri'和'album_name'。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## RequestOptions<sup>11+</sup>
 
@@ -118,83 +118,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | title | string | 否  | 图片或者视频的标题，不传入时由系统生成。参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ]|
 | fileNameExtension | string | 是  | 文件扩展名，例如'jpg'。|
-| photoType | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype) | 是  | 创建的文件类型[PhotoType](arkts-apis-photoAccessHelper-e.md#phototype)，IMAGE或者VIDEO。|
+| photoType | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype) | 是  | 创建的文件类型[PhotoType](arkts-apis-photoAccessHelper-e.md#phototype)，IMAGE或者VIDEO。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | subtype | [PhotoSubtype](arkts-apis-photoAccessHelper-e.md#photosubtype12) | 否  | 图片或者视频的文件子类型[PhotoSubtype](arkts-apis-photoAccessHelper-e.md#photosubtype12)，当前仅支持DEFAULT。|
 
-## PhotoAssetChangeInfo<sup>20+</sup>
-
-媒体资产（图片/视频）信息。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| 名称 |   类型   | 只读 |  可选 | 说明      |
-| ---- | ------- | ---- |  ---- | ----- |
-| uri       | string  | 否 | 否 | 媒体文件资源uri。 |
-| mediaType | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype) | 否 | 否  | 媒体资产的类型（图片/视频）。 |
-| albumUri  | string  | 否 | 否 | 媒体资产（图片/视频）所属相册的uri。  |
-
-## PhotoAssetChangeData<sup>20+</sup>
-
-媒体资产（图片/视频）的具体变更数据。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| 名称     | 类型                | 只读 | 可选 | 说明  |
-| ---- | ------- | ---- |  ---- | ----- |
-| assetBeforeChange | [PhotoAssetChangeInfo](#photoassetchangeinfo20) \| null | 否 | 否 | 变更前的媒体资产（图片/视频）数据。如果是新增资产，assetBeforeChange为null。 |
-| assetAfterChange  | [PhotoAssetChangeInfo](#photoassetchangeinfo20) \| null | 否 | 否  | 变更后的媒体资产（图片/视频）数据。如果是删除资产，assetAfterChange为null。 |
-| isContentChanged  |boolean  | 否 | 否 | 媒体资产（图片/视频）内容是否变化。true表示文件内容发生变化，false表示文件内容未发生变化。  |
-| isDeleted         |boolean  | 否 | 否 | 媒体资产（图片/视频）是否被删除。true表示资产被彻底删除，false表示资产未被彻底删除。  |
-
-## PhotoAssetChangeInfos<sup>20+</sup>
-
-媒体资产（图片/视频）的变更通知信息。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| 名称                   | 类型                | 只读 | 可选 | 说明    |
-| ---- | ------- | ---- |  ---- | ----- |
-| type       | [NotifyChangeType](arkts-apis-photoAccessHelper-e.md#notifychangetype20)  | 否 | 否 | 媒体资产（图片/视频）变更的通知类型。 |
-| assetChangeDatas | [PhotoAssetChangeData](#photoassetchangedata20)[] \| null | 否 |  否 | 变更的媒体资产（图片/视频）数组。如果需要重新查询所有媒体资产，assetChangeDatas为null。  |
-| isForRecheck    | boolean  | 否 | 否 | 应用是否应该重新查询所有媒体资产（图片/视频）信息。true表示需要重新查询所有资产，false表示无需查询所有资产。<br>**注意：** 在特殊情况或者异常通知的场景下，应用收到的isForRecheck为true，表示重新查询所有资产信息。  |
-
-## AlbumChangeInfo<sup>20+</sup>
-
-相册信息。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| 名称  | 类型                | 只读 | 可选 | 说明                                              |
-| ---- | ------- | ---- |  ---- | ----- |
-| albumType | [AlbumType](arkts-apis-photoAccessHelper-e.md#albumtype)  | 否 | 否 | 相册类型。 |
-| albumSubtype  | [AlbumSubtype](arkts-apis-photoAccessHelper-e.md#albumsubtype) | 否 | 否  | 相册子类型。 |
-| albumName  | string  |否 |否 | 相册名。  |
-| albumUri  | string  |否 |否 | 相册uri。  |
-| imageCount  | number  |否 |否 | 相册中的图片数量。  |
-| videoCount  | number  |否 |否 | 相册中的视频数量。  |
-| count       | number  |否 |否 | 相册中的资产总数，包括图片和视频。  |
-| coverUri  | string  |否 |否 | 相册封面资产的uri。  |
-
-## AlbumChangeData<sup>20+</sup>
-
-相册的具体变更数据。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| 名称                   | 类型                | 只读 | 可选 | 说明                |
-| ---- | ------- | ---- |  ---- | ----- |
-| albumBeforeChange | [AlbumChangeInfo](#albumchangeinfo20) \| null | 否 | 否 | 变更前的相册数据。如果是新增相册，albumBeforeChange为null。 |
-| albumAfterChange  | [AlbumChangeInfo](#albumchangeinfo20) \| null | 否 | 否  | 变更后的相册数据。如果是删除相册，albumAfterChange为null。 |
-| isDeleted         | boolean  | 否 | 否 | 相册是否被删除。true表示相册被删除，false表示相册未被删除。  |
-
-## AlbumChangeInfos<sup>20+</sup>
-
-相册的变更通知信息。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| 名称                   | 类型                | 只读 | 可选 | 说明           |
-| ---- | ------- | ---- |  ---- | ----- |
-| type       | [NotifyChangeType](arkts-apis-photoAccessHelper-e.md#notifychangetype20)  | 否 | 否 | 相册变更的通知类型。 |
-| albumChangeDatas   | [AlbumChangeData](#albumchangedata20)[] \| null | 否 | 否 | 变更的相册数组。如果需要重新查询所有相册，albumChangeDatas为null。  |
-| isForRecheck          | boolean  | 否 | 否 | 应用是否应该重新查询所有相册信息。true表示需要重新查询所有相册，false表示无需查询所有相册。<br>**注意：** 在特殊情况或者异常通知的场景下，应用收到的isForRecheck为true，表示重新查询所有相册信息。  |

@@ -91,6 +91,8 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**

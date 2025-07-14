@@ -18,6 +18,8 @@ getCount(): number
 
 获取文件检索结果中的文件总数。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **返回值：**
@@ -32,7 +34,6 @@ getCount(): number
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -62,6 +63,8 @@ isAfterLast(): boolean
 
 检查结果集是否指向最后一行。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **返回值：**
@@ -76,7 +79,6 @@ isAfterLast(): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -111,6 +113,8 @@ close(): void
 
 释放FetchResult实例并使其失效，无法再调用其他方法。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **错误码：**
@@ -119,7 +123,6 @@ close(): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -153,6 +156,8 @@ getFirstObject(callback: AsyncCallback&lt;T&gt;): void
 
 获取文件检索结果中的第一个文件资产。此方法使用callback形式返回结果。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -167,7 +172,6 @@ getFirstObject(callback: AsyncCallback&lt;T&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -202,6 +206,8 @@ getFirstObject(): Promise&lt;T&gt;
 
 获取文件检索结果中的第一个文件资产。此方法使用promise方式来异步返回。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **返回值：**
@@ -216,7 +222,6 @@ getFirstObject(): Promise&lt;T&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -247,6 +252,8 @@ getNextObject(callback: AsyncCallback&lt;T&gt;): void
 获取文件检索结果中的下一个文件资产。此方法使用callback形式返回结果。
 在调用此方法之前，必须使用[isAfterLast()](#isafterlast)来检查当前位置是否为最后一行。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -261,7 +268,6 @@ getNextObject(callback: AsyncCallback&lt;T&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -300,6 +306,8 @@ getNextObject(): Promise&lt;T&gt;
 获取文件检索结果中的下一个文件资产。此方法使用promise方式来异步返回。
 在调用此方法之前，必须使用[isAfterLast()](#isafterlast)来检查当前位置是否为最后一行。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **返回值：**
@@ -314,7 +322,6 @@ getNextObject(): Promise&lt;T&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -347,6 +354,8 @@ getLastObject(callback: AsyncCallback&lt;T&gt;): void
 
 获取文件检索结果中的最后一个文件资产。此方法使用callback方式来返回。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -361,7 +370,6 @@ getLastObject(callback: AsyncCallback&lt;T&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -396,6 +404,8 @@ getLastObject(): Promise&lt;T&gt;
 
 获取文件检索结果中的最后一个文件资产。此方法使用Promise方式来返回。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **返回值：**
@@ -410,7 +420,6 @@ getLastObject(): Promise&lt;T&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -440,6 +449,8 @@ getObjectByPosition(index: number, callback: AsyncCallback&lt;T&gt;): void
 
 获取文件检索结果中具有指定索引的文件资产。此方法使用callback来返回。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -455,7 +466,6 @@ getObjectByPosition(index: number, callback: AsyncCallback&lt;T&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -490,6 +500,8 @@ getObjectByPosition(index: number): Promise&lt;T&gt;
 
 获取文件检索结果中指定索引的文件资产。此方法返回Promise形式的文件Asset。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -510,7 +522,6 @@ getObjectByPosition(index: number): Promise&lt;T&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -540,6 +551,8 @@ getAllObjects(callback: AsyncCallback&lt;Array&lt;T&gt;&gt;): void
 
 获取文件检索结果中的所有文件资产。此方法使用callback形式返回结果。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -554,7 +567,6 @@ getAllObjects(callback: AsyncCallback&lt;Array&lt;T&gt;&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -589,6 +601,8 @@ getAllObjects(): Promise&lt;Array&lt;T&gt;&gt;
 
 获取文件检索结果中的所有文件资产。此方法使用promise方式来异步返回。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **返回值：**
@@ -603,7 +617,6 @@ getAllObjects(): Promise&lt;Array&lt;T&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
