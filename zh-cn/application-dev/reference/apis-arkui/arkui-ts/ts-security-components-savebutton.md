@@ -149,12 +149,6 @@ setIcon(icon: Resource)
 |------------|------|-------|---------|
 | icon | [Resource](ts-types.md#resource) |是 |自定义图标资源信息，仅支持Resource类型的数据源。<br/>可支持的图片格式：png、jpg、jpeg、bmp、svg、webp、gif和heif等，支持的图片格式范围见[Image](ts-basic-components-image.md)。当资源为非图片资源或不支持的格式时，图标显示为空白。<br/>如果应用无ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，则自定义图标设置不生效，保存控件保持默认样式。详见[SaveButtonOptions](#savebuttonoptions)说明。|
 
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [SaveButtonAttribute](#savebuttonattribute) | 返回保存控件的属性。 |
-
 ### setText<sup>20+</sup>
 
 setText(text: string | Resource)
@@ -173,12 +167,6 @@ setText(text: string | Resource)
 |------------|------|-------|---------|
 | text | string \| [Resource](ts-types.md#resource) |是 |自定义文本信息。<br/>如果应用无ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，则自定义文本设置不生效，保存控件保持默认样式。详见[SaveButtonOptions](#savebuttonoptions)说明。|
 
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [SaveButtonAttribute](#savebuttonattribute)| 返回保存控件的属性。 |
-
 ### iconSize<sup>20+</sup>
 
 iconSize(size: Dimension | SizeOptions)
@@ -194,12 +182,6 @@ iconSize(size: Dimension | SizeOptions)
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
 | size | [Dimension](ts-types.md#dimension10) \| [SizeOptions](ts-types.md#sizeoptions) |是 |图标尺寸，不支持设置百分比字符串。<br/>- 保存控件提供的系统图标，宽高默认值均为16vp。宽高设置值不一致时，取其中最小值作为宽高值；宽高仅设置其中一个值时，取该值作为宽高值。<br/>- 对于自定义图标，宽默认值为16vp，高根据自定义图标实际尺寸做自适应处理。宽高仅设置其中一个值时，未设置的另一个值做自适应处理；宽高均设置时按照指定宽高生效，当设置的宽高比例与自定义图标的宽高比例不一致时，图片被截断。|
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [SaveButtonAttribute](#savebuttonattribute)| 返回保存控件的属性。 |
 
 ### iconBorderRadius<sup>20+</sup>
 
@@ -219,12 +201,6 @@ iconBorderRadius(radius: Dimension | BorderRadiuses)
 |------------|------|-------|---------|
 | radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) |是 |保存控件图标的圆角半径，支持设置四个圆角。<br/>如果应用无ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，则图标的圆角半径设置不生效。 |
 
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [SaveButtonAttribute](#savebuttonattribute)| 返回保存控件的属性。 |
-
 ### stateEffect<sup>20+</sup>
 
 stateEffect(enabled: boolean)
@@ -242,12 +218,6 @@ stateEffect(enabled: boolean)
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
 | enabled | boolean |是 | 表示是否开启按压效果，true表示保存控件按压时显示按压效果，false表示保存控件按压时不显示按压效果。<br/>默认值：true。<br/>如果应用无ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，按压效果设置不生效。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [SaveButtonAttribute](#savebuttonattribute)| 返回保存控件的属性。 |
 
 ## 属性
 
