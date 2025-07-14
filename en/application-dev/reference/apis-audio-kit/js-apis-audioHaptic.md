@@ -569,7 +569,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.setVolume(0.5).then(() => {
-  console.info(`Promise returned to indicate that set volume successfully.`);
+  console.info('Promise returned to indicate that set volume successfully.');
 }).catch ((err: BusinessError) => {
   console.error(`Failed to set volume. ${err}`);
 });
@@ -610,7 +610,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.setLoop(true).then(() => {
-  console.info(`Promise returned to indicate that set player loop successfully.`);
+  console.info('Promise returned to indicate that set player loop successfully.');
 }).catch ((err: BusinessError) => {
   console.error(`Failed to set player loop. ${err}`);
 });

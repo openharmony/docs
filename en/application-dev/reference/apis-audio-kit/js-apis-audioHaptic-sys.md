@@ -141,7 +141,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 import { BusinessError } from '@kit.BasicServicesKit';
 
 audioHapticPlayerInstance.setHapticsIntensity(0.5).then(() => {
-  console.info(`Promise returned to indicate that set intensity successfully.`);
+  console.info('Promise returned to indicate that set intensity successfully.');
 }).catch ((err: BusinessError) => {
   console.error(`Failed to set intensity. ${err}`);
 });
@@ -192,7 +192,7 @@ const startIntensity = 0.5;
 const endIntensity = 1;
 
 audioHapticPlayerInstance.setHapticsRamp(duration, startIntensity, endIntensity).then(() => {
-  console.info(`Promise returned to indicate that set haptics ramp successfully.`);
+  console.info('Promise returned to indicate that set haptics ramp successfully.');
 }).catch ((err: BusinessError) => {
   console.error(`Failed to set haptics ramp. ${err}`);
 });
