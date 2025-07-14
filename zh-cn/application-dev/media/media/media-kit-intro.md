@@ -327,7 +327,7 @@ AVTranscoder主要用于将已压缩编码的视频文件按照指定参数转�
 
 - 支持的目标视频格式：
 
-| [封装格式](../avcodec/avcodec-support-formats.md#媒体数据封装) | [视频编码类型](../avcodec/avcodec-support-formats.md#视频编码) | [音频编码类型] (../avcodec/avcodec-support-formats.md#音频编码)|
+| [封装格式](../avcodec/avcodec-support-formats.md#媒体数据封装) | [视频编码类型](../avcodec/avcodec-support-formats.md#视频编码) | [音频编码类型](../avcodec/avcodec-support-formats.md#音频编码)|
 | -------- | :------------------| :---------------- |
 | mp4      | AVC(H.264)<!--RP8-->、HEVC(H.265)<!--RP8End--> | AAC |
 
