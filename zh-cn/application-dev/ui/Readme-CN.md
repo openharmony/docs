@@ -146,6 +146,8 @@
     - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
   - 使用互操作功能构建UI<!--arkts-use-interop-ui-->
     - [ArkTS1.2使用ArkTS1.1自定义组件](interop-compatible-component.md)
+    - [ArkTS1.2使用ArkTS1.1全局自定义构建函数](interop-compatible-builder.md)
+    - [ArkTS1.2使用ArkTS1.1 WrappedBuilder对象](interop-compatible-WrappedBuilder.md)
 - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明<!--js-framework-overview-->

@@ -392,6 +392,7 @@
     - [自定义组件内置方法](arkui-ts/ts-custom-component-api.md)
   - 互操作
     - [compatibleComponent (ArkTS1.2)(系统接口)](arkui-ts/ts-interop-compatible-component.md)
+    - [compatibleWrappedBuilder (ArkTS1.2)](arkui-ts/ts-interop-compatible-WrappedBuilder.md)
   - 状态管理与渲染控制<!--state-management-and-rendering-control-->
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
     - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
