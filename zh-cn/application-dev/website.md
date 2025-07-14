@@ -4242,6 +4242,7 @@
           - [@ohos.enterprise.usbManager（USB管理）](reference/apis-mdm-kit/js-apis-enterprise-usbManager.md)
           - [@ohos.enterprise.wifiManager（WiFi管理）](reference/apis-mdm-kit/js-apis-enterprise-wifiManager.md)
           - [@ohos.enterprise.EnterpriseAdminExtensionAbility（企业设备管理扩展能力）](reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md)
+          - [@ohos.enterprise.telephony（通话管理）](reference/apis-mdm-kit/js-apis-enterprise-telephonyManager.md)
           <!--Del-->
           - [@ohos.enterprise.accountManager（账户管理）(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-accountManager-sys.md)
           - [@ohos.enterprise.adminManager (企业设备管理)(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-adminManager-sys.md)
