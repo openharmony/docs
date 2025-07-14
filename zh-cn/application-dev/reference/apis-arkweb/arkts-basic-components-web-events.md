@@ -1034,7 +1034,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
      async selectFile(result: FileSelectorResult): Promise<void> {
        let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
        let photoPicker = new photoAccessHelper.PhotoViewPicker();
-       // 过滤选择媒体文件类型为IMAGE
+       // 过滤选择媒体文件类型为IMAGE_VIDEO
        photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
        // 设置最大选择数量
        photoSelectOptions.maxSelectNumber = 5;
