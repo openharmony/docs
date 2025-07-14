@@ -375,7 +375,7 @@ struct SetIcon {
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD })
           .setIcon($r('app.media.startIcon'))
           .iconSize({ width: 30, height: 40 })
-        // 设置保存控件的自定义图标大小，入参为SizeOptions类型且只设置一个值，宽高中的另一个会按原图比例自适应显示。
+        // 设置保存控件的自定义图标大小，入参为SizeOptions类型且只设置一个值。图片宽高均显示为设置值。
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD })
           .setIcon($r('app.media.startIcon'))
           .iconSize({ width: 40 })
