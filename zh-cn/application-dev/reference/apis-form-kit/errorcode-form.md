@@ -223,7 +223,7 @@ The form can not support this operation.
 
 检查当前卡片对应[互动卡片配置项sceneAnimationParams](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)是否正确。
 
-## 16501012 卡片尺寸信息错误
+## 16501012 卡片尺寸错误
 
 **错误信息**
 
@@ -231,7 +231,7 @@ The form host uses an incorrect dimension.
 
 **错误描述**
 
-卡片使用方传入错误的卡片尺寸。
+卡片尺寸错误。
 
 **可能原因**
 
