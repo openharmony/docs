@@ -14,7 +14,9 @@ After an application switches to the background or an application process is ter
 
 ### Constraints
 
-- **Quantity limit**: A third-party application supports a maximum of 30 valid reminders.<!--Del--> A system application supports a maximum of 10,000 valid reminders. The entire system supports a maximum of 12,000 valid reminders.<!--DelEnd-->
+<!--RP2-->
+- **Maximum reminders**: 30 for regular applications, 10,000 for system applications, and 12,000 total for the system.
+<!--RP2End-->
 
 > **NOTE**
 >
@@ -24,7 +26,7 @@ After an application switches to the background or an application process is ter
 
 - **Redirection limit**: The application that is redirected to upon a click on the notification must be the application that requested the agent-powered reminder.
 
-<!--RP2--><!--RP2End-->
+<!--RP3--><!--RP3End-->
 
 
 ## Available APIs

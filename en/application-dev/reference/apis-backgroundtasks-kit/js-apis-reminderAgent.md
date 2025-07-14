@@ -436,7 +436,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 Enumerates the button types.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ActionButtonType](js-apis-reminderAgentManager.md#ActionButtonType).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ActionButtonType](js-apis-reminderAgentManager.md#actionbuttontype) instead.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -451,7 +451,7 @@ Enumerates the button types.
 Enumerates reminder types.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ReminderType](js-apis-reminderAgentManager.md#ReminderType).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ReminderType](js-apis-reminderAgentManager.md#remindertype) instead.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -467,7 +467,7 @@ Enumerates reminder types.
 Defines a button displayed in the reminder notification.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ActionButton](js-apis-reminderAgentManager.md#ActionButton).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ActionButton](js-apis-reminderAgentManager.md#actionbutton) instead.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -482,7 +482,7 @@ Defines a button displayed in the reminder notification.
 Sets the package and ability that are redirected to when the reminder notification is clicked.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.WantAgent](js-apis-reminderAgentManager.md#WantAgent).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.WantAgent](js-apis-reminderAgentManager.md#wantagent) instead.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -512,7 +512,7 @@ Provides the information about the target package and ability to start automatic
 Defines the reminder to publish.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ReminderRequest](js-apis-reminderAgentManager.md#ReminderRequest).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ReminderRequest](js-apis-reminderAgentManager.md#reminderrequest) instead.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -539,7 +539,7 @@ Defines the reminder to publish.
 Defines a reminder for a calendar event.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ReminderRequestCalendar](js-apis-reminderAgentManager.md#ReminderRequestCalendar).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ReminderRequestCalendar](js-apis-reminderAgentManager.md#reminderrequestcalendar) instead.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -556,7 +556,7 @@ Defines a reminder for a calendar event.
 Defines a reminder for an alarm.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ReminderRequestAlarm](js-apis-reminderAgentManager.md#ReminderRequestAlarm).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ReminderRequestAlarm](js-apis-reminderAgentManager.md#reminderrequestalarm) instead.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -572,7 +572,7 @@ Defines a reminder for an alarm.
 Defines a reminder for a scheduled timer.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ReminderRequestTimer](js-apis-reminderAgentManager.md#ReminderRequestTimer).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.ReminderRequestTimer](js-apis-reminderAgentManager.md#reminderrequesttimer) instead.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -586,7 +586,7 @@ Defines a reminder for a scheduled timer.
 Sets the time information for a calendar reminder.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.LocalDateTime](js-apis-reminderAgentManager.md#LocalDateTime).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [reminderAgentManager.LocalDateTime](js-apis-reminderAgentManager.md#localdatetime) instead.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
