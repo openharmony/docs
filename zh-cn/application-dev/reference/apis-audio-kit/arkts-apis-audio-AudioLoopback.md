@@ -179,6 +179,8 @@ enable(enable: boolean): Promise<boolean\>
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
+**需要权限：** ohos.permission.MICROPHONE
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                                |
