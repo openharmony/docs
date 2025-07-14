@@ -699,6 +699,10 @@
         - [WindowExtensionAbility（仅对系统应用开放）](windowmanager/windowextensionability.md)
         <!--DelEnd-->
         - [使用WindowManager管理多模输入事件（C/C++）](windowmanager/native-window-event-filter.md)
+        - 应用启动页的配置与使用<!--launch-page-->
+          - [应用启动页简介](windowmanager/launch-page-overview.md)
+          - [配置应用启动页](windowmanager/launch-page-config.md)
+          - [启动页资源分类配置](windowmanager/launch-page-resource-config.md)
       - 屏幕管理<!--display-manager-->
         - [屏幕管理简介](displaymanager/displayManager-overview.md)
         - [使用OH_DisplayManager实现屏幕基础信息查询和状态监听 (C/C++)](displaymanager/native-display-manager.md)
