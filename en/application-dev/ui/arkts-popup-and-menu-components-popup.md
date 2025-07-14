@@ -1,15 +1,17 @@
 # Popup
 You can bind the **Popup** attribute to a component to create a popup, specifying its content and interaction logic, and display state. It is mainly used for screen recording and message notification.
 
-Popups can be defined with [PopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions) or [CustomPopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8). In **PopupOptions**, you can set **primaryButton** and **secondaryButton** to include buttons in the popup. In **CustomPopupOptions**, you can create a custom popup through [builder](../ui/state-management/arkts-builder.md).
+Popups can be defined with [PopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions) or [CustomPopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8). In **PopupOptions**, you can set **primaryButton** and **secondaryButton** to include buttons in the popup. In **CustomPopupOptions**, you can create a custom popup using [builder](../../application-dev/ui/state-management/arkts-builder.md).
 
 You can configure the modality of a popup through [mask](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions). Setting **mask** to **true** or a color value makes the popup a modal, and setting **mask** to **false** makes the popup a non-modal.
 
+When multiple popups are displayed at the same time, popups displayed in child windows have a higher z-index than those in the main window. When in the same window, popups displayed later have a higher z-index than those displayed earlier.
+
 ## Creating a Text Popup
 
-Text popups are usually used to display text only and do not allow for user interactions. Bind the **Popup** attribute to a component. When the **show** parameter in the **bindPopup** attribute is set to **true**, a popup is displayed.
+Text popups are usually used to display informational text messages, suitable for non-interactive scenarios. Bind the **Popup** attribute to a component. When the **show** parameter of **bindPopup** is set to **true**, a popup is displayed.
 
-If you bind the **Popup** attribute to a **\<Button>** component, each time the **\<Button>** button is clicked, the Boolean value of **handlePopup** changes. When it changes to **true**, the popup is displayed.
+In the example below, with the **Popup** attribute bound to a **Button** component, each click toggles the boolean value in **handlePopup**. When the value becomes **true**, it triggers **bindPopup** to display the popup.
 
 ```ts
 @Entry
@@ -260,3 +262,139 @@ struct PopupExample {
 ```
 
 ![image](figures/UIpopupStyle.gif)
+
+## Enabling the Popup to Avoid the Soft Keyboard
+
+By default, popups do not avoid the soft keyboard and may be obscured by it. Setting **keyboardAvoidMode** to **KeyboardAvoidMode.DEFAULT** enables keyboard avoidance. If there is insufficient space, the popup will shift from its default position to overlay its host component.
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct PopupExample {
+  @State handlePopup: boolean = false;
+
+  @Builder popupBuilder() {
+    Column({ space: 2 }) {
+      Text('Custom Popup').fontSize(20)
+        .borderWidth(2)
+      TextInput()
+    }.width(200).padding(5)
+  }
+
+  build() {
+    Column({ space: 100 }) {
+      TextInput()
+      Button('PopupOptions')
+        .onClick(() => {
+          this.handlePopup = !this.handlePopup;
+        })
+        .bindPopup(this.handlePopup!!, {
+          width: 200,
+          builder: this.popupBuilder(),
+          placement: Placement.Bottom,
+          mask: false,
+          autoCancel: false,
+          keyboardAvoidMode: KeyboardAvoidMode.DEFAULT
+        })
+        .position({x: 100, y: 300})
+    }
+    .width('100%')
+  }
+}
+```
+
+![image](figures/avoidKeyboard.gif)
+
+
+## Setting Polymorphic Effects in the Popup
+
+When @Builder is used for custom popup content, polymorphic styles are not supported by default. To achieve background color changes on press, implement a component with @Component.
+
+```ts
+@Entry
+@Component
+struct PopupPage {
+  private menus: Array<string> = ["Scan", "Create Group Chat", "Employee ID Card"]
+
+  // Define the popup content in the popup builder.
+  @Builder
+  popupItemBuilder(name: string, action: string) {
+    PopupItemChild({ childName: name, childAction: action })
+  }
+
+  // Define the popup content in the popup builder.
+  @Builder
+  popupBuilder() {
+    Column() {
+      ForEach(
+        this.menus,
+        (item: string, index) => {
+          this.popupItemBuilder(item, String(index))
+        },
+        (item: string, index) => {
+          return item
+        })
+    }
+    .padding(8)
+  }
+
+  @State customPopup: boolean = false;
+
+  build() {
+    Column() {
+      Button('Click Me')
+        .onClick(() => {
+          this.customPopup = !this.customPopup
+        })
+        .bindPopup(
+          this.customPopup,
+          {
+            builder: this.popupBuilder, // Content of the popup.
+            placement: Placement.Bottom, // Position of the popup.
+            popupColor: Color.White, // Background color of the popup.
+            onStateChange: (event) => {
+              if (!event.isVisible) {
+                this.customPopup = false
+              }
+            }
+          })
+    }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+}
+
+@Component
+struct PopupItemChild {
+  @Prop childName: string = '';
+  @Prop childAction: string = '';
+
+  build() {
+    Row({ space: 8 }) {
+      Image($r('app.media.startIcon'))
+        .width(24)
+        .height(24)
+      Text(this.childName)
+        .fontSize(16)
+    }
+    .width(200)
+    .height(50)
+    .padding(8)
+    .onClick(() => {
+      this.getUIContext().getPromptAction().showToast({ message: 'Selected ' + this.childName })
+    })
+    .stateStyles({
+      normal: {
+        .backgroundColor(Color.White)
+      },
+      pressed: {
+        .backgroundColor('#1fbb7d')
+      }
+    })
+  }
+}
+```
+
+![popupStateStyle](figures/popupStateStyle.gif)
