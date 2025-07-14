@@ -634,7 +634,7 @@ getInsertSqlInfo(table: string, values: ValuesBucket, conflict?: ConflictResolut
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clau  se. |
 
 
 **示例：**
