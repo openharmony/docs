@@ -768,7 +768,7 @@ try {
 
 isAudioLoopbackSupported(mode: AudioLoopbackMode): boolean
 
-查询传入的音频返听模式是否支持音频返听。
+查询当前系统是否支持指定的音频返听模式。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -782,7 +782,7 @@ isAudioLoopbackSupported(mode: AudioLoopbackMode): boolean
 
 | 类型                                                                      | 说明                                    |
 | --------------------------------------------------------------------------| --------------------------------------- |
-|  boolean     | 是否支持音频返听。true表示支持，false表示不支持。        |
+|  boolean     | 是否支持指定的音频返听模式。true表示支持，false表示不支持。        |
 
 **错误码：**
 
