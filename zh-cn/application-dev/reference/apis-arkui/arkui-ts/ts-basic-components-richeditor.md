@@ -105,6 +105,12 @@ copyOptions(value: CopyOptions)
 
 设置组件是否支持文本内容可复制粘贴。
 
+从API version 20开始，RichEditor组件在执行复制或剪切操作时，会将HTML格式的内容添加到剪贴板中。
+
+- 仅支持TextSpan和ImageSpan向剪贴板中添加HTML内容，其他Span类型（如BuilderSpan、SymbolSpan、CustomSpan）则不能添加。
+
+- 设置RichEditor组件的属性字符串时，请参考属性字符串[toHtml](ts-universal-styled-string.md#tohtml14)接口文档，以了解支持转换为HTML的范围。
+
 copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择菜单。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。
 
 设置copyOptions为CopyOptions.None时，禁用复制、剪切、翻译、搜索、帮写功能。
