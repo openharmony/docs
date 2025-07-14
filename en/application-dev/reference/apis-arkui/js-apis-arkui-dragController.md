@@ -682,7 +682,7 @@ Provides the data reported when the state changes during dragging.
 | Name         | Type                                                  | Mandatory| Description                                    |
 | -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | status       | [DragStatus](#dragstatus11)                                                 | Yes  | Current dragging state (started or ended).        |
-| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | Yes  | Drag event corresponding to the current state. The drag event initiated by **dragController** only supports the APIs for obtaining the result and behavior, and is used exclusively for the dragging end state.|
+| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent7) | Yes  | Drag event corresponding to the current state. The drag event initiated by **dragController** only supports the APIs for obtaining the result and behavior, and is used exclusively for the dragging end state.|
 | extraParams| string                                                 | No  | Additional information about the drag action. Not supported currently. The default value is null.|
 
 ## DragStatus<sup>11+</sup>
@@ -709,7 +709,7 @@ Defines the attributes required for initiating a drag action and information car
 | Name       | Type                                                  | Mandatory| Description                                    |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | duration    | number                                                 | No  | Animation duration, in ms.<br>Default value: **1000**<br>**NOTE**<br>- If this parameter is set to a value less than 0, the value **0** is used.<br>- Floating-point values will be rounded down to integers. For example, if the value set is 1.2, **1** will be used.|
-| curve       | [Curve](arkui-ts/ts-appendix-enums.md#curve) \| [ICurve](js-apis-curve.md#icurve) | No   | Animation curve.<br>Default value: **Curve.EaseInOut**|                          |
+| curve       |&nbsp;[Curve](arkui-ts/ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](js-apis-curve.md#icurve9) | No   | Animation curve.<br>Default value: **Curve.EaseInOut**|                          |
 
 ## DragEventParam<sup>12+</sup>
 
@@ -721,7 +721,7 @@ Represents the callback used to return the result after a drag ends.
 
 | Name       | Type                                                        | Mandatory| Description                          |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| event       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | Yes  | Drag event information that includes only the drag result.|
+| event       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent7) | Yes  | Drag event information that includes only the drag result.|
 | extraParams | string                                                       | Yes  | Additional information about the drag event.            |
 
 ## dragController.getDragPreview<sup>(deprecated)</sup>
