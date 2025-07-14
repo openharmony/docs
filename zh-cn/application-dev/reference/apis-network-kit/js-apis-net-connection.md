@@ -1761,9 +1761,14 @@ let pacUrl = connection.getPacUrl();
 网络连接的句柄。
 
 > **说明：**
-> 设备从无网络到有网络会触发netAvailable事件、netCapabilitiesChange事件和netConnectionPropertiesChange事件；
-> 设备从有网络到无网络状态会触发netLost事件；
-> 设备从WiFi到蜂窝会触发netLost事件（WiFi丢失）之后触发 netAvailable事件（蜂窝可用）；
+>
+> （1）设备从无网络到有网络会触发netAvailable事件、netCapabilitiesChange事件和netConnectionPropertiesChange事件；
+>
+> （2）在收到netAvailable事件之后，设备从有网络到无网络状态会触发netLost事件；
+>
+> （3）若没有收到netAvailable事件，则会直接收到netUnavailable事件；
+>
+> （4）设备从WiFi到蜂窝会触发netLost事件（WiFi丢失）之后触发 netAvailable事件（蜂窝可用）；
 
 ### register
 
