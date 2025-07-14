@@ -1327,9 +1327,11 @@
           - [应用文件上传下载](basic-services/request/app-file-upload-download.md)
         - 压缩与解压<!--compress-->
           - [压缩与解压](basic-services/compress/deflate-and-inflate.md)
+        <!--Del-->
         - 划词服务<!--selectioninput-->
-          - [划词服务概述](basic-services/selectionInput/selection-services-intro.md)
-          - [实现一个划词应用](basic-services/selectionInput/selection-services-application-guide.md)
+          - [划词服务概述（仅对系统应用开放）](basic-services/selectionInput/selection-services-intro.md)
+          - [实现一个划词应用（仅对系统应用开放）](basic-services/selectionInput/selection-services-application-guide.md)
+        <!--DelEnd-->
       - Function Flow Runtime Kit（任务并发调度服务）<!--ffrt-kit-->
         - [Function Flow Runtime Kit概述](ffrt/ffrt-overview.md)
         - [Function Flow Runtime并发范式](ffrt/ffrt-concurrency-paradigm.md)
@@ -4041,11 +4043,11 @@
             - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)](reference/apis-basic-services-kit/js-apis-app-ability-PrintExtensionAbility-sys.md)
             - [@ohos.print (打印)(系统接口)](reference/apis-basic-services-kit/js-apis-print-sys.md)
             - [@ohos.request (上传下载)(系统接口)](reference/apis-basic-services-kit/js-apis-request-sys.md)
+            - [@ohos.selectionInput.SelectionExtensionAbility (划词扩展能力)(系统接口)](reference/apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility-sys.md)
+            - [@ohos.selectionInput.SelectionExtensionContext (划词扩展上下文)(系统接口)](reference/apis-basic-services-kit/js-apis-selectionInput-selectionExtensionContext-sys.md)
+            - [@ohos.selectionInput.selectionManager (划词管理)(系统接口)](reference/apis-basic-services-kit/js-apis-selectionInput-selectionManager-sys.md)
+            - [@ohos.selectionInput.SelectionPanel (划词面板)(系统接口)](reference/apis-basic-services-kit/js-apis-selectionInput-selectionPanel-sys.md)
             <!--DelEnd-->
-            - [@ohos.selectionInput.SelectionExtensionAbility (划词扩展能力)](reference/apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility.md)
-            - [@ohos.selectionInput.SelectionExtensionContext (划词扩展上下文)](reference/apis-basic-services-kit/js-apis-selectionInput-selectionExtensionContext.md)
-            - [@ohos.selectionInput.selectionManager (划词管理)](reference/apis-basic-services-kit/js-apis-selectionInput-selectionManager.md)
-            - [@ohos.selectionInput.SelectionPanel (划词面板)](reference/apis-basic-services-kit/js-apis-selectionInput-selectionPanel.md)
           - 进程线程通信<!--process-thread-communi-arkts-->
             - [系统定义的公共事件](reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md)
             <!--Del-->
@@ -4157,7 +4159,9 @@
           - [智能语音错误码](reference/apis-basic-services-kit/errorcode-intelligentVoice.md)
           <!--DelEnd-->
           - [设置数据项错误码](reference/apis-basic-services-kit/errorcode-settings.md)
+          <!--Del-->
           - [划词服务错误码](reference/apis-basic-services-kit/errorcode-selection.md)
+          <!--DelEnd-->
       - Function Flow Runtime Kit（任务并发调度服务）<!--function-flow-runtime-api-->
         - C API<!--function-flow-runtime-c-->
           - 模块<!--function-flow-runtime-module-->

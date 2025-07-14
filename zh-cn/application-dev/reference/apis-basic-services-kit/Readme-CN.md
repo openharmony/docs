@@ -42,10 +42,10 @@
     - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)](js-apis-app-ability-PrintExtensionAbility-sys.md)
     - [@ohos.print (打印)(系统接口)](js-apis-print-sys.md)
     - [@ohos.request (上传下载)(系统接口)](js-apis-request-sys.md)
-    - [@ohos.selectionInput.SelectionExtensionAbility (划词扩展能力)](js-apis-selectionInput-selectionExtensionAbility.md)
-    - [@ohos.selectionInput.SelectionExtensionContext (划词扩展上下文)](js-apis-selectionInput-selectionExtensionContext.md)
-    - [@ohos.selectionInput.selectionManager (划词管理)](js-apis-selectionInput-selectionManager.md)
-    - [@ohos.selectionInput.SelectionPanel (划词面板)](js-apis-selectionInput-selectionPanel.md)
+    - [@ohos.selectionInput.SelectionExtensionAbility (划词扩展能力)(系统接口)](js-apis-selectionInput-selectionExtensionAbility-sys.md)
+    - [@ohos.selectionInput.SelectionExtensionContext (划词扩展上下文)(系统接口)](js-apis-selectionInput-selectionExtensionContext-sys.md)
+    - [@ohos.selectionInput.selectionManager (划词管理)(系统接口)](js-apis-selectionInput-selectionManager-sys.md)
+    - [@ohos.selectionInput.SelectionPanel (划词面板)(系统接口)](js-apis-selectionInput-selectionPanel-sys.md)
     <!--DelEnd-->
   - 进程线程通信<!--process-thread-communi-arkts-->
     - [系统定义的公共事件](common_event/commonEventManager-definitions.md)
