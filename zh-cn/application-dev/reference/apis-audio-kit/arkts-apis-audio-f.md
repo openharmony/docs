@@ -72,7 +72,7 @@ audio.createAudioRenderer(audioRendererOptions,(err, data) => {
   if (err) {
     console.error(`AudioRenderer Created: Error: ${err}`);
   } else {
-    console.info('AudioRenderer Created: Success: SUCCESS');
+    console.info('AudioRenderer Created: SUCCESS');
     let audioRenderer = data;
   }
 });
@@ -125,7 +125,7 @@ let audioRenderer: audio.AudioRenderer;
 
 audio.createAudioRenderer(audioRendererOptions).then((data) => {
   audioRenderer = data;
-  console.info('AudioFrameworkRenderLog: AudioRenderer Created : Success : Stream Type: SUCCESS');
+  console.info('AudioFrameworkRenderLog: AudioRenderer Created : SUCCESS');
 }).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRenderLog: AudioRenderer Created : ERROR : ${err}`);
 });
@@ -176,7 +176,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
   if (err) {
     console.error(`AudioCapturer Created : Error: ${err}`);
   } else {
-    console.info('AudioCapturer Created : Success : SUCCESS');
+    console.info('AudioCapturer Created : SUCCESS');
     let audioCapturer = data;
   }
 });
@@ -233,7 +233,7 @@ let audioCapturer: audio.AudioCapturer;
 
 audio.createAudioCapturer(audioCapturerOptions).then((data) => {
   audioCapturer = data;
-  console.info('AudioCapturer Created : Success : Stream Type: SUCCESS');
+  console.info('AudioCapturer Created : SUCCESS');
 }).catch((err: BusinessError) => {
   console.error(`AudioCapturer Created : ERROR : ${err}`);
 });
@@ -282,11 +282,10 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioLoopback: audio.AudioLoopback;
-let mode: audio.AudioLoopbackMode.HARDWARE;
 
-audio.createAudioLoopback(mode).then((data) => {
+audio.createAudioLoopback(audio.AudioLoopbackMode.HARDWARE).then((data) => {
   audioLoopback = data;
-  console.info('AudioLoopback Created : Success : Stream Type: SUCCESS');
+  console.info('AudioLoopback Created : SUCCESS');
 }).catch((err: BusinessError) => {
   console.error(`AudioLoopback Created : ERROR : ${err}`);
 });

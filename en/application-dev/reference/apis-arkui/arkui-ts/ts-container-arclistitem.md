@@ -6,7 +6,7 @@ The **ArcListItem** component is used to display individual child components in 
 >
 > - This component is supported since API version 18. Updates will be marked with a superscript to indicate their earliest API version.
 > - This component can be used only as a child of [ArcList](ts-container-arclist.md).
-> - When this component is used with [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md), its child components are created when it is created. When this component is used with [if/else](../../../quick-start/arkts-rendering-control-ifelse.md) or [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), or when the parent component is [ArcList](ts-container-arclist.md), its child components are created when it is laid out.
+> - When this component is used with [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md), its child components are created when it is created. When this component is used with [if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md) or [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md), or when the parent component is [ArcList](ts-container-arclist.md), its child components are created when it is laid out.
 
 ## Modules to Import
 

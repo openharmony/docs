@@ -1095,13 +1095,13 @@ console.info("retStr = " + retStr);
 
 ## EncodeIntoUint8ArrayInfo<sup>11+</sup>
 
-**系统能力：** SystemCapability.Utils.Lang
-
 编码后的信息，包含读取的字符数和写入的字节数。
 
 ### 属性
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称      | 类型 | 只读  |可选  | 说明               |
 | --------- | -------- | -------- |-------- |------------------ |

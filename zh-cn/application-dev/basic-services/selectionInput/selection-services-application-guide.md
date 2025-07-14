@@ -1,8 +1,8 @@
-# 实现一个划词应用
+# 实现一个划词应用（仅对系统应用开放）
 
 ## 接口说明
 
-请参考[selectionInput.SelectionManager](../../reference/apis-basic-services-kit/js-apis-selectionInput-selectionManager.md)文档获取接口详情。
+请参考[selectionInput.SelectionManager](../../reference/apis-basic-services-kit/js-apis-selectionInput-selectionManager-sys.md)文档获取接口详情。
 
 | 名称 | 描述 |
 | ---- | ---- |
@@ -32,7 +32,7 @@
 
     ![划词应用工程](figures/selection-application-project.png)
 
-2. 继承[SelectionExtensionAbility](../../reference/apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility.md)，实现扩展生命周期函数。
+2. 继承[SelectionExtensionAbility](../../reference/apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility-sys.md)，实现扩展生命周期函数。
     ```ts
     import { selectionManager, PanelInfo, PanelType, SelectionExtensionAbility } from '@kit.BasicServicesKit';
 
@@ -101,17 +101,12 @@
 
 6. 配置`module.json5`文件。
 
-    在`requestPermissions`字段中添加应用所需权限，并在`extensionAbilities`字段中配置划词扩展类文件路径。
+    在`extensionAbilities`字段中配置划词扩展类文件路径。
 
     ```json
     {
       "module": {
-      ...
-        "requestPermissions": [
-          {
-            "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
-          }
-        ],
+      // ...
         "extensionAbilities": [
           {
             "name": "SelectionExtensionAbility",

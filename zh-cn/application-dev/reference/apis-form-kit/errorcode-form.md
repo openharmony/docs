@@ -223,6 +223,24 @@ The form can not support this operation.
 
 检查当前卡片对应[互动卡片配置项sceneAnimationParams](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)是否正确。
 
+## 16501012 卡片尺寸信息错误
+
+**错误信息**
+
+The form host uses an incorrect dimension.
+
+**错误描述**
+
+卡片使用方传入错误的卡片尺寸。
+
+**可能原因**
+
+指定卡片尺寸未配置，或传入无效卡片尺寸。
+
+**处理步骤**
+
+检查入参卡片尺寸是否在[FormDimension](js-apis-app-form-formInfo.md#formdimension)和[supportDimensions](../../form/arkts-ui-widget-configuration.md#配置文件字段说明)配置列表。
+
 ## 2293761 内部服务错误
 
 **错误信息**

@@ -80,8 +80,6 @@
 
 ## TouchType
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Description             |
@@ -89,7 +87,7 @@
 | Down   | A finger is pressed.       |
 | Up     | A finger is lifted.       |
 | Move   | A finger moves on the screen in pressed state.|
-| Cancel | A touch event is canceled.     |
+| Cancel | A touch event is canceled. Examples: 1. touching the home button to return to the home screen while keeping a finger on the screen; 2. folding a foldable phone to switch to the external screen while keeping a finger on the screen.|
 
 ## MouseButton<sup>8+</sup>
 
@@ -417,10 +415,10 @@ Enumerates the interpolation curves. For details about the animation, see <!--RP
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Description    |
-| ---------- | ------ |
-| Vertical   | Vertical direction.|
-| Horizontal | Horizontal direction.|
+| Name        | Value| Description    |
+| ---------- | -- | ------ |
+| Vertical   | 0 | Vertical direction.|
+| Horizontal | 1 | Horizontal direction.|
 
 ## HorizontalAlign
 
@@ -497,7 +495,7 @@ Enumerates the interpolation curves. For details about the animation, see <!--RP
 | ----------- | --------------------------- |
 | NoWrap      | The child components in the flex container are arranged in a single line. If any of them have minimum size constraints applied, the flex container does not forcibly shrink them when overflow occurs. |
 | Wrap        | The child components in the flex container are arranged in multiple lines, and they may overflow.  |
-| WrapReverse | The child components in the flex container are reversely arranged in multiple lines, and they may overflow.|
+| WrapReverse | The child components in the flex container are reversely arranged in multiple lines, and they may overflow. **WrapReverse** reverses the in-line direction of components.|
 
 ## VerticalAlign
 
@@ -536,7 +534,7 @@ Enumerates the interpolation curves. For details about the animation, see <!--RP
 | ------- | -------------------------- | ----------------------------------- |
 | Cover   | 1  | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Contain | 2  | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br> **Atomic service API**: This API can be used in atomic services since API version 11.     |
-| Auto    | 0  | The original image aspect ratio remains unchanged. Default value.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                        |
+| Auto    | 0  | The original image aspect ratio is retained.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                        |
 | FILL<sup>12+</sup> | 3  | The image is scaled to fill the display area, and its aspect ratio is not retained.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## GradientDirection
@@ -595,7 +593,7 @@ Enumerates the interpolation curves. For details about the animation, see <!--RP
 | ------- | ----- | ----------- |
 | Lighter |  100  |   The font weight is lighter.|
 | Normal  |  400  |   The font weight is normal.|
-| Regular |  400  |   The font weight is regular.|
+| Regular |  400  |   The font weight is normal. Same effect as **Normal**.|
 | Medium  |  500  |   The font weight is medium.|
 | Bold    |  700  |   The font weight is bold.  |
 | Bolder  |  900  |   The font weight is bolder.|
@@ -621,7 +619,7 @@ Enumerates the interpolation curves. For details about the animation, see <!--RP
 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
-| None                  | Overflowing content is clipped at the limit of the maximum line width.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
+| None                  | Overflowing content is clipped at the limit of the maximum line width. Same effect as **Clip**.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
 | Clip                  | Overflowing content is clipped at the limit of the maximum line width.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
 | Ellipsis              | An ellipsis (...) is used to represent text overflow.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
 | MARQUEE<sup>10+</sup> | Text continuously scrolls when text overflow occurs.|
@@ -636,10 +634,10 @@ Enumerates the interpolation curves. For details about the animation, see <!--RP
 
 | Name         | Description       |
 | ----------- | --------- |
-| Underline   | Line under the text. |
+| Underline   | Line below the text. |
 | LineThrough | Line through the text.|
-| Overline    | Line over the text. |
-| None        | No text decoration.|
+| Overline    | Line above the text. |
+| None        | No text decorations.|
 
 ## TextCase
 
@@ -836,7 +834,7 @@ Enumerates the coloring strategies.
 
 ## Nullable\<T><sup>11+</sup>
 
-type Nullable\<T> = T | undefined;
+type Nullable\<T> = T | undefined
 
 The object of this type can be of a custom type or **undefined**.
 
@@ -857,7 +855,8 @@ The object of this type can be of a custom type or **undefined**.
 | NORMAL  | 0 | Word breaks can occur between any two characters for Chinese, Japanese, and Korean (CJK) text, but can occur only at a space character for non-CJK text (such as English).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | BREAK_ALL | 1 | Line breaks can occur between any two characters for non-CJK text. CJK text behavior is the same as for **NORMAL**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | BREAK_WORD | 2 | This option has the same effect as **BREAK_ALL** for non-CJK text, except that it preferentially wraps lines at appropriate characters (for example, spaces) whenever possible. CJK text behavior is the same as for **NORMAL**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| HYPHENATION<sup>18+</sup> | 3 | Line breaks can occur between any two syllabic units for non-CJK text. CJK text behavior is the same as for **NORMAL**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| HYPHENATION<sup>18+</sup> | 3 | Attempts are made to hyphenate words at the end of each line using a hyphen. If a hyphen cannot be added, this option behaves like **BREAK_WORD**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+
 
 ## LineBreakStrategy<sup>12+</sup>
 
@@ -1017,8 +1016,6 @@ Enumerates the sources of scroll operations.
 
 ## ImageSpanAlignment<sup>10+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Description                          |
@@ -1038,7 +1035,7 @@ Enumerates the sources of scroll operations.
 | SURFACE                          | The component is used for EGL/OpenGLES and media data input, where the custom content is displayed individually on the screen. When the background color is set to black, the display subsystem (DSS) is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | COMPONENT<sup>(deprecated)</sup> | The component becomes a container where non-UI logic can be executed to dynamically load the display content.<br>**NOTE**<br>This API is deprecated since API version 12. You are advised to use other container components instead.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | TEXTURE                          | The component is used for EGL/OpenGLES and media data input, where the custom content is combined with the content of the component and then displayed on the screen. 1. Frame synchronization is maintained, which ensures that the GPU textures and other ArkUI drawing commands are batched and sent to the RenderService within the same frame. 2. Animations are unified with built-in components. 3. As the GPU is used for composition, this type may consume more power compared to the surface type that uses the display subsystem (DSS).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| NODE<sup>12+</sup>            | The component is used as a placeholder container for native UI nodes. Page components developed with native APIs can be displayed within this container's area.<br>**NOTE**<br>This type is no longer being evolved. You are advised to use the [ContentSlot](../../../quick-start/arkts-rendering-control-contentslot.md) placeholder component for managing components created with native APIs. **ContentSlot** is superior to the NODE-type **XComponent** in terms of memory and performance.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| NODE<sup>12+</sup>            | The component is used as a placeholder container for native UI nodes. Page components developed with native APIs can be displayed within this container's area.<br>**NOTE**<br>This type is no longer being evolved. You are advised to use the [ContentSlot](../../../ui/state-management/arkts-rendering-control-contentslot.md) placeholder component for managing components created with native APIs. **ContentSlot** is superior to the NODE-type **XComponent** in terms of memory and performance.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## HoverModeAreaType<sup>14+</sup>
 
@@ -1061,6 +1058,8 @@ Enumerates the width breakpoint values corresponding to different window width t
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+The following table lists default width breakpoint thresholds for typical devices, serving as a reference for responsive layout design based on window width breakpoints. Device manufacturers may customize these thresholds through product-specific configurations when needed.
+
 | Name    | Value  | Description                  |
 | -------- | ---- | ---------------------- |
 | WIDTH_XS | 0   | The window width is less than 320 vp.|
@@ -1069,6 +1068,10 @@ Enumerates the width breakpoint values corresponding to different window width t
 | WIDTH_LG | 3   | The window width is greater than or equal to 840 vp and less than 1440 vp.|
 | WIDTH_XL | 4   | The window width is greater than or equal to 1440 vp.|
 
+> **NOTE**
+>
+> For most applications, considering window width breakpoints alone is sufficient for building adaptive layouts.
+
 ## HeightBreakpoint<sup>13+</sup>
 
 Enumerates the height breakpoint values corresponding to different window aspect ratio thresholds. The value is returned through [getWindowHeightBreakpoint](../js-apis-arkui-UIContext.md#getwindowheightbreakpoint13).
@@ -1076,6 +1079,8 @@ Enumerates the height breakpoint values corresponding to different window aspect
 **Atomic service API**: This API can be used in atomic services since API version 13.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+The following table lists default aspect ratio breakpoint thresholds for typical devices, serving as a reference for responsive layout design based on window aspect ratios. Device manufacturers may customize these thresholds through product-specific configurations when needed.
 
 | Name    | Value  | Description                  |
 | -------- | ---- | ---------------------- |
@@ -1106,6 +1111,8 @@ Enumerates the axis types for focus axis events.
 
 Enumerates the modes for flipping pages using the mouse wheel.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 15.
+
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -1119,28 +1126,30 @@ Enumerates the modes for flipping pages using the mouse wheel.
 
 Enumerates the modes in which the final state of the component's content is rendered during its width and height animation process.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                         | Description                                                                             |
-| --------------------------- | ---------------------------------------------------------------------------------- |
-| CENTER                      | The component's content stays at the final size and always aligned with the center of the component.               ![renderfit_center](figures/renderfit_center.png) |
-| TOP                         | The component's content stays at the final size and always aligned with the top center of the component.             ![renderfit_top](figures/renderfit_top.png) |
-| BOTTOM                      | The component's content stays at the final size and always aligned with the bottom center of the component.             ![renderfit_bottom](figures/renderfit_bottom.png) |
-| LEFT                        | The component's content stays at the final size and always aligned with the left of the component.               ![renderfit_left](figures/renderfit_left.png) |
-| RIGHT                       | The component's content stays at the final size and always aligned with the right of the component.              ![renderfit_right](figures/renderfit_right.png) |
-| TOP_LEFT                    | The component's content stays at the final size and always aligned with the upper left corner of the component.              ![renderfit_top_left](figures/renderfit_top_left.png) |
-| TOP_RIGHT                   | The component's content stays at the final size and always aligned with the upper right corner of the component.             ![renderfit_top_right](figures/renderfit_top_right.png) |
-| BOTTOM_LEFT                 | The component's content stays at the final size and always aligned with the lower left corner of the component.              ![renderfit_bottom_left](figures/renderfit_bottom_left.png) |
-| BOTTOM_RIGHT                | The component's content stays at the final size and always aligned with the lower right corner of the component.              ![renderfit_bottom_right](figures/renderfit_bottom_right.png) |
-| RESIZE_FILL                 | The component's content is always resized to fill the component's content box, without considering its aspect ratio in the final state.              ![renderfit_resize_fill](figures/renderfit_resize_fill.png) |
-| RESIZE_CONTAIN              | While maintaining its aspect ratio in the final state, the component's content is scaled to fit within the component's content box. It is always aligned with the center of the component.   ![renderfit_resize_contain](figures/renderfit_resize_contain.png) |
-| RESIZE_CONTAIN_TOP_LEFT     | While maintaining its aspect ratio in the final state, the component's content is scaled to fit within the component's content box. When there is remaining space in the width direction of the component, the content is left-aligned with the component. When there is remaining space in the height direction of the component, the content is top-aligned with the component.   ![renderfit_resize_contain_top_left](figures/renderfit_resize_contain_top_left.png) |
-| RESIZE_CONTAIN_BOTTOM_RIGHT | While maintaining its aspect ratio in the final state, the component's content is scaled to fit within the component's content box. When there is remaining space in the width direction of the component, the content is right-aligned with the component. When there is remaining space in the height direction of the component, the content is bottom-aligned with the component.   ![renderfit_resize_contain_bottom_right](figures/renderfit_resize_contain_bottom_right.png) |
-| RESIZE_COVER                | While maintaining its aspect ratio in the final state, the component's content is scaled to cover the component's entire content box. It is always aligned with the center of the component, so that its middle part is displayed.   ![renderfit_resize_cover](figures/renderfit_resize_cover.png) |
-| RESIZE_COVER_TOP_LEFT       | While maintaining its aspect ratio in the final state, the component's content is scaled to cover the component's entire content box. When there is remaining space in the width direction, the content is left-aligned with the component, so that its left part is displayed. When there is remaining space in the height direction, the content is top-aligned with the component, so that its top part is displayed.   ![renderfit_resize_cover_top_left](figures/renderfit_resize_cover_top_left.png) |
-| RESIZE_COVER_BOTTOM_RIGHT   | While maintaining its aspect ratio in the final state, the component's content is scaled to cover the component's entire content box. When there is remaining space in the width direction, the content is right-aligned with the component, so that its right part is displayed. When there is remaining space in the height direction, the content is bottom-aligned with the component, so that its bottom part is displayed.   ![renderfit_resize_cover_bottom_right](figures/renderfit_resize_cover_bottom_right.png) |
+| Name                         | Value                         | Description                                                                             |
+| --------------------------- | -- | ---------------------------------------------------------------------------------- |
+| CENTER                      | 0                           | The component's content stays at the final size and always aligned with the center of the component.               ![renderfit_center](figures/renderfit_center.png) |
+| TOP                         | 1                           | The component's content stays at the final size and always aligned with the top center of the component.             ![renderfit_top](figures/renderfit_top.png) |
+| BOTTOM                      | 2                           | The component's content stays at the final size and always aligned with the bottom center of the component.             ![renderfit_bottom](figures/renderfit_bottom.png) |
+| LEFT                        | 3                           | The component's content stays at the final size and always aligned with the left of the component.               ![renderfit_left](figures/renderfit_left.png) |
+| RIGHT                       | 4                           | The component's content stays at the final size and always aligned with the right of the component.              ![renderfit_right](figures/renderfit_right.png) |
+| TOP_LEFT                    | 5                           | The component's content stays at the final size and always aligned with the upper left corner of the component.              ![renderfit_top_left](figures/renderfit_top_left.png) |
+| TOP_RIGHT                   | 6                           | The component's content stays at the final size and always aligned with the upper right corner of the component.             ![renderfit_top_right](figures/renderfit_top_right.png) |
+| BOTTOM_LEFT                 | 7                           | The component's content stays at the final size and always aligned with the lower left corner of the component.              ![renderfit_bottom_left](figures/renderfit_bottom_left.png) |
+| BOTTOM_RIGHT                | 8                           | The component's content stays at the final size and always aligned with the lower right corner of the component.              ![renderfit_bottom_right](figures/renderfit_bottom_right.png) |
+| RESIZE_FILL                 | 9                           | The component's content is always resized to fill the component's content box, without considering its aspect ratio in the final state.              ![renderfit_resize_fill](figures/renderfit_resize_fill.png) |
+| RESIZE_CONTAIN              | 10                          | While maintaining its aspect ratio in the final state, the component's content is scaled to fit within the component's content box. It is always aligned with the center of the component.   ![renderfit_resize_contain](figures/renderfit_resize_contain.png) |
+| RESIZE_CONTAIN_TOP_LEFT     | 11                          | While maintaining its aspect ratio in the final state, the component's content is scaled to fit within the component's content box. When there is remaining space in the width direction of the component, the content is left-aligned with the component. When there is remaining space in the height direction of the component, the content is top-aligned with the component.   ![renderfit_resize_contain_top_left](figures/renderfit_resize_contain_top_left.png) |
+| RESIZE_CONTAIN_BOTTOM_RIGHT | 12                          | While maintaining its aspect ratio in the final state, the component's content is scaled to fit within the component's content box. When there is remaining space in the width direction of the component, the content is right-aligned with the component. When there is remaining space in the height direction of the component, the content is bottom-aligned with the component.   ![renderfit_resize_contain_bottom_right](figures/renderfit_resize_contain_bottom_right.png) |
+| RESIZE_COVER                | 13                          | While maintaining its aspect ratio in the final state, the component's content is scaled to cover the component's entire content box. It is always aligned with the center of the component, so that its middle part is displayed.   ![renderfit_resize_cover](figures/renderfit_resize_cover.png) |
+| RESIZE_COVER_TOP_LEFT       | 14                          | While maintaining its aspect ratio in the final state, the component's content is scaled to cover the component's entire content box. When there is remaining space in the width direction, the content is left-aligned with the component, so that its left part is displayed. When there is remaining space in the height direction, the content is top-aligned with the component, so that its top part is displayed.   ![renderfit_resize_cover_top_left](figures/renderfit_resize_cover_top_left.png) |
+| RESIZE_COVER_BOTTOM_RIGHT   | 15                          | While maintaining its aspect ratio in the final state, the component's content is scaled to cover the component's entire content box. When there is remaining space in the width direction, the content is right-aligned with the component, so that its right part is displayed. When there is remaining space in the height direction, the content is bottom-aligned with the component, so that its bottom part is displayed.   ![renderfit_resize_cover_bottom_right](figures/renderfit_resize_cover_bottom_right.png) |
 
 
 > **NOTE**
@@ -1176,11 +1185,11 @@ Enumerates the sensitivity levels for crown rotation.
 | MEDIUM         | 1   | Medium sensitivity.                                |
 | HIGH 	         | 2   | High sensitivity.                                |
 
-## AxisAction<sup>18+</sup>
+## AxisAction<sup>17+</sup>
 
 Enumerates the types of axis actions for axis events.
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 17.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1206,13 +1215,13 @@ Defines whether an event is triggered by a left-hand or right-hand tap.
 | LEFT     | 1   | Left hand.|
 | RIGHT    | 2   | Right hand.|
 
-## FocusDrawLevel<sup>18+</sup>
+## FocusDrawLevel<sup>19+</sup>
 
 Enumerates the drawing levels of the focus box for a node.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+**Widget capability**: This API can be used in ArkTS widgets since API version 19.
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1220,3 +1229,46 @@ Enumerates the drawing levels of the focus box for a node.
 | -------------- | -- | ---------------------------------------- |
 | SELF  	     | 0   | The focus box is drawn on the node's own layer.                                |
 | TOP            | 1   | The focus box is drawn on the topmost layer of the current instance's z-order.                                |
+
+## PixelRoundMode<sup>18+</sup>
+
+Enumerates pixel rounding modes.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   |  Value  | Description                  |
+| ------  |---- | -------------------- |
+| PIXEL_ROUND_ON_LAYOUT_FINISH | 0 | Performs pixel rounding after the component finishes measuring its size and position. Default value.|
+| PIXEL_ROUND_AFTER_MEASURE |  1 | Performs pixel rounding after the component finishes measuring its size.|
+
+>  **NOTE**
+> In **PIXEL_ROUND_AFTER_MEASURE** mode, the component performs rounding when size measurement ends, meaning the final size may be 1 px larger than in **PIXEL_ROUND_ON_LAYOUT_FINISH** mode.
+
+## EventQueryType<sup>19+</sup>
+
+Enumerates interaction event types that can be queried.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| ON_CLICK  | 0 | Click event.|
+
+## DividerMode<sup>19+</sup>
+
+Enumerates divider modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name           | Value| Description                                      |
+| ------------------ | - | ---------------------------------------- |
+| FLOATING_ABOVE_MENU| 0 | The divider floats above the menu without affecting the layout height. This is the default mode.     |
+| EMBEDDED_IN_MENU   | 1 | The divider is embedded in the menu and affects the layout height.   |

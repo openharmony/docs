@@ -1105,23 +1105,23 @@ Current ability is not in foreground.
 检查当前Ability是否处于前台状态。
 
 <!--Del-->
-## 16000120 wantList内的元素个数超出4个
+## 16000120 wantList内的元素个数超出4个或小于1个
 
 **错误信息**
 
-A maximum of four UIAbility instances can be started simultaneously.The current parameter exceeds the maximum number.
+A maximum of four UIAbility instances can be started simultaneously.The current parameter exceeds the maximum number or is less than 1.
 
 **错误描述**
 
-最多支持同时启动4个UIAbility，当前传参超过上限。
+当前传参存在异常，wantList参数内最少传入1个Want，最多传入4个Want。
 
 **可能原因**
 
-wantList内的元素个数超出4个。
+wantList内的元素个数超出4个或小于1个。
 
 **处理步骤**
 
-检查wantList内的元素个数，是否已超过上限。
+确保wantList内的元素个数大于0个且小于等于4个。
 
 ## 16000121 待启动的目标组件类型不是UIAbility
 

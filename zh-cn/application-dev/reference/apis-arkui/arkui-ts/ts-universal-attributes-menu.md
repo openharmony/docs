@@ -1130,7 +1130,7 @@ struct Index {
       MenuItem({ content: "菜单选项" })
       MenuItem({ content: "菜单选项" })
       MenuItem({ content: "菜单选项" })
-    }
+    }.width(200)
   }
 
   build() {

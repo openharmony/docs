@@ -4,11 +4,11 @@ You can apply different visual effects to foreground subjects.
 
 >  **NOTE**
 >
->  This feature is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+>  The initial APIs of this module are supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## foregroundEffect
 
-foregroundEffect(options: ForegroundEffectOptions)
+foregroundEffect(options: ForegroundEffectOptions): T
 
 Sets the foreground effect of the component.
 
@@ -21,6 +21,12 @@ Sets the foreground effect of the component.
 | Name| Type                                                        | Mandatory| Description                                                |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | options | [ForegroundEffectOptions](#foregroundeffectoptions12) | Yes  | Foreground effect settings, including the blur radius.|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## ForegroundEffectOptions<sup>12+</sup>
 Describes the foreground effect.
@@ -57,6 +63,6 @@ struct Index {
 ```
 
 Below is how the component looks with the foreground effect applied.
-A larger radius results in a more pronounced blur.
+**radius** indicates the blur radius. A larger value creates a more blurred effect.
 
 ![foregroundColor_circle](figures/foregroundEffect.jpg)

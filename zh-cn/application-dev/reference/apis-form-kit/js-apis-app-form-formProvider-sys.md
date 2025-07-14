@@ -199,7 +199,7 @@ try {
 
 isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 
-查询是否支持发布一张卡片到使用方，使用callback异步回调。
+查询是否可以添加卡片到卡片使用方，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -209,7 +209,7 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回是否支持发布一张卡片到使用方。|
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 返回查询结果的回调函数。<br>true: 表示可以添加卡片到卡片使用方。<br>false: 表示不可以添加卡片到卡片使用方。|
 
 **错误码：**
 
@@ -266,7 +266,7 @@ try {
 
 isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 
-查询是否支持发布一张卡片到使用方，使用Promise异步回调。
+查询是否可以添加卡片到卡片使用方，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -276,7 +276,7 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回是否支持发布一张卡片到使用方。 |
+| Promise&lt;boolean&gt; | Promise对象。返回是否可以添加卡片到卡片使用方的结果。<br>true: 表示可以添加卡片到卡片使用方。<br>false: 表示不可以添加卡片到卡片使用方。|
 
 **错误码：**
 

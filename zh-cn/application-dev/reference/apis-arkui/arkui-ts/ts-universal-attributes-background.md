@@ -8,9 +8,9 @@
 
 ## background<sup>10+</sup>
 
-background(builder: CustomBuilder, options?: { align?: Alignment }): T
+background(content: CustomBuilder | ResourceColor, options?: BackgroundOptions): T
 
-设置组件背景。
+设置组件背景。从API version 20开始，content参数新增了对[ResourceColor](ts-types.md#resourcecolor)类型的支持，并新增了背景向父组件的安全区扩展的能力。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -20,36 +20,8 @@ background(builder: CustomBuilder, options?: { align?: Alignment }): T
 
 | 参数名  | 类型                                                 | 必填 | 说明                                                         |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| builder | [CustomBuilder](ts-types.md#custombuilder8)          | 是   | 自定义背景。                                                 |
-| options | {align?:[Alignment](ts-appendix-enums.md#alignment)} | 否   | 设置自定义背景与组件的对齐方式。 |
-
-**返回值：**
-
-| 类型   | 说明                     |
-| ------ | ------------------------ |
-| T | 返回当前组件。 |
-
->  **说明：**
->
-> - 自定义背景渲染会有一定延迟，不能响应事件，不能进行动态更新。该属性不支持嵌套使用，不支持预览器预览。
-> - 同时设置了background，backgroundColor，backgroundImage时，三者叠加显示，background在最上层。
-
-## background<sup>20+</sup>
-
-background(content: CustomBuilder | ResourceColor, options?: BackgroundOptions): T
-
-设置组件背景。与[background<sup>10+</sup>](#background10)相比，content参数新增了对[ResourceColor](ts-types.md#resourcecolor)类型的支持，并新增了背景向父组件的安全区扩展的能力。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名  | 类型                                                 | 必填 | 说明                                                         |
-| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | content | [CustomBuilder](ts-types.md#custombuilder8) \| [ResourceColor](ts-types.md#resourcecolor)        | 是   | 自定义背景。                                                 |
-| options | [BackgroundOptions](#backgroundoptions20对象说明) | 否   | 设置自定义背景选项。|
+| options | [BackgroundOptions](#backgroundoptions20对象说明) | 否   | 设置自定义背景选项。<br/>**说明：**<br/>API version 20之前，options: <br/>{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment)<br/>}|
 
 **返回值：**
 
@@ -245,7 +217,7 @@ backgroundImagePosition(value: Position | Alignment): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position)&nbsp;\|&nbsp;[Alignment](ts-appendix-enums.md#alignment) | 是   | 设置背景图在组件中显示位置，即相对于组件左上角的坐标。<br/>默认值：<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} <br/> x和y值设置百分比时，偏移量是相对组件自身宽高计算的。 |
+| value  | [Position](ts-types.md#position)&nbsp;\|&nbsp;[Alignment](ts-appendix-enums.md#alignment) | 是   | 设置背景图在组件中显示位置，即相对于组件左上角的坐标。<br/> x和y值设置百分比时，偏移量是相对组件自身宽高计算的。 |
 
 **返回值：**
 

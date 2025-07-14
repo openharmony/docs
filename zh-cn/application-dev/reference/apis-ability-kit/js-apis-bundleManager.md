@@ -65,10 +65,10 @@ import { bundleManager } from '@kit.AbilityKit';
 | FENCE<sup>18+</sup> | 24 | [FenceExtensionAbility](../apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)：为开发者提供地理围栏相关的能力，继承自ExtensionAbility。 |
 | ASSET_ACCELERATION<sup>18+</sup> | 26 | AssetAccelerationExtensionAbility：资源预下载扩展能力，提供在设备闲时状态，进行后台资源预下载的能力。 |
 | FORM_EDIT<sup>18+</sup> | 27 | [FormEditExtensionAbility](../apis-form-kit/js-apis-app-form-formEditExtensionAbility.md)：为开发者提供卡片编辑的能力，继承自UIExtensionAbility。 |
-| DISTRIBUTED<sup>18+</sup> | 28 | [DistributedExtensionAbility](../apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)：提供分布式相关扩展能力，提供分布式创建、销毁、连接的生命周期回调。 |
+| DISTRIBUTED<sup>20+</sup> | 28 | [DistributedExtensionAbility](../apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)：提供分布式相关扩展能力，提供分布式创建、销毁、连接的生命周期回调。 |
 | APP_SERVICE<sup>20+</sup> | 29 | [AppServiceExtensionAbility](../apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)：为企业普通应用提供后台服务能力。 |
 | LIVE_FORM<sup>20+</sup> | 30 | [LiveFormExtensionAbility](../apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)：互动卡片相关扩展能力，提供互动卡片创建、销毁的生命周期回调。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
-| SELECTION<sup>20+</sup> | 31 | [SelectionExtensionAbility](../apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility.md)：划词相关扩展能力，提供连接和断开回调。 |
+|<!--DelRow--> SELECTION<sup>20+</sup> | 31 | [SelectionExtensionAbility](../apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility-sys.md)：划词相关扩展能力，提供连接和断开回调。 |
 | UNSPECIFIED      | 255 | 不指定类型<!--Del-->，配合[queryExtensionAbilityInfo接口](js-apis-bundleManager-sys.md#bundlemanagerqueryextensionabilityinfo)可以查询所有类型的ExtensionAbility<!--DelEnd-->。 |
 <!--RP2--><!--RP2End-->
 
@@ -339,7 +339,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | moduleName   | string                        | 是   | 表示Module名称。                                     |
 | abilityName  | string                        | 是   | 表示UIAbility组件的名称。                                    |
-| metadataName | string                        | 是   | 表示UIAbility组件的[元信息名称](../../quick-start/module-configuration-file.md#metadata标签)，即module.json5配置文件中abilities标签下的metadata标签的name。                                  |
+| metadataName | string                        | 是   | 表示UIAbility组件的[元信息名称](../../quick-start/module-configuration-file.md#metadata标签)，即module.json5配置文件中[abilities标签](../../quick-start/module-configuration-file.md#abilities标签)下的metadata标签的name。                                  |
 | callback     | AsyncCallback<Array\<string>> | 是   | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当获取成功时，err为null，data为获取到的Array\<string>；否则为错误对象。 |
 
 **错误码：**
@@ -397,7 +397,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 | ------------ | ------ | ---- | -------------------------- |
 | moduleName   | string | 是   | 表示Module名称。   |
 | abilityName  | string | 是   | 表示UIAbility组件的名称。  |
-| metadataName | string | 否   | 表示UIAbility组件的元信息名称，即module.json5配置文件中abilities标签下的metadata标签的name，默认值为空。 |
+| metadataName | string | 否   | 表示UIAbility组件的元信息名称，即module.json5配置文件中[abilities标签](../../quick-start/module-configuration-file.md#abilities标签)下的metadata标签的name，默认值为空。 |
 
 **返回值：**
 
@@ -480,7 +480,7 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 | ------------ | ------ | ---- | -------------------------- |
 | moduleName   | string | 是   | 表示Module名称。   |
 | abilityName  | string | 是   | 表示UIAbility组件的名称。  |
-| metadataName | string | 否   | 表示UIAbility组件的元信息名称，即module.json5配置文件中abilities标签下的metadata标签的name，默认值为空。 |
+| metadataName | string | 否   | 表示UIAbility组件的元信息名称，即module.json5配置文件中[abilities标签](../../quick-start/module-configuration-file.md#abilities标签)下的metadata标签的name，默认值为空。 |
 
 **返回值：**
 
@@ -557,7 +557,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | -------------------- | ----------------------------- | ---- | ------------------------------------------------------------ |
 | moduleName           | string                        | 是   | 表示Module名称。                                   |
 | extensionAbilityName | string                        | 是   | 表示ExtensionAbility组件的名称。                         |
-| metadataName         | string                        | 是   | 表示ExtensionAbility组件的元信息名称，即module.json5配置文件中extensionAbilities标签下的metadata标签的name。                                 |
+| metadataName         | string                        | 是   | 表示ExtensionAbility组件的元信息名称，即module.json5配置文件中[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)下的metadata标签的name。                                 |
 | callback             | AsyncCallback<Array\<string>> | 是   | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当获取成功时，err为null，data为获取到的Array\<string>；否则为错误对象。 |
 
 **错误码：**
@@ -614,7 +614,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | -------------------- | ------ | ---- | ---------------------------------- |
 | moduleName           | string | 是   | 表示Module名称。           |
 | extensionAbilityName | string | 是   | 表示ExtensionAbility组件的名称。 |
-| metadataName         | string | 否   | 表示ExtensionAbility组件的元信息名称，即module.json5配置文件中extensionAbilities标签下的metadata标签的name，默认值为空。         |
+| metadataName         | string | 否   | 表示ExtensionAbility组件的元信息名称，即module.json5配置文件中[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)下的metadata标签的name，默认值为空。         |
 
 **返回值：**
 
@@ -685,7 +685,7 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 | -------------------- | ------ | ---- | ---------------------------------- |
 | moduleName           | string | 是   | 表示Module名称。           |
 | extensionAbilityName | string | 是   | 表示ExtensionAbility组件的名称。 |
-| metadataName         | string | 否   | 表示ExtensionAbility组件的元信息名称，即module.json5配置文件中extensionAbilities标签下的metadata标签的name，默认值为空。 |
+| metadataName         | string | 否   | 表示ExtensionAbility组件的元信息名称，即module.json5配置文件中[extensionAbilities标签](../../quick-start/module-configuration-file.md#extensionabilities标签)下的metadata标签的name，默认值为空。 |
 
 **返回值：**
 

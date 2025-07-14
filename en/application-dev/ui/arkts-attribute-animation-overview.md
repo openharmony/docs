@@ -38,4 +38,4 @@ Animatable properties include both built-in and custom properties.
 
 - Built-in animatable properties: system-provided component properties for changing the UI, for example, position, zoom, and blur properties.
 
-- Custom animatable properties: properties made animatable with the use of the [@AnimatableExtend](../quick-start/arkts-animatable-extend.md) decorator. You can abstract animatable properties from the custom drawing content to control the drawing content of each frame, for example, customizing the volume icon. By defining custom animatable properties, you can apply animations to some properties that otherwise do not support animations in ArkUI.
+- Custom animatable properties: properties made animatable with the use of the [@AnimatableExtend](../ui/state-management/arkts-animatable-extend.md) decorator. You can abstract animatable properties from the custom drawing content to control the drawing content of each frame, for example, customizing the volume icon. By defining custom animatable properties, you can apply animations to some properties that otherwise do not support animations in ArkUI.

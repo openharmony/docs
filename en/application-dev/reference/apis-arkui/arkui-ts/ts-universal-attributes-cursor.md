@@ -1,10 +1,10 @@
 # Cursor Control
 
-Cursor control attributes control how the cursor is displayed when the mouse pointer is placed over an element.
+You can control the display style of the mouse cursor.
 
 >  **NOTE**
 >
->  This feature is supported since API Version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>  This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## cursorControl
@@ -15,7 +15,9 @@ setCursor(value: PointerStyle): void
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-Sets the cursor style. This API is a global API.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+Sets the current mouse cursor style. This API can be used globally in method statements.
 
 **Parameters**
 
@@ -30,7 +32,9 @@ restoreDefault(): void
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-Restores the cursor to its default style. This API is a global API.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+Restores the mouse cursor to the default arrow style. This API can be used globally in method statements.
 
 
 ## Example
@@ -39,7 +43,7 @@ This example demonstrates how to change the mouse cursor style using **setCursor
 
 > **NOTE**
 > 
-> To avoid confusion with **cursorControl** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](../js-apis-arkui-UIContext.md#uicontext) API, and then obtain the **cursorControl** instance bound to the context through the [getCursorController](../js-apis-arkui-UIContext.md#getcursorcontroller12) API.
+> Directly using **cursorControl** can lead to [ambiguous instance issues](../../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](../js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **cursorControl** object using [getCursorController](../js-apis-arkui-UIContext.md#getcursorcontroller12).
 
 ```ts
 // xxx.ets
@@ -48,7 +52,7 @@ import { pointer } from '@kit.InputKit';
 @Entry
 @Component
 struct CursorControlExample {
-  @State text: string = ''
+  @State text: string = '';
   controller: TextInputController = new TextInputController()
 
   build() {
@@ -77,12 +81,12 @@ struct CursorControlExample {
   }
 }
 ```
-Diagram:
+Diagrams:
 
-When the mouse pointer is placed over the blue area, the west arrow cursor is displayed.
+When the mouse hovers over the blue area, it displays a west-pointing arrow cursor style.
 
 ![cursor_blue](figures/cursor_blue.jpg)
 
-When the mouse pointer is placed over the green area, the east arrow cursor is displayed.
+When the mouse hovers over the blue area, it displays an east-pointing arrow cursor style.
 
 ![cursor_green](figures/cursor_green.jpg)

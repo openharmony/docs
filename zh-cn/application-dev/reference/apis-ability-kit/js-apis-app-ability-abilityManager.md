@@ -73,18 +73,6 @@ try {
 }
 ```
 
-## AbilityRunningInfo<sup>14+</sup>
-
-type AbilityRunningInfo = _AbilityRunningInfo
-
-Ability运行的相关信息和状态的定义。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-| 类型 | 说明 |
-| --- | ---- |
-| [_AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md) | Ability运行的相关信息和状态的定义。 |
-
 ## abilityManager.restartSelfAtomicService<sup>20+</sup>
 
 restartSelfAtomicService(context: Context): void
@@ -97,7 +85,11 @@ restartSelfAtomicService(context: Context): void
 >
 > - 该接口的两次调用时间间隔不能低于3秒。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 

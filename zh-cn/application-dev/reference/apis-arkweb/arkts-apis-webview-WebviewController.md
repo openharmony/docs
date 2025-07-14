@@ -4,7 +4,9 @@
 
 > **说明：**
 >
-> - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 本Class首批接口从API version 9开始支持。
 >
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
@@ -9484,8 +9486,7 @@ static isPrivateNetworkAccessEnabled(): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | 返回Web组件是否启用了私有网络访问检查功能。
-true表示已启用；false表示已禁用。 |
+| boolean | 返回Web组件是否启用了私有网络访问检查功能。true表示已启用；false表示已禁用。 |
 
 **示例：**
 
@@ -9515,6 +9516,243 @@ struct WebComponent {
           webview.WebviewController.enablePrivateNetworkAccess(false);
         })
     }
+  }
+}
+```
+
+## getBlanklessInfoWithKey<sup>20+</sup>
+
+getBlanklessInfoWithKey(key: string): BlanklessInfo
+
+获取页面本次加载的无白屏预测信息，并启用本次加载的过渡帧生成。应用依据此信息判断是否启用无白屏加载，具体参见返回值说明。必须与[setBlanklessLoadingWithKey](#setblanklessloadingwithkey20)接口配套使用，并且必须在触发加载页面的接口之前或在 `onLoadIntercept` 中调用。需在 `WebViewController` 与Web组件绑定后才能使用。
+
+> **说明：**
+>
+> - 当前仅支持手机设备。
+> - 默认最大固态缓存大小为30MB（约30页），超过上限时根据LRU机制更新缓存。自动清理超过7天的固态缓存数据，缓存清除后第三次加载页面开始有优化效果。当通过接口[setBlanklessLoadingCacheCapacity](#setblanklessloadingcachecapacity20)设置的缓存容量超出最大默认范围，则取默认最大值。
+> - 如果发现快照相似度（即[BlanklessInfo](./arkts-apis-webview-i.md#blanklessinfo20)中的similarity）极低，请确认key值是否传递正确。
+> - 调用本接口后，将启用页面加载快照检测及生成过渡帧计算，会产生一定的开销。
+> - 启用无白屏加载的页面会带来一定的资源开销，开销的大小与Web组件的分辨率相关。假设分辨率的宽度和高度分别为：w, h。页面在打开阶段会增加峰值内存，增加约12*w*h B，页面打开后内存回收，不影响稳态内存。增加固态应用缓存的大小，每个页面增加的缓存约w*h/10 B，缓存位于应用缓存的位置。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| key | string | 是 | 唯一标识本页面的key值。<br>合法取值范围：非空，长度不超过2048个字符。<br>设置非法值时不生效。 |
+
+**返回值：**
+
+| 类型                 | 说明                      |
+| -------------------- | ------------------------- |
+| [BlanklessInfo](./arkts-apis-webview-i.md#blanklessinfo20) | 无白屏加载的预测信息，主要包括预测错误码，预测的快照相似度，预测加载的时长，应用需根据此信息来决策是否启用无白屏加载插帧。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801     | Capability not supported. |
+
+**示例：**
+
+```ts
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  build() {
+    Column() {
+      Web({ src: 'https://www.example.com', controller: this.controller })
+       .javaScriptAccess(true)
+       .onLoadIntercept((event) => {
+            // 当相似度超过50%，加载耗时小于1000ms时启用插帧，否则不启用。
+            let info = this.controller.getBlanklessInfoWithKey('https://www.example.com/page1');
+            if (info.errCode == webview.WebBlanklessErrorCode.SUCCESS) {
+              if (info.similarity >= 0.5 && info.loadingTime < 1000) {
+                this.controller.setBlanklessLoadingWithKey('http://www.example.com/page1', true);
+              } else {
+                this.controller.setBlanklessLoadingWithKey('http://www.example.com/page1', false);
+              }
+            } else {
+              console.log('getBlankless info err');
+            }
+            return false;
+        })
+    }
+  }
+}
+```
+
+## setBlanklessLoadingWithKey<sup>20+</sup>
+
+setBlanklessLoadingWithKey(key: string, isStart: bool): WebBlanklessErrorCode
+
+设置无白屏加载是否启用，本接口必须与[getBlanklessInfoWithKey](#getblanklessinfowithkey20)接口配套使用。
+
+> **说明：**
+>
+> - 需在触发页面加载的接口之后调用，其他约束同[getBlanklessInfoWithKey](#getblanklessinfowithkey20)。
+> - 页面加载必须在调用本接口的组件中进行。
+> - 当相似度低于0.33时系统会判定为变化过大，启用插帧会不成功。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| key | string | 是 | 唯一标识本页面的key值。必须与getBlanklessInfoWithKey接口的key值相同。<br>合法取值范围：非空，长度不超过2048个字符。<br>非法值设置行为：返回错误码WebBlanklessErrorCode，方案不生效。 |
+| isStart | bool | 是 | 是否启用开始插帧。true：启用，false：不启用。<br>默认值：false |
+
+**返回值：**
+
+| 类型                 | 说明                      |
+| -------------------- | ------------------------- |
+| [WebBlanklessErrorCode](./arkts-apis-webview-i.md#webblanklesserrorcode20) | 返回接口调用是否成功，具体见[WebBlanklessErrorCode](./arkts-apis-webview-i.md#webblanklesserrorcode20)定义。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801     | Capability not supported. |
+
+**示例：**
+
+```ts
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  build() {
+    Column() {
+      Web({ src: 'https://www.example.com', controller: this.controller })
+       .javaScriptAccess(true)
+       .onLoadIntercept((event) => {
+            // 当相似度超过50%，加载耗时小于1000ms时启用插帧，否则不启用。
+            let info = this.controller.getBlanklessInfoWithKey('https://www.example.com/page1');
+            if (info.errCode == webview.WebBlanklessErrorCode.SUCCESS) {
+              if (info.similarity >= 0.5 && info.loadingTime < 1000) {
+                this.controller.setBlanklessLoadingWithKey('http://www.example.com/page1', true);
+              } else {
+                this.controller.setBlanklessLoadingWithKey('http://www.example.com/page1', false);
+              }
+            } else {
+              console.log('getBlankless info err');
+            }
+            return false;
+        })
+    }
+  }
+}
+```
+
+## clearBlanklessLoadingCache<sup>20+</sup>
+
+clearBlanklessLoadingCache(keys?: Array\<string\>): void
+
+清除指定key值页面无白屏优化缓存，本接口只清除缓存。
+
+在小程序或Web应用场景中，当页面加载时内容变化显著，可能会出现一次明显的跳变。若对此跳变有所顾虑，可使用该接口清除页面缓存。
+
+> **说明：**
+>
+> - 清除之后的页面，需在第3次加载页面时才会产生优化效果。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| keys | Array\<string\> | 否 | 清除无白屏优化方案页面的key值列表，key值为[getBlanklessInfoWithKey](#getblanklessinfowithkey20)中指定过的。<br>默认值：所有无白屏优化方案缓存的页面key列表。<br>合法取值范围：长度不超过2048，key列表长度<=100。url和加载页面时输入给ArkWeb的相同。<br>非法值设置行为：key长度超过2048时该key不生效；长度超过100时，取前100个；当为空时，使用默认值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801     | Capability not supported. |
+
+**示例：**
+
+```ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate");
+    // 假设应用的Web页面在2025/06/10会进行大幅改动，例如商品促销活动等，该提案清除白屏插帧优化缓存
+    webview.WebviewController.initializeWebEngine();
+    let pageUpdateTime: number = Date.UTC(2025, 5, 10, 0, 0, 0, 0);
+    let pageUpdateTime1: number = Date.UTC(2025, 5, 11, 0, 0, 0, 0);
+    let pageUpdateTimeNow: number = Date.now();
+    if (pageUpdateTimeNow > pageUpdateTime && pageUpdateTime < pageUpdateTime1) {
+      // 清除指定页面的白屏插帧方案缓存
+      webview.WebviewController.clearBlanklessLoadingCache(["https://www.example.com", "https://www.example1.com"]);
+    }
+    AppStorage.setOrCreate("abilityWant", want);
+    console.log("EntryAbility onCreate done");
+  }
+}
+```
+
+## setBlanklessLoadingCacheCapacity<sup>20+</sup>
+
+setBlanklessLoadingCacheCapacity(capacity: int): int
+
+设置无白屏加载方案的持久缓存容量，返回实际生效值。默认容量为30MB，最大设置值为100MB。需要定制化持久缓存容量。当持久缓存超过容量时，将采用淘汰不常用的快照的方式清理。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| capacity | int | 是 | 设置持久缓存设置，单位MB，最大设置不超过100MB。<br>默认值：30MB。<br>合法取值范围：0~100，当设置为0时，无缓存空间，则功能全局不开启。<br>非法值设置行为：小于0时生效值为0，大于100时生效值为100。 |
+
+**返回值：**
+
+| 类型                 | 说明                      |
+| -------------------- | ------------------------- |
+| int | 返回实际生效的容量值，范围0~100。<br>小于0时生效值为0，大于100时生效值为100。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  801     | Capability not supported. |
+
+**示例：**
+
+```ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate");
+    webview.WebviewController.initializeWebEngine();
+    // 设置缓存容量为10MB
+    webview.WebviewController.setBlanklessLoadingCacheCapacity(10);
+    AppStorage.setOrCreate("abilityWant", want);
+    console.log("EntryAbility onCreate done");
   }
 }
 ```

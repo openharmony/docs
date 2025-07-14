@@ -50,7 +50,7 @@ scrollable(value: ScrollDirection)
 
 | 参数名 | 类型                                        | 必填 | 说明                                            |
 | ------ | ------------------------------------------- | ---- | ----------------------------------------------- |
-| value  | [ScrollDirection](#scrolldirection枚举说明) | 是   | 滚动方向。<br/>默认值：ScrollDirection.Vertical |
+| value  | [ScrollDirection](#scrolldirection枚举说明) | 是   | 滚动方向。<br/>默认值：ScrollDirection.Vertical<br/>**说明：** <br/>当滚动方向设置为[ScrollDirection.FREE](#scrolldirection枚举说明)时，Scroll组件仅支持[scrollBar](#scrollbar)、[scrollBarColor](#scrollbarcolor)、[scrollBarWidth](#scrollbarwidth)、[scrollBarMargin](./ts-container-scrollable-common.md#scrollbarmargin20)、[edgeEffect](#edgeeffect)（仅支持Spring和None边缘滑动效果）、[enableScrollInteraction](#enablescrollinteraction10)、[friction](#friction10)、[clipContent](./ts-container-scrollable-common.md#clipcontent14)、[initialOffset](#initialoffset12)、[scrollable](#scrollable)属性，[onWillScroll](#onwillscroll12)、[onDidScroll](#ondidscroll12)、[onScrollEdge](#onscrolledge)、[onScrollStart](#onscrollstart9)、[onScrollStop](#onscrollstop9)事件和[scrollTo](#scrollto)、[scrollEdge](#scrolledge)、[scrollPage](#scrollpage9)、[currentOffset](#currentoffset)、[scrollBy](#scrollby9)、[getItemRect](#getitemrect11)等Scroller控制器方法。 |
 
 ### scrollBar
 
@@ -227,12 +227,13 @@ initialOffset(value: OffsetOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 说明                   |
-| ---------- | ------------------------ |
-| Horizontal | 仅支持水平方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| Vertical   | 仅支持竖直方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| None       | 不可滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动。<br/> 从API version 9开始废弃，无替代接口。|
+| 名称       | 值 | 说明                   |
+| ---------- | -- | ------------------------ |
+| Vertical   | 0  | 仅支持竖直方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| Horizontal | 1  | 仅支持水平方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| Free<sup>(deprecated) </sup> | 2 | 支持竖直或水平方向滚动。<br/> 从API version 9开始废弃，从API version 20开始推荐使用FREE。|
+| None       | 3 | 不可滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| FREE<sup>20+</sup>   | 4 | 自由滚动。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## ScrollSnapOptions<sup>10+</sup>对象说明
 

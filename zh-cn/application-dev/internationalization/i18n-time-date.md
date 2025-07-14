@@ -20,7 +20,7 @@
 
 ### 相对时间格式化
 
-格式化相对时间将表示时间日期的Date对象，通过[RelativeTimeFormat](../reference/apis-localization-kit/js-apis-intl.md#relativetimeformatdeprecated)类的[format](../reference/apis-localization-kit/js-apis-intl.md#formatdeprecated-1)接口实现格式化，具体开发步骤如下：
+格式化相对时间将表示时间日期的Date对象，通过[RelativeTimeFormat](../reference/apis-localization-kit/js-apis-intl.md#relativetimeformatdeprecated)类的[format](../reference/apis-localization-kit/js-apis-intl.md#formatdeprecated-2)接口实现格式化，具体开发步骤如下：
 
 1. 导入模块。
    ```ts

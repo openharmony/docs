@@ -106,6 +106,8 @@
         - [JSVM 通用调优实践](jsvm-optimizations.md)
     - JSVM性能调试指导<!--jsvm-performance-->
       - [使用HiSmartPerf采集V8 trace](use-jsvm-about-v8-trace.md)
+  - Longque-JS-API<!--longque-->
+    - [Longque-JS-API使用指导](use-longque-js-api.md)
   - OpenMP支持<!--openmp-->
     - [OpenMP简介](openmp-overview.md)
     - [OpenMP应用构建和运行指南](openmp-guideline.md)
