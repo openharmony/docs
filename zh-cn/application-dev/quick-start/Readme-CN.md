@@ -139,6 +139,7 @@
       - [V1->V2迁移指导](arkts-v1-v2-migration.md)
   - 渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](arkts-rendering-control-overview.md)
+      - [ArkTS1.2 渲染控制组件迁移规范](arkts-v1.2-new-rendering-control-repeat.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
       - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
       - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
