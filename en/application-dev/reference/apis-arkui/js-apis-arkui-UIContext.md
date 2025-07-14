@@ -10,9 +10,57 @@ In the stage model, a window stage or window can use the [loadContent](js-apis-w
 >
 > You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 
+## Modules to Import
+
+```ts
+import {
+  AtomicServiceBar, ComponentUtils, ContextMenuController, CursorController, DragController, Font, KeyboardAvoidMode, MediaQuery, OverlayManager,
+  PromptAction, Router, UIContext, UIInspector, UIObserver, PageInfo, SwiperDynamicSyncScene, SwiperDynamicSyncSceneType, MeasureUtils, FrameCallback,
+  OverlayManagerOptions, TargetInfo, MarqueeDynamicSyncScene, MarqueeDynamicSyncSceneType
+} from "@kit.ArkUI";
+```
+
 ## UIContext
 
 In the following API examples, you must first use [getUIContext()](js-apis-window.md#getuicontext10) in **@ohos.window** to obtain a **UIContext** instance, and then call the APIs using the obtained instance. Alternatively, you can obtain a **UIContext** instance through the built-in method [getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext) of the custom component. In this document, the **UIContext** instance is represented by **uiContext**.
+
+**Example**
+
+```ts
+// Both approaches return identical UIContext instances.
+//index.ets
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Button("Button")
+          .onClick(()=>{
+            // Approach 1: using the built-in component method
+            this.getUIContext()
+            // Additional logic
+          })
+    }  
+  }
+}
+
+//EntryAbility.ets
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+
+const DOMAIN = 0x0000;
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Approach 2: using ohos.window
+    windowStage.getMainWindowSync().getUIContext()
+    // Additional logic
+  }
+}
+```
 
 ### getFont
 
@@ -223,7 +271,7 @@ Sets the parameters for [OverlayManager](#overlaymanager12). This API initialize
 
 <!--code_no_check-->
 ```ts
-uiContext.setOverlayManagerOptions({ renderRootOverlay: true });
+uiContext.setOverlayManagerOptions({ renderRootOverlay: true, enableBackPressedEvent: true });
 ```
 
 ### getOverlayManagerOptions<sup>15+</sup>
@@ -273,10 +321,10 @@ Applies a transition animation for state changes.
 @Entry
 @Component
 struct AnimateToExample {
-  @State widthSize: number = 250
-  @State heightSize: number = 100
-  @State rotateAngle: number = 0
-  private flag: boolean = true
+  @State widthSize: number = 250;
+  @State heightSize: number = 100;
+  @State rotateAngle: number = 0;
+  private flag: boolean = true;
   uiContext: UIContext | undefined = undefined;
 
   aboutToAppear() {
@@ -301,19 +349,19 @@ struct AnimateToExample {
               iterations: 3,
               playMode: PlayMode.Normal,
               onFinish: () => {
-                console.info('play end')
+                console.info('play end');
               }
             }, () => {
-              this.widthSize = 150
-              this.heightSize = 60
-            })
+              this.widthSize = 150;
+              this.heightSize = 60;
+            });
           } else {
             this.uiContext?.animateTo({}, () => {
-              this.widthSize = 250
-              this.heightSize = 100
-            })
+              this.widthSize = 250;
+              this.heightSize = 100;
+            });
           }
-          this.flag = !this.flag
+          this.flag = !this.flag;
         })
       Button('stop rotating')
         .margin(50)
@@ -333,13 +381,13 @@ struct AnimateToExample {
             }
           }, () => {
             this.rotateAngle = 90
-          })
+          });
         })
         .onClick(() => {
           this.uiContext?.animateTo({ duration: 0 }, () => {
             // The value of this.rotateAngle is 90 before the animation. In an animation with a duration of 0, changing the property stops any previous animations for that property and applies the new value immediately.
-            this.rotateAngle = 0
-          })
+            this.rotateAngle = 0;
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -476,7 +524,7 @@ Obtains a FrameNode on the component tree based on the component ID.
 
 <!--code_no_check-->
 ```ts
-uiContext.getFrameNodeById("TestNode")
+uiContext.getFrameNodeById("TestNode");
 ```
 
 ### getAttachedFrameNodeById<sup>12+</sup>
@@ -509,7 +557,7 @@ Obtains the entity node attached to the current window based on its component ID
 
 <!--code_no_check-->
 ```ts
-uiContext.getAttachedFrameNodeById("TestNode")
+uiContext.getAttachedFrameNodeById("TestNode");
 ```
 
 ### getFrameNodeByUniqueId<sup>12+</sup>
@@ -699,7 +747,7 @@ uiContext.showAlertDialog(
       console.info('Closed callbacks')
     }
   }
-)
+);
 ```
 
 ### showActionSheet
@@ -729,11 +777,11 @@ uiContext.showActionSheet({
   confirm: {
     value: 'Confirm button',
     action: () => {
-      console.info('Get Alert Dialog handled')
+      console.info('Get Alert Dialog handled');
     }
   },
   cancel: () => {
-    console.info('actionSheet canceled')
+    console.info('actionSheet canceled');
   },
   alignment: DialogAlignment.Bottom,
   offset: { dx: 0, dy: -10 },
@@ -741,23 +789,23 @@ uiContext.showActionSheet({
     {
       title: 'apples',
       action: () => {
-        console.info('apples')
+        console.info('apples');
       }
     },
     {
       title: 'bananas',
       action: () => {
-        console.info('bananas')
+        console.info('bananas');
       }
     },
     {
       title: 'pears',
       action: () => {
-        console.info('pears')
+        console.info('pears');
       }
     }
   ]
-})
+});
 ```
 
 ### showDatePickerDialog
@@ -780,23 +828,23 @@ Shows a date picker dialog box in the given settings.
 
 <!--code_no_check-->
 ```ts
-let selectedDate: Date = new Date("2010-1-1")
+let selectedDate: Date = new Date("2010-1-1");
 uiContext.showDatePickerDialog({
   start: new Date("2000-1-1"),
   end: new Date("2100-12-31"),
   selected: selectedDate,
   onAccept: (value: DatePickerResult) => {
     // Use the setFullYear method to set the date when the OK button is touched. In this way, when the date picker dialog box is displayed again, the selected date is the date last confirmed.
-    selectedDate.setFullYear(Number(value.year), Number(value.month), Number(value.day))
-    console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
+    selectedDate.setFullYear(Number(value.year), Number(value.month), Number(value.day));
+    console.info("DatePickerDialog:onAccept()" + JSON.stringify(value));
   },
   onCancel: () => {
-    console.info("DatePickerDialog:onCancel()")
+    console.info("DatePickerDialog:onCancel()");
   },
   onChange: (value: DatePickerResult) => {
-    console.info("DatePickerDialog:onChange()" + JSON.stringify(value))
+    console.info("DatePickerDialog:onChange()" + JSON.stringify(value));
   }
-})
+});
 ```
 
 ### showTimePickerDialog
@@ -821,9 +869,9 @@ Shows a time picker dialog box in the given settings.
 // xxx.ets
 
 class SelectTime{
-  selectTime: Date = new Date('2020-12-25T08:30:00')
+  selectTime: Date = new Date('2020-12-25T08:30:00');
   hours(h:number,m:number){
-    this.selectTime.setHours(h,m)
+    this.selectTime.setHours(h, m);
   }
 }
 
@@ -841,19 +889,19 @@ struct TimePickerDialogExample {
             selected: this.selectTime,
             onAccept: (value: TimePickerResult) => {
               // Set selectTime to the time when the OK button is clicked. In this way, when the dialog box is displayed again, the selected time is the time when the operation was confirmed last time.
-              let time = new SelectTime()
-              if(value.hour&&value.minute){
-                time.hours(value.hour, value.minute)
+              let time = new SelectTime();
+              if(value.hour && value.minute){
+                time.hours(value.hour, value.minute);
               }
-              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value));
             },
             onCancel: () => {
-              console.info("TimePickerDialog:onCancel()")
+              console.info("TimePickerDialog:onCancel()");
             },
             onChange: (value: TimePickerResult) => {
-              console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+              console.info("TimePickerDialog:onChange()" + JSON.stringify(value));
             }
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -882,23 +930,23 @@ Shows a text picker dialog box in the given settings.
 // xxx.ets
 
 class SelectedValue{
-  select: number = 2
-  set(val:number){
-    this.select = val
+  select: number = 2;
+  set(val: number){
+    this.select = val;
   }
 }
 class SelectedArray{
-  select: number[] = []
-  set(val:number[]){
-    this.select = val
+  select: number[] = [];
+  set(val: number[]){
+    this.select = val;
   }
 }
 @Entry
 @Component
 struct TextPickerDialogExample {
   @State selectTime: Date = new Date('2023-12-25T08:30:00');
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
-  private select : number  = 0;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5'];
+  private select: number  = 0;
   build() {
     Column() {
       Button('showTextPickerDialog')
@@ -909,20 +957,20 @@ struct TextPickerDialogExample {
             selected: this.select,
             onAccept: (value: TextPickerResult) => {
               // Set select to the index of the item selected when the OK button is touched. In this way, when the text picker dialog box is displayed again, the selected item is the one last confirmed.
-              let selectedVal = new SelectedValue()
-              let selectedArr = new SelectedArray()
-              if(value.index){
-                  value.index instanceof Array?selectedArr.set(value.index) : selectedVal.set(value.index)
+              let selectedVal = new SelectedValue();
+              let selectedArr = new SelectedArray();
+              if (value.index){
+                value.index instanceof Array?selectedArr.set(value.index) : selectedVal.set(value.index);
               }
-              console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+              console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));
             },
             onCancel: () => {
-              console.info("TextPickerDialog:onCancel()")
+              console.info("TextPickerDialog:onCancel()");
             },
             onChange: (value: TextPickerResult) => {
-              console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+              console.info("TextPickerDialog:onChange()" + JSON.stringify(value));
             }
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -997,7 +1045,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 createAnimator(options: AnimatorOptions | SimpleAnimatorOptions): AnimatorResult
 
-Creates an **AnimatorResult** object for animations. Compared with the previous [createAnimator](#createanimator) API, this API adds support for the [SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions18) type.
+Creates an **AnimatorResult** object for animations. Compared to the previous [createAnimator](#createanimator) API, this API adds support for the [SimpleAnimatorOptions](js-apis-animator.md#simpleanimatoroptions18) type.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -1101,7 +1149,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
       uiContext.setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -1140,7 +1188,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
       let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
       hilog.info(0x0000, "KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
       if (err.code) {
@@ -1203,7 +1251,7 @@ Obtains the **DragController** object, which can be used to create and initiate 
 
 |Type|Description|
 |----|----|
-|[DragController](js-apis-arkui-dragController.md)| **DragController** object.|
+|[DragController](js-apis-arkui-dragController.md#ohosarkuidragcontroller-dragcontroller)| **DragController** object.|
 
 **Example**
 
@@ -1256,7 +1304,7 @@ uiContext.getFocusController();
 
 getFilteredInspectorTree(filters?: Array\<string\>): string
 
-Obtains the component tree and component attributes.
+Obtains the component tree and component attributes. This API has a long processing time and is intended for testing scenarios only.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1266,7 +1314,7 @@ Obtains the component tree and component attributes.
 
 | Name | Type           | Mandatory| Description                                                        |
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
-| filters | Array\<string\> | No  | List of component attributes used for filtering. Currently, only the following values are supported:<br>**"id"**: unique ID of the component.<br>**"src"**: source of the resource.<br>**"content"**: information or data contained in the element, component, or object.<br>**"editable"**: whether the component is editable.<br>**"scrollable"**: whether the component is scrollable.<br>**"selectable"**: whether the component is selectable.<br>**"focusable"**: whether the component is focusable.<br>**"focused"**: whether the component is currently focused.<br>Other values are used only in test scenarios.|
+| filters | Array\<string\> | No  | List of component attributes used for filtering. Currently, only the following filter fields are supported:<br>**"id"**: unique ID of the component.<br>**"src"**: source of the resource.<br>**"content"**: information or data contained in the element, component, or object.<br>**"editable"**: whether the component is editable.<br>**"scrollable"**: whether the component is scrollable.<br>**"selectable"**: whether the component is selectable.<br>**"focusable"**: whether the component is focusable.<br>**"focused"**: whether the component is currently focused.<br>The following filter field is supported since API version 20:<br>**"isLayoutInspector"**: whether to display attributes of custom components.<br>If **filters** includes one or more fields, unspecified fields will be filtered out from the results. If **filters** is not provided or is an empty array, none of the aforementioned fields will be filtered out.<br>Other filter fields are used only in testing scenarios.|
 
 **Return value**
 
@@ -1289,11 +1337,74 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 uiContext.getFilteredInspectorTree(['id', 'src', 'content']);
 ```
 
+<!--code_no_check-->
+```ts
+// xxx.ets
+import { UIContext } from '@kit.ArkUI';
+@Entry
+@Component
+struct ComponentPage {
+  loopConsole(inspectorStr: string, i: string) {
+    console.log(`InsTree ${i}| type: ${JSON.parse(inspectorStr).$type}, ID: ${JSON.parse(inspectorStr).$ID}`)
+    if (JSON.parse(inspectorStr).$children) {
+      i += '-'
+      for (let index = 0; index < JSON.parse(inspectorStr).$children.length; index++) {
+        this.loopConsole(JSON.stringify(JSON.parse(inspectorStr).$children[index]), i)
+      }
+    }
+  }
+
+  build() {
+    Column() {
+      Button('content').onClick(() => {
+        const uiContext: UIContext = this.getUIContext();
+        let inspectorStr = uiContext.getFilteredInspectorTree(['content']);
+        console.log(`InsTree : ${inspectorStr}`)
+        inspectorStr = JSON.stringify(JSON.parse(inspectorStr))
+        this.loopConsole(inspectorStr, '-')
+      })
+      Button('isLayoutInspector').onClick(() => {
+        const uiContext: UIContext = this.getUIContext();
+        let inspectorStr = uiContext.getFilteredInspectorTree(['isLayoutInspector']);
+        console.log(`InsTree : ${inspectorStr}`)
+        inspectorStr = JSON.stringify(JSON.parse(inspectorStr).content)
+        this.loopConsole(inspectorStr, '-')
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+When the **"content"** filter field is passed, the returned JSON string has the following structure:
+
+<!--code_no_check-->
+```ts
+InsTree : {"$type":"root","width":"720.000000","height":"1280.000000","$resolution":"1.500000","$children":[{"$type":"Column","$ID":15,"type":"build-in","$rect":"[0.00, 72.00],[720.00,1208.00]","$debugLine":"","$attrs":{},"$children":[{"$type":"Button","$ID":16,"type":"build-in","$rect":"[293.00, 72.00],[427.00,132.00]","$debugLine":"","$attrs":{}},{"$type":"Button","$ID":18,"type":"build-in","$rect":"[237.00, 132.00],[484.00,192.00]","$debugLine":"","$attrs":{}}]}]}\
+InsTree -| type: root, ID: undefined
+InsTree --| type: Column, ID: 15
+InsTree ---| type: Button, ID: 16
+InsTree ---| type: Button, ID: 18
+```
+
+Since API version 20, when the **"isLayoutInspector"** filter field is passed, the returned JSON string structure includes an outer layer with **"type"** and **"content"** fields, where **"content"** contains the original JSON structure (as returned without this field), and the return value structure includes custom components. This JSON string structure is as follows:
+
+<!--code_no_check-->
+```ts
+InsTree : {"type":"root","content":{"$type":"root","width":"720.000000","height":"1280.000000","$resolution":"1.500000","$children":[{"$type":"JsView","$ID":13,"type":"custom","state":{"observedPropertiesInfo":[],"viewInfo":{"componentName":"ComponentPage","id":14,"isV2":false,"isViewActive_":true}},"$rect":"[0.00, 72.00],[720.00,1208.00]","$debugLine":"{\"$line\":\"(0:0)\"}","viewTag":"ComponentPage","$attrs":{"viewKey":"13"},"$children":[{"$type":"Column","$ID":15, "type":"build-in","$rect":"[0.00, 72.00],[720.00,1208.00]","$debugLine":"","$attrs":{ ...
+InsTree -| type: root, ID: undefined
+InsTree --| type: JsView, ID: 13
+InsTree ---| type: Column, ID: 15
+InsTree ----| type: Button, ID: 16
+InsTree ----| type: Button, ID: 18
+```
+
 ### getFilteredInspectorTreeById<sup>12+</sup>
 
 getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\>): string
 
-Obtains the attributes of the specified component and its child components.
+Obtains the attributes of the specified component and its child components. This API has a long processing time and is intended for testing scenarios only.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1305,7 +1416,7 @@ Obtains the attributes of the specified component and its child components.
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
 | id      | string          | Yes  | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
 | depth   | number          | Yes  | Number of layers of child components. If the value is **0**, the attributes of the specified component and all its child components are obtained. If the value is **1**, only the attributes of the specified component are obtained. If the value is **2**, the attributes of the specified component and its level-1 child components are obtained. The rest can be deduced by analogy.|
-| filters | Array\<string\> | No  | List of component attributes used for filtering. Currently, only the following values are supported:<br>**"id"**: unique ID of the component.<br>**"src"**: source of the resource.<br>**"content"**: information or data contained in the element, component, or object.<br>**"editable"**: whether the component is editable.<br>**"scrollable"**: whether the component is scrollable.<br>**"selectable"**: whether the component is selectable.<br>**"focusable"**: whether the component is focusable.<br>**"focused"**: whether the component is currently focused.<br>Other values are used only in test scenarios.|
+| filters | Array\<string\> | No  | List of component attributes used for filtering. Currently, only the following filter fields are supported:<br>**"id"**: unique ID of the component.<br>**"src"**: source of the resource.<br>**"content"**: information or data contained in the element, component, or object.<br>**"editable"**: whether the component is editable.<br>**"scrollable"**: whether the component is scrollable.<br>**"selectable"**: whether the component is selectable.<br>**"focusable"**: whether the component is focusable.<br>**"focused"**: whether the component is currently focused.<br>Other filter fields are used only in testing scenarios.|
 
 **Return value**
 
@@ -1404,6 +1515,8 @@ getComponentSnapshot(): ComponentSnapshot
 
 Obtains a **ComponentSnapshot** object, which can be used to obtain a component snapshot.
 
+For typical use cases (for example, long screenshots) and best practices of component snapshots, see [Using Component Snapshot (ComponentSnapshot)](../../ui/arkts-uicontext-component-snapshot.md).
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -1426,6 +1539,10 @@ uiContext.getComponentSnapshot();
 vp2px(value : number) : number
 
 Converts a value in units of vp to a value in units of px.
+
+Conversion formula: px value = vp value × pixel density
+
+Pixel density: effective pixel density of the current window, which is the screen's physical pixel density [VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1456,6 +1573,10 @@ px2vp(value : number) : number
 
 Converts a value in units of px to a value in units of vp.
 
+Conversion formula: vp value = px value/pixel density
+
+Pixel density: effective pixel density of the current window, which is the screen's physical pixel density [VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16).
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -1484,6 +1605,12 @@ uiContext.px2vp(200);
 fp2px(value : number) : number
 
 Converts a value in units of fp to a value in units of px.
+
+Conversion formula: px value = fp value × pixel density × font scale factor
+
+Pixel density: effective pixel density of the current window, which is the screen's physical pixel density [VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16).
+
+Font scale factor: system font scaling coefficient ([Configuration.fontScale](arkui-ts/ts-types.md#configuration)).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1514,6 +1641,12 @@ px2fp(value : number) : number
 
 Converts a value in units of px to a value in units of fp.
 
+Conversion formula: fp value = px value/pixel density/font scale factor
+
+Pixel density: effective pixel density of the current window, which is typically the screen's physical pixel density [VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16).
+
+Font scale factor: system font scaling coefficient ([Configuration.fontScale](arkui-ts/ts-types.md#configuration)).
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -1543,6 +1676,8 @@ lpx2px(value : number) : number
 
 Converts a value in units of lpx to a value in units of px.
 
+Conversion formula: px value = lpx value × (actual screen width/logical width), where the logical width is configured using [designWidth](../../quick-start/module-configuration-file.md#pages)
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -1571,6 +1706,8 @@ uiContext.lpx2px(200);
 px2lpx(value : number) : number
 
 Converts a value in units of px to a value in units of lpx.
+
+Conversion formula: lpx value = px value/(actual screen width/logical width), where the logical width is configured using [designWidth](../../quick-start/module-configuration-file.md#pages)
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1619,7 +1756,7 @@ import { window } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   aboutToAppear() {
     const windowName = this.getUIContext().getWindowName();
@@ -1683,7 +1820,7 @@ struct Index {
           let uiContext: UIContext = this.getUIContext();
           let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
           let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`)
+          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
         })
       }
       .width('100%')
@@ -1733,7 +1870,7 @@ struct Index {
           let uiContext: UIContext = this.getUIContext();
           let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
           let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`)
+          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
         })
       }
       .width('100%')
@@ -1768,7 +1905,7 @@ class MyFrameCallback extends FrameCallback {
   private tag: string;
 
   constructor(tag: string) {
-    super()
+    super();
     this.tag = tag;
   }
 
@@ -1817,7 +1954,7 @@ class MyFrameCallback extends FrameCallback {
   private tag: string;
 
   constructor(tag: string) {
-    super()
+    super();
     this.tag = tag;
   }
 
@@ -1866,7 +2003,7 @@ Requests the dynamic sync scene of a component for customizing related frame rat
 
 <!--code_no_check-->
 ```ts
-uiContext.DynamicSyncScene("dynamicSyncScene")
+uiContext.DynamicSyncScene("dynamicSyncScene");
 ```
 
 ### openBindSheet<sup>12+</sup>
@@ -1877,7 +2014,7 @@ Creates a sheet whose content is as defined in **bindSheetContent** and displays
 
 > **NOTE**
 >
-> 1. When calling this API, if you don't provide a valid value for **targetId**, you won't be able to set **SheetOptions.preferType** to **POPUP** or **SheetOptions.mode** to **EMBEDDED**.
+> 1. When calling this API, if no valid value is provided for **targetId**, you won't be able to set **SheetOptions.preferType** to **POPUP** or **SheetOptions.mode** to **EMBEDDED**.
 >
 > 2. Since [updateBindSheet](#updatebindsheet12) and [closeBindSheet](#closebindsheet12) depend on **bindSheetContent**, you need to maintain the passed **bindSheetContent** yourself.
 >
@@ -1922,7 +2059,7 @@ import { FrameNode, ComponentContent } from "@kit.ArkUI";
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -2050,7 +2187,7 @@ import { FrameNode, ComponentContent } from "@kit.ArkUI";
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -2176,7 +2313,7 @@ import { FrameNode, ComponentContent } from "@kit.ArkUI";
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -2272,13 +2409,13 @@ Checks whether this UI context follows the system font scale settings.
 
 | Type     | Description           |
 |---------|---------------|
-| boolean | Whether the current UI context follows the system font scale settings.|
+| boolean | Whether the current UI context follows the system font scale settings.<br> **true**: The current UI context follows the system font scale settings.<br>**false**: The current UI context does not follow the system font scale settings.|
 
 **Example**
 
 <!--code_no_check-->
 ```ts
-uiContext.isFollowingSystemFontScale()
+uiContext.isFollowingSystemFontScale();
 ```
 
 ### getMaxFontScale<sup>13+</sup>
@@ -2301,12 +2438,12 @@ Obtains the maximum font scale of this UI context.
 
 <!--code_no_check-->
 ```ts
-uiContext.getMaxFontScale()
+uiContext.getMaxFontScale();
 ```
 
 ### bindTabsToScrollable<sup>13+</sup>
 
-bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void;
+bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void
 
 Binds a **Tabs** component with a scrollable container, which can be a [List](./arkui-ts/ts-container-list.md), [Scroll](./arkui-ts/ts-container-scroll.md), [Grid](./arkui-ts/ts-container-grid.md), or [WaterFlow](./arkui-ts/ts-container-waterflow.md) component. This way, scrolling the scrollable container triggers the display and hide animations of the tab bar for all **Tabs** components that are bound to it – scrolling up triggers the hide animation, and scrolling down triggers the show animation. A **TabsController** instance can be bound with multiple **Scroller** instances, and conversely, a **Scroller** instance can be bound with multiple **TabsController** instances.
 
@@ -2331,28 +2468,28 @@ Binds a **Tabs** component with a scrollable container, which can be a [List](./
 @Entry
 @Component
 struct TabsExample {
-  private arr: string[] = []
-  private parentTabsController: TabsController = new TabsController()
-  private childTabsController: TabsController = new TabsController()
-  private listScroller: Scroller = new Scroller()
-  private parentScroller: Scroller = new Scroller()
-  private childScroller: Scroller = new Scroller()
+  private arr: string[] = [];
+  private parentTabsController: TabsController = new TabsController();
+  private childTabsController: TabsController = new TabsController();
+  private listScroller: Scroller = new Scroller();
+  private parentScroller: Scroller = new Scroller();
+  private childScroller: Scroller = new Scroller();
 
   aboutToAppear(): void {
     for (let i = 0; i < 20; i++) {
-      this.arr.push(i.toString())
+      this.arr.push(i.toString());
     }
-    let context = this.getUIContext()
-    context.bindTabsToScrollable(this.parentTabsController, this.listScroller)
-    context.bindTabsToScrollable(this.childTabsController, this.listScroller)
-    context.bindTabsToNestedScrollable(this.parentTabsController, this.parentScroller, this.childScroller)
+    let context = this.getUIContext();
+    context.bindTabsToScrollable(this.parentTabsController, this.listScroller);
+    context.bindTabsToScrollable(this.childTabsController, this.listScroller);
+    context.bindTabsToNestedScrollable(this.parentTabsController, this.parentScroller, this.childScroller);
   }
 
   aboutToDisappear(): void {
-    let context = this.getUIContext()
-    context.unbindTabsFromScrollable(this.parentTabsController, this.listScroller)
-    context.unbindTabsFromScrollable(this.childTabsController, this.listScroller)
-    context.unbindTabsFromNestedScrollable(this.parentTabsController, this.parentScroller, this.childScroller)
+    let context = this.getUIContext();
+    context.unbindTabsFromScrollable(this.parentTabsController, this.listScroller);
+    context.unbindTabsFromScrollable(this.childTabsController, this.listScroller);
+    context.unbindTabsFromNestedScrollable(this.parentTabsController, this.parentScroller, this.childScroller);
   }
 
   build() {
@@ -2426,7 +2563,7 @@ struct TabsExample {
 
 ### unbindTabsFromScrollable<sup>13+</sup>
 
-unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): void;
+unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): void
 
 Unbinds a **Tabs** component from a scrollable container.
 
@@ -2447,7 +2584,7 @@ See the example for [bindTabsToScrollable](#bindtabstoscrollable13).
 
 ### bindTabsToNestedScrollable<sup>13+</sup>
 
-bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
+bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void
 
 Binds a **Tabs** component with a nested scrollable container, which can be a [List](./arkui-ts/ts-container-list.md), [Scroll](./arkui-ts/ts-container-scroll.md), [Grid](./arkui-ts/ts-container-grid.md), or [WaterFlow](./arkui-ts/ts-container-waterflow.md) component. This way, scrolling the parent or child component triggers the display and hide animations of the tab bar for all **Tabs** components that are bound to it – scrolling up triggers the hide animation, and scrolling down triggers the show animation. A **TabsController** instance can be bound with multiple nested **Scroller** instances, and conversely, a nested **Scroller** instance can be bound with multiple **TabsController** instances.
 
@@ -2469,7 +2606,7 @@ See the example for [bindTabsToScrollable](#bindtabstoscrollable13).
 
 ### unbindTabsFromNestedScrollable<sup>13+</sup>
 
-unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
+unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void
 
 Unbinds a **Tabs** component from a nested scrollable container.
 
@@ -2503,7 +2640,7 @@ Sets whether to enable the horizontal swipe-to-go-back gesture within the applic
 
 | Name    | Type   | Mandatory  | Description     |
 | --- | --- | --- | --- |
-| isEnabled | boolean | Yes| Whether to enable the horizontal swipe-to-go-back gesture.<br>Default value: **true**|
+| enabled | Optional\<boolean> | Yes| Whether to enable the horizontal swipe-to-go-back gesture.<br>Default value: **true**.<br>**true**: The horizontal swipe-to-go-back gesture is enabled.<br>**false**: The horizontal swipe-to-go-back gesture is disabled.|
 
 **Example**
 
@@ -2546,6 +2683,71 @@ Obtains a [TextMenuController](#textmenucontroller16) object, which can be used 
 
 See the example for the [TextMenuController](#textmenucontroller16) API .
 
+### createUIContextWithoutWindow<sup>17+</sup>
+
+static createUIContextWithoutWindow(context: common.UIAbilityContext | common.ExtensionContext) : UIContext | undefined
+
+Creates a UI instance that does not depend on a window and returns its UI context. The created UI instance is a singleton.
+
+> **NOTE**
+>
+> The returned UI context can only be used to create [custom nodes](../../ui/arkts-user-defined-node.md). It cannot be used for other UI operations.
+
+**Atomic service API**: This API can be used in atomic services since API version 17.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                    | Mandatory| Description       |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| context | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| common.[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md) | Yes   | Context corresponding to [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md) or [ExtensionAbility](../apis-ability-kit/js-apis-app-ability-extensionAbility.md).|
+
+**Return value**
+
+|Type|Description|
+|----|----|
+| UIContext \| undefined | Context of the created UI instance, or **undefined** if creation fails.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [UI Context Error Codes](errorcode-uicontext.md).
+
+| ID | Error Message                       |
+| ------ | ---------------------------------- |
+| 401    | Parameter error. Possible causes: <br> 1. The number of parameters is incorrect.<br> 2. Invalid parameter type of context. |
+| 100001 | Internal error. |
+
+
+**Example**
+```ts
+import { UIContext } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let uiContext : UIContext | undefined = UIContext.createUIContextWithoutWindow(this.context);
+  }
+
+  // ......
+}
+```
+
+### destroyUIContextWithoutWindow<sup>17+</sup>
+
+static destroyUIContextWithoutWindow(): void
+
+Destroys the UI instance created using [createUIContextWithoutWindow](#createuicontextwithoutwindow17).
+
+**Atomic service API**: This API can be used in atomic services since API version 17.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Example**
+```ts
+UIContext.destroyUIContextWithoutWindow();
+```
+
 ### dispatchKeyEvent<sup>15+</sup>
 
 dispatchKeyEvent(node: number | string, event: KeyEvent): boolean
@@ -2561,6 +2763,12 @@ Dispatches a key event to the specified component. To ensure predictable behavio
 | node  | number \| string | Yes  | ID or unique ID of the target component.|
 | event  |[KeyEvent](./arkui-ts/ts-universal-events-key.md#keyevent) | Yes  | **KeyEvent** object.|
 
+**Return value**
+
+| Type     | Description           |
+|---------|---------------|
+| boolean | Whether the key event was successfully dispatched to the specified component.<br> The value **true** means the dispatch was successful, and **false** means the dispatch failed.|
+
 **Example**
 
 ```ts
@@ -2572,11 +2780,11 @@ struct Index {
       Row() {
         Button('Button1').id('Button1').onKeyEvent((event) => {
           console.log("Button1");
-          return true
+          return true;
         })
         Button('Button2').id('Button2').onKeyEvent((event) => {
           console.log("Button2");
-          return true
+          return true;
         })
       }
       .width('100%')
@@ -2601,6 +2809,83 @@ struct Index {
     })
   }
 }
+```
+### setPixelRoundMode<sup>18+</sup>
+
+setPixelRoundMode(mode: PixelRoundMode): void
+
+Sets the pixel rounding mode for this page.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type        | Mandatory  | Description  |
+| -------- | ---------- | ---- | ---- |
+| mode | [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| Yes   | Pixel rounding mode.<br>Default value: **PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH**.|
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      uiContext.setPixelRoundMode(PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH);
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
+```
+
+### getPixelRoundMode<sup>18+</sup>
+
+getPixelRoundMode(): PixelRoundMode
+
+Obtains the pixel rounding mode for this page.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type        | Description  |
+| ---------- | ---- |
+| [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| Pixel rounding mode of the current page.|
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+      console.info("pixelRoundMode : " + uiContext.getPixelRoundMode().valueOf());
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
 ```
 ## Font
 
@@ -2660,9 +2945,9 @@ Obtains the list of supported fonts.
 ```ts
 import { Font } from '@kit.ArkUI';
 
-let font:Font|undefined = uiContext.getFont();
-if(font){
-  font.getSystemFontList()
+let font: Font | undefined = uiContext.getFont();
+if (font) {
+  font.getSystemFontList();
 }
 ```
 
@@ -2694,9 +2979,9 @@ Obtains information about a system font based on the font name.
 ```ts
 import { Font } from '@kit.ArkUI';
 
-let font:Font|undefined = uiContext.getFont();
-if(font){
-  font.getFontByName('Sans Italic')
+let font: Font | undefined = uiContext.getFont();
+if (font) {
+  font.getFontByName('Sans Italic');
 }
 ```
 
@@ -2756,7 +3041,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { ComponentUtils } from '@kit.ArkUI';
 
-let componentUtils:ComponentUtils = uiContext.getComponentUtils();
+let componentUtils: ComponentUtils = uiContext.getComponentUtils();
 let modePosition = componentUtils.getRectangleById("onClick");
 let localOffsetWidth = modePosition.size.width;
 let localOffsetHeight = modePosition.size.height;
@@ -2813,6 +3098,11 @@ Represents the page information of the router or navigation destination. If ther
 ## UIObserver<sup>11+</sup>
 
 In the following API examples, you must first use [getUIObserver()](#getuiobserver11) in **UIContext** to obtain a **UIObserver** instance, and then call the APIs using the obtained instance.
+
+> **NOTE**
+>
+> UIObserver can only listen for relevant information within the current process and does not support obtaining information in cross-process scenarios<!--Del--> such as [UIExtensionComponent](../../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)<!--DelEnd-->.
+>
 
 ### on('navDestinationUpdate')<sup>11+</sup>
 
@@ -2920,7 +3210,7 @@ Subscribes to state changes of this **NavDestination** component.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **NavDestination** component.|
-| options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **NavDestination** component.                                  |
+| options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **Navigation** component.                                  |
 | callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | Yes  | Callback used to return the current state of the **NavDestination** component.                |
 
 **Example**
@@ -2991,7 +3281,7 @@ Unsubscribes from state changes of the **NavDestination** component.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **NavDestination** component.|
-| options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **NavDestination** component.                                  |
+| options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **Navigation** component.                                  |
 | callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | No  | Callback used to return the current state of the **NavDestination** component.                |
 
 **Example**
@@ -3002,7 +3292,7 @@ See the example for [uiObserver.on('navDestinationUpdate')](#onnavdestinationupd
 
 on(type: 'scrollEvent', callback: Callback\<observer.ScrollEventInfo\>): void
 
-Subscribes to the start and end of a scroll event.
+Subscribes to the start and end of scroll events of all scrollable components, including [List](./arkui-ts/ts-container-list.md), [Grid](./arkui-ts/ts-container-grid.md), [Scroll](./arkui-ts/ts-container-scroll.md), [WaterFlow](./arkui-ts/ts-container-waterflow.md), and [ArcList](./arkui-ts/ts-container-arclist.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3012,7 +3302,7 @@ Subscribes to the start and end of a scroll event.
 
 | Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of a scroll event.     |
+| type     | string                                                | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of scroll events.     |
 | callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | Yes  | Callback used to return the Callback used to return the information about the scroll event.  |
 
 **Example**
@@ -3023,7 +3313,7 @@ See [offscrollevent Example](#offscrollevent12-1).
 
 off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
 
-Unsubscribes from the start and end of a scroll event.
+Unsubscribes from the start and end of scroll events of all scrollable components, including [List](./arkui-ts/ts-container-list.md), [Grid](./arkui-ts/ts-container-grid.md), [Scroll](./arkui-ts/ts-container-scroll.md), [WaterFlow](./arkui-ts/ts-container-waterflow.md), and [ArcList](./arkui-ts/ts-container-arclist.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3033,7 +3323,7 @@ Unsubscribes from the start and end of a scroll event.
 
 | Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of a scroll event.     |
+| type     | string                                                | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of scroll events.     |
 | callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\> | No  | Callback used to return the Callback used to return the information about the scroll event.  |
 
 **Example**
@@ -3044,7 +3334,7 @@ See [offscrollevent Example](#offscrollevent12-1).
 
 on(type: 'scrollEvent', options: observer.ObserverOptions, callback: Callback\<observer.ScrollEventInfo\>): void
 
-Subscribes to the start and end of a scroll event.
+Subscribes to the start and end of scroll events of a specific scrollable component identified by its ID. Supported components include [List](./arkui-ts/ts-container-list.md), [Grid](./arkui-ts/ts-container-grid.md), [Scroll](./arkui-ts/ts-container-scroll.md), [WaterFlow](./arkui-ts/ts-container-waterflow.md), and [ArcList](./arkui-ts/ts-container-arclist.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3054,7 +3344,7 @@ Subscribes to the start and end of a scroll event.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of a scroll event.|
+| type     | string                                                       | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of scroll events.|
 | options  | [observer.ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | Yes  | Observer options, including the ID of the target scrollable component.                   |
 | callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | Yes  | Callback used to return the Callback used to return the information about the scroll event.                |
 
@@ -3066,7 +3356,7 @@ See [offscrollevent Example](#offscrollevent12-1).
 
 off(type: 'scrollEvent', options: observer.ObserverOptions, callback?: Callback\<observer.ScrollEventInfo\>): void
 
-Unsubscribes from the start and end of a scroll event.
+Unsubscribes from the start and end of scroll events of a specific scrollable component identified by its ID. Supported components include [List](./arkui-ts/ts-container-list.md), [Grid](./arkui-ts/ts-container-grid.md), [Scroll](./arkui-ts/ts-container-scroll.md), [WaterFlow](./arkui-ts/ts-container-waterflow.md), and [ArcList](./arkui-ts/ts-container-arclist.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3076,24 +3366,24 @@ Unsubscribes from the start and end of a scroll event.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of a scroll event.|
+| type     | string                                                       | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of scroll events.|
 | options  | [observer.ObserverOptions](js-apis-arkui-observer.md#observeroptions12) | Yes  | Observer options, including the ID of the target scrollable component.                   |
 | callback | Callback\<observer.[ScrollEventInfo](js-apis-arkui-observer.md#scrolleventinfo12)\>        | No  | Callback used to return the Callback used to return the information about the scroll event.                |
 
 **Example**
 
 ```ts
-import { UIObserver } from '@kit.ArkUI'
+import { UIObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  scroller: Scroller = new Scroller()
-  observer: UIObserver = new UIObserver()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
+  scroller: Scroller = new Scroller();
+  observer: UIObserver = this.getUIContext().getUIObserver();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7];
 
   build() {
-    Row() {
+    Column() {
       Column() {
         Scroll(this.scroller) {
           Column() {
@@ -3109,7 +3399,7 @@ struct Index {
             }, (item: string) => item)
           }.width('100%')
         }
-        .id("testId")
+        .id('testId')
         .height('80%')
       }
       .width('100%')
@@ -3130,13 +3420,13 @@ struct Index {
       Row() {
         Button('UIObserverWithId on')
           .onClick(() => {
-            this.observer.on('scrollEvent', { id:"testId" }, (info) => {
+            this.observer.on('scrollEvent', { id: 'testId' }, (info) => {
               console.info('scrollEventInfo', JSON.stringify(info));
             });
           })
         Button('UIObserverWithId off')
           .onClick(() => {
-            this.observer.off('scrollEvent', { id:"testId" });
+            this.observer.off('scrollEvent', { id: 'testId' });
           })
       }
     }
@@ -3225,7 +3515,7 @@ import { uiObserver } from '@kit.ArkUI';
 @Component
 struct Index {
   @State density: number = 0;
-  @State message: string = 'No listener registered'
+  @State message: string = 'Not subscribed';
 
   densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
@@ -3239,7 +3529,7 @@ struct Index {
         .fontWeight(FontWeight.Bold)
       Button('Subscribe to Screen Pixel Density Changes')
         .onClick(() => {
-          this.message = 'Listener registered'
+          this.message = 'Subscribed';
           this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
         })
     }
@@ -3271,7 +3561,7 @@ import { uiObserver } from '@kit.ArkUI';
 @Component
 struct Index {
   @State density: number = 0;
-  @State message: string = 'No listener registered'
+  @State message: string = 'Not subscribed';
 
   densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
@@ -3286,12 +3576,12 @@ struct Index {
       Button('Subscribe to Screen Pixel Density Changes')
         .margin({ bottom: 10 })
         .onClick(() => {
-          this.message = 'Listener registered'
+          this.message = 'Subscribed';
           this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
         })
       Button('Unsubscribe from Screen Pixel Density Changes')
         .onClick(() => {
-          this.message = 'Listener not registered'
+          this.message = 'Not subscribed';
           this.getUIContext().getUIObserver().off('densityUpdate', this.densityUpdateCallback);
         })
     }
@@ -3430,7 +3720,7 @@ Unsubscribes from layout completion status in each frame.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event event. The value **'didLayout'** indicates whether the layout has been completed.|
+| type     | string                                                       | Yes  | Event type. The value **'didLayout'** indicates whether the layout has been completed.|
 | callback | Callback\<void\>        | No  | Callback to be unregistered.                 |
 
 ```ts
@@ -3440,7 +3730,7 @@ import { uiObserver } from '@kit.ArkUI';
 @Component
 struct Index {
   didLayoutCallback = () => {
-    console.info("Layout completed.")
+    console.info("Layout completed.");
   }
 
   build() {
@@ -3494,7 +3784,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
-  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`);
 }
 
 @Entry
@@ -3588,7 +3878,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
-  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`);
 }
 
 @Entry
@@ -3603,12 +3893,12 @@ struct Index {
 
   aboutToAppear() {
     let obs = this.getUIContext().getUIObserver();
-    obs.on('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc)
+    obs.on('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc);
   }
 
   aboutToDisappear() {
     let obs = this.getUIContext().getUIObserver();
-    obs.off('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc)
+    obs.off('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc);
   }
 
   build() {
@@ -4060,6 +4350,296 @@ Unsubscribes from the **TabContent** switching event.
 
 See the example of [on('tabContentUpdate')](#ontabcontentupdate12-1).
 
+### on('beforePanStart')<sup>19+</sup>
+
+on(type: 'beforePanStart', callback: PanListenerCallback): void
+
+Subscribes to the [onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#events) event for the pan gesture, executing the callback before the **onActionStart** event is triggered. It works for finger swiping, mouse dragging, mouse wheel scrolling, and touchpad movements, but not for screen reader touch mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'beforePanStart'**, which triggers the callback before the **onActionStart** event of the pan gesture.|
+| callback | [PanListenerCallback](#panlistenercallback19) | Yes  | Callback used to return the **GestureEvent** and **GestureRecognizer** of the pan gesture event and the FrameNode of the component.  |
+
+**Example**
+
+```ts
+// Used in page components.
+import { uiObserver } from '@kit.ArkUI';
+import router from '@ohos.router';
+
+let TEST_TAG: string = 'node';
+
+function callbackFunc() {
+  console.info('on == beforePanStart');
+}
+
+function afterPanCallBack() {
+  console.info('on == afterPanStart');
+}
+
+function beforeEndCallBack() {
+  console.info('on == beforeEnd');
+}
+
+function afterEndCallBack() {
+  console.info('on == afterEnd');
+}
+
+function beforeStartCallBack() {
+  console.info('on == beforeStartCallBack');
+}
+
+function panGestureCallBack(event: GestureEvent, current: GestureRecognizer, node?: FrameNode) {
+  TEST_TAG = 'panGestureEvent';
+  console.info('===' + TEST_TAG + '=== event.repeat is ' + event.repeat);
+  console.info('===' + TEST_TAG + '=== event target is ' + event.target.id);
+  TEST_TAG = 'panGestureCurrent';
+  console.info('===' + TEST_TAG + '=== current.getTag() is ' + current.getTag());
+  TEST_TAG = 'panGestureNode';
+  console.info('===' + TEST_TAG + '=== node?.getId() is ' + node?.getId());
+}
+
+
+@Entry
+@Component
+struct PanExample {
+  @State offsetX: number = 0;
+  @State offsetY: number = 0;
+  @State positionX: number = 0;
+  @State positionY: number = 0;
+  private panOption: PanGestureOptions = new PanGestureOptions({direction: PanDirection.All });
+
+  aboutToAppear(): void {
+    let observer = this.getUIContext().getUIObserver();
+    observer.on('beforePanStart', callbackFunc);
+    observer.on('beforePanStart', panGestureCallBack);
+    observer.on('beforePanStart', beforeStartCallBack);
+    observer.on('afterPanStart', afterPanCallBack);
+    observer.on('beforePanEnd', beforeEndCallBack);
+    observer.on('afterPanEnd', afterEndCallBack);
+  }
+
+  aboutToDisappear(): void {
+    let observer = this.getUIContext().getUIObserver();
+    observer.off('beforePanStart', callbackFunc);
+    observer.off('beforePanStart');
+    observer.off('afterPanStart', afterPanCallBack);
+    observer.off('beforePanEnd');
+    observer.off('afterPanEnd');
+  }
+  build() {
+    Column(){
+      Column(){
+        Text('PanGesture :\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
+      .id('columnOuter')
+      .gesture(
+        PanGesture(this.panOption)
+          .onActionStart((event: GestureEvent) => {
+            console.info('Pan start');
+          })
+          .onActionUpdate((event: GestureEvent) => {
+            if (event) {
+              this.offsetX = this.positionX + event.offsetX;
+              this.offsetY = this.positionY + event.offsetY;
+            }
+          })
+          .onActionEnd((event: GestureEvent) => {
+            this.positionX = this.offsetX;
+            this.positionY = this.offsetY;
+            console.info('Pan end');
+            }))
+          }
+  }
+}
+```
+
+### off('beforePanStart')<sup>19+</sup>
+
+off(type: 'beforePanStart', callback?: PanListenerCallback): void
+
+Unsubscribes from the [onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#events) event for the pan gesture. This cancels the callback registered using [on('beforePanStart')](#onbeforepanstart19).
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                |
+| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'beforePanStart'**.|
+| callback | [PanListenerCallback](#panlistenercallback19) | No  | Callback to be unregistered.                              |
+
+**Example**
+
+```ts
+// Used in page components.
+import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
+
+// callback is a callback defined by you.
+let callback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => {};
+let observer: UIObserver = this.getUIContext().getUIObserver();
+observer.off('beforePanStart', callback);
+```
+
+### on('afterPanStart')<sup>19+</sup>
+
+on(type: 'afterPanStart', callback: PanListenerCallback): void
+
+Subscribes to the [onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#events) event for the pan gesture, executing the callback after the **onActionStart** event is triggered. It works for finger swiping, mouse dragging, mouse wheel scrolling, and touchpad movements, but not for screen reader touch mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'afterPanStart'**, which triggers the callback after the **onActionStart** event of the pan gesture.|
+| callback | [PanListenerCallback](#panlistenercallback19) | Yes  | Callback used to return the **GestureEvent** and **GestureRecognizer** of the pan gesture event and the FrameNode of the component.  |
+
+**Example**
+
+See the example for [on('beforePanStart')](#onbeforepanstart19).
+
+### off('afterPanStart')<sup>19+</sup>
+
+off(type: 'afterPanStart', callback?: PanListenerCallback): void
+
+Unsubscribes from the [onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#events) event for the pan gesture. This cancels the callback registered using [on('afterPanStart')](#onafterpanstart19).
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                |
+| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'afterPanStart'**.|
+| callback | [PanListenerCallback](#panlistenercallback19) | No  | Callback to be unregistered.                              |
+
+**Example**
+
+See the example for [on('beforePanStart')](#onbeforepanstart19).
+
+### on('beforePanEnd')<sup>19+</sup>
+
+on(type: 'beforePanEnd', callback: PanListenerCallback): void
+
+Subscribes to the [onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#events) event for the pan gesture, executing the callback before the **onActionEnd** event is triggered. It works for finger swiping, mouse dragging, mouse wheel scrolling, and touchpad movements, but not for screen reader touch mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'beforePanEnd'**, which triggers the callback before the **onActionEnd** event of the pan gesture.|
+| callback | [PanListenerCallback](#panlistenercallback19) | Yes  | Callback used to return the **GestureEvent** and **GestureRecognizer** of the pan gesture event and the FrameNode of the component.  |
+
+**Example**
+
+See the example for [on('beforePanStart')](#onbeforepanstart19).
+
+### off('beforePanEnd')<sup>19+</sup>
+
+off(type: 'beforePanEnd', callback?: PanListenerCallback): void
+
+Unsubscribes from the [onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#events) for the pan gesture. This cancels the callback registered using [on('beforePanEnd')](#onbeforepanend19).
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                |
+| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'beforePanEnd'**.|
+| callback | [PanListenerCallback](#panlistenercallback19) | No  | Callback to be unregistered.                              |
+
+**Example**
+
+See the example for [on('beforePanStart')](#onbeforepanstart19).
+
+### on('afterPanEnd')<sup>19+</sup>
+
+on(type: 'afterPanEnd', callback: PanListenerCallback): void
+
+Subscribes to the [onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#events) event for the pan gesture, executing the callback after the **onActionEnd** event is triggered. It works for finger swiping, mouse dragging, mouse wheel scrolling, and touchpad movements, but not for screen reader touch mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'beforePanEnd'**, which triggers the callback after the **onActionEnd** event of the pan gesture.|
+| callback | [PanListenerCallback](#panlistenercallback19) | Yes  | Callback used to return the **GestureEvent** and **GestureRecognizer** of the pan gesture event and the FrameNode of the component.  |
+
+**Example**
+
+See the example for [on('beforePanStart')](#onbeforepanstart19).
+
+### off('afterPanEnd')<sup>19+</sup>
+
+off(type: 'afterPanEnd', callback?: PanListenerCallback): void
+
+Unsubscribes from the [onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#events) for the pan gesture. This cancels the callback registered using [on('afterPanEnd')](#onafterpanend19).
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                                |
+| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'afterPanEnd'**.|
+| callback | [PanListenerCallback](#panlistenercallback19) | No  | Callback to be unregistered.                              |
+
+**Example**
+
+See the example for [on('beforePanStart')](#onbeforepanstart19).
+
+
+## PanListenerCallback<sup>19+</sup>
+type PanListenerCallback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => void
+
+Defines a callback for pan gesture events.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type             | Mandatory| Description                               |
+| ------- | ----------------- | ---- | --------------------------------- |
+| event   | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent)     | Yes  | Information about the gesture event that triggers the callback.  |
+| current | [GestureRecognizer](arkui-ts/ts-gesture-blocking-enhancement.md#gesturerecognizer) | Yes  | Information about the gesture recognizer that detects the event. |
+| node    | [FrameNode](js-apis-arkui-frameNode.md#framenode)         | No  | Component bound to the gesture event.|
+
 ## GestureEventListenerCallback<sup>12+</sup>
 type GestureEventListenerCallback = (event: GestureEvent, node?: FrameNode) => void
 
@@ -4168,7 +4748,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -4184,7 +4764,7 @@ struct Index {
         }
       })
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -4201,7 +4781,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4241,7 +4821,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -4276,7 +4856,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4322,14 +4902,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit'
-
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -4345,7 +4922,7 @@ struct Index {
         }
       }, rtm.Standard)
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -4362,7 +4939,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4404,13 +4981,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -4445,7 +5022,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4489,7 +5066,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -4502,7 +5079,7 @@ struct Index {
         }
       })
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -4519,7 +5096,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4558,7 +5135,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -4590,7 +5167,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4636,13 +5213,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -4655,7 +5232,7 @@ struct Index {
         }
       }, rtm.Standard)
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -4672,7 +5249,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4716,10 +5293,10 @@ import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -4751,7 +5328,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4796,7 +5373,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -4812,7 +5389,7 @@ struct Index {
         }
       })
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -4829,7 +5406,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4904,7 +5481,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4953,9 +5530,9 @@ import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+  Standard:router.RouterMode = router.RouterMode.Standard;
 }
-let rtm:RouterTmp = new RouterTmp()
+let rtm:RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -4971,7 +5548,7 @@ struct Index {
         }
       }, rtm.Standard)
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -4988,7 +5565,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5033,10 +5610,10 @@ import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -5071,7 +5648,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5128,7 +5705,7 @@ struct Index {
         }
       })
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -5145,7 +5722,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5216,7 +5793,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5266,10 +5843,10 @@ import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -5282,7 +5859,7 @@ struct Index {
         }
       }, rtm.Standard)
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -5299,7 +5876,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5343,10 +5920,10 @@ import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -5378,7 +5955,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5413,7 +5990,7 @@ router.back({url:'pages/detail'});
 
 ### back<sup>12+</sup>
 
-back(index: number, params?: Object): void;
+back(index: number, params?: Object): void
 
 Returns to the specified page.
 
@@ -5425,7 +6002,7 @@ Returns to the specified page.
 
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
-| index | number | Yes   | Index of the target page to navigate to. |
+| index | number | Yes   | Index of the target page to navigate to.<br> Value range: [0, +∞)|
 | params    | Object      | No   | Parameters carried when returning to the page.|
 
 **Example**
@@ -5532,7 +6109,7 @@ Obtains the status information about a page by its index.
 
 | Name    | Type                             | Mandatory  | Description        |
 | ------- | ------------------------------- | ---- | ---------- |
-| index    | number | Yes  | Index of the target page. |
+| index    | number | Yes  | Index of the target page.<br> Value range: [0, +∞)|
 
 **Return value**
 
@@ -5687,7 +6264,7 @@ router.getParams();
 
 type CustomBuilderWithId = (id: number) =&gt; void
 
-The **CustomBuilderWithId** type is used as a parameter for component attribute methods to customize the UI description and generate custom components by specifying the component ID.
+Defines a type that can be used for component attributes and method parameters to customize the UI description and generate custom components with a specific component ID.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -5709,10 +6286,10 @@ Specifies the target node for component binding.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| id | string \| number | Yes| Target node for binding popups or menus.<br>**NOTE**<br>1. When **id** is a number, it corresponds to the component's **UniqueID**, whose uniqueness is guaranteed by the system.<br>2. When **id** is a string, it corresponds to the component specified by the universal attribute [id](arkui-ts/ts-universal-attributes-component-id.md#id). You must ensure the uniqueness of this ID, although there may be multiple instances.|
-| componentId | number | No| Unique ID of the custom component where the target node is located. When the above **id** is specified as a string, this property can be used to narrow down the scope, helping you ensure the uniqueness of **id: string** within a certain range.|
+| Name| Type| Read Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| id | string \| number | No| No| Target node for binding popups or menus.<br>**NOTE**<br>1. When **id** is a number, it corresponds to the component's **UniqueID**, whose uniqueness is guaranteed by the system.<br>2. When **id** is a string, it corresponds to the component specified by the universal attribute [id](arkui-ts/ts-universal-attributes-component-id.md#id). You must ensure the uniqueness of this ID, although there may be multiple instances.|
+| componentId | number | No| Yes| Unique ID of the custom component where the target node is located. When the above **id** is specified as a string, this property can be used to narrow down the scope, helping you ensure the uniqueness of **id: string** within a certain range.|
 
 ## PromptAction
 
@@ -5745,6 +6322,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+This example demonstrates how to display a toast by calling **showToast**.
+
 <!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -5765,7 +6344,9 @@ try {
 
 ### openToast<sup>18+</sup>
 
-openToast(options: ShowToastOptions): Promise&lt;number&gt;
+openToast(options: promptAction.ShowToastOptions): Promise&lt;number&gt;
+
+Shows a toast. This API uses a promise to return the toast ID.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -5794,6 +6375,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+This example demonstrates how to display and close a toast by calling **openToast** and **closeToast**.
+
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5802,7 +6385,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct toastExample {
   @State toastId: number = 0;
-  promptAction: PromptAction = this.getUIContext().getPromptAction()
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
 
   build() {
     Column() {
@@ -5816,10 +6399,10 @@ struct toastExample {
             this.toastId = toastId;
           })
             .catch((error: BusinessError) => {
-              console.error(`openToast error code is ${error.code}, message is ${error.message}`)
+              console.error(`openToast error code is ${error.code}, message is ${error.message}`);
             })
         })
-      Blank().height(50);
+      Blank().height(50)
       Button('Close Toast')
         .height(100)
         .onClick(() => {
@@ -5839,6 +6422,8 @@ struct toastExample {
 ### closeToast<sup>18+</sup>
 
 closeToast(toastId: number): void
+
+Closes a toast.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -5893,6 +6478,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 <!--code_no_check-->
 
+This example demonstrates how to display a dialog box and return the dialog box response result using the **showDialog** API.
+
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -5930,7 +6517,7 @@ try {
 
 showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.ShowDialogSuccessResponse&gt;
 
-Shows a dialog box. This API uses a promise to return the result.
+Creates and displays a dialog box. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -5958,6 +6545,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 100001 | Internal error. |
 
 **Example**
+
+This example demonstrates how to display a dialog box and return the dialog box response result through a promise using the **showDialog** API.
 
 <!--code_no_check-->
 ```ts
@@ -5988,7 +6577,7 @@ promptAction.showDialog({
 
 ### showActionMenu<sup>11+</sup>
 
-showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt;):void
+showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt;): void
 
 Shows an action menu in the given settings. This API uses an asynchronous callback to return the result.
 
@@ -6049,7 +6638,7 @@ try {
 
 ### showActionMenu<sup>(deprecated)</sup>
 
-showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)):void
+showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)): void
 
 Shows an action menu in the given settings. This API uses an asynchronous callback to return the result.
 
@@ -6074,6 +6663,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 100001 | Internal error. |
 
 **Example**
+
+This example demonstrates how to display an action menu and return the action menu response result using the **showActionMenu** API.
 
 <!--code_no_check-->
 ```ts
@@ -6135,6 +6726,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+This example demonstrates how to display an action menu and return the action menu response result through a promise using the **showActionMenu** API.
+
 <!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -6165,7 +6758,7 @@ promptAction.showActionMenu({
 
 openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
-Opens a custom dialog box corresponding to **dialogContent**. This API uses a promise to return the result. The dialog box displayed through this API has its content fully following style settings of **dialogContent**. It is displayed in the same way where **customStyle** is set to **true**. Note that using **[isModal](js-apis-promptAction.md#basedialogoptions11) = true** and **[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true** together is not supported.
+Creates and displays a custom dialog box corresponding to **dialogContent**. This API uses a promise to return the result. The dialog box displayed through this API has its content fully following style settings of **dialogContent**. It is displayed in the same way where **customStyle** is set to **true**. Note that using **[isModal](js-apis-promptAction.md#basedialogoptions11) = true** and **[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true** together is not supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -6196,32 +6789,70 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+This example demonstrates how to listen for changes in [system environment information](../apis-ability-kit/js-apis-app-ability-configuration.md) (such as system language and color mode) and update a custom dialog box using the [update](../apis-arkui/js-apis-arkui-builderNode.md#update) and [updateConfiguration](../apis-arkui/js-apis-arkui-builderNode.md#updateconfiguration12) APIs of [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md).
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
+import { AbilityConstant, Configuration, EnvironmentCallback, ConfigurationConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { resourceManager } from '@kit.LocalizationKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
+  colorMode: resourceManager.ColorMode = resourceManager.ColorMode.LIGHT
 
-  constructor(text: string) {
-    this.text = text;
+  constructor(text: string, colorMode: resourceManager.ColorMode) {
+    this.text = text
+    this.colorMode = colorMode
   }
 }
 
 @Builder
-function buildText(params: Params) {
+function BuilderDialog(params: Params) {
   Column() {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
       .margin({ bottom: 36 })
-  }.backgroundColor('#FFF0F0F0')
+  }.backgroundColor(params.colorMode == resourceManager.ColorMode.LIGHT ? "#D5D5D5" : "#004AAF")
 }
 
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
+  contentNode: ComponentContent<Params> | null = null;
+  callbackId: number | undefined = 0;
+
+  aboutToAppear(): void {
+    let environmentCallback: EnvironmentCallback = {
+      onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
+      },
+      onConfigurationUpdated: (config: Configuration): void => {
+        console.log("onConfigurationUpdated " + JSON.stringify(config));
+        this.getUIContext().getHostContext()?.getApplicationContext().resourceManager.getConfiguration((err,
+          config) => {
+          // Call update of ComponentContent to update the colorMode settings.
+          this.contentNode?.update(new Params(this.message, config.colorMode))
+          setTimeout(() => {
+            // Call updateConfiguration of ComponentContent to trigger configuration update of the entire node.
+            this.contentNode?.updateConfiguration()
+          })
+        })
+      }
+    }
+    // Register a listener for system environment changes.
+    this.callbackId =
+      this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback)
+    // Set the application color mode to follow the system settings.
+    this.getUIContext()
+      .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET)
+  }
+
+  aboutToDisappear() {
+    // Unregister the listener for system environment changes.
+    this.getUIContext().getHostContext()?.getApplicationContext().off('environment', this.callbackId)
+    this.contentNode?.dispose()
+  }
 
   build() {
     Row() {
@@ -6230,14 +6861,19 @@ struct Index {
           .onClick(() => {
             let uiContext = this.getUIContext();
             let promptAction = uiContext.getPromptAction();
-            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-            promptAction.openCustomDialog(contentNode)
-              .then(() => {
-                console.info('succeeded')
-              })
-              .catch((error: BusinessError) => {
-                console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
-              })
+            if (this.contentNode == null && uiContext.getHostContext() != undefined) {
+              this.contentNode = new ComponentContent(uiContext, wrapBuilder(BuilderDialog), new Params(this.message,
+                uiContext.getHostContext()!!.getApplicationContext().resourceManager.getConfigurationSync().colorMode))
+            }
+            if (this.contentNode == null) {
+              return
+            }
+            promptAction.closeCustomDialog(this.contentNode)
+            promptAction.openCustomDialog(this.contentNode).then(() => {
+              console.info("succeeded")
+            }).catch((error: BusinessError) => {
+              console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
+            })
           })
       }
       .width('100%')
@@ -6252,7 +6888,7 @@ struct Index {
 
 openCustomDialogWithController\<T extends Object>(dialogContent: ComponentContent\<T>, controller: promptAction.DialogController, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
-Opens a custom dialog box corresponding to **dialogContent**. This API uses a promise to return the result. A dialog box controller can be bound to the custom dialog box, allowing for subsequent control of the dialog box through the controller.
+Creates and displays a custom dialog box corresponding to **dialogContent**. This API uses a promise to return the result. A dialog box controller can be bound to the custom dialog box, allowing for subsequent control of the dialog box through the controller.
 
 The dialog box displayed through this API has its content fully following style settings of **dialogContent**. It is displayed in the same way where **customStyle** is set to **true**.
 
@@ -6288,12 +6924,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+This example demonstrates how to create a custom dialog box with an external controller binding using **openCustomDialogWithController**.
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent, promptAction } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
   dialogController: promptAction.DialogController = new promptAction.DialogController();
 
   constructor(text: string, dialogController: promptAction.DialogController) {
@@ -6312,7 +6950,7 @@ function buildText(params: Params) {
     Button('Close by DialogController')
       .onClick(() => {
         if (params.dialogController != undefined) {
-          params.dialogController.close()
+          params.dialogController.close();
         }
       })
   }.backgroundColor('#FFF0F0F0')
@@ -6321,8 +6959,8 @@ function buildText(params: Params) {
 @Entry
 @ComponentV2
 struct Index {
-  @Local message: string = "hello"
-  private dialogController: promptAction.DialogController = new promptAction.DialogController()
+  @Local message: string = "hello";
+  private dialogController: promptAction.DialogController = new promptAction.DialogController();
 
   build() {
     Row() {
@@ -6335,7 +6973,7 @@ struct Index {
               new Params(this.message, this.dialogController));
             promptAction.openCustomDialogWithController(contentNode, this.dialogController)
               .then(() => {
-                console.info('succeeded')
+                console.info('succeeded');
               })
               .catch((error: BusinessError) => {
                 console.error(`OpenCustomDialogWithController args error code is ${error.code}, message is ${error.message}`);
@@ -6384,12 +7022,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+This example shows how to close a custom dialog box corresponding to **dialogContent** using **closeCustomDialog**.
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -6409,7 +7049,7 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -6421,7 +7061,7 @@ struct Index {
             let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
             promptAction.openCustomDialog(contentNode)
               .then(() => {
-                console.info('succeeded')
+                console.info('succeeded');
               })
               .catch((error: BusinessError) => {
                 console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
@@ -6429,7 +7069,7 @@ struct Index {
             setTimeout(() => {
               promptAction.closeCustomDialog(contentNode)
                 .then(() => {
-                  console.info('succeeded')
+                  console.info('succeeded');
                 })
                 .catch((error: BusinessError) => {
                   console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
@@ -6480,12 +7120,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+This example demonstrates how to dynamically adjust the position of an open custom dialog using **updateCustomDialog**.
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -6505,7 +7147,7 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -6514,22 +7156,22 @@ struct Index {
           .onClick(() => {
             let uiContext = this.getUIContext();
             let promptAction = uiContext.getPromptAction();
-            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message))
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
             promptAction.openCustomDialog(contentNode)
               .then(() => {
-                console.info('succeeded')
+                console.info('succeeded');
               })
               .catch((error: BusinessError) => {
-                console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`)
+                console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`);
               })
 
             setTimeout(() => {
               promptAction.updateCustomDialog(contentNode, { alignment: DialogAlignment.CenterEnd })
                 .then(() => {
-                  console.info('succeeded')
+                  console.info('succeeded');
                 })
                 .catch((error: BusinessError) => {
-                  console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`)
+                  console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`);
                 })
             }, 2000); // Automatically update the dialog box position after 2 seconds.
           })
@@ -6546,7 +7188,7 @@ struct Index {
 
 openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 
-Creates and displays a custom dialog box. This API uses a promise to return the dialog box ID, which can be used with **closeCustomDialog**. **isModal = true** and **showInSubWindow = true** cannot be used at the same time.
+Creates and displays a custom dialog box. This API uses a promise to return the dialog box ID for use with **closeCustomDialog**. **isModal = true** and **showInSubWindow = true** cannot be used at the same time.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -6577,7 +7219,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: promptAction.DialogController, options?: promptAction.DialogOptions): Promise\<number>
 
-Creates and displays a custom dialog box. This API uses a promise to return the dialog box ID, which can be used with **closeCustomDialog**.
+Creates and displays a custom dialog box. This API uses a promise to return the dialog box ID for use with **closeCustomDialog**.
 
 The dialog box ID can be included in the dialog box content for related operations. A dialog box controller can be bound to the custom dialog box, allowing for subsequent control of the dialog box through the controller.
 
@@ -6619,21 +7261,21 @@ import { PromptAction, promptAction } from '@kit.ArkUI';
 @Entry
 @ComponentV2
 struct Index {
-  @Local message: string = "hello"
-  private ctx: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.ctx.getPromptAction()
-  private dialogController: promptAction.DialogController = new promptAction.DialogController()
+  @Local message: string = "hello";
+  private ctx: UIContext = this.getUIContext();
+  private promptAction: PromptAction = this.ctx.getPromptAction();
+  private dialogController: promptAction.DialogController = new promptAction.DialogController();
 
-  private customDialogComponentId: number = 0
+  private customDialogComponentId: number = 0;
   @Builder customDialogComponent() {
     Column() {
       Text(this.message).fontSize(30)
       Row({ space: 10 }) {
         Button("Close by DialogId").onClick(() => {
-          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+          this.promptAction.closeCustomDialog(this.customDialogComponentId);
         })
         Button("Close by DialogController").onClick(() => {
-          this.dialogController.close()
+          this.dialogController.close();
         })
       }
     }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
@@ -6644,10 +7286,10 @@ struct Index {
       Text(this.message).fontSize(30)
       Row({ space: 10 }) {
         Button("Close by DialogId").onClick(() => {
-          this.promptAction.closeCustomDialog(dialogId)
+          this.promptAction.closeCustomDialog(dialogId);
         })
         Button("Close by DialogController").onClick(() => {
-          this.dialogController.close()
+          this.dialogController.close();
         })
       }
     }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
@@ -6663,10 +7305,10 @@ struct Index {
               this.customDialogComponent()
             }, this.dialogController)
               .then((dialogId: number) => {
-                this.customDialogComponentId = dialogId
+                this.customDialogComponentId = dialogId;
               })
               .catch((err: BusinessError) => {
-                console.error("presentCustomDialog error: " + err.code + " " + err.message)
+                console.error("presentCustomDialog error: " + err.code + " " + err.message);
               })
           })
         Button('presentCustomDialog with id')
@@ -6676,7 +7318,7 @@ struct Index {
               this.customDialogComponentWithId(dialogId)
             }, this.dialogController)
               .catch((err: BusinessError) => {
-                console.error("presentCustomDialog with id error: " + err.code + " " + err.message)
+                console.error("presentCustomDialog with id error: " + err.code + " " + err.message);
               })
           })
       }
@@ -6721,8 +7363,8 @@ import { PromptAction } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  promptAction: PromptAction = this.getUIContext().getPromptAction()
-  private customDialogComponentId: number = 0
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+  private customDialogComponentId: number = 0;
 
   @Builder
   customDialogComponent() {
@@ -6730,10 +7372,10 @@ struct Index {
       Text('Dialog box').fontSize(30)
       Row({ space: 50 }) {
         Button("OK").onClick(() => {
-          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+          this.promptAction.closeCustomDialog(this.customDialogComponentId);
         })
         Button("Cancel").onClick(() => {
-          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+          this.promptAction.closeCustomDialog(this.customDialogComponentId);
         })
       }
     }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
@@ -6749,17 +7391,17 @@ struct Index {
                 this.customDialogComponent()
               },
               onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-                console.info("reason" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
+                console.info("reason" + JSON.stringify(dismissDialogAction.reason));
+                console.log("dialog onWillDismiss");
                 if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
+                  dismissDialogAction.dismiss();
                 }
                 if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
+                  dismissDialogAction.dismiss();
                 }
               }
             }).then((dialogId: number) => {
-              this.customDialogComponentId = dialogId
+              this.customDialogComponentId = dialogId;
             })
           })
       }
@@ -6798,7 +7440,7 @@ import { ComponentContent, PromptAction, LevelOrder, promptAction, UIContext } f
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -6817,16 +7459,16 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Dialog box'
-  private ctx: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.ctx.getPromptAction()
+  @State message: string = 'Dialog box';
+  private ctx: UIContext = this.getUIContext();
+  private promptAction: PromptAction = this.ctx.getPromptAction();
   private contentNode: ComponentContent<Object> =
-    new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message))
+    new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message));
 
   private baseDialogOptions: promptAction.BaseDialogOptions = {
     showInSubWindow: false,
     levelOrder: LevelOrder.clamp(30.1),
-  }
+  };
 
   build() {
     Row() {
@@ -6836,7 +7478,7 @@ struct Index {
           .onClick(() => {
             this.promptAction.openCustomDialog(this.contentNode, this.baseDialogOptions)
               .catch((err: BusinessError) => {
-                console.error("openCustomDialog error: " + err.code + " " + err.message)
+                console.error("openCustomDialog error: " + err.code + " " + err.message);
               })
               .then(() => {
                 let topOrder: LevelOrder = this.promptAction.getTopOrder();
@@ -6878,7 +7520,7 @@ import { ComponentContent, PromptAction, LevelOrder, promptAction, UIContext } f
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -6897,16 +7539,16 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Dialog box'
-  private ctx: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.ctx.getPromptAction()
+  @State message: string = 'Dialog box';
+  private ctx: UIContext = this.getUIContext();
+  private promptAction: PromptAction = this.ctx.getPromptAction();
   private contentNode: ComponentContent<Object> =
-    new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message))
+    new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message));
 
   private baseDialogOptions: promptAction.BaseDialogOptions = {
     showInSubWindow: false,
     levelOrder: LevelOrder.clamp(30.1),
-  }
+  };
 
   build() {
     Row() {
@@ -6916,7 +7558,7 @@ struct Index {
           .onClick(() => {
             this.promptAction.openCustomDialog(this.contentNode, this.baseDialogOptions)
               .catch((err: BusinessError) => {
-                console.error("openCustomDialog error: " + err.code + " " + err.message)
+                console.error("openCustomDialog error: " + err.code + " " + err.message);
               })
               .then(() => {
                 let bottomOrder: LevelOrder = this.promptAction.getBottomOrder();
@@ -6935,7 +7577,7 @@ struct Index {
 
 openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: PopupCommonOptions): Promise&lt;void&gt;
 
-Opens a popup with the specified content. This API uses a promise to return the result.
+Creates and displays a popup with the specified content. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -6977,13 +7619,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+This example demonstrates how to display, update, and close a popup using the **openPopuo**, **updatePopup**, and **closePopup** APIs.
+
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 interface PopupParam {
-  updateFunc?: () => void
-  closeFunc?: () => void
+  updateFunc?: () => void;
+  closeFunc?: () => void;
 }
 
 export function showPopup(context: UIContext, uniqueId: number, contentNode: ComponentContent<PopupParam>,
@@ -6993,13 +7637,14 @@ export function showPopup(context: UIContext, uniqueId: number, contentNode: Com
   let targetId = frameNode?.getFirstChild()?.getUniqueId();
   promptAction.openPopup(contentNode, { id: targetId }, {
     radius: 16,
-    enableArrow: true
+    mask: { color: Color.Pink },
+    enableArrow: true,
   })
     .then(() => {
       console.info('openPopup success');
     })
     .catch((err: BusinessError) => {
-      console.info('openPopup error: ' + err.code + ' ' + err.message);
+      console.error('openPopup error: ' + err.code + ' ' + err.message);
     })
   popupParam.updateFunc = () => {
     promptAction.updatePopup(contentNode, {
@@ -7009,7 +7654,7 @@ export function showPopup(context: UIContext, uniqueId: number, contentNode: Com
         console.info('updatePopup success');
       })
       .catch((err: BusinessError) => {
-        console.info('updatePopup error: ' + err.code + ' ' + err.message);
+        console.error('updatePopup error: ' + err.code + ' ' + err.message);
       })
   }
   popupParam.closeFunc = () => {
@@ -7018,7 +7663,7 @@ export function showPopup(context: UIContext, uniqueId: number, contentNode: Com
         console.info('closePopup success');
       })
       .catch((err: BusinessError) => {
-        console.info('closePopup error: ' + err.code + ' ' + err.message);
+        console.error('closePopup error: ' + err.code + ' ' + err.message);
       })
   }
 }
@@ -7048,10 +7693,10 @@ struct Index {
       Button('Open Popup')
         .fontSize(20)
         .onClick(() => {
-          let context = this.getUIContext()
+          let context = this.getUIContext();
           const popupParam: PopupParam = {};
           const contentNode = new ComponentContent(context, wrapBuilder(buildText), popupParam);
-          showPopup(context, this.getUniqueId(), contentNode, popupParam)
+          showPopup(context, this.getUniqueId(), contentNode, popupParam);
         })
     }
   }
@@ -7141,7 +7786,7 @@ See the example for [openPopup](#openpopup18).
 
 openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: MenuOptions): Promise&lt;void&gt;
 
-Opens a menu with the specified content. This API uses a promise to return the result.
+Creates and displays a menu with the specified content. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -7183,6 +7828,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+This example demonstrates how to create and display a menu using **openMenu**.
+
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
 
@@ -7191,10 +7838,9 @@ export function doSomething(context: UIContext, uniqueId: number, contentNode: C
 }
 
 @Builder
-
 function MyMenu() {
   Column() {
-    Menu(){
+    Menu() {
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 1" })
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 2" })
     }
@@ -7204,14 +7850,12 @@ function MyMenu() {
 }
 
 export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
-
   const promptAction = context.getPromptAction();
   let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
   let frameNodeTarget = frameNode?.getFirstChild();
   frameNodeTarget = frameNodeTarget?.getChild(0);
   let targetId = frameNodeTarget?.getUniqueId();
-
-  promptAction.openMenu(contentNode, {id: targetId},{
+  promptAction.openMenu(contentNode, { id: targetId }, {
     enableArrow: true,
   });
 }
@@ -7220,15 +7864,15 @@ export function showMenu(context: UIContext, uniqueId: number, contentNode: Comp
 @Component
 struct Index {
   build() {
-    Column(){
+    Column() {
       Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
         .borderRadius('16lpx')
         .width('80%')
         .margin(10)
         .onClick(() => {
-          let context = this.getUIContext()
+          let context = this.getUIContext();
           const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
-          doSomething(context, this.getUniqueId(), contentNode)
+          doSomething(context, this.getUniqueId(), contentNode);
         })
     }
   }
@@ -7276,6 +7920,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+This example demonstrates how to update the arrow style of a menu using **updateMenu**.
+
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
 
@@ -7284,10 +7930,9 @@ export function doSomething(context: UIContext, uniqueId: number, contentNode: C
 }
 
 @Builder
-
 function MyMenu() {
   Column() {
-    Menu(){
+    Menu() {
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 1" })
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 2" })
     }
@@ -7297,37 +7942,34 @@ function MyMenu() {
 }
 
 export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
-
   const promptAction = context.getPromptAction();
   let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
   let frameNodeTarget = frameNode?.getFirstChild();
   frameNodeTarget = frameNodeTarget?.getChild(0);
   let targetId = frameNodeTarget?.getUniqueId();
-
-  promptAction.openMenu(contentNode, {id: targetId},{
+  promptAction.openMenu(contentNode, { id: targetId }, {
     enableArrow: true,
   });
-
   setTimeout(() => {
     promptAction.updateMenu(contentNode, {
       enableArrow: false,
     });
-  }, 2000)
+  }, 2000);
 }
 
 @Entry
 @Component
 struct Index {
   build() {
-    Column(){
+    Column() {
       Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
         .borderRadius('16lpx')
         .width('80%')
         .margin(10)
         .onClick(() => {
-          let context = this.getUIContext()
+          let context = this.getUIContext();
           const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
-          doSomething(context, this.getUniqueId(), contentNode)
+          doSomething(context, this.getUniqueId(), contentNode);
         })
     }
   }
@@ -7368,6 +8010,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+This example demonstrates how to close a menu using **closeMenu**.
+
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
 
@@ -7376,10 +8020,9 @@ export function doSomething(context: UIContext, uniqueId: number, contentNode: C
 }
 
 @Builder
-
 function MyMenu() {
   Column() {
-    Menu(){
+    Menu() {
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 1" })
       MenuItem({ startIcon: $r("app.media.startIcon"), content: "Menu item 2" })
     }
@@ -7389,35 +8032,32 @@ function MyMenu() {
 }
 
 export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
-
   const promptAction = context.getPromptAction();
   let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
   let frameNodeTarget = frameNode?.getFirstChild();
   frameNodeTarget = frameNodeTarget?.getChild(0);
   let targetId = frameNodeTarget?.getUniqueId();
-
-  promptAction.openMenu(contentNode, {id: targetId},{
+  promptAction.openMenu(contentNode, { id: targetId }, {
     enableArrow: true,
   });
-
   setTimeout(() => {
     promptAction.closeMenu(contentNode);
-  }, 2000)
+  }, 2000);
 }
 
 @Entry
 @Component
 struct Index {
   build() {
-    Column(){
+    Column() {
       Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
         .borderRadius('16lpx')
         .width('80%')
         .margin(10)
         .onClick(() => {
-          let context = this.getUIContext()
+          let context = this.getUIContext();
           const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
-          doSomething(context, this.getUniqueId(), contentNode)
+          doSomething(context, this.getUniqueId(), contentNode);
         })
     }
   }
@@ -7425,7 +8065,7 @@ struct Index {
 ```
 
 ## DragController<sup>11+</sup>
-In the following API examples, you must first use [getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11) in **UIContext** to obtain a **UIContext** instance, and then call the APIs using the obtained instance.
+In the following API examples, you must first use [getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11) in **UIContext** to obtain a **DragController** instance, and then call the APIs using the obtained instance.
 
 ### executeDrag<sup>11+</sup>
 
@@ -7456,7 +8096,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { dragController } from "@kit.ArkUI"
+import { dragController } from "@kit.ArkUI";
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -7474,28 +8114,28 @@ struct DragControllerPage {
   build() {
     Column() {
       Button('touch to execute drag')
-        .onTouch((event?:TouchEvent) => {
-          if(event){
+        .onTouch((event?: TouchEvent) => {
+          if (event) {
             if (event.type == TouchType.Down) {
-              let text = new unifiedDataChannel.Text()
-              let unifiedData = new unifiedDataChannel.UnifiedData(text)
+              let text = new unifiedDataChannel.Text();
+              let unifiedData = new unifiedDataChannel.UnifiedData(text);
 
               let dragInfo: dragController.DragInfo = {
                 pointerId: 0,
                 data: unifiedData,
                 extraParams: ''
+              };
+              class tmp {
+                event: DragEvent | undefined = undefined;
+                extraParams: string = '';
               }
-              class tmp{
-                event:DragEvent|undefined = undefined
-                extraParams:string = ''
-              }
-              let eve:tmp = new tmp()
-              dragController.executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
-                if(eve.event){
+              let eve: tmp = new tmp();
+              this.getUIContext().getDragController().executeDrag(() => { this.DraggingBuilder() }, dragInfo, (err, eve) => {
+                if (eve.event) {
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                  // ...
+                    // ...
                   } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                  // ...
+                    // ...
                   }
                 }
               })
@@ -7541,14 +8181,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { dragController, componentSnapshot } from "@kit.ArkUI"
+import { dragController } from "@kit.ArkUI";
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
 struct DragControllerPage {
-  @State pixmap: image.PixelMap|null = null
+  @State pixmap: image.PixelMap | null = null;
 
   @Builder DraggingBuilder() {
     Column() {
@@ -7571,32 +8211,32 @@ struct DragControllerPage {
   build() {
     Column() {
       Button('touch to execute drag')
-        .onTouch((event?:TouchEvent) => {
-          if(event){
+        .onTouch((event?: TouchEvent) => {
+          if (event) {
             if (event.type == TouchType.Down) {
-              let text = new unifiedDataChannel.Text()
-              let unifiedData = new unifiedDataChannel.UnifiedData(text)
+              let text = new unifiedDataChannel.Text();
+              let unifiedData = new unifiedDataChannel.UnifiedData(text);
 
               let dragInfo: dragController.DragInfo = {
                 pointerId: 0,
                 data: unifiedData,
                 extraParams: ''
-              }
-              let pb:CustomBuilder = ():void=>{this.PixmapBuilder()}
-              componentSnapshot.createFromBuilder(pb).then((pix: image.PixelMap) => {
+              };
+              let pb: CustomBuilder = (): void => { this.PixmapBuilder() };
+              this.getUIContext().getComponentSnapshot().createFromBuilder(pb).then((pix: image.PixelMap) => {
                 this.pixmap = pix;
                 let dragItemInfo: DragItemInfo = {
                   pixelMap: this.pixmap,
-                  builder: ()=>{this.DraggingBuilder()},
+                  builder: () => { this.DraggingBuilder() },
                   extraInfo: "DragItemInfoTest"
-                }
+                };
 
-                class tmp{
-                  event:DragResult|undefined = undefined
-                  extraParams:string = ''
+                class tmp {
+                  event: DragResult | undefined = undefined;
+                  extraParams: string = '';
                 }
-                let eve:tmp = new tmp()
-                dragController.executeDrag(dragItemInfo, dragInfo)
+                let eve: tmp = new tmp();
+                this.getUIContext().getDragController().executeDrag(dragItemInfo, dragInfo)
                   .then((eve) => {
                     if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                       // ...
@@ -7604,7 +8244,7 @@ struct DragControllerPage {
                       // ...
                     }
                   })
-                  .catch((err:Error) => {
+                  .catch((err: Error) => {
                   })
               })
             }
@@ -7672,10 +8312,9 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
-    let storage: LocalStorage = new LocalStorage();
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', storage, (err, data) => {
+    windowStage.loadContent('pages/Index', this.storage, (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
@@ -7691,7 +8330,7 @@ export default class EntryAbility extends UIAbility {
         uiContext = windowClass.getUIContext();
         this.storage.setOrCreate<UIContext>('uiContext', uiContext);
         // Obtain a UIContext instance.
-      })
+      });
     });
   }
 
@@ -7711,20 +8350,20 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-2. Call **LocalStorage.getShared()** to obtain the UI context and then use the **DragController** object obtained to perform subsequent operations.
+2. Call **this.getUIContext().getSharedLocalStorage()** to obtain the UI context and then use the **DragController** object obtained to perform subsequent operations.
 ```ts
-import { dragController, componentSnapshot, UIContext, DragController } from "@kit.ArkUI"
+import { dragController, componentSnapshot, UIContext, DragController } from "@kit.ArkUI";
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
-let storages = LocalStorage.getShared();
-
-@Entry(storages)
+@Entry()
 @Component
 struct DragControllerPage {
-  @State pixmap: image.PixelMap|null = null
-  private dragAction: dragController.DragAction|null = null;
-  customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  @State pixmap: image.PixelMap | null = null;
+  private dragAction: dragController.DragAction | null = null;
+  customBuilders: Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  storages = this.getUIContext().getSharedLocalStorage();
+
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
@@ -7744,40 +8383,40 @@ struct DragControllerPage {
       .height(100)
       .backgroundColor(Color.Red)
 
-      Button('Drag Multiple Objects').onTouch((event?:TouchEvent) => {
-        if(event){
+      Button('Drag Multiple Objects').onTouch((event?: TouchEvent) => {
+        if (event) {
           if (event.type == TouchType.Down) {
             console.info("muti drag Down by listener");
-            this.customBuilders.push(()=>{this.DraggingBuilder()});
-            this.customBuilders.push(()=>{this.DraggingBuilder()});
-            this.customBuilders.push(()=>{this.DraggingBuilder()});
-            let text = new unifiedDataChannel.Text()
-            let unifiedData = new unifiedDataChannel.UnifiedData(text)
+            this.customBuilders.push(() => { this.DraggingBuilder() });
+            this.customBuilders.push(() => { this.DraggingBuilder() });
+            this.customBuilders.push(() => { this.DraggingBuilder() });
+            let text = new unifiedDataChannel.Text();
+            let unifiedData = new unifiedDataChannel.UnifiedData(text);
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
               data: unifiedData,
               extraParams: ''
-            }
+            };
             try{
-              let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
-              this.dragAction = uiContext.getDragController().createDragAction(this.customBuilders, dragInfo)
-              if(!this.dragAction){
+              let uiContext: UIContext = this.storages?.get<UIContext>('uiContext') as UIContext;
+              this.dragAction = uiContext.getDragController().createDragAction(this.customBuilders, dragInfo);
+              if (!this.dragAction) {
                 console.info("listener dragAction is null");
-                return
+                return;
               }
-              this.dragAction.on('statusChange', (dragAndDropInfo)=>{
+              this.dragAction.on('statusChange', (dragAndDropInfo) => {
                 if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
                   console.info("drag has start");
-                } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
+                } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED) {
                   console.info("drag has end");
                   if (!this.dragAction) {
-                    return
+                    return;
                   }
-                  this.customBuilders.splice(0, this.customBuilders.length)
-                  this.dragAction.off('statusChange')
+                  this.customBuilders.splice(0, this.customBuilders.length);
+                  this.dragAction.off('statusChange');
                 }
               })
-              this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+              this.dragAction.startDrag().then(() => {}).catch((err: Error) => {
                 console.error("start drag Error:" + err.message);
               })
             } catch(err) {
@@ -7785,7 +8424,7 @@ struct DragControllerPage {
             }
           }
         }
-      }).margin({top:20})
+      }).margin({ top: 20 })
     }
   }
 }
@@ -7906,29 +8545,29 @@ import { dragController } from "@kit.ArkUI";
 @Entry
 @Component
 struct NormalEts {
-  @State finished: boolean = false
-  @State timeout1: number = 1
-  @State pixmap: image.PixelMap | undefined = undefined
-  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined
-  @State previewData: DragItemInfo | undefined = undefined
+  @State finished: boolean = false;
+  @State timeout1: number = 1;
+  @State pixmap: image.PixelMap | undefined = undefined;
+  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined;
+  @State previewData: DragItemInfo | undefined = undefined;
 
   loadData() {
     let timeout = setTimeout(() => {
       this.getUIContext().getComponentSnapshot().get("image1", (error: Error, pixmap: image.PixelMap) => {
-        this.pixmap = pixmap
+        this.pixmap = pixmap;
         this.previewData = {
           pixelMap: this.pixmap
-        }
-      })
+        };
+      });
 
       let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
       data.imageUri = "app.media.startIcon";
       let unifiedData = new unifiedDataChannel.UnifiedData(data);
-      this.unifiedData1 = unifiedData
+      this.unifiedData1 = unifiedData;
 
-      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY)
+      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY);
     }, 4000);
-    this.timeout1 = timeout
+    this.timeout1 = timeout;
   }
 
 
@@ -7942,20 +8581,20 @@ struct NormalEts {
           .dragPreview(this.previewData)
           .onPreDrag((status: PreDragStatus) => {
             if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
-              this.loadData()
+              this.loadData();
             } else {
               clearTimeout(this.timeout1);
             }
           })
           .onDragStart((event: DragEvent) => {
             if (this.finished == false) {
-              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING)
+              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING);
             } else {
               event.setData(this.unifiedData1);
             }
           })
-          .onDragEnd(()=>{
-            this.finished = false
+          .onDragEnd(() => {
+            this.finished = false;
           })
       }
       .height(400)
@@ -7990,21 +8629,23 @@ Adds a specified **ComponentContent** node to the **OverlayManager**.
 | Name    | Type                                      | Mandatory  | Description         |
 | ------- | ---------------------------------------- | ---- | ----------- |
 | content | [ComponentContent](js-apis-arkui-ComponentContent.md) | Yes   | Content to add to the new node on the **OverlayManager**.<br>**NOTE**<br> By default, the new node is centered on the page and stacked according to its stacking level.|
-| index | number | No   | Stacking level of the new node on the **OverlayManager**.<br>**NOTE**<br> If the value is greater than or equal to 0, a larger value indicates a higher stacking level; for those that have the same index, the one that is added at a later time has a higher stacking level.<br> If the value is less than 0 or is **null** or **undefined**, the **ComponentContent** node is added at the highest level by default.<br>If the same **ComponentContent** node is added multiple times, only the last added one is retained.<br>
+| index | number | No   | Stacking level of the new node on the **OverlayManager**.<br>**NOTE**<br> If the value is greater than or equal to 0, a larger value means a higher layer for the **ComponentContent** node. If multiple **ComponentContent** nodes have the same index, the later-added ones appear above earlier ones.<br> If the value is less than 0 or is **null** or **undefined**, the **ComponentContent** node is added at the highest level by default.<br>If the same **ComponentContent** node is added multiple times, only the last added one is retained.|
 
 **Example**
 
 ```ts
-import { ComponentContent, OverlayManager, router } from '@kit.ArkUI';
+import { ComponentContent, OverlayManager } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
-  offset: Position
+  text: string = "";
+  offset: Position;
+
   constructor(text: string, offset: Position) {
-    this.text = text
-    this.offset = offset
+    this.text = text;
+    this.offset = offset;
   }
 }
+
 @Builder
 function builderText(params: Params) {
   Column() {
@@ -8018,70 +8659,70 @@ function builderText(params: Params) {
 @Component
 struct OverlayExample {
   @State message: string = 'ComponentContent';
-  private uiContext: UIContext = this.getUIContext()
-  private overlayNode: OverlayManager = this.uiContext.getOverlayManager()
-  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = []
-  @StorageLink('componentContentIndex') componentContentIndex: number = 0
-  @StorageLink('arrayIndex') arrayIndex: number = 0
-  @StorageLink("componentOffset") componentOffset: Position = {x: 0, y: 80}
+  private uiContext: UIContext = this.getUIContext();
+  private overlayNode: OverlayManager = this.uiContext.getOverlayManager();
+  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = [];
+  @StorageLink('componentContentIndex') componentContentIndex: number = 0;
+  @StorageLink('arrayIndex') arrayIndex: number = 0;
+  @StorageLink("componentOffset") componentOffset: Position = { x: 0, y: 80 };
 
   build() {
     Column() {
-      Button("++componentContentIndex: " + this.componentContentIndex).onClick(()=>{
-        ++this.componentContentIndex
+      Button("++componentContentIndex: " + this.componentContentIndex).onClick(() => {
+        ++this.componentContentIndex;
       })
-      Button("--componentContentIndex: " + this.componentContentIndex).onClick(()=>{
-        --this.componentContentIndex
+      Button("--componentContentIndex: " + this.componentContentIndex).onClick(() => {
+        --this.componentContentIndex;
       })
-      Button("Add ComponentContent" + this.contentArray.length).onClick(()=>{
+      Button("Add ComponentContent" + this.contentArray.length).onClick(() => {
         let componentContent = new ComponentContent(
           this.uiContext, wrapBuilder<[Params]>(builderText),
           new Params(this.message + (this.contentArray.length), this.componentOffset)
-        )
-        this.contentArray.push(componentContent)
-        this.overlayNode.addComponentContent(componentContent, this.componentContentIndex)
+        );
+        this.contentArray.push(componentContent);
+        this.overlayNode.addComponentContent(componentContent, this.componentContentIndex);
       })
-      Button("++arrayIndex: " + this.arrayIndex).onClick(()=>{
-        ++this.arrayIndex
+      Button("++arrayIndex: " + this.arrayIndex).onClick(() => {
+        ++this.arrayIndex;
       })
-      Button("--arrayIndex: " + this.arrayIndex).onClick(()=>{
-        --this.arrayIndex
+      Button("--arrayIndex: " + this.arrayIndex).onClick(() => {
+        --this.arrayIndex;
       })
-      Button("Delete ComponentContent" + this.arrayIndex).onClick(()=>{
+      Button("Delete ComponentContent" + this.arrayIndex).onClick(() => {
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-          let componentContent = this.contentArray.splice(this.arrayIndex, 1)
-          this.overlayNode.removeComponentContent(componentContent.pop())
+          let componentContent = this.contentArray.splice(this.arrayIndex, 1);
+          this.overlayNode.removeComponentContent(componentContent.pop());
         } else {
-          console.info("Invalid arrayIndex.")
+          console.info("Invalid arrayIndex.");
         }
       })
-      Button("Show ComponentContent" + this.arrayIndex).onClick(()=>{
+      Button("Show ComponentContent" + this.arrayIndex).onClick(() => {
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-          let componentContent = this.contentArray[this.arrayIndex]
-          this.overlayNode.showComponentContent(componentContent)
+          let componentContent = this.contentArray[this.arrayIndex];
+          this.overlayNode.showComponentContent(componentContent);
         } else {
-          console.info("Invalid arrayIndex.")
+          console.info("Invalid arrayIndex.");
         }
       })
-      Button("Hide ComponentContent" + this.arrayIndex).onClick(()=>{
+      Button("Hide ComponentContent" + this.arrayIndex).onClick(() => {
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-          let componentContent = this.contentArray[this.arrayIndex]
-          this.overlayNode.hideComponentContent(componentContent)
+          let componentContent = this.contentArray[this.arrayIndex];
+          this.overlayNode.hideComponentContent(componentContent);
         } else {
-          console.info("Invalid arrayIndex.")
+          console.info("Invalid arrayIndex.");
         }
       })
-      Button("Show All ComponentContent").onClick(()=>{
-          this.overlayNode.showAllComponentContents()
+      Button("Show All ComponentContent").onClick(() => {
+        this.overlayNode.showAllComponentContents();
       })
-      Button("Hide All ComponentContent").onClick(()=>{
-        this.overlayNode.hideAllComponentContents()
+      Button("Hide All ComponentContent").onClick(() => {
+        this.overlayNode.hideAllComponentContents();
       })
 
-      Button("Go").onClick(()=>{
-        router.pushUrl({
+      Button("Go").onClick(() => {
+        this.getUIContext().getRouter().pushUrl({
           url: 'pages/Second'
-        })
+        });
       })
     }
     .width('100%')
@@ -8094,9 +8735,9 @@ struct OverlayExample {
 
 addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder): void
 
-Creates a floating layer node with the specified display order.
+Creates an overlay node with the specified display order.
 
-This API allows you to define the stacking order of the nodes when they are created.
+ 
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -8107,21 +8748,21 @@ This API allows you to define the stacking order of the nodes when they are crea
 | Name    | Type                                      | Mandatory  | Description         |
 | ------- | ---------------------------------------- | ---- | ----------- |
 | content | [ComponentContent](js-apis-arkui-ComponentContent.md) | Yes   | Content to add to the new node on the **OverlayManager**.<br>**NOTE**<br> By default, the new node is centered on the page and stacked according to its stacking level.|
-| levelOrder | [LevelOrder](js-apis-promptAction.md#levelorder18) | No   | Display order of the new floating layer node.<br>**NOTE**<br>- Default value: **LevelOrder.clamp(0)**|
+| levelOrder | [LevelOrder](js-apis-promptAction.md#levelorder18) | No   | Display order of the new overlay node.<br>**NOTE**<br>- Default value: **LevelOrder.clamp(0)**|
 
 **Example**
 
-This example demonstrates how to use **addComponentContentWithOrder** to create a floating layer node with the specified display order.
+This example demonstrates how to use **addComponentContentWithOrder** to create an overlay node with the specified display order.
 
 ```ts
 import { ComponentContent, PromptAction, LevelOrder, UIContext, OverlayManager } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
-  offset: Position
+  text: string = "";
+  offset: Position;
   constructor(text: string, offset: Position) {
-    this.text = text
-    this.offset = offset
+    this.text = text;
+    this.offset = offset;
   }
 }
 @Builder
@@ -8136,14 +8777,14 @@ function builderText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Dialog box'
-  private ctx: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.ctx.getPromptAction()
-  private overlayNode: OverlayManager = this.ctx.getOverlayManager()
-  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = []
-  @StorageLink('componentContentIndex') componentContentIndex: number = 0
-  @StorageLink('arrayIndex') arrayIndex: number = 0
-  @StorageLink("componentOffset") componentOffset: Position = {x: 0, y: 80}
+  @State message: string = 'Dialog box';
+  private ctx: UIContext = this.getUIContext();
+  private promptAction: PromptAction = this.ctx.getPromptAction();
+  private overlayNode: OverlayManager = this.ctx.getOverlayManager();
+  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = [];
+  @StorageLink('componentContentIndex') componentContentIndex: number = 0;
+  @StorageLink('arrayIndex') arrayIndex: number = 0;
+  @StorageLink("componentOffset") componentOffset: Position = { x: 0, y: 80 };
 
   build() {
     Row() {
@@ -8154,9 +8795,9 @@ struct Index {
             let componentContent = new ComponentContent(
               this.ctx, wrapBuilder<[Params]>(builderText),
               new Params(this.message + (this.contentArray.length), this.componentOffset)
-            )
-            this.contentArray.push(componentContent)
-            this.overlayNode.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100.1))
+            );
+            this.contentArray.push(componentContent);
+            this.overlayNode.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100.1));
             let topOrder: LevelOrder = this.promptAction.getTopOrder();
             if (topOrder !== undefined) {
               console.error('topOrder: ' + topOrder.getOrder());
@@ -8172,9 +8813,9 @@ struct Index {
             let componentContent = new ComponentContent(
               this.ctx, wrapBuilder<[Params]>(builderText),
               new Params(this.message + (this.contentArray.length), this.componentOffset)
-            )
-            this.contentArray.push(componentContent)
-            this.overlayNode.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100.2))
+            );
+            this.contentArray.push(componentContent);
+            this.overlayNode.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100.2));
             let topOrder: LevelOrder = this.promptAction.getTopOrder();
             if (topOrder !== undefined) {
               console.error('topOrder: ' + topOrder.getOrder());
@@ -8194,7 +8835,7 @@ struct Index {
 
 removeComponentContent(content: ComponentContent): void
 
-Removes a specified **ComponentContent** node from the **OverlayManager**
+Removes a specified **ComponentContent** node from the **OverlayManager**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -8208,7 +8849,7 @@ Removes a specified **ComponentContent** node from the **OverlayManager**
 
 **Example**
 
-See [addComponentContent Example](#addcomponentcontent12).
+See the example for [addComponentContent](#addcomponentcontent12).
 
 ### showComponentContent<sup>12+</sup>
 
@@ -8228,7 +8869,7 @@ Shows a specified **ComponentContent** node on the **OverlayManager**.
 
 **Example**
 
-See [addComponentContent Example](#addcomponentcontent12).
+See the example for [addComponentContent](#addcomponentcontent12).
 
 ### hideComponentContent<sup>12+</sup>
 
@@ -8248,7 +8889,7 @@ Hides a specified **ComponentContent** node on the **OverlayManager**.
 
 **Example**
 
-See [addComponentContent Example](#addcomponentcontent12).
+See the example for [addComponentContent](#addcomponentcontent12).
 
 ### showAllComponentContents<sup>12+</sup>
 
@@ -8262,7 +8903,7 @@ Shows all **ComponentContent** nodes on the **OverlayManager**.
 
 **Example**
 
-See [addComponentContent Example](#addcomponentcontent12).
+See the example for [addComponentContent](#addcomponentcontent12).
 
 ### hideAllComponentContents<sup>12+</sup>
 
@@ -8276,19 +8917,18 @@ Hides all **ComponentContent** nodes on the **OverlayManager**.
 
 **Example**
 
-See [addComponentContent Example](#addcomponentcontent12).
+See the example for [addComponentContent](#addcomponentcontent12).
 
 ## OverlayManagerOptions<sup>15+</sup>
 
 Defines the options used to initialize the [OverlayManager](#overlaymanager12).
 
-**Atomic service API**: This API can be used in atomic services since API version 15.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name            | Type               | Mandatory    | Description                    |
 | --------------- | ---------------------- | ------------ | --------------------- |
-| renderRootOverlay   | boolean | No| Whether to render the overlay root node. The value **true** means to render the overlay root node, and **false** means the opposite. The default value is **true**.|
+| renderRootOverlay   | boolean | No| Whether to render the overlay root node. The value **true** means to render the overlay root node, and **false** means the opposite. The default value is **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| enableBackPressedEvent<sup>19+</sup>   | boolean | No| Whether to enable the swipe-to-dismiss gesture for **ComponentContent** under **OverlayManager**. The value **true** means to enable the swipe-to-dismiss gesture, and **false** means the opposite.<br>Default value: **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 19.|
 
 ## AtomicServiceBar<sup>11+</sup>
 
@@ -8361,7 +9001,7 @@ Sets the background color of the atomic service menu bar.
 **Example**
 
 ```ts
-import {UIContext, AtomicServiceBar,window } from '@kit.ArkUI';
+import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
@@ -8401,7 +9041,7 @@ Sets the title content of the atomic service menu bar.
 **Example**
 
 ```ts
-import {UIContext, AtomicServiceBar,window } from '@kit.ArkUI';
+import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -8442,7 +9082,7 @@ Sets the font style of the atomic service menu bar.
 **Example**
 
 ```ts
-import {UIContext, Font, AtomicServiceBar } from '@kit.ArkUI';
+import { UIContext, Font, AtomicServiceBar } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -8484,7 +9124,7 @@ Sets the color of the atomic service icon.
 **Example**
 
 ```ts
-import {UIContext, Font, window } from '@kit.ArkUI';
+import { UIContext, Font, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -8563,7 +9203,7 @@ Enumerates the modes in which the layout responds when the keyboard is displayed
 
 
 ## FocusController<sup>12+</sup>
-In the following API examples, you must first use [getFocusController()](js-apis-arkui-UIContext.md#getfocuscontroller12) in **UIContext** to obtain a **UIContext** instance, and then call the APIs using the obtained instance.
+In the following API examples, you must first use [getFocusController()](js-apis-arkui-UIContext.md#getfocuscontroller12) in **UIContext** to obtain a **FocusController** instance, and then call the APIs using the obtained instance.
 
 ### clearFocus<sup>12+</sup>
 
@@ -8581,8 +9221,8 @@ Clears the focus and forcibly moves the focus to the root container node of the 
 @Entry
 @Component
 struct ClearFocusExample {
-  @State inputValue: string = ''
-  @State btColor: Color = Color.Blue
+  @State inputValue: string = '';
+  @State btColor: Color = Color.Blue;
 
   build() {
     Column({ space: 20 }) {
@@ -8601,10 +9241,10 @@ struct ClearFocusExample {
           .backgroundColor(this.btColor)
           .defaultFocus(true)
           .onFocus(() => {
-            this.btColor = Color.Red
+            this.btColor = Color.Red;
           })
           .onBlur(() => {
-            this.btColor = Color.Blue
+            this.btColor = Color.Blue;
           })
         Button('clearFocus')
           .width(200)
@@ -8612,7 +9252,7 @@ struct ClearFocusExample {
           .fontColor(Color.White)
           .backgroundColor(Color.Blue)
           .onClick(() => {
-            this.getUIContext().getFocusController().clearFocus()
+            this.getUIContext().getFocusController().clearFocus();
           })
       }
     }
@@ -8626,7 +9266,7 @@ struct ClearFocusExample {
 
 requestFocus(key: string): void
 
-Sets focus on the specified entity node in the component tree based on the component ID. This API takes effect in the current frame.
+Transfers focus to a component node by the component ID, which is effective immediately.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -8654,7 +9294,7 @@ For details about the error codes, see [Focus Error Codes](errorcode-focus.md).
 @Entry
 @Component
 struct RequestExample {
-  @State btColor: Color = Color.Blue
+  @State btColor: Color = Color.Blue;
 
   build() {
     Column({ space: 20 }) {
@@ -8666,10 +9306,10 @@ struct RequestExample {
           .focusOnTouch(true)
           .backgroundColor(this.btColor)
           .onFocus(() => {
-            this.btColor = Color.Red
+            this.btColor = Color.Red;
           })
           .onBlur(() => {
-            this.btColor = Color.Blue
+            this.btColor = Color.Blue;
           })
           .id("testButton")
 
@@ -8683,7 +9323,7 @@ struct RequestExample {
           .width(200)
           .height(70)
           .onClick(() => {
-            this.getUIContext().getFocusController().requestFocus("testButton")
+            this.getUIContext().getFocusController().requestFocus("testButton");
           })
 
         Button('requestFocus fail')
@@ -8691,9 +9331,9 @@ struct RequestExample {
           .height(70)
           .onClick(() => {
             try {
-              this.getUIContext().getFocusController().requestFocus("eee")
+              this.getUIContext().getFocusController().requestFocus("eee");
             } catch (error) {
-              console.error('requestFocus failed code is ' + error.code + ' message is ' + error.message)
+              console.error('requestFocus failed code is ' + error.code + ' message is ' + error.message);
             }
           })
       }
@@ -8727,11 +9367,11 @@ Sets the [focus activation state](../../ui/arkts-common-events-focus-event.md) o
 @Component
 struct ActivateExample {
   aboutToAppear() {
-    this.getUIContext().getFocusController().activate(true, false)
+    this.getUIContext().getFocusController().activate(true, false);
   }
 
   aboutToDisappear() {
-    this.getUIContext().getFocusController().activate(false)
+    this.getUIContext().getFocusController().activate(false);
   }
 
   build() {
@@ -8758,7 +9398,7 @@ struct ActivateExample {
 
 ### setAutoFocusTransfer<sup>14+</sup>
 
-setAutoFocusTransfer(isAutoFocusTransfer: boolean): void;
+setAutoFocusTransfer(isAutoFocusTransfer: boolean): void
 
 Sets whether the new page automatically obtains focus during page switching.
 
@@ -8770,12 +9410,12 @@ Sets whether the new page automatically obtains focus during page switching.
 
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
-| isAutoFocusTransfer | boolean| Yes| Whether the new page automatically obtains focus during page switching using navigation components or APIs, such as [Router](js-apis-router.md#routerpushurl9), [Navigation](arkui-ts/ts-basic-components-navigation.md#navigation), [Menu](arkui-ts/ts-basic-components-menu.md#menu), [Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md), and [Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup).<br> The value **true** means the new page automatically obtains focus, and **false** means the opposite. Default value: **true**|
+| isAutoFocusTransfer | boolean| Yes| Whether the new page automatically obtains focus during page switching using navigation components or APIs, such as [Router](js-apis-router.md#routerpushurldeprecated), [Navigation](arkui-ts/ts-basic-components-navigation.md#navigation), [Menu](arkui-ts/ts-basic-components-menu.md#menu), [Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md), and [Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup).<br> The value **true** means the new page automatically obtains focus, and **false** means the opposite. Default value: **true**|
 
 ```ts
 @CustomDialog
 struct CustomDialogExample {
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
   build() {
     Column() {
       Text('This is a custom dialog box')
@@ -8787,8 +9427,8 @@ struct CustomDialogExample {
       Button('Close Dialog Box')
         .onClick(() => {
           if (this.controller != undefined) {
-            this.getUIContext().getFocusController().setAutoFocusTransfer(true)
-            this.controller.close()
+            this.getUIContext().getFocusController().setAutoFocusTransfer(true);
+            this.controller.close();
           }
         })
         .margin(20)
@@ -8801,9 +9441,9 @@ struct CustomDialogUser {
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
     }),
-  })
+  });
   aboutToDisappear() {
-    this.dialogController = null
+    this.dialogController = null;
   }
 
   build() {
@@ -8811,8 +9451,8 @@ struct CustomDialogUser {
       Button('click me')
         .onClick(() => {
           if (this.dialogController != null) {
-            this.getUIContext().getFocusController().setAutoFocusTransfer(false)
-            this.dialogController.open()
+            this.getUIContext().getFocusController().setAutoFocusTransfer(false);
+            this.dialogController.open();
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
@@ -8844,7 +9484,7 @@ Sets the mode for processing key events.
 struct Index {
 
   aboutToAppear() {
-    this.getUIContext().getFocusController().setKeyProcessingMode(KeyProcessingMode.ANCESTOR_EVENT)
+    this.getUIContext().getFocusController().setKeyProcessingMode(KeyProcessingMode.ANCESTOR_EVENT);
   }
 
   build() {
@@ -8852,11 +9492,11 @@ struct Index {
       Row() {
         Button('Button1').id('Button1').onKeyEvent((event) => {
           console.log("Button1");
-          return true
+          return true;
         })
         Button('Button2').id('Button2').onKeyEvent((event) => {
           console.log("Button2");
-          return true
+          return true;
         })
       }
       .width('100%')
@@ -8919,7 +9559,7 @@ import { UIContext, CursorController } from '@kit.ArkUI';
 @Entry
 @Component
 struct CursorControlExample {
-  @State text: string = ''
+  @State text: string = '';
   cursorCustom: CursorController = this.getUIContext().getCursorController();
 
   build() {
@@ -8927,7 +9567,7 @@ struct CursorControlExample {
       Row().height(200).width(200).backgroundColor(Color.Green).position({x: 150 ,y:70})
         .onHover((flag) => {
           if (flag) {
-            this.cursorCustom.setCursor(pointer.PointerStyle.EAST)
+            this.cursorCustom.setCursor(pointer.PointerStyle.EAST);
           } else {
             console.info("restoreDefault");
             this.cursorCustom.restoreDefault();
@@ -8965,7 +9605,7 @@ import { UIContext, CursorController } from '@kit.ArkUI';
 @Entry
 @Component
 struct CursorControlExample {
-  @State text: string = ''
+  @State text: string = '';
   cursorCustom: CursorController = this.getUIContext().getCursorController();
 
   build() {
@@ -8973,7 +9613,7 @@ struct CursorControlExample {
       Row().height(200).width(200).backgroundColor(Color.Blue).position({x: 100 ,y:70})
         .onHover((flag) => {
           if (flag) {
-            this.cursorCustom.setCursor(pointer.PointerStyle.WEST)
+            this.cursorCustom.setCursor(pointer.PointerStyle.WEST);
           } else {
             this.cursorCustom.restoreDefault();
           }
@@ -9051,6 +9691,15 @@ struct Index {
 
 In the following API examples, you must first use [getMeasureUtils()](js-apis-arkui-UIContext.md#getmeasureutils12) in **UIContext** to obtain a **MeasureUtils** instance, and then call the APIs using the obtained instance.
 
+> **NOTE**
+>
+>
+> To perform more complex text measurements, use the [Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph) API from the ArkGraphics 2D module.
+>
+> Avoid using [ApplicationContext.setFontSizeScale](../apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextsetfontsizescale13) during text measurement API calls. To ensure timing correctness and the accuracy of measurement results, manually listen for font scale changes.
+>
+> When calculating clipped text, you are advised to iterate by Unicode units instead of the string length. This approach prevents character truncation that can occur with length-based iteration, which often leads to inaccurate calculation results. A typical example of this issue is the improper truncation of emoji characters.
+
 ### measureText<sup>12+</sup>
 
 measureText(options: MeasureOptions): number
@@ -9071,7 +9720,7 @@ Measures the width of the given single-line text.
 
 | Type         | Description      |
 | ------------  | --------- |
-| number        | Text width.<br>**NOTE**<br>Unit: px|
+| number        | Text width.<br>**NOTE**<br>Floating-point results are rounded up.<br>Unit: px.|
 
 
 **Example**
@@ -9088,7 +9737,7 @@ struct Index {
   @State textWidth: number = this.uiContextMeasure.measureText({
     textContent: "Hello World",
     fontSize: '50px'
-  })
+  });
 
   build() {
     Row() {
@@ -9122,7 +9771,7 @@ Measures the width and height of the given single-line text.
 
 | Type         | Description      |
 | ------------  | --------- |
-| [SizeOption](arkui-ts/ts-types.md#sizeoptions)   | Width and height of the text.<br>**NOTE**<br> The return values for text width and height are both in px.|
+| [SizeOptions](arkui-ts/ts-types.md#sizeoptions)   | Width and height of the text.<br>**NOTE**<br>If **constraintWidth** is not specified, the floating-point value of the text width will be rounded up.<br>The return values for text width and height are both in px.|
 
 
 **Example**
@@ -9136,10 +9785,10 @@ import { MeasureUtils } from '@kit.ArkUI';
 struct Index {
   @State uiContext: UIContext = this.getUIContext();
   @State uiContextMeasure: MeasureUtils = this.uiContext.getMeasureUtils();
-  textSize : SizeOptions = this.uiContextMeasure.measureTextSize({
+  textSize: SizeOptions = this.uiContextMeasure.measureTextSize({
     textContent: "Hello World",
     fontSize: '50px'
-  })
+  });
   build() {
     Row() {
       Column() {
@@ -9156,6 +9805,8 @@ struct Index {
 ## ComponentSnapshot<sup>12+</sup>
 
 In the following API examples, you must first use [getComponentSnapshot()](js-apis-arkui-UIContext.md#getcomponentsnapshot12) in **UIContext** to obtain a **ComponentSnapshot** instance, and then call the APIs using the obtained instance.
+
+Transformation properties such as scaling, translation, and rotation only apply to the child components of the target component. Applying these transformation properties directly to the target component itself has no effect; the snapshot will still display the component as it appears before any transformations are applied.
 
 ### get<sup>12+</sup>
 
@@ -9175,13 +9826,13 @@ Obtains the snapshot of a component that has been loaded. This API uses an async
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| id       | string                                                       | Yes  | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
+| id       | string                                                       | Yes  | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component.<br>**NOTE**<br>Off-screen or cached components not mounted in the component tree are not supported.|
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes  | Callback used to return the result.                                        |
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | No   | Custom settings of the snapshot.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Snapshot Error Codes](errorcode-snapshot.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -9197,7 +9848,7 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
   uiContext: UIContext = this.getUIContext();
   build() {
     Column() {
@@ -9209,11 +9860,11 @@ struct SnapshotExample {
         .onClick(() => {
           this.uiContext.getComponentSnapshot().get("root", (error: Error, pixmap: image.PixelMap) => {
             if (error) {
-              console.error("error: " + JSON.stringify(error))
+              console.error("error: " + JSON.stringify(error));
               return;
             }
-            this.pixmap = pixmap
-          }, {scale : 2, waitUntilRenderFinished : true})
+            this.pixmap = pixmap;
+          }, { scale: 2, waitUntilRenderFinished: true });
         }).margin(10)
     }
     .width('100%')
@@ -9241,7 +9892,7 @@ Obtains the snapshot of a component that has been loaded. This API uses a promis
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| id     | string | Yes  | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
+| id     | string | Yes  | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component.<br>**NOTE**<br>Off-screen or cached components not mounted in the component tree are not supported.|
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | No   | Custom settings of the snapshot.|
 
 **Return value**
@@ -9252,7 +9903,7 @@ Obtains the snapshot of a component that has been loaded. This API uses a promis
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Snapshot Error Codes](errorcode-snapshot.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -9268,7 +9919,7 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
   uiContext: UIContext = this.getUIContext();
 
   build() {
@@ -9280,12 +9931,12 @@ struct SnapshotExample {
       Button("click to generate UI snapshot")
         .onClick(() => {
           this.uiContext.getComponentSnapshot()
-            .get("root", {scale : 2, waitUntilRenderFinished : true})
+            .get("root", { scale: 2, waitUntilRenderFinished: true })
             .then((pixmap: image.PixelMap) => {
-              this.pixmap = pixmap
+              this.pixmap = pixmap;
             })
             .catch((err: Error) => {
-              console.error("error: " + err)
+              console.error("error: " + err);
             })
         }).margin(10)
     }
@@ -9300,10 +9951,10 @@ struct SnapshotExample {
 
 createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): void
 
-Renders a custom component from [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) in the background of the application and outputs its snapshot. This API uses an asynchronous callback to return the result.
+Captures a snapshot of an offscreen-rendered component created from a [CustomBuilder](arkui-ts/ts-types.md#custombuilder8). This API uses a callback to return the result.
 > **NOTE**
 >
-> Due to the need to wait for the component to be built and rendered, there is a delay of up to 500 ms in the callback for offscreen snapshot capturing.
+> Due to the need to wait for the component to be built and rendered, there is a delay of not more than 500 ms in the callback for off-screen snapshot capturing. Therefore, this API is not recommended for performance-sensitive scenarios.
 >
 > If a component is on a time-consuming task, for example, an [Image](arkui-ts/ts-basic-components-image.md) or [Web](../apis-arkweb/ts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
 
@@ -9316,14 +9967,14 @@ Renders a custom component from [CustomBuilder](arkui-ts/ts-types.md#custombuild
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | Yes  | Builder for the custom component.<br>**NOTE**<br>The global builder is not supported.     |
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes  | Callback used to return the result. The coordinates and size of the offscreen component's drawing area can be obtained through the callback.|
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes  | Callback used to return the result. The coordinates and size of the off-screen component's drawing area can be obtained through the callback.|
 | delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an **Image** component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms<br> Value range: [0, +∞). If the value is less than 0, the default value is used.|
 | checkImageStatus<sup>12+</sup>  | boolean | No   | Whether to check the image decoding status before taking a snapshot. If the value is **true**, the system checks whether all **Image** components have been decoded before taking the snapshot. If the check is not completed, the system aborts the snapshot and returns an exception.<br>Default value: **false**|
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12) | No   | Custom settings of the snapshot.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Snapshot Error Codes](errorcode-snapshot.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -9340,7 +9991,7 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct ComponentSnapshotExample {
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
   uiContext: UIContext = this.getUIContext();
   @Builder
   RandomBuilder() {
@@ -9370,11 +10021,11 @@ struct ComponentSnapshotExample {
           },
             (error: Error, pixmap: image.PixelMap) => {
               if (error) {
-                console.error("error: " + JSON.stringify(error))
+                console.error("error: " + JSON.stringify(error));
                 return;
               }
-              this.pixmap = pixmap
-            }, 320, true, {scale : 2, waitUntilRenderFinished : true})
+              this.pixmap = pixmap;
+            }, 320, true, { scale: 2, waitUntilRenderFinished: true });
         })
       Image(this.pixmap)
         .margin(10)
@@ -9390,11 +10041,11 @@ struct ComponentSnapshotExample {
 
 createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
-Renders a custom component from [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) in the background of the application and outputs its snapshot. This API uses a promise to return the result.
+Captures a snapshot of an offscreen-rendered component created from a [CustomBuilder](arkui-ts/ts-types.md#custombuilder8). This API uses a promise to return the result.
 
 > **NOTE**
 >
-> Due to the need to wait for the component to be built and rendered, there is a delay of up to 500 ms in the callback for offscreen snapshot capturing.
+> Due to the need to wait for the component to be built and rendered, there is a delay of not more than 500 ms in the promise for off-screen snapshot capturing. Therefore, this API is not recommended for performance-sensitive scenarios.
 >
 > If a component is on a time-consuming task, for example, an [Image](arkui-ts/ts-basic-components-image.md) or [Web](../apis-arkweb/ts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
 
@@ -9407,9 +10058,9 @@ Renders a custom component from [CustomBuilder](arkui-ts/ts-types.md#custombuild
 | Name | Type                                                | Mandatory| Description                                                   |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
 | builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | Yes  | Builder for the custom component.<br>**NOTE**<br>The global builder is not supported.|
-| delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an **Image** component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms|
+| delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an **Image** component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms<br> Value range: [0, +∞). If the value is less than 0, the default value is used.|
 | checkImageStatus<sup>12+</sup>  | boolean | No   | Whether to check the image decoding status before taking a snapshot. If the value is **true**, the system checks whether all **Image** components have been decoded before taking the snapshot. If the check is not completed, the system aborts the snapshot and returns an exception.<br>Default value: **false**|
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | No   | Custom settings of the snapshot.|
+| options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | No   | Custom settings of the snapshot.|
 
 **Return value**
 
@@ -9419,7 +10070,7 @@ Renders a custom component from [CustomBuilder](arkui-ts/ts-types.md#custombuild
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Snapshot Error Codes](errorcode-snapshot.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -9436,7 +10087,7 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct ComponentSnapshotExample {
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
   uiContext: UIContext = this.getUIContext();
   @Builder
   RandomBuilder() {
@@ -9463,12 +10114,12 @@ struct ComponentSnapshotExample {
           this.uiContext.getComponentSnapshot()
             .createFromBuilder(() => {
               this.RandomBuilder()
-            }, 320, true, {scale : 2, waitUntilRenderFinished : true})
+            }, 320, true, { scale: 2, waitUntilRenderFinished: true })
             .then((pixmap: image.PixelMap) => {
-              this.pixmap = pixmap
+              this.pixmap = pixmap;
             })
             .catch((err: Error) => {
-              console.error("error: " + err)
+              console.error("error: " + err);
             })
         })
       Image(this.pixmap)
@@ -9499,7 +10150,7 @@ Obtains the snapshot of a component that has been loaded. This API synchronously
 
 | Name | Type    | Mandatory  | Description                                      |
 | ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | Yes   | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
+| id   | string | Yes   | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component.<br>**NOTE**<br>Off-screen or cached components not mounted in the component tree are not supported.|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | No   | Custom settings of the snapshot.|
 
 **Return value**
@@ -9510,7 +10161,7 @@ Obtains the snapshot of a component that has been loaded. This API synchronously
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Snapshot Error Codes](errorcode-snapshot.md).
 
 | ID | Error Message               |
 | ------ | ------------------- |
@@ -9527,7 +10178,7 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
 
   build() {
     Column() {
@@ -9538,10 +10189,10 @@ struct SnapshotExample {
       Button("click to generate UI snapshot")
         .onClick(() => {
           try {
-            let pixelmap = this.getUIContext().getComponentSnapshot().getSync("root", {scale : 2, waitUntilRenderFinished : true})
-            this.pixmap = pixelmap
+            let pixelmap = this.getUIContext().getComponentSnapshot().getSync("root", { scale: 2, waitUntilRenderFinished: true });
+            this.pixmap = pixelmap;
           } catch (error) {
-            console.error("getSync errorCode: " + error.code + " message: " + error.message)
+            console.error("getSync errorCode: " + error.code + " message: " + error.message);
           }
         }).margin(10)
     }
@@ -9570,7 +10221,7 @@ Obtains the snapshot of a component that has been loaded based on the provided [
 
 | Name | Type    | Mandatory  | Description                                      |
 | ---- | ------ | ---- | ---------------------------------------- |
-| uniqueId   | number | Yes   | [Unique ID](js-apis-arkui-frameNode.md#getuniqueid12) of the target component.|
+| uniqueId   | number | Yes   | [Unique ID](js-apis-arkui-frameNode.md#getuniqueid12) of the target component.<br>**NOTE**<br>Off-screen or cached components not mounted in the component tree are not supported.|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | No   | Custom settings of the snapshot.|
 
 **Return value**
@@ -9581,7 +10232,7 @@ Obtains the snapshot of a component that has been loaded based on the provided [
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Snapshot Error Codes](errorcode-snapshot.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -9602,10 +10253,10 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.node = new FrameNode(uiContext);
-    this.node.commonAttribute.width('100%').height('100%')
+    this.node.commonAttribute.width('100%').height('100%');
 
     let image = typeNode.createNode(uiContext, 'Image');
-    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true)
+    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true);
     this.imageNode = image;
 
     this.node.appendChild(image);
@@ -9618,7 +10269,7 @@ class MyNodeController extends NodeController {
 struct SnapshotExample {
   private myNodeController: MyNodeController = new MyNodeController();
 
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
 
   build() {
     Column() {
@@ -9631,15 +10282,15 @@ struct SnapshotExample {
           try {
             this.getUIContext()
               .getComponentSnapshot()
-              .getWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), {scale: 2, waitUntilRenderFinished: true})
+              .getWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), { scale: 2, waitUntilRenderFinished: true })
               .then((pixmap: image.PixelMap) => {
-                this.pixmap = pixmap
+                this.pixmap = pixmap;
               })
               .catch((err: Error) => {
-                console.log("error: " + err)
+                console.log("error: " + err);
               })
           } catch (error) {
-            console.error("UniqueId get snapshot Error: " + JSON.stringify(error))
+            console.error("UniqueId get snapshot Error: " + JSON.stringify(error));
           }
         }).margin(10)
     }
@@ -9668,7 +10319,7 @@ Obtains the snapshot of a component that has been loaded based on the provided [
 
 | Name | Type    | Mandatory  | Description                                      |
 | ---- | ------ | ---- | ---------------------------------------- |
-| uniqueId   | number | Yes   | [Unique ID](js-apis-arkui-frameNode.md#getuniqueid12) of the target component.|
+| uniqueId   | number | Yes   | [Unique ID](js-apis-arkui-frameNode.md#getuniqueid12) of the target component.<br>**NOTE**<br>Off-screen or cached components not mounted in the component tree are not supported.|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | No   | Custom settings of the snapshot.|
 
 **Return value**
@@ -9679,7 +10330,7 @@ Obtains the snapshot of a component that has been loaded based on the provided [
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Snapshot Error Codes](errorcode-snapshot.md).
 
 | ID | Error Message               |
 | ------ | ------------------- |
@@ -9701,10 +10352,10 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.node = new FrameNode(uiContext);
-    this.node.commonAttribute.width('100%').height('100%')
+    this.node.commonAttribute.width('100%').height('100%');
 
     let image = typeNode.createNode(uiContext, 'Image');
-    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true)
+    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true);
     this.imageNode = image;
 
     this.node.appendChild(image);
@@ -9717,7 +10368,7 @@ class MyNodeController extends NodeController {
 struct SnapshotExample {
   private myNodeController: MyNodeController = new MyNodeController();
 
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
 
   build() {
     Column() {
@@ -9730,9 +10381,9 @@ struct SnapshotExample {
           try {
             this.pixmap = this.getUIContext()
               .getComponentSnapshot()
-              .getSyncWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), {scale: 2, waitUntilRenderFinished: true})
+              .getSyncWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), { scale: 2, waitUntilRenderFinished: true });
           } catch (error) {
-            console.error("UniqueId getSync snapshot Error: " + JSON.stringify(error))
+            console.error("UniqueId getSync snapshot Error: " + JSON.stringify(error));
           }
         }).margin(10)
     }
@@ -9788,7 +10439,7 @@ class Params {
 
 @Builder
 function buildText(params: Params) {
-  ReusableChildComponent({ text: params.text });
+  ReusableChildComponent({ text: params.text })
 }
 
 @Component
@@ -9818,8 +10469,8 @@ struct ReusableChildComponent {
 @Entry
 @Component
 struct Index {
-  @State pixmap: image.PixelMap | undefined = undefined
-  @State message: string | undefined | null = "hello"
+  @State pixmap: image.PixelMap | undefined = undefined;
+  @State message: string | undefined | null = "hello";
   uiContext: UIContext = this.getUIContext();
 
   build() {
@@ -9831,12 +10482,12 @@ struct Index {
             let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
             this.uiContext.getComponentSnapshot()
               .createFromComponent(contentNode
-                , 320, true, {scale : 2, waitUntilRenderFinished : true})
+                , 320, true, { scale: 2, waitUntilRenderFinished: true })
               .then((pixmap: image.PixelMap) => {
-                this.pixmap = pixmap
+                this.pixmap = pixmap;
               })
               .catch((err: Error) => {
-                console.error("error: " + err)
+                console.error("error: " + err);
               })
           })
         Image(this.pixmap)
@@ -9875,13 +10526,13 @@ Called when the next frame is rendered.
 **Example**
 
 ```ts
-import {FrameCallback } from '@kit.ArkUI';
+import { FrameCallback } from '@kit.ArkUI';
 
 class MyFrameCallback extends FrameCallback {
   private tag: string;
 
   constructor(tag: string) {
-    super()
+    super();
     this.tag = tag;
   }
 
@@ -9937,7 +10588,7 @@ class MyIdleCallback extends FrameCallback {
   private tag: string;
 
   constructor(tag: string) {
-    super()
+    super();
     this.tag = tag;
   }
 
@@ -9993,14 +10644,14 @@ While you can specify a target frame rate for your application, the actual frame
 **Example**
 
 ```ts
-import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI'
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Frame {
-  @State ANIMATION:ExpectedFrameRateRange = {min:0, max:120, expected: 90}
-  @State GESTURE:ExpectedFrameRateRange = {min:0, max:120, expected: 30}
-  private scenes: SwiperDynamicSyncScene[] = []
+  @State ANIMATION: ExpectedFrameRateRange = { min: 0, max: 120, expected: 90 };
+  @State GESTURE: ExpectedFrameRateRange = { min: 0, max: 120, expected: 30};
+  private scenes: SwiperDynamicSyncScene[] = [];
 
   build() {
     Column() {
@@ -10018,20 +10669,20 @@ struct Frame {
         .backgroundColor(Color.Blue)
         .autoPlay(true)
         .onAppear(()=>{
-          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[]
+          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[];
         })
       }
 
       Button("set frame")
-        .onClick(()=>{
+        .onClick(() => {
           this.scenes.forEach((scenes: SwiperDynamicSyncScene) => {
 
             if (scenes.type == SwiperDynamicSyncSceneType.ANIMATION) {
-              scenes.setFrameRateRange(this.ANIMATION)
+              scenes.setFrameRateRange(this.ANIMATION);
             }
 
             if (scenes.type == SwiperDynamicSyncSceneType.GESTURE) {
-              scenes.setFrameRateRange(this.GESTURE)
+              scenes.setFrameRateRange(this.GESTURE);
             }
           });
         })
@@ -10059,14 +10710,14 @@ Obtains the expected frame rate range.
 **Example**
 
 ```ts
-import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI'
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Frame {
-  @State ANIMATION:ExpectedFrameRateRange = {min:0, max:120, expected: 90}
-  @State GESTURE:ExpectedFrameRateRange = {min:0, max:120, expected: 30}
-  private scenes: SwiperDynamicSyncScene[] = []
+  @State ANIMATION: ExpectedFrameRateRange = { min: 0, max: 120, expected: 90 };
+  @State GESTURE: ExpectedFrameRateRange = { min: 0, max: 120, expected: 30 };
+  private scenes: SwiperDynamicSyncScene[] = [];
 
   build() {
     Column() {
@@ -10083,23 +10734,23 @@ struct Frame {
         .id("dynamicSwiper")
         .backgroundColor(Color.Blue)
         .autoPlay(true)
-        .onAppear(()=>{
-          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[]
+        .onAppear(() => {
+          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[];
         })
       }
 
       Button("set frame")
-        .onClick(()=>{
+        .onClick(() => {
           this.scenes.forEach((scenes: SwiperDynamicSyncScene) => {
 
             if (scenes.type == SwiperDynamicSyncSceneType.ANIMATION) {
-              scenes.setFrameRateRange(this.ANIMATION)
-              scenes.getFrameRateRange()
+              scenes.setFrameRateRange(this.ANIMATION);
+              scenes.getFrameRateRange();
             }
 
             if (scenes.type == SwiperDynamicSyncSceneType.GESTURE) {
-              scenes.setFrameRateRange(this.GESTURE)
-              scenes.getFrameRateRange()
+              scenes.setFrameRateRange(this.GESTURE);
+              scenes.getFrameRateRange();
             }
           });
         })
@@ -10164,22 +10815,22 @@ import { MarqueeDynamicSyncSceneType, MarqueeDynamicSyncScene } from '@kit.ArkUI
 @Entry
 @Component
 struct MarqueeExample {
-  @State start: boolean = false
-  @State src: string = ''
-  @State marqueeText: string = 'Running Marquee'
-  private fromStart: boolean = true
-  private step: number = 10
-  private loop: number = Number.POSITIVE_INFINITY
-  controller: TextClockController = new TextClockController()
-  convert2time(value: number): string{
+  @State start: boolean = false;
+  @State src: string = '';
+  @State marqueeText: string = 'Running Marquee';
+  private fromStart: boolean = true;
+  private step: number = 10;
+  private loop: number = Number.POSITIVE_INFINITY;
+  controller: TextClockController = new TextClockController();
+  convert2time(value: number): string {
     let date = new Date(Number(value+'000'));
     let hours = date.getHours().toString().padStart(2, '0');
     let minutes = date.getMinutes().toString().padStart(2, '0');
     let seconds = date.getSeconds().toString().padStart(2, '0');
     return hours+ ":" + minutes + ":" + seconds;
   }
-  @State ANIMATION: ExpectedFrameRateRange = {min:0, max:120, expected:30}
-  private scenes: MarqueeDynamicSyncScene[] = []
+  @State ANIMATION: ExpectedFrameRateRange = { min: 0, max: 120, expected: 30 };
+  private scenes: MarqueeDynamicSyncScene[] = [];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -10200,15 +10851,15 @@ struct MarqueeExample {
         .margin({ bottom: 40 })
         .id('dynamicMarquee')
         .onAppear(()=>{
-          this.scenes = this.getUIContext().requireDynamicSyncScene('dynamicMarquee') as MarqueeDynamicSyncScene[]
+          this.scenes = this.getUIContext().requireDynamicSyncScene('dynamicMarquee') as MarqueeDynamicSyncScene[];
         })
       Button('Start')
         .onClick(() => {
-          this.start = true
-          this.controller.start()
+          this.start = true;
+          this.controller.start();
           this.scenes.forEach((scenes: MarqueeDynamicSyncScene) => {
             if (scenes.type == MarqueeDynamicSyncSceneType.ANIMATION) {
-              scenes.setFrameRateRange(this.ANIMATION)
+              scenes.setFrameRateRange(this.ANIMATION);
             }
           });
         })
@@ -10264,7 +10915,7 @@ struct Index {
         {
           showMode: TextMenuShowMode.PREFER_WINDOW
         }
-      )
+      );
   }
 
   build() {

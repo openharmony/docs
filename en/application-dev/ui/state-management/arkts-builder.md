@@ -137,15 +137,18 @@ class Tmp {
   paramA1: string = '';
 }
 
-@Builder function overBuilder(params: Tmp) {
+@Builder
+function overBuilder(params: Tmp) {
   Row() {
     Text(`UseStateVarByReference: ${params.paramA1} `)
   }
 }
+
 @Entry
 @Component
 struct Parent {
   @State label: string = 'Hello';
+
   build() {
     Column() {
       // When the overBuilder component is called in the parent component,
@@ -185,32 +188,42 @@ Create a private \@Builder method, call this method by using **this.builder()** 
 struct PrivateBuilder {
   @State builder_value: string = 'Hello';
 
-  @Builder builder() {
-    Column(){
+  @Builder
+  builder() {
+    Column() {
       Text(this.builder_value)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
+        .width(230)
+        .height(40)
+        .backgroundColor('#ffeae5e5')
+        .borderRadius(20)
+        .margin(12)
+        .textAlign(TextAlign.Center)
     }
   }
 
   aboutToAppear(): void {
     setTimeout(() => {
       this.builder_value = 'Hello World';
-    },3000)
+    }, 2000);
   }
 
   build() {
     Row() {
       Column() {
         Text(this.builder_value)
-          .fontSize(30)
-          .fontWeight(FontWeight.Bold)
+          .width(230)
+          .height(40)
+          .backgroundColor('#ffeae5e5')
+          .borderRadius(20)
+          .textAlign(TextAlign.Center)
         this.builder()
         Button('Click to change builder_value')
           .onClick(() => {
-            this.builder_value = 'builder_value is clicked'
+            this.builder_value = 'builder_value is clicked';
           })
       }
+      .height('100%')
+      .width('100%')
     }
   }
 }
@@ -232,13 +245,44 @@ class Tmp {
   arrayTmp_value: Array<ChildTmp> = [];
 }
 
-@Builder function overBuilder(param: Tmp) {
+@Builder
+function overBuilder(param: Tmp) {
   Column() {
     Text(`str_value: ${param.str_value}`)
+      .width(230)
+      .height(40)
+      .margin(12)
+      .backgroundColor('#0d000000')
+      .fontColor('#e6000000')
+      .borderRadius(20)
+      .textAlign(TextAlign.Center)
     Text(`num_value: ${param.num_value}`)
+      .width(230)
+      .height(40)
+      .margin(12)
+      .backgroundColor('#0d000000')
+      .fontColor('#e6000000')
+      .borderRadius(20)
+      .textAlign(TextAlign.Center)
     Text(`tmp_value: ${param.tmp_value.val}`)
+      .width(230)
+      .height(40)
+      .margin(12)
+      .backgroundColor('#0d000000')
+      .fontColor('#e6000000')
+      .borderRadius(20)
+      .textAlign(TextAlign.Center)
     ForEach(param.arrayTmp_value, (item: ChildTmp) => {
-      Text(`arrayTmp_value: ${item.val}`)
+      ListItem() {
+        Text(`arrayTmp_value: ${item.val}`)
+          .width(230)
+          .height(40)
+          .margin(12)
+          .backgroundColor('#0d000000')
+          .fontColor('#e6000000')
+          .borderRadius(20)
+          .textAlign(TextAlign.Center)
+      }
     }, (item: ChildTmp) => JSON.stringify(item))
   }
 }
@@ -247,16 +291,18 @@ class Tmp {
 @Component
 struct Parent {
   @State objParam: Tmp = new Tmp();
+
   build() {
     Column() {
       Text('Render the UI by calling the @Builder')
         .fontSize(20)
-      overBuilder({str_value: this.objParam.str_value, num_value: this.objParam.num_value,
-       tmp_value: this.objParam.tmp_value, arrayTmp_value: this.objParam.arrayTmp_value})
-      Line()
-        .width('100%')
-        .height(10)
-        .backgroundColor('#000000').margin(10)
+        .margin(12)
+      overBuilder({
+        str_value: this.objParam.str_value,
+        num_value: this.objParam.num_value,
+        tmp_value: this.objParam.tmp_value,
+        arrayTmp_value: this.objParam.arrayTmp_value
+      })
       Button('Click to change parameter').onClick(() => {
         this.objParam.str_value = 'Hello World';
         this.objParam.num_value = 1;
@@ -267,6 +313,8 @@ struct Parent {
         this.objParam.arrayTmp_value.push(child_value);
       })
     }
+    .height('100%')
+    .width('100%')
   }
 }
 ```
@@ -286,9 +334,17 @@ struct Parent {
   @State objParam: Tmp = new Tmp();
   @State label: string = 'World';
 
-  @Builder privateBuilder() {
+  @Builder
+  privateBuilder() {
     Column() {
       Text(`wrapBuilder str_value: ${this.objParam.str_value}`)
+        .width(350)
+        .height(40)
+        .margin(12)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
       Text(`wrapBuilder num: ${this.label}`)
     }
   }
@@ -298,15 +354,13 @@ struct Parent {
       Text('Render the UI by calling the @Builder')
         .fontSize(20)
       this.privateBuilder()
-      Line()
-        .width('100%')
-        .height(10)
-        .backgroundColor('#000000').margin(10)
       Button('Click to change parameter').onClick(() => {
         this.objParam.str_value = 'str_value Hello World';
         this.label = 'label Hello World';
       })
     }
+    .height('100%')
+    .width('100%')
   }
 }
 ```
@@ -378,14 +432,20 @@ class Tmp {
   paramA1: string = '';
 }
 
-@Builder function parentBuilder($$: Tmp) {
+@Builder
+function parentBuilder($$: Tmp) {
   Row() {
     Column() {
       Text(`parentBuilder===${$$.paramA1}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-      HelloComponent({message: $$.paramA1})
-      childBuilder({paramA1: $$.paramA1})
+        .width(300)
+        .height(40)
+        .margin(10)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
+      HelloComponent({ message: $$.paramA1 })
+      childBuilder({ paramA1: $$.paramA1 })
     }
   }
 }
@@ -397,8 +457,13 @@ struct HelloComponent {
   build() {
     Row() {
       Text(`HelloComponent===${this.message}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
+        .width(300)
+        .height(40)
+        .margin(10)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
     }
   }
 }
@@ -408,10 +473,15 @@ function childBuilder($$: Tmp) {
   Row() {
     Column() {
       Text(`childBuilder===${$$.paramA1}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-      HelloChildComponent({message: $$.paramA1})
-      grandsonBuilder({paramA1: $$.paramA1})
+        .width(300)
+        .height(40)
+        .margin(10)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
+      HelloChildComponent({ message: $$.paramA1 })
+      grandsonBuilder({ paramA1: $$.paramA1 })
     }
   }
 }
@@ -419,22 +489,34 @@ function childBuilder($$: Tmp) {
 @Component
 struct HelloChildComponent {
   @Prop message: string = '';
+
   build() {
     Row() {
       Text(`HelloChildComponent===${this.message}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
+        .width(300)
+        .height(40)
+        .margin(10)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
     }
   }
 }
 
-@Builder function grandsonBuilder($$: Tmp) {
+@Builder
+function grandsonBuilder($$: Tmp) {
   Row() {
     Column() {
       Text(`grandsonBuilder===${$$.paramA1}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-      HelloGrandsonComponent({message: $$.paramA1})
+        .width(300)
+        .height(40)
+        .margin(10)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
+      HelloGrandsonComponent({ message: $$.paramA1 })
     }
   }
 }
@@ -442,11 +524,17 @@ struct HelloChildComponent {
 @Component
 struct HelloGrandsonComponent {
   @Prop message: string;
+
   build() {
     Row() {
       Text(`HelloGrandsonComponent===${this.message}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
+        .width(300)
+        .height(40)
+        .margin(10)
+        .backgroundColor('#0d000000')
+        .fontColor('#e6000000')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
     }
   }
 }
@@ -455,13 +543,16 @@ struct HelloGrandsonComponent {
 @Component
 struct Parent {
   @State label: string = 'Hello';
+
   build() {
     Column() {
-      parentBuilder({paramA1: this.label})
+      parentBuilder({ paramA1: this.label })
       Button('Click me').onClick(() => {
         this.label = 'ArkUI';
       })
     }
+    .height('100%')
+    .width('100%')
   }
 }
 ```
@@ -480,10 +571,10 @@ class Info {
 @Builder
 function overBuilder(param: Info) {
   Column() {
-    Text('Global @Builder name :${param.name}`)
+    Text(`Global @Builder name: ${param.name}`)
       .fontSize(30)
       .fontWeight(FontWeight.Bold)
-    Text('Global @Builder age :${param.age}`)
+    Text(`Global @Builder age: ${param.age}`)
       .fontSize(30)
       .fontWeight(FontWeight.Bold)
   }

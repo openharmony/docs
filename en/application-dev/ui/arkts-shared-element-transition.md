@@ -44,7 +44,7 @@ struct Index {
   @State @Watch('onItemClicked') selectedIndex: number = -1;
 
   private allPostData: PostData[] = [
-    { avatar: $r('app.media.flower'), name: 'Alice', message: 'It's sunny.',
+    { avatar: $r('app.media.flower'), name: 'Alice', message: 'It is sunny.',
       images: [$r('app.media.spring'), $r('app.media.tree')] },
     { avatar: $r('app.media.sky'), name: 'Bob', message: 'Hello World',
       images: [$r('app.media.island')] },
@@ -157,7 +157,7 @@ export default struct  Post {
 }
 ```
 
-![en-us_image_0000001600653160](figures/en-us_image_0000001600653160.gif)
+
 
 ## Creating a Container and Migrating Components Across Containers
 
@@ -1919,7 +1919,7 @@ struct Index {
   @State alphaValue: number = 1;
 
   private allPostData: PostData[] = [
-    { avatar: $r('app.media.flower'), name: 'Alice', message: 'It's sunny.',
+    { avatar: $r('app.media.flower'), name: 'Alice', message: 'It is sunny.',
       images: [$r('app.media.spring'), $r('app.media.tree')] },
     { avatar: $r('app.media.sky'), name: 'Bob', message: 'Hello World',
       images: [$r('app.media.island')] },

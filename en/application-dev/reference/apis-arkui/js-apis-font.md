@@ -228,7 +228,7 @@ Information about the system font.
 
 > **NOTE**
 >
-> Directly using font can lead to the issue of ambiguous UI context. To avoid this, obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context by using the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+> Directly using **font** can lead to the issue of ambiguous UI context. To avoid this, obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context by using the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext).
 
 ```ts
 // xxx.ets

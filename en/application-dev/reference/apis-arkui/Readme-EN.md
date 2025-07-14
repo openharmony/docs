@@ -406,7 +406,7 @@
     - [Basic Types](arkui-ts/ts-types.md)
     - [Pixel Units](arkui-ts/ts-pixel-units.md)
     - [Enums](arkui-ts/ts-appendix-enums.md)
-    - [Common Event Callback](arkui-ts/ts-uicommonevent.md)
+    - [Common Event Callbacks](arkui-ts/ts-uicommonevent.md)
     - [SVG Tags](arkui-ts/ts-basic-svg.md)
     <!--Del-->
     - [Enums (System API)](arkui-ts/ts-appendix-enums-sys.md)
