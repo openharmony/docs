@@ -56,13 +56,21 @@ The table below lists the main APIs used for transient task development. For det
    // Request a transient task.
    function requestSuspendDelay() {
      let myReason = 'test requestSuspendDelay'; // Reason for the request.
-     let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+     try {
+       let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
        // Callback function, which is triggered when the transient task is about to time out. The application can carry out data clear and annotation, and cancel the task in the callback.
-       console.info('suspend delay task will timeout');
-       backgroundTaskManager.cancelSuspendDelay(id);
-     })
-     id = delayInfo.requestId;
-     delayTime = delayInfo.actualDelayTime;
+         console.info('suspend delay task will timeout');
+         try {
+           backgroundTaskManager.cancelSuspendDelay(id);
+         } catch (error) {
+           console.error(`Operation cancelSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+         }
+       })
+       id = delayInfo.requestId;
+       delayTime = delayInfo.actualDelayTime;
+     } catch (error) {
+       console.error(`Operation requestSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+     } 
    }
 
    // Execute the service logic of the application.
@@ -88,7 +96,11 @@ The table below lists the main APIs used for transient task development. For det
    let id: number; // ID of the transient task.
   
    function cancelSuspendDelay() {
-     backgroundTaskManager.cancelSuspendDelay(id);
+     try {
+       backgroundTaskManager.cancelSuspendDelay(id);
+     } catch (error) {
+       console.error(`Operation cancelSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+     }
    }
    ```
 
