@@ -344,7 +344,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
   promise.then((value: boolean) => {
     console.info("send success")
   }).catch((err:string) => {
-    console.error(`send fail, error:" + JSON.stringify(err))
+    console.error("send fail, error:" + JSON.stringify(err))
   });
 });
 ```
@@ -494,7 +494,7 @@ let promise = ws.close();
 promise.then((value: boolean) => {
     console.info("close success")
 }).catch((err:string) => {
-    console.error(`close fail, error:" + JSON.stringify(err))
+    console.error("close fail, error:" + JSON.stringify(err))
 });
 ```
 
