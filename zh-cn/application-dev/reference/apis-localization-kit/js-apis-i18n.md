@@ -280,7 +280,9 @@ static getSystemRegion(): string
   let systemRegion: string = i18n.System.getSystemRegion();
   ```
 
-### getSystemLocale<sup>9+</sup>
+### getSystemLocale<sup>(deprecated)</sup>
+
+从API version 9开始支持，从API version 20开始不再维护，建议使用[System.getSystemLocaleInstance](#getSystemLocaleInstance20)代替。
 
 static getSystemLocale(): string
 
@@ -299,6 +301,29 @@ static getSystemLocale(): string
 **示例：**
   ```ts
   let systemLocale: string = i18n.System.getSystemLocale();
+  ```
+
+
+### getSystemLocaleInstance<sup>20+</sup>
+
+static getSystemLocaleInstance(): Intl.Locale
+
+获取系统当前设置的区域对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
+
+**返回值：**
+| 类型     | 说明      |
+| ------ | ------- |
+| [Intl.Locale](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | 系统区域对象。 |
+
+**示例：**
+  ```ts
+  import { i18n } from '@kit.LocalizationKit';
+
+  let systemLocale: Intl.Locale = i18n.System.getSystemLocaleInstance();
   ```
 
 ### is24HourClock<sup>9+</sup>
@@ -2860,7 +2885,7 @@ static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: Intl
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 890001   | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001   | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 
@@ -3226,7 +3251,7 @@ getSimpleDateTimeFormatByPattern(pattern: string, locale?: Intl.Locale): SimpleD
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -3317,7 +3342,7 @@ getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: Intl.Locale): Simpl
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -3456,7 +3481,7 @@ getSimpleNumberFormatBySkeleton(skeleton: string, locale?: Intl.Locale): SimpleN
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -3797,7 +3822,7 @@ getSystemLocale(): string
 
 获取系统区域ID。
 
-从API version 9开始不再维护，建议使用[System.getSystemLocale](#getsystemlocale9)代替。
+从API version 9开始不再维护，建议使用[System.getSystemLocaleInstance](#getSystemLocaleInstance20)代替。
 
 **系统能力：** SystemCapability.Global.I18n
 
