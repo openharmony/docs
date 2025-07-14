@@ -4,7 +4,9 @@ A click event is triggered when a component is clicked.
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  The event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> For details about the event distribution process, see [Multi-level Gesture Events](../../../ui/arkts-gesture-events-multi-level-gesture.md).
 
 ## onClick<sup>12+</sup>
 
@@ -12,9 +14,9 @@ onClick(event: Callback\<ClickEvent>, distanceThreshold: number): T
 
 Called when a click event occurs.
 
-When the click event is triggered by a keyboard or gamepad, the value of **SourceTool** is **Unknown**.
+When the click event is triggered by a keyboard or game controller, the value of **SourceTool** is **Unknown**.
 
-Compared to the original **onClick** API, this API has the **distanceThreshold** parameter that specifies the movement threshold for click events. If the finger's movement exceeds the set threshold, the gesture recognition will fail.
+Compared with the original **onClick** API, this API has the **distanceThreshold** parameter that specifies the finger movement threshold for click events. If the finger's movement exceeds the set threshold, the gesture recognition will fail.
 For scenarios where there is no restriction on the finger movement distance during a click, the original API is recommended. If there is a requirement for the finger to stay within a certain area during the click, this API is recommended.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
@@ -22,8 +24,8 @@ For scenarios where there is no restriction on the finger movement distance duri
 >  **NOTE**
 >
 >  Since API version 12, the following constraints apply when this API is used in service widgets:
->  1. Click events cannot be triggered if the finger is pressed for more than 800 ms.
->  2. Click events cannot be triggered if the finger moves more than 20 px after pressing down.
+>  1. Click events will not be triggered if the finger is pressed for more than 800 ms.
+>  2. Click events will not be triggered if the finger moves more than 20 px after pressing down.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -34,7 +36,13 @@ For scenarios where there is no restriction on the finger movement distance duri
 | Name| Type                             | Mandatory| Description                |
 | ------ | --------------------------------- | ---- | -------------------- |
 | event  | [ClickEvent](#clickevent) | Yes  | [ClickEvent](#clickevent) object.|
-| distanceThreshold  | number | Yes  | Movement threshold for click events. If the value specified is less than or equal to 0, it will be converted to the default value.<br>Default value: 2^31-1<br>**NOTE**<br>If the finger movement exceeds the preset movement threshold, the gesture recognition fails. If the default threshold is used during initialization and the finger moves beyond the component's touch target, the gesture recognition fails.|
+| distanceThreshold  | number | Yes  | Finger movement threshold for click events. If the value specified is less than or equal to 0, it will be converted to the default value.<br>Default value: 2^31-1<br>Unit: vp<br>**NOTE**<br>If the finger movement exceeds the preset movement threshold, the gesture recognition fails. If the default threshold is used during initialization and the finger moves beyond the component's touch target, the gesture recognition fails.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## onClick
 
@@ -49,8 +57,8 @@ When the click event is triggered by a keyboard or gamepad, the value of **Sourc
 >  **NOTE**
 >
 >  Since API version 9, the following constraints apply when this API is used in service widgets:
->  1. Click events cannot be triggered if the finger is pressed for more than 800 ms.
->  2. Click events cannot be triggered if the finger moves more than 20 px after pressing down.
+>  1. Click events will not be triggered if the finger is pressed for more than 800 ms.
+>  2. Click events will not be triggered if the finger moves more than 20 px after pressing down.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -83,13 +91,23 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent8).
 | windowY<sup>10+</sup> | number                             | Y coordinate of the click relative to the upper left corner of the application window.<br>Unit: vp<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | displayX<sup>10+</sup> | number                            | X coordinate of the click relative to the upper left corner of the application screen.<br>Unit: vp<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | displayY<sup>10+</sup> | number                            | Y coordinate of the click relative to the upper left corner of the application screen.<br>Unit: vp<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| screenX<sup>(deprecated)</sup> | number                    | X coordinate of the click relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowX** instead.|
-| screenY<sup>(deprecated)</sup> | number                    | Y coordinate of the click relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowY** instead.|
-| preventDefault<sup>12+</sup>      | () => void | Blocks the default event.<br> **NOTE**<br>This API can only be used by certain components; currently supported components are **RichEditor** and **Hyperlink**. Currently, asynchronous calls and Modifier APIs are not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| screenX<sup>(deprecated)</sup> | number                    | X coordinate of the click relative to the upper left corner of the application window.<br>Unit: vp<br>This API is deprecated since API version 10. You are advised to use **windowX** instead.|
+| screenY<sup>(deprecated)</sup> | number                    | Y coordinate of the click relative to the upper left corner of the application window.<br>Unit: vp<br>This API is deprecated since API version 10. You are advised to use **windowY** instead.|
+| preventDefault<sup>12+</sup>      | () => void | Blocks the default event.<br> **NOTE**<br>This API is only supported by the following components: **RichEditor** and **Hyperlink**. An exception is thrown when this API is used with unsupported components. Currently, asynchronous calls and Modifier APIs are not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | targetDisplayId<sup>15+</sup> | number | ID of the screen where the event occurs.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand15) | Whether the event is triggered by a left-hand or right-hand tap.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
+**Error codes**
+
+For details about the error codes, see [Interaction Event Error Codes](../errorcode-event.md).
+
+| ID  | Error Message|
+| --------- | ------- |
+| 100017       | Component does not support prevent function. |
+
 ## EventTarget<sup>8+</sup>
+
+Describes the display area of the object that triggers the event.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -100,7 +118,7 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent8).
 | Name  | Type                     | Description        |
 | ---- | ------------------------- | ---------- |
 | area | [Area](ts-types.md#area8) | Area information of the target element.|
-| id<sup>15+</sup> | [string](ts-universal-attributes-component-id.md) | Custom node ID.|
+| id<sup>15+</sup> | [string](ts-universal-attributes-component-id.md) | Custom node ID. Default value: **undefined**.|
 
 ## Example
 

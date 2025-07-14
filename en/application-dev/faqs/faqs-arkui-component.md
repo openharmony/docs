@@ -818,7 +818,7 @@ onCountUpdated(propName: string): void {
 
 **Reference**
 
-[@Watch Decorator: Getting Notified of State Variable Changes](../quick-start/arkts-watch.md)
+[@Watch Decorator: Getting Notified of State Variable Changes](../ui/state-management/arkts-watch.md)
 
 ## How are inheritance and encapsulation implemented for custom components in ArkUI? (API version 10)
 
