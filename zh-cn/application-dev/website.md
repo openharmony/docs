@@ -1519,7 +1519,9 @@
         - [使用OHAudio开发音频播放功能(C/C++)](media/audio/using-ohaudio-for-playback.md)
         - [使用AudioHaptic开发音振协同播放功能](media/audio/using-audiohaptic-for-playback.md)
         - [播放音量管理](media/audio/volume-management.md)
+        - [提升音频性能体验](media/audio/audio-performance.md)
         - [音频时延管理](media/audio/audio-latency.md)
+        - [音频工作组管理](media/audio/audio-workgroup.md)
         - [音效管理](media/audio/audio-effect-management.md)
         - [空间音频管理](media/audio/public-audio-spatialization-management.md)
         <!--Del-->
@@ -1530,7 +1532,6 @@
         <!--Del-->
         - [分布式音频播放(仅对系统应用开放)](media/audio/distributed-audio-playback.md)
         <!--DelEnd-->
-        - [音频工作组管理](media/audio/audio-workgroup.md)
       - 音频录制<!--audio-recording-->
         - [音频录制开发概述](media/audio/audio-recording-overview.md)
         - [使用AudioCapturer开发音频录制功能](media/audio/using-audiocapturer-for-recording.md)
