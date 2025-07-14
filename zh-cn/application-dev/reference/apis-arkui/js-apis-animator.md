@@ -204,36 +204,44 @@ reset(options: AnimatorOptions): void
 **示例：**
 
 ```ts
-import { Animator as animator, AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
+import { AnimatorResult } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let options: AnimatorOptions = {
-  duration: 1500,
-  easing: "friction",
-  delay: 0,
-  fill: "forwards",
-  direction: "normal",
-  iterations: 3,
-  begin: 200.0,
-  end: 400.0
-};
-let optionsNew: AnimatorOptions = {
-  duration: 1500,
-  easing: "friction",
-  delay: 0,
-  fill: "forwards",
-  direction: "normal",
-  iterations: 5,
-  begin: 200.0,
-  end: 400.0
-};
-try {
-  let animatorResult: AnimatorResult | undefined = animator.create(options)
-  animatorResult.reset(optionsNew);
-} catch (error) {
-  let message = (error as BusinessError).message
-  let code = (error as BusinessError).code
-  console.error(`Animator reset failed, error code: ${code}, message: ${message}.`);
+@Entry
+@Component
+struct AnimatorTest {
+  private animatorResult: AnimatorResult | undefined = undefined;
+
+  create() {
+    try {
+      this.animatorResult = this.getUIContext().createAnimator({
+        duration: 1500,
+        easing: "friction",
+        delay: 0,
+        fill: "forwards",
+        direction: "normal",
+        iterations: 3,
+        begin: 200.0,
+        end: 400.0
+      })
+      this.animatorResult.reset({
+        duration: 1500,
+        easing: "friction",
+        delay: 0,
+        fill: "forwards",
+        direction: "normal",
+        iterations: 5,
+        begin: 200.0,
+        end: 400.0
+      });
+    } catch (error) {
+      console.error(`Animator reset failed, error code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}.`);
+    }
+  }
+
+  build() {
+    // ......
+  }
 }
 ```
 
