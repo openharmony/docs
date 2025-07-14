@@ -1761,6 +1761,9 @@ setNetExtAttribute(netHandle: NetHandle, netExtAttribute: string): Promise\<void
 
 为netHandle对应的网络设置扩展属性，标识网络的安全级别。使用Promise异步回调。
 
+> **说明：**
+> 该接口所需的权限目前仅支持PC设备。
+
 **需要权限**：ohos.permission.SET_NET_EXT_ATTRIBUTE
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
@@ -1814,6 +1817,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 setNetExtAttributeSync(netHandle: NetHandle, netExtAttribute: string): void
 
 使用同步方法为netHandle对应的网络设置扩展属性，标识网络的安全级别。
+
+> **说明：**
+> 该接口所需的权限目前仅支持PC设备。
 
 **需要权限**：ohos.permission.SET_NET_EXT_ATTRIBUTE
 
