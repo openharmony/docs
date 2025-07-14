@@ -16,6 +16,7 @@
 - [OpenHarmony SDK升级助手](openharmony_sdk_upgrade_assistant.md)
 - [atm工具](atm-tool.md)
 - [network-cfg工具](network-cfg.md)
+- [ime工具](../inputmethod/inputmethod-hdc-commands-guide.md)
 <!--Del-->
 - [acm工具](acm-tool.md)
 <!--DelEnd-->
