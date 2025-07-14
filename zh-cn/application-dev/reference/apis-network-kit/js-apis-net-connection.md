@@ -1769,7 +1769,7 @@ setNetExtAttribute(netHandle: NetHandle, netExtAttribute: string): Promise\<void
 
 | 参数名    | 类型                                              | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| netHandle | NetHandle                                         | 是   | [NetHandle](#nethandle)。           |
+| netHandle | [NetHandle](#nethandle)                                         | 是   | 数据网络的句柄。           |
 | netExtAttribute | string                                      | 是   | 需要设置的网络扩展属性。                                         |
 
 **返回值：**
@@ -1823,8 +1823,8 @@ setNetExtAttributeSync(netHandle: NetHandle, netExtAttribute: string): void
 
 | 参数名    | 类型                                              | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| netHandle | NetHandle                                         | 是   | [NetHandle](#nethandle)。             |
-| netExtAttribute | string                                      | 是   | 需要设置的网络扩展属性。                                         |
+| netHandle | [NetHandle](#nethandle)                  | 是   | 数据网络的句柄。             |
+| netExtAttribute | string                             | 是   | 需要设置的网络扩展属性。      |
 
 **错误码：**
 
@@ -1862,9 +1862,9 @@ getNetExtAttribute(netHandle: NetHandle): Promise\<string\>
 
 **参数：**
 
-| 参数名    | 类型                                              | 必填 | 说明                                                         |
+| 参数名    | 类型                      | 必填 | 说明                           |
 | --------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| netHandle | NetHandle                                         | 是   | [NetHandle](#nethandle)。             |
+| netHandle | [NetHandle](#nethandle)                | 是   | 数据网络的句柄。             |
 
 **返回值：**
 
@@ -1916,7 +1916,7 @@ getNetExtAttributeSync(netHandle: NetHandle): string
 
 | 参数名    | 类型                                              | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| netHandle | NetHandle                                         | 是   | [NetHandle](#nethandle)。         |
+| netHandle | [NetHandle](#nethandle)                   | 是   | 数据网络的句柄。         |
 
 **返回值：**
 
