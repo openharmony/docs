@@ -103,7 +103,7 @@ PromptActionClass.ctx.getPromptAction().updateCustomDialog(PromptActionClass.con
 
 ## 为弹出框内容和蒙层设置不同的动画效果
 
-当弹出框出现时，内容与蒙层显示动效一致。若开发者希望为弹出框内容及蒙层设定不同动画效果，可通过[BaseDialogOptions](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)中dialogTransition和maskTransition属性单独配置弹窗内容与蒙层的动画。具体的动画效果请参考[组件内转场 (transition)](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md)。
+当弹出框出现时，内容与蒙层显示动效一致。若开发者希望为弹出框内容及蒙层设定不同动画效果，从API version 19开始，可通过[BaseDialogOptions](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)中dialogTransition和maskTransition属性单独配置弹窗内容与蒙层的动画。具体的动画效果请参考[组件内转场 (transition)](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md)。
 
 > **说明：** 
 >
@@ -165,7 +165,8 @@ struct Index {
 
 ## 设置弹出框避让软键盘的距离
 
-为显示弹出框的独立性，弹出框弹出时会与周边进行避让，包括状态栏、导航条以及键盘等留有间距。故当软键盘弹出时，默认情况下，弹出框会自动避开软键盘，并与之保持16vp的距离。开发者可以利用[BaseDialogOptions](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)中的keyboardAvoidMode和keyboardAvoidDistance这两个配置项，来设置弹出框在软键盘弹出时的行为，包括是否需要避开软键盘以及与软键盘之间的距离。
+为显示弹出框的独立性，弹出框弹出时会与周边进行避让，包括状态栏、导航条以及键盘等留有间距。故当软键盘弹出时，默认情况下，弹出框会自动避开软键盘，并与之保持16vp的距离。从API version 15开始，开发者可以利用[BaseDialogOptions](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)中的keyboardAvoidMode和keyboardAvoidDistance这两个配置项，来设置弹出框在软键盘弹出时的行为，包括是否需要避开软键盘以及与软键盘之间的距离。
+
 设置软键盘间距时，需要将keyboardAvoidMode值设为KeyboardAvoidMode.DEFAULT。
 
 ```ts
