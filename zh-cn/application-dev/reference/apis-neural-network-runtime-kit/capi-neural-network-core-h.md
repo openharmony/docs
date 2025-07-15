@@ -1513,9 +1513,9 @@ OH_NN_ReturnCode OH_NNExecutor_RunAsync(OH_NNExecutor *executor,NN_Tensor *input
 
 可以通过接口[OH_NNExecutor_SetOnRunDone](capi-neural-network-core-h.md#oh_nnexecutor_setonrundone)和[OH_NNExecutor_SetOnServiceDied](capi-neural-network-core-h.md#oh_nnexecutor_setonservicedied)设置回调函数[NN_OnRunDone](capi-neural-network-runtime-type-h.md#nn_onrundone)和[NN_OnServiceDied](capi-neural-network-runtime-type-h.md#nn_onservicedied)。
 
-如果推理时长超过了<b>timeout</b>，会立刻终止推理，回调函数[NN_OnRunDone](capi-neural-network-runtime-type-h.md#nn_onrundone)的<b>errCode<b>参数会返回[OH_NN_TIMEOUT](capi-neural-network-runtime-type-h.md#oh_nn_returncode)错误。
+如果推理时长超过了timeout，会立刻终止推理，回调函数[NN_OnRunDone](capi-neural-network-runtime-type-h.md#nn_onrundone)的errCode参数会返回[OH_NN_TIMEOUT](capi-neural-network-runtime-type-h.md#oh_nn_returncode)错误。
 
-<b>userData</b>是区分不同次异步执行的标识符，会作为回调函数的第一个参数返回，您可以使用能够区分不同次执行的任意数据作为标识符。
+userData是区分不同次异步执行的标识符，会作为回调函数的第一个参数返回，您可以使用能够区分不同次执行的任意数据作为标识符。
 
 **起始版本：** 11
 
@@ -1578,7 +1578,7 @@ OH_NN_ReturnCode OH_NNDevice_GetName(size_t deviceID, const char **name)
 
 获取指定硬件的名称。
 
-通过deviceID指定计算硬件，获取硬件的名称。硬件ID需要调用[OH_NNDevice_GetAllDevicesID](capi-neural-network-core-h.md#oh_nndevice_getalldevicesid)获取。如果deviceID是0，那么会默认使用设备列表中的第一个设备。 \*name是一个C风格的字符串，以<b>'\0'</b>作为结束符。\*name必须是一个空指针，否则接口会返回[OH_NN_INVALID_PARAMETER](capi-neural-network-runtime-type-h.md#oh_nn_returncode)错误。例如您应该定义char* deviceName = NULL，然后将&deviceName作为参数传入。
+通过deviceID指定计算硬件，获取硬件的名称。硬件ID需要调用[OH_NNDevice_GetAllDevicesID](capi-neural-network-core-h.md#oh_nndevice_getalldevicesid)获取。如果deviceID是0，那么会默认使用设备列表中的第一个设备。 \*name是一个C风格的字符串，以'\0'作为结束符。\*name必须是一个空指针，否则接口会返回[OH_NN_INVALID_PARAMETER](capi-neural-network-runtime-type-h.md#oh_nn_returncode)错误。例如您应该定义char* deviceName = NULL，然后将&deviceName作为参数传入。
 
 **起始版本：** 9
 
