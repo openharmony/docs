@@ -1487,6 +1487,7 @@
         - [OpenHarmony SDK升级助手](tools/openharmony_sdk_upgrade_assistant.md)
         <!--DelEnd-->
         - [atm工具](tools/atm-tool.md)
+        - [network-cfg工具](tools/network-cfg.md)
         <!--Del-->
         - [acm工具](tools/acm-tool.md)
         <!--DelEnd-->
