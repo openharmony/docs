@@ -4,13 +4,13 @@ The **securityManager** module provides device security management capabilities,
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
+> - The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
 >
-> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.securityManager](js-apis-enterprise-securityManager.md).
+> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.securityManager](js-apis-enterprise-securityManager.md).
 
 ## Modules to Import
 
@@ -111,6 +111,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -167,6 +168,6 @@ Represents the file system encryption status.
 
 **System API**: This is a system API.
 
-| Name        | Type    | Mandatory| Description                           |
-| ----------- | --------| ---- | ------------------------------- |
-| isEncrypted | boolean | Yes  | Whether the file system of the device is encrypted. **true**: The file system of the device is encrypted. **false**: The file system of the device is not encrypted.|
+| Name        | Type    | Read-Only| Optional|  Description                           |
+| ----------- | --------| ---- | ----| ---------------------------- |
+| isEncrypted | boolean | No  | No| Whether the file system of the device is encrypted. <br>The value **true** means the file system of the device is encrypted; the value **false** means the opposite.|
