@@ -4,7 +4,7 @@
 
 | 组件类型 | 意图配置 | 意图执行器 |
 | --- | --- | --- |
-| UIAbility | 需要在`insight_intent.json`文件中配置"uiAbility"字段。 | 当"executeMode"字段为"foreground"时，实现`onExecuteInUIAbilityForegroundMode`，通过startAbility启动意图绑定的UIAbility组件。<br>当"executeMode"字段为"background"时，实现`onExecuteInUIAbilityBackgroundMode`，通过[Call调用](../reference/apis-ability-kit/js-apis-app-ability-uiability.md#后台通信能力)启动意图绑定的UIAbility组件。 |
+| UIAbility | 需要在`insight_intent.json`文件中配置"uiAbility"字段。 | 当"executeMode"字段为"foreground"时，实现`onExecuteInUIAbilityForegroundMode`，通过startAbility启动意图绑定的UIAbility组件。<br>当"executeMode"字段为"background"时，实现`onExecuteInUIAbilityBackgroundMode`，通过[Call调用](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#后台通信能力)启动意图绑定的UIAbility组件。 |
 | UIExtensionAbility | 需要在`insight_intent.json`文件中配置"uiExtension"字段。 | 实现`onExecuteInUIExtensionAbility`。 |
 |<!--DelRow--> ServiceExtensionAbility | 需要在`insight_intent.json`文件中配置"serviceExtension"字段。 | 实现 `onExecuteInServiceExtensionAbility`。 |
 | 卡片(FormExtensionAbility) | 需要在`insight_intent.json`文件中配置"form"字段。 | 无需单独执行器。 |
