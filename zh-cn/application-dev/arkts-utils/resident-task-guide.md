@@ -26,6 +26,7 @@
 
    ```ts
    // Index.ets
+   import { MessageEvents, worker } from '@kit.ArkTS';
    
    @Entry
    @Component
@@ -38,7 +39,7 @@
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
              workerInstance.postMessage({type: 'start'})
-             workerInstance.onmessage = (event) => {
+             workerInstance.onmessage = (event: MessageEvents) => {
                console.info('UI主线程收到消息:', event.data);
              }
              // 10秒后停止worker
