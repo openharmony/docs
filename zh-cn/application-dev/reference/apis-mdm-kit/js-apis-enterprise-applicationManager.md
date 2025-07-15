@@ -523,7 +523,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let bundleName: string = 'com.example.exampleapplication'；
+let bundleName: string = 'com.example.exampleapplication';
 
 try {
   applicationManager.clearUpApplicationData(wantTemp, bundleName, 0, 100);

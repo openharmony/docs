@@ -46,6 +46,7 @@
 | [OH_AudioInterrupt_Hint](#oh_audiointerrupt_hint) | OH_AudioInterrupt_Hint | 定义音频中断提示类型。<br>当用户监听到音频中断时，将获取此信息。<br>此类型表示根据焦点策略，当前需要对音频流的具体操作（如暂停、调整音量等）。<br>可以结合[OH_AudioInterrupt_ForceType](#oh_audiointerrupt_forcetype)信息，判断该操作是否已由系统强制执行。 |
 | [OH_AudioInterrupt_Mode](#oh_audiointerrupt_mode) | OH_AudioInterrupt_Mode | 定义音频中断模式。 |
 | [OH_AudioStream_AudioEffectMode](#oh_audiostream_audioeffectmode) | OH_AudioStream_AudioEffectMode | 定义音效模式。 |
+| [OH_AudioStream_FastStatus](#oh_audiostream_faststatus) | OH_AudioStream_FastStatus | 定义低时延状态。 |
 | [OH_AudioStream_DeviceChangeReason](#oh_audiostream_devicechangereason) | OH_AudioStream_DeviceChangeReason | 流设备变更原因。 |
 | [OH_AudioStream_PrivacyType](#oh_audiostream_privacytype) | OH_AudioStream_PrivacyType | 用于标识对应播放音频流是否支持被其他应用录制。 |
 | [OH_AudioData_Callback_Result](#oh_audiodata_callback_result) | OH_AudioData_Callback_Result | 定义音频数据回调结果。 |
@@ -132,9 +133,9 @@ enum OH_AudioStream_EncodingType
 
 | 枚举项 | 描述 |
 | -- | -- |
-| AUDIOSTREAM_ENCODING_TYPE_RAW = 0 | PCM编码。        |
+| AUDIOSTREAM_ENCODING_TYPE_RAW = 0 | PCM编码。 |
 | AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID = 1 | AudioVivid编码。<br>**起始版本：** 12 |
-| AUDIOSTREAM_ENCODING_TYPE_E_AC3 = 2 | E_AC3编码。<br>**起始版本：** 19      |
+| AUDIOSTREAM_ENCODING_TYPE_E_AC3 = 2 | E_AC3编码。<br>**起始版本：** 19 |
 
 ### OH_AudioStream_Usage
 
@@ -258,10 +259,10 @@ enum OH_AudioStream_SourceType
 | AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION = 1 | 语音识别。 |
 | AUDIOSTREAM_SOURCE_TYPE_PLAYBACK_CAPTURE = 2 | 播放录音。 |
 | AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION = 7 | 通话。 |
-| AUDIOSTREAM_SOURCE_TYPE_VOICE_MESSAGE = 10      | 语音消息。<br>**起始版本：** 12     |
-| AUDIOSTREAM_SOURCE_TYPE_CAMCORDER = 13          | 录像。<br>**起始版本：** 13       |
-| AUDIOSTREAM_SOURCE_TYPE_UNPROCESSED = 14        | 麦克风纯净录音（系统不做任何算法处理）。<br>**起始版本：** 14 |
-| AUDIOSTREAM_SOURCE_TYPE_LIVE = 17        | 直播。<br>**起始版本：** 20 |
+| AUDIOSTREAM_SOURCE_TYPE_VOICE_MESSAGE = 10 | 语音消息。<br>**起始版本：** 12 |
+| AUDIOSTREAM_SOURCE_TYPE_CAMCORDER = 13 | 录像。<br>**起始版本：** 13 |
+| AUDIOSTREAM_SOURCE_TYPE_UNPROCESSED = 14 | 麦克风纯净录音（系统不做任何算法处理）。<br>**起始版本：** 14 |
+| AUDIOSTREAM_SOURCE_TYPE_LIVE = 17 | 直播。<br>**起始版本：** 20 |
 
 ### OH_AudioStream_Event
 
@@ -352,6 +353,23 @@ enum OH_AudioStream_AudioEffectMode
 | -- | -- |
 | EFFECT_NONE = 0 | 无音效模式。 |
 | EFFECT_DEFAULT = 1 | 默认音效模式。 |
+
+### OH_AudioStream_FastStatus
+
+```
+enum OH_AudioStream_FastStatus
+```
+
+**描述**
+
+定义低时延状态。
+
+**起始版本：** 20
+
+| 枚举项 | 描述 |
+| -- | -- |
+| AUDIOSTREAM_FASTSTATUS_NORMAL = 0 | 普通音频流状态。 |
+| AUDIOSTREAM_FASTSTATUS_FAST = 1 | 低时延音频流状态。 |
 
 ### OH_AudioStream_DeviceChangeReason
 

@@ -247,7 +247,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 | **错误码ID** | **错误信息**                        |
 |-----------|---------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error.     |
 | 14800010  | Failed to open or delete the database by an invalid database path. |
 
@@ -327,7 +327,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                                                                         |
 |-----------|----------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error.                                                                     |
 | 14800010  | Failed to open or delete the database by an invalid database path.                      |
 
@@ -398,7 +398,7 @@ deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<v
 
 | **错误码ID** | **错误信息**          |
 |-----------|----------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error.        |
 | 14800010  | Failed to open or delete the database by an invalid database path.        |
 | 14801001  | The operation is supported in the stage model only.         |
@@ -489,7 +489,7 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | Capability not supported.      |
 | 14800000  | Inner error.      |
 | 14800010  | Failed to open or delete the database by an invalid database path.   |
@@ -593,7 +593,7 @@ isTokenizerSupported(tokenizer: Tokenizer): boolean
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 401       | Parameter error. Possible causes: Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 
 **示例：**

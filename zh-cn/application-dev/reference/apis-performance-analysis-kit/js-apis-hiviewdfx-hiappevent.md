@@ -47,11 +47,11 @@ addWatcher(watcher: Watcher): AppEventPackageHolder
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11102001 | Invalid watcher name.           |
-| 11102002 | Invalid filtering event domain. |
-| 11102003 | Invalid row value.              |
-| 11102004 | Invalid size value.             |
-| 11102005 | Invalid timeout value.          |
+| 11102001 | Invalid watcher name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11102002 | Invalid filtering event domain. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11102003 | Invalid row value. Possible caused by the row value is less than zero. |
+| 11102004 | Invalid size value. Possible caused by the size value is less than zero. |
+| 11102005 | Invalid timeout value. Possible caused by the timeout value is less than zero. |
 
 **示例：**
 
@@ -178,7 +178,7 @@ removeWatcher(watcher: Watcher): void
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11102001 | Invalid watcher name. |
+| 11102001 | Invalid watcher name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
 
 **示例：**
 
@@ -231,6 +231,7 @@ setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: st
 | 11100001 | Function disabled. Possible caused by the param disable in ConfigOption is true. |
 | 11101001 | Invalid event domain. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
 | 11101002 | Invalid event name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11101004 | Invalid string length of the event parameter. |
 | 11101005 | Invalid event parameter name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
 | 11101007 | The number of parameter keys exceeds the limit. |
 
@@ -417,7 +418,7 @@ setSize(size: number): void
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11104001 | Invalid size value. |
+| 11104001 | Invalid size value. Possible caused by the size value is less than or equal to zero. |
 
 **示例：**
 
@@ -451,7 +452,7 @@ setRow(size: number): void
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11104001 | Invalid size value. |
+| 11104001 | Invalid size value. Possible caused by the size value is less than or equal to zero. |
 
 **示例：**
 
@@ -561,13 +562,13 @@ write(info: AppEventInfo, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11100001 | Function disabled.                            |
-| 11101001 | Invalid event domain.                         |
-| 11101002 | Invalid event name.                           |
-| 11101003 | Invalid number of event parameters.           |
+| 11100001 | Function disabled. Possible caused by the param disable in ConfigOption is true. |
+| 11101001 | Invalid event domain. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11101002 | Invalid event name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11101003 | Invalid number of event parameters. Possible caused by the number of parameters is over 32. |
 | 11101004 | Invalid string length of the event parameter. |
-| 11101005 | Invalid event parameter name.                 |
-| 11101006 | Invalid array length of the event parameter.  |
+| 11101005 | Invalid event parameter name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11101006 | Invalid array length of the event parameter. |
 
 **示例：**
 
@@ -625,13 +626,13 @@ write(info: AppEventInfo): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11100001 | Function disabled.                            |
-| 11101001 | Invalid event domain.                         |
-| 11101002 | Invalid event name.                           |
-| 11101003 | Invalid number of event parameters.           |
+| 11100001 | Function disabled. Possible caused by the param disable in ConfigOption is true. |
+| 11101001 | Invalid event domain. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11101002 | Invalid event name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11101003 | Invalid number of event parameters. Possible caused by the number of parameters is over 32. |
 | 11101004 | Invalid string length of the event parameter. |
-| 11101005 | Invalid event parameter name.                 |
-| 11101006 | Invalid array length of the event parameter.  |
+| 11101005 | Invalid event parameter name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11101006 | Invalid array length of the event parameter. |
 
 **示例：**
 
@@ -662,9 +663,9 @@ hiAppEvent.write({
 
 addProcessor(processor: Processor): number
 
-添加数据处理者，该数据处理者用于提供事件上云功能，数据处理者的实现可预置在设备中，开发者可根据数据处理者的约束设置属性。
+添加数据处理者配置信息，用于配置处理者接收的事件名等信息。事件发生后处理者可以接收事件。
 
-Processor的配置信息需要由数据处理者提供，目前设备内暂未预置可供交互的数据处理者，因此当前事件上云功能不可用。
+该接口为同步接口，包含耗时操作。为了确保性能，建议使用[addProcessorFromConfig](#hiappeventaddprocessorfromconfig20)异步接口或者交由子线程执行。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -702,6 +703,52 @@ try {
 } catch (error) {
     hilog.error(0x0000, 'hiAppEvent', `failed to addProcessor event, code=${error.code}`);
 }
+```
+
+
+## hiAppEvent.addProcessorFromConfig<sup>20+</sup>
+
+addProcessorFromConfig(processorName: string, configName?: string): Promise&lt;number&gt;
+
+<!--RP1-->
+
+添加数据处理者配置信息，通过配置文件配置处理者接收的事件名等信息，事件发生后处理者可以接收事件，使用Promise异步回调。
+<!--RP1End-->
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名     | 类型        | 必填 | 说明              |
+| ---------  | ---------- | ---- | -------------    |
+| processorName  |  string  | 是   | <!--RP2-->数据处理者的名称。名称只能包含大小写字母、数字、下划线和$，不能以数字开头，长度非空且不超过256个字符。<!--RP2End-->|
+| configName  |  string  | 否   | <!--RP3-->数据处理者的配置名称，支持从配置文件中加载对应配置，默认为“SDK_OCG”。只能包含大小写字母、数字、下划线和$，不能以数字开头，长度非空且不超过256个字符。<!--RP3End-->|
+
+**返回值：**
+
+| 类型    | 说明                   |
+| ------ | ---------------------- |
+| Promise&lt;number&gt; | Promise对象。返回添加的事件数据处理者的唯一ID，可用于移除该数据处理者。 添加失败返回11105001错误码。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| ------- | ----------------- |
+| 11105001     | Invalid parameter value. Possible causes: 1. Incorrect parameter length; 2. Incorrect parameter format. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+hiAppEvent.addProcessorFromConfig("test_name").then((processorId) => {
+  hilog.info(0x0000, 'hiAppEvent', `Succeeded in adding processor from config, processorId=${processorId}`);
+}).catch((err: BusinessError) => {
+  hilog.error(0x0000, 'hiAppEvent', `Failed to add processor from config, code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 
@@ -943,7 +990,7 @@ configure(config: ConfigOption): void
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11103001 | Invalid max storage quota value. |
+| 11103001 | Invalid max storage quota value. Possible caused by incorrectly formatted. |
 
 **示例：**
 
@@ -984,19 +1031,20 @@ hiAppEvent.configure(config2);
 
 | 名称                | 类型                     | 只读 | 可选 | 说明                                                                                                        |
 | ------------------- | ----------------------- | ---- | ---- | ---------------------------------------------------------------------------------------------------------- |
-| name                | string                  | 否 | 否   | 数据处理者的名称。名称只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度非空且不超过256个字符。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                           |
-| debugMode           | boolean                 | 否 | 是   | 是否开启debug模式，默认值为false。配置值为true表示开启debug模式，false表示不开启debug模式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                    |
-| routeInfo           | string                  | 否 | 是   | 服务器位置信息，默认为空字符串。传入字符串长度不能超过8KB，超过时会被置为默认值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                   |
-| appId               | string                  | 否 | 是   | 应用id，默认为空字符串。传入字符串长度不能超过8KB，超过时会被置为默认值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| onStartReport       | boolean                 | 否 | 是   | 数据处理者在启动时是否上报事件，默认值为false。配置值为true表示上报事件，false表示不上报事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                   |
-| onBackgroundReport  | boolean                 | 否 | 是   | 当应用程序进入后台时是否上报事件，默认值为false。配置值为true表示上报事件，false表示不上报事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                 |
-| periodReport        | number                  | 否 | 是   | 事件定时上报时间周期，单位为秒。传入数值必须大于或等于0，小于0时会被置为默认值0，不进行定时上报。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                |
-| batchReport         | number                  | 否 | 是   | 事件上报阈值，当事件条数达到阈值时上报事件。传入数值必须大于0且小于1000，不在数值范围内会被置为默认值0，不进行上报。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |
-| userIds             | string[]                | 否 | 是   | 数据处理者可以上报的用户ID的name数组。name对应[setUserId](#hiappeventsetuserid11)接口的name参数。默认为空数组。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
-| userProperties      | string[]                | 否 | 是   | 数据处理者可以上报的用户属性的name数组。name对应[setUserProperty](#hiappeventsetuserproperty11)接口的name参数。默认为空数组。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| eventConfigs        | [AppEventReportConfig](#appeventreportconfig11)[]  | 否 | 是   | 数据处理者可以上报的事件描述配置数组。默认为空数组。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                 |
-| configId<sup>12+</sup> | number | 否 | 是 | 数据处理者配置id。传入数值必须大于或等于0，小于0时会被置为默认值0。传入的值大于0时，与数据处理者的名称name共同唯一标识数据处理者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| customConfigs<sup>12+</sup> | Record\<string, string> | 否 | 是 | 自定义扩展参数。传入参数名和参数值不符合规格会默认不配置扩展参数，其规格定义如下：<br>- 参数名为string类型，首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过32个字符。<br>- 参数值为string类型，参数值长度需在1024个字符以内。<br>- 参数个数需在32个以内。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| name                | string                  | 否 | 否   | 数据处理者的名称。名称只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度非空且不超过256个字符。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。                                                                                           |
+| debugMode           | boolean                 | 否 | 是   | 是否开启debug模式，默认值为false。配置值为true表示开启debug模式，false表示不开启debug模式。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。                                    |
+| routeInfo           | string                  | 否 | 是   | 服务器位置信息，默认为空字符串。传入字符串长度不能超过8KB，超过时会被置为默认值。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。                                                                                   |
+| appId               | string                  | 否 | 是   | 应用id，默认为空字符串。传入字符串长度不能超过8KB，超过时会被置为默认值。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。 |
+| onStartReport       | boolean                 | 否 | 是   | 数据处理者在启动时是否上报事件，默认值为false。配置值为true表示上报事件，false表示不上报事件。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。                                   |
+| onBackgroundReport  | boolean                 | 否 | 是   | 当应用程序进入后台时是否上报事件，默认值为false。配置值为true表示上报事件，false表示不上报事件。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。                                 |
+| periodReport        | number                  | 否 | 是   | 事件定时上报时间周期，单位为秒。传入数值必须大于或等于0，小于0时会被置为默认值0，不进行定时上报。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。                                                |
+| batchReport         | number                  | 否 | 是   | 事件上报阈值，当事件条数达到阈值时上报事件。传入数值必须大于0且小于1000，不在数值范围内会被置为默认值0，不进行上报。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。                         |
+| userIds             | string[]                | 否 | 是   | 数据处理者可以上报的用户ID的name数组。name对应[setUserId](#hiappeventsetuserid11)接口的name参数。默认为空数组。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。    |
+| userProperties      | string[]                | 否 | 是   | 数据处理者可以上报的用户属性的name数组。name对应[setUserProperty](#hiappeventsetuserproperty11)接口的name参数。默认为空数组。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。   |
+| eventConfigs        | [AppEventReportConfig](#appeventreportconfig11)[]  | 否 | 是   | 数据处理者可以上报的事件描述配置数组。默认为空数组。<br>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。                                                                                 |
+| configId<sup>12+</sup> | number | 否 | 是 | 数据处理者配置id。传入数值必须大于或等于0，小于0时会被置为默认值0。传入的值大于0时，与数据处理者的名称name共同唯一标识数据处理者。<br>**原子化服务API：** 从API version 12开始，该参数支持在原子化服务中使用。 |
+| customConfigs<sup>12+</sup> | Record\<string, string> | 否 | 是 | 自定义扩展参数。传入参数名和参数值不符合规格会默认不配置扩展参数，其规格定义如下：<br>- 参数名为string类型，首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过32个字符。<br>- 参数值为string类型，参数值长度需在1024个字符以内。<br>- 参数个数需在32个以内。<br>**原子化服务API：** 从API version 12开始，该参数支持在原子化服务中使用。 |
+| configName<sup>20+</sup>    | string                  | 否 | 是   | <!--RP4-->数据处理者的配置名称，支持从配置文件中加载对应配置，默认为空。只能包含大小写字母、数字、下划线和$，不能以数字开头，长度非空且不超过256个字符。<br>**原子化服务API：** 从API version 20开始，该参数支持在原子化服务中使用。<!--RP4End-->|
 
 
 ## AppEventReportConfig<sup>11+</sup>

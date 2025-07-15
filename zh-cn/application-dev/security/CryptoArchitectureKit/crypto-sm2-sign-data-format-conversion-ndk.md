@@ -86,7 +86,7 @@ static OH_Crypto_ErrCode doSm2GetRS() {
         .len = sizeof(signText)};
 
     OH_CryptoEccSignatureSpec *eccSignSpec = nullptr;
-    ret = OH_CryptoEccSignatureSpec_Create(&signBlob, &eccSignSpec);
+    OH_Crypto_ErrCode ret = OH_CryptoEccSignatureSpec_Create(&signBlob, &eccSignSpec);
     if (ret != CRYPTO_SUCCESS) {
         return ret;
     }

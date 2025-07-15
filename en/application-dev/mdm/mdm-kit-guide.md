@@ -29,14 +29,12 @@ For details, see [EnterpriseAdminExtensionAbility Development](mdm-kit-admin.md)
 
 ### Declaring Required Permissions
 
-Before declaring the required permissions, ensure that the [basic principles for using permissions](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Then, declare the permissions required by the application under **requestPermissions** in the [module.json5](../quick-start/module-configuration-file.md) file of the module of the project.
-
-Example:
+Before declaring the required permissions, ensure that the [basic principles for using permissions](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Then, declare the permissions required by the application under **requestPermissions** in the [module.json5](../quick-start/module-configuration-file.md) file of the module of the project. Example:
 
 ```ts
 "requestPermissions": [
   {
-    "name": "ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN"
+    "name": "ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS"
   },
 ]
 ```
@@ -68,7 +66,7 @@ Example:
      restrictions.setDisallowedPolicy(wantTemp, "wifi", true);
      console.info("disable wifi success.");
    } catch (error) {
-     console.info("disable wifi fail.");
+     console.error("disable wifi fail.");
    }
    ```
 

@@ -1,6 +1,8 @@
 # @ohos.enterprise.browser (Browser Management)
 
-The **browser** module provides browser management, including setting, deleting, and obtaining browser policies.
+The **browser** module provides browser management, including setting, canceling, and obtaining browser policies.
+
+Browser policies are a collection of rules and settings that govern how a browser behaves, ensuring security, compliance, performance optimization, and a consistent user experience.
 
 > **NOTE**
 >
@@ -8,7 +10,7 @@ The **browser** module provides browser management, including setting, deleting,
 >
 > - The APIs of this module can be used only in the stage model.
 >
-> - The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is enabled.
+> - The APIs of this module can be called only by a device administrator application that is enabled. For details, see [MDM Kit Development](../../mdm/mdm-kit-guide.md).
 
 ## Modules to Import
 
@@ -20,7 +22,7 @@ import { browser } from '@kit.MDMKit';
 
 setPolicySync(admin: Want, appId: string, policyName: string, policyValue: string): void
 
-Sets a policy for a specified browser.
+Sets the sub-policy for a specified browser.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -50,6 +52,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -72,7 +75,7 @@ try {
 
 getPoliciesSync(admin: Want, appId: string): string
 
-Obtains the policies of a browser through the specified device administrator application.
+Obtains the policy set for a specified browser.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -88,7 +91,7 @@ Obtains the policies of a browser through the specified device administrator app
 
 | Type  | Description        |
 | ------ | ------------ |
-| string | Browser policies obtained.|
+| string | Browser policy obtained.|
 
 **Error codes**
 
@@ -103,6 +106,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -123,7 +127,7 @@ try {
 
 setManagedBrowserPolicy(admin: Want, bundleName: string, policyName: string, policyValue: string): void
 
-Sets the browser hosting policy. After the setting is successful, the system common event [BROWSER_POLICY_CHANGED_EVENT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_managed_browser_policy_changed) is released.
+Sets the browser policy. After the setting is successful, the system common event [BROWSER_POLICY_CHANGED_EVENT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_managed_browser_policy_changed) is released.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -153,6 +157,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -173,7 +178,7 @@ try {
 
 getManagedBrowserPolicy(admin: Want, bundleName: string): ArrayBuffer
 
-Obtains the browser hosting policy.
+Obtains the policy of a specified browser.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -189,7 +194,7 @@ Obtains the browser hosting policy.
 
 | Type       | Description        |
 | ----------- | ------------ |
-| ArrayBuffer | Browser hosting policy.|
+| ArrayBuffer | Browser policy obtained.|
 
 **Error codes**
 
@@ -205,6 +210,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { util } from '@kit.ArkTS';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -215,7 +221,7 @@ try {
   let buffer: ArrayBuffer = browser.getManagedBrowserPolicy(wantTemp, bundleName);
   let intBuffer: Uint8Array = new Uint8Array(buffer);
   let decoder: util.TextDecoder = util.TextDecoder.create('utf-8');
-  let stringData: string = decoder.decodeWithStream(intBuffer);
+  let stringData: string = decoder.decodeToString(intBuffer);
   console.info(`Succeeded in getting managed browser policy, result : ${stringData}`);
 } catch(err) {
   console.error(`Failed to get managed browser policy. Code is ${err.code}, message is ${err.message}`);
@@ -226,7 +232,7 @@ try {
 
 getSelfManagedBrowserPolicyVersion(): string
 
-Obtains the browser hosting policy version.
+Obtains the policy version of a specified browser.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -235,7 +241,7 @@ Obtains the browser hosting policy version.
 
 | Type   | Description        |
 | ------ | ------------ |
-| string | Browser hosting policy version.|
+| string | Browser policy version.|
 
 **Example**
 
@@ -253,7 +259,7 @@ try {
 
 getSelfManagedBrowserPolicy(): ArrayBuffer
 
-Obtains the browser hosting policy.
+Obtains the policy of a specified browser.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -262,19 +268,18 @@ Obtains the browser hosting policy.
 
 | Type       | Description        |
 | ----------- | ------------ |
-| ArrayBuffer | Browser hosting policy.|
+| ArrayBuffer | Browser policy obtained.|
 
 **Example**
 
 ```ts
-import { Want } from '@kit.AbilityKit';
 import { util } from '@kit.ArkTS';
 
 try {
   let buffer: ArrayBuffer = browser.getSelfManagedBrowserPolicy();
   let intBuffer: Uint8Array = new Uint8Array(buffer);
   let decoder: util.TextDecoder = util.TextDecoder.create('utf-8');
-  let stringData: string = decoder.decodeWithStream(intBuffer);
+  let stringData: string = decoder.decodeToString(intBuffer);
   console.info(`Succeeded in getting self managed browser policy, result : ${stringData}`);
 } catch(err) {
   console.error(`Failed to get self managed browser policy. Code is ${err.code}, message is ${err.message}`);

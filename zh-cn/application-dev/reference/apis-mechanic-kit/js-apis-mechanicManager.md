@@ -317,8 +317,8 @@ console.info(`'Query layout successful, current layout:' ${layout}`);
 
 | 名称         | 值  | 说明              |
 | ----------- | ---- | --------------- |
-| CAMERA_TRACKING_USER_DISABLED | 0 | 用户禁用了摄像头跟踪。 |
-| CAMERA_TRACKING_USER_ENABLED | 1 | 用户启用了摄像头跟踪。 |
+| CAMERA_TRACKING_USER_ENABLED | 0 | 用户启用了摄像头跟踪。 |
+| CAMERA_TRACKING_USER_DISABLED | 1 | 用户禁用了摄像头跟踪。 |
 | CAMERA_TRACKING_LAYOUT_CHANGED | 2 | 摄像头跟踪构图变更。 |
 
 ## MechDeviceType

@@ -28,15 +28,17 @@ This error code is reported when a memory operation fails.
 
 **Error Message**
 
-Parcel operation failed.
+Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.
 
 **Description**
 
-This error code is reported when the read or write operation fails during IPC.
+When an API related to a continuous task is called, the read or write operation fails during IPC.
 
 **Possible Causes**
 
-An exception occurs when invoking the **MessageParcel** object to read or write an object.
+1. The data object fails to be read or written during IPC.
+2. The memory fails to be allocated for the read or write operation.
+<br>During RPC, the sender can use the **write()** method provided by **MessageParcel** to write data in specific format to a **MessageParcel** object. The receiver can use the **read()** method provided by **MessageParcel** to read data in specific format from a **MessageParcel** object.
 
 **Solution**
 
@@ -68,7 +70,7 @@ System service operation failed.
 
 **Description**
 
-This error code is reported when the client process fails to obtain the system service.
+When an API related to a continuous task is called, the client process fails to obtain the system service.
 
 **Possible Causes**
 
@@ -189,6 +191,45 @@ This error code is reported when transient task verification fails.
 1. Check the application code.
 2. The application should cancel transient tasks immediately after they are complete.
 
+## 9900003 Parcel Operation Failure
+
+**Error Message**
+
+Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.
+
+**Description**
+
+When an API related to a transient task is called, the read or write operation fails during IPC.
+
+**Possible Causes**
+
+1. The data object fails to be read or written during IPC.
+2. The memory fails to be allocated for the read or write operation.
+<br>During RPC, the sender can use the **write()** method provided by **MessageParcel** to write data in specific format to a **MessageParcel** object. The receiver can use the **read()** method provided by **MessageParcel** to read data in specific format from a **MessageParcel** object.
+
+**Solution**
+
+Try again later or restart the device.
+
+## 9900004 System Service Failure
+
+**Error Message**
+
+System service operation failed.
+
+**Description**
+
+When an API related to a transient task is called, the client process fails to obtain the system service.
+
+**Possible Causes**
+
+1. The system service is not started.
+2. The system service is abnormal.
+
+**Solution**
+
+Try again later or restart the device.
+<!--Del-->
 ## 18700001 Caller Information Verification Failure for an Energy Resource Request
 
 **Error Message**
@@ -207,3 +248,43 @@ This error code is reported when caller information verification in an energy re
 **Solution**
 
 Check the input parameters.
+
+## 18700002 Parcel Operation Failure
+
+**Error Message**
+
+Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.
+
+**Description**
+
+When an API related to efficiency resources is called, the read or write operation fails during IPC.
+
+**Possible Causes**
+
+1. The data object fails to be read or written during IPC.
+2. The memory fails to be allocated for the read or write operation.
+<br>During RPC, the sender can use the **write()** method provided by **MessageParcel** to write data in specific format to a **MessageParcel** object. The receiver can use the **read()** method provided by **MessageParcel** to read data in specific format from a **MessageParcel** object.
+
+**Solution**
+
+Try again later or restart the device.
+
+## 18700004 System Service Failure
+
+**Error Message**
+
+System service operation failed.
+
+**Description**
+
+When an API related to efficiency resources is called, the client process fails to obtain the system service.
+
+**Possible Causes**
+
+1. The system service is not started.
+2. The system service is abnormal.
+
+**Solution**
+
+Try again later or restart the device.
+<!--DelEnd-->

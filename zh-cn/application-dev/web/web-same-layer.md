@@ -470,7 +470,7 @@ display，position，z-index，visibility，opacity, background-color，backgrou
                   let nodeController = this.nodeControllerMap.get(componentId);
                   // 将获取到的同层区域的事件发送到该区域embedId对应的nodeController上
                   if(nodeController?.getEmbedId() == mouse.embedId) {
-                    let ret = nodeController?.postInputEvent(mouse.touchEvent)
+                    let ret = nodeController?.postInputEvent(mouse.mouseEvent)
                     if(ret) {
                       console.log("onNativeEmbedMouseEvent success " + componentId);
                     } else {

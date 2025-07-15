@@ -563,7 +563,7 @@ struct CheckboxExample {
 
 ### 示例5（获取多选框选中信息）
 
-该示例通过选中checkbox以及checkboxGroup多选框来获取选中的信息。
+该示例通过选中Checkbox以及CheckboxGroup多选框来获取选中的信息。
 
 ```ts
 // xxx.ets
@@ -720,3 +720,215 @@ struct CheckboxExample {
 ```
 
 ![checkbox5](figures/checkbox5.gif)
+
+### 示例6（设置滑动多选）
+
+该示例通过设置手势事件实现Checkbox滑动多选。
+
+```ts
+// xxx.ets
+import { componentUtils, ComponentUtils, UIContext } from '@kit.ArkUI';
+import { LinkedList } from '@kit.ArkTS';
+
+@Entry
+@Component
+struct Index {
+  @State isChoosing: boolean = false;
+  @State selectedStart: number = -1;
+  @State @Watch('onSelectedEndChange') selectedEnd: number = -1;
+  selectedPhotos: LinkedList<number> = new LinkedList();
+  @State selectedList: number[] = [];
+  @State image: Resource[] =
+    [$r("app.media.imageOne"), $r('app.media.imageTwo'), $r('app.media.imageThree'), $r('app.media.imageFour')];
+  private selectedState: SelectedState = SelectedState.None;
+  private componentUtils: ComponentUtils = this.getUIContext().getComponentUtils();
+  private listScroller: ListScroller = new ListScroller();
+  private currentOffsetY: number = 0;
+
+  onChange() {
+    console.info('change successful');
+  }
+
+  getSpeed(fingerY: number, edge: number) {
+    return 150 * 150 * (fingerY - edge) / 2000 / Math.abs(fingerY - edge);
+  }
+
+  getIndex(fingerX: number, fingerY: number) {
+    let rect: componentUtils.ComponentInfo | null = null;
+    for (let i = 0; i < 100; i++) {
+      let uiContext: UIContext = this.getUIContext();
+      rect = this.componentUtils.getRectangleById(`stack${i}`);
+      const x1 = uiContext.px2vp(rect.windowOffset.x);
+      const x2 = uiContext.px2vp(rect.windowOffset.x + rect.size.width);
+      const y1 = uiContext.px2vp(rect.windowOffset.y);
+      const y2 = uiContext.px2vp(rect.windowOffset.y + rect.size.height);
+      if (x1 <= fingerX && fingerX < x2 && y1 <= fingerY && fingerY < y2) {
+        return i;
+      }
+    }
+    return this.selectedEnd;
+  }
+
+  onSelectedEndChange() {
+    let start: number = -1;
+    let end: number = -1;
+    if (this.selectedEnd > this.selectedStart) {
+      start = this.selectedStart;
+      end = this.selectedEnd;
+    } else {
+      end = this.selectedStart;
+      start = this.selectedEnd;
+    }
+    if (this.selectedState == SelectedState.Selected) {
+      for (let i = start; i <= end; i++) {
+        if (!this.selectedPhotos.has(i)) {
+          this.selectedPhotos.add(i);
+        }
+      }
+    } else if (this.selectedState == SelectedState.Remove) {
+      for (let i = start; i <= end; i++) {
+        if (this.selectedPhotos.has(i)) {
+          this.selectedPhotos.remove(i);
+        }
+      }
+    }
+    this.selectedList = this.selectedPhotos.convertToArray();
+  }
+
+  scroll(fingerY: number) {
+    if (fingerY > 700 && !this.listScroller.isAtEnd()) {
+      this.listScroller.scrollBy(0, this.getSpeed(fingerY, 700));
+      return;
+    }
+    if (fingerY < 200 && this.currentOffsetY > 0) {
+      this.listScroller.scrollBy(0, this.getSpeed(fingerY, 200));
+      return;
+    }
+  }
+
+  onPanGestureUpdate(event: GestureEvent) {
+    const fingerInfo = event.fingerList[event.fingerList.length - 1];
+    const fingerX = fingerInfo.globalX;
+    const fingerY = fingerInfo.globalY;
+    this.selectedEnd = this.getIndex(fingerX, fingerY);
+    this.scroll(fingerY);
+  }
+
+  build() {
+    Column() {
+      if (this.isChoosing) {
+        Row() {
+          Text('取消')
+            .onClick(() => {
+              this.isChoosing = false;
+              this.selectedStart = -1;
+              this.selectedEnd = -1;
+              this.selectedPhotos.clear();
+              this.selectedList = [];
+            })
+        }
+        .width('100%')
+        .justifyContent(FlexAlign.SpaceEvenly)
+      }
+      List({ space: 10, scroller: this.listScroller }) {
+        ForEach(Array.from({ length: 100 }), (item: string, index: number) => {
+          ListItem() {
+            Stack({ alignContent: Alignment.TopEnd }) {
+              Image(this.image[(index % 4)])
+                .width('100%')
+                .draggable(false)
+              Checkbox({ name: index.toString() })
+                .shape(CheckBoxShape.CIRCLE)
+                .visibility(this.isChoosing ? Visibility.Visible : Visibility.None)
+                .select(this.selectedList.includes(index))
+            }
+            .id(`stack${index}`)
+            .width('100%')
+          }
+          .draggable(false)
+        }, (item: string, index: number) => 'listItem' + index)
+      }
+      .id('list')
+      .height('100%')
+      .width('100%')
+      .lanes(4)
+      .alignListItem(ListItemAlign.Center)
+      .onDidScroll(() => {
+        this.currentOffsetY = this.listScroller.currentOffset().yOffset;
+      })
+      .gesture(
+        GestureGroup(GestureMode.Exclusive,
+          GestureGroup(GestureMode.Sequence,
+            LongPressGesture()
+              .onAction(() => {
+                this.isChoosing = true;
+              }),
+            PanGesture()
+              .onActionStart(event => {
+                if (!this.isChoosing) {
+                  return;
+                }
+                const fingerInfo = event.fingerList[event.fingerList.length - 1];
+                const fingerX = fingerInfo.globalX;
+                const fingerY = fingerInfo.globalY;
+                this.selectedStart = this.getIndex(fingerX, fingerY);
+                if (this.selectedPhotos.has(this.selectedStart)) {
+                  this.selectedState = SelectedState.Remove;
+                } else {
+                  this.selectedState = SelectedState.Selected;
+                }
+              })
+              .onActionUpdate(event => {
+                if (!this.isChoosing) {
+                  return;
+                }
+                this.onPanGestureUpdate(event);
+              })
+              .onActionEnd(() => {
+                if (!this.isChoosing) {
+                  return;
+                }
+                this.selectedState = SelectedState.None;
+              })
+          ),
+          PanGesture()
+            .onActionStart(event => {
+              if (!this.isChoosing) {
+                return;
+              }
+              const fingerInfo = event.fingerList[event.fingerList.length - 1];
+              const fingerX = fingerInfo.globalX;
+              const fingerY = fingerInfo.globalY;
+              this.selectedStart = this.getIndex(fingerX, fingerY);
+              if (this.selectedPhotos.has(this.selectedStart)) {
+                this.selectedState = SelectedState.Remove;
+              } else {
+                this.selectedState = SelectedState.Selected;
+              }
+            })
+            .onActionUpdate(event => {
+              if (!this.isChoosing) {
+                return;
+              }
+              this.onPanGestureUpdate(event);
+            })
+            .onActionEnd(() => {
+              if (!this.isChoosing) {
+                return;
+              }
+              this.selectedState = SelectedState.None;
+            })
+        )
+      )
+    }
+  }
+}
+
+enum SelectedState {
+  None,
+  Selected,
+  Remove
+}
+```
+
+![checkbox6](figures/checkbox6.gif)

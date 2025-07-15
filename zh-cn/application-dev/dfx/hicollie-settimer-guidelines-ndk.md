@@ -9,7 +9,7 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
 | OH_HiCollie_SetTimer | 注册定时器，用于检测函数或代码块执行是否超过自定义时间。<br/>结合OH_HiCollie_CancelTimer接口配套使用，应在调用耗时的函数之前使用。|
 | OH_HiCollie_CancelTimer | 取消定时器。<br/>结合OH_HiCollie_SetTimer接口配套使用，执行函数或代码块后使用，OH_HiCollie_CancelTimer通过id将该任务取消；<br/>若未在自定义时间内取消，则执行回调函数，在特定自定义超时动作下，生成故障日志。|
 
-- API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiCollie](../reference/apis-performance-analysis-kit/_hi_collie.md)。
+- API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiCollie](../reference/apis-performance-analysis-kit/capi-hicollie-h.md)。
 - 函数执行时间超长故障日志以syswarning-开头，生成在”设备/data/log/faultlog/faultlogger/”路径下。文件名格式为“syswarning-应用包名-应用UID-秒级时间.log”。
 
 ## 开发步骤

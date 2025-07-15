@@ -101,7 +101,7 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -199,7 +199,7 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -290,7 +290,7 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -361,7 +361,7 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 | **错误码ID** | **错误信息**      |
 |-----------| --------------------- |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
@@ -426,7 +426,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, callba
 | **错误码ID** | **错误信息**           |
 |-----------| ------------------ |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
@@ -487,7 +487,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | **错误码ID** | **错误信息**      |
 |-----------| --------------- |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
@@ -553,7 +553,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | **错误码ID** | **错误信息**         |
 |-----------| ----------- |
 | 202       | Permission verification failed, application which is not a system application uses system API. |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
@@ -1134,7 +1134,7 @@ getFloat32Array(columnIndex: number): Float32Array
 
 | **错误码ID** | **错误信息**          |
 |-----------| ------------ |
-| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801       | The capability is not supported because the database is not a vector DB. |
 | 14800011  | Failed to open the database because it is corrupted. |
 | 14800013  | Resultset is empty or column index is out of bounds. |

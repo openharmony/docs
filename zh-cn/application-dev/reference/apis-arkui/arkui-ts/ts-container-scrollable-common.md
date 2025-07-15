@@ -493,6 +493,7 @@ onWillStopDragging(handler: OnWillStopDraggingCallback): T
 
 滚动组件划动离手时触发，使用鼠标滚轮划动时不会触发。
 
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -502,7 +503,7 @@ onWillStopDragging(handler: OnWillStopDraggingCallback): T
 
 | 参数名  | 类型                                                        | 必填 | 说明                         |
 | ------- | ----------------------------------------------------------- | ---- | ---------------------------- |
-| handler | [OnWillStopDraggingCallback](#onwillstopdraggingcallback20) | 是   | 滚动组件划动离手时触发的回调 |
+| handler | [OnWillStopDraggingCallback](#onwillstopdraggingcallback20) | 是   | 滚动组件划动离手时触发的回调。 |
 
 **返回值：**
 
@@ -886,6 +887,8 @@ setOnScrollFrameBegin(callback: OnScrollFrameBeginCallback | undefined): void
 type OnWillStopDraggingCallback = (velocity: number) => void
 
 滚动组件划动离手时触发的回调。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 

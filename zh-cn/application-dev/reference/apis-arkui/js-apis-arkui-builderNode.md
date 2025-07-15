@@ -1212,7 +1212,7 @@ offsetA为builderNode相对于父组件的偏移，offsetB为命中位置相对�
 
 inheritFreezeOptions(enabled: boolean): void
 
-查询当前builderNode对象是否设置为继承父组件中自定义组件的冻结策略。如果设置继承状态为false，则builderNode对象的冻结策略为false。在这种情况下，节点在不活跃状态下不会被冻结。
+查询当前BuilderNode对象是否设置为继承父组件中自定义组件的冻结策略。如果设置继承状态为false，则BuilderNode对象的冻结策略为false。在这种情况下，节点在不活跃状态下不会被冻结。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1222,7 +1222,7 @@ inheritFreezeOptions(enabled: boolean): void
 
 | 参数名 | 类型   | 必填 | 说明                                                                     |
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
-| enabled  | boolean | 是  | builderNode对象是否设置为继承父组件中自定义组件的冻结策略。true为继承父组件中自定义组件的冻结策略，false为不继承父组件中自定义组件的冻结策略。 |
+| enabled  | boolean | 是  | BuilderNode对象是否设置为继承父组件中自定义组件的冻结策略。true为继承父组件中自定义组件的冻结策略，false为不继承父组件中自定义组件的冻结策略。 |
 
 ## 示例
 

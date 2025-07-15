@@ -21,8 +21,8 @@ import { avSession } from '@kit.AVSessionKit';
 
 | 名称      | 类型   | 只读 | 可选 | 说明                          |
 | :-------- | :----- | :--- | :--- | :---------------------------- |
-| sessionId | string | 是   | 否   | AVSession对象唯一的会话标识。 |
-| sessionType| [AVSessionType](arkts-apis-avsession-t.md#avsessiontype10) | 是   | 否   | AVSession会话类型。 |
+| sessionId<sup>10+</sup> | string | 是   | 否   | AVSession对象唯一的会话标识。 |
+| sessionType<sup>10+</sup> | [AVSessionType](arkts-apis-avsession-t.md#avsessiontype10) | 是   | 否   | AVSession会话类型。 |
 
 **示例：**
 
@@ -1886,7 +1886,7 @@ on(type:'playWithAssetId', callback: Callback\<string>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------|
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -1921,7 +1921,7 @@ off(type: 'playWithAssetId', callback?: Callback\<string>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------|
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 
 **示例：**

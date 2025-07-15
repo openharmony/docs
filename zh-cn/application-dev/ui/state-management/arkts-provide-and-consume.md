@@ -12,7 +12,11 @@
 >
 > 从API version 11开始，这两个装饰器支持在原子化服务中使用。
 >
+>API version 19及以前，\@Provide和\@Consume双向同步仅支持声明式节点场景。
+>
 > 从API version 20开始，@Consume装饰的变量支持设置默认值。当查找不到@Provide的匹配结果时，@Consume装饰的变量会使用默认值进行初始化；当查找到@Provide的匹配结果时，@Consume装饰的变量会优先使用@Provide匹配结果的值，默认值不生效。
+>
+> 从API version 20开始，通过配置[BuilderNode](../../reference/apis-arkui/js-apis-arkui-builderNode.md)的[BuildOptions](../../reference/apis-arkui/js-apis-arkui-builderNode.md#buildoptions12)参数`enableProvideConsumeCrossing`为true，使得\@Provide和\@Consume支持跨[BuilderNode](../../reference/apis-arkui/js-apis-arkui-builderNode.md)双向同步。但需要注意，BuilderNode会在上树前构造节点，所以BuilderNode内部定义的\@Consume需要设置默认值，并在BuilderNode上树后，重新获取最近的\@Provide数据，与之建立双向同步关系。具体可见[\@Consume在跨BuilderNode场景下和\@Provide建立双向同步](#consume在跨buildernode场景下，和provide建立双向同步)。
 
 ## 概述
 
@@ -318,6 +322,74 @@ struct Parent {
 
 5. \@Provide与\@Consume不支持装饰Function类型的变量，框架会抛出运行时错误。
 
+6. 从API version 20开始，支持跨BuilderNode配对\@Provide/\@Consume。在BuilderNode上树时，\@Consume通过key匹配找到最近的\@Provide，两者类型需要一致，如果不一致，则会抛出运行时错误。
+需要注意类型不相等判断，包括类实例的判断，比如：
+```ts
+class A {}
+class B {}
+// 两个message都为object类型，但其构造函数不同，属于不同类型
+@Provide message: A = new A();
+@Consume message: B = new B();
+```
+在非BuilderNode场景中，仍建议配对的\@Provide/\@Consume类型一致。虽然在运行时不会有强校验，但在\@Consume装饰的变量初始化时，会隐式转换成\@Provide装饰变量的类型。
+```ts
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+
+@Builder
+function buildText() {
+  Column() {
+    Child()
+  }
+}
+
+class TextNodeController extends NodeController {
+  private builderNode: BuilderNode<[]> | null = null;
+
+  constructor() {
+    super();
+  }
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.builderNode = new BuilderNode(context);
+    // 配置跨BuilderNode支持@Provide/@Consume
+    this.builderNode.build(wrapBuilder(buildText), undefined,
+      { enableProvideConsumeCrossing: true });
+    // 将BuilderNode的根节点挂载到NodeContainer
+    return this.builderNode.getFrameNode();
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @Provide message: string = 'hello';
+  controller: TextNodeController = new TextNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.controller)
+        .width('100%')
+        .height(100)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+
+@Component
+struct Child {
+  // Child通过BuilderNode上树后，@Consume和Index中的@Provide建立连接时发现类型不一致，抛出运行时错误
+  @Consume message: number = 0;
+
+  build() {
+    Column() {
+      Text(`@Consume ${this.message}`)
+    }
+  }
+}
+```
+
 ## 使用场景
 
 以下示例是@Provide变量与后代组件中@Consume变量进行双向同步的场景。当分别点击ToDo和ToDoItem组件内的Button时，count的更改会双向同步在ToDo和ToDoItem中。
@@ -370,7 +442,6 @@ struct ToDo {
   }
 }
 ```
-
 ### 装饰Map类型变量
 
 > **说明：**
@@ -699,6 +770,148 @@ struct Child {
 - Child声明了@Consume('firstKey') textOne: string | undefined = 'child'，@Consume('secondKey') textTwo: string 与 @Consume('thirdKey') textThree: string = 'defaultValue'。
 - Child是Parent的子组件，Child在初始化@Consume装饰的三个属性时，textOne根据'firstKey'别名绑定Parent中的provideOne属性，provideOne的值会覆盖textOne的默认值，所以textOne初始化的值为undefined；textTwo根据'secondKey'别名绑定Parent中的providedTwo属性，textTwo初始化的值为'the second provider'；textThree在祖先组件中不存在匹配结果，如果@Consume没有设置默认值，则会抛出运行时错误，示例中textThree有默认值'defaultValue'，所以textThree初始化的值为'defaultValue'。
 - @Consume装饰的属性设置的默认值仅在祖先组件没有匹配结果时才生效，有匹配结果时无影响。
+
+### \@Consume在跨BuilderNode场景下，和\@Provide建立双向同步
+BuilderNode支持\@Provide/\@Consume，需注意：
+1. 在BuilderNode子树中定义的\@Consume需要设置默认值，或者在子树中已存在配对的\@Provide，否则会发生运行时报错。
+2. BuilderNode上树后，设置默认值的\@Consume会向上查找\@Provide，根据key的匹配规则找到最近的\@Provide后，会和\@Provide建立双向同步关系。如果找不到配对的\@Provide，则\@Consume仍使用默认值。
+3. 建立双向同步的关系后，如果\@Provide装饰变量的值和\@Consume的默认值不同，则会回调\@Consume的\@Watch方法，以及与\@Consume有同步关系的变量的\@Watch方法，例如\@Consume通知与其双向同步的\@Link触发\@Watch方法。
+4. BuilderNode下树后，\@Consume会再次试图查找对应的\@Provide，如果发现下树后无法再找到之前配对的\@Provide，则断开和\@Provide的双向同步关系，\@Consume装饰的变量恢复成默认值。
+5. \@Consume断开和\@Provide的连接，恢复成默认值时，会判断\@Consume装饰变量的值从和\@Provide变为\@Consume的默认值是否有变化，如果有变化，则会回调\@Consume以及与其有同步关系变量的\@Watch方法。
+
+在下面的例子中：
+1. 点击`add Child`:
+    - 构建BuilderNode下的子节点`Child`，`Child`中\@Consume未找到\@Provide，使用本地默认值`default value`初始化。
+    - BuilderNode上树时，`Child`中\@Consume向上找到最近的`Index`中的\@Provide，将\@Consume从默认值更新为\@Provide的值，并回调\@Consume的\@Watch方法。
+2. \@Provide和\@Consume配对后，建立双向同步关系。点击```Text(`@Provide: ${this.message}`)```和```Text(`@Consume ${this.message}`)```，\@Provide和\@Consume绑定的Text组件刷新，并回调\@Provide和\@Consume的\@Watch方法。
+3. 点击`remove Child`, BuilderNode子节点下树，`Child`中的\@Consume和`Index`中的\@Provide断开连接，`Child`中的\@Consume恢复成默认值，并回调\@Consume的\@Watch方法。
+4. 点击`dispose Child`，释放BuilderNode下子节点，BuilderNode子节点`Child`销毁，执行aboutToDisappear。
+
+```ts
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+
+@Builder
+function buildText() {
+  Column() {
+    Child()
+  }
+}
+
+class TextNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private uiContext: UIContext | null = null;
+  private builderNode: BuilderNode<[]> | null = null;
+
+  constructor() {
+    super();
+  }
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(context);
+    this.uiContext = context;
+    // 将rootNode节点挂载在NodeContainer下
+    return this.rootNode;
+  }
+
+  addBuilderNode(): void {
+    if (this.builderNode === null && this.uiContext && this.rootNode) {
+      this.builderNode = new BuilderNode(this.uiContext);
+      // 配置跨BuilderNode支持@Provide/@Consume
+      this.builderNode.build(wrapBuilder(buildText), undefined,
+        { enableProvideConsumeCrossing: true });
+      // 将BuilderNode的根节点挂载到rootNode节点下
+      this.rootNode.appendChild(this.builderNode.getFrameNode());
+    }
+  }
+
+  removeBuilderNode(): void {
+    if (this.rootNode && this.builderNode) {
+      // 从rootNode节点下的BuildNode节点移除
+      this.rootNode.removeChild(this.builderNode.getFrameNode());
+    }
+  }
+
+  disposeNode(): void {
+    if (this.rootNode && this.builderNode) {
+      // 立即释放当前BuilderNode
+      this.builderNode.dispose();
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @Provide @Watch('onChange') message: string = 'hello';
+  controller: TextNodeController = new TextNodeController();
+
+  onChange() {
+    console.info(`Index Provide change ${this.message}`);
+  }
+
+  build() {
+    Column() {
+      Text(`@Provide: ${this.message}`)
+        .fontSize(20)
+        .onClick(() => {
+          this.message += ' Provide';
+        })
+
+      // 执行BuilderNode的build方法，构造Child自定义组件
+      // 并将BuilderNode挂载在NodeContainer下
+      // Child中@Consume可以和当前Index中的@Provide配对
+      // @Consume装饰的变量message从default value变为hello，并回调@Consume的@Watch方法
+      Button('add Child')
+        .onClick(() => {
+          this.controller.addBuilderNode();
+        })
+      // 将BuilderNode下的节点从NodeContainer上移除
+      // @Consume修饰的变量message从和@Provide配对的值变为default value，并回调@Consume的@Watch方法
+      Button('remove Child')
+        .onClick(() => {
+          this.controller.removeBuilderNode();
+        })
+
+      // 立即释放当前BuilderNode，BuilderNode下节点销毁，Child组件执行aboutToDisappear
+      Button('dispose Child')
+        .onClick(() => {
+          this.controller.disposeNode();
+        })
+      NodeContainer(this.controller)
+        .width('100%')
+        .height(100)
+        .backgroundColor(Color.Pink)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+
+@Component
+struct Child {
+  @Consume @Watch('onChange') message: string = 'default value';
+
+  onChange() {
+    console.info(`Child Consume change ${this.message}`);
+  }
+
+  aboutToDisappear(): void {
+    console.info(`Child aboutToDisappear`);
+  }
+
+  build() {
+    Column() {
+      Text(`@Consume ${this.message}`)
+        .fontSize(20)
+        .onClick(() => {
+          this.message += ' Consume';
+        })
+    }
+  }
+}
+```
+
 
 ## 常见问题
 

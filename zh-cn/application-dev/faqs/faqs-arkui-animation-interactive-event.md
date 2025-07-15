@@ -347,3 +347,23 @@ struct ComponentChild2 {
     })
   })
 ```
+
+## 拖拽过程中出现中转站(API 9)
+
+**问题现象**
+
+图片拖拽过程中会出现中转站窗口。
+
+**原因分析**
+
+Image组件默认支持拖拽，中转站感知到拖拽后会主动拉起。
+
+**解决措施**
+
+1.设置Image组件的draggable属性为false。
+
+2.在设置->系统->中转站中关闭“拖拽时启动”功能。
+
+**参考链接**
+
+[draggable](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md#draggable9)

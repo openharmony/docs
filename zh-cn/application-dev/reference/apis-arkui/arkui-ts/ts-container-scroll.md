@@ -50,7 +50,7 @@ scrollable(value: ScrollDirection)
 
 | 参数名 | 类型                                        | 必填 | 说明                                            |
 | ------ | ------------------------------------------- | ---- | ----------------------------------------------- |
-| value  | [ScrollDirection](#scrolldirection枚举说明) | 是   | 滚动方向。<br/>默认值：ScrollDirection.Vertical |
+| value  | [ScrollDirection](#scrolldirection枚举说明) | 是   | 滚动方向。<br/>默认值：ScrollDirection.Vertical<br/>**说明：** <br/>当滚动方向设置为[ScrollDirection.FREE](#scrolldirection枚举说明)时，Scroll组件仅支持[scrollBar](#scrollbar)、[scrollBarColor](#scrollbarcolor)、[scrollBarWidth](#scrollbarwidth)、[scrollBarMargin](./ts-container-scrollable-common.md#scrollbarmargin20)、[edgeEffect](#edgeeffect)（仅支持Spring和None边缘滑动效果）、[enableScrollInteraction](#enablescrollinteraction10)、[friction](#friction10)、[clipContent](./ts-container-scrollable-common.md#clipcontent14)、[initialOffset](#initialoffset12)、[scrollable](#scrollable)属性，[onWillScroll](#onwillscroll12)、[onDidScroll](#ondidscroll12)、[onScrollEdge](#onscrolledge)、[onScrollStart](#onscrollstart9)、[onScrollStop](#onscrollstop9)事件和[scrollTo](#scrollto)、[scrollEdge](#scrolledge)、[scrollPage](#scrollpage9)、[currentOffset](#currentoffset)、[scrollBy](#scrollby9)、[getItemRect](#getitemrect11)等Scroller控制器方法。 |
 
 ### scrollBar
 
@@ -221,18 +221,87 @@ initialOffset(value: OffsetOptions)
 | ------ | ------- | ---- | ------------------------------------- |
 | value  | [OffsetOptions](#offsetoptions12对象说明)  | 是   |当输入的大小为百分比时，初始滚动偏移量为Scroll组件主轴方向大小与百分比数值之积。|
 
+### maxZoomScale<sup>20+</sup>
+
+maxZoomScale(scale: number)
+
+设置Scroll组件的最大双指缩放比例。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                  |
+| ------ | ------- | ---- | ------------------------------------- |
+| scale  | number  | 是   |Scroll组件的最大双指缩放比例。<br>默认值：1<br>取值范围：(0, +∞)，小于或等于0时按默认值1处理。|
+
+### minZoomScale<sup>20+</sup>
+
+minZoomScale(scale: number)
+
+设置Scroll组件的最小双指缩放比例。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                  |
+| ------ | ------- | ---- | ------------------------------------- |
+| scale  | number  | 是   |Scroll组件的最小双指缩放比例。<br>默认值：1<br>取值范围：(0, maxZoomScale]，小于或等于0时按默认值1处理，大于maxZoomScale时按maxZoomScale处理。|
+
+>  **说明：**
+>
+>  当maxZoomScale和minZoomScale不同时为1时，Scroll组件会启用缩放手势。
+
+### zoomScale<sup>20+</sup>
+
+zoomScale(scale: number)
+
+设置Scroll组件内容的缩放比例。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                  |
+| ------ | ------- | ---- | ------------------------------------- |
+| scale  | number  | 是   |设置Scroll组件内容的缩放比例，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md)双向绑定变量。<br>默认值：1<br>取值范围：(0, +∞)，小于或等于0时按默认值1处理。|
+
+### enableBouncesZoom<sup>20+</sup>
+
+enableBouncesZoom(enable: boolean)
+
+启用过缩放回弹效果。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                  |
+| ------ | ------- | ---- | ------------------------------------- |
+| enable  | boolean  | 是   |启用过缩放回弹效果。设置为true表示启用该效果，设置为false表示禁用该效果。<br>默认值：true |
+
 ## ScrollDirection枚举说明
 
 滚动方向枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 说明                   |
-| ---------- | ------------------------ |
-| Horizontal | 仅支持水平方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| Vertical   | 仅支持竖直方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| None       | 不可滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动。<br/> 从API version 9开始废弃，无替代接口。|
+| 名称       | 值 | 说明                   |
+| ---------- | -- | ------------------------ |
+| Vertical   | 0  | 仅支持竖直方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| Horizontal | 1  | 仅支持水平方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| Free<sup>(deprecated) </sup> | 2 | 支持竖直或水平方向滚动。<br/> 从API version 9开始废弃，从API version 20开始推荐使用FREE。|
+| None       | 3 | 不可滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| FREE<sup>20+</sup>   | 4 | 自由滚动。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## ScrollSnapOptions<sup>10+</sup>对象说明
 
@@ -445,6 +514,54 @@ onScrollStop(event: VoidCallback)
 | ------ | --------------------------------- | ---- | ------------------ |
 | event   | [VoidCallback](ts-types.md#voidcallback12) | 是   | 滚动停止回调。 |
 
+### onDidZoom<sup>20+</sup>
+
+onDidZoom(event: ScrollOnDidZoomCallback)
+
+每帧缩放完成时触发。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                              | 必填 | 说明               |
+| ------ | --------------------------------- | ---- | ------------------ |
+| event   | [ScrollOnDidZoomCallback](#scrollondidzoomcallback20) | 是   | 每帧缩放完成时回调。 |
+
+### onZoomStart<sup>20+</sup>
+
+onZoomStart(event: VoidCallback)
+
+手势缩放开始触发。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                              | 必填 | 说明               |
+| ------ | --------------------------------- | ---- | ------------------ |
+| event   | [VoidCallback](ts-types.md#voidcallback12) | 是   | 缩放开始回调。 |
+
+### onZoomStop<sup>20+</sup>
+
+onZoomStop(event: VoidCallback)
+
+手势缩放停止时触发。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                              | 必填 | 说明               |
+| ------ | --------------------------------- | ---- | ------------------ |
+| event   | [VoidCallback](ts-types.md#voidcallback12) | 是   | 缩放停止回调。 |
+
 ## ScrollOnScrollCallback<sup>12+</sup>
 
 type ScrollOnScrollCallback = (xOffset: number, yOffset: number, scrollState: ScrollState) => void
@@ -540,6 +657,21 @@ Scroll每帧滚动前触发的回调。
 | 名称  | 类型  | 必填 | 说明  |
 | ----- | ------ | ---- | ----- |
 | offsetRemain<sup>9+</sup>     | number | 是   | 实际滚动偏移量。<br/>单位vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+
+## ScrollOnDidZoomCallback<sup>20+</sup>
+
+type ScrollOnDidZoomCallback = (scale: number) => void
+
+Scroll每帧缩放完成时触发的回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名      | 类型                                                    | 必填 | 说明                                                         |
+| ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| scale     | number                                                  | 是   | 当前缩放倍数。 |
+
 
 ## Scroller
 
@@ -1581,3 +1713,38 @@ struct StickyNestedScroll {
 ```
 
 ![canOverScroll_scroll](figures/canOverScroll_scroll.gif)
+
+
+### 示例11（自由滚动和缩放）
+
+该示例实现了Scroll组件自由滚动和缩放效果。
+```ts
+@Entry
+@Component
+struct ScrollZoomExample {
+  @State currScale:number = 1;
+  build() {
+    Column() {
+      Scroll() {
+        Image($r('app.media.image1'))
+      }
+      .height(400)
+      .scrollable(ScrollDirection.FREE)
+      .minZoomScale(1)
+      .maxZoomScale(2)
+      .zoomScale(this.currScale!!)
+      .enableBouncesZoom(true)
+      .onDidZoom((scale: number) => {
+        console.info(`onDidZoom:${scale}`);
+      })
+      .onZoomStart(() => {
+        console.info('onZoomStart');
+      })
+      .onZoomStop(() => {
+        console.info('onZoomStop');
+      })
+    }.width('100%').height('100%')
+  }
+}
+```
+![free_scroll_zoom](figures/free_scroll_zoom.gif)

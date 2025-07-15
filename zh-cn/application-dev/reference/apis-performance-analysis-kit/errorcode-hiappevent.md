@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Function disabled.
+Function disabled. Possible caused by the param disable in ConfigOption is true.
 
 **错误描述**
 
@@ -34,7 +34,7 @@ Function disabled.
 ## 11101001 非法的事件领域名称
 **错误信息**
 
-Invalid event domain.
+Invalid event domain. Possible causes: 1. Contain invalid characters; 2. Length is invalid.
 
 **错误描述**
 
@@ -57,7 +57,7 @@ Invalid event domain.
 
 **错误信息**
 
-Invalid event name.
+Invalid event name. Possible causes: 1. Contain invalid characters; 2. Length is invalid.
 
 **错误描述**
 
@@ -80,7 +80,7 @@ Invalid event name.
 
 **错误信息**
 
-Invalid number of event parameters.
+Invalid number of event parameters. Possible caused by the number of parameters is over 32.
 
 **错误描述**
 
@@ -118,7 +118,7 @@ Invalid string length of the event parameter.
 
 **错误信息**
 
-Invalid event parameter name.
+Invalid event parameter name. Possible causes: 1. Contain invalid characters; 2. Length is invalid.
 
 **错误描述**
 
@@ -177,7 +177,7 @@ The number of parameter keys exceeds the limit.
 
 **错误信息**
 
-Invalid watcher name.
+Invalid watcher name. Possible causes: 1. Contain invalid characters; 2. Length is invalid.
 
 **错误描述**
 
@@ -199,7 +199,7 @@ Invalid watcher name.
 
 **错误信息**
 
-Invalid filtering event domain.
+Invalid filtering event domain. Possible causes: 1. Contain invalid characters; 2. Length is invalid.
 
 **错误描述**
 
@@ -221,7 +221,7 @@ Invalid filtering event domain.
 
 **错误信息**
 
-Invalid row value.
+Invalid row value. Possible caused by the row value is less than zero.
 
 **错误描述**
 
@@ -239,7 +239,7 @@ Invalid row value.
 
 **错误信息**
 
-Invalid size value.
+Invalid size value. Possible caused by the size value is less than zero.
 
 **错误描述**
 
@@ -257,7 +257,7 @@ Invalid size value.
 
 **错误信息**
 
-Invalid timeout value.
+Invalid timeout value. Possible caused by the timeout value is less than zero.
 
 **错误描述**
 
@@ -275,7 +275,7 @@ Invalid timeout value.
 
 **错误信息**
 
-Invalid max storage quota value.
+Invalid max storage quota value. Possible caused by incorrectly formatted.
 
 **错误描述**
 
@@ -296,7 +296,7 @@ Invalid max storage quota value.
 
 **错误信息**
 
-Invalid size value.
+Invalid size value. Possible caused by the size value is less than or equal to zero.
 
 **错误描述**
 
@@ -309,3 +309,22 @@ Invalid size value.
 **处理步骤**
 
 传入自然数值的事件包大小。
+
+## 11105001 非法的参数值
+
+**错误信息**
+
+Invalid parameter value. Possible causes: 1. Incorrect parameter length; 2. Incorrect parameter format.
+
+**错误描述**
+
+在调用hiAppEvent接口进行传参时，由于传入了非法的参数值，系统将忽略此次设置。
+
+**可能原因**
+
+- 传入的参数长度不符合规格。
+- 传入的参数格式不符合规格。
+
+**处理步骤**
+
+传入符合规格的参数值。

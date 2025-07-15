@@ -1,7 +1,21 @@
-# 接口介绍
+# Longque-JS-API使用指导
 Longque JS API 由 Longque JS Engine 提供，适用于在 OpenHarmony 平台构建稳定、高性能的应用。所有 API 均位于 `__Longque__` 对象下。接口的版本可通过 `__Longque__.version` 获得，开发者可使用该版本进行特性判断。
 
-**【注意】：Longque JS API处于实验阶段，使用前请阅读文档，评估其稳定性和兼容性。**
+**【注意】：Longque JS API 处于实验阶段，使用前请阅读本文档，评估其稳定性和兼容性。**
+
+## 接口说明
+| 接口                       | 功能说明                            |
+|----------------------------|-------------------------------------|
+|createDelegate         | 创建委托 |
+
+## 属性说明
+| 属性                       | 功能说明                            |
+|----------------------------|-------------------------------------|
+|version         | 用于表示 Longque JS API 的版本|
+|SKIP_PROTOTYPE_CHAIN |createDelegate 的属性过滤器，表示只委托自身属性，不考虑原型链|
+|SKIP_PREFIX_UNDERSCORE |createDelegate 的属性过滤器，表示过滤掉名字以 '_' 开头的属性|
+|SKIP_PREFIX_DOLLAR |createDelegate 的属性过滤器，表示过滤掉名字以 '$' 开头的属性|
+|SKIP_CONSTRUCTOR |createDelegate 的属性过滤器，表示过滤掉 'constructor' 属性|
 
 ## createDelegate接口
 > 接口引入版本 : 1
@@ -48,33 +62,104 @@ __Longque__.SKIP_CONSTRUCTOR: 过滤掉 'constructor' 属性
 
 ### 使用示例
 
-```js
-function createDelegateTest() {
-  var myobj = {
-    42: 0,
-    x: 1,
-    _y: 2,
-    $z:3
-  };
+本示例展示了在 JSVM 中使用 Longque JS API 的方式，JSVM-API 接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
 
-  var proto = {
-    foo: 'foo'
-  };
-  Object.setPrototypeOf(myobj, proto);
+cpp部分代码：
+``` cpp
+// 待执行的js代码
+static const char *STR_TASK = R"JS(
+  function createDelegateTest() {
+    var myobj = {
+      42: 0,
+      x: 1,
+      _y: 2,
+      $z:3
+    };
 
-  var d1 = __Longque__.createDelegate(myobj, undefined);
-  console.log(JSON.stringify(d1)); // {"42":0,"x":1,"_y":2,"$z":3,"foo":"foo"}
+    var proto = {
+      foo: 'foo'
+    };
+    Object.setPrototypeOf(myobj, proto);
 
-  const propertyFilterFlags = __Longque__.SKIP_PREFIX_UNDERSCORE | __Longque__.SKIP_PREFIX_DOLLAR;
-  var d2 = __Longque__.createDelegate(myobj, undefined, propertyFilterFlags);
-  console.log(JSON.stringify(d2)); // {"42":0,"x":1,"foo":"foo"}
+    var d1 = __Longque__.createDelegate(myobj, undefined);
+    consoleinfo(JSON.stringify(d1)); // {"42":0,"x":1,"_y":2,"$z":3,"foo":"foo"}
 
-  d2[42] = 100;
+    const propertyFilterFlags = __Longque__.SKIP_PREFIX_UNDERSCORE | __Longque__.SKIP_PREFIX_DOLLAR;
+    var d2 = __Longque__.createDelegate(myobj, undefined, propertyFilterFlags);
+    consoleinfo(JSON.stringify(d2)); // {"42":0,"x":1,"foo":"foo"}
 
-  const newFilter = propertyFilterFlags | __Longque__.SKIP_PROTOTYPE_CHAIN;
-  var d3 = __Longque__.createDelegate(myobj, undefined, newFilter);
-  console.log(JSON.stringify(d3)); // {"42":100,"x":1}
+    d2[42] = 100;
+
+    const newFilter = propertyFilterFlags | __Longque__.SKIP_PROTOTYPE_CHAIN;
+    var d3 = __Longque__.createDelegate(myobj, undefined, newFilter);
+    consoleinfo(JSON.stringify(d3)); // {"42":100,"x":1}
+  }
+  createDelegateTest();
+)JS";
+
+// 保证js代码中的打印信息可以正常输出
+static JSVM_Value ConsoleInfo(JSVM_Env env, JSVM_CallbackInfo info) {
+    size_t argc = 1;
+    JSVM_Value args[1];
+    char log[256] = "";
+    size_t logLength = 0;
+    JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
+
+    OH_JSVM_GetValueStringUtf8(env, args[0], log, 255, &logLength);
+    log[255] = 0;
+    OH_LOG_INFO(LOG_APP, "JSVM API TEST: %{public}s", log);
+    return nullptr;
 }
 
-createDelegateTest();
+// 注册consoleinfo的方法
+JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = ConsoleInfo},
+};
+JSVM_PropertyDescriptor descriptor[] = {
+    {"consoleinfo", NULL, &param[0], NULL, NULL, NULL, JSVM_DEFAULT},
+};
+
+static int32_t TestJSVM() {
+    JSVM_InitOptions init_options;
+    memset(&init_options, 0, sizeof(init_options));
+    if (g_aa == 0) {
+        OH_JSVM_Init(&init_options);
+        g_aa++;
+    }
+    // 创建JavaScript虚拟机实例,打开虚拟机作用域
+    JSVM_VM vm;
+    JSVM_CreateVMOptions options;
+    memset(&options, 0, sizeof(options));
+    CHECK(OH_JSVM_CreateVM(&options, &vm));
+    JSVM_VMScope vm_scope;
+    CHECK(OH_JSVM_OpenVMScope(vm, &vm_scope));
+
+    JSVM_Env env;
+    CHECK(OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env));
+    JSVM_EnvScope envScope;
+    CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
+    JSVM_HandleScope handlescope;
+    CHECK_RET(OH_JSVM_OpenHandleScope(env, &handlescope));
+    JSVM_Value sourcecodevalue;
+    CHECK_RET(OH_JSVM_CreateStringUtf8(env, STR_TASK, strlen(STR_TASK), &sourcecodevalue));
+    JSVM_Script script;
+    CHECK_RET(OH_JSVM_CompileScript(env, sourcecodevalue, nullptr, 0, true, nullptr, &script));
+    JSVM_Value result;
+    CHECK_RET(OH_JSVM_RunScript(env, script, &result));
+
+    // 关闭并销毁环境和虚拟机
+    CHECK_RET(OH_JSVM_CloseHandleScope(env, handlescope));
+    CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
+    CHECK(OH_JSVM_DestroyEnv(env));
+    CHECK(OH_JSVM_CloseVMScope(vm, vm_scope));
+    CHECK(OH_JSVM_DestroyVM(vm));
+    return 0;
+}
+```
+
+### 预期的输出
+```
+JSVM API TEST: {"42":0,"x":1,"_y":2,"$z":3,"foo":"foo"}
+JSVM API TEST: {"42":0,"x":1,"foo":"foo"}
+JSVM API TEST: {"42":100,"x":1}
 ```

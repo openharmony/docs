@@ -6,7 +6,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ## 接口说明
 
-HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提供了对应的方法输出不同级别的日志，接口如下表所示，具体说明可查阅[API参考文档](../reference/apis-performance-analysis-kit/_hi_log.md)。
+HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提供了对应的方法输出不同级别的日志，接口如下表所示，具体说明可查阅[API参考文档](../reference/apis-performance-analysis-kit/capi-log-h.md)。
 
 | 方法/宏 | 接口描述 |
 | -------- | -------- |
@@ -29,7 +29,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
 - tag：用于指定日志标识，可以为任意字符串，建议标识调用所在的类或者业务行为。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。
 
-- level：用于指定日志级别。取值见[LogLevel](../reference/apis-performance-analysis-kit/_hi_log.md#loglevel)。
+- level：用于指定日志级别。取值见[LogLevel](../reference/apis-performance-analysis-kit/capi-log-h.md#loglevel)。
 
 - fmt：格式字符串，用于日志的格式化输出。日志打印的格式化参数需按照“%{private flag}specifier”的格式打印。
   | 隐私标识符（private flag） | 说明 |

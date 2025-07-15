@@ -124,7 +124,10 @@
             "description": "appService",
             "type": "appService",
             "exported": true,
-            "srcEntry": "./ets/AppServiceExtAbility/AppServiceExtAbility.ets"
+            "srcEntry": "./ets/AppServiceExtAbility/AppServiceExtAbility.ets",
+            "appIdentifierAllowList": [
+              // 此处填写允许启动该后台服务的客户端应用的appIdentifier列表
+            ],
           }
         ]
       }
@@ -460,8 +463,9 @@ struct Page_CollaborateAbility {
             hilog.info(DOMAIN_NUMBER, TAG, `connectionId is : ${connectionId}`);
           })
         }
+      }
+      //...
     }
-    //...
   }
 }
 ```
@@ -479,7 +483,10 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 // 开发者需要在这个类型里对接口进行实现
 class Stub extends rpc.RemoteObject {
-  onRemoteMessageRequest(code, data, reply, options): boolean | Promise<boolean> {
+  onRemoteMessageRequest(code: number,
+    data: rpc.MessageSequence,
+    reply: rpc.MessageSequence,
+    options: rpc.MessageOption): boolean | Promise<boolean> {
     hilog.info(DOMAIN_NUMBER, TAG, 'onRemoteMessageRequest');
     let sum = data.readInt() + data.readInt();
     reply.writeInt(sum);
@@ -488,7 +495,6 @@ class Stub extends rpc.RemoteObject {
 }
 
 // 服务端实现
-@Entry
 class AppServiceExtImpl extends AppServiceExtensionAbility {
   onCreate(want: Want): void {
     hilog.info(DOMAIN_NUMBER, TAG, 'AppServiceExtImpl onCreate');
@@ -498,14 +504,15 @@ class AppServiceExtImpl extends AppServiceExtensionAbility {
     hilog.info(DOMAIN_NUMBER, TAG, 'AppServiceExtImpl onDestroy');
   }
 
-  onConnect(want: Want): rpc.IRemoteObject {
+  onConnect(want: Want): rpc.RemoteObject {
     hilog.info(DOMAIN_NUMBER, TAG, 'AppServiceExtImpl onConnect');
-    return new Stub();
+    return new Stub('test');
   }
 
   onDisconnect(): void {
     hilog.info(DOMAIN_NUMBER, TAG, 'AppServiceExtImpl onDisconnect');
   }
+}
 ```
 
 ## 服务端对客户端身份校验
@@ -527,7 +534,6 @@ import { osAccount, BusinessError } from '@kit.BasicServicesKit';
 const TAG: string = "[AppServiceExtImpl]";
 const DOMAIN_NUMBER: number = 0xFF00;
 
-// 开发者需要在这个类型里对接口进行实现
 class Stub extends rpc.RemoteObject {
   private validAppIdentifier: string = "your_valid_app_identifier_here";
 
@@ -541,7 +547,6 @@ class Stub extends rpc.RemoteObject {
         console.info('Client authentication PASSED');
       } else {
         console.error('Client authentication FAILED');
-        // 实际项目中应断开连接或拒绝服务
       }
     }).catch((err: BusinessError) => {
       console.error(`Authentication error: ${err.code}, ${err.message}`);
@@ -551,23 +556,18 @@ class Stub extends rpc.RemoteObject {
 
   private async verifyClientIdentity(): Promise<boolean> {
     try {
-      // 获取调用方UID
       const callerUid: number = rpc.IPCSkeleton.getCallingUid();
       console.info(`Caller UID: ${callerUid}`);
 
-      // 获取用户ID
       const userId: number = await this.getUserIdByUid(callerUid);
       console.info(`User ID: ${userId}`);
 
-      // 获取调用方包名
       const bundleName: string = await bundleManager.getBundleNameByUid(callerUid);
       console.info(`Bundle Name: ${bundleName}`);
 
-      // 获取Bundle信息（需要GET_BUNDLE_INFO权限）
       const bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
       const bundleInfo: bundleManager.BundleInfo = await bundleManager.getBundleInfo(bundleName, bundleFlags, userId);
 
-      // 验证签名信息
       if (bundleInfo.signatureInfo && bundleInfo.signatureInfo.appIdentifier) {
         const appIdentifier: string = bundleInfo.signatureInfo.appIdentifier;
         console.info(`App Identifier: ${appIdentifier}`);
@@ -575,8 +575,11 @@ class Stub extends rpc.RemoteObject {
       }
       return false;
     } catch (err) {
-      const error: BusinessError = err as BusinessError;
-      console.error(`Verification failed: ${error.code}, ${error.message}`);
+      if (err instanceof Error) {
+        console.error(`Verification failed: ${err.message}`);
+      } else {
+        console.error(`Verification failed: ${String(err)}`);
+      }
       return false;
     }
   }
@@ -587,16 +590,21 @@ class Stub extends rpc.RemoteObject {
       const userId: number = await accountManager.getOsAccountLocalIdForUid(uid);
       return userId;
     } catch (err) {
-      const error: BusinessError = err as BusinessError;
-      console.error(`Get userId failed: ${error.code}, ${error.message}`);
-      throw error;
+      if (err instanceof Error) {
+        console.error(`Get userId failed: ${err.message}`);
+        throw err;
+      } else {
+        const error = new Error(String(err));
+        console.error(`Get userId failed: ${error.message}`);
+        throw error;
+      }
     }
   }
 }
 
 export default class AppServiceExtension extends AppServiceExtensionAbility {
   onConnect(want: Want): rpc.RemoteObject {
-      return new Stub('test');
+    return new Stub('test');
   }
   // 其他生命周期
 }

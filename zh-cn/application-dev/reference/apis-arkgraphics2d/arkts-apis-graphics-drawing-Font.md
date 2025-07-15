@@ -493,6 +493,44 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+## measureSingleCharacterWithFeatures<sup>20+</sup>
+
+measureSingleCharacterWithFeatures(text: string, features: Array\<FontFeature\>): number
+
+测量单个字符的宽度，字符带有字体特征。当前字型中的字体不支持待测量字符时，退化到使用系统字体测量字符宽度。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名 | 类型                | 必填 | 说明        |
+| ------ | ------------------- | ---- | ----------- |
+| text | string | 是 | 待测量的单个字符。字符串长度必须为1。 |
+| features | Array\<[FontFeature](arkts-apis-graphics-drawing-i.md#fontfeature20)\> | 是 | 字体特征对象数组。参数为空数组时使用TTF(TrueType Font)文件中预设的字体特征。|
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| number | 字符的宽度，浮点数。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const font = new drawing.Font();
+    font.setSize(20);
+    let fontFeatures : Array<drawing.FontFeature> = [];
+    fontFeatures.push({name: 'calt', value: 0});
+    let width = font.measureSingleCharacterWithFeatures("你", fontFeatures);
+  }
+}
+```
+
 ## setScaleX<sup>12+</sup>
 
 setScaleX(scaleX: number): void

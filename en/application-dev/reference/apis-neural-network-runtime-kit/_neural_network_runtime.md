@@ -11,11 +11,11 @@ Provides APIs for accelerating the Neural Network Runtime (NNRt) model inference
 ## Summary
 
 
-### Files
+### File
 
 | Name| Description| 
 | -------- | -------- |
-| [neural_network_core.h](neural__network__core_8h.md) | Defines APIs for the Neural Network Core module. The AI inference framework uses the native interfaces provided by Neural Network Core to build models and perform inference and computing on acceleration device.| 
+| [neural_network_core.h](neural__network__core_8h.md) | Defines APIs for the Neural Network Core module. The AI inference framework uses the native interfaces provided by Neural Network Core to build models and perform inference and computing on acceleration device.<br>Some API definitions have been moved from **neural_network_runtime.h** to this file for unified presentation. These APIs are supported since API version 11 and can be used in all later versions.| 
 | [neural_network_runtime.h](neural__network__runtime_8h.md) | Defines APIs for NNRt. The AI inference framework uses the native APIs provided by the NNRt to construct and build models.| 
 | [neural_network_runtime_type.h](neural__network__runtime__type_8h.md) | Defines the structure and enums for NNRt.| 
 
@@ -40,17 +40,8 @@ Provides APIs for accelerating the Neural Network Runtime (NNRt) model inference
 | typedef struct [NN_QuantParam](#nn_quantparam)  [NN_QuantParam](#nn_quantparam) | Quantization parameter handle.| 
 | typedef struct [NN_TensorDesc](#nn_tensordesc)  [NN_TensorDesc](#nn_tensordesc) | Tensor description handle.| 
 | typedef struct [NN_Tensor](#nn_tensor)  [NN_Tensor](#nn_tensor) | Tensor handle.| 
-| typedef enum [OH_NN_PerformanceMode](#oh_nn_performancemode)  [OH_NN_PerformanceMode](#oh_nn_performancemode) | Performance modes of the device.| 
-| typedef enum [OH_NN_Priority](#oh_nn_priority)  [OH_NN_Priority](#oh_nn_priority) | Priorities of a model inference task.| 
-| typedef enum [OH_NN_ReturnCode](#oh_nn_returncode)  [OH_NN_ReturnCode](#oh_nn_returncode) | Error codes for NNRt.| 
 | typedef void(\* [NN_OnRunDone](#nn_onrundone)) (void \*userData, [OH_NN_ReturnCode](#oh_nn_returncode) errCode, void \*outputTensor[], int32_t outputCount) | Handle of the callback processing function invoked when the asynchronous inference ends.| 
 | typedef void(\* [NN_OnServiceDied](#nn_onservicedied)) (void \*userData) | Handle of the callback processing function invoked when the device driver service terminates unexpectedly during asynchronous inference.| 
-| typedef enum [OH_NN_FuseType](#oh_nn_fusetype)  [OH_NN_FuseType](#oh_nn_fusetype) | Activation function types in the fusion operator for NNRt.| 
-| typedef enum [OH_NN_Format](#oh_nn_format)  [OH_NN_Format](#oh_nn_format) | Formats of tensor data.| 
-| typedef enum [OH_NN_DeviceType](#oh_nn_devicetype)  [OH_NN_DeviceType](#oh_nn_devicetype) | Device types supported by NNRt.| 
-| typedef enum [OH_NN_DataType](#oh_nn_datatype)  [OH_NN_DataType](#oh_nn_datatype) | Data types supported by NNRt.| 
-| typedef enum [OH_NN_OperationType](#oh_nn_operationtype)  [OH_NN_OperationType](#oh_nn_operationtype) | Operator types supported by NNRt.| 
-| typedef enum [OH_NN_TensorType](#oh_nn_tensortype)  [OH_NN_TensorType](#oh_nn_tensortype) | Tensor types.| 
 | typedef struct [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md)  [OH_NN_UInt32Array](#oh_nn_uint32array) | Used to store a 32-bit unsigned integer array.| 
 | typedef struct [OH_NN_QuantParam](_o_h___n_n___quant_param.md)  [OH_NN_QuantParam](#oh_nn_quantparam) | Used to define the quantization information.| 
 | typedef struct [OH_NN_Tensor](_o_h___n_n___tensor.md)  [OH_NN_Tensor](#oh_nn_tensor) | Used to define the tensor structure.| 
@@ -80,77 +71,77 @@ Provides APIs for accelerating the Neural Network Runtime (NNRt) model inference
 | [OH_NNCompilation](#oh_nncompilation) \* [OH_NNCompilation_ConstructWithOfflineModelFile](#oh_nncompilation_constructwithofflinemodelfile) (const char \*modelPath) | Creates a model building instance based on an offline model file.| 
 | [OH_NNCompilation](#oh_nncompilation) \* [OH_NNCompilation_ConstructWithOfflineModelBuffer](#oh_nncompilation_constructwithofflinemodelbuffer) (const void \*modelBuffer, size_t modelSize) | Creates a model building instance based on the offline model buffer.| 
 | [OH_NNCompilation](#oh_nncompilation) \* [OH_NNCompilation_ConstructForCache](#oh_nncompilation_constructforcache) () | Creates an empty model building instance for later recovery from the model cache.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_ExportCacheToBuffer](#oh_nncompilation_exportcachetobuffer) ([OH_NNCompilation](#oh_nncompilation) \*compilation, const void \*buffer, size_t length, size_t \*modelSize) | Writes the model cache to the specified buffer.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_ImportCacheFromBuffer](#oh_nncompilation_importcachefrombuffer) ([OH_NNCompilation](#oh_nncompilation) \*compilation, const void \*buffer, size_t modelSize) | Reads the model cache from the specified buffer.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_AddExtensionConfig](#oh_nncompilation_addextensionconfig) ([OH_NNCompilation](#oh_nncompilation) \*compilation, const char \*configName, const void \*configValue, const size_t configValueSize) | Adds extended configurations for custom device attributes.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_SetDevice](#oh_nncompilation_setdevice) ([OH_NNCompilation](#oh_nncompilation) \*compilation, size_t deviceID) | Sets the device for model building and computing.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_SetCache](#oh_nncompilation_setcache) ([OH_NNCompilation](#oh_nncompilation) \*compilation, const char \*cachePath, uint32_t version) | Sets the cache directory and version for model building.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_SetPerformanceMode](#oh_nncompilation_setperformancemode) ([OH_NNCompilation](#oh_nncompilation) \*compilation, [OH_NN_PerformanceMode](#oh_nn_performancemode) performanceMode) | Sets the performance mode for model computing.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_SetPriority](#oh_nncompilation_setpriority) ([OH_NNCompilation](#oh_nncompilation) \*compilation, [OH_NN_Priority](#oh_nn_priority) priority) | Sets the priority for model computing.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_EnableFloat16](#oh_nncompilation_enablefloat16) ([OH_NNCompilation](#oh_nncompilation) \*compilation, bool enableFloat16) | Enables float16 for computing.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_Build](#oh_nncompilation_build) ([OH_NNCompilation](#oh_nncompilation) \*compilation) | Performs model building.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_ExportCacheToBuffer](#oh_nncompilation_exportcachetobuffer) ([OH_NNCompilation](#oh_nncompilation) \*compilation, const void \*buffer, size_t length, size_t \*modelSize) | Writes the model cache to the specified buffer.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_ImportCacheFromBuffer](#oh_nncompilation_importcachefrombuffer) ([OH_NNCompilation](#oh_nncompilation) \*compilation, const void \*buffer, size_t modelSize) | Reads the model cache from the specified buffer.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_AddExtensionConfig](#oh_nncompilation_addextensionconfig) ([OH_NNCompilation](#oh_nncompilation) \*compilation, const char \*configName, const void \*configValue, const size_t configValueSize) | Adds extended configurations for custom device attributes.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_SetDevice](#oh_nncompilation_setdevice) ([OH_NNCompilation](#oh_nncompilation) \*compilation, size_t deviceID) | Sets the device for model building and computing.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_SetCache](#oh_nncompilation_setcache) ([OH_NNCompilation](#oh_nncompilation) \*compilation, const char \*cachePath, uint32_t version) | Sets the cache directory and version for model building.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_SetPerformanceMode](#oh_nncompilation_setperformancemode) ([OH_NNCompilation](#oh_nncompilation) \*compilation, [OH_NN_PerformanceMode](#oh_nn_performancemode) performanceMode) | Sets the performance mode for model computing.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_SetPriority](#oh_nncompilation_setpriority) ([OH_NNCompilation](#oh_nncompilation) \*compilation, [OH_NN_Priority](#oh_nn_priority) priority) | Sets the priority for model computing.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_EnableFloat16](#oh_nncompilation_enablefloat16) ([OH_NNCompilation](#oh_nncompilation) \*compilation, bool enableFloat16) | Enables float16 for computing.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_Build](#oh_nncompilation_build) ([OH_NNCompilation](#oh_nncompilation) \*compilation) | Performs model building.| 
 | void [OH_NNCompilation_Destroy](#oh_nncompilation_destroy) ([OH_NNCompilation](#oh_nncompilation) \*\*compilation) | Destroys a model building instance of the [OH_NNCompilation](#oh_nncompilation) type.| 
 | [NN_TensorDesc](#nn_tensordesc) \* [OH_NNTensorDesc_Create](#oh_nntensordesc_create) () | Creates an [NN_TensorDesc](#nn_tensordesc) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_Destroy](#oh_nntensordesc_destroy) ([NN_TensorDesc](#nn_tensordesc) \*\*tensorDesc) | Releases an [NN_TensorDesc](#nn_tensordesc) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_SetName](#oh_nntensordesc_setname) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, const char \*name) | Sets the name of an [NN_TensorDesc](#nn_tensordesc) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_GetName](#oh_nntensordesc_getname) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, const char \*\*name) | Obtains the name of an [NN_TensorDesc](#nn_tensordesc) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_SetDataType](#oh_nntensordesc_setdatatype) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_DataType](#oh_nn_datatype) dataType) | Sets the data type of an [NN_TensorDesc](#nn_tensordesc) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_GetDataType](#oh_nntensordesc_getdatatype) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_DataType](#oh_nn_datatype) \*dataType) | Obtains the data type of an [NN_TensorDesc](#nn_tensordesc) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_SetShape](#oh_nntensordesc_setshape) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, const int32_t \*shape, size_t shapeLength) | Sets the data shape of an [NN_TensorDesc](#nn_tensordesc) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_GetShape](#oh_nntensordesc_getshape) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, int32_t \*\*shape, size_t \*shapeLength) | Obtains the shape of an [NN_TensorDesc](#nn_tensordesc) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_SetFormat](#oh_nntensordesc_setformat) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_Format](#oh_nn_format) format) | Sets the data format of an [NN_TensorDesc](#nn_tensordesc) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_GetFormat](#oh_nntensordesc_getformat) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_Format](#oh_nn_format) \*format) | Obtains the data format of an [NN_TensorDesc](#nn_tensordesc) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_GetElementCount](#oh_nntensordesc_getelementcount) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t \*elementCount) | Obtains the number of elements in an [NN_TensorDesc](#nn_tensordesc) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_GetByteSize](#oh_nntensordesc_getbytesize) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t \*byteSize) | Obtains the number of bytes occupied by the tensor data obtained through calculation based on the shape and data type of an [NN_TensorDesc](#nn_tensordesc) instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_Destroy](#oh_nntensordesc_destroy) ([NN_TensorDesc](#nn_tensordesc) \*\*tensorDesc) | Releases an [NN_TensorDesc](#nn_tensordesc) instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_SetName](#oh_nntensordesc_setname) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, const char \*name) | Sets the name of an [NN_TensorDesc](#nn_tensordesc) instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_GetName](#oh_nntensordesc_getname) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, const char \*\*name) | Obtains the name of an [NN_TensorDesc](#nn_tensordesc) instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_SetDataType](#oh_nntensordesc_setdatatype) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_DataType](#oh_nn_datatype) dataType) | Sets the data type of an [NN_TensorDesc](#nn_tensordesc) instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_GetDataType](#oh_nntensordesc_getdatatype) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_DataType](#oh_nn_datatype) \*dataType) | Obtains the data type of an [NN_TensorDesc](#nn_tensordesc) instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_SetShape](#oh_nntensordesc_setshape) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, const int32_t \*shape, size_t shapeLength) | Sets the data shape of an [NN_TensorDesc](#nn_tensordesc) instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_GetShape](#oh_nntensordesc_getshape) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, int32_t \*\*shape, size_t \*shapeLength) | Obtains the shape of an [NN_TensorDesc](#nn_tensordesc) instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_SetFormat](#oh_nntensordesc_setformat) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_Format](#oh_nn_format) format) | Sets the data format of an [NN_TensorDesc](#nn_tensordesc) instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_GetFormat](#oh_nntensordesc_getformat) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_Format](#oh_nn_format) \*format) | Obtains the data format of an [NN_TensorDesc](#nn_tensordesc) instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_GetElementCount](#oh_nntensordesc_getelementcount) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t \*elementCount) | Obtains the number of elements in an [NN_TensorDesc](#nn_tensordesc) instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_GetByteSize](#oh_nntensordesc_getbytesize) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t \*byteSize) | Obtains the number of bytes occupied by the tensor data obtained through calculation based on the shape and data type of an [NN_TensorDesc](#nn_tensordesc) instance.| 
 | [NN_Tensor](#nn_tensor) \* [OH_NNTensor_Create](#oh_nntensor_create) (size_t deviceID, [NN_TensorDesc](#nn_tensordesc) \*tensorDesc) | Creates an [NN_Tensor](#nn_tensor) instance from [NN_TensorDesc](#nn_tensordesc).| 
 | [NN_Tensor](#nn_tensor) \* [OH_NNTensor_CreateWithSize](#oh_nntensor_createwithsize) (size_t deviceID, [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t size) | Creates an [NN_Tensor](#nn_tensor) instance based on the specified memory size and [NN_TensorDesc](#nn_tensordesc) instance.| 
 | [NN_Tensor](#nn_tensor) \* [OH_NNTensor_CreateWithFd](#oh_nntensor_createwithfd) (size_t deviceID, [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, int fd, size_t size, size_t offset) | Creates an {\@Link NN_Tensor} instance based on the specified file descriptor of the shared memory and [NN_TensorDesc](#nn_tensordesc) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensor_Destroy](#oh_nntensor_destroy) ([NN_Tensor](#nn_tensor) \*\*tensor) | Destroys an [NN_Tensor](#nn_tensor) instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensor_Destroy](#oh_nntensor_destroy) ([NN_Tensor](#nn_tensor) \*\*tensor) | Destroys an [NN_Tensor](#nn_tensor) instance.| 
 | [NN_TensorDesc](#nn_tensordesc) \* [OH_NNTensor_GetTensorDesc](#oh_nntensor_gettensordesc) (const [NN_Tensor](#nn_tensor) \*tensor) | Obtains an [NN_TensorDesc](#nn_tensordesc) instance of [NN_Tensor](#nn_tensor).| 
 | void \* [OH_NNTensor_GetDataBuffer](#oh_nntensor_getdatabuffer) (const [NN_Tensor](#nn_tensor) \*tensor) | Obtains the memory address of [NN_Tensor](#nn_tensor) data.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensor_GetFd](#oh_nntensor_getfd) (const [NN_Tensor](#nn_tensor) \*tensor, int \*fd) | Obtains the file descriptor of the shared memory where [NN_Tensor](#nn_tensor) data is stored.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensor_GetSize](#oh_nntensor_getsize) (const [NN_Tensor](#nn_tensor) \*tensor, size_t \*size) | Obtains the size of the shared memory where the [NN_Tensor](#nn_tensor) data is stored.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensor_GetOffset](#oh_nntensor_getoffset) (const [NN_Tensor](#nn_tensor) \*tensor, size_t \*offset) | Obtains the offset of [NN_Tensor](#nn_tensor) data in the shared memory.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensor_GetFd](#oh_nntensor_getfd) (const [NN_Tensor](#nn_tensor) \*tensor, int \*fd) | Obtains the file descriptor of the shared memory where [NN_Tensor](#nn_tensor) data is stored.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensor_GetSize](#oh_nntensor_getsize) (const [NN_Tensor](#nn_tensor) \*tensor, size_t \*size) | Obtains the size of the shared memory where the [NN_Tensor](#nn_tensor) data is stored.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensor_GetOffset](#oh_nntensor_getoffset) (const [NN_Tensor](#nn_tensor) \*tensor, size_t \*offset) | Obtains the offset of [NN_Tensor](#nn_tensor) data in the shared memory.| 
 | [OH_NNExecutor](#oh_nnexecutor) \* [OH_NNExecutor_Construct](#oh_nnexecutor_construct) ([OH_NNCompilation](#oh_nncompilation) \*compilation) | Creates an [OH_NNExecutor](#oh_nnexecutor) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_GetOutputShape](#oh_nnexecutor_getoutputshape) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, int32_t \*\*shape, uint32_t \*shapeLength) | Obtains the dimension information about the output tensor.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_GetOutputShape](#oh_nnexecutor_getoutputshape) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, int32_t \*\*shape, uint32_t \*shapeLength) | Obtains the dimension information about the output tensor.| 
 | void [OH_NNExecutor_Destroy](#oh_nnexecutor_destroy) ([OH_NNExecutor](#oh_nnexecutor) \*\*executor) | Destroys an executor instance to release the memory occupied by it.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_GetInputCount](#oh_nnexecutor_getinputcount) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t \*inputCount) | Obtains the number of input tensors.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_GetOutputCount](#oh_nnexecutor_getoutputcount) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t \*outputCount) | Obtains the number of output tensors.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_GetInputCount](#oh_nnexecutor_getinputcount) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t \*inputCount) | Obtains the number of input tensors.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_GetOutputCount](#oh_nnexecutor_getoutputcount) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t \*outputCount) | Obtains the number of output tensors.| 
 | [NN_TensorDesc](#nn_tensordesc) \* [OH_NNExecutor_CreateInputTensorDesc](#oh_nnexecutor_createinputtensordesc) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t index) | Creates the description of an input tensor based on the specified index value.| 
 | [NN_TensorDesc](#nn_tensordesc) \* [OH_NNExecutor_CreateOutputTensorDesc](#oh_nnexecutor_createoutputtensordesc) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t index) | Creates the description of an output tensor based on the specified index value.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_GetInputDimRange](#oh_nnexecutor_getinputdimrange) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t index, size_t \*\*minInputDims, size_t \*\*maxInputDims, size_t \*shapeLength) | Obtains the dimension range of all input tensors.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_SetOnRunDone](#oh_nnexecutor_setonrundone) ([OH_NNExecutor](#oh_nnexecutor) \*executor, [NN_OnRunDone](#nn_onrundone) onRunDone) | Sets the callback processing function invoked when the asynchronous inference ends.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_SetOnServiceDied](#oh_nnexecutor_setonservicedied) ([OH_NNExecutor](#oh_nnexecutor) \*executor, [NN_OnServiceDied](#nn_onservicedied) onServiceDied) | Sets the callback processing function invoked when the device driver service terminates unexpectedly during asynchronous inference.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_RunSync](#oh_nnexecutor_runsync) ([OH_NNExecutor](#oh_nnexecutor) \*executor, [NN_Tensor](#nn_tensor) \*inputTensor[], size_t inputCount, [NN_Tensor](#nn_tensor) \*outputTensor[], size_t outputCount) | Performs synchronous inference.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_RunAsync](#oh_nnexecutor_runasync) ([OH_NNExecutor](#oh_nnexecutor) \*executor, [NN_Tensor](#nn_tensor) \*inputTensor[], size_t inputCount, [NN_Tensor](#nn_tensor) \*outputTensor[], size_t outputCount, int32_t timeout, void \*userData) | Performs asynchronous inference.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNDevice_GetAllDevicesID](#oh_nndevice_getalldevicesid) (const size_t \*\*allDevicesID, uint32_t \*deviceCount) | Obtains the ID of the device connected to NNRt.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNDevice_GetName](#oh_nndevice_getname) (size_t deviceID, const char \*\*name) | Obtains the name of the specified device.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNDevice_GetType](#oh_nndevice_gettype) (size_t deviceID, [OH_NN_DeviceType](#oh_nn_devicetype) \*deviceType) | Obtains the type of the specified device.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_GetInputDimRange](#oh_nnexecutor_getinputdimrange) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t index, size_t \*\*minInputDims, size_t \*\*maxInputDims, size_t \*shapeLength) | Obtains the dimension range of all input tensors.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_SetOnRunDone](#oh_nnexecutor_setonrundone) ([OH_NNExecutor](#oh_nnexecutor) \*executor, [NN_OnRunDone](#nn_onrundone) onRunDone) | Sets the callback processing function invoked when the asynchronous inference ends.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_SetOnServiceDied](#oh_nnexecutor_setonservicedied) ([OH_NNExecutor](#oh_nnexecutor) \*executor, [NN_OnServiceDied](#nn_onservicedied) onServiceDied) | Sets the callback processing function invoked when the device driver service terminates unexpectedly during asynchronous inference.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_RunSync](#oh_nnexecutor_runsync) ([OH_NNExecutor](#oh_nnexecutor) \*executor, [NN_Tensor](#nn_tensor) \*inputTensor[], size_t inputCount, [NN_Tensor](#nn_tensor) \*outputTensor[], size_t outputCount) | Performs synchronous inference.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_RunAsync](#oh_nnexecutor_runasync) ([OH_NNExecutor](#oh_nnexecutor) \*executor, [NN_Tensor](#nn_tensor) \*inputTensor[], size_t inputCount, [NN_Tensor](#nn_tensor) \*outputTensor[], size_t outputCount, int32_t timeout, void \*userData) | Performs asynchronous inference.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNDevice_GetAllDevicesID](#oh_nndevice_getalldevicesid) (const size_t \*\*allDevicesID, uint32_t \*deviceCount) | Obtains the ID of the device connected to NNRt.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNDevice_GetName](#oh_nndevice_getname) (size_t deviceID, const char \*\*name) | Obtains the name of the specified device.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNDevice_GetType](#oh_nndevice_gettype) (size_t deviceID, [OH_NN_DeviceType](#oh_nn_devicetype) \*deviceType) | Obtains the type of the specified device.| 
 | [NN_QuantParam](#nn_quantparam) \* [OH_NNQuantParam_Create](#oh_nnquantparam_create) () | Creates an [NN_QuantParam](#nn_quantparam) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNQuantParam_SetScales](#oh_nnquantparam_setscales) ([NN_QuantParam](#nn_quantparam) \*quantParams, const double \*scales, size_t quantCount) | Sets the scaling coefficient for an [NN_QuantParam](#nn_quantparam) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNQuantParam_SetZeroPoints](#oh_nnquantparam_setzeropoints) ([NN_QuantParam](#nn_quantparam) \*quantParams, const int32_t \*zeroPoints, size_t quantCount) | Sets the zero point for an [NN_QuantParam](#nn_quantparam) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNQuantParam_SetNumBits](#oh_nnquantparam_setnumbits) ([NN_QuantParam](#nn_quantparam) \*quantParams, const uint32_t \*numBits, size_t quantCount) | Sets the number of quantization bits for an [NN_QuantParam](#nn_quantparam) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNQuantParam_Destroy](#oh_nnquantparam_destroy) ([NN_QuantParam](#nn_quantparam) \*\*quantParams) | Destroys an [NN_QuantParam](#nn_quantparam) instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNQuantParam_SetScales](#oh_nnquantparam_setscales) ([NN_QuantParam](#nn_quantparam) \*quantParams, const double \*scales, size_t quantCount) | Sets the scaling coefficient for an [NN_QuantParam](#nn_quantparam) instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNQuantParam_SetZeroPoints](#oh_nnquantparam_setzeropoints) ([NN_QuantParam](#nn_quantparam) \*quantParams, const int32_t \*zeroPoints, size_t quantCount) | Sets the zero point for an [NN_QuantParam](#nn_quantparam) instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNQuantParam_SetNumBits](#oh_nnquantparam_setnumbits) ([NN_QuantParam](#nn_quantparam) \*quantParams, const uint32_t \*numBits, size_t quantCount) | Sets the number of quantization bits for an [NN_QuantParam](#nn_quantparam) instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNQuantParam_Destroy](#oh_nnquantparam_destroy) ([NN_QuantParam](#nn_quantparam) \*\*quantParams) | Destroys an [NN_QuantParam](#nn_quantparam) instance.| 
 | [OH_NNModel](#oh_nnmodel) \* [OH_NNModel_Construct](#oh_nnmodel_construct) (void) | Creates a model instance of the [OH_NNModel](#oh_nnmodel) type and constructs a model instance by using the APIs provided by **OH_NNModel**.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_AddTensorToModel](#oh_nnmodel_addtensortomodel) ([OH_NNModel](#oh_nnmodel) \*model, const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc) | Adds a tensor to a model instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_SetTensorData](#oh_nnmodel_settensordata) ([OH_NNModel](#oh_nnmodel) \*model, uint32_t index, const void \*dataBuffer, size_t length) | Sets the tensor value.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_SetTensorQuantParams](#oh_nnmodel_settensorquantparams) ([OH_NNModel](#oh_nnmodel) \*model, uint32_t index, [NN_QuantParam](#nn_quantparam) \*quantParam) | Sets the quantization parameters of a tensor. For details, see [NN_QuantParam](#nn_quantparam).| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_SetTensorType](#oh_nnmodel_settensortype) ([OH_NNModel](#oh_nnmodel) \*model, uint32_t index, [OH_NN_TensorType](#oh_nn_tensortype) tensorType) | Sets the tensor type. For details, see [OH_NN_TensorType](#oh_nn_tensortype).| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_AddOperation](#oh_nnmodel_addoperation) ([OH_NNModel](#oh_nnmodel) \*model, [OH_NN_OperationType](#oh_nn_operationtype) op, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*paramIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*inputIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*outputIndices) | Adds an operator to a model instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_SpecifyInputsAndOutputs](#oh_nnmodel_specifyinputsandoutputs) ([OH_NNModel](#oh_nnmodel) \*model, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*inputIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*outputIndices) | Sets an index value for the input and output tensors of a model.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_Finish](#oh_nnmodel_finish) ([OH_NNModel](#oh_nnmodel) \*model) | Completes model composition.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_AddTensorToModel](#oh_nnmodel_addtensortomodel) ([OH_NNModel](#oh_nnmodel) \*model, const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc) | Adds a tensor to a model instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_SetTensorData](#oh_nnmodel_settensordata) ([OH_NNModel](#oh_nnmodel) \*model, uint32_t index, const void \*dataBuffer, size_t length) | Sets the tensor value.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_SetTensorQuantParams](#oh_nnmodel_settensorquantparams) ([OH_NNModel](#oh_nnmodel) \*model, uint32_t index, [NN_QuantParam](#nn_quantparam) \*quantParam) | Sets the quantization parameters of a tensor. For details, see [NN_QuantParam](#nn_quantparam).| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_SetTensorType](#oh_nnmodel_settensortype) ([OH_NNModel](#oh_nnmodel) \*model, uint32_t index, [OH_NN_TensorType](#oh_nn_tensortype) tensorType) | Sets the tensor type. For details, see [OH_NN_TensorType](#oh_nn_tensortype).| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_AddOperation](#oh_nnmodel_addoperation) ([OH_NNModel](#oh_nnmodel) \*model, [OH_NN_OperationType](#oh_nn_operationtype) op, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*paramIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*inputIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*outputIndices) | Adds an operator to a model instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_SpecifyInputsAndOutputs](#oh_nnmodel_specifyinputsandoutputs) ([OH_NNModel](#oh_nnmodel) \*model, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*inputIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*outputIndices) | Sets an index value for the input and output tensors of a model.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_Finish](#oh_nnmodel_finish) ([OH_NNModel](#oh_nnmodel) \*model) | Completes model composition.| 
 | void [OH_NNModel_Destroy](#oh_nnmodel_destroy) ([OH_NNModel](#oh_nnmodel) \*\*model) | Destroys a model instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_GetAvailableOperations](#oh_nnmodel_getavailableoperations) ([OH_NNModel](#oh_nnmodel) \*model, size_t deviceID, const bool \*\*isSupported, uint32_t \*opCount) | Checks whether all operators in a model are supported by the device. The result is indicated by a Boolean value.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_AddTensor](#oh_nnmodel_addtensor) ([OH_NNModel](#oh_nnmodel) \*model, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor) | Adds a tensor to a model instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_SetInput](#oh_nnexecutor_setinput) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t inputIndex, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor, const void \*dataBuffer, size_t length) | Sets the data for a single model input.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_SetOutput](#oh_nnexecutor_setoutput) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, void \*dataBuffer, size_t length) | Sets the memory for a single model output.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_Run](#oh_nnexecutor_run) ([OH_NNExecutor](#oh_nnexecutor) \*executor) | Executes model inference.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_GetAvailableOperations](#oh_nnmodel_getavailableoperations) ([OH_NNModel](#oh_nnmodel) \*model, size_t deviceID, const bool \*\*isSupported, uint32_t \*opCount) | Checks whether all operators in a model are supported by the device. The result is indicated by a Boolean value.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_AddTensor](#oh_nnmodel_addtensor) ([OH_NNModel](#oh_nnmodel) \*model, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor) | Adds a tensor to a model instance.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_SetInput](#oh_nnexecutor_setinput) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t inputIndex, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor, const void \*dataBuffer, size_t length) | Sets the data for a single model input.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_SetOutput](#oh_nnexecutor_setoutput) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, void \*dataBuffer, size_t length) | Sets the memory for a single model output.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_Run](#oh_nnexecutor_run) ([OH_NNExecutor](#oh_nnexecutor) \*executor) | Executes model inference.| 
 | [OH_NN_Memory](_o_h___n_n___memory.md) \* [OH_NNExecutor_AllocateInputMemory](#oh_nnexecutor_allocateinputmemory) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t inputIndex, size_t length) | Applies for shared memory for a single model input on the device.| 
 | [OH_NN_Memory](_o_h___n_n___memory.md) \* [OH_NNExecutor_AllocateOutputMemory](#oh_nnexecutor_allocateoutputmemory) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, size_t length) | Applies for shared memory for a single model output on the device.| 
 | void [OH_NNExecutor_DestroyInputMemory](#oh_nnexecutor_destroyinputmemory) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t inputIndex, [OH_NN_Memory](_o_h___n_n___memory.md) \*\*memory) | Releases the input memory pointed by the [OH_NN_Memory](_o_h___n_n___memory.md) instance.| 
 | void [OH_NNExecutor_DestroyOutputMemory](#oh_nnexecutor_destroyoutputmemory) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, [OH_NN_Memory](_o_h___n_n___memory.md) \*\*memory) | Releases the output memory pointed by the [OH_NN_Memory](_o_h___n_n___memory.md) instance.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_SetInputWithMemory](#oh_nnexecutor_setinputwithmemory) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t inputIndex, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor, const [OH_NN_Memory](_o_h___n_n___memory.md) \*memory) | Shared memory pointed by the [OH_NN_Memory](_o_h___n_n___memory.md) instance for a single model input.| 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_SetOutputWithMemory](#oh_nnexecutor_setoutputwithmemory) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, const [OH_NN_Memory](_o_h___n_n___memory.md) \*memory) | Shared memory pointed by the [OH_NN_Memory](_o_h___n_n___memory.md) instance for a single model output.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_SetInputWithMemory](#oh_nnexecutor_setinputwithmemory) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t inputIndex, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor, const [OH_NN_Memory](_o_h___n_n___memory.md) \*memory) | Shared memory pointed by the [OH_NN_Memory](_o_h___n_n___memory.md) instance for a single model input.| 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_SetOutputWithMemory](#oh_nnexecutor_setoutputwithmemory) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, const [OH_NN_Memory](_o_h___n_n___memory.md) \*memory) | Shared memory pointed by the [OH_NN_Memory](_o_h___n_n___memory.md) instance for a single model output.| 
 
 
 ## Type Description
@@ -206,7 +197,7 @@ Use the **userData** parameter to specify the asynchronous inference to query. T
 ### NN_QuantParam
 
 ```
-typedef struct NN_QuantParamNN_QuantParam
+typedef struct NN_QuantParam NN_QuantParam
 ```
 
 **Description**
@@ -306,6 +297,9 @@ Used to define the memory structure.
 
 **Since**: 9
 
+**Deprecated**: This module is deprecated since API version 11.
+
+**Substitute**: You are advised to use [NN_Tensor](#nn_tensor).
 
 ### OH_NN_OperationType
 
@@ -372,6 +366,9 @@ The **clamp** function is defined as follows:
 
 **Since**: 9
 
+**Deprecated**: This module is deprecated since API version 11.
+
+**Substitute**: You are advised to use [NN_QuantParam](#nn_quantparam).
 
 ### OH_NN_ReturnCode
 
@@ -400,6 +397,9 @@ It is usually used to construct data nodes and operator parameters in a model di
 
 **Since**: 9
 
+**Deprecated**: This module is deprecated since API version 11.
+
+**Substitute**: You are advised to use [NN_TensorDesc](#nn_tensordesc).
 
 ### OH_NN_TensorType
 
@@ -778,7 +778,7 @@ Tensors are usually used to set the input, output, and operator parameters of a 
 | OH_NN_AVG_POOL_PAD_MODE | Used when the tensor is used as the **AvgPool** parameter of the AvgPool operator. | 
 | OH_NN_AVG_POOL_PAD | Used when the tensor is used as the **pad** parameter of the AvgPool operator.| 
 | OH_NN_AVG_POOL_ACTIVATION_TYPE | Used when the tensor is used as the **activationType** parameter of the AvgPool operator. | 
-| OH_NN_BATCH_NORM_EPSILON | Used when the tensor is used as the **eosilon** parameter of the BatchNorm operator.| 
+| OH_NN_BATCH_NORM_EPSILON | Used when the tensor is used as the **epsilon** parameter of the BatchNorm operator. | 
 | OH_NN_BATCH_TO_SPACE_ND_BLOCKSIZE | Used when the tensor is used as the **blockSize** parameter of the BatchToSpaceND operator.| 
 | OH_NN_BATCH_TO_SPACE_ND_CROPS | Used when the tensor is used as the **crops** parameter of the BatchToSpaceND operator.| 
 | OH_NN_CONCAT_AXIS | Used when the tensor is used as the **axis** parameter of the Concat operator.| 
@@ -907,13 +907,13 @@ Tensors are usually used to set the input, output, and operator parameters of a 
 | OH_NN_DETECTION_POST_PROCESS_NMS_IOU_THRESHOLD<sup>12+</sup> | Used when the tensor is used as the **nmsIouThreshold** parameter of the DetectionPostProcess operator. | 
 | OH_NN_DETECTION_POST_PROCESS_NMS_SCORE_THRESHOLD<sup>12+</sup> | Used when the tensor is used as the **nmsScoreThreshold** parameter of the DetectionPostProcess operator. | 
 | OH_NN_DETECTION_POST_PROCESS_MAX_DETECTIONS<sup>12+</sup> | Used when the tensor is used as the **maxDetections** parameter of the DetectionPostProcess operator. | 
-| OH_NN_DETECTION_POST_PROCESS_DETECTIONS_PER_CLASS<sup>12+</sup> | Used when the tensor is used as the **preClass** parameter of the DetectionPostProcess operator. | 
-| OH_NN_DETECTION_POST_PROCESS_MAX_CLASSES_PER_DETECTION<sup>12+</sup> | Used when the tensor is used as the **maxClassPreDetection** parameter of the DetectionPostProcess operator. | 
+| OH_NN_DETECTION_POST_PROCESS_DETECTIONS_PER_CLASS<sup>12+</sup> | Used when the tensor is used as the **outQuantized** parameter of the perClass operator. | 
+| OH_NN_DETECTION_POST_PROCESS_MAX_CLASSES_PER_DETECTION<sup>12+</sup> | Used when the tensor is used as the **outQuantized** parameter of the maxClassPerDetection operator. | 
 | OH_NN_DETECTION_POST_PROCESS_NUM_CLASSES<sup>12+</sup> | Used when the tensor is used as the **numClasses** parameter of the DetectionPostProcess operator. | 
 | OH_NN_DETECTION_POST_PROCESS_USE_REGULAR_NMS<sup>12+</sup> | Used when the tensor is used as the **useRegularNms** parameter of the DetectionPostProcess operator. | 
 | OH_NN_DETECTION_POST_PROCESS_OUT_QUANTIZED<sup>12+</sup> | Used when the tensor is used as the **outQuantized** parameter of the DetectionPostProcess operator. | 
 | OH_NN_L2_NORMALIZE_AXIS<sup>12+</sup> | Used when the tensor is used as the **axis** parameter of the L2Normalize operator. | 
-| OH_NN_L2_NORMALIZE_EPSILON<sup>12+</sup> | Used when the tensor is used as the **epslion** parameter of the L2Normalize operator. | 
+| OH_NN_L2_NORMALIZE_EPSILON<sup>12+</sup> | Used when the tensor is used as the **epsilon** parameter of the L2Normalize operator. | 
 | OH_NN_L2_NORMALIZE_ACTIVATION_TYPE<sup>12+</sup> | Used when the tensor is used as the **activationType** parameter of the L2Normalize operator. | 
 | OH_NN_LOG_SOFTMAX_AXIS<sup>12+</sup> | Used when the tensor is used as the **axis** parameter of the LogSoftmax operator. | 
 | OH_NN_LRN_DEPTH_RADIUS<sup>12+</sup> | Used when the tensor is used as the **depthRadius** parameter of the LRN operator. | 
@@ -1356,7 +1356,7 @@ OH_NN_ReturnCode OH_NNDevice_GetAllDevicesID (const size_t **allDevicesID, uint3
 
 Obtains the ID of the device connected to NNRt.
 
-Each device has a unique and fixed ID, which is returned through a uin32_t array.
+Each device has a unique and fixed ID, which is returned through a uint32_t array.
 
 When device IDs are returned through the size_t array, each element of the array is the ID of a single device. Internal managment is used for array memory. The data pointer remains valid before this API is called next time.
 
@@ -1452,6 +1452,10 @@ NNRt provides an API for proactively applying for shared memory on a device. Bas
 
 **Since**: 9
 
+**Deprecated**: This module is deprecated since API version 11.
+
+**Substitute**: You are advised to use [OH_NNTensor_CreateWithSize](#oh_nntensor_createwithsize).
+
 **Parameters**
 
 | Name| Description| 
@@ -1478,6 +1482,10 @@ Applies for shared memory for a single model output on the device.
 NNRt provides an API for proactively applying for shared memory on a device. Based on the specified executor and input index value, this API applies for the shared memory whose size is **length** on the device associated with a single input. Then, it returns the shared memory through the [OH_NN_Memory](_o_h___n_n___memory.md) instance.
 
 **Since**: 9
+
+**Deprecated**: This module is deprecated since API version 11.
+
+**Substitute**: You are advised to use [OH_NNTensor_CreateWithSize](#oh_nntensor_createwithsize).
 
 **Parameters**
 
@@ -1610,6 +1618,10 @@ If **memory** or **\*memory** is a null pointer, this API only prints the warnin
 
 **Since**: 9
 
+**Deprecated**: This module is deprecated since API version 11.
+
+**Substitute**: You are advised to use [OH_NNTensor_Destroy](#oh_nntensor_destroy).
+
 **Parameters**
 
 | Name| Description| 
@@ -1634,6 +1646,10 @@ This API needs to be called to release the memory instance created by calling [O
 If **memory** or **\*memory** is a null pointer, this API only prints the warning log and does not execute the release logic.
 
 **Since**: 9
+
+**Deprecated**: This module is deprecated since API version 11.
+
+**Substitute**: You are advised to use [OH_NNTensor_Destroy](#oh_nntensor_destroy).
 
 **Parameters**
 
@@ -1779,6 +1795,10 @@ This API performs end-to-end model inference and computing on the device associa
 
 **Since**: 9
 
+**Deprecated**: This module is deprecated since API version 11.
+
+**Substitute**: You are advised to use [OH_NNExecutor_RunSync](#oh_nnexecutor_runsync).
+
 **Parameters**
 
 | Name| Description| 
@@ -1882,6 +1902,10 @@ NNRt supports models with dynamical shape input. For fixed shape input and dynam
 
 **Since**: 9
 
+**Deprecated**: This module is deprecated since API version 11.
+
+**Substitute**: You are advised to use [OH_NNExecutor_RunSync](#oh_nnexecutor_runsync).
+
 **Parameters**
 
 | Name| Description| 
@@ -1910,6 +1934,10 @@ Shared memory pointed by the [OH_NN_Memory](_o_h___n_n___memory.md) instance for
 In the scenario where the memory needs to be managed by yourself, this API binds the execution input to the [OH_NN_Memory](_o_h___n_n___memory.md) memory instance. During computing, the underlying device reads the input data from the shared memory pointed by the memory instance. By using this API, you can implement concurrent execution of input setting, computing, and read to improve the data flow inference efficiency.
 
 **Since**: 9
+
+**Deprecated**: This module is deprecated since API version 11.
+
+**Substitute**: You are advised to use [OH_NNExecutor_RunSync](#oh_nnexecutor_runsync).
 
 **Parameters**
 
@@ -1997,6 +2025,10 @@ After [OH_NNExecutor_Run](#oh_nnexecutor_run) is called to complete a single mod
 
 **Since**: 9
 
+**Deprecated**: This module is deprecated since API version 11.
+
+**Substitute**: You are advised to use [OH_NNExecutor_RunSync](#oh_nnexecutor_runsync).
+
 **Parameters**
 
 | Name| Description| 
@@ -2024,6 +2056,10 @@ Shared memory pointed by the [OH_NN_Memory](_o_h___n_n___memory.md) instance for
 In the scenario where the memory needs to be managed by yourself, this API binds the execution output to the [OH_NN_Memory](_o_h___n_n___memory.md) memory instance. During computing, the underlying device writes the computing result to the shared memory pointed by the memory instance. By using this API, you can implement concurrent execution of input setting, computing, and read to improve the data flow inference efficiency.
 
 **Since**: 9
+
+**Deprecated**: This module is deprecated since API version 11.
+
+**Substitute**: You are advised to use [OH_NNExecutor_RunSync](#oh_nnexecutor_runsync).
 
 **Parameters**
 
@@ -2087,6 +2123,10 @@ NNRt supports input and output of dynamic shapes. When adding a data node with a
 
 **Since**: 9
 
+**Deprecated**: This module is deprecated since API version 11.
+
+**Substitute**: You are advised to use [OH_NNModel_AddTensorToModel](#oh_nnmodel_addtensortomodel).
+
 **Parameters**
 
 | Name| Description| 
@@ -2113,7 +2153,7 @@ The data node and operator parameters in the NNRt model are composed of tensors 
 
 NNRt supports input and output of dynamic shapes. When adding a data node with a dynamic shape, you need to set the dimensions that support dynamic changes in **tensor.dimensions** to **-1**. For example, if **tensor.dimensions** of a four-dimensional tensor is set to **[1, -1, 2, 2]**, the second dimension supports dynamic changes.
 
-**Since**: 9
+**Since**: 11
 
 **Parameters**
 

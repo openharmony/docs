@@ -33,7 +33,7 @@ createBrightnessBlender(param: BrightnessBlenderParam): BrightnessBlender
 
 | 类型                                     | 说明                     |
 | ---------------------------------------- | ----------------------- |
-| [BrightnessBlender ](#brightnessblender) | 返回设置了提亮效果参数的BrightnessBlender。 |
+| [BrightnessBlender](#brightnessblender) | 返回设置了提亮效果参数的BrightnessBlender。 |
 
 **示例：**
 
@@ -41,6 +41,49 @@ createBrightnessBlender(param: BrightnessBlenderParam): BrightnessBlender
 let blender : uiEffect.BrightnessBlender =
   uiEffect.createBrightnessBlender({cubicRate:1.0, quadraticRate:1.0, linearRate:1.0, degree:1.0, saturation:1.0,
     positiveCoefficient:[2.3, 4.5, 2.0], negativeCoefficient:[0.5, 2.0, 0.5], fraction:0.0})
+```
+
+## uiEffect.createHdrBrightnessBlender<sup>20+</sup>
+createHdrBrightnessBlender(param: BrightnessBlenderParam): HdrBrightnessBlender
+
+创建[HdrBrightnessBlender](#hdrbrightnessblender20)实例用于给组件添加支持HDR的提亮效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名  | 类型                                              | 必填 | 说明                        |
+| ------ | ------------------------------------------------- | ---- | --------------------------- |
+| param  | [BrightnessBlenderParam](#brightnessblenderparam) | 是   | 实现提亮效果的参数。 |
+
+**返回值：**
+
+| 类型                                     | 说明                     |
+| ---------------------------------------- | ----------------------- |
+| [HdrBrightnessBlender](#hdrbrightnessblender20) | 返回具有提亮效果的混合器（支持HDR）。 |
+
+**示例：**
+
+```ts
+import { uiEffect } from "@kit.ArkGraphics2D"
+
+let blender : uiEffect.HdrBrightnessBlender =
+  uiEffect.createHdrBrightnessBlender({cubicRate:1.0, quadraticRate:1.0, linearRate:1.0, degree:1.0, saturation:1.0,
+    positiveCoefficient:[2.3, 4.5, 2.0], negativeCoefficient:[0.5, 2.0, 0.5], fraction:0.0})
+
+@Entry
+@Component
+struct example {
+  build() {
+    RelativeContainer() {
+      Image($r("app.media.screenshot"))
+        .width("100%")
+        .height("100%")
+        .advancedBlendMode(blender)
+    }
+  }
+}
 ```
 
 ## Filter
@@ -782,7 +825,7 @@ struct Index {
 
 ## Blender<sup>13+</sup>
 
-type Blender = BrightnessBlender
+type Blender = BrightnessBlender | HdrBrightnessBlender
 
 混合器类型，用于描述混合效果。
 
@@ -793,6 +836,7 @@ type Blender = BrightnessBlender
 | 类型                          | 说明                                               |
 | ----------------------------- | ------------------------------------------------- |
 | [BrightnessBlender](#brightnessblender) | 具有提亮效果的混合器。 |
+| [HdrBrightnessBlender](#hdrbrightnessblender20)<sup>20+</sup> | 具有提亮效果的混合器（支持HDR）。 |
 
 ## BrightnessBlender
 提亮混合器，用于将提亮效果添加到指定的组件上。在调用BrightnessBlender前，需要先通过[createBrightnessBlender](#uieffectcreatebrightnessblender)创建一个BrightnessBlender实例。
@@ -811,6 +855,15 @@ type Blender = BrightnessBlender
 | positiveCoefficient | [number, number, number]   | 否   | 否   | 基于基准饱和度的RGB正向调整参数。<br/>每个number的取值范围[-20, 20]。 |
 | negativeCoefficient | [number, number, number]   | 否   | 否   | 基于基准饱和度的RGB负向调整参数。<br/>每个number的取值范围[-20, 20]。 |
 | fraction            | number                     | 否   | 否   | 提亮效果的混合比例。<br/>取值范围[0, 1]，超出边界会在实现时自动截断。  |
+
+## HdrBrightnessBlender<sup>20+</sup>
+支持HDR的提亮混合器（继承自[BrightnessBlender](#brightnessblender)），用于将提亮效果添加到指定的组件上。在调用HdrBrightnessBlender前，需要先通过[createHdrBrightnessBlender](#uieffectcreatehdrbrightnessblender20)创建一个HdrBrightnessBlender实例。
+
+该混合器参数可参考[BrightnessBlender](#brightnessblender)。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
 
 ## Color<sup>20+</sup>
 
@@ -980,6 +1033,59 @@ struct RadialGradientMaskExample {
         .width('100%')
         .height('100%')
         // Mask作为Filter的入参实现对应的效果，该效果中Mask是在屏幕左上角的四分之一圆环
+        .backgroundFilter(uiEffect.createFilter().edgeLight(1.0, null, mask))
+    }
+  }
+}
+```
+### createWaveGradientMask<sup>20+</sup>
+static createWaveGradientMask(center: common2D.Point, width: number, propagationRadius: number, blurRadius: number, turbulenceStrength?: number): Mask
+
+输入波源中心位置、单波参数创建单波遮罩效果[Mask](#mask20)实例。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名  | 类型                                      | 必填 | 说明                       |
+| ------- | ---------------------------------------- | ---- | ------------------------- |
+| center | [common2D.Point](js-apis-graphics-common2D.md#point12)  | 是 | 设置单波波源的中心点，[0, 0]为屏幕左上角，[1, 1]为屏幕的右下角。<br/>取值范围[-10, 10]，可取浮点数，超出边界会在实现时自动截断。 |
+| width | number  | 是 | 设置单波圆环的宽度。<br/>取值范围[0, 5]，可取浮点数，超出边界会在实现时自动截断。 |
+| propagationRadius | number  | 是 | 设置单波圆环的扩散外径。<br/>取值范围[0, 10]，可取浮点数，超出边界会在实现时自动截断。 |
+| blurRadius | number  | 是 | 设置单波圆环的模糊外径，模糊半径为0则是实边圆环，否则是虚边圆环。<br/>取值范围[0, 5]，可取浮点数，超出边界会在实现时自动截断。 |
+| turbulenceStrength | number  | 否 | 设置单波圆环的湍流强度，默认值为0，强度为0则是规则圆环，否则圆环边缘会湍流扭曲。<br/>取值范围[-1, 1]，可取浮点数，超出边界会在实现时自动截断。 |
+
+**返回值：**
+
+| 类型                          | 说明                                               |
+| ----------------------------- | ------------------------------------------------- |
+| [Mask](#mask20) | 返回单个水波形状的灰度Mask。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { uiEffect } from "@kit.ArkGraphics2D";
+// center: [0.5, 0.5]；width: 0.01; propagationRadius: 0.5; blurRadius: 0.1; turbulenceStrength: 0.1
+let mask = uiEffect.Mask.createWaveGradientMask({x: 0.5, y: 0.5}, 0.01, 0.5, 0.1, 0.1);
+@Entry
+@Component
+struct WaveGradientMaskExample {
+  build() {
+    Stack() {
+      Image('test.jpg')
+      Column()
+        .width('100%')
+        .height('100%')
+        // 将Mask作为Filter的参数，实现屏幕中心向四周扩散的水波形状效果。
         .backgroundFilter(uiEffect.createFilter().edgeLight(1.0, null, mask))
     }
   }

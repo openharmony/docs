@@ -21,3 +21,21 @@ Invalid parameter. Possible causes: Parameter verification failed.
 **处理步骤**
 
 检查参数的值是否合法。
+
+## 8900001 参数校验错误
+
+**错误信息**
+
+Invalid parameter. Possible causes: Parameter verification failed.
+
+**错误描述**
+
+当接口传入非法的参数值时，系统会产生此错误码。
+
+**可能原因**
+
+该错误码表示参数内容校验失败，可能原因是传入参数的值无效。
+ 
+**处理步骤**
+
+检查参数的值是否合法。

@@ -136,9 +136,10 @@ canvas.drawTextBlob(textBlob, 200, 300);
 
 ## 单字绘制
 
-相比字块绘制，单字绘制的优势在于能够利用字体退化机制，在当前字体无法显示某字符时，自动退化到使用系统字体绘制字符，从而提升对特殊字符的兼容性，避免字符缺失，增强用户体验。详细API说明请见[drawing.Canvas](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md#drawsinglecharacter12)。
+单字绘制是图形渲染中针对文本渲染的一种精细化控制技术。相比字块绘制，其核心优势在于能够利用字体退化机制，在当前字体无法显示某字符时，自动退化到使用系统字体绘制字符，提升对特殊字符的兼容性，避免字符缺失。同时，单字绘制支持逐字符配置字体特征（如连字、替代字形），满足复杂排版需求，增强用户体验。详细API说明请见[drawing.Canvas](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md#drawsinglecharacter12)。
 
-单字绘制的示例代码和效果图如下：
+基础场景：绘制无字体特征的字符  
+对于无需字体特征的常规文本渲染场景，可以使用drawSingleCharacter绘制单个字符，使用measureSingleCharacter测量单个字符的宽度，示例代码和效果图如下：
 
 ```ts
 // 创建字型对象
@@ -158,6 +159,29 @@ for (let s of text) {
 ```
 
 ![Snapshot_drawSingleCharacter](figures/Snapshot_drawSingleCharacter.jpg)
+
+进阶场景：绘制带字体特征的字符  
+对于需要字体特征的文本渲染场景，可以使用drawSingleCharacterWithFeatures绘制单个字符，使用measureSingleCharacterWithFeatures测量单个字符的宽度，示例代码和效果图如下：
+```ts
+// 创建字型对象
+const font = new drawing.Font();
+// 设置文字大小
+font.setSize(100);
+let startX = 100;
+let startY = 100;
+let text = ['a', '2', '+', 'b', '2'];
+// 创建字体特征对象数组
+let fontFeatures : Array<drawing.FontFeature> = [{name: 'frac', value: 1}];
+for (let s of text) {
+  // 单字绘制
+  canvas.drawSingleCharacterWithFeatures(s, font, startX, startY, fontFeatures);
+  // 测量单个字符的宽度
+  let textWidth = font.measureSingleCharacterWithFeatures(s, fontFeatures);
+  startX += textWidth;
+}
+```
+
+![Snapshot_drawSingleCharacter](figures/Snapshot_drawSingleCharacterWithFeatures.png)
 
 <!--RP1-->
 ## 相关实例

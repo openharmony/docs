@@ -126,8 +126,6 @@ type StyledStringMarshallingValue = UserDataSpan
 
 **系统接口：** 此接口为系统接口。
 
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型  | 说明   |
@@ -141,8 +139,6 @@ type StyledStringMarshallCallback = (marshallableVal: StyledStringMarshallingVal
 属性字符串[StyledStringMarshallingValue](#styledstringmarshallingvalue19)序列化回调类型。
 
 **系统接口：** 此接口为系统接口。
-
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -165,8 +161,6 @@ type StyledStringUnmarshallCallback = (buf: ArrayBuffer) => StyledStringMarshall
 属性字符串反序列化ArrayBuffer得到[StyledStringMarshallingValue](#styledstringmarshallingvalue19)回调类型。
 
 **系统接口：** 此接口为系统接口。
-
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

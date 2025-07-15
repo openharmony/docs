@@ -21,7 +21,7 @@ import { avSession } from '@kit.AVSessionKit';
 
 | 名称      | 类型   | 只读 | 可选 | 说明                                    |
 | :-------- | :----- | :--- | :--- | :-------------------------------------- |
-| sessionId | string | 是   | 否   | AVSessionController对象唯一的会话标识。 |
+| sessionId<sup>10+</sup> | string | 是   | 否   | AVSessionController对象唯一的会话标识。 |
 
 
 **示例：**

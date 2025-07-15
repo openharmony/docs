@@ -88,7 +88,7 @@ API version 19 及以上版本的用户态trace格式参考[当前版本用户�
 
 > **注意：**
 >
-> 1. 一条有效且完整的同步跟踪trace与异步跟踪trace，均包含一条起始trace和一条结束trace，开发者需要保证接口调用的匹配性，否则会导致性能跟踪异常问题。具体可参考ArkTS接口：[@ohos.hiTraceMeter (性能打点)](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)或C++接口：[Hitrace](../reference/apis-performance-analysis-kit/_hitrace.md)。
+> 1. 一条有效且完整的同步跟踪trace与异步跟踪trace，均包含一条起始trace和一条结束trace，开发者需要保证接口调用的匹配性，否则会导致性能跟踪异常问题。具体可参考ArkTS接口：[@ohos.hiTraceMeter (性能打点)](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)或C++接口：[Hitrace](../reference/apis-performance-analysis-kit/capi-trace-h.md)。
 > 2. 用户态trace总长度限制512字符，超过部分将被截断。
 
 
@@ -108,7 +108,7 @@ API version 19 及以上版本的用户态trace格式参考[当前版本用户�
 
 - **分布式跟踪链路ID**
 
-  开启HiTraceChain（分布式跟踪）时，会将[HiTraceId](../reference/apis-performance-analysis-kit/_hi_trace_id.md)核心信息记录在trace打点中，格式为`[ChainId,SpanId,ParentSpanId]`，结尾使用`#`分隔符与内容字段区分。
+  开启HiTraceChain（分布式跟踪）时，会将[HiTraceId](../reference/apis-performance-analysis-kit/capi-hitrace-hitraceid.md)核心信息记录在trace打点中，格式为`[ChainId,SpanId,ParentSpanId]`，结尾使用`#`分隔符与内容字段区分。
 
   未开启HiTraceChain（分布式跟踪）时，打点不包含该字段。
 
@@ -144,7 +144,7 @@ API version 19 及以上版本的用户态trace格式参考[当前版本用户�
   >
   > 1. 对于API version 19及之后接口，支持自定义输出级别；对于API version 18及之前接口，trace打点默认为`COMMERCIAL`级别打点。
   >
-  > 2. 系统侧存在一条用户态trace隶属于多个Tag的情况，[@ohos.hiTraceMeter (性能打点)](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md) ArkTS接口和[Hitrace](../reference/apis-performance-analysis-kit/_hitrace.md) C++接口提供的应用侧用户态trace打点功能无法指定`所属Tag集合`，对应Tag分类固定为`app`，字段值为`62`。
+  > 2. 系统侧存在一条用户态trace隶属于多个Tag的情况，[@ohos.hiTraceMeter (性能打点)](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md) ArkTS接口和[Hitrace](../reference/apis-performance-analysis-kit/capi-trace-h.md) C++接口提供的应用侧用户态trace打点功能无法指定`所属Tag集合`，对应Tag分类固定为`app`，字段值为`62`。
 
 
 - **自定义聚类名称**

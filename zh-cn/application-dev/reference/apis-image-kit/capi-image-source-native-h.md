@@ -940,7 +940,7 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromRawFile(RawFileDescriptor *rawFil
 
 | 参数项 | 描述 |
 | -- | -- |
-| [RawFileDescriptor](../apis-localization-kit/_raw_file_descriptor.md) *rawFile | 指示raw文件的文件描述符。 |
+| [RawFileDescriptor](../apis-localization-kit/capi-rawfile-rawfiledescriptor.md) *rawFile | 指示raw文件的文件描述符。 |
 | [OH_ImageSourceNative](capi-image-imagesourcenative-.md) **res | 指向c++本地层创建的OH_ImageSourceNative对象的指针。 |
 
 **返回：**

@@ -65,13 +65,14 @@ Worker线程文件需要放在"{moduleName}/src/main/ets/"目录层级之下，�
 
   当使用Worker模块具体功能时，均需先构造Worker实例对象，其构造函数与API版本相关，且构造函数需要传入Worker线程文件的路径（scriptURL）。
 
+<!--code_no_check-->
 ```ts
 // 导入模块
 import { worker } from '@kit.ArkTS';
 
-// API 9及之后版本使用：
+// API version 9及之后版本使用：
 const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ets');
-// API 8及之前版本使用：
+// API version 8及之前版本使用：
 const worker2: worker.Worker = new worker.Worker('entry/ets/workers/worker.ets');
 ```
 

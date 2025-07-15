@@ -145,7 +145,7 @@ struct CanvasExample {
   }
 }
 ```
-  ![zh-cn_image_0000001194032666](figures/canvas_drawingRenderingContext.png)
+  ![zh-cn_image_0000001194032666](figures/CanvasDemo2.png)
 
 ### 示例3（使用attributeModifier动态设置Canvas组件的属性及方法）
 
