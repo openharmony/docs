@@ -539,7 +539,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
   let localId: number = 100;
   try {
     accountManager.setOsAccountConstraints(localId, ['constraint.location.set'], false).then(() => {
-      console.log('setOsAccountConstraints succsuccessfully');
+      console.info('setOsAccountConstraints successfully');
     }).catch((err: BusinessError) => {
       console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
     });
@@ -2213,7 +2213,7 @@ constructor()
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 **错误码：**
 
@@ -2938,7 +2938,7 @@ constructor()
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 **错误码：**
 
@@ -4078,7 +4078,7 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
 
 getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
 
-查询指定的域账号信息，callback方式。
+查询指定的域账号信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4134,7 +4134,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 
 getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountInfo&gt;
 
-查询指定的域账号信息，promise方式。
+查询指定的域账号信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
