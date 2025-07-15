@@ -822,7 +822,6 @@ Span类型信息。
 | CLEAR_STYLE  | 0 | 撤销还原内容不保留原样式。   |
 | KEEP_STYLE | 1 | 撤销还原内容保留原样式。   |
 
-
 ## RichEditorTextStyleResult
 
 后端返回的文本样式信息。
@@ -1694,6 +1693,7 @@ SymbolSpan样式选项。
 | paragraphStyle<sup>11+</sup> | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 否 | 是    | 段落样式。                     <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | gesture<sup>11+</sup>        | [RichEditorGesture](#richeditorgesture11)| 否  | 是    | 行为触发回调。省略时，仅使用系统默认行为。      <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | urlStyle<sup>19+</sup>  | [RichEditorUrlStyle](#richeditorurlstyle19)  | 否  | 是   | url信息。<br/>默认值：undefined <br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
+
 ## RichEditorTextStyle
 
 文本样式信息。
