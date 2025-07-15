@@ -930,5 +930,3 @@ enum SelectedState {
   Remove
 }
 ```
-
-![checkbox06](figures/checkbox06.gif)
