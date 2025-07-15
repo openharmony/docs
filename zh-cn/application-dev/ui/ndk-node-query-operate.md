@@ -473,7 +473,7 @@ NDK支持通过不同的展开方式获取目标节点下的有效节点信息�
 >
 > 节点展开方式请参考[ArkUI_ExpandMode](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_expandmode)，此处推荐使用ARKUI_LAZY_EXPAND懒展开方式，智能识别对应场景。
 
-1. 通过ArkTS构造LazyForEach及ArkTS的展开场景。
+1. 通过ArkTS构造LazyForEach及ArkTS的下树节点展开场景。
 
     ```ts
     import { NodeController, FrameNode, UIContext, BuilderNode, ExpandMode, LengthUnit } from '@kit.ArkUI';
@@ -638,15 +638,18 @@ NDK支持通过不同的展开方式获取目标节点下的有效节点信息�
         this.scroller.scrollToIndex(6, true, ScrollAlign.START, scrollToIndexOptions);
         return this.rootNode;
       }
-    
+
+      // 获取不展开场景下第一个活跃节点的下标
       getFirstChildIndexWithoutExpand() {
         console.log(`${TEST_TAG} getFirstChildIndexWithoutExpand: ${this.rootNode!.getFirstChildIndexWithoutExpand()}`);
       }
-    
+
+      // 获取不展开场景下最后一个活跃节点的下标
       getLastChildIndexWithoutExpand() {
         console.log(`${TEST_TAG} getLastChildIndexWithoutExpand: ${this.rootNode!.getLastChildIndexWithoutExpand()}`);
       }
-    
+
+      // 用不展开的方式获取节点
       getChildWithNotExpand() {
         const childNode = this.rootNode!.getChild(3, ExpandMode.NOT_EXPAND);
         console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND): " + childNode!.getId());
@@ -656,7 +659,8 @@ NDK支持通过不同的展开方式获取目标节点下的有效节点信息�
           console.log(TEST_TAG + " getChild(3, ExpandMode.NOT_EXPAND)  result: fail.");
         }
       }
-    
+      
+      // 以展开的方式获取节点
       getChildWithExpand() {
         const childNode = this.rootNode!.getChild(3, ExpandMode.EXPAND);
         console.log(TEST_TAG + " getChild(3, ExpandMode.EXPAND): " + childNode!.getId());
