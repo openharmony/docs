@@ -341,10 +341,11 @@ int main() {
 <clang distribution>/bin/clang++ --target=aarch64-linux-ohos --sysroot=<sysroot distribution> -g hello.cpp -o a.out
 ```
 
-1.打开命令行窗口1，关闭SELinux。
-  ```shell
-    hdc shell setenforce 0
-  ```
+1. 打开命令行窗口1，关闭SELinux。
+   ```shell
+   hdc shell setenforce 0
+   ```
+
 2. 打开命令行窗口1，将lldb-server和可执行文件a.out推送到设备。（a.out是使用clang编译器编译hello.cpp生成的。）
 
    ```shell
