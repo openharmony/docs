@@ -818,7 +818,7 @@ Enumerate the keys of asset attributes ([AssetMap](#assetmap)), which are in key
 | SECRET                    | TagType.BYTES &#124; 0x01  | Asset plaintext.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                                |
 | ALIAS                     | TagType.BYTES &#124; 0x02 | Asset alias, which uniquely identifies an asset.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                        |
 | ACCESSIBILITY             | TagType.NUMBER &#124; 0x03 | Access control based on the lock screen status.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                      |
-| REQUIRE_PASSWORD_SET      | TagType.BOOL &#124 0x04                   | Whether the asset is accessible only when a lock screen password is set.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                |
+| REQUIRE_PASSWORD_SET      | TagType.BOOL &#124; 0x04                   | Whether the asset is accessible only when a lock screen password is set.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                |
 | AUTH_TYPE                 | TagType.NUMBER &#124; 0x05 | Type of user authentication required for accessing the asset.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                              |
 | AUTH_VALIDITY_PERIOD      | TagType.NUMBER &#124; 0x06 | Validity period of the user authentication.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                            |
 | AUTH_CHALLENGE            | TagType.BYTES &#124; 0x07     | Challenge for the user authentication.<br>**Atomic service API**: This API can be used in atomic services since API version 14.                                        |
@@ -845,11 +845,12 @@ Enumerate the keys of asset attributes ([AssetMap](#assetmap)), which are in key
 | UPDATE_TIME<sup>12+</sup> | TagType.BYTES &#124; 0x45 | Data update time, in timestamp.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | OPERATION_TYPE<sup>12+</sup> | TagType.NUMBER &#124; 0x46 | Additional operation type.|
 | REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | TagType.BOOL &#124; 0x47 | Whether to encrypt the additional asset information customized by the service.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| GROUP_ID<sup>18+</sup> | TagType.BYTES &#124; 0x48 | Group to which the asset belongs.|
+| GROUP_ID<sup>18+</sup> | TagType.BYTES &#124; 0x48 | Group to which the asset belongs.<br>|
+| WRAP_TYPE<sup>18+</sup> | TagType.NUMBER &#124; 0x49 | Encrypted import/export type supported by the asset.<br>|
 
 ## Value
 
-type Value = boolean | number | Uint8Array;
+type Value = boolean | number | Uint8Array
 
 Represents the value of each attribute in [AssetMap](#assetmap).
 
@@ -867,7 +868,7 @@ Represents the value of each attribute in [AssetMap](#assetmap).
 
 type AssetMap = Map\<Tag, Value>
 
-Represents a set of asset attributes in the form of KV pairs.
+Represents a set of asset attributes in KV pairs.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -960,6 +961,17 @@ Enumerates the types of additional operation to perform.
 | NEED_SYNC   | 0    | Sync.|
 | NEED_LOGOUT | 1    | Logout.|
 
+## WrapType<sup>18+</sup>
+
+Enumerates the encrypted import/export types supported by the asset.
+
+**System capability**: SystemCapability.Security.Asset
+
+| Name       | Value  | Description              |
+| ----------- | ---- | ------------------ |
+| NEVER   | 0    | Encrypted import/export is not allowed for the asset.|
+| TRUSTED_ACCOUNT | 1    | Encrypted import/export is allowed for the asset only on devices where a trusted account is logged in.|
+
 ## ErrorCode
 
 Enumerates the error codes.
@@ -971,7 +983,7 @@ Enumerates the error codes.
 | PERMISSION_DENIED | 201     |The caller does not have the permission.|
 | NOT_SYSTEM_APPLICATION<sup>12+</sup> | 202     |The caller is not a system application.|
 | INVALID_ARGUMENT | 401    |Incorrect parameters are detected.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| SERVICE_UNAVAILABLE | 24000001    |The asset store service is unavailable.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| SERVICE_UNAVAILABLE | 24000001    |The asset service is unavailable.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | NOT_FOUND | 24000002    |Failed to find the asset.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | DUPLICATED | 24000003    |The specified asset already exists.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | ACCESS_DENIED | 24000004    |The access to the asset is denied.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
