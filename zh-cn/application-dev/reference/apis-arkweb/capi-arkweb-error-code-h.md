@@ -63,6 +63,7 @@ enum ArkWeb_BlanklessErrorCode
 | ARKWEB_BLANKLESS_SUCCESS = 0               | 成功。                                               |
 | ARKWEB_BLANKLESS_ERR_UNKNOWN = -1          | 未知错误，内部状态错误等。                             |
 | ARKWEB_BLANKLESS_ERR_INVALID_ARGS = -2     | 参数不合法。                                          |
-| ARKWEB_BLANKLESS_ERR_CONTROLLER_NOT_INITED = -3 | web controller未绑定组件。                       |
+| ARKWEB_BLANKLESS_ERR_CONTROLLER_NOT_INITED = -3 | WebViewController未绑定组件。                       |
 | ARKWEB_BLANKLESS_ERR_KEY_NOT_MATCH = -4    | 未匹配到key值，对于OH_NativeArkWeb_SetBlanklessLoadingWithKey需与OH_NativeArkWeb_GetBlanklessInfoWithKey配套使用并且key值一致，否则返回该错误码。 |
-| ARKWEB_BLANKLESS_ERR_SIGNIFICANT_CHANGE = -5 | 当相似度比较低（<0.33）时系统会判定为跳变太大，OH_NativeArkWeb_SetBlanklessLoadingWithKey接口启用插帧不成功。 |
+| ARKWEB_BLANKLESS_ERR_SIGNIFICANT_CHANGE = -5 | 当相似度较低时，系统会判定为跳变太大，OH_NativeArkWeb_SetBlanklessLoadingWithKey接口启用插帧不成功。 |
+| ARKWEB_BLANKLESS_ERR_DEVICE_NOT_SUPPORT = 801 | 该设备不适用于此功能。 |
