@@ -474,11 +474,12 @@ setInstallLocalEnterpriseAppEnabled(admin: Want, isEnable: boolean): void
 import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
-// 请根据实际需求替换bundleName, abilityName
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let isEnable: boolean = true;
 try {
   systemManager.setInstallLocalEnterpriseAppEnabled(wantTemp, isEnable);
@@ -527,8 +528,8 @@ import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
-// 请根据实际需求替换bundleName, abilityName
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
 };
