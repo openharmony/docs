@@ -93,10 +93,10 @@
 ```ts
 // hilog 日志片段1（模拟）
 // seqRunner共有四个任务
-taskpool:: taskId 389508780288 in seqRunnner 393913878464 immediately.
-taskpool:: add taskId: 394062838784 to seqRunnner 393913878464
-taskpool:: add taskId: 393918679936 to seqRunnner 393913878464
-taskpool:: add taskId: 393918673408 to seqRunnner 393913878464
+taskpool:: taskId 389508780288 in seqRunner 393913878464 immediately.
+taskpool:: add taskId: 394062838784 to seqRunner 393913878464
+taskpool:: add taskId: 393918679936 to seqRunner 393913878464
+taskpool:: add taskId: 393918673408 to seqRunner 393913878464
 
 // hilog 日志片段2（模拟）
 // 查看第二个任务, 发现任务执行到执行结束间隔2s
@@ -387,7 +387,96 @@ TaskPool的任务执行函数Concurrent Function只能使用局部变量和函�
        console.info('execute task success');
        // 保存到自定义的数据结构
      }).catch((e: BusinessError) => {
-       console.error('execute task error: ${e.message}');
+       console.error('execute task error: ' + e.message);
      })
     }
    ```
+
+## Sendable类在子线程无法加载
+
+**问题描述**
+
+Sendable装饰器修饰的类与Observed装饰器修饰的类定义在同一个ets文件中，在TaskPool子线程加载Sendable类时捕获到错误信息：SendableItem is not initialized。
+
+```ts
+// Index.ets: 在Index页面新增以下代码
+import { taskpool } from '@kit.ArkTS'
+import { BusinessError } from '@kit.BasicServicesKit'
+import { SendableItem } from './sendable'
+
+@Concurrent
+function createTask() {
+  let data = new SendableItem();
+}
+
+function executeTask() {
+  let task = new taskpool.Task(createTask);
+  taskpool.execute(task).then((res) => {
+    console.info('execute task success');
+  }).catch((e: BusinessError) => {
+    console.error('execute task error: ' + e.message);
+  })
+}
+
+executeTask();
+```
+
+```ts
+// sendable.ets
+@Observed
+export class NormalItem {
+  age: number = 0;
+}
+
+@Sendable
+export class SendableItem {
+  name: string = '';
+}
+```
+
+**根因分析**
+
+Observed装饰器仅支持在UI线程使用，不能在子线程、Worker、TaskPool中直接或者间接使用，否则会导致应用功能失效甚至crash。由于sendable.ets文件中定义了Observed装饰器修饰的类，即使该类没有被显式调用也可能被解析执行，当解析到Observed这类UI装饰器时则抛出异常：Observed is not defined，导致当前文件中的其他模块的解析被中断。在TaskPool子线程加载Sendable类时抛出异常：SendableItem is not initialized。
+
+**解决方案**
+
+将Observed装饰器修饰的类NormalItem剥离到单独的ets文件后，TaskPool子线程再去加载Sendable类SendableItem，应用运行符合预期。
+
+```ts
+// Index.ets: 在Index页面新增以下代码
+import { taskpool } from '@kit.ArkTS'
+import { BusinessError } from '@kit.BasicServicesKit'
+import { SendableItem } from './sendable'
+
+@Concurrent
+function createTask() {
+  let data = new SendableItem();
+}
+
+function executeTask() {
+  let task = new taskpool.Task(createTask);
+  taskpool.execute(task).then((res) => {
+    console.info('execute task success');
+  }).catch((e: BusinessError) => {
+    console.error('execute task error: ' + e.message);
+  })
+}
+
+executeTask();
+```
+
+```ts
+// sendable.ets
+@Sendable
+export class SendableItem {
+  name: string = '';
+}
+```
+
+```ts
+// ui.ets
+@Observed
+export class NormalItem {
+  age: number = 0;
+}
+```
