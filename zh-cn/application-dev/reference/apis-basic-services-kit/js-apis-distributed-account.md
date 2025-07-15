@@ -244,7 +244,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式账户信息。 |
+  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式账号信息。 |
 
 **返回值：**
 
@@ -334,7 +334,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式账户信息。 |
+  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式账号信息。 |
 
 **返回值：**
 

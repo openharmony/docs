@@ -2,7 +2,7 @@
 
 ## 策略目录结构
 
-OpenHarmony SELinux策略文件存放在`//base/security/selinux_adapter/sepolicy/ohos_policy`路径下，在该目录下按以下规范存放：
+OpenHarmony SELinux策略文件存放在`//base/security/selinux_adapter/sepolicy/ohos_policy`路径下，在该目录下策略按以下规范存放：
 ```text
 ├── 子系统
 │   └── 部件
