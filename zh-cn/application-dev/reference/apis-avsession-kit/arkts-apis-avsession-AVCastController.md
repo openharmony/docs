@@ -1358,7 +1358,7 @@ aVCastController.off('validCommandChange');
 ```
 
 ## on('videoSizeChange')<sup>12+</sup>
-on(type: 'videoSizeChange', callback: (width: number, height: number) => void): void;
+on(type: 'videoSizeChange', callback: (width: number, height: number) => void): void
 
 媒体控制器监听视频尺寸变化变化的事件。
 
@@ -1390,7 +1390,7 @@ aVCastController.on('videoSizeChange', (width: number, height: number) => {
 
 ## off('videoSizeChange')<sup>12+</sup>
 
-off(type: 'videoSizeChange'): void;
+off(type: 'videoSizeChange'): void
 
 媒体控制器取消监听视频尺寸变化的事件。
 
