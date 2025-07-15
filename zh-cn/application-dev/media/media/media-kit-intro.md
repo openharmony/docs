@@ -317,10 +317,10 @@ AVTranscoder主要用于将已压缩编码的视频文件按照指定参数转�
 
 | 封装格式  | 视频编码类型   | 音频编码类型   |
 | -------- | :----------------------------| :----------------------------|
-| mp4      | AVC(H.264)、<!--RP2-->HEVC(H.265)、<!--RP2End-->MPEG4|AAC、MPEG(MP3)|
-| mkv      | AVC(H.264)<!--RP3-->、HEVC(H.265)<!--RP3End--> |AAC、MPEG(MP3)、OPUS|
-| mpeg-ts  | AVC(H.264)<!--RP4-->、HEVC(H.265)<!--RP4End-->、MPEG2、MPEG4 |AAC、MPEG(MP3)<!--RP5-->、Audio Vivid<!--RP5End-->|
-| flv      | AVC(H.264)<!--RP6-->、HEVC(H.265)<!--RP6End--> |AAC|
+| mp4      | AVC(H.264)<!--RP2--><!--RP2End-->、MPEG4| AAC、MPEG(MP3) |
+| mkv      | AVC(H.264)<!--RP3--><!--RP3End--> | AAC、MPEG(MP3)、OPUS |
+| mpeg-ts  | AVC(H.264)<!--RP4--><!--RP4End-->、MPEG2、MPEG4 | AAC、MPEG(MP3)<!--RP5--><!--RP5End-->|
+| flv      | AVC(H.264)<!--RP6--><!--RP6End--> |  AAC  |
 | mpeg-ps  | AVC(H.264)、MPEG2 |    MPEG(MP2、MP3)|
 | avi      | H.263、AVC(H.264)、MPEG2、MPEG4  | AAC、MPEG(MP2、MP3)、PCM|
 
@@ -330,7 +330,7 @@ AVTranscoder主要用于将已压缩编码的视频文件按照指定参数转�
 
 | 封装格式  | 视频编码类型   | 音频编码类型   |
 | -------- | :------------------| :---------------- |
-| mp4      | AVC(H.264)<!--RP7-->、HEVC(H.265)<!--RP7End--> | AAC |
+| mp4      | AVC(H.264)<!--RP7--><!--RP7End--> | AAC |
 
 - 支持的轨道数：
   - 不支持字幕轨。若原视频存在字幕轨，转码后字幕轨将被丢弃。
