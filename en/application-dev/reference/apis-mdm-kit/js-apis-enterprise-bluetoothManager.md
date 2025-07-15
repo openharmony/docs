@@ -647,5 +647,6 @@ Represents the Bluetooth protocol type.
 
 | Name               | Value | Description   |
 | ----------------- | ---- | ----- |
-| GATT | 0 | [Generic Attribute Profile (GATT)](../../../connectivity/terminology.md#gatt)|
+| GATT | 0 | [Generic Attribute Profile (GATT)](../../connectivity/terminology.md#gatt)|
 | SPP | 1 | [Serial Port Profile (SPP)](../../connectivity/terminology.md#spp)|
+<!--no_check-->
