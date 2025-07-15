@@ -3313,7 +3313,7 @@ setOnNewWantSkipScenarios(scenarios: number): Promise\<void>
 
 > **说明：**
 >
-> - 建议在[onCreate](./js-apis-app-ability-uiAbility.md#oncreate)生命周期回调中使用该接口，请参考示例。
+> 该接口通常用于[onCreate](./js-apis-app-ability-uiAbility.md#oncreate)生命周期回调中。入参取值建议包含所有的[Scenarios](js-apis-app-ability-contextConstant.md#scenarios20)枚举值。详见下方示例代码。
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
