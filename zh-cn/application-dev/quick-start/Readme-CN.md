@@ -45,6 +45,8 @@
     - [ArkTS语法适配背景](arkts-migration-background.md)
     - [从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)
     - [适配指导案例](arkts-more-cases.md)
+  - 从ArkTS1.1到ArkTS1.2的适配指导<!--arkts1.1-to-arkts1.2-migration-->
+    - [ArkTS1.2 builtin变更文档-Proxy](arkts-builtin-api-Proxy.md)
   - [ArkTS高性能编程实践](arkts-high-performance-programming.md)
   - 面向其他语言的ArkTS迁移指导
     - [从Java到ArkTS的迁移指导](getting-started-with-arkts-for-java-programmers.md)
