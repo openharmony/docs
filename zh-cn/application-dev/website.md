@@ -3998,14 +3998,13 @@
           <!--DelEnd-->
         - C API<!--telephony-c-->
           - 模块<!--telephony-module-->
-            - [Telephony Data](reference/apis-telephony-kit/ndk-apis-telephony-data.md)
-            - [Telephony Radio](reference/apis-telephony-kit/ndk-apis-telephony-radio.md)
+            - [Telephony](reference/apis-telephony-kit/capi-telephony.md)
           - 头文件<!--telephony-headerfile-->
-            - [telephony_data.h](reference/apis-telephony-kit/telephony__data_8h.md)
-            - [telephony_radio.h](reference/apis-telephony-kit/telephony__radio_8h.md)
-            - [telephony_radio_type.h](reference/apis-telephony-kit/telephony__radio__type_8h.md)
+            - [telephony_data.h](reference/apis-telephony-kit/capi-telephony-data-h.md)
+            - [telephony_radio.h](reference/apis-telephony-kit/capi-telephony-radio-h.md)
+            - [telephony_radio_type.h](reference/apis-telephony-kit/capi-telephony-radio-type-h.md)
           - 结构体<!--telephony-struct-->
-            - [Telephony_NetworkState](reference/apis-telephony-kit/_telephony__network_state.md)
+            - [Telephony_NetworkState](reference/apis-telephony-kit/capi-telephony-telephony-networkstate.md)
         - 错误码<!--telephony-arkts-errcode-->
           - [电话子系统错误码](reference/apis-telephony-kit/errorcode-telephony.md)
     - 基础功能<!--system-basicfun-api-->
