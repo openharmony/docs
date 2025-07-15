@@ -19623,9 +19623,7 @@ EmbeddedComponent组件在运行过程中发生异常时触发本回调。
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | EmbeddedComponent组件选项的对象的指针。| 
-| code | 接口调用失败返回的错误码信息。业务错误码详细介绍请参见[UIExtension错误码](./errorcode-uiextension.md)。| 
-| name | 接口调用失败返回的名称信息。| 
-| message | 接口调用失败返回的详细信息。| 
+| callback | 开发者自定义回调函数。<br /> code：接口调用失败返回的错误码信息。业务错误码详细介绍请参见[UIExtension错误码](./errorcode-uiextension.md)。 <br /> name：接口调用失败返回的名称信息。<br /> message：接口调用失败返回的详细信息。|
 
 ### OH_ArkUI_EmbeddedComponentOption_SetOnTerminated()
 
@@ -19646,5 +19644,4 @@ EmbeddedComponent组件正常退出时触发本回调。
 | 名称 | 描述 | 
 | -------- | -------- |
 | option | EmbeddedComponent组件选项的对象的指针。| 
-| code | 被拉起EmbeddedUIExtensionAbility退出时返回的结果码。若Ability通过调用terminateSelfWithResult退出，结果码为Ability设置的值。若Ability通过调用terminateSelf退出，结果码为默认值"0"。| 
-| want | 被拉起EmbeddedUIExtensionAbility退出时返回的数据。| 
+| callback | 开发者自定义回调函数。<br /> code：被拉起EmbeddedUIExtensionAbility退出时返回的结果码。若Ability通过调用terminateSelfWithResult退出，结果码为Ability设置的值。若Ability通过调用terminateSelf退出，结果码为默认值"0"。<br /> want：被拉起EmbeddedUIExtensionAbility退出时返回的数据。| 
