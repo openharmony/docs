@@ -12,16 +12,16 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 | -------- | -------- |
 | bool OH_LOG_IsLoggable(unsigned int domain, const char \*tag, LogLevel level) | 检查指定domain、tag和日志级别的日志是否可以打印。<br/>如果指定日志可以打印则返回true；否则返回false。 | 
 | int OH_LOG_Print(LogType type, LogLevel level, unsigned int domain, const char \*tag, const char \*fmt, ...) | 输出指定domain、tag和日志级别的日志，并按照printf格式类型和隐私指示确定需要输出的变参。<br/>返回值大于等于0表示成功，小于0表示失败。 |
-| int OH_LOG_PrintMsg(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *message) | 输出指定domain、tag和日志级别的日志字符串。<br/>返回值大于等于0表示成功，小于0表示失败。 |
-| int OH_LOG_PrintMsgByLen(LogType type, LogLevel level, unsigned int domain, const char *tag, size_t tagLen, const char *message, size_t messageLen) | 输出指定domain、tag和日志级别的日志字符串，需要指定tag及字符串长度。<br/>返回值大于等于0表示成功，小于0表示失败。 |
-| int OH_LOG_VPrint(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, va_list ap) | 等效于OH_LOG_Print，但是参数列表为va_list。|
+| int OH_LOG_PrintMsg(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *message) | 输出指定domain、tag和日志级别的日志字符串。<br/>返回值大于等于0表示成功，小于0表示失败。<br/>**说明**：从API version 16开始，支持该接口。 |
+| int OH_LOG_PrintMsgByLen(LogType type, LogLevel level, unsigned int domain, const char *tag, size_t tagLen, const char *message, size_t messageLen) | 输出指定domain、tag和日志级别的日志字符串，需要指定tag及字符串长度。<br/>返回值大于等于0表示成功，小于0表示失败。<br/>**说明**：从API version 16开始，支持该接口。 |
+| int OH_LOG_VPrint(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, va_list ap) | 等效于OH_LOG_Print，但是参数列表为va_list。<br/>**说明**：从API version 16开始，支持该接口。|
 | \#define OH_LOG_DEBUG(type, ...) ((void)OH_LOG_Print((type), LOG_DEBUG, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | DEBUG级别写日志，宏封装接口。 |
 | \#define OH_LOG_INFO(type, ...) ((void)OH_LOG_Print((type), LOG_INFO, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | INFO级别写日志，宏封装接口。 |
 | \#define OH_LOG_WARN(type, ...) ((void)OH_LOG_Print((type), LOG_WARN, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | WARN级别写日志，宏封装接口。 |
 | \#define OH_LOG_ERROR(type, ...) ((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | ERROR级别写日志，宏封装接口。 |
 | \#define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | FATAL级别写日志，宏封装接口。 |
 | void OH_LOG_SetCallback(LogCallback callback) | 注册函数，注册后可通过LogCallback回调获取本进程所有的hilog日志。|
-| void OH_LOG_SetMinLogLevel(LogLevel level)|设置应用日志打印的最低日志级别，用于拦截低级别日志打印。<br/>需要注意：如果设置的日志级别低于[全局日志级别](hilog.md#查看和设置日志级别)，设置不生效。|
+| void OH_LOG_SetMinLogLevel(LogLevel level)|设置应用日志打印的最低日志级别，用于拦截低级别日志打印。<br/>需要注意：如果设置的日志级别低于[全局日志级别](hilog.md#查看和设置日志级别)，设置不生效。<br/>**说明**：从API version 16开始，支持该接口。|
 
 ### 参数解析
 
