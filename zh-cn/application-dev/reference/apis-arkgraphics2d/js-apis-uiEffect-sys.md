@@ -679,6 +679,202 @@ hdrBrightnessRatio(ratio: number): Filter
 filter.hdrBrightnessRatio(2.0)
 ```
 
+### maskTransition<sup>20+</sup>
+maskTransition(alphaMask: Mask, factor?: number, inverse?: boolean): Filter
+
+为组件内容提供基于[Mask](#mask20)的转场效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| alphaMask  | [Mask](#mask20)         | 是   | 可动画的mask对象。|
+| factor | number | 否 | `mask`的系数，默认值为1.0，建议取值范围为[0.0, 1.0]。超出此范围，效果无法保证。|
+| inverse  | boolean         | 否   | 转场模式，默认为false。true表示反转alphaMask的透明度，false表示不反转alphaMask的透明度。|
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回当前效果的filter对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { uiEffect, common2D  } from "@kit.ArkGraphics2D";
+
+@Entry
+@Component
+struct Index {
+  @State filter: uiEffect.Filter | null = null
+  @State dst:  common2D.Rect = {
+    left: 0,
+    top: 0,
+    right: 1,
+    bottom: 0.5
+  };
+  @State rippleMaskCenter: common2D.Point = {x:0.5, y:0.5}
+  @State rippleMaskRadius: number = 0.0
+  @State rippleMaskWidth: number = 0.0
+  @State color: Color = Color.Transparent
+
+  build() {
+    Column() {
+      RelativeContainer() {
+        Image($r("app.media.mask")).width("100%").height("100%")
+        Stack()
+          .width("100%")
+          .height("100%")
+          .backgroundColor(this.color)
+          .backgroundFilter(uiEffect.createFilter()
+            .maskTransition(uiEffect.Mask.createRippleMask(
+              this.rippleMaskCenter, this.rippleMaskRadius, this.rippleMaskWidth, 0.0),
+              0.5, false))
+          .onClick(() => {
+            this.color = Color.Blue
+            animateTo({duration: 1000}, () => {
+              this.rippleMaskWidth = 1.0;
+            })
+            this.dst.bottom = 0.9 - this.dst.bottom
+            let mask = uiEffect.Mask.createRippleMask(this.rippleMaskCenter, this.rippleMaskRadius, this.rippleMaskWidth, 0.0)
+            this.filter = uiEffect.createFilter().maskTransition(mask, 0.5, false);
+          })
+      }
+    }.alignItems(HorizontalAlign.Center).borderWidth(2)
+  }
+}
+```
+
+### directionLight<sup>20+</sup>
+directionLight(direction: common2D.Point3d, color: Color, intensity: number, bumpMask?: Mask): Filter
+
+为组件内容提供基于[Mask](#mask20)和平行光的光照效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| direction  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12)         | 是   | 方向光的入射方向。|
+| color  | [Color](#color20)         | 是   | 光照颜色。|
+| intensity  | number         | 是   | 光照强度，非负数。|
+| bumpMask  | [Mask](#mask20)         | 否   | 代表高度信息的可动画mask对象，默认值为全局高度为0的全局mask，表现为全局光照效果。|
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回当前效果的filter对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { uiEffect, common2D  } from "@kit.ArkGraphics2D";
+
+@Entry
+@Component
+struct Index {
+  @State rippleMaskCenter: common2D.Point = {x:0.5, y:0.5}
+  @State rippleMaskRadius: number = 0.0
+  @State rippleMaskWidth: number = 0.0
+  @State color: Color = Color.Transparent
+
+  build() {
+    Column() {
+      RelativeContainer() {
+        Image($r("app.media.back")).width("100%").height("100%")
+        Stack()
+          .width("100%")
+          .height("100%")
+          .backgroundColor(this.color)
+          .backgroundFilter(uiEffect.createFilter()
+            .directionLight(
+              {x:0, y:0, z:-1}, {red:2.0, green:2.0, blue:2.0, alpha:1.0}, 0.5,
+              uiEffect.Mask.createRippleMask(this.rippleMaskCenter, this.rippleMaskRadius, this.rippleMaskWidth, 0.0)
+              ))
+          .onClick(() => {
+            animateTo({duration: 1000}, () => {
+              this.rippleMaskWidth = 1.0;
+            })
+          })
+      }
+    }.alignItems(HorizontalAlign.Center).borderWidth(2)
+  }
+}
+```
+
+### variableRadiusBlur<sup>20+</sup>
+variableRadiusBlur(radius: number, radiusMap: Mask): Filter
+
+为组件内容提供基于[Mask](#mask20)的渐变模糊效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| radius  | number         | 是   | 最大模糊半径|
+| radiusMap  |  [Mask](#mask20)    | 是   | 代表模糊程度的mask对象。|
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回当前效果的filter对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { uiEffect } from "@kit.ArkGraphics2D";
+
+@Entry
+@Component
+struct VariableRadiusBlurExample {
+  @State maskExample: uiEffect.Mask = uiEffect.Mask.createRippleMask({x: 0.5, y: 0.5}, 0.2, 0.1)
+
+  build() {
+    Stack() {
+      Image($rawfile('test.png'))
+      Row()
+        .width("100%")
+        .height("100%")
+        .backgroundFilter(uiEffect.createFilter().variableRadiusBlur(64, this.maskExample))
+    }
+  }
+}
+```
+
 ## TileMode
 像素填充模式枚举。
 
