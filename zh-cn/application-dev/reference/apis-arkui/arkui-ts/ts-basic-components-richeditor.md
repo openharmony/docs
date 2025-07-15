@@ -719,6 +719,7 @@ onCopy(callback: Callback\<CopyEvent\>)
 | insertValue  | string | 否| 否    | 插入的文本内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | previewText<sup>12+</sup> | string | 否| 是    | 插入的预上屏文本内容。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
+
 ## RichEditorDeleteValue
 
 删除操作和被删除内容的信息。
@@ -820,6 +821,7 @@ Span类型信息。
 | ----- | ---- | ------------ |
 | CLEAR_STYLE  | 0 | 撤销还原内容不保留原样式。   |
 | KEEP_STYLE | 1 | 撤销还原内容保留原样式。   |
+
 
 ## RichEditorTextStyleResult
 
@@ -2007,6 +2009,7 @@ type OnHoverCallback = (status: boolean, event: HoverEvent) => void
 | spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | 否 | 否   | Span位置。|
 | value            | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) \| [ResourceStr](ts-types.md#resourcestr)  | 否 | 否   | 图片内容。|
 | imageStyle       | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 否 | 是 | 图片样式。|
+
 ## RichEditorUrlStyle<sup>19+</sup>
 
 Url信息。
