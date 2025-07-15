@@ -159,7 +159,7 @@ try {
 
 getAVScreenCaptureConfigurableParameters(sessionId: number): Promise\<string>
 
-从服务器获取用户可以更改的系统隐私保护和应用隐私保护配置。使用Promise异步回调。
+从服务器获取用户可更改的系统隐私保护和应用隐私保护配置，使用Promise进行异步回调。
 
 >**注意：**
 >
