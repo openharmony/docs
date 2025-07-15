@@ -1,6 +1,6 @@
 # @ohos.multimedia.avCastPickerParam (投播组件参数)
 
-avCastPickerParam提供了[@ohos.multimedia.avCastPicker](ohos-multimedia-avcastpicker.md)窗口状态枚举值。
+avCastPickerParam提供了[@ohos.multimedia.avCastPicker](ohos-multimedia-avcastpicker.md)组件状态枚举值。
 
 > **说明：**
 >
@@ -8,7 +8,7 @@ avCastPickerParam提供了[@ohos.multimedia.avCastPicker](ohos-multimedia-avcast
 
 ## AVCastPickerState<sup>11+</sup>
 
-投播状态参数选项。
+投播组件设备列表状态参数选项。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -21,7 +21,7 @@ avCastPickerParam提供了[@ohos.multimedia.avCastPicker](ohos-multimedia-avcast
 
 ## AVCastPickerStyle<sup>12+</sup>
 
-投播样式参数选项。
+投播组件样式参数选项。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -34,7 +34,7 @@ avCastPickerParam提供了[@ohos.multimedia.avCastPicker](ohos-multimedia-avcast
 
 ## AVCastPickerColorMode<sup>12+</sup>
 
-投播显示模式参数选项。
+投播组件显示模式参数选项。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
