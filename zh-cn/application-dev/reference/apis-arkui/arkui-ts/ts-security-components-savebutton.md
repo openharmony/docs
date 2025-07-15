@@ -193,7 +193,7 @@ iconSize(size: Dimension | SizeOptions)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| size | [Dimension](ts-types.md#dimension10) \| [SizeOptions](ts-types.md#sizeoptions) |是 |图标尺寸，不支持设置百分比字符串。<br/>- 保存控件提供的系统图标，宽高默认值均为16vp。宽高设置值不一致时，取其中最小值作为宽高值；宽高仅设置其中一个值时，取该值作为宽高值。<br/>- 对于自定义图标，宽高默认值均为16vp。宽高仅设置其中一个值时，取设置值作为宽高值，图标显示为正方形，当自定义图标非正方形时，图片被截断；宽高均设置时按照指定宽高生效，当设置的宽高比例与自定义图标的宽高比例不一致时，图片被截断。|
+| size | [Dimension](ts-types.md#dimension10) \| [SizeOptions](ts-types.md#sizeoptions) |是 |图标尺寸，不支持设置百分比字符串。<br/>- 保存控件提供的系统图标，宽高默认值均为16vp。使用sizeOptions类型入参且宽高设置值不一致时，取其中最小值作为宽高值；使用Dimension类型入参，或使用sizeOptions类型入参且宽高仅设置其中一个值时，取该值作为宽高值。<br/>- 对于自定义图标，未设置iconSize时宽高默认值均为16vp。使用Dimension类型入参时，宽高均显示为设置值。使用sizeOptions类型入参时，建议同时设置宽和高，此时按照指定宽高生效；若宽高仅设置其中一个值，则宽高均显示为该设置值。当实际显示的宽高比例与自定义图标的宽高比例不一致时，图片按[ImageFit.Cover](ts-appendix-enums.md#imagefit)的方式填充显示区域。|
 
 **返回值：**
 
