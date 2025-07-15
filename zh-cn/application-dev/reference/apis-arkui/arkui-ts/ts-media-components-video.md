@@ -262,7 +262,9 @@ onFinish(event:&nbsp;VoidCallback)
 
 ### onError
 
-onError(event: VoidCallback | ErrorCallback)
+ArkTS1.1: onError(event: VoidCallback | ErrorCallback)
+
+ArkTS1.2: onError(event: () => void)
 
 播放失败时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
@@ -274,7 +276,7 @@ onError(event: VoidCallback | ErrorCallback)
 
 | 参数名 | 类型                                           | 必填 | 说明                                 |
 | ------ | --------------------------------------------- | ---- | ----------------------------------- |
-| event  | [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup> | 是   | 视频播放失败时的回调函数，[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)入参用于接收异常信息。<br>Video组件报错信息请参考以下错误信息的详细介绍，其余错误码请请参考[媒体错误码](../../apis-media-kit/errorcode-media.md)。|
+| event  | ArkTS1.1: [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup><br>ArkTS1.2: () => void | 是   | 视频播放失败时的回调函数。[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)入参用于接收异常信息。<br>Video组件报错信息请参考以下错误信息的详细介绍，其余错误码请请参考[媒体错误码](../../apis-media-kit/errorcode-media.md)。|
 
 以下是错误信息的详细介绍。
 
@@ -447,7 +449,9 @@ VideoController的构造函数。
 
 ### start
 
-start()
+ArkTS1.1: start()
+
+ArkTS1.2: start(): void
 
 开始播放。
 
@@ -457,7 +461,9 @@ start()
 
 ### pause
 
-pause()
+ArkTS1.1: pause()
+
+ArkTS1.2: pause(): void
 
 暂停播放，显示当前帧，再次播放时从当前位置继续播放。
 
@@ -467,7 +473,9 @@ pause()
 
 ### stop
 
-stop()
+ArkTS1.1: stop()
+
+ArkTS1.2: stop(): void
 
 停止播放，显示当前帧，再次播放时从头开始播放。
 
@@ -477,7 +485,9 @@ stop()
 
 ### reset<sup>12+</sup>
 
-reset(): void
+ArkTS1.1: reset()
+
+ArkTS1.2: reset(): void
 
 Video组件重置AVPlayer。显示当前帧，再次播放时从头开始播放。
 
@@ -487,7 +497,9 @@ Video组件重置AVPlayer。显示当前帧，再次播放时从头开始播放�
 
 ### setCurrentTime
 
-setCurrentTime(value: number)
+ArkTS1.1: setCurrentTime(value: number)
+
+ArkTS1.2: setCurrentTime(value: number): void
 
 指定视频播放的进度位置。
 
@@ -507,7 +519,9 @@ setCurrentTime(value: number)
 
 ### requestFullscreen
 
-requestFullscreen(value: boolean)
+ArkTS1.1: requestFullscreen(value: boolean)
+
+ArkTS1.2: requestFullscreen(value: boolean): void
 
 请求全屏播放。
 
@@ -527,7 +541,9 @@ requestFullscreen(value: boolean)
 
 ### exitFullscreen
 
-exitFullscreen()
+ArkTS1.1: exitFullscreen()
+
+ArkTS1.2: exitFullscreen(): void
 
 退出全屏播放。
 
@@ -537,7 +553,9 @@ exitFullscreen()
 
 ### setCurrentTime<sup>8+</sup>
 
-setCurrentTime(value: number, seekMode: SeekMode)
+ArkTS1.1: setCurrentTime(value: number, seekMode: SeekMode)
+
+ArkTS1.2: setCurrentTime(value: number, seekMode: SeekMode): void
 
 指定视频播放的进度位置，并指定跳转模式。
 
@@ -571,6 +589,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 基础用法包括：控制栏、预览图、自动播放、播放速度、响应快捷键、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）、首帧送显以及一些状态回调方法。
 
+**ArkTS1.1示例：**
 ```ts
 // xxx.ets
 @Entry
@@ -697,11 +716,129 @@ interface FullscreenObject {
   fullscreen: boolean;
 }
 ```
+**ArkTS1.2示例：**
+```ts
+// xxx.ets
+import { Button, Callback, ClickEvent, Column, Component, Entry, PreparedInfo, PlaybackInfo, PlaybackSpeed, PosterOptions, FullscreenInfo, Row, Resource, SeekMode, State, Video, VideoController, VideoOptions, VoidCallback, $r, $rawfile } from '@kit.ArkUI';
 
+// 此示例中的资源名称'video1.mp4'、'app.media.poster1'、'video2.mp4'和'app.media.poster2'仅作示例，请开发者自行替换为实际工程中存在的资源名称。
+@Entry
+@Component
+struct VideoCreateComponent {
+  @State videoSrc: Resource = $rawfile('video1.mp4');
+  @State previewUri: Resource = $r('app.media.poster1');
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
+  @State isAutoPlay: boolean = false;
+  @State showControls: boolean = true;
+  @State isShortcutKeyEnabled: boolean = false;
+  @State showFirstFrame: boolean = false;
+  controller: VideoController = new VideoController();
+
+  build() {
+    Column() {
+      Video({
+        src: this.videoSrc,
+        previewUri: this.previewUri,
+        currentProgressRate: this.curRate,
+        controller: this.controller,
+        posterOptions: { showFirstFrame: this.showFirstFrame } as PosterOptions
+      } as VideoOptions)
+        .width('100%')
+        .height(600)
+        .autoPlay(this.isAutoPlay)
+        .controls(this.showControls)
+        .enableShortcutKey(this.isShortcutKeyEnabled)
+        .onStart(() => {
+          console.info('onStart');
+        } as VoidCallback)
+        .onPause(() => {
+          console.info('onPause');
+        } as VoidCallback)
+        .onFinish(() => {
+          console.info('onFinish');
+        } as VoidCallback)
+        .onError(() => {
+          console.info('onError');
+        } as VoidCallback)
+        .onStop(() => {
+          console.info('onStop');
+        } as VoidCallback)
+        .onPrepared((e?: PreparedInfo) => {
+          if (e != undefined) {
+            console.info('onPrepared is ' + e.duration);
+          }
+        } as Callback<PreparedInfo>)
+        .onSeeking((e?: PlaybackInfo) => {
+          if (e != undefined) {
+            console.info('onSeeking is ' + e.time);
+          }
+        } as Callback<PlaybackInfo>)
+        .onSeeked((e?: PlaybackInfo) => {
+          if (e != undefined) {
+            console.info('onSeeked is ' + e.time);
+          }
+        } as Callback<PlaybackInfo>)
+        .onUpdate((e?: PlaybackInfo) => {
+          if (e != undefined) {
+            console.info('onUpdate is ' + e.time);
+          }
+        } as Callback<PlaybackInfo>)
+        .onFullscreenChange((e?: FullscreenInfo) => {
+          if (e != undefined) {
+            console.info('onFullscreenChange is ' + e.fullscreen);
+          }
+        } as Callback<FullscreenInfo>)
+
+      Row() {
+        Button('src').onClick((e: ClickEvent) => {
+          this.videoSrc = $rawfile('video2.mp4'); // 切换视频源。
+        }).margin(5)
+        Button('previewUri').onClick((e: ClickEvent) => {
+          this.previewUri = $r('app.media.poster2'); // 切换视频预览海报。
+        }).margin(5)
+        Button('controls').onClick((e: ClickEvent) => {
+          this.showControls = !this.showControls; // 切换是否显示视频控制栏。
+        }).margin(5)
+      }
+
+      Row() {
+        Button('start').onClick((e: ClickEvent) => {
+          this.controller.start(); // 开始播放。
+        }).margin(2)
+        Button('pause').onClick((e: ClickEvent) => {
+          this.controller.pause(); // 暂停播放。
+        }).margin(2)
+        Button('stop').onClick((e: ClickEvent) => {
+          this.controller.stop(); // 结束播放。
+        }).margin(2)
+        Button('reset').onClick((e: ClickEvent) => {
+          this.controller.reset(); // 重置AVPlayer。
+        }).margin(2)
+        Button('setTime').onClick((e: ClickEvent) => {
+          this.controller.setCurrentTime(10, SeekMode.Accurate); // 精准跳转到视频的10s位置。
+        }).margin(2)
+      }
+
+      Row() {
+        Button('rate 0.75').onClick((e: ClickEvent) => {
+          this.curRate = PlaybackSpeed.Speed_Forward_0_75_X; // 0.75倍速播放。
+        }).margin(5)
+        Button('rate 1').onClick((e: ClickEvent) => {
+          this.curRate = PlaybackSpeed.Speed_Forward_1_00_X; // 原倍速播放。
+        }).margin(5)
+        Button('rate 2').onClick((e: ClickEvent) => {
+          this.curRate = PlaybackSpeed.Speed_Forward_2_00_X; // 2倍速播放。
+        }).margin(5)
+      }
+    }
+  }
+}
+```
 ### 示例2（图像分析功能）
 
 使用enableAnalyzer属性开启图像AI分析。
 
+**ArkTS1.1示例：**
 ```ts
 // xxx.ets
 @Entry
@@ -760,6 +897,7 @@ struct ImageAnalyzerExample {
 
 以下示例展示了如何使Video组件能够播放拖入的视频。
 
+**ArkTS1.1示例：**
 ```ts
 // xxx.ets
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
