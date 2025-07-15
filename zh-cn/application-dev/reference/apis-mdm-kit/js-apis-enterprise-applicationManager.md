@@ -328,7 +328,7 @@ try {
 
 ## applicationManager.addAutoStartApps<sup>20+</sup>
 
-addAutoStartApps(admin: Want, autoStartApps: Array<Want>, accountId: number, disallowModify: boolean): void
+addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, disallowModify: boolean): void
 
 添加开机自启动应用名单,设置用户禁止取消应用自启。该能力当前仅支持2in1设备。
 
@@ -384,7 +384,7 @@ try {
 
 ## applicationManager.removeAutoStartApps<sup>20+</sup>
 
-removeAutoStartApps(admin: Want, autoStartApps: Array<Want>, accountId: number): void
+removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number): void
 
 删除开机自启动应用名单。该能力当前仅支持2in1设备。
 
@@ -439,7 +439,7 @@ try {
 
 ## applicationManager.getAutoStartApps<sup>20+</sup>
 
-getAutoStartApps(admin: Want, accountId: number): Array<Want>
+getAutoStartApps(admin: Want, accountId: number): Array\<Want>
 
 查询开机自启动应用名单。该能力当前仅支持2in1设备。
 
@@ -602,7 +602,7 @@ try {
 
 ## applicationManager.addKeepAliveApps<sup>20+</sup>
 
-addKeepAliveApps(admin: Want, bundleNames: Array<string>, accountId: number, disallowModify: boolean): void
+addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, disallowModify: boolean): void
 
 添加保活应用，设置用户禁止取消应用保活，当前仅支持2in1设备。如果将应用添加至应用运行黑名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
 
