@@ -97,7 +97,7 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme, CustomDarkColor
 | 名称                           | 类型                                                 | 只读  | 可选  | 说明         |
 |-------------------------------|-----------------------------------------------------|-----|-----|------------|
 | colors | [CustomColors](#customcolors) | 否   | 是   | 自定义主题颜色资源。 |
-| darkColors | [CustomDarkColors](#customdarkcolors) | 否   | 是   | 自定义深色主题颜色资源。</br>**起始版本：** 20 |
+| darkColors<sup>20+</sup> | [CustomDarkColors](#customdarkcolors20) | 否   | 是   | 自定义深色主题颜色资源。 |
 
 ## CustomColors
 
@@ -113,7 +113,7 @@ type CustomColors = Partial\<Colors>
 |-----|--------------|
 | Partial<[Colors](#colors)>   | 自定义主题颜色资源类型。 |
 
-## CustomDarkColors
+## CustomDarkColors<sup>20+</sup>
 
 type CustomDarkColors = Partial\<Colors>
 
