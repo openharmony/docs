@@ -4,11 +4,11 @@ The **systemManager** module provides system management capabilities.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is enabled.
+> - The APIs of this module can be called only by a device administrator application that is enabled. For details, see [MDM Kit Development](../../mdm/mdm-kit-guide.md).
 
 ## Modules to Import
 
@@ -47,8 +47,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 **Example**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -98,9 +98,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 **Example**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -144,8 +144,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 **Example**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -248,8 +248,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 **Example**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -300,9 +300,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 **Example**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -368,9 +368,9 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 **Example**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -388,11 +388,11 @@ Represents information about the system version to update.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
-| Name               | Type    | Mandatory | Description           |
-| ----------------- | ------ | --- | ------------- |
-| versionName       | string | Yes  | System version to update.  |
-| firstReceivedTime | number | Yes  | Time when the system update package is received for the first time.|
-| packageType       | string | Yes  | Type of the system update package to update. |
+| Name               | Type    | Read-Only | Optional| Description           |
+| ----------------- | ------ | --- | --- |------------- |
+| versionName       | string | No  | No|System version to update.  |
+| firstReceivedTime | number | No  | No|Time when the system update package is received for the first time.|
+| packageType       | string | No  | No|Type of the system update package to update. |
 
 ## OtaUpdatePolicy
 
@@ -400,14 +400,14 @@ Represents an OTA update policy.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
-| Name        | Type    | Mandatory| Description                           |
-| ----------- | --------| ---- | ------------------------------- |
-| policyType        | [PolicyType](#policytype)   | Yes  | Type of the update policy.|
-| version | string   | Yes  | Version of the software to update.|
-| latestUpdateTime        | number   | No  | Latest update time (timestamp).|
-| delayUpdateTime | number   | No  | Period for which the update is postponed, in hours.|
-| installStartTime        | number   | No  | Start time (timestamp) of the installation window.|
-| installEndTime | number   | No  | End time (timestamp) of the installation window.|
+| Name        | Type    | Read-Only| Optional| Description                           |
+| ----------- | --------| ---- | -----| -------------------------- |
+| policyType        | [PolicyType](#policytype)   | No  | No| Type of the update policy.|
+| version | string   | No  | No|Version of the software to update.|
+| latestUpdateTime        | number   | No  | Yes| Latest update time (timestamp).|
+| delayUpdateTime | number   | No  | Yes| Period for which the update is postponed, in hours.|
+| installStartTime        | number   | No  | Yes| Start time (timestamp) of the installation window.|
+| installEndTime | number   | No  | Yes| End time (timestamp) of the installation window.|
 
 ## PolicyType
 
@@ -429,11 +429,12 @@ Represents information about the system update packages.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
-| Name               | Type    | Mandatory | Description           |
-| ----------------- | ------ | --- | ------------- |
-| version       | string | Yes  | Version of the system update package.  |
-| packages | Array&lt;[Package](#package)&gt; | Yes  | Details about the system update packages.|
-| description       | [PackageDescription](#packagedescription) | No  | Description of the system update packages. |
+| Name               | Type    | Read-Only | Optional| Description           |
+| ----------------- | ------ | --- | ---- |------------- |
+| version       | string | No  | No| Version of the system update package.  |
+| packages | Array&lt;[Package](#package)&gt; | No  | No| Details about the system update packages.|
+| description       | [PackageDescription](#packagedescription) | No  | Yes| Description of the system update packages. |
+| authInfo<sup>19+</sup> | string | No| Yes| Authentication information of the system update package.|
 
 ## Package
 
@@ -441,11 +442,11 @@ Represents the details about a system update package.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
-| Name               | Type    | Mandatory | Description           |
-| ----------------- | ------ | --- | ------------- |
-| type       | [PackageType](#packagetype) | Yes  | Type of the system update package.  |
-| path | string | Yes  | Path of the system update package. If **fd** is specified, pass in the update package name here.|
-| fd       | number | No  | File descriptor (FD) of the system update package. Currently, you cannot pass in **path** only. The **fd** parameter must also be passed in. |
+| Name               | Type    | Read-Only | Optional| Description           |
+| ----------------- | ------ | --- | --- | ------------- |
+| type       | [PackageType](#packagetype) | No  | No|  Type of the system update package.  |
+| path | string | No  | No| Path of the system update package. If **fd** is specified, pass in the update package name here.|
+| fd       | number | No  | Yes| File descriptor (FD) of the system update package. Currently, you cannot pass in **path** only. The **fd** parameter must also be passed in. |
 
 ## PackageDescription
 
@@ -453,9 +454,9 @@ Represents the description of a system update package.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
-| Name               | Type    | Mandatory | Description           |
-| ----------------- | ------ | --- | ------------- |
-| notify       | [NotifyDescription](#notifydescription) | No  | Update notification defined by an enterprise.  |
+| Name               | Type    | Read-Only | Optional| Description           |
+| ----------------- | ------ | --- | --- | ------------- |
+| notify       | [NotifyDescription](#notifydescription) | No  | Yes| Update notification defined by an enterprise.  |
 
 ## NotifyDescription
 
@@ -463,10 +464,10 @@ Represents the update notification defined by an enterprise.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
-| Name               | Type    | Mandatory | Description           |
-| ----------------- | ------ | --- | ------------- |
-| installTips       | string | No  | Update tips provided by the enterprise.  |
-| installTipsDetail       | string | No  | Details about the update tips customized by the enterprise.  |
+| Name               | Type    | Read-Only |  Optional| Description           |
+| ----------------- | ------ | --- | ---- | ------------- |
+| installTips       | string | No  | Yes| Update tips provided by the enterprise.  |
+| installTipsDetail       | string | No  | Yes| Details about the update tips customized by the enterprise.  |
 
 ## UpdateResult
 
@@ -474,11 +475,11 @@ Represents the update result information.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
-| Name               | Type  | Readable | Writable  | Description           |
+| Name               | Type  | Read-Only | Optional  | Description           |
 | ----------------- | ------ | ------ | ------ | ------------- |
-| version       | string |  Yes| No|Current version of the system.  |
-| status       | [UpdateStatus](#updatestatus) | Yes| No| System update status.  |
-| errorInfo       | [ErrorInfo](#errorinfo) | Yes| No| Error information.  |
+| version       | string |  No| No|Current version of the system.  |
+| status       | [UpdateStatus](#updatestatus) | No| No| System update status.  |
+| errorInfo       | [ErrorInfo](#errorinfo) | No| No| Error information.  |
 
 ## ErrorInfo
 
@@ -486,10 +487,10 @@ Represents the update error information.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
-| Name               | Type    | Readable | Writable| Description           |
+| Name               | Type    | Read-Only | Optional| Description           |
 | ----------------- | ------ | ------ | ------ | ------------- |
-| code       | number | Yes| No| Error code.  |
-| message       | string | Yes| No| Error message.  |
+| code       | number | No| No| Error code.  |
+| message       | string | No| No| Error message.  |
 
 ## PackageType
 

@@ -4,13 +4,13 @@ The **bluetoothManager** module provides Bluetooth management capabilities, incl
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is enabled.
+> - The APIs of this module can be called only by a device administrator application that is enabled. For details, see [MDM Kit Development](../../mdm/mdm-kit-guide.md).
 >
-> The global restriction policies are provided by **restrictions**. To disable Bluetooth globally, see [@ohos.enterprise.restrictions](js-apis-enterprise-restrictions.md).
+> - The global restriction policies are provided by **restrictions**. To disable Bluetooth globally, see [@ohos.enterprise.restrictions](js-apis-enterprise-restrictions.md).
 
 ## Modules to Import
 
@@ -57,7 +57,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { bluetoothManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -75,7 +75,7 @@ try {
 
 addAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
-Adds allowed Bluetooth devices. This API should be called before [setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy), so that Bluetooth can be successfully disabled. Otherwise, a conflict occurs.
+This API should be called before [setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy), so that Bluetooth can be successfully disabled. Otherwise, a conflict occurs.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -106,7 +106,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { bluetoothManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -154,7 +154,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { bluetoothManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -207,7 +207,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { bluetoothManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -230,8 +230,8 @@ Represents the device Bluetooth information.
 
 **Model restriction**: This API can be used only in the stage model.
 
-| Name           | Type                                                        | Mandatory| Description                    |
-| --------------- | ------------------------------------------------------------ | ---- | ------------------------ |
-| name            | string                                                       | Yes  | Bluetooth name of the device.    |
-| state           | [access.BluetoothState](../apis-connectivity-kit/js-apis-bluetooth-access.md#bluetoothstate) | Yes  | Bluetooth state of the device.    |
-| connectionState | [constant.ProfileConnectionState](../apis-connectivity-kit/js-apis-bluetooth-constant.md#profileconnectionstate) | Yes  | Bluetooth profile connection state of the device.|
+| Name           | Type                                                        | Read-Only| Optional|  Description                    |
+| --------------- | ------------------------------------------------------------ | ---- |----- |  ------------------------ |
+| name            | string                                                       | No  | No| Bluetooth name of the device.    |
+| state           | [access.BluetoothState](../apis-connectivity-kit/js-apis-bluetooth-access.md#bluetoothstate) | No  | No| Bluetooth state of the device.    |
+| connectionState | [constant.ProfileConnectionState](../apis-connectivity-kit/js-apis-bluetooth-constant.md#profileconnectionstate) | No  | No| Bluetooth profile connection state of the device.|
