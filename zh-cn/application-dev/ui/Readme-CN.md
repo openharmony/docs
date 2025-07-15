@@ -279,6 +279,9 @@
     - [ArkTS1.2与ArkTS1.1应用间状态存储互操作](interop-storages.md)
     - [ArkTS1.2使用ArkTS1.1全局自定义构建函数](interop-compatible-builder.md)
     - [ArkTS1.2使用ArkTS1.1 WrappedBuilder对象](interop-compatible-WrappedBuilder.md)
+- UI高性能开发<!--ui-performance-->
+  - [UI性能优化概览](ui-performance-overview.md)
+
 - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明<!--js-framework-overview-->
