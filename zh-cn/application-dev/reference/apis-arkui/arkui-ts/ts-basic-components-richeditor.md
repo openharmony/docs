@@ -879,7 +879,7 @@ Span类型信息。
 | 名称               | 类型                                                                   | 只读 | 可选  | 说明               |
 |------------------|-------------------------------------------------------------------|-----|-------|-----------|
 | spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | 否 | 否   | Span位置。|
-| valuePixelMap    | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)                    | 否 | 是   | 图片内容。|
+| valuePixelMap    | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)                    | 否 | 是   | 图片内容。|
 | valueResourceStr | [ResourceStr](ts-types.md#resourcestr)                            | 否 | 是   | 图片资源id。|
 | imageStyle       | [RichEditorImageSpanStyleResult](#richeditorimagespanstyleresult) | 否 | 否 | 图片样式。|
 | offsetInSpan     | [number, number] | 否 | 否 | Span里图片的起始和结束位置。|
@@ -1629,7 +1629,7 @@ SymbolSpan样式选项。
 
 | 名称       | 类型                                      | 只读 | 可选   | 说明             |
 | -------- | ---------------------------------------- | ---- | ---------|----- |
-| pixelMap | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)  | 否 | 否    | 图片内容。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| pixelMap | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)  | 否 | 否    | 图片内容。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | size     | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\]  | 否 | 否    | 图片大小，不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## RichEditorParagraphResult<sup>11+</sup>
@@ -1972,7 +1972,7 @@ type OnHoverCallback = (status: boolean, event: HoverEvent) => void
 | 名称               | 类型                                                                   | 只读 | 可选  | 说明               |
 |------------------|-------------------------------------------------------------------|-----|----------|--------|
 | spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | 否 | 否   | Span位置。|
-| value            | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) \| [ResourceStr](ts-types.md#resourcestr)  | 否 | 否   | 图片内容。|
+| value            | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [ResourceStr](ts-types.md#resourcestr)  | 否 | 否   | 图片内容。|
 | imageStyle       | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 否 | 是 | 图片样式。|
 
 ## RichEditorUrlStyle<sup>19+</sup>
