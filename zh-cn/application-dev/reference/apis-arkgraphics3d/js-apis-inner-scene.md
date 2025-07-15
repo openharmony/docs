@@ -678,7 +678,7 @@ registerResourcePath(protocol: string, uri: string): boolean
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| boolean | 返回一个boolean类型的值，表示资产文件路径注册是否成功。true表示注册成功，false表示注册失败，表示检索名已被注册或输入参数不可用。 |
+| boolean | 返回资产文件路径是否注册成功。true表示注册成功，false表示注册失败，表示检索名已被注册或输入参数不可用。 |
 
 **示例：**
 ```ts
