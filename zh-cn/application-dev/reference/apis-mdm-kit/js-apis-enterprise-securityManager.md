@@ -499,119 +499,6 @@ try {
 }
 ```
 
-## securityManager.setPermissionManagedState<sup>20+</sup>
-
-setPermissionManagedState(admin: Want, applicationInstance: ApplicationInstance, permissions: Array\<string>, managedState: PermissionManagedState): void
-
-设置设备指定应用实例的指定权限管理状态。
-
-**需要权限：** ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION
-
-**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-**参数：**
-
-| 参数名      | 类型                                       | 必填   | 说明                       |
-| -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。      |
-| applicationInstance    | [ApplicationInstance](#applicationinstance)  | 是 | 指定应用实例。 |
-| permissions | `Array<string>` | 是 | 需要管理的权限名称列表。 |
-| managedState | [PermissionManagedState](#permissionmanagedstate) | 是 | 应用权限的管理状态。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                                                                       |
-| ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                        |
-| 9200002 | The administrator application does not have permission to manage the device. |
-| 9200010 | The administrator application does not have permission to manage the device. |
-| 9200012 | The parameter validation failed. |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-
-**示例：**
-
-```ts
-import { Want } from '@kit.AbilityKit';
-
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-let appInstanceTemp: securityManager.ApplicationInstance = {
-      appIdentifier: '736498586',
-      appIndex: 0,
-      accountId: 100
-};
-let permissionsTemp: Array<string> = ['ohos.permission.CAMERA', 'ohos.permission.LOCATION'];
-let managedStateTemp: securityManager.PermissionManagedState = 1;
-try {
-    securityManager.setPermissionManagedState(wantTemp, appInstanceTemp, permissionsTemp, managedStateTemp);
-    console.info(`Succeeded in setting permission managed state.`);
-} catch(err) {
-    console.error(`Failed to set permission managed state.  Code: ${err.code}, message: ${err.message}`);
-}
-```
-
-## securityManager.getPermissionManagedState<sup>20+</sup>
-
-getPermissionManagedState(admin: Want, applicationInstance: ApplicationInstance, permission: string): PermissionManagedState
-
-获取设备指定应用实例的权限管理状态。
-
-**需要权限：** ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION
-
-**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-**参数：**
-
-| 参数名      | 类型                                       | 必填   | 说明                       |
-| -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。      |
-| applicationInstance  | [ApplicationInstance](#applicationinstance)  | 是 | 指定应用实例。 |
-| permission | string | 是 | 需要获取状态的权限名称。 |
-
-**返回值：**
-
-| 类型                   | 说明                      |
-| --------------------- | ------------------------- |
-| [PermissionManagedState](#permissionmanagedstate) | 应用权限的管理状态。|
-
-**错误码**：
-
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                                                                       |
-| ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                        |
-| 9200002 | The administrator application does not have permission to manage the device. |
-| 9200012 | The parameter validation failed. |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-
-**示例：**
-
-```ts
-import { Want } from '@kit.AbilityKit';
-
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-let appInstanceTemp: securityManager.ApplicationInstance = {
-      appIdentifier: '736498586',
-      appIndex: 0,
-      accountId: 100
-};
-let permissionTemp: string = 'ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION';
-try {
-    let result: securityManager.PermissionManagedState = securityManager.getPermissionManagedState(wantTemp, appInstanceTemp, permissionTemp);
-    console.info(`Succeeded in getting permission managed state, result : ${result}`);
-} catch(err) {
-    console.error(`Failed to get permission managed state. Code: ${err.code}, message: ${err.message}`);
-}
-```
-
 ## securityManager.setAppClipboardPolicy<sup>18+</sup>
 
 setAppClipboardPolicy(admin: Want, bundleName: string, accountId: number, policy: ClipboardPolicy): void
@@ -811,6 +698,124 @@ try {
 }
 ```
 
+## securityManager.setPermissionManagedState<sup>20+</sup>
+
+setPermissionManagedState(admin: Want, applicationInstance: ApplicationInstance, permissions: Array\<string>, managedState: PermissionManagedState): void
+
+设置设备指定应用实例的指定权限管理状态。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。      |
+| applicationInstance    | [ApplicationInstance<sup>20+</sup>](#applicationinstance20)  | 是 | 指定应用实例。 |
+| permissions | Array&lt;string&gt;  | 是 | 需要管理的权限名称列表，仅支持[user_grant权限](../../security/AccessToken/permissions-for-all-user.md)。 |
+| managedState | [PermissionManagedState<sup>20+</sup>](#permissionmanagedstate20) | 是 | 应用权限的管理状态。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                        |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 9200010 | The administrator application does not have permission to manage the device. |
+| 9200012 | The parameter validation failed. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import securityManager from '@ohos.enterprise.securityManager';
+
+let wantTemp: Want = {
+  // 需根据实际情况进行替换
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let appInstanceTemp: securityManager.ApplicationInstance = {
+      // 需根据实际情况进行替换
+      appIdentifier: '736498586',
+      appIndex: 0,
+      accountId: 100
+};
+let permissionsTemp: Array<string> = ['ohos.permission.CAMERA', 'ohos.permission.LOCATION'];
+try {
+    securityManager.setPermissionManagedState(wantTemp, appInstanceTemp, permissionsTemp, securityManager.PermissionManagedState.GRANTED);
+    console.info('Succeeded in setting permission managed state.');
+} catch(err) {
+    console.error(`Failed to set permission managed state.  Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## securityManager.getPermissionManagedState<sup>20+</sup>
+
+getPermissionManagedState(admin: Want, applicationInstance: ApplicationInstance, permission: string): PermissionManagedState
+
+获取设备指定应用实例的权限管理状态。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。      |
+| applicationInstance  | [ApplicationInstance<sup>20+</sup>](#applicationinstance20)  | 是 | 指定应用实例。 |
+| permission | string | 是 | 需要获取状态的权限名称，仅支持[user_grant权限](../../security/AccessToken/permissions-for-all-user.md)。 |
+
+**返回值：**
+
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| [PermissionManagedState<sup>20+</sup>](#permissionmanagedstate20) | 应用权限的管理状态。|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                        |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 9200012 | The parameter validation failed. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import securityManager from '@ohos.enterprise.securityManager';
+
+let wantTemp: Want = {
+  // 需根据实际情况进行替换
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let appInstanceTemp: securityManager.ApplicationInstance = {
+      // 需根据实际情况进行替换
+      appIdentifier: '736498586',
+      appIndex: 0,
+      accountId: 100
+};
+let permissionTemp: string = 'ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION';
+try {
+    let result: securityManager.PermissionManagedState = securityManager.getPermissionManagedState(wantTemp, appInstanceTemp, permissionTemp);
+    console.info(`Succeeded in getting permission managed state, result : ${result}`);
+} catch(err) {
+    console.error(`Failed to get permission managed state. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
 ## CertBlob
 
 证书信息。
@@ -847,7 +852,7 @@ try {
 | LOCAL_DEVICE | 2  | 剪贴板可在同一设备使用。 |
 | CROSS_DEVICE | 3  | 剪贴板可跨设备使用。 |
 
-## ApplicationInstance
+## ApplicationInstance<sup>20+</sup>
 
 应用实例。
 
@@ -855,11 +860,11 @@ try {
 
 | 名称   | 类型       | 说明               |
 | ------ | ---------- | ------------------ |
-| appIdentifier | string | 应用的全局唯一标识符。 |
+| appIdentifier | string | 要设置卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId和appIdentifier](../apis-ability-kit/js-apis-appControl-sys.md#获取应用的appid和appidentifier)。 |
 | accountId  | number     | 用户ID，指定具体用户，取值范围：大于等于0。accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。         |
-| appIndex  | number     | 指定的应用Index值。         |
+| appIndex  | number     | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示获取主应用的拦截规则。appIndex大于0时，表示获取指定分身应用的拦截规则。        |
 
-## PermissionManagedState
+## PermissionManagedState<sup>20+</sup>
 
 应用权限的管理状态。
 
@@ -867,6 +872,6 @@ try {
 
 | 名称         | 值 | 说明                            |
 | ----------- | -------- | ------------------------------- |
-| DEFAULT | -1  | 默认。 |
+| DEFAULT | -1  | 默认由用户授予。 |
 | GRANTED | 0  | 已静默授予。 |
 | DENIED | 1  | 已静默拒绝。 |
