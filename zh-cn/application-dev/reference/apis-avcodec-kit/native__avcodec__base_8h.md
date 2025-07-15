@@ -212,3 +212,4 @@
 | const char \* [OH_MD_KEY_SQR_FACTOR](_codec_base.md#oh_md_key_sqr_factor) | 描述SQR码控模式的质量参数，取值范围为[0, 51]（同编码量化参数QP），值越小，编码输出码率越大，质量越好，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_MAX_BITRATE](_codec_base.md#oh_md_key_max_bitrate) | 描述SQR码控模式的最大码率，使用OH_AVCapability_GetEncoderBitrateRange方法获取取值范围（同OH_MD_KEY_BITRATE），单位bps，值类型为int64_t。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS](_codec_base.md#oh_md_key_video_encoder_roi_params) | 描述ROI编码参数，包括ROI区域和deltaQp，值类型为string。 |
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL](_codec_base.md#oh_md_key_video_encoder_enable_pts_based_ratecontrol) | 使能基于显示时间戳（PTS）的码控模式的键，值类型为int32_t，1表示使能，0表示其它情况。<br>该键值是可选的且只用于视频编码，默认值为0。<br>如果使能，则必须在每个视频帧中携带PTS信息，并发送到编码器。<br>在Configure阶段使用。 |
