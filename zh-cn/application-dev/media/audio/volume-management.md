@@ -44,24 +44,18 @@ let audioVolumeManager = audioManager.getVolumeManager();
 
 ### 获取音量信息
 
-管理音频组音量的接口由AudioVolumeGroupManager提供，在使用之前，需要使用[getVolumeGroupManager()](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeManager.md#getvolumegroupmanager9)获取AudioVolumeGroupManager实例。
+管理音频组音量的接口由AudioVolumeManager提供，在使用之前，需要使用[getVolumeManager()](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeManager.md#getvolumegroupmanager9)获取AudioVolumeManager实例。
 
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
-
-audioVolumeManager.getVolumeGroupManager(groupId, (err: BusinessError, value: audio.AudioVolumeGroupManager) => {
-  if (err) {
-    console.error(`Failed to obtain the volume group infos list. ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate that the volume group infos list is obtained.');
-});
+let audioVolumeManager : audio.AudioVolumeManager = audio.getAudioManager().getVolumeManager();
+audioVolumeManager.getVolumeGroupManager();
 ```
 
-使用[AudioVolumeGroupManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeGroupManager.md)获取指定流的音量信息。
+使用[AudioVolumeManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeManager.md)获取指定流的音量信息。
 
 示例代码如下所示：
 
@@ -166,7 +160,7 @@ audioVolumeManager.off('appVolumeChange');
 ```ts
 import { audio } from '@kit.AudioKit';
 
-let uid: number = 20010041; // 应用ID。 
+let uid: number = 20010041; // 应用ID。
 let audioManager = audio.getAudioManager();
 let audioVolumeManager = audioManager.getVolumeManager();
 
@@ -224,7 +218,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // 设置音频流音量。
 audioRenderer.setVolume(0.5).then(() => {  // 音量范围为[0.0-1.0]。
   console.info('Invoke setVolume succeeded.');
-}).catch((err: BusinessError) => {  
+}).catch((err: BusinessError) => {
   console.error(`Invoke setVolume failed, code is ${err.code}, message is ${err.message}`);
 });
 
