@@ -85,10 +85,10 @@ target_link_libraries(sample PUBLIC ${BASE_LIBRARY})
 
 2.  根据视频元信息信息，调用  [OH_LowPowerAudioSink_CreateByMime](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_createbymime)或[OH_LowPowerVideoSink_CreateByMime](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_createbymime)来创建播放器。
 
-   ```
-   lppVideoStreamer_ = OH_LowPowerVideoSink_CreateByMime(codecMime.c_str());
-   lppAudioStreamer_ = OH_LowPowerAudioSink_CreateByMime(codecMime.c_str());
-   ```
+    ```
+    lppVideoStreamer_ = OH_LowPowerVideoSink_CreateByMime(codecMime.c_str());
+    lppAudioStreamer_ = OH_LowPowerAudioSink_CreateByMime(codecMime.c_str());
+    ```
 
 3.  设置回调监听函数。
      调用[OH_LowPowerAudioSinkCallback_Create](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosinkcallback_create)或[OH_LowPowerVideoSinkCallback_Create](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosinkcallback_create)创建[OH_LowPowerAudioSinkCallback](../../reference/apis-media-kit/capi-lowpoweraudiosink-oh-lowpoweraudiosinkcallback.md)或[OH_LowPowerVideoSinkCallback](../../reference/apis-media-kit/capi-lowpowervideosink-oh-lowpowervideosinkcallback.md)的回调函数的整合，通过setListener函数向该结构体添加对应的回调函数，完成registerCallback的一次性注册。
