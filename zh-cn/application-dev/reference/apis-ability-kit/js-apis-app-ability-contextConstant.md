@@ -108,7 +108,7 @@ StartupVisibility作为[StartOptions](js-apis-app-ability-startOptions.md)的一
 
 | 名称  | 值 | 说明                                                                                                                   |
 |-----| -------- |----------------------------------------------------------------------------------------------------------------------|
-| SCENARIO_MOVE_MISSION_TO_FRONT | 0x00000001 | 系统接口<!--Del-->[<!--DelEnd-->missionManager.moveMissionToFront<!--Del-->](./js-apis-app-ability-missionManager-sys.md#missionmanagermovemissiontofront-2) <!--DelEnd-->接口触发的UIAbility到前台场景。        |
+| SCENARIO_MOVE_MISSION_TO_FRONT | 0x00000001 | <!--RP1-->系统接口[missionManager.moveMissionToFront](./js-apis-app-ability-missionManager-sys.md#missionmanagermovemissiontofront-2)接口触发的UIAbility到前台场景。<!--RP1End-->        |
 | SCENARIO_SHOW_ABILITY | 0x00000002 | [showAbility](./js-apis-inner-application-uiAbilityContext.md#showability12)接口触发的UIAbility到前台场景。     |
 | SCENARIO_BACK_TO_CALLER_ABILITY_WITH_RESULT | 0x00000004 | [backToCallerAbilityWithResult](./js-apis-inner-application-uiAbilityContext.md#backtocallerabilitywithresult12)接口触发的UIAbility到前台场景。     |
 
