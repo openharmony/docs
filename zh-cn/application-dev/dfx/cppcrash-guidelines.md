@@ -647,7 +647,7 @@ HiLog: <- 故障之前进程打印的流水日志
 
  **HiTraceId说明**
 
-HiTraceId：HiTraceChain提供的唯一跟踪标识，参考[HiTraceId](../reference/apis-performance-analysis-kit/_hitrace.md)。
+HiTraceId：HiTraceChain提供的唯一跟踪标识，参考[HiTraceId](../reference/apis-performance-analysis-kit/capi-trace-h.md)。
 
  **栈帧内容说明**
 
