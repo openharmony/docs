@@ -35,7 +35,6 @@
         "description": "$string:EntryAbility_desc",
         "icon": "$media:layered_image",
         "label": "$string:EntryAbility_label",
-        "startWindow": "$profile:start_window",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
@@ -328,7 +327,6 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | continuable | 标识当前UIAbility组件是否支持跨端迁移。<br/>-&nbsp;true：表示支持迁移。<br/>-&nbsp;false：表示不支持迁移。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | [skills](#skills标签) | 标识当前UIAbility组件能够接收的[Want](../application-models/want-overview.md)特征集，为数组格式。<br/>配置规则：<br/>-&nbsp;对于Entry类型的HAP，应用可以配置多个具有入口能力的skills标签（即配置了ohos.want.action.home和entity.system.home）。<br/>-&nbsp;对于Feature类型的HAP，只有应用可以配置具有入口能力的skills标签，服务不允许配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | backgroundModes | 标识当前UIAbility组件的长时任务集合，指定用于满足特定类型的长时任务。<br/>长时任务类型有如下：<br/>-&nbsp;dataTransfer：通过网络/对端设备进行数据下载、备份、分享、传输等。<br/>-&nbsp;audioPlayback：音频播放。<br/>-&nbsp;audioRecording：录音。<br/>-&nbsp;location：定位、导航。<br/>-&nbsp;bluetoothInteraction：蓝牙扫描、连接、传输（穿戴）。<br/>-&nbsp;multiDeviceConnection：多设备互联。<br/>-&nbsp;taskKeeping：计算。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| [startWindow](#startwindow标签) | 标识当前UIAbility组件启动页面profile资源，取值为长度不超过255字节的字符串，如果配置了该字段，startWindowIcon和startWindowBackground字段均不生效。<br/>**说明：** <br/>从API version 18开始，支持该字段。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | startWindowIcon | 标识当前UIAbility组件启动页面图标资源文件的索引，取值为长度不超过255字节的字符串。 | 字符串 | 该标签不可缺省。 |
 | startWindowBackground | 标识当前UIAbility组件启动页面背景颜色资源文件的索引，取值为长度不超过255字节的字符串。<br/>取值示例：$color:red。| 字符串 | 该标签不可缺省。 |
 | removeMissionAfterTerminate | 标识当前UIAbility组件销毁后，是否从任务列表中移除任务。<br/>-&nbsp;true表示销毁后移除任务。<br/>-&nbsp;false表示销毁后不移除任务。 | 布尔值 | 该标签可缺省，缺省值为false。 |
@@ -383,7 +381,6 @@ abilities示例：
       "voip",
       "taskKeeping"
     ],
-    "startWindow": "$profile:start_window",
     "startWindowIcon": "$media:icon",
     "startWindowBackground": "$color:red",
     "removeMissionAfterTerminate": true,
@@ -1164,39 +1161,12 @@ resources/base/profile路径下的menu.json资源文件示例如下：
 | menuHandler | 对应注册配置文件中menuHandler的值。 | 字符串 |
 | uriList | 用户在具体文件上触发右键的uri值，如果空白处响应，此值为空，单个文件响应，数组长度1，多个文件响应则传入对应所有文件的uri值。 | 字符串数组 |
 
-## startWindow标签
-
-该标签指向一个profile文件资源，用于指定UIAbility组件启动页面的配置文件，在开发视图的resources/base/profile下面定义配置文件start_window.json，如果配置了该字段，startWindowIcon和startWindowBackground字段将不生效。从API version 18开始，支持该字段。
-
-**表28** startWindow标签配置说明
-
-| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
-| -------- | -------- | -------- | -------- |
-| startWindowAppIcon | 标识当前UIAbility组件启动页面图标资源文件的索引，取值为长度不超过255字节的字符串。| 字符串 | 可缺省，缺省值为空。 |
-| startWindowIllustration | 标识当前UIAbility组件启动页面插画资源文件的索引，取值为长度不超过255字节的字符串。 | 字符串 | 可缺省，缺省值为空。 |
-| startWindowBrandingImage | 标识当前UIAbility组件启动页面品牌标识资源文件的索引，取值为长度不超过255字节的字符串。 | 字符串 | 可缺省，缺省值为空。 |
-| startWindowBackgroundColor | 标识当前UIAbility组件启动页面背景颜色资源文件的索引，取值为长度不超过255字节的字符串。 | 字符串 | 不可缺省。 |
-| startWindowBackgroundImage | 标识当前UIAbility组件启动页面背景图片资源文件的索引，取值为长度不超过255字节的字符串。 | 字符串 | 可缺省，缺省值为空。 |
-| startWindowBackgroundImageFit | 标识当前UIAbility组件启动页面背景图像适应方式，支持的取值如下：<br/>-&nbsp;Contain：按照宽高比进行缩小或放大，图片完全显示在显示边界内。<br/>-&nbsp;Cover：按照宽高比进行缩小或放大，图片两边都大于或等于显示边界。<br/>-&nbsp;Auto：自适应显示。<br/>-&nbsp;Fill：不按照宽高比进行放大或缩小，图片充满显示边界。<br/>-&nbsp;ScaleDown：按照宽高比显示，图片缩小或保持不变。<br/>-&nbsp;None：保持原有尺寸显示。 | 字符串 | 可缺省，缺省值为Cover。 |
-
-resources/base/profile路径下的start_window.json资源文件示例如下：
-```json
-{
-  "startWindowAppIcon": "$media:start_window_app_icon",
-  "startWindowIllustration": "$media:start_window_illustration",
-  "startWindowBrandingImage": "$media:start_window_branding_image",
-  "startWindowBackgroundColor": "$color:start_window_back_ground_color",
-  "startWindowBackgroundImage": "$media:start_window_back_ground_image",
-  "startWindowBackgroundImageFit": "Cover"
-}
-```
-
 <!--Del-->
 ## definePermissions标签
 
 该标签仅支持系统资源hap定义权限，不支持应用自定义权限。权限定义方式参见[系统资源权限定义](https://gitee.com/openharmony/utils_system_resources/blob/master/systemres/main/config.json)。
 
-**表29** definePermissions标签说明
+**表28** definePermissions标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
