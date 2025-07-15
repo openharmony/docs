@@ -1644,6 +1644,7 @@ SymbolSpan样式选项。
 | ----- | ---------------------------------------- | ---- | ---|---- |
 | style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) |否| 否    | 段落样式。   |
 | range | \[number, number\]                      |否 | 否    | 段落起始和结束位置。 |
+
 ## RichEditorTextSpanOptions
 
 添加文本的偏移位置和文本样式信息。
