@@ -712,7 +712,7 @@ maskTransition(alphaMask: Mask, factor?: number, inverse?: boolean): Filter
 **示例：**
 
 ```ts
-import { uiEffect, common2D  } from "@kit.ArkGraphics2D";
+import { uiEffect, common2D } from "@kit.ArkGraphics2D";
 
 @Entry
 @Component
@@ -790,7 +790,7 @@ directionLight(direction: common2D.Point3d, color: Color, intensity: number, bum
 **示例：**
 
 ```ts
-import { uiEffect, common2D  } from "@kit.ArkGraphics2D";
+import { uiEffect, common2D } from "@kit.ArkGraphics2D";
 
 @Entry
 @Component
@@ -836,7 +836,7 @@ variableRadiusBlur(radius: number, radiusMap: Mask): Filter
 **参数：**
 | 参数名         | 类型                  | 必填 | 说明                       |
 | ------------- | --------------------- | ---- | ------------------------- |
-| radius  | number         | 是   | 最大模糊半径|
+| radius  | number         | 是   | 最大模糊半径。|
 | radiusMap  |  [Mask](#mask20)    | 是   | 代表模糊程度的mask对象。|
 
 **返回值：**
