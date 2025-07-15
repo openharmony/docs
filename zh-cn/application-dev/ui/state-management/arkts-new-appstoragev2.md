@@ -89,13 +89,15 @@ static keys(): Array<string>;
 
 ### 使用AppStorageV2
 
+AppStorageV2使用connect接口即可实现对AppStorageV2中数据的修改和同步，如果修改的数据被@Trace装饰，该数据的修改会同步更新UI。需要注意的是，使用remove接口只会将数据从AppStorageV2中删除，不影响组件中已创建的数据，详见以下示例代码：
+
 ```ts
 import { AppStorageV2 } from '@kit.ArkUI';
 
 @ObservedV2
 class Message {
-  @Trace userID: number = 1;
-  userName: string = 'Lucy';
+  @Trace userID: number;
+  userName: string;
 
   constructor(userID?: number, userName?: string) {
     this.userID = userID ?? 1;
@@ -112,19 +114,19 @@ struct Index {
 
   build() {
     Column() {
-      // 修改@Trace修饰的类属性，UI能同步刷新
+      // 修改@Trace装饰的类属性，UI能同步刷新
       Button(`Index userID: ${this.message.userID}`)
         .onClick(() => {
           this.message.userID += 1;
         })
-      // 修改非@Trace修饰的类属性，UI不会同步刷新，但修改的类属性已同步回AppStorageV2
+      // 修改非@Trace装饰的类属性，UI不会同步刷新，但修改的类属性已同步回AppStorageV2
       Button(`Index userName: ${this.message.userName}`)
         .onClick(() => {
           this.message.userName += 'suf';
         })
       // remove key Message, 会从AppStorageV2中删除key为Message的对象
-      // remove之后，点击UserId父子组件能同步变化，因为remove只是从AppStorageV2删除，不会影响组件中已存在的数据
-      Button('remote key: Message')
+      // remove之后，修改父组件的userId，子组件能同步变化，因为remove只是从AppStorageV2删除，不会影响组件中已存在的数据
+      Button('remove key: Message')
         .onClick(() => {
           AppStorageV2.remove<Message>(Message);
         })
@@ -150,7 +152,7 @@ struct Child {
 
   build() {
     Column() {
-      // 修改@Trace修饰的类属性，UI同步刷新，父组件能感知该变化
+      // 修改@Trace装饰的类属性，UI同步刷新，父组件能感知该变化
       Button(`Child userID: ${this.message.userID}`)
         .onClick(() => {
           this.message.userID += 5;
@@ -161,7 +163,7 @@ struct Child {
           this.name = this.message.userName;
         })
       // remove key Message, 会从AppStorageV2中删除key为Message的对象
-      Button('remote key: Message')
+      Button('remove key: Message')
         .onClick(() => {
           AppStorageV2.remove<Message>(Message);
         })
