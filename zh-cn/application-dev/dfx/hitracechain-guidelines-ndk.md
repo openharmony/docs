@@ -6,7 +6,7 @@ HiTraceChain是基于云计算分布式跟踪调用链思想，在端侧业务�
 
 ## 接口说明
 
-分布式跟踪接口由HiTraceChain模块提供，详细API请参考[性能打点跟踪API参考](../reference/apis-performance-analysis-kit/_hitrace.md)。
+分布式跟踪接口由HiTraceChain模块提供，详细API请参考[性能打点跟踪API参考](../reference/apis-performance-analysis-kit/capi-trace-h.md)。
 
 | 方法 | 接口描述 |
 | -------- | -------- |
