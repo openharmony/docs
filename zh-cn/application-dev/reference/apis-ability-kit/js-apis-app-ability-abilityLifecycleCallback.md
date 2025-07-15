@@ -49,7 +49,7 @@ onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | 当前WindowStage对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 当前WindowStage对象 |
 
 **示例：**
 
@@ -70,7 +70,7 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | 当前WindowStage对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 当前WindowStage对象 |
 
 **示例：**
 
@@ -91,7 +91,7 @@ onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | 当前WindowStage对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 当前WindowStage对象 |
 
 **示例：**
 
@@ -112,7 +112,7 @@ onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | 当前WindowStage对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 当前WindowStage对象 |
 
 **示例：**
 
@@ -233,7 +233,7 @@ onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): v
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | 当前WindowStage对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 当前WindowStage对象 |
 
 **示例：**
 
@@ -254,7 +254,7 @@ onWindowStageWillDestroy?(ability: UIAbility, windowStage: window.WindowStage): 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | 当前WindowStage对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 当前WindowStage对象 |
 
 **示例：**
 
@@ -395,7 +395,7 @@ onWindowStageWillRestore?(ability: UIAbility, windowStage: window.WindowStage): 
   | 参数名 | 类型 | 必填 | 说明 |
   | ------ | ------ | ------ | ------ |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | 当前WindowStage对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 当前WindowStage对象 |
 
 **示例：**
 
@@ -416,7 +416,7 @@ onWindowStageRestore?(ability: UIAbility, windowStage: window.WindowStage): void
   | 参数名 | 类型 | 必填 | 说明 |
   | ------ | ------ | ------ | ------ |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
-  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | 当前WindowStage对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) | 是 | 当前WindowStage对象 |
 
 **示例：**
 

@@ -13,8 +13,9 @@
 
 **起始版本：** 12
 
-**相关模块：**[ArkUI_NativeModule](_ark_u_i___native_module.md)
+**相关模块：** [ArkUI_NativeModule](_ark_u_i___native_module.md)
 
+**相关示例：** <!--RP1-->[StyledStringNDK](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/StyledStringNDK)<!--RP1End-->
 
 ## 汇总
 

@@ -931,20 +931,23 @@ createComponent(node: Node, name: string): Promise\<SceneComponent>
 **示例：**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource, SceneComponent } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { SceneComponent } from '@ohos.graphics.scene';
+
 
 function createComponentTest(): Promise<SceneComponent> {
   return Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.glb"))
-    .then(result => {
-      if (!result) {
-        console.error("Scene load failed: result is undefined");
+    .then(scene => {
+      if (!scene) {
         return Promise.reject(new Error("Scene load failed"));
       }
-      console.info("TEST createComponentTest");
-      return result.createComponent(result.root, "myComponent");
+      // RenderConfigurationComponent为引擎内置组件，创建时无需依赖插件
+      return scene.createComponent(scene.root, "RenderConfigurationComponent");
     })
     .then(component => {
-      console.info("createComponent success");
+      if (!component) {
+        return Promise.reject(new Error("createComponent failed"));
+      }
       return component;
     });
 }

@@ -1,7 +1,7 @@
 # Attribute Modifier (AttributeModifier)
 
 ## Overview
-The introduction of the [@Styles](../quick-start/arkts-style.md) and [@Extend](../quick-start/arkts-extend.md) decorators in declarative syntax helps with reuse of custom styles, but they encounter limitations in certain scenarios:
+The introduction of the [@Styles](../ui/state-management/arkts-style.md) and [@Extend](../ui/state-management/arkts-extend.md) decorators in declarative syntax helps with reuse of custom styles, but they encounter limitations in certain scenarios:
 - Both @Styles and @Extend are processed at compile time and do not support cross-file exports for reuse.
 - @Styles only supports universal attributes and events, not component-specific attributes.
 - While @Styles allows for polymorphic styles, it does not support parameter passing, which means it cannot expose certain properties externally.

@@ -38,7 +38,7 @@
    )
    ```
 
-3. 调用cameraManager类中的[OH_CameraManager_CreateCaptureSession()](../../reference/apis-camera-kit/capi-camera-manager-h.md#oh_cameramanager_createcapturesession)方法创建一个会话。
+3. 调用[OH_CameraManager_CreateCaptureSession()](../../reference/apis-camera-kit/capi-camera-manager-h.md#oh_cameramanager_createcapturesession)方法创建一个会话。
 
    ```c++
    Camera_CaptureSession* CreateCaptureSession(Camera_Manager* cameraManager)
@@ -52,7 +52,7 @@
    }
    ```
 
-4. 调用captureSession类中的[OH_CaptureSession_SetSessionMode()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_setsessionmode)方法配置会话模式。
+4. 调用[OH_CaptureSession_SetSessionMode()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_setsessionmode)方法配置会话模式。
 
    ```c++
    Camera_ErrorCode SetSessionMode(Camera_CaptureSession* captureSession)
@@ -65,7 +65,7 @@
    }
    ```
 
-5. 调用captureSession类中的[OH_CaptureSession_BeginConfig()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_beginconfig)方法配置会话。
+5. 调用[OH_CaptureSession_BeginConfig()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_beginconfig)方法配置会话。
 
    ```c++
    Camera_ErrorCode BeginConfig(Camera_CaptureSession* captureSession)
@@ -80,7 +80,7 @@
 
 6. 使能。向会话中添加相机的输入流和输出流，调用[OH_CaptureSession_AddInput()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_addinput)添加相机的输入流；调用[OH_CaptureSession_AddPreviewOutput()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_addpreviewoutput)和[OH_CaptureSession_AddPhotoOutput()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_addphotooutput)添加相机的输出流。以下示例代码以添加预览流previewOutput和拍照流photoOutput为例，即当前模式支持拍照和预览。
 
-   调用captureSession类中的[OH_CaptureSession_CommitConfig()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_commitconfig)和[OH_CaptureSession_Start()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_start)方法提交相关配置，并启动会话。
+   调用[OH_CaptureSession_CommitConfig()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_commitconfig)和[OH_CaptureSession_Start()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_start)方法提交相关配置，并启动会话。
 
    ```c++
    Camera_ErrorCode StartSession(Camera_CaptureSession* captureSession, Camera_Input* cameraInput,
@@ -123,7 +123,7 @@
    }
    ```
 
-7. 会话控制。调用captureSession类中的[OH_CaptureSession_Stop()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_stop)方法可以停止当前会话。调用[OH_CaptureSession_RemovePhotoOutput()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_removephotooutput)和[OH_CaptureSession_AddVideoOutput()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_addvideooutput)方法可以完成会话切换控制。以下示例代码以移除拍照流photoOutput，添加视频流videoOutput为例，完成了拍照到录像的切换。
+7. 会话控制。调用[OH_CaptureSession_Stop()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_stop)方法可以停止当前会话。调用[OH_CaptureSession_RemovePhotoOutput()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_removephotooutput)和[OH_CaptureSession_AddVideoOutput()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_addvideooutput)方法可以完成会话切换控制。以下示例代码以移除拍照流photoOutput，添加视频流videoOutput为例，完成了拍照到录像的切换。
 
    ```c++
    Camera_ErrorCode ReloadSession(Camera_CaptureSession* captureSession, Camera_PhotoOutput* photoOutput,

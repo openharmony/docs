@@ -8,7 +8,7 @@
 
 ### 数字格式化
 
-数字格式化通过[NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat)的[format](../reference/apis-localization-kit/js-apis-intl.md#format-1)接口实现，具体开发步骤如下：
+数字格式化通过[NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat)的[format](../reference/apis-localization-kit/js-apis-intl.md#formatdeprecated)接口实现，具体开发步骤如下：
 
 1. 导入模块。
    ```ts
@@ -35,7 +35,7 @@
 
 **数字格式化选项**
 
-通过[NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions)参数，可以设置数字的格式化选项，包括最小整数位数、最小小数位数、最大小数位数、最小有效位数、最大有效位数、是否分组显示、数字的表示方法、紧凑显示格式、舍入模式、舍入优先级、舍入增量以及数字的显示格式和数字系统。其中，数字的显示格式包括decimal(十进制)、percent(百分数)、currency(货币)和unit(单位)。
+通过[NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptionsdeprecated)参数，可以设置数字的格式化选项，包括最小整数位数、最小小数位数、最大小数位数、最小有效位数、最大有效位数、是否分组显示、数字的表示方法、紧凑显示格式、舍入模式、舍入优先级、舍入增量以及数字的显示格式和数字系统。其中，数字的显示格式包括decimal(十进制)、percent(百分数)、currency(货币)和unit(单位)。
 
 以123000.123为例，各选项取值和显示效果如下表所示：
 
@@ -160,7 +160,7 @@ formattedNumber = halfCeilFormat.format(11.21); // formattedNumber = '$11.20'
 
 ### 数字范围格式化
 
-数字范围格式化通过[NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat)的[formatRange](../reference/apis-localization-kit/js-apis-intl.md#formatrange18)接口实现，具体开发步骤如下：
+数字范围格式化通过[NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat)的[formatRange](../reference/apis-localization-kit/js-apis-intl.md#formatrangedeprecated)接口实现，具体开发步骤如下：
 
 1. 导入模块。
    ```ts
@@ -200,7 +200,7 @@ formattedRange = numberRangeFormat.formatRange(2.9, 3.1); // formattedRange = '~
 
 ### 货币和单位格式化
 
-货币和单位的格式化基于数字格式化，在创建货币和单位格式化对象时，将数字的显示风格分别设置为“currency(货币)”和“unit(单位)”。同样，对货币和度量衡进行格式化时也支持通过[NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions)设置不同的格式，各属性参数取值和显示效果如下表所示：
+货币和单位的格式化基于数字格式化，在创建货币和单位格式化对象时，将数字的显示风格分别设置为“currency(货币)”和“unit(单位)”。同样，对货币和度量衡进行格式化时也支持通过[NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptionsdeprecated)设置不同的格式，各属性参数取值和显示效果如下表所示：
 
 **货币格式化选项**
 

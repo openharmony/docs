@@ -35,10 +35,10 @@ The number of reminders exceeds the limit.
 The number of reminders exceeds the limit when **publishReminder()** is called.
 
 **Possible Causes**
-
-1. The number of reminders generated for the entire system exceeds 2000 in API version 9 or 12000 in API version 10 or later.
-2. The number of reminders generated for the application exceeds 30 in API version 9 or 30 (for a common application) or 10000 (for a system application) in API version 10 or later.
 <!--RP1-->
+1. In API version 10 or later, the number of reminders generated for the application exceeds 30 (for a common application) or 10,000 (for a system application). In API version 9 or earlier, the number of reminders generated for the application exceeds 30.
+2. In API version 10 or later, the total number of reminders generated for all applications exceeds 12,000. In API version 9 or earlier, the total number of reminders generated for all applications exceeds 2,000.
+
 **Solution**
 
 Delete unnecessary reminders.
@@ -81,3 +81,21 @@ The bundle name passed is not found.
 **Solution**
 
 Check whether the bundle name exists.
+
+## 1700007 Invalid Parameter
+
+**Error Message**
+
+If the input parameter is not valid parameter.
+
+**Description**
+
+The input parameter is invalid.
+
+**Possible Causes**
+
+The parameter does not comply with the rules.
+
+**Solution**
+
+Make sure all the mandatory parameters are passed in and the parameter types are valid. If parameter verification fails, read the parameter specifications and locate the fault based on the possible causes.

@@ -1,148 +1,438 @@
-# SPP-based Data Transmission
+# SPP-based Connection and Data Transmission
 
 ## Introduction
+This document provides guidance on how to connect devices and transfer data via Serial Port Profile (SPP). When two devices communicate via SPP, they can be distinguished as client and server based on their respective functions. This guide describes the implementation methods for both the client and server.
 
-Serial Port Profile (SPP) is a Bluetooth protocol used to establish serial communication connections between Bluetooth devices. With SPP, Bluetooth devices can transmit data, such as files and text, just like using a serial port.
+## How to Implement
+After obtaining the server's device address, the client can initiate a connection to the specific UUID of the server. The server's device address can be obtained through the device discovery process. For details, see [Bluetooth Discovery Development](br-discovery-development-guide.md). Once the connection between the two ends is successfully established, the client can send data to the server or receive data from the server.
 
-## When to Use
+The server needs to support the UUID service for client connections and maintain listening for connection status changes. After the connection between the two ends is successfully established, the server can receive data from the client or send data to the client.
 
-You can use the APIs provided by the **spp** module to:
-- Write data to the client.
-- Connect to the peer device over a socket.
-
-## Available APIs
-
-For details about the APIs and sample code, see [@ohos.bluetooth.socket](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md).
-
-The following table describes the related APIs.
-
-| API                            | Description                                                                      |
-| ---------------------------------- | ------------------------------------------------------------------------------ |
-| sppListen()                        | Creates a listening socket for the server.                                                      |
-| sppAccept()                        | Accepts a connection request from the client over a socket of the server.                                                 |
-| sppConnect()                       | Initiates an SPP connection to a remote device from the client.                                                    |
-| sppCloseServerSocket()             | Closes the listening socket of the server.                                                          |
-| sppCloseClientSocket()             | Closes the client socket.                                                              |
-| sppWrite()                         | Sends data to the remote end over the socket.                                                      |
-| on(type: 'sppRead')                | Subscribes to the SPP read request events.                                                             |
-| off(type: 'sppRead')               | Unsubscribes from the SPP read request events.                                                          |
+Both the client and the server can actively disconnect. The application needs to determine which end performs the disconnection.
 
 ## How to Develop
 
-### Writing Data to the Client
-1. Import the **socket** module.
-2. Check that the SystemCapability.Communication.Bluetooth.Core capability is available.
-3. Apply for the **ohos.permission.ACCESS_BLUETOOTH** permission.
-4. Enable Bluetooth on the device.
-5. Creates a server socket. If the operation is successful, **serverId** is returned.
-6. Create a communication channel between the server socket and the client socket. If the operation is successful, **clientId** is returned.
-7. Write data to the client.
-8. (Optional) Subscribe to the data written by the client.
-9. Close the server socket.
-10. Close the client socket.
-11. Example:
+### Applying for Required Permissions
+Apply for the **ohos.permission.ACCESS_BLUETOOTH** permission. For details about how to configure and apply for permissions, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md) and [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
-    ```ts
-    import { socket } from '@kit.ConnectivityKit';
-    import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+### Importing Required Modules
+Import the related modules.
+```ts
+import { socket } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+```
 
-    // Create a server listening socket. serverId is returned if the socket is created.
-    let serverNumber = -1;
-    let sppOption: socket.SppOptions = {
-      uuid: '00001101-0000-1000-8000-00805f9b34fb',
-      secure: true,
-      type: 0
+### Client
+
+#### 1. Initiating a Connection
+The client can initiate a connection after searching for the target device through the device discovery process. The UUID service to be connected to must be consistent with the UUID service constructed when the server creates the socket. During the connection process, the Bluetooth subsystem will check whether the server supports this UUID service; if not, the connection will fail. Therefore, the application must ensure that the target device supports the required UUID service; otherwise, the connection initiated will be invalid.
+```ts
+// Obtain the device address through the device discovery process.
+let peerDevice = 'XX:XX:XX:XX:XX:XX';
+
+// Define the client socket ID.
+let clientNumber = -1;
+
+// Configure connection parameters.
+let option: socket.SppOptions = {
+  uuid: '00009999-0000-1000-8000-00805F9B34FB', // The UUID service to be connected must be supported by the server.
+  secure: false,
+  type: socket.SppType.SPP_RFCOMM
+};
+console.info('startConnect ' + peerDevice);
+socket.sppConnect(peerDevice, option, (err, num: number) => {
+  if (err) {
+    console.error('startConnect errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  } else {
+    console.info('startConnect clientNumber: ' + num);
+    clientNumber = num;
+  }
+});
+console.info('startConnect after ' + peerDevice);
+```
+
+#### 2. Transmitting Data
+
+**2.1 Sending Data**<br>
+After the connection between the client and server is established, the client can send data to the server.
+```ts
+let clientNumber = 1; // Note: The value is the client socket ID in the asynchronous callback returned when the client initiates a connection. The ID here is a pseudo-code ID.
+let arrayBuffer = new ArrayBuffer(2);
+let data = new Uint8Array(arrayBuffer);
+data[0] = 3;
+data[1] = 4;
+try {
+  socket.sppWrite(clientNumber, arrayBuffer);
+} catch (err) {
+  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+**2.2 Receiving Data**<br>
+After the connection between the client and server is established, the client can receive data from the server. This is implemented through [socket.on('sppRead ')](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md#socketonsppread).
+```ts
+let clientNumber = 1; // Note: The value is the client socket ID in the asynchronous callback returned when the client initiates a connection. The ID here is a pseudo-code ID.
+
+// Define the callback for data read events.
+function read(dataBuffer: ArrayBuffer) {
+  let data = new Uint8Array(dataBuffer);
+  console.info('client data: ' + JSON.stringify(data));
+}
+
+try {
+  // Enable listening for data read events.
+  socket.on('sppRead', clientNumber, read);
+} catch (err) {
+  console.error('readData errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+#### 3. Terminating the Connection
+When an application no longer needs an established connection, it can proactively disconnect from the client. Before that, you need to disable listening for data read events.
+```ts
+let clientNumber = 1; // Note: The value is the client socket ID in the asynchronous callback returned when the client initiates a connection. The ID here is a pseudo-code ID.
+
+// Define the callback for data read events.
+function read(dataBuffer: ArrayBuffer) {
+  let data = new Uint8Array(dataBuffer);
+  console.info('client data: ' + JSON.stringify(data));
+}
+
+try {
+  // Disable listening for data read events.
+  socket.off('sppRead', clientNumber, read);
+} catch (err) {
+  console.error('off sppRead errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+try {
+  // Disconnect from the client.
+  socket.sppCloseClientSocket(clientNumber);
+} catch (err) {
+  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### Server
+
+#### 1. Create a server socket.
+The server needs to register the specified UUID service in the Bluetooth subsystem by creating a socket. The UUID service can be named freely, such as using the application name. When a client sends a connection request, it includes a UUID to specify the target service. Connection establishment is permitted only when the server's and client's UUIDs are identical.
+```ts
+// Define the server socket ID.
+let serverNumber = -1;
+
+// Set listening parameters.
+let option: socket.SppOptions = {
+  uuid: '00009999-0000-1000-8000-00805F9B34FB',
+  secure: false,
+  type: socket.SppType.SPP_RFCOMM
+};
+
+// Create a listening socket on the server. The UUID service is registered in the Bluetooth subsystem.
+socket.sppListen("demonstration", option, (err, num: number) => {
+  if (err) {
+    console.error('sppListen errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  } else {
+    console.info('sppListen serverNumber: ' + num);
+    serverNumber = num;
+  }
+});
+```
+
+#### 2. Enable listening for client connections.
+After the server socket is created, the server can listen for client connections. When a connection request is received, the server obtains the socket ID of the client. At this time, the connection between the server and client is successfully established.
+```ts
+let serverNumber = 1; // Note: The value is the server socket ID in the asynchronous callback returned when the server socket is created. The ID here is a pseudo-code ID.
+
+// Define the client socket ID.
+let clientNumber = -1;
+
+socket.sppAccept(serverNumber, (err, num: number) => {
+  if (err) {
+    console.error('accept errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  } else {
+    console.info('accept clientNumber: ' + num);
+    clientNumber = num;
+  }
+});
+```
+
+#### 3. Transmitting Data
+
+**3.1 Sending Data**<br>
+After the connection between the server and client is established, the server can send data to the client.
+```ts
+let clientNumber = 1; // Note: The value is the client socket ID in the asynchronous callback returned when the server listens for a client connection. The ID here is a pseudo-code ID.
+
+let arrayBuffer = new ArrayBuffer(2);
+let data = new Uint8Array(arrayBuffer);
+data[0] = 9;
+data[1] = 8;
+try {
+  socket.sppWrite(clientNumber, arrayBuffer);
+} catch (err) {
+  console.error('sppWrite errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+**3.2 Receiving Data**<br>
+After the connection between the server and client is established, the server can receive data from the client. This is implemented through [socket.on('sppRead ')](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md#socketonsppread).
+```ts
+let clientNumber = 1; // Note: This value is the client socket ID obtained by the asynchronous callback when the server listens to the connection. This is a pseudo code ID.
+
+// Define the callback for data read events.
+read(dataBuffer: ArrayBuffer) {
+  let data = new Uint8Array(dataBuffer);
+  console.info('client data: ' + JSON.stringify(data));
+}
+
+try {
+  // Enable listening for data read events.
+  socket.on('sppRead', clientNumber, this.read);
+} catch (err) {
+  console.error('readData errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+#### 4. Terminating the Connection
+When an application no longer needs an established connection, it can proactively disconnect from the server.
+
+- Before that, you need to disable listening for data read events.
+```ts
+let clientNumber = 1; // Note: This value is the client socket ID obtained by the asynchronous callback when the server listens to the connection. This is a pseudo code ID.
+
+// Define the callback for data read events.
+function read(dataBuffer: ArrayBuffer) {
+  let data = new Uint8Array(dataBuffer);
+  console.info('client data: ' + JSON.stringify(data));
+}
+
+try {
+  // Disable listening for data read events.
+  socket.off('sppRead', clientNumber, read);
+} catch (err) {
+  console.error('off sppRead errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+try {
+  // Disconnect from the server.
+  socket.sppCloseClientSocket(this.clientNumber);
+} catch (err) {
+  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+#### 5. Deleting the Server Socket
+When the application no longer needs the server socket, it needs to proactively close the socket. The Bluetooth subsystem then deletes the corresponding UUID service registered earlier. If the client initiates a connection at this time, the connection fails.
+
+- The application can also disconnect from the server when deleting the socket. Before that, the application needs to disable listening for data read events.
+```ts
+let serverNumber = 1; // Note: The value is the server socket ID in the asynchronous callback returned when the server socket is created. The ID here is a pseudo-code ID.
+
+// Define the callback for data read events.
+function read(dataBuffer: ArrayBuffer) {
+  let data = new Uint8Array(dataBuffer);
+  console.info('client data: ' + JSON.stringify(data));
+}
+
+try {
+  // Disable listening for data read events.
+  socket.off('sppRead', clientNumber, read);
+} catch (err) {
+  console.error('off sppRead errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+
+try {
+  // If the application no longer needs the server socket, proactively delete it.
+  socket.sppCloseServerSocket(serverNumber);
+} catch (err) {
+  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+## Complete Sample Code
+
+### Client
+```ts
+import { socket } from '@kit.ConnectivityKit'
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class SppClientManager {
+  // Define the client socket ID.
+  clientNumber: number = -1;
+
+  // Initiate a connection.
+  public startConnect(peerDevice: string): void {
+    // Configure connection parameters.
+    let option: socket.SppOptions = {
+      uuid: '00009999-0000-1000-8000-00805F9B34FB', // The UUID service to be connected must be supported by the server.
+      secure: false,
+      type: socket.SppType.SPP_RFCOMM
     };
-    socket.sppListen('server1', sppOption, (code, serverSocketID) => {
-      if (code != null) {
-        console.error('sppListen error, code is ' + (code as BusinessError).code);
-        return;
+    console.info('startConnect ' + peerDevice);
+    socket.sppConnect(peerDevice, option, (err, num: number) => {
+      if (err) {
+        console.error('startConnect errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
       } else {
-        serverNumber = serverSocketID;
-        console.info('sppListen success, serverNumber = ' + serverNumber);
+        console.info('startConnect clientNumber: ' + num);
+        this.clientNumber = num;
       }
     });
+    console.info('startConnect after ' + peerDevice);
+  }
 
-    // Establish a connection between the server socket and client socket. If the connection is successful, clientId is returned.
-    let clientNumber = -1;
-    socket.sppAccept(serverNumber, (code, clientSocketID) => {
-      if (code != null) {
-        console.error('sppAccept error, code is ' + (code as BusinessError).code);
-        return;
+  // Send data.
+  public sendData() {
+    console.info('sendData ' + this.clientNumber);
+    let arrayBuffer = new ArrayBuffer(2);
+    let data = new Uint8Array(arrayBuffer);
+    data[0] = 3;
+    data[1] = 4;
+    try {
+      socket.sppWrite(this.clientNumber, arrayBuffer);
+    } catch (err) {
+      console.error('sppWrite errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    }
+  }
+
+  // Define the callback for data read events.
+  read = (dataBuffer: ArrayBuffer) => {
+    let data = new Uint8Array(dataBuffer);
+    console.info('client data: ' + JSON.stringify(data));
+  };
+
+  // Read data.
+  public readData() {
+    try {
+      // Enable listening for data read events.
+      socket.on('sppRead', this.clientNumber, this.read);
+    } catch (err) {
+      console.error('readData errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    }
+  }
+
+  // Terminate the connection.
+  public stopConnect() {
+    console.info('closeSppClient ' + this.clientNumber);
+    try {
+      // Disable listening for data read events.
+      socket.off('sppRead', this.clientNumber, this.read);
+    } catch (err) {
+      console.error('off sppRead errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    }
+    try {
+      // Disconnect from the client.
+      socket.sppCloseClientSocket(this.clientNumber);
+    } catch (err) {
+      console.error('stopConnect errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    }
+  }
+}
+
+let sppClientManager = new SppClientManager();
+export default sppClientManager as SppClientManager;
+```
+
+### Server
+```ts
+import { socket } from '@kit.ConnectivityKit'
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class SppServerManager {
+  serverNumber: number = -1;
+  clientNumber: number = -1;
+
+  // Create a listening socket on the server.
+  public startListen(): void {
+    console.info('startListen');
+
+    // Set listening parameters.
+    let option: socket.SppOptions = {
+      uuid: '00009999-0000-1000-8000-00805F9B34FB',
+      secure: false,
+      type: socket.SppType.SPP_RFCOMM
+    };
+
+    // Create a listening socket on the server. The UUID service is registered in the Bluetooth subsystem.
+    socket.sppListen("demonstration", option, (err, num: number) => {
+      if (err) {
+        console.error('sppListen errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
       } else {
-        clientNumber = clientSocketID;
-        console.info('accept the client success');
-      }
-    })
-    console.info('waiting for client connection');
-
-    // Write data to the client.
-    let array = new Uint8Array(990);
-    array[0] = 'A'.charCodeAt(0);
-    array[1] = 'B'.charCodeAt(0);
-    array[2] = 'C'.charCodeAt(0);
-    array[3] = 'D'.charCodeAt(0);
-    socket.sppWrite(clientNumber, array.buffer);
-    console.info('sppWrite success');
-
-    // Subscribe to the read request event.
-    socket.on('sppRead', clientNumber, (dataBuffer: ArrayBuffer) => {
-      const data = new Uint8Array(dataBuffer);
-      if (data != null) {
-        console.info('sppRead success, data = ' + JSON.stringify(data));
-      } else {
-        console.error('sppRead error, data is null');
+        console.info('sppListen serverNumber: ' + num);
+        this.serverNumber = num;
       }
     });
+  }
 
-    // Unsubscribe from the read request event.
-    socket.off('sppRead', clientNumber, (dataBuffer: ArrayBuffer) => {
-      const data = new Uint8Array(dataBuffer);
-      if (data != null) {
-        console.info('offSppRead success, data = ' + JSON.stringify(data));
+  // Enable listening for connection requests and wait for connections.
+  public accept() {
+    console.info('accept ' + this.serverNumber);
+    socket.sppAccept(this.serverNumber, (err, num: number) => {
+      if (err) {
+        console.error('accept errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
       } else {
-        console.error('offSppRead error, data is null');
+        console.info('accept clientNumber: ' + num);
+        this.clientNumber = num;
       }
     });
+  }
 
-    // Close the server socket.
-    socket.sppCloseServerSocket(serverNumber);
-    console.info('sppCloseServerSocket success');
+  // Send data.
+  public sendData() {
+    console.info('sendData serverNumber: ' + this.serverNumber + ' clientNumber: ' + this.clientNumber);
+    let arrayBuffer = new ArrayBuffer(2);
+    let data = new Uint8Array(arrayBuffer);
+    data[0] = 9;
+    data[1] = 8;
+    try {
+      socket.sppWrite(this.clientNumber, arrayBuffer);
+    } catch (err) {
+      console.error('sppWrite errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    }
+  }
 
-    // Close the client socket.
-    socket.sppCloseClientSocket(clientNumber);
-    console.info('sppCloseClientSocket success');
-    ```
+  // Define the callback for data read events.
+  read = (dataBuffer: ArrayBuffer) => {
+    let data = new Uint8Array(dataBuffer);
+    console.info('client data: ' + JSON.stringify(data));
+  };
 
-11. For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
+  // Read data.
+  public readData() {
+    try {
+      // Enable listening for data read events.
+      socket.on('sppRead', this.clientNumber, this.read);
+    } catch (err) {
+      console.error('readData errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    }
+  }
 
-### Connecting to the Peer Device over a Socket
-1. Import the **socket** module.
-2. Check that the SystemCapability.Communication.Bluetooth.Core capability is available.
-3. Enable Bluetooth on the device.
-4. Start Bluetooth scanning to obtain the MAC address of the peer device.
-5. Connect to the peer device.
-6. Example:
+  // Terminate the connection.
+  public stopConnect() {
+    console.info('stopConnect');
+    try {
+      // Disable listening for data read events.
+      socket.off('sppRead', this.clientNumber, this.read);
+    } catch (err) {
+      console.error('off sppRead errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    }
+    try {
+      // Disconnect from the server.
+      socket.sppCloseClientSocket(this.clientNumber);
+    } catch (err) {
+      console.error('stopConnect errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    }
+  }
 
-    ```ts
-    import { socket } from '@kit.ConnectivityKit';
-    import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+  // Close the server socket.
+  public closeSppServer() {
+    console.info('closeSppServer');
+    try {
+      // If the application no longer needs the server socket, proactively delete it.
+      socket.sppCloseServerSocket(this.serverNumber);
+    } catch (err) {
+      console.error('sppCloseServerSocket errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    }
+  }
+}
 
-    // Start Bluetooth scanning to obtain the MAC address of the peer device.
-    let deviceId = 'xx:xx:xx:xx:xx:xx';
-
-    // Connect to the peer device.
-    socket.sppConnect(deviceId, {
-      uuid: '00001101-0000-1000-8000-00805f9b34fb',
-      secure: true,
-      type: 0
-    }, (code, socketID) => {
-      if (code != null) {
-        console.error('sppConnect error, code = ' + (code as BusinessError).code);
-        return;
-      }
-      console.info('sppConnect success, socketId = ' + socketID);
-    })
-    ```
-
-7. For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
+let sppServerManager = new SppServerManager();
+export default sppServerManager as SppServerManager;
+```

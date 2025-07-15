@@ -154,7 +154,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
 
    ``` ts
    // 接口对应的.d.ts描述
-    export const startThread: (callback: () => Promise<string>) => void;
+   export const startThread: (callback: () => Promise<string>) => void;
    ```
    <!-- @[napi_thread_safety_dts](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/types/libentry1/Index.d.ts) -->
 
@@ -165,10 +165,10 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
    let callback = (): Promise<string> => {
      return new Promise((resolve) => {
        setTimeout(() => {
-           resolve("string from promise");
-         }, 5000);
-       });
-    }
-    nativeModule.startThread(callback);
+         resolve("string from promise");
+       }, 5000);
+     });
+   }
+   nativeModule.startThread(callback);
    ```
    <!-- @[napi_thread_safety_ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/Index.ets) -->

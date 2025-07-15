@@ -8,17 +8,15 @@
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
 
+描述字型绘制时所使用的属性，如大小、字体等。
+
 ## 导入模块
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## Font
-
-描述字型绘制时所使用的属性，如大小、字体等。
-
-### isSubpixel<sup>12+</sup>
+## isSubpixel<sup>12+</sup>
 
 isSubpixel(): boolean
 
@@ -42,7 +40,7 @@ font.enableSubpixel(true)
 console.info("values=" + font.isSubpixel());
 ```
 
-### isLinearMetrics<sup>12+</sup>
+## isLinearMetrics<sup>12+</sup>
 
 isLinearMetrics(): boolean
 
@@ -66,7 +64,7 @@ font.enableLinearMetrics(true)
 console.info("values=" + font.isLinearMetrics());
 ```
 
-### getSkewX<sup>12+</sup>
+## getSkewX<sup>12+</sup>
 
 getSkewX(): number
 
@@ -90,7 +88,7 @@ font.setSkewX(-1)
 console.info("values=" + font.getSkewX());
 ```
 
-### isEmbolden<sup>12+</sup>
+## isEmbolden<sup>12+</sup>
 
 isEmbolden(): boolean
 
@@ -114,7 +112,7 @@ font.enableEmbolden(true);
 console.info("values=" + font.isEmbolden());
 ```
 
-### getScaleX<sup>12+</sup>
+## getScaleX<sup>12+</sup>
 
 getScaleX(): number
 
@@ -138,7 +136,7 @@ font.setScaleX(2);
 console.info("values=" + font.getScaleX());
 ```
 
-### getHinting<sup>12+</sup>
+## getHinting<sup>12+</sup>
 
 getHinting(): FontHinting
 
@@ -161,7 +159,7 @@ let font: drawing.Font = new drawing.Font();
 console.info("values=" + font.getHinting());
 ```
 
-### getEdging<sup>12+</sup>
+## getEdging<sup>12+</sup>
 
 getEdging(): FontEdging
 
@@ -184,7 +182,7 @@ let font: drawing.Font = new drawing.Font();
 console.info("values=" + font.getEdging());
 ```
 
-### enableSubpixel
+## enableSubpixel
 
 enableSubpixel(isSubpixel: boolean): void
 
@@ -215,7 +213,7 @@ let font = new drawing.Font();
 font.enableSubpixel(true);
 ```
 
-### enableEmbolden
+## enableEmbolden
 
 enableEmbolden(isEmbolden: boolean): void
 
@@ -246,7 +244,7 @@ let font = new drawing.Font();
 font.enableEmbolden(true);
 ```
 
-### enableLinearMetrics
+## enableLinearMetrics
 
 enableLinearMetrics(isLinearMetrics: boolean): void
 
@@ -277,7 +275,7 @@ let font = new drawing.Font();
 font.enableLinearMetrics(true);
 ```
 
-### setSize
+## setSize
 
 setSize(textSize: number): void
 
@@ -308,7 +306,7 @@ let font = new drawing.Font();
 font.setSize(5);
 ```
 
-### getSize
+## getSize
 
 getSize(): number
 
@@ -332,7 +330,7 @@ font.setSize(5);
 let fontSize = font.getSize();
 ```
 
-### setTypeface
+## setTypeface
 
 setTypeface(typeface: Typeface): void
 
@@ -363,7 +361,7 @@ let font = new drawing.Font();
 font.setTypeface(new drawing.Typeface());
 ```
 
-### getTypeface
+## getTypeface
 
 getTypeface(): Typeface
 
@@ -386,7 +384,7 @@ let font = new drawing.Font();
 let typeface = font.getTypeface();
 ```
 
-### getMetrics
+## getMetrics
 
 getMetrics(): FontMetrics
 
@@ -409,7 +407,7 @@ let font = new drawing.Font();
 let metrics = font.getMetrics();
 ```
 
-### measureText
+## measureText
 
 measureText(text: string, encoding: TextEncoding): number
 
@@ -451,7 +449,7 @@ let font = new drawing.Font();
 font.measureText("drawing", drawing.TextEncoding.TEXT_ENCODING_UTF8);
 ```
 
-### measureSingleCharacter<sup>12+</sup>
+## measureSingleCharacter<sup>12+</sup>
 
 measureSingleCharacter(text: string): number
 
@@ -495,7 +493,45 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setScaleX<sup>12+</sup>
+## measureSingleCharacterWithFeatures<sup>20+</sup>
+
+measureSingleCharacterWithFeatures(text: string, features: Array\<FontFeature\>): number
+
+测量单个字符的宽度，字符带有字体特征。当前字型中的字体不支持待测量字符时，退化到使用系统字体测量字符宽度。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名 | 类型                | 必填 | 说明        |
+| ------ | ------------------- | ---- | ----------- |
+| text | string | 是 | 待测量的单个字符。字符串长度必须为1。 |
+| features | Array\<[FontFeature](arkts-apis-graphics-drawing-i.md#fontfeature20)\> | 是 | 字体特征对象数组。参数为空数组时使用TTF(TrueType Font)文件中预设的字体特征。|
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| number | 字符的宽度，浮点数。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const font = new drawing.Font();
+    font.setSize(20);
+    let fontFeatures : Array<drawing.FontFeature> = [];
+    fontFeatures.push({name: 'calt', value: 0});
+    let width = font.measureSingleCharacterWithFeatures("你", fontFeatures);
+  }
+}
+```
+
+## setScaleX<sup>12+</sup>
 
 setScaleX(scaleX: number): void
 
@@ -539,7 +575,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setSkewX<sup>12+</sup>
+## setSkewX<sup>12+</sup>
 
 setSkewX(skewX: number): void
 
@@ -583,7 +619,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setEdging<sup>12+</sup>
+## setEdging<sup>12+</sup>
 
 setEdging(edging: FontEdging): void
 
@@ -614,7 +650,7 @@ let font = new drawing.Font();
 font.setEdging(drawing.FontEdging.SUBPIXEL_ANTI_ALIAS);
 ```
 
-### setHinting<sup>12+</sup>
+## setHinting<sup>12+</sup>
 
 setHinting(hinting: FontHinting): void
 
@@ -645,7 +681,7 @@ let font = new drawing.Font();
 font.setHinting(drawing.FontHinting.FULL);
 ```
 
-### countText<sup>12+</sup>
+## countText<sup>12+</sup>
 
 countText(text: string): number
 
@@ -683,7 +719,7 @@ let resultNumber: number = font.countText('ABCDE');
 console.info("count text number: " + resultNumber);
 ```
 
-### setBaselineSnap<sup>12+</sup>
+## setBaselineSnap<sup>12+</sup>
 
 setBaselineSnap(isBaselineSnap: boolean): void
 
@@ -715,7 +751,7 @@ font.setBaselineSnap(true);
 console.info("drawing font isBaselineSnap: " + font.isBaselineSnap());
 ```
 
-### isBaselineSnap()<sup>12+</sup>
+## isBaselineSnap()<sup>12+</sup>
 
 isBaselineSnap(): boolean
 
@@ -740,7 +776,7 @@ font.setBaselineSnap(true);
 console.info("drawing font isBaselineSnap: " + font.isBaselineSnap());
 ```
 
-### setEmbeddedBitmaps<sup>12+</sup>
+## setEmbeddedBitmaps<sup>12+</sup>
 
 setEmbeddedBitmaps(isEmbeddedBitmaps: boolean): void
 
@@ -773,7 +809,7 @@ font.setEmbeddedBitmaps(false);
 console.info("draw isEmbeddedBitmaps: " + font.isEmbeddedBitmaps());
 ```
 
-### isEmbeddedBitmaps()<sup>12+</sup>
+## isEmbeddedBitmaps()<sup>12+</sup>
 
 isEmbeddedBitmaps(): boolean
 
@@ -798,7 +834,7 @@ font.setEmbeddedBitmaps(true);
 console.info("draw isEmbeddedBitmaps: " + font.isEmbeddedBitmaps());
 ```
 
-### setForceAutoHinting<sup>12+</sup>
+## setForceAutoHinting<sup>12+</sup>
 
 setForceAutoHinting(isForceAutoHinting: boolean): void
 
@@ -831,7 +867,7 @@ font.setForceAutoHinting(false);
 console.info("drawing isForceAutoHinting:  " + font.isForceAutoHinting());
 ```
 
-### isForceAutoHinting<sup>12+</sup>
+## isForceAutoHinting<sup>12+</sup>
 
 isForceAutoHinting(): boolean
 
@@ -856,7 +892,7 @@ font.setForceAutoHinting(false);
 console.info("drawing isForceAutoHinting:  " + font.isForceAutoHinting());
 ```
 
-### getWidths<sup>12+</sup>
+## getWidths<sup>12+</sup>
 
 getWidths(glyphs: Array\<number>): Array\<number>
 
@@ -898,7 +934,7 @@ for (let index = 0; index < fontWidths.length; index++) {
 }
 ```
 
-### textToGlyphs<sup>12+</sup>
+## textToGlyphs<sup>12+</sup>
 
 textToGlyphs(text: string, glyphCount?: number): Array\<number>
 
@@ -938,7 +974,7 @@ let glyphs : number[] = font.textToGlyphs(text);
 console.info("drawing text toglyphs OnTestFunction num =  " + glyphs.length );
 ```
 
-### getBounds<sup>18+</sup>
+## getBounds<sup>18+</sup>
 
 getBounds(glyphs: Array\<number>): Array\<common2D.Rect>
 
@@ -973,7 +1009,7 @@ for (let index = 0; index < fontBounds.length; index++) {
 }
 ```
 
-### getTextPath<sup>18+</sup>
+## getTextPath<sup>18+</sup>
 
 getTextPath(text: string, byteLength: number, x: number, y: number): Path
 
@@ -1024,7 +1060,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createPathForGlyph<sup>18+</sup>
+## createPathForGlyph<sup>18+</sup>
 
 createPathForGlyph(index: number): Path
 
@@ -1065,7 +1101,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setThemeFontFollowed<sup>15+</sup>
+## setThemeFontFollowed<sup>15+</sup>
 
 setThemeFontFollowed(followed: boolean): void
 
@@ -1097,7 +1133,7 @@ font.setThemeFontFollowed(true);
 console.info("font is theme font followed: " + font.isThemeFontFollowed());
 ```
 
-### isThemeFontFollowed()<sup>15+</sup>
+## isThemeFontFollowed()<sup>15+</sup>
 
 isThemeFontFollowed(): boolean
 

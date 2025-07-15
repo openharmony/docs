@@ -42,8 +42,10 @@ AI推理框架和应用开发者也可以无需调用NNRt构图接口，直接�
 
 ## 与相关Kit的关系
 
+<!--RP1-->
 Neural Network Runtime Kit可支持系统内置的MindSpore Lite推理框架（MindSpore Lite Kit），MindSpore Lite已开放了配置NNRt的Native接口。
 
 MindSpore Lite对接NNRt可无需构图，两者共享同一份模型图格式（MindIR），因此使用MindSpore Lite在NNRt上加载模型将快于其他AI推理框架。
 
 此外，MindSpore Lite也支持通用硬件CPU/GPU与NNRt AI加速硬件之间的模型异构推理功能。
+<!--RP1End-->

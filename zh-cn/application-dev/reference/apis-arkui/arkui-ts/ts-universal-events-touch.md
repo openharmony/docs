@@ -6,7 +6,7 @@
 >
 > 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 事件分发流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md)。
+> 事件分发可参考[事件交互流程](../../../ui/arkts-interaction-basic-principles.md#事件交互流程)，手势事件处理流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md)。
 >
 > 如需绑定手势事件可参考[绑定手势方法](./ts-gesture-settings.md)。
 
@@ -14,7 +14,7 @@
 
 onTouch(event: (event: TouchEvent) => void): T
 
-手指触摸动作触发该回调。鼠标左键按下时对应的事件也会转化成触摸事件并触发该回调。
+手指触摸动作触发该回调。触摸事件默认冒泡，事件会被多个组件消费，如果要阻止冒泡，参考[TouchEvent](#touchevent对象说明)的stopPropagation方法。鼠标左键按下时对应的事件也会转化成触摸事件并触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

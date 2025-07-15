@@ -56,6 +56,37 @@ import { systemSoundManager } from '@kit.AudioKit';
 | SYSTEM_TONE_TYPE_SIM_CARD_1     | 1   | sim卡2的短信提示音。 |
 | SYSTEM_TONE_TYPE_NOTIFICATION   | 32  | 通知提示音。     |
 
+## MediaType<sup>20+</sup>
+
+枚举，媒体类型。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 名称                            | 值   | 说明         |
+| ------------------------------- |-----|------------|
+| AUDIO      | 0   | 音频类型。 |
+| VIDEO       | 1   | 视频类型。 |
+
+## SystemSoundError<sup>20+</sup>
+
+枚举，系统声音错误类型。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 名称                         | 值   | 说明         |
+| -----------------------------|-----|------------|
+| ERROR_IO                     | 5400103  | IO错误。     |
+| ERROR_OK                     | 20700000 | 无错误。     |
+| ERROR_TYPE_MISMATCH          | 20700001 | 类型不匹配错误。     |
+| ERROR_UNSUPPORTED_OPERATION  | 20700003 | 不支持的操作错误。     |
+| ERROR_DATA_TOO_LARGE         | 20700004 | 数据大小超限错误。     |
+| ERROR_TOO_MANY_FILES         | 20700005 | 文件个数超过限制错误。     |
+| ERROR_INSUFFICIENT_ROM       | 20700006 | ROM空间不足错误。     |
+| ERROR_INVALID_PARAM          | 20700007 | 参数非法错误。     |
 
 ## ToneCustomizedType<sup>12+</sup>
 
@@ -323,6 +354,68 @@ getCategory(): number
 
 ```ts
 toneAttrs.getCategory();
+```
+
+### setMediaType<sup>20+</sup>
+
+setMediaType(type: MediaType): void
+
+设置铃声类型。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名      | 类型      | 必填 | 说明       |
+|----------| ---------| ---- |----------|
+| type | [MediaType](#mediatype20)   | 是   | 媒体类型。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+|-------| -------------------- |
+| 202   | Caller is not a system application. |
+
+**示例：**
+
+```ts
+let type: systemSoundManager.MediaType = systemSoundManager.MediaType.VIDEO; // 需更改为实际所需类型。
+let toneAttrs = systemSoundManager.createCustomizedToneAttrs();
+toneAttrs.setMediaType(type);
+```
+
+### getMediaType<sup>20+</sup>
+
+getMediaType(): MediaType
+
+获取铃声类型。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**返回值：**
+
+| 类型    | 说明     |
+|--------|--------|
+| [MediaType](#mediatype20) | 媒体类型，如果应用未调用过setMediaType设置mediatype，则此函数返回的默认值为AUDIO。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID   | 错误信息              |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+
+**示例：**
+
+```ts
+toneAttrs.getMediaType();
 ```
 
 ## ToneAttrsArray<sup>12+</sup>
@@ -1641,7 +1734,7 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, externalUri: string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -1650,6 +1743,9 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, externalUri: string
 | 401     | The parameters check failed. |
 | 5400102     | Operation is not allowed, e.g. ringtone to add is not customized. |
 | 5400103 | I/O error. |
+| 20700004 | Data size exceeds the limit. |
+| 20700005 | The number of files exceeds the limit. |
+| 20700006 | Insufficient ROM space. |
 
 **示例：**
 
@@ -1708,7 +1804,7 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -1717,6 +1813,9 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?
 | 401     | The parameters check failed. |
 | 5400102     | Operation is not allowed, e.g. ringtone to add is not customized. |
 | 5400103 | I/O error. |
+| 20700004 | Data size exceeds the limit. |
+| 20700005 | The number of files exceeds the limit. |
+| 20700006 | Insufficient ROM space. |
 
 **示例：**
 
@@ -2066,6 +2165,151 @@ systemSoundManagerInstance.openToneHaptics(context, hapticsUri).then((value: num
   console.info(`Promise returned to indicate the value of fd.`);
 }).catch ((err: BusinessError) => {
   console.error(`Failed to open haptics ${err}`);
+});
+```
+
+### getCurrentRingtoneAttribute<sup>20+</sup>
+
+getCurrentRingtoneAttribute(type: RingtoneType): Promise&lt;ToneAttrs&gt;
+
+获取正在使用的铃声属性。使用Promise异步回调。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                         |
+| -------- |-------------------------------------| ---- | --------------------------- |
+| type     |[RingtoneType](#ringtonetype)        | 是   | 被设置的系统铃声的类型。  |
+
+**返回值：**
+
+| 类型                    | 说明             |
+|-----------------------|----------------|
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise对象，返回系统铃声的属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息              |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 5400103 | I/O error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
+
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
+systemSoundManagerInstance.getCurrentRingtoneAttribute(type).then((value: systemSoundManager.ToneAttrs) => {
+  console.info(`Promise returned to indicate that the value of the attributes of the current ringtone is obtained.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to get the current ringtone attribute ${err}`);
+});
+```
+
+### openToneList<sup>20+</sup>
+
+openToneList(uriList: Array\<string>): Promise\<Array\<[string, number, SystemSoundError]>>
+
+获取系统铃声的属性列表。使用Promise异步回调。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名   | 类型       | 必填 | 说明                    |
+| -------- | ---------| ---- |-----------------------|
+| uriList  | Array\<string>| 是   | 要打开的uri列表，不能超过1024个。           |
+
+**返回值：**
+
+| 类型                    | 说明             |
+|-----------------------|----------------|
+| Promise\<Array\<[string, number, [SystemSoundError](#systemsounderror20)]>> | Promise对象，Promise用于返回此操作的结果，返回Array内第一个参数uri，第二个参数fd，第三个参数为此uri打开的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
+
+| 错误码ID | 错误信息              |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 20700007 | Parameter is invalid, e.g. the length of uriList is too long. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let ringPath: string = '';
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
+let result: systemSoundManager.ToneAttrs = systemSoundManagerInstance.getCurrentRingtoneAttribute(systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0 );
+ringPath = result.getUri();
+
+systemSoundManagerInstance.openToneList([ringPath]).then((value: systemSoundManager.ToneAttrsArray) => {
+  console.info(`Promise returned to indicate that the value of the attribute list of system ringtones is obtained.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to get the attribute list of system ringtones ${err}`);
+});
+```
+
+### removeCustomizedToneList<sup>20+</sup>
+
+removeCustomizedToneList(uriList: Array\<string>): Promise\<Array\<[string, SystemSoundError]>>
+
+批量删除自定义铃音列表。使用Promise异步回调。
+
+**系统接口：** 该接口为系统接口。
+
+**需要权限：** ohos.permission.WRITE_RINGTONE
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名   | 类型       | 必填 | 说明                               |
+| -------- | ---------| ---- |----------------------------------|
+| uriList  | Array\<string>| 是   | 要删除的uri列表，不能超过1024个。           |
+
+**返回值：**
+
+| 类型                    | 说明             |
+|-----------------------|----------------|
+| Promise\<Array\<[string, [SystemSoundError](#systemsounderror20)]>> | Promise对象，Promise用于返回此操作的结果，返回Array内第一个参数uri，第二个参数为此uri删除结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
+
+| 错误码ID | 错误信息              |
+| ------- | --------------------- |
+| 201     | Permission denied. |
+| 202 | Caller is not a system application. |
+| 20700007 | Parameter is invalid, e.g. the length of uriList is too long. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let ringPath: string = '';
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
+let result: systemSoundManager.ToneAttrs = systemSoundManagerInstance.getCurrentRingtoneAttribute(systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0 );
+ringPath = result.getUri();
+
+systemSoundManagerInstance.removeCustomizedToneList([ringPath]).then((value: systemSoundManager.ToneAttrsArray) => {
+  console.info(`Promise returned to indicate that the customized tone list has been deleted.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to delete customized tone list ${err}`);
 });
 ```
 

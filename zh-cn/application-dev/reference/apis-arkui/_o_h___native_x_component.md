@@ -330,7 +330,7 @@ typedef struct OH_NativeXComponent_ExtraMouseEventInfo OH_NativeXComponent_Extra
 
 > **说明：**
 >
-> 此类型的具体定义并不直接暴露。可调用[OH_NativeXComponent_GetMouseEventModifierKeyStates](#oh_nativexcomponent_getmouseeventmodifierkeystates)接口以获取该类型实例中的内容。
+> 此类型的具体定义并不直接暴露。可调用[OH_NativeXComponent_GetMouseEventModifierKeyStates](#oh_nativexcomponent_getmouseeventmodifierkeystates)接口从中获取Ctrl键、Shift键和Alt键的按压状态。
 
 **起始版本：**
 
@@ -1125,7 +1125,7 @@ int32_t OH_NativeXComponent_GetHistoricalPoints (OH_NativeXComponent * component
 
 **描述:**
 
-获取ArkUI XComponent的历史接触点。
+获取当前XComponent触摸事件的历史点信息。由于部分输入设备上报触点的频率非常高（最高可达每1 ms上报一次），而对输入事件的响应通常是为了使UI界面发生变化以响应用户操作，如果将触摸事件按照上报触点的频率如此高频率上报给应用，大多会造成冗余，因此触摸事件在一帧内只会上报一次给应用。在当前帧内上报的触点均作为历史点保存，如果应用需要直接处理这些数据，可调用该接口获取历史点信息。
 
 **参数:**
 
@@ -2409,7 +2409,9 @@ int32_t OH_NativeXComponent_GetMouseEventModifierKeyStates(OH_NativeXComponent_E
 
 > **说明：**
 >
-> 调用此接口获取的功能键按状态信息存储在一个64位无符号整数中，应使用[ArkUI_ModifierKeyName](./_ark_u_i___event_module.md#arkui_modifierkeyname)类型的枚举值与获取的64位无符号整数进行与（&）位运算操作来获取某一功能按键的按压状态，位运算的结果为0表示该功能键未按下，位运算的结果为1表示该功能键按下。
+> 调用此接口能够获取Ctrl键、Shift键和Alt键的按压状态。
+>
+> 调用此接口获取的功能键按状态信息存储在一个64位无符号整数中，应使用[ArkUI_ModifierKeyName](./_ark_u_i___event_module.md#arkui_modifierkeyname)类型的按键名枚举值与获取的64位无符号整数进行与（&）位运算操作来获取对应按键的按压状态，位运算的结果为0表示该功能键未按下，位运算的结果为1表示该功能键按下。例如，将[ArkUI_ModifierKeyName](./_ark_u_i___event_module.md#arkui_modifierkeyname)的ARKUI_MODIFIER_KEY_CTRL枚举值和获取的keys进行与（&）位运算能够获取Ctrl键的按压状态。
 >
 > 传入此接口的component参数或keys参数为空指针时，为传入参数异常情况。
 
@@ -3383,7 +3385,7 @@ OH_NativeXComponent_TouchEventType OH_NativeXComponent_TouchEvent::type = OH_Nat
 ### type [3/3]
 
 ```
-OH_NativeXComponent_HistoricalPoint OH_NativeXComponent_TouchEvent::type = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN
+OH_NativeXComponent_TouchEventType OH_NativeXComponent_HistoricalPoint::type = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN
 ```
 
 **描述:**

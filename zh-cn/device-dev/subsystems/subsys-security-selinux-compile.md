@@ -16,11 +16,11 @@ OpenHarmony SELinux策略编译主要包括以下流程：
 
 ### 策略加载
 OpenHarmony SELinux策略加载主要经过以下流程：
-1. init进程在启动后，通过开源软件libselinux提供的用户态操作内核态的接口将selinux二进程策略文件加载到内核。
+1. init进程在启动后，通过开源软件libselinux提供的用户态操作内核态的接口将selinux二进制策略文件加载到内核。
 2. 然后根据配置文件`/system/etc/selinux/config`中SELINUX字段的值设置运行模式，`SELINUX=enforcing`时，设置为强制模式，`SELINUX=permissive`时，设置为宽容模式。从OpenHarmony 3.2开始，OpenHarmony SELinux默认以强制模式运行。
 
 ## contexts编译与加载
-OpenHarmony SELinux contexts包括`file_contexts`、`hdf_service_contexts`、`sevice_contexts`、`parameter_contexts`、`sehap_contexts`。这些文件不随策略编译而编译，需要单独归档。总体流程如图：
+OpenHarmony SELinux contexts包括`file_contexts`、`hdf_service_contexts`、`service_contexts`、`parameter_contexts`、`sehap_contexts`。这些文件不随策略编译而编译，需要单独归档。总体流程如图：
 
 **图2** OpenHarmony SELinux contexts编译和加载流程图
 
@@ -37,8 +37,8 @@ OpenHarmony SELinux contexts编译主要包括以下流程：
 OpenHarmony SELinux contexts加载按类型不同，加载方式不同：
 | contexts类型 | 加载方 | 用途 |
 | -------- | -------- | -------- |
-| file_contexts | 需要更新文件标签的进程 | 更新文件标签 |
-| hdf_service_contexts | hdf_devmgr |管控HDF注册与获取 |
-| sevice_contexts | samgr | 管控SA注册与获取 |
-| parameter_contexts | init | 管控参数设置 |
-| sehap_contexts | appspawn<br>installs | appspawn：设置应用标签<br>installs：设置应用数据标签 |
+| file_contexts | 需要更新文件标签的进程 | 更新文件标签。 |
+| hdf_service_contexts | hdf_devmgr |管控HDF注册与获取。 |
+| service_contexts | samgr | 管控SA注册与获取。 |
+| parameter_contexts | init | 管控参数设置。 |
+| sehap_contexts | appspawn<br>installs | appspawn：设置应用标签。<br>installs：设置应用数据标签。 |

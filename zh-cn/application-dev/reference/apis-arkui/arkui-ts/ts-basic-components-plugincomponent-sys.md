@@ -34,10 +34,14 @@ PluginComponent(options: PluginComponentOptions)
 
 定义用于构造插件组件的选项。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 | 参数       | 类型   | 描述                        |
 | ---------- | ------ | --------------------------- |
-| template   | [PluginComponentTemplate](#plugincomponenttemplate9类型说明) | 组件模板，用于跟提供方定义的组件绑定。                |
-| data       | any    | 传给插件组件提供方使用的数据。 |
+| template<sup>9+</sup>   | [PluginComponentTemplate](#plugincomponenttemplate9类型说明) | 组件模板，用于跟提供方定义的组件绑定。                |
+| data<sup>9+</sup>       | any    | 传给插件组件提供方使用的数据。 |
 
 ## PluginComponentTemplate<sup>9+</sup>类型说明
 
@@ -45,7 +49,9 @@ PluginComponent(options: PluginComponentOptions)
 | ---------- | ------ | --------------------------- |
 | source     | string | 组件模板名。                |
 | bundleName | string | 提供方Ability的bundleName。 |
+
 ## 属性
+
 必须显式设置组件宽高为非0有效值。
 
 **说明：**
@@ -111,10 +117,14 @@ onError(callback:&nbsp;PluginErrorCallback)
 
 发生错误时提供的数据。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 | 参数       | 类型   | 描述                        |
 | ---------- | ------ | -------------------------- |
-| errcode    | number | 错误码。                    |
-| msg        | string | 错误信息。                  |
+| errcode<sup>9+</sup>    | number | 错误码。                    |
+| msg<sup>9+</sup>        | string | 错误信息。                  |
 
 错误码1为默认错误码，错误信息和处理建议详见下表：
 
@@ -186,7 +196,7 @@ onError(callback:&nbsp;PluginErrorCallback)
             console.info("onComplete");
           })
           .onError((info: Info) => {
-            console.info("onComplete" + info.errcode + ":" + info.msg);
+            console.error("onError" + info.errcode + ":" + info.msg);
           })
       }
       .width('100%')

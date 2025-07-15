@@ -9,9 +9,11 @@
 
 ## APIs
 
-RotationGesture(value?: { fingers?: number, angle?: number })
+RotationGesture(value?: { fingers?: number, angle?: number, isFingerCountLimited?: boolean })
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -19,10 +21,16 @@ RotationGesture(value?: { fingers?: number, angle?: number })
 | -------- | -------- | -------- | -------- |
 | fingers | number | No| Minimum number of fingers to trigger a rotation. The value ranges from 2 to 5.<br>Default value: **2**<br>While more fingers than the minimum number can be pressed to trigger the gesture, only the first two fingers participate in gesture calculation.|
 | angle | number | No| Minimum degree that can trigger the rotation gesture.<br>Default value: **1**<br>**NOTE**<br>If the value is less than or equal to 0 or greater than 360, it will be converted to the default value.|
-| isFingerCountLimited<sup>15+</sup> | boolean | No| Whether to enforce the exact number of fingers touching the screen. With the value **true**, the gesture recognition fails if the number of fingers touching the screen does not match the configured value of **fingers**. The gesture can only be successfully recognized if the number of fingers equals the configured minimum and the swipe distance meets the threshold. Note that only the first two fingers that touch the screen are considered for the gesture. If one of these fingers is lifted, the gesture recognition fails.<br>For gestures that have already been successfully recognized, changing the number of fingers touching the screen will not trigger the[onActionUpdate](ts-basic-gestures-rotationgesture.md#events) event, but the [onActionEnd](ts-basic-gestures-rotationgesture.md#events) event can still be triggered.<br>Default value: **false**|
+| isFingerCountLimited<sup>15+</sup> | boolean | No| Whether to enforce the exact number of fingers touching the screen. With the value **true**, the gesture recognition fails if the number of fingers touching the screen does not match the configured value of **fingers**. The gesture can only be successfully recognized if the number of fingers equals the configured minimum and the swipe distance meets the threshold. Note that only the first two fingers that touch the screen are considered for the gesture. If one of these fingers is lifted, the gesture recognition fails.<br>For gestures that have already been successfully recognized, changing the number of fingers touching the screen will not trigger the[onActionUpdate](ts-basic-gestures-rotationgesture.md#events) event, but the [onActionEnd](ts-basic-gestures-rotationgesture.md#events) event can still be triggered.<br>**true**: Enforce the exact number of fingers touching the screen.<br>**false**: Do not enforce the exact number of fingers touching the screen.<br>Default Value: **false**.|
 
 
 ## Events
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+>  **NOTE**
+>
+>  In **fingerList** of [GestureEvent](ts-gesture-settings.md#gestureevent), the index of a finger corresponds to its position, that is, the ID of a finger in **fingerList[index]** refers to its index. If a finger is pressed first and does not participate in triggering of the current gesture, its position in **fingerList** is left empty. You are advised to use **fingerInfos** when possible.
 
 | Name | Description|
 | -------- | -------- |
@@ -30,9 +38,11 @@ RotationGesture(value?: { fingers?: number, angle?: number })
 | onActionUpdate(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the user moves the finger in a rotation gesture on the screen.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | onActionEnd(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the finger used for the rotation gesture is lifted.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | onActionCancel(event: () =&gt; void) | Triggered when a tap cancellation event is received after the rotation gesture is recognized. No gesture event information is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| onActionCancel(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void)<sup>18+</sup> | Triggered when a tap cancellation event is received after the rotation gesture is recognized. Gesture event information is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| onActionCancel(event: Callback<[GestureEvent](ts-gesture-settings.md#gestureevent)>)<sup>18+</sup> | Triggered when a tap cancellation event is received after the rotation gesture is recognized. Gesture event information is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## Attributes
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
@@ -48,8 +58,8 @@ This example demonstrates the recognition of a two-finger rotation gesture using
 @Entry
 @Component
 struct RotationGestureExample {
-  @State angle: number = 0
-  @State rotateValue: number = 0
+  @State angle: number = 0;
+  @State rotateValue: number = 0;
 
   build() {
     Column() {

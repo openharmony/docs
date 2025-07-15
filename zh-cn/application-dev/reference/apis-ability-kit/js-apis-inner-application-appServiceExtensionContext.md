@@ -123,7 +123,7 @@ export default class MyAppServiceExtensionAbility extends AppServiceExtensionAbi
 
 ### connectServiceExtensionAbility
 
-connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
+connectServiceExtensionAbility(want: Want, callback: ConnectOptions): number
 
 将当前AppServiceExtensionAbility连接到一个ServiceExtensionAbility，通过返回的proxy与ServiceExtensionAbility进行通信，以使用ServiceExtensionAbility对外提供的能力。仅支持在主线程调用。
 
@@ -134,7 +134,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要连接的Ability的信息，如Ability名称，Bundle名称等。 |
-| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | ConnectOptions类型的回调函数，返回服务连接成功、连接失败、断开的信息。 |
+| callback | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | ConnectOptions类型的回调函数，返回服务连接成功、连接失败、断开的信息。 |
 
 **返回值：**
 
@@ -174,7 +174,7 @@ class AppServiceExtension extends AppServiceExtensionAbility {
       bundleName: 'com.example.myapp',
       abilityName: 'MyAbility'
     };
-    let options: common.ConnectOptions = {
+    let callback: common.ConnectOptions = {
       onConnect(elementName, remote) {
         commRemote = remote;
         hilog.info(0x0000, TAG, '----------- onConnect -----------');
@@ -189,7 +189,7 @@ class AppServiceExtension extends AppServiceExtensionAbility {
     let connection: number;
 
     try {
-      connection = this.context.connectServiceExtensionAbility(want, options);
+      connection = this.context.connectServiceExtensionAbility(want, callback);
     } catch (paramError) {
       // 处理入参错误异常
       hilog.error(0x0000, TAG, `error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);

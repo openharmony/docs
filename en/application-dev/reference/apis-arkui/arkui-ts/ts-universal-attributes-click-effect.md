@@ -1,6 +1,6 @@
-# Click Effect
+# Click Feedback Effect
 
-You can set the click effect for a component to define how it behaves when clicked.
+You can set the click feedback effect for a component to define its visual response when it is clicked.
 
 >  **NOTE**
 >
@@ -8,9 +8,9 @@ You can set the click effect for a component to define how it behaves when click
 
 ## clickEffect
 
-clickEffect(value: ClickEffect | null)
+clickEffect(value: ClickEffect | null): T
 
-Click effect of the component.
+Sets the click feedback effect of the component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -20,13 +20,19 @@ Click effect of the component.
 
 | Name| Type                                                 | Mandatory| Description                                                        |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ClickEffect](#clickeffect) \| null | Yes  | Click effect of the component.<br>**NOTE**<br>The click effect is revoked when this attribute is set to **null**.<br>Avoid using this attribute in scenarios where the component size dynamically changes.<br>This attribute is not supported when the component cannot trigger a universal event.|
+| value  | [ClickEffect](#clickeffect) \| null | Yes  | Click feedback effect of the component.<br>**NOTE**<br>Use **null** to disable the click feedback effect.<br>Avoid using this feature in scenarios where the component size dynamically changes.<br>This attribute is not supported when the component cannot trigger universal events.<br>After the click feedback effect triggers scaling, the touch point may fall outside the control, making the component unresponsive to gesture events.|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## clickEffect<sup>18+</sup>
 
-clickEffect(effect: Optional\<ClickEffect | null>)
+clickEffect(effect: Optional\<ClickEffect | null>): T
 
-Click effect of the component. Compared to [clickEffect](#clickeffect), this API supports the **undefined** type for the **effect** parameter.
+Sets the click feedback effect of the component. Compared with [clickEffect](#clickeffect), this API supports the **undefined** type for the **effect** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -36,7 +42,13 @@ Click effect of the component. Compared to [clickEffect](#clickeffect), this API
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| effect | Optional\<[ClickEffect](#clickeffect) \| null> | Yes  | Click effect of the component.<br>**NOTE**<br>You can remove the click effect by setting this attribute to **undefined** or **null**.<br>Avoid using this attribute in scenarios where the component size dynamically changes.<br>This attribute is not supported when the component cannot trigger a universal event.|
+| effect | Optional\<[ClickEffect](#clickeffect) \| null> | Yes  | Click feedback effect of the component.<br>**NOTE**<br>Use **undefined** or **null** to disable the click feedback effect.<br>Avoid using this feature in scenarios where the component size dynamically changes.<br>This attribute is not supported when the component cannot trigger universal events.<br>After the click feedback effect triggers scaling, the touch point may fall outside the control, making the component unresponsive to gesture events.|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 ## ClickEffect
 
@@ -44,12 +56,12 @@ Click effect of the component. Compared to [clickEffect](#clickeffect), this API
 
 | Name | Type                                                   | Mandatory| Description                                                        |
 | ----- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| level | [ClickEffectLevel](ts-appendix-enums.md#clickeffectlevel10) | Yes  | Click effect of the component.<br>**NOTE**<br>If **level** is set to **undefined** or **null**, the click effect corresponding to **ClickEffectLevel.LIGHT** will be used. For details about the zoom ratio, see the description of **scale**.|
-| scale | number                                                      | No  | Zoom ratio. This parameter works based on the setting of **ClickEffectLevel**.<br>**NOTE**<br>The default value of this parameter varies by the value of **level**.<br>If **level** is set to **ClickEffectLevel.LIGHT**, the default value is **0.90**.<br>If **level** is set to **ClickEffectLevel.MIDDLE** or **ClickEffectLevel.HEAVY**, the default value is **0.95**.<br>If **level** is set to **undefined** or **null** (both of which evaluate to **ClickEffectLevel.LIGHT**), the default value is **0.90**.<br>If **scale** is set to **undefined** or **null**, the default zoom ratio for the set level will be used.<br>|
+| level | [ClickEffectLevel](ts-appendix-enums.md#clickeffectlevel10) | Yes  | Click feedback effect of the component.<br>**NOTE**<br>When **level** is **undefined** or **null**, **ClickEffect** uses the effect corresponding to **ClickEffectLevel.LIGHT** with a scaling ratio as described below.|
+| scale | number                                                      | No  | Custom scaling ratio for fine-tuning the click feedback effect.<br>**NOTE**<br>The default value varies depending on the value of **level**:<br>**ClickEffectLevel.LIGHT**: **0.90**.<br>**ClickEffectLevel.MIDDLE** or **ClickEffectLevel.HEAVY**: **0.95**.<br>**undefined** or **null** (treated as **ClickEffectLevel.LIGHT**): **0.90**.<br>When **scale** is set to **undefined** or **null**, the default scaling ratio for the current **level** is used.|
 
 ## Example
 
-This example demonstrates the click effects on different types of components.
+This example demonstrates the click feedback effects on different types of components.
 
 ```ts
 // xxx.ets
@@ -65,7 +77,7 @@ struct ToggleExample {
           .selectedColor('#007DFF')
           .switchPointColor('#FFFFFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
 
         Toggle({ type: ToggleType.Switch, isOn: true })
@@ -73,7 +85,7 @@ struct ToggleExample {
           .selectedColor('#007DFF')
           .switchPointColor('#FFFFFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
       }
 
@@ -84,7 +96,7 @@ struct ToggleExample {
           .size({ width: 20, height: 20 })
           .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
 
         Toggle({ type: ToggleType.Checkbox, isOn: true })
@@ -92,7 +104,7 @@ struct ToggleExample {
           .size({ width: 20, height: 20 })
           .selectedColor('#007DFF')
           .onChange((isOn: boolean) => {
-            console.info('Component status:' + isOn)
+            console.info('Component status:' + isOn);
           })
       }
 
@@ -104,7 +116,7 @@ struct ToggleExample {
         .clickEffect({level:ClickEffectLevel.HEAVY})
         .selectedColor('rgba(0,125,255,0.20)')
         .onChange((isOn: boolean) => {
-          console.info('Component status:' + isOn)
+          console.info('Component status:' + isOn);
         })
 
         Toggle({ type: ToggleType.Button, isOn: true }) {
@@ -113,7 +125,7 @@ struct ToggleExample {
         .clickEffect({level:ClickEffectLevel.HEAVY, scale: 0.5})
         .selectedColor('rgba(0,125,255,0.20)')
         .onChange((isOn: boolean) => {
-          console.info('Component status:' + isOn)
+          console.info('Component status:' + isOn);
         })
       }
     }.width('100%').padding(24)
