@@ -746,6 +746,7 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 **示例：**
 
+ArkTS1.1示例：
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -762,6 +763,30 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
               console.log('newProgress:' + event.newProgress);
             }
           })
+      }
+    }
+  }
+  ```
+
+ArkTS1.2示例：
+  ```ts
+  // xxx.ets
+  import webview from '@ohos.web.webview';
+  import { Entry, Column, Component, Web, OnProgressChangeEvent } from '@ohos.arkui.component';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController(undefined);
+
+    build() {
+      Column(undefined) {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onProgressChange((event: OnProgressChangeEvent): void => {
+              if (event) {
+                console.log('newProgress:' + event.newProgress);
+              }
+            })
       }
     }
   }
