@@ -65,7 +65,6 @@ HiTraceChain是基于云计算分布式跟踪调用链思想，在端侧业务�
 
     ```
    // CMakeLists.txt
-   # the minimum version of CMake.
    cmake_minimum_required(VERSION 3.4.1)
    project(MyApplication)
    
