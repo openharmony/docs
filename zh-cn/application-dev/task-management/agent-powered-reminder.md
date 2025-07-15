@@ -28,6 +28,8 @@
 
 <!--RP3--><!--RP3End-->
 
+## 与相关Kit的关系
+- 代理提醒使用 Notification Kit 发布通知，通知样式请参考[Notification Kit通知样式](../notification/notification-overview.md#通知样式)中文本类型。
 
 ## 接口说明
 
@@ -189,6 +191,3 @@
 - [后台代理提醒（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ReminderAgentManager)
 
 - [翻页时钟（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/FlipClock)
-
-## 与相关Kit的关系
-- 代理提醒使用 Notification Kit 发布通知，通知样式请参考[通知样式](../notification/notification-overview.md#通知样式)中文本类型。
