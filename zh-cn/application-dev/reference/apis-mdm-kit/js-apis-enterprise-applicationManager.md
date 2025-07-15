@@ -330,7 +330,7 @@ try {
 
 addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, disallowModify: boolean): void
 
-添加开机自启动应用名单,设置用户禁止取消应用自启。该能力当前仅支持2in1设备。
+添加开机自启动应用名单，设置用户禁止取消应用自启。该能力当前仅支持2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -343,7 +343,7 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, di
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                         |
 | autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。数组长度上限为10。 |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
-| disallowModify | boolean | 是   | true 禁止用户取消自启，false 允许用户取消自启<br>配置后，用户可通过设置-应用和元服务-应用启动管理，管理应用的自启动 |
+| disallowModify | boolean | 是   | true禁止用户取消自启，false允许用户取消自启<br>配置后，用户可通过设置-应用和元服务-应用启动管理，管理应用的自启动。 |
 
 **错误码**：
 
@@ -361,17 +361,17 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, di
 import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
-// 用户可根据需要，自行修改
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
-// 用户可根据需要，自行修改
 let autoStartApps: Array<Want> = [
+  // 需根据实际情况进行替换
   {
     bundleName: 'com.example.autoStartApplication',
-    abilityName: 'EntryAbility',
+    abilityName: 'EntryAbility'
   }
 ];
 
@@ -416,18 +416,18 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number)
 ```ts
 import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
-
-// 用户可根据需要，自行修改 
+ 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
-// 用户可根据需要，自行修改
 let autoStartApps: Array<Want> = [
+  // 需根据实际情况进行替换
   {
     bundleName: 'com.example.autoStartApplication',
-    abilityName: 'EntryAbility',
+    abilityName: 'EntryAbility'
   }
 ];
 
@@ -478,10 +478,10 @@ getAutoStartApps(admin: Want, accountId: number): Array\<Want>
 import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
-// 用户可根据需要，自行修改
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -514,7 +514,7 @@ isModifyAutoStartAppsDisallowed(admin: Want, autoStartApp: Want, accountId: numb
 
 | 类型                                                         | 说明                 |
 | ------------------------------------------------------------ | -------------------- |
-| boolean | 是否禁止取消应用自启。true 禁止取消自启，false 允许取消自启|
+| boolean | 是否禁止取消应用自启。true禁止取消自启，false允许取消自启。|
 
 **错误码**：
 
@@ -532,16 +532,16 @@ isModifyAutoStartAppsDisallowed(admin: Want, autoStartApp: Want, accountId: numb
 import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
-// 用户可根据需要，自行修改
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
-// 用户可根据需要，自行修改
 let autoStartApp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.autoStartApplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -621,7 +621,7 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, di
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | bundleNames    | Array&lt;string&gt;                                     | 是   | 应用包名数组，指定需要添加保活的应用，最大支持5个。                                   |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
-| disallowModify | boolean | 是   | true 禁止用户取消保活，false 允许用户取消保活<br>配置后，用户可在toB设备中，通过设置-应用和元服务-应用常驻管理，管理应用常驻保活 |
+| disallowModify | boolean | 是   | true禁止用户取消保活，false 允许用户取消保活<br>配置后，用户可在toB设备中，通过设置-应用和元服务-应用常驻管理，管理应用常驻保活。 |
 
 **错误码**：
 
@@ -642,9 +642,12 @@ import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+
+// 需根据实际情况进行替换
 let bundleNames: Array<string> = ['com.example.myapplication'];
 
 try {
@@ -781,7 +784,7 @@ isModifyKeepAliveAppsDisallowed(admin: Want, accountId: number, bundleName: stri
 
 | 类型                                                         | 说明                 |
 | ------------------------------------------------------------ | -------------------- |
-| boolean | 是否禁止取消应用保活。true 禁止取消保活，false 允许取消保活|
+| boolean | 是否禁止取消应用保活。true禁止取消保活，false允许取消保活。|
 
 **错误码**：
 
@@ -799,13 +802,13 @@ isModifyKeepAliveAppsDisallowed(admin: Want, accountId: number, bundleName: stri
 import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
-// 用户可根据需要，自行修改
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
-// 用户可根据需要，自行修改
+// 需根据实际情况进行替换
 let keepAliveApp: string = 'com.example.keepAliveApplication'
 
 try {
