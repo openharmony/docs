@@ -483,9 +483,9 @@ let wantTemp: Want = {
 
 try {
   let res: Array<Want> = applicationManager.getAutoStartApps(wantTemp, 100);
-  console.info(`Succeeded in adding auto start apps: ${JSON.stringify(res)}`);
+  console.info(`Succeeded in getting auto start apps: ${JSON.stringify(res)}`);
 } catch(err) {
-  console.error(`Failed to auto start apps. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to get auto start apps. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
