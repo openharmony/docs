@@ -244,6 +244,7 @@ Repeat数据源参数联合类型。
 | reusable<sup>18+</sup> | boolean | 否   | 是否开启复用功能。**注意：** 动画过程中即使reusable设置为true，Repeat子组件也不会复用。<br>默认值：true<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | onLazyLoading<sup>19+</sup> | (index: number) => void | 否   | 数据懒加载函数，向指定的数据源index中写入数据。<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 | onTotalCount<sup>19+</sup> | () => number | 否   | 数据项总数计算函数，返回值可以不等于数据源长度。推荐使用onTotalCount代替totalCount。同时设置totalCount与onTotalCount时，忽略totalCount。<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
+| disableVirtualScroll<sup>20+</sup> | boolean | 否 | 使用全量加载模式渲染数组。<br>默认值：false<br>该接口仅适用于ArkTS1.2。 |
 
 ### totalCount：期望加载的数据长度
 
