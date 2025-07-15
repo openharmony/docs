@@ -1,10 +1,11 @@
-# @ohos.selectionInput.SelectionExtensionAbility (划词扩展能力)
+# @ohos.selectionInput.SelectionExtensionAbility (划词扩展能力)(系统接口)
 
 本模块提供划词扩展功能，用于用户通过鼠标、触控板等方式选择文本后的搜索、翻译等场景。
 
 > **说明：**
 >
-> 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -19,7 +20,7 @@ import { SelectionExtensionAbility } from '@kit.BasicServicesKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [SelectionExtensionContext](./js-apis-selectionInput-selectionExtensionContext.md) | 否 | 否 | SelectionExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。 |
+| context | [SelectionExtensionContext](./js-apis-selectionInput-selectionExtensionContext-sys.md) | 否 | 否 | SelectionExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。 |
 
 ### onConnect
 
