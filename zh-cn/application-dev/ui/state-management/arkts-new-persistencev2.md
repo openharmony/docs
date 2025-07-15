@@ -193,7 +193,7 @@ static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 
 9、connect和globalConnect不建议混用，如果混用，key不能一样，否则应用crash。
 
-10、PersistenceV2必须与UI实例关联，持久化操作需在UI实例初始化完成后调用（即[loadContent](../../reference/apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)回调触发后）。
+10、PersistenceV2必须与UI实例关联，持久化操作需在UI实例初始化完成后调用，即loadContent中调用。
 ```ts
 // EntryAbility.ets
 // 以下为代码片段，需要开发者自己在EntryAbility.ets中补全
