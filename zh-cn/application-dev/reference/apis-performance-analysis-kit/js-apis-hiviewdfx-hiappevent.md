@@ -47,11 +47,11 @@ addWatcher(watcher: Watcher): AppEventPackageHolder
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11102001 | Invalid watcher name.           |
-| 11102002 | Invalid filtering event domain. |
-| 11102003 | Invalid row value.              |
-| 11102004 | Invalid size value.             |
-| 11102005 | Invalid timeout value.          |
+| 11102001 | Invalid watcher name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11102002 | Invalid filtering event domain. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11102003 | Invalid row value. Possible caused by the row value is less than zero. |
+| 11102004 | Invalid size value. Possible caused by the size value is less than zero. |
+| 11102005 | Invalid timeout value. Possible caused by the timeout value is less than zero. |
 
 **示例：**
 
@@ -178,7 +178,7 @@ removeWatcher(watcher: Watcher): void
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11102001 | Invalid watcher name. |
+| 11102001 | Invalid watcher name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
 
 **示例：**
 
@@ -231,6 +231,7 @@ setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: st
 | 11100001 | Function disabled. Possible caused by the param disable in ConfigOption is true. |
 | 11101001 | Invalid event domain. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
 | 11101002 | Invalid event name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11101004 | Invalid string length of the event parameter. |
 | 11101005 | Invalid event parameter name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
 | 11101007 | The number of parameter keys exceeds the limit. |
 
@@ -417,7 +418,7 @@ setSize(size: number): void
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11104001 | Invalid size value. |
+| 11104001 | Invalid size value. Possible caused by the size value is less than or equal to zero. |
 
 **示例：**
 
@@ -451,7 +452,7 @@ setRow(size: number): void
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11104001 | Invalid size value. |
+| 11104001 | Invalid size value. Possible caused by the size value is less than or equal to zero. |
 
 **示例：**
 
@@ -561,13 +562,13 @@ write(info: AppEventInfo, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11100001 | Function disabled.                            |
-| 11101001 | Invalid event domain.                         |
-| 11101002 | Invalid event name.                           |
-| 11101003 | Invalid number of event parameters.           |
+| 11100001 | Function disabled. Possible caused by the param disable in ConfigOption is true. |
+| 11101001 | Invalid event domain. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11101002 | Invalid event name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11101003 | Invalid number of event parameters. Possible caused by the number of parameters is over 32. |
 | 11101004 | Invalid string length of the event parameter. |
-| 11101005 | Invalid event parameter name.                 |
-| 11101006 | Invalid array length of the event parameter.  |
+| 11101005 | Invalid event parameter name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11101006 | Invalid array length of the event parameter. |
 
 **示例：**
 
@@ -625,13 +626,13 @@ write(info: AppEventInfo): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11100001 | Function disabled.                            |
-| 11101001 | Invalid event domain.                         |
-| 11101002 | Invalid event name.                           |
-| 11101003 | Invalid number of event parameters.           |
+| 11100001 | Function disabled. Possible caused by the param disable in ConfigOption is true. |
+| 11101001 | Invalid event domain. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11101002 | Invalid event name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11101003 | Invalid number of event parameters. Possible caused by the number of parameters is over 32. |
 | 11101004 | Invalid string length of the event parameter. |
-| 11101005 | Invalid event parameter name.                 |
-| 11101006 | Invalid array length of the event parameter.  |
+| 11101005 | Invalid event parameter name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
+| 11101006 | Invalid array length of the event parameter. |
 
 **示例：**
 
@@ -989,7 +990,7 @@ configure(config: ConfigOption): void
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11103001 | Invalid max storage quota value. |
+| 11103001 | Invalid max storage quota value. Possible caused by incorrectly formatted. |
 
 **示例：**
 
