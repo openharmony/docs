@@ -737,7 +737,7 @@ try {
 
 on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, options?: Options): void
 
-订阅计步器传感器数据。
+订阅计步器传感器数据。计步传感器数据上报有一定延迟，延迟时间由具体的实现产品决定。
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 
@@ -1704,7 +1704,7 @@ try {
 
 once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): void
 
-获取一次计步器传感器数据。
+获取一次计步器传感器数据。计步传感器数据上报有一定延迟，延迟时间由具体的实现产品决定。
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 
