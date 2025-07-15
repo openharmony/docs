@@ -99,81 +99,79 @@ export default function abilityTest() {
 本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口，<!--RP1-->具体请参考[API文档](../reference/apis-test-kit/js-apis-uitest.md)<!--RP1End-->。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的场景是：在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
 
 1. 编写Index.ets页面代码，作为被测示例demo。
+    ```ts
+    @Entry
+    @Component
+    struct Index {
+      @State message: string = 'Hello World';
 
-  ```ts
-  @Entry
-  @Component
-  struct Index {
-    @State message: string = 'Hello World';
-
-    build() {
-      Row() {
-        Column() {
-          Text(this.message)
-            .fontSize(50)
-            .fontWeight(FontWeight.Bold)
-          Text("Next")
-            .fontSize(50)
-            .margin({top:20})
-            .fontWeight(FontWeight.Bold)
-          Text("after click")
-            .fontSize(50)
-            .margin({top:20})
-            .fontWeight(FontWeight.Bold)
+      build() {
+        Row() {
+          Column() {
+            Text(this.message)
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+            Text("Next")
+              .fontSize(50)
+              .margin({top:20})
+              .fontWeight(FontWeight.Bold)
+            Text("after click")
+              .fontSize(50)
+              .margin({top:20})
+              .fontWeight(FontWeight.Bold)
+          }
+          .width('100%')
         }
-        .width('100%')
+        .height('100%')
       }
-      .height('100%')
     }
-  }
-  ```
+    ```
 
 2. 在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
+    ```ts
+    import { describe, it, expect } from '@ohos/hypium';
+    // 导入测试依赖kit
+    import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+    import { UIAbility, Want } from '@kit.AbilityKit';
 
-  ```ts
-  import { describe, it, expect } from '@ohos/hypium';
-  // 导入测试依赖kit
-  import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
-  import { UIAbility, Want } from '@kit.AbilityKit';
-
-  const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-  function sleep(time: number) {
-    return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
-  }
-  export default function abilityTest() {
-    describe('ActsAbilityTest', () => {
-       it('testUiExample',0, async (done: Function) => {
-          console.info("uitest: TestUiExample begin");
-          await sleep(1000);
-          const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-          //start tested ability
-          const want: Want = {
-             bundleName: bundleName,
-             abilityName: 'EntryAbility'
-          }
-          await delegator.startAbility(want);
-          await sleep(1000);
-          //check top display ability
-          const ability: UIAbility = await delegator.getCurrentTopAbility();
-          console.info("get top ability");
-          expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
-          //ui test code
-          //init driver
-          const driver = Driver.create();
-          await driver.delayMs(1000);
-          //find button on text 'Next'
-          const button = await driver.findComponent(ON.text('Next'));
-          //click button
-          await button.click();
-          await driver.delayMs(1000);
-          //check text
-          await driver.assertComponentExist(ON.text('after click'));
-          await driver.pressBack();
-          done();
-       })
-    })
-  }
-  ```
+    const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+    function sleep(time: number) {
+      return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
+    }
+    export default function abilityTest() {
+      describe('ActsAbilityTest', () => {
+        it('testUiExample',0, async (done: Function) => {
+            console.info("uitest: TestUiExample begin");
+            await sleep(1000);
+            const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+            //start tested ability
+            const want: Want = {
+              bundleName: bundleName,
+              abilityName: 'EntryAbility'
+            }
+            await delegator.startAbility(want);
+            await sleep(1000);
+            //check top display ability
+            const ability: UIAbility = await delegator.getCurrentTopAbility();
+            console.info("get top ability");
+            expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
+            //ui test code
+            //init driver
+            const driver = Driver.create();
+            await driver.delayMs(1000);
+            //find button on text 'Next'
+            const button = await driver.findComponent(ON.text('Next'));
+            //click button
+            await button.click();
+            await driver.delayMs(1000);
+            //check text
+            await driver.assertComponentExist(ON.text('after click'));
+            await driver.pressBack();
+            done();
+        })
+      })
+    }
+    ```
 
 #### 编写白盒性能测试脚本
 
