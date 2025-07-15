@@ -33,7 +33,7 @@
 
 
 ```ts
-// Index.ets代码
+// Index.ets
 import { taskpool} from '@kit.ArkTS';
 
 // 步骤1: 定义并发函数，实现业务逻辑
