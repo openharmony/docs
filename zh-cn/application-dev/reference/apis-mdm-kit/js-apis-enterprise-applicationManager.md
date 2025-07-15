@@ -358,6 +358,7 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, di
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 // 用户可根据需要，自行修改
@@ -413,6 +414,7 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number)
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 // 用户可根据需要，自行修改 
@@ -473,6 +475,7 @@ getAutoStartApps(admin: Want, accountId: number): Array\<Want>
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 // 用户可根据需要，自行修改
@@ -526,6 +529,7 @@ isModifyAutoStartAppsDisallowed(admin: Want, autoStartApp: Want, accountId: numb
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 // 用户可根据需要，自行修改
@@ -610,8 +614,6 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, di
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
 **参数：**
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
@@ -636,6 +638,7 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, di
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -793,6 +796,7 @@ isModifyKeepAliveAppsDisallowed(admin: Want, accountId: number, bundleName: stri
 **示例：**
 
 ```ts
+import { applicationManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 // 用户可根据需要，自行修改
