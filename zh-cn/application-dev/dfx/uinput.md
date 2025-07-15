@@ -140,8 +140,8 @@ uinput -M -c 0
 uinput -M -b <dx> <dy> <id> [press time] [click interval time]
 uinput --mouse --double_click <dx> <dy> <id> [press time] [click interval time]
 
-[press time]按压时间，取值范围：1 ~ 300ms。
-[click interval time] 点击间隔时间，取值范围：1 ~ 450ms。
+[press time]按压时间，默认时间为：50ms，取值范围：1 ~ 300ms。
+[click interval time] 点击间隔时间，默认时间为：300ms，取值范围：1 ~ 450ms。
 设置间隔时间必须在取值范围内，否则操作结果可能产生错误或无效操作。
 ```
 
@@ -176,7 +176,7 @@ uinput -M -s 45
 uinput -M -g <dx1> <dy1> <dx2> <dy2> [total time]
 uinput --mouse --drag <dx1> <dy1> <dx2> <dy2> [total time]
 
-[total time]可选参数，默认值为3000ms，取值范围：3000 ~ 15000ms。
+[total time]可选参数，默认值为1000ms，取值范围：1 ~ 15000ms。
 ```
 
 **使用示例**
