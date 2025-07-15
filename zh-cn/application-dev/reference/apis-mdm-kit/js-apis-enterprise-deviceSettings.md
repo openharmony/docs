@@ -150,6 +150,7 @@ setHomeWallpaper(admin: Want, fd: number): Promise&lt;void&gt;
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { deviceSettings } from '@kit.MDMKit';
 import { common, Want } from '@kit.AbilityKit';
@@ -209,6 +210,7 @@ setUnlockWallpaper(admin: Want, fd: number): Promise&lt;void&gt;
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { deviceSettings } from '@kit.MDMKit';
 import { common, Want } from '@kit.AbilityKit';
