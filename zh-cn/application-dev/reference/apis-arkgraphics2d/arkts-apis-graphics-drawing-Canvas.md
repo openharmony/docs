@@ -8,21 +8,19 @@
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
 
-## 导入模块
-
-```ts
-import { drawing } from '@kit.ArkGraphics2D';
-```
-
-## Canvas
-
 承载绘制内容与绘制状态的载体。
 
 > **说明：**
 >
 > 画布自带一个默认画刷，该画刷为黑色，开启反走样，不具备其他任何样式效果。当画布中没有主动设置画刷和画笔时，该默认画刷生效。
 
-### constructor
+## 导入模块
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+```
+
+## constructor
 
 constructor(pixelmap: image.PixelMap)
 
@@ -64,7 +62,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 })
 ```
 
-### drawRect
+## drawRect
 
 drawRect(rect: common2D.Rect): void
 
@@ -105,7 +103,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawRect<sup>12+</sup>
+## drawRect<sup>12+</sup>
 
 drawRect(left: number, top: number, right: number, bottom: number): void
 
@@ -150,7 +148,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawRoundRect<sup>12+</sup>
+## drawRoundRect<sup>12+</sup>
 
 drawRoundRect(roundRect: RoundRect): void
 
@@ -188,7 +186,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawNestedRoundRect<sup>12+</sup>
+## drawNestedRoundRect<sup>12+</sup>
 
 drawNestedRoundRect(outer: RoundRect, inner: RoundRect): void
 
@@ -230,7 +228,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawBackground<sup>12+</sup>
+## drawBackground<sup>12+</sup>
 
 drawBackground(brush: Brush): void
 
@@ -269,7 +267,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawShadow<sup>12+</sup>
+## drawShadow<sup>12+</sup>
 
 drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Point3d, lightRadius: number, ambientColor: common2D.Color, spotColor: common2D.Color, flag: ShadowFlag) : void
 
@@ -328,7 +326,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawShadow<sup>18+</sup>
+## drawShadow<sup>18+</sup>
 
 drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Point3d, lightRadius: number, ambientColor: common2D.Color | number, spotColor: common2D.Color | number, flag: ShadowFlag) : void
 
@@ -375,7 +373,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### getLocalClipBounds<sup>12+</sup>
+## getLocalClipBounds<sup>12+</sup>
 
 getLocalClipBounds(): common2D.Rect
 
@@ -411,7 +409,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### getTotalMatrix<sup>12+</sup>
+## getTotalMatrix<sup>12+</sup>
 
 getTotalMatrix(): Matrix
 
@@ -442,7 +440,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawCircle
+## drawCircle
 
 drawCircle(x: number, y: number, radius: number): void
 
@@ -485,7 +483,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawImage
+## drawImage
 
 drawImage(pixelmap: image.PixelMap, left: number, top: number, samplingOptions?: SamplingOptions): void
 
@@ -530,7 +528,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawImageRect<sup>12+</sup>
+## drawImageRect<sup>12+</sup>
 
 drawImageRect(pixelmap: image.PixelMap, dstRect: common2D.Rect, samplingOptions?: SamplingOptions): void
 
@@ -574,7 +572,7 @@ pixelMap: image.PixelMap | null = null;
 }
 ```
 
-### drawImageRectWithSrc<sup>12+</sup>
+## drawImageRectWithSrc<sup>12+</sup>
 
 drawImageRectWithSrc(pixelmap: image.PixelMap, srcRect: common2D.Rect, dstRect: common2D.Rect, samplingOptions?: SamplingOptions, constraint?: SrcRectConstraint): void
 
@@ -621,7 +619,7 @@ pixelMap: image.PixelMap | null = null;
 }
 ```
 
-### drawColor
+## drawColor
 
 drawColor(color: common2D.Color, blendMode?: BlendMode): void
 
@@ -664,7 +662,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawColor<sup>12+</sup>
+## drawColor<sup>12+</sup>
 
 drawColor(alpha: number, red: number, green: number, blue: number, blendMode?: BlendMode): void
 
@@ -704,7 +702,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawColor<sup>18+</sup>
+## drawColor<sup>18+</sup>
 
 drawColor(color: number, blendMode?: BlendMode): void
 
@@ -741,7 +739,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawPixelMapMesh<sup>12+</sup>
+## drawPixelMapMesh<sup>12+</sup>
 
 drawPixelMapMesh(pixelmap: image.PixelMap, meshWidth: number, meshHeight: number, vertices: Array\<number>, vertOffset: number, colors: Array\<number>, colorOffset: number): void
 
@@ -792,7 +790,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### clear<sup>12+</sup>
+## clear<sup>12+</sup>
 
 clear(color: common2D.Color): void
 
@@ -829,7 +827,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### clear<sup>18+</sup>
+## clear<sup>18+</sup>
 
 clear(color: common2D.Color | number): void
 
@@ -858,7 +856,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### getWidth<sup>12+</sup>
+## getWidth<sup>12+</sup>
 
 getWidth(): number
 
@@ -887,7 +885,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### getHeight<sup>12+</sup>
+## getHeight<sup>12+</sup>
 
 getHeight(): number
 
@@ -916,7 +914,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawOval<sup>12+</sup>
+## drawOval<sup>12+</sup>
 
 drawOval(oval: common2D.Rect): void
 
@@ -959,7 +957,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawArc<sup>12+</sup>
+## drawArc<sup>12+</sup>
 
 drawArc(arc: common2D.Rect, startAngle: number, sweepAngle: number): void
 
@@ -1004,7 +1002,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawPoint
+## drawPoint
 
 drawPoint(x: number, y: number): void
 
@@ -1046,7 +1044,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawPoints<sup>12+</sup>
+## drawPoints<sup>12+</sup>
 
 drawPoints(points: Array\<common2D.Point>, mode?: PointMode): void
 
@@ -1089,7 +1087,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawPath
+## drawPath
 
 drawPath(path: Path): void
 
@@ -1134,7 +1132,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawLine
+## drawLine
 
 drawLine(x0: number, y0: number, x1: number, y1: number): void
 
@@ -1178,7 +1176,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawTextBlob
+## drawTextBlob
 
 drawTextBlob(blob: TextBlob, x: number, y: number): void
 
@@ -1225,7 +1223,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawSingleCharacter<sup>12+</sup>
+## drawSingleCharacter<sup>12+</sup>
 
 drawSingleCharacter(text: string, font: Font, x: number, y: number): void
 
@@ -1273,7 +1271,48 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawRegion<sup>12+</sup>
+## drawSingleCharacterWithFeatures<sup>20+</sup>
+
+drawSingleCharacterWithFeatures(text: string, font: Font, x: number, y: number, features: Array\<FontFeature\>): void
+
+绘制单个字符，字符带有字体特征。当前字型中的字体不支持待绘制字符时，退化到使用系统字体绘制字符。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名 | 类型                | 必填 | 说明        |
+| ------ | ------------------- | ---- | ----------- |
+| text | string | 是 | 待绘制的单个字符，字符串长度必须为1。 |
+| font   | [Font](arkts-apis-graphics-drawing-Font.md) | 是   | 字型对象。  |
+| x | number | 是 | 所绘制字符基线左端点的横坐标，该参数为浮点数。 |
+| y | number | 是 | 所绘制字符基线左端点的纵坐标，该参数为浮点数。 |
+| features | Array\<[FontFeature](arkts-apis-graphics-drawing-i.md#fontfeature20)\> | 是 | 字体特征对象数组。参数为空数组时使用TTF(TrueType Font)文件中预设的字体特征。|
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const brush = new drawing.Brush();
+    brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
+    const font = new drawing.Font();
+    font.setSize(20);
+    let fontFeatures : Array<drawing.FontFeature> = [];
+    fontFeatures.push({name: 'calt', value: 0});
+    canvas.attachBrush(brush);
+    canvas.drawSingleCharacterWithFeatures("你", font, 100, 100, fontFeatures);
+    canvas.drawSingleCharacterWithFeatures("好", font, 180, 100, fontFeatures);
+    canvas.detachBrush();
+  }
+}
+```
+
+## drawRegion<sup>12+</sup>
 
 drawRegion(region: Region): void
 
@@ -1316,7 +1355,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### attachPen
+## attachPen
 
 attachPen(pen: Pen): void
 
@@ -1361,7 +1400,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### attachBrush
+## attachBrush
 
 attachBrush(brush: Brush): void
 
@@ -1405,7 +1444,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### detachPen
+## detachPen
 
 detachPen(): void
 
@@ -1432,7 +1471,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### detachBrush
+## detachBrush
 
 detachBrush(): void
 
@@ -1458,7 +1497,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### clipPath<sup>12+</sup>
+## clipPath<sup>12+</sup>
 
 clipPath(path: Path, clipOp?: ClipOp, doAntiAlias?: boolean): void
 
@@ -1501,7 +1540,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### clipRect<sup>12+</sup>
+## clipRect<sup>12+</sup>
 
 clipRect(rect: common2D.Rect, clipOp?: ClipOp, doAntiAlias?: boolean): void
 
@@ -1540,7 +1579,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### save<sup>12+</sup>
+## save<sup>12+</sup>
 
 save(): number
 
@@ -1570,7 +1609,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### saveLayer<sup>12+</sup>
+## saveLayer<sup>12+</sup>
 
 saveLayer(rect?: common2D.Rect | null, brush?: Brush | null): number
 
@@ -1632,7 +1671,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### scale<sup>12+</sup>
+## scale<sup>12+</sup>
 
 scale(sx: number, sy: number): void
 
@@ -1675,7 +1714,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### skew<sup>12+</sup>
+## skew<sup>12+</sup>
 
 skew(sx: number, sy: number) : void
 
@@ -1718,7 +1757,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### rotate<sup>12+</sup>
+## rotate<sup>12+</sup>
 
 rotate(degrees: number, sx: number, sy: number) : void
 
@@ -1762,7 +1801,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### translate<sup>12+</sup>
+## translate<sup>12+</sup>
 
 translate(dx: number, dy: number): void
 
@@ -1805,7 +1844,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### getSaveCount<sup>12+</sup>
+## getSaveCount<sup>12+</sup>
 
 getSaveCount(): number
 
@@ -1841,7 +1880,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### restoreToCount<sup>12+</sup>
+## restoreToCount<sup>12+</sup>
 
 restoreToCount(count: number): void
 
@@ -1889,7 +1928,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### restore<sup>12+</sup>
+## restore<sup>12+</sup>
 
 restore(): void
 
@@ -1916,7 +1955,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### concatMatrix<sup>12+</sup>
+## concatMatrix<sup>12+</sup>
 
 concatMatrix(matrix: Matrix): void
 
@@ -1955,7 +1994,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setMatrix<sup>12+</sup>
+## setMatrix<sup>12+</sup>
 
 setMatrix(matrix: Matrix): void
 
@@ -1994,7 +2033,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### isClipEmpty<sup>12+</sup>
+## isClipEmpty<sup>12+</sup>
 
 isClipEmpty(): boolean
 
@@ -2026,7 +2065,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### clipRegion<sup>12+</sup>
+## clipRegion<sup>12+</sup>
 
 clipRegion(region: Region, clipOp?: ClipOp): void
 
@@ -2067,7 +2106,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### clipRoundRect<sup>12+</sup>
+## clipRoundRect<sup>12+</sup>
 
 clipRoundRect(roundRect: RoundRect, clipOp?: ClipOp, doAntiAlias?: boolean): void
 
@@ -2109,7 +2148,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### resetMatrix<sup>12+</sup>
+## resetMatrix<sup>12+</sup>
 
 resetMatrix(): void
 
@@ -2132,7 +2171,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### quickRejectPath<sup>18+</sup>
+## quickRejectPath<sup>18+</sup>
 
 quickRejectPath(path: Path): boolean
 
@@ -2174,7 +2213,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### quickRejectRect<sup>18+</sup>
+## quickRejectRect<sup>18+</sup>
 
 quickRejectRect(rect: common2D.Rect): boolean
 
@@ -2213,7 +2252,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawArcWithCenter<sup>18+</sup>
+## drawArcWithCenter<sup>18+</sup>
 
 drawArcWithCenter(arc: common2D.Rect, startAngle: number, sweepAngle: number, useCenter: boolean): void
 
@@ -2251,7 +2290,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawImageNine<sup>18+</sup>
+## drawImageNine<sup>18+</sup>
 
 drawImageNine(pixelmap: image.PixelMap, center: common2D.Rect, dstRect: common2D.Rect, filterMode: FilterMode): void
 
@@ -2299,7 +2338,7 @@ class DrawingRenderNode extends RenderNode {
 ```
 ![zh-ch_image_Nine.png](figures/zh-ch_image_Nine.png)
 
-### drawImageLattice<sup>18+</sup>
+## drawImageLattice<sup>18+</sup>
 
 drawImageLattice(pixelmap: image.PixelMap, lattice: Lattice, dstRect: common2D.Rect, filterMode: FilterMode): void
 

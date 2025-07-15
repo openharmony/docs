@@ -543,11 +543,11 @@ Describes the information about the file to be sent.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name             | Type                                    | Readable  | Writable  | Description                                      |
+| Name             | Type                                    | Read-Only  | Optional  | Description                                      |
 | --------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| filePath     | string                                   | Yes   | Yes   | URI of the file to be sent, for example, **file://media/Photo/1/IMG_1739266559_000/test.jpg**.|
-| fileSize       | number                                  | Yes   | Yes   | Size of the file to be sent, in bytes.         |
-| fileFd | number | Yes   | Yes   | Opened file descriptor of the file to be sent. The file descriptor must be kept open until the file transfer is complete.                                   |
+| filePath     | string                                   | No   | No   | URI of the file to be sent, for example, **file://media/Photo/1/IMG_1739266559_000/test.jpg**.|
+| fileSize       | number                                  | No   | No   | Size of the file to be sent, in bytes.         |
+| fileFd | number | No   | No   | Opened file descriptor of the file to be sent. The file descriptor must be kept open until the file transfer is complete.                                   |
 
 ## OppTransferInformation
 
@@ -557,18 +557,18 @@ Describes the file transfer information.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name             | Type                                    | Readable  | Writable  | Description                                      |
+| Name             | Type                                    | Read-Only  | Optional  | Description                                      |
 | --------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| filePath     | string                                   | Yes   | Yes   | URI of the file to be sent, for example, **file://media/Photo/1/IMG_1739266559_000/test.jpg**.|
-| remoteDeviceName       | string                                  | Yes   | Yes   | Name of the peer device.               |
-| remoteDeviceId | number | Yes   | Yes   | MAC address of the peer device.               |
-| direction | [DirectionType](#directiontype) | Yes   | Yes   | Transfer direction.               |
-| status | [TransferStatus](#transferstatus) | Yes   | Yes   | Transfer status.               |
-| result | [TransferResult](#transferresult) | Yes   | Yes   | Transfer result.               |
-| currentBytes | number | Yes   | Yes   | Number of transferred bytes.               |
-| totalBytes | number | Yes   | Yes   | Total number of bytes to be transferred.               |
-| currentCount | number | Yes   | Yes   | Sequence number of the file to be transferred.               |
-| totalCount | number | Yes   | Yes   | Total number of transferred files.               |
+| filePath     | string                                   | No   | No   | URI of the file to be sent, for example, **file://media/Photo/1/IMG_1739266559_000/test.jpg**.|
+| remoteDeviceName       | string                                  | No   | No   | Name of the peer device.               |
+| remoteDeviceId | string | No   | No   | MAC address of the peer device.               |
+| direction | [DirectionType](#directiontype) | No   | No   | Transfer direction.               |
+| status | [TransferStatus](#transferstatus) | No   | No   | Transfer status.               |
+| result | [TransferResult](#transferresult) | No   | No   | Transfer result.               |
+| currentBytes | number | No   | No   | Number of transferred bytes.               |
+| totalBytes | number | No   | No   | Total number of bytes to be transferred.               |
+| currentCount | number | No   | No   | Sequence number of the file to be transferred.               |
+| totalCount | number | No   | No   | Total number of transferred files.               |
 
 ## DirectionType
 

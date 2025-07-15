@@ -4,9 +4,13 @@
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> - 本Class首批接口从API version 12开始支持。
+>
 > - 本模块使用屏幕物理像素单位px。
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
+
+蒙版滤镜对象。
 
 ## 导入模块
 
@@ -14,11 +18,7 @@
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## MaskFilter<sup>12+</sup>
-
-蒙版滤镜对象。
-
-### createBlurMaskFilter<sup>12+</sup>
+## createBlurMaskFilter<sup>12+</sup>
 
 static createBlurMaskFilter(blurType: BlurType, sigma: number): MaskFilter
 
@@ -37,7 +37,7 @@ static createBlurMaskFilter(blurType: BlurType, sigma: number): MaskFilter
 
 | 类型                      | 说明                |
 | ------------------------- | ------------------ |
-| [MaskFilter](#maskfilter12) | 返回创建的蒙版滤镜对象。 |
+| [MaskFilter](arkts-apis-graphics-drawing-MaskFilter.md) | 返回创建的蒙版滤镜对象。 |
 
 **错误码：**
 

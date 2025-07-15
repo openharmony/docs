@@ -126,7 +126,7 @@ Sets whether scan is always allowed.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -134,7 +134,7 @@ Sets whether scan is always allowed.
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| isScanAlwaysAllowed | boolean | Yes| Whether scan is always allowed.|
+| isScanAlwaysAllowed | boolean | Yes| Whether scan is always allowed. The value **true** indicates that scan is always allowed, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -167,7 +167,7 @@ Obtains whether scan is always allowed.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -208,17 +208,19 @@ Represents the WLAN configuration.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 
-| **Name**| **Type**| **Readable**| **Writable**| **Description**|
+| **Name**| **Type**| **Read-only**| **Optional**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
-| creatorUid | number | Yes| No| ID of the creator.<br> **System API**: This is a system API.|
-| disableReason | number | Yes| No| Reason for disabling Wi-Fi.<br> **-1**: unknown reason<br>**0**: not disabled<br>**1**: association refused<br>**2**: authentication failed<br> **3**: DHCP failure<br>**4**: no Internet connection<br> **5**: no authentication credentials<br>**6**: no Internet connection permanently<br> **7**: disabled by Wi-Fi manager<br>**8**: disabled due to incorrect password<br> **9**: authentication without subscription<br>**10**: private EAP authentication error<br> **11**: network not found<br>**12**: consecutive failures<br> **13**: disabled by the system<br>**14**: EAP-AKA authentication failed<br> **15**: association removed<br>**16**: maximum number of forbidden network selections<br> **System API**: This is a system API.|
-| netId | number | Yes| No| Network ID.<br> **System API**: This is a system API.|
-| randomMacType | number | Yes| No| MAC address type. <br>The value **0** indicates a random MAC address, and the value **1** indicates a device MAC address.<br> **System API**: This is a system API.|
-| randomMacAddr | string | Yes| No| MAC address.<br> **System API**: This is a system API.|
-| ipType | [IpType](#iptype9) | Yes| No| IP address type.<br> **System API**: This is a system API.|
-| staticIp | [IpConfig](#ipconfig9) | Yes| No| Static IP address information.<br> **System API**: This is a system API.|
-| proxyConfig<sup>10+</sup> | [WifiProxyConfig](#wifiproxyconfig10) | Yes| No| Proxy configuration.<br> **System API**: This is a system API.|
-| configStatus<sup>12+</sup> | number | Yes| No| Status indicating whether the current network can be selected.<br>  **1**: network selection allowed<br>**2**: network selection forbidden<br> **3**: network selection permanently forbidden<br>4: unknown<br> **System API**: This is a system API.|
+| creatorUid | number | Yes| Yes| ID of the creator.<br> **System API**: This is a system API.|
+| disableReason | number | Yes| Yes| Reason for disabling Wi-Fi.<br> **-1**: unknown reason<br>**0**: not disabled<br>**1**: association refused<br>**2**: authentication failed<br> **3**: DHCP failure<br>**4**: no Internet connection<br> **5**: no authentication credentials<br>**6**: no Internet connection permanently<br> **7**: disabled by Wi-Fi manager<br>**8**: disabled due to incorrect password<br> **9**: authentication without subscription<br>**10**: private EAP authentication error<br> **11**: network not found<br>**12**: consecutive failures<br> **13**: disabled by the system<br>**14**: EAP-AKA authentication failed<br> **15**: association removed<br>**16**: maximum number of forbidden network selections<br> **System API**: This is a system API.|
+| netId | number | Yes| Yes| Network ID.<br> **System API**: This is a system API.|
+| randomMacType | number | Yes| Yes| MAC address type. <br>The value **0** indicates a random MAC address, and the value **1** indicates a device MAC address.<br> **System API**: This is a system API.|
+| randomMacAddr | string | Yes| Yes| MAC address.<br> **System API**: This is a system API.|
+| ipType | [IpType](#iptype9) | Yes| Yes| IP address type.<br> **System API**: This is a system API.|
+| staticIp | [IpConfig](#ipconfig9) | Yes| Yes| Static IP address information.<br> **System API**: This is a system API.|
+| proxyConfig<sup>10+</sup> | [WifiProxyConfig](#wifiproxyconfig10) | Yes| Yes| Proxy configuration.<br> **System API**: This is a system API.|
+| configStatus<sup>12+</sup> | number | Yes| Yes| Status indicating whether the current network can be selected.<br>  **1**: network selection allowed<br>**2**: network selection forbidden<br> **3**: network selection permanently forbidden<br>4: unknown<br> **System API**: This is a system API.|
+| isAutoConnectAllowed<sup>17+</sup> | boolean | Yes| Yes| Whether automatic connection is allowed. The value **true** indicates that automatic connection is allowed, and the value **false** indicates the opposite.<br> **System API**: This is a system API.|
+| isSecureWifi<sup>20+</sup> | boolean | Yes| Yes| Whether Wi-Fi is secure. The value **true** indicates that Wi-Fi is secure, and the value **false** indicates the opposite.<br> **System API**: This is a system API.|
 
 ## IpType<sup>9+</sup>
 
@@ -233,7 +235,7 @@ Enumerates the IP address types.
 | -------- | -------- | -------- |
 | STATIC | 0 | Static IP address.|
 | DHCP | 1 | IP address allocated by DHCP.|
-| UNKNOWN | 2 | Not specified.|
+| UNKNOWN | 2 | Unspecified.|
 
 
 ## IpConfig<sup>9+</sup>
@@ -244,7 +246,7 @@ Represents IP configuration information.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
-| **Name**| **Type**| **Readable**| **Writable**| **Description**|
+| **Name**| **Type**| **Read-only**| **Optional**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
 | ipAddress | number | Yes| No| IP address.|
 | gateway | number | Yes| No| Gateway.|
@@ -261,13 +263,13 @@ Represents the Wi-Fi proxy configuration.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
-| **Name**| **Type**| **Readable**| **Writable**| **Description**|
+| **Name**| **Type**| **Read-only**| **Optional**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
-| proxyMethod | ProxyMethod | Yes| No| Proxy method.|
-| pacWebAddress | string | Yes| No| PAC web address of the proxy automatically configured.|
-| serverHostName | string | Yes| No| Server host name of the proxy manually configured.|
-| serverPort | number | Yes| No| Server port of the proxy manually configured.|
-| exclusionObjects | string | Yes| No| Excluded objects of the manually configured proxy. Multiple objects are separated by commas (,).|
+| proxyMethod | ProxyMethod | Yes| Yes| Proxy method.|
+| pacWebAddress | string | Yes| Yes| PAC web address of the proxy automatically configured.|
+| serverHostName | string | Yes| Yes| Server host name of the proxy manually configured.|
+| serverPort | number | Yes| Yes| Server port of the proxy manually configured.|
+| exclusionObjects | string | Yes| Yes| Excluded objects of the manually configured proxy. Multiple objects are separated by commas (,).|
 
 ## ProxyMethod<sup>10+</sup>
 
@@ -291,7 +293,7 @@ Connects to the specified network. If the device is already connected to a hotsp
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.SET_WIFI_INFO, ohos.permission.SET_WIFI_CONFIG, and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications)
+**Required permissions**: ohos.permission.SET_WIFI_INFO, ohos.permission.SET_WIFI_CONFIG (for system applications only), and ohos.permission.MANAGE_WIFI_CONNECTION (for system applications only)
 
 **System capability**:
   SystemCapability.Communication.WiFi.STA
@@ -300,7 +302,7 @@ Connects to the specified network. If the device is already connected to a hotsp
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
+| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration. The default **bssidType** is random device address.|
 
 **Error codes**
 
@@ -338,7 +340,7 @@ Represents the WLAN connection information.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | networkId | number | Yes| No| Network configuration ID.<br> **System API**: This is a system API.|
 | chload | number | Yes| No| Channel load. A larger value indicates a higher load.<br> **System API**: This is a system API.|
@@ -445,7 +447,7 @@ Obtains the device MAC address.
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | string[] | MAC address obtained.|
+  | string[] | MAC address.|
 
 **Error codes**
 
@@ -611,7 +613,7 @@ Updates network configuration.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -673,7 +675,7 @@ Disables network configuration.
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-  | netId | number | Yes| ID of the network configuration to disable.|
+  | netId | number | Yes| Network configuration ID.|
 
 **Error codes**
 
@@ -743,7 +745,7 @@ Obtains the list of 5 GHz channels supported by this device.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -783,7 +785,7 @@ Obtains the reason of the latest disconnection.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -926,7 +928,7 @@ factoryReset(): void
 
 Resets Wi-Fi configurations.
 
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -1110,7 +1112,7 @@ Sets hotspot configuration.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
@@ -1160,14 +1162,15 @@ Represents the hotspot configuration.
 
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
-| **Name**| **Type**| **Readable**| **Writable**| **Description**|
+| **Name**| **Type**| **Read-only**| **Optional**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | Yes| Yes| SSID of the hotspot, in UTF-8 format.|
-| securityType | [WifiSecurityType](js-apis-wifiManager.md#wifisecuritytype9)| Yes| Yes| Security type.|
-| band | number | Yes| Yes| Hotspot band. The value **1** stands for 2.4 GHz, the value **2** for 5 GHz, and the value **3** for dual band.|
+| ssid | string | Yes| No| SSID of the hotspot, in UTF-8 format.|
+| securityType | [WifiSecurityType](js-apis-wifiManager.md#wifisecuritytype9)| Yes| No| Security type.|
+| band | number | Yes| No| Hotspot band. The value **1** stands for 2.4 GHz, the value **2** for 5 GHz, and the value **3** for dual band.|
 | channel<sup>10+</sup> | number | Yes| Yes| Hotspot channel (channels 1 to 14 for 2.4 GHz, and channels 7 to 196 for 5 GHz)|
-| preSharedKey | string | Yes| Yes| PSK of the hotspot.|
-| maxConn | number | Yes| Yes| Maximum number of connections allowed.|
+| preSharedKey | string | No| No| PSK of the hotspot.|
+| maxConn | number | Yes| No| Maximum number of connections allowed.|
+| ipAddress | string | Yes| Yes| DHCP server IP address|
 
 ## wifiManager.getHotspotConfig<sup>9+</sup>
 
@@ -1177,7 +1180,7 @@ Obtains hotspot configuration.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
@@ -1263,11 +1266,11 @@ Represents the station information.
 
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
-| **Name**| **Type**| **Readable**| **Writable**| **Description**|
+| **Name**| **Type**| **Read-only**| **Optional**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
 | name | string | Yes| No| Device name.|
 | macAddress | string | Yes| No| MAC address.|
-| macAddressType<sup>10+</sup> | [DeviceAddressType](js-apis-wifiManager.md#deviceaddresstype10) | Yes| No| MAC address type.|
+| macAddressType<sup>10+</sup> | [DeviceAddressType](js-apis-wifiManager.md#deviceaddresstype10) | Yes| Yes| MAC address type.|
 | ipAddress | string | Yes| No| IP address.|
 
 ## wifiManager.addHotspotBlockList<sup>11+</sup>
@@ -1554,7 +1557,7 @@ Sets the device name.
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-  | devName | string | Yes| Device name to set.|
+  | devName | string | Yes| Device name.|
 
 **Error codes**
 

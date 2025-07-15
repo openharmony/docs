@@ -1,6 +1,7 @@
 # Interfaces (其他)
 
 > **说明：**
+>
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## AVFileDescriptor<sup>9+</sup>
@@ -217,6 +218,8 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 | videoCodec        | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8) | 否 | 是   | 输出视频的编码格式，当前仅支持AVC和HEVC。若源视频编码格式为HEVC，则默认设置为HEVC，否则默认设置为AVC。|
 | videoFrameWidth        | number | 否 |  是   | 输出视频帧的宽，单位为像素（px），支持范围[240-3840]。默认设置为源视频帧的宽。|
 | videoFrameHeight        | number | 否 |  是   | 输出视频帧的高，单位为像素（px），支持范围[240-2160]。默认设置为源视频帧的高。|
+| enableBFrame<sup>20+</sup> | boolean | 否 |  是   | 转码使能B帧编码。true表示开启B帧编码，默认为不开启B帧编码。<br>实际支持情况取决于视频编码格式和设备芯片能力。对于不支持B帧编码的视频编码格式或设备，将忽略B帧，按不使能B帧进行编码。|
+
 
 ## AVMetadata<sup>11+</sup>
 
@@ -381,9 +384,10 @@ async function setupPlayer() {
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
-| 名称                  | 类型    | 必填 | 说明                 |
-| --------------------- | ------- | --- | -------------------- |
-| keepCaptureDuringCall | boolean | 否  | 蜂窝通话时是否保持录屏。 |
+| 名称                  | 类型    | 只读 | 可选 | 说明                 |
+| --------------------- | ------- | --- | --- | -------------------- |
+| keepCaptureDuringCall | boolean | 否 | 是  | 蜂窝通话时是否保持录屏。 |
+| enableBFrame | boolean | 否 | 是 | 录屏是否使能B帧编码。true表示录屏文件使能B帧编码，false表示录屏文件禁用B帧编码，默认是false。<br>如果芯片平台不支持B帧编码，则正常录制不含B帧的视频，不会返回错误。 |
 
 ## AVScreenCaptureRecordConfig<sup>12+</sup>
 

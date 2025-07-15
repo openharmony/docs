@@ -46,6 +46,7 @@ import { StartOptions } from '@kit.AbilityKit';
   import { UIAbility, Want, StartOptions, bundleManager, CompletionHandler } from '@kit.AbilityKit';
   import { BusinessError } from '@kit.BasicServicesKit';
   import { image } from '@kit.ImageKit';
+  import { window } from '@kit.ArkUI';
 
   export default class EntryAbility extends UIAbility {
     onForeground() {
@@ -89,7 +90,7 @@ import { StartOptions } from '@kit.AbilityKit';
           maxWindowHeight: 2560,
           completionHandler: completionHandler,
           hideStartWindow: true,
-          windowCreateParams : windowParam
+          windowCreateParams: windowParam
         };
 
         try {

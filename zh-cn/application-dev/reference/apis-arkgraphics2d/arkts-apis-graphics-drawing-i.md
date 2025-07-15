@@ -44,3 +44,14 @@
 | underlinePosition<sup>12+</sup>  | number | 否   | 是   | 文本基线到下划线顶部的垂直距离，通常是正数。             |
 | strikethroughThickness<sup>12+</sup>  | number | 否   | 是   | 文本删除线的厚度，即贯穿文本字符的水平线的宽度。    |
 | strikethroughPosition<sup>12+</sup>  | number | 否   | 是   | 文本基线到底部删除线的垂直距离，通常为负值。         |
+
+## FontFeature<sup>20+</sup>
+
+表示字体特征。字体特征是字体内置的排版规则，用于控制字形的显示效果，具体包括连字、替代字形、上下标等功能。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称    | 类型   | 只读 | 可选 | 说明   |
+| ------- | ------ | ---- | ---- | ------------------ |
+| name   | string | 否   | 否   | 字体特征的名称。常见的字体特征名称包含liga、frac、case等，需要对应的ttf文件支持才能生效。|
+| value | number | 否 | 否 | 字体特征的数值，浮点数。建议通过字体查看工具或查阅字体文档，确定具体的有效取值范围。|

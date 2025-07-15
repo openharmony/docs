@@ -752,7 +752,7 @@ try {
 
 on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, options?: Options): void
 
-订阅计步器传感器数据。
+订阅计步器传感器数据。计步传感器数据上报有一定延迟，延迟时间由具体的实现产品决定。
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 
@@ -1741,7 +1741,7 @@ try {
 
 once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): void
 
-获取一次计步器传感器数据。
+获取一次计步器传感器数据。计步传感器数据上报有一定延迟，延迟时间由具体的实现产品决定。
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 
@@ -6305,11 +6305,13 @@ try {
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
+**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。
 
-| 参数名 | 类型                   | 必填 | 说明                      |
-| ------ | ---------------------- | ---- |-------------------------|
-| deviceId   | number | 否   | 设备ID：默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。     |
-| sensorIndex   | number | 否   | 传感器索引：默认值为0，为设备上的默认传感器，其它传感器Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。 |
+
+| 名称          | 类型     | 必填 | 说明                                                                                                                                                     |
+|-------------|--------|----|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| deviceId    | number | 否  | 设备ID：默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。<br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。      |
+| sensorIndex | number | 否  | 传感器索引：默认值为0，为设备上的默认传感器，其它传感器Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。<br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。 |
 
 
 ## SensorStatusEvent<sup>19+</sup>
@@ -6318,15 +6320,14 @@ try {
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-
-| 参数名 | 类型                    | 说明         |
-| ------ | ---------------------- | ------------ |
-| timestamp   | number  | 事件发生的时间戳。 |
-| sensorId   | number   | 传感器ID。 |
-| sensorIndex   | number   | 传感器索引。 |
-| isSensorOnline   | boolean   | 传感器上线或者下线，true为上线，false为下线。 |
-| deviceId   | number   | 设备ID。 |
-| deviceName   | string   | 设备名称。 |
+| 名称             | 类型      | 只读 | 可选 | 说明                          |
+|----------------|---------|----|----|-----------------------------|
+| timestamp      | number  | 是  | 否  | 事件发生的时间戳。                   |
+| sensorId       | number  | 是  | 否  | 传感器ID。                      |
+| sensorIndex    | number  | 是  | 否  | 传感器索引。                      |
+| isSensorOnline | boolean | 是  | 否  | 传感器上线或者下线，true为上线，false为下线。 |
+| deviceId       | number  | 是  | 否  | 设备ID。                       |
+| deviceName     | string  | 是  | 否  | 设备名称。                       |
 
 ## SensorType<sup>(deprecated)</sup>
 
@@ -6708,10 +6709,10 @@ try {
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
-| 名称     | 类型                                                        | 只读 | 可选 | 说明                                                         |
-| -------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| 名称     | 类型                                                        | 只读 | 可选 | 说明                                                                                         |
+| -------- | ----------------------------------------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------|
 | interval | number\|[SensorFrequency](#sensorfrequency11)<sup>11+</sup> | 是   | 是   | 表示传感器的上报频率，默认值为200000000ns。该属性有最小值和最大值的限制，由硬件支持的上报频率决定，当设置频率大于最大值时以最大值上报数据，小于最小值时以最小值上报数据。 |
-| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) | 是 | 是 | 传感器传入设置参数，可指定deviceId、sensorIndex |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) | 是 | 是 | 传感器传入设置参数，可指定deviceId、sensorIndex。<br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。                                                         |
 
 ## SensorFrequency<sup>11+</sup>
 

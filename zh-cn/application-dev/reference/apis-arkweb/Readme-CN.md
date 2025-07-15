@@ -99,5 +99,7 @@
     - [ArkWeb_WebMessageAPI](capi-web-arkweb-webmessageapi.md)
     - [ArkWeb_CookieManagerAPI](capi-web-arkweb-cookiemanagerapi.md)
     - [ArkWeb_JavaScriptValueAPI](capi-web-arkweb-javascriptvalueapi.md)
+- Longque JS API<!--longque-js-api-->
+  - [Longque-JS-API](arkts-apis-longque.md)
 - 错误码<!--arkweb-arkts-errcode-->
   - [Webview错误码](errorcode-webview.md)

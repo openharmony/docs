@@ -12,7 +12,7 @@ The **WaterFlow** component is a water flow container that consists of cells for
 ## Child Components
 
 
-Only the [FlowItem](ts-container-flowitem.md) child component is allowed, with support for [if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md), and [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md) rendering control.
+Only the [FlowItem](ts-container-flowitem.md) child component is allowed, with support for [if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md), [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md), [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md), and [Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md) rendering control.
 
 >  **NOTE**
 >
@@ -398,7 +398,7 @@ Sets the friction coefficient. It applies only to gestures in the scrolling area
 
 cachedCount(value: number)
 
-Sets the number of items to be cached. This attribute is effective only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md). After this attribute is set, items that exceed the display and cache range are released.
+Sets the number of items to be cached. This attribute is effective only in [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md). After this attribute is set, items that exceed the display and cache range are released.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -418,7 +418,7 @@ Sets the number of water flow items to be cached (preloaded) and specifies wheth
 
 When this attribute is used in conjunction with the [clip](ts-universal-attributes-sharp-clipping.md#clip12) or [content clipping](ts-container-scrollable-common.md#clipcontent14) attributes, the cached nodes can be displayed.
 
-In [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md) with the **virtualScroll** option enabled, water flow items that are outside the display and cache range will be released.
+In [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md) and [Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md) with the **virtualScroll** option enabled, water flow items that are outside the display and cache range will be released.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -806,7 +806,7 @@ struct WaterFlowDemo {
 
 ### Example 3: Using WaterFlowSections
 This example illustrates the initialization of **WaterFlowSections** and the different effects of various APIs such as **splice**, **push**, **update**, **values**, and **length**.
-For details about how to use these features in conjunction with state management V2, see [WaterFlow](../../../quick-start/arkts-v1-v2-migration.md#waterflow).
+For details about how to use these features in conjunction with state management V2, see [WaterFlow](../../../ui/state-management/arkts-v1-v2-migration.md#waterflow).
 
 <!--code_no_check-->
 ```ts

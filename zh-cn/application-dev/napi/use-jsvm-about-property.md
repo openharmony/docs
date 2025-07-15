@@ -239,7 +239,7 @@ JSVM OH_JSVM_HasProperty success:0
 ### OH_JSVM_DeleteProperty
 
 尝试从给定的Object中删除由key指定的属性，并返回操作的结果。
-如果对象是一个不可扩展的对象，或者属性是不可配置的，则可能无法删除该属性。
+如果对象是一个不可扩展的对象，或者属性是不可配置的，则无法删除该属性。
 
 cpp部分代码：
 

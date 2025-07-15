@@ -582,3 +582,20 @@
 **支持设备**：Phone | PC/2in1 | Tablet
 
 **起始版本**：20
+
+## ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION
+
+允许设备管理应用（MDM）设置user_grant类权限策略。
+
+获取该权限后，MDM应用可设置被管理应用user_grant类权限策略，策略支持静默授予，拒绝授予以及默认（即不影响应用申请）。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20

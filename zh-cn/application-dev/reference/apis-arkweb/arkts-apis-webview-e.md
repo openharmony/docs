@@ -324,3 +324,14 @@ Scroll滚动类型，用于[setScrollable](./arkts-apis-webview-WebviewControlle
 | MATCH_ALL_SCHEMES | 0 |所有的scheme都会使用代理。|
 | MATCH_HTTP        | 1 |HTTP请求会使用代理。|
 | MATCH_HTTPS       | 2 |HTTPS请求会使用代理。|
+
+## WebDestroyMode<sup>20+</sup>
+
+Web组件的销毁模式，当Web组件销毁时，销毁模式会影响Web内核的资源释放时机，例如JavaScript运行上下文、渲染上下文等等。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+| ------------------------------- | - | ---------- |
+| NORMAL_MODE | 0 | 普通模式，由系统决定Web组件资源的销毁时机。 |
+| FAST_MODE   | 1 | 快速模式，当Web组件触发销毁时，立即销毁相关的内部资源。 |

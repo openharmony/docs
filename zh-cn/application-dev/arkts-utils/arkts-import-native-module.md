@@ -43,7 +43,7 @@ add.add(2, 3);
 ### 转为具名变量导出再导入
 ```ts
 // test1.ets
-import hilog from '@ohos.hilog'
+import { hilog } from '@kit.PerformanceAnalysisKit';
 export { hilog }
 ```
 ```ts

@@ -10,7 +10,7 @@
 
 overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptions ): T
 
-在当前组件上，增加遮罩文本或者叠加自定义组件以及ComponentContent作为该组件的浮层。浮层不通过组件树进行渲染，部分接口（例如[getRectangleById](../js-apis-arkui-componentUtils.md#componentutilsgetrectanglebyiddeprecated)）不支持获取浮层中的组件。
+在当前组件上，增加遮罩文本或者叠加自定义组件以及ComponentContent作为该组件的浮层。浮层的定位同样基于当前组件进行计算。浮层不通过组件树进行渲染，部分接口（例如[getRectangleById](../js-apis-arkui-componentUtils.md#componentutilsgetrectanglebyiddeprecated)）不支持获取浮层中的组件。
 
 >**说明：**
 >
@@ -27,7 +27,7 @@ overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptio
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value   | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>10+</sup>&nbsp;\| [ComponentContent](../js-apis-arkui-ComponentContent.md)<sup>12+</sup> | 是   | 遮罩文本内容或自定义组件构造函数。<br/>**说明：**<br/>自定义组件作为浮层时，不支持键盘走焦到自定义组件中。通过CustomBuilder设置浮层时，浮层中的内容会在页面刷新时销毁并重新创建，存在一定的性能损耗，页面频繁刷新的场景推荐使用ComponentContent方式设置浮层。 |
-| options | [OverlayOptions](#overlayoptions12) | 否   | 浮层的定位。<br/>**说明：**<br/>需要解析为Json格式。<br/>API version 12之前，options: <br/>{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment),&nbsp;<br/>offset?:&nbsp;{x?:&nbsp;number, y?:&nbsp;number}<br/>} |
+| options | [OverlayOptions](#overlayoptions12) | 否   | 浮层的定位。<br/>**说明：**<br/>API version 12之前，options: <br/>{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment),&nbsp;<br/>offset?:&nbsp;{x?:&nbsp;number, y?:&nbsp;number}<br/>} |
 
 **返回值：**
 
@@ -45,8 +45,8 @@ overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptio
 
 | 名称                  | 类型                                       | 只读 | 可选  | 说明                                                |
 | --------------------- | -------------------------------------------| --- | -------| --------------------------------------------------- |
-| align<sup>7+</sup>   | [Alignment](ts-appendix-enums.md#alignment) | 否  | 是      |设置浮层相对于组件的方位。<br/>默认值：TopStart         |
-| offset<sup>7+</sup>  | [OverlayOffset](#overlayoffset12)          | 否  | 是     |设置浮层基于自身左上角的偏移量。浮层默认处于组件左上角。 |
+| align   | [Alignment](ts-appendix-enums.md#alignment) | 否  | 是      |设置浮层相对于组件的方位。<br/>默认值：TopStart         |
+| offset  | [OverlayOffset](#overlayoffset12)          | 否  | 是     |设置浮层基于自身左上角的偏移量。浮层默认处于组件左上角。 |
 
 > **说明：**
 > 

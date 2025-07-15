@@ -2,7 +2,8 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本Interface首批接口从API version 9开始支持。
 
 图像创建模块，用于请求图像原生数据区域，并开放给应用编译原生图像数据的能力。
 在调用以下方法前需要先创建ImageCreator实例，ImageCreator不支持多线程。
@@ -19,8 +20,8 @@ import { image } from '@kit.ImageKit';
 
 | 名称     | 类型                         | 只读 | 可选 | 说明               |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
-| capacity | number                       | 是   | 否   | 同时访问的图像数。 |
-| format   | [ImageFormat](arkts-apis-image-e.md#imageformat9) | 是   | 否   | 图像格式。         |
+| capacity<sup>9+</sup> | number                       | 是   | 否   | 同时访问的图像数。 |
+| format<sup>9+</sup>   | [ImageFormat](arkts-apis-image-e.md#imageformat9) | 是   | 否   | 图像格式。         |
 
 ## dequeueImage<sup>9+</sup>
 

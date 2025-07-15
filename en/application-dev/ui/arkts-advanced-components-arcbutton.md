@@ -1,7 +1,7 @@
 # Arc Button (ArcButton)
 
 
-The **ArcButton** component represents an arc button specifically designed for circular screens on wearable devices. It offers various button styles, such as emphasized, normal, and warning, tailored for watch UIs. For details, see [ArcButton](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md).
+The **ArcButton** component represents an arc button specifically designed for circular screens. It offers various button styles, such as emphasized, normal, and warning, tailored for watch UIs. For details, see [ArcButton](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md).
 
 
 ## Creating a Button
@@ -10,11 +10,11 @@ To create an **ArcButton** component, use the following:
 
   ```ts
 ArcButton({
-  options: new ArcButtonOptions({
-    label: 'OK',
-    position: ArcButtonPosition.TOP_EDGE,
-    styleMode: ArcButtonStyleMode.EMPHASIZED_LIGHT
-  })
+    options: new ArcButtonOptions({
+      label: 'OK',
+      position: ArcButtonPosition.TOP_EDGE,
+      styleMode: ArcButtonStyleMode.EMPHASIZED_LIGHT
+    })
 })
   ```
 
@@ -106,7 +106,7 @@ The **ArcButton** component offers two types: top arc button and bottom arc butt
     options: new ArcButtonOptions({
       label: 'OK',
       shadowEnabled: true,
-      shadowColor: ColorMetrics.resourceColor('#707070')
+      shadowColor: ColorMetrics.resourceColor('#ffec1022')
     })
   })
   ```
@@ -146,18 +146,18 @@ The **ArcButton** component offers two types: top arc button and bottom arc butt
 This example demonstrates a brightness settings screen where a slider displays the current brightness level at 30%. When the reset button is clicked, the brightness value is reset to the default value of 50%.
 
   ```ts
-import { LengthMetrics, LengthUnit, ArcButton, ArcButtonOptions, ArcButtonStyleMode, } from '@kit.ArkUI';
+import { LengthMetrics, LengthUnit, ArcButton, ArcButtonOptions, ArcButtonStyleMode } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
 struct BrightnessPage {
-  @Local brightnessValue: number = 30
-  private defaultBrightnessValue: number = 50
+  @Local brightnessValue: number = 30;
+  private defaultBrightnessValue: number = 50;
 
   build() {
     RelativeContainer() {
       Text('Set brightness')
-        .fontColor(Color.Black)
+        .fontColor(Color.White)
         .id('id_brightness_set_text')
         .fontSize(24)
         .margin({ top: 16 })
@@ -166,7 +166,7 @@ struct BrightnessPage {
         })
 
       Text(`${this.brightnessValue} %`)
-        .fontColor(Color.Black)
+        .fontColor(Color.White)
         .id('id_brightness_min_text')
         .margin({ left: 16 })
         .alignRules({
@@ -187,12 +187,11 @@ struct BrightnessPage {
         .id('id_brightness_slider')
         .margin({ left: 16, right: 16 })
         .onChange((value: number, mode: SliderChangeMode) => {
-          this.brightnessValue = value
+          this.brightnessValue = value;
         })
         .alignRules({
           center: { anchor: 'id_brightness_min_text', align: VerticalAlign.Center },
-          start: { anchor: 'id_brightness_min_text', align: HorizontalAlign.End },
-          end: { anchor: 'id_brightness_max_text', align: HorizontalAlign.Start }
+          start: { anchor: 'id_brightness_min_text', align: HorizontalAlign.End }
         })
 
       ArcButton({
@@ -201,7 +200,7 @@ struct BrightnessPage {
           styleMode: ArcButtonStyleMode.EMPHASIZED_LIGHT,
           fontSize: new LengthMetrics(19, LengthUnit.FP),
           onClick: () => {
-            this.brightnessValue = this.defaultBrightnessValue
+            this.brightnessValue = this.defaultBrightnessValue;
           }
         })
       })
@@ -212,7 +211,7 @@ struct BrightnessPage {
     }
     .height('100%')
     .width('100%')
-    .backgroundColor(Color.White)
+    .backgroundColor(Color.Black)
   }
 }
   ```

@@ -1,27 +1,29 @@
 # Popup
 You can bind the **Popup** attribute to a component to create a popup, specifying its content and interaction logic, and display state. It is mainly used for screen recording and message notification.
 
-Popups can be defined with [PopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions) or [CustomPopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8). In **PopupOptions**, you can set **primaryButton** and **secondaryButton** to include buttons in the popup. In **CustomPopupOptions**, you can create a custom popup through [builder](../quick-start/arkts-builder.md).
+Popups can be defined with [PopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions) or [CustomPopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8). In **PopupOptions**, you can set **primaryButton** and **secondaryButton** to include buttons in the popup. In **CustomPopupOptions**, you can create a custom popup using [builder](../../application-dev/ui/state-management/arkts-builder.md). For **PopupOptions**, the maximum font scale factor is 2.
 
 You can configure the modality of a popup through [mask](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions). Setting **mask** to **true** or a color value makes the popup a modal, and setting **mask** to **false** makes the popup a non-modal.
 
+When multiple popups are displayed at the same time, popups displayed in child windows have a higher z-index than those in the main window. When in the same window, popups displayed later have a higher z-index than those displayed earlier.
+
 ## Creating a Text Popup
 
-Text popups are usually used to display text only and do not allow for user interactions. Bind the **Popup** attribute to a component. When the **show** parameter in the **bindPopup** attribute is set to **true**, a popup is displayed.
+Text popups are usually used to display informational text messages, suitable for non-interactive scenarios. Bind the **Popup** attribute to a component. When the **show** parameter of **bindPopup** is set to **true**, a popup is displayed.
 
-If you bind the **Popup** attribute to a **\<Button>** component, each time the **\<Button>** button is clicked, the Boolean value of **handlePopup** changes. When it changes to **true**, the popup is displayed.
+In the example below, with the **Popup** attribute bound to a **Button** component, each click toggles the boolean value in **handlePopup**. When the value becomes **true**, it triggers **bindPopup** to display the popup.
 
 ```ts
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
 
   build() {
     Column() {
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with PopupOptions',
@@ -41,19 +43,19 @@ You can use the **onStateChange** parameter to add an event callback for popup s
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
 
   build() {
     Column() {
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with PopupOptions',
           onStateChange: (e)=> {// Return the current popup state.
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           }
         })
@@ -72,32 +74,32 @@ You can add a maximum of two buttons to a popup through the **primaryButton** an
 @Entry
 @Component
 struct PopupExample22 {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
 
   build() {
     Column() {
       Button('PopupOptions').margin({ top: 200 })
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with PopupOptions',
           primaryButton: {
             value: 'Confirm',
             action: () => {
-              this.handlePopup = !this.handlePopup
-              console.info('confirm Button click')
+              this.handlePopup = !this.handlePopup;
+              console.info('confirm Button click');
             }
           },
           secondaryButton: {
             value: 'Cancel',
             action: () => {
-              this.handlePopup = !this.handlePopup
+              this.handlePopup = !this.handlePopup;
             }
           },
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           }
         })
@@ -117,8 +119,8 @@ You implement the entrance and exit animation effects of popups through **transi
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
-  @State customPopup: boolean = false
+  @State handlePopup: boolean = false;
+  @State customPopup: boolean = false;
 
   // Define the popup content in the popup builder.
   @Builder popupBuilder() {
@@ -132,7 +134,7 @@ struct PopupExample {
       // PopupOptions for setting the popup
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with transitionEffect',
@@ -140,7 +142,7 @@ struct PopupExample {
           showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           },
           // Set the popup animation to a combination of opacity and translation effects, with no exit animation.
@@ -154,7 +156,7 @@ struct PopupExample {
       // CustomPopupOptions for setting the popup
       Button('CustomPopupOptions')
         .onClick(() => {
-          this.customPopup = !this.customPopup
+          this.customPopup = !this.customPopup;
         })
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
@@ -162,7 +164,7 @@ struct PopupExample {
           showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.customPopup = false
+              this.customPopup = false;
             }
           },
           // Set the popup entrance and exit animations to be a scaling effect.
@@ -184,7 +186,7 @@ You can create a custom popup with **builder** in **CustomPopupOptions**, defini
 @Entry
 @Component
 struct Index {
-  @State customPopup: boolean = false
+  @State customPopup: boolean = false;
   // Define the popup content in the popup builder.
   @Builder popupBuilder() {
     Row({ space: 2 }) {
@@ -197,15 +199,15 @@ struct Index {
       Button('CustomPopupOptions')
         .position({x:100,y:200})
         .onClick(() => {
-          this.customPopup = !this.customPopup
+          this.customPopup = !this.customPopup;
         })
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder, // Content of the popup.
           placement:Placement.Bottom, // Position of the popup.
-          popupColor:Color.Pink // Background color of the popup.
+          popupColor:Color.Pink, // Background color of the popup.
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.customPopup = false
+              this.customPopup = false;
             }
           }
         })
@@ -235,13 +237,13 @@ The following example demonstrates how to configure a popup's style using **popu
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
 
   build() {
     Column({ space: 100 }) {
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           width: 200,
@@ -260,3 +262,215 @@ struct PopupExample {
 ```
 
 ![image](figures/UIpopupStyle.gif)
+
+## Enabling the Popup to Avoid the Soft Keyboard
+
+By default, popups do not avoid the soft keyboard and may be obscured by it. Setting **keyboardAvoidMode** to **KeyboardAvoidMode.DEFAULT** enables keyboard avoidance. If there is insufficient space, the popup will shift from its default position to overlay its host component.
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct PopupExample {
+  @State handlePopup: boolean = false;
+
+  @Builder popupBuilder() {
+    Column({ space: 2 }) {
+      Text('Custom Popup').fontSize(20)
+        .borderWidth(2)
+      TextInput()
+    }.width(200).padding(5)
+  }
+
+  build() {
+    Column({ space: 100 }) {
+      TextInput()
+      Button('PopupOptions')
+        .onClick(() => {
+          this.handlePopup = !this.handlePopup;
+        })
+        .bindPopup(this.handlePopup!!, {
+          width: 200,
+          builder: this.popupBuilder(),
+          placement: Placement.Bottom,
+          mask: false,
+          autoCancel: false,
+          keyboardAvoidMode: KeyboardAvoidMode.DEFAULT
+        })
+        .position({x: 100, y: 300})
+    }
+    .width('100%')
+  }
+}
+```
+
+![image](figures/avoidKeyboard.gif)
+
+
+## Setting Polymorphic Effects in the Popup
+
+When @Builder is used for custom popup content, polymorphic styles are not supported by default. To achieve background color changes on press, implement a component with @Component.
+
+```ts
+@Entry
+@Component
+struct PopupPage {
+  private menus: Array<string> = ["Scan", "Create Group Chat", "Employee ID Card"]
+
+  // Define the popup content in the popup builder.
+  @Builder
+  popupItemBuilder(name: string, action: string) {
+    PopupItemChild({ childName: name, childAction: action })
+  }
+
+  // Define the popup content in the popup builder.
+  @Builder
+  popupBuilder() {
+    Column() {
+      ForEach(
+        this.menus,
+        (item: string, index) => {
+          this.popupItemBuilder(item, String(index))
+        },
+        (item: string, index) => {
+          return item
+        })
+    }
+    .padding(8)
+  }
+
+  @State customPopup: boolean = false;
+
+  build() {
+    Column() {
+      Button('Click Me')
+        .onClick(() => {
+          this.customPopup = !this.customPopup
+        })
+        .bindPopup(
+          this.customPopup,
+          {
+            builder: this.popupBuilder, // Content of the popup.
+            placement: Placement.Bottom, // Position of the popup.
+            popupColor: Color.White, // Background color of the popup.
+            onStateChange: (event) => {
+              if (!event.isVisible) {
+                this.customPopup = false
+              }
+            }
+          })
+    }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+}
+
+@Component
+struct PopupItemChild {
+  @Prop childName: string = '';
+  @Prop childAction: string = '';
+
+  build() {
+    Row({ space: 8 }) {
+      Image($r('app.media.startIcon'))
+        .width(24)
+        .height(24)
+      Text(this.childName)
+        .fontSize(16)
+    }
+    .width(200)
+    .height(50)
+    .padding(8)
+    .onClick(() => {
+      this.getUIContext().getPromptAction().showToast({ message: 'Selected ' + this.childName })
+    })
+    .stateStyles({
+      normal: {
+        .backgroundColor(Color.White)
+      },
+      pressed: {
+        .backgroundColor('#1fbb7d')
+      }
+    })
+  }
+}
+```
+
+![popupStateStyle](figures/popupStateStyle.gif)
+
+## Implementing Axis Avoidance
+
+Since API version 18, popups support center axis avoidance. Since API version 20, it is enabled by default on 2-in-1 devices (avoidance only occurs when the window is in waterfall mode). You can control whether to enable axis avoidance through the **enableHoverMode** property in [PopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions).
+
+> **NOTE**
+> - Popups will not avoid the center axis if clicked in the axis area.
+> - On 2-in-1 devices, axis avoidance occurs only when the window is in waterfall mode.
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  @State index: number = 0;
+  @State arrayStr: Array<string> = ['Upper half screen', 'Central axis', 'Lower half screen'];
+  @State enableHoverMode: boolean | undefined = true;
+  @State showInSubwindow: boolean = false;
+  @State placement: Placement | undefined = undefined;
+  @State isShow: boolean = false;
+
+  build() {
+    RelativeContainer() {
+      Column() {
+        Button('Area: ' + this.arrayStr[this.index])
+          .onClick(() => {
+            if (this.index < 2) {
+              this.index++
+            } else {
+              this.index = 0
+            }
+          })
+
+        Button('Subwindow: ' + (this.showInSubwindow ? 'Yes' : 'No'))
+          .onClick(() => {
+            this.showInSubwindow = !this.showInSubwindow
+          })
+
+        Button('Hover Mode: ' + this.enableHoverMode)
+          .onClick(() => {
+            if (this.enableHoverMode == undefined) {
+              this.enableHoverMode = true
+            } else if (this.enableHoverMode == true) {
+              this.enableHoverMode = false
+            } else {
+              this.enableHoverMode = undefined
+            }
+          })
+      }
+
+      Row() {
+        Button('Popup')
+          .fontWeight(FontWeight.Bold)
+          .bindPopup(this.isShow, {
+            message: 'popup',
+            enableHoverMode: this.enableHoverMode,
+            showInSubWindow: this.showInSubwindow,
+          })
+          .onClick(() => {
+            this.isShow = !this.isShow
+          })
+      }
+      .alignRules({
+        center: { anchor: '__container__', align: VerticalAlign.Center },
+        middle: { anchor: '__container__', align: HorizontalAlign.Center }
+      })
+      .margin({
+        top: this.index == 2 ? 330 : this.index == 1 ? 50 : 0,
+        bottom: this.index == 0 ? 330 : 0
+      })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```

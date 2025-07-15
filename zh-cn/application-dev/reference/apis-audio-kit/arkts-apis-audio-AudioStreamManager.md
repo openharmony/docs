@@ -1,7 +1,9 @@
 # Interface (AudioStreamManager)
 
 > **说明：**
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本Interface首批接口从API version 9开始支持。
 
 管理音频流。
 
@@ -766,7 +768,7 @@ try {
 
 isAudioLoopbackSupported(mode: AudioLoopbackMode): boolean
 
-查询传入的音频返听模式是否支持音频返听。
+查询当前系统是否支持指定的音频返听模式。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -780,7 +782,7 @@ isAudioLoopbackSupported(mode: AudioLoopbackMode): boolean
 
 | 类型                                                                      | 说明                                    |
 | --------------------------------------------------------------------------| --------------------------------------- |
-|  boolean     | 是否支持音频返听。true表示支持，false表示不支持。        |
+|  boolean     | 是否支持指定的音频返听模式。true表示支持，false表示不支持。        |
 
 **错误码：**
 
@@ -802,4 +804,70 @@ try {
   let error = err as BusinessError;
   console.error(`isAudioLoopbackSupported ERROR: ${error}`);
 }
+```
+
+## isRecordingAvailable<sup>20+</sup>
+
+isRecordingAvailable(capturerInfo: AudioCapturerInfo): boolean
+
+检查传入的音频采集器信息中音源类型的录制是否可以启动成功。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名    | 类型                                | 必填     | 说明                         |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| capturerInfo | [AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8) | 是 | 音频采集器信息。 |
+
+**返回值：**
+
+| 类型          | 说明                                    |
+| ------------ | --------------------------------------- |
+|  boolean     | 代表录制是否可以启动成功。true表示成功，false表示失败。<br>仅检测是否可以获取音频采集器信息中音源类型的焦点。通常在音频录制启动前调用，否则已存在的录制流可能会拒绝其启动。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Parameter verification failed.              |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let audioStreamInfo: audio.AudioStreamInfo = {
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+  channels: audio.AudioChannel.CHANNEL_2,
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+};
+
+let audioCapturerInfo: audio.AudioCapturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
+};
+
+let audioCapturerOptions: audio.AudioCapturerOptions = {
+  streamInfo: audioStreamInfo,
+  capturerInfo: audioCapturerInfo
+};
+
+audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
+  if (err) {
+    console.error(`AudioCapturer Created : Error: ${err}`);
+  } else {
+    console.info('AudioCapturer Created : Success : SUCCESS');
+    let audioCapturer = data;
+    try {
+      let isAvailable = audioStreamManager.isRecordingAvailable(audioCapturerInfo);
+      console.info(`[Recording Available] Status: ${isAvailable}`);
+    } catch (err) {
+      let error = err as BusinessError;
+      console.error(`isRecordingAvailable ERROR: ${error}`);
+    }
+  }
+});
 ```

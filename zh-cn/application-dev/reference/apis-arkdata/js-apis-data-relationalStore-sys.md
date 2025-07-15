@@ -5,9 +5,9 @@ ArkTS侧支持的基本数据类型：number、string、二进制类型数据、
 
 该模块提供以下关系型数据库相关的常用功能：
 
-- [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)：数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
-- [RdbStore](arkts-apis-data-relationalStore-RdbStore.md#rdbstore)：提供管理关系数据库（RDB）方法的接口。
-- [ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
+- [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)：数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
+- [RdbStore](arkts-apis-data-relationalStore-RdbStore.md)：提供管理关系数据库（RDB）方法的接口。
+- [ResultSet](arkts-apis-data-relationalStore-ResultSet.md)：提供用户调用关系型数据库查询接口之后返回的结果集合。
 
 > **说明：**
 > 
@@ -417,7 +417,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, callba
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | table      | string                                                       | 是   | 指定的目标表名。                                            |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的查询条件。               |
-| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -478,7 +478,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | table      | string                                                       | 是   | 指定的目标表名。                                            |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的查询条件。               |
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
-| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -544,7 +544,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 
 | 类型                                                    | 说明                                               |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -606,7 +606,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 | 参数名         | 类型                             | 必填 | 说明                            |
 |-------------|--------------------------------| ---- |-------------------------------|
 | mode        | [SyncMode](arkts-apis-data-relationalStore-e.md#syncmode)          | 是   | 表示数据库的同步模式。                   |
-| predicates  | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)                  | 是   | 表示同步数据的谓词条件。                  |
+| predicates  | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)                  | 是   | 表示同步数据的谓词条件。                  |
 | progress    | Callback&lt;[ProgressDetails](arkts-apis-data-relationalStore-i.md#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。           |
 | callback    | AsyncCallback&lt;void&gt;      | 是   | 指定的callback回调函数，用于向调用者发送同步结果。 |
 
@@ -689,7 +689,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 | 参数名        | 类型                              | 必填 | 说明                  |
 |------------|---------------------------------| ---- |---------------------|
 | mode       | [SyncMode](arkts-apis-data-relationalStore-e.md#syncmode)           | 是   | 表示数据库的同步模式。         |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)                   | 是   | 表示同步数据的谓词条件。                |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)                   | 是   | 表示同步数据的谓词条件。                |
 | progress   | Callback&lt;[ProgressDetails](arkts-apis-data-relationalStore-i.md#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。 |
 
 **返回值**：
@@ -768,14 +768,14 @@ querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): 
 
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 表示查询的谓词条件。    |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | 表示查询的谓词条件。    |
 | columns    | Array&lt;string&gt;      | 否   | 表示要查找的列字段名。此参数不填时，返回的结果集中只包含共享资源标识字段。 |
 
 **返回值：**
 
 | 参数名    | 说明                                               |
 | -------- | ------------------------------------------------- |
-| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象，返回查询的结果集。   |
+| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | Promise对象，返回查询的结果集。   |
 
 **错误码：**
 
@@ -841,8 +841,8 @@ querySharingResource(predicates: RdbPredicates, callback: AsyncCallback&lt;Resul
 
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates)              | 是   | 表示查询的谓词条件。           |
-| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | 是   | 回调函数。返回查询的结果集。 |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md)              | 是   | 表示查询的谓词条件。           |
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | 是   | 回调函数。返回查询的结果集。 |
 
 **错误码：**
 
@@ -909,9 +909,9 @@ querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, ca
 
 | 参数名   | 类型                                                  | 必填 | 说明                                               |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
-| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 表示查询的谓词条件。           |
+| predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | 表示查询的谓词条件。           |
 | columns    | Array&lt;string&gt;              | 是   | 表示要查找的列字段名。           |
-| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt;  | 是   | 回调函数。返回查询的结果集。 |
+| callback   | AsyncCallback&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt;  | 是   | 回调函数。返回查询的结果集。 |
 
 **错误码：**
 

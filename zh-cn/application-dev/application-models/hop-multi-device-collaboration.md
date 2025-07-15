@@ -130,7 +130,7 @@
     @Entry
     @Component
     struct Page_CollaborateAbility {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       build() {
         Column() {
           //...

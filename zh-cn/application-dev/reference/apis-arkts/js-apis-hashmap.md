@@ -90,6 +90,7 @@ isEmpty(): boolean
 ```ts
 const hashMap: HashMap<string, number> = new HashMap();
 let result = hashMap.isEmpty();
+console.info("result = ", result) // result = true
 ```
 
 
@@ -438,7 +439,7 @@ while(!temp.done) {
 
 replace(key: K, newValue: V): boolean
 
-对HashMap中一组数据进行更新（替换）。
+用于替换指定键对应的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -478,7 +479,7 @@ let result = hashMap.replace("sparrow", 357);
 
 forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
 
-通过回调函数来遍历HashMap实例对象上的元素以及元素对应的下标。
+在遍历过程中对每个元素调用一次回调函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
