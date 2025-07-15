@@ -3731,10 +3731,10 @@
             - [OH_CryptoVerify](reference/apis-crypto-architecture-kit/capi-cryptosignatureapi-oh-cryptoverify.md)
             - [OH_CryptoSign](reference/apis-crypto-architecture-kit/capi-cryptosignatureapi-oh-cryptosign.md)
             - [OH_CryptoEccSignatureSpec](reference/apis-crypto-architecture-kit/capi-cryptosignatureapi-oh-cryptoeccsignaturespec.md)
-            - [OH_CryptoSymCipher](reference/apis-crypto-architecture-kit/capi-cryptoasymcipherapi-oh-cryptosymcipher.md)
-            - [OH_CryptoSymCipherParams](reference/apis-crypto-architecture-kit/capi-cryptoasymcipherapi-oh-cryptosymcipherparams.md)
-            - [OH_CryptoSymKey](reference/apis-crypto-architecture-kit/capi-cryptoasymkeyapi-oh-cryptosymkey.md)
-            - [OH_CryptoSymKeyGenerator](reference/apis-crypto-architecture-kit/capi-cryptoasymkeyapi-oh-cryptosymkeygenerator.md)
+            - [OH_CryptoSymCipher](reference/apis-crypto-architecture-kit/capi-cryptosymcipherapi-oh-cryptosymcipher.md)
+            - [OH_CryptoSymCipherParams](reference/apis-crypto-architecture-kit/capi-cryptosymcipherapi-oh-cryptosymcipherparams.md)
+            - [OH_CryptoSymKey](reference/apis-crypto-architecture-kit/capi-cryptosymkeyapi-oh-cryptosymkey.md)
+            - [OH_CryptoSymKeyGenerator](reference/apis-crypto-architecture-kit/capi-cryptosymkeyapi-oh-cryptosymkeygenerator.md)
         - 错误码<!--crypto-architecture-arkts-errcode-->
           - [crypto framework错误码](reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md)
       - Data Protection Kit（数据保护服务）<!--data-protection-api-->
