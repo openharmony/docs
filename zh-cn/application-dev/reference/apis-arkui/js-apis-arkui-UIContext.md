@@ -998,6 +998,22 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
 | options | [TextPickerDialogOptions](arkui-ts/ts-methods-textpicker-dialog.md#textpickerdialogoptions对象说明) | 是   | 配置文本滑动选择器弹窗的参数。 |
 
+### showTextPickerDialog<sup>20+</sup>
+
+showTextPickerDialog(style: TextPickerDialogOptions\|TextPickerDialogOptionsExt): void
+
+定义文本滑动选择器弹窗并弹出，相比API version 11，新增了TextPickerDialogOptionsExt参数支持。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                           |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| style | [TextPickerDialogOptions](arkui-ts/ts-methods-textpicker-dialog.md#textpickerdialogoptions对象说明)\| [TextPickerDialogOptionsExt](arkui-ts/ts-methods-textpicker-dialog.md#textpickerdialogoptionsext20对象说明) | 是   | 配置文本滑动选择器弹窗的参数。 |
+
 **示例：**
 
 ```ts
