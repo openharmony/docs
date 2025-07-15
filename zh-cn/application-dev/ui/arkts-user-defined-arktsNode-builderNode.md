@@ -1293,14 +1293,14 @@ struct TextBuilder {
 
 ## BuilderNode结合ArkWeb组件实现预渲染页面
 
-预渲染适用于Web页面启动和跳转等场景。通过结合BuilderNode，可以将ArkWeb组件提前离线预渲染，组件不会立即挂载到页面，而是在需要时通过NodeController动态挂载和显示。这样能够提升页面切换的流畅度和用户体验。
+预渲染适用于Web页面启动与跳转等场景。通过结合BuilderNode，可以将ArkWeb组件提前进行离线预渲染，组件不会即时挂载至页面，而是在需要时通过NodeController动态挂载与显示。此举能够提高页面切换的流畅度及用户体验。
 
 > **说明**
 >
 > 访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。
 
-1. 创建载体，并创建ArkWeb组件。
-   ```typescript
+1. 创建载体Ability，并创建Web组件。
+   ```ts
    // 载体Ability
    // EntryAbility.ets
    import { createNWeb } from "../pages/common";
@@ -1319,9 +1319,9 @@ struct TextBuilder {
      }
    }
    ```
-2. 创建NodeContainer和对应的NodeController，渲染后台ArkWeb组件。
+2. 创建NodeContainer和对应的NodeController，渲染后台Web组件。
 
-    ```typescript
+    ```ts
     // 创建NodeController。
     // common.ets
     import { UIContext } from '@kit.ArkUI';
@@ -1417,7 +1417,7 @@ struct TextBuilder {
     ```
 3. 通过NodeContainer使用已经预渲染的页面。
 
-    ```typescript
+    ```ts
     // 使用NodeController的Page页。
     // Index.ets
     import { createNWeb, getNWeb } from "./common";
