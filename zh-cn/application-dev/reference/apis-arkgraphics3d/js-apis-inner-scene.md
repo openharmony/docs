@@ -662,7 +662,7 @@ function loadPlugin(): void {
 }
 ```
 
-### registerResourcePath
+### registerResourcePath<sup>20+</sup>
 registerResourcePath(protocol: string, uri: string): boolean
 
 注册shader等资产文件所在的路径目录及其检索名，通过检索名查找并替换shader内部关联文件的路径描述，找到对应的资产路径目录，实现资产及其关联文件的正确加载。
@@ -678,7 +678,7 @@ registerResourcePath(protocol: string, uri: string): boolean
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| boolean | 返回资产文件路径是否注册成功。true表示注册成功，false表示注册失败，表示检索名已被注册或输入参数不可用。 |
+| boolean | 返回资产文件路径是否注册成功。true表示注册成功；false表示注册失败，可能原因为检索名已被注册或输入参数不可用。 |
 
 **示例：**
 ```ts
