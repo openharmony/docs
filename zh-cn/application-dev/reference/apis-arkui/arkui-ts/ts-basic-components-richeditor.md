@@ -719,6 +719,7 @@ onCopy(callback: Callback\<CopyEvent\>)
 | insertValue  | string | 否| 否    | 插入的文本内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | previewText<sup>12+</sup> | string | 否| 是    | 插入的预上屏文本内容。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
+
 ## RichEditorDeleteValue
 
 删除操作和被删除内容的信息。
@@ -1692,6 +1693,7 @@ SymbolSpan样式选项。
 | paragraphStyle<sup>11+</sup> | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 否 | 是    | 段落样式。                     <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | gesture<sup>11+</sup>        | [RichEditorGesture](#richeditorgesture11) | 否  | 是    | 行为触发回调。省略时，仅使用系统默认行为。      <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | urlStyle<sup>19+</sup>  | [RichEditorUrlStyle](#richeditorurlstyle19)  | 否  | 是   | url信息。<br/>默认值：undefined <br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
+
 ## RichEditorTextStyle
 
 文本样式信息。
@@ -2007,6 +2009,7 @@ type OnHoverCallback = (status: boolean, event: HoverEvent) => void
 | spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | 否 | 否   | Span位置。|
 | value            | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) \| [ResourceStr](ts-types.md#resourcestr)  | 否 | 否   | 图片内容。|
 | imageStyle       | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 否 | 是 | 图片样式。|
+
 ## RichEditorUrlStyle<sup>19+</sup>
 
 Url信息。
