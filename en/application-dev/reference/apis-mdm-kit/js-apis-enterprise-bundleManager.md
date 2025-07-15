@@ -4,11 +4,11 @@ The **bundleManager** module provides APIs for bundle management, including addi
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is enabled.
+> - The APIs of this module can be called only by a device administrator application that is enabled. For details, see [MDM Kit Development](../../mdm/mdm-kit-guide.md).
 
 ## Modules to Import
 
@@ -51,6 +51,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -100,6 +101,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -136,7 +138,7 @@ Obtains the applications that can be installed by the current or specified user.
 
 | Type               | Description                          |
 | ------------------- | ------------------------------ |
-| Array&lt;string&gt; | Applications that can be installed by the user.|
+| Array&lt;string&gt; | Applications that can be installed.|
 
 **Error codes**
 
@@ -153,6 +155,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -200,6 +203,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -248,6 +252,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -284,7 +289,7 @@ Obtains the applications that cannot be installed by the current or specified us
 
 | Type               | Description                          |
 | ------------------- | ------------------------------ |
-| Array&lt;string&gt; | Applications that cannot be installed by the user.|
+| Array&lt;string&gt; | Applications that cannot be installed.|
 
 **Error codes**
 
@@ -301,6 +306,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -348,6 +354,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -396,6 +403,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -449,6 +457,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -504,6 +513,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -520,13 +530,11 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
 
 install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam): Promise\<void>
 
-Installs specified applications. This API uses a promise to return the result.
-Note: The distribution type of applications can only be **enterprise_mdm** or **enterprise_normal**.
+Installs specified applications. This API uses a promise to return the result.<br>The distribution type of the application can only be **enterprise_mdm** or **enterprise_normal**.
 
 **Required permissions**: ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
 
 **Parameters**
 
@@ -540,7 +548,7 @@ Note: The distribution type of applications can only be **enterprise_mdm** or **
 
 | Type               | Description                                                   |
 | ------------------- | ------------------------------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. An error object will be thrown if the application fails to be installed.|
+| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown.|
 
 **Error codes**
 
@@ -559,6 +567,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
+// Install the application for the current user.
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -572,13 +582,39 @@ bundleManager.install(wantTemp, hapFilePaths).then(() => {
 });
 ```
 
+```ts
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Install the application for all users.
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap'];
+const params: Record<string, string> = {
+  'ohos.bms.param.enterpriseForAllUser': 'true'
+};
+let installParam: bundleManager.InstallParam = {
+  userId: 100,
+  installFlag: 0,
+  parameters: params
+};
+bundleManager.install(wantTemp, hapFilePaths, installParam).then(() => {
+  console.info('Succeeded in installing bundles.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+});
+```
+
 ## InstallParam
 
 Defines the parameters for application installation.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
-| Name       | Type  | Mandatory| Description                                                        |
-| ----------- | ------ | ---- | ------------------------------------------------------------ |
-| userId      | number | No  | User ID, which must be greater than or equal to 0. The default value is the user ID of the caller.   |
-| installFlag | number | No  | Installation flag.<br> - **0**: initial installation.<br>- **1**: overwrite installation.<br>- **2**: installation-free.<br>Default value: **0**|
+| Name                    | Type                  | Read-Only| Optional| Description                                                        |
+| ------------------------ | ---------------------- | ---- | ---- | ------------------------------------------------------------ |
+| userId                   | number                 | No  | Yes| User ID, which must be greater than or equal to 0. The default value is the user ID of the caller.   |
+| installFlag              | number                 | No  | Yes|Installation flag.<br> - **0**: initial installation.<br>- **1**: overwrite installation.<br>- **2**: installation-free.<br>Default value: **0**|
+| parameters<sup>19+</sup> | Record&lt;string, string&gt; | No  | Yes| Extended parameters. The default value is null. The key value can be **ohos.bms.param.enterpriseForAllUser**. If the value is **true**, the application is installed for all users.|
