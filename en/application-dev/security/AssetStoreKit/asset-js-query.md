@@ -13,10 +13,10 @@ The following table describes the attributes of **AssetMap** for querying an ass
 | --------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | ALIAS                 | Type: Uint8Array<br>Length: 1-256 bytes                           | No    | Asset alias, which uniquely identifies an asset.                      |
 | ACCESSIBILITY         | Type: number<br>Value range: see [Accessibility](../../reference/apis-asset-store-kit/js-apis-asset.md#accessibility)| No    | Access control based on the lock screen status.                               |
-| REQUIRE_PASSWORD_SET  | Type: boolean                                                  | No    | Whether the asset is accessible only when a lock screen password is set.                |
+| REQUIRE_PASSWORD_SET  | Type: Boolean                                                  | No    | Whether the asset is accessible only when a lock screen password is set. The value **true** means the asset is accessible only when a lock screen password is set. The value **false** means that the asset can be accessed regardless of whether a lock screen password is set.                |
 | AUTH_TYPE             | Type: number<br>Value range: see [AuthType](../../reference/apis-asset-store-kit/js-apis-asset.md#authtype)| No    | Type of user authentication required for accessing the asset.                              |
 | SYNC_TYPE             | Type: number<br>Value range: see [SyncType](../../reference/apis-asset-store-kit/js-apis-asset.md#synctype)| No    | Type of sync supported by the asset.                                     |
-| IS_PERSISTENT         | Type: boolean                                                  | No    | Whether to retain the asset when the application is uninstalled.                            |
+| IS_PERSISTENT         | Type: Boolean                                                  | No    | Whether to retain the asset when the application is uninstalled. The value **true** means to retain the asset even after the application is uninstalled. The value **false** means the opposite.              |
 | DATA_LABEL_CRITICAL_1 | Type: Uint8Array<br>Length: 1-2048 bytes                       | No    | Asset attribute information customized by the service with integrity protection.<br>**NOTE**: The data length is 1 to 512 bytes before API version 12.|
 | DATA_LABEL_CRITICAL_2 | Type: Uint8Array<br>Length: 1-2048 bytes                       | No    | Asset attribute information customized by the service with integrity protection.<br>**NOTE**: The data length is 1 to 512 bytes before API version 12.|
 | DATA_LABEL_CRITICAL_3 | Type: Uint8Array<br>Length: 1-2048 bytes                       | No    | Asset attribute information customized by the service with integrity protection.<br>**NOTE**: The data length is 1 to 512 bytes before API version 12.|
@@ -30,15 +30,15 @@ The following table describes the attributes of **AssetMap** for querying an ass
 | DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | Type: Uint8Array<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
 | DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | Type: Uint8Array<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
 | RETURN_TYPE           | Type: number<br>Value range: see [ReturnType](../../reference/apis-asset-store-kit/js-apis-asset.md#returntype)| No    | Type of the asset query result to return.            |
-| RETURN_LIMIT          | Type: number                                                | No    | Maximum number of asset records to return.                                        |
+| RETURN_LIMIT          | Type: number                                                | No    | Maximum number of asset records returned.                                        |
 | RETURN_OFFSET         | Type: number<br>Value range: 1-65536                             | No    | Offset of the asset query result.<br>**NOTE**: This parameter specifies the starting asset record to return in batch asset query.                                |
 | RETURN_ORDERED_BY     | Type: number<br>Value: asset.Tag.DATA_LABEL_xxx.            | No    | How the query results are sorted. Currently, the results can be sorted only by **DATA_LABEL**.<br>**NOTE**: By default, assets are returned in the order in which they are added.|
-| REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | Type: boolean| No| Whether to query the customized asset attribute information that is encrypted. By default, the unencrypted, customized asset attribute information is queried.|
+| REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | Type: Boolean| No| Whether to query the encrypted data of service customized supplementary information. The value **true** means to query the encrypted data of service customized supplementary information; the value **false** means to query the non-encrypted data of service customized supplementary information. The default value is **false**.|
 | GROUP_ID<sup>18+</sup> | Type: Uint8Array<br>Length: 7-127 bytes| No| Group to which the asset to be queried belongs. By default, this parameter is not specified.|
 
 ## Constraints
 
-The assets queried are transmitted to the service through an IPC channel. Due to the limitation of the IPC buffer size, the maximum number of assets to be queried at a time cannot exceed 40.
+Assets queried in batches need to be transmitted to services through the IPC channel. Due to the limitation of the IPC buffer size, you are advised to query a maximum of 40 assets at a time.
 
 ## Example
 
