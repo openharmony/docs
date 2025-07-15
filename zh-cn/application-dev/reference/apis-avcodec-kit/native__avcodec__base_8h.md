@@ -215,4 +215,4 @@
 | const char \* [OH_MD_KEY_REFERENCE_TRACK_IDS](_codec_base.md#oh_md_key_reference_track_ids)          | 媒体文件轨道间参考、被参考关系，值类型为int32_t\*。 |
 | const char \* [OH_MD_KEY_TRACK_REFERENCE_TYPE](_codec_base.md#oh_md_key_track_reference_type)          | 媒体文件辅助轨类型，值类型为string。 |
 | const char \* [OH_MD_KEY_TRACK_DESCRIPTION](_codec_base.md#oh_md_key_track_description)          | 媒体文件辅助轨描述信息，值类型为string。 |
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL](_codec_base.md#oh_md_key_video_encoder_enable_pts_based_ratecontrol) | 使能基于显示时间戳 (PTS) 的码控模式的键。值类型为 int32_t，1 表示使能，0 表示关闭。该键值为可选，仅用于视频编码，默认值为 0。使能时，每个视频帧必须携带 PTS 信息并发送到编码器。在 Configure 阶段使用。 |
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL](_codec_base.md#oh_md_key_video_encoder_enable_pts_based_ratecontrol) | 使能基于显示时间戳(PTS)的码控模式的键。值类型为int32_t，1表示使能，0表示关闭。该键为可选，仅用于视频编码，默认值为0。使能时，每个视频帧必须携带PTS信息并发送到编码器。该键在Configure阶段使用。 |
