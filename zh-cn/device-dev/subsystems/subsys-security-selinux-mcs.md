@@ -43,7 +43,6 @@ o:r:normal_hap:s0:x55,x334,x512,x868,x1024
 ```
 
 进入应用数据目录，使用命令`ls -lZ`查询应用数据目录MCS配置状况。示例如下：
-应用数据目录：/data/app/el1/100/base/
 ```text
 o:object_r:normal_hap_data_file:s0:x55,x334,x512,x868,x1024
 ```
