@@ -380,7 +380,7 @@ setUserRestriction(admin: Want, settingsItem: string, restricted: boolean): void
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
-| settingsItem  | string                                                  | 是   | 行为名称。<br/>- setApn：APN设置，当前仅支持手机、平板使用。<br/>- powerLongPress：长按电源键打开电源菜单，当前仅支持手机、平板使用。<br/>- setEthernetIp：修改以太网IP地址，该设置仅在PC/2in1设备上生效。<br/>- setDeviceName：修改设备名称, 当前仅支持PC/2in1设备、手机、平板使用。<br/>- setBiometricsAndScreenLock：修改锁屏密码, 当前仅支持PC/2in1设备、手机、平板使用。|
+| settingsItem  | string                                                  | 是   | 行为名称。<br/>- setApn：APN设置，当前仅支持手机、平板使用。<br/>- powerLongPress：长按电源键打开电源菜单，当前仅支持手机、平板使用。<br/>- setEthernetIp：修改以太网IP地址，当前仅支持PC/2in1设备使用。<br/>- setDeviceName：修改设备名称, 当前仅支持PC/2in1设备、手机、平板使用。<br/>- setBiometricsAndScreenLock：修改锁屏密码, 当前仅支持PC/2in1设备、手机、平板使用。|
 | restricted | boolean                                                 | 是   | 是否限制行为。true表示限制，false表示允许。                       |
 
 **错误码**：
@@ -415,7 +415,7 @@ try {
 
 getUserRestricted(admin: Want, settingsItem: string): boolean
 
-获取指定设置项的禁用状态。
+获取设置项的禁用状态。
 
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_USER_RESTRICTION
@@ -430,13 +430,13 @@ getUserRestricted(admin: Want, settingsItem: string): boolean
 | 参数名  | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
-| settingsItem | string                                             | 是   | 指定设置项。<br/>- setEthernetIp：修改以太网IP地址，该设置仅在PC/2in1设备上生效。<br/>- setDeviceName：修改设备名称, 该设置仅在PC/2in1设备、手机、平板上生效。<br/>- setBiometricsAndScreenLock：修改锁屏密码, 该设置仅在PC/2in1设备、手机、平板上生效。|
+| settingsItem | string                                             | 是   | 指定设置项。<br/>- setEthernetIp：修改以太网IP地址，当前仅支持PC/2in1设备使用。<br/>- setDeviceName：修改设备名称, 当前仅支持PC/2in1设备、手机、平板使用。<br/>- setBiometricsAndScreenLock：修改锁屏密码, 当前仅支持PC/2in1设备、手机、平板使用。|
 
 **返回值：**
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 返回true表示settingsItem对应的设置项被禁用，false表示settingsItem对应的设置项未被禁用。 |
+| boolean | true表示已禁用，false表示未禁用。 |
 
 **错误码**：
 
@@ -461,8 +461,8 @@ let wantTemp: Want = {
 
 try {
   let result: boolean = restrictions.getUserRestricted(wantTemp, 'setEthernetIp');
-  console.info('Succeeded in get user restrited');
+  console.info('Succeeded in get user restricted');
 } catch (err) {
-  console.error(`Failed to get user restrited. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to get user restricted. Code is ${err.code}, message is ${err.message}`);
 }
 ```
