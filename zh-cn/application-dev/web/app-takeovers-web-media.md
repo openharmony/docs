@@ -481,17 +481,17 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage): void {
       windowStage.loadContent('pages/Index', (err, data) => {
-         if (err && err.code) {
-           return;
-         }
+        if (err && err.code) {
+          return;
+        }
  
-         let mainWindow = windowStage.getMainWindowSync();
-         if (mainWindow) {
-           // 保存UIContext， 在后续的同层渲染绘制中使用。
-           AppStorage.setOrCreate<UIContext>("UIContext", mainWindow.getUIContext());
-         } else {
-            console.error("Failed to get the main window");
-         }
+        let mainWindow = windowStage.getMainWindowSync();
+        if (mainWindow) {
+          // 保存UIContext， 在后续的同层渲染绘制中使用。
+          AppStorage.setOrCreate<UIContext>("UIContext", mainWindow.getUIContext());
+        } else {
+          console.error("Failed to get the main window");
+        }
       });
     }
 
