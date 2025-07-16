@@ -5067,7 +5067,6 @@ type NotificationLiveViewContent = _NotificationLiveViewContent
 
 ## SwitchState<sup>20+</sup>
 
-
 描述通知相关开关的设置状态。
 
 **系统能力**：SystemCapability.Notification.Notification
