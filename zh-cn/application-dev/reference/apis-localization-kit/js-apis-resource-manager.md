@@ -408,7 +408,9 @@ getStringSync(resId: number): string
 
 ### getStringSync<sup>10+</sup>
 
-getStringSync(resId: number, ...args: Array<string | number>): string
+ArkTS1.1: getStringSync(resId: number, ...args: Array<string | number>): string
+
+ArkTS1.2: getStringSync(resId: number, ...args: (string | number)[]): string
 
 获取指定资源ID对应的字符串，并根据args参数对字符串进行格式化，使用同步方式返回。
 
@@ -421,7 +423,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值。 |
-| ...args | Array<string \| number> | 否 | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
+| ...args | ArkTS1.1: Array<string \| number> </br> ArkTS1.2: (string \| number)[]| 否 | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
@@ -1659,7 +1661,9 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 ### getIntPluralStringValueSync<sup>18+</sup>
 
-getIntPluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string
+ArkTS1.1: getIntPluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string
+
+ArkTS1.2: getIntPluralStringValueSync(resId: number, num: number, ...args: (string | number)[]): string
 
 获取指定资源ID对应的[单复数](../../internationalization/l10n-singular-plural.md)字符串，并根据args参数对字符串进行格式化，使用同步方式返回。
 
@@ -1677,7 +1681,7 @@ getIntPluralStringValueSync(resId: number, num: number, ...args: Array<string | 
 | ------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resId   | number                  | 是   | 资源ID值。                                                   |
 | num     | number                  | 是   | 数量值（整数）。根据当前语言的[单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)获取该数量值对应的字符串。 |
-| ...args | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
+| ...args | ArkTS1.1: Array<string \| number> </br> ArkTS1.2: (string \| number)[]| 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
@@ -1822,7 +1826,9 @@ getIntPluralStringValueSync(resource: Resource, num: number, ...args: Array<stri
 
 ### getIntPluralStringByNameSync<sup>18+</sup>
 
-getIntPluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string
+ArkTS1.1: getIntPluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string
+
+ArkTS1.2: getIntPluralStringByNameSync(resName: string, num: number, ...args: (string | number)[]): string
 
 获取指定资源名称对应的[单复数](../../internationalization/l10n-singular-plural.md)字符串，并根据args参数对字符串进行格式化，使用同步方式返回。
 
@@ -1840,7 +1846,7 @@ getIntPluralStringByNameSync(resName: string, num: number, ...args: Array<string
 | ------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resName | string                  | 是   | 资源名称。                                                   |
 | num     | number                  | 是   | 数量值（整数）。根据当前语言的[单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)获取该数量值对应的字符串。 |
-| ...args | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
+| ...args | ArkTS1.1: Array<string \| number> </br> ArkTS1.2: (string \| number)[] | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
@@ -1898,7 +1904,9 @@ getIntPluralStringByNameSync(resName: string, num: number, ...args: Array<string
 
 ### getDoublePluralStringValueSync<sup>18+</sup>
 
-getDoublePluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string
+ArkTS1.1: getDoublePluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string
+
+ArkTS1.2: getDoublePluralStringValueSync(resId: number, num: number, ...args: (string | number)[]): string
 
 获取指定资源ID对应的[单复数](../../internationalization/l10n-singular-plural.md)字符串，并根据args参数对字符串进行格式化，使用同步方式返回。
 
@@ -1916,7 +1924,7 @@ getDoublePluralStringValueSync(resId: number, num: number, ...args: Array<string
 | ------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resId   | number                  | 是   | 资源ID值。                                                   |
 | num     | number                  | 是   | 数量值（浮点数）。根据当前语言的[单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)获取该数量值对应的字符串。 |
-| ...args | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
+| ...args | ArkTS1.1: Array<string \| number> </br> ArkTS1.2: (string \| number)[] | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
@@ -2061,7 +2069,9 @@ getDoublePluralStringValueSync(resource: Resource, num: number, ...args: Array<s
 
 ### getDoublePluralStringByNameSync<sup>18+</sup>
 
-getDoublePluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string
+ArkTS1.1: getDoublePluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string
+
+ArkTS1.2: getDoublePluralStringByNameSync(resName: string, num: number, ...args: (string | number)[]): string
 
 获取指定资源名称对应的[单复数](../../internationalization/l10n-singular-plural.md)字符串，并根据args参数对字符串进行格式化，使用同步方式返回。
 
@@ -2079,7 +2089,7 @@ getDoublePluralStringByNameSync(resName: string, num: number, ...args: Array<str
 | ------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resName | string                  | 是   | 资源名称。                                                   |
 | num     | number                  | 是   | 数量值（浮点数）。根据当前语言的[单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)获取该数量值对应的字符串。 |
-| ...args | Array<string \| number> | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
+| ...args | ArkTS1.1: Array<string \| number> </br> ArkTS1.2: (string \| number)[] | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
