@@ -474,13 +474,15 @@ addDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+import systemManager from '@ohos.enterprise.systemManager';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
-let protocols: Array<NearLinkProtocol> = [systemManager.NearLinkProtocol.SSAP, systemManager.NearLinkProtocol.DATA_TRANSFER];
+let protocols: systemManager.NearLinkProtocol[] = [systemManager.NearLinkProtocol.SSAP,
+  systemManager.NearLinkProtocol.DATA_TRANSFER];
 
 try {
   systemManager.addDisallowedNearLinkProtocols(wantTemp, protocols, 100);
@@ -522,13 +524,15 @@ removeDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProto
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+import systemManager from '@ohos.enterprise.systemManager';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 
-let protocols: Array<NearLinkProtocol> = [systemManager.NearLinkProtocol.SSAP, systemManager.NearLinkProtocol.DATA_TRANSFER];
+let protocols: systemManager.NearLinkProtocol[] = [systemManager.NearLinkProtocol.SSAP,
+  systemManager.NearLinkProtocol.DATA_TRANSFER];
 
 try {
   systemManager.removeDisallowedNearLinkProtocols(wantTemp, protocols, 100);
@@ -575,6 +579,7 @@ getDisallowedNearLinkProtocols(admin: Want, accountId: number): Array&lt;NearLin
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+import systemManager from '@ohos.enterprise.systemManager';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -582,7 +587,7 @@ let wantTemp: Want = {
 };
 
 try {
-  let result: Array<NearLinkProtocol> = systemManager.getDisallowedNearLinkProtocols(wantTemp, 100);
+  let result: systemManager.NearLinkProtocol[] = systemManager.getDisallowedNearLinkProtocols(wantTemp, 100);
   console.info(`Succeeded in querying is the nearlink protocol disabled : ${result}`);
 } catch (err) {
   console.error(`Failed to set nearlink protocols disabled. Code is ${err.code}, message is ${err.message}`);
