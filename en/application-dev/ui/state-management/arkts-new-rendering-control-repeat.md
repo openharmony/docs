@@ -1165,9 +1165,9 @@ Load the image 1s later to simulate the network latency.
 
 ![Repeat-Demo-Swiper](./figures/Repeat-Demo-Swiper.gif)
 
-### Enabling Drag and Sort
+### Enabling Drag-and-Drop Sorting
 
-If **Repeat** is used in a list, and the **onMove** event is set, you can enable drag and sort for the list items. Both the non-virtualScroll and virtualScroll modes support drag and sort.
+If **Repeat** is used in a list with the [onMove](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-sorting.md#onmove) event set, and each iteration of **Repeat** generates a list item, drag-and-drop sorting can be enabled. The drag-and-drop sorting feature of **Repeat** is supported since API version 19.
 
 #### Constraints
 - If an item changes the position after you drag and sort the data, the **onMove** event is triggered to report the original index and target index of the item. The data source needs to be modified in the **onMove** event based on the reported start index and target index. Before and after the data source is modified, the value of each item must remain unchanged to ensure that the drop animation can be executed properly.

@@ -597,10 +597,10 @@ struct ParentPage {
   @Builder
   privateBuilder() {
     Column() {
-      Text('Local @Builder name :${this.info1.name}`)
+      Text(`Local @Builder name :${this.info1.name}`)
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
-      Text('Local @Builder age :${this.info1.age}`)
+      Text(`Local @Builder age :${this.info1.age}`)
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
     }
