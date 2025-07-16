@@ -73,7 +73,7 @@ off(type: 'selectionCompleted', callback?: Callback\<SelectionInfo>): void
 ```ts
 import { selectionManager } from '@kit.BasicServicesKit';
 
-let selectionChangeCallback = (selectionInfo: selectionManager.SelectionInfo) => {
+let selectionChangeCallback = (info: selectionManager.SelectionInfo) => {
   console.info(`SelectionInfo text: ${info.text}`);
 };
 
@@ -119,21 +119,43 @@ createPanel(ctx: Context, info: PanelInfo): Promise\<Panel>
 **示例：**
 
 ```ts
-import { selectionManager, panelInfo, PanelType, BusinessError } from '@kit.BasicServicesKit';
+import { selectionManager, SelectionExtensionAbility, PanelInfo, PanelType, BusinessError } from '@kit.BasicServicesKit';
+import { rpc } from '@kit.IPCKit';
+import { Want } from '@kit.AbilityKit';
 
-let panelInfo: PanelInfo = {
-  panelType: PanelType.MENU_PANEL,
-  x: 0,
-  y: 0,
-  width: 500,
-  height: 200
+class SelectionAbilityStub extends rpc.RemoteObject {
+  constructor(des: string) {
+    super(des);
+  }
+  onRemoteMessageRequest(
+    code: number,
+    data: rpc.MessageSequence,
+    reply: rpc.MessageSequence,
+    options: rpc.MessageOption
+  ): boolean | Promise<boolean> {
+    return true;
+  }
 }
-selectionManager.createPanel(this.context, panelInfo)
-  .then((panel: selectionManager.Panel) => {
-    console.info('Succeed in creating panel.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to create panel: ${JSON.stringify(err)}`);
-  });
+
+class ServiceExtAbility extends SelectionExtensionAbility {
+  onConnect(want: Want): rpc.RemoteObject {
+    let panelInfo: PanelInfo = {
+      panelType: PanelType.MENU_PANEL,
+      x: 0,
+      y: 0,
+      width: 500,
+      height: 200
+    }
+    selectionManager.createPanel(this.context, panelInfo)
+      .then((panel: selectionManager.Panel) => {
+        console.info('Succeed in creating panel.');
+      }).catch((err: BusinessError) => {
+      console.error(`Failed to create panel: ${JSON.stringify(err)}`);
+    });
+    return new SelectionAbilityStub('remote');
+  }
+}
+export default ServiceExtAbility;
 ```
 
 ## destroyPanel
@@ -166,35 +188,57 @@ destroyPanel(panel: Panel): Promise\<void>
 **示例：**
 
 ```ts
-import { selectionManager, panelInfo, PanelType, BusinessError } from '@kit.BasicServicesKit';
+import { selectionManager, SelectionExtensionAbility, PanelInfo, PanelType, BusinessError } from '@kit.BasicServicesKit';
+import { rpc } from '@kit.IPCKit';
+import { Want } from '@kit.AbilityKit';
 
-let panelInfo: PanelInfo = {
-  panelType: PanelType.MENU_PANEL,
-  x: 0,
-  y: 0,
-  width: 500,
-  height: 200
+class SelectionAbilityStub extends rpc.RemoteObject {
+  constructor(des: string) {
+    super(des);
+  }
+  onRemoteMessageRequest(
+    code: number,
+    data: rpc.MessageSequence,
+    reply: rpc.MessageSequence,
+    options: rpc.MessageOption
+  ): boolean | Promise<boolean> {
+    return true;
+  }
 }
-let selectionPanel: selectionManager.Panel | undefined = undefined;
 
-selectionManager.createPanel(this.context, panelInfo)
-  .then((panel: selectionManager.Panel) => {
-    console.info('Succeed in creating panel.');
-    selectionPanel = panel;
-    try {
-      if (selectionPanel) {
-        selectionManager.destroyPanel(selectionPanel).then(() => {
-          console.info('Succeed in destroying panel.');
-        }).catch((err: BusinessError) => {
-          console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
-        });
-      }
-    } catch (err) {
-      console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
+class ServiceExtAbility extends SelectionExtensionAbility {
+  onConnect(want: Want): rpc.RemoteObject {
+    let panelInfo: PanelInfo = {
+      panelType: PanelType.MENU_PANEL,
+      x: 0,
+      y: 0,
+      width: 500,
+      height: 200
     }
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to create panel: ${JSON.stringify(err)}`);
-  });
+    let selectionPanel: selectionManager.Panel | undefined = undefined;
+
+    selectionManager.createPanel(this.context, panelInfo)
+      .then((panel: selectionManager.Panel) => {
+        console.info('Succeed in creating panel.');
+        selectionPanel = panel;
+        try {
+          if (selectionPanel) {
+            selectionManager.destroyPanel(selectionPanel).then(() => {
+              console.info('Succeed in destroying panel.');
+            }).catch((err: BusinessError) => {
+              console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
+            });
+          }
+        } catch (err) {
+          console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
+        }
+      }).catch((err: BusinessError) => {
+      console.error(`Failed to create panel: ${JSON.stringify(err)}`);
+    });
+    return new SelectionAbilityStub('remote');
+  }
+}
+export default ServiceExtAbility;
 ```
 
 ## SelectionInfo
