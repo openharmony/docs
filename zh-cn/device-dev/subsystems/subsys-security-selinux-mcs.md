@@ -48,14 +48,3 @@ o:r:normal_hap:s0:x55,x334,x512,x868,x1024
 o:object_r:normal_hap_data_file:s0:x55,x334,x512,x868,x1024
 ```
 
-## 配置汇总
-
- | 名称 | 值 |
- | ------ | ------ |
- | 应用数据目录 | /data/app/el1\~el5/\${userId}/{base,  database}/\${bundleName}/ |
- | 应用数据目录 | /data/app/el2/\${userId}/sharefiles/\${bundleName}/ |
- | 应用数据目录 | /data/service/el1\~el2/\${userId}/backup/bundles/\${bundleName} |
- | 应用数据目录 | /data/app/el1\~el2/\${userId}/base/\${bundleName}/.back/ |
- | 应用数据目录 | /data/app/el1\~el5/\${userId}/base/\${extensionDir}/ |
- | 全局配置文件 | /system/etc/selinux/targeted/contexts/sehap\_contexts |
- | PC产品配置文件 | /version/etc/selinux/product\_config |
