@@ -100,7 +100,7 @@
 - C API<!--basic-services-c-->
   - 模块<!--basic-services-module-->
     - [CommonEvent](capi-common-event.md)
-    - [DeviceInfo](_device_info.md)
+    - [DeviceInfo](capi-deviceinfo.md)
     - [OsAccount](capi-osaccount.md)
     - [OH_BatteryInfo](capi-oh-batteryinfo.md)
     - [OH_Scan](c-apis-scan.md)
@@ -108,7 +108,7 @@
     - [Pasteboard](capi-pasteboard.md)
     - [TimeService](capi-timeservice.md)
   - 头文件<!--basic-services-headerfile-->
-    - [deviceinfo.h](deviceinfo_8h.md)
+    - [deviceinfo.h](capi-deviceinfo-h.md)
     - [ohbattery_info.h](capi-ohbattery-info-h.md)
     - [oh_commonevent.h](oh_commonevent_8h.md)
     - [oh_commonevnt_support.h](oh_commonevent_support_8h.md)
