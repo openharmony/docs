@@ -3959,9 +3959,9 @@ Enumerates contact filter types.
 
 | Name                 | Type| Value| Description                              |
 | --------------------- | ---- | ---- | ---------------------------------- |
-| SHOW_FILTER    | number  | 0 | Shows only contacts that meet the filter criteria.<br/>syscap:SystemCapability.Applications.Contacts|
-| DEFAULT_SELECT            | number  | 1 | Selects contacts that meet the filter criteria by default.<br/>syscap:SystemCapability.Applications.Contacts                |
-| SHOW_FILTER_AND_DEFAULT_SELECT | number  | 2 | Shows only contacts that meet the filter criteria and selects these contacts by default. <br/>syscap:SystemCapability.Applications.Contacts                   |
+| SHOW_FILTER    | number  | 0 | Shows only contacts that meet the filter criteria.<br/>**System capability**:SystemCapability.Applications.Contacts|
+| DEFAULT_SELECT            | number  | 1 | Selects contacts that meet the filter criteria by default.<br/>**System capability**:SystemCapability.Applications.Contacts                |
+| SHOW_FILTER_AND_DEFAULT_SELECT | number  | 2 | Shows only contacts that meet the filter criteria and selects these contacts by default. <br/>**System capability**:SystemCapability.Applications.Contacts                   |
 
 ## FilterClause<sup>15+</sup>
 
@@ -4001,12 +4001,12 @@ Enumerates filter criteria.
 
 | Name                 | Type| Value| Description                              |
 | --------------------- | ---- | ---- | ---------------------------------- |
-| IS_NOT_NULL    | number  | 0 | The corresponding field is not empty.<br/>syscap:SystemCapability.Applications.Contacts|
-| EQUAL_TO            | number  | 1 | The corresponding field is equal to a value. <br/>syscap:SystemCapability.Applications.Contacts          |
-| NOT_EQUAL_TO | number  | 2 | The corresponding field is not equal to a value. <br/>syscap:SystemCapability.Applications.Contacts |
-| IN | number  | 3 | The value of the corresponding field is in an array.  <br/>syscap:SystemCapability.Applications.Contacts|
-| NOT_IN | number  | 4 | The value of the corresponding field is not in an array. <br/>syscap:SystemCapability.Applications.Contacts  |
-| CONTAINS | number  | 5 | The value of the corresponding field contains a certain value. <br/>syscap:SystemCapability.Applications.Contacts  |
+| IS_NOT_NULL    | number  | 0 | The corresponding field is not empty.<br/>**System capability**:SystemCapability.Applications.Contacts|
+| EQUAL_TO            | number  | 1 | The corresponding field is equal to a value. <br/>**System capability**:SystemCapability.Applications.Contacts          |
+| NOT_EQUAL_TO | number  | 2 | The corresponding field is not equal to a value. <br/>**System capability**:SystemCapability.Applications.Contacts |
+| IN | number  | 3 | The value of the corresponding field is in an array.  <br/>sys**System capability**cap:SystemCapability.Applications.Contacts|
+| NOT_IN | number  | 4 | The value of the corresponding field is not in an array. <br/>**System capability**:SystemCapability.Applications.Contacts  |
+| CONTAINS | number  | 5 | The value of the corresponding field contains a certain value. <br/>**System capability**:SystemCapability.Applications.Contacts  |
 
 ## DataFilter<sup>15+</sup>
 
@@ -4031,9 +4031,9 @@ Enumerates contact data fields.
 
 | Name                 | Type| Value| Description                              |
 | --------------------- | ---- | --- | ---------------------------------- |
-| EMAIL    | number | 0 | Email of the contact.<br/>syscap:SystemCapability.Applications.Contacts|
-| PHONE            | number | 1 | Phone number of the contact. <br/>syscap:SystemCapability.Applications.Contacts               |
-| ORGANIZATION | number | 2 | Organization of the contact. <br/>syscap:SystemCapability.Applications.Contacts                   |
+| EMAIL    | number | 0 | Email of the contact.<br/>**System capability**:SystemCapability.Applications.Contacts|
+| PHONE            | number | 1 | Phone number of the contact. <br/>**System capability**:SystemCapability.Applications.Contacts               |
+| ORGANIZATION | number | 2 | Organization of the contact. <br/>**System capability**:SystemCapability.Applications.Contacts                   |
 
 ## Contact
 
