@@ -659,7 +659,7 @@ struct Index {
 ![custom_content_dialog](figures/advanced_dialog_custom_content_dialog.png)
 
 ### 示例9（跟手弹窗）
-跟手弹窗（警告弹窗为例），包含visible、popover、targetBuilder等内容。
+从API version 14开始，该示例展示了设置跟手弹窗（警告弹窗为例），包含visible、popover、targetBuilder等内容。
 
 ```ts
 import { AlertDialog, PopoverDialog, PopoverOptions } from '@kit.ArkUI';
@@ -719,7 +719,7 @@ struct Index {
 ![popover_dialog](figures/advanced_dialog_popover_dialog.png)
 
 ### 示例10（弹出框按钮设置默认获焦）
-设置默认获焦按钮弹出框（以AlertDialog为例），包含defaultFocus等内容。
+从API version 18 开始，该示例展示了设置默认获焦按钮弹出框（以AlertDialog为例），包含defaultFocus等内容。
 
 ```ts
 import { AlertDialog } from '@kit.ArkUI';
