@@ -24,8 +24,7 @@ The example simplifies the logic for handling exceptions and ensuring thread sec
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "ffrt/queue.h"
-#include "ffrt/task.h"
+#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
 
 typedef struct {
     FILE *logFile;          // Pointer to a log file.
@@ -183,11 +182,16 @@ static inline ffrt_function_header_t *ffrt_create_function_wrapper(const ffrt_fu
 
 The main FFRT APIs involved in the preceding example are as follows:
 
-| Name                                                            | Description                          |
-| ---------------------------------------------------------------- | ------------------------------ |
-| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_create)   | Creates a queue.                    |
-| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_destroy) | Destroys a queue.                    |
-| [ffrt_queue_submit](ffrt-api-guideline-c.md#ffrt_queue_submit)   | Submits a task to a queue.|
+| Name                                                              | Description                |
+| ------------------------------------------------------------------ | -------------------- |
+| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_create)     | Creates a queue.          |
+| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_destroy)   | Destroys a queue.          |
+| [ffrt_queue_submit](ffrt-api-guideline-c.md#ffrt_queue_submit) | Submits a task to a queue.|
+
+> **NOTE**
+>
+> - For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
+> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify the header file inclusion, that is, use the `#include "ffrt/ffrt.h"` header file to include statements.
 
 ## Constraints
 

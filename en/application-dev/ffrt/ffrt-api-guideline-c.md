@@ -795,7 +795,7 @@ Configures queue attributes, such as the QoS, timeout, callback function, and ma
 ##### ffrt_queue_attr_init
 
 ```c
-int ffrt_queue_attr_init(ffrt_queue_attr_t* attr)
+int ffrt_queue_attr_init(ffrt_queue_attr_t* attr);
 ```
 
 Parameters
@@ -813,7 +813,7 @@ Description
 ##### ffrt_queue_attr_destroy
 
 ```c
-void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr)
+void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
 ```
 
 Parameters
@@ -827,7 +827,7 @@ Description
 ##### ffrt_queue_attr_set_qos
 
 ```c
-void ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos)
+void ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos);
 ```
 
 Parameters
@@ -842,7 +842,7 @@ Description
 ##### ffrt_queue_attr_get_qos
 
 ```c
-ffrt_qos_t ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr)
+ffrt_qos_t ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr);
 ```
 
 Parameters
@@ -860,7 +860,7 @@ Description
 ##### ffrt_queue_attr_set_timeout
 
 ```c
-void ffrt_queue_attr_set_timeout(ffrt_queue_attr_t* attr, uint64_t timeout_us)
+void ffrt_queue_attr_set_timeout(ffrt_queue_attr_t* attr, uint64_t timeout_us);
 ```
 
 Parameters
@@ -875,7 +875,7 @@ Description
 ##### ffrt_queue_attr_get_timeout
 
 ```c
-uint64_t ffrt_queue_attr_get_timeout(const ffrt_queue_attr_t* attr)
+uint64_t ffrt_queue_attr_get_timeout(const ffrt_queue_attr_t* attr);
 ```
 
 Parameters
@@ -893,7 +893,7 @@ Description
 ##### ffrt_queue_attr_set_callback
 
 ```c
-void ffrt_queue_attr_set_callback(ffrt_queue_attr_t* attr, ffrt_function_header_t* f)
+void ffrt_queue_attr_set_callback(ffrt_queue_attr_t* attr, ffrt_function_header_t* f);
 ```
 
 Parameters
@@ -908,7 +908,7 @@ Description
 ##### ffrt_queue_attr_get_callback
 
 ```c
-ffrt_function_header_t* ffrt_queue_attr_get_callback(const ffrt_queue_attr_t* attr)
+ffrt_function_header_t* ffrt_queue_attr_get_callback(const ffrt_queue_attr_t* attr);
 ```
 
 Parameters
@@ -926,7 +926,7 @@ Description
 ##### ffrt_queue_attr_set_max_concurrency
 
 ```c
-void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_concurrency)
+void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_concurrency);
 ```
 
 Parameters
@@ -941,7 +941,7 @@ Description
 ##### ffrt_queue_attr_get_max_concurrency
 
 ```c
-int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr)
+int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr);
 ```
 
 Parameters
@@ -973,7 +973,6 @@ int main()
 
     ffrt_queue_attr_set_timeout(&queue_attr, 10000);
 
-
     int x = 0;
     std::function<void()>&& basicFunc = [&x]() { x += 1; };
     ffrt_function_header_t* func = ffrt_queue_attr_get_callback(&queue_attr);
@@ -1002,7 +1001,7 @@ Pointer to queues. It provides a series of C APIs for submitting, canceling, and
 ##### ffrt_queue_create
 
 ```c
-ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr)
+ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr);
 ```
 
 Parameters
@@ -1022,7 +1021,7 @@ Description
 ##### ffrt_queue_destroy
 
 ```c
-void ffrt_queue_destroy(ffrt_queue_t queue)
+void ffrt_queue_destroy(ffrt_queue_t queue);
 ```
 
 Parameters
@@ -1036,7 +1035,7 @@ Description
 ##### ffrt_queue_submit
 
 ```c
-void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)
+void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr);
 ```
 
 Parameters
@@ -1052,7 +1051,7 @@ Description
 ##### ffrt_queue_submit_h
 
 ```c
-ffrt_task_handle_t ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)
+ffrt_task_handle_t ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr);
 ```
 
 Parameters
@@ -1072,7 +1071,7 @@ Description
 ##### ffrt_queue_wait
 
 ```c
-void ffrt_queue_wait(ffrt_task_handle_t handle)
+void ffrt_queue_wait(ffrt_task_handle_t handle);
 ```
 
 Parameters
@@ -1086,7 +1085,7 @@ Description
 ##### ffrt_queue_cancel
 
 ```c
-int ffrt_queue_cancel(ffrt_task_handle_t handle)
+int ffrt_queue_cancel(ffrt_task_handle_t handle);
 ```
 
 Parameters
@@ -1494,8 +1493,8 @@ FFRT_C_API int ffrt_rwlock_init(ffrt_rwlock_t* rwlock, const ffrt_rwlockattr_t* 
 
 Parameters
 
-- `rwlock`: pointer to the operated RW lock.
-- `attr`: pointer to the RW lock attribute.
+- `rwlock`: pointer to the operated read-write lock.
+- `attr`: pointer to the read-write lock attribute.
 
 Return Values
 
@@ -1503,7 +1502,7 @@ Return Values
 
 Description
 
-- Initializes the RW lock.
+- Initializes the read-write lock.
 
 ##### ffrt_rwlock_wrlock
 
@@ -1513,7 +1512,7 @@ FFRT_C_API int ffrt_rwlock_wrlock(ffrt_rwlock_t* rwlock);
 
 Parameters
 
-- `rwlock`: pointer to the operated RW lock.
+- `rwlock`: pointer to the operated read-write lock.
 
 Return Values
 
@@ -1521,7 +1520,7 @@ Return Values
 
 Description
 
-- Adds a write lock to the specified RW lock.
+- Adds a write lock to the specified read-write lock.
 
 ##### ffrt_rwlock_rdlock
 
@@ -1531,7 +1530,7 @@ FFRT_C_API int ffrt_rwlock_rdlock(ffrt_rwlock_t* rwlock);
 
 Parameters
 
-- `rwlock`: pointer to the operated RW lock.
+- `rwlock`: pointer to the operated read-write lock.
 
 Return Values
 
@@ -1539,7 +1538,7 @@ Return Values
 
 Description
 
-- Adds a read lock to the specified RW lock.
+- Adds a read lock to the specified read-write lock.
 
 ##### ffrt_rwlock_trywrlock
 
@@ -1549,15 +1548,15 @@ FFRT_C_API int ffrt_rwlock_trywrlock(ffrt_rwlock_t* rwlock);
 
 Parameters
 
-- `rwlock`: pointer to the operated RW lock.
+- `rwlock`: pointer to the operated read-write lock.
 
 Return Values
 
-- `ffrt_success` is returned if `rwlock` is not empty and no other thread holds the RW lock. Otherwise, `ffrt_error_inval` is returned.
+- `ffrt_success` is returned if `rwlock` is not empty and no other thread holds the read-write lock. Otherwise, `ffrt_error_inval` is returned.
 
 Description
 
-- Adds a write lock to the specified RW lock.
+- Adds a write lock to the specified read-write lock.
 
 ##### ffrt_rwlock_tryrdlock
 
@@ -1567,7 +1566,7 @@ FFRT_C_API int ffrt_rwlock_tryrdlock(ffrt_rwlock_t* rwlock);
 
 Parameters
 
-- `rwlock`: pointer to the operated RW lock.
+- `rwlock`: pointer to the operated read-write lock.
 
 Return Values
 
@@ -1575,7 +1574,7 @@ Return Values
 
 Description
 
-- Adds a read lock to the specified RW lock.
+- Adds a read lock to the specified read-write lock.
 
 ##### ffrt_rwlock_unlock
 
@@ -1585,7 +1584,7 @@ FFRT_C_API int ffrt_rwlock_unlock(ffrt_rwlock_t* rwlock);
 
 Parameters
 
-- `rwlock`: pointer to the operated RW lock.
+- `rwlock`: pointer to the operated read-write lock.
 
 Return Values
 
@@ -1593,7 +1592,7 @@ Return Values
 
 Description
 
-- Unlocks the specified RW lock.
+- Unlocks the specified read-write lock.
 
 ##### ffrt_rwlock_destroy
 
@@ -1603,7 +1602,7 @@ FFRT_C_API int ffrt_rwlock_destroy(ffrt_rwlock_t* rwlock);
 
 Parameters
 
-- `rwlock`: pointer to the operated RW lock.
+- `rwlock`: pointer to the operated read-write lock.
 
 Return Values
 
@@ -1611,7 +1610,7 @@ Return Values
 
 Description
 
-- Destroys a specified RW lock.
+- Destroys a specified read-write lock.
 
 #### Example
 
