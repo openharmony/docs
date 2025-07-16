@@ -2,9 +2,9 @@
 
 ## 概述
 
-HiAppEvent模块的应用事件打点函数定义。在执行应用事件打点之前，您必须先构造一个参数列表对象来存储输入的事件参数，并指定事件领域、事件名称和事件类型。<p>事件领域：用于标识事件打点的领域的字符串。<p>事件名称：用于标识事件打点的名称的字符串。<p>事件类型：故障、统计、安全、行为。<p>参数列表：用于存储事件参数的链表，每个参数由参数名和参数值组成。示例代码:00 引入头文件:<pre>#include "hiappevent/hiappevent.h"</pre>01 创建一个参数列表指针。<pre>ParamList list = OH_HiAppEvent_CreateParamList();</pre>02 添加参数到参数列表中。<pre>bool boolean = true;OH_HiAppEvent_AddBoolParam(list, "bool_key", boolean);int32_t nums[] = {1, 2, 3};OH_HiAppEvent_AddInt32ArrayParam(list, "int32_arr_key", nums, sizeof(nums) / sizeof(nums[0]));</pre>03 执行事件打点。<pre>int res = OH_HiAppEvent_Write("test_domain", "test_event", BEHAVIOR, list);</pre>04 销毁参数列表指针，释放其分配内存。<pre>OH_HiAppEvent_DestroyParamList(list);</pre>
+HiAppEvent模块的应用事件打点函数定义。在执行应用事件打点之前，开发者必须先构造一个参数列表对象来存储输入的事件参数，并指定事件领域、事件名称和事件类型。<p>事件领域：用于标识事件打点的领域的字符串。<p>事件名称：用于标识事件打点的名称的字符串。<p>事件类型：故障、统计、安全、行为。<p>参数列表：用于存储事件参数的链表，每个参数由参数名和参数值组成。示例代码:00 引入头文件:\<pre>#include "hiappevent/hiappevent.h"\</pre>01 创建一个参数列表指针。\<pre>ParamList list = OH_HiAppEvent_CreateParamList();\</pre>02 添加参数到参数列表中。\<pre>bool boolean = true;OH_HiAppEvent_AddBoolParam(list, "bool_key", boolean);int32_t nums[] = {1, 2, 3};OH_HiAppEvent_AddInt32ArrayParam(list, "int32_arr_key", nums, sizeof(nums) / sizeof(nums[0]));\</pre>03 执行事件打点。\<pre>int res = OH_HiAppEvent_Write("test_domain", "test_event", BEHAVIOR, list);\</pre>04 销毁参数列表指针，释放其分配内存。\<pre>OH_HiAppEvent_DestroyParamList(list);\</pre>
 
-**引用文件：** <hiappevent/hiappevent.h>
+**引用文件：** &lt;hiappevent/hiappevent.h&gt;
 
 **库：** libhiappevent_ndk.z.so
 
@@ -32,7 +32,7 @@ HiAppEvent模块的应用事件打点函数定义。在执行应用事件打点�
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [HiAppEvent_ErrorCode](#hiappevent_errorcode) | HiAppEvent_ErrorCode | 错误码定义。 |
-| [EventType](#eventtype) | - | 事件类型。建议您根据不同的使用场景选择不同的事件类型。 |
+| [EventType](#eventtype) | - | 事件类型。建议开发者根据不同的使用场景选择不同的事件类型。 |
 
 ### 函数
 
@@ -120,7 +120,7 @@ enum EventType
 
 **描述**
 
-事件类型。建议您根据不同的使用场景选择不同的事件类型。
+事件类型。建议开发者根据不同的使用场景选择不同的事件类型。
 
 **起始版本：** 8
 
@@ -689,8 +689,8 @@ int OH_HiAppEvent_Write(const char* domain, const char* name, enum EventType typ
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char* domain | 事件领域。您可以根据需要自定义事件领域。<br> 事件领域名称支持数字、字母、下划线字符，需要以字母开头且不能以下划线结尾，长度非空且不超过32个字符。 |
-| const char* name | 事件名称。您可以根据需要自定义事件名称。<br> 首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过48个字符。 |
+| const char* domain | 事件领域。开发者可以根据需要自定义事件领域。<br> 事件领域名称支持数字、字母、下划线字符，需要以字母开头且不能以下划线结尾，长度非空且不超过32个字符。 |
+| const char* name | 事件名称。开发者可以根据需要自定义事件名称。<br> 首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过48个字符。 |
 | enum [EventType](capi-hiappevent-h.md#eventtype) type | 事件类型，在[EventType](capi-hiappevent-h.md#eventtype)中定义。 |
 | [const ParamList](capi-hiappevent-paramlistnode8h.md) list | 事件参数列表，每个参数由参数名和参数值组成，其规格定义如下：<br> 1、参数名为字符串类型。<br> 首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过32个字符。<br> 2、参数值支持字符串、数值、布尔、数组类型。字符串类型参数长度需在8*1024个字符以内，超出会做丢弃处理；<br> 数组类型参数中的元素类型只能为字符串、数值、布尔中的一种，且元素个数需在100以内，超出会做丢弃处理。<br> 3、参数个数需在32个以内，超出的参数会做丢弃处理。 |
 

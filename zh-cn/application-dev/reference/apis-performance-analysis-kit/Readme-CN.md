@@ -49,7 +49,6 @@
     - [HiDebug_JsStackFrame](capi-hidebug-hidebug-jsstackframe.md)
     - [HiDebug_NativeStackFrame](capi-hidebug-hidebug-nativestackframe.md)
     - [HiDebug_StackFrame](capi-hidebug-hidebug-stackframe.md)
-    - [HiDebug_MallocDispatch](capi-hidebug-hidebug-mallocdispatch.md)
     - [HiDebug_Backtrace_Object__*](capi-hidebug-hidebug-backtrace-object--8h.md)
     - [HiTraceId](capi-hitrace-hitraceid.md)
 - 错误码<!--performance-analysis-errcode-->

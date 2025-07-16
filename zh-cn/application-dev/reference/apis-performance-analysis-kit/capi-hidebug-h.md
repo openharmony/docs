@@ -33,9 +33,7 @@
 | [HiDebug_ErrorCode OH_HiDebug_SymbolicAddress(HiDebug_Backtrace_Object object, void* pc, void* arg,OH_HiDebug_SymbolicAddressCallback callback)](#oh_hidebug_symbolicaddress) | - | 通过给定的pc地址获取详细的符号信息，该函数非异步信号安全。 |
 | [HiDebug_Backtrace_Object OH_HiDebug_CreateBacktraceObject(void)](#oh_hidebug_createbacktraceobject) | - | 创建一个用于栈回溯及栈解析的对象，该函数非异步信号安全。 |
 | [void OH_HiDebug_DestroyBacktraceObject(HiDebug_Backtrace_Object object)](#oh_hidebug_destroybacktraceobject) | - | 销毁由[OH_HiDebug_CreateBacktraceObject](capi-hidebug-h.md#oh_hidebug_createbacktraceobject)创建的对象，以释放栈回溯及栈解析过程中申请的资源，该函数非异步信号安全。 |
-| [HiDebug_ErrorCode OH_HiDebug_SetMallocDispatchTable(struct HiDebug_MallocDispatch *dispatchTable)](#oh_hidebug_setmallocdispatchtable) | - | 设置基础库C库MallocDisaptch表，用于替换开发者自定义的内存操作函数（例如：malloc/free/calloc/realloc/mmap/munmap)。MallocDisaptch表是基础库C库中封装malloc/calloc/realloc/free等内存操作函数的结构体。HiDebug_MallocDispatch只是MallocDisaptch结构体的一部分。 |
-| [HiDebug_MallocDispatch* OH_HiDebug_GetDefaultMallocDispatchTable(void)](#oh_hidebug_getdefaultmallocdispatchtable) | - | 获取基础库C库当前默认MallocDispatch表，调用[OH_HiDebug_RestoreMallocDispatchTable](capi-hidebug-h.md#oh_hidebug_restoremallocdispatchtable)可恢复。 |
-| [void OH_HiDebug_RestoreMallocDispatchTable(void)](#oh_hidebug_restoremallocdispatchtable) | - | 恢复基础库C库MallocDispatch表。 |
+
 
 ## 函数说明
 
@@ -354,60 +352,3 @@ void OH_HiDebug_DestroyBacktraceObject(HiDebug_Backtrace_Object object)
 | 参数项 | 描述 |
 | -- | -- |
 | [HiDebug_Backtrace_Object](capi-hidebug-hidebug-backtrace-object--8h.md) object | 需要被销毁的对象。 |
-
-### OH_HiDebug_SetMallocDispatchTable()
-
-```
-HiDebug_ErrorCode OH_HiDebug_SetMallocDispatchTable(struct HiDebug_MallocDispatch *dispatchTable)
-```
-
-**描述**
-
-设置基础库C库MallocDisaptch表，用于替换开发者自定义的内存操作函数（例如：malloc/free/calloc/realloc/mmap/munmap)。MallocDisaptch表是基础库C库中封装malloc/calloc/realloc/free等内存操作函数的结构体。HiDebug_MallocDispatch只是MallocDisaptch结构体的一部分。
-
-**起始版本：** 20
-
-
-**参数：**
-
-| 参数项 | 描述 |
-| -- | -- |
-| [struct HiDebug_MallocDispatch](capi-hidebug-hidebug-mallocdispatch.md) *dispatchTable | 指向开发者自定义内存操作函数[HiDebug_MallocDispatch](capi-hidebug-hidebug-mallocdispatch.md)结构体指针。 |
-
-**返回：**
-
-| 类型 | 说明 |
-| -- | -- |
-| [HiDebug_ErrorCode](capi-hidebug-type-h.md#hidebug_errorcode) | 返回结果具体可参考[HiDebug_ErrorCode](capi-hidebug-type-h.md#hidebug_errorcode)：<br>         [HIDEBUG_SUCCESS](capi-hidebug-type-h.md#hidebug_errorcode) 成功设置自定义内存操作函数。<br>         [HIDEBUG_INVALID_ARGUMENT](capi-hidebug-type-h.md#hidebug_errorcode) 无效参数。 |
-
-### OH_HiDebug_GetDefaultMallocDispatchTable()
-
-```
-HiDebug_MallocDispatch* OH_HiDebug_GetDefaultMallocDispatchTable(void)
-```
-
-**描述**
-
-获取基础库C库当前默认MallocDispatch表，调用[OH_HiDebug_RestoreMallocDispatchTable](capi-hidebug-h.md#oh_hidebug_restoremallocdispatchtable)可恢复。
-
-**起始版本：** 20
-
-**返回：**
-
-| 类型 | 说明 |
-| -- | -- |
-| [HiDebug_MallocDispatch](capi-hidebug-hidebug-mallocdispatch.md)* | 当前C库默认的[HiDebug_MallocDispatch](capi-hidebug-hidebug-mallocdispatch.md)结构体指针。 |
-
-### OH_HiDebug_RestoreMallocDispatchTable()
-
-```
-void OH_HiDebug_RestoreMallocDispatchTable(void)
-```
-
-**描述**
-
-恢复基础库C库MallocDispatch表。
-
-**起始版本：** 20
-
-

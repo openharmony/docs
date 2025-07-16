@@ -108,7 +108,7 @@ API version 19 及以上版本的用户态trace格式参考[当前版本用户�
 
 - **分布式跟踪链路ID**
 
-  开启HiTraceChain（分布式跟踪）时，会将[HiTraceId](../reference/apis-performance-analysis-kit/_hi_trace_id.md)核心信息记录在trace打点中，格式为`[ChainId,SpanId,ParentSpanId]`，结尾使用`#`分隔符与内容字段区分。
+  开启HiTraceChain（分布式跟踪）时，会将[HiTraceId](../reference/apis-performance-analysis-kit/capi-hitrace-hitraceid.md)核心信息记录在trace打点中，格式为`[ChainId,SpanId,ParentSpanId]`，结尾使用`#`分隔符与内容字段区分。
 
   未开启HiTraceChain（分布式跟踪）时，打点不包含该字段。
 
