@@ -444,7 +444,7 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 ## systemManager.addDisallowedNearLinkProtocols<sup>20+</sup>
 
-addDisallowedNearLinkProtocols(admin: Want, protocol: Array&lt;[NearLinkProtocol](#nearlinkprotocol)&gt;, accountId: number)
+addDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol&gt;, accountId: number): void
 
 添加禁用指定用户的星闪协议。
 
@@ -457,7 +457,7 @@ addDisallowedNearLinkProtocols(admin: Want, protocol: Array&lt;[NearLinkProtocol
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
-| protocol  | Array&lt;[NearLinkProtocol](#nearlinkprotocol)&gt;               | 是   | 星闪协议枚举列表 |                       |
+| protocols  | Array&lt;[NearLinkProtocol](#nearlinkprotocol)&gt;               | 是   | 星闪协议枚举列表 |                       |
 | accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
 
 **错误码**：
@@ -467,9 +467,8 @@ addDisallowedNearLinkProtocols(admin: Want, protocol: Array&lt;[NearLinkProtocol
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 9200001  | The application is not an administrator application of the device. |
-| 9200002  | the administrator application does not have permission to manage the device. |                 |
+| 9200002  | The administrator application does not have permission to manage the device. |                 |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -481,10 +480,10 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 
-let protocol: Array<NearLinkProtocol> = [systemManager.NearLinkProtocol.SSAP, systemManager.NearLinkProtocol.DATA_TRANSFER];
+let protocols: Array<NearLinkProtocol> = [systemManager.NearLinkProtocol.SSAP, systemManager.NearLinkProtocol.DATA_TRANSFER];
 
 try {
-  systemManager.addDisallowedNearLinkProtocols(wantTemp, protocol, 100);
+  systemManager.addDisallowedNearLinkProtocols(wantTemp, protocols, 100);
   console.info('Succeeded in adding nearlink protocols disabled');
 } catch (err) {
   console.error(`Failed to adding nearlink protocols disabled. Code is ${err.code}, message is ${err.message}`);
@@ -493,7 +492,7 @@ try {
 
 ## systemManager.removeDisallowedNearLinkProtocols<sup>20+</sup>
 
-removeDisallowedNearLinkProtocols(admin: Want, protocol: Array&lt;[NearLinkProtocol](#nearlinkprotocol)&gt;, accountId: number)
+removeDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol&gt;, accountId: number): void
 
 移除禁用指定用户的星闪协议。
 
@@ -506,7 +505,7 @@ removeDisallowedNearLinkProtocols(admin: Want, protocol: Array&lt;[NearLinkProto
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
-| protocol  | Array&lt;[NearLinkProtocol](#nearlinkprotocol)&gt;               | 是   | 星闪协议枚举列表 |                       |
+| protocols  | Array&lt;[NearLinkProtocol](#nearlinkprotocol)&gt;               | 是   | 星闪协议枚举列表 |                       |
 | accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
 
 **错误码**：
@@ -516,9 +515,8 @@ removeDisallowedNearLinkProtocols(admin: Want, protocol: Array&lt;[NearLinkProto
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 9200001  | The application is not an administrator application of the device. |
-| 9200002  | the administrator application does not have permission to manage the device. |                 |
+| 9200002  | The administrator application does not have permission to manage the device. |                 |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -530,10 +528,10 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 
-let protocol: Array<NearLinkProtocol> = [systemManager.NearLinkProtocol.SSAP, systemManager.NearLinkProtocol.DATA_TRANSFER];
+let protocols: Array<NearLinkProtocol> = [systemManager.NearLinkProtocol.SSAP, systemManager.NearLinkProtocol.DATA_TRANSFER];
 
 try {
-  systemManager.removeDisallowedNearLinkProtocols(wantTemp, protocol, 100);
+  systemManager.removeDisallowedNearLinkProtocols(wantTemp, protocols, 100);
   console.info('Succeeded in adding nearlink protocols disabled');
 } catch (err) {
   console.error(`Failed to adding nearlink protocols disabled. Code is ${err.code}, message is ${err.message}`);
@@ -542,7 +540,8 @@ try {
 
 ## systemManager.getDisallowedNearLinkProtocols<sup>20+</sup>
 
-getDisallowedNearLinkProtocols(admin: Want, accountId: number): Array&lt;[NearLinkProtocol](#nearlinkprotocol)&gt;;
+getDisallowedNearLinkProtocols(admin: Want, accountId: number): Array&lt;NearLinkProtocol&gt;
+
 获取指定用户禁用的星闪协议。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
@@ -569,9 +568,8 @@ getDisallowedNearLinkProtocols(admin: Want, accountId: number): Array&lt;[NearLi
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 9200001  | The application is not an administrator application of the device. |
-| 9200002  | the administrator application does not have permission to manage the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -726,7 +724,7 @@ try {
 | UPDATE_FAILURE     | -1 | 更新失败。 |
 | UPDATE_SUCCESS     | 0 | 更新成功。 |
 
-## NearLinkProtocol 
+## NearLinkProtocol<sup>20+</sup>
 
 NearLink协议枚举。
 
