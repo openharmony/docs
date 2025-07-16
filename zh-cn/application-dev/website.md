@@ -1781,7 +1781,6 @@
       - [NativeImage开发指导 (C/C++)](graphics/native-image-guidelines.md)
       - [NativeVSync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
       - [NativeWindow开发指导 (C/C++)](graphics/native-window-guidelines.md)
-      - [GPU/CPU内存访问同步操作开发指南 (C/C++)](graphics/native-fence-guidelines.md)
       - [图形开发术语](graphics/graphic-term.md)
     - ArkGraphics 3D（方舟3D图形）<!--arkgraphics-3d-->
       - [ArkGraphics 3D简介](graphics3d/arkgraphics3D-overview.md)
@@ -5043,7 +5042,6 @@
           - [OH_NativeImage](reference/apis-arkgraphics2d/capi-oh-nativeimage.md)
           - [NativeVsync](reference/apis-arkgraphics2d/capi-nativevsync.md)
           - [NativeWindow](reference/apis-arkgraphics2d/capi-nativewindow.md)
-          - [NativeFence](reference/apis-arkgraphics2d/capi-nativefence.md)
         - 头文件<!--arkgraphics-headerfile-->
           - [buffer_common.h](reference/apis-arkgraphics2d/capi-buffer-common-h.md)
           - [native_buffer.h](reference/apis-arkgraphics2d/capi-native-buffer-h.md)
@@ -5097,7 +5095,6 @@
           - [buffer_handle.h](reference/apis-arkgraphics2d/capi-buffer-handle-h.md)
           - [external_window.h](reference/apis-arkgraphics2d/capi-external-window-h.md)
           - [graphic_error_code.h](reference/apis-arkgraphics2d/capi-graphic-error-code-h.md)
-          - [native_fence.h](reference/apis-arkgraphics2d/capi-native-fence-h.md)
         - 结构体<!--arkgraphics-struct-->
           - [OH_NativeBuffer_ColorXY](reference/apis-arkgraphics2d/capi-oh-nativebuffer-oh-nativebuffer-colorxy.md)
           - [OH_NativeBuffer_Smpte2086](reference/apis-arkgraphics2d/capi-oh-nativebuffer-oh-nativebuffer-smpte2086.md)
