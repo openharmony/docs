@@ -4,9 +4,9 @@
 
 定义密钥协商接口。
 
-**库：** libohcrypto.so
-
 **引用文件：** <CryptoArchitectureKit/crypto_key_agreement.h>
+
+**库：** libohcrypto.so
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -49,14 +49,14 @@ OH_Crypto_ErrCode OH_CryptoKeyAgreement_Create(const char *algoName, OH_CryptoKe
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char *algoName | 用于生成密钥协商实例的算法名称。<br>例如"ECC"、"X25519"。 |
-| [OH_CryptoKeyAgreement](capi-cryptokeyagreementapi-oh-cryptokeyagreement.md) **ctx |密钥协商实例。 |
+| const char *algoName | 用于生成密钥协商实例的算法名称。<br> 例如"ECC"、"X25519"。 |
+| [OH_CryptoKeyAgreement](capi-cryptokeyagreementapi-oh-cryptokeyagreement.md) **ctx | 密钥协商实例。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_PARAMETER_CHECK_FAILED：参数检查失败。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoKeyAgreement_GenerateSecret()
 
@@ -75,7 +75,7 @@ OH_Crypto_ErrCode OH_CryptoKeyAgreement_GenerateSecret(OH_CryptoKeyAgreement *ct
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKeyAgreement](capi-cryptokeyagreementapi-oh-cryptokeyagreement.md) *ctx |密钥协商实例。 |
+| [OH_CryptoKeyAgreement](capi-cryptokeyagreementapi-oh-cryptokeyagreement.md) *ctx | 密钥协商实例。 |
 | [OH_CryptoPrivKey](capi-cryptoasymkeyapi-oh-cryptoprivkey.md) *privkey | 私钥。 |
 | [OH_CryptoPubKey](capi-cryptoasymkeyapi-oh-cryptopubkey.md) *pubkey | 公钥。 |
 | [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *secret | 秘密值。 |
@@ -84,7 +84,7 @@ OH_Crypto_ErrCode OH_CryptoKeyAgreement_GenerateSecret(OH_CryptoKeyAgreement *ct
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_PARAMETER_CHECK_FAILED：参数检查失败。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoKeyAgreement_Destroy()
 
@@ -103,6 +103,6 @@ void OH_CryptoKeyAgreement_Destroy(OH_CryptoKeyAgreement *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKeyAgreement](capi-cryptokeyagreementapi-oh-cryptokeyagreement.md) *ctx |密钥协商实例。 |
+| [OH_CryptoKeyAgreement](capi-cryptokeyagreementapi-oh-cryptokeyagreement.md) *ctx | 密钥协商实例。 |
 
 
