@@ -10,9 +10,9 @@
 
 关系型数据库跨设备数据同步，支持应用在多设备间同步存储的关系型数据。
 
-- 应用在数据库中新创建表后，可以设置其为分布式表。在查询远程设备数据库时，根据本地表名可以获取指定远程设备的分布式表名。
-
-- 设备之间同步数据，数据同步有两种方式，将数据从本地设备推送到远程设备或将数据从远程设备拉至本地设备。
+- 应用在数据库中创建表后，可以设置其为分布式表，分布式表可在组网设备中进行同步。
+- 有两种方式可触发设备间数据同步。本端数据有变化时，可主动将数据推送至远端设备。本端设备也可主动拉取远端设备中分布式表的数据变化。
+- 通过[on('dataChange')](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#ondatachange)接口订阅远端数据变化。当远端数据发生变化时，会触发事件回调。在回调中，可以获取远端设备的分布式表的表名，查询远端数据库数据。
 
 
 ## 运作机制
@@ -83,78 +83,132 @@
    import { UIAbility } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { window } from '@kit.ArkUI';
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
-   class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage: window.WindowStage) {
-       const STORE_CONFIG: relationalStore.StoreConfig = {
-         name: "RdbTest.db",
-         securityLevel: relationalStore.SecurityLevel.S3
-       };
-          
-       relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, store: relationalStore.RdbStore) => {
-         store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
-           // 设置分布式同步表。
-           store.setDistributedTables(['EMPLOYEE']);
-           // 进行数据的相关操作
-         })
-       })
+   const STORE_CONFIG: relationalStore.StoreConfig = {
+     name: 'RdbTest.db',
+     securityLevel: relationalStore.SecurityLevel.S3
+   };
+
+   export default class EntryAbility extends UIAbility {
+     async onWindowStageCreate(windowStage: window.WindowStage): Promise<void> {
+       let store: relationalStore.RdbStore | null = null;
+
+       store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
+       await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)');
+       // 将已创建的表设置分布式表。
+       await store.setDistributedTables(['EMPLOYEE']);
+       // 进行数据的相关操作
      }
    }
    ```
 
-4. 分布式数据同步。使用SYNC_MODE_PUSH触发同步后，数据将从本设备向组网内的其它所有设备同步。
-     
-   ```ts
-   // 构造用于同步分布式表的谓词对象
-   let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-   // 调用同步数据的接口
-   if(store != undefined)
-   {
-     (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, (err, result) => {
-       // 判断数据同步是否成功
-       if (err) {
-         console.error(`Failed to sync data. Code:${err.code},message:${err.message}`);
-         return;
-       }
-       console.info('Succeeded in syncing data.');
-       for (let i = 0; i < result.length; i++) {
-         console.info(`device:${result[i][0]},status:${result[i][1]}`);
-       }
-     })
-   }
-   ```
+4. 远端数据变化订阅。远端数据变化同步至本端设备时，将触发订阅回调方法执行，回调方法的入参为数据发生变化的设备ID列表。通过设备ID获取远端分布式表表名，创建查询谓词查询远端数据。
 
-5. 分布式数据订阅。数据同步变化将触发订阅回调方法执行，回调方法的入参为发生变化的设备ID。
-     
    ```ts
-   let devices: string | undefined = undefined;
-   try {
-     // 调用分布式数据订阅接口，注册数据库的观察者
-     // 当分布式数据库中的数据发生更改时，将调用回调
-     if(store != undefined) {
-       (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver)=>{
-         if(devices != undefined){
-           for (let i = 0; i < devices.length; i++) {
-             console.info(`The data of device:${devices[i]} has been changed.`);
+   if (store) {
+     try {
+       // 调用分布式数据订阅接口，注册数据库的观察者
+       // 当分布式数据库中的数据发生更改时，将调用回调
+       store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, async (devices) => {
+         for (let i = 0; i < devices.length; i++) {
+           let device = devices[i];
+           if (!store) {
+             return;
            }
+           console.info(`The data of device:${device} has been changed.`);
+           // 获取device对应的远端设备分分布式表名
+           const distributedTableName = await store.obtainDistributedTableName(device, 'EMPLOYEE');
+           // 创建查询谓词，查询远端设备分布式表的数据
+           const predicates = new relationalStore.RdbPredicates(distributedTableName);
+           const resultSet = await store.query(predicates);
+           console.info(`device ${device}, table EMPLOYEE rowCount is: ${resultSet.rowCount}`);
          }
        });
+     } catch (err) {
+       console.error(`Failed to register observer. Code:${err.code},message:${err.message}`);
      }
-   } catch (err) {
-     console.error('Failed to register observer. Code:${err.code},message:${err.message}');
-   }
-   // 当前不需要订阅数据变化时，可以将其取消。
-   try {
-     if(store != undefined) {
-       (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver)=>{
-       });
-     }
-   } catch (err) {
-     console.error('Failed to register observer. Code:${err.code},message:${err.message}');
    }
    ```
 
-6. 跨设备查询。如果数据未完成同步，或未触发数据同步，应用可以使用此接口从指定的设备上查询数据。
+5. 同步本端数据变化至远端设备。本端分布式数据表中的数据发生变化后，可调用sync接口并传入SYNC_MODE_PUSH参数触发同步，从而将本端设备中分布式表的变化同步至远端。
+     
+   ```ts
+   if (store) {
+     // 本端设备分布式数据表中插入新数据
+     const ret = store.insertSync('EMPLOYEE', {
+       name: 'sync_me',
+       age: 18,
+       salary: 666
+     });
+     console.info('Insert to distributed table EMPLOYEE, result: ' + ret);
+     // 查询组网内的设备列表
+     const deviceManager = distributedDeviceManager.createDeviceManager('com.example.appdatamgrverify');
+     const deviceList = deviceManager.getAvailableDeviceListSync();
+     const syncTarget: string[] = [];
+     deviceList.forEach(item => {
+       if (item.networkId) {
+         syncTarget.push(item.networkId);
+       }
+     });
+     if (syncTarget.length === 0) {
+       console.error('no device to sync');
+     } else {
+       // 构造用于同步分布式表的谓词对象
+       const predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+       // 指定要同步的设备列表
+       predicates.inDevices(syncTarget);
+       try {
+         // 调用同步数据的接口推送本端数据变化至组网内远端设备
+         const result = await store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates);
+         console.info('Push data success.');
+         // 获取同步结果
+         for (let i = 0; i < result.length; i++) {
+           console.info(`device:${result[i][0]}, sync status:${result[i][1]}`);
+         }
+       } catch (e) {
+         console.error('Push data failed, code: ' + e.code + ', message: ' + e.message);
+       }
+     }
+   }
+   ```
+
+6. 本端设备拉取远端数据变化。远端分布式数据表中的数据发生变化后，本端可调用sync接口并传入SYNC_MODE_PULL参数触发同步，从而将远端设备中分布式表的变化同步至本端。
+
+   ```ts
+   if (store) {
+     // 查询组网内的设备列表
+     const deviceManager = distributedDeviceManager.createDeviceManager('com.example.appdatamgrverify');
+     const deviceList = deviceManager.getAvailableDeviceListSync();
+     const syncTarget: string[] = [];
+     deviceList.forEach(item => {
+       if (item.networkId) {
+         syncTarget.push(item.networkId);
+       }
+     });
+     if (syncTarget.length === 0) {
+       console.error('no device to pull data');
+     } else {
+       // 构造用于同步分布式表的谓词对象
+       const predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+       // 指定要同步的设备列表
+       predicates.inDevices(syncTarget);
+       try {
+         // 调用同步数据的接口拉取远端数据变化至本端设备
+         const result = await store.sync(relationalStore.SyncMode.SYNC_MODE_PULL, predicates);
+         console.info('Push data success.');
+         // 获取同步结果
+         for (let i = 0; i < result.length; i++) {
+           console.info(`device:${result[i][0]}, sync status:${result[i][1]}`);
+         }
+       } catch (e) {
+         console.error('Push data failed, code: ' + e.code + ', message: ' + e.message);
+       }
+     }
+   }
+   ```
+
+7. 跨设备查询。如果数据未完成同步，或未触发数据同步，应用可以使用此接口从指定的设备上查询数据。
 
    > **说明：**
    >
@@ -162,37 +216,30 @@
 
      
    ```ts
-   // 获取deviceIds
-   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-
-   let dmInstance: distributedDeviceManager.DeviceManager;
-   let deviceId: string | undefined = undefined ;
-
-   try {
-     dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
-     let devices = dmInstance.getAvailableDeviceListSync();
-
-     deviceId = devices[0].networkId;
-
-     // 构造用于查询分布式表的谓词对象
-     let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-     // 调用跨设备查询接口，并返回查询结果
-     if(store != undefined && deviceId != undefined) {
-       (store as relationalStore.RdbStore).remoteQuery(deviceId, 'EMPLOYEE', predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES'],
-         (err: BusinessError, resultSet: relationalStore.ResultSet) => {
-           if (err) {
-             console.error(`Failed to remoteQuery data. Code:${err.code},message:${err.message}`);
-             return;
-           }
-           console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
-         }
-       )
+   if (store) {
+     // 查询组网内的设备列表
+     const deviceManager = distributedDeviceManager.createDeviceManager('com.example.appdatamgrverify');
+     const deviceList = deviceManager.getAvailableDeviceListSync();
+     const devices: string[] = [];
+     deviceList.forEach(item => {
+       if (item.networkId) {
+         devices.push(item.networkId);
+       }
+     });
+     if (devices.length === 0) {
+       console.error('no device to query data');
+     } else {
+       // 构造用于查询分布式表的谓词对象
+       const predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+       try {
+         // 查询远端设备上的分布式表
+         const resultSet = await store.remoteQuery(devices[0], 'EMPLOYEE', predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES']);
+         console.info('Remote query success, row cout: ' + resultSet.rowCount);
+         console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+       } catch (e) {
+         console.error('Remote query failed, code: ' + e.code + ', message: ' + e.message);
+       }
      }
-   } catch (err) {
-     let code = (err as BusinessError).code;
-     let message = (err as BusinessError).message;
-     console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
    }
    ```
 
