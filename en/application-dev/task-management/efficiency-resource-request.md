@@ -20,9 +20,9 @@ Some system applications need to run for an extended period of time to provide b
 
 ## Available APIs
 
-The table below lists the main APIs used for efficient resources. For details about more APIs and their usage, see [Background Task Management](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md).
-
 **Table 1** Main APIs for efficiency resources
+
+The table below lists the main APIs used for efficient resources. For details about more APIs and their usage, see [Background Task Management](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md).
 
 | API| Description|
 | -------- | -------- |
@@ -58,6 +58,7 @@ The table below lists the main APIs used for efficient resources. For details ab
 
    ```ts
    import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Request efficiency resources.
@@ -72,15 +73,24 @@ The table below lists the main APIs used for efficient resources. For details ab
      isPersist: true, // The resources are permanently held.
      isProcess: false, // The request is initiated by an application.
    };
-   backgroundTaskManager.applyEfficiencyResources(request);
-   console.info("Succeeded in invoking applyEfficiencyResources.");
+   try {
+     backgroundTaskManager.applyEfficiencyResources(request);
+     console.info("Succeeded in invoking applyEfficiencyResources.");
+   } catch (error) {
+     console.error(`Operation applyEfficiencyResources failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+   }
    ```
 
 3. Release the efficiency resources. After completing work in the background, the application should release the resources in a timer manner. It can release some or all resources.
 
    ```ts
    // The application releases all the efficiency resources.
-   backgroundTaskManager.resetAllEfficiencyResources();
+   try {
+     backgroundTaskManager.resetAllEfficiencyResources();
+     console.info("Succeeded in invoking resetAllEfficiencyResources.");
+   } catch (error) {
+     console.error(`Operation resetAllEfficiencyResources failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+   }
    // The application releases some efficiency resources.
    let request: backgroundTaskManager.EfficiencyResourcesRequest = {
      resourceTypes: backgroundTaskManager.ResourceType.CPU,
@@ -90,8 +100,12 @@ The table below lists the main APIs used for efficient resources. For details ab
      isPersist: true,
      isProcess: false, // The request is initiated by an application.
    };
-   backgroundTaskManager.applyEfficiencyResources(request);
-   console.info("Succeeded in invoking applyEfficiencyResources.");
+   try {
+     backgroundTaskManager.applyEfficiencyResources(request);
+     console.info("Succeeded in invoking applyEfficiencyResources.");
+   } catch (error) {
+     console.error(`Operation applyEfficiencyResources failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+   }
    ```
 
    > **NOTE**

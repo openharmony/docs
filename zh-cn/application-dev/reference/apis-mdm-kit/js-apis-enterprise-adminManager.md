@@ -424,7 +424,7 @@ try {
 
 ## Policy<sup>20+</sup>
 
-黑白名单的策略类型。 
+允许或禁用名单的策略类型。 
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -432,8 +432,8 @@ try {
 
 | 名称                | 值  | 说明    |
 | ----------------- | ---- | ----- |
-| BLOCK_LIST  | 0 | 黑名单。 |
-| TRUST_LIST  | 1 | 白名单。 |
+| BLOCK_LIST  | 0 | 禁用名单。 |
+| TRUST_LIST  | 1 | 允许名单。 |
 
 ## 附录
 ### 可委托策略列表

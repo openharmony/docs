@@ -111,8 +111,6 @@ try {
 
 选择器弹窗通常用于在用户进行某些操作（如点击按钮）时显示特定的信息或选项。
 
-选择器弹窗中，selected字段的字体最大放大倍数为2。
-
 ### 日历选择器弹窗 (CalendarPickerDialog)
 
 日历选择器弹窗提供日历视图，包含年、月和星期信息，通过[CalendarPickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md)接口实现。开发者可调用show函数，定义并弹出日历选择器弹窗。

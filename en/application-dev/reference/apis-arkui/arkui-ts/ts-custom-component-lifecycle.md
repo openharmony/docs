@@ -285,7 +285,7 @@ aboutToReuse?(): void
 
 Invoked when a reusable custom component managed by state management V2 is taken from the reuse pool and reinserted into the node tree.
 
-For details, see [\@ReusableV2](../../../quick-start/arkts-new-reusableV2.md).
+For details, see [\@ReusableV2](../../../ui/state-management/arkts-new-reusableV2.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 

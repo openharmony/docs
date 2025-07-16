@@ -5,7 +5,7 @@
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 **Repeat** is used to perform repeated rendering based on array data. Generally, it is used together with container components.
-This document provides API parameter descriptions. For details about the development, see [Repeat: Reusing Child Components](../../../quick-start/arkts-new-rendering-control-repeat.md).
+This document provides API parameter descriptions. For details about the development, see [Repeat: Reusing Child Components](../../../ui/state-management/arkts-new-rendering-control-repeat.md).
 
 ## Properties
 
@@ -15,7 +15,7 @@ Inherited from [DynamicNode](./ts-rendering-control-foreach.md#dynamicnode12).
 
 ### Repeat: \<T\>(arr: Array\<T\>)
 
-When **virtualScroll** is not enabled: renders repeated components based on the data source. This API must be used in conjunction with a container component. In addition, the component returned by the API must be a child component that can be contained in the **Repeat** parent container component. Compared to **ForEach**, **Repeat** optimizes the rendering performance for partial updates. The index for the component generator function is maintained by the framework.
+When **virtualScroll** is not enabled: renders repeated components based on the data source. This API must be used in conjunction with a container component. In addition, the component returned by the API must be a child component that can be contained in the **Repeat** parent container component. Compared with **ForEach**, **Repeat** optimizes the rendering performance for partial updates. The index for the component generator function is maintained by the framework.
 
 When virtualScroll is enabled: Iterates data from the provided data source as required and creates the corresponding component during each iteration. In this scenario, the API must be used together with a scrollable container component. When **Repeat** is used in a scrollable container component, the framework creates components as required based on the visible area of the container. When a component scrolls out of the visible area, the framework caches it and reuses it in the next iteration.
 

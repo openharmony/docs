@@ -457,6 +457,7 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
   }
 }
 ```
+![autoplay](figures/AutoPlay.gif)
 ## 示例2：图像分析功能使用
 
 ```ts
@@ -610,6 +611,7 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
   }
 }
 ```
+![AiAnalysis](figures/AiAnalysis.gif)
 ## 示例3：在原子化服务中使用动态照片
 
 ```ts
@@ -701,3 +703,4 @@ struct Index {
   }
 }
 ```
+![AutomicEnergy](figures/AutomicEnergy.gif)

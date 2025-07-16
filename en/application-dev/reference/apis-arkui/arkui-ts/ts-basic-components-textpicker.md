@@ -99,7 +99,7 @@ Sets the height of each item in the picker.
 
 defaultPickerItemHeight(height: Optional\<number | string>)
 
-Sets the height of each item in the picker. Compared to [defaultPickerItemHeight](#defaultpickeritemheight), this API supports the **undefined** type for the **height** parameter.
+Sets the height of each item in the picker. Compared with [defaultPickerItemHeight](#defaultpickeritemheight), this API supports the **undefined** type for the **height** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -131,7 +131,7 @@ Sets the font color, font size, and font weight for the top and bottom items.
 
 disappearTextStyle(style: Optional\<PickerTextStyle>)
 
-Sets the font color, font size, and font weight for the top and bottom items. Compared to [disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
+Sets the font color, font size, and font weight for the top and bottom items. Compared with [disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -163,7 +163,7 @@ Sets the font color, font size, and font weight for all items except the top, bo
 
 textStyle(style: Optional\<PickerTextStyle>)
 
-Sets the font color, font size, and font weight for all items except the top, bottom, and selected items. Compared to [textStyle](#textstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
+Sets the font color, font size, and font weight for all items except the top, bottom, and selected items. Compared with [textStyle](#textstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -195,7 +195,7 @@ Sets the font color, font size, and font weight for the selected item.
 
 selectedTextStyle(style: Optional\<PickerTextStyle>)
 
-Sets the font color, font size, and font weight for the selected item. Compared to [selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
+Sets the font color, font size, and font weight for the selected item. Compared with [selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -227,7 +227,7 @@ Sets the index of the default selected item in the array. Its priority is higher
 
 selectedIndex(index: Optional\<number | number[]>)
 
-Sets the index of the default selected item in the array. Its priority is higher than that of the selected value in **options**. For a single-column picker, use a value of the number type. For a multi-column (linked) picker, use a value of the number[] type. Compared to [selectedIndex](#selectedindex10), this API supports the **undefined** type for the **index** parameter.
+Sets the index of the default selected item in the array. Its priority is higher than that of the selected value in **options**. For a single-column picker, use a value of the number type. For a multi-column (linked) picker, use a value of the number[] type. Compared with [selectedIndex](#selectedindex10), this API supports the **undefined** type for the **index** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -259,7 +259,7 @@ Sets whether scrolling is loopable.
 
 canLoop(isLoop: Optional\<boolean>)
 
-Sets whether scrolling is loopable. Compared to [canLoop](#canloop10)<sup>10+</sup>, this API supports the **undefined** type for the **isLoop** parameter.
+Sets whether scrolling is loopable. Compared with [canLoop](#canloop10)<sup>10+</sup>, this API supports the **undefined** type for the **isLoop** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -292,7 +292,7 @@ If the sum of **startMargin** and **endMargin** exceeds the component width, bot
 
 divider(textDivider: Optional\<DividerOptions | null>)
 
-Sets the divider style. If this attribute is not set, the divider is displayed based on the default value. Compared to [divider](#divider12)<sup>12+</sup>, this API supports the **undefined** type for the **textDivider** parameter.
+Sets the divider style. If this attribute is not set, the divider is displayed based on the default value. Compared with [divider](#divider12)<sup>12+</sup>, this API supports the **undefined** type for the **textDivider** parameter.
 
 If the sum of **startMargin** and **endMargin** exceeds the component width, both **startMargin** and **endMargin** will be set to **0**.
 
@@ -326,7 +326,7 @@ Sets the height for the fade effect. If this attribute is not set, the default f
 
 gradientHeight(height: Optional\<Dimension>)
 
-Sets the height for the fade effect. If this attribute is not set, the default fade effect is displayed. Compared to [gradientHeight](#gradientheight12)<sup>12+</sup>, this API supports the **undefined** type for the **height** parameter.
+Sets the height for the fade effect. If this attribute is not set, the default fade effect is displayed. Compared with [gradientHeight](#gradientheight12)<sup>12+</sup>, this API supports the **undefined** type for the **height** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -445,7 +445,7 @@ Triggered when an item in the picker is selected. When the picker contains text 
 
 onChange(callback: Optional\<OnTextPickerChangeCallback>)
 
-Triggered when the text picker snaps to the selected item. Compared to [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
+Triggered when the text picker snaps to the selected item. Compared with [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -479,7 +479,7 @@ If the scrolling is initiated by a gesture, this event is triggered when the fin
 
 onScrollStop(callback: Optional\<TextPickerScrollStopCallback>)
 
-Triggered when the scrolling in the text picker stops. Compared to [onScrollStop](#onscrollstop14)<sup>14+</sup>, this API supports the **undefined** type for the **callback** parameter.
+Triggered when the scrolling in the text picker stops. Compared with [onScrollStop](#onscrollstop14)<sup>14+</sup>, this API supports the **undefined** type for the **callback** parameter.
 
 If the scrolling is initiated by a gesture, this event is triggered when the finger is lifted from the screen and the scrolling stops.
 
@@ -499,7 +499,7 @@ onEnterSelectedArea(callback: TextPickerEnterSelectedAreaCallback)
 
 Triggered during the scrolling of the text picker when an item enters the divider area.
 
-Compared to the **onChange** event, this event is triggered earlier, specifically when the scroll distance of the current column exceeds half the height of the selected item, which indicates that the item has entered the divider area.
+Compared with the **onChange** event, this event is triggered earlier, specifically when the scroll distance of the current column exceeds half the height of the selected item, which indicates that the item has entered the divider area.
 
 When the picker contains text only or a combination of images and text, **value** indicates the text of the selected item. When the picker contains images only, **value** is empty.
 
