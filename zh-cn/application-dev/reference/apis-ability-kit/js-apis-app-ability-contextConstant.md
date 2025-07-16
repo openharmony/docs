@@ -97,3 +97,47 @@ StartupVisibility作为[StartOptions](js-apis-app-ability-startOptions.md)的一
 **示例：**
 
   参见[ContextConstant.ProcessMode](#processmode12)。
+
+## Scenarios<sup>20+</sup>
+
+表示不触发[onNewWant](./js-apis-app-ability-uiAbility.md#onnewwant)生命周期回调场景的枚举，用于[setOnNewWantSkipScenarios](./js-apis-inner-application-uiAbilityContext.md#setonnewwantskipscenarios20)接口。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称  | 值 | 说明                                                                                                                   |
+|-----| -------- |----------------------------------------------------------------------------------------------------------------------|
+| SCENARIO_MOVE_MISSION_TO_FRONT | 0x00000001 | <!--RP1-->系统接口[missionManager.moveMissionToFront](./js-apis-app-ability-missionManager-sys.md#missionmanagermovemissiontofront-2)接口触发的UIAbility到前台场景。<!--RP1End-->        |
+| SCENARIO_SHOW_ABILITY | 0x00000002 | [showAbility](./js-apis-inner-application-uiAbilityContext.md#showability12)接口触发的UIAbility到前台场景。     |
+| SCENARIO_BACK_TO_CALLER_ABILITY_WITH_RESULT | 0x00000004 | [backToCallerAbilityWithResult](./js-apis-inner-application-uiAbilityContext.md#backtocallerabilitywithresult12)接口触发的UIAbility到前台场景。     |
+
+**示例：**
+
+```ts
+import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let scenarios: number = contextConstant.Scenarios.SCENARIO_MOVE_MISSION_TO_FRONT |
+      contextConstant.Scenarios.SCENARIO_SHOW_ABILITY |
+      contextConstant.Scenarios.SCENARIO_BACK_TO_CALLER_ABILITY_WITH_RESULT;
+
+    try {
+      this.context.setOnNewWantSkipScenarios(scenarios).then(() => {
+        // 执行正常业务
+        console.info('setOnNewWantSkipScenarios succeed');
+      }).catch((err: BusinessError) => {
+        // 处理业务逻辑错误
+        console.error(`setOnNewWantSkipScenarios failed, code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`setOnNewWantSkipScenarios failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```

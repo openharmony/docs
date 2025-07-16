@@ -589,7 +589,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
-当已在前台运行过的UIAbility实例切换至后台后，被再次拉起时（即[热启动](../../application-models/uiability-intra-device-interaction.md#目标uiability热启动)场景），会触发该生命周期回调。
+当已在前台运行过的UIAbility实例被再次拉起时，会触发该生命周期回调。若在特定场景下（参见[Scenarios](./js-apis-app-ability-contextConstant.md#scenarios20)），不需要触发该生命周期回调，可以使用[setOnNewWantSkipScenarios](./js-apis-inner-application-uiAbilityContext.md#setonnewwantskipscenarios20)接口设置。
 
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
