@@ -1477,7 +1477,7 @@ struct WaterFlowDemo {
           .width('100%')
           .height(this.itemHeightArray[item % 100])
           .backgroundColor(this.colors[item % 5])
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .columnsTemplate('repeat(auto-fill,80)')
       .columnsGap(10)
@@ -1571,7 +1571,7 @@ struct Index {
               .justifyContent(FlexAlign.Center)
               .alignItems(HorizontalAlign.Center)
             }
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }
         .columnsTemplate('1fr')
         .height("90%")
@@ -1638,7 +1638,7 @@ struct WaterFlowDemo {
             .width('100%')
             .height(this.itemHeightArray[item % 100])
             .backgroundColor(this.colors[item % 5])
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }
         .columnsTemplate('repeat(auto-fill,80)')
         .columnsGap(10)
