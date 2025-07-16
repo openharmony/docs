@@ -445,7 +445,7 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 setInstallLocalEnterpriseAppEnabled(admin: Want, isEnable: boolean): void
 
-设置是否开启本地安装企业应用。开启后，支持安装签名证书分发类型为enterprise_normal的企业应用（仅在企业定制设备和HW-IT设备上生效）。
+设置是否开启本地安装企业应用。开启后，支持安装签名证书分发类型为enterprise_normal的企业应用（仅在企业定制设备和HW-IT设备上生效）。该能力当前仅支持2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -495,7 +495,7 @@ try {
 
 getInstallLocalEnterpriseAppEnabled(admin: Want): boolean
 
-获取企业应用是否开启本地安装。
+获取企业应用是否开启本地安装。该能力当前仅支持2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
