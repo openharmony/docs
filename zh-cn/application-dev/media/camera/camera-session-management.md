@@ -51,6 +51,11 @@
 
 4. 使能。向会话中添加相机的输入流和输出流，调用[addInput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#addinput11)添加相机的输入流；调用[addOutput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#addoutput11)添加相机的输出流。以下示例代码以添加预览流previewOutput和拍照流photoOutput为例，即当前模式支持拍照和预览。
      调用VideoSession类中的[commitConfig](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#commitconfig11)和[start](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#start11)方法提交相关配置，并启动会话。
+
+     > **说明：**
+     >
+     > 在调用[addOutput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#addoutput11)添加相机的输出流前，可通过[canAddOutput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#canaddoutput11)判断当前相机输出流是否可以添加到session中。
+     
    ```ts
    async function startSession(videoSession: camera.VideoSession, cameraInput: camera.CameraInput, previewOutput: camera.PreviewOutput, photoOutput: camera.PhotoOutput): Promise<void> {
      try {
@@ -60,10 +65,22 @@
        console.error(`Failed to addInput. error: ${err}`);
      }
      try {
+       videoSession.canAddOutput(previewOutput);
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to canAdd previewOutput. error: ${err}`);
+     }
+     try {
        videoSession.addOutput(previewOutput);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to add previewOutput. error: ${err}`);
+     }
+     try {
+       videoSession.canAddOutput(photoOutput);
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to canAdd photoOutput error: ${err}`);
      }
      try {
        videoSession.addOutput(photoOutput);
@@ -110,6 +127,12 @@
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to remove photoOutput. error: ${err}`);
+     }
+     try {
+       videoSession.canAddOutput(videoOutput);
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`Failed to canAdd videoOutput error: ${err}`);
      }
      // 向会话中添加视频输出流。
      try {
