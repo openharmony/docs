@@ -258,6 +258,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   } catch (error) {
     let err = error as BusinessError;
     console.error(`videoSession commitConfig error: ${err}`);
+    return;
   }
 
   // 启动会话。
