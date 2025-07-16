@@ -18,8 +18,14 @@
   import { UIUtils } from '@kit.ArkUI';
   ```
 
-- 状态管理V1中，会给\@Observed装饰的类对象以及使用状态变量装饰器如\@State装饰的Class、Date、Map、Set、Array添加一层代理用于观测一层属性或API调用产生的变化。
-- 状态管理V2中，会给使用状态变量装饰器如\@Trace、\@Local装饰的Date、Map、Set、Array添加一层代理用于观测API调用产生的变化。
+- 在ArkTS1.1上：
+
+  - 状态管理V1中，会给\@Observed装饰的类对象以及使用状态变量装饰器如\@State装饰的Class、Date、Map、Set、Array添加一层代理，用于观测一层属性或API调用产生的变化。
+  - 状态管理V2中，会给使用状态变量装饰器如\@Trace、\@Local装饰的Date、Map、Set、Array添加一层代理用于观测API调用产生的变化。
+
+- 在ArkTS1.2上：
+
+  - 状态管理V1与V2会给状态变量装饰器如@State、@Local装饰的Date、Map、Set、Array添加一层包装类用于观测API调用产生的变化，给inteface字面量添加一层代理用于观测属性的变化。而传入class类型将不再做处理。
 
 使用getTarget接口可以获取这些代理对象的原始对象。
 
@@ -68,7 +74,7 @@
   }
   ```
 
-## 使用场景
+## ArkTS1.1使用场景
 
 ### 获取状态管理V1代理前的原始对象
 
@@ -261,3 +267,27 @@ let info: Info = new Info(); // NAPI接口传入info实例
 | napi_set_named_property | 使用"name"，"\_\_ob\_name"均能赋值成功。       |
 | napi_get_named_property | 使用"name"，"\_\_ob\_name"均能获取到值。       |
 | napi_has_named_property | 使用"name"，"\_\_ob\_name"均返回true。         |
+
+## ArkTS1.2使用场景
+
+在ArkTS1.2上，状态管理V1与V2使用同一种数据包装、代理机制。使用getTarget接口可以获取被包装、代理前的原始对象。
+
+状态变量装饰器会给Array、Map、Set、Date类型的数据添加包装类，用于观测内容与API操作带来的变化。
+
+以V1中Array类型为例，被@State装饰后会添加包装类，使用getTarget之后可以再获得包装前的对象：
+
+```ts
+import { Text, Column, Component, Entry } from '@ohos.arkui.component';
+import { State, UIUtils } from '@ohos.arkui.stateManagement';
+@Entry
+@Component
+struct Index {
+  rawArray: int[] = [1, 2, 3];
+  @State observedArray: int[] = this.rawArray; // 会添加包装类
+  build() {
+    Column() {
+      Text(`${UIUtils.getTarget(this.observedArray) === this.rawArray}`) // true
+    }
+  }
+}
+```

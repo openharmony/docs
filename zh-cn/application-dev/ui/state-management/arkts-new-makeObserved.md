@@ -2,7 +2,6 @@
 
 为了将普通不可观察数据变为可观察数据，开发者可以使用[makeObserved接口](../../reference/apis-arkui/js-apis-StateManagement.md#makeobserved)。
 
-
 makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档前，建议提前阅读：[\@Trace](./arkts-new-observedV2-and-trace.md)。
 
 >**说明：**
@@ -11,23 +10,28 @@ makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档�
 
 ## 概述
 
-- 状态管理框架已提供[@ObservedV2/@Trace](./arkts-new-observedV2-and-trace.md)用于观察类属性变化，makeObserved接口提供主要应用于@ObservedV2/@Trace无法涵盖的场景：
+- 状态管理框架已提供[@ObservedV2/@Trace](./arkts-new-observedV2-and-trace.md)用于观察类属性变化，makeObserved接口主要应用于@ObservedV2/@Trace无法涵盖的场景:
 
-  - class的定义在三方包中：开发者无法手动对class中需要观察的属性加上@Trace标签，可以使用makeObserved使得当前对象可以被观察。
+  - **以下场景仅适用于ArkTS1.1：**
 
-  - 当前类的成员属性不能被修改：因为@Trace观察类属性会动态修改类的属性，这个行为在@Sendable装饰的class中是不被允许的，此时可以使用makeObserved。
+    - class的定义在三方包中：开发者无法手动对class中需要观察的属性加上@Trace标签，可以使用makeObserved使得当前对象可以被观察。
 
-  - interface或者JSON.parse返回的匿名对象：这类场景往往没有明确的class声明，开发者无法使用@Trace标记当前属性可以被观察，此时可以使用makeObserved。
+    - 当前类的成员属性不能被修改：因为@Trace观察类属性会动态修改类的属性，这个行为在@Sendable装饰的class中是不被允许的，此时可以使用makeObserved。
+    - JSON.parse返回的匿名对象：没有明确的class声明，开发者无法使用@Trace标记当前属性可以被观察，此时可以使用makeObserved。
+
+  - **以下场景同时适用于ArkTS1.1与ArkTS1.2：**
+
+    - interface：没有明确的class声明，开发者无法使用@Trace标记当前属性可以被观察，此时可以使用makeObserved。
 
 
-- 使用makeObserved接口需要导入UIUtils。
+- 要使用makeObserved接口，需要导入UIUtils。
   ```ts
   import { UIUtils } from '@kit.ArkUI';
   ```
 
 ## 限制条件
 
-- makeObserved仅支持非空的对象类型传参。
+- 仅支持非空的对象类型作为makeObserved的参数。
   - 不支持undefined和null：返回自身，不做任何处理。
   - 非Object类型：编译拦截报错。
 
@@ -36,11 +40,11 @@ makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档�
   let res1 = UIUtils.makeObserved(2); // 非法类型入参，错误用法，编译报错
   let res2 = UIUtils.makeObserved(undefined); // 非法类型入参，错误用法，返回自身，res2 === undefined
   let res3 = UIUtils.makeObserved(null); // 非法类型入参，错误用法，返回自身，res3 === null
-
+  
   class Info {
     id: number = 0;
   }
-  let rawInfo: Info = UIUtils.makeObserved(new Info()); // 正确用法
+  let rawInfo: Info = UIUtils.makeObserved(new Info()); // ArkTS1.1上正确用法，ArkTS1.2无作用
   ```
 
 - makeObserved不支持传入被[@ObservedV2](./arkts-new-observedV2-and-trace.md)、[@Observed](./arkts-observed-and-objectlink.md)装饰的类的实例以及已经被makeObserved封装过的代理数据。为了防止双重代理，makeObserved发现入参为上述情况时则直接返回，不做处理。
@@ -52,22 +56,28 @@ makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档�
   }
   // 错误用法：makeObserved发现传入的实例是@ObservedV2装饰的类的实例，则返回传入对象自身
   let observedInfo: Info = UIUtils.makeObserved(new Info());
-
+  
   class Info2 {
     id: number = 0;
   }
-  // 正确用法：传入对象既不是@ObservedV2/@Observed装饰的类的实例，也不是makeObserved封装过的代理数据
+  // ArkTS1.1上正确用法：传入对象既不是@ObservedV2/@Observed装饰的类的实例，也不是makeObserved封装过的代理数据
   // 返回可观察数据
   let observedInfo1: Info2 = UIUtils.makeObserved(new Info2());
-  // 错误用法：传入对象为makeObserved封装过的代理数据，此次makeObserved不做处理
+  // 传入对象为makeObserved封装过的代理数据，此次makeObserved不做处理
   let observedInfo2: Info2 = UIUtils.makeObserved(observedInfo1);
   ```
-- makeObserved可以用在@Component装饰的自定义组件中，但不能和状态管理V1的状态变量装饰器配合使用，如果一起使用，则会抛出运行时异常。
+
+在ArkTS1.1上，`makeObserved` 可以用在 `@Component` 装饰的自定义组件中，但不能与状态管理V1的状态变量装饰器配合使用，否则会抛出运行时异常。在ArkTS1.2上，`makeObserved` 不仅可以用在 `@Component` 装饰的自定义组件中，还能与状态管理V1的状态变量装饰器配合使用。
+
   ```ts
-  // 错误写法，运行时异常
+  // ArkTS1.1上错误写法，运行时异常
+  // ArkTS1.2上支持这种写法，但Info类型的实例无法观察
   @State message: Info = UIUtils.makeObserved(new Info(20));
   ```
-  下面`message2`的写法不会抛异常，原因是this.message是@State装饰的，其实现等同于@Observed，而UIUtils.makeObserved的入参是@Observed装饰的class，会直接返回自身。因此对于`message2`来说，他的初始值不是makeObserved的返回值，而是@State装饰的变量。
+  以下代码示例仅适用于ArkTS1.1：
+
+  `message2`的写法不会抛异常，原因是this.message是@State装饰的，其实现等同于@Observed，而UIUtils.makeObserved的入参是@Observed装饰的class，会直接返回自身。因此对于`message2`来说，他的初始值不是makeObserved的返回值，而是@State装饰的变量。
+
   ```ts
   import { UIUtils } from '@kit.ArkUI';
   class Person {
@@ -93,9 +103,11 @@ makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档�
     }
   }
   ```
-### makeObserved仅对入参生效，不会改变接受返回值的观察能力
+### makeObserved仅对入参生效，不会改变接收返回值的装饰器的观察能力
 
- - `message`被@Local装饰，本身具有观察自身赋值的能力。其初始值为makeObserved的返回值，具有深度观察能力。
+该条件适用于ArkTS1.1：
+
+ - `message`被@Local装饰，本身具有观察自身赋值的能力。其初始值为makeObserved的返回值，并具有深度观察能力。
  - 点击`change id`可以触发UI刷新。
  - 点击`change Info`将`this.message`重新赋值为不可观察数据后，再次点击`change id`无法触发UI刷新。
  - 再次点击`change Info1`将`this.message`重新赋值为可观察数据后，点击`change id`可以触发UI刷新。
@@ -132,15 +144,20 @@ makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档�
 
 ### 支持类型
 
+**以下类型仅适用于ArkTS1.1：**
+
 - 支持未被@Observed或@ObserveV2装饰的类。
-- 支持Array、Map、Set和Date。
 - 支持collections.Array, collections.Set和collections.Map。
 - JSON.parse返回的Object。
 - @Sendable装饰的类。
 
+**以下类型同时适用于ArkTS1.1与ArkTS1.2：**
+
+- 支持Array、Map、Set和Date。
+
 ### 观察变化
 
-- makeObserved传入内置类型或collections类型的实例时，可以观测其API带来的变化：
+- makeObserved传入内置类型或collections类型的实例时，可以观测其API带来的变化（collections类型仅ArkTS1.1支持）：
 
   | 类型  | 可观测变化的API                                              |
   | ----- | ------------------------------------------------------------ |
@@ -154,9 +171,11 @@ makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档�
 
 ### makeObserved和@Sendable装饰的class配合使用
 
+**该场景仅适用于ArkTS1.1。**
+
 [@Sendable](../../arkts-utils/arkts-sendable.md)主要是为了处理应用场景中的并发任务。将makeObserved和@Sendable配合使用是为了满足一般应用开发中，在子线程做大数据处理，在UI线程做ViewModel的显示和观察数据的需求。@Sendable具体内容可参考[并发任务文档](../../arkts-utils/multi-thread-concurrency-overview.md)。
 
-本章节将说明下面的场景：
+本章节将说明以下场景：
 - makeObserved在传入@Sendable类型的数据后有观察能力，且其变化可以触发UI刷新。
 - 从子线程中获取一个整体数据，然后对UI线程的可观察数据做整体替换。
 - 从子线程获取的数据重新执行makeObserved，将数据变为可观察数据。
@@ -221,8 +240,11 @@ struct ObservedSendableTest {
 需要注意：数据的构建和处理可以在子线程中完成，但有观察能力的数据不能传给子线程，只有在主线程里才可以操作可观察的数据。所以上述例子中只是将`this.send`的属性`name`传给子线程操作。
 
 ### makeObserved和collections.Array/Set/Map配合使用
-collections提供ArkTS容器集，可用于并发场景下的高性能数据传递。详情见[@arkts.collections文档](../../reference/apis-arkts/js-apis-arkts-collections.md)。
-makeObserved可以在ArkUI中导入可观察的colletions容器，但makeObserved不能和状态管理V1的状态变量装饰器如@State和@Prop等配合使用，否则会抛出运行时异常。
+
+**该场景仅适用于ArkTS1.1。**
+
+collections提供ArkTS容器集，可用于并发场景下的高性能数据传递。详情见[@arkts.collections文档](../reference/apis-arkts/js-apis-arkts-collections.md)。
+makeObserved可以在ArkUI中导入可观察的collections容器，但makeObserved不能和状态管理V1的状态变量装饰器如@State和@Prop等配合使用，否则会抛出运行时异常。
 
 #### collections.Array
 collections.Array可以触发UI刷新的API有：
@@ -405,7 +427,7 @@ struct CollectionMap {
 ```
 
 #### collections.Set
-collections.Set可以触发UI刷新的API有：add、clear、delete。
+collections.Set中可以触发UI刷新的API有：add、clear、delete。
 
 ```ts
 import { collections } from '@kit.ArkTS';
@@ -457,7 +479,10 @@ struct Index {
 ```
 
 ### makeObserved的入参为JSON.parse的返回值
-JSON.parse返回Object，无法使用@Trace装饰其属性，可以使用makeObserved使其变为可观察数据。
+
+**该场景仅适用于ArkTS1.1。**
+
+`JSON.parse`返回的对象无法使用`@Trace`装饰其属性，可使用`makeObserved`将其转换为可观察数据。
 
 ```ts
 import { JSON } from '@kit.ArkTS';
@@ -571,7 +596,7 @@ struct Child {
 ```
 
 ### makeObserved在@Component内使用
-makeObserved不能和V1的状态变量装饰器一起使用，但可以在@Component装饰的自定义组件里使用。
+在ArkTS1.1上，makeObserved不能与V1的状态变量装饰器一起使用，但可以在@Component装饰的自定义组件中使用。
 
 ```ts
 import { UIUtils } from '@kit.ArkUI';
@@ -603,11 +628,37 @@ struct Index {
 }
 ```
 
+在ArkTS1.2上，makeObserved 可以在@Component装饰的自定义组件中使用，也可以与V1状态变量装饰器配合使用。
+
+```ts
+import { Entry, Component, Column, Text, ClickEvent } from '@ohos.arkui.component';
+import { State, UIUtils } from '@ohos.arkui.stateManagement';
+interface Info {
+  name: string,
+  age: number
+}
+@Entry
+@Component
+struct Index {
+  // 装饰字面量
+  @State info: Info = UIUtils.makeObserved({ name: 'Jack', age: 25} as Info) as Info;
+  build() {
+    Column() {
+      Text(`info.name: ${this.info.name}`)
+        .onClick((e: ClickEvent) => {
+          this.info.name = 'Tom';
+        })
+    }
+  }
+}
+```
+
 ## 常见问题
+
 ### getTarget后的数据可以正常赋值，但是无法触发UI刷新
 [getTarget](./arkts-new-getTarget.md)可以获取状态管理框架代理前的原始对象。
 
-makeObserved封装的观察对象，可以通过getTarget获取到其原始对象，对原始对象的赋值不会触发UI刷新。
+`makeObserved` 封装的观察对象可以通过 `getTarget` 获取其原始对象，对原始对象的赋值不会触发UI刷新。
 
 如下面例子：
 1. 先点击第一个Text组件，通过getTarget获取其原始对象，此时修改原始对象的属性不会触发UI刷新，但数据会正常赋值。
