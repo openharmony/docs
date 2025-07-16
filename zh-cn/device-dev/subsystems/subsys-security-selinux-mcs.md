@@ -20,7 +20,7 @@ Multi-Category Security(MCS)是SELinux强制访问控制的一种模式，通过
   user o roles { r } level s0 range s0 - s0:c0.x1279;
   ```
 
-  在PC上，`product_config`配置文件配置默认levelFrom和user，如果未配置user，默认为user=u。示例格式如下：
+  也可以在`product_config`配置文件中，配置默认levelFrom和user，如果未配置user，默认为user=u。示例格式如下：
 
   ```text
   defaultLevelFrom=user
