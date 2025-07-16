@@ -40,7 +40,7 @@ Node将自定义节点的二级模块API组织在一起，方便开发者进行�
 
 ## XComponentNode
 
-[XComponentNode](./js-apis-arkui-xcomponentNode.md#xcomponentnode)模块提供XComponent节点XComponentNode，表示组件树中的XComponent组件，用于EGL/OpenGLES和媒体数据写入，并支持动态修改节点渲染类型。
+[XComponentNode](./js-apis-arkui-xcomponentNode.md)模块提供XComponent节点XComponentNode，表示组件树中的XComponent组件，用于EGL/OpenGLES和媒体数据写入，并支持动态修改节点渲染类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
