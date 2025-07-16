@@ -101,10 +101,6 @@ wakeup(detail: string): void
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.POWER_MANAGER
-
-API version 9-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
-
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **参数：**
@@ -141,10 +137,6 @@ suspend(isImmediate?: boolean): void
 休眠设备。
 
 **系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.POWER_MANAGER
-
-API version 9-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
@@ -273,10 +265,6 @@ setScreenOffTime(timeout: number): void
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.POWER_MANAGER
-
-API version 12-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
-
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **参数：**
@@ -313,10 +301,6 @@ hibernate(clearMemory: boolean): void
 休眠设备。
 
 **系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.POWER_MANAGER
-
-API version 12-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
