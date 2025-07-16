@@ -47,4 +47,3 @@ o:r:normal_hap:s0:x55,x334,x512,x868,x1024
 ```text
 o:object_r:normal_hap_data_file:s0:x55,x334,x512,x868,x1024
 ```
-
