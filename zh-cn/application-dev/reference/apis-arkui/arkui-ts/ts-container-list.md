@@ -1295,7 +1295,7 @@ struct ListExample {
               .width('100%').height(100).fontSize(16)
               .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
           }
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .listDirection(Axis.Vertical) // 排列方向
       .scrollBar(BarState.Off)
@@ -1430,7 +1430,7 @@ struct ListExample {
                 }
               }
             }
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }.width('90%')
         .scrollBar(BarState.Off)
         .friction(0.6)
@@ -1750,7 +1750,7 @@ struct ListExample {
               .width('100%').height(100).fontSize(16)
               .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
           }
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
     }
@@ -1873,7 +1873,7 @@ struct ListExample {
               .borderRadius(10)
               .backgroundColor(0xFFFFFF)
           }
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .maintainVisibleContentPosition(true)
       .onScrollIndex((start:number)=>{
