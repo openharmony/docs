@@ -458,7 +458,7 @@ setInstallLocalEnterpriseAppEnabled(admin: Want, isEnable: boolean): void
 | 参数名   | 类型                                  | 必填  | 说明 |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 企业设备管理扩展组件。 |
-| isEnable | boolean | 是 | 是否开启本地安装企业应用。true表示开启，false表示关闭，默认为false。 |
+| isEnable | boolean | 是 | 是否开启本地安装企业应用。true表示开启，false表示关闭。 |
 
 **错误码**：
 
