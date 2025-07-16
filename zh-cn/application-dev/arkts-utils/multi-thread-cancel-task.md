@@ -9,7 +9,7 @@
 
    @Sendable
    export class SendableTest {
-    // 储存任务ID
+    // 存储任务ID
      private taskId: number = 0;
 
      constructor(id: number) {
