@@ -54,7 +54,7 @@ type OnPickerStateCallback = (state: AVCastPickerState) => void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| state | [AVCastPickerState](js-apis-avCastPickerParam.md#AVCastPickerState11) | 否 | 设备列表状态。 |
+| state | [AVCastPickerState](js-apis-avCastPickerParam.md#avcastpickerstate11) | 否 | 设备列表状态。 |
 
 ## 事件
 
