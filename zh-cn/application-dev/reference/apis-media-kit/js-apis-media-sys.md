@@ -159,13 +159,13 @@ try {
 
 getAVScreenCaptureConfigurableParameters(sessionId: number): Promise\<string>
 
-从服务器获取用户可更改的系统隐私保护和应用隐私保护配置，使用Promise进行异步回调。
+从服务器获取用户可更改的系统隐私保护和应用隐私保护配置。使用Promise异步回调。
 
 >**注意：**
 >
 > 此接口仅提供给创建弹窗的系统应用调用。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -183,7 +183,7 @@ getAVScreenCaptureConfigurableParameters(sessionId: number): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 202      | Called from Non-System applications. Return by promise.               |
