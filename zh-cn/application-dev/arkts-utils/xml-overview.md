@@ -25,7 +25,8 @@ XML支持命名空间、实体引用、注释和处理指令等特性，使其�
 以下是一个简单的XML样例及对应说明，更多XML的接口和具体使用，请见[@ohos.xml](../reference/apis-arkts/js-apis-xml.md)。
 
 ```XML
-<?xml version="1.0" encoding="utf-8"?> <!-- 声明 -->
+<!-- 声明 -->
+<?xml version="1.0" encoding="utf-8"?>
 <!-- 处理指令 -->
 <?xml-stylesheet type="text/css" href="style.css"?>
 <!-- 元素、属性及属性值 -->
