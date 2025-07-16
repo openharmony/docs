@@ -6,7 +6,7 @@
   当前开放的自定义能力由低到高包括以下几个层次：
   - **自定义组合**：ArkUI框架提供的最基础的自定义方式，通过系统组件和自定义组件的基础能力，将这些能力进行组合，复用已有组件，进一步封装新的组件。具体包括：封装、布局、绘制和动画等基础能力。
   - **自定义扩展**：ArkUI框架提供一系列基于Modifier的自定义扩展能力，通过与UI分离的方式，对已有UI组件的属性、手势、内容进行扩展修改。包括[AttributeModifier](../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md)、[GestureModifier](../reference/apis-arkui/arkui-ts/ts-universal-attributes-gesture-modifier.md#gesturemodifier-1)、[DrawModifier](../reference/apis-arkui/arkui-ts/ts-universal-attributes-draw-modifier.md#drawmodifier-1)等扩展能力。
-  - **自定义节点**：具备底层实体节点的部分基础能力的节点对象（[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)、[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)、[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)），这些节点能够通过[自定义占位节点](./arkts-user-defined-place-holder.md#自定义占位节点)与系统组件进行混合显示。自定义节点可以具备单个节点的测算布局、设置基础属性、设置事件监听、自定义绘制渲染内容的自定义能力。
+  - **自定义节点**：具备底层实体节点的部分基础能力的节点对象（[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)、[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)、[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)），这些节点能够通过[自定义占位节点](./arkts-user-defined-place-holder.md)与系统组件进行混合显示。自定义节点可以具备单个节点的测算布局、设置基础属性、设置事件监听、自定义绘制渲染内容的自定义能力。
   - **自定义渲染**：通过[XComponent](napi-xcomponent-guidelines.md)的“surface”模式暴露出的NativeWindow，使用NDK接口，可以将EGL/OpenGLES生成的显示数据或其它方式解码生成的媒体流数据写入到NativeWindow中，可以实现渲染内容的自定义。
 
 ## 自定义能力导览
