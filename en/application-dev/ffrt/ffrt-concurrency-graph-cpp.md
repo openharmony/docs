@@ -170,3 +170,4 @@ The main FFRT APIs involved in the preceding example are as follows:
 - For `submit`, the total number of input dependencies and output dependencies of each task cannot exceed 8.
 - For `submit_h`, the total number of input dependencies and output dependencies of each task cannot exceed 7.
 - When a parameter is used as both an input dependency and an output dependency, it is counted as one dependency. For example, if the input dependency is `{&x}` and the output dependency is also `{&x}`, then the number of dependencies is 1.
+<!--no_check-->
