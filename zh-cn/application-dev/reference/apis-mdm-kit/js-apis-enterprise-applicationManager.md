@@ -341,7 +341,7 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, di
 | 参数名        | 类型                                                         | 必填 | 说明                                   |
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                         |
-| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。数组长度上限为10。 |
+| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。Want需要传入bundleName和abilityName，数组长度上限为10。 |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
 | disallowModify | boolean | 是   | true禁止用户取消自启，false允许用户取消自启<br>配置后，用户可通过设置-应用和元服务-应用启动管理，管理应用的自启动。 |
 
@@ -608,7 +608,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, disallowModify: boolean): void
 
-添加保活应用，设置用户禁止取消应用保活，当前仅支持2in1设备。如果将应用添加至应用运行黑名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
+添加保活应用，并设置是否禁止用户取消应用保活，当前仅支持2in1设备。如果将应用添加至应用运行黑名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -813,9 +813,9 @@ let keepAliveApp: string = 'com.example.keepAliveApplication'
 
 try {
   let res: boolean = applicationManager.isModifyKeepAliveAppsDisallowed(wantTemp, 100, keepAliveApp);
-  console.info(`Succeeded in is disallowModify keep alive app: ${JSON.stringify(res)}`);
+  console.info(`Succeeded in disallowing modify keep alive app: ${JSON.stringify(res)}`);
 } catch(err) {
-  console.error(`Failed to get is disallowModify keep alive app. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to disallow modify keep alive app. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
