@@ -205,15 +205,15 @@ Failed to set the live form background image.
 
 检查传入的背景图资源是否有效。
 
-## 16501011 当前卡片不支持互动卡片能力
+## 16501011 卡片不支持调用当前接口
 
 **错误信息**
 
-The form can not support this operation, please check your fom_config's sceneAnimationParams configuration infomation is correct or not.
+The form can not support this operation.
 
 **错误描述**
 
-当前卡片不支持互动卡片能力时，系统会报此错误码。
+卡片不支持调用当前接口，系统会报此错误码。
 
 **可能原因**
 
@@ -222,6 +222,24 @@ The form can not support this operation, please check your fom_config's sceneAni
 **处理步骤**
 
 检查当前卡片对应[互动卡片配置项sceneAnimationParams](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)是否正确。
+
+## 16501012 卡片尺寸信息错误
+
+**错误信息**
+
+The form host uses an incorrect dimension.
+
+**错误描述**
+
+卡片使用方传入错误的卡片尺寸。
+
+**可能原因**
+
+指定卡片尺寸未配置，或传入无效卡片尺寸。
+
+**处理步骤**
+
+检查入参卡片尺寸是否在[FormDimension](js-apis-app-form-formInfo.md#formdimension)和[supportDimensions](../../form/arkts-ui-widget-configuration.md#配置文件字段说明)配置列表。
 
 ## 2293761 内部服务错误
 

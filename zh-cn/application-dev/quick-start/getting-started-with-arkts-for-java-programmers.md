@@ -27,13 +27,13 @@ let version = 5.0;
 | Java类型       | ArkTS类型            | 示例代码                          | 核心差异说明                  |  
 |----------------|----------------------|-----------------------------------|-------------------------------|  
 | `boolean`      | `boolean`            | `let isDone: boolean = false;`    | 定义方式相似，均用于逻辑判断，无运行时装箱拆箱操作。                      |  
-| `byte`         | -                    | -                                 | ArkTS无对应类型，小整数场景统一使用`number`（如`let b: number = 10;`）。 |  
-| `short`        | -                    | -                                 | 同上，ArkTS通过`number`覆盖短整数场景，不区分数据宽度。                   |  
+| `byte`         | `number`             | `let b: number = 100;`            | Java中的`byte`为8位整数。<br>ArkTS统一用`number`表示小整数类型。 |  
+| `short`        | `number`             | `let s: number = 300;`            | Java中的`short`为16位整数。<br>ArkTS统一用`number`表示小整数类型。 |  
 | `int`          | `number`             | `let count: number = 10;`         | Java的`int`为32位整数。<br>ArkTS的`number`是双精度浮点型，可存储整数和浮点数。       |  
 | `long`         | `number`             | `let largeNum: number = 9007199254740991;` | Java需加`L`后缀（如`9007199254740991L`）。<br>ArkTS用同一类型表示。          |  
 | `float`        | `number`             | `let pi: number = 3.14;`          | Java需加`f`后缀（如`3.14f`）。<br>ArkTS直接使用`number`，无需特殊标识。       |  
 | `double`       | `number`             | `let e: number = 2.71828;`        | Java区分`float`和`double`。<br>ArkTS统一用`number`表示所有数值类型。         |  
-| `char`         | -                    | -                                 | ArkTS无`char`类型，单字符场景使用`string`（如`let c: string = 'a';`）。   |  
+| `char`         | `string`             | `let c: string = 'a';`            | ArkTS无`char`类型，单字符场景使用`string`。   |  
 | `String`       | `string`             | `let message: string = 'Hello';`  | 定义方式类似，但ArkTS字符串支持模板字面量（如`${name}`）和更灵活的操作。  |  
 
 ### 复杂数据类型
@@ -233,7 +233,7 @@ let b: B = new B();
 
 callFunction(a.foo); // 程序crash。this的上下文发生了变化。
 b.callFunction(a.foo); // 程序crash。this的上下文发生了变化。
-b.callFunction(a.foo.bind(b)) // 输出'I'm B'。
+b.callFunction(a.foo.bind(b)) // 输出'I am B'。
 ```
 
 ## 类型系统

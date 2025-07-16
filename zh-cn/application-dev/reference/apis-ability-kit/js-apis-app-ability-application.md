@@ -149,7 +149,7 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     let moduleContext: common.Context;
     try {
-      application.createPluginModuleContext(this.context, 'pluginBundleName', 'pluginModuleName')
+      application.createPluginModuleContext(this.context, 'com.example.pluginBundleName', 'pluginModuleName')
         .then((data: Context) => {
           moduleContext = data;
           console.info('createPluginModuleContext success!');

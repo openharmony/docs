@@ -8,17 +8,15 @@
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
 
+字体，如宋体、楷体等。
+
 ## 导入模块
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## Typeface
-
-字体，如宋体、楷体等。
-
-### getFamilyName
+## getFamilyName
 
 getFamilyName(): string
 
@@ -42,7 +40,7 @@ let typeface = font.getTypeface();
 let familyName = typeface.getFamilyName();
 ```
 
-### makeFromCurrent<sup>20+</sup>
+## makeFromCurrent<sup>20+</sup>
 
 makeFromCurrent(typefaceArguments: TypefaceArguments): Typeface
 
@@ -59,7 +57,7 @@ makeFromCurrent(typefaceArguments: TypefaceArguments): Typeface
 
 | 类型   | 说明                  |
 | ------ | -------------------- |
-| [Typeface](#typeface) | 返回字体对象（异常情况下会返回空指针）。 |
+| [Typeface](arkts-apis-graphics-drawing-Typeface.md) | 返回字体对象（异常情况下会返回空指针）。 |
 
 **示例：**
 
@@ -82,7 +80,7 @@ class TextRenderNode extends RenderNode {
 }
 ```
 
-### makeFromFile<sup>12+</sup>
+## makeFromFile<sup>12+</sup>
 
 static makeFromFile(filePath: string): Typeface
 
@@ -100,7 +98,7 @@ static makeFromFile(filePath: string): Typeface
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| [Typeface](#typeface) | 返回Typeface对象。 |
+| [Typeface](arkts-apis-graphics-drawing-Typeface.md) | 返回Typeface对象。 |
 
 **错误码：**
 
@@ -129,7 +127,7 @@ class TextRenderNode extends RenderNode {
 }
 ```
 
-### makeFromRawFile<sup>18+</sup>
+## makeFromRawFile<sup>18+</sup>
 
 static makeFromRawFile(rawfile: Resource): Typeface
 
@@ -147,7 +145,7 @@ static makeFromRawFile(rawfile: Resource): Typeface
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| [Typeface](#typeface) | 返回Typeface对象（异常情况下会返回空指针）。 |
+| [Typeface](arkts-apis-graphics-drawing-Typeface.md) | 返回Typeface对象（异常情况下会返回空指针）。 |
 
 **示例：**
 
@@ -167,7 +165,7 @@ class TextRenderNode extends RenderNode {
 }
 
 ```
-### makeFromFileWithArguments<sup>20+</sup>
+## makeFromFileWithArguments<sup>20+</sup>
 
 static makeFromFileWithArguments(filePath: string, typefaceArguments: TypefaceArguments): Typeface
 
@@ -186,7 +184,7 @@ static makeFromFileWithArguments(filePath: string, typefaceArguments: TypefaceAr
 
 | 类型   | 说明                  |
 | ------ | -------------------- |
-| [Typeface](#typeface) | 返回字体对象（异常情况下会返回空指针）。 |
+| [Typeface](arkts-apis-graphics-drawing-Typeface.md) | 返回字体对象（异常情况下会返回空指针）。 |
 
 **示例：**
 
@@ -208,7 +206,7 @@ class TextRenderNode extends RenderNode {
 }
 ```
 
-### makeFromRawFileWithArguments<sup>20+</sup>
+## makeFromRawFileWithArguments<sup>20+</sup>
 
 static makeFromRawFileWithArguments(rawfile: Resource, typefaceArguments: TypefaceArguments): Typeface
 
@@ -227,7 +225,7 @@ static makeFromRawFileWithArguments(rawfile: Resource, typefaceArguments: Typefa
 
 | 类型   | 说明                 |
 | ------ | ------------------- |
-| [Typeface](#typeface) | 返回字体对象（异常情况下会返回空指针）。 |
+| [Typeface](arkts-apis-graphics-drawing-Typeface.md) | 返回字体对象（异常情况下会返回空指针）。 |
 
 **示例：**
 

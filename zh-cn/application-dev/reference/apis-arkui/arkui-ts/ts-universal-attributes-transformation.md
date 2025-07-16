@@ -438,12 +438,14 @@ struct MatrixExample {
         .textAlign(TextAlign.Center)
         .width(100)
         .height(60)
+        .backgroundColor(0xAFEEEE)
         .borderWidth(1)
 
       Text('Hello2')
         .textAlign(TextAlign.Center)
         .width(100)
         .height(60)
+        .backgroundColor(0xAFEEEE)
         .borderWidth(1)
         .rotate({
           // 绕(100vp,60vp)的锚点旋转90度，rotate或scale的centerX、centerY为组件锚点
@@ -457,6 +459,7 @@ struct MatrixExample {
         .textAlign(TextAlign.Center)
         .width(100)
         .height(60)
+        .backgroundColor(0xAFEEEE)
         .borderWidth(1)
         .transform(matrix4.identity()
           .rotate({
@@ -473,6 +476,7 @@ struct MatrixExample {
         .textAlign(TextAlign.Center)
         .width(100)
         .height(60)
+        .backgroundColor(0xAFEEEE)
         .borderWidth(1)
         .scale({
           // 当设置x或y时，centerX和centerY才能生效

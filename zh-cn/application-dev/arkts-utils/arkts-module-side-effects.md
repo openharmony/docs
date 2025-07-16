@@ -14,12 +14,12 @@
 
 ```typescript
 // module.ets
-console.log("Module loaded!"); // 这段代码在导入时会立即执行，可能会导致副作用。
+console.info("Module loaded!"); // 这段代码在导入时会立即执行，可能会导致副作用。
 export const data = 1;
 
 // main.ets
-import { data } from  './module' // 导入时，module.ets中的console.log会执行，产生输出。
-console.log(data);
+import { data } from  './module' // 导入时，module.ets中的console.info会执行，产生输出。
+console.info(data);
 ```
 
 输出内容：
@@ -31,7 +31,7 @@ Module loaded!
 
 **产生的副作用**
 
-即使只需要data，console.log("Module loaded!") 仍会运行，导致开发者可能预期只输出data的值，但却额外输出了“Module loaded!”，**影响输出内容**。
+即使只需要data，console.info("Module loaded!") 仍会运行，导致开发者可能预期只输出data的值，但却额外输出了“Module loaded!”，**影响输出内容**。
 
 **优化方式**
 
@@ -43,7 +43,7 @@ export const data = 1;
 
 // main.ets
 import { data } from  './module'
-console.log(data);
+console.info(data);
 ```
 
 输出内容：
@@ -57,13 +57,13 @@ console.log(data);
 ```typescript
 // module.ets
 export function initialize() {
-    console.log("Module loaded!");
+    console.info("Module loaded!");
 }
 export const data = 1;
 
 // main.ets
 import { data } from  './module'
-console.log(data);
+console.info(data);
 ```
 
 输出内容：
@@ -90,8 +90,8 @@ globalThis.someGlobalVar = 200; // 也变了全局状态
 // moduleUseGlobalVar.ets
 import { data1 } from './module' // 此时可能预期全局变量someGlobalVar的值为100
 export function useGlobalVar() {
-    console.log(data1);
-    console.log(globalThis.someGlobalVar); // 此时由于main.ets中加载了sideEffectModule模块，someGlobalVar的值已经被改为200
+    console.info(data1);
+    console.info(globalThis.someGlobalVar); // 此时由于main.ets中加载了sideEffectModule模块，someGlobalVar的值已经被改为200
 }
 
 // main.ets（执行入口）
@@ -101,8 +101,8 @@ import { useGlobalVar } from './moduleUseGlobalVar'
 
 useGlobalVar();
 function maybeNotCalledAtAll() {
-    console.log(data1);
-    console.log(data2);
+    console.info(data1);
+    console.info(data2);
 }
 ```
 
@@ -137,9 +137,9 @@ export function changeGlobalVar() {
 // moduleUseGlobalVar.ets
 import { data1, changeGlobalVar } from './module'
 export function useGlobalVar() {
-    console.log(data1);
+    console.info(data1);
     changeGlobalVar(); // 在需要的时候执行代码，而不是模块加载时执行。
-    console.log(globalThis.someGlobalVar);
+    console.info(globalThis.someGlobalVar);
 }
 
 // main.ets（执行入口）
@@ -149,8 +149,8 @@ import { useGlobalVar } from './moduleUseGlobalVar'
 
 useGlobalVar();
 function maybeNotCalledAtAll() {
-    console.log(data1);
-    console.log(data2);
+    console.info(data1);
+    console.info(data2);
 }
 ```
 
@@ -192,7 +192,7 @@ struct Index {
     }
 }
 function maybeNotCalledAtAll() {
-    console.log(data);
+    console.info(data);
 }
 ```
 
@@ -238,7 +238,7 @@ struct Index {
     }
 }
 function maybeNotCalledAtAll() {
-    console.log(data);
+    console.info(data);
 }
 ```
 
@@ -264,9 +264,9 @@ Array.prototype.includes = function (value) {
 // main.ets
 import { data } from "./modifyPrototype" // 此时修改了Array的原型链
 let arr = [1, 2, 3, 4];
-console.log("arr.includes(1) = " + arr.includes(1)); // 此时调用的是modifyPrototype.ts中的Array.prototype.includes方法
+console.info("arr.includes(1) = " + arr.includes(1)); // 此时调用的是modifyPrototype.ts中的Array.prototype.includes方法
 function maybeNotCalledAtAll() {
-    console.log(data);
+    console.info(data);
 }
 ```
 
@@ -287,12 +287,12 @@ ArkTS模块化支持循环依赖，即模块A依赖模块B，同时模块B又依
 ```typescript
 // a.ets
 import { b } from "./b"
-console.log('Module A: ', b);
+console.info('Module A: ', b);
 export const a = 'A';
 
 // b.ets
 import { a } from "./a"
-console.log('Module B: ', a);
+console.info('Module B: ', a);
 export const b = 'B';
 ```
 
@@ -325,8 +325,8 @@ globalThis.someGlobalVar = 100;
 
 // moduleUseGlobalVar.ets
 import lazy { data } from "./module"
-console.log(globalThis.someGlobalVar); // 此时由于lazy特性，module模块还未执行，someGlobalVar的值为undefined
-console.log(data); // 使用到module模块的变量，此时module模块执行，someGlobalVar的值变为100
+console.info(globalThis.someGlobalVar); // 此时由于lazy特性，module模块还未执行，someGlobalVar的值为undefined
+console.info(data); // 使用到module模块的变量，此时module模块执行，someGlobalVar的值变为100
 ```
 
 输出内容：
@@ -354,8 +354,8 @@ export function initialize() {
 // moduleUseGlobalVar.ets
 import lazy { data, initialize } from "./module"
 initialize(); // 执行初始化函数，初始化someGlobalVar
-console.log(globalThis.someGlobalVar); // 此时someGlobalVar一定为预期的值
-console.log(data);
+console.info(globalThis.someGlobalVar); // 此时someGlobalVar一定为预期的值
+console.info(data);
 ```
 
 输出内容：

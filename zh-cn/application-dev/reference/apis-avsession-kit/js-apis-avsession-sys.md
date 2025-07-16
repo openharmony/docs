@@ -2142,6 +2142,92 @@ off(type: 'deviceLogEvent', callback?: Callback\<DeviceLogEventCode>): void
 avSession.off('deviceLogEvent');
 ```
 
+## DeviceState<sup>20+</sup>
+
+投播设备的连接状态。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+| 名称            | 类型   | 只读 |  可选 | 说明         |
+| :------------- | :----- | :--- | :--- | :----------- |
+| deviceId       | string | 是   | 否    | 投播设备ID。       |
+| deviceState    | number | 是   | 否    | 投播设备连接状态码。 |
+| reasonCode     | number | 是   | 否    | 投播设备连接错误码。 |
+| radarErrorCode | number | 是   | 否    | 系统雷达错误码。 |
+
+## avSession.on('deviceStateChanged')<sup>20+</sup>
+
+on(type: 'deviceStateChanged', callback: Callback\<DeviceState\>): void
+
+投播设备连接状态的回调函数。
+
+**系统接口：** 该接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                                                          | 必填  | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'deviceStateChanged'`，投播设备连接状态发生变化时触发回调。 |
+| callback | (callback: [DeviceState](#devicestate20)) => void            | 是   | 回调函数，参数DeviceState包含投播设备ID、连接状态码、连接错误码和系统雷达错误码。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201        | Permission denied. |
+| 202        | Not System App. |
+
+**示例：**
+
+```ts
+avSession.on('deviceStateChanged', (state: avSession.DeviceState) => {
+  console.info(`on deviceStateChanged state, deviceId=${state.deviceId}, connect status=${state.deviceState},
+    reasonCode=${state.reasonCode}, radarErrorCode=${state.radarErrorCode}`)
+})
+```
+
+## avSession.off('deviceStateChanged')<sup>20+</sup>
+
+off(type: 'deviceStateChanged', callback?: Callback\<DeviceState>): void
+
+取消投播设备连接状态的监听。
+
+**系统接口：** 该接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                                                          | 必填  | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 取消对应的监听事件，支持事件`'deviceStateChanged'`，投播设备连接状态变化的回调。 |
+| callback | (callback: [DeviceState](#devicestate20)) => void            | 否   | 回调函数，当监听事件取消成功时，err为undefined；否则返回错误对象。该参数为可选参数，若未填写，则取消所有相关会话的事件监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201        | Permission denied. |
+| 202        | Not System App. |
+
+**示例：**
+
+```ts
+avSession.off('deviceStateChanged');
+```
+
 ## AVCastController<sup>10+</sup>
 
 在投播建立后，调用[avSession.getAVCastController](arkts-apis-avsession-AVSession.md#getavcastcontroller10)后，返回会话控制器实例。控制器可查看会话ID，并可完成对会话发送命令及事件，获取会话元数据，播放状态信息等操作。

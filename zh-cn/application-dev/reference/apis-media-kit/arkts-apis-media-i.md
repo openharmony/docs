@@ -1,6 +1,7 @@
 # Interfaces (其他)
 
 > **说明：**
+>
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## AVFileDescriptor<sup>9+</sup>
@@ -383,9 +384,10 @@ async function setupPlayer() {
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
-| 名称                  | 类型    | 必填 | 说明                 |
-| --------------------- | ------- | --- | -------------------- |
-| keepCaptureDuringCall | boolean | 否  | 蜂窝通话时是否保持录屏。 |
+| 名称                  | 类型    | 只读 | 可选 | 说明                 |
+| --------------------- | ------- | --- | --- | -------------------- |
+| keepCaptureDuringCall | boolean | 否 | 是  | 蜂窝通话时是否保持录屏。 |
+| enableBFrame | boolean | 否 | 是 | 录屏是否使能B帧编码。true表示录屏文件使能B帧编码，false表示录屏文件禁用B帧编码，默认是false。<br>如果芯片平台不支持B帧编码，则正常录制不含B帧的视频，不会返回错误。 |
 
 ## AVScreenCaptureRecordConfig<sup>12+</sup>
 

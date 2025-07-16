@@ -324,7 +324,7 @@ export function func() {
     ```ts
     // entry/src/main/ets/pages/outter.ets
     import { a } from './1' // outter文件从1文件中加载了a变量
-    console.log("example ", a); // a变量在outter文件执行时就被使用
+    console.info("example ", a); // a变量在outter文件执行时就被使用
     ```  
 
 - 场景2：通过静态加载加载的文件，存在多个父文件。  
@@ -341,11 +341,11 @@ export function func() {
     ```ts
     // entry/src/main/ets/pages/outter.ets
     import { a } from './1' // outter文件从1文件中加载了a变量
-    console.log("example ", a); // a变量在outter文件执行时就被使用
+    console.info("example ", a); // a变量在outter文件执行时就被使用
 
     // entry/src/main/ets/pages/innerinner.ets
     import { a } from './1' // innerinner文件从1文件中加载了a变量
-    console.log("example ", a); // a变量在innerinner文件执行时就被使用
+    console.info("example ", a); // a变量在innerinner文件执行时就被使用
     ```  
 
 - 场景3：通过静态加载加载的文件，存在多个导出，但是只显示了一部分。
@@ -360,7 +360,7 @@ export function func() {
     ```ts
     // entry/src/main/ets/pages/outter.ets
     import { a , b } from './1' // 加载1文件的多个变量
-    console.log("example ", a); // a被使用
+    console.info("example ", a); // a被使用
     export function myFunc() {
      return b; // b未被使用
     }

@@ -25,7 +25,7 @@
 | numstars | number | 5 | 否 | 设置评分条的星级总数。 |
 | rating | number | 0 | 否 | 设置评分条当前评星数。 |
 | stepsize | number | 0.5 | 否 | 设置评分条的评星步长。 |
-| indicator | boolean | false | 否 | 设置评分条是否作为一个指示器，此时用户不可操作。 |
+| indicator | boolean | false | 否 | 设置评分条是否为指示器。<br>true：作为指示器，用户不可操作。<br>false：非指示器，用户可操作。 |
 
 
 ## 样式
@@ -39,7 +39,7 @@
 | star-secondary | string | - | 否 | 设置单个星级部分选中的次级背景图片，该图片会覆盖背景图片，只支持本地路径图片，图片格式为png和jpg。 |
 | width | &lt;length&gt;\|&lt;percentage&gt; | 120px<br/>60px（不可操作） | 否 | 默认值是在未设置自定义资源和评分星数时，使用5个星和默认资源下的宽度值。 |
 | height | &lt;length&gt;\|&lt;percentage&gt; | 24px<br/>12px（不可操作） | 否 | 默认值是在未设置自定义资源和评分星数时，使用5个星和默认资源下的高度值。 |
-| rtl-flip | boolean | true | 否 | 在RTL文字方向下是否自动翻转图源。 |
+| rtl-flip | boolean | true | 否 | 在RTL文字方向下是否自动翻转图源。<br/>true：在RTL文字方向下自动翻转图源。<br/>false：在RTL文字方向下不自动翻转图源。 |
 
 >  **说明：**
 > star-background，star-secondary，star-foreground三个星级图源必须全部设置，否则默认的星级颜色为灰色，以此提示图源设置错误。

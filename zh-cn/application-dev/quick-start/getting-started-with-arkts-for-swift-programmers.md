@@ -26,14 +26,14 @@ let version = 5.0;
 ### 基础数据类型  
 | Swift类型       | ArkTS类型            | 示例代码                          | 核心差异说明                  |  
 |----------------|----------------------|-----------------------------------|-------------------------------|  
-| `Bool`      | `boolean`            | `let isDone: boolean = false;`    | 定义方式相似，均用于逻辑判断。                      |  
-| `Int8`         | -                    | -                                 | ArkTS无对应类型，小整数场景统一使用`number`。 |  
-| `Int16`        | -                    | -                                 | ArkTS通过`number`覆盖短整数场景，不区分数据宽度。                   |  
-| `Int32`          | `number`             | `let count: number = 10;`         | Swift的`Int32`为32位整数。<br>ArkTS的`number`是双精度浮点型，可存储整数和浮点数。       |  
-| `Int64`         | `number`             | `let largeNum: number = 9007199254740991;` | Swift需处理大整数。<br>ArkTS用同一类型表示。          |  
+| `Bool`    | `boolean`     | `let isDone: boolean = false;`    | 定义方式相似，均用于逻辑判断。                      |  
+| `Int8`    | `number`      | `let count: number = 10;`         | Swift的`Int8`为8位整数。<br>ArkTS统一用`number`表示小整数类型。  |  
+| `Int16`   | `number`      | `let count: number = 10;`         | Swift的`Int16`为16位整数。<br>ArkTS统一用`number`表示小整数类型。|  
+| `Int32`   | `number`      | `let count: number = 10;`         | Swift的`Int32`为32位整数。<br>ArkTS的`number`是双精度浮点型，可存储整数和浮点数。       |  
+| `Int64`        | `number`             | `let largeNum: number = 9007199254740991;` | Swift需处理大整数。<br>ArkTS用同一类型表示。          |  
 | `Float`        | `number`             | `let pi: number = 3.14;`          | Swift需显式指定`Float`。<br>ArkTS直接使用`number`。       |  
 | `Double`       | `number`             | `let e: number = 2.71828;`        | Swift区分`Float`和`Double`。<br>ArkTS统一用`number`表示所有数值类型。         |  
-| `Character`         | -                    | -                                 | ArkTS无`Character`类型，单字符场景使用`string`。   |  
+| `Character`    | `string`             | `let c: string = 'a';`            | ArkTS无`Character`类型，单字符场景使用`string`。   |  
 | `String`       | `string`             | `let message: string = 'Hello';`  | 定义方式类似，但ArkTS字符串支持模板字面量和更灵活的操作。  |  
 
 ### 复杂数据类型
@@ -71,16 +71,22 @@ const multiply = (a: number, b: number): number => a * b;
 **ArkTS示例：** ArkTS函数重载
 
 ```typescript
-function foo(x: number): void;            /* 第一个函数定义 */
-function foo(x: string): void;            /* 第二个函数定义 */
-function foo(x: number | string): void {  /* 函数实现 */
+function foo(x: number): void;            /*  第一个函数定义。  */
+function foo(x: string): void;            /*  第二个函数定义。  */
+function foo(x: number | string): void {  /*  函数实现。       */
 }
 
 foo(123);     //  OK，使用第一个定义。
 foo('aa'); // OK，使用第二个定义。
 ```
 
-2. ArkTS可选参数使用`?`，如`function greet(name? string)`，而非Swift的默认值语法。
+2. ArkTS可选参数使用`?`，如`function foo(name?: string)`，而非Swift的默认值语法。
+```typescript
+function foo(name?: string){}  /*  name为可选参数。  */
+
+foo('hello');     //  OK，传入name参数。
+foo();     //  OK，不传name参数。
+```
 
 ### 基础类库
 

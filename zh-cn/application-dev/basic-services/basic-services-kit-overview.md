@@ -28,6 +28,9 @@ Basic Services Kit为开发者提供了多种基础能力，满足开发者不�
   - [压缩](../reference/apis-basic-services-kit/js-apis-zlib.md)：提供文件压缩解压缩的能力。
   - [打印](../reference/apis-basic-services-kit/js-apis-print.md)：提供基础文件打印的能力，比如传入文件进行打印、设置打印参数等。
   - [上传下载](../reference/apis-basic-services-kit/js-apis-request.md)：提供文件上传下载、后台传输代理的基础能力。
+  <!--Del-->
+  - [划词服务](../reference/apis-basic-services-kit/js-apis-selectionInput-selectionManager-sys.md)：提供划词信息监听、划词窗口管理能力。
+  <!--DelEnd-->
 
 - 进程间/线程间通信：
   - [公共事件](../reference/apis-basic-services-kit/js-apis-commonEventManager.md)：提供进程间通信的能力，包括订阅、发布、退订公共事件等，相关开发指南请参考[公共事件简介](common-event/common-event-overview.md)。

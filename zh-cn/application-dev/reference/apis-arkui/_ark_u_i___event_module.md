@@ -33,7 +33,7 @@
 | {<br/>UI_TOUCH_EVENT_ACTION_CANCEL = 0,<br/>UI_TOUCH_EVENT_ACTION_DOWN = 1, UI_TOUCH_EVENT_ACTION_MOVE = 2, UI_TOUCH_EVENT_ACTION_UP = 3<br/>} | 定义输入事件的Action Code。  | 
 | {<br/>UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN = 0, UI_INPUT_EVENT_TOOL_TYPE_FINGER = 1, UI_INPUT_EVENT_TOOL_TYPE_PEN = 2, UI_INPUT_EVENT_TOOL_TYPE_MOUSE = 3,<br/>UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD = 4, UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK = 5<br/>} | 产生输入事件的工具类型定义。  | 
 | { UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN = 0, UI_INPUT_EVENT_SOURCE_TYPE_MOUSE = 1, UI_INPUT_EVENT_SOURCE_TYPE_TOUCH_SCREEN = 2 } | 产生输入事件的来源类型定义。  | 
-| [HitTestMode](#hittestmode) { HTM_DEFAULT = 0, HTM_BLOCK, HTM_TRANSPARENT, HTM_NONE } | 定义触摸测试类型的枚举值。  | 
+| [HitTestMode](#hittestmode) { HTM_DEFAULT = 0, HTM_BLOCK, HTM_TRANSPARENT, HTM_NONE, HTM_BLOCK_HIERARCHY, HTM_BLOCK_DESCENDANTS } | 定义触摸测试类型的枚举值。  | 
 | { UI_MOUSE_EVENT_ACTION_UNKNOWN = 0, UI_MOUSE_EVENT_ACTION_PRESS = 1, UI_MOUSE_EVENT_ACTION_RELEASE = 2, UI_MOUSE_EVENT_ACTION_MOVE = 3, UI_MOUSE_EVENT_ACTION_CANCEL = 13 } | 定义鼠标事件的Action Code。  | 
 | {<br/>UI_MOUSE_EVENT_BUTTON_NONE = 0, UI_MOUSE_EVENT_BUTTON_LEFT = 1, UI_MOUSE_EVENT_BUTTON_RIGHT = 2, UI_MOUSE_EVENT_BUTTON_MIDDLE = 3,<br/>UI_MOUSE_EVENT_BUTTON_BACK = 4, UI_MOUSE_EVENT_BUTTON_FORWARD = 5<br/>} | 定义鼠标事件的按键类型。  | 
 | [ArkUI_ModifierKeyName](#arkui_modifierkeyname) { ARKUI_MODIFIER_KEY_CTRL = 1 &lt;&lt; 0, ARKUI_MODIFIER_KEY_SHIFT = 1 &lt;&lt; 1, ARKUI_MODIFIER_KEY_ALT = 1 &lt;&lt; 2, ARKUI_MODIFIER_KEY_FN = 1 &lt;&lt; 3 } | 定义modifier按键。  | 
@@ -300,10 +300,12 @@ enum HitTestMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HTM_DEFAULT  | 默认触摸测试效果，自身和子节点都响应触摸测试，但会阻塞兄弟节点的触摸测试。  | 
-| HTM_BLOCK  | 自身响应触摸测试，阻塞子节点和兄弟节点的触摸测试。  | 
-| HTM_TRANSPARENT  | 自身和子节点都响应触摸测试，不会阻塞兄弟节点的触摸测试。  | 
-| HTM_NONE  | 自身不响应触摸测试，不会阻塞子节点和兄弟节点的触摸测试。  | 
+| HTM_DEFAULT  | 默认触摸测试效果。自身及子节点响应触摸测试，但阻塞兄弟节点的触摸测试，不影响祖先节点的触摸测试。  | 
+| HTM_BLOCK  | 自身响应触摸测试，阻塞子节点、兄弟节点和祖先节点的触摸测试。  | 
+| HTM_TRANSPARENT  | 自身和子节点都响应触摸测试，不会阻塞兄弟节点和祖先节点的触摸测试。  | 
+| HTM_NONE  | 自身不响应触摸测试，不会阻塞子节点、兄弟节点和祖先节点的触摸测试。  | 
+| HTM_BLOCK_HIERARCHY   | 自身和子节点响应触摸测试，阻止所有优先级较低的兄弟节点和父节点参与触摸测试。<br/>**起始版本：** 20 |
+| HTM_BLOCK_DESCENDANTS | 自身不响应触摸测试，并且所有的后代（孩子，孙子等）也不响应触摸测试，不会影响祖先节点的触摸测试。<br/>**起始版本：** 20 |
 
 
 ### anonymous enum
@@ -2012,7 +2014,7 @@ int32_t OH_ArkUI_UIInputEvent_GetModifierKeyStates(const ArkUI_UIInputEvent* eve
 ```
 **描述：**
 
-获取UI输入事件的修饰键状态。该接口会通过keys传出当前事件发生时所有修饰键的状态。
+获取UI输入事件的修饰键状态。该接口会通过keys传出当前事件发生时所有修饰键的状态。此接口不支持在手写笔场景下使用。
 
 **起始版本：** 17
 

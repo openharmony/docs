@@ -78,7 +78,7 @@ task5(OUT A);
 
 ```cpp
 #include <iostream>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // 来自 OpenHarmony 第三方库 "@ppd/ffrt"
 
 int main()
 {
@@ -111,7 +111,7 @@ int main()
 
 ```cpp
 #include <iostream>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // 来自 OpenHarmony 第三方库 "@ppd/ffrt"
 
 void Fib(int x, int& y)
 {

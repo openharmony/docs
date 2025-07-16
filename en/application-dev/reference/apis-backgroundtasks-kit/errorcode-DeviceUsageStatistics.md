@@ -26,7 +26,7 @@ Check whether memory leak occurs.
 
 **Error Message**
 
-Parcel operation failed. Failed to write the parcel.
+Parcel operation failed. Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.
 
 **Description**
 
@@ -34,17 +34,19 @@ Failed to write the data object during the IPC.
 
 **Possible Causes**
 
-Failed to write the object.
+1. Invalid parameter.
+2. Memory allocation fails.
 
 **Solution**
 
-Check whether the object value is normal.
+1. Check whether the parameter is valid, for example, whether the string is too long.
+2. Try again.
 
 ## 10000003 System Service Operation Failure
 
 **Error Message**
 
-System service operation failed.
+Failed to get system ability manager.
 
 **Description**
 
@@ -62,7 +64,7 @@ Try again later or restart the device.
 
 **Error Message**
 
-IPC failed.
+Failed to access the device usage service.
 
 **Description**
 
@@ -140,7 +142,7 @@ Repeated operation on the application group.
 
 **Description**
 
-Operating the application group, for example, setting an application group or registering or deregistering a callback for application group changes, fails.
+The application group operation fails.
 
 **Possible Causes**
 

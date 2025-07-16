@@ -40,3 +40,53 @@
 **适配指导**
 
 开发者通过权限弹窗申请用户授权，指导：[申请应用权限](../../../application-dev/security/AccessToken/request-user-authorization.md)。
+
+## cl.access_token.2 去除保存控件系统提示弹框变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+当前，保存控件支持自定义UI样式。应用选择使用自定义UI，当用户点击保存控件，成功保存媒体文件时，系统将弹出系统弹框提示用户。在开发过程中，开发者可以调用指定API调整该系统弹框的位置。
+
+保存控件系统提示弹框：
+![savebutton_tip](figures/savebutton_tip.png)
+
+经评估，强制弹出系统弹框会与应用内已有弹框冲突，体验不够友好，系统将取消该系统强制弹框的行为。
+
+**变更影响**
+
+该变更涉及应用适配。
+
+变更前：当开发者需要自定义保存控件的图标和文本时，或者保存控件不满足[约束与限制](../../../application-dev/security/AccessToken/security-component-overview.md#约束与限制)，点击保存控件时会弹出系统提示弹框。开发者可以使用`tipPosition`接口设置保存控件系统提示弹框展示在屏幕上的位置。
+
+变更后：保存控件被点击后不会弹出系统提示弹框。开发者无法调用系统提示弹框的位置设置接口`tipPosition`。应用可根据自身UX设计，自行选择是否实现应用内保存提示。
+
+**起始 API Level**
+
+20
+
+**变更发生版本**
+
+从OpenHarmony SDK 6.0.0.39版本开始。
+
+**变更的接口/组件**
+
+删除接口如下
+
+| 类名           | 删除接口声明                                                 |
+| -------------- | ------------------------------------------------------------ |
+| SaveButtonAttribute | tipPosition(position: SaveButtonTipPosition)|
+
+删除枚举如下：
+
+| 枚举类型 | 删除的键值 |
+| -------- | ---- |
+| SaveButtonTipPosition | ABOVE_BOTTOM |
+| SaveButtonTipPosition | BELOW_TOP |
+
+**适配指导**
+
+取消对设置系统提示位置接口`tipPosition`的调用，否则会导致编译和运行失败。

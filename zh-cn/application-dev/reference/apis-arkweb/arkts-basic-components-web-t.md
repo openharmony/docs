@@ -2,7 +2,7 @@
 
 > **说明：**
 >
-> - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件首批接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
@@ -228,3 +228,41 @@ type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => We
 | 类型               | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
 | [WebKeyboardOptions](./arkts-basic-components-web-i.md#webkeyboardoptions12) | 回调函数通过返回[WebKeyboardOptions](./arkts-basic-components-web-i.md#webkeyboardoptions12)来决定ArkWeb内核拉起不同类型的软键盘。 |
+
+## OnOverrideErrorPageCallback<sup>20+</sup>
+
+type OnOverrideErrorPageCallback = (errorPageEvent: OnErrorReceiveEvent) => string
+
+onOverrideErrorPage的回调函数，网页加载失败时触发。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| errorPageEvent | [OnErrorReceiveEvent](./arkts-basic-components-web-i.md#onerrorreceiveevent12) | 是 | 网页加载遇到错误时返回的相关信息。      |
+
+**返回值：**
+
+| 类型      | 说明                       |
+| ------- | ------------------------ |
+| string | 返回以Base64编码的HTML文本内容。 |
+
+## MouseInfoCallback<sup>20+<sup>
+
+type MouseInfoCallback = (event: NativeEmbedMouseInfo) => void
+
+当鼠标/触摸板点击到同层标签时触发该回调。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| event | [NativeEmbedMouseInfo](./arkts-basic-components-web-i.md#nativeembedmouseinfo20) | 是 | 提供鼠标/触摸板在同层标签上点击或长按的详细信息。 |
+
+**示例：**
+
+完整示例代码参考[onNativeEmbedMouseEvent](./arkts-basic-components-web-events.md#onnativeembedmouseevent20)。
