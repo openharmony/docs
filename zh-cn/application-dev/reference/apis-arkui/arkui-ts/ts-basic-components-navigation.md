@@ -522,7 +522,7 @@ enableToolBarAdaptation(enable: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| enable  | Optional&lt;boolean&gt; | 是   |是否启用Navigation和NavDestination的工具栏自适应能力。默认值：true。 <br/>true：启用Navigation和NavDestination的工具栏自适应能力。<br/>false：不启用Navigation和NavDestination的工具栏自适应能力。 |
+| enable  | Optional&lt;boolean&gt; | 是   |是否启用Navigation和NavDestination的工具栏自适应能力。<br/>默认值：true<br/>true：启用Navigation和NavDestination的工具栏自适应能力。<br/>false：不启用Navigation和NavDestination的工具栏自适应能力。 |
 
 ### subTitle<sup>(deprecated)</sup>
 
