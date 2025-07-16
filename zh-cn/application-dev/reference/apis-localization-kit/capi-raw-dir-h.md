@@ -5,7 +5,7 @@
 提供rawfile目录相关功能。
 
 **引用文件：** <rawfile/raw_dir.h>
- * 功能包括遍历和关闭rawfile目录。
+ * 功能包括遍历和关闭rawfile目录。<br><br>
 
 **起始版本：** 8
 
