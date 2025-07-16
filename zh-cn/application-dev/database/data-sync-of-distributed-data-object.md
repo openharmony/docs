@@ -150,9 +150,9 @@ dataObject['parents']['mon'] = "amy"; // 不支持的修改
 | bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;void&gt;): void | 绑定融合资产。 |
 | setAsset(assetKey: string, uri: string): void | 设置单个资产。 |
 | setAssets(assetKey: string, uris: Array&lt;string&gt;): void | 设置资产数组。 |
-| on(type: 'change', callback: DataObserver&lt;void&gt;): void; | 监听分布式对象的数据变更。 |
+| on(type: 'change', callback: DataObserver&lt;void&gt;): void | 监听分布式对象的数据变更。 |
 | off(type: 'change', callback?: DataObserver&lt;void&gt;): void |  删除分布式对象数据变更监听的回调实例。 |
-| on(type: 'status', callback: StatusObserver&lt;void&gt;): void; | 监听分布式对象的状态变更。 |
+| on(type: 'status', callback: StatusObserver&lt;void&gt;): void | 监听分布式对象的状态变更。 |
 | off(type: 'status', callback?: StatusObserver&lt;void&gt;): void | 删除分布式对象状态变更监听的回调实例。 |
 
 

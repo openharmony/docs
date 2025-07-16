@@ -43,7 +43,7 @@
 ArkUI事件响应链通过触摸测试进行收集，遵循右子树（按组件布局的先后层级）优先的后序遍历。伪代码实现为：
 
 ```
-foreach((item, node.rbegin(),node.rend())=> {
+forEach((item, node.rbegin(),node.rend())=> {
     item.TouchTest();
 })
 node.collectEvent()

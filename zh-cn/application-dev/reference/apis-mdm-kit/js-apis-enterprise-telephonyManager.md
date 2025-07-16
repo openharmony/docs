@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import { telephonyManager } from '@kit.MDMKit';
+import telephonyManager from '@ohos.enterprise.telephonyManager';
 ```
 
 ## telephonyManager.setSimDisabled
@@ -25,9 +25,9 @@ setSimDisabled(admin: Want, slotId: number): void
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
 
-
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束**: 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -50,7 +50,7 @@ setSimDisabled(admin: Want, slotId: number): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { telephonyManager } from '@kit.MDMKit';
+import telephonyManager from '@ohos.enterprise.telephonyManager';
 
 let wantTemp: Want = {
   //需根据实际情况进行替换
@@ -76,6 +76,7 @@ setSimEnabled(admin: Want, slotId: number): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束**: 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -98,7 +99,7 @@ setSimEnabled(admin: Want, slotId: number): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { telephonyManager } from '@kit.MDMKit';
+import telephonyManager from '@ohos.enterprise.telephonyManager';
 
 let wantTemp: Want = {
   //需根据实际情况进行替换
@@ -124,6 +125,7 @@ isSimDisabled(admin: Want, slotId: number): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束**: 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -152,7 +154,7 @@ isSimDisabled(admin: Want, slotId: number): boolean
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { telephonyManager } from '@kit.MDMKit';
+import telephonyManager from '@ohos.enterprise.telephonyManager';
 
 let wantTemp: Want = {
   //需根据实际情况进行替换
