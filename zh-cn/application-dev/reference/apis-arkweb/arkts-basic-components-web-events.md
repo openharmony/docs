@@ -1034,7 +1034,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
      async selectFile(result: FileSelectorResult): Promise<void> {
        let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
        let photoPicker = new photoAccessHelper.PhotoViewPicker();
-       // 过滤选择媒体文件类型为IMAGE
+       // 过滤选择媒体文件类型为IMAGE_VIDEO
        photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
        // 设置最大选择数量
        photoSelectOptions.maxSelectNumber = 5;
@@ -2028,7 +2028,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
   <body>
     <h1>onContextMenuShow</h1>
     <a href="http://www.example.com" style="font-size:27px">链接www.example.com</a>
-    // rawfile下放任意一张图片命名为example.png
+    <!-- rawfile下放任意一张图片命名为example.png -->
     <div><img src="example.png"></div>
     <p>选中文字鼠标右键弹出菜单</p>
   </body>
