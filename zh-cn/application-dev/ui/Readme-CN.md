@@ -204,7 +204,7 @@
       - [属性更新器 (AttributeUpdater)](arkts-user-defined-extension-attributeUpdater.md)
       - [自定义绘制修改器 (DrawModifier)](arkts-user-defined-extension-drawModifier.md)
   - UI开发调试<!--ui-inspector-profier-->
-     - [UI调试调优](ui-inspector-profier.md)
+     - [UI调试调优](ui-inspector-profiler.md)
   - [使用镜像能力](arkts-mirroring-display.md)
   - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
     - [支持无障碍](arkts-universal-attributes-accessibility.md)
