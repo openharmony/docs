@@ -78,7 +78,31 @@ getInspectorByKey(id: string): string
 
 | 类型        | 说明             |
 | -------| -------------- |
-| string | 组件属性列表的JSON字符串。<br />**说明**：<br /> 字符串信息包含组件的tag、id、位置信息(相对于窗口左上角的坐标)以及用于测试检查的组件所包含的相关属性信息。 |
+| string | 组件属性列表的JSON字符串。<br />**说明**：<br /> 字符串信息包含组件的tag、id、位置信息(相对于窗口左上角的坐标)以及用于测试检查的组件所包含的相关属性信息。组件中每个字段的含义请参考[getInspectorInfo](../js-apis-arkui-frameNode.md#getinspectorinfo12)的返回值说明。 |
+
+**示例:**
+```ts
+@Entry
+@Component
+struct ComponentPage {
+  build() {
+    Column() {
+      Text("Hello World")
+        .fontSize(20)
+        .id("TEXT")
+        .onClick(() => {
+          console.info(`Text is clicked`);
+        })
+      Button('TEST BUTTON').onClick(() => {
+        let result = getInspectorByKey("TEXT");
+        console.info(`result is ${result}`);
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
 
 ### getInspectorTree<sup>9+</sup>
 
@@ -94,7 +118,31 @@ getInspectorTree(): Object
 
 | 类型     | 说明                            |
 | ------ | --------------------------- |
-| Object | 组件树及组件属性列表的JSON对象。 |
+| Object | 组件树及组件属性列表的JSON对象。组件中每个字段的含义请参考[getInspectorInfo](../js-apis-arkui-frameNode.md#getinspectorinfo12)的返回值说明。 |
+
+**示例:**
+```ts
+@Entry
+@Component
+struct ComponentPage {
+  build() {
+    Column() {
+      Text("Hello World")
+        .fontSize(20)
+        .id("TEXT")
+        .onClick(() => {
+          console.info(`Text is clicked`);
+        })
+      Button('TEST BUTTON').onClick(() => {
+        let result = getInspectorTree();
+        console.info(`result is ${JSON.stringify(result)}`);
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
 
 ### sendEventByKey<sup>9+</sup>
 
@@ -119,6 +167,29 @@ sendEventByKey(id: string, action: number, params: string): boolean
 | 类型          | 说明                         |
 | -------- | --------------------------|
 | boolean  | 找不到指定id的组件时返回false，其余情况返回true。 |
+
+**示例:**
+```ts
+@Entry
+@Component
+struct ComponentPage {
+  build() {
+    Column() {
+      Text("Hello World")
+        .fontSize(20)
+        .id("TEXT")
+        .onClick(() => {
+          console.info(`Text is clicked`);
+        })
+      Button('TEST BUTTON').onClick(() => {
+        sendEventByKey("TEXT", 10, "");
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
 
 ### sendTouchEvent<sup>9+</sup>
 
