@@ -1973,7 +1973,7 @@ let deviceId: string | undefined = undefined;
 try {
   dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
   let devices = dmInstance.getAvailableDeviceListSync();
-  if (deviceId != undefined) {
+  if (devices != undefined) {
     deviceId = devices[0].networkId;
   }
 } catch (err) {
