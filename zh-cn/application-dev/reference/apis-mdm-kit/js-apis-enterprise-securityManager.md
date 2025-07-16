@@ -702,11 +702,13 @@ try {
 
 setPermissionManagedState(admin: Want, applicationInstance: ApplicationInstance, permissions: Array\<string>, managedState: PermissionManagedState): void
 
-设置设备指定应用实例的指定权限管理状态。
+设置指定应用的[user_grant权限](../../security/AccessToken/permissions-for-all-user.md)的管理策略。部分权限需要同时授予才能生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -714,8 +716,8 @@ setPermissionManagedState(admin: Want, applicationInstance: ApplicationInstance,
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。      |
 | applicationInstance    | [ApplicationInstance<sup>20+</sup>](#applicationinstance20)  | 是 | 指定应用实例。 |
-| permissions | Array&lt;string&gt;  | 是 | 需要管理的权限名称列表，仅支持[user_grant权限](../../security/AccessToken/permissions-for-all-user.md)。 |
-| managedState | [PermissionManagedState<sup>20+</sup>](#permissionmanagedstate20) | 是 | 应用权限的管理状态。 |
+| permissions | Array&lt;string&gt;  | 是 | 需要管理的权限名称列表，仅支持user_grant权限。 |
+| managedState | [PermissionManagedState<sup>20+</sup>](#permissionmanagedstate20) | 是 | 应用权限的管理策略。 |
 
 **错误码**：
 
@@ -725,15 +727,15 @@ setPermissionManagedState(admin: Want, applicationInstance: ApplicationInstance,
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
-| 9200010 | The administrator application does not have permission to manage the device. |
-| 9200012 | The parameter validation failed. |
+| 9200010 | A conflict policy has been configured. |
+| 9200012 | Parameter verification failed. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import securityManager from '@ohos.enterprise.securityManager';
+import { securityManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
   // 需根据实际情况进行替换
@@ -759,11 +761,13 @@ try {
 
 getPermissionManagedState(admin: Want, applicationInstance: ApplicationInstance, permission: string): PermissionManagedState
 
-获取设备指定应用实例的权限管理状态。
+获取指定应用的指定[user_grant权限](../../security/AccessToken/permissions-for-all-user.md)的管理策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -771,13 +775,13 @@ getPermissionManagedState(admin: Want, applicationInstance: ApplicationInstance,
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。      |
 | applicationInstance  | [ApplicationInstance<sup>20+</sup>](#applicationinstance20)  | 是 | 指定应用实例。 |
-| permission | string | 是 | 需要获取状态的权限名称，仅支持[user_grant权限](../../security/AccessToken/permissions-for-all-user.md)。 |
+| permission | string | 是 | 需要获取管理策略的权限名称，仅支持user_grant权限。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| [PermissionManagedState<sup>20+</sup>](#permissionmanagedstate20) | 应用权限的管理状态。|
+| [PermissionManagedState<sup>20+</sup>](#permissionmanagedstate20) | 应用权限的管理策略。|
 
 **错误码**：
 
@@ -787,14 +791,14 @@ getPermissionManagedState(admin: Want, applicationInstance: ApplicationInstance,
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
-| 9200012 | The parameter validation failed. |
+| 9200012 | Parameter verification failed. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import securityManager from '@ohos.enterprise.securityManager';
+import { securityManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
   // 需根据实际情况进行替换
@@ -858,11 +862,13 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称   | 类型       | 说明               |
-| ------ | ---------- | ------------------ |
-| appIdentifier | string | 要设置卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId和appIdentifier](../apis-ability-kit/js-apis-appControl-sys.md#获取应用的appid和appidentifier)。 |
-| accountId  | number     | 用户ID，指定具体用户，取值范围：大于等于0。accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。         |
-| appIndex  | number     | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示获取主应用的拦截规则。appIndex大于0时，表示获取指定分身应用的拦截规则。        |
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+| 名称         | 类型     | 只读 | 可选 | 说明                            |
+| ----------- | --------| ---- | ---- | --------------------------- |
+| appIdentifier | string | 否 | 否 | 要设置卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId和appIdentifier](../apis-ability-kit/js-apis-appControl-sys.md#获取应用的appid和appidentifier)。 |
+| accountId  | number     | 否 | 否 | 用户ID，指定具体用户，取值范围：大于等于0。accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。         |
+| appIndex  | number     | 否 | 否 | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示主应用。appIndex大于0时，表示指定的分身应用。        |
 
 ## PermissionManagedState<sup>20+</sup>
 
@@ -870,8 +876,10 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 | 名称         | 值 | 说明                            |
 | ----------- | -------- | ------------------------------- |
-| DEFAULT | -1  | 默认由用户授予。 |
+| DEFAULT | 1  | 默认由用户授予。 |
 | GRANTED | 0  | 已静默授予。 |
-| DENIED | 1  | 已静默拒绝。 |
+| DENIED | -1  | 已静默拒绝。 |
