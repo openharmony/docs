@@ -24,7 +24,7 @@ FFRT串行队列基于协程调度模型实现，提供高效的消息队列功�
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // 来自 OpenHarmony 第三方库 "@ppd/ffrt"
 
 typedef struct {
     FILE *logFile;          // 日志文件指针

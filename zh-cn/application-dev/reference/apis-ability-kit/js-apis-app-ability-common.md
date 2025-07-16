@@ -290,6 +290,19 @@ UIServiceExtensionConnectCallback二级模块。
 | --- | --- |
 | [_UIServiceExtensionConnectCallback.default](js-apis-inner-application-uiServiceExtensionconnectcallback.md) | UIServiceExtensionConnectCallback二级模块。 |
 
+## AppServiceExtensionContext<sup>20+</sup>
+
+type AppServiceExtensionContext = _AppServiceExtensionContext.default
+
+AppServiceExtensionContext提供[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)的上下文环境，允许访问该能力特有的资源。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AppServiceExtensionContext.default](js-apis-inner-application-appServiceExtensionContext.md) | [AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)的上下文环境。 |
 
 **示例：**
 
@@ -314,4 +327,5 @@ let embeddableUIAbilityContext: common.EmbeddableUIAbilityContext;
 let photoEditorExtensionContext: common.PhotoEditorExtensionContext;
 let uiServiceProxy : common.UIServiceProxy;
 let uiServiceExtensionConnectCallback : common.UIServiceExtensionConnectCallback;
+let appServiceExtensionContext : common.AppServiceExtensionContext;
 ```

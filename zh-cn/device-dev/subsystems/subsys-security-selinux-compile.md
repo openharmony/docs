@@ -11,7 +11,7 @@ OpenHarmony SELinux策略编译流程在编译机中进行，加载流程在init
 OpenHarmony SELinux策略编译主要包括以下流程：
 1. 按`security_classes, initial_sids, access_vectors, glb_perm_def.spt, glb_never_def.spt, mls, policy_cap, glb_te_def.spt, attributes, .te, glb_roles.spt, users, initial_sid_contexts, fs_use, virtfs_contexts`顺序遍历策略目录`//base/security/selinux_adapter/sepolicy/`，得到父目录为system和public的策略文件列表，使用m4宏处理器将策略文件列表拼接成`system.conf`中间文件，这里会决定是否展开隔离宏。同理，遍历得到父目录为vendor和public的策略文件列表，使用m4宏处理器将策略文件列表拼接成`vendor.conf`中间文件，这里也会决定是否展开隔离宏。
 2. 使用开源软件checkpolicy将conf中间文件编译为.cil明文策略文件，得到`system.cil`和`vendor.cil`。
-3. 使用开源软件secilc将`system.cil`和`vendor.cil`进行合并，编译为二进制策略文件，编译时会进行neverallow检查，违反neverallow时会编译报错，参考[OpenHarmony SELinux常见问题](subsys-security-selinux-faq.md)。
+3. 使用开源软件secilc将`system.cil`和`vendor.cil`进行合并，编译为二进制策略文件。编译时会进行neverallow检查，违反neverallow时会编译报错。参考[OpenHarmony SELinux常见问题](subsys-security-selinux-faq.md)。
 4. 编译后的二进制策略文件会归档到`system.img`中，位于`/system/etc/selinux/targeted/policy/policy.31`。
 
 ### 策略加载

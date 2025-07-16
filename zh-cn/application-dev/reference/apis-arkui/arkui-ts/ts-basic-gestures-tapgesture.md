@@ -99,7 +99,7 @@ struct TapGestureExample {
         )
       Text(this.value)
     }
-    .height(200)
+    .height(300)
     .width(300)
     .padding(20)
     .border({ width: 3 })
