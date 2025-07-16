@@ -50,7 +50,9 @@ scrollable(value: ScrollDirection)
 
 | 参数名 | 类型                                        | 必填 | 说明                                            |
 | ------ | ------------------------------------------- | ---- | ----------------------------------------------- |
-| value  | [ScrollDirection](#scrolldirection枚举说明) | 是   | 滚动方向。<br/>默认值：ScrollDirection.Vertical<br/>**说明：** <br/>当滚动方向设置为[ScrollDirection.FREE](#scrolldirection枚举说明)时，Scroll组件仅支持[scrollBar](#scrollbar)、[scrollBarColor](#scrollbarcolor)、[scrollBarWidth](#scrollbarwidth)、[scrollBarMargin](./ts-container-scrollable-common.md#scrollbarmargin20)、[edgeEffect](#edgeeffect)（仅支持Spring和None边缘滑动效果）、[enableScrollInteraction](#enablescrollinteraction10)、[friction](#friction10)、[clipContent](./ts-container-scrollable-common.md#clipcontent14)、[initialOffset](#initialoffset12)、[scrollable](#scrollable)属性，[onWillScroll](#onwillscroll12)、[onDidScroll](#ondidscroll12)、[onScrollEdge](#onscrolledge)、[onScrollStart](#onscrollstart9)、[onScrollStop](#onscrollstop9)事件和[scrollTo](#scrollto)、[scrollEdge](#scrolledge)、[scrollPage](#scrollpage9)、[currentOffset](#currentoffset)、[scrollBy](#scrollby9)、[getItemRect](#getitemrect11)等Scroller控制器方法。 |
+| value  | [ScrollDirection](#scrolldirection枚举说明) | 是   | 滚动方向。<br/>默认值：ScrollDirection.Vertical |
+
+当滚动方向设置为[ScrollDirection.FREE](#scrolldirection枚举说明)时，Scroll组件仅支持部分能力，见[自由滚动模式下支持的能力](#scrolldirection枚举说明)。
 
 ### scrollBar
 
@@ -302,6 +304,25 @@ enableBouncesZoom(enable: boolean)
 | Free<sup>(deprecated) </sup> | 2 | 支持竖直或水平方向滚动。<br/> 从API version 9开始废弃，从API version 20开始推荐使用FREE。|
 | None       | 3 | 不可滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | FREE<sup>20+</sup>   | 4 | 自由滚动。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+
+FREE（自由滚动）模式下支持的能力：
+
+| **支持的属性** | **支持的事件** | **支持的[Scroller](#scroller)接口** |
+| :--- | :--- | :--- |
+| [scrollBar](#scrollbar) | [onWillScroll](#onwillscroll12) | [scrollTo](#scrollto) |
+| [scrollBarColor](#scrollbarcolor) | [onDidScroll](#ondidscroll12) | [scrollEdge](#scrolledge) |
+| [scrollBarWidth](#scrollbarwidth) | [onScrollEdge](#onscrolledge) | [scrollPage](#scrollpage9) |
+| [scrollBarMargin](./ts-container-scrollable-common.md#scrollbarmargin20) | [onScrollStart](#onscrollstart9) | [currentOffset](#currentoffset) |
+| [edgeEffect](#edgeeffect) | [onScrollStop](#onscrollstop9) | [scrollBy](#scrollby9) |
+| [enableScrollInteraction](#enablescrollinteraction10) | - | [getItemRect](#getitemrect11) |
+| [friction](#friction10) | - | - |
+| [clipContent](./ts-container-scrollable-common.md#clipcontent14) | - | - |
+| [initialOffset](#initialoffset12) | - | - |
+| [scrollable](#scrollable) | - | - |
+
+>  **说明:**
+>  - `edgeEffect`属性仅支持`Spring`和`None`边缘滑动效果。
+>  - `onWillScroll`回调仅支持在跟手滑动阶段重载偏移量。
 
 ## ScrollSnapOptions<sup>10+</sup>对象说明
 
