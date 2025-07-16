@@ -2,6 +2,9 @@
 - [ArkUI简介](arkui-overview.md)
 - UI开发 (ArkTS声明式开发范式)<!--arkts-ui-development-->
   - [UI开发（ArkTS声明式开发范式）概述](arkts-ui-development-overview.md)
+  - 从ArkTS1.1到ArkTS1.2的UI适配指导<!--ui-arkts-migration-guide-->
+    - ArkTS1.2不再支持的UI接口<!--ui-deprecated-apis-->
+      - [绘制组件](arkts-v1.2-deprecated-drawing-apis.md)
   - 学习UI范式基本语法<!--arkts-ui-paradigm-basic-syntax-->
     - [基本语法概述](../ui/state-management/arkts-basic-syntax-overview.md)
     - [声明式UI描述](../ui/state-management/arkts-declarative-ui-description.md)
