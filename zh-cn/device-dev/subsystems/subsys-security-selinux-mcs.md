@@ -9,7 +9,8 @@ Multi-Category Security(MCS)是SELinux强制访问控制的一种模式，通过
 
 ## MCS安全级别配置
 
-  为应用进程添加MCS配置，需要保证MCS开关开启，然后在sehap_contexts配置文件中按需配置levelFrom和user，如果未配置user，默认为user=u。示例如下：
+  为应用进程和应用数据目录添加MCS配置，需要保证MCS开关开启。
+  然后在`sehap_contexts`配置文件中按需配置levelFrom和user，如果未配置user，默认为user=u。示例如下：
   ```text
   apl=normal debuggable=true domain=debug_hap type=debug_hap_data_file levelFrom=all user=o
   ```
@@ -17,6 +18,13 @@ Multi-Category Security(MCS)是SELinux强制访问控制的一种模式，通过
   配置user时，如果user未定义，需要先在users策略文件里定义，示例：
   ```text
   user o roles { r } level s0 range s0 - s0:c0.x1279;
+  ```
+
+  在PC上，有`product_config`配置文件配置默认levelFrom和user，如果未配置user，默认为user=u。示例格式如下：
+
+  ```text
+  defaultLevelFrom=user
+  defaultUser=o
   ```
 
   配置levelFrom时，安全级别可选配置如下：
@@ -33,3 +41,21 @@ Multi-Category Security(MCS)是SELinux强制访问控制的一种模式，通过
 ```text
 o:r:normal_hap:s0:x55,x334,x512,x868,x1024
 ```
+
+进入应用数据目录，使用命令`ls -lZ`查询应用数据目录MCS配置状况。示例如下：
+应用数据目录：/data/app/el1/100/base/
+```text
+o:object_r:normal_hap_data_file:s0:x55,x334,x512,x868,x1024
+```
+
+## 配置汇总
+
+ | 名称 | 值 |
+ | ------ | ------ |
+ | 应用数据目录 | /data/app/el1\~el5/\${userId}/{base,  database}/\${bundleName}/ |
+ | 应用数据目录 | /data/app/el2/\${userId}/sharefiles/\${bundleName}/ |
+ | 应用数据目录 | /data/service/el1\~el2/\${userId}/backup/bundles/\${bundleName} |
+ | 应用数据目录 | /data/app/el1\~el2/\${userId}/base/\${bundleName}/.back/ |
+ | 应用数据目录 | /data/app/el1\~el5/\${userId}/base/\${extensionDir}/ |
+ | 全局配置文件 | /system/etc/selinux/targeted/contexts/sehap\_contexts |
+ | PC产品配置文件 | /version/etc/selinux/product\_config |
