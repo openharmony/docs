@@ -2,25 +2,25 @@
 
 ## 概述
 
-MetadataBinding（记忆链接）指由第三方应用提供鸿蒙[App Linking链接](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/applinking-introduction)，系统将当前用户浏览的内容和鸿蒙App Linking链接进行关联并保存的能力。
+MetadataBinding（记忆链接）指由第三方应用提供[鸿蒙App Linking链接](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/applinking-introduction)，系统将当前用户浏览的内容与鸿蒙App Linking链接进行关联并保存的功能。
 
 详细的接口介绍请参考[MetadataBinding接口](../../reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding.md)。
 
 ## 场景介绍
 
-当第三方应用需要将鸿蒙App Linking链接映射到调用接口的系统应用或服务时，可以使用记忆链接功能，例如：当用户浏览【电商应用】中某个商品时，通过截图保存了该商品的图片，系统会记录图片与【电商应用】所提供App Linking链接的映射关系，在用户重新浏览该图片时，会主动提醒用户是否需要重新回到【电商应用】中查看商品详情。
+第三方应用可使用记忆链接功能，将鸿蒙App Linking链接映射到调用接口的系统应用或服务。例如，用户在【电商应用】中浏览某个商品时，截图保存了该商品的图片，系统将记录图片与【电商应用】提供的鸿蒙App Linking链接的映射关系。当用户再次浏览该图片时，系统会提醒用户是否需要返回【电商应用】查看商品详情。
 
 ## 接口说明
 
 | 接口名                                                       | 描述                                   |
 | ------------------------------------------------------------ | -------------------------------------- |
-| [submitMetadata](../../reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding.md#metadatabindingsubmitmetadata)(metadata: string): void; | 第三方应用将需要编码的鸿蒙App Linking的链接传递给多模态融合感知服务，多模态融合感知服务决定适时的将内容传递给调用编码接口的系统应用或服务。 |
-| [on](../../reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding.md#metadatabindingonoperationsubmitmetadata)(type: 'operationSubmitMetadata', bundleName: string, callback: Callback<number>): void; | 订阅系统事件以获取编码内容，应用注册回调，事件发生时回传编码内容。 |
-| [off](../../reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding.md#metadatabindingoffoperationsubmitmetadata)(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback<number>): void; | 取消订阅系统获取编码内容的事件。取消注册回调接口。 |
+| [submitMetadata](../../reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding.md#metadatabindingsubmitmetadata)(metadata: string): void; | 第三方应用将待编码的鸿蒙App Linking链接传递给多模态融合感知服务，该服务决定适当时机将内容传递给调用编码接口的系统应用。 |
+| [on](../../reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding.md#metadatabindingonoperationsubmitmetadata)(type: 'operationSubmitMetadata', bundleName: string, callback: Callback<number>): void; | 订阅系统事件以获取编码内容，应用注册回调，事件发生时回传编码内容。|
+| [off](../../reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding.md#metadatabindingoffoperationsubmitmetadata)(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback<number>): void; | 取消订阅系统获取编码内容的事件。取消注册回调接口。|
   
 ## 约束与限制
 
-  - 鸿蒙App Linking链接的最大字节数为99个字节数。
+  - 鸿蒙App Linking链接的最大字节数为99。
 
 ## 开发步骤
 
