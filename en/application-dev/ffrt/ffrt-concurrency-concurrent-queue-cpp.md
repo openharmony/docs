@@ -21,7 +21,7 @@ The implementation code is as follows:
 ```cpp
 #include <iostream>
 #include <unistd.h>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
 
 class BankQueueSystem {
 private:

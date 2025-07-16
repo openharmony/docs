@@ -78,7 +78,7 @@ The FFRT provides task graph that can describe the task dependency and paralleli
 
 ```cpp
 #include <iostream>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
 
 int main()
 {
@@ -111,7 +111,7 @@ Each number in the Fibonacci sequence is the sum of the first two numbers. The p
 
 ```cpp
 #include <iostream>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
 
 void Fib(int x, int& y)
 {
