@@ -343,7 +343,7 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, di
 | 参数名        | 类型                                                         | 必填 | 说明                                   |
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                         |
-| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。Want需要传入bundleName和abilityName，数组长度上限为10。 |
+| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。Want需要传入bundleName和abilityName，数组总长度不能超过10。例如：若当前已通过本接口设置5个应用，则最多还能通过本接口再设置5个。 |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
 | disallowModify | boolean | 是   | true禁止用户取消自启，false允许用户取消自启<br>配置后，用户可通过设置-应用和元服务-应用启动管理，管理应用的自启动。 |
 
@@ -821,7 +821,7 @@ let wantTemp: Want = {
 };
 
 // 需根据实际情况进行替换
-let keepAliveApp: string = 'com.example.keepAliveApplication'
+let keepAliveApp: string = 'com.example.keepAliveApplication';
 
 try {
   let res: boolean = applicationManager.isModifyKeepAliveAppsDisallowed(wantTemp, 100, keepAliveApp);
