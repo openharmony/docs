@@ -422,7 +422,7 @@ AV_ERR_INVALID_STATE：执行失败，状态非法，没有启动编解码器等
 
 AV_ERR_OPERATE_NOT_PERMIT：执行失败，不允许非同步模式下调用。
 
-AV_ERR_STREAM_CHANGED：解码输出流格式发生变化, 可以通过调用[OH_AudioCodec_GetOutputDescription]((#oh_audiocodec_getoutputdescription))接口获取新的流信息。
+AV_ERR_STREAM_CHANGED：解码输出流格式发生变化, 可以通过调用[OH_AudioCodec_GetOutputDescription](#oh_audiocodec_getoutputdescription)接口获取新的流信息。
 
 AV_ERR_TRY_AGAIN_LATER：执行失败，超时时间内获取不到可用的缓冲区。
 
