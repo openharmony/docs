@@ -624,6 +624,8 @@
           - [查询和操作自定义节点](ui/ndk-node-query-operate.md)
           - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ui/ndk-embedded-component.md)
           - [在NDK中保证多实例场景功能正常](ui/ndk-scope-task.md)
+      - UI高性能开发<!--ui-performance-->
+        - [UI性能优化概览](ui/ui-performance-overview.md)
       - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
         - [UI开发 (兼容JS的类Web开发范式)概述](ui/ui-js-overview.md)
         - 框架说明<!--js-framework-overview-->
