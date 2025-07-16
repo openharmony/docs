@@ -52,7 +52,7 @@ scrollable(value: ScrollDirection)
 | ------ | ------------------------------------------- | ---- | ----------------------------------------------- |
 | value  | [ScrollDirection](#scrolldirection枚举说明) | 是   | 滚动方向。<br/>默认值：ScrollDirection.Vertical |
 
-当滚动方向设置为[ScrollDirection.FREE](#scrolldirection枚举说明)时，Scroll组件仅支持部分能力，见[自由滚动模式下支持的能力](#free20自由滚动模式下支持的能力)。
+当滚动方向设置为[ScrollDirection.FREE](#scrolldirection枚举说明)时，Scroll组件仅支持部分能力，见[自由滚动模式下支持的能力](#scrolldirection枚举说明)。
 
 ### scrollBar
 
@@ -305,20 +305,20 @@ enableBouncesZoom(enable: boolean)
 | None       | 3 | 不可滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | FREE<sup>20+</sup>   | 4 | 自由滚动。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
-### FREE<sup>20+</sup>自由滚动模式下支持的能力
+FREE（自由滚动）模式下支持的能力：
 
-| **属性**                          | **事件**                          | **[Scroller](#scroller) 接口**          |
-|-----------------------------------------|-------------------------------------|-------------------------------|
-| [scrollBar](#scrollbar)                 | [onWillScroll](#onwillscroll12)     | [scrollTo](#scrollto)         |
-| [scrollBarColor](#scrollbarcolor)       | [onDidScroll](#ondidscroll12)       | [scrollEdge](#scrolledge)     |
-| [scrollBarWidth](#scrollbarwidth)       | [onScrollEdge](#onscrolledge)       | [scrollPage](#scrollpage9)    |
-| [scrollBarMargin](#scrollbarmargin20)   | [onScrollStart](#onscrollstart9)    | [currentOffset](#currentoffset) |
-| [edgeEffect](#edgeeffect)               | [onScrollStop](#onscrollstop9)      | [scrollBy](#scrollby9)        |
-| [enableScrollInteraction](#enablescrollinteraction10) |                               | [getItemRect](#getitemrect11) |
-| [friction](#friction10)                 |                                     |                               |
-| [clipContent](#clipcontent14)           |                                     |                               |
-| [initialOffset](#initialoffset12)       |                                     |                               |
-| [scrollable](#scrollable)               |                                     |                               |
+| **支持的属性** | **支持的事件** | **支持的[Scroller](#scroller)接口** |
+| :--- | :--- | :--- |
+| [scrollBar](#scrollbar) | [onWillScroll](#onwillscroll12) | [scrollTo](#scrollto) |
+| [scrollBarColor](#scrollbarcolor) | [onDidScroll](#ondidscroll12) | [scrollEdge](#scrolledge) |
+| [scrollBarWidth](#scrollbarwidth) | [onScrollEdge](#onscrolledge) | [scrollPage](#scrollpage9) |
+| [scrollBarMargin](#scrollbarmargin20) | [onScrollStart](#onscrollstart9) | [currentOffset](#currentoffset) |
+| [edgeEffect](#edgeeffect) | [onScrollStop](#onscrollstop9) | [scrollBy](#scrollby9) |
+| [enableScrollInteraction](#enablescrollinteraction10) | - | [getItemRect](#getitemrect11) |
+| [friction](#friction10) | - | - |
+| [clipContent](#clipcontent14) | - | - |
+| [initialOffset](#initialoffset12) | - | - |
+| [scrollable](#scrollable) | - | - |
 
 >  **说明:**
 >  - `edgeEffect`属性仅支持`Spring`和`None`边缘滑动效果。
