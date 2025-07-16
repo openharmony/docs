@@ -312,11 +312,11 @@ FREE（自由滚动）模式下支持的能力：
 | [scrollBar](#scrollbar) | [onWillScroll](#onwillscroll12) | [scrollTo](#scrollto) |
 | [scrollBarColor](#scrollbarcolor) | [onDidScroll](#ondidscroll12) | [scrollEdge](#scrolledge) |
 | [scrollBarWidth](#scrollbarwidth) | [onScrollEdge](#onscrolledge) | [scrollPage](#scrollpage9) |
-| [scrollBarMargin](#scrollbarmargin20) | [onScrollStart](#onscrollstart9) | [currentOffset](#currentoffset) |
+| [scrollBarMargin](./ts-container-scrollable-common.md#scrollbarmargin20) | [onScrollStart](#onscrollstart9) | [currentOffset](#currentoffset) |
 | [edgeEffect](#edgeeffect) | [onScrollStop](#onscrollstop9) | [scrollBy](#scrollby9) |
 | [enableScrollInteraction](#enablescrollinteraction10) | - | [getItemRect](#getitemrect11) |
 | [friction](#friction10) | - | - |
-| [clipContent](#clipcontent14) | - | - |
+| [clipContent](./ts-container-scrollable-common.md#clipcontent14) | - | - |
 | [initialOffset](#initialoffset12) | - | - |
 | [scrollable](#scrollable) | - | - |
 
