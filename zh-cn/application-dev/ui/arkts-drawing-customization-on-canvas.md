@@ -89,7 +89,7 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
   import lottie from '@ohos/lottie';
   ```
 
-  具体接口请参考[Lottie](https://gitee.com/openharmony-tpc/lottieETS)。
+  具体接口请参考[lottie](https://gitcode.com/openharmony-tpc/lottieArkTS)。
 
 
 ## 初始化画布组件

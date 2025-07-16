@@ -182,7 +182,7 @@
 >setDefaultTheme需要在ArkUI初始化后即windowStage.loadContent的完成时回调中使用。
 
 ## 设置应用局部页面自定义主题风格
-通过设置[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withtheme)，将自定义主题Theme的配色应用于内部组件的默认样式。在WithTheme的作用范围内，组件的配色会根据Theme的配色进行调整。
+通过设置[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md)，将自定义主题Theme的配色应用于内部组件的默认样式。在WithTheme的作用范围内，组件的配色会根据Theme的配色进行调整。
 
 如示例所示，使用WithTheme({ theme: this.myTheme })可将作用域内组件的配色设置为自定义主题风格。后续可以通过更新this.myTheme来更换主题风格。[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于使自定义组件能够获取当前生效的Theme对象。
 
@@ -250,7 +250,7 @@
 ![customTheme](figures/customTheme.gif)
 
 ## 设置应用页面局部深浅色
-通过[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withtheme)可以设置三种颜色模式，跟随系统模式，浅色模式和深色模式。
+通过[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md)可以设置三种颜色模式，跟随系统模式，浅色模式和深色模式。
 
 在WithTheme的作用范围内，组件的样式资源值会根据指定的模式，读取对应的深浅色模式系统和应用资源值。这意味着，在WithTheme作用范围内，组件的配色会根据所指定的深浅模式进行调整。
 
