@@ -336,6 +336,8 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, di
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名        | 类型                                                         | 必填 | 说明                                   |
@@ -393,6 +395,8 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number)
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名        | 类型                                                         | 必填 | 说明             |
@@ -449,6 +453,8 @@ getAutoStartApps(admin: Want, accountId: number): Array\<Want>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名 | 类型                                                    | 必填 | 说明           |
@@ -501,6 +507,8 @@ isModifyAutoStartAppsDisallowed(admin: Want, autoStartApp: Want, accountId: numb
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -613,6 +621,8 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, di
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -771,6 +781,8 @@ isModifyKeepAliveAppsDisallowed(admin: Want, accountId: number, bundleName: stri
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
