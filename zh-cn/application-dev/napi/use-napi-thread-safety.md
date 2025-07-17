@@ -30,14 +30,14 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
    {
        size_t argc = 1;
        napi_value jsCb = nullptr;
-       CallbackData *callbackData = nullptr;
-       napi_get_cb_info(env, info, &argc, &jsCb, nullptr, reinterpret_cast<void **>(&callbackData));
+       CallbackData *callbackData = new CallbackData(); // 异步任务完成时释放
+       napi_get_cb_info(env, info, &argc, &jsCb, nullptr, nullptr);
 
        // 创建一个线程安全函数
        napi_value resourceName = nullptr;
        napi_create_string_utf8(env, "Thread-safe Function Demo", NAPI_AUTO_LENGTH, &resourceName);
-       napi_create_threadsafe_function(env, jsCb, nullptr, resourceName, 0, 1, callbackData, nullptr,
-           callbackData, CallJs, &callbackData->tsfn);
+       napi_create_threadsafe_function(env, jsCb, nullptr, resourceName, 0, 1, nullptr, nullptr,
+           nullptr, CallJs, &callbackData->tsfn);
 
        // 创建一个异步任务
        // ExecuteWork会执行在一个由libuv创建的非JS线程上，此处使用napi_create_async_work是为了模拟在非JS线程场景使用napi_call_threadsafe_function接口向JS线程提交任务
@@ -130,10 +130,14 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
    static void WorkComplete(napi_env env, napi_status status, void *data)
    {
        CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
+       if (callbackData == nullptr) {
+           return;
+       }
        napi_release_threadsafe_function(callbackData->tsfn, napi_tsfn_release);
        napi_delete_async_work(env, callbackData->work);
        callbackData->tsfn = nullptr;
        callbackData->work = nullptr;
+       delete callbackData;
    }
    ```
    <!-- @[napi_thread_safety_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
@@ -142,9 +146,8 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
    ```c++
    // 模块初始化
    static napi_value Init(napi_env env, napi_value exports) {
-       CallbackData *callbackData = new CallbackData(); // 可在线程退出时释放
        napi_property_descriptor desc[] = {
-           {"startThread", nullptr, StartThread, nullptr, nullptr, nullptr, napi_default, callbackData},
+           {"startThread", nullptr, StartThread, nullptr, nullptr, nullptr, napi_default, nullptr},
        };
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
