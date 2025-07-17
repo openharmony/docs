@@ -2330,7 +2330,7 @@ currentAVSession.on('setTargetLoopMode', (mode: avSession.LoopMode) => {
 
 on(type: 'toggleFavorite', callback: (assetId: string) => void): void
 
-设置是否收藏的监听事件
+设置是否收藏的监听事件。
 
 每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
@@ -2548,7 +2548,7 @@ struct Index {
 
 off(type: 'play', callback?: () => void): void
 
-取消会话暂停事件监听，指定callback，取消对应监听，未指定callback，取消所有暂停事件监听。
+取消会话播放事件监听。指定callback，取消对应监听，未指定callback，取消所有暂停事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2614,7 +2614,7 @@ currentAVSession.off('pause');
 
 off(type: 'stop', callback?: () => void): void
 
-取消会话暂停事件监听，指定callback，取消对应监听，未指定callback，取消所有暂停事件监听。
+取消会话停止事件监听，指定callback，取消对应监听，未指定callback，取消所有暂停事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
