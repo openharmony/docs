@@ -347,7 +347,7 @@ colorGradient(colors: Array\<Color>, positions: Array\<common2D.Point>, strength
 | colors  | Array\<[Color](#color20)>         | 是   | 颜色数组，多个颜色的渐变。数组长度取值范围[0, 12], 每一个颜色值取值范围为大于等于0。数组长度等于0或大于12时无效果，colors、positions和strengths的数组长度不相等时无效果。|
 | positions  | Array\<[common2D.Point](js-apis-graphics-common2D.md#point12)>         | 是   | 位置数组，颜色对应的分布位置。数组长度取值范围[0, 12]。数组长度等于0或大于12时无效果，colors、positions和strengths的数组长度不相等时无效果。|
 | strengths  | Array\<number>         | 是   | 强度数组，颜色对应的扩散强度。数组长度取值范围[0, 12], 每一个强度值取值范围为大于等于0。数组长度等于0或大于12时无效果，colors、positions和strengths的数组长度不相等时无效果。|
-| alphaMask  | [Mask](#mask20)         | 否   | 遮罩alpha，颜色对应的alpha显示遮罩。设置为null或者不设置时，默认图片全部都有颜色渐变效果。|
+| alphaMask  | [Mask](#mask20)         | 否   | 遮罩alpha，颜色对应的alpha显示遮罩。不设置时，默认组件内容全部有颜色渐变效果。|
 
 **返回值：**
 
@@ -472,8 +472,8 @@ edgeLight(alpha: number, color?: Color, mask?: Mask, bloom?: boolean): Filter
 | 参数名         | 类型                  | 必填 | 说明                       |
 | ------------- | --------------------- | ---- | ------------------------- |
 | alpha  | number         | 是   | 指定描边高光透明度，越大描边越明显。取值范围为[0, 1]。设置为0时无描边；设置小于0的值时，按值为0处理；设置大于1的值时，按值为1处理。|
-| color  | [Color](#color20) | 否   | 指定描边高光颜色，设置为null或者不设置时，默认使用原图颜色。如果有值，使用指定颜色。设置不为null时，Color中的alpha不发挥作用，仅使用rgb。|
-| mask  | [Mask](#mask20) | 否   | 指定描边高光强度。设置为null或者不设置时，默认图片全部都有描边高光效果。|
+| color  | [Color](#color20) | 否   | 指定描边高光颜色，不设置时，将默认使用组件内容的原始颜色。如果有值，使用指定颜色。设置不为null时，Color中的alpha不发挥作用，仅使用rgb。|
+| mask  | [Mask](#mask20) | 否   | 指定描边高光强度。不设置时，默认组件内容全部有描边高光效果。|
 | bloom  | boolean | 否   | 指定描边是否发光。设置为true时，有描边和发光效果；设置为false时，只有描边效果无发光效果；不设置时，默认为true。小于16*16的图片默认只有描边效果，无发光效果，此参数失去作用。 |
 
 **返回值：**
@@ -527,7 +527,7 @@ displacementDistort(displacementMap: Mask, factor?: [number, number]): Filter
 | 参数名         | 类型                  | 必填 | 说明                       |
 | ------------- | --------------------- | ---- | ------------------------- |
 | mask  | [Mask](#mask20) | 是   | 指定扭曲程度。与factor相乘后共同决定扭曲程度。|
-| factor  | [number, number] | 否   | 指定水平、竖直方向扭曲程度系数，越大扭曲程度越明显，取值范围为[0.0, 10.0]。设置为null或者不设置时，默认值为1.0。设置为0时无扭曲；设置小于0的值时按0处理；设置大于10的值时，按值为10处理。与mask相乘后共同决定扭曲程度。 |
+| factor  | [number, number] | 否   | 指定水平、竖直方向扭曲程度系数，系数的绝对值越大，扭曲程度越明显，建议取值范围为[-10.0, 10.0]。不设置时，默认值为1.0。设置为0时，无扭曲效果。与mask相乘后共同决定扭曲程度。 |
 
 **返回值：**
 
