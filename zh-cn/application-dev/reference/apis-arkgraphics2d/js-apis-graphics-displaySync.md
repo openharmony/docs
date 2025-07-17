@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import { displaySync } from "@kit.ArkGraphics2D";
+import { displaySync } from '@kit.ArkGraphics2D';
 ```
 
 ## displaySync.create
@@ -175,8 +175,8 @@ backDisplaySync?.start()
 **示例：**
 
 ```ts
-import { displaySync } from "@kit.ArkGraphics2D";
-import { UIContext } from "@kit.ArkUI";
+import { displaySync } from '@kit.ArkGraphics2D';
+import { UIContext } from '@kit.ArkUI';
 
 // xxx.ets
 @Entry
