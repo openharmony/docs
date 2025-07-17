@@ -2,7 +2,7 @@
 
 ## 概述
 
-从API version 14开始，支持使用[UIServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)提供的UI界面（例如预览界面）和后台服务能力。UIServiceExtensionAbility是UIService类型的[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)浮窗类组件。组件内部持有了一个[UIServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md)，通过UIServiceExtensionContext提供了丰富的接口供外部使用。
+从API version 14开始，支持使用通过UIServiceExtensionAbility实现的系统悬浮窗。UIServiceExtensionAbility是UIService类型的[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)浮窗类组件。三方应用可以使用UIServiceExtensionAbility，不支持实现UIServiceExtensionAbility（需要系统权限）。
 
 本文描述中称被启动的UIServiceExtensionAbility为服务端，称启动UIServiceExtensionAbility的组件为客户端。
 
@@ -13,8 +13,6 @@
 ## 约束限制
 
 - 当前仅支持2in1设备。
-
-- 三方应用可以使用UIServiceExtensionAbility，不支持实现UIServiceExtensionAbility（需要系统权限）。
 
 - 三方应用需要在前台获焦的情况下才能连接系统提供的UIServiceExtensionAbility。
 
