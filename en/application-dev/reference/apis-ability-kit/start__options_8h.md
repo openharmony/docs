@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **start_options.h** file declares the StartOptions struct and related functions.
+The file declares the StartOptions struct and related functions.
 
 **File to include**: <AbilityKit/ability_runtime/start_options.h>
 

@@ -47,7 +47,7 @@ The ability with the specified type does not support the API call.
 **Solution**
 
 1. Pass in correct values of **bundleName**, **moduleName**, and **abilityName** in **want**.
-2. Call APIs based on the ability type. For example, call <!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) to start the ServiceExtensionAbility, or call <!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) to connect to the ServiceExtensionAbility.
+2. Call APIs based on the ability type. For example, call <!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability) to start the ServiceExtensionAbility, or call <!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability) to connect to the ServiceExtensionAbility.
 
 ## 16000003 ID Not Exist
 
@@ -296,7 +296,7 @@ When the API version of an application is later than 11, the application cannot 
 
 **Solution**
 
-Use implicit startup or [openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) for redirection.
+Use implicit startup or [openLink](js-apis-inner-application-uiAbilityContext.md#openlink12) for redirection.
 
 ## 16000019 No Matching Application Is Found During Implicit Startup
 

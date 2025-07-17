@@ -14,10 +14,13 @@ The lifecycle of UIAbility has four states: **Create**, **Foreground**, **Backgr
 
 ## Description of Lifecycle States
 
+> **NOTE**
+>
+> Throughout the process of application launch and switching between foreground and background states, the system invokes UIAbility lifecycle callbacks. To ensure optimal application performance, you are advised to perform only essential lightweight operations within critical lifecycle callbacks such as [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate), [onWindowStageCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate), and [onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground). For time-consuming tasks, use asynchronous processing or delegate them to background threads to avoid blocking the main thread.
 
 ### Create
 
-The **Create** state is triggered when the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is created during application loading. It corresponds to the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) callback. In this callback, you can perform page initialization operations, for example, defining variables or loading resources.
+The **Create** state is triggered when the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is created during application loading. It corresponds to the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate) callback. In this callback, you can perform page initialization operations, for example, defining variables or loading resources.
 
 
 ```ts
@@ -47,7 +50,8 @@ In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis
 
 > **NOTE**
 > 
-> The timing of the [WindowStage events](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9) may vary according to the development scenario.
+> - The timing of the [WindowStage events](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9) may vary according to the development scenario.
+> - The UIAbility lifecycle varies with the product type when the main window of an application is switched from the foreground to the background. For details, see [Main Window Lifecycle in the Stage Model](../windowmanager/window-overview.md#main-window-lifecycle-in-the-stage-model).
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -104,7 +108,7 @@ export default class EntryAbility extends UIAbility {
 >
 > For details about how to use WindowStage, see [Window Development](../windowmanager/application-window-stage.md).
 
-Before the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is destroyed, the [onWindowStageDestroy()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagedestroy) callback is invoked to release UI resources.
+Before the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is destroyed, the [onWindowStageDestroy()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagedestroy) callback is invoked to release UI resources.
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -126,7 +130,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ### WindowStageWillDestroy
-The [onWindowStageWillDestroy()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagewilldestroy12) callback is invoked before the window stage is destroyed. In this case, the window stage can still be used.
+The [onWindowStageWillDestroy()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagewilldestroy12) callback is invoked before the window stage is destroyed. In this case, the window stage can still be used.
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -172,7 +176,7 @@ export default class EntryAbility extends UIAbility {
 
 ### Foreground and Background
 
-The **Foreground** and **Background** states are triggered when the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is switched to the foreground and background, respectively. They correspond to the [onForeground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground) and [onBackground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonbackground) callbacks.
+The **Foreground** and **Background** states are triggered when the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is switched to the foreground and background, respectively. They correspond to the [onForeground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground) and [onBackground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onbackground) callbacks.
 
 The **onForeground()** callback is triggered when the UI of the UIAbility instance is about to become visible, for example, when the UIAbility instance is about to enter the foreground. In this callback, you can apply for resources required by the system or re-apply for resources that have been released in the **onBackground()** callback.
 
@@ -200,7 +204,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-Assume that the application already has a UIAbility instance created, and the launch type of the UIAbility instance is set to [singleton](uiability-launch-type.md#singleton). If [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called again to start the UIAbility instance, the [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback is invoked, but the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) and [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) callbacks are not. The application can update the resources and data to be loaded in the callback, which will be used for UI display.
+Assume that the application already has a UIAbility instance created, and the launch type of the UIAbility instance is set to [singleton](uiability-launch-type.md#singleton). If [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability) is called again to start the UIAbility instance, the [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onnewwant) callback is invoked, but the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate) and [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) callbacks are not. The application can update the resources and data to be loaded in the callback, which will be used for UI display.
 
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -218,8 +222,15 @@ export default class EntryAbility extends UIAbility {
 
 The Destroy state is triggered when the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is destroyed. You can perform operations such as releasing system resources and saving data in the **onDestroy()** callback.
 
-The UIAbility instance is destroyed when [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) is called and the **onDestroy()** callback is invoked.
-<!--RP1-->The UIAbility instance is also destroyed when the user closes the instance in the system application Recents and the **onDestroy()** callback is invoked.<!--RP1End-->
+The UIAbility instance is destroyed when [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself) is called and the **onDestroy()** callback is invoked.
+<!--RP1-->
+The UIAbility instance is also destroyed when the user closes the instance in the system application Recents and the **onDestroy()** callback is invoked.
+
+> **NOTE**
+>
+> If the user removes a mission of an application under debugging from the recent task list, the process of the debugged application is forcibly terminated.
+
+<!--RP1End-->
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';

@@ -1,6 +1,6 @@
 # @ohos.bundle.appControl (appControl) (System API)
 
-The appControl module provides APIs for setting, obtaining, and deleting the disposed status of an application. An application in the disposed status is forbidden to run. When a user clicks the application icon on the home screen, the corresponding page is displayed based on the disposal intent.  
+The module provides APIs for setting, obtaining, and deleting the disposed status of an application. An application in the disposed status is forbidden to run. When a user clicks the application icon on the home screen, the corresponding page is displayed based on the disposal intent.  
 
 > **NOTE**
 >
@@ -93,7 +93,7 @@ Sets the disposed status for an application. This API uses an asynchronous callb
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
 | appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application).                     |
 | disposedWant | Want  | Yes| Disposal intent of the application.|
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
+| callback    | AsyncCallback\<void> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -257,7 +257,7 @@ Obtains the disposed status of an application. This API uses an asynchronous cal
 | Name      | Type    | Mandatory  | Description                                 |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
-| callback    | AsyncCallback\<Want> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the disposed status obtained; otherwise, **err** is an error object.                   |
+| callback    | AsyncCallback\<Want> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null** and **data** is the disposed status obtained; otherwise, **err** is an error object.                   |
 
 **Error codes**
 
@@ -364,7 +364,7 @@ Deletes the disposed status for an application. This API uses a promise to retur
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appId  | string | Yes   | appId of the target application. <br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
 
 **Return value**
 
@@ -422,8 +422,8 @@ Deletes the disposed status for an application. This API uses an asynchronous ca
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
+| appId  | string | Yes   | appId of the target application. <br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| callback    | AsyncCallback\<void> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**. otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -474,7 +474,7 @@ Deletes the disposed status for an application or an application clone. This API
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appId  | string | Yes   | appId of the target application. <br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
 | appIndex<sup>12+</sup>   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to delete the disposed status of the main application. A value greater than 0 means to delete the disposed status of the application clone. |
 
 **Error codes**
@@ -549,8 +549,8 @@ Obtains the disposed rule of an application or an application clone.
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
-| appIndex<sup>12+</sup>   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to obtain the disposed rule of the main application. A value greater than 0 means to obtain the disposed rule of the application clone.   |
+| appId  | string | Yes   | appId of the target application. <br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appIndex<sup>12+</sup>   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to obtain the disposed rule of the main application. A value greater than 0 means to obtain the disposed rule of the application clone with the specified index.   |
 
 **Return value**
 
@@ -605,9 +605,9 @@ Sets the disposed rule for an application or an application clone.
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appId  | string | Yes   | appId of the target application. <br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application).|
 | rule | [DisposedRule](#disposedrule11) | Yes| Disposed rule to set.|
-| appIndex<sup>12+</sup>   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to set the disposed rule for the main application. A value greater than 0 means to set the disposed rule for the application clone.           |
+| appIndex<sup>12+</sup>   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to set the disposed rule for the main application. A value greater than 0 means to set the disposed rule for the application clone with the specified index.           |
 
 **Error codes**
 
@@ -676,7 +676,7 @@ Sets an uninstallation disposed rule for an application or an application clone.
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appIdentifier  | string | Yes   | appIdentifier of the target application.<br> If the application does not have an appIdentifier, use its appId instead. **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appIdentifier  | string | Yes   | appIdentifier of the target application.<br>If the application does not have an appIdentifier, use its appId instead. **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
 | rule | [UninstallDisposedRule](#uninstalldisposedrule15) | Yes| Uninstallation disposed rule.|
 | appIndex   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to set the uninstallation disposed rule for the main application. A value greater than 0 means to set the uninstallation disposed rule for the application clone.       |
 
@@ -737,7 +737,7 @@ Obtains the uninstallation disposed rule of an application or an application clo
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appIdentifier  | string | Yes   | appIdentifier of the target application.<br> If the application does not have an appIdentifier, use its appId instead. **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appIdentifier  | string | Yes   | appIdentifier of the target application.<br>If the application does not have an appIdentifier, use its appId instead. **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
 | appIndex   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to obtain the uninstallation disposed rule of the main application. A value greater than 0 means to obtain the uninstallation disposed rule of the application clone.             |
 
 **Return value**
@@ -792,7 +792,7 @@ Deletes an uninstallation disposed rule for an application or an application clo
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appIdentifier  | string | Yes   | appIdentifier of the target application.<br> If the application does not have an appIdentifier, use its appId instead. **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appIdentifier  | string | Yes   | appIdentifier of the target application.<br>If the application does not have an appIdentifier, use its appId instead. **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
 | appIndex   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to delete the uninstallation disposed rule of the main application. A value greater than 0 means to delete the uninstallation disposed rule of the application clone.           |
 
 **Error codes**
@@ -832,14 +832,14 @@ Defines a disposed rule.
 
 **System API**: This is a system API.
 
-| Name     | Type          | Readable| Writable| Description                       |
+| Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| want | [Want](js-apis-app-ability-want.md)     | Yes  | Yes  | Page displayed when the application is disposed of.|
-| componentType | [ComponentType](#componenttype11)  | Yes  | Yes  | Type of application component that functions as the displayed page.|
-| disposedType | [DisposedType](#disposedrule11) | Yes| Yes| Type of application disposal.|
-| controlType | [ControlType](#controltype11) | Yes| Yes| Control type of application disposal.|
-| elementList | Array\<[ElementName](js-apis-bundleManager-elementName.md)> | Yes| Yes| List of application components to be disposed of or exempted.|
-| priority | number | Yes| Yes| Priority of the disposed rule.|
+| want | [Want](js-apis-app-ability-want.md)     | No  | No  | Page displayed when the application is disposed of.|
+| componentType | [ComponentType](#componenttype11)  | No  | No  | Type of application component that functions as the displayed page.|
+| disposedType | [DisposedType](#disposedrule11) | No  | No| Type of application disposal.|
+| controlType | [ControlType](#controltype11) | No  | No| Control type of application disposal.|
+| elementList | Array\<[ElementName](js-apis-bundleManager-elementName.md)> | No  | No| List of application components to be disposed of or exempted.|
+| priority | number | No  | No| Priority of the disposed rule, which is used to sort the query results of the rule list. The value is an integer. A smaller value indicates a higher priority.|
 
 ### ComponentType<sup>11+</sup>
 
@@ -885,21 +885,21 @@ Enumerates the control type of application disposal.
 
 Describes an uninstallation disposed rule.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
 
  **System API**: This is a system API.
 
-| Name     | Type          | Readable| Writable| Description                       |
+| Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| want | [Want](js-apis-app-ability-want.md)     | Yes  | Yes  | Page displayed when the application is disposed of.|
-| UninstallComponentType | [UninstallComponentType](#uninstallcomponenttype15)  | Yes  | Yes  | Type of the ability to start during interception.|
-| priority | number | Yes| Yes| Priority of the disposed rule.|
+| want | [Want](js-apis-app-ability-want.md)     | No  | No  | Page displayed when the application is disposed of.|
+| UninstallComponentType | [UninstallComponentType](#uninstallcomponenttype15)  | No  | No  | Type of the ability to start during interception.|
+| priority | number | No| No| Priority of the disposed rule, which is used to sort the query results of the rule list. The value is an integer. A smaller value indicates a higher priority.|
 
 ### UninstallComponentType<sup>15+</sup>
 
 Enumerates the types of abilities during uninstallation.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
 
  **System API**: This is a system API.
 

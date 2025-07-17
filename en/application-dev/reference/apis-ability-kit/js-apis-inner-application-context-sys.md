@@ -1,6 +1,6 @@
 # Context (System API)
 
-The **Context** module provides context for abilities or applications. It allows access to application-specific resources.
+The Context module provides context for abilities or applications. It allows access to application-specific resources.
 
 > **NOTE**
 >
@@ -181,7 +181,7 @@ export default class EntryAbility extends UIAbility {
 
 createSystemHspModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
 
-Creates a resource manager object for a module of the system-level HSP.
+Creates a resource manager for a system-level HSP.
 
 **System API**: This is a system API.
 

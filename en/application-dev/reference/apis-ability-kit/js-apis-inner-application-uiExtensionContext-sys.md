@@ -1,6 +1,6 @@
 # UIExtensionContext (System API)
 
-**UIExtensionContext**, inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md), provides the context environment for [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md). It provides UIExtensionAbility-related configuration and APIs for operating the UIExtensionAbility. For example, you can use the APIs to start a UIExtensionAbility.
+UIExtensionContext provides the context environment for [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md). It inherits from [ExtensionContext](js-apis-inner-application-extensionContext.md) and provides UIExtensionAbility-related configuration and APIs for operating the UIExtensionAbility. For example, you can use the APIs to start a UIExtensionAbility.
 
 > **NOTE**
 >
@@ -14,19 +14,17 @@
 import { common } from '@kit.AbilityKit';
 ```
 
-## UIExtensionContext.startAbilityForResultAsCaller
+## UIExtensionContext
+
+### startAbilityForResultAsCaller
 
 startAbilityForResultAsCaller(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
-Starts an ability with the caller information specified. This API uses a promise to return the result.
+Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses a promise to return the result.
 
-The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback.
-
-When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information.
-
- - Normally, you can call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
+ - Normally, you can call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
- - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
+ - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
 > **NOTE**
 >
@@ -76,15 +74,15 @@ export default class UIExtension extends UIExtensionAbility {
       abilityName: 'EntryAbility',
       moduleName: 'entry'
     }).then((data) => {
-      console.log('=======>startAbilityForResultAsCaller data Promise ======>' + JSON.stringify(data));
+      console.log(`StartAbilityForResultAsCaller success, data: ${JSON.stringify(data)}.`);
     }).catch((error: BusinessError) => {
-      console.log('=======>startAbilityForResultAsCaller error.code Promise ======>' + error.code);
+      console.error(`StartAbilityForResultAsCaller failed, err code: ${error.code}, err msg: ${error.message}.`);
     });
   }
 }
 ```
 
-## UIExtensionContext.startServiceExtensionAbility<sup>18+</sup>
+### startServiceExtensionAbility<sup>18+</sup>
 
 startServiceExtensionAbility(want: Want): Promise\<void>
 
@@ -164,7 +162,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startServiceExtensionAbilityWithAccount<sup>18+</sup>
+### startServiceExtensionAbilityWithAccount<sup>18+</sup>
 
 startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
@@ -254,7 +252,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.setHostPageOverlayForbidden<sup>15+</sup>
+### setHostPageOverlayForbidden<sup>15+</sup>
 
 setHostPageOverlayForbidden(isForbidden: boolean) : void
 
@@ -264,7 +262,7 @@ Sets whether the page started by the [UIExtensionAbility](../apis-ability-kit/js
 >
 > For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 >
-> This API must be called before a window is created. You are advised to call it within the [onCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityoncreate) lifecycle of the [UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md).
+> This API must be called before a window is created. You are advised to call it within the [onCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#oncreate) lifecycle of the [UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md).
 
 **Model restriction**: This API can be used only in the stage model.
 
