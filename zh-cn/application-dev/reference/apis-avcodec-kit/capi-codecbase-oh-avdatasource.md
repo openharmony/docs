@@ -16,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| int64_t size | 数据源的总大小。<br>**起始版本：** 12 |
-| OH_AVDataSourceReadAt readAt | 数据源的数据回调。<br>**起始版本：** 12 |
+| int64_t size | 数据源的总大小。|
+| [OH_AVDataSourceReadAt](capi-native-avcodec-base-h.md#oh_avdatasourcereadat) readAt | 数据源的数据回调。|
 
 
