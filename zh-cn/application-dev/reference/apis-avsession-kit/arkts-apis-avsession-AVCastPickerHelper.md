@@ -161,7 +161,7 @@ async function onPickerStateChange(context: common.Context) {
 
 off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
 
-取消半模态窗口变化的监听事件，关闭后，不再进行该事件回调。
+取消半模态窗口变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 

@@ -882,7 +882,7 @@ aVCastController.on('playbackStateChange', playbackFilter, (playbackState: avSes
 
 off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void): void
 
-媒体控制器取消监听播放状态变化的事件。
+取消播放状态变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -950,7 +950,7 @@ aVCastController.on('mediaItemChange', (item: avSession.AVQueueItem) => {
 
 off(type: 'mediaItemChange'): void
 
-取消设置投播当前播放媒体内容的监听事件。
+取消设置投播当前播放媒体内容事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1017,7 +1017,7 @@ aVCastController.on('playNext', () => {
 
 off(type: 'playNext'): void
 
-取消设置播放下一首资源的监听事件。
+取消设置播放下一首资源事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1084,7 +1084,7 @@ aVCastController.on('playPrevious', () => {
 
 off(type: 'playPrevious'): void
 
-取消设置播放上一首资源的监听事件。
+取消设置播放上一首资源事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1149,7 +1149,7 @@ aVCastController.on('requestPlay', (item: avSession.AVQueueItem) => {
 
 off(type: 'requestPlay', callback?: Callback\<AVQueueItem>): void
 
-取消设置请求播放的监听事件。
+取消设置请求播放事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -1213,7 +1213,7 @@ aVCastController.on('endOfStream', () => {
 
 off(type: 'endOfStream', callback?: Callback\<void>): void
 
-取消设置播放结束的监听事件。
+取消设置播放结束事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -1279,7 +1279,7 @@ aVCastController.on('seekDone', (pos: number) => {
 
 off(type: 'seekDone'): void
 
-取消设置seek结束的监听事件。
+取消设置seek结束事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1346,7 +1346,7 @@ aVCastController.on('validCommandChange', (validCommands: avSession.AVCastContro
 
 off(type: 'validCommandChange', callback?: Callback\<Array\<AVCastControlCommandType>>)
 
-媒体控制器取消监听会话有效命令变化的事件。
+取消会话有效命令变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -1410,7 +1410,7 @@ aVCastController.on('videoSizeChange', (width: number, height: number) => {
 
 off(type: 'videoSizeChange'): void
 
-媒体控制器取消监听视频尺寸变化的事件。
+取消视频尺寸事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 系统能力： SystemCapability.Multimedia.AVSession.AVCast
 
@@ -1483,7 +1483,7 @@ aVCastController.on('error', (error: BusinessError) => {
 
 off(type: 'error'): void
 
-取消监听播放的错误事件。
+取消播放的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1558,7 +1558,7 @@ aVCastController.on('keyRequest', keyRequestCallback);
 
 off(type: 'keyRequest', callback?: KeyRequestCallback): void
 
-取消监听许可证请求的事件。
+取消许可证请求事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1637,7 +1637,7 @@ aVCastController.on('castControlGenericError', (error: BusinessError) => {
 
 off(type: 'castControlGenericError', callback?: ErrorCallback): void
 
-取消监听投播通用的错误事件。
+取消投播通用的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1716,7 +1716,7 @@ aVCastController.on('castControlIoError', (error: BusinessError) => {
 
 off(type: 'castControlIoError', callback?: ErrorCallback): void
 
-取消监听投播输入/输出的错误事件。
+取消投播输入/输出的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1783,7 +1783,7 @@ aVCastController.on('castControlParsingError', (error: BusinessError) => {
 
 off(type: 'castControlParsingError', callback?: ErrorCallback): void
 
-取消监听投播解析的错误事件。
+取消投播解析的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1851,7 +1851,7 @@ aVCastController.on('castControlDecodingError', (error: BusinessError) => {
 
 off(type: 'castControlDecodingError', callback?: ErrorCallback): void
 
-取消监听投播解码的错误事件。
+取消投播解码的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1918,7 +1918,7 @@ aVCastController.on('castControlAudioRendererError', (error: BusinessError) => {
 
 off(type: 'castControlAudioRendererError', callback?: ErrorCallback): void
 
-取消监听投播音频渲染器的错误事件。
+取消投播音频渲染器的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1990,7 +1990,7 @@ aVCastController.on('castControlDrmError', (error: BusinessError) => {
 
 off(type: 'castControlDrmError', callback?: ErrorCallback): void
 
-取消监听投播drm的错误事件。
+取消投播drm的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
