@@ -12,7 +12,7 @@ WebSocket时一种网络通信协议，它允许客户端和服务器之间建�
 
 >**说明**
 >
->websocket支持[心跳检测机制](https://libwebsockets.org/git/libwebsockets/tree/READMEs/README.lws_retry.md)，在客户端和服务端建立WebSocket连接之后，从连接建立或者客户端收到pong帧开始计时，每间隔30秒客户端会发送Ping帧给服务器，服务器若支持websocket协议则会在收到ping帧后自动回复Pong帧，表示连接正常，若服务端异常或服务端不支持websocket协议则不会回复pong帧，若ping帧发出去后，60s内没有收到pong帧，则会主动断开连接。且不支持开发者关闭该机制。
+>websocket支持[心跳检测机制](https://libwebsockets.org/git/libwebsockets/tree/READMEs/README.lws_retry.md)，在客户端和服务端建立webSocket连接之后，从连接建立或者客户端收到Pong帧开始计时，每间隔30秒客户端会发送Ping帧给服务器，服务器若支持websocket协议则会在收到Ping帧后自动回复Pong帧，表示连接正常，若服务端异常或服务端不支持websocket协议则不会回复Pong帧，若Ping帧发出去后，60s内没有收到Pong帧，则会主动断开连接。且不支持开发者关闭该机制。
 
 ## client端开发步骤
 
