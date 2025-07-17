@@ -10,17 +10,18 @@ Multi-Category Security(MCS)是SELinux强制访问控制的一种模式，通过
 ## MCS安全级别配置
 
   为应用进程和应用数据目录添加MCS配置，需要保证MCS开关开启。
+
   然后在`sehap_contexts`配置文件中按需配置levelFrom和user，如果未配置user，默认为user=u。示例如下：
   ```text
   apl=normal debuggable=true domain=debug_hap type=debug_hap_data_file levelFrom=all user=o
   ```
 
-  配置user时，如果user未定义，需要先在users策略文件里定义，示例：
+  配置user时，如果user未定义，需要先在users策略文件里定义。示例如下：
   ```text
   user o roles { r } level s0 range s0 - s0:c0.x1279;
   ```
 
-  也可以在`product_config`配置文件中，配置默认levelFrom和user，如果未配置user，默认为user=u。示例格式如下：
+  也可以在`product_config`配置文件中，配置默认levelFrom和user，如果未配置user，默认为user=u。示例如下：
 
   ```text
   defaultLevelFrom=user
