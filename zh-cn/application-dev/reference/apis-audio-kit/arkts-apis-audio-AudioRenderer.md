@@ -2633,7 +2633,7 @@ try {
 
 setLoudnessGain(loudnessGain: number): Promise\<void>
 
-设置播放响度。使用Promise异步回调。默认的响度值为0.0dB。
+设置播放响度。使用Promise异步回调。<br>本接口仅支持类型为[STREAM_USAGE_MUSIC](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)，[STREAM_USAGE_MOVIE](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)或[STREAM_USAGE_AUDIOBOOK](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)的音频流设置响度。<br>本接口不支持高清通路设置响度。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -2641,13 +2641,13 @@ setLoudnessGain(loudnessGain: number): Promise\<void>
 
 | 参数名       | 类型    | 必填 | 说明                                      |
 | ------------ | -------| ---- |------------------------------------------ |
-| loudnessGain | number | 是   | 设置播放的响度值（响度范围：-90.0 - 24.0）。 |
+| loudnessGain | number | 是   | 设置播放的响度值，单位：dB，响度范围：[-90.0, 24.0]。<br>默认为0.0dB。|
 
 **返回值：**
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。  |
 
 **错误码：**
 
@@ -2668,9 +2668,15 @@ audioRenderer.setLoudnessGain(1.0);
 
 getLoudnessGain(): number
 
-获取播放响度
+获取播放响度。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型    | 说明             |
+|------- |-----------------  |
+| number | 返回播放的响度值。 |
 
 **示例：**
 
