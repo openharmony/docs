@@ -109,3 +109,16 @@ eSIM.addProfile(profile).then(() => {
     console.error(`addProfile, promise: err->${JSON.stringify(err)}`);
 });
 ```
+
+## DownloadableProfile<sup>18+</sup>
+
+Defines a downloadable profile.
+
+**System capability**: SystemCapability.Telephony.CoreService.Esim
+
+| Name| Type| Mandatory| Description|
+| ----- | ----- | ----- | -----|
+| activationCode   | string             |  Yes | Activation code. For a profile that does not require an activation code, the value may be left empty.|
+| confirmationCode | string             |  No | Confirmation code.     |
+| carrierName      | string             |  No | Carrier name.   |
+| accessRules      | Array\<AccessRule> |  No | Access rule array.|

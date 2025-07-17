@@ -75,7 +75,7 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -125,7 +125,7 @@ let bindAddr: socket.NetAddress = {
 udp.bind(bindAddr).then(() => {
   console.log('bind success');
 }).catch((err: BusinessError) => {
-  console.log('bind fail');
+  console.error('bind fail');
 });
 ```
 
@@ -170,8 +170,19 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx', // Local IP address
+  port: 1234
+}
+udp.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.error('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
 let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
+  address: '192.168.xx.xxx', // Peer IP address
   port: 8080
 }
 let sendOptions: socket.UDPSendOptions = {
@@ -180,7 +191,7 @@ let sendOptions: socket.UDPSendOptions = {
 }
 udp.send(sendOptions, (err: BusinessError) => {
   if (err) {
-    console.log('send fail');
+    console.error('send fail');
     return;
   }
   console.log('send success');
@@ -194,8 +205,19 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx', // Local IP address
+  port: 1234
+}
+udp.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.error('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
 let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
+  address: '192.168.xx.xxx', // Peer IP address
   port: 8080
 }
 let socks5Server: socket.NetAddress = {
@@ -214,7 +236,7 @@ let sendOptions: socket.UDPSendOptions = {
 }
 udp.send(sendOptions, (err: BusinessError) => {
   if (err) {
-    console.log('send fail');
+    console.error('send fail');
     return;
   }
   console.log('send success');
@@ -267,8 +289,18 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx', // Local IP address
+  port: 8080
+}
+udp.bind(bindAddr).then(() => {
+  console.log('bind success');
+}).catch((err: BusinessError) => {
+  console.error('bind fail');
+  return;
+});
 let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
+  address: '192.168.xx.xxx', // Peer IP address
   port: 8080
 }
 let sendOptions: socket.UDPSendOptions = {
@@ -278,7 +310,7 @@ let sendOptions: socket.UDPSendOptions = {
 udp.send(sendOptions).then(() => {
   console.log('send success');
 }).catch((err: BusinessError) => {
-  console.log('send fail');
+  console.error('send fail');
 });
 ```
 
@@ -289,8 +321,18 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx', // Local IP address
+  port: 8080
+}
+udp.bind(bindAddr).then(() => {
+  console.log('bind success');
+}).catch((err: BusinessError) => {
+  console.error('bind fail');
+  return;
+});
 let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
+  address: '192.168.xx.xxx', // Peer IP address
   port: 8080
 }
 let socks5Server: socket.NetAddress = {
@@ -310,7 +352,7 @@ let sendOptions: socket.UDPSendOptions = {
 udp.send(sendOptions).then(() => {
   console.log('send success');
 }).catch((err: BusinessError) => {
-  console.log('send fail');
+  console.error('send fail');
 });
 ```
 
@@ -345,7 +387,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.close((err: BusinessError) => {
   if (err) {
-    console.log('close fail');
+    console.error('close fail');
     return;
   }
   console.log('close success');
@@ -384,7 +426,7 @@ let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.close().then(() => {
   console.log('close success');
 }).catch((err: BusinessError) => {
-  console.log('close fail');
+  console.error('close fail');
 });
 ```
 
@@ -405,7 +447,7 @@ Obtains the status of the UDP socket connection. This API uses an asynchronous c
 
 | Name  | Type                                                  | Mandatory| Description      |
 | -------- | ------------------------------------------------------ | ---- | ---------- |
-| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | Yes  | Callback used to return the result. If the operation is successful, the status of the TLS socket server connection is returned. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)\> | Yes  | Callback used to return the result. If the operation is successful, the status of the UDP socket connection is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -426,10 +468,10 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
-  console.log('bind success');
+  console.error('bind success');
   udp.getState((err: BusinessError, data: socket.SocketStateBase) => {
     if (err) {
       console.log('getState fail');
@@ -478,14 +520,14 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
   udp.getState().then((data: socket.SocketStateBase) => {
     console.log('getState success:' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.log('getState fail' + JSON.stringify(err));
+    console.error('getState fail' + JSON.stringify(err));
   });
 });
 ```
@@ -531,20 +573,20 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
   let udpextraoptions: socket.UDPExtraOptions = {
-    receiveBufferSize: 6000000,
-    sendBufferSize: 2000000,
+    receiveBufferSize: 8192,
+    sendBufferSize: 8192,
     reuseAddress: false,
     socketTimeout: 6000,
     broadcast: true
   }
   udp.setExtraOptions(udpextraoptions, (err: BusinessError) => {
     if (err) {
-      console.log('setExtraOptions fail');
+      console.error('setExtraOptions fail');
       return;
     }
     console.log('setExtraOptions success');
@@ -598,13 +640,13 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
   let udpextraoptions: socket.UDPExtraOptions = {
-    receiveBufferSize: 6000000,
-    sendBufferSize: 2000000,
+    receiveBufferSize: 8192,
+    sendBufferSize: 8192,
     reuseAddress: false,
     socketTimeout: 6000,
     broadcast: true
@@ -612,7 +654,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
   udp.setExtraOptions(udpextraoptions).then(() => {
     console.log('setExtraOptions success');
   }).catch((err: BusinessError) => {
-    console.log('setExtraOptions fail');
+    console.error('setExtraOptions fail');
   });
 })
 ```
@@ -832,7 +874,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.on('error', (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err))
+  console.error("on error, err:" + JSON.stringify(err))
 });
 ```
 
@@ -859,7 +901,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 udp.on('error', callback);
 // You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
@@ -1034,7 +1076,7 @@ let addr: socket.NetAddress = {
 }
 multicast.addMembership(addr, (err: Object) => {
   if (err) {
-    console.log('add membership fail, err: ' + JSON.stringify(err));
+    console.error('add membership fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('add membership success');
@@ -1089,7 +1131,7 @@ let addr: socket.NetAddress = {
 multicast.addMembership(addr).then(() => {
   console.log('addMembership success');
 }).catch((err: Object) => {
-  console.log('addMembership fail');
+  console.error('addMembership fail');
 });
 ```
 
@@ -1135,7 +1177,7 @@ let addr: socket.NetAddress = {
 }
 multicast.dropMembership(addr, (err: Object) => {
   if (err) {
-    console.log('drop membership fail, err: ' + JSON.stringify(err));
+    console.error('drop membership fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('drop membership success');
@@ -1190,7 +1232,7 @@ let addr: socket.NetAddress = {
 multicast.dropMembership(addr).then(() => {
   console.log('drop membership success');
 }).catch((err: Object) => {
-  console.log('drop membership fail');
+  console.error('drop membership fail');
 });
 ```
 
@@ -1232,7 +1274,7 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 let ttl = 8
 multicast.setMulticastTTL(ttl, (err: Object) => {
   if (err) {
-    console.log('set ttl fail, err: ' + JSON.stringify(err));
+    console.error('set ttl fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('set ttl success');
@@ -1282,7 +1324,7 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 multicast.setMulticastTTL(8).then(() => {
   console.log('set ttl success');
 }).catch((err: Object) => {
-  console.log('set ttl failed');
+  console.error('set ttl failed');
 });
 ```
 
@@ -1321,7 +1363,7 @@ import { socket } from '@kit.NetworkKit';
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.getMulticastTTL((err: Object, value: Number) => {
   if (err) {
-    console.log('set ttl fail, err: ' + JSON.stringify(err));
+    console.error('set ttl fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('set ttl success, value: ' + JSON.stringify(value));
@@ -1364,7 +1406,7 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 multicast.getMulticastTTL().then((value: Number) => {
   console.log('ttl: ', JSON.stringify(value));
 }).catch((err: Object) => {
-  console.log('set ttl failed');
+  console.error('set ttl failed');
 });
 ```
 
@@ -1403,7 +1445,7 @@ import { socket } from '@kit.NetworkKit';
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setLoopbackMode(false, (err: Object) => {
   if (err) {
-    console.log('set loopback mode fail, err: ' + JSON.stringify(err));
+    console.error('set loopback mode fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('set loopback mode success');
@@ -1451,7 +1493,7 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 multicast.setLoopbackMode(false).then(() => {
   console.log('set loopback mode success');
 }).catch((err: Object) => {
-  console.log('set loopback mode failed');
+  console.error('set loopback mode failed');
 });
 ```
 
@@ -1472,7 +1514,7 @@ Obtains the loopback mode flag for multicast communication. This API uses a prom
 
 | Name        | Type                    | Mandatory| Description                        |
 | ------------- | ----------------------- | ---- | --------------------------- |
-| callback      | AsyncCallback\<number\> |  Yes | Callback used to return the result. If the operation fails, an error message is returned. |
+| callback      | AsyncCallback\<boolean\> |  Yes | Callback used to return the result. If the operation fails, an error message is returned. |
 
 **Error codes**
 
@@ -1489,7 +1531,7 @@ import { socket } from '@kit.NetworkKit';
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.getLoopbackMode((err: Object, value: Boolean) => {
   if (err) {
-    console.log('get loopback mode fail, err: ' + JSON.stringify(err));
+    console.error('get loopback mode fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('get loopback mode success, value: ' + JSON.stringify(value));
@@ -1531,7 +1573,7 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 multicast.getLoopbackMode().then((value: Boolean) => {
   console.log('loopback mode: ', JSON.stringify(value));
 }).catch((err: Object) => {
-  console.log('get loopback mode failed');
+  console.error('get loopback mode failed');
 });
 ```
 
@@ -1602,7 +1644,7 @@ let bindAddr: socket.NetAddress = {
 }
 tcp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -1657,7 +1699,7 @@ let bindAddr: socket.NetAddress = {
 tcp.bind(bindAddr).then(() => {
   console.log('bind success');
 }).catch((err: BusinessError) => {
-  console.log('bind fail');
+  console.error('bind fail');
 });
 ```
 
@@ -1713,7 +1755,7 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
 }
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
-    console.log('connect fail');
+    console.error('connect fail');
     return;
   }
   console.log('connect success');
@@ -1747,7 +1789,7 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
 }
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
-    console.log('connect fail');
+    console.error('connect fail');
     return;
   }
   console.log('connect success');
@@ -1812,7 +1854,7 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
 tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success')
 }).catch((err: BusinessError) => {
-  console.log('connect fail');
+  console.error('connect fail');
 });
 ```
 
@@ -1844,7 +1886,7 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
 tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success')
 }).catch((err: BusinessError) => {
-  console.log('connect fail');
+  console.error('connect fail');
 });
 ```
 
@@ -1897,7 +1939,7 @@ tcp.connect(tcpconnectoptions, () => {
   }
   tcp.send(tcpSendOptions, (err: BusinessError) => {
     if (err) {
-      console.log('send fail');
+      console.error('send fail');
       return;
     }
     console.log('send success');
@@ -1960,7 +2002,7 @@ tcp.connect(tcpconnectoptions, () => {
   tcp.send(tcpSendOptions).then(() => {
     console.log('send success');
   }).catch((err: BusinessError) => {
-    console.log('send fail');
+    console.error('send fail');
   });
 })
 ```
@@ -1997,7 +2039,7 @@ let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 tcp.close((err: BusinessError) => {
   if (err) {
-    console.log('close fail');
+    console.error('close fail');
     return;
   }
   console.log('close success');
@@ -2036,7 +2078,7 @@ let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 tcp.close().then(() => {
   console.log('close success');
 }).catch((err: BusinessError) => {
-  console.log('close fail');
+  console.error('close fail');
 });
 ```
 
@@ -2084,7 +2126,7 @@ tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
   tcp.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
     if (err) {
-      console.log('getRemoteAddressfail');
+      console.error('getRemoteAddressfail');
       return;
     }
     console.log('getRemoteAddresssuccess:' + JSON.stringify(data));
@@ -2137,10 +2179,10 @@ tcp.connect(tcpconnectoptions).then(() => {
   tcp.getRemoteAddress().then(() => {
     console.log('getRemoteAddress success');
   }).catch((err: BusinessError) => {
-    console.log('getRemoteAddressfail');
+    console.error('getRemoteAddressfail');
   });
 }).catch((err: BusinessError) => {
-  console.log('connect fail');
+  console.error('connect fail');
 });
 ```
 
@@ -2188,7 +2230,7 @@ tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
   tcp.getState((err: BusinessError, data: socket.SocketStateBase) => {
     if (err) {
-      console.log('getState fail');
+      console.error('getState fail');
       return;
     }
     console.log('getState success:' + JSON.stringify(data));
@@ -2241,10 +2283,10 @@ tcp.connect(tcpconnectoptions).then(() => {
   tcp.getState().then(() => {
     console.log('getState success');
   }).catch((err: BusinessError) => {
-    console.log('getState fail');
+    console.error('getState fail');
   });
 }).catch((err: BusinessError) => {
-  console.log('connect fail');
+  console.error('connect fail');
 });
 ```
 
@@ -2387,14 +2429,14 @@ tcp.connect(tcpconnectoptions, () => {
     OOBInline: true,
     TCPNoDelay: true,
     socketLinger: { on: true, linger: 10 } as SocketLinger,
-    receiveBufferSize: 1000,
-    sendBufferSize: 1000,
+    receiveBufferSize: 8192,
+    sendBufferSize: 8192,
     reuseAddress: true,
     socketTimeout: 3000
   }
   tcp.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
     if (err) {
-      console.log('setExtraOptions fail');
+      console.error('setExtraOptions fail');
       return;
     }
     console.log('setExtraOptions success');
@@ -2462,15 +2504,15 @@ tcp.connect(tcpconnectoptions, () => {
     OOBInline: true,
     TCPNoDelay: true,
     socketLinger: { on: true, linger: 10 } as SocketLinger,
-    receiveBufferSize: 1000,
-    sendBufferSize: 1000,
+    receiveBufferSize: 8192,
+    sendBufferSize: 8192,
     reuseAddress: true,
     socketTimeout: 3000
   }
   tcp.setExtraOptions(tcpExtraOptions).then(() => {
     console.log('setExtraOptions success');
   }).catch((err: BusinessError) => {
-    console.log('setExtraOptions fail');
+    console.error('setExtraOptions fail');
   });
 });
 ```
@@ -2688,7 +2730,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 tcp.on('error', (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err))
+  console.error("on error, err:" + JSON.stringify(err))
 });
 ```
 
@@ -2715,7 +2757,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 tcp.on('error', callback);
 // You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
@@ -2732,7 +2774,7 @@ Defines TCP socket connection parameters.
 | Name | Type                              | Mandatory| Description                      |
 | ------- | ---------------------------------- | ---- | -------------------------- |
 | address | [NetAddress](#netaddress) | Yes  | Bound IP address and port number.      |
-| timeout | number                             | No  | Timeout duration of the TCP socket connection, in ms.|
+| timeout | number                             | No  | Timeout duration of the TCP socket connection, in ms. The default value is **5000**.|
 | proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | No  | Proxy option. By default, no proxy is used.|
 
 ## TCPSendOptions
@@ -2830,7 +2872,7 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -2889,7 +2931,7 @@ let listenAddr: socket.NetAddress = {
 tcpServer.listen(listenAddr).then(() => {
   console.log('listen success');
 }).catch((err: BusinessError) => {
-  console.log('listen fail');
+  console.error('listen fail');
 });
 ```
 
@@ -2935,14 +2977,14 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
 })
 tcpServer.getState((err: BusinessError, data: socket.SocketStateBase) => {
   if (err) {
-    console.log('getState fail');
+    console.error('getState fail');
     return;
   }
   console.log('getState success:' + JSON.stringify(data));
@@ -2990,7 +3032,7 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -2998,7 +3040,7 @@ tcpServer.listen(listenAddr, (err: BusinessError) => {
 tcpServer.getState().then((data: socket.SocketStateBase) => {
   console.log('getState success' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.log('getState fail');
+  console.error('getState fail');
 });
 ```
 
@@ -3045,7 +3087,7 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -3061,14 +3103,14 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
 tcpServer.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
   if (err) {
-    console.log('setExtraOptions fail');
+    console.error('setExtraOptions fail');
     return;
   }
   console.log('setExtraOptions success');
@@ -3129,7 +3171,7 @@ interface SocketLinger {
 
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -3140,15 +3182,15 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
 tcpServer.setExtraOptions(tcpExtraOptions).then(() => {
   console.log('setExtraOptions success');
 }).catch((err: BusinessError) => {
-  console.log('setExtraOptions fail');
+  console.error('setExtraOptions fail');
 });
 ```
 
@@ -3238,7 +3280,7 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -3283,7 +3325,7 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -3336,12 +3378,12 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
   tcpServer.on('error', (err: BusinessError) => {
-    console.log("on error, err:" + JSON.stringify(err))
+    console.error("on error, err:" + JSON.stringify(err))
   });
 })
 ```
@@ -3382,12 +3424,12 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
   let callback = (err: BusinessError) => {
-    console.log("on error, err:" + JSON.stringify(err));
+    console.error("on error, err:" + JSON.stringify(err));
   }
   tcpServer.on('error', callback);
   // You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
@@ -3504,7 +3546,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.send(tcpSendOption).then(() => {
     console.log('send success');
   }).catch((err: BusinessError) => {
-    console.log('send fail');
+    console.error('send fail');
   });
 });
 ```
@@ -3544,7 +3586,7 @@ let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance(
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.close((err: BusinessError) => {
     if (err) {
-      console.log('close fail');
+      console.error('close fail');
       return;
     }
     console.log('close success');
@@ -3585,7 +3627,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.close().then(() => {
   	console.log('close success');
   }).catch((err: BusinessError) => {
-  	console.log('close fail');
+  	console.error('close fail');
   });
 });
 ```
@@ -3628,7 +3670,7 @@ let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance(
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
     if (err) {
-      console.log('getRemoteAddress fail');
+      console.error('getRemoteAddress fail');
       return;
     }
     console.log('getRemoteAddress success:' + JSON.stringify(data));
@@ -3674,7 +3716,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.getRemoteAddress().then(() => {
     console.log('getRemoteAddress success');
   }).catch((err: BusinessError) => {
-    console.log('getRemoteAddress fail');
+    console.error('getRemoteAddress fail');
   });
 });
 ```
@@ -3934,7 +3976,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('error', (err: BusinessError) => {
-    console.log("on error, err:" + JSON.stringify(err))
+    console.error("on error, err:" + JSON.stringify(err))
   });
 });
 ```
@@ -3967,7 +4009,7 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
@@ -4027,6 +4069,12 @@ Binds the address of a local socket file. This API uses a promise to return the 
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
 | address  | [LocalAddress](#localaddress11) | Yes  | Destination address. For details, see [LocalAddress](#localaddress11).|
 
+**Return value**
+
+| Type           | Description                                      |
+| :-------------- | :---------------------------------------- |
+| Promise\<void\> | **Promise\<void>**: Promise that returns no value.|
+
 **Error codes**
 
 | ID| Error Message                   |
@@ -4038,11 +4086,18 @@ Binds the address of a local socket file. This API uses a promise to return the 
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let address : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4088,11 +4143,18 @@ Connects to the specified socket file. This API uses a promise to return the res
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4139,11 +4201,18 @@ Sends data over a local socket connection. This API uses a promise to return the
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4219,11 +4288,18 @@ Obtains the local socket connection status. This API uses a promise to return th
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4263,11 +4339,18 @@ Obtains the file descriptor of the **LocalSocket** object. This API uses a promi
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4319,11 +4402,18 @@ Sets other properties of the local socket connection. This API uses a promise to
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4334,8 +4424,8 @@ let connectOpt: socket.LocalConnectOptions = {
 client.connect(connectOpt).then(() => {
   console.log('connect success');
   let options: socket.ExtraOptionsBase = {
-    receiveBufferSize: 8000,
-    sendBufferSize: 8000,
+    receiveBufferSize: 8192,
+    sendBufferSize: 8192,
     socketTimeout: 3000
   }
   client.setExtraOptions(options).then(() => {
@@ -4373,11 +4463,18 @@ Obtains other properties of the local socket connection. This API uses a promise
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4424,9 +4521,17 @@ Obtains the local socket address of a **LocalSocket** connection. This API uses 
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket';
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let address : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4438,7 +4543,7 @@ client.bind(address).then(() => {
     console.error("FAIL " + JSON.stringify(err));
   })
 }).catch((err: Object) => {
-  console.info('failed to bind: ' + JSON.stringify(err));
+  console.error('failed to bind: ' + JSON.stringify(err));
 })
 ```
 
@@ -4523,7 +4628,7 @@ client.off('message');
 
 ### on('connect')<sup>11+</sup>
 
-on(type: 'connect', callback: Callback\<void\>): void;
+on(type: 'connect', callback: Callback\<void\>): void
 
 Subscribes to **connect** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
@@ -4555,7 +4660,7 @@ client.on('connect', () => {
 
 ### off('connect')<sup>11+</sup>
 
-off(type: 'connect', callback?: Callback\<void\>): void;
+off(type: 'connect', callback?: Callback\<void\>): void
 
 Unsubscribes from **connect** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
@@ -4591,7 +4696,7 @@ client.off('connect');
 
 ### on('close')<sup>11+</sup>
 
-on(type: 'close', callback: Callback\<void\>): void;
+on(type: 'close', callback: Callback\<void\>): void
 
 Subscribes to **close** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
@@ -4624,9 +4729,9 @@ client.on('close', callback);
 
 ### off('close')<sup>11+</sup>
 
-off(type: 'close', callback?: Callback\<void\>): void;
+off(type: 'close', callback?: Callback\<void\>): void
 
-Unsubscribes from **close** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
+Subscribes to **close** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -4686,13 +4791,13 @@ import { socket } from '@kit.NetworkKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 client.on('error', (err: Object) => {
-  console.log("on error, err:" + JSON.stringify(err))
+  console.error("on error, err:" + JSON.stringify(err))
 });
 ```
 
 ### off('error')<sup>11+</sup>
 
-off(type: 'error', callback?: ErrorCallback): void;
+off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
@@ -4718,7 +4823,7 @@ import { socket } from '@kit.NetworkKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let callback = (err: Object) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 client.on('error', callback);
 // You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
@@ -4757,7 +4862,7 @@ Defines local socket connection parameters.
 | Name    | Type      | Mandatory| Description                           |
 | ------- | ---------- | --- | ------------------------------ |
 | address | [LocalAddress](#localaddress11)    | Yes  | Address of the local socket file.           |
-| timeout | number     | No  | Timeout duration of the local socket connection, in ms. |
+| timeout | number     | No  | Timeout duration of the local socket connection, in ms. The default value is **0**. You need to manually set this parameter for your application. The recommended value is **5000**. |
 
 ## LocalSendOptions<sup>11+</sup>
 
@@ -4778,8 +4883,8 @@ Defines other properties of the local socket connection.
 
 | Name           | Type   | Mandatory| Description                             |
 | ----------------- | ------- | ---- | ----------------------------- |
-| receiveBufferSize | number  | No  | Size of the receive buffer, in bytes.    |
-| sendBufferSize    | number  | No  | Size of the send buffer, in bytes.    |
+| receiveBufferSize | number  | No  | Size of the RX buffer, in bytes. The value ranges from 0 to 262144. If this parameter is left unspecified or the unspecified value exceeds the value range, the default value **8192** is used.    |
+| sendBufferSize    | number  | No  | Size of the TX buffer, in bytes. The value ranges from 0 to 262144. If this parameter is left unspecified or the unspecified value exceeds the value range, the default value **8192** is used.    |
 | reuseAddress      | boolean | No  | Whether to reuse addresses. The value **true** means to reuse addresses, and the value **false** means the opposite.                  |
 | socketTimeout     | number  | No  | Timeout duration of the local socket connection, in ms.   |
 
@@ -4843,11 +4948,18 @@ Binds the address of the local socket file. The server listens to and accepts lo
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let addr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4877,11 +4989,17 @@ Obtains the status of a local socket server connection. This API uses a promise 
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4929,11 +5047,18 @@ Sets other properties of the local socket server connection. This API uses a pro
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.NetAddress = {
   address: sandboxPath
 }
@@ -4944,8 +5069,8 @@ server.listen(listenAddr).then(() => {
 })
 
 let options: socket.ExtraOptionsBase = {
-  receiveBufferSize: 6000,
-  sendBufferSize: 6000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   socketTimeout: 3000
 }
 server.setExtraOptions(options).then(() => {
@@ -4980,11 +5105,17 @@ Obtains other properties of a local socket server connection. This API uses a pr
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -5027,9 +5158,16 @@ Obtains the local socket address of a **LocalSocketServer** connection. This API
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```ts
+import { common } from '@kit.AbilityKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket';
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -5316,9 +5454,16 @@ Obtains the local socket address of a **LocalSocketConnection** connection. This
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```ts
+import { common } from '@kit.AbilityKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket';
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -5343,7 +5488,7 @@ server.listen(localAddr).then(() => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
+on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 
 Subscribes to **message** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
 
@@ -5364,11 +5509,18 @@ Subscribes to **message** events of a **LocalSocketConnection** object. This API
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -5645,18 +5797,18 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-let connAddress: socket.TCPConnectOptions = {
+let netAddress: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
-};
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: connAddress,
+  address: netAddress,
   timeout: 6000
 }
 
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
-    console.log('connect fail');
+    console.error('connect fail');
     return;
   }
   console.log('connect success');
@@ -5712,7 +5864,7 @@ let bindAddr: socket.NetAddress = {
 }
 tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -5767,7 +5919,7 @@ let bindAddr: socket.NetAddress = {
 tls.bind(bindAddr).then(() => {
   console.log('bind success');
 }).catch((err: BusinessError) => {
-  console.log('bind fail');
+  console.error('bind fail');
 });
 ```
 
@@ -5805,14 +5957,14 @@ let bindAddr: socket.NetAddress = {
 }
 tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
 });
 tls.getState((err: BusinessError, data: socket.SocketStateBase) => {
   if (err) {
-    console.log('getState fail');
+    console.error('getState fail');
     return;
   }
   console.log('getState success:' + JSON.stringify(data));
@@ -5853,7 +6005,7 @@ let bindAddr: socket.NetAddress = {
 }
 tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -5861,7 +6013,7 @@ tls.bind(bindAddr, (err: BusinessError) => {
 tls.getState().then(() => {
   console.log('getState success');
 }).catch((err: BusinessError) => {
-  console.log('getState fail');
+  console.error('getState fail');
 });
 ```
 
@@ -5901,7 +6053,7 @@ let bindAddr: socket.NetAddress = {
 }
 tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -5917,14 +6069,14 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
 tls.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
   if (err) {
-    console.log('setExtraOptions fail');
+    console.error('setExtraOptions fail');
     return;
   }
   console.log('setExtraOptions success');
@@ -5972,7 +6124,7 @@ let bindAddr: socket.NetAddress = {
 }
 tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -5988,23 +6140,27 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
 tls.setExtraOptions(tcpExtraOptions).then(() => {
   console.log('setExtraOptions success');
 }).catch((err: BusinessError) => {
-  console.log('setExtraOptions fail');
+  console.error('setExtraOptions fail');
 });
 ```
 
 ### on('message')<sup>9+</sup>
 
-on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 
 Subscribes to **message** events of the TLS socket connection. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API can be called only after **bind** is successfully called.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6029,15 +6185,26 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let messageView = '';
-tls.on('message', (value: socket.SocketMessageInfo) => {
-  for (let i: number = 0; i < value.message.byteLength; i++) {
-    let uint8Array = new Uint8Array(value.message) 
-    let messages = uint8Array[i]
-    let message = String.fromCharCode(messages);
-    messageView += message;
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
   }
-  console.log('on message message: ' + JSON.stringify(messageView));
-  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+  console.log('bind success');
+  tls.on('message', (value: socket.SocketMessageInfo) => {
+    for (let i: number = 0; i < value.message.byteLength; i++) {
+      let uint8Array = new Uint8Array(value.message) 
+      let messages = uint8Array[i]
+      let message = String.fromCharCode(messages);
+      messageView += message;
+    }
+    console.log('on message message: ' + JSON.stringify(messageView));
+    console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+  });
 });
 ```
 
@@ -6090,6 +6257,10 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
 Subscribes to **connect** or **close** events of the TLS socket connection. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API can be called only after **bind** is successfully called.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -6112,11 +6283,22 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-tls.on('connect', () => {
-  console.log("on connect success")
-});
-tls.on('close', () => {
-  console.log("on close success")
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+  tls.on('connect', () => {
+    console.log("on connect success")
+  });
+  tls.on('close', () => {
+    console.log("on close success")
+  });
 });
 ```
 
@@ -6169,6 +6351,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 Subscribes to **error** events of the TLS socket connection. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API can be called only after **bind** is successfully called.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -6191,8 +6377,19 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-tls.on('error', (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err))
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+  tls.on('error', (err: BusinessError) => {
+    console.error("on error, err:" + JSON.stringify(err))
+  });
 });
 ```
 
@@ -6225,7 +6422,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 tls.on('error', callback);
 // You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
@@ -6287,7 +6484,7 @@ let bindAddr: socket.NetAddress = {
 }
 tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6319,7 +6516,7 @@ tlsTwoWay.connect(tlsConnectOptions, (err: BusinessError) => {
 let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
 tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6353,7 +6550,7 @@ let bindAddr: socket.NetAddress = {
 }
 tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6395,7 +6592,7 @@ tlsTwoWay.connect(tlsConnectOptions, (err: BusinessError) => {
 let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One-way authentication
 tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6483,7 +6680,7 @@ let bindAddr: socket.NetAddress = {
 }
 tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6511,13 +6708,13 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsTwoWay.connect(tlsConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
+  console.error("connect failed " + JSON.stringify(err));
 });
 
 let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
 tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6537,7 +6734,7 @@ let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
+  console.error("connect failed " + JSON.stringify(err));
 });
 ```
 
@@ -6553,7 +6750,7 @@ let bindAddr: socket.NetAddress = {
 }
 tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6591,13 +6788,13 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsTwoWay.connect(tlsConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
+  console.error("connect failed " + JSON.stringify(err));
 });
 
 let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One-way authentication
 tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6623,7 +6820,7 @@ let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
+  console.error("connect failed " + JSON.stringify(err));
 });
 ```
 
@@ -6657,7 +6854,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
   if (err) {
-    console.log('getRemoteAddress fail');
+    console.error('getRemoteAddress fail');
     return;
   }
   console.log('getRemoteAddress success:' + JSON.stringify(data));
@@ -6695,7 +6892,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteAddress().then(() => {
   console.log('getRemoteAddress success');
 }).catch((err: BusinessError) => {
-  console.log('getRemoteAddress fail');
+  console.error('getRemoteAddress fail');
 });
 ```
 
@@ -6730,7 +6927,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
-    console.log("getCertificate callback error = " + err);
+    console.error("getCertificate callback error = " + err);
   } else {
     console.log("getCertificate callback = " + data);
   }
@@ -6769,7 +6966,7 @@ import { util } from '@kit.ArkTS';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
-  const str = decoder.decodeWithStream(data.data);
+  const str = decoder.decodeToString(data.data);
   console.log("getCertificate: " + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
@@ -6807,10 +7004,10 @@ import { util } from '@kit.ArkTS';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
-    console.log("getRemoteCertificate callback error = " + err);
+    console.error("getRemoteCertificate callback error = " + err);
   } else {
     const decoder = util.TextDecoder.create();
-    const str = decoder.decodeWithStream(data.data);
+    const str = decoder.decodeToString(data.data);
     console.log("getRemoteCertificate callback = " + str);
   }
 });
@@ -6847,7 +7044,7 @@ import { util } from '@kit.ArkTS';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
-  const str = decoder.decodeWithStream(data.data);
+  const str = decoder.decodeToString(data.data);
   console.log("getRemoteCertificate:" + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
@@ -6885,7 +7082,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getProtocol((err: BusinessError, data: string) => {
   if (err) {
-    console.log("getProtocol callback error = " + err);
+    console.error("getProtocol callback error = " + err);
   } else {
     console.log("getProtocol callback = " + data);
   }
@@ -6960,7 +7157,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCipherSuite((err: BusinessError, data: Array<string>) => {
   if (err) {
-    console.log("getCipherSuite callback error = " + err);
+    console.error("getCipherSuite callback error = " + err);
   } else {
     console.log("getCipherSuite callback = " + data);
   }
@@ -7034,7 +7231,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getSignatureAlgorithms((err: BusinessError, data: Array<string>) => {
   if (err) {
-    console.log("getSignatureAlgorithms callback error = " + err);
+    console.error("getSignatureAlgorithms callback error = " + err);
   } else {
     console.log("getSignatureAlgorithms callback = " + data);
   }
@@ -7115,6 +7312,46 @@ tls.getLocalAddress().then((localAddress: socket.NetAddress) => {
 })
 ```
 
+### getSocketFd<sup>16+</sup>
+
+getSocketFd(): Promise\<number\>
+
+Obtains the file descriptor of the **TLSSocket** object. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API can be called only after **bind** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                                            | Description                                      |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise\<number\> | Promise used to return the result.|
+
+**Example**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.error('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
+tls.getSocketFd().then((data: number) => {
+  console.info("tls socket fd: " + data);
+})
+```
+
 ### send<sup>9+</sup>
 
 send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
@@ -7150,7 +7387,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.send("xxxx", (err: BusinessError) => {
   if (err) {
-    console.log("send callback error = " + err);
+    console.error("send callback error = " + err);
   } else {
     console.log("send success");
   }
@@ -7235,7 +7472,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.close((err: BusinessError) => {
   if (err) {
-    console.log("close callback error = " + err);
+    console.error("close callback error = " + err);
   } else {
     console.log("close success");
   }
@@ -7366,7 +7603,7 @@ Defines a TLS socket server connection. Before calling TLSSocketServer APIs, you
 
 listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
-Listens to client connections after **bind** is successfully called. This API uses an asynchronous callback to return the result. After a connection is established, a TLS session will be created and initialized and a certificate key will be loaded and verified. 
+Listens for client connections after **bind** is successfully called to bind the IP address and port of **TLSSocketServer**. This API uses an asynchronous callback to return the result. After a connection is established, a TLS session will be created and initialized and a certificate key will be loaded and verified. 
 
 **NOTE**<br>If the IP address is set to **0.0.0.0**, listening works for all IP addresses of the local host.
 
@@ -7426,7 +7663,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
   skipRemoteValidation: false
 }
 tlsServer.listen(tlsConnectOptions, (err: BusinessError) => {
-  console.log("listen callback error" + err);
+  console.error("listen callback error" + err);
 });
 ```
 
@@ -7434,7 +7671,7 @@ tlsServer.listen(tlsConnectOptions, (err: BusinessError) => {
 
 listen(options: TLSConnectOptions): Promise\<void\>
 
-Listens to client connections after **bind** is successfully called. This API uses a promise to return the result. After a connection is established, a TLS session will be created and initialized and a certificate key will be loaded and verified. 
+Listens for client connections after **bind** is successfully called to bind the IP address and port of **TLSSocketServer**. This API uses a promise to return the result. After a connection is established, a TLS session will be created and initialized and a certificate key will be loaded and verified. 
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -7499,7 +7736,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 ```
 
@@ -7557,11 +7794,11 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getState((err: BusinessError, data: socket.SocketStateBase) => {
   if (err) {
-    console.log('getState fail');
+    console.error('getState fail');
     return;
   }
   console.log('getState success:' + JSON.stringify(data));
@@ -7621,12 +7858,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getState().then(() => {
   console.log('getState success');
 }).catch((err: BusinessError) => {
-  console.log('getState fail');
+  console.error('getState fail');
 });
 ```
 
@@ -7685,7 +7922,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 
 interface SocketLinger {
@@ -7698,14 +7935,14 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
 tlsServer.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
   if (err) {
-    console.log('setExtraOptions fail');
+    console.error('setExtraOptions fail');
     return;
   }
   console.log('setExtraOptions success');
@@ -7772,7 +8009,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 
 interface SocketLinger {
@@ -7785,15 +8022,15 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
 tlsServer.setExtraOptions(tcpExtraOptions).then(() => {
   console.log('setExtraOptions success');
 }).catch((err: BusinessError) => {
-  console.log('setExtraOptions fail');
+  console.error('setExtraOptions fail');
 });
 ```
 
@@ -7853,14 +8090,14 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
-    console.log("getCertificate callback error = " + err);
+    console.error("getCertificate callback error = " + err);
   } else {
     const decoder = util.TextDecoder.create();
-    const str = decoder.decodeWithStream(data.data);
+    const str = decoder.decodeToString(data.data);
     console.log("getCertificate callback: " + str);
   }
 });
@@ -7921,11 +8158,11 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
-  const str = decoder.decodeWithStream(data.data);
+  const str = decoder.decodeToString(data.data);
   console.log("getCertificate: " + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
@@ -7987,11 +8224,11 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getProtocol((err: BusinessError, data: string) => {
   if (err) {
-    console.log("getProtocol callback error = " + err);
+    console.error("getProtocol callback error = " + err);
   } else {
     console.log("getProtocol callback = " + data);
   }
@@ -8052,7 +8289,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getProtocol().then((data: string) => {
   console.log(data);
@@ -8153,7 +8390,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.on('connect', (data: socket.TLSSocketConnection) => {
   console.log(JSON.stringify(data))
@@ -8214,7 +8451,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 
 let callback = (data: socket.TLSSocketConnection) => {
@@ -8279,10 +8516,10 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.on('error', (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err))
+  console.error("on error, err:" + JSON.stringify(err))
 });
 ```
 
@@ -8340,11 +8577,11 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 tlsServer.on('error', callback);
 // You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
@@ -8422,13 +8659,13 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.send('Hello, client!', (err: BusinessError) => {
     if (err) {
-      console.log('send fail');
+      console.error('send fail');
       return;
     }
     console.log('send success');
@@ -8496,14 +8733,14 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.send('Hello, client!').then(() => {
     console.log('send success');
   }).catch((err: BusinessError) => {
-    console.log('send fail');
+    console.error('send fail');
   });
 });
 ```
@@ -8561,13 +8798,13 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.close((err: BusinessError) => {
     if (err) {
-      console.log('close fail');
+      console.error('close fail');
       return;
     }
     console.log('close success');
@@ -8627,13 +8864,13 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.close().then(() => {
     console.log('close success');
   }).catch((err: BusinessError) => {
-    console.log('close fail');
+    console.error('close fail');
   });
 });
 ```
@@ -8689,12 +8926,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
     if (err) {
-      console.log('getRemoteAddress fail');
+      console.error('getRemoteAddress fail');
       return;
     }
     console.log('getRemoteAddress success:' + JSON.stringify(data));
@@ -8752,7 +8989,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteAddress().then((data: socket.NetAddress) => {
@@ -8815,15 +9052,15 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
     if (err) {
-      console.log("getRemoteCertificate callback error: " + err);
+      console.error("getRemoteCertificate callback error: " + err);
     } else {
       const decoder = util.TextDecoder.create();
-      const str = decoder.decodeWithStream(data.data);
+      const str = decoder.decodeToString(data.data);
       console.log("getRemoteCertificate callback: " + str);
     }
   });
@@ -8881,12 +9118,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteCertificate().then((data: socket.X509CertRawData) => {
     const decoder = util.TextDecoder.create();
-    const str = decoder.decodeWithStream(data.data);
+    const str = decoder.decodeToString(data.data);
     console.log("getRemoteCertificate success: " + str);
   }).catch((err: BusinessError) => {
     console.error("failed" + err);
@@ -8947,12 +9184,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getCipherSuite((err: BusinessError, data: Array<string>) => {
     if (err) {
-      console.log("getCipherSuite callback error = " + err);
+      console.error("getCipherSuite callback error = " + err);
     } else {
       console.log("getCipherSuite callback = " + data);
     }
@@ -9012,7 +9249,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getCipherSuite().then((data: Array<string>) => {
@@ -9074,12 +9311,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getSignatureAlgorithms((err: BusinessError, data: Array<string>) => {
     if (err) {
-      console.log("getSignatureAlgorithms callback error = " + err);
+      console.error("getSignatureAlgorithms callback error = " + err);
     } else {
       console.log("getSignatureAlgorithms callback = " + data);
     }
@@ -9137,7 +9374,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getSignatureAlgorithms().then((data: Array<string>) => {
@@ -9264,7 +9501,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
@@ -9332,7 +9569,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 let callback = (value: socket.SocketMessageInfo) => {
@@ -9404,7 +9641,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('close', () => {
@@ -9463,7 +9700,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 let callback = () => {
@@ -9527,12 +9764,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('error', (err: BusinessError) => {
-    console.log("on error, err:" + JSON.stringify(err))
+    console.error("on error, err:" + JSON.stringify(err))
   });
 });
 ```
@@ -9587,11 +9824,11 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('error', callback);

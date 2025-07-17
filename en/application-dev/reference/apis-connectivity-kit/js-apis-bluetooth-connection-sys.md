@@ -218,7 +218,7 @@ try {
     connection.cancelPairedDevice('11:22:33:44:55:66').then(() => {
         console.info('cancelPairedDevice');
     }, (error: BusinessError) => {
-        console.info('cancelPairedDevice: errCode:' + error.code + ',errMessage' + error.message);
+        console.error('cancelPairedDevice: errCode:' + error.code + ',errMessage' + error.message);
     })
 
 } catch (err) {
@@ -338,7 +338,7 @@ Obtains the profile UUIDs of the local device. This API uses an asynchronous cal
 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids)&gt;&gt; | Yes   | Callback used to return the profile UUIDs obtained. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids12)&gt;&gt; | Yes   | Callback used to return the profile UUIDs obtained. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -384,7 +384,7 @@ Obtains the profile UUIDs of the local device. This API uses a promise to return
 
 | Type                 | Description           |
 | ------------------- | ------------- |
-|   Promise&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids)&gt;&gt; | Promise used to return the result.|
+|   Promise&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids12)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -432,7 +432,7 @@ Disconnects all connected profiles for a remote device. This API uses an asynchr
 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | Yes   | Address of the target remote device, for example, XX:XX:XX:XX:XX.|
+| deviceId | string | Yes   | Address of the target remote device, for example, XX:XX:XX:XX:XX:XX.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
@@ -769,39 +769,37 @@ import { connection } from '@kit.ConnectivityKit';
 /**
  * Update cloud devices in Bluetooth settings.
  */
-public updateCloudBluetoothDevice() {
-    const trustPairDeviceArr: connection.TrustedPairedDevice[] = [];
-    let descBuffer = new ArrayBuffer(1);
-    trustPairDeviceArr.push({
-        sn: '',
-        deviceType: '',
-        modelId: '',
-        manufactory: '',
-        productId: '',
-        hiLinkVersion: '',
-        macAddress: '11:22:33:44:55:66',
-        serviceType: '',
-        serviceId: '',
-        deviceName: '',
-        uuids: '',
-        bluetoothClass: 0,
-        token: descBuffer,
-        deviceNameTime: 0,
-        secureAdvertisingInfo: descBuffer,
-        pairState: 0
+const trustPairDeviceArr: connection.TrustedPairedDevice[] = [];
+let descBuffer = new ArrayBuffer(1);
+trustPairDeviceArr.push({
+    sn: '',
+    deviceType: '',
+    modelId: '',
+    manufactory: '',
+    productId: '',
+    hiLinkVersion: '',
+    macAddress: '11:22:33:44:55:66',
+    serviceType: '',
+    serviceId: '',
+    deviceName: '',
+    uuids: '',
+    bluetoothClass: 0,
+    token: descBuffer,
+    deviceNameTime: 0,
+    secureAdvertisingInfo: descBuffer,
+    pairState: 0
+    });
+const trustPairDevices: connection.TrustedPairedDevices = { trustedPairedDevices: trustPairDeviceArr };
+try {
+    connection.updateCloudBluetoothDevice(trustPairDevices)
+        .then(() => {
+            console.info('updateCloudBluetoothDevice success!');
+        })
+        .catch((err: BusinessError) => {
+            console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
         });
-    const trustPairDevices: connection.TrustedPairedDevices = { trustedPairedDevices: trustPairDeviceArr };
-    try {
-        connection.updateCloudBluetoothDevice(trustPairDevices)
-            .then(() => {
-                console.info('updateCloudBluetoothDevice success!');
-            })
-            .catch((err: BusinessError) => {
-                console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-            });
-    } catch (err) {
-        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-    }
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -812,9 +810,9 @@ Represents the pairing request parameters.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name      | Type  | Readable  | Writable  | Description         |
+| Name      | Type  | Read-Only  | Optional  | Description         |
 | -------- | ------ | ---- | ---- | ----------- |
-| pinType | [PinType](#pintype) | Yes   | No   | Type of the device to pair.<br>This is a system API.  |
+| pinType | [PinType](#pintype) | No   | No   | Type of the device to pair.<br>This is a system API.  |
 
 ## ControlDeviceActionParams<sup>15+</sup>
 
@@ -822,12 +820,12 @@ Defines the configuration parameters of the control command.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name      | Type  | Readable  | Writable  | Description         |
+| Name      | Type  | Read-Only  | Optional  | Description         |
 | -------- | ------ | ---- | ---- | ----------- |
-| deviceId | string | Yes   | No| Device ID.|
-| type | [ControlType](#controltype15) | Yes   | No   | Control type.|
-| typeValue | [ControlTypeValue](#controltypevalue15) | Yes| No| Control action.|
-| controlObject | [ControlObject](#controlobject15) | Yes| No| Control object.|
+| deviceId | string | No   | No| Device ID.|
+| type | [ControlType](#controltype15) | No   | No   | Control type.|
+| typeValue | [ControlTypeValue](#controltypevalue15) | No| No| Control action.|
+| controlObject | [ControlObject](#controlobject15) | No| No| Control object.|
 
 ## PinType
 
@@ -876,9 +874,9 @@ Represents the battery information.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name      | Type  | Readable  | Writable  | Description         |
+| Name      | Type  | Read-Only  | Optional  | Description         |
 | -------- | ------ | ---- | ---- | ----------- |
-| deviceId | string | Yes   | No   | MAC address of the remote device.<br>This is a system API.|
+| deviceId | string | No   | No   | MAC address of the remote device.<br>This is a system API.|
 
 
 ## ControlType<sup>15+</sup>
@@ -927,9 +925,9 @@ Defines the cloud device list.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name      | Type  | Readable  | Optional  | Description         |
+| Name      | Type  | Read-Only  | Optional  | Description         |
 | -------- | ------ | ---- | ---- | ----------- |
-| trustedPairedDevices  | Array&lt;[TrustedPairedDevice](#trustedpaireddevice15)&gt; | Yes   | No   | Cloud device list.  |
+| trustedPairedDevices  | Array&lt;[TrustedPairedDevice](#trustedpaireddevice15)&gt; | No   | No   | Cloud device list.  |
 
 ## TrustedPairedDevice<sup>15+</sup>
 
@@ -937,21 +935,21 @@ Defines the cloud device information.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name      | Type  | Readable  | Optional  | Description         |
+| Name      | Type  | Read-Only  | Optional  | Description         |
 | -------- | ------ | ---- | ---- | ----------- |
-| sn  | string | Yes   | No   | Device SN.  |
-| deviceType  | string | Yes   | No   | Device type to set.  |
-| modelId  | string | Yes   | No   | Charging state of the left earbud.  |
-| manufactory  | string | Yes   | No   | Manufacturer information.  |
-| productId  | string | Yes   | No   | Product information.  |
-| hiLinkVersion  | string | Yes   | No   | HiLink version.  |
-| macAddress  | string | Yes   | No   | MAC address.  |
-| serviceType  | string | Yes   | No   | Service type.  |
-| serviceId  | string | Yes   | No   | Device ID.  |
-| deviceName  | string | Yes   | No   | Device name.  |
-| uuids  | string | Yes   | No   | Device UUID.  |
-| bluetoothClass  | number | Yes   | No   | Peer device type.  |
-| token  | ArrayBuffer | Yes   | No   | Device token information.  |
-| deviceNameTime  | number | Yes   | No   | Device name modification time.  |
-| secureAdvertisingInfo  | ArrayBuffer | Yes   | No   | Device advertising information.  |
-| pairState  | number | Yes   | No   | Device pairing status.  |
+| sn  | string | No   | No   | Device SN.  |
+| deviceType  | string | No   | No   | Device type to set.  |
+| modelId  | string | No   | No   | Charging state of the left earbud.  |
+| manufactory  | string | No   | No   | Manufacturer information.  |
+| productId  | string | No   | No   | Product information.  |
+| hiLinkVersion  | string | No   | No   | HiLink version.  |
+| macAddress  | string | No   | No   | MAC address.  |
+| serviceType  | string | No   | No   | Service type.  |
+| serviceId  | string | No   | No   | Device ID.  |
+| deviceName  | string | No   | No   | Device name.  |
+| uuids  | string | No   | No   | Device UUID.  |
+| bluetoothClass  | number | No   | No   | Peer device type.  |
+| token  | ArrayBuffer | No   | No   | Device token information.  |
+| deviceNameTime  | number | No   | No   | Device name modification time.  |
+| secureAdvertisingInfo  | ArrayBuffer | No   | No   | Device advertising information.  |
+| pairState  | number | No   | No   | Device pairing status.  |

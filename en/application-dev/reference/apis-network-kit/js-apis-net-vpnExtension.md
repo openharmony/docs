@@ -1,6 +1,6 @@
 # @ohos.net.vpnExtension (Enhanced VPN Management)
 
-The **vpnExtension** module implements virtual private network (VPN) management, such as starting and stopping a third-party VPN. Third-party VPNs refer to VPN services provided by third parties. They usually provide more security and privacy functions and more comprehensive customization options.
+The **vpnExtension** module implements virtual private network (VPN) management, such as starting and stopping a third-party VPN. Third-party VPNs refer to VPN services provided by third parties. They usually provide more security and privacy functions and more comprehensive customization options. Currently, the VPN capabilities provided to third-party applications are primarily used for creating virtual NICs and configuring VPN routing information. The connection tunnel process and internal connection protocols need to be implemented by the applications themselves.
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -86,7 +86,6 @@ Stage model:
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 
-let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
   deviceId: "",
   bundleName: "com.example.myvpndemo",
@@ -155,7 +154,6 @@ Stage model:
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 
-let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
   deviceId: "",
   bundleName: "com.example.myvpndemo",
@@ -230,8 +228,8 @@ import { common, Want } from '@kit.AbilityKit';
 let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   onCreate(want: Want) {
-    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
+    let vpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(vpnConnection));
   }
 }
 ```
@@ -283,8 +281,8 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
   private tunIp: string = '10.0.0.5';
   private blockedAppName: string = 'com.example.myvpndemo';
   onCreate(want: Want) {
-    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
+    let vpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(vpnConnection));
     this.SetupVpn();
   }
   SetupVpn() {
@@ -332,8 +330,8 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
         let config = new Config(this.tunIp, this.blockedAppName);
 
         try {
-            let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-            VpnConnection.create(config).then((data) => {
+            let vpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+            vpnConnection.create(config).then((data) => {
                 hilog.error(0x0000, 'developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
             })
         } catch (error) {
@@ -385,8 +383,8 @@ let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   private vpnServerIp: string = '192.168.31.13';
   onCreate(want: Want) {
-    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
+    let vpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(vpnConnection));
     this.CreateTunnel();
     this.Protect();
   }
@@ -395,8 +393,8 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
   }
   Protect() {
         hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect');
-        let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-        VpnConnection.protect(g_tunnelFd).then(() => {
+        let vpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+        vpnConnection.protect(g_tunnelFd).then(() => {
             hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect Success');
         }).catch((err : Error) => {
             hilog.error(0x0000, 'developTag', 'vpn Protect Failed %{public}s', JSON.stringify(err) ?? '');
@@ -437,9 +435,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   onCreate(want: Want) {
-    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
-    VpnConnection.destroy().then(() => {
+    let vpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(vpnConnection));
+    vpnConnection.destroy().then(() => {
       console.info("destroy success.");
     }).catch((error : BusinessError) => {
       console.error("destroy fail" + JSON.stringify(error));
@@ -458,15 +456,15 @@ Defines the VPN configuration.
 | ------------------- | -------------------------------------------------------------- | ---- | ----------------------------------- |
 | addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | Yes  | IP address of the vNIC.           |
 | routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | No  | Route information of the vNIC. Currently, a maximum of 1024 routes can be configured.           |
-| dnsAddresses        | Array\<string\>                                                | No  | IP address of the DNS server.               |
+| dnsAddresses        | Array\<string\>                                                | No  | IP address of the DNS server. After the IP address is configured, when the VPN is active and proxy-enabled applications access the Internet, the configured DNS server will be used for DNS queries.               |
 | searchDomains       | Array\<string\>                                                | No  | List of DNS search domains.                 |
 | mtu                 | number                                                         | No  | Maximum transmission unit (MTU), in bytes. The value range is [576,1500].    |
 | isIPv4Accepted      | boolean                                                        | No  | Whether IPv4 is supported. The default value is **true**. The value **true** indicates that IPV4 is supported, and the value **false** indicates the opposite.   |
 | isIPv6Accepted      | boolean                                                        | No  | Whether IPv6 is supported. The default value is **false**. The value **true** indicates that IPV6 is supported, and the value **false** indicates the opposite.    |
 | isInternal          | boolean                                                        | No  | Whether the built-in VPN is supported. The default value is **false**. The value **true** indicates that the built-in VPN is supported, and the value **false** indicates the opposite.  |
 | isBlocking          | boolean                                                        | No  | Whether the blocking mode is used. The default value is **false**. The value **true** indicates that the blocking mode is used, and the value **false** indicates the opposite.      |
-| trustedApplications | Array\<string\>                                                | No  | List of trusted applications, which are represented by bundle names of the string type. |
-| blockedApplications | Array\<string\>                                                | No  | List of blocked applications, which are represented by bundle names of the string type. |
+| trustedApplications | Array\<string\>                                                | No  | List of trusted applications, which are represented by bundle names of the string type. After such a list is configured, only the applications in the list can be proxied by the VPN according to the specified **routes**.<br>**NOTE**: Configure either **trustedApplications** or **blockedApplications** as they are mutually exclusive. |
+| blockedApplications | Array\<string\>                                                | No  | List of blocked applications, which are represented by bundle names of the string type. After such a list is configured, only applications that are not in the list can be proxied by the VPN according to the specified **routes**.<br>**NOTE**: Configure either **trustedApplications** or **blockedApplications** as they are mutually exclusive. |
 
 **Example**
 
@@ -501,8 +499,8 @@ let vpnConfig: vpnExtension.VpnConfig = {
 let context: vpnExtension.VpnExtensionContext;
 
 function vpnCreate(){
-  let VpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-  VpnConnection.create(vpnConfig).then((data) => {
+  let vpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+  vpnConnection.create(vpnConfig).then((data) => {
     console.info("vpn create " + JSON.stringify(data));
   })
 }
