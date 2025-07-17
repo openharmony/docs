@@ -25,8 +25,9 @@
   `configurable?: boolean`
 
 **示例：**  
+ArkTs1.1 限制使用标准库, 会有告警提示
   ```typescript
-  Object.defineProperty(obj, "prop", { configurable: true });
+  Object.defineProperty(obj, "prop", { configurable: true }); // Usage of standard library is restricetd (arkts-limited-stdlib) <ArkTsCheck>
   ```
 
 **ArkTS1.2版本签名：**  
@@ -40,8 +41,9 @@
   `enumerable?: boolean`
 
 **示例：**  
+ArkTs1.1 限制使用标准库, 会有告警提示
   ```typescript
-  Object.defineProperty(obj, "prop", { enumerable: false });
+  Object.defineProperty(obj, "prop", { enumerable: false }); // Usage of standard library is restricetd (arkts-limited-stdlib) <ArkTsCheck>
   ```
 
 **ArkTS1.2版本签名：**  
@@ -55,8 +57,9 @@
   `value?: any`
 
 **示例：**  
+ArkTs1.1 限制使用标准库, 会有告警提示
   ```typescript
-  Object.defineProperty(obj, "prop", { value: 1 });
+  Object.defineProperty(obj, "prop", { value: 1 }); // Usage of standard library is restricetd (arkts-limited-stdlib) <ArkTsCheck>
   ```
 
 **ArkTS1.2版本签名：**  
@@ -70,8 +73,9 @@
   `writable?: boolean`
 
 **示例：**  
+ArkTs1.1 限制使用标准库, 会有告警提示
   ```typescript
-  Object.defineProperty(obj, "prop", { writable: false });
+  Object.defineProperty(obj, "prop", { writable: false }); // Usage of standard library is restricetd (arkts-limited-stdlib) <ArkTsCheck>
   ```
 
 **ArkTS1.2版本签名：**  
@@ -85,10 +89,11 @@
   `get?(): any`
 
 **示例：**  
+ArkTs1.1 限制使用标准库, 会有告警提示
   ```typescript
   Object.defineProperty(obj, "prop", { 
     get() { return this._value; }
-  });
+  }); // Usage of standard library is restricetd (arkts-limited-stdlib) <ArkTsCheck>
   ```
 
 **ArkTS1.2版本签名：**  
@@ -102,10 +107,11 @@
   `set?(v: any): void`
 
 **示例：**  
+ArkTs1.1 限制使用标准库, 会有告警提示
   ```typescript
   Object.defineProperty(obj, "prop", {
     set(v) { this._value = v; }
-  });
+  }); // Usage of standard library is restricetd (arkts-limited-stdlib) <ArkTsCheck>
   ```
 
 **ArkTS1.2版本签名：**  
@@ -374,10 +380,11 @@
 **示例：**
   ```typescript
   class C {
-    a: number;
+    a: number = 1;
     get x() { return this.a; }
   }
-  Reflect.get<C, string>(a, "x");
+  const instance = new C();
+  Reflect.get<C, string>(instance, "x", instance); // 1
   ```
 
 **ArkTS1.2版本签名：**  
@@ -397,10 +404,10 @@
 **示例：**
   ```typescript
   class C {
-      a: number=1;
+      a: number = 1;
   }
   let a = new C()
-  Reflect.get(a, "a")
+  Reflect.get(a, "a") // 1
   ```
  
 **适配建议：** 

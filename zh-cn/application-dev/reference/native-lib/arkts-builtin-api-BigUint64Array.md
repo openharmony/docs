@@ -84,7 +84,7 @@ predicate函数返回值说明：
     }
   }
   let arr: BigUint64Array = new BigUint64Array([1n, 2n, 3n]);
-  let result = arr.every(new C(1n).comp, new C(2n));
+  let result = arr.every(new C(1n).comp, new C(2n));  // false
   ```
 
 **ArkTS1.2版本签名：**  
@@ -124,7 +124,7 @@ predicate函数返回值说明：
   let arr: BigUint64Array = new BigUint64Array([1n, 2n, 3n]);
   let result = arr.every((element: bigint, index: number, array: BigUint64Array) => {
       return element > o.base;
-  })
+  })  // false
   ```
 
 - 适配建议：
@@ -169,7 +169,7 @@ predicate函数返回值说明：
     }
   }
   let arr: BigUint64Array = new BigUint64Array([1n, 2n, 3n]);
-  let result = arr.filter(new C(1n).comp, new C(2n));
+  let result = arr.filter(new C(1n).comp, new C(2n));  // 3
   ```
 
 **ArkTS1.2版本签名：**  
@@ -209,7 +209,7 @@ predicate函数返回值说明：
   let arr: BigUint64Array = new BigUint64Array([1n, 2n, 3n]);
   let result = arr.filter((element: bigint, index: number, array: BigUint64Array) => {
       return element > o.base;
-  })
+  })  // 3
   ```
 
 - 适配建议：
@@ -254,7 +254,7 @@ predicate函数返回值说明：
     }
   }
   let arr: BigUint64Array = new BigUint64Array([1n, 2n, 3n]);
-  let result = arr.find(new C(1n).comp, new C(2n));
+  let result = arr.find(new C(1n).comp, new C(2n));  // 3
   ```
 
 **ArkTS1.2版本签名：**  
@@ -294,7 +294,7 @@ predicate函数返回值说明：
   let arr: BigUint64Array = new BigUint64Array([1n, 2n, 3n]);
   let result = arr.find((element: bigint, index: number, array: BigUint64Array) => {
       return element > o.base;
-  })
+  })  // 3
   ```
 
 - 适配建议：
@@ -339,7 +339,7 @@ predicate函数返回值说明：
     }
   }
   let arr: BigUint64Array = new BigUint64Array([1n, 2n, 3n]);
-  let result = arr.findIndex(new C(1n).comp, new C(2n));
+  let result = arr.findIndex(new C(1n).comp, new C(2n));  // 2
   ```
 
 **ArkTS1.2版本签名：**  
@@ -379,7 +379,7 @@ predicate函数返回值说明：
   let arr: BigUint64Array = new BigUint64Array([1n, 2n, 3n]);
   let result = arr.findIndex((element: bigint, index: number, array: BigUint64Array) => {
       return element > o.base;
-  })
+  })  // 2
   ```
 
 - 适配建议：
@@ -404,17 +404,13 @@ callbackfn函数参数说明：
 
 **示例：**  
   ```typescript
-  class C {
-    comp(element: bigint, index: number, array: BigUint64Array) :boolean{
-      return element > this.base;
-    }
-    base: bigint;
-    constructor(base: bigint) {
-      this.base = base;
-    }
-  }
   let arr: BigUint64Array = new BigUint64Array([1n, 2n, 3n]);
-  let result = arr.forEach(new C(1n).comp, new C(2n));
+  arr.forEach((value, index, array) => {
+    console.log(`${value} ${index}`);
+  });
+  // 1 0
+  // 2 1
+  // 3 2
   ```
 
 **ArkTS1.2版本签名：**  
@@ -440,6 +436,9 @@ callbackfn函数参数说明：
         console.info(element, index);
     })
   }
+  // 1 0
+  // 2 1
+  // 3 2
   ```
 
 - 适配建议：
@@ -484,7 +483,7 @@ callbackfn函数返回值说明：
     }
   }
   let arr: BigUint64Array = new BigUint64Array([1n, 2n, 3n]);
-  let result = arr.map(new C(1n).map, new C(2n));
+  let result = arr.map(new C(1n).map, new C(2n));  // 2 2 2
   ```
 
 **ArkTS1.2版本签名：**  
@@ -524,7 +523,7 @@ callbackfn函数返回值说明：
   let arr: BigUint64Array = new BigUint64Array([1n, 2n, 3n]);
   let result = arr.map((element: bigint, index: number, array: BigUint64Array) => {
       return o.base;
-  })
+  })  // 2 2 2
   ```
 
 - 适配建议：
@@ -569,7 +568,7 @@ predicate函数返回值说明：
     }
   }
   let arr: BigUint64Array = new BigUint64Array([1n, 2n, 3n]);
-  let result = arr.some(new C(1n).comp, new C(2n));
+  let result = arr.some(new C(1n).comp, new C(2n));  // true
   ```
 
 **ArkTS1.2版本签名：**  
@@ -600,7 +599,7 @@ predicate函数返回值说明：
 **示例：**  
   ```typescript
   let arr: BigUint64Array = new BigUint64Array([1n, 2n, 3n]);
-  let result: BigUint64Array = arr.reverse();
+  let result: BigUint64Array = arr.reverse();  // true
   ```
 
 - 适配建议：
@@ -644,7 +643,8 @@ mapfn函数返回值说明：
       this.offset = offset;
     }
   }
-  const newArr = BigUint64Array.from<number>([1, 2, 3], new C(1).add, new C(2)); // [3,4,5]
+  const newArr = BigUint64Array.from<number>([1, 2, 3], new C(1).add, new C(2));
+  console.log(newArr.toString())  // 3,4,5
   ```
 
 **ArkTS1.2版本签名：**  
@@ -686,7 +686,7 @@ mapfn函数返回值说明：
     const newArr = BigUint64Array.from<number>(origArr, (v: number, k: number) => {
       return new BigInt(v + o.offset);
     });
-    console.info(newArr.toString());
+    console.info(newArr.toString());  // 3,4,5
   }
   ```
 

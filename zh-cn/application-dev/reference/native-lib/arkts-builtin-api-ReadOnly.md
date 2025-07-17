@@ -1,4 +1,4 @@
-# StdLib1
+# ReadOnly
 
 ## 变更梗概
 - [ReadonlyArray](#readonlyarray)
@@ -8,21 +8,21 @@
 ## ReadonlyArray
 
 ### 变更梗概
-- [Symbol.iterator变更](#symboliterator变更)
-- [concat方法参数限制](#concat方法参数限制)
-- [every方法签名变更](#every方法签名变更)
-- [filter方法签名变更](#filter方法签名变更)
-- [find方法签名变更](#find方法签名变更)
-- [findIndex方法签名变更](#findindex方法签名变更)
-- [flat方法移除](#flat方法移除)
-- [flatMap方法移除](#flatmap方法移除)
+- [ReadonlyArray-Symbol.iterator变更](#readonlyarray-symboliterator变更)
+- [ReadonlyArray-concat方法参数限制](#readonlyarray-concat方法参数限制)
+- [ReadonlyArray-every方法签名变更](#readonlyarray-every方法签名变更)
+- [ReadonlyArray-filter方法签名变更](#readonlyarray-filter方法签名变更)
+- [ReadonlyArray-find方法签名变更](#readonlyarray-find方法签名变更)
+- [ReadonlyArray-findIndex方法签名变更](#readonlyarray-findindex方法签名变更)
+- [ReadonlyArray-flat方法移除](#readonlyarray-flat方法移除)
+- [ReadonlyArray-flatMap方法移除](#readonlyarray-flatmap方法移除)
 - [ReadonlyArray-forEach方法签名变更](#readonlyarray-foreach方法签名变更)
-- [map方法签名变更](#map方法签名变更)
-- [some方法签名变更](#some方法签名变更)
+- [ReadonlyArray-map方法签名变更](#readonlyarray-map方法签名变更)
+- [ReadonlyArray-some方法签名变更](#readonlyarray-some方法签名变更)
 
 ### 变更详情
 
-#### Symbol.iterator变更
+#### ReadonlyArray-Symbol.iterator变更
 **ArkTS1.1版本签名：**  
   `[Symbol.iterator](): IterableIterator<T>`
 
@@ -55,7 +55,7 @@
   使用for...of替代直接迭代器访问。
 
 
-#### concat方法参数限制
+#### ReadonlyArray-concat方法参数限制
 **ArkTS1.1版本签名：**  
   `concat(...items: (T | ConcatArray<T>)[]): T[]`
 
@@ -81,13 +81,13 @@
 **适配建议：** 
   手动转换后连接：
   ```typescript
-  let arr1: ReadonlyArray<number> = [1];
+  let arr1: ReadonlyArray<number> = [1] as Array<number>;
   let temp = [2];
-  arr1.concat(temp); // 先确保参数类型一致
+  arr1.concat(temp); // [1, 2] 先确保参数类型一致
   ```
 
 
-#### every方法签名变更
+#### ReadonlyArray-every方法签名变更
 **ArkTS1.1版本签名：**  
   `every(predicate: (value: T, index: number, array: readonly T[]) => unknown, thisArg?: any): boolean`  
   `every<S extends T>(predicate: (value: T, index: number, array: readonly T[]) => value is S, thisArg?: any): this is readonly S[]`
@@ -96,7 +96,7 @@
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | predicate | function | 是 | 测试函数。 |
-  | thisArg | any | 否 | 执行上下文，默认值为undefined，默认值为undefined。 |
+  | thisArg | any | 否 | 执行上下文，默认值为undefined。 |
 
 predicate函数参数说明：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -122,7 +122,7 @@ predicate函数返回值说明：
     limit = 1;
   }
   let arr: ReadonlyArray<number> = [2,3];
-  arr.every(new C().test, {limit: 2});
+  arr.every(new C().test, {limit: 2}); // false
   ```
 
 **ArkTS1.2版本签名：**  
@@ -154,14 +154,14 @@ predicate函数返回值说明：
   ```typescript
   let arr: ReadonlyArray<number> = [2,3];
   let limit = 2;
-  arr.every(v => v > limit);
+  arr.every(v => v > limit); // false
   ```
 
 **适配建议：** 
   使用闭包变量替代thisArg。
 
 
-#### filter方法签名变更
+#### ReadonlyArray-filter方法签名变更
 **ArkTS1.1版本签名：**  
   - `filter(predicate: (value: T, index: number, array: readonly T[]) => unknown, thisArg?: any): T[]`  
   - `filter<S extends T>(predicate: (value: T, index: number, array: readonly T[]) => value is S, thisArg?: any): S[]`
@@ -196,7 +196,7 @@ predicate函数返回值说明：
     min = 2;
   }
   let arr: ReadonlyArray<number> = [1,2,3];
-  arr.filter(new Filter().criteria, {min: 1});
+  arr.filter(new Filter().criteria, {min: 1}); // [2, 3]
   ```
 
 **ArkTS1.2版本签名：**  
@@ -226,16 +226,16 @@ predicate函数返回值说明：
 
 **示例：**  
   ```typescript
-  let arr: ReadonlyArray<number> = [1,2,3];
+  let arr: ReadonlyArray<number> = [1,2,3] as Array<number>;
   let min = 1;
-  arr.filter(v => v > min);
+  arr.filter(v => v > min); // [2, 3]
   ```
 
 **适配建议：** 
   通过外部变量传递上下文。
 
 
-#### find方法签名变更
+#### ReadonlyArray-find方法签名变更
 **ArkTS1.1版本签名：**  
   `find(predicate: (value: T, index: number, obj: readonly T[]) => unknown, thisArg?: any): T | undefined`  
   `find<S extends T>(predicate: (this: void, value: T, index: number, obj: readonly T[]) => value is S, thisArg?: any): S | undefined`
@@ -270,7 +270,7 @@ predicate函数返回值说明：
     target = 2;
   }
   let arr: ReadonlyArray<number> = [1,2,3];
-  arr.find(new Matcher().check, {target: 3});
+  arr.find(new Matcher().check, {target: 3}); // 3
   ```
 
 **ArkTS1.2版本签名：**  
@@ -300,16 +300,16 @@ predicate函数返回值说明：
 
 **示例：**  
   ```typescript
-  let arr: ReadonlyArray<number> = [1,2,3];
+  let arr: ReadonlyArray<number> = [1,2,3] as Array<number>;
   let target = 3;
-  arr.find(v => v === target);
+  arr.find(v => v === target); // 3
   ```
 
 **适配建议：** 
   使用闭包捕获外部变量。
 
 
-#### findIndex方法签名变更
+#### ReadonlyArray-findIndex方法签名变更
 **ArkTS1.1版本签名：**  
   `findIndex(predicate: (value: T, index: number, obj: readonly T[]) => unknown, thisArg?: any): number`
 
@@ -343,7 +343,7 @@ predicate函数返回值说明：
     limit = 1;
   }
   let arr: ReadonlyArray<number> = [1,2,3];
-  arr.findIndex(new Matcher().check, {limit: 2});
+  arr.findIndex(new Matcher().check, {limit: 2}); // 2
   ```
 
 **ArkTS1.2版本签名：**  
@@ -373,16 +373,16 @@ predicate函数返回值说明：
 
 **示例：**  
   ```typescript
-  let arr: ReadonlyArray<number> = [1,2,3];
+  let arr: ReadonlyArray<number> = [1,2,3] as Array<number>;
   let limit = 2;
-  arr.findIndex(v => v > limit);
+  arr.findIndex(v => v > limit); // 2
   ```
 
 **适配建议：** 
   通过外部变量传递条件参数。
 
 
-#### flat方法移除
+#### ReadonlyArray-flat方法移除
 **ArkTS1.1版本签名：**  
   `flat<A, D extends number = 1>(this: A, depth?: D): FlatArray<A, D>[]`
 
@@ -415,7 +415,7 @@ predicate函数返回值说明：
   ```
 
 
-#### flatMap方法移除
+#### ReadonlyArray-flatMap方法移除
 **ArkTS1.1版本签名：**  
   `flatMap<U, This = undefined>(callback: (this: This, value: T, index: number, array: T[]) => U | ReadonlyArray<U>, thisArg?: This): U[]`
 
@@ -480,7 +480,7 @@ callbackfn函数参数说明：
     offset = 10;
   }
   let arr: ReadonlyArray<number> = [1,2];
-  arr.forEach(new Logger().log, {offset: 20});
+  arr.forEach(new Logger().log, {offset: 20}); // 21    22
   ```
 
 **ArkTS1.2版本签名：**  
@@ -500,16 +500,16 @@ callbackfn函数参数说明：
 
 **示例：**  
   ```typescript
-  let arr: ReadonlyArray<number> = [1,2];
+  let arr: ReadonlyArray<number> = [1,2] as Array<number>;
   let offset = 20;
-  arr.forEach(v => console.info(v + offset));
+  arr.forEach(v => console.info(v + offset)); // 21    22
   ```
 
 **适配建议：** 
   使用箭头函数捕获外部变量。
 
 
-#### map方法签名变更
+#### ReadonlyArray-map方法签名变更
 **ArkTS1.1版本签名：**  
   `map<U>(callbackfn: (value: T, index: number, array: readonly T[]) => U, thisArg?: any): U[]`
 
@@ -543,7 +543,7 @@ callbackfn函数返回值说明：
     factor = 2;
   }
   let arr: ReadonlyArray<number> = [1,2];
-  arr.map(new Transformer().transform, {factor: 3});
+  arr.map(new Transformer().transform, {factor: 3}); // [3, 6]
   ```
 
 **ArkTS1.2版本签名：**  
@@ -573,16 +573,16 @@ callbackfn函数返回值说明：
 
 **示例：**  
   ```typescript
-  let arr: ReadonlyArray<number> = [1,2];
+  let arr: ReadonlyArray<number> = [1,2] as Array<number>;
   let factor = 3;
-  arr.map(v => v * factor);
+  arr.map(v => v * factor); // [3, 6]
   ```
 
 **适配建议：** 
   通过闭包传递上下文参数。
 
 
-#### some方法签名变更
+#### ReadonlyArray-some方法签名变更
 **ArkTS1.1版本签名：**  
   `some(predicate: (value: T, index: number, array: readonly T[]) => unknown, thisArg?: any): boolean`
 
@@ -616,7 +616,7 @@ predicate函数返回值说明：
     threshold = 2;
   }
   let arr: ReadonlyArray<number> = [1,2,3];
-  arr.some(new Checker().test, {threshold: 1});
+  arr.some(new Checker().test, {threshold: 1}); // true
   ```
 
 **ArkTS1.2版本签名：**  
@@ -646,9 +646,9 @@ predicate函数返回值说明：
 
 **示例：**  
   ```typescript
-  let arr: ReadonlyArray<number> = [1,2,3];
+  let arr: ReadonlyArray<number> = [1,2,3] as Array<number>;
   let threshold = 1;
-  arr.some(v => v > threshold);
+  arr.some(v => v > threshold); // true
   ```
 
 **适配建议：** 
@@ -657,11 +657,11 @@ predicate函数返回值说明：
 ## ReadonlyMap
 
 ### 变更梗概
-- [ReadonlyMap-Symbol_iterator变更](#readonlymap-symbol_iterator变更)
-- [ReadonlyMap-forEach方法签名变更](#readonlmap-foreach方法签名变更)
+- [ReadonlyMap-Symbol.iterator变更](#readonlymap-symboliterator变更)
+- [ReadonlyMap-forEach方法签名变更](#readonlymap-foreach方法签名变更)
 
 ### 变更详情
-#### ReadonlyMap-Symbol_iterator变更
+#### ReadonlyMap-Symbol.iterator变更
 **ArkTS1.1版本签名：**  
   `[Symbol.iterator](): IterableIterator<[K, V]>`
 
@@ -774,7 +774,7 @@ callbackfn函数参数说明：
 
 **示例：**  
   ```typescript
-  let set: ReadonlySet<string> = new Set<strinf>(["a"]);
+  let set: ReadonlySet<string> = new Set<string>(["a"]);
   set.$_iterator();
   ```
 
