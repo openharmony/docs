@@ -122,14 +122,14 @@ uinput -M -d 0 -u 0
 
 **命令**
 ```bash
-uinput -M -c <key>
-uinput --mouse --click <key>
+uinput -M -m <dx> <dy> -c <key>
+uinput --mouse --move <dx> <dy> --click <key>
 ```
 
 **使用示例**
 ```bash
-# 单击鼠标左键。
-uinput -M -c 0
+# 鼠标移动到(100, 150)位置，单击鼠标左键。
+uinput -M -m 100 150 -c 0
 ```
 
 ### 双击鼠标按键事件
@@ -152,20 +152,20 @@ uinput -M -b 100 150 0 10 10
 ```
 
 ### 鼠标滚轴滚动事件
-模拟鼠标滚轴向后滚动。
+模拟鼠标滚轴向前/向后滚动。
 
 **命令**
 ```bash
 uinput -M -s <number>
 uinput --mouse --scroll <number>
 
-number鼠标滚动刻度数，一个刻度是15。
+number鼠标滚动刻度数，正数向后滚动，负数向前滚动，一个刻度是15。
 ```
 
 **使用示例**
 ```bash
-# 鼠标滚轴向后滚动三个刻度。
-uinput -M -s 45
+# 鼠标移动到（100， 200）所在可滚动区域，鼠标滚轴向后滚动三个刻度。
+uinput -M -m 100 200 -s 45
 ```
 
 ### 鼠标拖拽事件
