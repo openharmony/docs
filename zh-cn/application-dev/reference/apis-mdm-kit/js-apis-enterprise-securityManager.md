@@ -54,13 +54,16 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let aliasStr = "certName";
 securityManager.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
   console.info(`Succeeded in uninstalling user certificate.`);
@@ -108,12 +111,14 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 
 <!--code_no_check-->
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
@@ -173,11 +178,13 @@ installUserCertificate(admin: Want, certificate: CertBlob, accountId: number): s
 
 <!--code_no_check-->
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { common, Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let certFileArray: Uint8Array = new Uint8Array();
 let accountId: number = 100;
@@ -231,12 +238,15 @@ getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let accountId: number = 100;
 try {
   let result: Array<string> = securityManager.getUserCertificates(wantTemp, accountId);
@@ -283,11 +293,13 @@ getSecurityStatus(admin: Want, item: string): string
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -329,18 +341,20 @@ setPasswordPolicy(admin: Want, policy: PasswordPolicy): void
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 let policy: securityManager.PasswordPolicy = {
   complexityRegex: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$',
   validityPeriod: 1,
   additionalDescription: '至少八个字符，至少一个大写字母，一个小写字母，一个数字和一个特殊字符',
-}
+};
 try {
     securityManager.setPasswordPolicy(wantTemp, policy);
     console.info(`Succeeded in setting password policy.`);
@@ -385,11 +399,13 @@ getPasswordPolicy(admin: Want): PasswordPolicy
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -432,12 +448,15 @@ setAppClipboardPolicy(admin: Want, tokenId: number, policy: ClipboardPolicy): vo
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let tokenId: number = 586874394;
 try {
     securityManager.setAppClipboardPolicy(wantTemp, tokenId, securityManager.ClipboardPolicy.IN_APP);
@@ -484,12 +503,15 @@ getAppClipboardPolicy(admin: Want, tokenId?: number): string
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let tokenId: number = 586874394;
 try {
     let result: string = securityManager.getAppClipboardPolicy(wantTemp, tokenId);
@@ -531,12 +553,15 @@ setAppClipboardPolicy(admin: Want, bundleName: string, accountId: number, policy
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.myapplication';
 let accountId: number = 100;
 try {
@@ -584,12 +609,15 @@ getAppClipboardPolicy(admin: Want, bundleName: string, accountId: number): strin
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.myapplication';
 let accountId: number = 100;
 try {
@@ -633,12 +661,15 @@ setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelM
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.myapplication';
 let source: string = '/data/storage/el1/base/test.png';
 let accountId: number = 100;
@@ -682,12 +713,15 @@ cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 **示例：**
 
 ```ts
+import { securityManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.myapplication';
 let accountId: number = 100;
 try {
