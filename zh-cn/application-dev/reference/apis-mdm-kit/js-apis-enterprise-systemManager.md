@@ -446,18 +446,20 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 addDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol&gt;, accountId: number): void
 
-添加禁用指定用户的星闪协议。
+禁用指定用户的星闪协议。NearLink Kit（星闪服务）提供一种低功耗、高速率的短距离通信服务，支持星闪设备之间的连接、数据交互。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
-| protocols  | Array&lt;[NearLinkProtocol](#nearlinkprotocol)&gt;               | 是   | 星闪协议枚举列表 |                       |
+| protocols  | Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;               | 是   | 星闪协议枚举列表。 |
 | accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
 
 **错误码**：
@@ -467,7 +469,7 @@ addDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 9200001  | The application is not an administrator application of the device. |
-| 9200002  | The administrator application does not have permission to manage the device. |                 |
+| 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**
@@ -496,18 +498,20 @@ try {
 
 removeDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol&gt;, accountId: number): void
 
-移除禁用指定用户的星闪协议。
+启用指定用户的星闪协议。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
-| protocols  | Array&lt;[NearLinkProtocol](#nearlinkprotocol)&gt;               | 是   | 星闪协议枚举列表 |                       |
+| protocols  | Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;               | 是   | 星闪协议枚举列表。 |
 | accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
 
 **错误码**：
@@ -517,7 +521,7 @@ removeDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProto
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 9200001  | The application is not an administrator application of the device. |
-| 9200002  | The administrator application does not have permission to manage the device. |                 |
+| 9200002  | The administrator application does not have permission to manage the device. |                 
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**
@@ -552,6 +556,8 @@ getDisallowedNearLinkProtocols(admin: Want, accountId: number): Array&lt;NearLin
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **参数：**
 
 | 参数名  | 类型                                                    | 必填 | 说明                                                         |
@@ -563,7 +569,7 @@ getDisallowedNearLinkProtocols(admin: Want, accountId: number): Array&lt;NearLin
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 返回true表示参数feature对应的特性被禁用，false表示参数feature对应的特性未被禁用。 |
+| Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;          | 禁用指定用户星闪协议列表。 |
 
 **错误码**：
 
@@ -729,14 +735,13 @@ try {
 | UPDATE_FAILURE     | -1 | 更新失败。 |
 | UPDATE_SUCCESS     | 0 | 更新成功。 |
 
-<a id="nearlinkprotocol"></a>
 ## NearLinkProtocol<sup>20+</sup>
 
-NearLink协议枚举。
+星闪协议枚举。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 | 名称               | 值  | 说明    |
 | -----------------  | ---- | ----- |
-| SSAP   | 0 |  SSAP协议。 |
-| DATA_TRANSFER      |1| 数据传输协议。 |
+| SSAP   | 0 |  <!--RP1-->SSAP（SparkLink Service Access Protocol）协议。<!--RP1End--> |
+| DATA_TRANSFER      |1| <!--RP2-->数据传输协议。<!--RP2End--> |
