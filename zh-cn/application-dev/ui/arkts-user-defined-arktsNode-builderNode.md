@@ -381,11 +381,12 @@ struct MyComponent {
 }
 ```
 
-## 节点复用能力
+## BuilderNode调用reuse和recycle接口实现节点复用能力
 
 调用[reuse](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12)接口和[recycle](../reference/apis-arkui/js-apis-arkui-builderNode.md#recycle12)接口，将复用和回收事件传递至BuilderNode中的自定义组件，以实现BuilderNode节点内部的自定义组件的复用。
 
-以下面的Demo为例，被复用的自定义组件ReusableChildComponent可以传递复用和回收事件到其下的自定义组件ReusableChildComponent3，但无法传递给自定义组件ReusableChildComponent2，因为被BuilderNode所隔断。因此需要主动调用BuilderNode的reuse和recycle接口，将复用和回收事件传递给自定义组件ReusableChildComponent2，以达成复用效果。
+以下面的Demo为例，被复用的自定义组件ReusableChildComponent可以传递复用和回收事件到其下的自定义组件ChildComponent3，但无法传递给自定义组件ChildComponent2，因为被BuilderNode所隔断。因此需要主动调用BuilderNode的reuse和recycle接口，将复用和回收事件传递给自定义组件ChildComponent2，以达成复用效果。
+
 ![zh-cn_image_reuse-recycle](figures/reuse-recycle.png)
 
 
@@ -435,7 +436,7 @@ class Params {
 function buildNode(param: Params = new Params("hello")) {
   Row() {
     Text(`C${param.item} -- `)
-    ReusableChildComponent2({ item: param.item }) //该自定义组件在BuilderNode中无法被正确复用
+    ChildComponent2({ item: param.item }) //该自定义组件在BuilderNode中无法被正确复用
   }
 }
 
@@ -452,7 +453,7 @@ class MyNodeController extends NodeController {
   }
 }
 
-// 被回收复用的自定义组件，其状态变量会更新，而子自定义组件ReusableChildComponent3中的状态变量也会更新，但BuilderNode会阻断这一传递过程
+// 被回收复用的自定义组件，其状态变量会更新，而子自定义组件ChildComponent3中的状态变量也会更新，但BuilderNode会阻断这一传递过程
 @Reusable
 @Component
 struct ReusableChildComponent {
@@ -467,7 +468,7 @@ struct ReusableChildComponent {
   aboutToRecycle(): void {
     console.log(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
 
-    // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
+    // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ChildComponent2，完成复用
     if (this.switch === 'open') {
       this.controller?.builderNode?.recycle();
     }
@@ -476,7 +477,7 @@ struct ReusableChildComponent {
   aboutToReuse(params: object): void {
     console.log(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
 
-    // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
+    // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ChildComponent2，完成复用
     if (this.switch === 'open') {
       this.controller?.builderNode?.reuse(params);
     }
@@ -485,22 +486,22 @@ struct ReusableChildComponent {
   build() {
     Row() {
       Text(`A${this.item}--`)
-      ReusableChildComponent3({ item: this.item })
+      ChildComponent3({ item: this.item })
       NodeContainer(this.controller);
     }
   }
 }
 
 @Component
-struct ReusableChildComponent2 {
+struct ChildComponent2 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
+    console.log(`${TEST_TAG} ChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToRecycle ${this.item}`);
+    console.log(`${TEST_TAG} ChildComponent2 aboutToRecycle ${this.item}`);
   }
 
   build() {
@@ -514,15 +515,15 @@ struct ReusableChildComponent2 {
 }
 
 @Component
-struct ReusableChildComponent3 {
+struct ChildComponent3 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
+    console.log(`${TEST_TAG} ChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToRecycle ${this.item}`);
+    console.log(`${TEST_TAG} ChildComponent3 aboutToRecycle ${this.item}`);
   }
 
   build() {
@@ -566,6 +567,105 @@ struct Index {
 }
 ```
 
+
+## BuilderNode在子自定义组件中使用@Reusable装饰器
+
+BuilderNode节点的复用机制与使用[@Reusable](./state-management/arkts-reusable.md)装饰器的自定义组件的复用机制会相互冲突。因此，当BuilderNode的子节点为自定义组件时，不支持该自定义组件使用@Reusable装饰器标记，否则将导致应用程序触发JSCrash。若需要使用@Reusable装饰器，应使用一个普通自定义组件包裹该自定义组件。
+
+在下面的示例中，ReusableChildComponent作为BuilderNode的子自定义组件，无法标记为@Reusable。通过ChildComponent2对其包裹，ReusableChildComponent可以使用@Reusable装饰器标记。
+
+![BuilderNode-Reusable](figures/BuilderNode-Reusable.png)
+
+```ts
+import { FrameNode, NodeController, BuilderNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "Reusable";
+
+class Params {
+  item: string = '';
+
+  constructor(item: string) {
+    this.item = item;
+  }
+}
+
+@Builder
+function buildNode(param: Params = new Params("Hello")) {
+  ChildComponent2({ item: param.item })
+  // 如果直接使用ReusableChildComponent，则会编译报错
+  // ReusableChildComponent({ item: param.item })
+}
+
+class MyNodeController extends NodeController {
+  public builderNode: BuilderNode<[Params]> | null = null;
+  public item: string = "";
+
+  constructor(item: string) {
+    super();
+    this.item = item;
+  }
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    if (this.builderNode == null) {
+      this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 300, height: 200 } });
+      this.builderNode.build(wrapBuilder<[Params]>(buildNode), new Params(this.item));
+    }
+    return this.builderNode.getFrameNode();
+  }
+}
+
+// 标记了@Reusable的自定义组件，无法直接被BuilderNode挂载为子节点
+@Reusable
+@Component
+struct ReusableChildComponent {
+  @Prop item: string = '';
+
+  aboutToReuse(params: object): void {
+    console.log(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
+  }
+
+  aboutToRecycle(): void {
+    console.log(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
+  }
+
+  build() {
+    Text(`A--${this.item}`)
+  }
+}
+
+// 未标记@Reusable的自定义组件
+@Component
+struct ChildComponent2 {
+  @Prop item: string = "";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.log(`${TEST_TAG} ChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
+  }
+
+  aboutToRecycle(): void {
+    console.log(`${TEST_TAG} ChildComponent2 aboutToRecycle ${this.item}`);
+  }
+
+  build() {
+    ReusableChildComponent({ item: this.item })
+  }
+}
+
+
+@Entry
+@Component
+struct Index {
+  @State controller: MyNodeController = new MyNodeController("Child");
+
+  build() {
+    Column() {
+      NodeContainer(this.controller)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
 
 ## 通过系统环境变化更新节点
 
