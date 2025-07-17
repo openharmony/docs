@@ -640,7 +640,7 @@ try {
 
 clientToGlobalDisplay(winX: number, winY: number): Position
 
-提供组件位置从当前窗口左上角相对坐标到主屏幕左上角相对坐标的转换能力。
+提供将相对于当前窗口左上角的坐标转换为相对于主屏幕左上角的全局坐标的能力。
 
 不支持在经过显示缩放的窗口中调用，例如手机或平板设备在非自由多窗模式下的悬浮窗场景。
 
@@ -685,7 +685,7 @@ try {
 
 globalDisplayToClient(globalDisplayX: number, globalDisplayY: number): Position
 
-提供组件位置从主屏幕左上角相对坐标到当前窗口左上角相对坐标的转换能力。
+提供将相对于主屏幕左上角的全局坐标转换为相对于当前窗口左上角的坐标的能力。
 
 不支持在经过显示缩放的窗口中调用，例如手机或平板设备在非自由多窗模式下的悬浮窗场景。
 
