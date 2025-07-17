@@ -1,8 +1,8 @@
-# ArkUI_DragEvent
+# ArkUI_DragAction
 
 ## 概述
 
-拖拽事件。
+拖拽行为，用于主动发起拖拽。
 
 **起始版本：** 12
 
