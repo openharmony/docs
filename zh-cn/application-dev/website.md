@@ -86,6 +86,7 @@
             - [常见action与entities（不推荐使用）](application-models/actions-entities.md)
           - [组件启动规则（Stage模型）](application-models/component-startup-rules.md)
           - [应用启动框架AppStartup](application-models/app-startup.md)
+          - [应用预加载](application-models/preload-application.md)
           - [获取应用异常退出原因](application-models/ability-exit-info-record.md)
           <!--Del-->
           - 应用组件跨设备交互（流转）<!--hop-->
