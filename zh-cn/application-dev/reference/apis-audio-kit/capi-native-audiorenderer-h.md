@@ -981,3 +981,4 @@ typedef void (*OH_AudioRenderer_OnFastStatusChange)(OH_AudioRenderer* renderer,v
 | void* userData | 指向应用自定义的数据存储区域。 |
 | status | 返回当前低时延状态。 |
 
+
