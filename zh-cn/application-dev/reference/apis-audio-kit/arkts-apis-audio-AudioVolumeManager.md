@@ -187,7 +187,7 @@ audioVolumeManager.setAppVolumePercentage(20).then(() => {
 });
 ```
 
-## on('volumeChange')<sup>9+</sup>
+## on('volumeChange')<sup>(deprecated)</sup>
 
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
@@ -221,7 +221,7 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 });
 ```
 
-## off('volumeChange')<sup>12+</sup>
+## off('volumeChange')<sup>(deprecated)</sup>
 
 off(type: 'volumeChange', callback?: Callback\<VolumeEvent>): void
 

@@ -44,15 +44,13 @@ let audioVolumeManager = audioManager.getVolumeManager();
 
 ### 获取音量信息
 
-管理音频组音量的接口由AudioVolumeManager提供，在使用之前，需要使用[getVolumeManager()](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeManager.md#getvolumegroupmanager9)获取AudioVolumeManager实例。
+管理音频组音量的接口由AudioVolumeManager提供，在使用之前，需要使用[getVolumeManager()](../../reference/apis-audio-kit/arkts-apis-audio-AudioManager.md#getvolumemanager9)获取AudioVolumeManager实例。
 
 ```ts
 import { audio } from '@kit.AudioKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
-let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
-let audioVolumeManager : audio.AudioVolumeManager = audio.getAudioManager().getVolumeManager();
-audioVolumeManager.getVolumeGroupManager();
+let audioManager = audio.getAudioManager();
+let audioVolumeManager = audioManager.getVolumeManager();
 ```
 
 使用[AudioVolumeManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeManager.md)获取指定流的音量信息。
@@ -64,31 +62,13 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 获取指定流的音量。
-audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
-  if (err) {
-    console.error(`Failed to obtain the volume. ${err}`);
-    return;
-  }
-  console.info('Callback invoked to indicate that the volume is obtained.');
-});
+audioVolumeManager.getVolumeByStream(audio.StreamUsage.STREA_USAGE_MUSIC);
 
 // 获取指定流的最小音量。
-audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
-  if (err) {
-    console.error(`Failed to obtain the minimum volume. ${err}`);
-    return;
-  }
-  console.info(`Callback invoked to indicate that the minimum volume is obtained. ${value}`);
-});
+audioVolumeManager.getMinVolumeByStream(audio.StreamUsage.STREA_USAGE_MUSIC);
 
 // 获取指定流的最大音量。
-audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
-  if (err) {
-    console.error(`Failed to obtain the maximum volume. ${err}`);
-    return;
-  }
-  console.info(`Callback invoked to indicate that the maximum volume is obtained. ${value}`);
-});
+audioVolumeManager.getMaxVolumeByStream(audio.StreamUsage.STREA_USAGE_MUSIC);
 ```
 
 ### 监听系统音量变化
@@ -98,8 +78,8 @@ audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err: Business
 ```ts
 import { audio } from '@kit.AudioKit';
 
-audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
-  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
+audioVolumeManager.on('streamVolumeChange', (streamVolumeEvent: audio.StreamVolumeEvent) => {
+  console.info(`StreamUsagem: ${streamVolumeEvent.streamUsage} `);
   console.info(`Volume level: ${volumeEvent.volume} `);
   console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
 });

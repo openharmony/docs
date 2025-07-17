@@ -15,7 +15,7 @@
 import { audio } from '@kit.AudioKit';
 ```
 
-## getVolume<sup>9+</sup>
+## getVolume<sup>(deprecated)</sup>
 
 getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
@@ -44,7 +44,7 @@ audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA, (err: BusinessErr
 });
 ```
 
-## getVolume<sup>9+</sup>
+## getVolume<sup>(deprecated)</sup>
 
 getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
@@ -72,7 +72,7 @@ audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA).then((value: numb
 });
 ```
 
-## getVolumeSync<sup>10+</sup>
+## getVolumeSync<sup>(deprecated)</sup>
 
 getVolumeSync(volumeType: AudioVolumeType): number
 
@@ -115,7 +115,7 @@ try {
 }
 ```
 
-## getMinVolume<sup>9+</sup>
+## getMinVolume<sup>(deprecated)</sup>
 
 getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
@@ -144,7 +144,7 @@ audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err: Business
 });
 ```
 
-## getMinVolume<sup>9+</sup>
+## getMinVolume<sup>(deprecated)</sup>
 
 getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
@@ -172,7 +172,7 @@ audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value: n
 });
 ```
 
-## getMinVolumeSync<sup>10+</sup>
+## getMinVolumeSync<sup>(deprecated)</sup>
 
 getMinVolumeSync(volumeType: AudioVolumeType): number
 
@@ -215,7 +215,7 @@ try {
 }
 ```
 
-## getMaxVolume<sup>9+</sup>
+## getMaxVolume<sup>(deprecated)</sup>
 
 getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
@@ -244,7 +244,7 @@ audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err: Business
 });
 ```
 
-## getMaxVolume<sup>9+</sup>
+## getMaxVolume<sup>(deprecated)</sup>
 
 getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
@@ -272,7 +272,7 @@ audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data: nu
 });
 ```
 
-## getMaxVolumeSync<sup>10+</sup>
+## getMaxVolumeSync<sup>(deprecated)</sup>
 
 getMaxVolumeSync(volumeType: AudioVolumeType): number
 
@@ -315,7 +315,7 @@ try {
 }
 ```
 
-## isMute<sup>9+</sup>
+## isMute<sup>(deprecated)</sup>
 
 isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -344,7 +344,7 @@ audioVolumeGroupManager.isMute(audio.AudioVolumeType.MEDIA, (err: BusinessError,
 });
 ```
 
-## isMute<sup>9+</sup>
+## isMute<sup>(deprecated)</sup>
 
 isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
@@ -372,7 +372,7 @@ audioVolumeGroupManager.isMute(audio.AudioVolumeType.MEDIA).then((value: boolean
 });
 ```
 
-## isMuteSync<sup>10+</sup>
+## isMuteSync<sup>(deprecated)</sup>
 
 isMuteSync(volumeType: AudioVolumeType): boolean
 
@@ -737,7 +737,7 @@ let volumeAdjustSwitch: boolean = audioVolumeGroupManager.isVolumeUnadjustable()
 console.info(`Whether it is volume unadjustable: ${volumeAdjustSwitch}.`);
 ```
 
-## getSystemVolumeInDb<sup>10+</sup>
+## getSystemVolumeInDb<sup>(deprecated)</sup>
 
 getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: DeviceType, callback: AsyncCallback&lt;number&gt;): void
 
@@ -778,7 +778,7 @@ audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audi
 });
 ```
 
-## getSystemVolumeInDb<sup>10+</sup>
+## getSystemVolumeInDb<sup>(deprecated)</sup>
 
 getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: DeviceType): Promise&lt;number&gt;
 
@@ -822,7 +822,7 @@ audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audi
 });
 ```
 
-## getSystemVolumeInDbSync<sup>10+</sup>
+## getSystemVolumeInDbSync<sup>(deprecated)</sup>
 
 getSystemVolumeInDbSync(volumeType: AudioVolumeType, volumeLevel: number, device: DeviceType): number
 

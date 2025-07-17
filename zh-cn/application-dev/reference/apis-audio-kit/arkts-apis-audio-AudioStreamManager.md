@@ -497,7 +497,7 @@ audioStreamManager.on('audioCapturerChange', audioCapturerChangeCallback);
 audioStreamManager.off('audioCapturerChange', audioCapturerChangeCallback);
 ```
 
-## isActive<sup>9+</sup>
+## isActive<sup>(deprecated)</sup>
 
 isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -526,7 +526,7 @@ if (err) {
 });
 ```
 
-## isActive<sup>9+</sup>
+## isActive<sup>(deprecated)</sup>
 
 isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
@@ -554,7 +554,7 @@ audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value: boolean) =
 });
 ```
 
-## isActiveSync<sup>10+</sup>
+## isActiveSync<sup>(deprecated)</sup>
 
 isActiveSync(volumeType: AudioVolumeType): boolean
 
