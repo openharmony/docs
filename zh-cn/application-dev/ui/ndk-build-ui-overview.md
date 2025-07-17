@@ -66,6 +66,7 @@ ArkUI NDK接口能力主要包括：
 | [构建自定义组件](ndk-build-custom-components.md) | 介绍了如何使用NDK接口能力构建自定义组件，实现差异化UI组件。 |
 | [嵌入ArkTS组件](ndk-embed-arkts-components.md) | 介绍了如何在Native侧构建带有ArkTS组件的界面。 |
 | [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md) | 介绍了通过XComponent接入UI平台的三方系统如何对接无障碍。 |
+| [NDK支持多线程创建组件](nkd-build-on-multi-thread.md) | 介绍了如何使用NDK进行多线程UI组件创建。 |
 
 
 ## 注意事项
