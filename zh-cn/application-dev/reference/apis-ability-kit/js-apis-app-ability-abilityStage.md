@@ -97,6 +97,8 @@ onNewProcessRequest(want: Want): string
 
 在指定进程中启动UIAbility时，会触发该回调。同步接口，不支持异步回调。
 
+该接口仅在2in1和tablet设备上生效。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -213,7 +215,7 @@ onPrepareTermination(): AbilityConstant.PrepareTermination
 
 > **说明：**
 >
-> - 当前仅在2in1设备上生效。
+> - 从API version 15开始，该接口在2in1设备上生效；从API version 19开始，该接口在tablet设备上生效。
 >
 > - 仅当应用正常退出（例如，通过doc栏/托盘关闭应用，或者应用随设备关机而退出）时会调用该接口。如果应用被强制关闭，则不会调用该接口。
 >
@@ -252,7 +254,7 @@ onPrepareTerminationAsync(): Promise\<AbilityConstant.PrepareTermination>
 
 > **说明：**
 >
-> - 当前仅在2in1设备上生效。
+> - 从API version 15开始，该接口在2in1设备上生效；从API version 19开始，该接口在tablet设备上生效。
 >
 > - 仅当应用正常退出（例如，通过doc栏/托盘关闭应用，或者应用随设备关机而退出）时会调用该接口。如果应用被强制关闭，则不会调用该接口。
 >
