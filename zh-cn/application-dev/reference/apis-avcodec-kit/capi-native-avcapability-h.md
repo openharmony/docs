@@ -43,8 +43,7 @@
 | [bool OH_AVCapability_IsEncoderBitrateModeSupported(OH_AVCapability *capability, OH_BitrateMode bitrateMode)](#oh_avcapability_isencoderbitratemodesupported) | 检查编码器是否支持特定的比特率模式。 |
 | [OH_AVErrCode OH_AVCapability_GetEncoderQualityRange(OH_AVCapability *capability, OH_AVRange *qualityRange)](#oh_avcapability_getencoderqualityrange) | 获取编码器支持的质量范围。 |
 | [OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange(OH_AVCapability *capability, OH_AVRange *complexityRange)](#oh_avcapability_getencodercomplexityrange) | 获取编码器支持的编码器复杂性范围。 |
-| [OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates(OH_AVCapability *capability, const int32_t **sampleRates, uint32_t *sampleRateNum)](#oh_avcapability_getaudiosupportedsamplerates) | 获取音频编解码器支持的采样率。 |
-| [OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRateRanges(OH_AVCapability *capability, OH_AVRange **sampleRateRanges, uint32_t *rangesNum)](#oh_avcapability_getaudiosupportedsamplerateranges) | 获取音频编解码器支持的采样率范围。 |
+| [OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates(OH_AVCapability *capability, const int32_t **sampleRates,uint32_t *sampleRateNum)](#oh_avcapability_getaudiosupportedsamplerates) | 获取音频编解码器支持的采样率。 |
 | [OH_AVErrCode OH_AVCapability_GetAudioChannelCountRange(OH_AVCapability *capability, OH_AVRange *channelCountRange)](#oh_avcapability_getaudiochannelcountrange) | 获取音频编解码器支持的音频通道计数范围。 |
 | [OH_AVErrCode OH_AVCapability_GetVideoWidthAlignment(OH_AVCapability *capability, int32_t *widthAlignment)](#oh_avcapability_getvideowidthalignment) | 获取视频编解码器支持的视频宽度对齐。 |
 | [OH_AVErrCode OH_AVCapability_GetVideoHeightAlignment(OH_AVCapability *capability, int32_t *heightAlignment)](#oh_avcapability_getvideoheightalignment) | 获取视频编解码器支持的视频高度对齐。 |
@@ -360,7 +359,7 @@ OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange(OH_AVCapability *capabili
 ### OH_AVCapability_GetAudioSupportedSampleRates()
 
 ```
-OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates(OH_AVCapability *capability, const int32_t **sampleRates, uint32_t *sampleRateNum)
+OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates(OH_AVCapability *capability, const int32_t **sampleRates,uint32_t *sampleRateNum)
 ```
 
 **描述**
@@ -385,35 +384,6 @@ OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates(OH_AVCapability *capab
 | 类型 | 说明 |
 | -- | -- |
 | [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br> AV_ERR_INVALID_VAL：能力实例无效，或者指向采样率数组的指针为空指针，或者指向采样率数组的元素数目的指针为空指针。<br> AV_ERR_UNKNOWN：未知错误。<br> AV_ERR_NO_MEMORY：内部使用内存分配失败。 |
-
-### OH_AVCapability_GetAudioSupportedSampleRateRanges()
-
-```
-OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRateRanges(OH_AVCapability *capability, OH_AVRange **sampleRateRanges, uint32_t *rangesNum)
-```
-
-**描述**
-
-获取音频编解码器支持的采样率范围。
-
-**系统能力：** SystemCapability.Multimedia.Media.CodecBase
-
-**起始版本：** 20
-
-
-**参数：**
-
-| 参数项 | 描述 |
-| -- | -- |
-| [OH_AVCapability](capi-avcapability-oh-avcapability.md) *capability | 音频编解码能力指针。如果给的是视频编解码器能力指针，会导致未定义行为。 |
-| OH_AVRange **sampleRateRanges | 输出参数。指向采样率范围数组的指针。 |
-| uint32_t *rangesNum | 输出参数。采样率范围数组的元素数目。 |
-
-**返回：**
-
-| 类型 | 说明 |
-| -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br> AV_ERR_INVALID_VAL：能力实例无效，或者指向采样率范围数组的指针为空指针，或者指向采样率范围数组的元素数目的指针为空指针。<br> AV_ERR_UNKNOWN：未知错误。<br> AV_ERR_NO_MEMORY：内部使用内存分配失败。 |
 
 ### OH_AVCapability_GetAudioChannelCountRange()
 

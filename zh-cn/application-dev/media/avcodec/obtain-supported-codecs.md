@@ -340,7 +340,7 @@ if (ret != AV_ERR_OK || sampleRateRanges == nullptr || rangesNum == 0) {
    // 异常处理。
 }
 bool isMatched = false;
-for (int i = 0; i < rangesNum; i++) {
+for (uint32_t i = 0; i < rangesNum; i++) {
    if (sampleRate >= sampleRateRanges[i].minVal && sampleRate <= sampleRateRanges[i].maxVal) {
       isMatched = true;
    }
