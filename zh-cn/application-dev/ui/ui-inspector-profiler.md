@@ -209,3 +209,11 @@ DevEco Studio的Profiler工具可抓取状态变量的变化打点。在Profiler
 > 由于隐私安全政策，已上架应用市场的应用不支持录制ArkUI State泳道。
 
 以上主要介绍了状态管理的dump和Profiler能力，这些工具方便开发者调测，有助于提升开发高性能应用的效率。
+
+## Trace调试能力
+
+ArkUI内部针对关键的UI处理流程添加了trace信息，帮助开发者通过trace工具观测应用的UI耗时，辅助定位问题。详细trace说明及案例参考：[常用Trace使用指导](../performance/common-trace-using-instructions.md)。
+
+## Inspector调试能力
+
+ArkUI Inspector是DevEco Studio内置的页面布局检查工具，帮助开发者查看应用的UI层级结构、组件属性和布局效果。详细Inspector使用方法及案例参考：[页面布局检查器ArkUI Inspector使用指导](../performance/arkUI-inspector.md)。
