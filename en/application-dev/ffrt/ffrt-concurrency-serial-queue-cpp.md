@@ -24,7 +24,7 @@ The example simplifies the logic for handling exceptions and ensuring thread sec
 #include <fstream>
 #include <iostream>
 #include <thread>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
 
 class Logger {
 public:

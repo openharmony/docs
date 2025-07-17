@@ -624,6 +624,8 @@
           - [查询和操作自定义节点](ui/ndk-node-query-operate.md)
           - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ui/ndk-embedded-component.md)
           - [在NDK中保证多实例场景功能正常](ui/ndk-scope-task.md)
+      - UI高性能开发<!--ui-performance-->
+        - [UI性能优化概览](ui/ui-performance-overview.md)
       - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
         - [UI开发 (兼容JS的类Web开发范式)概述](ui/ui-js-overview.md)
         - 框架说明<!--js-framework-overview-->
@@ -2185,7 +2187,6 @@
           - [@ohos.app.ability.dialogRequest (dialogRequest模块)](reference/apis-ability-kit/js-apis-app-ability-dialogRequest.md)
           - [@ohos.app.ability.errorManager (错误观测管理)](reference/apis-ability-kit/js-apis-app-ability-errorManager.md)
           - [@ohos.app.ability.kioskManager (Kiosk管理模块)](reference/apis-ability-kit/js-apis-app-ability-kioskManager.md)
-          - [@ohos.app.ability.kioskManager (Kiosk管理模块)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-kioskManager-sys.md)
           - [@ohos.app.ability.Want (Want)](reference/apis-ability-kit/js-apis-app-ability-want.md)
           - [@ohos.app.ability.wantAgent (WantAgent模块)](reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
           - [@ohos.app.ability.wantConstant (Want常量)](reference/apis-ability-kit/js-apis-app-ability-wantConstant.md)
@@ -2195,6 +2196,7 @@
           - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)(系统接口)](reference/apis-ability-kit/js-apis-screenLockFileManager-sys.md)
           - [@ohos.app.ability.abilityManager (AbilityManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-abilityManager-sys.md)
           - [@ohos.app.ability.appManager (appManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-appManager-sys.md)
+          - [@ohos.app.ability.kioskManager (Kiosk管理模块)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-kioskManager-sys.md)
           - [@ohos.app.ability.missionManager (missionManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-missionManager-sys.md)
           - [@ohos.app.ability.quickFixManager (quickFixManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-quickFixManager-sys.md)
           - [@ohos.app.ability.wantAgent (WantAgent模块)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-wantAgent-sys.md)
@@ -2650,6 +2652,7 @@
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
         - 窗口管理<!--window-manager-api-->
           - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
+          - [@ohos.window.floatingBall (闪控球窗口)](reference/apis-arkui/js-apis-floatingBall.md)
           - @ohos.window (窗口)<!--js-apis-window-->
             - [模块描述](reference/apis-arkui/arkts-apis-window.md)
             - [Functions](reference/apis-arkui/arkts-apis-window-f.md)
@@ -4126,7 +4129,7 @@
             - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
             - [OH_Print](reference/apis-basic-services-kit/_o_h___print.md)
             - [Pasteboard](reference/apis-basic-services-kit/capi-pasteboard.md)
-            - [TimeService](reference/apis-basic-services-kit/_time_service.md)
+            - [TimeService](reference/apis-basic-services-kit/capi-timeservice.md)
           - 头文件<!--basic-services-headerfile-->
             - [deviceinfo.h](reference/apis-basic-services-kit/deviceinfo_8h.md)
             - [ohbattery_info.h](reference/apis-basic-services-kit/capi-ohbattery-info-h.md)
@@ -4138,7 +4141,7 @@
             - [os_account_common.h](reference/apis-basic-services-kit/capi-os-account-common-h.md)
             - [ohprint.h](reference/apis-basic-services-kit/ohprint_8h.md)
             - [ohscan.h](reference/apis-basic-services-kit/c-apis-scan.md)
-            - [time_service.h](reference/apis-basic-services-kit/time__service_8h.md)
+            - [time_service.h](reference/apis-basic-services-kit/capi-time-service-h.md)
           - 结构体<!--basic-services-struct-->
             - [Print_Margin](reference/apis-basic-services-kit/_print___margin.md)
             - [Print_PageSize](reference/apis-basic-services-kit/_print___page_size.md)
@@ -5035,6 +5038,8 @@
           - [OH_MovingPhoto](reference/apis-media-library-kit/capi-mediaassetmanager-oh-movingphoto.md)
           - [OH_MediaAsset](reference/apis-media-library-kit/capi-mediaassetmanager-oh-mediaasset.md)
           - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/capi-mediaassetmanager-medialibrary-requestoptions.md)
+      - 错误码<!--media-library-errcode-->
+        - [媒体库错误码](reference/apis-media-library-kit/errcode-medialibrary.md)
   - 图形<!--graphics-api-->
     - ArkGraphics 2D（方舟2D图形服务）<!--arkgraphics-api-->
       - ArkTS API<!--arkgraphics-arkts-->
@@ -5395,25 +5400,40 @@
       - 模块<!--common-basic-module-->
         - [Init](reference/common/init.md)
         - [Memory](reference/common/memory.md)
-        - [JSVM](reference/common/_j_s_v_m.md)
+        - [JSVM](reference/common/capi-jsvm.md)
       - 头文件<!--common-basic-headerfile-->
         - [syscap_ndk.h](reference/common/syscap__ndk_8h.md)
         - [purgeable_memory.h](reference/common/purgeable__memory_8h.md)
-        - [jsvm.h](reference/common/jsvm_8h.md)
-        - [jsvm_types.h](reference/common/jsvm__types_8h.md)
+        - [jsvm.h](reference/common/capi-jsvm-h.md)
+        - [jsvm_types.h](reference/common/capi-jsvm-types-h.md)
       - 结构体<!--common-basic-struct-->
-        - [JSVM_CallbackStruct](reference/common/_j_s_v_m___callback_struct.md)
-        - [JSVM_CreateVMOptions](reference/common/_j_s_v_m___create_v_m_options.md)
-        - [JSVM_ExtendedErrorInfo](reference/common/_j_s_v_m___extended_error_info.md)
-        - [JSVM_HeapStatistics](reference/common/_j_s_v_m___heap_statistics.md)
-        - [JSVM_InitOptions](reference/common/_j_s_v_m___init_options.md)
-        - [JSVM_PropertyDescriptor](reference/common/_j_s_v_m___property_descriptor.md)
-        - [JSVM_PropertyHandlerConfigurationStruct](reference/common/_j_s_v_m___property_handler_configuration_struct.md)
-        - [JSVM_ScriptOrigin](reference/common/_j_s_v_m___script_origin.md)
-        - [JSVM_TypeTag](reference/common/_j_s_v_m___type_tag.md)
-        - [JSVM_VMInfo](reference/common/_j_s_v_m___v_m_info.md)
-        - [JSVM_PropertyHandler](reference/common/_j_s_v_m___property_handler.md)
-        - [JSVM_DefineClassOptions](reference/common/_j_s_v_m___define_class_options.md)
+        - [JSVM_CallbackStruct](reference/common/capi-jsvm-jsvm-callbackstruct.md)
+        - [JSVM_HeapStatistics](reference/common/capi-jsvm-jsvm-heapstatistics.md)
+        - [JSVM_InitOptions](reference/common/capi-jsvm-jsvm-initoptions.md)
+        - [JSVM_CreateVMOptions](reference/common/capi-jsvm-jsvm-createvmoptions.md)
+        - [JSVM_VMInfo](reference/common/capi-jsvm-jsvm-vminfo.md)
+        - [JSVM_PropertyDescriptor](reference/common/capi-jsvm-jsvm-propertydescriptor.md)
+        - [JSVM_ExtendedErrorInfo](reference/common/capi-jsvm-jsvm-extendederrorinfo.md)
+        - [JSVM_TypeTag](reference/common/capi-jsvm-jsvm-typetag.md)
+        - [JSVM_PropertyHandlerConfigurationStruct](reference/common/capi-jsvm-jsvm-propertyhandlerconfigurationstruct.md)
+        - [JSVM_ScriptOrigin](reference/common/capi-jsvm-jsvm-scriptorigin.md)
+        - [JSVM_PropertyHandler](reference/common/capi-jsvm-jsvm-propertyhandler.md)
+        - [JSVM_DefineClassOptions](reference/common/capi-jsvm-jsvm-defineclassoptions.md)
+        - [JSVM_VM__*](reference/common/capi-jsvm-jsvm-vm--8h.md)
+        - [JSVM_VMScope__*](reference/common/capi-jsvm-jsvm-vmscope--8h.md)
+        - [JSVM_EnvScope__*](reference/common/capi-jsvm-jsvm-envscope--8h.md)
+        - [JSVM_Script__*](reference/common/capi-jsvm-jsvm-script--8h.md)
+        - [JSVM_Env__*](reference/common/capi-jsvm-jsvm-env--8h.md)
+        - [JSVM_CpuProfiler__*](reference/common/capi-jsvm-jsvm-cpuprofiler--8h.md)
+        - [JSVM_Value__*](reference/common/capi-jsvm-jsvm-value--8h.md)
+        - [JSVM_Data__*](reference/common/capi-jsvm-jsvm-data--8h.md)
+        - [JSVM_Ref__*](reference/common/capi-jsvm-jsvm-ref--8h.md)
+        - [JSVM_HandleScope__*](reference/common/capi-jsvm-jsvm-handlescope--8h.md)
+        - [JSVM_EscapableHandleScope__*](reference/common/capi-jsvm-jsvm-escapablehandlescope--8h.md)
+        - [JSVM_CallbackInfo__*](reference/common/capi-jsvm-jsvm-callbackinfo--8h.md)
+        - [JSVM_Deferred__*](reference/common/capi-jsvm-jsvm-deferred--8h.md)
+        - [JSVM_CallbackStruct*](reference/common/capi-jsvm-jsvm-callbackstruct8h.md)
+        - [JSVM_PropertyHandlerConfigurationStruct*](reference/common/capi-jsvm-jsvm-propertyhandlerconfigurationstruct8h.md)
   - 标准库<!--standard-library-->
     - [libc标准库](reference/native-lib/musl.md)
     - [c++标准库](reference/native-lib/cpp.md)

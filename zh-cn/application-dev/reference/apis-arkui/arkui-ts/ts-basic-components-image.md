@@ -472,7 +472,7 @@ alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| enable  | boolean | 是   | 组件支持AI分析，设置为true时，组件可进行AI分析。<br/>默认值：false，表示不开启AI分析。 |
+| enable  | boolean | 是   | Image组件是否支持AI分析。<br/>设置为true时，Image组件支持AI分析。设置为false时，Image组件不支持AI分析。<br/>默认值：false |
 
 ### resizable<sup>11+</sup>
 
@@ -666,7 +666,7 @@ svg类型图源不支持该属性。
 
 | 名称     | 值    | 说明                    |
 | ------ | -------------------------- | -------------------------- |
-| AUTO | 0 | 读取图片携带的EXIF元数据作为显示方向，支持旋转和镜像。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br/>![imageRotateOrientation_0](figures/imageRotateOrientation_0.png) |
+| AUTO | 0 | 读取图片携带的EXIF元数据作为显示方向，支持旋转和镜像。<br/>PixelMap和DrawableDescriptor类型的图片不携带头信息，使用AUTO解析后为UP。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br/>![imageRotateOrientation_0](figures/imageRotateOrientation_0.png) |
 | UP | 1 | 默认按照当前图片的像素数据进行显示，不做任何处理。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | RIGHT | 2 | 将当前图片顺时针旋转90度后显示。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br/>![imageRotateOrientation_2](figures/imageRotateOrientation_2.png) |
 | DOWN | 3 | 将当前图片顺时针旋转180度后显示。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br/>![imageRotateOrientation_3](figures/imageRotateOrientation_3.png) |
