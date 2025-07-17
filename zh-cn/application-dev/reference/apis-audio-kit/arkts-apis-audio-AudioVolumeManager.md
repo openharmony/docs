@@ -621,7 +621,7 @@ off(type: 'streamVolumeChange', callback?: Callback<StreamVolumeEvent>): void
 
 ```ts
 // 取消该事件的所有监听。
-audioVolumeManager.off('volumeChange');
+audioVolumeManager.off('streamVolumeChange');
 
 // 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
 let streamVolumeChangeCallback = (streamVolumeEvent: audio.StreamVolumeEvent) => {
