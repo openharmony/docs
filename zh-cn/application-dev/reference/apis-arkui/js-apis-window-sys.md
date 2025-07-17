@@ -2826,7 +2826,7 @@ raiseMainWindowAboveTarget(windowId: number): Promise&lt;void&gt;
 
 传入目标主窗口的id，调用窗口和目标窗口需满足：同应用进程、显示在同一屏幕、低于锁屏、非置顶主窗、非模态主窗且无模应用子窗。
 
-调用该接口抬升应用主窗口高于焦点窗口，则被抬升应用中Z序最高的窗口自动获焦；调用该接口降低焦点窗口，则Z序最高的应用窗口自动获焦。
+调用该接口抬升的应用主窗口若高于当前焦点窗口，则被抬升应用中Z序最高的窗口自动获焦；调用该接口降低的应用主窗口或者它的子窗口如果是焦点窗口，则自动失焦，由当前Z序最高的应用窗口获焦。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2876,7 +2876,7 @@ export default class EntryAbility extends UIAbility {
       try {
         let want: Want = {
           abilityName: "RaiseMainWindowAbility",
-          bundleName: "com.example.MyApplication"
+          bundleName: "com.example.myapplication"
         };
         let options: StartOptions = {
           windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING
@@ -2889,7 +2889,7 @@ export default class EntryAbility extends UIAbility {
         let mainWindow: window.Window | null | undefined = windowStage.getMainWindowSync();
         let targetId: number | null | undefined = AppStorage.get('higher_window_id');
         mainWindow.raiseMainWindowAboveTarget(targetId).then(() => {
-          console.log('Succeeded in raising main window above target.');
+          console.info('Succeeded in raising main window above target.');
         }).catch((err: BusinessError) => {
           console.error(`Failed to raise main window above target. Cause code: ${err.code}, message: ${err.message}.`)
         });
