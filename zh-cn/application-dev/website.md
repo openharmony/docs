@@ -74,7 +74,7 @@
             - [UIExtensionAbility（仅对系统应用开放）](application-models/uiextensionability.md)
             - [AutoFillExtensionAbility（仅对系统应用开放）](application-models/autofillextensionablility-guide.md)
             <!--DelEnd-->
-            - [UIServiceExtension](application-models/uiserviceextension.md)
+            - [使用通过UIServiceExtensionAbility实现的系统悬浮窗](application-models/uiserviceextension.md)
             - [EmbeddedUIExtensionAbility](application-models/embeddeduiextensionability.md)
             - [使用AppServiceExtensionAbility实现后台服务](application-models/app-service-extension-ability.md)
           - [AbilityStage组件容器](application-models/abilitystage.md)
@@ -86,6 +86,7 @@
             - [常见action与entities（不推荐使用）](application-models/actions-entities.md)
           - [组件启动规则（Stage模型）](application-models/component-startup-rules.md)
           - [应用启动框架AppStartup](application-models/app-startup.md)
+          - [应用预加载](application-models/preload-application.md)
           - [获取应用异常退出原因](application-models/ability-exit-info-record.md)
           <!--Del-->
           - 应用组件跨设备交互（流转）<!--hop-->
@@ -523,7 +524,6 @@
           - [几何图形绘制概述](ui/arkts-shape-overview.md)
           - [绘制几何图形 (Shape)](ui/arkts-geometric-shape-drawing.md)
           - [形状裁剪 (clipShape)](ui/arkts-clip-shape.md)
-          - [使用画布绘制自定义图形 (Canvas)](ui/arkts-drawing-customization-on-canvas.md)
         - [添加交互响应](ui/arkts-interaction-development-guide-overview.md)
           - [交互响应概述](ui/arkts-interaction-capability-overview.md)
           - [交互基础机制说明](ui/arkts-interaction-basic-principles.md)
@@ -578,12 +578,14 @@
             - [自定义渲染节点 (RenderNode)](ui/arkts-user-defined-arktsNode-renderNode.md)
             - [自定义声明式节点 (BuilderNode)](ui/arkts-user-defined-arktsNode-builderNode.md)
             - [设置自定义节点跨语言属性](ui/arkts-user-defined-arktsNode-crossLanguage.md)
+          - 自定义绘制
+            - [使用画布绘制自定义图形 (Canvas)](ui/arkts-drawing-customization-on-canvas.md)
+            - [自定义绘制修改器 (DrawModifier)](ui/arkts-user-defined-extension-drawModifier.md)
           - 自定义扩展<!--arkts-modifier-->
             - [自定义扩展概述](ui/arkts-user-defined-modifier.md)
             - [属性修改器 (AttributeModifier)](ui/arkts-user-defined-extension-attributeModifier.md)
             - [属性更新器 (AttributeUpdater)](ui/arkts-user-defined-extension-attributeUpdater.md)
-            - [自定义绘制修改器 (DrawModifier)](ui/arkts-user-defined-extension-drawModifier.md)
-        - [使用镜像能力](ui/arkts-mirroring-display.md)
+        - [UI国际化](ui/arkts-internationalization.md)
         - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
           - [支持无障碍](ui/arkts-universal-attributes-accessibility.md)
           - [支持适老化](ui/arkui-support-for-aging-adaptation.md)
@@ -601,6 +603,9 @@
           - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](ui/arkts-ui-extension-components.md)
           - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](ui/arkts-isolated-components.md)
           <!--DelEnd-->
+        - UI开发调优<!--ui-inspector-profiler-->
+            - [预览](ui/ui-ide-previewer.md)
+            - [调试](ui/ui-inspector-profiler.md)
         - 使用NDK接口构建UI<!--arkts-use-ndk-->
           - [NDK接口概述](ui/ndk-build-ui-overview.md)
           - [接入ArkTS页面](ui/ndk-access-the-arkts-page.md)
@@ -624,6 +629,8 @@
           - [查询和操作自定义节点](ui/ndk-node-query-operate.md)
           - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ui/ndk-embedded-component.md)
           - [在NDK中保证多实例场景功能正常](ui/ndk-scope-task.md)
+      - UI高性能开发<!--ui-performance-->
+        - [UI性能优化概览](ui/ui-performance-overview.md)
       - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
         - [UI开发 (兼容JS的类Web开发范式)概述](ui/ui-js-overview.md)
         - 框架说明<!--js-framework-overview-->
@@ -2010,6 +2017,7 @@
         - [Rawfile开发指导](napi/rawfile-guidelines.md)
       - 线程调度<!--thread-scheduling-->
         - [QOS开发指导](napi/qos-guidelines.md)
+        - [格物开发指导](napi/gewu-ndk-api-guidelines.md)
       - 内存管理<!--memory-management-->
         - [Purgeable memory开发指导](napi/purgeable-memory-guidelines.md)
       - 包管理<!--bundle-management-->
@@ -2185,7 +2193,6 @@
           - [@ohos.app.ability.dialogRequest (dialogRequest模块)](reference/apis-ability-kit/js-apis-app-ability-dialogRequest.md)
           - [@ohos.app.ability.errorManager (错误观测管理)](reference/apis-ability-kit/js-apis-app-ability-errorManager.md)
           - [@ohos.app.ability.kioskManager (Kiosk管理模块)](reference/apis-ability-kit/js-apis-app-ability-kioskManager.md)
-          - [@ohos.app.ability.kioskManager (Kiosk管理模块)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-kioskManager-sys.md)
           - [@ohos.app.ability.Want (Want)](reference/apis-ability-kit/js-apis-app-ability-want.md)
           - [@ohos.app.ability.wantAgent (WantAgent模块)](reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
           - [@ohos.app.ability.wantConstant (Want常量)](reference/apis-ability-kit/js-apis-app-ability-wantConstant.md)
@@ -2195,6 +2202,7 @@
           - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)(系统接口)](reference/apis-ability-kit/js-apis-screenLockFileManager-sys.md)
           - [@ohos.app.ability.abilityManager (AbilityManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-abilityManager-sys.md)
           - [@ohos.app.ability.appManager (appManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-appManager-sys.md)
+          - [@ohos.app.ability.kioskManager (Kiosk管理模块)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-kioskManager-sys.md)
           - [@ohos.app.ability.missionManager (missionManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-missionManager-sys.md)
           - [@ohos.app.ability.quickFixManager (quickFixManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-quickFixManager-sys.md)
           - [@ohos.app.ability.wantAgent (WantAgent模块)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-wantAgent-sys.md)
@@ -2650,6 +2658,7 @@
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
         - 窗口管理<!--window-manager-api-->
           - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
+          - [@ohos.window.floatingBall (闪控球窗口)](reference/apis-arkui/js-apis-floatingBall.md)
           - @ohos.window (窗口)<!--js-apis-window-->
             - [模块描述](reference/apis-arkui/arkts-apis-window.md)
             - [Functions](reference/apis-arkui/arkts-apis-window-f.md)
@@ -4120,15 +4129,15 @@
         - C API<!--basic-services-c-->
           - 模块<!--basic-services-module-->
             - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
-            - [DeviceInfo](reference/apis-basic-services-kit/_device_info.md)
+            - [DeviceInfo](reference/apis-basic-services-kit/capi-deviceinfo.md)
             - [OsAccount](reference/apis-basic-services-kit/capi-osaccount.md)
             - [OH_BatteryInfo](reference/apis-basic-services-kit/capi-oh-batteryinfo.md)
             - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
             - [OH_Print](reference/apis-basic-services-kit/_o_h___print.md)
             - [Pasteboard](reference/apis-basic-services-kit/capi-pasteboard.md)
-            - [TimeService](reference/apis-basic-services-kit/_time_service.md)
+            - [TimeService](reference/apis-basic-services-kit/capi-timeservice.md)
           - 头文件<!--basic-services-headerfile-->
-            - [deviceinfo.h](reference/apis-basic-services-kit/deviceinfo_8h.md)
+            - [deviceinfo.h](reference/apis-basic-services-kit/capi-deviceinfo-h.md)
             - [ohbattery_info.h](reference/apis-basic-services-kit/capi-ohbattery-info-h.md)
             - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
             - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
@@ -4138,7 +4147,7 @@
             - [os_account_common.h](reference/apis-basic-services-kit/capi-os-account-common-h.md)
             - [ohprint.h](reference/apis-basic-services-kit/ohprint_8h.md)
             - [ohscan.h](reference/apis-basic-services-kit/c-apis-scan.md)
-            - [time_service.h](reference/apis-basic-services-kit/time__service_8h.md)
+            - [time_service.h](reference/apis-basic-services-kit/capi-time-service-h.md)
           - 结构体<!--basic-services-struct-->
             - [Print_Margin](reference/apis-basic-services-kit/_print___margin.md)
             - [Print_PageSize](reference/apis-basic-services-kit/_print___page_size.md)
@@ -5035,6 +5044,8 @@
           - [OH_MovingPhoto](reference/apis-media-library-kit/capi-mediaassetmanager-oh-movingphoto.md)
           - [OH_MediaAsset](reference/apis-media-library-kit/capi-mediaassetmanager-oh-mediaasset.md)
           - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/capi-mediaassetmanager-medialibrary-requestoptions.md)
+      - 错误码<!--media-library-errcode-->
+        - [媒体库错误码](reference/apis-media-library-kit/errcode-medialibrary.md)
   - 图形<!--graphics-api-->
     - ArkGraphics 2D（方舟2D图形服务）<!--arkgraphics-api-->
       - ArkTS API<!--arkgraphics-arkts-->
@@ -5395,25 +5406,40 @@
       - 模块<!--common-basic-module-->
         - [Init](reference/common/init.md)
         - [Memory](reference/common/memory.md)
-        - [JSVM](reference/common/_j_s_v_m.md)
+        - [JSVM](reference/common/capi-jsvm.md)
       - 头文件<!--common-basic-headerfile-->
         - [syscap_ndk.h](reference/common/syscap__ndk_8h.md)
         - [purgeable_memory.h](reference/common/purgeable__memory_8h.md)
-        - [jsvm.h](reference/common/jsvm_8h.md)
-        - [jsvm_types.h](reference/common/jsvm__types_8h.md)
+        - [jsvm.h](reference/common/capi-jsvm-h.md)
+        - [jsvm_types.h](reference/common/capi-jsvm-types-h.md)
       - 结构体<!--common-basic-struct-->
-        - [JSVM_CallbackStruct](reference/common/_j_s_v_m___callback_struct.md)
-        - [JSVM_CreateVMOptions](reference/common/_j_s_v_m___create_v_m_options.md)
-        - [JSVM_ExtendedErrorInfo](reference/common/_j_s_v_m___extended_error_info.md)
-        - [JSVM_HeapStatistics](reference/common/_j_s_v_m___heap_statistics.md)
-        - [JSVM_InitOptions](reference/common/_j_s_v_m___init_options.md)
-        - [JSVM_PropertyDescriptor](reference/common/_j_s_v_m___property_descriptor.md)
-        - [JSVM_PropertyHandlerConfigurationStruct](reference/common/_j_s_v_m___property_handler_configuration_struct.md)
-        - [JSVM_ScriptOrigin](reference/common/_j_s_v_m___script_origin.md)
-        - [JSVM_TypeTag](reference/common/_j_s_v_m___type_tag.md)
-        - [JSVM_VMInfo](reference/common/_j_s_v_m___v_m_info.md)
-        - [JSVM_PropertyHandler](reference/common/_j_s_v_m___property_handler.md)
-        - [JSVM_DefineClassOptions](reference/common/_j_s_v_m___define_class_options.md)
+        - [JSVM_CallbackStruct](reference/common/capi-jsvm-jsvm-callbackstruct.md)
+        - [JSVM_HeapStatistics](reference/common/capi-jsvm-jsvm-heapstatistics.md)
+        - [JSVM_InitOptions](reference/common/capi-jsvm-jsvm-initoptions.md)
+        - [JSVM_CreateVMOptions](reference/common/capi-jsvm-jsvm-createvmoptions.md)
+        - [JSVM_VMInfo](reference/common/capi-jsvm-jsvm-vminfo.md)
+        - [JSVM_PropertyDescriptor](reference/common/capi-jsvm-jsvm-propertydescriptor.md)
+        - [JSVM_ExtendedErrorInfo](reference/common/capi-jsvm-jsvm-extendederrorinfo.md)
+        - [JSVM_TypeTag](reference/common/capi-jsvm-jsvm-typetag.md)
+        - [JSVM_PropertyHandlerConfigurationStruct](reference/common/capi-jsvm-jsvm-propertyhandlerconfigurationstruct.md)
+        - [JSVM_ScriptOrigin](reference/common/capi-jsvm-jsvm-scriptorigin.md)
+        - [JSVM_PropertyHandler](reference/common/capi-jsvm-jsvm-propertyhandler.md)
+        - [JSVM_DefineClassOptions](reference/common/capi-jsvm-jsvm-defineclassoptions.md)
+        - [JSVM_VM__*](reference/common/capi-jsvm-jsvm-vm--8h.md)
+        - [JSVM_VMScope__*](reference/common/capi-jsvm-jsvm-vmscope--8h.md)
+        - [JSVM_EnvScope__*](reference/common/capi-jsvm-jsvm-envscope--8h.md)
+        - [JSVM_Script__*](reference/common/capi-jsvm-jsvm-script--8h.md)
+        - [JSVM_Env__*](reference/common/capi-jsvm-jsvm-env--8h.md)
+        - [JSVM_CpuProfiler__*](reference/common/capi-jsvm-jsvm-cpuprofiler--8h.md)
+        - [JSVM_Value__*](reference/common/capi-jsvm-jsvm-value--8h.md)
+        - [JSVM_Data__*](reference/common/capi-jsvm-jsvm-data--8h.md)
+        - [JSVM_Ref__*](reference/common/capi-jsvm-jsvm-ref--8h.md)
+        - [JSVM_HandleScope__*](reference/common/capi-jsvm-jsvm-handlescope--8h.md)
+        - [JSVM_EscapableHandleScope__*](reference/common/capi-jsvm-jsvm-escapablehandlescope--8h.md)
+        - [JSVM_CallbackInfo__*](reference/common/capi-jsvm-jsvm-callbackinfo--8h.md)
+        - [JSVM_Deferred__*](reference/common/capi-jsvm-jsvm-deferred--8h.md)
+        - [JSVM_CallbackStruct*](reference/common/capi-jsvm-jsvm-callbackstruct8h.md)
+        - [JSVM_PropertyHandlerConfigurationStruct*](reference/common/capi-jsvm-jsvm-propertyhandlerconfigurationstruct8h.md)
   - 标准库<!--standard-library-->
     - [libc标准库](reference/native-lib/musl.md)
     - [c++标准库](reference/native-lib/cpp.md)

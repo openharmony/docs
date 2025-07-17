@@ -5828,20 +5828,20 @@ rekey(cryptoParam?: CryptoParam): Promise\<void>
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                                                                         |
-| ------------ | ----------------------------------------------------------------------------------- |
-| 801          | Capability not supported.                                                           |
-| 14800001     | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause.|
-| 14800011     | Failed to open the database because it is corrupted.                                |
-| 14800014     | The RdbStore or ResultSet is already closed.                                        |
-| 14800015     | The database does not respond.                                                      |
-| 14800021     | SQLite: Generic error.                                                              |
-| 14800023     | SQLite: Access permission denied.                                                   |
-| 14800024     | SQLite: The database file is locked.                                                |
-| 14800026     | SQLite: The database is out of memory.                                              |
-| 14800027     | SQLite: Attempt to write a readonly database.                                       |
-| 14800028     | SQLite: Some kind of disk I/O error occurred.                                       |
-| 14800029     | SQLite: The database is full.                                                       |
+| **错误码ID** | **错误信息**                                                            |
+| ------------ | ---------------------------------------------------------------------- |
+| 801          | Capability not supported.                                              |
+| 14800001     | Invalid arguments. Possible causes: 1.Parameter is out of valid range. |
+| 14800011     | Failed to open the database because it is corrupted.                   |
+| 14800014     | The RdbStore or ResultSet is already closed.                           |
+| 14800015     | The database does not respond.                                         |
+| 14800021     | SQLite: Generic error.                                                 |
+| 14800023     | SQLite: Access permission denied.                                      |
+| 14800024     | SQLite: The database file is locked.                                   |
+| 14800026     | SQLite: The database is out of memory.                                 |
+| 14800027     | SQLite: Attempt to write a readonly database.                          |
+| 14800028     | SQLite: Some kind of disk I/O error occurred.                          |
+| 14800029     | SQLite: The database is full.                                          |
 
 **示例：**
 

@@ -10,13 +10,13 @@ A single UIAbility component can implement multiple pages and redirection betwee
 ![mission-record](figures/mission-record.png)
 
 - A page stack is formed as follows (Steps 2, 3, 5, and 6 are page redirection and managed by ArkUI):
-  1. Touch the icon on the home screen. The [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) method is called to start UIAbility1, whose initial page is Page1.
+  1. Touch the icon on the home screen. The [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability) method is called to start UIAbility1, whose initial page is Page1.
 
   2. Touch a button on Page1. The [Navigator](../reference/apis-arkui/arkui-ts/ts-container-navigator.md) method is called to redirect you to Page2.
 
   3. Touch a button on Page2. The [Navigator](../reference/apis-arkui/arkui-ts/ts-container-navigator.md) method is called to redirect you to Page3.
 
-  4. Touch a button on Page3. The [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) method is called to start UIAbility2, whose initial page is PageA.
+  4. Touch a button on Page3. The [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability) method is called to start UIAbility2, whose initial page is PageA.
 
   5. Touch a button on PageA. The [Navigator](../reference/apis-arkui/arkui-ts/ts-container-navigator.md) method is called to redirect you to PageB.
 
@@ -43,10 +43,13 @@ As described above, you can keep touching the **Back** button on the page of Abi
 The mission startup relationship recorded by the MissionList may be broken in the following cases:
 
 - A user moves a mission in the middle of the MissionList to the foreground.
+
   ![mission-chain1](figures/mission-chain1.png)
 
 - A user deletes a mission in the MissionList.
+
   ![mission-chain2](figures/mission-chain2.png)
 
 - A UIAbility singleton is repeatedly started by different missions (including other abilities or the home screen). For example, AbilityB in the figure below is a singleton.
+
   ![mission-chain3](figures/mission-chain3.png)

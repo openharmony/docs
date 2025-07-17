@@ -1,6 +1,6 @@
 # Context (System API)
 
-The **Context** module provides context for abilities or applications. It allows access to application-specific resources.
+The Context module provides context for abilities or applications. It allows access to application-specific resources.
 
 > **NOTE**
 >
@@ -181,7 +181,7 @@ export default class EntryAbility extends UIAbility {
 
 createSystemHspModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
 
-Creates a resource manager object for a module of the system-level HSP.
+Creates a [resource manager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager) for an OEM-preset [system-level HSP](../../quick-start/application-package-glossary.md#system-level-hsp).
 
 **System API**: This is a system API.
 
@@ -201,7 +201,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16400001 | The specified ability does not exist. |
+| 16400001 | The input bundleName is not a system HSP. |
 
 **Example**
 
@@ -215,3 +215,4 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+<!--no_check-->

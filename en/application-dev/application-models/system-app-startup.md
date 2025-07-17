@@ -58,7 +58,7 @@ Currently, the following screens in Settings can be directly opened:
 
 
 ### Contacts
-[Contacts Kit](../contacts/contacts-intro.md) provides the Contacts Picker, which is used to start the Contacts application and read contact data. For details, see [Selecting Contacts](../contacts/contacts-intro.md#contact-selection-restricted-permission).
+[Contacts Kit](../contacts/contacts-intro.md) provides the Contacts Picker, which is used to start the Contacts application and read contact data. For details, see [Contact Selection with Picker](../contacts/contacts-intro.md#contact-selection).
 
 <!--RP2-->
 ### Camera
@@ -69,7 +69,7 @@ Currently, the following screens in Settings can be directly opened:
 ### Files
 [Core File Kit](../file-management/core-file-kit-intro.md) provides the DocumentViewPicker and AudioViewPicker.
 - The DocumentViewPicker is used to access and save documents in the public directory. For details, see [Selecting Documents](../file-management/select-user-file.md#selecting-documents) and [Saving Documents](../file-management/save-user-file.md#saving-documents).
-- The AudioViewPicker is used to access and save images or video files in the public directory. For details, see [Selecting Audio Clips](../file-management/select-user-file.md#selecting-audio-clips) and [Saving Audio Clips](../file-management/save-user-file.md#saving-audio-clips).
+- The AudioViewPicker is used to access and save audio files in the public directory. For details, see [Selecting Audio Clips](../file-management/select-user-file.md#selecting-audio-clips) and [Saving Audio Clips](../file-management/save-user-file.md#saving-audio-clips).
 
 ### Gallery (Media Library)
 [Media Library Kit](../media/medialibrary/photoAccessHelper-overview.md) provides the PhotoViewPicker for accessing and saving images or video files in the public directory. For details, see [Selecting Media Assets Using Picker](../media/medialibrary/photoAccessHelper-photoviewpicker.md) and [Creating a Media Asset Using SaveButton](../media/medialibrary/photoAccessHelper-savebutton.md).

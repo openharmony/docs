@@ -149,7 +149,7 @@
       // 删除最后一个元素
       public deleteLastItem(): void {
         this.dataArray.splice(-1, 1);
-        this.notifyDataDelete(this.dataArray.length);
+        this.notifyDataDelete(this.dataArray.length - 1);
       }
 
       // 在指定索引位置删除一个元素

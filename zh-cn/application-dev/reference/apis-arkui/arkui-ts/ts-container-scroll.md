@@ -50,7 +50,9 @@ scrollable(value: ScrollDirection)
 
 | 参数名 | 类型                                        | 必填 | 说明                                            |
 | ------ | ------------------------------------------- | ---- | ----------------------------------------------- |
-| value  | [ScrollDirection](#scrolldirection枚举说明) | 是   | 滚动方向。<br/>默认值：ScrollDirection.Vertical<br/>**说明：** <br/>当滚动方向设置为[ScrollDirection.FREE](#scrolldirection枚举说明)时，Scroll组件仅支持[scrollBar](#scrollbar)、[scrollBarColor](#scrollbarcolor)、[scrollBarWidth](#scrollbarwidth)、[scrollBarMargin](./ts-container-scrollable-common.md#scrollbarmargin20)、[edgeEffect](#edgeeffect)（仅支持Spring和None边缘滑动效果）、[enableScrollInteraction](#enablescrollinteraction10)、[friction](#friction10)、[clipContent](./ts-container-scrollable-common.md#clipcontent14)、[initialOffset](#initialoffset12)、[scrollable](#scrollable)属性，[onWillScroll](#onwillscroll12)、[onDidScroll](#ondidscroll12)、[onScrollEdge](#onscrolledge)、[onScrollStart](#onscrollstart9)、[onScrollStop](#onscrollstop9)事件和[scrollTo](#scrollto)、[scrollEdge](#scrolledge)、[scrollPage](#scrollpage9)、[currentOffset](#currentoffset)、[scrollBy](#scrollby9)、[getItemRect](#getitemrect11)等Scroller控制器方法。 |
+| value  | [ScrollDirection](#scrolldirection枚举说明) | 是   | 滚动方向。<br/>默认值：ScrollDirection.Vertical |
+
+当滚动方向设置为[ScrollDirection.FREE](#scrolldirection枚举说明)时，Scroll组件仅支持部分能力，见[自由滚动模式下支持的能力](#scrolldirection枚举说明)。
 
 ### scrollBar
 
@@ -302,6 +304,25 @@ enableBouncesZoom(enable: boolean)
 | Free<sup>(deprecated) </sup> | 2 | 支持竖直或水平方向滚动。<br/> 从API version 9开始废弃，从API version 20开始推荐使用FREE。|
 | None       | 3 | 不可滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | FREE<sup>20+</sup>   | 4 | 自由滚动。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+
+FREE（自由滚动）模式下支持的能力：
+
+| **支持的属性** | **支持的事件** | **支持的[Scroller](#scroller)接口** |
+| :--- | :--- | :--- |
+| [scrollBar](#scrollbar) | [onWillScroll](#onwillscroll12) | [scrollTo](#scrollto) |
+| [scrollBarColor](#scrollbarcolor) | [onDidScroll](#ondidscroll12) | [scrollEdge](#scrolledge) |
+| [scrollBarWidth](#scrollbarwidth) | [onScrollEdge](#onscrolledge) | [scrollPage](#scrollpage9) |
+| [scrollBarMargin](./ts-container-scrollable-common.md#scrollbarmargin20) | [onScrollStart](#onscrollstart9) | [currentOffset](#currentoffset) |
+| [edgeEffect](#edgeeffect) | [onScrollStop](#onscrollstop9) | [scrollBy](#scrollby9) |
+| [enableScrollInteraction](#enablescrollinteraction10) | - | [getItemRect](#getitemrect11) |
+| [friction](#friction10) | - | - |
+| [clipContent](./ts-container-scrollable-common.md#clipcontent14) | - | - |
+| [initialOffset](#initialoffset12) | - | - |
+| [scrollable](#scrollable) | - | - |
+
+>  **说明:**
+>  - `edgeEffect`属性仅支持`Spring`和`None`边缘滑动效果。
+>  - `onWillScroll`回调仅支持在跟手滑动阶段重载偏移量。
 
 ## ScrollSnapOptions<sup>10+</sup>对象说明
 
@@ -1138,7 +1159,7 @@ struct ScrollExample {
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .margin({ top: 10 })
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }.width('100%')
       }
       .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
@@ -1173,7 +1194,7 @@ struct ScrollExample {
       Button('scroll 100')
         .height('5%')
         .onClick(() => { // 点击后滑动到指定位置，即下滑100.0vp的距离，滑动过程配置有动画
-          let curve = curves.interpolatingSpring(10, 1, 228, 30); //创建一个阶梯曲线
+          let curve = curves.interpolatingSpring(10, 1, 228, 30); //创建一个弹簧曲线
           const yOffset: number = this.scroller.currentOffset().yOffset;
           this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100, animation: { duration: 1000, curve: curve } });
         })
@@ -1316,7 +1337,7 @@ struct StickyNestedScroll {
                   Text("item" + item)
                     .fontSize(16)
                 }.listCard()
-              }, (item: string) => item)
+              }, (item: number) => item.toString())
             }.width("100%")
             .edgeEffect(EdgeEffect.Spring)
             .nestedScroll({
@@ -1391,7 +1412,7 @@ struct NestedScroll {
                 .textAlign(TextAlign.Center)
                 .backgroundColor(Color.White)
             }.width("100%").height(100)
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }
         .width("100%")
         .height("100%")
@@ -1445,7 +1466,7 @@ struct NestedScroll {
 @Entry
 @Component
 struct Index {
-  scroller: Scroller = new Scroller;
+  scroller: Scroller = new Scroller();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   build() {
     Scroll(this.scroller) {
@@ -1460,7 +1481,7 @@ struct Index {
             .borderRadius(15)
             .fontSize(16)
             .textAlign(TextAlign.Center)
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }.width('100%').backgroundColor(0xDCDCDC)
     }
     .backgroundColor(Color.Yellow)
@@ -1485,7 +1506,6 @@ struct ListExample {
   @State listSpace: number = 10;
   @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100);
   @State listIndex: number = -1;
-  @State mess:string = "null";
   @State itemBackgroundColorArr: boolean[] = [false];
   aboutToAppear(){
     // 初始化数据源。
@@ -1507,7 +1527,7 @@ struct ListExample {
               .borderRadius(10)
               .backgroundColor( this.itemBackgroundColorArr[item] ? 0x68B4FF: 0xFFFFFF)
           }
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .backgroundColor(Color.Gray)
       .layoutWeight(1)
@@ -1640,7 +1660,7 @@ struct EnablePagingExample {
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .backgroundColor(0xFFFFFF)
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }
       }.width('90%').height('90%')
       .enablePaging(true)
@@ -1668,7 +1688,7 @@ struct StickyNestedScroll {
     Column() {
       Row() {
         Button('有动画scrollTo').onClick(() => {
-          let curve = curves.interpolatingSpring(0.5, 5, 10, 15) //创建一个阶梯曲线
+          let curve = curves.interpolatingSpring(0.5, 5, 10, 15) //创建一个弹簧曲线
           const yOffset: number = this.scroller.currentOffset().yOffset;
           this.scroller.scrollTo({
             xOffset: 0,
@@ -1701,7 +1721,7 @@ struct StickyNestedScroll {
       }
       .scrollable(ScrollDirection.Vertical)
       .edgeEffect(EdgeEffect.Spring) //设置边缘效果
-      .fadingEdge(false, { fadingEdgeLength: LengthMetrics.vp(80) }) //设置边缘渐隐效果
+      .fadingEdge(false) //关闭边缘渐隐效果
       .scrollBar(BarState.Auto)
       .friction(undefined)
       .backgroundColor('#DCDCDC')

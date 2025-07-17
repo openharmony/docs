@@ -1,6 +1,6 @@
 # @ohos.app.ability.insightIntent (insightIntent) (System API)
 
-The **insightIntent** module provides APIs for InsightIntent calls.
+The module provides APIs for intent calls.
 
 > **NOTE**
 >
@@ -18,10 +18,10 @@ import { insightIntent } from '@kit.AbilityKit';
 
 ## ExecuteMode
 
-Enumerates the InsightIntent call execution modes.
+Enumerates the intent call execution modes.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| SERVICE_EXTENSION_ABILITY | 3 | Start a ServiceExtensionAbility.<br>**System API**: This is a system API.|
+| SERVICE_EXTENSION_ABILITY | 3 | Starts a ServiceExtensionAbility.<br>**System API**: This is a system API.|

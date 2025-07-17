@@ -151,7 +151,6 @@
     - [几何图形绘制概述](arkts-shape-overview.md)
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
     - [形状裁剪 (clipShape)](arkts-clip-shape.md)
-    - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
   - [添加交互响应](arkts-interaction-development-guide-overview.md)
     - [交互响应概述](arkts-interaction-capability-overview.md)
     - [交互基础机制说明](arkts-interaction-basic-principles.md)
@@ -206,12 +205,14 @@
       - [自定义渲染节点 (RenderNode)](arkts-user-defined-arktsNode-renderNode.md)
       - [自定义声明式节点 (BuilderNode)](arkts-user-defined-arktsNode-builderNode.md)
       - [设置自定义节点跨语言属性](arkts-user-defined-arktsNode-crossLanguage.md)
+    - 自定义绘制
+      - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
+      - [自定义绘制修改器 (DrawModifier)](arkts-user-defined-extension-drawModifier.md)
     - 自定义扩展<!--arkts-modifier-->
       - [自定义扩展概述](arkts-user-defined-modifier.md)
       - [属性修改器 (AttributeModifier)](arkts-user-defined-extension-attributeModifier.md)
       - [属性更新器 (AttributeUpdater)](arkts-user-defined-extension-attributeUpdater.md)
-      - [自定义绘制修改器 (DrawModifier)](arkts-user-defined-extension-drawModifier.md)
-  - [使用镜像能力](arkts-mirroring-display.md)
+  - [UI国际化](arkts-internationalization.md)
   - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
     - [支持无障碍](arkts-universal-attributes-accessibility.md)
     - [支持适老化](arkui-support-for-aging-adaptation.md)
@@ -229,6 +230,9 @@
     - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
     - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](arkts-isolated-components.md)
     <!--DelEnd-->
+  - UI开发调优<!--ui-inspector-profiler-->
+    - [预览](ui-ide-previewer.md)
+    - [调试](ui-inspector-profiler.md)
   - 使用NDK接口构建UI<!--arkts-use-ndk-->
     - [NDK接口概述](ndk-build-ui-overview.md)
     - [接入ArkTS页面](ndk-access-the-arkts-page.md)
@@ -252,6 +256,9 @@
     - [查询和操作自定义节点](ndk-node-query-operate.md)
     - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md)
     - [在NDK中保证多实例场景功能正常](ndk-scope-task.md)
+- UI高性能开发<!--ui-performance-->
+  - [UI性能优化概览](ui-performance-overview.md)
+
 - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明<!--js-framework-overview-->

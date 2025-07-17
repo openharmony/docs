@@ -1,6 +1,6 @@
-# @ohos.app.ability.ChildProcessOptions
+# @ohos.app.ability.ChildProcessOptions (Child Process Startup Options)
 
-The ChildProcessOptions module describes the startup configuration of a child process. When starting a child process through [childProcessManager](js-apis-app-ability-childProcessManager.md), you can configure the startup configuration of the child process through **ChildProcessOptions**.
+The module describes the startup configuration of a child process. When starting a child process through [childProcessManager](js-apis-app-ability-childProcessManager.md), you can configure the startup configuration of the child process through **ChildProcessOptions**.
 
 > **NOTE**
 > 
@@ -14,7 +14,7 @@ The ChildProcessOptions module describes the startup configuration of a child pr
 import { ChildProcessOptions } from '@kit.AbilityKit';
 ```
 
-## Properties
+## ChildProcessOptions
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

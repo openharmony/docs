@@ -115,6 +115,7 @@
     - [Rawfile开发指导](rawfile-guidelines.md)
   - 线程调度<!--thread-scheduling-->
     - [QOS开发指导](qos-guidelines.md)
+    - [格物开发指导](gewu-ndk-api-guidelines.md)
   - 内存管理<!--memory-management-->
     - [Purgeable memory开发指导](purgeable-memory-guidelines.md)
   - 包管理<!--bundle-management-->

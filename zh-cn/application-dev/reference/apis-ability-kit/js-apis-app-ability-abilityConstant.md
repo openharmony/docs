@@ -57,6 +57,7 @@ import { AbilityConstant } from '@kit.AbilityKit';
 | AUTO_STARTUP<sup>11+</sup>           | 8    | 通过设置开机自启动来启动Ability。 |
 | INSIGHT_INTENT<sup>11+</sup>           | 9    | 通过洞察意图来启动Ability。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | PREPARE_CONTINUATION<sup>12+</sup>           | 10    | 跨端迁移提前启动Ability。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。|
+| PRELOAD<sup>20+</sup>           | 11    | 表明该UIAbility是通过预加载机制启动的。<br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。|
 
 **示例：**
 

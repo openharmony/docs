@@ -1,6 +1,6 @@
 # ApplicationStateObserver
 
-The ApplicationStateObserver module defines an observer to listen for application state changes. It can be used as an input parameter in [on](js-apis-app-ability-appManager.md#appmanageronapplicationstate) to listen for lifecycle changes of the current application.
+The module defines an observer to listen for application state changes. It can be used as an input parameter in [on](js-apis-app-ability-appManager.md#appmanageronapplicationstate14) to listen for lifecycle changes of the current application.
 
 > **NOTE**
 > 

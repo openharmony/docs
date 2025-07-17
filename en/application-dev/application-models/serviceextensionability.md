@@ -6,7 +6,7 @@
 
 In this document, the component that starts or connects to a ServiceExtensionAbility is called the client, and the ServiceExtensionAbility is called the server.
 
-A ServiceExtensionAbility can be started or connected by other components to process transactions in the background based on the request of the caller. System applications can call the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method to start background services or call the [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to background services. Third-party applications can call only **connectServiceExtensionAbility()** to connect to background services. The differences between starting and connecting to a ServiceExtensionAbility are as follows:
+A ServiceExtensionAbility can be started or connected by other components to process transactions in the background based on the request of the caller. System applications can call the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability) method to start background services or call the [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability) method to connect to background services. Third-party applications can call only **connectServiceExtensionAbility()** to connect to background services. The differences between starting and connecting to a ServiceExtensionAbility are as follows:
 
 - **Starting**: In the case that AbilityA starts ServiceB, they are weakly associated. After AbilityA exits, ServiceB remains running.
 
@@ -14,9 +14,9 @@ A ServiceExtensionAbility can be started or connected by other components to pro
 
 Note the following:
 
-- If a ServiceExtensionAbility is started only by means of connecting, its lifecycle is controlled by the client. A new connection is set up each time the client calls the **connectServiceExtensionAbility()** method. When the client exits or calls the [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) method, the connection is interrupted. After all connections are interrupted, the ServiceExtensionAbility automatically exits.
+- If a ServiceExtensionAbility is started only by means of connecting, its lifecycle is controlled by the client. A new connection is set up each time the client calls the **connectServiceExtensionAbility()** method. When the client exits or calls the [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectserviceextensionability) method, the connection is interrupted. After all connections are interrupted, the ServiceExtensionAbility automatically exits.
 
-- Once a ServiceExtensionAbility is started by means of starting, it will not exit automatically. System applications can call the [stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstopserviceextensionability) method to stop it.
+- Once a ServiceExtensionAbility is started by means of starting, it will not exit automatically. System applications can call the [stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#stopserviceextensionability) method to stop it.
 
 - The connection or disconnection operation can be performed only in the main thread, but not in the **Worker** and **TaskPool** threads.
 
@@ -30,7 +30,7 @@ Note the following:
 
 ## Lifecycle
 
-The [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) class provides the lifecycle callbacks [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityoncreate), [onRequest()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonrequest), [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect), [onDisconnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityondisconnect), and [onDestroy()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityondestroy). Override them as required. The following figure shows the ServiceExtensionAbility lifecycle.
+The [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) class provides the lifecycle callbacks [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#oncreate), [onRequest()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#onrequest), [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#onconnect), [onDisconnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#ondisconnect), and [onDestroy()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#ondestroy). Override them as required. The following figure shows the ServiceExtensionAbility lifecycle.
 
 **Figure 1** ServiceExtensionAbility lifecycle
 
@@ -46,15 +46,15 @@ The [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-
 
 - **onRequest**
 
-  This callback is triggered when another component calls the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method to start a ServiceExtensionAbility. After being started, the ServiceExtensionAbility runs in the background. This callback is triggered each time the **startServiceExtensionAbility()** method is called.
+  This callback is triggered when another component calls the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability) method to start a ServiceExtensionAbility. After being started, the ServiceExtensionAbility runs in the background. This callback is triggered each time the **startServiceExtensionAbility()** method is called.
 
 - **onConnect**
 
-  This callback is triggered when another component calls the [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to a ServiceExtensionAbility. In this method, a remote proxy object, namely, [IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject), is returned, through which the client communicates with the server by means of RPC. At the same time, the system stores the IRemoteObject. If another component calls the **connectServiceExtensionAbility()** method to connect to this ServiceExtensionAbility, the system returns the saved IRemoteObject, without triggering the callback.
+  This callback is triggered when another component calls the [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability) method to connect to a ServiceExtensionAbility. In this method, a remote proxy object, namely, [IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject), is returned, through which the client communicates with the server by means of RPC. At the same time, the system stores the IRemoteObject. If another component calls the **connectServiceExtensionAbility()** method to connect to this ServiceExtensionAbility, the system returns the saved IRemoteObject, without triggering the callback.
 
 - **onDisconnect**
 
-  This callback is triggered when the last connection is interrupted. A connection is interrupted when the client exits or the [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) method is called.
+  This callback is triggered when the last connection is interrupted. A connection is interrupted when the client exits or [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectserviceextensionability) is called.
 
 - **onDestroy**
 
@@ -142,7 +142,7 @@ To manually create a ServiceExtensionAbility in the DevEco Studio project, perfo
     └
     ```
 
-3. In the **ServiceExtAbility.ets** file, import the [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) module. Customize a class that inherits from ServiceExtensionAbility and implement the lifecycle callbacks. Return the previously defined **ServiceExtImpl** object in the [onConnect](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityoncreate) lifecycle callback.
+3. In the **ServiceExtAbility.ets** file, import the [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) module. Customize a class that inherits from ServiceExtensionAbility and implement the lifecycle callbacks. Return the previously defined **ServiceExtImpl** object in the [onConnect](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#oncreate) lifecycle callback.
 
     ```ts
     import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
@@ -203,7 +203,7 @@ To manually create a ServiceExtensionAbility in the DevEco Studio project, perfo
 
 ## Starting a Background Service (for System Applications Only)
 
-A system application uses the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method to start a background service. The [onRequest()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonrequest) callback is invoked, through which the background service receives the [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) object passed by the caller. After the background service is started, its lifecycle is independent of the client. In other words, even if the client is destroyed, the background service remains alive. Therefore, the background service must be stopped by calling [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself) when its work is complete. Alternatively, another component can call [stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#abilitycontextstopserviceextensionability) to stop the background service.
+A system application uses the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability) method to start a background service. The [onRequest()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#onrequest) callback is invoked, through which the background service receives the [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) object passed by the caller. After the background service is started, its lifecycle is independent of the client. In other words, even if the client is destroyed, the background service remains alive. Therefore, the background service must be stopped by calling [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself) when its work is complete. Alternatively, another component can call [stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#stopserviceextensionability) to stop the background service.
 
 > **NOTE**
 >
@@ -352,16 +352,16 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
 > Background services remain alive in the background for a long time. To minimize resource usage, destroy a background service in time in either of the following ways when it finishes the requested task:
 >
 > - The background service calls the [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself) method to automatically stop itself.
-> - Another component calls the [stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#abilitycontextstopserviceextensionability) method to stop the background service.
+> - Another component calls the [stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#stopserviceextensionability) method to stop the background service.
 > After either method is called, the system destroys the background service.
 
 ## Connecting to a Background Service
 
-Either a system application or a third-party application can connect to a background service (specified in the **Want** object) through [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability). The [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect) callback is invoked, through which the background service receives the [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) object passed by the caller. In this way, a persistent connection is established.
+Either a system application or a third-party application can connect to a background service (specified in the **Want** object) through [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability). The [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#onconnect) callback is invoked, through which the background service receives the [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) object passed by the caller. In this way, a persistent connection is established.
 
-The ServiceExtensionAbility returns an [IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject) in the **onConnect()** callback. Through this IRemoteObject, you can define communication interfaces for RPC interaction between the client and server. Multiple clients can simultaneously connect to the same background service. After a client finishes the interaction, it must call [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) to disconnect from the service. If all clients connected to a background service are disconnected, the system destroys the service.
+The ServiceExtensionAbility returns an [IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject) in the **onConnect()** callback. Through this IRemoteObject, you can define communication interfaces for RPC interaction between the client and server. Multiple clients can simultaneously connect to the same background service. After a client finishes the interaction, it must call [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectserviceextensionability) to disconnect from the service. If all clients connected to a background service are disconnected, the system destroys the service.
 
-- Call [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) to establish a connection to a background service. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+- Call [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability) to establish a connection to a background service. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
   
   ```ts
   import { common, Want } from '@kit.AbilityKit';
@@ -435,7 +435,7 @@ The ServiceExtensionAbility returns an [IRemoteObject](../reference/apis-ipc-kit
   }
   ```
 
-- Call [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) to disconnect from the background service.
+- Call [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectserviceextensionability) to disconnect from the background service.
   
   ```ts
   import { common } from '@kit.AbilityKit';
@@ -525,7 +525,6 @@ After obtaining the [rpc.IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md
 
   ```ts
   import { common } from '@kit.AbilityKit';
-  import { promptAction } from '@kit.ArkUI';
   import { rpc } from '@kit.IPCKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -558,11 +557,8 @@ After obtaining the [rpc.IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md
         if (errCode === 0) {
           msg = reply.readInt();
         }
-        hilog.info(DOMAIN_NUMBER, TAG, `sendRequest msg:${msg}`);
         // The background service is connected.
-        promptAction.showToast({
-          message: `sendRequest msg:${msg}`
-        });
+        hilog.info(DOMAIN_NUMBER, TAG, `sendRequest success, msg: ${msg}`);
       }).catch((error: BusinessError) => {
         hilog.info(DOMAIN_NUMBER, TAG, `sendRequest failed, ${JSON.stringify(error)}`);
       });
@@ -583,7 +579,7 @@ When a ServiceExtensionAbility is used to provide sensitive services, the client
 
 - **Verifying the client identity based on callerUid**
 
-  Call the [getCallingUid()](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid) method to obtain the UID of the client, and then call the [getBundleNameByUid()](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagergetbundlenamebyuid) method to obtain the corresponding bundle name. In this way, the client identity is verified. Note that [getBundleNameByUid()](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagergetbundlenamebyuid) is asynchronous, and therefore the server cannot return the verification result to the client. This verification mode applies when the client sends an asynchronous task request to the server. The sample code is as follows:
+  Call the [getCallingUid()](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid) method to obtain the UID of the client, and then call the [getBundleNameByUid()](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagergetbundlenamebyuid14) method to obtain the corresponding bundle name. In this way, the client identity is verified. Note that [getBundleNameByUid()](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagergetbundlenamebyuid14) is asynchronous, and therefore the server cannot return the verification result to the client. This verification mode applies when the client sends an asynchronous task request to the server. The sample code is as follows:
 
   ```ts
   import { bundleManager } from '@kit.AbilityKit';
@@ -629,7 +625,7 @@ When a ServiceExtensionAbility is used to provide sensitive services, the client
 
 - **Verifying the client identity based on callerTokenId**
 
-  Call the [getCallingTokenId()](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid) method to obtain the token ID of the client, and then call the [verifyAccessTokenSync()](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#verifyaccesstokensync) method to check whether the client has the required permission. Currently, the system does not support permission customization. Therefore, only [system-defined permissions](../security/AccessToken/app-permissions.md) can be verified. The sample code is as follows:
+  Call the [getCallingTokenId()](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid8) method to obtain the token ID of the client, and then call the [verifyAccessTokenSync()](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#verifyaccesstokensync9) method to check whether the client has the required permission. Currently, the system does not support permission customization. Therefore, only [system-defined permissions](../security/AccessToken/app-permissions.md) can be verified. The sample code is as follows:
 
   ```ts
   import { abilityAccessCtrl, bundleManager } from '@kit.AbilityKit';
