@@ -20,7 +20,7 @@ compatibleComponent(init: CompatibleInitCallback, update: CompatibleUpdateCallba
 |---------|-----------|------------|--------------|
 |init     | [CompatibleInitCallback](#compatibleinitcallback)   |是   |初始化占位组件的回调函数。    |
 |update   | [CompatibleUpdateCallback](#compatibleupdatecallback)  |是   |更新占位组件的回调函数。   |
-
+|component| ExtendableComponent  |否   |当前ArkTS1.2自定义组件。   |
 
 
 ## CompatibleInitCallback
