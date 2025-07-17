@@ -10,10 +10,9 @@
 
 关系型数据库跨设备数据同步，支持应用在多设备间同步存储的关系型数据。
 
-- 应用在数据库中创建表后，可以设置其为分布式表，分布式表可在组网设备中进行同步。
-- 有两种方式可触发设备间数据同步。本端数据有变化时，可主动将数据推送至远端设备。本端设备也可主动拉取远端设备中分布式表的数据变化。
-- 通过[on('dataChange')](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#ondatachange)接口订阅远端数据变化。当远端数据发生变化时，会触发事件回调。在回调中，可以获取远端设备的分布式表的表名，查询远端数据库数据。
-
+- 分布式表：支持组网内多设备间数据同步的数据库表。来自其他设备的数据将同步至本地，并通过与设备ID关联的表名进行存储。
+- 数据同步：将设备上数据库中分布式表发生的变更，同步至组网内其他设备。有推送数据和拉取数据两种方式触发同步。
+- 数据变化通知：组网内其他设备数据发生的变化同步至当前设备时，会执行已注册的回调函数。
 
 ## 运作机制
 
@@ -77,7 +76,7 @@
    1. 需要申请ohos.permission.DISTRIBUTED_DATASYNC权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
    2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
 
-3. 创建关系型数据库，设置将需要进行分布式同步的表。
+3. 创建关系型数据库，创建数据表，并将需要进行跨设备同步的数据表设置为分布式表。
      
    ```ts
    import { UIAbility } from '@kit.AbilityKit';
@@ -103,7 +102,9 @@
    }
    ```
 
-4. 远端数据变化订阅。远端数据变化同步至本端设备时，将触发订阅回调方法执行，回调方法的入参为数据发生变化的设备ID列表。通过设备ID获取远端分布式表表名，创建查询谓词查询远端数据。
+4. 订阅组网内其他设备的数据变化消息。
+   1. 调用[on('dataChange')](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#ondatachange)接口监听其他设备的数据变化，当数据变化同步至当前设备时，将执行订阅的回调方法，入参为数据发生变化的设备ID列表。
+   2. 通过设备ID获取与设备对应的分布式表表名，查询对应设备分布式表中的数据。
 
    ```ts
    if (store) {
@@ -117,9 +118,9 @@
              return;
            }
            console.info(`The data of device:${device} has been changed.`);
-           // 获取device对应的远端设备分分布式表名
+           // 获取device对应的组网内设备分分布式表名
            const distributedTableName = await store.obtainDistributedTableName(device, 'EMPLOYEE');
-           // 创建查询谓词，查询远端设备分布式表的数据
+           // 创建查询谓词，查询组网内设备分布式表的数据
            const predicates = new relationalStore.RdbPredicates(distributedTableName);
            const resultSet = await store.query(predicates);
            console.info(`device ${device}, table EMPLOYEE rowCount is: ${resultSet.rowCount}`);
@@ -131,11 +132,13 @@
    }
    ```
 
-5. 同步本端数据变化至远端设备。本端分布式数据表中的数据发生变化后，可调用sync接口并传入SYNC_MODE_PUSH参数触发同步，从而将本端设备中分布式表的变化同步至远端。
+5. 同步当前设备数据变化至组网内其他设备。
+   1. 当前设备分布式表中的数据发生变化后，调用RdbStore的[sync](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#sync-1)接口传入[SYNC_MODE_PUSH](../reference/apis-arkdata/arkts-apis-data-relationalStore-e.md#syncmode)参数推送数据变化至其他设备。
+   2. 通过谓词的[inDevice](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbPredicates.md#indevices)方法指定推送的目标设备。
      
    ```ts
    if (store) {
-     // 本端设备分布式数据表中插入新数据
+     // 当前设备分布式数据表中插入新数据
      const ret = store.insertSync('EMPLOYEE', {
        name: 'sync_me',
        age: 18,
@@ -159,12 +162,18 @@
        // 指定要同步的设备列表
        predicates.inDevices(syncTarget);
        try {
-         // 调用同步数据的接口推送本端数据变化至组网内远端设备
+         // 调用同步数据的接口推送当前设备数据变化至组网内其他设备
          const result = await store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates);
          console.info('Push data success.');
          // 获取同步结果
          for (let i = 0; i < result.length; i++) {
-           console.info(`device:${result[i][0]}, sync status:${result[i][1]}`);
+           const deviceId = result[i][0];
+           const syncResult = result[i][1];
+           if (syncResult === 0) {
+             console.info(`device:${deviceId} sync success`);
+           } else {
+             console.error(`device:${deviceId} sync failed, status:${syncResult}`);
+           }
          }
        } catch (e) {
          console.error('Push data failed, code: ' + e.code + ', message: ' + e.message);
@@ -173,7 +182,9 @@
    }
    ```
 
-6. 本端设备拉取远端数据变化。远端分布式数据表中的数据发生变化后，本端可调用sync接口并传入SYNC_MODE_PULL参数触发同步，从而将远端设备中分布式表的变化同步至本端。
+6. 拉取组网内其他设备的数据变化。
+   1. 当前设备可调用RdbStore的[sync](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#sync-1)接口传入[SYNC_MODE_PULL](../reference/apis-arkdata/arkts-apis-data-relationalStore-e.md#syncmode)参数拉取组网内其他设备的数据变化。
+   2. 通过谓词的[inDevice](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbPredicates.md#indevices)方法指定拉取的目标设备。
 
    ```ts
    if (store) {
@@ -194,12 +205,18 @@
        // 指定要同步的设备列表
        predicates.inDevices(syncTarget);
        try {
-         // 调用同步数据的接口拉取远端数据变化至本端设备
+         // 调用同步数据的接口拉取其他设备数据变化至当前设备
          const result = await store.sync(relationalStore.SyncMode.SYNC_MODE_PULL, predicates);
          console.info('Push data success.');
          // 获取同步结果
          for (let i = 0; i < result.length; i++) {
-           console.info(`device:${result[i][0]}, sync status:${result[i][1]}`);
+           const deviceId = result[i][0];
+           const syncResult = result[i][1];
+           if (syncResult === 0) {
+             console.info(`device:${deviceId} sync success`);
+           } else {
+             console.error(`device:${deviceId} sync failed, status:${syncResult}`);
+           }
          }
        } catch (e) {
          console.error('Push data failed, code: ' + e.code + ', message: ' + e.message);
@@ -208,13 +225,8 @@
    }
    ```
 
-7. 跨设备查询。如果数据未完成同步，或未触发数据同步，应用可以使用此接口从指定的设备上查询数据。
+7. 当数据未完成同步，或未触发数据同步时，可使用RdbStore的[remoteQuery](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#remotequery-1)方法查询组网内指定设备上分布式表中的数据。
 
-   > **说明：**
-   >
-   > deviceIds通过调用[deviceManager.getAvailableDeviceListSync](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
-
-     
    ```ts
    if (store) {
      // 查询组网内的设备列表
@@ -232,7 +244,7 @@
        // 构造用于查询分布式表的谓词对象
        const predicates = new relationalStore.RdbPredicates('EMPLOYEE');
        try {
-         // 查询远端设备上的分布式表
+         // 查询组网内设备上的分布式表
          const resultSet = await store.remoteQuery(devices[0], 'EMPLOYEE', predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES']);
          console.info('Remote query success, row cout: ' + resultSet.rowCount);
          console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
