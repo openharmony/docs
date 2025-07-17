@@ -2614,7 +2614,7 @@ currentAVSession.off('pause');
 
 off(type: 'stop', callback?: () => void): void
 
-取消会话停止事件监听，指定callback，取消对应监听，未指定callback，取消所有暂停事件监听。
+取消会话停止事件监听。指定callback，取消对应监听，未指定callback，取消所有暂停事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
