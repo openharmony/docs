@@ -729,6 +729,7 @@ try {
 | UPDATE_FAILURE     | -1 | 更新失败。 |
 | UPDATE_SUCCESS     | 0 | 更新成功。 |
 
+<a id="nearlinkprotocol"></a>
 ## NearLinkProtocol<sup>20+</sup>
 
 NearLink协议枚举。
