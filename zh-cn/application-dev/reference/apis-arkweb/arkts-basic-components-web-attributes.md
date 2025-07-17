@@ -2904,7 +2904,7 @@ enableWebAVSession(enabled: boolean)
   <body>
       <h1>视频播放</h1>
       <video id="testVideo" controls>
-          // 在resources的rawfile目录中放置任意一个mp4媒体文件，并将其命名为example.mp4
+          <!--在resources的rawfile目录中放置任意一个mp4媒体文件，并将其命名为example.mp4-->
           <source src="example.mp4" type="video/mp4">
       </video>
   </body>
