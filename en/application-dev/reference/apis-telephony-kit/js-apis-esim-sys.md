@@ -35,7 +35,7 @@ Obtains the EID of the embedded universal integrated circuit card (eUICC) in the
 
 | Type                 | Description                               |
 | --------------------- | ---------------------------------- |
-| string | EID of the eUICC in the specified slot.|
+| Promise\<string\> | EID of the eUICC in the specified slot.|
 
 **Error codes**
 
@@ -81,7 +81,7 @@ Obtains the OS upgrade status for the eSIM in the specified slot. This API uses 
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<[OsuStatus](#osustatus18)\> |  Promise used to return the OS upgrade status.<br> 1. Updating.<br>   2. Update failed.<br>  3. Update succeeded.<br>  4. Already the latest version.<br> 5. Update service unavailable.|
+| Promise\<[OsuStatus](#osustatus18)\> |  Promise used to return the OS upgrade status.<br> 1. Upgrading.<br>   2. Upgrade failed.<br>  3. Upgrade succeeded.<br>  4. Already the latest version.<br> 5. Update service unavailable.|
 
 **Error codes**
 
@@ -131,7 +131,7 @@ Upgrades the OS if the OS version of the eSIM in the specified slot is not the l
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<[OsuStatus](#osustatus18)\> |  Promise used to return the OS upgrade status.<br> 1. Updating.<br>   2. Update failed.<br>  3. Update succeeded.<br>  4. Already the latest version.<br> 5. Update service unavailable.|
+| Promise\<[OsuStatus](#osustatus18)\> |  Promise used to return the OS upgrade status.<br> 1. Upgrading.<br>   2. Upgrade failed.<br>  3. Upgrade succeeded.<br>  4. Already the latest version.<br> 5. Update service unavailable.|
 
 **Error codes**
 
@@ -161,8 +161,7 @@ eSIM.startOsu(0).then(() => {
 
 ## eSIM.getDownloadableProfileMetadata<sup>18+</sup>
 
-getDownloadableProfileMetadata\(slotId: number, portIndex: number,
-    profile: DownloadableProfile, forceDisableProfile: boolean\): Promise\<GetDownloadableProfileMetadataResult\>
+getDownloadableProfileMetadata\(slotId: number, portIndex: number, profile: DownloadableProfile, forceDisableProfile: boolean\): Promise\<GetDownloadableProfileMetadataResult\>
 
 Obtains the metadata of the downloadable profile. This API uses a promise to return the result.
 
@@ -174,12 +173,12 @@ Obtains the metadata of the downloadable profile. This API uses a promise to ret
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ------ | ------ | ----- | ----- |
-| slotId              | number                                        | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
-| portIndex           | number                                        | Yes| Port index of the slot.    |
-| profile             | [DownloadableProfile](#downloadableprofile18) | Yes| Downloadable profile.|
-| forceDisableProfile | boolean | Yes| Whether to forcibly diable the active SIM. If the value is **true**, the operation can be performed only after the active SIM card is disabled. If the value is **false**, the system displays a message asking the user to agree to the operation.|
+| Name| Type| Mandatory| Description                                                                                                  |
+| ------ | ------ | ----- |------------------------------------------------------------------------------------------------------|
+| slotId              | number                                        | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2                                                                     |
+| portIndex           | number                                        | Yes| Port index of the slot.                                                                                            |
+| profile             | [DownloadableProfile](./js-apis-esim.md#downloadableprofile18) | Yes| Downloadable profile.                                                                                         |
+| forceDisableProfile | boolean | Yes| Whether to forcibly deactivate the current profile during profile switching.<br> **true**: The current profile is forcibly deactivated, and profile switching can be directly performed.<br> **false**: An error is returned, and profile switching can be performed only after the user authorization is obtained.|
 
 **Returns**
 
@@ -206,7 +205,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 import { eSIM } from '@kit.TelephonyKit';
 
-let profile: eSIM.DownloadableProfile={
+let profile: eSIM.DownloadableProfile = {
   activationCode:'1',
   confirmationCode:'1',
   carrierName:'test',
@@ -227,7 +226,7 @@ eSIM.getDownloadableProfileMetadata(0, 0, profile, true).then((data: eSIM.GetDow
 ## eSIM.getDownloadableProfiles<sup>18+</sup>
 
 getDownloadableProfiles\(slotId: number, portIndex: number,
-    forceDisableProfile: boolean\): Promise\<GetDownloadableProfilesResult\>
+forceDisableProfile: boolean\): Promise\<GetDownloadableProfilesResult\>
 
 Obtains the list of downloadable profiles. This API uses a promise to return the result.
 
@@ -243,7 +242,7 @@ Obtains the list of downloadable profiles. This API uses a promise to return the
 | ------ | ------ | ----- | ----- |
 | slotId              | number  | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | portIndex           | number  | Yes| Port index of the slot.|
-| forceDisableProfile | boolean | Yes| Whether to forcibly diable the active SIM. If the value is **true**, the operation can be performed only after the active SIM card is disabled. If the value is **false**, the system displays a message asking the user to agree to the operation.|
+| forceDisableProfile | boolean | Yes| Whether to forcibly deactivate the current profile during profile switching.<br> **true**: If the current profile needs to be deactivated for profile switching, the profile is forcibly deactivated. **false**: An error is returned, and profile switching can be performed only after the user authorization is obtained.|
 
 **Returns**
 
@@ -280,7 +279,7 @@ eSIM.getDownloadableProfiles(0, 0, true).then((data: eSIM.GetDownloadableProfile
 ## eSIM.downloadProfile<sup>18+</sup>
 
 downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile,
-      configuration: DownloadConfiguration\): Promise\<DownloadProfileResult\>
+configuration: DownloadConfiguration\): Promise\<DownloadProfileResult\>
 
 Downloads a profile. This API uses a promise to return the result.
 
@@ -296,7 +295,7 @@ Downloads a profile. This API uses a promise to return the result.
 | ------ | ------ | ----- | ----- |
 | slotId        | number                                            | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | portIndex     | number                                            | Yes| Port index of the slot.|
-| profile       | [DownloadableProfile](#downloadableprofile18)     | Yes| Downloadable profile.|
+| profile       | [DownloadableProfile](./js-apis-esim.md#downloadableprofile18)     | Yes| Downloadable profile.|
 | configuration | [DownloadConfiguration](#downloadconfiguration18) | Yes| Download configuration.|
 
 **Returns**
@@ -324,7 +323,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 import { eSIM } from '@kit.TelephonyKit';
 
-let profile: eSIM.DownloadableProfile={
+let profile: eSIM.DownloadableProfile = {
   activationCode:'1',
   confirmationCode:'1',
   carrierName:'test',
@@ -338,7 +337,7 @@ let profile: eSIM.DownloadableProfile={
 let configuration: eSIM.DownloadConfiguration = {
   switchAfterDownload: true,
   forceDisableProfile: true,
-  isAlowPpr: true,
+  isPprAllowed: true,
 };
 
 eSIM.downloadProfile(0, 0, profile, configuration).then((data: eSIM.DownloadProfileResult) => {
@@ -502,7 +501,7 @@ eSIM.deleteProfile(0, testId).then(() => {
 ## eSIM.switchToProfile<sup>18+</sup>
 
 switchToProfile\(slotId: number, portIndex: number, iccid: string,
-    forceDisableProfile: boolean\): Promise\<ResultCode\>
+forceDisableProfile: boolean\): Promise\<ResultCode\>
 
 Switches to the specified profile. This API uses a promise to return the result.
 
@@ -519,7 +518,7 @@ Switches to the specified profile. This API uses a promise to return the result.
 | slotId              | number  | Yes| Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | portIndex           | number  | Yes| Port index of the slot.|
 | iccid               | string  | Yes| Profile ID.  |
-| forceDisableProfile | boolean | Yes| Whether to forcibly diable the active SIM. If the value is **true**, the operation can be performed only after the active SIM card is disabled. If the value is **false**, the system displays a message asking the user to agree to the operation.|
+| forceDisableProfile | boolean | Yes| Whether to forcibly deactivate the current profile during profile switching.<br> **true**: If the current profile needs to be deactivated for profile switching, the profile is forcibly deactivated.<br> **false**: An error is returned, and profile switching can be performed only after the user authorization is obtained.|
 
 **Returns**
 
@@ -873,21 +872,6 @@ Defines access rules.
 | packageName           | string  |  Yes | Package name.|
 | accessType            | number  |  Yes | Rule type.|
 
-## DownloadableProfile<sup>18+</sup>
-
-Defines a downloadable profile.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Telephony.CoreService.Esim
-
-| Name| Type| Mandatory| Description|
-| ----- | ----- | ----- | -----|
-| activationCode   | string             |  Yes | Activation code. For a profile that does not require an activation code, the value may be left empty.|
-| confirmationCode | string             |  No | Confirmation code.     |
-| carrierName      | string             |  No | Carrier name.   |
-| accessRules      | Array\<AccessRule> |  No | Access rule array.|
-
 ## GetDownloadableProfileMetadataResult<sup>18+</sup>
 
 Obtains the metadata of the downloadable profile.
@@ -900,7 +884,7 @@ Obtains the metadata of the downloadable profile.
 | ----- | ----- | ----- | -----|
 | downloadableProfile | DownloadableProfile  |  Yes | Downloadable profile.  |
 | pprType             | number               |  Yes | Profile policy rule type.|
-| pprFlag             | boolean              |  Yes | Profile policy rule flag.|
+| pprFlag             | boolean              |  Yes | Whether the profile has a policy rule. The value **true** indicates that the the profile has a policy rule, and the value **false** indicates the opposite.|
 | iccid               | string               |  Yes | Profile ICCID.    |
 | serviceProviderName | string               |  Yes | Service provider name.|
 | profileName         | string               |  Yes | Profile name.|
@@ -947,7 +931,7 @@ Obtains the profile information list.
 | ----- | ----- | ----- | -----|
 | responseResult  |ResultCode            |  Yes | Promise used to return the operation result.   |
 | profiles        | Array\<EuiccProfile> |  Yes | Profile array.     |
-| isRemovable     | boolean              |  Yes | Checks whether the eUICC is removable.|
+| isRemovable     | boolean              |  Yes | Whether the eUICC is removable. The value **true** indicates that the eUICC is removable, and the value **false** indicates the opposite.|
 
 ## OperatorId<sup>18+</sup>
 
@@ -1022,7 +1006,7 @@ Defines the OS upgrade status.
 | ----- | ----- | ----- |
 |EUICC_UPGRADE_IN_PROGRESS         | 1 | Upgrading.|
 |EUICC_UPGRADE_FAILED              | 2 | Upgrade failed.|
-|EUICC_UPGRADE_SUCCESSFUL          | 3 | Update succeeded.|
+|EUICC_UPGRADE_SUCCESSFUL          | 3 | Upgrade succeeded.|
 |EUICC_UPGRADE_ALREADY_LATEST      | 4 | Already the latest version.|
 |EUICC_UPGRADE_SERVICE_UNAVAILABLE | 5 | Update service unavailable.|
 
@@ -1155,6 +1139,6 @@ Defines the download configuration.
 
 | Name| Type| Mandatory| Description|
 | ----- | ----- | ----- | -----|
-|switchAfterDownload | boolean | Yes| Whether to enable the profile after being downloaded.|
-|forceDisableProfile | boolean | Yes| Whether to forcibly disable a profile.        |
-|isPprAllowed        | boolean | Yes| Whether to allow the service provider to enforce the profile policy rule after the user is informed of its restrictions.|
+|switchAfterDownload | boolean | Yes| Whether to enable the profile after being downloaded. The value **true** means to enable the profile after being downloaded, and the value **false** means the opposite.|
+|forceDisableProfile | boolean | Yes| Whether to forcibly deactivate the current profile during profile switching.<br> **true**: If the current profile needs to be deactivated for profile switching, the profile is forcibly deactivated.<br> **false**: An error is returned, and profile switching can be performed only after the user authorization is obtained.|
+|isPprAllowed        | boolean | Yes| Whether user authorization is obtained to implement the profile policy rule. The value **true** indicates that user authorization is obtained, and the value **false** indicates the opposite.|

@@ -1,4 +1,4 @@
-# @ohos.abilityConnectionManager (Cross-Device Connection Management)
+# @ohos.distributedsched.abilityConnectionManager (Cross-Device Connection Management)
 
 The **abilityConnectionManager** module provides APIs for cross-device connection management. After successful networking between devices (login with the same account and enabling of Bluetooth on the devices), a system application and a third-party application can start a [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md) of the same application across these devices to establish a Bluetooth connection. This way, data (specifically, text) can be transmitted across the devices over the connection.
 
@@ -17,6 +17,8 @@ import { abilityConnectionManager } from '@kit.DistributedServiceKit';
 createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Context,&nbsp;peerInfo:&nbsp;PeerInfo ,&nbsp;connectOptions:&nbsp;ConnectOptions):&nbsp;number
 
 Creates a collaboration session between applications.
+
+**Required permissions**: ohos.permission.INTERNET, ohos.permission.GET_NETWORK_INFO, ohos.permission.SET_NETWORK_INFO, and ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.DistributedSched.AppCollaboration
 
@@ -83,34 +85,39 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
      }
    }
  
-   const peerInfo: abilityConnectionManager.PeerInfo = {
-     deviceId: "sinkDeviceId",
-     bundleName: 'com.example.remotephotodemo',
-     moduleName: 'entry',
-     abilityName: 'EntryAbility',
-     serviceName: 'collabTest'
-   };
-   const myRecord: Record<string, string> = {
-     "newKey1": "value1",
-   };
+   @Entry
+   @Component
+   struct Index {
+     createSession(): void {
+       // Define peer device information.
+       const peerInfo: abilityConnectionManager.PeerInfo = {
+         deviceId: "sinkDeviceId",
+         bundleName: 'com.example.remotephotodemo',
+         moduleName: 'entry',
+         abilityName: 'EntryAbility',
+         serviceName: 'collabTest'
+       };
+       const myRecord: Record<string, string> = {
+         "newKey1": "value1",
+       };
  
-   const options: Record<string, string> = {
-     'ohos.collabrate.key.start.option': 'ohos.collabrate.value.foreground',
-   };
+       // Define connection options.
+       const connectOptions: abilityConnectionManager.ConnectOptions = {
+         needSendData: true,
+         startOptions: abilityConnectionManager.StartOptionParams.START_IN_FOREGROUND,
+         parameters: myRecord
+       };
+       let context = this.getUIContext().getHostContext();
+       try {
+         let sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOptions);
+         hilog.info(0x0000, 'testTag', 'createSession sessionId is', sessionId);
+       } catch (error) {
+         hilog.error(0x0000, 'testTag', error);
+       }
+     }
  
-   const connectOptions: abilityConnectionManager.ConnectOptions = {
-     needSendBigData: true,
-     needSendStream: false,
-     needReceiveStream: true,
-     options: options,
-     parameters: myRecord
-   };
-   let context = getContext(this) as common.UIAbilityContext;
-   try {
-     this.sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOptions);
-     hilog.info(0x0000, 'testTag', 'createSession sessionId is', this.sessionId);
-   } catch (error) {
-     hilog.error(0x0000, 'testTag', error);
+     build() {
+     }
    }
    ```
 
@@ -120,15 +127,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
    import { abilityConnectionManager } from '@kit.DistributedServiceKit';
    import { hilog } from '@kit.PerformanceAnalysisKit';
- 
+    
    export default class EntryAbility extends UIAbility {
-     onCollaborate(wantParam: Record<string, Object>): AbilityConstant.OnCollaborateResult {
+     onCollaborate(wantParam: Record<string, Object>): AbilityConstant.CollaborateResult {
        hilog.info(0x0000, 'testTag', '%{public}s', 'on collaborate');
        let param = wantParam["ohos.extra.param.key.supportCollaborateIndex"] as Record<string, Object>
        this.onCollab(param);
        return 0;
      }
- 
+    
      onCollab(collabParam: Record<string, Object>) {
        const sessionId = this.createSessionFromWant(collabParam);
        if (sessionId == -1) {
@@ -136,18 +143,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
          return;
        }
      }
- 
+    
      createSessionFromWant(collabParam: Record<string, Object>): number {
        let sessionId = -1;
        const peerInfo = collabParam["PeerInfo"] as abilityConnectionManager.PeerInfo;
        if (peerInfo == undefined) {
          return sessionId;
        }
- 
+    
        const options = collabParam["ConnectOptions"] as abilityConnectionManager.ConnectOptions;
-       options.needSendBigData = true;
-       options.needSendStream = true;
-       options.needReceiveStream = false;
        try {
          sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", this.context, peerInfo, options);
          AppStorage.setOrCreate('sessionId', sessionId);
@@ -181,7 +185,8 @@ Destroys a collaboration session between applications.
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'destroyAbilityConnectionSession called');
-  abilityConnectionManager.destroyAbilityConnectionSession(this.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.destroyAbilityConnectionSession(sessionId);
   ```
 
 ## abilityConnectionManager.getPeerInfoById
@@ -196,7 +201,7 @@ Obtains information about the peer application in the specified session.
 
 | Name      | Type                                      | Mandatory  | Description      |
 | --------- | ---------------------------------------- | ---- | -------- |
-| sessionId | string  | Yes   | ID of the collaboration session.  |
+| sessionId | number  | Yes   | ID of the collaboration session.  |
 
 **Return value**
 
@@ -220,7 +225,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'getPeerInfoById called');
-  const peerInfo = abilityConnectionManager.getPeerInfoById(this.sessionId);
+  let sessionId = 100;
+  const peerInfo = abilityConnectionManager.getPeerInfoById(sessionId);
   ```
 
 ## abilityConnectionManager.connect
@@ -259,7 +265,8 @@ After an application sets up a collaboration session and obtains the session ID 
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.connect(this.sessionId).then((ConnectResult) => {
+  let sessionId = 100;
+  abilityConnectionManager.connect(sessionId).then((ConnectResult) => {
     if (!ConnectResult.isConnected) {
       hilog.info(0x0000, 'testTag', 'connect failed');
       return;
@@ -312,7 +319,7 @@ After **createAbilityConnectionSession** is called on device A to create a colla
       hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     }
 
-    onCollaborate(wantParam: Record<string, Object>): AbilityConstant.OnCollaborateResult {
+    onCollaborate(wantParam: Record<string, Object>): AbilityConstant.CollaborateResult {
       hilog.info(0x0000, 'testTag', '%{public}s', 'on collaborate');
       let param = wantParam["ohos.extra.param.key.supportCollaborateIndex"] as Record<string, Object>
       this.onCollab(param);
@@ -329,7 +336,7 @@ After **createAbilityConnectionSession** is called on device A to create a colla
       abilityConnectionManager.acceptConnect(sessionId, collabToken).then(() => {
         hilog.info(0x0000, 'testTag', 'acceptConnect success');
       }).catch(() => {
-        hilog.error("failed");
+        hilog.error(0x0000, 'testTag', 'failed'); 
       })
     }
 
@@ -341,9 +348,6 @@ After **createAbilityConnectionSession** is called on device A to create a colla
       }
 
       const options = collabParam["ConnectOptions"] as abilityConnectionManager.ConnectOptions;
-      options.needSendBigData = true;
-      options.needSendStream = true;
-      options.needReceiveStream = false;
       try {
         sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", this.context, peerInfo, options);
         AppStorage.setOrCreate('sessionId', sessionId);
@@ -377,18 +381,15 @@ Disconnects the UIAbility connection to end the collaboration session.
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'disconnectRemoteAbility begin');
-  if (this.sessionId == -1) {
-    hilog.info(0x0000, 'testTag', 'Invalid session ID.');
-  return;
-  }
-  abilityConnectionManager.disconnect(this.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.disconnect(sessionId);
   ```
 
 ## abilityConnectionManager.reject
 
 reject(token:&nbsp;string,&nbsp;reason:&nbsp;string):&nbsp;void;
 
-Rejects a connection requet in multi-device application collaboration. After a connection request sent from the peer application is rejected, a rejection reason is returned.
+Rejects a connection request in a cross-device collaboration session. After a connection request sent from the peer application is rejected, a rejection reason is returned.
 
 **System capability**: SystemCapability.DistributedSched.AppCollaboration
 
@@ -405,25 +406,34 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
   ```ts
+  import { AbilityConstant, UIAbility, Want} from '@kit.AbilityKit';
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  hilog.info(0x0000, 'testTag', 'reject begin');
-  const collabToken = collabParam["ohos.dms.collabToken"] as string;
-  const reason = "test";
-  abilityConnectionManager.reject(collabToken, reason);
+  export default class EntryAbility extends UIAbility {
+      onCollaborate(wantParam: Record<string, Object>): AbilityConstant.CollaborateResult {
+        hilog.info(0x0000, 'testTag', '%{public}s', 'on collaborate');
+        let collabParam = wantParam["ohos.extra.param.key.supportCollaborateIndex"] as Record<string, Object>;
+        const collabToken = collabParam["ohos.dms.collabToken"] as string;
+        const reason = "test";
+        hilog.info(0x0000, 'testTag', 'reject begin');
+        abilityConnectionManager.reject(collabToken, reason);
+        return AbilityConstant.CollaborateResult.REJECT;
+      }
+  }
+
   ```
 
-## abilityConnectionManager.on
+## abilityConnectionManager.on('connect')
 
-on(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage'|&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+on(type:&nbsp;'connect',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
 
-Registers the callback listener for the **connect**, **disconnect**, **receiveMessage**, and **receiveData** events.
+Enables listening for **connect** events.
 
 **System capability**: SystemCapability.DistributedSched.AppCollaboration
 
@@ -431,7 +441,7 @@ Registers the callback listener for the **connect**, **disconnect**, **receiveMe
 
 | Name      | Type                                   | Mandatory  | Description   |
 | --------- | ------------------------------------- | ---- | ----- |
-| type | string  | Yes   |   Event type, which can be:<br>\- `connect`: event triggered when `connect()` is called.<br>\- `disconnect`: event is triggered when `disconnect()` is called.<br>\- `receiveMessage`: event triggered when `sendMessage()` is called.<br>\- `receiveData`: event triggered when `sendData()` is called.  |
+| type | string  | Yes   |   Event type. This field has a fixed value of **connect**. This event is triggered when [abilityConnectionManager.connect()](#abilityconnectionmanagerconnect) is called.  |
 | sessionId | number  | Yes   | ID of the collaboration session.   |
 | callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | Yes   | Registered callback function.   |
 
@@ -441,8 +451,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -450,29 +459,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.on("connect", this.sessionId,(callbackInfo) => {
+  let sessionId = 100;
+  abilityConnectionManager.on("connect", sessionId,(callbackInfo) => {
     hilog.info(0x0000, 'testTag', 'session connect, sessionId is', callbackInfo.sessionId);
-  });
-
-  abilityConnectionManager.on("disconnect", this.sessionId,(callbackInfo) => {
-    hilog.info(0x0000, 'testTag', 'session disconnect, sessionId is', callbackInfo.sessionId);
-  });
-
-  abilityConnectionManager.on("receiveMessage", this.sessionId,(callbackInfo) => {
-    hilog.info(0x0000, 'testTag', 'session receiveMessage, sessionId is', callbackInfo.sessionId);
-  });
-
-  abilityConnectionManager.on("receiveData", this.sessionId,(callbackInfo) => {
-    hilog.info(0x0000, 'testTag', 'session receiveData, sessionId is', callbackInfo.sessionId);
   });
 
   ```
 
-## abilityConnectionManager.off
+## abilityConnectionManager.off('connect')
 
-off(type:&nbsp;'connect'&nbsp;|&nbsp;'disconnect'&nbsp;|&nbsp;'receiveMessage'|&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+off(type:&nbsp;'connect',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
 
-Unregisters the callback listener for the **connect**, **disconnect**, **receiveMessage**, and **receiveData** events.
+Disables listening for **connect** events.
 
 **System capability**: SystemCapability.DistributedSched.AppCollaboration
 
@@ -480,7 +478,7 @@ Unregisters the callback listener for the **connect**, **disconnect**, **receive
 
 | Name      | Type                                   | Mandatory  | Description   |
 | --------- | ------------------------------------- | ---- | ----- |
-| type | string  | Yes   |   Event type, which can be:<br>\- `connect`: event triggered when `connect()` is called.<br>\- `disconnect`: event is triggered when `disconnect()` is called.<br>\- `receiveMessage`: event triggered when `sendMessage()` is called.<br>\- `receiveData`: event triggered when `sendData()` is called.   |
+| type | string  | Yes   |   Event type. This field has a fixed value of **connect**.   |
 | sessionId | number  | Yes   | ID of the collaboration session.   |
 | callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | No   | Registered callback function.   |
 
@@ -490,8 +488,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -499,10 +496,224 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.off("connect", this.sessionId);
-  abilityConnectionManager.off("disconnect", this.sessionId);
-  abilityConnectionManager.off("receiveMessage", this.sessionId);
-  abilityConnectionManager.off("receiveData", this.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.off("connect", sessionId);
+
+  ```
+
+## abilityConnectionManager.on('disconnect')
+
+on(type:&nbsp;'disconnect',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+
+Enables listening for **disconnect** events.
+
+**System capability**: SystemCapability.DistributedSched.AppCollaboration
+
+**Parameters**
+
+| Name      | Type                                   | Mandatory  | Description   |
+| --------- | ------------------------------------- | ---- | ----- |
+| type | string  | Yes   |   Event type. This field has a fixed value of **disconnect**. This event is triggered when [abilityConnectionManager.disconnect()](#abilityconnectionmanagerdisconnect) is called.  |
+| sessionId | number  | Yes   | ID of the collaboration session.   |
+| callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | Yes   | Registered callback function.   |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let sessionId = 100;
+  abilityConnectionManager.on("disconnect", sessionId,(callbackInfo) => {
+    hilog.info(0x0000, 'testTag', 'session disconnect, sessionId is', callbackInfo.sessionId);
+  });
+
+  ```
+
+## abilityConnectionManager.off('disconnect')
+
+off(type:&nbsp;'disconnect',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+
+Disables listening for **disconnect** events.
+
+**System capability**: SystemCapability.DistributedSched.AppCollaboration
+
+**Parameters**
+
+| Name      | Type                                   | Mandatory  | Description   |
+| --------- | ------------------------------------- | ---- | ----- |
+| type | string  | Yes   |   Event type. This field has a fixed value of **disconnect**.   |
+| sessionId | number  | Yes   | ID of the collaboration session.   |
+| callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | No   | Registered callback function.   |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let sessionId = 100;
+  abilityConnectionManager.off("disconnect", sessionId);
+
+  ```
+
+## abilityConnectionManager.on('receiveMessage')
+
+on(type:&nbsp;'receiveMessage',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+
+Enables listening for **receiveMessage** events.
+
+**System capability**: SystemCapability.DistributedSched.AppCollaboration
+
+**Parameters**
+
+| Name      | Type                                   | Mandatory  | Description   |
+| --------- | ------------------------------------- | ---- | ----- |
+| type | string  | Yes   |   Event type. This field has a fixed value of **receiveMessage**. This event is triggered when [abilityConnectionManager.sendMessage()](#abilityconnectionmanagersendmessage) is called.  |
+| sessionId | number  | Yes   | ID of the collaboration session.   |
+| callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | Yes   | Registered callback function.   |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let sessionId = 100;
+  abilityConnectionManager.on("receiveMessage", sessionId,(callbackInfo) => {
+    hilog.info(0x0000, 'testTag', 'receiveMessage, sessionId is', callbackInfo.sessionId);
+  });
+
+  ```
+
+## abilityConnectionManager.off('receiveMessage')
+
+off(type:&nbsp;'receiveMessage',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+
+Disables listening for **receiveMessage** events.
+
+**System capability**: SystemCapability.DistributedSched.AppCollaboration
+
+**Parameters**
+
+| Name      | Type                                   | Mandatory  | Description   |
+| --------- | ------------------------------------- | ---- | ----- |
+| type | string  | Yes   |   Event type. This field has a fixed value of **receiveMessage**.   |
+| sessionId | number  | Yes   | ID of the collaboration session.   |
+| callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | No   | Registered callback function.   |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let sessionId = 100;
+  abilityConnectionManager.off("receiveMessage", sessionId);
+
+  ```
+
+## abilityConnectionManager.on('receiveData')
+
+on(type:&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+
+Enables listening for **receiveData** events.
+
+**System capability**: SystemCapability.DistributedSched.AppCollaboration
+
+**Parameters**
+
+| Name      | Type                                   | Mandatory  | Description   |
+| --------- | ------------------------------------- | ---- | ----- |
+| type | string  | Yes   |   Event type. This field has a fixed value of **receiveData**. This event is triggered when [abilityConnectionManager.sendData()](#abilityconnectionmanagersenddata) is called.  |
+| sessionId | number  | Yes   | ID of the collaboration session.   |
+| callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | Yes   | Registered callback function.   |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let sessionId = 100;
+  abilityConnectionManager.on("receiveData", sessionId,(callbackInfo) => {
+    hilog.info(0x0000, 'testTag', 'receiveData, sessionId is', callbackInfo.sessionId);
+  });
+
+  ```
+
+## abilityConnectionManager.off('receiveData')
+
+off(type:&nbsp;'receiveData',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+
+Disables listening for **receiveData** events.
+
+**System capability**: SystemCapability.DistributedSched.AppCollaboration
+
+**Parameters**
+
+| Name      | Type                                   | Mandatory  | Description   |
+| --------- | ------------------------------------- | ---- | ----- |
+| type | string  | Yes   |   Event type. This field has a fixed value of **receiveData**.   |
+| sessionId | number  | Yes   | ID of the collaboration session.   |
+| callback | Callback&lt;[EventCallbackInfo](#eventcallbackinfo)&gt; | No   | Registered callback function.   |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let sessionId = 100;
+  abilityConnectionManager.off("receiveData", sessionId);
 
   ```
 
@@ -541,7 +752,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.sendMessage(this.sessionId, "message send success").then(() => {
+  let sessionId = 100;
+  abilityConnectionManager.sendMessage(sessionId, "message send success").then(() => {
     hilog.info(0x0000, 'testTag', "sendMessage success");
   }).catch(() => {
     hilog.error(0x0000, 'testTag', "connect failed");
@@ -575,20 +787,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201      | Permission verification failed. The application does not have the permission required to call the API.|
-| 202      | Permission verification failed. A non-system application calls a system API.|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
   ```ts
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { util } from '@kit.ArkTS';
 
   let textEncoder = util.TextEncoder.create("utf-8");
   const arrayBuffer  = textEncoder.encodeInto("data send success");
 
-  abilityConnectionManager.sendData(this.sessionId, arrayBuffer.buffer).then(() => {
+  let sessionId = 100;
+  abilityConnectionManager.sendData(sessionId, arrayBuffer.buffer).then(() => {
     hilog.info(0x0000, 'testTag', "sendMessage success");
   }).catch(() => {
     hilog.info(0x0000, 'testTag', "sendMessage failed");
@@ -601,13 +813,13 @@ Defines the application collaboration information.
 
 **System capability**: SystemCapability.DistributedSched.AppCollaboration
 
-| Name                   | Type      | Readable  | Writable  | Mandatory  | Description                |
-| --------------------- | -------- | ---- | ---- | ---- | ------------------ |
-| deviceId | string | Yes   | No   | Yes   | Peer device ID.    |
-| bundleName        | string | Yes   | No  |  Yes   | Bundle name of the application.|
-| moduleName        | string | Yes   | No  |  Yes   | Module name of the peer application.|
-| abilityName        | string | Yes   | No |  Yes    | Ability name of the peer application.|
-| serviceName        | string | Yes   | No |  No    | Service name for the application.|
+| Name                   | Type      |Read Only  | Optional  | Description                |
+| ----------------- | ------ | ----  | ---- | ------------------ |
+| deviceId          | string | No  |No   | Peer device ID.    |
+| bundleName        | string | No  |No   | Bundle name of the application.|
+| moduleName        | string | No  |No   | Module name of the peer application.|
+| abilityName       | string | No  |No    | Ability name of the peer application.|
+| serviceName       | string | No  |Yes    | Service name for the application.|
 
 ## ConnectOptions
 
@@ -615,13 +827,11 @@ Connection options for the application.
 
 **System capability**: SystemCapability.DistributedSched.AppCollaboration
 
-| Name         | Type   | Readable  | Writable  | Mandatory  | Description         |
-| ----------- | ------- | ---- | ---- | ---- | ----------- |
-| needSendData    | boolean  | Yes   | Yes   | No   | Whether to send data. The value **true** indicates that data needs to be sent, and the value **false** indicates the opposite.    |
-| needSendStream    | boolean  | Yes   | Yes   | No   | Whether to send streams. The value **true** indicates that streams need to be sent, and the value **false** indicates the opposite.   |
-| needReceiveStream    | boolean  | Yes   | Yes   | No   | Whether to receive streams. The value **true** indicates that streams need to be received, and the value **false** indicates the opposite.    |
-| startOptions | [StartOptionParams](#startoptionparams) | Yes   | Yes   | No   | Application startup options.|
-| parameters | Record&lt;string, string&gt;  | Yes   | Yes   | No   | Additional configuration for the connection.   |
+| Name         | Type   | Read Only  | Optional  | Description         |
+| ----------- | ------- | ---- | ---- | ----------- |
+| needSendData    | boolean  | No   | Yes  | Whether to send data. The value **true** indicates that data needs to be sent, and the value **false** indicates the opposite.    |
+| startOptions | [StartOptionParams](#startoptionparams) | No   | Yes  | Application startup options.|
+| parameters | Record&lt;string, string&gt;  | No   | Yes  | Additional configuration for the connection.   |
 
 ## ConnectResult
 
@@ -629,11 +839,11 @@ Defines the connection result.
 
 **System capability**: SystemCapability.DistributedSched.AppCollaboration
 
-| Name      | Type  | Readable  | Writable  | Mandatory  | Description     |
-| -------- | ------ | ---- | ---- | ---- | ------- |
-| isConnected | boolean | Yes   | No   | Yes   | Whether the connection is successful. The value **true** indicates that the connection is successful, and the value **false** indicates the opposite.|
-| errorCode | [ConnectErrorCode](#connecterrorcode) | Yes   | No   | No   | Connection error code.|
-| reason | string | Yes   | No   | No   | Connection rejection reason.|
+| Name      | Type  | Read Only  | Optional  | Description     |
+| -------- | ------ | ---- | ---- | ------- |
+| isConnected | boolean | No  | No  | Whether the connection is successful. The value **true** indicates that the connection is successful, and the value **false** indicates the opposite.|
+| errorCode | [ConnectErrorCode](#connecterrorcode) | No  | Yes  | Connection error code.|
+| reason | string | No  | Yes  | Connection rejection reason.|
 
 ## EventCallbackInfo
 
@@ -641,13 +851,12 @@ Defines the event callback information.
 
 **System capability**: SystemCapability.DistributedSched.AppCollaboration
 
-| Name      | Type   | Readable  | Writable  | Description         |
+| Name      | Type   | Read Only| Optional| Description         |
 | -------- | ------ | ---- | ---- | ----------- |
-| sessionId | number   | Yes   | Yes   |   Collaborative session ID.|
-| reason | [DisconnectReason](#disconnectreason)     | Yes   | No   |   Disconnection reason.|
-| msg | string   | Yes   | No   |   Received message.|
-| data  | ArrayBuffer | Yes   | No   |   Received byte stream.|
-| image  | image.PixelMap | Yes   | No   |   Received image.|
+| sessionId | number   | No  | No  |   Collaboration session ID.|
+| reason | [DisconnectReason](#disconnectreason)     | No  | Yes  |   Disconnection reason.|
+| msg | string   | No  | Yes  |   Received message.|
+| data  | ArrayBuffer | No  | Yes  |   Received byte stream.|
 
 ## CollaborateEventInfo
 
@@ -655,10 +864,10 @@ Collaboration event information.
 
 **System capability**: SystemCapability.DistributedSched.AppCollaboration
 
-| Name      | Type  | Readable  | Writable  | Mandatory  | Description     |
-| -------- | ------ | ---- | ---- | ---- | ------- |
-| eventType | [CollaborateEventType](#collaborateeventtype) | Yes   | No   | Yes   | Collaboration event type.|
-| eventMsg | string | Yes   | No   | No   | Collaboration event message.|
+| Name      | Type  | Read Only  | Optional  | Description     |
+| -------- | ------ | ---- | ---- | ------- |
+| eventType | [CollaborateEventType](#collaborateeventtype) | No  | No  | Collaboration event type.|
+| eventMsg | string | No  | Yes  | Content of a collaboration event.|
 
 ## ConnectErrorCode
 
@@ -666,13 +875,14 @@ Enumerates connection error codes.
 
 **System capability**: SystemCapability.DistributedSched.AppCollaboration
 
-| Value| Description|
-| -------- | -------- |
-| CONNECTED_SESSION_EXISTS | A session already exists between applications.|
-| PEER_APP_REJECTED | The peer application rejects the collaboration request.|
-| LOCAL_WIFI_NOT_OPEN  | Wi-Fi is disabled at the local end.|
-| PEER_WIFI_NOT_OPEN  | Wi-Fi is disabled at the peer end.|
-| PEER_ABILITY_NO_ONCOLLABORATE | The **onCollaborate** callback is not implemented.|
+| Name|  Value| Description|
+|-------|-------|-------|
+| CONNECTED_SESSION_EXISTS | 0 |A session already exists between applications.|
+| PEER_APP_REJECTED | 1 |The peer application rejects the collaboration request.|
+| LOCAL_WIFI_NOT_OPEN | 2 |Wi-Fi is disabled at the local end.|
+| PEER_WIFI_NOT_OPEN | 3 |Wi-Fi is disabled at the peer end.|
+| PEER_ABILITY_NO_ONCOLLABORATE | 4 |The **onCollaborate** callback is not implemented.|
+| SYSTEM_INTERNAL_ERROR | 5 |An internal system error occurs.|
 
 ## StartOptionParams
 
@@ -680,10 +890,9 @@ Enumerates application start options.
 
 **System capability**: SystemCapability.DistributedSched.AppCollaboration
 
-| Value| Description|
-| -------- | -------- |
-| START_IN_FOREGROUND | Start of the peer application in the foreground.|
-| START_IN_BACKGROUND | Start of the peer application in the background.|
+| Name|  Value| Description|
+|-------|-------|-------|
+| START_IN_FOREGROUND | 0 |Start of the peer application in the foreground.|
 
 ## CollaborateEventType
 
@@ -691,10 +900,10 @@ Enumerates collaboration event types.
 
 **System capability**: SystemCapability.DistributedSched.AppCollaboration
 
-| Value| Description|
-| -------- | -------- |
-| SEND_FAILURE | Task sending failure.|
-| COLOR_SPACE_CONVERSION_FAILURE | Color space conversion failure.|
+| Name|  Value| Description|
+|-------|-------|-------|
+| SEND_FAILURE | 0 |Task sending failure.|
+| COLOR_SPACE_CONVERSION_FAILURE | 1 |Color space conversion failure.|
 
 ## DisconnectReason
 

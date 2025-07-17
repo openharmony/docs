@@ -32,7 +32,7 @@ Enables or disables the **always on** mode.
 
 | Name    | Type   | Mandatory| Description                                                   |
 | ---------- | ------- | ---- | ------------------------------------------------------- |
-| enable     | boolean | Yes  | Whether to enable the **always on** mode.                                  |
+| enable     | boolean | Yes  | Whether to enable the **always on** mode. The value **true** means to enable the **always on** mode, and the value **false** means the opposite.                                  |
 | bundleName | string  | Yes  | Bundle name of the application (generally a third-party application).|
 
 **Return value**
@@ -149,7 +149,7 @@ Updates the VPN pop-up authorization status.
 
 | Type   | Description                                       |
 | ------- | ------------------------------------------- |
-| boolean | Boolean value indicating whether the VPN pop-up authorization status is successfully updated.|
+| boolean | Boolean value indicating whether the VPN pop-up authorization status is successfully updated. The value **true** indicates that the VPN pop-up authorization status is successfully updated, and the value **false** indicates the opposite.|
 
 **Error codes**
 

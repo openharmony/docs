@@ -108,6 +108,37 @@ radio.getRadioTech(slotId).then((data: radio.NetworkRadioTech) => {
 ```
 
 
+## radio.getRadioTechSync<sup>18+</sup>
+
+getRadioTechSync\(slotId: number\): [NetworkRadioTech](#networkradiotech11)
+
+Obtains the RAT used in the CS and PS domains for the SIM card in the specified slot.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type                                                        | Description                                           |
+| ------------------------------------------------------------ | ----------------------------------------------- |
+| [NetworkRadioTech](#networkradiotech11) | RAT used in the CS and PS domains.|
+
+**Example**
+
+```ts
+let slotId: number = 0;
+let networkRadioTech: radio.NetworkRadioTech = radio.getRadioTechSync(slotId);
+console.info(`getRadioTechSync success, NetworkRadioTech->${JSON.stringify(networkRadioTech)}`);
+```
+
+
 ## radio.getNetworkState
 
 getNetworkState\(callback: AsyncCallback\<NetworkState\>\): void
@@ -212,7 +243,7 @@ Obtains the network status of the SIM card in the specified slot. This API uses 
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | No  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
+| slotId | number | No  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2<br> If no card slot is specified, card slot 1 is used by default.|
 
 **Return value**
 
