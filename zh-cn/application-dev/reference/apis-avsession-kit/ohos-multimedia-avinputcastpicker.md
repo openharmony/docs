@@ -40,10 +40,21 @@ AVInputCastPicker({
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 装饰器类型 | 说明 |
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | customPicker | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 否 | @Prop | 自定义样式。建议应用自定义组件样式，可有效提升组件显示速度。 |
 | onStateChange | (state: [AVCastPickerState](js-apis-avCastPickerParam.md#avcastpickerstate11)) => void | 否 | - | 设备列表状态变更回调。<br>state：设备列表状态变更回调函数参数。 |
+
+## OnPickerStateCallback
+type OnPickerStateCallback = (state: AVCastPickerState) => void
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVInputCast
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| state | [AVCastPickerState](js-apis-avCastPickerParam.md#avcastpickerstate11) | 否 | 设备列表状态。 |
 
 ## 事件
 

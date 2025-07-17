@@ -5,6 +5,7 @@
 > **说明：**
 >
 > - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## domStorageAccess
@@ -487,11 +488,30 @@ mediaPlayGestureAccess(access: boolean)
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .mediaPlayGestureAccess(this.access)
       }
     }
   }
+  ```
+
+加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>视频播放页面</title>
+  </head>
+  <body>
+  <h1>视频播放</h1>
+  <video id="testVideo" controls autoplay>
+      // 需要在video标签中配置autoplay属性，允许视频自动播放
+      // 在resources的rawfile目录放置任意一个mp4媒体文件，并将其命名为example.mp4
+      <source src="example.mp4" type="video/mp4">
+  </video>
+  </body>
+  </html>
   ```
 
 ## multiWindowAccess<sup>9+</sup>
@@ -1955,45 +1975,6 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
   </html>
   ```
 
-## bypassVsyncCondition<sup>20+</sup>
-
-bypassVsyncCondition(condition: WebBypassVsyncCondition)
-
-当开发者调用scrollBy接口进行页面滚动时，可以通过bypassVsyncCondition接口设置渲染流程跳过vsync（垂直同步）调度，直接触发绘制。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名  | 类型                                  | 必填   | 说明                  |
-| ---- | ------------------------------------- | ---- | --------------------- |
-| condition | [WebBypassVsyncCondition](./arkts-basic-components-web-e.md#webbypassvsynccondition20) | 是    | 触发渲染流程跳过vsync调度的条件。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-    condition: WebBypassVsyncCondition = WebBypassVsyncCondition.SCROLLBY_FROM_ZERO_OFFSET;
-
-    build() {
-      Column() {
-        Button('scrollBy')
-          .onClick(() => {
-            this.controller.scrollBy(0, 5);
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-          .bypassVsyncCondition(this.condition)
-      }
-    }
-  }
-  ```
-
 ## enableNativeEmbedMode<sup>11+</sup>
 
 enableNativeEmbedMode(mode: boolean)
@@ -2947,7 +2928,7 @@ enableDataDetector(enable: boolean)
 
 设置是否识别网页文本特殊实体。该接口依赖设备底层具备文本识别能力，否则设置无效。
 
-当enableDataDetector设置为true，同时不设置dataDetectorConfig属性时，默认识别所有类型的实体，所识别实体的color和decoration会被更改为如下样式：
+当enableDataDetector设置为true，同时不设置[dataDetectorConfig](#datadetectorconfig20)属性时，默认识别所有类型的实体，所识别实体的color和decoration会被更改为如下样式：
 <!--code_no_check-->
 ```ts
 color: '#ff007dff'
@@ -3082,54 +3063,6 @@ dataDetectorConfig(config: TextDataDetectorConfig)
       <p> 电话：400-123-4567 </p>
       <p> 邮箱：12345678901@example.com </p>
       <p> 网址：www.example.com（此项不识别）</p>
-  </body>
-  </html>
-  ```
-
-## gestureFocusMode<sup>20+</sup>
-
-gestureFocusMode(mode: GestureFocusMode)
-
-设置Web组件手势获焦模式。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名              | 类型                              | 必填   | 说明          |
-| ------------------- | ------------------------------   | ------ | ------------- |
-| mode | [GestureFocusMode](./arkts-basic-components-web-e.md#gesturefocusmode20) | 是     | 设置Web组件手势获焦模式。<br>默认值：`GestureFocusMode.DEFAULT`，表示手势按下时，任何手势均会使Web组件获焦。|
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-    @State mode: GestureFocusMode = GestureFocusMode.DEFAULT;
-    build() {
-      Column() {
-        Web({ src: $rawfile("index.html"), controller: this.controller })
-          .gestureFocusMode(this.mode)
-      }
-    }
-  }
-  ```
-
-  加载的html文件。
-  ```html
-  <!--index.html-->
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <title>测试网页</title>
-  </head>
-  <body>
-    <input type="text" placeholder="Text">
   </body>
   </html>
   ```

@@ -1068,6 +1068,28 @@ that.parse(options);
 // note
 ```
 
+## AttributeWithTagCb<sup>20+</sup>
+
+type AttributeWithTagCb = (tagName: string, key: string, value: string) => boolean
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   |  类型  | 必填 |  说明   |
+| ------- | -------| ---- | ------ |
+| tagName | string | 是   | 标签名称。|
+| key     | string | 是   | 属性名称。|
+| value   | string | 是   | 属性的值。|
+
+**返回值：**
+
+| 类型    | 说明                                                                       |
+| ------- | ------------------------------------------------------------------------- |
+| boolean | 是否继续解析标签名称、属性名称及属性的值。true表示继续解析，false表示停止解析。 |
+
 ## ParseOptions
 
 XML解析选项。
@@ -1084,6 +1106,7 @@ XML解析选项。
 | tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 解析开始标签、标签值和结束标签，默认值undefined，表示不解析。 |
 | attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 解析属性和属性值，默认值undefined，表示不解析。 |
 | tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 解析元素事件类型([EventType](#eventtype))和[ParseInfo](#parseinfo)属性，默认值undefined，表示不解析。 |
+| attributeWithTagCallbackFunction<sup>20+</sup> | [AttributeWithTagCb](#attributewithtagcb20) | 否 | 解析标签名称、属性名称及属性的值，默认值为undefined，表示不执行解析。 |
 
 ## ParseInfo
 

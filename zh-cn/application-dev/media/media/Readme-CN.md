@@ -24,6 +24,7 @@
   - 播放<!--media-playback-c-->
     - [使用AVPlayer播放音频(C/C++)](using-ndk-avplayer-for-playback.md)
     - [使用AVPlayer播放视频(C/C++)](using-ndk-avplayer-for-video-playback.md)
+    - [使用LPP播放器播放音视频(C/C++)](using-ndk-lpp-for-playback.md)
   - 录制<!--media-recording-c-->
     - [使用AVRecorder录制音频(C/C++)](using-ndk-avrecorder-for-audio-recording.md)
     - [使用AVRecorder录制视频(C/C++)](using-ndk-avrecorder-for-video-recording.md)
@@ -32,5 +33,3 @@
   - 媒体信息查询<!--media-info-c-->
     - [使用AVMetadataExtractor获取元数据(C/C++)](using-ndk-avmetadataextractor-for-media.md)
     - [使用AVImageGenerator获取视频帧(C/C++)](using-ndk-avimagegenerator-for-video.md)
-  - 视频转码<!--media-transcoder-c-->
-    - [使用AVTranscoder实现视频转码(C/C++)](using-ndk-avtranscoder-for-transcodering.md)

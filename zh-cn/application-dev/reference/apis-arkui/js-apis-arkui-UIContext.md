@@ -1400,11 +1400,9 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 | 处理建议 |
-| ------- | -------- | -------- |
-| 401      | invalid param count  | 参数个数错误，确保传入的参数个数正确 |
-| 401      | invalid param type  | 参数类型错误，确保传入的参数类型正确 |
-| 401      | get inspector failed  | 查询结果出错。系统内部存在异常，需要联系华为工程师处理。 |
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: <br /> 1. Mandatory parameters are left unspecified. <br /> 2. Incorrect parameters types. <br /> 3. Parameter verification failed.  |
 
 **示例：**
 
@@ -1505,12 +1503,9 @@ getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息 | 处理建议 |
-| ------- | -------- | -------- |
-| 401      | invalid param count  | 参数个数错误，确保传入的参数个数正确 |
-| 401      | invalid param type  | 参数类型错误，确保传入的参数类型正确 |
-| 401      | invalid filter depth  | depth参数需要大于或者等于0 |
-| 401      | get inspector failed  | 查询结果出错。如果传入的id不存在，接口会抛出此错误。请确保传入正确的组件id。 |
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: <br /> 1. Mandatory parameters are left unspecified. <br /> 2. Incorrect parameters types. <br /> 3. Parameter verification failed.  |
 
 **示例：**
 
@@ -1533,12 +1528,15 @@ struct ComponentPage {
       Button('getFilteredInspectorTreeById').onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         try {
-          let inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1);
-          console.log(`result1: ${inspectorStr}`);
+          let inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1, ["id", "src"]);
+          console.info(`result1: ${inspectorStr}`);
           inspectorStr = JSON.stringify(JSON.parse(inspectorStr)['$children'][0]);
-          console.log(`result2: ${inspectorStr}`);
+          console.info(`result2: ${inspectorStr}`);
+          inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1, ["src"]);
+          inspectorStr = JSON.stringify(JSON.parse(inspectorStr)['$children'][0]);
+          console.info(`result3: ${inspectorStr}`);
         } catch(e) {
-          console.log(`getFilteredInspectorTreeById error: ${e}`);
+          console.info(`getFilteredInspectorTreeById error: ${e}`);
         }
       })
     }
@@ -1550,10 +1548,11 @@ struct ComponentPage {
 返回的JSON字符串结构如下：
 <!--code_no_check-->
 ```ts
-result1: {"$type":"root","width":"1260.000000","height":"2720.000000","$resolution":"3.250000","$children":[{"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"borderStyle":"BorderStyle.Solid","borderColor":"#FF000000","borderWidth":"0.00vp","borderRadius":{"topLeft":"0.00vp","topRight":"0.00vp","bottomLeft":"0.00vp","bottomRight":"0.00vp"}}}]}
-result2: {"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"borderStyle":"BorderStyle.Solid","borderColor":"#FF000000","borderWidth":"0.00vp","borderRadius":{"topLeft":"0.00vp","topRight":"0.00vp","bottomLeft":"0.00vp","bottomRight":"0.00vp"}}}
+result1: {"$type":"root","width":"1260.000000","height":"2720.000000","$resolution":"3.250000","$children":[{"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"id":"TEXT","isLayoutDirtyMarked":false,"isRenderDirtyMarked":false,"isMeasureBoundary":false,"hasPendingRequest":false,"isFirstBuilding":false}}]}
+result2: {"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"id":"TEXT","isLayoutDirtyMarked":false,"isRenderDirtyMarked":false,"isMeasureBoundary":false,"hasPendingRequest":false,"isFirstBuilding":false}}
+result3: {"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"isLayoutDirtyMarked":false,"isRenderDirtyMarked":false,"isMeasureBoundary":false,"hasPendingRequest":false,"isFirstBuilding":false}}
 ```
-若需获取getFilteredInspectorTreeById方法中首个参数id指定的组件，须参照示例代码将getFilteredInspectorTreeById方法结果先转换为json对象，随后提取$children数组的首项。
+若需获取getFilteredInspectorTreeById方法中首个参数id指定的组件，须参照示例代码将getFilteredInspectorTreeById方法结果先转换为json对象，随后提取$children数组的首项。通过result2和result3的结果对比可知，如果filters参数由["id", "src"]改为["src"]，获取到的\$attrs属性将缺少"id"这一key。
 
 
 ### getCursorController<sup>12+</sup>
@@ -3065,6 +3064,10 @@ getSystemFontList(): Array\<string>
 
 获取系统支持的字体名称列表。
 
+>  **说明：**
+>
+>  该接口仅在2in1设备上生效。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -3074,10 +3077,6 @@ getSystemFontList(): Array\<string>
 | 类型             | 说明        |
 | -------------- | --------- |
 | Array\<string> | 系统的字体名列表。 |
-
->  **说明：**
->
->  该接口仅在2in1设备上生效。
 
 **示例：** 
 
@@ -4901,7 +4900,7 @@ on(type: 'nodeRenderState', nodeIdentity: NodeIdentity, callback: NodeRenderStat
 
 ```ts
 // 在页面Component中使用
-import { NodeRenderState } from '@ohos.arkui.UIContext';
+import { NodeRenderState } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -5028,138 +5027,6 @@ off(type: 'nodeRenderState', nodeIdentity: NodeIdentity, callback?: NodeRenderSt
 
 参考[on('nodeRenderState')](#onnoderenderstate20)接口示例。
 
-### addGlobalGestureListener<sup>20+</sup>
-
-addGlobalGestureListener(type: GestureListenerType, option: GestureObserverConfigs, callback: GestureListenerCallback): void
-
-注册回调函数以监听手势触发信息。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型         | 必填 | 说明          |
-| -------- | ----------- | ---- | ----------- |
-| type     | [GestureListenerType](#gesturelistenertype20)     | 是   |要监听的手势类型。  |
-| option | [GestureObserverConfigs](#gestureobserverconfigs20) | 是   |  绑定全局监听器时的配置选项。  |
-| callback | [GestureListenerCallback](#gesturelistenercallback20) | 是   |  手势状态更新时的回调函数。  |  
-
-### removeGlobalGestureListener<sup>20+</sup>
-
-removeGlobalGestureListener(type: GestureListenerType, callback?: GestureListenerCallback): void
-
-移除某一手势监听器类型的回调函数。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名   | 类型     | 必填 | 说明       |
-| -------- | ---------- | ---- | --------- |
-| type     | [GestureListenerType](#gesturelistenertype20)    | 是   | 要移除监听器的事件类型。 |
-| callback | [GestureListenerCallback](#gesturelistenercallback20) | 否   | 待移除的回调函数（未提供时将清除该手势类型的所有回调）。   |  
-
-**示例：**
-
-该示例通过全局监听器实时追踪平移手势的触发阶段、触点ID和手指数量，并在可视化日志区显示手势开始/结束事件及详细触点信息。
-
-```ts
-
-// xxx.ets
-
-import { GestureListenerType, GestureActionPhase, GestureTriggerInfo } from '@kit.ArkUI';
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Gesture';
-  @State logs: string[] = [];
-  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right });
-  private panCallback = (info: GestureTriggerInfo) => {
-    let current = info.current;
-    this.addLog(`Phase: ${info.currentPhase}`);
-    this.addLog(`ID: ${info.event.target.id}`);
-    this.addLog(`FingerCount: ${current.getFingerCount()}`);
-    this.addLog('------------------------');
-  };
-
-  private addLog(log: string) {
-    this.logs.unshift(`[${new Date().toLocaleTimeString()}] ${log}`);
-    if (this.logs.length > 50) {
-      this.logs.pop();
-    }
-  }
-
-  build() {
-    Column() {
-      Row({ space: 20 }) {
-        Text(this.message)
-          .width(400)
-          .height(80)
-          .fontSize(23)
-      }
-      .id('test row')
-      .margin(15)
-      .width(400)
-      .height(150)
-      .borderWidth(2)
-      .gesture(PanGesture({ direction: PanDirection.Left | PanDirection.Right })
-        .onActionStart((event: GestureEvent) => {
-          this.addLog('Pan手势开始');
-        })
-        .onActionEnd((event: GestureEvent) => {
-          this.addLog('Pan手势结束');
-        }))
-
-      Row() {
-        Button('添加PAN监听')
-          .onClick(() => {
-            this.addLog('添加PAN全局监听');
-            let observer = this.getUIContext().getUIObserver();
-            observer.addGlobalGestureListener(
-              GestureListenerType.PAN,
-              { actionPhases: [GestureActionPhase.WILL_START, GestureActionPhase.WILL_END] }, this.panCallback);
-          })
-
-        Button('取消PAN监听')
-          .onClick(() => {
-            this.addLog('取消PAN全局监听');
-            let observer = this.getUIContext().getUIObserver();
-            observer.removeGlobalGestureListener(2, this.panCallback);
-          })
-      }
-      .margin(10)
-      .height(60)
-
-      // 日志显示区域
-      Scroll() {
-        Column() {
-          ForEach(this.logs, (log: string) => {
-            Text(log)
-              .fontSize(20)
-              .textAlign(TextAlign.Start)
-              .width('100%')
-              .margin({ bottom: 8 })
-          }, (log: string) => log)
-        }
-        .width('100%')
-        .padding(15)
-      }
-      .height(200)
-      .border({ width: 1, color: '#CCCCCC' })
-      .margin(10)
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
-![example](figures/pangesture_uiobserver_listener.gif)
-
 ## NodeIdentity<sup>20+</sup>
 type NodeIdentity = string | number
 
@@ -5202,79 +5069,6 @@ type NodeRenderStateChangeCallback = (state: NodeRenderState, node?: FrameNode) 
 | -------- | ------- | -------- |
 | ABOUT_TO_RENDER_IN | 0 | 该节点已挂载到渲染树上，一般将会在下一帧被渲染。一般情况下可被看见，但会被渲染并不等同于一定可见。 |
 | ABOUT_TO_RENDER_OUT | 1 | 该节点已从渲染树中删除，一般下一帧不会被渲染，用户将不会看到此节点。 |
-
-## GestureListenerCallback<sup>20+</sup>
-
-type GestureListenerCallback = (info: GestureTriggerInfo) => void
-
-定义了用于在UIObserver中监控特定手势触发信息的回调类型。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名  | 类型              | 必填 | 说明                                |
-| ------- | ----------------- | ---- | --------------------------------- |
-| info   | [GestureTriggerInfo](#gesturetriggerinfo20)     | 是   |  交互触发的手势详情。 |
-
-## GestureActionPhase<sup>20+</sup>
-
-此枚举类型表示手势回调触发阶段，对应gesture.d.ts中定义的动作回调，但不同手势类型支持的阶段不同（如SwipeGesture仅包含WILL_START枚举值）。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称   | 值   | 说明       |
-| ------ | ---- | ---------- |
-| WILL_START | 0 | 手势已被系统成功识别，action-start/action回调将立即执行。 |
-|  WILL_END | 1 | 表示手势已被判定为结束状态（通常发生在用户抬起手指终止交互时），action-end回调将立即执行。 |
-
-## GestureListenerType<sup>20+</sup>
-
-此枚举类型用于指定需要监控的手势类型。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称   | 值   | 说明       |
-| ------ | ---- | ---------- |
-| TAP | 0 | 点击手势。 |
-| LONG_PRESS | 1 | 长按手势。 |
-| PAN  | 2 | 平移手势。 |
-| PINCH | 3 | 捏合手势。 |
-| SWIPE | 4| 滑动手势。 |
-| ROTATION| 5 | 旋转手势。 |
-
-## GestureTriggerInfo<sup>20+</sup>
-
-特定手势回调函数触发时的信息。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称   | 类型   | 必填       |说明       |
-| ------ | ---- | ---------- |---------- |
-| event | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明)   |是       |手势事件对象。 |
-| current | [GestureRecognizer](arkui-ts/ts-gesture-blocking-enhancement.md#gesturerecognizer)    |是      |手势识别器对象。可从中获取手势的详细信息，但请勿在本地保留此对象，因为当节点释放后该对象可能失效。 |
-| currentPhase  | [GestureActionPhase](#gestureactionphase20) |是      | 手势动作回调阶段。|
-| node  | [FrameNode](js-apis-arkui-frameNode.md) |否      |触发手势的节点。默认值为null，表示没有触发手势的节点。 |
-
-## GestureObserverConfigs<sup>20+</sup>
-
-该参数用于指定需要监听的手势回调阶段（传入空数组将无效），仅当手势触发指定阶段时才会发送通知。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称   | 类型   | 必填       |说明       |
-| ------ | ---- | ---------- |---------- |
-|  actionPhases | Array\<[GestureActionPhase](#gestureactionphase20)\>    |是       |手势事件对象。 |
 
 ## PanListenerCallback<sup>19+</sup>
 type PanListenerCallback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => void
@@ -10572,221 +10366,6 @@ struct Index {
 }
 ```
 
-
-### getParagraphs<sup>20+</sup>
-
-getParagraphs(styledString: StyledString, options?: TextLayoutOptions): Array\<Paragraph\>
-
-将属性字符串根据文本布局选项转换成对应的[Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)数组。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明           |
-| ----- | ------ | ---- | -------------- |
-| styledString | [StyledString](arkui-ts/ts-universal-styled-string.md#styledstring) | 是   | 待转换的属性字符串。|
-| options | [TextLayoutOptions](arkui-ts/ts-text-common.md#textlayoutoptions对象说明20) | 否 | 文本布局选项。|
-
-**返回值：**
-
-| 类型     | 说明        |
-| ------ | --------- |
-| Array<[Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)> | [Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)的数组。 |
-
-**示例：**
-通过MeasureUtils的getParagraphs方法测算文本，当内容超出最大显示行数的时候，截断文本显示并展示“...全文”的效果。
-
-``` typescript
-import { LengthMetrics } from '@kit.ArkUI';
-import image from '@ohos.multimedia.image';
-import { drawing, text } from '@kit.ArkGraphics2D';
-
-class MyCustomSpan extends CustomSpan {
-  constructor(word: string, width: number, height: number, context: UIContext) {
-    super();
-    this.word = word;
-    this.width = width;
-    this.height = height;
-    this.context = context;
-  }
-  onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics {
-    return { width: this.width, height: this.height };
-  }
-  onDraw(context: DrawContext, options: CustomSpanDrawInfo) {
-    let canvas = context.canvas;
-    const brush = new drawing.Brush();
-    brush.setColor({
-      alpha: 255,
-      red: 0,
-      green: 74,
-      blue: 175
-    });
-    const font = new drawing.Font();
-    font.setSize(25);
-    const textBlob = drawing.TextBlob.makeFromString(this.word, font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
-    canvas.attachBrush(brush);
-    canvas.drawRect({
-      left: options.x + 10,
-      right: options.x + this.context.vp2px(this.width) - 10,
-      top: options.lineTop + 10,
-      bottom: options.lineBottom - 10
-    });
-    brush.setColor({
-      alpha: 255,
-      red: 23,
-      green: 169,
-      blue: 141
-    });
-    canvas.attachBrush(brush);
-    canvas.drawTextBlob(textBlob, options.x + 20, options.lineBottom - 15);
-    canvas.detachBrush();
-  }
-  setWord(word: string) {
-    this.word = word;
-  }
-  width: number = 160;
-  word: string = "drawing";
-  height: number = 10;
-  context: UIContext;
-}
-@Entry
-@Component
-struct Indeddddx {
-  @State pixelmap?: PixelMap = undefined;
-  str : string = "Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal."
-  mutableStr2 = new MutableStyledString(this.str, [
-    {
-      start: 0,
-      length: 3,
-      styledKey: StyledStringKey.FONT,
-      styledValue: new TextStyle({fontSize: LengthMetrics.px(20)})
-    },
-    {
-      start: 3,
-      length: 3,
-      styledKey: StyledStringKey.FONT,
-      styledValue: new TextStyle({fontColor: Color.Brown})
-    }
-  ])
-  getlineNum(styledString: StyledString, width: LengthMetrics) {
-    let paragraphArr = this.getUIContext().getMeasureUtils().getParagraphs(styledString, { constraintWidth: width })
-    let res = 0
-    for (let i = 0; i < paragraphArr.length; ++i) {
-      res += paragraphArr[i].getLineCount()
-    }
-    return res
-  }
-  getCorretIndex(styledString : MutableStyledString, maxLines: number, width: LengthMetrics)  {
-    let low = 0
-    let high = styledString.length - 1;
-    while(low <= high) {
-      let mid = (low + high) >> 1;
-      console.log("demo: get " + low + " " + high + " " + mid)
-      let moreStyledString = new MutableStyledString("... 全文", [{
-        start: 4,
-        length: 2,
-        styledKey: StyledStringKey.FONT,
-        styledValue: new TextStyle({fontColor: Color.Blue})
-      }])
-      moreStyledString.insertStyledString(0, styledString.subStyledString(0, mid))
-      let lineNum = this.getlineNum(moreStyledString, LengthMetrics.px(500))
-      if(lineNum <= maxLines) {
-        low = mid + 1;
-      } else {
-        high = mid -1;
-      }
-    }
-    return high
-  }
-  mutableStrAllContent = new MutableStyledString(this.str, [
-    {
-      start: 0,
-      length: 3,
-      styledKey: StyledStringKey.FONT,
-      styledValue: new TextStyle({fontSize: LengthMetrics.px(40)})
-    },
-    {
-      start: 3,
-      length: 3,
-      styledKey: StyledStringKey.FONT,
-      styledValue: new TextStyle({fontColor: Color.Brown})
-    }
-  ])
-  customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 120, 10, this.getUIContext());
-  mutableStrAllContent2 = new MutableStyledString(this.str, [
-    {
-      start: 0,
-      length: 3,
-      styledKey: StyledStringKey.FONT,
-      styledValue: new TextStyle({fontSize: LengthMetrics.px(100)})
-    },
-    {
-      start: 3,
-      length: 3,
-      styledKey: StyledStringKey.FONT,
-      styledValue: new TextStyle({fontColor: Color.Brown})
-    }
-  ])
-  controller: TextController = new TextController()
-  controller2: TextController = new TextController()
-  textController: TextController = new TextController()
-  textController2: TextController = new TextController()
-  aboutToAppear() {
-    this.mutableStrAllContent2.insertStyledString(0, new StyledString(this.customSpan1));
-    this.mutableStr2.insertStyledString(0, new StyledString(this.customSpan1));
-  }
-  build() {
-    Scroll() {
-      Column() {
-        Text('原文')
-        Text(undefined, { controller: this.controller }).width('500px').onAppear(() => {
-          this.controller.setStyledString(this.mutableStrAllContent)
-        })
-        Divider().strokeWidth(8).color('#F1F3F5')
-        Text('排版后')
-        Text(undefined, { controller: this.textController }).onAppear(() => {
-          let now = this.getCorretIndex(this.mutableStrAllContent, 3, LengthMetrics.px(500))
-          if (now != this.mutableStrAllContent.length - 1) {
-            let moreStyledString = new MutableStyledString("... 全文", [{
-              start: 4,
-              length: 2,
-              styledKey: StyledStringKey.FONT,
-              styledValue: new TextStyle({ fontColor: Color.Blue })
-            }])
-            moreStyledString.insertStyledString(0, this.mutableStrAllContent.subStyledString(0, now))
-            this.textController.setStyledString(moreStyledString)
-          } else {
-            this.textController.setStyledString(this.mutableStrAllContent)
-          }
-        })
-          .width('500px')
-        Divider().strokeWidth(8).color('#F1F3F5')
-        Text('原文')
-        Text(undefined, { controller: this.controller2 }).width('500px').onAppear(() => {
-          this.controller2.setStyledString(this.mutableStrAllContent2)
-        })
-        Divider().strokeWidth(8).color('#F1F3F5')
-        Text('排版后')
-        Text(undefined, { controller: this.textController2 }).onAppear(() => {
-          let now = this.getCorretIndex(this.mutableStrAllContent2, 3, LengthMetrics.px(500))
-          let moreStyledString = new MutableStyledString("... 全文", [{
-            start: 4,
-            length: 2,
-            styledKey: StyledStringKey.FONT,
-            styledValue: new TextStyle({ fontColor: Color.Blue })
-          }])
-          moreStyledString.insertStyledString(0, this.mutableStrAllContent2.subStyledString(0, now))
-          this.textController2.setStyledString(moreStyledString)
-        })
-          .width('500px')
-      }.width('100%')
-    }
-  }
-}
-```
-![](figures/styledString_15.png)
-
 ## ComponentSnapshot<sup>12+</sup>
 
 以下API需先使用UIContext中的[getComponentSnapshot()](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取ComponentSnapshot对象，再通过此实例调用对应方法。
@@ -10951,7 +10530,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。      |
+| builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。<br/>builder的根组件宽高为0时，截图操作会失败并抛出100001错误码。      |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是   | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
 | delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒 <br/> 取值范围：[0, +∞)，小于0时按默认值处理。 |
 | checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
@@ -11042,7 +10621,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 
 | 参数名  | 类型                                                 | 必填 | 说明                                                    |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
-| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。<br/>builder的根组件宽高为0时，截图操作会失败并抛出100001错误码。 |
 | delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒<br/> 取值范围：[0, +∞)，小于0时按默认值处理。|
 | checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |

@@ -159,36 +159,6 @@
 | ------- | ---- | -------------------------- |
 | DESTROY | 0    | 表示窗口销毁时的转场动画。 |
 
-## AnimationType<sup>20+</sup>
-
-窗口动画类型枚举。
-
-**系统能力：**  SystemCapability.Window.SessionManager
-
-| 名称    | 值   | 说明                       |
-| ------- | ---- | -------------------------- |
-| FADE_IN_OUT | 0    | 表示窗口动画类型为淡入淡出。淡入动画在窗口显示过程中生效，淡出动画在窗口隐藏过程中生效。 |
-
-## WindowAnchor<sup>20+</sup>
-
-窗口锚点枚举。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：**  SystemCapability.Window.SessionManager
-
-| 名称       | 值   | 说明                          |
-| ---------- | ---- | ----------------------------- |
-| TOP_START  | 0    | 窗口左上角。|
-| TOP  | 1    | 窗口上边界横向居中点。|
-| TOP_END  | 2    | 窗口右上角。|
-| START  | 3    | 窗口左边界纵向居中点。|
-| CENTER  | 4    | 窗口横向和纵向居中点。|
-| END  | 5    | 窗口右边界纵向居中点。|
-| BOTTOM_START  | 6    | 窗口左下角。|
-| BOTTOM  | 7    | 窗口下边界横向居中点。|
-| BOTTOM_END  | 8    | 窗口右下角。|
-
 ## RotationChangeType<sup>19+</sup>
 
 窗口旋转事件类型。
@@ -248,21 +218,6 @@ WindowStage生命周期。
 | HIDDEN     | 4      | 切到后台，例如应用上滑退出、应用窗口关闭。 |
 | RESUMED<sup>11+</sup> | 5      | 前台可交互状态，例如应用打开后，可以与用户交互的状态。 |
 | PAUSED<sup>11+</sup>  | 6      | 前台不可交互状态，例如从屏幕底部上划，应用进入到多任务界面后的状态。 |
-
-## WindowStageLifecycleEventType<sup>20+</sup>
-
-WindowStage生命周期的状态类型枚举。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-| 名称       | 值 | 说明       |
-| ---------- | ------ | ---------- |
-| SHOWN      | 1      | 切到前台。 |
-| RESUMED    | 2      | 前台可交互状态。 |
-| PAUSED     | 3      | 前台不可交互状态。 |
-| HIDDEN     | 4      | 切到后台。 |
 
 ## ModalityType<sup>14+</sup>
 

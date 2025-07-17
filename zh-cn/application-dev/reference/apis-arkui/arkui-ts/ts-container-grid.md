@@ -513,22 +513,6 @@ focusWrapMode(mode: Optional\<FocusWrapMode\>)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | mode   | Optional\<[FocusWrapMode](ts-appendix-enums.md#focuswrapmode20)\> | 是   | 交叉轴方向键走焦模式。<br/>默认值：FocusWrapMode.DEFAULT<br/>**说明：** <br/>异常值按默认值处理，即交叉轴方向键不能换行。 |
 
-### syncLoad<sup>20+</sup>
-
-syncLoad(enable: boolean)
-
-设置是否同步加载Grid区域内所有子组件。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enable   | boolean | 是   | 是否同步加载子组件。<br/>true表示同步加载，false表示异步加载。默认值：true。<br/>**说明：** <br/>设置为false时，异步加载仅在首次显示等非滑动场景生效。 |
-
 ## GridItemAlignment<sup>12+</sup>枚举说明
 
 GridItem的对齐方式枚举。
@@ -902,8 +886,8 @@ Grid组件可见区域item变化事件的回调类型。
 @Entry
 @Component
 struct GridExample {
-  @State numbers1: String[] = ['0', '1', '2', '3', '4'];
-  @State numbers2: String[] = ['0', '1', '2', '3', '4', '5'];
+  @State numbers1: string[] = ['0', '1', '2', '3', '4'];
+  @State numbers2: string[] = ['0', '1', '2', '3', '4', '5'];
   layoutOptions3: GridLayoutOptions = {
     regularSize: [1, 1],
     onGetRectByIndex: (index: number) => {
@@ -956,10 +940,10 @@ struct GridExample {
               .fontSize(16)
               .backgroundColor(0xF9CF93)
               .width('100%')
-              .height("100%")
+              .height('100%')
               .textAlign(TextAlign.Center)
           }
-          .height("100%")
+          .height('100%')
           .width('100%')
         }, (day: string) => day)
       }
@@ -1295,9 +1279,9 @@ struct GridExample {
 
             ListItem() {
               Grid(this.gridScroller) {
-                LazyForEach(this.numbers, (item: number) => {
+                LazyForEach(this.numbers, (item: string) => {
                   GridItem() {
-                    Text(item + '')
+                    Text(item)
                       .fontSize(16)
                       .backgroundColor(0xF9CF93)
                       .width('100%')
@@ -1467,7 +1451,7 @@ struct GridExample {
         if (!isSuccess || insertIndex >= this.numbers.totalCount()) {
           return;
         }
-        console.info('beixiang' + itemIndex + '', insertIndex + ''); //itemIndex拖拽起始位置，insertIndex拖拽插入位置
+        console.info('itemIndex:' + itemIndex + ', insertIndex:' + insertIndex); //itemIndex拖拽起始位置，insertIndex拖拽插入位置
         this.changeIndex(itemIndex, insertIndex);
       })
     }.width('100%').margin({ top: 5 })
@@ -1971,7 +1955,7 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
-    this.rootNode.commonAttribute.width(100)
+    this.rootNode.commonAttribute.width(100);
     return this.rootNode;
   }
 
@@ -2054,6 +2038,7 @@ struct Index {
 
 该示例通过scrollToIndex接口，实现了Grid组件滚动到指定位置。
 
+<!--code_no_check-->
 ```ts
 import { GridDataSource } from './GridDataSource';
 @Entry
@@ -2114,6 +2099,7 @@ struct GridScrollToIndexSample {
 
 该示例通过PanGesture接口，实现了Grid组件一边滑动一边选择的效果。
 
+<!--code_no_check-->
 ```ts
 // xxx.ets
 import { GridDataSource } from './GridDataSource';
@@ -2199,12 +2185,11 @@ struct GridExample {
       return;
     }
     console.debug('start index: ' + index.toString());
-    const targetIndex = index + 1
-    this.setChecked = !
-    this.selectedIndexes.includes(targetIndex.toString())
+    const targetIndex = index + 1;
+    this.setChecked = !this.selectedIndexes.includes(targetIndex.toString());
     this.startIndex = index;
-    this.selectedIndexes.push(targetIndex.toString())
-    this.updateIndex = index
+    this.selectedIndexes.push(targetIndex.toString());
+    this.updateIndex = index;
 
   }
   slideActionUpdate(index: number): void {
@@ -2287,7 +2272,7 @@ struct GridExample {
   }
 
   panGestureAction(type: SlideActionType, event: GestureEvent | undefined): void {
-    if (this.stopGesture) {
+    if (this.stopGesture || !event) {
       return;
     }
     const finger = event!.fingerList[0];
@@ -2578,12 +2563,12 @@ struct GridItemExample {
             GestureGroup(GestureMode.Sequence,
               LongPressGesture({ repeat: true })
                 .onAction((event?: GestureEvent) => {
-                  animateTo({ curve: Curve.Friction, duration: 300 }, () => {
+                  this.getUIContext()?.animateTo({ curve: Curve.Friction, duration: 300 }, () => {
                     this.scaleItem = item
                   })
                 })
                 .onActionEnd(() => {
-                  animateTo({ curve: Curve.Friction, duration: 300 }, () => {
+                  this.getUIContext()?.animateTo({ curve: Curve.Friction, duration: 300 }, () => {
                     this.scaleItem = -1
                   })
                 }),
@@ -2596,7 +2581,7 @@ struct GridItemExample {
                 .onActionUpdate((event: GestureEvent) => {
                   this.offsetY = event.offsetY - this.dragRefOffsety
                   this.offsetX = event.offsetX - this.dragRefOffsetx
-                  animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
+                  this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
                     let index = this.numbers.indexOf(this.dragItem)
                     if (this.offsetY >= this.FIX_VP_Y / 2 && (this.offsetX <= 44 && this.offsetX >= -44) &&
                       ![8, 9, 10].includes(index)) {
@@ -2638,10 +2623,10 @@ struct GridItemExample {
                   })
                 })
                 .onActionEnd(() => {
-                  animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
+                  this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
                     this.dragItem = -1
                   })
-                  animateTo({
+                  this.getUIContext()?.animateTo({
                     curve: curves.interpolatingSpring(14, 1, 170, 17), delay: 150
                   }, () => {
                     this.scaleItem = -1
@@ -2649,10 +2634,10 @@ struct GridItemExample {
                 })
             )
               .onCancel(() => {
-                animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
+                this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
                   this.dragItem = -1
                 })
-                animateTo({
+                this.getUIContext()?.animateTo({
                   curve: curves.interpolatingSpring(14, 1, 170, 17)
                 }, () => {
                   this.scaleItem = -1

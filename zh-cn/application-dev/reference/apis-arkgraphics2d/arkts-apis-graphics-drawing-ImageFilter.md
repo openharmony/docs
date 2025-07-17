@@ -4,9 +4,13 @@
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> - 本Class首批接口从API version 12开始支持。
+>
 > - 本模块使用屏幕物理像素单位px。
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
+
+图像滤波器。
 
 ## 导入模块
 
@@ -14,11 +18,7 @@
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## ImageFilter<sup>12+</sup>
-
-图像滤波器。
-
-### createBlurImageFilter<sup>12+</sup>
+## createBlurImageFilter<sup>12+</sup>
 
 static createBlurImageFilter(sigmaX: number, sigmaY: number, tileMode: TileMode, imageFilter?: ImageFilter | null ): ImageFilter
 
@@ -33,13 +33,13 @@ static createBlurImageFilter(sigmaX: number, sigmaY: number, tileMode: TileMode,
 | sigmaX | number | 是   | 表示沿x轴方向上高斯模糊的标准差，必须大于0，该参数为浮点数。 |
 | sigmaY | number | 是   | 表示沿y轴方向上高斯模糊的标准差，必须大于0，该参数为浮点数。 |
 | tileMode | [TileMode](arkts-apis-graphics-drawing-e.md#tilemode12)| 是   | 表示在边缘处应用的平铺模式。 |
-| imageFilter | [ImageFilter](#imagefilter12) \| null | 否   | 要与当前图像滤波器叠加的输入滤波器，默认为null，表示直接将当前图像滤波器作用于原始图像。 |
+| imageFilter | [ImageFilter](arkts-apis-graphics-drawing-ImageFilter.md) \| null | 否   | 要与当前图像滤波器叠加的输入滤波器，默认为null，表示直接将当前图像滤波器作用于原始图像。 |
 
 **返回值：**
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+| [ImageFilter](arkts-apis-graphics-drawing-ImageFilter.md) | 返回创建的图像滤波器。 |
 
 **错误码：**
 
@@ -56,7 +56,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 
 let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, drawing.TileMode.CLAMP);
 ```
-### createFromImage<sup>20+</sup>
+## createFromImage<sup>20+</sup>
 
 static createFromImage(pixelmap: image.PixelMap, srcRect?: common2D.Rect | null, dstRect?: common2D.Rect | null): ImageFilter
 
@@ -76,7 +76,7 @@ static createFromImage(pixelmap: image.PixelMap, srcRect?: common2D.Rect | null,
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+| [ImageFilter](arkts-apis-graphics-drawing-ImageFilter.md) | 返回创建的图像滤波器。 |
 
 **示例：**
 
@@ -97,7 +97,7 @@ class DrawingRenderNode extends RenderNode {
   }
 }
 ```
-### createBlendImageFilter<sup>20+</sup>
+## createBlendImageFilter<sup>20+</sup>
 
 static createBlendImageFilter(mode: BlendMode, background: ImageFilter, foreground: ImageFilter): ImageFilter
 
@@ -110,14 +110,14 @@ static createBlendImageFilter(mode: BlendMode, background: ImageFilter, foregrou
 | 参数名          | 类型    | 必填 | 说明                                                        |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
 | mode   | [BlendMode](arkts-apis-graphics-drawing-e.md#blendmode)                              | 是   | 颜色混合模式。 |
-| background | [ImageFilter](#imagefilter12) | 是   | 在混合模式中作为目标色的滤波器。|
-| foreground | [ImageFilter](#imagefilter12) | 是   | 在混合模式中作为源色的滤波器。 |
+| background | [ImageFilter](arkts-apis-graphics-drawing-ImageFilter.md) | 是   | 在混合模式中作为目标色的滤波器。|
+| foreground | [ImageFilter](arkts-apis-graphics-drawing-ImageFilter.md) | 是   | 在混合模式中作为源色的滤波器。 |
 
 **返回值：**
 
 | 类型                  | 说明            |
 | --------------------- | -------------- |
-| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+| [ImageFilter](arkts-apis-graphics-drawing-ImageFilter.md) | 返回创建的图像滤波器。 |
 
 **错误码：**
 
@@ -140,7 +140,7 @@ let y = 30.0;
 let offsetFilter2 = drawing.ImageFilter.createOffsetImageFilter(x, y, null);
 let blendImageFilter = drawing.ImageFilter.createBlendImageFilter(drawing.BlendMode.SRC_IN, offsetFilter1, offsetFilter2);
 ```
-### createComposeImageFilter<sup>20+</sup>
+## createComposeImageFilter<sup>20+</sup>
 
 static createComposeImageFilter(cOuter: ImageFilter, cInner: ImageFilter): ImageFilter
 
@@ -152,14 +152,14 @@ static createComposeImageFilter(cOuter: ImageFilter, cInner: ImageFilter): Image
 
 | 参数名          | 类型    | 必填 | 说明                                                          |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| cOuter | [ImageFilter](#imagefilter12) | 是   | 在级联中，作为第二级的滤波器，处理第一级滤波器的输出。如果第二级滤波器为空，第一级滤波器不为空，最后输出第一级滤波器的结果。两级滤波器不能同时为空。 |
-| cInner | [ImageFilter](#imagefilter12) | 是   | 在级联中，作为第一级的滤波器，直接处理图像的原始内容。如果第一级滤波器为空，第二级滤波器不为空，最后输出第二级滤波器的结果。两级滤波器不能同时为空。 |
+| cOuter | [ImageFilter](arkts-apis-graphics-drawing-ImageFilter.md) | 是   | 在级联中，作为第二级的滤波器，处理第一级滤波器的输出。如果第二级滤波器为空，第一级滤波器不为空，最后输出第一级滤波器的结果。两级滤波器不能同时为空。 |
+| cInner | [ImageFilter](arkts-apis-graphics-drawing-ImageFilter.md) | 是   | 在级联中，作为第一级的滤波器，直接处理图像的原始内容。如果第一级滤波器为空，第二级滤波器不为空，最后输出第二级滤波器的结果。两级滤波器不能同时为空。 |
 
 **返回值：**
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+| [ImageFilter](arkts-apis-graphics-drawing-ImageFilter.md) | 返回创建的图像滤波器。 |
 
 **示例：**
 
@@ -179,7 +179,7 @@ let redRemovalFilter = drawing.ColorFilter.createMatrixColorFilter(colorMatrix);
 let colorFilter = drawing.ImageFilter.createFromColorFilter(redRemovalFilter, null);
 let composedImageFilter = drawing.ImageFilter.createComposeImageFilter(colorFilter, blurFilter);
 ```
-### createFromColorFilter<sup>12+</sup>
+## createFromColorFilter<sup>12+</sup>
 
 static createFromColorFilter(colorFilter: ColorFilter, imageFilter?: ImageFilter | null): ImageFilter
 
@@ -192,13 +192,13 @@ static createFromColorFilter(colorFilter: ColorFilter, imageFilter?: ImageFilter
 | 参数名          | 类型    | 必填 | 说明                                                        |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
 | colorFilter | [ColorFilter](arkts-apis-graphics-drawing-ColorFilter.md) | 是   | 表示颜色滤波器。 |
-| imageFilter | [ImageFilter](#imagefilter12) \| null | 否   | 要与当前图像滤波器叠加的输入滤波器，默认为null，表示直接将当前图像滤波器作用于原始图像。 |
+| imageFilter | [ImageFilter](arkts-apis-graphics-drawing-ImageFilter.md) \| null | 否   | 要与当前图像滤波器叠加的输入滤波器，默认为null，表示直接将当前图像滤波器作用于原始图像。 |
 
 **返回值：**
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+| [ImageFilter](arkts-apis-graphics-drawing-ImageFilter.md) | 返回创建的图像滤波器。 |
 
 **错误码：**
 
@@ -216,7 +216,7 @@ let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, drawing.TileMod
 let clolorfilter = drawing.ColorFilter.createSRGBGammaToLinear();
 let imgFilter1 = drawing.ImageFilter.createFromColorFilter(clolorfilter, imgFilter);
 ```
-### createOffsetImageFilter<sup>20+</sup>
+## createOffsetImageFilter<sup>20+</sup>
 
 static createOffsetImageFilter(dx: number, dy: number, input?: ImageFilter | null): ImageFilter
 
@@ -230,13 +230,13 @@ static createOffsetImageFilter(dx: number, dy: number, input?: ImageFilter | nul
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
 | dx | number | 是   | 水平方向的平移距离， 该参数为浮点数。 |
 | dy | number | 是   | 竖直方向的平移距离， 该参数为浮点数。 |
-| input | [ImageFilter](#imagefilter12) \| null | 否   | 需进行平移的滤波器。默认为空，如果为空，则将无滤波效果的绘制结果进行平移。 |
+| input | [ImageFilter](arkts-apis-graphics-drawing-ImageFilter.md) \| null | 否   | 需进行平移的滤波器。默认为空，如果为空，则将无滤波效果的绘制结果进行平移。 |
 
 **返回值：**
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+| [ImageFilter](arkts-apis-graphics-drawing-ImageFilter.md) | 返回创建的图像滤波器。 |
 
 **示例：**
 
@@ -248,7 +248,7 @@ let dy = 10.0;
 let offsetFilter = drawing.ImageFilter.createOffsetImageFilter(dx, dy, null);
 ```
 
-### createFromShaderEffect<sup>20+</sup>
+## createFromShaderEffect<sup>20+</sup>
 
 static createFromShaderEffect(shader: ShaderEffect): ImageFilter
 
@@ -266,7 +266,7 @@ static createFromShaderEffect(shader: ShaderEffect): ImageFilter
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+| [ImageFilter](arkts-apis-graphics-drawing-ImageFilter.md) | 返回创建的图像滤波器。 |
 
 **示例：**
 

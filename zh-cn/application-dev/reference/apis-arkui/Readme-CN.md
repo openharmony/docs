@@ -102,7 +102,7 @@
       - [自定义事件拦截](arkui-ts/ts-universal-attributes-on-touch-intercept.md)
       - [自定义事件分发](arkui-ts/ts-universal-attributes-on-child-touch-test.md)
     - 无障碍相关<!--accessibility-related-->
-      - [无障碍事件](arkui-ts/ts-universal-accessibility-event.md)
+      - [无障碍控制操作](arkui-ts/ts-universal-accessibility-event.md)
       - [无障碍悬浮事件](arkui-ts/ts-universal-accessibility-hover-event.md)
     - 组件变化事件<!--component-change-->
       - [挂载卸载事件](arkui-ts/ts-universal-events-show-hide.md)
@@ -560,7 +560,7 @@
     - [注册节点渲染状态监听错误码](errorcode-node-render-monitor.md)
     - [交互事件错误码](errorcode-event.md)
     - [Canvas错误码](errorcode-canvas.md)
-    - [自定义节点错误码](errorcode-node.md)   
+    - [自定义节点错误码](errorcode-node.md)
     - [UIExtension错误码](errorcode-uiextension.md)
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [NodeAdapter错误码](errorcode-nodeadapter.md)

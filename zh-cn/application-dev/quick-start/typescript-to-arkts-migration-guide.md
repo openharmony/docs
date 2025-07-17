@@ -63,7 +63,7 @@ class CallResult {
 
 let res: CallResult = some_api_function('hello', 'world');
 if (!res.succeeded()) {
-  console.log('Call failed: ' + res.errorMessage());
+  console.info('Call failed: ' + res.errorMessage());
 }
 ```
 
@@ -123,7 +123,7 @@ function distance(p1: Point, p2: Point): number {
 }
 let p5 = new Point(5.0, 5.0);
 let p6 = new Point(6.0, 6.0);
-console.log('Distance between p5 and p6: ' + distance(p5, p6));
+console.info('Distance between p5 and p6: ' + distance(p5, p6));
 ```
 
 修改对象布局会影响代码可读性和运行时性能。定义类后，在其他地方修改对象布局，容易引起困惑乃至引入错误。此外，还需要额外的运行时支持，增加执行开销。这与静态类型约束冲突：使用显式类型时，不应添加或删除属性。
@@ -155,7 +155,7 @@ class T {
   public name: string = ''
 
   public greet(): void {
-    console.log('Hello, ' + this.name);
+    console.info('Hello, ' + this.name);
   }
 }
 
@@ -163,7 +163,7 @@ class U {
   public name: string = ''
 
   public greet(): void {
-    console.log('Greetings, ' + this.name);
+    console.info('Greetings, ' + this.name);
   }
 }
 ```
@@ -178,7 +178,7 @@ let u: U = new T(); // 是否允许？
 
 ```typescript
 function greeter(u: U) {
-  console.log('To ' + u.name);
+  console.info('To ' + u.name);
   u.greet();
 }
 
@@ -216,8 +216,8 @@ greeter(t); // 是否允许？
 ```typescript
 var x = { 'name': 'x', 2: '3' };
 
-console.log(x['name']); // x
-console.log(x[2]); // 3
+console.info(x['name']); // x
+console.info(x[2]); // 3
 ```
 
 **ArkTS**
@@ -227,17 +227,17 @@ class X {
   public name: string = ''
 }
 let x: X = { name: 'x' };
-console.log(x.name); // x
+console.info(x.name); // x
 
 let y = ['a', 'b', 'c'];
-console.log(y[2]); // c
+console.info(y[2]); // c
 
 // 在需要通过非标识符（即不同类型的key）获取数据的场景中，使用Map<Object, some_type>。
 let z = new Map<Object, string>();
 z.set('name', '1');
 z.set(2, '2');
-console.log(z.get('name'));  // 1
-console.log(z.get(2)); // 2
+console.info(z.get('name'));  // 1
+console.info(z.get(2)); // 2
 
 enum Test {
   A = 'aaa',
@@ -333,8 +333,8 @@ function f(shouldInitialize: boolean) {
   return x;
 }
 
-console.log(f(true));  // b
-console.log(f(false)); // undefined
+console.info(f(true));  // b
+console.info(f(false)); // undefined
 
 let upperLet = 0;
 {
@@ -357,8 +357,8 @@ function f(shouldInitialize: boolean): string {
   return x;
 }
 
-console.log(f(true));  // b
-console.log(f(false)); // a
+console.info(f(true));  // b
+console.info(f(false)); // a
 
 let upperLet = 0;
 let scopedVar = 0;
@@ -420,7 +420,7 @@ type DescribableFunction = {
 }
 
 function doSomething(fn: DescribableFunction): void {
-  console.log(fn.description + ' returned ' + fn(''));
+  console.info(fn.description + ' returned ' + fn(''));
 }
 ```
 
@@ -438,7 +438,7 @@ class DescribableFunction {
 }
 
 function doSomething(fn: DescribableFunction): void {
-  console.log(fn.description + ' returned ' + fn.invoke(''));
+  console.info(fn.description + ' returned ' + fn.invoke(''));
 }
 
 doSomething(new DescribableFunction());
@@ -791,7 +791,7 @@ class Point {
   y: string = ''
 }
 let p: Point = {x: '1', y: '2'};
-console.log(p['x']); // 1
+console.info(p['x']); // 1
 
 class Person {
   name: string = ''
@@ -815,7 +815,7 @@ class Point {
   y: string = ''
 }
 let p: Point = {x: '1', y: '2'};
-console.log(p.x); // 1
+console.info(p.x); // 1
 
 class Person {
   name: string
@@ -833,8 +833,8 @@ class Person {
 }
 
 let person = new Person('John', 30, '***@example.com', '18*********');
-console.log(person['name']);     // 编译时错误
-console.log(person.unknownProperty); // 编译时错误
+console.info(person['name']);     // 编译时错误
+console.info(person.unknownProperty); // 编译时错误
 
 let arr = new Int32Array(1);
 arr[0];
@@ -881,7 +881,7 @@ y = x;
 x = y;
 
 function foo(x: X) {
-  console.log(x.n + x.s);
+  console.info(x.n + x.s);
 }
 
 // 由于X和Y的API是等价的，所以X和Y是等价的
@@ -913,7 +913,7 @@ class D extends B {
 let b = new B();
 let d = new D();
 
-console.log('Assign D to B');
+console.info('Assign D to B');
 b = d; // 合法赋值，因为B是D的父类
 
 // 将b赋值给d将会引起编译时错误
@@ -939,14 +939,14 @@ class Y implements Z {
 let x: Z = new X();
 let y: Z = new Y();
 
-console.log('Assign X to Y');
+console.info('Assign X to Y');
 y = x // 合法赋值，它们是相同的类型
 
-console.log('Assign Y to X');
+console.info('Assign Y to X');
 x = y // 合法赋值，它们是相同的类型
 
 function foo(c: Z): void {
-  console.log(c.n + c.s);
+  console.info(c.n + c.s);
 }
 
 // 类X和类Y implement 相同的接口，因此下面的两个函数调用都是合法的
@@ -1115,7 +1115,7 @@ class C4 {
   n: number = 0
   s: string = ''
   f() {
-    console.log('Hello');
+    console.info('Hello');
   }
 }
 let o7: C4 = {n: 42, s: 'foo', f: () => {}};
@@ -1128,7 +1128,7 @@ class C4 {
   n: number = 0
   s: string = ''
   f() {
-    console.log('Hello');
+    console.info('Hello');
   }
 }
 let o7 = new C4();
@@ -1257,7 +1257,7 @@ ArkTS不支持函数表达式，使用箭头函数。
 
 ```typescript
 let f = function (s: string) {
-  console.log(s);
+  console.info(s);
 }
 ```
 
@@ -1265,7 +1265,7 @@ let f = function (s: string) {
 
 ```typescript
 let f = (s: string) => {
-  console.log(s);
+  console.info(s);
 }
 ```
 
@@ -1361,12 +1361,12 @@ ArkTS不支持修改对象的方法。在静态语言中，对象布局固定，
 ```typescript
 class C {
   foo() {
-    console.log('foo');
+    console.info('foo');
   }
 }
 
 function bar() {
-  console.log('bar');
+  console.info('bar');
 }
 
 let c1 = new C();
@@ -1382,19 +1382,19 @@ c2.foo(); // bar
 ```typescript
 class C {
   foo() {
-    console.log('foo');
+    console.info('foo');
   }
 }
 
 class Derived extends C {
   foo() {
-    console.log('Extra');
+    console.info('Extra');
     super.foo();
   }
 }
 
 function bar() {
-  console.log('bar');
+  console.info('bar');
 }
 
 let c1 = new C();
@@ -1435,7 +1435,7 @@ let c2 = createShape() as Circle;
 
 // 如果转换错误，不会产生编译时或运行时报错
 let c3 = createShape() as Square;
-console.log(c3.y); // undefined
+console.info(c3.y); // undefined
 
 // 在TS中，由于`as`关键字不会在运行时生效，所以`instanceof`的左操作数不会在运行时被装箱成引用类型
 let e1 = (5.0 as Number) instanceof Number; // false
@@ -1580,8 +1580,8 @@ ArkTS仅支持在表达式中使用`typeof`运算符，不允许使用`typeof`�
 ```typescript
 let n1 = 42;
 let s1 = 'foo';
-console.log(typeof n1); // 'number'
-console.log(typeof s1); // 'string'
+console.info(typeof n1); // 'number'
+console.info(typeof s1); // 'string'
 let n2: typeof n1
 let s2: typeof s1
 ```
@@ -1591,8 +1591,8 @@ let s2: typeof s1
 ```typescript
 let n1 = 42;
 let s1 = 'foo';
-console.log(typeof n1); // 'number'
-console.log(typeof s1); // 'string'
+console.info(typeof n1); // 'number'
+console.info(typeof s1); // 'string'
 let n2: number
 let s2: string
 ```
@@ -1801,7 +1801,7 @@ try {
 ```typescript
 let a: string[] = ['1.0', '2.0', '3.0'];
 for (let i in a) {
-  console.log(a[i]);
+  console.info(a[i]);
 }
 ```
 
@@ -1810,7 +1810,7 @@ for (let i in a) {
 ```typescript
 let a: string[] = ['1.0', '2.0', '3.0'];
 for (let i = 0; i < a.length; ++i) {
-  console.log(a[i]);
+  console.info(a[i]);
 }
 ```
 
@@ -2012,7 +2012,7 @@ function addNum(a: number, b: number): void {
 
   // 函数内声明函数
   function logToConsole(message: string): void {
-    console.log(message);
+    console.info(message);
   }
 
   let result = a + b;
@@ -2028,7 +2028,7 @@ function addNum(a: number, b: number): void {
 function addNum(a: number, b: number): void {
   // 使用lambda函数代替声明函数
   let logToConsole: (message: string) => void = (message: string): void => {
-    console.log(message);
+    console.info(message);
   }
 
   let result = a + b;
@@ -2060,9 +2060,9 @@ class A {
 }
 
 let a = new A();
-console.log(a.count); // 打印a
+console.info(a.count); // 打印a
 a.m('b');
-console.log(a.count); // 打印b
+console.info(a.count); // 打印b
 ```
 
 **ArkTS**
@@ -2077,9 +2077,9 @@ class A {
 
 function main(): void {
   let a = new A();
-  console.log(a.count);  // 打印a
+  console.info(a.count);  // 打印a
   a.m('b');
-  console.log(a.count);  // 打印b
+  console.info(a.count);  // 打印b
 }
 ```
 
@@ -2103,7 +2103,7 @@ function* counter(start: number, end: number) {
 }
 
 for (let num of counter(1, 5)) {
-  console.log(num);
+  console.info(num);
 }
 ```
 
@@ -2153,11 +2153,11 @@ function isFoo(arg: any): arg is Foo {
 
 function doStuff(arg: Foo | Bar) {
   if (isFoo(arg)) {
-    console.log(arg.foo);  // OK
-    console.log(arg.bar);  // 编译时错误
+    console.info(arg.foo);  // OK
+    console.info(arg.bar);  // 编译时错误
   } else {
-    console.log(arg.foo);  // 编译时错误
-    console.log(arg.bar);  // OK
+    console.info(arg.foo);  // 编译时错误
+    console.info(arg.bar);  // OK
   }
 }
 
@@ -2185,12 +2185,12 @@ function isFoo(arg: Object): boolean {
 function doStuff(arg: Object): void {
   if (isFoo(arg)) {
     let fooArg = arg as Foo;
-    console.log(fooArg.foo);   // OK
-    console.log(arg.bar);    // 编译时错误
+    console.info(fooArg.foo);   // OK
+    console.info(arg.bar);    // 编译时错误
   } else {
     let barArg = arg as Bar;
-    console.log(arg.foo);    // 编译时错误
-    console.log(barArg.bar);   // OK
+    console.info(arg.foo);    // 编译时错误
+    console.info(barArg.bar);   // OK
   }
 }
 
@@ -2760,7 +2760,7 @@ declare namespace N {
 
 // 使用代码
 import * as m from 'module'
-console.log('N.foo called: ' + N.foo(42));
+console.info('N.foo called: ' + N.foo(42));
 ```
 
 ### 不支持通用模块定义(UMD)
@@ -2828,7 +2828,7 @@ function initialize() {
   x = 10;
 }
 
-console.log('x = ' + x);
+console.info('x = ' + x);
 ```
 
 **ArkTS**
@@ -2840,7 +2840,7 @@ function initialize(): number {
 
 let x: number = initialize();
 
-console.log('x = ' + x);
+console.info('x = ' + x);
 ```
 
 ### 不支持在原型上赋值
@@ -2862,7 +2862,7 @@ let C = function(p) {
 
 C.prototype = {
   m() {
-    console.log(this.p);
+    console.info(this.p);
   }
 }
 
@@ -2877,7 +2877,7 @@ C.prototype.q = function(r: string) {
 class C {
   p: string = ''
   m() {
-    console.log(this.p);
+    console.info(this.p);
   }
   q(r: string) {
     return this.p == r;
@@ -3079,10 +3079,10 @@ ArkTS不允许使用TypeScript或JavaScript标准库中的某些接口。大部�
 // 只有在开启noImplicitReturns选项时会产生编译时错误
 function foo(s: string): string {
   if (s != '') {
-    console.log(s);
+    console.info(s);
     return s;
   } else {
-    console.log(s);
+    console.info(s);
   }
 }
 
@@ -3093,7 +3093,7 @@ let n: number = null; // 只有在开启strictNullChecks选项时会产生编译
 
 ```typescript
 function foo(s: string): string {
-  console.log(s);
+  console.info(s);
   return s;
 }
 

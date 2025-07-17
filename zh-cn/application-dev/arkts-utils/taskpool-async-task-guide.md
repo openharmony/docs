@@ -8,10 +8,10 @@
    ```ts
    // Index.ets
    import { taskpool } from '@kit.ArkTS';
-   import { BusinessError, emitter } from '@kit.BasicServicesKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. 定义长时任务。
+2. 定义耗时任务。
 
    ```ts
    // Index.ets
@@ -23,6 +23,7 @@
       while (new Date().getTime() - t < 30000) {
         continue;
       }
+      console.info("collectFrame finished");
    }
    ```
 
@@ -33,22 +34,26 @@
    @Entry
    @Component
    struct Index {
-     sensorTask?: taskpool.LongTask
-
+   
      build() {
        Column() {
          Text("HELLO WORLD")
            .id('HelloWorld')
            .fontSize(50)
            .fontWeight(FontWeight.Bold)
-           .onClick(() => {
+           .onClick(async () => {
              // 创建并发度为5的异步队列，等待队列个数为5。
              let asyncRunner:taskpool.AsyncRunner = new taskpool.AsyncRunner("async", 5, 5);
-             // 每秒触发一次采集任务
-             setTimeout(() => {
-               let task:taskpool.Task = new taskpool.Task(collectFrame);
-                asyncRunner.execute(task);
-              }, 1000);
+             // 触发采集任务
+             for (let i = 0; i < 20; i++) {
+               let task:taskpool.Task = new taskpool.Task(`async${i}`,collectFrame);
+               asyncRunner.execute(task).then(() => {
+                 console.info("the current task name is " + task.name);
+               }).catch((e:BusinessError) => {
+                 console.error("async: error is " + e);
+               });
+             }
+             console.info("asyncRunner task finished");
            })
        }
        .height('100%')

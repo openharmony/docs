@@ -8,17 +8,15 @@
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
 
+画笔对象，描述所绘制图形形状的轮廓信息。
+
 ## 导入模块
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## Pen
-
-画笔对象，描述所绘制图形形状的轮廓信息。
-
-### constructor<sup>12+</sup>
+## constructor<sup>12+</sup>
 
 constructor()
 
@@ -34,7 +32,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 const pen = new drawing.Pen();
 ```
 
-### constructor<sup>12+</sup>
+## constructor<sup>12+</sup>
 
 constructor(pen: Pen)
 
@@ -46,7 +44,7 @@ constructor(pen: Pen)
 
 | 参数名 | 类型        | 必填 | 说明              |
 | ------| ----------- | ---- | ---------------- |
-| pen     | [Pen](#pen) | 是   | 待复制的画笔对象。 |
+| pen     | [Pen](arkts-apis-graphics-drawing-Pen.md) | 是   | 待复制的画笔对象。 |
 
 **错误码：**
 
@@ -68,7 +66,7 @@ pen.setStrokeWidth(10);
 const newPen = new drawing.Pen(pen);
 ```
 
-### setMiterLimit<sup>12+</sup>
+## setMiterLimit<sup>12+</sup>
 
 setMiterLimit(miter: number): void
 
@@ -99,7 +97,7 @@ const pen = new drawing.Pen();
 pen.setMiterLimit(5);
 ```
 
-### getMiterLimit<sup>12+</sup>
+## getMiterLimit<sup>12+</sup>
 
 getMiterLimit(): number
 
@@ -122,7 +120,7 @@ const pen = new drawing.Pen();
 let miter = pen.getMiterLimit();
 ```
 
-### setImageFilter<sup>12+</sup>
+## setImageFilter<sup>12+</sup>
 
 setImageFilter(filter: ImageFilter | null): void
 
@@ -156,7 +154,7 @@ pen.setImageFilter(imgFilter);
 pen.setImageFilter(null);
 ```
 
-### getColorFilter<sup>12+</sup>
+## getColorFilter<sup>12+</sup>
 
 getColorFilter(): ColorFilter
 
@@ -181,7 +179,7 @@ pen.setColorFilter(colorfilter);
 let filter = pen.getColorFilter();
 ```
 
-### setColor
+## setColor
 
 setColor(color: common2D.Color) : void
 
@@ -213,7 +211,7 @@ const pen = new drawing.Pen();
 pen.setColor(color);
 ```
 
-### setColor<sup>12+</sup>
+## setColor<sup>12+</sup>
 
 setColor(alpha: number, red: number, green: number, blue: number): void
 
@@ -247,7 +245,7 @@ const pen = new drawing.Pen();
 pen.setColor(255, 255, 0, 0);
 ```
 
-### setColor<sup>18+</sup>
+## setColor<sup>18+</sup>
 
 setColor(color: number) : void
 
@@ -270,7 +268,7 @@ const pen = new drawing.Pen();
 pen.setColor(0xffff0000);
 ```
 
-### setColor4f<sup>20+</sup>
+## setColor4f<sup>20+</sup>
 
 setColor4f(color4f: common2D.Color4f, colorSpace: colorSpaceManager.ColorSpaceManager | null): void
 
@@ -296,7 +294,7 @@ let color4f:common2D.Color4f = {alpha:1, red:0.5, green:0.4, blue:0.7};
 pen.setColor4f(color4f, colorSpace);
 ```
 
-### getColor<sup>12+</sup>
+## getColor<sup>12+</sup>
 
 getColor(): common2D.Color
 
@@ -321,7 +319,7 @@ pen.setColor(color);
 let colorGet = pen.getColor();
 ```
 
-### getColor4f<sup>20+</sup>
+## getColor4f<sup>20+</sup>
 
 getColor4f(): common2D.Color4f
 
@@ -347,7 +345,7 @@ pen.setColor4f(color4f, colorSpace);
 let color = pen.getColor4f();
 ```
 
-### getHexColor<sup>18+</sup>
+## getHexColor<sup>18+</sup>
 
 getHexColor(): number
 
@@ -373,7 +371,7 @@ let hex_color: number = pen.getHexColor();
 console.info('getHexColor: ', hex_color.toString(16));
 ```
 
-### setStrokeWidth
+## setStrokeWidth
 
 setStrokeWidth(width: number) : void
 
@@ -404,7 +402,7 @@ const pen = new drawing.Pen();
 pen.setStrokeWidth(5);
 ```
 
-### getWidth<sup>12+</sup>
+## getWidth<sup>12+</sup>
 
 getWidth(): number
 
@@ -427,7 +425,7 @@ const pen = new drawing.Pen();
 let width = pen.getWidth();
 ```
 
-### setAntiAlias
+## setAntiAlias
 
 setAntiAlias(aa: boolean) : void
 
@@ -458,7 +456,7 @@ const pen = new drawing.Pen();
 pen.setAntiAlias(true);
 ```
 
-### isAntiAlias<sup>12+</sup>
+## isAntiAlias<sup>12+</sup>
 
 isAntiAlias(): boolean
 
@@ -481,7 +479,7 @@ const pen = new drawing.Pen();
 let isAntiAlias = pen.isAntiAlias();
 ```
 
-### setAlpha
+## setAlpha
 
 setAlpha(alpha: number) : void
 
@@ -512,7 +510,7 @@ const pen = new drawing.Pen();
 pen.setAlpha(128);
 ```
 
-### getAlpha<sup>12+</sup>
+## getAlpha<sup>12+</sup>
 
 getAlpha(): number
 
@@ -535,7 +533,7 @@ const pen = new drawing.Pen();
 let alpha = pen.getAlpha();
 ```
 
-### setColorFilter
+## setColorFilter
 
 setColorFilter(filter: ColorFilter) : void
 
@@ -567,7 +565,7 @@ let colorFilter = drawing.ColorFilter.createLinearToSRGBGamma();
 pen.setColorFilter(colorFilter);
 ```
 
-### setMaskFilter<sup>12+</sup>
+## setMaskFilter<sup>12+</sup>
 
 setMaskFilter(filter: MaskFilter): void
 
@@ -607,7 +605,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setPathEffect<sup>12+</sup>
+## setPathEffect<sup>12+</sup>
 
 setPathEffect(effect: PathEffect): void
 
@@ -647,7 +645,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setShaderEffect<sup>12+</sup>
+## setShaderEffect<sup>12+</sup>
 
 setShaderEffect(shaderEffect: ShaderEffect): void
 
@@ -679,7 +677,7 @@ let shaderEffect = drawing.ShaderEffect.createLinearGradient({x: 100, y: 100}, {
 pen.setShaderEffect(shaderEffect);
 ```
 
-### setShadowLayer<sup>12+</sup>
+## setShadowLayer<sup>12+</sup>
 
 setShadowLayer(shadowLayer: ShadowLayer): void
 
@@ -730,7 +728,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setBlendMode
+## setBlendMode
 
 setBlendMode(mode: BlendMode) : void
 
@@ -761,7 +759,7 @@ const pen = new drawing.Pen();
 pen.setBlendMode(drawing.BlendMode.SRC);
 ```
 
-### setJoinStyle<sup>12+</sup>
+## setJoinStyle<sup>12+</sup>
 
 setJoinStyle(style: JoinStyle): void
 
@@ -800,7 +798,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### getJoinStyle<sup>12+</sup>
+## getJoinStyle<sup>12+</sup>
 
 getJoinStyle(): JoinStyle
 
@@ -832,7 +830,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setCapStyle<sup>12+</sup>
+## setCapStyle<sup>12+</sup>
 
 setCapStyle(style: CapStyle): void
 
@@ -871,7 +869,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### getCapStyle<sup>12+</sup>
+## getCapStyle<sup>12+</sup>
 
 getCapStyle(): CapStyle
 
@@ -903,7 +901,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setDither
+## setDither
 
 setDither(dither: boolean) : void
 
@@ -934,7 +932,7 @@ const pen = new drawing.Pen();
 pen.setDither(true);
 ```
 
-### getFillPath<sup>12+</sup>
+## getFillPath<sup>12+</sup>
 
 getFillPath(src: Path, dst: Path): boolean
 
@@ -976,7 +974,7 @@ pathSrc.lineTo(700, 700);
 let value = pen.getFillPath(pathSrc, pathDst);
 ```
 
-### reset<sup>12+</sup>
+## reset<sup>12+</sup>
 
 reset(): void
 

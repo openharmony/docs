@@ -447,7 +447,7 @@ struct Index {
               .focusOnTouch(true)
               .backgroundColor(0x17A98D)
           }.align(Alignment.Center)
-        }, (item: string, index: number) => item + index)
+        }, (item: number, index: number) => (item + index).toString())
       }
       .space(LengthMetrics.px(10))
       .borderRadius(this.watchSize)

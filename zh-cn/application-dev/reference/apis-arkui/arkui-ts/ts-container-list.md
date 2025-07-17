@@ -505,22 +505,6 @@ focusWrapMode(mode: Optional\<FocusWrapMode\>)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | mode   | Optional\<[FocusWrapMode](ts-appendix-enums.md#focuswrapmode20)\> | 是   | 交叉轴方向键走焦模式。<br/>默认值：FocusWrapMode.DEFAULT<br/>**说明：** <br/>异常值按默认值处理，即交叉轴方向键不能换行。 |
 
-### syncLoad<sup>20+</sup>
-
-syncLoad(enable: boolean)
-
-设置是否同步加载List区域内所有子组件。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enable   | boolean | 是   | 是否同步加载子组件。<br/>true表示同步加载，false表示异步加载。默认值：true。<br/>**说明：** <br/>设置为false时，异步加载仅在首次显示等非滑动场景生效。 |
-
 ### editMode<sup>(deprecated)</sup>
 
 editMode(value: boolean)
@@ -1311,7 +1295,7 @@ struct ListExample {
               .width('100%').height(100).fontSize(16)
               .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
           }
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .listDirection(Axis.Vertical) // 排列方向
       .scrollBar(BarState.Off)
@@ -1446,7 +1430,7 @@ struct ListExample {
                 }
               }
             }
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }.width('90%')
         .scrollBar(BarState.Off)
         .friction(0.6)
@@ -1766,7 +1750,7 @@ struct ListExample {
               .width('100%').height(100).fontSize(16)
               .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
           }
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
     }
@@ -1869,6 +1853,7 @@ struct ListExample {
 
 该示例通过maintainVisibleContentPosition接口，实现了上滑无限加载历史消息场景。
 
+<!--code_no_check-->
 ```ts
 import { ListDataSource } from './ListDataSource';
 
@@ -1888,7 +1873,7 @@ struct ListExample {
               .borderRadius(10)
               .backgroundColor(0xFFFFFF)
           }
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .maintainVisibleContentPosition(true)
       .onScrollIndex((start:number)=>{

@@ -88,14 +88,12 @@ Core模块提供用于媒体系统的基础骨干能力，包含内存、错误�
 | bool [OH_AVFormat_SetDoubleValue](#oh_avformat_setdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double value) | 对OH_AVFormat的key赋double类型的值。 |
 | bool [OH_AVFormat_SetStringValue](#oh_avformat_setstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*value) | 对OH_AVFormat的key赋string类型的值。 |
 | bool [OH_AVFormat_SetBuffer](#oh_avformat_setbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const uint8_t \*addr, size_t size) | 将指定长度的数据块写入OH_AVFormat。 | 
-| bool [OH_AVFormat_SetIntBuffer](#oh_avformat_setintbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const int32_t \*addr, size_t size) | 将指定长度int32_t类型的数据块写入OH_AVFormat。 | 
 | bool [OH_AVFormat_GetIntValue](#oh_avformat_getintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t \*out) | 从OH_AVFormat的key获取int类型的值。 | 
 | bool [OH_AVFormat_GetLongValue](#oh_avformat_getlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t \*out) | 从OH_AVFormat的key获取long类型的值。 | 
 | bool [OH_AVFormat_GetFloatValue](#oh_avformat_getfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float \*out) | 从OH_AVFormat的key获取float类型的值。 | 
 | bool [OH_AVFormat_GetDoubleValue](#oh_avformat_getdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double \*out) | 从OH_AVFormat的key获取double类型的值。 | 
 | bool [OH_AVFormat_GetStringValue](#oh_avformat_getstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*\*out) | 从OH_AVFormat的key获取string类型的值。 | 
 | bool [OH_AVFormat_GetBuffer](#oh_avformat_getbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, uint8_t \*\*addr, size_t \*size) | 从OH_AVFormat中读取指定长度的数据块。 | 
-| bool [OH_AVFormat_GetIntBuffer](#oh_avformat_getintbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t \*\*addr, size_t \*size) | 从OH_AVFormat中读取一个int32_t数据的数组。 | 
 | const char \* [OH_AVFormat_DumpInfo](#oh_avformat_dumpinfo) (struct [OH_AVFormat](#oh_avformat) \*format) | 返回OH_AVFormat中包含的key-value组成的字符串。 | 
 | [OH_AVMemory](#oh_avmemory) \* [OH_AVMemory_Create](#oh_avmemory_create) (int32_t size) | 创建OH_AVMemory实例的指针。（API11废弃） | 
 | uint8_t \* [OH_AVMemory_GetAddr](#oh_avmemory_getaddr) (struct [OH_AVMemory](#oh_avmemory) \*mem) | 获取内存虚拟地址。 （API11废弃）| 
@@ -1036,42 +1034,6 @@ bool OH_AVFormat_GetBuffer (struct OH_AVFormat *format, const char *key, uint8_t
 5. size为空指针；
 6. 获取的key不存在或者未设置。
 
-### OH_AVFormat_GetIntBuffer()
-
-```
-bool OH_AVFormat_GetIntBuffer(struct OH_AVFormat *format, const char *key, int32_t **addr, size_t *size)
-```
-
-**描述**
-
-从OH_AVFormat中读取一个int32_t数据的数组。
-需要注意的是，获取的buffer生命周期与OH_AVFormat对象绑定，当format销毁时自动失效。如果开发者需要长时间保持绑定，应用程序必须将数据显式复制到新分配的内存。
-
-**系统能力：** SystemCapability.Multimedia.Media.Core
-
-**起始版本：** 20
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| format | 指向OH_AVFormat实例的指针。 | 
-| key | 要读取数据的键。 | 
-| addr | 保存数据内存的指针。 | 
-| size | 读到数据的元素个数。 | 
-
-**返回：**
-
-返回值为TRUE表示成功，返回值为FALSE表示失败。
-
-可能的失败原因：
-
-1. 输入format为空指针。
-2. 输入format参数结构校验失败。
-3. 输入key为空指针。
-4. 输入addr为空指针。
-5. 输入size为空指针。
-
 ### OH_AVFormat_GetDoubleValue()
 
 ```
@@ -1582,38 +1544,3 @@ int32_t OH_AVMemory_GetSize (struct OH_AVMemory *mem)
 1. 输入mem为空指针；
 2. 输入mem参数结构校验失败；
 3. 输入mem中内存为空指针。
-
-### OH_AVFormat_SetIntBuffer()
-
-```
-bool OH_AVFormat_SetIntBuffer(struct OH_AVFormat *format, const char *key, const int32_t *addr, size_t size)
-```
-
-**描述**
-
-将指定长度int32_t类型的数据块写入OH_AVFormat。
-
-**系统能力：** SystemCapability.Multimedia.Media.Core
-
-**起始版本：** 20
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| format | 指向OH_AVFormat实例的指针。 | 
-| key | 写入数据的键。 | 
-| addr | 写入数据的地址，生命周期由开发者管理。 | 
-| size | 写入数据的长度（以元素为单位，不是字节数）。 | 
-
-**返回：**
-
-返回值为TRUE表示成功，返回值为FALSE表示失败。
-
-可能的失败原因：
-
-1. 输入format为空指针。
-2. 输入format参数结构校验失败。
-3. 输入key为空指针。
-4. 输入addr为空指针。
-5. size为0。

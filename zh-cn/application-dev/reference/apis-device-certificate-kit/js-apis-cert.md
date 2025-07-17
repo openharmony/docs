@@ -408,7 +408,6 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | date         | string                                            | 否   | 表示需要校验证书的有效期。             |
 | trustAnchors | Array\<[X509TrustAnchor](#x509trustanchor11)>     | 是   | 表示信任锚列表。                       |
-| trustSystemCa<sup>20+</sup>| boolean | 否   | 表示需要使用系统预置CA证书校验证书链。 |
 | certCRLs     | Array\<[CertCRLCollection](#certcrlcollection11)> | 否   | 表示需要校验证书是否在证书吊销列表中。 |
 | revocationCheckParam<sup>12+</sup>      | [RevocationCheckParameter](#revocationcheckparameter12) | 否   | 表示需要在线校验证证书吊销状态的参数对象。 |
 | policy<sup>12+</sup>     | [ValidationPolicyType](#validationpolicytype12) | 否   | 表示需要校验证书的策略类型。 |

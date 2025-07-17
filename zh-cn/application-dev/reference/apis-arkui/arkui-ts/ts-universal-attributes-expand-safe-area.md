@@ -49,7 +49,7 @@ expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&
 >  设置expandSafeArea()时，不传参，走默认值处理；设置expandSafeArea([],[])时，相当于入参是空数组，此时设置expandSafeArea属性不生效。
 >   
 >  组件设置expandSafeArea生效的条件为：  
->  1.type为SafeAreaType.KEYBOARD时默认生效，表现为组件不避让键盘。
+>  1.type为SafeAreaType.KEYBOARD时默认生效，表现为组件不避让键盘。<br/>
 >  2.设置其他type，组件的边界与安全区域重合时组件能够延伸到安全区域下。例如：设备顶部状态栏高度100，那么组件在屏幕中的绝对位置需要为0 <= y <= 100。
 >   
 >  组件延伸到避让区时，在避让区的事件如点击事件等可能会被系统拦截，优先给状态栏等系统组件响应。
@@ -134,6 +134,12 @@ ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;L
 > 组件使用ignoreLayoutSafeArea能力需依赖容器支持，当前支持子组件ignoreLayoutSafeArea的容器组件包括：[Flex](./ts-container-flex.md)、[Row](./ts-container-row.md)、[Column](./ts-container-column.md)、[Stack](./ts-container-stack.md)、[GridRow](./ts-container-gridrow.md)、[GridCol](./ts-container-gridcol.md)、[RowSplit](./ts-container-rowsplit.md)、[ColumnSplit](./ts-container-columnsplit.md)。
 >
 > 和expandSafeArea同时使用时，ignoreLayoutSafeArea的生效优先级高于expandSafeArea。
+>
+>  组件设置ignoreLayoutSafeArea生效的条件为：  
+>  1.type为SafeAreaType.KEYBOARD时默认生效，表现为组件不避让键盘。<br/>
+>  2.设置其他type，组件的边界与安全区域重合时组件能够延伸到安全区域下。例如：设备顶部状态栏高度100，那么组件在屏幕中的绝对位置需要为0 <= y <= 100。
+>
+>  同时设置ignoreLayoutSafeArea和position属性时，position属性会优先生效，ignoreLayoutSafeArea属性会后生效。对于未设置position、offset等绘制属性的组件，如果其边界未与避让区重叠，设置expandSafeArea属性将不生效，如弹窗和半模态组件。
 
 ## 示例
 
@@ -387,7 +393,7 @@ NONE模式
 
 ### 示例7（滚动类容器扩展安全区）
 
-该示例通过在滚动类容器内调用expandSafeArea属性实现沉浸式效果。
+该示例通过在滚动类容器内调用expandSafeArea属性实现沉浸式效果，Scroll内的Swiper可以延伸到状态栏上。
 
 ```ts
 class SwiperDataSource implements IDataSource {

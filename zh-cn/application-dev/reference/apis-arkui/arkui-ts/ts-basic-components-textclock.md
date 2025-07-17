@@ -31,6 +31,8 @@ TextClock(options?: TextClockOptions)
 
 ## TextClockOptions<sup>18+</sup>对象说明
 
+用于构建TextClock组件的选项。
+
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。

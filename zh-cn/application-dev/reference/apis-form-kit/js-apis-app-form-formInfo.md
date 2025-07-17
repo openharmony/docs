@@ -200,34 +200,27 @@ import { formInfo } from '@kit.FormKit';
 
 互动卡片动效信息。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 | 名称 | 类型 | 只读 | 可选  | 说明                              |
 |-----|-----|------|-----|---------------------------------|
-| area     | [Rect](#rect20) | 是 | 否   | 描述互动卡片动效区域范围，以卡片左上角为原点，单位为vp。   |
-| duration | number | 是 | 否   | 互动卡片动效持续时长。取值为大于0、小于等于3500的整数，单位ms。 |
+| area     | [Rect](#rect20) | 否 | 否   | 描述互动卡片动效区域范围，以卡片左上角为原点，单位为vp。   |
+| duration | number | 否 | 否   | 互动卡片动效持续时长。取值为大于0、小于等于3500的整数，单位ms。 |
+| useDefaultAnimation | boolean | 否 | 是   | 互动卡片状态切换时是否启动系统提供的默认动效，默认为true。取值为false表示系统不提供切换动效，画面直接切换，适合切换时非激活态和激活态UI完全一致的场景。 |
 
 ## Rect<sup>20+</sup>
 
 通用矩形区域信息。可用于描述卡片位置、互动卡片动效区域等信息。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 | 名称 | 类型 | 只读 | 可选  | 说明 |
 |-----|-----|------|-----|-------|
-| left   | number | 是 | 否   | 描述矩形的左上角顶点的 x 坐标，单位：vp。|
-| top    | number | 是 | 否   | 描述矩形的左上角顶点的 y 坐标，单位：vp。|
-| width  | number | 是 | 否   | 描述矩形的宽度，单位：vp。|
-| height | number | 是 | 否   | 描述矩形的高度，单位：vp。|
-## FormLocation<sup>20+</sup>
-
-卡片当前位置枚举。
-
-**系统能力**：SystemCapability.Ability.Form
-
-| 名称                         | 值   | 说明                             |
-| ---------------------------- | ---- | -------------------------------- |
-| DESKTOP                      | 0    | 表示卡片位于桌面。               |
-| FORM_CENTER                  | 1    | 表示卡片位于桌面的卡片中心。     |
-| FORM_MANAGER                 | 2    | 表示卡片位于桌面的卡片管理器。   |
-<!--RP1--><!--RP1End-->
+| left   | number | 否 | 否   | 描述矩形的左上角顶点的 x 坐标，单位：vp。|
+| top    | number | 否 | 否   | 描述矩形的左上角顶点的 y 坐标，单位：vp。|
+| width  | number | 否 | 否   | 描述矩形的宽度，单位：vp。|
+| height | number | 否 | 否   | 描述矩形的高度，单位：vp。|

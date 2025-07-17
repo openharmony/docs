@@ -50,13 +50,16 @@ setScreenOffTime(admin: Want, time: number): void
 **示例：**
 
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
+  // 参数需根据实际情况进行替换
   deviceSettings.setScreenOffTime(wantTemp, 30000);
   console.info(`Succeeded in setting screen off time`);
 } catch(err) {
@@ -96,11 +99,13 @@ getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 deviceSettings.getScreenOffTime(wantTemp, (err, result) => {
@@ -149,12 +154,14 @@ getScreenOffTime(admin: Want): Promise&lt;number&gt;
 **示例：**
 
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 deviceSettings.getScreenOffTime(wantTemp).then((result) => {
@@ -199,12 +206,14 @@ installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallba
 
 <!--code_no_check-->
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
@@ -266,12 +275,14 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 
 <!--code_no_check-->
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let certFileArray: Uint8Array = new Uint8Array();
 // The variable context needs to be initialized in MainAbility's onCreate callback function
@@ -337,12 +348,15 @@ uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&l
 **示例：**
 
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let aliasStr = "certName"
 deviceSettings.uninstallUserCertificate(wantTemp, aliasStr, (err) => {
   if (err) {
@@ -392,13 +406,16 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let aliasStr = "certName"
 deviceSettings.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
   console.info(`Succeeded in uninstalling user certificate`);
@@ -440,11 +457,13 @@ setPowerPolicy(admin: Want, powerScene: PowerScene, powerPolicy: PowerPolicy): v
 **示例：**
 
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
   let delayTime = 0;
@@ -496,11 +515,13 @@ getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
 **示例：**
 
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
   let powerScene: deviceSettings.PowerScene = deviceSettings.PowerScene.TIME_OUT;

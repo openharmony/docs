@@ -44,7 +44,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 ## SourceType 
 
-触屏来源的设备类型。
+触屏来源的设备类型，当前仅支持触摸屏、触控板类型上报。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 

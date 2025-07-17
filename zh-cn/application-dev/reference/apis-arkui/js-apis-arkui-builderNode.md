@@ -1209,7 +1209,7 @@ offsetA为builderNode相对于父组件的偏移，offsetB为命中位置相对�
 
 inheritFreezeOptions(enabled: boolean): void
 
-查询当前builderNode对象是否设置为继承父组件中自定义组件的冻结策略。如果设置继承状态为false，则builderNode对象的冻结策略为false。在这种情况下，节点在不活跃状态下不会被冻结。
+查询当前BuilderNode对象是否设置为继承父组件中自定义组件的冻结策略。如果设置继承状态为false，则BuilderNode对象的冻结策略为false。在这种情况下，节点在不活跃状态下不会被冻结。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1219,7 +1219,7 @@ inheritFreezeOptions(enabled: boolean): void
 
 | 参数名 | 类型   | 必填 | 说明                                                                     |
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
-| enabled  | boolean | 是  | builderNode对象是否设置为继承父组件中自定义组件的冻结策略。true为继承父组件中自定义组件的冻结策略，false为不继承父组件中自定义组件的冻结策略。 |
+| enabled  | boolean | 是  | BuilderNode对象是否设置为继承父组件中自定义组件的冻结策略。true为继承父组件中自定义组件的冻结策略，false为不继承父组件中自定义组件的冻结策略。 |
 
 ## 示例
 
@@ -1228,8 +1228,7 @@ inheritFreezeOptions(enabled: boolean): void
 该示例演示了在自定义组件中截获鼠标事件并进行坐标转换的完整流程。组件通过onMouse回调读取本地x/y，再结合FrameNode.getPositionToParent()得到的偏移量，调用vp2px将相对坐标转换为像素坐标，更新MouseEvent的windowX/windowY、displayX/displayY。最后通过rootNode.postInputEvent(event)将转换后的鼠标事件分发给子节点进行处理。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction  } from '@kit.ArkUI';
-import { InputEventType } from '@ohos.arkui.node';
+import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction, InputEventType } from '@kit.ArkUI';
 
 class Params {
   text: string = "this is a text"
@@ -1322,8 +1321,7 @@ struct MyComponent {
 该示例演示了在自定义组件中截获触摸事件并对触点坐标进行转换的完整流程。在onTouch回调中，遍历TouchEvent的changedTouches和touches数组，对每个触点的x/y加上组件偏移量并调用vp2px转换为像素，更新各自的windowX/windowY、displayX/displayY。最后同样通过rootNode.postInputEvent(event)将转换后的触摸事件分发给子节点处理。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction  } from '@kit.ArkUI';
-import { InputEventType } from '@ohos.arkui.node';
+import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction, InputEventType  } from '@kit.ArkUI';
 
 class Params {
   text: string = "this is a text"
@@ -1427,8 +1425,7 @@ struct MyComponent {
 该示例演示了在自定义组件中截获滚轮或触控板轴事件并进行坐标转换的完整流程。在onAxisEvent回调中，先获取事件的相对x/y，再加上组件偏移量后调用vp2px转换为像素，更新AxisEvent的windowX/windowY、displayX/displayY，最后通过rootNode.postInputEvent(event)将转换后的轴事件分发给子节点进行处理。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction } from '@kit.ArkUI';
-import { InputEventType } from '@ohos.arkui.node';
+import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction, InputEventType } from '@kit.ArkUI';
 
 class Params {
   text: string = "this is a text"

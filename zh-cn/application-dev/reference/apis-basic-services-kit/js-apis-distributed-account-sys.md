@@ -186,7 +186,7 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | localId | number | 是 | 系统账号ID。 |
-  | distributedInfo | [DistributedInfo](js-apis-distributed-account.md#distributedinfo) | 是 | 分布式账户信息。 |
+  | distributedInfo | [DistributedInfo](js-apis-distributed-account.md#distributedinfo) | 是 | 分布式账号信息。 |
 
 **返回值：**
 

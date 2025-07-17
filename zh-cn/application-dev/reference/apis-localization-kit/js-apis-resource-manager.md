@@ -4257,21 +4257,9 @@ getNumber(resource: Resource): number
   }
   ```
 
-  ```json
-  // 资源文件路径: src/main/resources/base/element/float.json
-  {
-    "float": [
-      {
-        "name": "float_test",
-        "value": "30.6vp"
-      }
-    ]
-  }
-  ```
   ```ts
   import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { display } from '@kit.ArkUI';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -4281,27 +4269,8 @@ getNumber(resource: Resource): number
 
   try {
     let intValue = this.context.resourceManager.getNumber(resource);
-    // integer对应返回的是原数值
     console.log(`getNumber, int value: ${intValue}`);
     // 打印输出结果: getNumber, int value: 100
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`getNumber failed, error code: ${code}, message: ${message}.`);
-  }
-
-  let resource2: resourceManager.Resource = {
-    bundleName: "com.example.myapplication",
-    moduleName: "entry",
-    id: $r('app.float.float_test').id
-  };
-
-  try {
-    // float对应返回的是真实像素点值，带"vp","fp"单位的像素值 = 原数值 * densityPixels
-    // resource对象获取到的值不一致，resId获取的值是准确的。该问题正在优化改进。
-    let floatValue = this.context.resourceManager.getNumber(resource2);
-    console.log(`getNumber, densityPixels: ${display.getDefaultDisplaySync().densityPixels}, float value: ${floatValue}`);
-    // 打印输出结果: getNumber, densityPixels: 3.25, float value: 30.600000381469727
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;

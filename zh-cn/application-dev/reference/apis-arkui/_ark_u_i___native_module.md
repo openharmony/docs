@@ -316,8 +316,6 @@
 | float [OH_ArkUI_DragEvent_GetPreviewRectHeight](#oh_arkui_dragevent_getpreviewrectheight) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取预览图的高。  |
 | float [OH_ArkUI_DragEvent_GetTouchPointXToWindow](#oh_arkui_dragevent_gettouchpointxtowindow) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取跟手点相对于window的x轴坐标。  |
 | float [OH_ArkUI_DragEvent_GetTouchPointYToWindow](#oh_arkui_dragevent_gettouchpointytowindow) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取跟手点相对于window的y轴坐标。  |
-| float [OH_ArkUI_DragEvent_GetTouchPointXToGlobalDisplay](#oh_arkui_dragevent_gettouchpointxtoglobaldisplay) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取跟手点相对于全局屏幕的x轴坐标。<br/>**起始版本：** 20  |
-| float [OH_ArkUI_DragEvent_GetTouchPointYToGlobalDisplay](#oh_arkui_dragevent_gettouchpointytoglobaldisplay) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取跟手点相对于全局屏幕的y轴坐标。<br/>**起始版本：** 20  |
 | float [OH_ArkUI_DragEvent_GetTouchPointXToDisplay](#oh_arkui_dragevent_gettouchpointxtodisplay) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取跟手点相对于当前Display的x轴坐标。  |
 | float [OH_ArkUI_DragEvent_GetTouchPointYToDisplay](#oh_arkui_dragevent_gettouchpointytodisplay) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 从ArkUI_DragEvent中获取跟手点相对于当前Display的y轴坐标。  |
 | float [OH_ArkUI_DragEvent_GetVelocityX](#oh_arkui_dragevent_getvelocityx) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 获取当前拖拽的x轴方向拖动速度。  |
@@ -430,12 +428,12 @@
 | int32_t [OH_ArkUI_AnimatorOption_RegisterOnFinishCallback](#oh_arkui_animatoroption_registeronfinishcallback) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, void \*userData, void(\*callback)(ArkUI_AnimatorEvent \*event)) | 设置animator动画完成时回调。  |
 | int32_t [OH_ArkUI_AnimatorOption_RegisterOnCancelCallback](#oh_arkui_animatoroption_registeroncancelcallback) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, void \*userData, void(\*callback)(ArkUI_AnimatorEvent \*event)) | 设置animator动画被取消时回调。  |
 | int32_t [OH_ArkUI_AnimatorOption_RegisterOnRepeatCallback](#oh_arkui_animatoroption_registeronrepeatcallback) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, void \*userData, void(\*callback)(ArkUI_AnimatorEvent \*event)) | 设置animator动画重复时回调。  |
-| int32_t [OH_ArkUI_Animator_ResetAnimatorOption](#oh_arkui_animator_resetanimatoroption) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animator, [ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 更新animator动画。  |
-| int32_t [OH_ArkUI_Animator_Play](#oh_arkui_animator_play) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animator) | 启动animator动画。  |
-| int32_t [OH_ArkUI_Animator_Finish](#oh_arkui_animator_finish) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animator) | 结束animator动画。  |
-| int32_t [OH_ArkUI_Animator_Pause](#oh_arkui_animator_pause) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animator) | 暂停animator动画。  |
-| int32_t [OH_ArkUI_Animator_Cancel](#oh_arkui_animator_cancel) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animator) | 取消animator动画。  |
-| int32_t [OH_ArkUI_Animator_Reverse](#oh_arkui_animator_reverse) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animator) | 以相反的顺序播放animator动画。  |
+| int32_t [OH_ArkUI_Animator_ResetAnimatorOption](#oh_arkui_animator_resetanimatoroption) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animatorHandle, [ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 更新animator动画。  |
+| int32_t [OH_ArkUI_Animator_Play](#oh_arkui_animator_play) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animatorHandle) | 启动animator动画。  |
+| int32_t [OH_ArkUI_Animator_Finish](#oh_arkui_animator_finish) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animatorHandle) | 结束animator动画。  |
+| int32_t [OH_ArkUI_Animator_Pause](#oh_arkui_animator_pause) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animatorHandle) | 暂停animator动画。  |
+| int32_t [OH_ArkUI_Animator_Cancel](#oh_arkui_animator_cancel) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animatorHandle) | 取消animator动画。  |
+| int32_t [OH_ArkUI_Animator_Reverse](#oh_arkui_animator_reverse) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animatorHandle) | 以相反的顺序播放animator动画。  |
 | [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_Curve_CreateCurveByType](#oh_arkui_curve_createcurvebytype) ([ArkUI_AnimationCurve](#arkui_animationcurve) curve) | 插值曲线的初始化函数，可以根据入参创建一个插值曲线对象。  |
 | [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_Curve_CreateStepsCurve](#oh_arkui_curve_createstepscurve) (int32_t count, bool end) | 构造阶梯曲线对象。  |
 | [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_Curve_CreateCubicBezierCurve](#oh_arkui_curve_createcubicbeziercurve) (float x1, float y1, float x2, float y2) | 构造三阶贝塞尔曲线对象。  |
@@ -594,7 +592,6 @@
 | int32_t [OH_ArkUI_NodeUtils_GetLayoutPosition](#oh_arkui_nodeutils_getlayoutposition) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*localOffset) | 获取组件布局区域相对父组件的位置。 布局区域相对位置不包含图形变化属性，如平移。  |
 | int32_t [OH_ArkUI_NodeUtils_GetLayoutPositionInWindow](#oh_arkui_nodeutils_getlayoutpositioninwindow) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*globalOffset) | 获取组件布局区域相对窗口的位置。 布局区域相对位置不包含图形变化属性，如平移。  |
 | int32_t [OH_ArkUI_NodeUtils_GetLayoutPositionInScreen](#oh_arkui_nodeutils_getlayoutpositioninscreen) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*screenOffset) | 获取组件布局区域相对屏幕的位置。 布局区域相对位置不包含图形变化属性，如平移。  |
-| int32_t [OH_ArkUI_NodeUtils_GetLayoutPositionInGlobalDisplay](#oh_arkui_nodeutils_getlayoutpositioninglobaldisplay) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*offset) | 获取组件布局区域相对全局屏幕的位置。 布局区域相对位置不包含图形变化属性，如平移。  |
 | int32_t [OH_ArkUI_NodeUtils_GetPositionWithTranslateInWindow](#oh_arkui_nodeutils_getpositionwithtranslateinwindow) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*translateOffset) | 获取组件在窗口中的位置，包含了图形平移变化属性。  |
 | int32_t [OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen](#oh_arkui_nodeutils_getpositionwithtranslateinscreen) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*translateOffset) | 获取组件在屏幕中的位置，包含了图形平移变化属性。  |
 | void [OH_ArkUI_NodeUtils_AddCustomProperty](#oh_arkui_nodeutils_addcustomproperty) ([ArkUI_NodeHandle](#arkui_nodehandle) node, const char \*name, const char \*value) | 设置组件的自定义属性。该接口仅在主线程生效。  |
@@ -2997,11 +2994,10 @@ enum ArkUI_HitTestMode
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| ARKUI_HIT_TEST_MODE_DEFAULT  | 默认触摸测试效果。  |
-| ARKUI_HIT_TEST_MODE_BLOCK  | 自身响应触摸测试。  |
-| ARKUI_HIT_TEST_MODE_TRANSPARENT  | 自身和子节点都响应触摸测试。  |
-| ARKUI_HIT_TEST_MODE_NONE  | 自身不响应触摸测试。  |
-
+| ARKUI_HIT_TEST_MODE_DEFAULT  | 默认触摸测试效果。自身及子节点响应触摸测试，但阻塞兄弟节点的触摸测试，不影响祖先节点的触摸测试。  |
+| ARKUI_HIT_TEST_MODE_BLOCK  | 自身响应触摸测试，阻塞子节点、兄弟节点和祖先节点的触摸测试。  |
+| ARKUI_HIT_TEST_MODE_TRANSPARENT  | 自身和子节点都响应触摸测试，不会阻塞兄弟节点和祖先节点的触摸测试。  |
+| ARKUI_HIT_TEST_MODE_NONE  | 自身不响应触摸测试，不会阻塞子节点、兄弟节点和祖先节点的触摸测试。  |
 
 ### ArkUI_HorizontalAlignment
 
@@ -3940,7 +3936,6 @@ enum ArkUI_NodeAttributeType
 | NODE_LIST_MAINTAIN_VISIBLE_CONTENT_POSITION | 设置显示区域上方插入或删除数据时是否要保持可见内容位置不变。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置显示区域上方插入或删除数据时是否要保持可见内容位置不变。0表示显示区域上方插入或删除数据时可见内容位置会跟随变化，1表示显示区域上方插入或删除数据时可见内容位置不变。默认值为0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置显示区域上方插入或删除数据时是否要保持可见内容位置不变。0表示显示区域上方插入或删除数据时可见内容位置会跟随变化，1表示显示区域上方插入或删除数据时可见内容位置不变。<br/>**起始版本：** 15 |
 | NODE_LIST_STACK_FROM_END | 设置List从末尾开始布局。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置List是否从末尾开始布局。0表示从顶部开始布局，1表示从末尾开始布局，默认值为0。<br/> 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置List是否从末尾开始布局。0表示从顶部开始布局，1表示从末尾开始布局。<br/>**起始版本：** 19|
 | NODE_LIST_FOCUS_WRAP_MODE | List组件走焦换行模式，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：List组件走焦换行模式，参数类型[ArkUI_FocusWrapMode](#arkui_focuswrapmode)。<br/> 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: List组件走焦换行模式，参数类型[ArkUI_FocusWrapMode](#arkui_focuswrapmode)。<br/>**起始版本：** 20|
-| NODE_LIST_SYNC_LOAD | List组件是否同步加载子节点，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：List组件是否同步加载子节点。0：分帧加载，1：同步加载。<br/> 属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: List组件是否同步加载子节点。0：分帧加载，1：同步加载。<br/>**起始版本：** 20|
 | NODE_SWIPER_LOOP  | Swiper是否开启循环，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制是否开启循环，0表示不循环，1表示循环，默认值为1。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制是否开启循环，0表示不循环，1表示循环，默认值为1。 |
 | NODE_SWIPER_AUTO_PLAY  | Swiper子组件是否自动播放，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制子组件是否自动播放，0表示不自动播放，1表示自动播放，默认值为0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制子组件是否自动播放，0表示不自动播放，1表示自动播放，默认值为0。 |
 | NODE_SWIPER_SHOW_INDICATOR  | Swiper是否显示导航点指示器，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否显示导航点指示器，0表示不显示导航点指示器，1表示显示导航点指示器，默认值为1。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否显示导航点指示器，0表示不显示导航点指示器，1表示显示导航点指示器，默认值为1。 |
@@ -3994,7 +3989,6 @@ enum ArkUI_NodeAttributeType
 | NODE_WATER_FLOW_SCROLL_TO_INDEX  | 滑动到指定index。<br/>开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：要滑动到的目标元素在当前容器中的索引值。<br/>.value[1]?.i32：设置滑动到列表项在列表中的索引值时是否有动效，1表示有动效，0表示没有动效。默认值：0。<br/>.value[2]?.i32：指定滑动到的元素与当前容器的对齐方式，参数类型[ArkUI_ScrollAlignment](#arkui_scrollalignment)。默认值为：ARKUI_SCROLL_ALIGNMENT_START。 |
 | NODE_WATER_FLOW_ITEM_CONSTRAINT_SIZE  | 设置当前瀑布流子组件的约束尺寸属性，组件布局时，进行尺寸范围限制，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：最小宽度，使用-1表示不设置；<br/>.value[1].f32：最大宽度，使用-1表示不设置；<br/>.value[2].f32：最小高度，使用-1表示不设置；<br/>.value[3].f32：最大高度，使用-1表示不设置；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：最小宽度，使用-1表示不设置；<br/>.value[1].f32：最大宽度，使用-1表示不设置；<br/>.value[2].f32：最小高度，使用-1表示不设置；<br/>.value[3].f32：最大高度，使用-1表示不设置； |
 | NODE_WATER_FLOW_LAYOUT_MODE  | 定义瀑布流组件布局模式，支持属性设置、重置和获取。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.value[0].f32: 布局模式，参数类型[ArkUI_WaterFlowLayoutMode](_ark_u_i___native_module.md#arkui_waterflowlayoutmode)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32: 布局模式，参数类型[ArkUI_WaterFlowLayoutMode](_ark_u_i___native_module.md#arkui_waterflowlayoutmode)。<br/>**起始版本：** 18 |
-| NODE_WATER_FLOW_SYNC_LOAD  | WaterFlow组件是否同步加载子节点，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：WaterFlow组件是否同步加载子节点。0：分帧加载，1：同步加载。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32: WaterFlow组件是否同步加载子节点。0：分帧加载，1：同步加载。<br/>**起始版本：** 20 |
 | NODE_RELATIVE_CONTAINER_GUIDE_LINE  | 设置RelativeContaine容器内的辅助线，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的辅助线：<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的辅助线： |
 | NODE_RELATIVE_CONTAINER_BARRIER  | 设置RelativeContaine容器内的屏障，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的辅助线：<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: RelativeContaine容器内的屏障： |
 | NODE_GRID_COLUMN_TEMPLATE  | 设置当前Grid组件布局列的数量，不设置时默认1列，支持属性设置、重置和获取。 例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第1列占1份，第2列占1份，第3列占2份。 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数， 其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、或有效数字，默认单位为vp。<br/>属性设置方法[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)参数格式：<br/>.string: 布局列的数量.<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.string: 布局列的数量. |
@@ -4004,7 +3998,6 @@ enum ArkUI_NodeAttributeType
 | NODE_GRID_NODE_ADAPTER  | grid组件适配器，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：使用**ArkUI_NodeAdapter**对象作为适配器。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: 返回值格式为**ArkUI_NodeAdapter**. |
 | NODE_GRID_CACHED_COUNT  | grid组件Adapter缓存数量，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：配合Grid组件Adapter使用，设置adapter中的缓存数量。 |
 | NODE_GRID_FOCUS_WRAP_MODE  | Grid组件走焦换行模式，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：Grid组件走焦换行模式，参数类型[ArkUI_FocusWrapMode](#arkui_focuswrapmode)。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/> .value[0].i32: Grid组件走焦换行模式，参数类型[ArkUI_FocusWrapMode](#arkui_focuswrapmode)。<br/>**起始版本：** 20 |
-| NODE_GRID_SYNC_LOAD  | Grid组件是否同步加载子节点，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：Grid组件是否同步加载子节点。0：分帧加载，1：同步加载。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/> .value[0].i32: Grid组件是否同步加载子节点。0：分帧加载，1：同步加载。<br/>**起始版本：** 20 |
 | NODE_TEXT_PICKER_COLUMN_WIDTHS<sup>18+</sup>  | 设置每一个选择项列宽。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：设置的第1个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等；<br/>.value[1].f32：设置的第2个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等；<br/>.value[2].f32：设置的第3个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等；<br/>...<br/>.value[n].f32：设置的第n+1个选择项列宽，为总宽度的百分比。默认情况下，所有选择项的列宽相等；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：第1列宽度，总宽度的百分；<br/>.value[1].f32：第2列宽度，总宽度的百分；<br/>.value[2].f32：第3列宽度，总宽度的百分；<br/>...<br/>.value[n].f32：第n+1列宽度，总宽度的百分； |
 | NODE_IMAGE_ANIMATOR_IMAGES  | 设置帧动画组件的图片帧信息集合。不支持动态更新。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.size：图片帧的数量；<br/>.object：图片帧数组，参数类型为{\@ArkUI_ImageAnimatorFrameInfo}数组；<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.size：图片帧的数量；<br/>.object：图片帧数组，参数类型为{\@ArkUI_ImageAnimatorFrameInfo}数组； |
 | NODE_IMAGE_ANIMATOR_STATE  | 控制帧动画组件的播放状态。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制动画的播放状态，参数类型为[ArkUI_AnimationStatus](#arkui_animationstatus)，默认值为初始状态。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：控制动画的播放状态，参数类型为[ArkUI_AnimationStatus](#arkui_animationstatus)。 |
@@ -6716,7 +6709,7 @@ void OH_ArkUI_AnimateOption_SetTempo (ArkUI_AnimateOption * option, float value 
 ### OH_ArkUI_Animator_Cancel()
 
 ```
-int32_t OH_ArkUI_Animator_Cancel (ArkUI_AnimatorHandle animator)
+int32_t OH_ArkUI_Animator_Cancel (ArkUI_AnimatorHandle animatorHandle)
 ```
 **描述：**
 
@@ -6726,7 +6719,7 @@ int32_t OH_ArkUI_Animator_Cancel (ArkUI_AnimatorHandle animator)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| animator | animator动画对象。  |
+| animatorHandle | animator动画对象。  |
 
 **返回：**
 
@@ -6736,7 +6729,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_Animator_Finish()
 
 ```
-int32_t OH_ArkUI_Animator_Finish (ArkUI_AnimatorHandle animator)
+int32_t OH_ArkUI_Animator_Finish (ArkUI_AnimatorHandle animatorHandle)
 ```
 **描述：**
 
@@ -6746,7 +6739,7 @@ int32_t OH_ArkUI_Animator_Finish (ArkUI_AnimatorHandle animator)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| animator | animator动画对象。  |
+| animatorHandle | animator动画对象。  |
 
 **返回：**
 
@@ -6756,7 +6749,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_Animator_Pause()
 
 ```
-int32_t OH_ArkUI_Animator_Pause (ArkUI_AnimatorHandle animator)
+int32_t OH_ArkUI_Animator_Pause (ArkUI_AnimatorHandle animatorHandle)
 ```
 **描述：**
 
@@ -6766,7 +6759,7 @@ int32_t OH_ArkUI_Animator_Pause (ArkUI_AnimatorHandle animator)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| animator | animator动画对象。  |
+| animatorHandle | animator动画对象。  |
 
 **返回：**
 
@@ -6776,7 +6769,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_Animator_Play()
 
 ```
-int32_t OH_ArkUI_Animator_Play (ArkUI_AnimatorHandle animator)
+int32_t OH_ArkUI_Animator_Play (ArkUI_AnimatorHandle animatorHandle)
 ```
 **描述：**
 
@@ -6786,7 +6779,7 @@ int32_t OH_ArkUI_Animator_Play (ArkUI_AnimatorHandle animator)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| animator | animator动画对象。  |
+| animatorHandle | animator动画对象。  |
 
 **返回：**
 
@@ -6796,7 +6789,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_Animator_ResetAnimatorOption()
 
 ```
-int32_t OH_ArkUI_Animator_ResetAnimatorOption (ArkUI_AnimatorHandle animator, ArkUI_AnimatorOption * option )
+int32_t OH_ArkUI_Animator_ResetAnimatorOption (ArkUI_AnimatorHandle animatorHandle, ArkUI_AnimatorOption * option )
 ```
 **描述：**
 
@@ -6806,7 +6799,7 @@ int32_t OH_ArkUI_Animator_ResetAnimatorOption (ArkUI_AnimatorHandle animator, Ar
 
 | 名称 | 描述 |
 | -------- | -------- |
-| animator | animator动画对象。  |
+| animatorHandle | animator动画对象。  |
 | option | animator动画参数。  |
 
 **返回：**
@@ -6817,7 +6810,7 @@ ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数�
 ### OH_ArkUI_Animator_Reverse()
 
 ```
-int32_t OH_ArkUI_Animator_Reverse (ArkUI_AnimatorHandle animator)
+int32_t OH_ArkUI_Animator_Reverse (ArkUI_AnimatorHandle animatorHandle)
 ```
 **描述：**
 
@@ -6827,7 +6820,7 @@ int32_t OH_ArkUI_Animator_Reverse (ArkUI_AnimatorHandle animator)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| animator | animator动画对象。  |
+| animatorHandle | animator动画对象。  |
 
 **返回：**
 
@@ -8162,7 +8155,7 @@ void OH_ArkUI_Curve_DisposeCurve (ArkUI_CurveHandle curveHandle)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| curve | 曲线的插值对象指针。  |
+| curveHandle | 曲线的插值对象指针。  |
 
 
 ### OH_ArkUI_CustomProperty_Destroy()
@@ -9999,7 +9992,7 @@ int32_t OH_ArkUI_DragEvent_GetModifierKeyStates (ArkUI_DragEvent * event, uint64
 ```
 **描述：**
 
-获取功能键按压状态。
+获取功能键按压状态。此接口不支持在手写笔场景下使用。
 
 **起始版本：** 12
 
@@ -10213,28 +10206,6 @@ float OH_ArkUI_DragEvent_GetTouchPointXToDisplay (ArkUI_DragEvent * event)
 
 float 返回拖拽跟手点相对于当前Display的x轴坐标，单位为PX，传入参数无效时返回默认值 0。
 
-### OH_ArkUI_DragEvent_GetTouchPointXToGlobalDisplay()
-
-```
-float OH_ArkUI_DragEvent_GetTouchPointXToGlobalDisplay (ArkUI_DragEvent * event)
-```
-
-**描述：**
-
-从ArkUI_DragEvent中获取跟手点相对于全局屏幕的x轴坐标。
-
-**起始版本：** 20
-
-**参数:**
-
-| 名称  | 描述                      |
-| ----- | ------------------------- |
-| event | ArkUI_DragEvent事件指针。 |
-
-**返回：**
-
-返回拖拽跟手点相对于全局Display的x轴坐标，单位为PX，传入参数无效时返回默认值0。
-
 
 ### OH_ArkUI_DragEvent_GetTouchPointXToWindow()
 
@@ -10278,28 +10249,6 @@ float OH_ArkUI_DragEvent_GetTouchPointYToDisplay (ArkUI_DragEvent * event)
 **返回：**
 
 float 返回拖拽跟手点相对于当前Display的y轴坐标，单位为PX，传入参数无效时返回默认值 0。
-
-### OH_ArkUI_DragEvent_GetTouchPointYToGlobalDisplay()
-
-```
-float OH_ArkUI_DragEvent_GetTouchPointYToGlobalDisplay (ArkUI_DragEvent * event)
-```
-
-**描述：**
-
-从ArkUI_DragEvent中获取跟手点相对于全局屏幕的y轴坐标。
-
-**起始版本：** 20
-
-**参数:**
-
-| 名称  | 描述                      |
-| ----- | ------------------------- |
-| event | ArkUI_DragEvent事件指针。 |
-
-**返回：**
-
-返回拖拽跟手点相对于全局Display的y轴坐标，单位为PX，传入参数无效时返回默认值0。
 
 
 ### OH_ArkUI_DragEvent_GetTouchPointYToWindow()
@@ -15132,29 +15081,6 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInScreen (ArkUI_NodeHandle node, Ark
 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
-### OH_ArkUI_NodeUtils_GetLayoutPositionInGlobalDisplay()
-
-```
-int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInGlobalDisplay (ArkUI_NodeHandle node, ArkUI_IntOffset * offset )
-```
-**描述：**
-
-获取组件布局区域相对全局屏幕的位置。 布局区域相对位置不包含图形变化属性，如平移。
-
-**起始版本：** 20
-
-**参数:**
-
-| 名称 | 描述 |
-| -------- | -------- |
-| node | ArkUI_NodeHandle指针。  |
-| offset | 组件handle相对全局屏幕的偏移值，单位：px。  |
-
-**返回：**
-
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
-
-
 ### OH_ArkUI_NodeUtils_GetLayoutPositionInWindow()
 
 ```
@@ -19611,6 +19537,8 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnError(ArkUI_EmbeddedComponentOption* 
 
 设置EmbeddedComponent组件的onError回调。
 
+EmbeddedComponent组件在运行过程中发生异常时触发本回调。
+
 **起始版本：** 20
 
 **参数:**
@@ -19631,6 +19559,8 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated(ArkUI_EmbeddedComponentOpt
 **描述**
 
 设置EmbeddedComponent组件的onTerminated回调。
+
+EmbeddedComponent组件正常退出时触发本回调。
 
 **起始版本：** 20
 

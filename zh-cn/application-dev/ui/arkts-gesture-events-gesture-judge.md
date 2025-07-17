@@ -602,7 +602,7 @@ struct Index {
                 let recognizer = allRecognizers[i];
                 let inspectorInfo = recognizer.getEventTargetInfo().getId();
                 if (inspectorInfo !== "progress_layer") {
-                  // 但用户操作到进度条区域时，禁用掉所有非progress_layer上的手势，这样只会
+                  // 用户操作到进度条区域时，禁用掉所有非progress_layer上的手势
                   recognizer.preventBegin();
                 }
               }

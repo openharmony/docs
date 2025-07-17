@@ -1,6 +1,6 @@
 # 属性字符串（StyledString/MutableStyledString）
 
-属性字符串StyledString/MutableStyledString（其中MutableStyledString继承自StyledString，下文统称为StyledString），可用于在字符或段落级别上设置文本样式。将StyledString应用到文本组件上，可以采用多种方式修改文本，包括调整字号、添加字体颜色、使文本具备可点击性，以及通过自定义方式绘制文本等。具体使用方法请参考[属性字符串](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#属性字符串)的文档。
+属性字符串StyledString/MutableStyledString（其中MutableStyledString继承自StyledString，下文统称为StyledString），可用于在字符或段落级别上设置文本样式。将StyledString应用到文本组件上，可以采用多种方式修改文本，包括调整字号、添加字体颜色、使文本具备可点击性，以及通过自定义方式绘制文本等。具体使用方法请参考[属性字符串](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md)的文档。
 
 属性字符串提供多种类型样式对象，涵盖各种常见的文本样式格式，例如文本装饰线样式、文本行高样式、文本阴影样式等。也可以自行创建CustomSpan，以应用自定义样式。 
 
@@ -300,270 +300,148 @@
 以下代码示例展示了如何创建ParagraphStyle并应用。如果将ParagraphStyle附加到段落开头、末尾或之间的任何位置，均会应用样式，非段落区间内则不会应用样式。
 
   ```ts
-  import { LengthMetrics } from '@kit.ArkUI';
-  titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
-  //段落首行缩进15vp
-  paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });
-  //行高样式对象
-  lineHeightStyle1: LineHeightStyle= new LineHeightStyle(new LengthMetrics(24));
-  //创建含段落样式的对象paragraphStyledString1
-  paragraphStyledString1: MutableStyledString = new MutableStyledString("段落标题\n正文第一段落开始0123456789正文第一段落结束。", [
-    {
-      start: 0,
-      length: 4,
-      styledKey: StyledStringKey.PARAGRAPH_STYLE,
-      styledValue: this.titleParagraphStyleAttr
-    },
-    {
-      start: 0,
-      length: 4,
-      styledKey: StyledStringKey.LINE_HEIGHT,
-      styledValue: new LineHeightStyle(new LengthMetrics(50))
-    },{
-    start: 0,
-    length: 4,
-    styledKey: StyledStringKey.FONT,
-    styledValue: new TextStyle({ fontSize: LengthMetrics.vp(24), fontWeight: FontWeight.Bolder })
-  },
-    {
-      start: 5,
-      length: 3,
-      styledKey: StyledStringKey.PARAGRAPH_STYLE,
-      styledValue: this.paragraphStyleAttr1
-    },
-    {
-      start: 5,
-      length: 20,
-      styledKey: StyledStringKey.LINE_HEIGHT,
-      styledValue: this.lineHeightStyle1
-    }
-  ]);
-  ```
+  import { LengthMetrics} from '@kit.ArkUI';
 
+  // xxx.ets
+  @Entry
+  @Component
+  struct Index {
+    titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
+    // 段落首行缩进15vp
+    paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });
+    // 行高样式对象
+    lineHeightStyle1: LineHeightStyle = new LineHeightStyle(new LengthMetrics(24));
+    // 创建含段落样式的对象paragraphStyledString1
+    paragraphStyledString1: MutableStyledString =
+      new MutableStyledString("段落标题\n正文第一段落开始0123456789正文第一段落结束。", [
+        {
+          start: 0,
+          length: 4,
+          styledKey: StyledStringKey.PARAGRAPH_STYLE,
+          styledValue: this.titleParagraphStyleAttr
+        },
+        {
+          start: 0,
+          length: 4,
+          styledKey: StyledStringKey.LINE_HEIGHT,
+          styledValue: new LineHeightStyle(new LengthMetrics(50))
+        }, {
+        start: 0,
+        length: 4,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontSize: LengthMetrics.vp(24), fontWeight: FontWeight.Bolder })
+      },
+        {
+          start: 5,
+          length: 3,
+          styledKey: StyledStringKey.PARAGRAPH_STYLE,
+          styledValue: this.paragraphStyleAttr1
+        },
+        {
+          start: 5,
+          length: 20,
+          styledKey: StyledStringKey.LINE_HEIGHT,
+          styledValue: this.lineHeightStyle1
+        }
+      ]);
+    controller: TextController = new TextController();
+
+    async onPageShow() {
+      this.controller.setStyledString(this.paragraphStyledString1);
+    }
+
+    build() {
+      Column() {
+        // 显示属性字符串
+        Text(undefined, { controller: this.controller })
+      }
+      .width('100%')
+    }
+  }
+  ```
+  
+  ![styled_string_paragraph1](figures/styled_string_paragraph1.png)
+  
   除了可以在创建属性字符串时就预设样式，也可以后续通过[replaceStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#replacestyle)清空原样式替换新样式，同时需要在附加的文本组件controller上主动触发更新绑定的属性字符串。
 
   ```ts
   import { LengthMetrics } from '@kit.ArkUI';
-  //段落不设置缩进配置最大行数及超长显示方式
-  paragraphStyleAttr3: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.End, maxLines: 1, wordBreak: WordBreak.BREAK_ALL, overflow: TextOverflow.Ellipsis});
-  // 后续某个节点触发更新段落样式
-  controller: TextController = new TextController();
-  this.paragraphStyledString1.replaceStyle({
-    start: 5,
-    length: 3,
-    styledKey: StyledStringKey.PARAGRAPH_STYLE,
-    styledValue: this.paragraphStyleAttr3
-  });
-  this.controller.setStyledString(this.paragraphStyledString1);
-  ```
 
-## 支持将属性字符串转换成Paragraph
-
-可通过[getParagraphs](../reference/apis-arkui/js-apis-arkui-UIContext.md#getparagraphs20)将属性字符串根据文本布局选项转换成对应的[Paragraph](../reference/apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)数组。
-
-- 以下示例展示了通过MeasureUtils的getParagraphs方法测算文本，当内容超出最大显示行数的时候，截断文本显示并展示“...全文”的效果。
-
-  ```ts
-  import { LengthMetrics } from '@kit.ArkUI';
-  import { drawing, text } from '@kit.ArkGraphics2D';
-  
-  class MyCustomSpan extends CustomSpan {
-    constructor(word: string, width: number, height: number, context: UIContext) {
-      super();
-      this.word = word;
-      this.width = width;
-      this.height = height;
-      this.context = context;
-    }
-  
-    onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics {
-      return { width: this.width, height: this.height };
-    }
-  
-    onDraw(context: DrawContext, options: CustomSpanDrawInfo) {
-      let canvas = context.canvas;
-      const brush = new drawing.Brush();
-      brush.setColor({
-        alpha: 255,
-        red: 0,
-        green: 74,
-        blue: 175
-      });
-      const font = new drawing.Font();
-      font.setSize(25);
-      const textBlob = drawing.TextBlob.makeFromString(this.word, font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
-      canvas.attachBrush(brush);
-      canvas.drawRect({
-        left: options.x + 10,
-        right: options.x + this.context.vp2px(this.width) - 10,
-        top: options.lineTop + 10,
-        bottom: options.lineBottom - 10
-      });
-      brush.setColor({
-        alpha: 255,
-        red: 23,
-        green: 169,
-        blue: 141
-      });
-      canvas.attachBrush(brush);
-      canvas.drawTextBlob(textBlob, options.x + 20, options.lineBottom - 15);
-      canvas.detachBrush();
-    }
-  
-    setWord(word: string) {
-      this.word = word;
-    }
-  
-    width: number = 160;
-    word: string = "drawing";
-    height: number = 10;
-    context: UIContext;
-  }
-  
+  // xxx.ets
   @Entry
   @Component
   struct Index {
-    @State pixelMap?: PixelMap = undefined;
-    str: string =
-      "Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty,   and dedicated to the proposition that all men are created equal."
-    mutableStr2 = new MutableStyledString(this.str, [
-      {
+    titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
+    // 段落首行缩进15vp
+    paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });
+    // 行高样式对象
+    lineHeightStyle1: LineHeightStyle = new LineHeightStyle(new LengthMetrics(24));
+    // 创建含段落样式的对象paragraphStyledString1
+    paragraphStyledString1: MutableStyledString =
+      new MutableStyledString("段落标题\n正文第一段落开始0123456789正文第一段落结束，通过replaceStyle清空原样式替换新样式。", [
+        {
+          start: 0,
+          length: 4,
+          styledKey: StyledStringKey.PARAGRAPH_STYLE,
+          styledValue: this.titleParagraphStyleAttr
+        },
+        {
+          start: 0,
+          length: 4,
+          styledKey: StyledStringKey.LINE_HEIGHT,
+          styledValue: new LineHeightStyle(new LengthMetrics(50))
+        }, {
         start: 0,
-        length: 3,
+        length: 4,
         styledKey: StyledStringKey.FONT,
-        styledValue: new TextStyle({ fontSize: LengthMetrics.px(20) })
+        styledValue: new TextStyle({ fontSize: LengthMetrics.vp(24), fontWeight: FontWeight.Bolder })
       },
-      {
-        start: 3,
-        length: 3,
-        styledKey: StyledStringKey.FONT,
-        styledValue: new TextStyle({ fontColor: Color.Brown })
-      }
-    ])
-  
-    getLineNum(styledString: StyledString, width: LengthMetrics) {
-      let paragraphArr = this.getUIContext().getMeasureUtils().getParagraphs(styledString, { constraintWidth: width })
-      let res = 0
-      for (let i = 0; i < paragraphArr.length; ++i) {
-        res += paragraphArr[i].getLineCount()
-      }
-      return res
-    }
-  
-    getCorrectIndex(styledString: MutableStyledString, maxLines: number, width: LengthMetrics) {
-      let low = 0
-      let high = styledString.length - 1;
-      while (low <= high) {
-        let mid = (low + high) >> 1;
-        console.log("demo: get " + low + " " + high + " " + mid)
-        let moreStyledString = new MutableStyledString("... 全文", [{
-          start: 4,
-          length: 2,
-          styledKey: StyledStringKey.FONT,
-          styledValue: new TextStyle({ fontColor: Color.Blue })
-        }])
-        moreStyledString.insertStyledString(0, styledString.subStyledString(0, mid))
-        let lineNum = this.getLineNum(moreStyledString, LengthMetrics.px(500))
-        if (lineNum <= maxLines) {
-          low = mid + 1;
-        } else {
-          high = mid - 1;
+        {
+          start: 5,
+          length: 3,
+          styledKey: StyledStringKey.PARAGRAPH_STYLE,
+          styledValue: this.paragraphStyleAttr1
+        },
+        {
+          start: 5,
+          length: 20,
+          styledKey: StyledStringKey.LINE_HEIGHT,
+          styledValue: this.lineHeightStyle1
         }
-      }
-      return high
+      ]);
+    paragraphStyleAttr3: ParagraphStyle = new ParagraphStyle({
+      textAlign: TextAlign.End,
+      maxLines: 1,
+      wordBreak: WordBreak.BREAK_ALL,
+      overflow: TextOverflow.Ellipsis
+    });
+    controller: TextController = new TextController();
+
+    async onPageShow() {
+      this.controller.setStyledString(this.paragraphStyledString1);
     }
-  
-    mutableStrAllContent = new MutableStyledString(this.str, [
-      {
-        start: 0,
-        length: 3,
-        styledKey: StyledStringKey.FONT,
-        styledValue: new TextStyle({ fontSize: LengthMetrics.px(40) })
-      },
-      {
-        start: 3,
-        length: 3,
-        styledKey: StyledStringKey.FONT,
-        styledValue: new TextStyle({ fontColor: Color.Brown })
-      }
-    ])
-    customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 120, 10, this.getUIContext());
-    mutableStrAllContent2 = new MutableStyledString(this.str, [
-      {
-        start: 0,
-        length: 3,
-        styledKey: StyledStringKey.FONT,
-        styledValue: new TextStyle({ fontSize: LengthMetrics.px(100) })
-      },
-      {
-        start: 3,
-        length: 3,
-        styledKey: StyledStringKey.FONT,
-        styledValue: new TextStyle({ fontColor: Color.Brown })
-      }
-    ])
-    controller: TextController = new TextController()
-    controller2: TextController = new TextController()
-    textController: TextController = new TextController()
-    textController2: TextController = new TextController()
-  
-    aboutToAppear() {
-      this.mutableStrAllContent2.insertStyledString(0, new StyledString(this.customSpan1));
-      this.mutableStr2.insertStyledString(0, new StyledString(this.customSpan1));
-    }
-  
+
     build() {
-      Scroll() {
-        Column() {
-          Text('原文')
-          Text(undefined, { controller: this.controller }).width('500px').onAppear(() => {
-            this.controller.setStyledString(this.mutableStrAllContent)
+      Column() {
+        // 显示属性字符串
+        Text(undefined, { controller: this.controller }).width(300)
+        Button('替换段落样式')
+          .onClick(() => {
+            this.paragraphStyledString1.replaceStyle({
+              start: 5,
+              length: 3,
+              styledKey: StyledStringKey.PARAGRAPH_STYLE,
+              styledValue: this.paragraphStyleAttr3
+            });
+            this.controller.setStyledString(this.paragraphStyledString1);
           })
-          Divider().strokeWidth(8).color('#F1F3F5')
-          Text('排版后')
-          Text(undefined, { controller: this.textController }).onAppear(() => {
-            let now = this.getCorrectIndex(this.mutableStrAllContent, 3, LengthMetrics.px(500))
-            if (now != this.mutableStrAllContent.length - 1) {
-              let moreStyledString = new MutableStyledString("... 全文", [{
-                start: 4,
-                length: 2,
-                styledKey: StyledStringKey.FONT,
-                styledValue: new TextStyle({ fontColor: Color.Blue })
-              }])
-              moreStyledString.insertStyledString(0, this.mutableStrAllContent.subStyledString(0, now))
-              this.textController.setStyledString(moreStyledString)
-            } else {
-              this.textController.setStyledString(this.mutableStrAllContent)
-            }
-          })
-            .width('500px')
-          Divider().strokeWidth(8).color('#F1F3F5')
-          Text('原文')
-          Text(undefined, { controller: this.controller2 }).width('500px').onAppear(() => {
-            this.controller2.setStyledString(this.mutableStrAllContent2)
-          })
-          Divider().strokeWidth(8).color('#F1F3F5')
-          Text('排版后')
-          Text(undefined, { controller: this.textController2 }).onAppear(() => {
-            let now = this.getCorrectIndex(this.mutableStrAllContent2, 3, LengthMetrics.px(500))
-            let moreStyledString = new MutableStyledString("... 全文", [{
-              start: 4,
-              length: 2,
-              styledKey: StyledStringKey.FONT,
-              styledValue: new TextStyle({ fontColor: Color.Blue })
-            }])
-            moreStyledString.insertStyledString(0, this.mutableStrAllContent2.subStyledString(0, now))
-            this.textController2.setStyledString(moreStyledString)
-          })
-            .width('500px')
-        }.width('100%')
       }
+      .width('100%')
     }
   }
   ```
-
-  ![StyledString_GetParagraphs](figures/StyledString_GetParagraphs.png)
-
+  
+  ![styled_string_paragraph2](figures/styled_string_paragraph2.gif)
 
 ## 使用图片
 
@@ -615,11 +493,11 @@
     }
 
     leadingMarginValue: ParagraphStyle = new ParagraphStyle({ leadingMargin: LengthMetrics.vp(5)});
-    //行高样式对象
+    // 行高样式对象
     lineHeightStyle1: LineHeightStyle= new LineHeightStyle(new LengthMetrics(24));
-    //Bold样式
+    // Bold样式
     boldTextStyle: TextStyle = new TextStyle({ fontWeight: FontWeight.Bold });
-    //创建含段落样式的对象paragraphStyledString1
+    // 创建含段落样式的对象paragraphStyledString1
     paragraphStyledString1: MutableStyledString = new MutableStyledString("\n品牌相纸 高清冲印30张\n限时直降5.15元 限量增送", [
       {
         start: 0,
@@ -773,7 +651,7 @@
         blue: 255
       });
       canvas.attachBrush(brush);
-      canvas.drawTextBlob(textBlob, options.x, options.lineBottom - 30);
+      canvas.drawTextBlob(textBlob, options.x, options.baseline);
       brush.setColor({
         alpha: 255,
         red: 255,
@@ -783,7 +661,7 @@
       canvas.attachBrush(brush);
       const textBlob1 =
         drawing.TextBlob.makeFromString(this.word.substring(5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
-      canvas.drawTextBlob(textBlob1, options.x + gUIContext.vp2px(100), options.lineBottom - 30);
+      canvas.drawTextBlob(textBlob1, options.x + gUIContext.vp2px(100), options.baseline);
 
       canvas.detachBrush();
     }
@@ -821,9 +699,18 @@
   @Component
   struct styled_string_demo6 {
     customSpan3: MyCustomSpan = new MyCustomSpan("99VIP88%off", 200, 40, 30);
-    textStyle: MutableStyledString = new MutableStyledString("123");
+    customSpanStyledString: MutableStyledString = new MutableStyledString(this.customSpan3);
     textController: TextController = new TextController();
     isPageShow: boolean = true;
+    @State backgroundColor1: ResourceColor | undefined = undefined;
+    gestureStyleAttr: GestureStyle = new GestureStyle({
+      onClick: () => {
+        this.backgroundColor1 = Color.Green;
+      },
+      onLongPress: () => {
+        this.backgroundColor1 = Color.Grey;
+      }
+    });
 
     aboutToAppear() {
       gUIContext = this.getUIContext();
@@ -834,12 +721,19 @@
         return;
       }
       this.isPageShow = false;
-      this.textController.setStyledString(new StyledString(this.customSpan3));
+      this.customSpanStyledString.setStyle({
+        start: 0,
+        length: 1,
+        styledKey: StyledStringKey.GESTURE,
+        styledValue: this.gestureStyleAttr
+      })
+      this.textController.setStyledString(this.customSpanStyledString);
     }
 
     build() {
       Row() {
         Column() {
+          Button("响应属性字符串事件改变背景色").backgroundColor(this.backgroundColor1).width('80%').margin(10)
           Text(undefined, { controller: this.textController })
             .copyOption(CopyOptions.InApp)
             .fontSize(30)
@@ -850,7 +744,7 @@
     }
   }
   ```
-![CustomSpanDemo](figures/StyledString_CustomSpan_Scene.PNG)
+  ![styled_string_event](figures/styled_string_event.gif)
 
 ## 格式转换
 
@@ -1007,11 +901,11 @@ import { LengthMetrics } from '@kit.ArkUI';
 @Component
 struct Index {
   alignCenterParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
-  //行高样式对象
+  // 行高样式对象
   lineHeightStyle1: LineHeightStyle = new LineHeightStyle(LengthMetrics.vp(24));
-  //Bold样式
+  // Bold样式
   boldTextStyle: TextStyle = new TextStyle({ fontWeight: FontWeight.Bold });
-  //创建含段落样式的对象paragraphStyledString1
+  // 创建含段落样式的对象paragraphStyledString1
   paragraphStyledString1: MutableStyledString =
     new MutableStyledString("您的豪华钻石已过期1天\n续费可继续享受会员专属权益", [
       {

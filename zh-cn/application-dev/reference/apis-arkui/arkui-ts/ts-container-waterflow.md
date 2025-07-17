@@ -417,7 +417,7 @@ cachedCount(value: number)
 
 设置预加载的FlowItem数量。
 
-[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)，超出显示及缓存范围的FlowItem会被释放。
+只在[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)中生效，超出显示及缓存范围的FlowItem会被释放。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -437,7 +437,7 @@ cachedCount(count: number, show: boolean)
 
 配合[裁剪](ts-universal-attributes-sharp-clipping.md#clip12)或[内容裁剪](ts-container-scrollable-common.md#clipcontent14)属性可以显示出预加载节点。
 
-[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)，超出显示及缓存范围的FlowItem会被释放。
+只在[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)中生效，超出显示及缓存范围的FlowItem会被释放。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -449,22 +449,6 @@ cachedCount(count: number, show: boolean)
 | ------ | ------ | ---- | ---------------------------------------- |
 | count | number | 是   | 预加载的FlowItem的数量。 <br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。<br/>取值范围：[0, +∞)，设置为小于0的值时，按1处理。 |
 | show  | boolean | 是   | 被预加载的FlowItem是否需要显示。设置为true时显示预加载的FlowItem，设置为false时不显示预加载的FlowItem。 <br/> 默认值：false |
-
-### syncLoad<sup>20+</sup>
-
-syncLoad(enable: boolean)
-
-设置是否同步加载WaterFlow区域内所有子组件。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enable   | boolean | 是   | 是否同步加载子组件。<br/>true表示同步加载，false表示异步加载。默认值：true。<br/>**说明：** <br/>设置为false时，异步加载仅在首次显示等非滑动场景生效。 |
 
 ## 事件
 
@@ -1493,7 +1477,7 @@ struct WaterFlowDemo {
           .width('100%')
           .height(this.itemHeightArray[item % 100])
           .backgroundColor(this.colors[item % 5])
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .columnsTemplate('repeat(auto-fill,80)')
       .columnsGap(10)
@@ -1587,7 +1571,7 @@ struct Index {
               .justifyContent(FlexAlign.Center)
               .alignItems(HorizontalAlign.Center)
             }
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }
         .columnsTemplate('1fr')
         .height("90%")
@@ -1654,7 +1638,7 @@ struct WaterFlowDemo {
             .width('100%')
             .height(this.itemHeightArray[item % 100])
             .backgroundColor(this.colors[item % 5])
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }
         .columnsTemplate('repeat(auto-fill,80)')
         .columnsGap(10)

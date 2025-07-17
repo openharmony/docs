@@ -1,6 +1,6 @@
 # @ohos.enterprise.bundleManager（包管理）
 
-本模块提供包管理能力，包括添加包安装白名单、获取包安装白名单、移除包安装白名单等。
+本模块提供包管理能力，包括添加包安装允许名单、获取包安装允许名单、移除包安装允许名单等。
 
 > **说明：**
 >
@@ -20,7 +20,7 @@ import { bundleManager } from '@kit.MDMKit';
 
 addAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-添加应用至应用程序包安装白名单，添加至白名单的应用允许在当前/指定用户下安装，其它非白名单应用不允许安装。
+添加应用至应用程序包安装允许名单，添加至允许名单的应用允许在当前/指定用户下安装，其它非允许名单应用不允许安装。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -49,13 +49,16 @@ addAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
@@ -70,7 +73,7 @@ try {
 
 removeAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-在应用程序包安装白名单中移除应用，在白名单存在的情况下，不在应用程序包安装白名单中的应用不允许在当前/指定用户下安装。
+在应用程序包安装允许名单中移除应用，在允许名单存在的情况下，不在应用程序包安装允许名单中的应用不允许在当前/指定用户下安装。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -99,13 +102,16 @@ removeAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accoun
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
@@ -120,7 +126,7 @@ try {
 
 getAllowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
 
-获取当前/指定用户下的应用程序包安装白名单。
+获取当前/指定用户下的应用程序包安装允许名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -138,7 +144,7 @@ getAllowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&g
 
 | 类型                | 说明                           |
 | ------------------- | ------------------------------ |
-| Array&lt;string&gt; | 返回当前用户下的应用程序包安装白名单。 |
+| Array&lt;string&gt; | 返回当前用户下的应用程序包安装允许名单。 |
 
 **错误码**：
 
@@ -154,11 +160,13 @@ getAllowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&g
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -173,7 +181,7 @@ try {
 
 addDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-添加应用至应用程序包安装黑名单，添加至黑名单的应用不允许在当前/指定用户下安装。
+添加应用至应用程序包安装禁止名单，添加至禁止名单的应用不允许在当前/指定用户下安装。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -201,13 +209,16 @@ addDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accoun
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
@@ -222,7 +233,7 @@ try {
 
 removeDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-在应用程序包安装黑名单中移除应用，在黑名单存在的情况下，在应用程序包安装黑名单中的应用不允许在当前/指定用户下安装。
+在应用程序包安装禁止名单中移除应用，在禁止名单存在的情况下，在应用程序包安装禁止名单中的应用不允许在当前/指定用户下安装。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -250,13 +261,16 @@ removeDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, acc
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
@@ -271,7 +285,7 @@ try {
 
 getDisallowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
 
-获取当前/指定用户下的应用程序包安装黑名单。
+获取当前/指定用户下的应用程序包安装禁止名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -289,7 +303,7 @@ getDisallowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 
 | 类型                | 说明                           |
 | ------------------- | ------------------------------ |
-| Array&lt;string&gt; | 返回当前用户下的应用程序包安装黑名单。 |
+| Array&lt;string&gt; | 返回当前用户下的应用程序包安装禁止名单。 |
 
 **错误码**：
 
@@ -305,14 +319,17 @@ getDisallowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let result: Array<string> = bundleManager.getDisallowedInstallBundlesSync(wantTemp, 100);
   console.info(`Succeeded in getting disallowed install bundles, result : ${JSON.stringify(result)}`);
 } catch (err) {
@@ -324,7 +341,7 @@ try {
 
 addDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-添加应用至包卸载黑名单，添加至黑名单的应用不允许在当前/指定用户下卸载。
+添加应用至包卸载禁止名单，添加至禁止名单的应用不允许在当前/指定用户下卸载。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -353,15 +370,19 @@ addDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, acco
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
+  // 参数需根据实际情况进行替换
   bundleManager.addDisallowedUninstallBundlesSync(wantTemp, appIds, 100);
   console.info('Succeeded in adding disallowed uninstall bundles.');
 } catch (err) {
@@ -373,7 +394,7 @@ try {
 
 removeDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-在包卸载黑名单中移除应用。在黑名单存在的情况下，在包卸载黑名单中的应用不允许在当前/指定用户下卸载。
+在包卸载禁止名单中移除应用。在禁止名单存在的情况下，在包卸载禁止名单中的应用不允许在当前/指定用户下卸载。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -402,15 +423,19 @@ removeDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, a
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
+  // 参数需根据实际情况进行替换
   bundleManager.removeDisallowedUninstallBundlesSync(wantTemp, appIds, 100);
   console.info('Succeeded in removing disallowed uninstall bundles.');
 } catch (err) {
@@ -422,7 +447,7 @@ try {
 
 getDisallowedUninstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
 
-获取当前/指定用户下包卸载黑名单接口。
+获取当前/指定用户下包卸载禁止名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -440,7 +465,7 @@ getDisallowedUninstallBundlesSync(admin: Want, accountId?: number): Array&lt;str
 
 | 类型                | 说明                           |
 | ------------------- | ------------------------------ |
-| Array&lt;string&gt; | 返回当前用户下的包卸载黑名单。 |
+| Array&lt;string&gt; | 返回当前用户下的包卸载禁止名单。 |
 
 **错误码**：
 
@@ -456,14 +481,17 @@ getDisallowedUninstallBundlesSync(admin: Want, accountId?: number): Array&lt;str
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let result: Array<String> = bundleManager.getDisallowedUninstallBundlesSync(wantTemp, 100);
   console.info(`Succeeded in getting disallowed uninstall bundles, result : ${JSON.stringify(result)}`);
 } catch (err) {
@@ -511,14 +539,17 @@ uninstall(admin: Want, bundleName: string, userId?: number, isKeepData?: boolean
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 参数需根据实际情况进行替换
 bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
   console.info('Succeeded in uninstalling bundles.');
 }).catch((err: BusinessError) => {
@@ -565,14 +596,17 @@ install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam):
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 为当前用户安装应用
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap'];
 
 bundleManager.install(wantTemp, hapFilePaths).then(() => {
@@ -583,19 +617,23 @@ bundleManager.install(wantTemp, hapFilePaths).then(() => {
 ```
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 为所有用户安装应用
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap'];
 const params: Record<string, string> = {
   'ohos.bms.param.enterpriseForAllUser': 'true'
 };
 let installParam: bundleManager.InstallParam = {
+  // 需根据实际情况进行替换
   userId: 100,
   installFlag: 0,
   parameters: params
@@ -648,9 +686,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { bundleManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let accountId: number = 100;
 bundleManager.getInstalledBundleList(wantTemp, accountId).then((result) => {
   console.info('Succeeded in getting installed bundle list.');
@@ -670,171 +710,6 @@ bundleManager.getInstalledBundleList(wantTemp, accountId).then((result) => {
 | userId                   | number                 | 否   | 是 | 指示用户id，默认值：调用方所在用户，取值范围：大于等于0。    |
 | installFlag              | number                 | 否   | 是 |安装标志。枚举值：0：应用初次安装，1：应用覆盖安装，2：应用免安装，默认值为应用初次安装。 |
 | parameters<sup>19+</sup> | Record&lt;string, string&gt; | 否   | 是 | 扩展参数，默认值为空。key取值支持"ohos.bms.param.enterpriseForAllUser"，若对应的value值为"true"，表示为所有用户安装应用。 |
-
-## bundleManager.addInstallationAllowedAppDistributionTypes<sup>20+</sup>
-
-addInstallationAllowedAppDistributionTypes(admin: Want, appDistributionTypes: Array&lt;AppDistributionType&gt;): void
-
-添加可安装应用的分发类型。添加成功后，当前设备可以安装对应分发类型的应用，但无法安装[AppDistributionType](#appdistributiontype20)中未添加的分发类型的应用。<br/>
-应用程序签名证书的分发类型详细介绍请参见[ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md#applicationinfo-1)的appDistributionType属性。
-
-**需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
-
-**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-**参数：**
-
-| 参数名       | 类型                                                       | 必填 | 说明                                                         |
-| ------------ | -------------------------------------------------------    | ---- | ------------------------------------------------------------ |
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)    | 是   | 企业设备管理扩展组件。                                       |
-| appDistributionTypes  | Array&lt;[AppDistributionType](#appdistributiontype20)&gt;  | 是   | 应用程序签名证书的分发类型数组。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 9200001  | The application is not an administrator application of the device. |
-| 9200002  | The administrator application does not have permission to manage the device. |                     |
-| 201      | Permission verification failed. The application does not have the permission required to call the API. |
-
-**示例：**
-
-```ts
-import { Want } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { bundleManager } from '@kit.MDMKit';
-
-let wantTemp: Want = {
-  //需根据实际情况进行替换
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-try {
-  let appDistributionTypes: Array<bundleManager.AppDistributionType> = [bundleManager.AppDistributionType.APP_GALLERY];
-  bundleManager.addInstallationAllowedAppDistributionTypes(wantTemp, appDistributionTypes);
-  console.info('Succeeded in adding allowed appDistributionTypes.');
-} catch (err) {
-  console.error(`Failed to add allowed appDistributionTypes. Code: ${err.code}, message: ${err.message}`);
-}
-```
-
-## bundleManager.removeInstallationAllowedAppDistributionTypes<sup>20+</sup>
-
-removeInstallationAllowedAppDistributionTypes(admin: Want, appDistributionTypes: Array&lt;AppDistributionType&gt;): void
-
-移除应用的分发类型。若只移除了数组中部分的分发类型，则当前设备可以安装数组中剩下的分发类型的应用，但无法安装[AppDistributionType](#appdistributiontype20)中未添加的分发类型的应用。<br/>
-应用程序签名证书的分发类型详细介绍请参见[ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md#applicationinfo-1)的appDistributionType属性。
-
-**需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
-
-**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-**参数：**
-
-| 参数名       | 类型                                                       | 必填 | 说明                                                         |
-| ------------ | -------------------------------------------------------    | ---- | ------------------------------------------------------------ |
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)    | 是   | 企业设备管理扩展组件。                                       |
-| appDistributionTypes  | Array&lt;[AppDistributionType](#appdistributiontype20)&gt;  | 是 | 应用程序签名证书的分发类型数组。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 9200001  | The application is not an administrator application of the device. |
-| 9200002  | The administrator application does not have permission to manage the device. |                     |
-| 201      | Permission verification failed. The application does not have the permission required to call the API. |
-
-**示例：**
-
-```ts
-import { Want } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { bundleManager } from '@kit.MDMKit';
-
-let wantTemp: Want = {
-  //需根据实际情况进行替换
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
-try {
-  let appDistributionTypes: Array<bundleManager.AppDistributionType> = [bundleManager.AppDistributionType.APP_GALLERY];
-  bundleManager.removeInstallationAllowedAppDistributionTypes(wantTemp, appDistributionTypes);
-  console.info('Succeeded in removing allowed appDistributionTypes.');
-} catch (err) {
-  console.error(`Failed to remove allowed appDistributionTypes. Code: ${err.code}, message: ${err.message}`);
-}
-```
-
-## bundleManager.getInstallationAllowedAppDistributionTypes<sup>20+</sup>
-
-getInstallationAllowedAppDistributionTypes(admin: Want): Array&lt;AppDistributionType&gt;
-
-获取可安装的应用程序签名证书的分发类型。
-
-**需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
-
-**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-**参数：**
-
-| 参数名       | 类型                                                       | 必填 | 说明                                                         |
-| ------------ | -------------------------------------------------------    | ---- | ------------------------------------------------------------ |
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)    | 是   | 企业设备管理扩展组件。                                       |
-
-**返回值：**
-
-| 类型                               | 说明                      |
-| ---------------------------------- | ------------------------- |
-| Array&lt;[AppDistributionType](#appdistributiontype20)&gt; | 应用程序签名证书的分发类型数组。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 9200001  | The application is not an administrator application of the device. |
-| 9200002  | The administrator application does not have permission to manage the device. |                     |
-| 201      | Permission verification failed. The application does not have the permission required to call the API. |
-
-**示例：**
-
-```ts
-import { Want } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { bundleManager } from '@kit.MDMKit';
-
-let wantTemp: Want = {
-  //需根据实际情况进行替换
-  bundleName: 'com.example.edmtest',
-  abilityName: 'com.example.edmtest.EnterpriseAdminAbility'
-};
-try {
-  let result: Array<bundleManager.AppDistributionType> = bundleManager.getInstallationAllowedAppDistributionTypes(wantTemp);
-  console.info(`Succeeded in getting allowed appDistributionTypes. Result: ${JSON.stringify(result)}`);
-} catch (err) {
-  console.error(`Failed to get allowed appDistributionTypes. Code: ${err.code}, message: ${err.message}`);
-}
-```
-
-## AppDistributionType<sup>20+</sup>
-
-应用程序签名证书的分发类型。详细介绍请参见[ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md#applicationinfo-1)的appDistributionType属性。
-
-**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-| 名称         | 值 | 说明                            |
-| ----------- | -------- | ------------------------------- |
-| APP_GALLERY | 1  | 应用市场安装的应用。 |
-| ENTERPRISE | 2  | 企业应用。 |
-| ENTERPRISE_NORMAL | 3  | 普通企业应用。 |
-| ENTERPRISE_MDM | 4  | 企业MDM应用。 |
-| INTERNALTESTING | 5  | 应用市场内测的应用。 |
-| CROWDTESTING | 6  | 众包测试应用。 |
 
 ## BundleInfo<sup>20+</sup>
 

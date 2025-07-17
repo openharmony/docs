@@ -59,7 +59,7 @@ static setSystemLanguage(language: string): void
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
- 
+
   // 订阅公共事件
   let subscriber: commonEventManager.CommonEventSubscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
   let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = { // 订阅者信息
@@ -77,7 +77,7 @@ static setSystemLanguage(language: string): void
       })
   }).catch((err: BusinessError) => {
       console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
-  });  
+  });
   ```
 
 ### setSystemRegion<sup>9+</sup>
@@ -535,84 +535,6 @@ try {
 } catch(error) {
   let err: BusinessError = error as BusinessError;
   console.error(`call System.setSystemCollation failed, error code: ${err.code}, message: ${err.message}.`);
-}
-```
-
-### getSystemNumberingSystems<sup>20+</sup>
-
-static getSystemNumberingSystems(): Map&lt;string, string&gt;
-
-获取系统支持的数字系统及示例。示例为数字0~9在对应数字系统下的显示。
-
-**系统接口**：此接口为系统接口。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**返回值：**
-
-| 类型                     | 说明    |
-| ---------------------- | ----- |
-| Map&lt;string, string&gt; | 系统支持的数字系统及示例。其中Map的key为表示数字系统的字符串，value为表示数字系统对应的示例。支持的范围和系统语言相关。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 202 | Permission verification failed. A non-system application calls a system API. |
-
-**示例：**
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { i18n } from '@kit.LocalizationKit';
-
-try {
-  let systemNumberingSystems : Map<string, string> = i18n.System.getSystemNumberingSystems();
-} catch(error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`call System.getSystemNumberingSystems failed, error code: ${err.code}, message: ${err.message}.`);
-}
-```
-
-### setSystemNumberingSystem<sup>20+</sup>
-
-static setSystemNumberingSystem(identifier: string):void
-
-设置系统的数字系统。
-
-**系统接口**：此接口为系统接口。
-
-**需要权限**：ohos.permission.UPDATE_CONFIGURATION
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：**
-
-| 参数名  | 类型      | 必填   | 说明                              |
-| ---- | ------- | ---- | ------------------------------- |
-| identifier | string | 是 | 系统支持的数字系统。支持的范围可以通过[getSystemNumberingSystems](#getsystemnumberingsystems20)获取。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID  | 错误信息                   |
-| ------ | ---------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed. A non-system application calls a system API. |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
-
-**示例：**
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { i18n } from '@kit.LocalizationKit';
-
-try {
-  i18n.System.setSystemNumberingSystem("arab"); // 如果设置当前系统不支持的数字系统会报错
-} catch(error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`call System.setSystemNumberingSystem failed, error code: ${err.code}, message: ${err.message}.`);
 }
 ```
 

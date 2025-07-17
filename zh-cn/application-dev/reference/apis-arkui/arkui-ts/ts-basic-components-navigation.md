@@ -49,31 +49,6 @@ Navigation(pathInfos: NavPathStack)
 | --------- | ------------------------------- | ---- | ------ |
 | pathInfos | [NavPathStack](#navpathstack10) | 是    | 导航控制器对象。 |
 
-### Navigation<sup>20+</sup>
-
-Navigation(pathInfos: NavPathStack, homeDestination: HomePathInfo)
-
-绑定路由栈到Navigation组件，并且指定一个NavDestination作为Navigation的导航栏（主页），适用于使用[NavPathStack](#navpathstack10)配合[navDestination](#navdestination10)属性或者系统路由表进行页面路由。使用示例参考[示例16（Navigation使用NavDestination作为导航栏）](#示例16navigation使用navdestination作为导航栏)。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名       | 类型                            | 必填   | 说明   |
-| --------- | ------------------------------- | ---- | ------ |
-| pathInfos | [NavPathStack](#navpathstack10) | 是    | 路由栈信息。 |
-| homeDestination | [HomePathInfo](#homepathinfo20) | 是    | 主页NavDestination信息。 |
-
-> **说明：**
->
-> 如果使用了主页NavDestination，则Navigation有如下变化：
->
-> - 开发者写在Navigation组件内的内容不会被创建。
->
-> - 对于Navigation的各种属性，如果主页NavDestination有对应功能的属性，则Navigation的属性不生效。
-
 ## 属性
 
 除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
@@ -433,7 +408,7 @@ minContentWidth(value: Dimension)
 
 ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;LayoutSafeAreaEdge&gt;)
 
-控制组件的布局，使其扩展到非安全区域
+控制组件的布局，使其扩展到非安全区域。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -547,7 +522,7 @@ enableToolBarAdaptation(enable: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| enable  | Optional&lt;boolean&gt; | 是   |是否启用Navigation和NavDestination的工具栏自适应能力。默认值：true。 <br/>true：启用Navigation和NavDestination的工具栏自适应能力。<br/>false：不启用Navigation和NavDestination的工具栏自适应能力。 |
+| enable  | Optional&lt;boolean&gt; | 是   |是否启用Navigation和NavDestination的工具栏自适应能力。<br/>默认值：true<br/>true：启用Navigation和NavDestination的工具栏自适应能力。<br/>false：不启用Navigation和NavDestination的工具栏自适应能力。 |
 
 ### splitPlaceholder<sup>20+</sup>
 
@@ -1743,7 +1718,7 @@ Navigation自定义标题。
 | 名称  | 说明                                                         |
 | ----- | ------------------------------------------------------------ |
 | Stack | 导航栏与内容区独立显示，相当于两个页面。                     |
-| Split | 导航栏与内容区分两栏显示。<br/>以下navBarWidthRange的值用[minNavBarWidth,maxNavBarWidth]表示<br/>1.当navBarWidth属性的值，在navBarWidthRange属性的值范围以外时，navBarWidth按如下规则显示：<br/>navBarWidth < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) > maxNavBarWidth时，navBarWidth修正为maxNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp)在navBarWidthRange范围内，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth。<br/>2.当navBarWidth属性的值，在navBarWidthRange属性的值范围以内时，navBarWidth按如下规则显示：<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为minNavBarWidth；<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth;<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度时，navBarWidth为设置的值。<br/>3.缩小组件尺寸时，先缩小内容区的尺寸至minContentWidth，然后再缩小导航栏的尺寸至minNavBarWidth。若继续缩小，先缩小内容区，内容区消失后再缩小导航栏。<br/>4.设置导航栏为固定尺寸时，若持续缩小组件尺寸，导航栏最后压缩显示。<br/>5.若只设置了navBarWidth属性，则导航栏宽度为navBarWidth，且分割线不可拖动。<br/>6.分割线的热区左右各2vp，建议避让4vp以上。<br/>7.Split模式下，内容区若只存在一个页面，则页面左上角不会显示返回按钮。 |
+| Split | 导航栏与内容区分两栏显示。<br/>以下navBarWidthRange的值用[minNavBarWidth,maxNavBarWidth]表示<br/>**1.** 当navBarWidth属性的值，在navBarWidthRange属性的值范围以外时，navBarWidth按如下规则显示：<br/>navBarWidth < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) > maxNavBarWidth时，navBarWidth修正为maxNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp)在navBarWidthRange范围内，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth。<br/>**2.** 当navBarWidth属性的值，在navBarWidthRange属性的值范围以内时，navBarWidth按如下规则显示：<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为minNavBarWidth；<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth;<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度时，navBarWidth为设置的值。<br/>**3.** 缩小组件尺寸时，先缩小内容区的尺寸至minContentWidth，然后再缩小导航栏的尺寸至minNavBarWidth。若继续缩小，先缩小内容区，内容区消失后再缩小导航栏。<br/>**4.** 设置导航栏为固定尺寸时，若持续缩小组件尺寸，导航栏最后压缩显示。<br/>**5.** 若只设置了navBarWidth属性，则导航栏宽度为navBarWidth，且分割线不可拖动。<br/>**6.** 分割线的热区左右各2vp，建议避让4vp以上。<br/>**7.** Split模式下，内容区若只存在一个页面，则页面左上角不会显示返回按钮。 |
 | Auto  | API version 9之前：窗口宽度>=520vp时，采用Split模式显示；窗口宽度<520vp时，采用Stack模式显示。<br/>API version 10及以上：窗口宽度>=600vp时，采用Split模式显示；窗口宽度<600vp时，采用Stack模式显示，600vp等于minNavBarWidth(240vp) + minContentWidth (360vp)。 |
 
 ## NavigationOperation<sup>11+</sup>枚举说明
@@ -1874,19 +1849,6 @@ type SystemBarStyle = SystemBarStyle
 | 类型     | 说明               |
 | -------- | ------------------ |
 | [SystemBarStyle](../arkts-apis-window-i.md#systembarstyle12)   | 状态栏文字颜色。默认值：`'#0xE5FFFFFF'`。|
-
-## HomePathInfo<sup>20+</sup>
-
-主页NavDestination的信息。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    | 类型      | 只读    |  可选   | 说明                   |
-| ----- | ------- | ---- | ---- | ----------------- |
-| name  | string  | 否 |   否    | 主页NavDestination的页面名称。 |
-| param | Object | 否 |   是    | 主页NavDestination的页面详细参数。 |
 
 ## 示例
 
@@ -4555,87 +4517,3 @@ struct NavigationExample {
 ```
 
 ![zh-cn_image_navigation_toolbar_adaptation_landscape](figures/zh-cn_image_navigation_toolbar_adaptation_landscape.gif)
-
-### 示例16（Navigation使用NavDestination作为导航栏）
-
-该示例代码主要展示Navigation可以使用NavDestination作为导航栏（主页）。
-
-```ts
-@Component
-struct PageHome {
-  private stack: NavPathStack | undefined = undefined;
-
-  build() {
-    NavDestination() {
-      Stack({alignContent: Alignment.Center}) {
-        Button('push PageOne').onClick(() => {
-          this.stack?.pushPath({name: 'PageOne'});
-        })
-      }.width('100%').height('100%')
-    }.title('PageHome')
-    .onReady((ctx: NavDestinationContext) => {
-      this.stack = ctx.pathStack;
-    })
-  }
-}
-
-@Builder
-function PageHomeBuilder() {
-  PageHome()
-}
-
-@Component
-struct PageOne {
-  build() {
-    NavDestination() {
-      Stack({alignContent: Alignment.Center}) {
-        Text('PageOne')
-      }.width('100%').height('100%')
-    }.title('PageOne')
-  }
-}
-
-@Builder
-function PageOneBuilder() {
-  PageOne()
-}
-
-@Entry
-@Component
-struct Index {
-  private stack: NavPathStack = new NavPathStack();
-
-  build() {
-    // 在这里配置主页NavDestination信息
-    Navigation(this.stack, { name: 'PageHome' }) {
-    }
-    .width('100%').height('100%')
-  }
-}
-```
-在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:route_map"。
-```json
-// src/main/resources/base/profile/route_map.json
-{
-  "routerMap": [
-    {
-      "name": "PageHome",
-      "pageSourceFile": "src/main/ets/pages/Index.ets",
-      "buildFunction": "PageHomeBuilder",
-      "data": {
-        "description": "this is PageHome"
-      }
-    },
-    {
-      "name": "PageOne",
-      "pageSourceFile": "src/main/ets/pages/Index.ets",
-      "buildFunction": "PageOneBuilder",
-      "data": {
-        "description": "this is PageOne"
-      }
-    }
-  ]
-}
-```
-
-![zh-cn_image_navigation_home_NavDestination](figures/zh-cn_image_navigation_home_NavDestination.gif)

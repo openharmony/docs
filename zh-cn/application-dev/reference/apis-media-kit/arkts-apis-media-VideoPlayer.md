@@ -1,6 +1,7 @@
 # 废弃的Interface (VideoPlayer, deprecated)
 
 > **说明：**
+>
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer](arkts-apis-media-AVPlayer.md)替代。
 
 视频播放管理类，用于管理和播放视频媒体。在调用VideoPlayer的方法前，需要先通过[createVideoPlayer()](arkts-apis-media-f.md#mediacreatevideoplayerdeprecated)构建一个VideoPlayer实例。
