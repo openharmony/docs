@@ -206,8 +206,8 @@
       - [自定义声明式节点 (BuilderNode)](arkts-user-defined-arktsNode-builderNode.md)
       - [设置自定义节点跨语言属性](arkts-user-defined-arktsNode-crossLanguage.md)
     - 自定义绘制
-      - [自定义绘制修改器 (DrawModifier)](arkts-user-defined-extension-drawModifier.md)
       - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
+      - [自定义绘制修改器 (DrawModifier)](arkts-user-defined-extension-drawModifier.md)
     - 自定义扩展<!--arkts-modifier-->
       - [自定义扩展概述](arkts-user-defined-modifier.md)
       - [属性修改器 (AttributeModifier)](arkts-user-defined-extension-attributeModifier.md)
@@ -229,10 +229,10 @@
     <!--Del-->
     - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
     - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](arkts-isolated-components.md)
+    <!--DelEnd-->
   - UI开发调优<!--ui-inspector-profiler-->
     - [预览](ui-ide-previewer.md)
     - [调试](ui-inspector-profiler.md)
-    <!--DelEnd-->
   - 使用NDK接口构建UI<!--arkts-use-ndk-->
     - [NDK接口概述](ndk-build-ui-overview.md)
     - [接入ArkTS页面](ndk-access-the-arkts-page.md)
