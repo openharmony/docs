@@ -55,16 +55,19 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let enterpriseInfo: adminManager.EnterpriseInfo = {
+  // 需根据实际情况进行替换
   name: 'enterprise name',
   description: 'enterprise description'
-}
+};
 
 adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_SUPER, (err) => {
   if (err) {
@@ -115,16 +118,19 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let enterpriseInfo: adminManager.EnterpriseInfo = {
+  // 需根据实际情况进行替换
   name: 'enterprise name',
   description: 'enterprise description'
-}
+};
 
 adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100, (err) => {
   if (err) {
@@ -180,17 +186,20 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let enterpriseInfo: adminManager.EnterpriseInfo = {
+  // 需根据实际情况进行替换
   name: 'enterprise name',
   description: 'enterprise description'
-}
+};
 
 adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100).catch(
   (err: BusinessError) => {
@@ -233,11 +242,13 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 adminManager.disableAdmin(wantTemp, (err) => {
@@ -285,11 +296,13 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 adminManager.disableAdmin(wantTemp, 100, (err) => {
@@ -336,8 +349,10 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.disableSuperAdmin(bundleName, (err) => {
@@ -389,9 +404,11 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.disableSuperAdmin(bundleName).catch((err: BusinessError) => {
@@ -430,11 +447,13 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 adminManager.isAdminEnabled(wantTemp, (err, result) => {
@@ -478,13 +497,16 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 参数需根据实际情况进行替换
 adminManager.isAdminEnabled(wantTemp, 100, (err, result) => {
   if (err) {
     console.error(`Failed to query admin is enabled. Code: ${err.code}, message: ${err.message}`);
@@ -531,14 +553,17 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 参数需根据实际情况进行替换
 adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
   console.info(`Succeeded in querying admin is enabled or not, result : ${result}`);
 }).catch((err: BusinessError) => {
@@ -577,8 +602,10 @@ isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.isSuperAdmin(bundleName, (err, result) => {
@@ -626,9 +653,11 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 需根据实际情况进行替换
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.isSuperAdmin(bundleName).then((result) => {
@@ -667,6 +696,7 @@ getSuperAdmin(): Promise\<Want>
 **示例**：
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 adminManager.getSuperAdmin().then((result) => {
@@ -712,16 +742,19 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let enterpriseInfo: adminManager.EnterpriseInfo = {
+  // 需根据实际情况进行替换
   name: 'enterprise name',
   description: 'enterprise description'
-}
+};
 
 adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, (err) => {
   if (err) {
@@ -773,17 +806,20 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let enterpriseInfo: adminManager.EnterpriseInfo = {
+  // 需根据实际情况进行替换
   name: 'enterprise name',
   description: 'enterprise description'
-}
+};
 
 adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch((err: BusinessError) => {
   console.error(`Failed to set enterprise info. Code: ${err.code}, message: ${err.message}`);
@@ -822,11 +858,13 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 adminManager.getEnterpriseInfo(wantTemp, (err, result) => {
@@ -875,12 +913,14 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 adminManager.getEnterpriseInfo(wantTemp).then((result) => {
@@ -927,11 +967,13 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -986,12 +1028,14 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -1038,11 +1082,13 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -1097,12 +1143,14 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
@@ -1150,12 +1198,15 @@ authorizeAdmin(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleName: string = "com.example.application";
 
 adminManager.authorizeAdmin(wantTemp, bundleName, (err) => {
@@ -1210,13 +1261,16 @@ authorizeAdmin(admin: Want, bundleName: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let bundleName: string = "com.example.application";
 
 adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
@@ -1255,6 +1309,7 @@ getAdmins(): Promise&lt;Array&lt;Want&gt;&gt;
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1302,16 +1357,19 @@ replaceSuperAdmin(oldAdmin: Want, newAdmin: Want, isKeepPolicy: boolean): void
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let oldAdmin: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let newAdmin: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication_new',
-  abilityName: 'NewEntryAbility',
+  abilityName: 'NewEntryAbility'
 };
 try {
   adminManager.replaceSuperAdmin(oldAdmin, newAdmin, false);
@@ -1359,12 +1417,14 @@ setAdminRunningMode(admin: Want, mode: RunningMode): void
 **示例：**
 
 ```ts
+import { adminManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let admin: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
   adminManager.setAdminRunningMode(admin, adminManager.RunningMode.MULTI_USER);
