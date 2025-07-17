@@ -455,7 +455,7 @@
           - [Component Navigation (Recommended)](ui/arkts-navigation-navigation.md)
           - [Navigation Transition](ui/arkts-navigation-transition.md)
           - [Page Routing (@ohos.router) (Not Recommended)](ui/arkts-routing.md)
-          - [Page Routing](ui/arkts-router-to-navigation.md)
+          - [Transition from Router to Navigation](ui/arkts-router-to-navigation.md)
         - Using Text<!--arkts-use-text-->
           - [Introduction to Text](ui/arkts-text-introduction.md)
           - [Text Display (Text/Span)](ui/arkts-common-components-text-display.md)
@@ -463,7 +463,7 @@
           - [Rich Text (RichEditor)](ui/arkts-common-components-richeditor.md)
           - [Symbol Glyph (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
           - [Styled String (StyledString/MutableStyledString)](ui/arkts-styled-string.md)
-        - Using Dialog Box<!--arkts-use-dialog-->
+        - Using Popup Windows<!--arkts-use-dialog-->
           - [Popup Window Overview](ui/arkts-dialog-overview.md)
           - Using Dialog Boxes (Dialog)<!--arkts-use-dialogs-->
             - [Dialog Box Overview](ui/arkts-base-dialog-overview.md)
@@ -474,15 +474,15 @@
             - [Dialog Box Layer Management](ui/arkts-dialog-levelorder.md)
             - [Dialog Controller](ui/arkts-dialog-controller.md)
             - [Dialog Box Focus Policy](ui/arkts-dialog-focusable.md)
-          - Using a Menu<!--arkts-use-menu-->
+          - Using Menus<!--arkts-use-menu-->
             - [Menu Overview](ui/arkts-menu-overview.md)
             - [Menu Control (Menu)](ui/arkts-popup-and-menu-components-menu.md)
-            - [Global Menus Independent of UI Components (openMenu)](ui/arkts-popup-and-menu-components-uicontext-menu.md)
-          - Using a Popup<!--arkts-use-popup-->
+            - [Global Menu Independent of UI Components (openMenu)](ui/arkts-popup-and-menu-components-uicontext-menu.md)
+          - Using Popups<!--arkts-use-popup-->
             - [Popup Overview](ui/arkts-popup-overview.md)
             - [Popup](ui/arkts-popup-and-menu-components-popup.md)
-            - [Global Popups Independent of UI Components (openPopup)](ui/arkts-popup-and-menu-components-uicontext-popup.md)
-          - Binding a Modal Page<!--arkts-bind-modal-->
+            - [Global Popup Independent of UI Components (openPopup)](ui/arkts-popup-and-menu-components-uicontext-popup.md)
+          - Binding Modal Pages<!--arkts-bind-modal-->
             - [Modal Page Overview](ui/arkts-modal-overview.md)
             - [Binding a Semi-Modal Page (bindSheet)](ui/arkts-sheet-page.md)
             - [Binding a Full-Modal Page (bindContentCover)](ui/arkts-contentcover-page.md)
@@ -547,12 +547,12 @@
         - Implementing Accessibility and Aging-Friendly Design<!--arkts-support-accessibility-friendliness-->
           - [Supporting Accessibility](ui/arkts-universal-attributes-accessibility.md)
           - [Supporting Aging-Friendly Design](ui/arkui-support-for-aging-adaptation.md)
-        - Theme Settings<!--arkts-theme-->
-          - [Dark and Light Mode Adaptation](ui/ui-dark-light-color-adaptation.md)
+        - Setting the Theme<!--arkts-theme-->
+          - [Implementing Dark and Light Mode Adaptation](ui/ui-dark-light-color-adaptation.md)
           - [Configuring In-Application Theme Skinning](ui/theme_skinning.md)
         - [Using the UI Context API for UI Operations (UIContext)](ui/arkts-global-interface.md)
         - [Using Component Snapshot (ComponentSnapshot)](ui/arkts-uicontext-component-snapshot.md)
-        - Embedded Components<!--arkts-ui-cross-process-->
+        - Using Embedded Components<!--arkts-ui-cross-process-->
           - [Atomic Service Full Screen Launch Component (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
           - [In-Application Embedded Component (EmbeddedComponent)](ui/arkts-embedded-components.md)
           <!--Del-->
@@ -2683,7 +2683,7 @@
           - [Basic Types](reference/apis-arkui/arkui-ts/ts-types.md)
           - [Pixel Units](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
           - [Enums](reference/apis-arkui/arkui-ts/ts-appendix-enums.md)
-          - [Common Event Callback](reference/apis-arkui/arkui-ts/ts-uicommonevent.md)
+          - [Common Event Callbacks](reference/apis-arkui/arkui-ts/ts-uicommonevent.md)
           - [SVG Tags](reference/apis-arkui/arkui-ts/ts-basic-svg.md)
           <!--Del-->
           - [Enums (System API)](reference/apis-arkui/arkui-ts/ts-appendix-enums-sys.md)
