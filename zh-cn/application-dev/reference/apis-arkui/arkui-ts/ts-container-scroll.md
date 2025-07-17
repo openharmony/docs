@@ -1159,7 +1159,7 @@ struct ScrollExample {
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .margin({ top: 10 })
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }.width('100%')
       }
       .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
@@ -1194,7 +1194,7 @@ struct ScrollExample {
       Button('scroll 100')
         .height('5%')
         .onClick(() => { // 点击后滑动到指定位置，即下滑100.0vp的距离，滑动过程配置有动画
-          let curve = curves.interpolatingSpring(10, 1, 228, 30); //创建一个阶梯曲线
+          let curve = curves.interpolatingSpring(10, 1, 228, 30); //创建一个弹簧曲线
           const yOffset: number = this.scroller.currentOffset().yOffset;
           this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100, animation: { duration: 1000, curve: curve } });
         })
@@ -1337,7 +1337,7 @@ struct StickyNestedScroll {
                   Text("item" + item)
                     .fontSize(16)
                 }.listCard()
-              }, (item: string) => item)
+              }, (item: number) => item.toString())
             }.width("100%")
             .edgeEffect(EdgeEffect.Spring)
             .nestedScroll({
@@ -1412,7 +1412,7 @@ struct NestedScroll {
                 .textAlign(TextAlign.Center)
                 .backgroundColor(Color.White)
             }.width("100%").height(100)
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }
         .width("100%")
         .height("100%")
@@ -1466,7 +1466,7 @@ struct NestedScroll {
 @Entry
 @Component
 struct Index {
-  scroller: Scroller = new Scroller;
+  scroller: Scroller = new Scroller();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   build() {
     Scroll(this.scroller) {
@@ -1481,7 +1481,7 @@ struct Index {
             .borderRadius(15)
             .fontSize(16)
             .textAlign(TextAlign.Center)
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }.width('100%').backgroundColor(0xDCDCDC)
     }
     .backgroundColor(Color.Yellow)
@@ -1506,7 +1506,6 @@ struct ListExample {
   @State listSpace: number = 10;
   @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100);
   @State listIndex: number = -1;
-  @State mess:string = "null";
   @State itemBackgroundColorArr: boolean[] = [false];
   aboutToAppear(){
     // 初始化数据源。
@@ -1528,7 +1527,7 @@ struct ListExample {
               .borderRadius(10)
               .backgroundColor( this.itemBackgroundColorArr[item] ? 0x68B4FF: 0xFFFFFF)
           }
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .backgroundColor(Color.Gray)
       .layoutWeight(1)
@@ -1661,7 +1660,7 @@ struct EnablePagingExample {
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .backgroundColor(0xFFFFFF)
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }
       }.width('90%').height('90%')
       .enablePaging(true)
@@ -1689,7 +1688,7 @@ struct StickyNestedScroll {
     Column() {
       Row() {
         Button('有动画scrollTo').onClick(() => {
-          let curve = curves.interpolatingSpring(0.5, 5, 10, 15) //创建一个阶梯曲线
+          let curve = curves.interpolatingSpring(0.5, 5, 10, 15) //创建一个弹簧曲线
           const yOffset: number = this.scroller.currentOffset().yOffset;
           this.scroller.scrollTo({
             xOffset: 0,
@@ -1722,7 +1721,7 @@ struct StickyNestedScroll {
       }
       .scrollable(ScrollDirection.Vertical)
       .edgeEffect(EdgeEffect.Spring) //设置边缘效果
-      .fadingEdge(false, { fadingEdgeLength: LengthMetrics.vp(80) }) //设置边缘渐隐效果
+      .fadingEdge(false) //关闭边缘渐隐效果
       .scrollBar(BarState.Auto)
       .friction(undefined)
       .backgroundColor('#DCDCDC')
