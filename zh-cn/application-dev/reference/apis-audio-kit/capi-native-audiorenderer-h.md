@@ -56,6 +56,9 @@
 | [typedef void (\*OH_AudioRenderer_OnErrorCallback)(OH_AudioRenderer* renderer, void* userData,OH_AudioStream_Result error)](#oh_audiorenderer_onerrorcallback) | OH_AudioRenderer_OnErrorCallback | 音频流错误事件回调函数。 |
 | [OH_AudioStream_Result OH_AudioRenderer_GetFastStatus(OH_AudioRenderer* renderer,OH_AudioStream_FastStatus* status)](#oh_audiorenderer_getfaststatus) | - | 获取音频播放过程中的运行状态，是否在低时延状态下工作。 |
 | [typedef void (\*OH_AudioRenderer_OnFastStatusChange)(OH_AudioRenderer* renderer,void* userData,OH_AudioStream_FastStatus status)](#oh_audiorenderer_onfaststatuschange) | OH_AudioRenderer_OnFastStatusChange | 音频播放过程中低时延状态改变事件的回调函数。 |
+| [OH_AudioStream_Result OH_AudioRenderer_SetLoudnessGain(OH_AudioRenderer* renderer, float loudnessGain)](#oh_audiorenderer_setloudnessgain) | OH_AudioRenderer_SetLoudnessGain | 设置音频播放响度值。 |
+| [OH_AudioStream_Result OH_AudioRenderer_GetLoudnessGain(OH_AudioRenderer* renderer, float* loudnessGain)](#oh_audiorenderer_getloudnessgain) | OH_AudioRenderer_GetLoudnessGain | 获取音频播放响度值。 |
+
 
 ## 函数说明
 
@@ -981,4 +984,55 @@ typedef void (*OH_AudioRenderer_OnFastStatusChange)(OH_AudioRenderer* renderer,v
 | void* userData | 指向应用自定义的数据存储区域。 |
 | status | 返回当前低时延状态。 |
 
+### OH_AudioRenderer_SetLoudnessGain()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_SetLoudnessGain(OH_AudioRenderer* renderer, float loudnessGain)
+```
+
+**描述**
+
+设置音频播放响度值。默认响度值是0.0dB。<br>本接口仅允许音频流类型[OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage)为音乐、电影或视频、有声读物的场景使用。<br>本接口仅允许音频时延模式[OH_AudioStream_LatencyMode](capi-native-audiostream-base-h.md#oh_audiostream_latencymode)为普通时延的场景使用。<br>本接口不允许在高清通路场景下使用。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| ------ | ---- |
+| [OH_AudioRenderer](capi-ohaudio-oh-audiorendererstruct.md)* renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 |
+| float loudnessGain | 设置播放的响度值（响度值范围：-90.0 - 24.0）。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_AudioStream_Result](capi-native-audiostream-base-h.md#oh_audiostream_result) | AUDIOSTREAM_SUCCESS：函数执行成功。<br>         AUDIOSTREAM_ERROR_INVALID_PARAM：1.参数renderer为nullptr，或当前音频流不支持调节响度。2.响度值不在-90.0 - 24.0内。 |
+
+### OH_AudioRenderer_GetLoudnessGain()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_GetLoudnessGain(OH_AudioRenderer* renderer, float* loudnessGain)
+```
+
+**描述**
+
+获取音频播放响度值。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| ------ | ---- |
+| [OH_AudioRenderer](capi-ohaudio-oh-audiorendererstruct.md)* renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 |
+| float* loudnessGain | 指向接收播放响度值的变量的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| ------ | ---- |
+| [OH_AudioStream_Result](capi-native-audiostream-base-h.md#oh_audiostream_result) | AUDIOSTREAM_SUCCESS：函数执行成功。<br>         AUDIOSTREAM_ERROR_INVALID_PARAM：1. 参数renderer为nullptr。2. 参数loudnessGain为nullptr。 |
 

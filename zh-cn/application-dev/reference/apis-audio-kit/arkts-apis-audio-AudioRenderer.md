@@ -2628,3 +2628,52 @@ try {
   console.error(`ERROR: ${error}`);
 }
 ```
+
+## setLoudnessGain<sup>20+</sup>
+
+setLoudnessGain(loudnessGain: number): Promise\<void>
+
+设置播放响度。使用Promise异步回调。默认的响度值为0.0dB。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名       | 类型    | 必填 | 说明                                      |
+| ------------ | -------| ---- |------------------------------------------ |
+| loudnessGain | number | 是   | 设置播放的响度值（响度范围：-90.0 - 24.0）。 |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation is not supported on this renderer, e.g. the stream usage of this renderer is not one of [STREAM_USAGE_MUSIC](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage), <br>[STREAM_USAGE_MOVIE](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage), or [STREAM_USAGE_AUDIOBOOK](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage), or this renderer is routed through the high-resolution playback path. |
+
+**示例：**
+
+```ts
+audioRenderer.setLoudnessGain(1.0);
+```
+
+## getLoudnessGain<sup>20+</sup>
+
+getLoudnessGain(): number
+
+获取播放响度
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**示例：**
+
+```ts
+let loudnessGain = audioRenderer.getLoudnessGain();
+```
