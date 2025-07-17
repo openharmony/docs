@@ -771,13 +771,13 @@ directionLight(direction: common2D.Point3d, color: Color, intensity: number, bum
 | direction  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12)         | 是   | 方向光的入射方向。|
 | color  | [Color](#color20)         | 是   | 光照颜色。|
 | intensity  | number         | 是   | 光照强度，非负数。|
-| bumpMask  | [Mask](#mask20)         | 否   | 代表高度信息的可动画mask对象，默认值为全局高度为0的全局mask，表现为全局光照效果。|
+| bumpMask  | [Mask](#mask20)         | 否   | 置换贴图，用于描述二维图像表面的三维细节，通过法线增强图像局部表面细节和光照反射效果。默认为空，表现为全局无细节平面光照效果。|
 
 **返回值：**
 
 | 类型              | 说明                               |
 | ----------------- | --------------------------------- |
-| [Filter](#filter) | 返回当前效果的filter对象。 |
+| [Filter](#filter) | 返回挂载了由置换贴图控制的光照效果的Filter。 |
 
 **错误码：**
 
@@ -836,14 +836,14 @@ variableRadiusBlur(radius: number, radiusMap: Mask): Filter
 **参数：**
 | 参数名         | 类型                  | 必填 | 说明                       |
 | ------------- | --------------------- | ---- | ------------------------- |
-| radius  | number         | 是   | 最大模糊半径。|
-| radiusMap  |  [Mask](#mask20)    | 是   | 代表模糊程度的mask对象。|
+| radius  | number         | 是   | 最大模糊半径，该值越大越模糊。取值范围为[0, 128]。模糊半径设置为0时不模糊；模糊半径设置小于0的值时，按值为0处理；设置大于128的值时，按值为128处理。|
+| radiusMap  |  [Mask](#mask20)    | 是   | 代表模糊程度的Mask对象。|
 
 **返回值：**
 
 | 类型              | 说明                               |
 | ----------------- | --------------------------------- |
-| [Filter](#filter) | 返回当前效果的filter对象。 |
+| [Filter](#filter) | 返回当前效果的Filter对象。 |
 
 **错误码：**
 
