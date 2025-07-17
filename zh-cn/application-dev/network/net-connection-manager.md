@@ -106,14 +106,11 @@
 ```ts
 import { connection } from '@kit.NetworkKit';
 
-function test() {
-  const netConnection = connection.createNetConnection();
-
-  /* 监听默认网络改变。 */
-  netConnection.on('netAvailable', (data: connection.NetHandle) => {
-    console.log(JSON.stringify(data));
-  });
-}
+const netConnection = connection.createNetConnection();
+/* 监听默认网络改变。 */
+netConnection.on('netAvailable', (data: connection.NetHandle) => {
+ console.log(JSON.stringify(data));
+})
 ```
 
 ### 默认网络变化后重新建立网络连接
@@ -166,7 +163,7 @@ function socketSend(tcpSendOptions: socket.TCPSendOptions) {
 
 function socketTest() {
   const netConnection = connection.createNetConnection();
-  // 发生默认网络切换，重新建立socket。
+  // 网络切换会导致网络发生中断，原socket失效，故需重新建立socket。
   netConnection.on('netAvailable', (netHandle: connection.NetHandle) => {
     console.info("default network changed: " + JSON.stringify(netHandle));
     sock.close();
@@ -214,7 +211,7 @@ function socketTest() {
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
-1. 查询默认网络或指定网络连接信息代码示例
+2. 查询默认网络或指定网络连接信息代码示例
    
    通过调用[getDefaultNet](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetdefaultnet)方法，获取默认的数据网络(NetHandle)；调用[getNetCapabilities](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilities)方法，获取该NetHandle对应网络的能力信息。能力信息包含了网络类型(蜂窝网络、Wi-Fi网络、以太网网络等)、网络具体能力等网络信息。也可以调用[getConnectionProperties](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetconnectionproperties)方法，获取该NetHandle对应网络的连接信息。
 
@@ -286,7 +283,7 @@ function socketTest() {
       })
     }
     ```
-1. 查询所有网络连接信息代码示例
+3. 查询所有网络连接信息代码示例
    
    通过调用[getAllNets](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetallnets)方法，获取所有处于连接状态的网络列表(Array\<NetHandle>)。然后遍历获取到的NetHandle数组，分别调用[getNetCapabilities](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilities)方法，获取该NetHandle对应网络的能力信息，能力信息包含了网络类型(蜂窝网络、Wi-Fi网络、以太网网络等)、网络具体能力等网络信息。也可以调用[getConnectionProperties](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetconnectionproperties)方法，获取该NetHandle对应网络的连接信息。
 
@@ -328,32 +325,22 @@ function socketTest() {
 2. 代码示例
    
    调用[getDefaultNetSync](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetdefaultnetsync9)方法，获取当前默认网络的netHandle，netHandle有效的情况下，调用[getNetCapabilitiesSync](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilitiessync10)方法，获取NetHandle对应网络的能力信息，根据获取到的能力信息，判断networkCap数组中的值判断网络是否可用。
+   NET_CAPABILITY_CHECKING_CONNECTIVITY表示在进行连通性判断的过程中，当不处于连通性判断过程中，且networkCap数组中包含NET_CAPABILITY_VALIDATED表示网络连通性校验通过，可以访问互联网。
 
     ```ts
     // 从@kit.NetworkKit中导入connection命名空间。
     import { connection } from '@kit.NetworkKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
-    function judgeHasNet(): boolean {
-      // 获取默认激活的数据网络。
-      let netHandle = connection.getDefaultNetSync();
-      if (!netHandle || netHandle.netId === 0) {
-        console.info("getDefaultNetSync fail");
-        return false;
-      }
+    // 获取默认激活的数据网络。
+    let netHandle = connection.getDefaultNetSync();
+    if (!netHandle || netHandle.netId === 0) {
+      console.info("getDefaultNetSync fail");
+    } else {
       console.info("default network: " + JSON.stringify(netHandle));
       // 获取netHandle对应网络的能力信息。
       let netCapabilities = connection.getNetCapabilitiesSync(netHandle);
-      console.info("network capabilities: " + JSON.stringify(netCapabilities));
-      let cap = netCapabilities.networkCap || [];
-      // 判断网络是否可以访问互联网。
-      if (!cap.includes(connection.NetCap.NET_CAPABILITY_CHECKING_CONNECTIVITY) &&
-      cap.includes(connection.NetCap.NET_CAPABILITY_VALIDATED)) {
-        // NET_CAPABILITY_CHECKING_CONNECTIVITY表示在进行连通性判断的过程中，当不处于连通性判断过程中，且networkCap数组中包含NET_CAPABILITY_VALIDATED表示网络连通性校验通过
-        return true;
-      } else {
-        return false;
-      }
+      console.info("network capabilities: " + JSON.stringify(netCapabilities));    
     }
     ```
 
