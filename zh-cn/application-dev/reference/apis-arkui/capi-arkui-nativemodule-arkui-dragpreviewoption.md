@@ -1,8 +1,8 @@
-# ArkUI_DragEvent
+# ArkUI_DragPreviewOption
 
 ## 概述
 
-拖拽事件。
+设置拖拽跟手图的相关自定义参数。
 
 **起始版本：** 12
 
