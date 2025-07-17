@@ -107,7 +107,7 @@
 import { connection } from '@kit.NetworkKit';
 
 const netConnection = connection.createNetConnection();
-/* 监听默认网络改变。 */
+// 监听默认网络改变。
 netConnection.on('netAvailable', (data: connection.NetHandle) => {
  console.log(JSON.stringify(data));
 })
@@ -124,7 +124,7 @@ netConnection.on('netAvailable', (data: connection.NetHandle) => {
 import { connection, socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 创建socket对象
+// 创建socket对象。
 let sock: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 function useSocket() {
@@ -168,7 +168,7 @@ function socketTest() {
     console.info("default network changed: " + JSON.stringify(netHandle));
     sock.close();
     sock = socket.constructTCPSocketInstance();
-    // 通过socket发送数据
+    // 通过socket发送数据。
     useSocket();
   });
 
@@ -198,7 +198,7 @@ function socketTest() {
     import { connection } from '@kit.NetworkKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
-    // 调用[getAllNets](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetallnets)方法，获取所有处于连接状态的网络列表。
+    // 调用getAllNets方法，获取所有处于连接状态的网络列表。
     connection.getAllNets().then((data: connection.NetHandle[]) => {
       console.info("Succeeded to get data: " + JSON.stringify(data));
       if (data) {
@@ -335,12 +335,25 @@ function socketTest() {
     // 获取默认激活的数据网络。
     let netHandle = connection.getDefaultNetSync();
     if (!netHandle || netHandle.netId === 0) {
-      console.info("getDefaultNetSync fail");
+      console.error("getDefaultNetSync fail");
     } else {
       console.info("default network: " + JSON.stringify(netHandle));
       // 获取netHandle对应网络的能力信息。
       let netCapabilities = connection.getNetCapabilitiesSync(netHandle);
-      console.info("network capabilities: " + JSON.stringify(netCapabilities));    
+      let cap = netCapabilities.networkCap;
+      console.info("network capabilities: " + JSON.stringify(netCapabilities));
+      // 判断网络是否可以访问互联网。
+      if (cap?.includes(connection.NetCap.NET_CAPABILITY_CHECKING_CONNECTIVITY)) {
+        // 正在验证网络连通性，请稍后重试。
+        console.info("default network is checking， please try again later");
+      }
+      if (cap?.includes(connection.NetCap.NET_CAPABILITY_VALIDATED)) {
+        // 网络连通性验证成功，当前默认网络可以访问互联网。
+        console.info("default network is validated");
+      } else {
+        // 网络连通性验证失败，当前默认网络不可以访问互联网。
+        console.info("default network is not validated");
+      }
     }
     ```
 
