@@ -1452,12 +1452,15 @@ struct ComponentPage {
       Button('getFilteredInspectorTreeById').onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         try {
-          let inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1);
-          console.log(`result1: ${inspectorStr}`);
+          let inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1, ["id", "src"]);
+          console.info(`result1: ${inspectorStr}`);
           inspectorStr = JSON.stringify(JSON.parse(inspectorStr)['$children'][0]);
-          console.log(`result2: ${inspectorStr}`);
+          console.info(`result2: ${inspectorStr}`);
+          inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1, ["src"]);
+          inspectorStr = JSON.stringify(JSON.parse(inspectorStr)['$children'][0]);
+          console.info(`result3: ${inspectorStr}`);
         } catch(e) {
-          console.log(`getFilteredInspectorTreeById error: ${e}`);
+          console.info(`getFilteredInspectorTreeById error: ${e}`);
         }
       })
     }
@@ -1469,10 +1472,11 @@ struct ComponentPage {
 返回的JSON字符串结构如下：
 <!--code_no_check-->
 ```ts
-result1: {"$type":"root","width":"1260.000000","height":"2720.000000","$resolution":"3.250000","$children":[{"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"borderStyle":"BorderStyle.Solid","borderColor":"#FF000000","borderWidth":"0.00vp","borderRadius":{"topLeft":"0.00vp","topRight":"0.00vp","bottomLeft":"0.00vp","bottomRight":"0.00vp"}}}]}
-result2: {"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"borderStyle":"BorderStyle.Solid","borderColor":"#FF000000","borderWidth":"0.00vp","borderRadius":{"topLeft":"0.00vp","topRight":"0.00vp","bottomLeft":"0.00vp","bottomRight":"0.00vp"}}}
+result1: {"$type":"root","width":"1260.000000","height":"2720.000000","$resolution":"3.250000","$children":[{"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"id":"TEXT","isLayoutDirtyMarked":false,"isRenderDirtyMarked":false,"isMeasureBoundary":false,"hasPendingRequest":false,"isFirstBuilding":false}}]}
+result2: {"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"id":"TEXT","isLayoutDirtyMarked":false,"isRenderDirtyMarked":false,"isMeasureBoundary":false,"hasPendingRequest":false,"isFirstBuilding":false}}
+result3: {"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"isLayoutDirtyMarked":false,"isRenderDirtyMarked":false,"isMeasureBoundary":false,"hasPendingRequest":false,"isFirstBuilding":false}}
 ```
-若需获取getFilteredInspectorTreeById方法中首个参数id指定的组件，须参照示例代码将getFilteredInspectorTreeById方法结果先转换为json对象，随后提取$children数组的首项。
+若需获取getFilteredInspectorTreeById方法中首个参数id指定的组件，须参照示例代码将getFilteredInspectorTreeById方法结果先转换为json对象，随后提取$children数组的首项。通过result2和result3的结果对比可知，如果filters参数由["id", "src"]改为["src"]，获取到的\$attrs属性将缺少"id"这一key。
 
 
 ### getCursorController<sup>12+</sup>
