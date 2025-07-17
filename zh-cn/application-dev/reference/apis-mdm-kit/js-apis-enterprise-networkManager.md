@@ -27,6 +27,7 @@ getAllNetworkInterfacesSync(admin: Want): Array&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -81,6 +82,7 @@ getIpAddressSync(admin: Want, networkInterface: string): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -137,6 +139,7 @@ getMacSync(admin: Want, networkInterface: string): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -193,6 +196,7 @@ isNetworkInterfaceDisabledSync(admin: Want, networkInterface: string): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -249,6 +253,7 @@ setNetworkInterfaceDisabledSync(admin: Want, networkInterface: string, isDisable
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -301,6 +306,7 @@ setGlobalProxySync(admin: Want, httpProxy: connection.HttpProxy): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -360,6 +366,7 @@ setGlobalProxyForAccount(admin: Want, httpProxy: connection.HttpProxy, accountId
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -419,6 +426,7 @@ getGlobalProxySync(admin: Want): connection.HttpProxy
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -474,6 +482,7 @@ getGlobalProxyForAccount(admin: Want, accountId: number): connection.HttpProxy
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -532,6 +541,7 @@ addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -588,6 +598,7 @@ removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -647,6 +658,7 @@ getFirewallRules(admin: Want): Array\<FirewallRule>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -697,6 +709,7 @@ addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -748,6 +761,7 @@ removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -803,6 +817,7 @@ getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -852,6 +867,7 @@ turnOnMobileData(admin: Want, isForce: boolean): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -900,6 +916,7 @@ turnOffMobileData(admin: Want): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -947,6 +964,7 @@ addApn(admin: Want, apnInfo: Record\<string, string>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1001,6 +1019,7 @@ deleteApn(admin: Want, apnId: string): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1049,6 +1068,7 @@ updateApn(admin: Want, apnInfo: Record\<string, string>, apnId: string): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1105,6 +1125,7 @@ setPreferredApn(admin: Want, apnId: string): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1153,6 +1174,7 @@ queryApn(admin: Want, apnInfo: Record\<string, string>): Array\<string>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1213,6 +1235,7 @@ queryApn(admin: Want, apnId: string): Record\<string, string>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 

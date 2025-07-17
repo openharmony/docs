@@ -24,9 +24,7 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用
 
 **参数**：
 
@@ -79,9 +77,7 @@ subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): voi
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -132,9 +128,7 @@ unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): v
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -185,9 +179,7 @@ setDelegatedPolicies(admin: Want, bundleName: string, policies: Array&lt;string&
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -242,9 +234,7 @@ getDelegatedPolicies(admin: Want, bundleName: string): Array&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -302,9 +292,7 @@ getDelegatedBundleNames(admin: Want, policy: string): Array&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -362,9 +350,7 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -478,3 +464,10 @@ try {
 |allowed_usb_devices|[usbManager.addAllowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanageraddallowedusbdevices)<br>[usbManager.removeAllowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanagerremoveallowedusbdevices)<br>[usbManager.getAllowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanagergetallowedusbdevices)|添加USB设备可用名单。<br>移除USB设备可用名单。<br>获取USB设备可用名单。|
 |usb_read_only|[usbManager.setUsbStorageDeviceAccessPolicy](js-apis-enterprise-usbManager.md#usbmanagersetusbstoragedeviceaccesspolicy)<br>[usbManager.getUsbStorageDeviceAccessPolicy](js-apis-enterprise-usbManager.md#usbmanagergetusbstoragedeviceaccesspolicy)|设置USB存储设备访问策略。<br>获取USB存储设备访问策略。|
 |disallowed_usb_devices|[usbManager.addDisallowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanageradddisallowedusbdevices14)<br>[usbManager.removeDisallowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanagerremovedisallowedusbdevices14)<br>[usbManager.getDisallowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanagergetdisallowedusbdevices14)|添加禁止使用的USB设备类型。<br>移除禁止使用的USB设备类型。<br>获取禁止使用的USB设备类型。|
+|policy_screen_record|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|<br>|
+|disallowed_sms|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入sms，禁用/启用设备接收、发送短信的能力，当前仅支持手机、平板设备使用。<br>feature传入sms，查询是否禁用设备接收、发送短信的能力，当前仅支持手机、平板设备使用。|
+|disallowed_mms|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入mms，禁用/启用设备接收、发送彩信的能力，当前仅支持手机、平板设备使用。<br>feature传入mms，查询是否禁用设备接收、发送彩信的能力，当前仅支持手机、平板设备使用。|
+|disable_backup_and_restore|[restrictions.setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)<br>[restrictions.getDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)|feature传入backupAndRestore，禁用/启用备份和恢复能力，当前仅支持手机、平板使用。<br>feature传入backupAndRestore，查询是否禁用备份和恢复能力，当前仅支持手机、平板使用。|
+|installed_bundle_info_list|[bundleManager.getInstalledBundleList](js-apis-enterprise-bundleManager.md#bundlemanagergetinstalledbundlelist20)|获取设备指定用户下已安装应用列表。使用Promise异步回调。|
+|clear_up_application_data|[applicationManager.clearUpApplicationData](js-apis-enterprise-applicationManager.md#applicationmanagerclearupapplicationdata20)|清除应用产生的所有数据。|
+

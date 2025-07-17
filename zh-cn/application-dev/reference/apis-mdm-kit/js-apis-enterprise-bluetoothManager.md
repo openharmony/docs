@@ -28,6 +28,7 @@ getBluetoothInfo(admin: Want): BluetoothInfo
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 
 **参数：**
@@ -88,6 +89,7 @@ addAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 
 **参数：**
@@ -95,7 +97,7 @@ addAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 | 参数名    | 类型                                                    | 必填 | 说明                                                |
 | --------- | ------------------------------------------------------- | ---- | --------------------------------------------------- |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                      |
-| deviceIds | Array\<string>                                          | 是   | 蓝牙设备MAC地址的数组。添加后的数组长度上限为1000。 |
+| deviceIds | Array\<string>                                          | 是   | 蓝牙设备MAC地址的数组。添加后的数组长度上限为1000。蓝牙设备允许名单数组长度上限为1000，若当前允许名单中已有300个蓝牙设备MAC地址，则只允许再添加700个。 |
 
 **错误码**：
 
@@ -140,6 +142,7 @@ removeAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 
 **参数：**
@@ -191,6 +194,7 @@ getAllowedBluetoothDevices(admin: Want): Array\<string>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 
 **参数：**
@@ -250,6 +254,8 @@ addDisallowedBluetoothDevices(admin: Want, deviceIds: Array&lt;string&gt;): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **参数：**
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                |
@@ -299,6 +305,8 @@ removeDisallowedBluetoothDevices(admin: Want, deviceIds: Array&lt;string&gt;): v
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **参数：**
 
 | 参数名    | 类型                                                    | 必填 | 说明                    |
@@ -347,6 +355,8 @@ getDisallowedBluetoothDevices(admin: Want): Array&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **参数：**
 
 | 参数名 | 类型                                                    | 必填 | 说明           |
@@ -394,9 +404,7 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用
 
 | 名称            | 类型                                                         | 只读 | 可选 | 说明                     |
 | --------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------ |
@@ -408,12 +416,13 @@ try {
 
 turnOnBluetooth(admin: Want): void
 
-开启蓝牙。
+开启蓝牙。开启后用户可以手动关闭蓝牙
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 
 **参数：**
@@ -456,12 +465,13 @@ try {
 
 turnOffBluetooth(admin: Want): void
 
-关闭蓝牙。
+关闭蓝牙。开启后用户可以手动打开蓝牙
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 
 **参数：**
@@ -494,7 +504,7 @@ let wantTemp: Want = {
 };
 try {
     bluetoothManager.turnOffBluetooth(wantTemp);
-    console.info(`Succeeded in turning off bluetooth.`);
+    console.info('Succeeded in turning off bluetooth.');
 } catch(err) {
     console.error(`Failed to turn off bluetooth. Code: ${err.code}, message: ${err.message}`);
 }
@@ -509,6 +519,8 @@ addDisallowedBluetoothProtocols(admin: Want, accountId: number, protocols: Array
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -560,6 +572,8 @@ removeDisallowedBluetoothProtocols(admin: Want, accountId: number, protocols: Ar
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **参数：**
 
 | 参数名 | 类型                                                    | 必填 | 说明                   |
@@ -609,6 +623,8 @@ getDisallowedBluetoothProtocols(admin: Want, accountId: number): Array&lt;Protoc
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 

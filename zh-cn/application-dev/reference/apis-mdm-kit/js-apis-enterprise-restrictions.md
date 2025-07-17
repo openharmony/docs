@@ -26,6 +26,7 @@ setDisallowedPolicy(admin: Want, feature: string, disallow: boolean): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -75,6 +76,8 @@ getDisallowedPolicy(admin: Want, feature: string): boolean
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS 或者 ohos.permission.PERSONAL_MANAGE_RESTRICTIONS<sup>15+</sup>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -130,6 +133,8 @@ setDisallowedPolicyForAccount(admin: Want, feature: string, disallow: boolean, a
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
@@ -181,6 +186,8 @@ getDisallowedPolicyForAccount(admin: Want, feature: string, accountId: number): 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -238,6 +245,8 @@ addDisallowedListForAccount(admin: Want, feature: string, list: Array\<string>, 
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
@@ -290,6 +299,8 @@ removeDisallowedListForAccount(admin: Want, feature: string, list: Array\<string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
@@ -341,6 +352,8 @@ getDisallowedListForAccount(admin: Want, feature: string, accountId: number): Ar
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -397,6 +410,8 @@ setUserRestriction(admin: Want, settingsItem: string, restricted: boolean): void
 **需要权限：** ohos.permission.ENTERPRISE_SET_USER_RESTRICTION
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 

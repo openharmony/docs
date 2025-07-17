@@ -28,6 +28,8 @@ getSecurityPatchTag(admin: Want): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **系统API：** 此接口为系统接口。
 
 **参数：**
@@ -83,6 +85,8 @@ getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **系统API：** 此接口为系统接口。
 
 **参数：**
@@ -137,6 +141,8 @@ getPasswordPolicy(): PasswordPolicy
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **系统API：** 此接口为系统接口。
 
 **返回值：**
@@ -171,6 +177,8 @@ try {
 设备管理应用的文件系统加密状态。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统API**: 此接口为系统接口。
 

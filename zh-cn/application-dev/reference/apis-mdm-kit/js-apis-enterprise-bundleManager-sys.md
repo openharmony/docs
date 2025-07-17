@@ -28,6 +28,7 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCal
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -82,6 +83,7 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, ca
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -137,6 +139,7 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): 
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -196,6 +199,7 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -250,6 +254,7 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -305,6 +310,7 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -364,6 +370,7 @@ getAllowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -415,6 +422,7 @@ getAllowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -467,6 +475,7 @@ getAllowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;stri
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -523,6 +532,7 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -577,6 +587,7 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -632,6 +643,7 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -691,6 +703,7 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: As
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -745,6 +758,7 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: numb
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -800,6 +814,7 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: num
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -859,6 +874,7 @@ getDisallowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -910,6 +926,7 @@ getDisallowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -962,6 +979,7 @@ getDisallowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1018,6 +1036,7 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: Asy
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1072,6 +1091,7 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: numbe
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1127,6 +1147,7 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: numb
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1186,6 +1207,7 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: 
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1240,6 +1262,7 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: nu
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1295,6 +1318,7 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: n
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1354,6 +1378,7 @@ getDisallowedUninstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;s
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1405,6 +1430,7 @@ getDisallowedUninstallBundles(admin: Want, userId: number, callback: AsyncCallba
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1457,6 +1483,7 @@ getDisallowedUninstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1513,6 +1540,7 @@ uninstall(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&gt;):
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1565,6 +1593,7 @@ uninstall(admin: Want, bundleName: string, userId: number, callback: AsyncCallba
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1618,6 +1647,7 @@ uninstall(admin: Want, bundleName: string, isKeepData: boolean, callback: AsyncC
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1671,6 +1701,7 @@ uninstall(admin: Want, bundleName: string, userId: number, isKeepData: boolean, 
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1725,6 +1756,7 @@ install(admin: Want, hapFilePaths: Array\<string>, callback: AsyncCallback\<void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -1780,6 +1812,7 @@ install(admin: Want, hapFilePaths: Array\<string>, installParam: InstallParam, c
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **参数：**
 
