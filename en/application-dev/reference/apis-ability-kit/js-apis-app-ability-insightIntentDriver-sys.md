@@ -1,6 +1,6 @@
-# @ohos.app.ability.insightIntentDriver (Executing InsightIntent Calls) (System API)
+# @ohos.app.ability.insightIntentDriver (Intent Call Execution) (System API)
 
-The **insightIntentDriver** module provides APIs for executing InsightIntent calls. The system executes InsightIntent calls based on user interaction and more.
+The module provides APIs for executing intent calls. The system executes intent calls based on user interaction and more.
 
 > **NOTE**
 >
@@ -18,7 +18,7 @@ import { insightIntentDriver } from '@kit.AbilityKit';
 
 ## ExecuteParam
 
-Defines the parameter used to execute an InsightIntent call.
+Defines the parameter used to execute an intent call.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -31,22 +31,22 @@ Defines the parameter used to execute an InsightIntent call.
 | bundleName | string | Yes| Name of the bundle to which the ability to be called belongs.|
 | moduleName | string | Yes| Name of the module to which the ability belongs.|
 | abilityName | string | Yes| Name of the ability to be called. |
-| insightIntentName | string | Yes| InsightIntent name.|
-| insightIntentParam | Record\<string, Object> | Yes| InsightIntent call parameter.|
-| executeMode | [insightIntent.ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) | Yes| InsightIntent call execution mode. |
-| displayId<sup>12+</sup> | number | No| Physical screen ID specified during InsightIntent call. The value must be an integer. This parameter is valid only when **executeMode** is set to **UI_ABILITY_FOREGROUND**.|
-| uris<sup>18+</sup> | Array&lt;string&gt; | No| List of URIs authorized by the InsightIntent caller to the InsightIntent executor during the call. |
-| flags<sup>18+</sup> | number | No| [Flags](js-apis-app-ability-wantConstant.md#flags) of the URIs authorized by the InsightIntent caller to the InsightIntent executor during the call.<br>**NOTE**<br>This parameter supports only **FLAG_AUTH_READ_URI_PERMISSION**, **FLAG_AUTH_WRITE_URI_PERMISSION**, and FLAG_AUTH_READ_URI_PERMISSION\||FLAG_AUTH_WRITE_URI_PERMISSION.|
+| insightIntentName | string | Yes| Intent name.|
+| insightIntentParam | Record\<string, Object> | Yes| Intent call parameter.|
+| executeMode | [insightIntent.ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) | Yes| Intent call execution mode. |
+| displayId<sup>12+</sup> | number | No| Physical screen ID specified during intent call. The value must be an integer. This parameter is valid only when **executeMode** is set to **UI_ABILITY_FOREGROUND**.|
+| uris<sup>18+</sup> | Array&lt;string&gt; | No| List of URIs authorized by the intent caller to the intent executor during the call. |
+| flags<sup>18+</sup> | number | No| [Flags](js-apis-app-ability-wantConstant.md#flags) of the URIs authorized by the intent caller to the intent executor during the call.<br>**NOTE**<br>This parameter supports only **FLAG_AUTH_READ_URI_PERMISSION**, **FLAG_AUTH_WRITE_URI_PERMISSION**, and FLAG_AUTH_READ_URI_PERMISSION\||FLAG_AUTH_WRITE_URI_PERMISSION.|
 
 ## insightIntentDriver.execute
 
 execute(param: ExecuteParam, callback: AsyncCallback<insightIntent.ExecuteResult>): void
 
-Executes a call to an InsightIntent. This API uses an asynchronous callback to return the result.
+Executes a call to an intent. This API uses an asynchronous callback to return the result.
 
 When the caller is in the background, the ohos.permission.START_ABILITIES_FROM_BACKGROUND permission is required.
 
-When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the InsightIntent call is set to **UI_ABILITY_BACKGROUND**, the ohos.permission.ABILITY_BACKGROUND_COMMUNICATION permission is required.
+When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the intent call is set to **UI_ABILITY_BACKGROUND**, the ohos.permission.ABILITY_BACKGROUND_COMMUNICATION permission is required.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -60,8 +60,8 @@ When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the Insi
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | param | [ExecuteParam](#executeparam) | Yes| Parameter used to execute the InsightIntent call.|
-  | callback | AsyncCallback<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Yes| Callback used to return the InsightIntent call execution result.|
+  | param | [ExecuteParam](#executeparam) | Yes| Parameter used to execute the intent call.|
+  | callback | AsyncCallback<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Yes| Callback used to return the intent call execution result.|
 
 **Error codes**
 
@@ -125,11 +125,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 execute(param: ExecuteParam): Promise<insightIntent.ExecuteResult>
 
-Executes a call to an InsightIntent. This API uses a promise to return the result.
+Executes a call to an intent. This API uses a promise to return the result.
 
 When the caller is in the background, the ohos.permission.START_ABILITIES_FROM_BACKGROUND permission is required.
 
-When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the InsightIntent call is set to **UI_ABILITY_BACKGROUND**, the ohos.permission.ABILITY_BACKGROUND_COMMUNICATION permission is required.
+When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the intent call is set to **UI_ABILITY_BACKGROUND**, the ohos.permission.ABILITY_BACKGROUND_COMMUNICATION permission is required.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -143,13 +143,13 @@ When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the Insi
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | param | [ExecuteParam](#executeparam) | Yes| Parameter used to execute the InsightIntent call.|
+  | param | [ExecuteParam](#executeparam) | Yes| Parameter used to execute the intent call.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise used to return the InsightIntent call execution result.|
+| Promise<[insightIntent.ExecuteResult](js-apis-app-ability-insightIntent.md#executeresult)> | Promise used to return the intent call execution result.|
 
 **Error codes**
 

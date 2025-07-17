@@ -29,7 +29,7 @@ Missions are managed by system applications (such as home screen), rather than t
 - Switch a mission to the foreground.
 
 
-A UIAbility instance corresponds to an independent mission. Therefore, when an application calls [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start a UIAbility, a mission is created.
+A UIAbility instance corresponds to an independent mission. Therefore, when an application calls [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability) to start a UIAbility, a mission is created.
 
 1. To call [missionManager](../reference/apis-ability-kit/js-apis-application-missionManager-sys.md) to manage missions, the home screen application must request the **ohos.permission.MANAGE_MISSIONS** permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
@@ -82,76 +82,83 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
     ```ts
     // 1. Register a mission change listener.
     this.listenerId = missionManager.on('mission', this.listener);
-    promptAction.showToast({
+    this.getUIContext().getPromptAction().showToast({
       message: 'register_success_toast'
     });
     hilog.info(DOMAIN_NUMBER, TAG, `missionManager.on success, listenerId = ${this.listenerId}`);
     ```
     ```ts
     // 2. Obtain the latest 20 missions in the system.
-    missionManager.getMissionInfos('', 20, (error: BusinessError, missions: Array<missionManager.MissionInfo>) => {
-      if (error.code) {
-        hilog.error(DOMAIN_NUMBER, TAG, `getMissionInfos is called, error code: ${error.code}, err msg: ${error.message}.`);
-        return;
-      }
-      hilog.info(DOMAIN_NUMBER, TAG, `size = ${missions.length}.`);
-      hilog.info(DOMAIN_NUMBER, TAG, `missions = ${JSON.stringify(missions)}.`);
-      
-      //Check whether Recents in the system contains etsclock.
-      for (let i = 0;i < missions.length; i++) {
-        if (missions[i].want.bundleName === 'ohos.samples.etsclock') {
-          promptAction.showToast({
-            message: 'obtain_success_toast'
-          });
-          hilog.info(DOMAIN_NUMBER, TAG, `getMissionInfos.find etsclock, missionId  = ${missions[i].missionId}`);
-          this.missionId = missions[i].missionId;
+    missionManager.getMissionInfos('', 20,
+      (error: BusinessError, missions: Array<missionManager.MissionInfo>) => {
+        if (error.code) {
+          hilog.error(DOMAIN_NUMBER, TAG,
+            `getMissionInfos is called, error code: ${error.code}, err msg: ${error.message}.`);
           return;
         }
-      }
-      promptAction.showToast({
-        message: 'obtain_failed_toast'
+        hilog.info(DOMAIN_NUMBER, TAG, `size = ${missions.length}.`);
+        hilog.info(DOMAIN_NUMBER, TAG, `missions = ${JSON.stringify(missions)}.`);
+
+        //Check whether Recents in the system contains etsclock.
+        for (let i = 0; i < missions.length; i++) {
+          if (missions[i].want.bundleName === 'ohos.samples.etsclock') {
+            this.getUIContext().getPromptAction().showToast({
+              message: 'obtain_success_toast'
+            });
+            hilog.info(DOMAIN_NUMBER, TAG,
+              `getMissionInfos.find etsclock, missionId  = ${missions[i].missionId}`);
+            this.missionId = missions[i].missionId;
+            return;
+          }
+        }
+        this.getUIContext().getPromptAction().showToast({
+          message: 'obtain_failed_toast'
+        });
       });
-    });
     ```
     ```ts
     // 3. Obtain the detailed information about a mission.
     missionManager.getMissionInfo('', this.missionId).then((data: missionManager.MissionInfo) => {
-      promptAction.showToast({
+      this.getUIContext().getPromptAction().showToast({
         message: JSON.stringify(data.want.bundleName)
       });
       hilog.info(DOMAIN_NUMBER, TAG, `getMissionInfo successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `getMissionInfo failed. Cause: ${error.message}`);
+      hilog.error(DOMAIN_NUMBER, TAG, `getMissionInfo failed. Cause: ${error.message}`);
     });
     ```
     ```ts
     // 4. Obtain the mission snapshot.
-    missionManager.getMissionSnapShot('', this.missionId, (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
-      if (error === null) {
-        promptAction.showToast({
-          message: 'obtain_snapshot_success_toast'
-        });
-      }
-      hilog.info(DOMAIN_NUMBER, TAG, `getMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
-      hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
-    })
+    missionManager.getMissionSnapShot('', this.missionId,
+      (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
+        if (error === null) {
+          this.getUIContext().getPromptAction().showToast({
+            message: 'obtain_snapshot_success_toast'
+          });
+        }
+        hilog.error(DOMAIN_NUMBER, TAG,
+          `getMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
+        hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
+      });
     ```
     ```ts
     // 5. Obtain the low-resolution mission snapshot.
-    missionManager.getLowResolutionMissionSnapShot('', this.missionId, (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
-      if (error === null) {
-        promptAction.showToast({
-          message: 'obtain_low_snapshot_success_toast'
-        });
-      }
-      hilog.info(DOMAIN_NUMBER, TAG, `getLowResolutionMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
-      hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
-    })
+    missionManager.getLowResolutionMissionSnapShot('', this.missionId,
+      (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
+        if (error === null) {
+          this.getUIContext().getPromptAction().showToast({
+            message: 'obtain_low_snapshot_success_toast'
+          });
+        }
+        hilog.error(DOMAIN_NUMBER, TAG,
+          `getLowResolutionMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
+        hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
+      });
     ```
     ```ts
     // 6-1. Lock the mission.
     missionManager.lockMission(this.missionId).then(() => {
-      promptAction.showToast({
+      this.getUIContext().getPromptAction().showToast({
         message: 'lock_success_toast'
       });
       hilog.info(DOMAIN_NUMBER, TAG, 'lockMission is called ');
@@ -160,7 +167,7 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
     ```ts
     // 6-2. Unlock the mission.
     missionManager.unlockMission(this.missionId).then(() => {
-      promptAction.showToast({
+      this.getUIContext().getPromptAction().showToast({
         message: 'unlock_success_toast'
       });
       hilog.info(DOMAIN_NUMBER, TAG, 'unlockMission is called ');
@@ -175,7 +182,7 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
     ```ts
     // 8. Clear a single mission.
     missionManager.clearMission(this.missionId).then(() => {
-      promptAction.showToast({
+      this.getUIContext().getPromptAction().showToast({
         message: 'delete_success_toast'
       });
       hilog.info(DOMAIN_NUMBER, TAG, 'clearMission is called ');
@@ -184,19 +191,19 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
     ```ts
     // 9. Clear all missions.
     missionManager.clearAllMissions().catch((err: BusinessError) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `${err.code}`);
+      hilog.error(DOMAIN_NUMBER, TAG, `${err.code}`);
     });
     ```
     ```ts
     // 10. Deregister the mission change listener.
     missionManager.off('mission', this.listenerId, (error: BusinessError) => {
       if (error === null) {
-        promptAction.showToast({
+        this.getUIContext().getPromptAction().showToast({
           message: 'unregister_success_toast'
         });
       }
       hilog.info(DOMAIN_NUMBER, TAG, 'unregisterMissionListener');
-    })
+    });
     ```
 
    

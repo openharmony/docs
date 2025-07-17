@@ -1,14 +1,14 @@
 # UIServiceExtensionContext (System API)
 
-The UIServiceExtensionContext module, inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md), provides the context environment for a [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md).
+The UIServiceExtensionContext module provides the context environment for a [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md). It inherits from [ExtensionContext](js-apis-inner-application-extensionContext.md).
 
-UIServiceExtensionContext provides access to a UIServiceExtensionAbility and APIs for operating the ability, for example, starting, terminating, connecting, and disconnecting ability.
+UIServiceExtensionContext provides access to a [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md) and APIs for operating the ability, for example, starting, terminating, connecting, and disconnecting ability.
 
 > **NOTE**
 >
 >  - The initial APIs of this module are supported since API version 14. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
->  - The APIs of this module must be used in the main thread, but not in sub-threads such as Worker and TaskPool.
+>  - The APIs of this module must be used in the main thread, but not in child threads such as Worker and TaskPool.
 >  - The APIs provided by this module are system APIs.
 
 ## Modules to Import
@@ -220,17 +220,21 @@ struct SubIndex {
             let context = this.getUIContext().getHostContext() as common.UIServiceExtensionContext;
             let startWant: Record<string, Object> = {
               'sceneType': 1,
-              'email': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // Email address of the recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
-              'cc': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // Email address of the CC recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
-              'bcc': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // Email address of the BCC recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
+              'email': [encodeURI('xxx@example.com'),
+                encodeURI('xxx@example.com')], // Email address of the recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
+              'cc': [encodeURI('xxx@example.com'),
+                encodeURI('xxx@example.com')], // Email address of the CC recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
+              'bcc': [encodeURI('xxx@example.com'),
+                encodeURI('xxx@example.com')], // Email address of the BCC recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
               'subject': encodeURI('Email subject'), // Email subject. The content is URL encoded using encodeURI().
               'body': encodeURI('Email body'), // Email body. The content is URL encoded using encodeURI().
-              'ability.params.stream':[encodeURI('attachment uri1'), encodeURI('attachment uri2')], // Attachment URIs. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
+              'ability.params.stream': [encodeURI('Attachment URI 1'),
+                encodeURI('Attachment URI 2')], // Attachment URIs. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
               'ability.want.params.uriPermissionFlag': 1
             };
             let abilityStartCallback: common.AbilityStartCallback = {
               onError: (code: number, name: string, message: string) => {
-                console.log(TAG + `code: ${code}  name:${name}  message:${message}`);
+                console.error(TAG + `code: ${code}  name:${name}  message:${message}`);
               }
             };
             try {
@@ -239,10 +243,13 @@ struct SubIndex {
                 .then(() => {
                   console.log(TAG + `Succeeded in windows starting ability`);
                 }).catch((err: BusinessError) => {
-                console.log(TAG + `Failed to windows starting ability, Code is ${err.code}, message is ${err.message}`);
+                console.error(TAG +
+                  `Failed to windows starting ability, Code is ${err.code}, message is ${err.message}.`);
               })
             } catch (err) {
-              console.log(TAG + `Failed to windows starting ability, Code is ${err.code}, message is ${err.message}`);
+              let code = (err as BusinessError).code;
+              let msg = (err as BusinessError).message;
+              console.error(TAG + `Failed to windows starting ability, Code is ${code}, message is ${msg}.`);
             }
           })
       }

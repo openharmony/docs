@@ -1,6 +1,6 @@
 # AbilityMonitor
 
-The AbilityMonitor module provides monitors for abilities that meet specified conditions. The latest matched abilities are stored in an **AbilityMonitor** object.
+The AbilityMonitor module provides monitors for abilities that meet specified conditions. The latest matched abilities are stored in an AbilityMonitor object.
 
 > **NOTE**
 > 
@@ -14,9 +14,9 @@ import { abilityDelegatorRegistry } from '@kit.TestKit';
 
 ## Usage
 
-**AbilityMonitor** can be used as an input parameter of [addAbilityMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#addabilitymonitor9) in **abilityDelegator** to listen for lifecycle changes of an ability.
+AbilityMonitor can be used as an input parameter of [addAbilityMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#addabilitymonitor9) in **abilityDelegator** to listen for lifecycle changes of an ability.
 
-## Properties
+## AbilityMonitor
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

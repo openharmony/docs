@@ -2,7 +2,7 @@
 
 ## When to Use
 
-You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to search for an installed application that meets the requirements to open a specific file. For example, when a browser downloads a PDF file, this API can be called to select a file application to open the PDF file. You must set the file URI (specified by [uri](#key-api-parameters)) and type (specified by [type](#key-api-parameters)) and other fields in the request so that the system can identify the file to open. Then the system directly starts an application to open the file or displays a dialog box for users to select an application to open the file.
+You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability) to search for an installed application that meets the requirements to open a specific file. For example, when a browser downloads a PDF file, this API can be called to select a file application to open the PDF file. You must set the file URI (specified by [uri](#key-api-parameters)) and type (specified by [type](#key-api-parameters)) and other fields in the request so that the system can identify the file to open. Then the system directly starts an application to open the file or displays a dialog box for users to select an application to open the file.
 
 **Figure 1** Example of opening a file
 
@@ -10,7 +10,7 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
 
 ## Key API Parameters
 
-You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start an installed vertical application to open a file.
+You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability) to start an installed vertical application to open a file.
 
 **Table 1** Description of [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) in startAbility
 
@@ -167,7 +167,7 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
     ```ts
     // xxx.ets
     import fs from '@ohos.file.fs';
-    import { Want, AbilityConstant } from '@kit.AbilityKit';
+    import { Want, AbilityConstant, UIAbility } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     export default class EntryAbility extends UIAbility {

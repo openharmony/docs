@@ -12,7 +12,7 @@ The LauncherAbilityInfo module provides information about the launcher ability, 
 
 ## LauncherAbilityInfo<sup>(deprecated)<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager-LauncherAbilityInfo](js-apis-launcherBundleManager.md) instead.
+This API is deprecated since API version 9. You are advised to use [bundleManager-LauncherAbilityInfo](js-apis-launcherBundleManager.md#launcherbundlemanagergetlauncherabilityinfosync18) instead.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 

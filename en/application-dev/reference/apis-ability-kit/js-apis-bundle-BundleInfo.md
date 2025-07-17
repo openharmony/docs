@@ -1,6 +1,6 @@
 # BundleInfo
 
-The BundleInfo module defines the bundle information, which can be obtained through [bundle.getBundleInfo](js-apis-Bundle.md#bundlegetbundleinfodeprecated).
+The module defines the bundle information, which can be obtained through [bundle.getBundleInfo](js-apis-Bundle.md#bundlegetbundleinfodeprecated).
 
 > **NOTE**
 > 
@@ -12,7 +12,7 @@ The BundleInfo module defines the bundle information, which can be obtained thro
 
 This API is deprecated since API version 9. You are advised to use [bundleManager-BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1) instead.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework
+**System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name                            | Type                                                        | Read-Only| Optional| Description                                                        |
 | -------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
@@ -48,7 +48,7 @@ This API is deprecated since API version 9. You are advised to use [bundleManage
 
 Provides the detailed information of the permissions to request from the system.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework
+**System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name                 | Type                   | Read-Only| Optional| Description                  |
 | --------------------- | ----------------------- | ---- | ---- | ---------------------- |
@@ -64,7 +64,7 @@ Provides the detailed information of the permissions to request from the system.
 
 Describes the application scenario and timing for using the permission.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework
+**System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |

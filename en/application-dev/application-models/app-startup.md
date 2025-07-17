@@ -3,7 +3,7 @@
 
 ## Overview
 
-During application launch, a series of startup tasks are often required. If all these tasks are placed within the [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) lifecycle of the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) in the application's main module ([module](../quick-start/application-package-overview.md#module-types) of the entry type), they can only be executed sequentially on the main thread, which significantly affects the application launch speed. In addition, when there are too many tasks, complex dependencies between them make the code difficult to maintain.
+During application launch, a series of startup tasks are often required. If all these tasks are placed within the [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate) lifecycle of the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) in the application's main module ([module](../quick-start/application-package-overview.md#module-types) of the entry type), they can only be executed sequentially on the main thread, which significantly affects the application launch speed. In addition, when there are too many tasks, complex dependencies between them make the code difficult to maintain.
 
 AppStartup offers an efficient approach to application launch. By supporting asynchronous initiation of startup tasks, it ensures a smoother startup process. The centralized configuration of execution order and dependencies of multiple startup tasks in a single file simplifies and clarifies the startup codebase, enhancing maintainability.
 
@@ -27,7 +27,7 @@ AppStartup supports startup tasks in automatic or manual mode. By default, autom
 
 ## Constraints
 
-- AppStartup must be enabled in the [module.json5 file](../quick-start/module-configuration-file.md) of the entry-type [module](../quick-start/application-package-overview.md#module-types) before being used.
+- AppStartup must be enabled in the [module.json5](../quick-start/module-configuration-file.md) file of the entry-type [module](../quick-start/application-package-overview.md#module-types) before being used.
 
 - Circular dependencies between startup tasks or .so file preloading tasks are not allowed.
 
@@ -257,8 +257,8 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
 
 Through the preceding operations, you have configured the AppStartup configuration file and startup parameters. Now you need to implement [StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md) in each startup task file by calling the following two APIs:
 
-- [init](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#startuptaskinit): starts task initialization. Call **init** to initialize a task only after all startup tasks on which the task depends are executed, that is, after **onDependencyCompleted** is invoked.
-- [onDependencyCompleted](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#startuptaskondependencycompleted): invoked when the startup task on which the current task depends is complete.
+- [init](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#init): starts task initialization. Call **init** to initialize a task only after all startup tasks on which the task depends are executed, that is, after **onDependencyCompleted** is invoked.
+- [onDependencyCompleted](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#ondependencycompleted): invoked when the startup task on which the current task depends is complete.
 
 
 The following uses the **StartupTask_001.ets** file in [startup_config.json](#defining-an-appstartup-configuration-file) as an example. You must add a startup task for each component to be initialized.
@@ -382,7 +382,7 @@ Large applications often consist of multiple [HSP](../quick-start/in-app-hsp.md)
           }
         }
         ```
-  
+
   For details about other steps, see [Setting Startup Parameters](#setting-startup-parameters) and [Adding a Startup Task for Each Component to Be Initialized](#adding-a-startup-task-for-each-component-to-be-initialized).
 
 
