@@ -1,4 +1,4 @@
-# @ohos.arkui.performanceMonitor (Performance Monitor) (System API)
+# @ohos.arkui.performanceMonitor (Performance Monitoring) (System API)
 
 The **performanceMonitor** module provides APIs for performance monitoring indicators: response delay, completion delay, and frame loss rate.
 
