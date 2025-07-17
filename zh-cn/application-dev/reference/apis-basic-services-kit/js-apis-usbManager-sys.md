@@ -420,7 +420,7 @@ let tokenId: string = "";
 
 ## getFunctionsFromString<sup>12+</sup>
 
-getFunctionsFromString(funcs: string): number
+getFunctionsFromString(funcs: string): int
 
 在设备模式下，将字符串形式的USB功能列表转化为数字掩码。
 
@@ -444,7 +444,7 @@ getFunctionsFromString(funcs: string): number
 
 | 类型   | 说明               |
 | ------ | ------------------ |
-| number | 转化后的数字掩码。 |
+| int | 转化后的数字掩码。 |
 
 **错误码：**
 
@@ -461,7 +461,7 @@ getFunctionsFromString(funcs: string): number
 
 ```ts
 let funcs: string = "acm";
-let ret: number = usbManager.getFunctionsFromString(funcs);
+let ret: int = usbManager.getFunctionsFromString(funcs);
 ```
 
 ## getStringFromFunctions<sup>12+</sup>
@@ -506,7 +506,7 @@ getStringFromFunctions(funcs: FunctionType): string
 **示例：**
 
 ```ts
-let funcs: number = usbManager.FunctionType.ACM | usbManager.FunctionType.ECM;
+let funcs: int = usbManager.FunctionType.ACM | usbManager.FunctionType.ECM;
 let ret: string = usbManager.getStringFromFunctions(funcs);
 ```
 
@@ -555,7 +555,7 @@ setDeviceFunctions(funcs: FunctionType): Promise\<void\>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-let funcs: number = usbManager.FunctionType.HDC;
+let funcs: int = usbManager.FunctionType.HDC;
 usbManager.setDeviceFunctions(funcs).then(() => {
     console.info('usb setDeviceFunctions successfully.');
 }).catch((err : BusinessError) => {
@@ -599,7 +599,7 @@ getDeviceFunctions(): FunctionType
 **示例：**
 
 ```ts
-let ret: number = usbManager.getDeviceFunctions();
+let ret: int = usbManager.getDeviceFunctions();
 ```
 
 ## getPortList<sup>12+</sup>
@@ -643,7 +643,7 @@ let ret: Array<usbManager.USBPort> = usbManager.getPortList();
 
 ## getPortSupportModes<sup>12+</sup>
 
-getPortSupportModes(portId: number): PortModeType
+getPortSupportModes(portId: int): PortModeType
 
 获取指定的端口支持的模式列表的组合掩码。
 
@@ -657,7 +657,7 @@ getPortSupportModes(portId: number): PortModeType
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| portId | number | 是   | 端口号。 |
+| portId | int | 是   | 端口号。 |
 
 **返回值：**
 
@@ -680,12 +680,12 @@ getPortSupportModes(portId: number): PortModeType
 **示例：**
 
 ```ts
-let ret: number = usbManager.getPortSupportModes(0);
+let ret: int = usbManager.getPortSupportModes(0);
 ```
 
 ## setPortRoleTypes<sup>12+</sup>
 
-setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise\<void\>
+setPortRoleTypes(portId: int, powerRole: PowerRoleType, dataRole: DataRoleType): Promise\<void\>
 
 设置指定的端口支持的角色模式，包含充电角色、数据传输角色。
 
@@ -703,7 +703,7 @@ setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleTyp
 
 | 参数名    | 类型                            | 必填 | 说明             |
 | --------- | ------------------------------- | ---- | ---------------- |
-| portId    | number                          | 是   | 端口号。         |
+| portId    | int                          | 是   | 端口号。         |
 | powerRole | [PowerRoleType](#powerroletype) | 是   | 充电的角色。     |
 | dataRole  | [DataRoleType](#dataroletype)   | 是   | 数据传输的角色。 |
 
@@ -729,7 +729,7 @@ setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleTyp
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-let portId: number = 1;
+let portId: int = 1;
 usbManager.setPortRoleTypes(portId, usbManager.PowerRoleType.SOURCE, usbManager.DataRoleType.HOST).then(() => {
   console.info('usb setPortRoleTypes successfully.');
 }).catch((err : BusinessError) => {
@@ -739,7 +739,7 @@ usbManager.setPortRoleTypes(portId, usbManager.PowerRoleType.SOURCE, usbManager.
 
 ## addAccessoryRight<sup>14+<sup>
 
-addAccessoryRight(tokenId: number, accessory: USBAccessory): void
+addAccessoryRight(tokenId: int, accessory: USBAccessory): void
 
 为应用程序添加访问USB配件权限。
 
@@ -755,7 +755,7 @@ usbManager.requestAccessoryRight会触发弹窗请求用户授权；addAccessory
 
 | 参数名    | 类型         | 必填 | 说明                     |
 | --------- | ------------ | ---- | ------------------------ |
-| tokenId   | number       | 是   | 应用程序tokenId。 |
+| tokenId   | int      | 是   | 应用程序tokenId。 |
 | accessory | USBAccessory | 是   | USB配件。                |
 
 **错误码：**
@@ -780,7 +780,7 @@ try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
   let flags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY
   let bundleInfo = await bundleManager.getBundleInfoForSelf(flags)
-  let tokenId: number = bundleInfo.appInfo.accessTokenId
+  let tokenId: int = bundleInfo.appInfo.accessTokenId
   usbManager.addAccessoryRight(tokenId, accList[0])
   hilog.info(0, 'testTag ui', `addAccessoryRight success`)
 } catch (error) {
@@ -798,7 +798,7 @@ USB设备端口。
 
 | 名称           | 类型                            | 必填 | 说明                                |
 | -------------- | ------------------------------- | ---- | ----------------------------------- |
-| id             | number                          | 是   | USB端口唯一标识。                   |
+| id             | int                          | 是   | USB端口唯一标识。                   |
 | supportedModes | [PortModeType](#portmodetype)   | 是   | USB端口所支持的模式的数字组合掩码。 |
 | status         | [USBPortStatus](#usbportstatus) | 是   | USB端口角色。                       |
 
@@ -812,9 +812,9 @@ USB设备端口角色信息。
 
 | 名称             | 类型   | 必填 | 说明                   |
 | ---------------- | ------ | ---- | ---------------------- |
-| currentMode      | number | 是   | 当前的USB模式。        |
-| currentPowerRole | number | 是   | 当前设备充电模式。     |
-| currentDataRole  | number | 是   | 当前设备数据传输模式。 |
+| currentMode      | int | 是   | 当前的USB模式。        |
+| currentPowerRole | int | 是   | 当前设备充电模式。     |
+| currentDataRole  | int | 是   | 当前设备数据传输模式。 |
 
 ## FunctionType
 
