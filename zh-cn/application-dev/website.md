@@ -3629,7 +3629,7 @@
           - [Resource](reference/apis-localization-kit/js-apis-resource.md)
           - [SendableResource](reference/apis-localization-kit/js-apis-sendableResource.md)
       - C API<!--localization-c-->
-       - 模块<!--localization-module-->
+        - 模块<!--localization-module-->
           - [rawfile](reference/apis-localization-kit/capi-rawfile.md)
           - [resourcemanager](reference/apis-localization-kit/capi-resourcemanager.md)
         - 头文件<!--localization-headerfile-->
