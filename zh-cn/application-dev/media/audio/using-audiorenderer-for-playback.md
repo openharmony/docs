@@ -271,7 +271,7 @@ let writeDataCallback = (buffer: ArrayBuffer) => {
     // 如果当前回调传入的数据不足一帧，空白区域需要使用静音数据填充，否则会导致播放出现杂音。
     if (bufferLength < buffer.byteLength) {
         let view = new DataView(buffer);
-        for (let i = bufferLength + 1; i <= buffer.byteLength; i++) {
+        for (let i = bufferLength; i < buffer.byteLength; i++) {
             // 空白区域填充静音数据。填充时选择的数据类型需要和sampleFormat设置的类型保持一致。
             view.setUint16(i, 0);
         }
