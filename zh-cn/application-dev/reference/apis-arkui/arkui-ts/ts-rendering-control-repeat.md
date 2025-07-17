@@ -128,7 +128,7 @@ virtualScroll(virtualScrollOptions?: VirtualScrollOptions)
 
 | 参数名 | 类型   | 必填 | 说明  |
 | ------ | ---------- | -------- | -------- |
-| virtualScrollOptions  | [VirtualScrollOptions](#virtualscrolloptions对象说明)  | 否 | 虚拟滚动配置项。 |
+| virtualScrollOptions  | [VirtualScrollOptions](#virtualscrolloptions)  | 否 | 虚拟滚动配置项。 |
 
 **示例：**
 ```ts
@@ -234,16 +234,18 @@ Repeat数据源参数联合类型。
 | item   | T      | 是   | arr中每一个数据项。T为开发者传入的数据类型。 |
 | index  | number | 是   | 当前数据项对应的索引。                       |
 
-## VirtualScrollOptions对象说明
+## VirtualScrollOptions
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
 | totalCount | number | 否   | 加载的数据项总数，可以不等于数据源长度。<br>取值范围：[0, +∞)<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| reusable<sup>18+</sup> | boolean | 否   | 是否开启复用功能。<br>默认值：true<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| reusable<sup>18+</sup> | boolean | 否   | 是否开启复用功能。true代表开启复用，false代表关闭复用。<br>默认值：true<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | onLazyLoading<sup>19+</sup> | (index: number) => void | 否   | 数据懒加载函数，向指定的数据源index中写入数据。<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
-| onTotalCount<sup>19+</sup> | () => number | 否   | 数据项总数计算函数，返回值可以不等于数据源长度。推荐使用onTotalCount代替totalCount。同时设置totalCount与onTotalCount时，忽略totalCount。<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
+| onTotalCount<sup>19+</sup> | () => number | 否   | 数据项总数计算函数，返回值可以不等于数据源长度。推荐使用onTotalCount代替totalCount。同时设置totalCount与onTotalCount时，忽略totalCount。<br>取值范围：[0, +∞)<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 
 ### totalCount：期望加载的数据长度
 
