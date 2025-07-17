@@ -52,9 +52,9 @@
     - [OH_CryptoVerify](capi-cryptosignatureapi-oh-cryptoverify.md)
     - [OH_CryptoSign](capi-cryptosignatureapi-oh-cryptosign.md)
     - [OH_CryptoEccSignatureSpec](capi-cryptosignatureapi-oh-cryptoeccsignaturespec.md)
-    - [OH_CryptoSymCipher](capi-cryptoasymcipherapi-oh-cryptosymcipher.md)
-    - [OH_CryptoSymCipherParams](capi-cryptoasymcipherapi-oh-cryptosymcipherparams.md)
-    - [OH_CryptoSymKey](capi-cryptoasymkeyapi-oh-cryptosymkey.md)
-    - [OH_CryptoSymKeyGenerator](capi-cryptoasymkeyapi-oh-cryptosymkeygenerator.md)
+    - [OH_CryptoSymCipher](capi-cryptosymcipherapi-oh-cryptosymcipher.md)
+    - [OH_CryptoSymCipherParams](capi-cryptosymcipherapi-oh-cryptosymcipherparams.md)
+    - [OH_CryptoSymKey](capi-cryptosymkeyapi-oh-cryptosymkey.md)
+    - [OH_CryptoSymKeyGenerator](capi-cryptosymkeyapi-oh-cryptosymkeygenerator.md)
 - 错误码<!--crypto-architecture-arkts-errcode-->
   - [crypto framework错误码](errorcode-crypto-framework.md)

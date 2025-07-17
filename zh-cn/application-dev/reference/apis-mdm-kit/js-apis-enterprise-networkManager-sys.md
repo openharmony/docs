@@ -28,7 +28,7 @@ getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -80,7 +80,7 @@ getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -136,7 +136,7 @@ getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;s
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -190,7 +190,7 @@ getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -248,7 +248,7 @@ getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -302,7 +302,7 @@ getMac(admin: Want, networkInterface: string): Promise\<string>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -360,7 +360,7 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string, callback: Asyn
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -414,7 +414,7 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string): Promise&lt;bo
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -472,7 +472,7 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -527,7 +527,7 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -586,7 +586,7 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy, callback: AsyncCall
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -649,7 +649,7 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -716,7 +716,7 @@ getGlobalProxy(admin: Want, callback: AsyncCallback\<connection.HttpProxy>): voi
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -768,7 +768,7 @@ getGlobalProxy(admin: Want): Promise\<connection.HttpProxy>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -824,7 +824,7 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCal
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -890,7 +890,7 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -960,7 +960,7 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: As
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1024,7 +1024,7 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<vo
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1092,7 +1092,7 @@ listIptablesFilterRules(admin: Want, callback: AsyncCallback\<string>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1144,7 +1144,7 @@ listIptablesFilterRules(admin: Want): Promise\<string>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 

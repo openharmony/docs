@@ -28,7 +28,7 @@ setPrinterDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -81,7 +81,7 @@ setPrinterDisabled(admin: Want, disabled: boolean): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -138,7 +138,7 @@ isPrinterDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -190,7 +190,7 @@ isPrinterDisabled(admin: Want): Promise\<boolean>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -246,7 +246,7 @@ setHdcDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void>): 
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -299,7 +299,7 @@ setHdcDisabled(admin: Want, disabled: boolean): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -356,7 +356,7 @@ isHdcDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -408,7 +408,7 @@ isHdcDisabled(admin: Want): Promise\<boolean>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -464,7 +464,7 @@ isMicrophoneDisabled(admin: Want): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -520,7 +520,7 @@ disableMicrophone(admin: Want, disable: boolean): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -572,7 +572,7 @@ setFingerprintAuthDisabled(admin: Want, disabled: boolean): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -624,7 +624,7 @@ isFingerprintAuthDisabled(admin: Want): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 

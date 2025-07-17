@@ -26,7 +26,7 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -84,7 +84,7 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -153,7 +153,7 @@ installUserCertificate(admin: Want, certificate: CertBlob, accountId: number): s
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -218,7 +218,7 @@ getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -274,7 +274,7 @@ getSecurityStatus(admin: Want, item: string): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -330,7 +330,7 @@ setPasswordPolicy(admin: Want, policy: PasswordPolicy): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -385,7 +385,7 @@ getPasswordPolicy(admin: Want): PasswordPolicy
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -440,7 +440,7 @@ setAppClipboardPolicy(admin: Want, tokenId: number, policy: ClipboardPolicy): vo
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -492,7 +492,7 @@ getAppClipboardPolicy(admin: Want, tokenId?: number): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -549,7 +549,7 @@ setAppClipboardPolicy(admin: Want, bundleName: string, accountId: number, policy
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -602,7 +602,7 @@ getAppClipboardPolicy(admin: Want, bundleName: string, accountId: number): strin
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -660,7 +660,7 @@ setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelM
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -715,7 +715,7 @@ cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 

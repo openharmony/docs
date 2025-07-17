@@ -28,7 +28,7 @@ setScreenOffTime(admin: Want, time: number): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -79,7 +79,7 @@ getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -131,7 +131,7 @@ getScreenOffTime(admin: Want): Promise&lt;number&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -187,7 +187,7 @@ installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallba
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -224,8 +224,8 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility'
 };
 let certFileArray: Uint8Array = new Uint8Array();
-// 变量 context 需要在 MainAbility 的 onCreate 回调函数中进行初始化
-// test.cer 需要放置在 rawfile 目录下
+// 变量context需要在MainAbility的onCreate回调函数中进行初始化
+// test.cer需要放置在rawfile目录下
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 context.resourceManager.getRawFileContent("test.cer").then((value) => {
@@ -253,7 +253,7 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -295,8 +295,8 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility'
 };
 let certFileArray: Uint8Array = new Uint8Array();
-// 变量 context 需要在 MainAbility 的 onCreate 回调函数中进行初始化
-// test.cer 需要放置在 rawfile 目录下
+// 变量context需要在MainAbility的onCreate回调函数中进行初始化
+// test.cer需要放置在rawfile目录下
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 context.resourceManager.getRawFileContent("test.cer").then((value) => {
@@ -334,7 +334,7 @@ uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&l
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -389,7 +389,7 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -448,7 +448,7 @@ setPowerPolicy(admin: Want, powerScene: PowerScene, powerPolicy: PowerPolicy): v
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -503,7 +503,7 @@ getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 

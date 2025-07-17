@@ -275,7 +275,7 @@ export struct IconItem {
 Trace的生成依赖了DFX子系统中的HiTrace组件，其中包含的hiTraceMeter模块为开发者提供系统性能打点接口，具体细节可参考下方链接：
 
 > [HiTrace组件](https://gitee.com/openharmony/hiviewdfx_hitrace)
-> [hiTraceMeter模块](../reference/apis-performance-analysis-kit/_hitrace.md)
+> [hiTraceMeter模块](../reference/apis-performance-analysis-kit/capi-trace-h.md)
 
 hiTraceMeter拥有两套开始和结束打点接口，实现对逻辑行为的耗时统计。由于耗时统计大多数以方法为单位，所以hiTraceMeter也提供了快速打点单个方法执行耗时的宏定义HITRACE_METER、HITRACE_METER_NAME、HITRACE_METER_FMT，使用它们，只需要在方法起始位置调用即可。这些宏定义依赖了方法内局部变量的生命周期，其原理是在方法开始时构造了一个打点实例，在实例构造函数中调用开始打点接口，当方法执行完毕，打点实例随着方法结束而执行析构，在实例析构函数中调用结束打点接口。
 

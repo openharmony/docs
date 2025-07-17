@@ -28,7 +28,7 @@ getBluetoothInfo(admin: Want): BluetoothInfo
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -89,7 +89,7 @@ addAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -142,7 +142,7 @@ removeAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -194,7 +194,7 @@ getAllowedBluetoothDevices(admin: Want): Array\<string>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -254,7 +254,7 @@ addDisallowedBluetoothDevices(admin: Want, deviceIds: Array&lt;string&gt;): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -289,9 +289,9 @@ let wantTemp: Want = {
 let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
 try {
     bluetoothManager.addDisallowedBluetoothDevices(wantTemp,deviceIds);
-    console.info(`Succeeded in adding allowed bluetooth devices.`);
+    console.info(`Succeeded in adding disallowed bluetooth devices.`);
 } catch(err) {
-    console.error(`Failed to add allowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to add disallowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -305,7 +305,7 @@ removeDisallowedBluetoothDevices(admin: Want, deviceIds: Array&lt;string&gt;): v
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -339,9 +339,9 @@ let wantTemp: Want = {
 let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
 try {
     bluetoothManager.removeDisallowedBluetoothDevices(wantTemp,deviceIds);
-    console.info(`Succeeded in removing allowed bluetooth devices.`);
+    console.info(`Succeeded in removing disallowed bluetooth devices.`);
 } catch(err) {
-    console.error(`Failed to remove allowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to remove disallowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -355,7 +355,7 @@ getDisallowedBluetoothDevices(admin: Want): Array&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -392,9 +392,9 @@ let wantTemp: Want = {
 };
 try {
     let result: Array<string> = bluetoothManager.getDisallowedBluetoothDevices(wantTemp);
-    console.info(`Succeeded in getting allowed bluetooth devices. Result: ${JSON.stringify(result)}`);
+    console.info(`Succeeded in getting disallowed bluetooth devices. Result: ${JSON.stringify(result)}`);
 } catch(err) {
-    console.error(`Failed to get allowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to get disallowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -404,7 +404,7 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称            | 类型                                                         | 只读 | 可选 | 说明                     |
 | --------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------ |
@@ -416,13 +416,13 @@ try {
 
 turnOnBluetooth(admin: Want): void
 
-开启蓝牙。开启后用户可以手动关闭蓝牙
+开启蓝牙。蓝牙开启后用户可以手动关闭
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -465,13 +465,13 @@ try {
 
 turnOffBluetooth(admin: Want): void
 
-关闭蓝牙。开启后用户可以手动打开蓝牙
+关闭蓝牙。蓝牙关闭后用户可以手动打开
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -520,7 +520,7 @@ addDisallowedBluetoothProtocols(admin: Want, accountId: number, protocols: Array
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -572,7 +572,7 @@ removeDisallowedBluetoothProtocols(admin: Want, accountId: number, protocols: Ar
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -624,7 +624,7 @@ getDisallowedBluetoothProtocols(admin: Want, accountId: number): Array&lt;Protoc
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 

@@ -25,7 +25,7 @@ onAdminEnabled(): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **示例：**
@@ -47,7 +47,7 @@ onAdminDisabled(): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **示例：**
@@ -69,7 +69,7 @@ onBundleAdded(bundleName: string): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -98,7 +98,7 @@ onBundleAdded(bundleName: string, accountId: number): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -128,7 +128,7 @@ onBundleRemoved(bundleName: string): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -157,7 +157,7 @@ onBundleRemoved(bundleName: string, accountId: number): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -187,7 +187,7 @@ onAppStart(bundleName: string): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -216,7 +216,7 @@ onAppStop(bundleName: string): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -244,7 +244,7 @@ onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -274,7 +274,7 @@ EnterpriseAdminExtensionAbility启动事件回调。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **示例：**
@@ -297,7 +297,7 @@ onAccountAdded(accountId: number): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -325,7 +325,7 @@ onAccountSwitched(accountId: number): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -353,7 +353,7 @@ onAccountRemoved(accountId: number): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -383,7 +383,7 @@ Kiosk模式为系统层面提供的一种应用运行模式，该模式下会将
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -412,7 +412,7 @@ onKioskModeExiting(bundleName: string, accountId: number): void
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
   
 **参数：**
 

@@ -828,7 +828,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererFastStatusChangeCallback(
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AudioStream_Result](capi-native-audiostream-base-h.md#oh_audiostream_result) | AUDIOSTREAM_SUCCESS 函数执行成功。<br>        AUDIOSTREAM_ERROR_INVALID_PARAM 参数无效，比如，builder为空指针。 |
+| [OH_AudioStream_Result](capi-native-audiostream-base-h.md#oh_audiostream_result) | AUDIOSTREAM_SUCCESS：函数执行成功。<br>        AUDIOSTREAM_ERROR_INVALID_PARAM：参数无效，比如，builder为空指针。 |
 
 ### OH_AudioStreamBuilder_SetCapturerFastStatusChangeCallback()
 
@@ -855,6 +855,6 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerFastStatusChangeCallback(
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AudioStream_Result](capi-native-audiostream-base-h.md#oh_audiostream_result) | AUDIOSTREAM_SUCCESS 函数执行成功。<br>        AUDIOSTREAM_ERROR_INVALID_PARAM 参数无效，比如，builder为空指针。 |
+| [OH_AudioStream_Result](capi-native-audiostream-base-h.md#oh_audiostream_result) | AUDIOSTREAM_SUCCESS：函数执行成功。<br>        AUDIOSTREAM_ERROR_INVALID_PARAM：参数无效，比如，builder为空指针。 |
 
 

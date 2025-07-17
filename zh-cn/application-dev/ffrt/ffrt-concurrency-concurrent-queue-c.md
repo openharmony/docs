@@ -21,7 +21,7 @@ FFRT并发队列提供了设置任务优先级（Priority）和队列并发度�
 ```c
 #include <stdio.h>
 #include <unistd.h>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // 来自 OpenHarmony 第三方库 "@ppd/ffrt"
 
 ffrt_queue_t create_bank_system(const char *name, int concurrency)
 {

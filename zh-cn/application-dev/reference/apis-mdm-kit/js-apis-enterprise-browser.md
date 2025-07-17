@@ -28,7 +28,7 @@ setPolicySync(admin: Want, appId: string, policyName: string, policyValue: strin
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -83,7 +83,7 @@ getPoliciesSync(admin: Want, appId: string): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -140,7 +140,7 @@ setManagedBrowserPolicy(admin: Want, bundleName: string, policyName: string, pol
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -194,7 +194,7 @@ getManagedBrowserPolicy(admin: Want, bundleName: string): ArrayBuffer
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -252,7 +252,7 @@ getSelfManagedBrowserPolicyVersion(): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **返回值：**
 
@@ -281,7 +281,7 @@ getSelfManagedBrowserPolicy(): ArrayBuffer
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **返回值：**
 

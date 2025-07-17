@@ -3154,7 +3154,7 @@ export default class EntryAbility extends UIAbility {
 
 ### connectAppServiceExtensionAbility<sup>20+</sup>
 
-connectAppServiceExtensionAbility(want: Want, options: ConnectOptions): number
+connectAppServiceExtensionAbility(want: Want, callback: ConnectOptions): number
 
 将当前UIAbility连接到[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)。通过返回的proxy与AppServiceExtensionAbility进行通信，以使用AppServiceExtensionAbility对外提供的能力。仅支持在主线程调用。
 
@@ -3170,7 +3170,7 @@ connectAppServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 连接[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)的Want信息。 |
-| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | ConnectOptions类型的回调函数，返回服务连接成功、连接失败、断开的信息。 |
+| callback | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | ConnectOptions类型的回调函数，返回服务连接成功、连接失败、断开的信息。 |
 
 **返回值：**
 
@@ -3210,7 +3210,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'AppServiceExtensionAbility'
     };
     let commRemote: rpc.IRemoteObject;
-    let options: common.ConnectOptions = {
+    let callback: common.ConnectOptions = {
       onConnect(elementName, remote) {
         commRemote = remote;
         console.info('onConnect...');
@@ -3225,7 +3225,7 @@ export default class EntryAbility extends UIAbility {
     let connection: number;
 
     try {
-      connection = this.context.connectAppServiceExtensionAbility(want, options);
+      connection = this.context.connectAppServiceExtensionAbility(want, callback);
     } catch (err) {
       // 处理入参错误异常
       let code = (err as BusinessError).code;

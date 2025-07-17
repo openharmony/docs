@@ -27,7 +27,7 @@ setLocationPolicy(admin: Want, policy: LocationPolicy): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -76,7 +76,7 @@ getLocationPolicy(admin: Want): LocationPolicy
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -128,7 +128,7 @@ try {
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称                        | 值  | 说明    |
 | ----------------------------| ----| ------------------------------- |
