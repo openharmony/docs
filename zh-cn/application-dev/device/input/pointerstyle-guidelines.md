@@ -99,7 +99,7 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
       console.info(`Successfully set mouse pointer style`);
     });
   } catch (error) {
-    console.error(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(`message`)}`);
+    console.error(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${error.message}`);
   }
 });
 // 4.取色结束
@@ -119,7 +119,7 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
       console.info(`Successfully set mouse pointer style`);
     });
   } catch (error) {
-    console.error(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(`message`)}`);
+    console.error(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${error.message}`);
   }
 });
 ```
