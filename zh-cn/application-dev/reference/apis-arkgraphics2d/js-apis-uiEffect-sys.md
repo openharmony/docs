@@ -714,8 +714,7 @@ maskTransition(alphaMask: Mask, factor?: number, inverse?: boolean): Filter
 **示例：**
 
 ```ts
-import uiEffect from '@ohos.graphics.uiEffect';
-import { common2D } from "@kit.ArkGraphics2D";
+import { uiEffect, common2D } from "@kit.ArkGraphics2D";
 
 @Entry
 @Component
