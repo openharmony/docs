@@ -160,7 +160,7 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
            // 保存UIContext， 在后续的同层渲染绘制中使用。
            AppStorage.setOrCreate<UIContext>("UIContext", mainWindow.getUIContext());
          } else {
-            console.error("Failed to get the main window");
+           console.error("Failed to get the main window");
          }
        });
      }
@@ -490,7 +490,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
           // 保存UIContext， 在后续的同层渲染绘制中使用。
           AppStorage.setOrCreate<UIContext>("UIContext", mainWindow.getUIContext());
         } else {
-           console.error("Failed to get the main window");
+          console.error("Failed to get the main window");
         }
       });
     }
