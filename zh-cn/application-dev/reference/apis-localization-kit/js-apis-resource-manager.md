@@ -423,7 +423,7 @@ ArkTS1.2: getStringSync(resId: number, ...args: (string | number)[]): string
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值。 |
-| ...args | ArkTS1.1: Array<string \| number> </br> ArkTS1.2: (string \| number)[]| 否 | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
+| ...args | ArkTS1.1: Array<string \| number> <br> ArkTS1.2: (string \| number)[]| 否 | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
@@ -1681,7 +1681,7 @@ ArkTS1.2: getIntPluralStringValueSync(resId: number, num: number, ...args: (stri
 | ------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resId   | number                  | 是   | 资源ID值。                                                   |
 | num     | number                  | 是   | 数量值（整数）。根据当前语言的[单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)获取该数量值对应的字符串。 |
-| ...args | ArkTS1.1: Array<string \| number> </br> ArkTS1.2: (string \| number)[]| 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
+| ...args | ArkTS1.1: Array<string \| number> <br> ArkTS1.2: (string \| number)[]| 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
@@ -1846,7 +1846,7 @@ ArkTS1.2: getIntPluralStringByNameSync(resName: string, num: number, ...args: (s
 | ------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resName | string                  | 是   | 资源名称。                                                   |
 | num     | number                  | 是   | 数量值（整数）。根据当前语言的[单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)获取该数量值对应的字符串。 |
-| ...args | ArkTS1.1: Array<string \| number> </br> ArkTS1.2: (string \| number)[] | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
+| ...args | ArkTS1.1: Array<string \| number> <br> ArkTS1.2: (string \| number)[] | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
@@ -1924,7 +1924,7 @@ ArkTS1.2: getDoublePluralStringValueSync(resId: number, num: number, ...args: (s
 | ------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resId   | number                  | 是   | 资源ID值。                                                   |
 | num     | number                  | 是   | 数量值（浮点数）。根据当前语言的[单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)获取该数量值对应的字符串。 |
-| ...args | ArkTS1.1: Array<string \| number> </br> ArkTS1.2: (string \| number)[] | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
+| ...args | ArkTS1.1: Array<string \| number> <br> ArkTS1.2: (string \| number)[] | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
@@ -2089,7 +2089,7 @@ ArkTS1.2: getDoublePluralStringByNameSync(resName: string, num: number, ...args:
 | ------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resName | string                  | 是   | 资源名称。                                                   |
 | num     | number                  | 是   | 数量值（浮点数）。根据当前语言的[单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)获取该数量值对应的字符串。 |
-| ...args | ArkTS1.1: Array<string \| number> </br> ArkTS1.2: (string \| number)[] | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
+| ...args | ArkTS1.1: Array<string \| number> <br> ArkTS1.2: (string \| number)[] | 否   | 格式化字符串资源参数。<br>支持参数类型：`%d`、`%f`、`%s`、`%%`、`%数字$d`、`%数字$f`、`%数字$s`。<br>说明：`%%`转义为`%`; `%数字$d`中的数字表示使用args中的第几个参数。<br>举例：`%%d`格式化后为`%d`字符串; `%1$d`表示使用第一个参数。 |
 
 **返回值：**
 
