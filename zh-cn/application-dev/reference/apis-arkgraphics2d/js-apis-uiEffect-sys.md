@@ -684,6 +684,8 @@ maskTransition(alphaMask: Mask, factor?: number, inverse?: boolean): Filter
 
 为组件内容提供基于[Mask](#mask20)的转场效果。
 
+不建议在屏幕尺寸发生改变的过程中使用此效果，如：旋转屏幕，折叠屏开合屏幕等。
+
 **系统能力：** SystemCapability.Graphics.Drawing
 
 **系统接口：** 此接口为系统接口。
@@ -691,15 +693,15 @@ maskTransition(alphaMask: Mask, factor?: number, inverse?: boolean): Filter
 **参数：**
 | 参数名         | 类型                  | 必填 | 说明                       |
 | ------------- | --------------------- | ---- | ------------------------- |
-| alphaMask  | [Mask](#mask20)         | 是   | 可动画的mask对象。|
-| factor | number | 否 | `mask`的系数，默认值为1.0，建议取值范围为[0.0, 1.0]。超出此范围，效果无法保证。|
-| inverse  | boolean         | 否   | 转场模式，默认为false。true表示反转alphaMask的透明度，false表示不反转alphaMask的透明度。|
-
+| alphaMask     | [Mask](#mask20)       | 是   | 通过遮罩指定转场效果的作用区域。|
+| factor        | number                | 否   | 转场过渡系数，取值范围为[0.0,1.0]（factor 值越大画面越接近转场后页面，超出范围自动截断到[0.0,1.0]） |
+| inverse       | boolean               | 否   | 是否启用反向转场，默认false。（inverse为true表示反向转场：factor 值越大，画面越接近转场前页面） |
+ 
 **返回值：**
 
 | 类型              | 说明                               |
 | ----------------- | --------------------------------- |
-| [Filter](#filter) | 返回当前效果的filter对象。 |
+| [Filter](#filter) | 返回挂载了转场效果的Filter。 |
 
 **错误码：**
 
@@ -712,46 +714,45 @@ maskTransition(alphaMask: Mask, factor?: number, inverse?: boolean): Filter
 **示例：**
 
 ```ts
-import { uiEffect, common2D } from "@kit.ArkGraphics2D";
+import uiEffect from '@ohos.graphics.uiEffect';
+import { common2D } from "@kit.ArkGraphics2D";
 
 @Entry
 @Component
 struct Index {
-  @State filter: uiEffect.Filter | null = null
-  @State dst:  common2D.Rect = {
-    left: 0,
-    top: 0,
-    right: 1,
-    bottom: 0.5
-  };
+  context = this.getUIContext()
+  @State alpha: number = 0
+  @State enterNewPage:boolean = false
   @State rippleMaskCenter: common2D.Point = {x:0.5, y:0.5}
-  @State rippleMaskRadius: number = 0.0
-  @State rippleMaskWidth: number = 0.0
-  @State color: Color = Color.Transparent
-
+  @State rippleMaskRadius: number = 0.1
   build() {
-    Column() {
-      RelativeContainer() {
-        Image($r("app.media.mask")).width("100%").height("100%")
-        Stack()
-          .width("100%")
-          .height("100%")
-          .backgroundColor(this.color)
-          .backgroundFilter(uiEffect.createFilter()
-            .maskTransition(uiEffect.Mask.createRippleMask(
-              this.rippleMaskCenter, this.rippleMaskRadius, this.rippleMaskWidth, 0.0),
-              0.5, false))
-          .onClick(() => {
-            this.color = Color.Blue
-            animateTo({duration: 1000}, () => {
-              this.rippleMaskWidth = 1.0;
+    Stack() {
+      //转场前页面
+      Image($r("app.media.before")).width("100%").height("100%")
+        if (this.enterNewPage){
+          //转场后页面
+          Column().width("100%").height("100%").backgroundImage($r("app.media.after"))
+            .backgroundFilter(uiEffect.createFilter()
+              .maskTransition(
+                uiEffect.Mask.createRadialGradientMask(this.rippleMaskCenter, this.rippleMaskRadius,this.rippleMaskRadius, [[1, 0], [1, 1]]),
+                this.alpha))
+            .onAppear(() => {
+              this.context.animateTo({ duration: 1000 }, () => {
+                this.rippleMaskRadius = 1.3
+              })
+              this.context.animateTo({ duration: 800 }, () => {
+                this.alpha = 1
+              })
             })
-            this.dst.bottom = 0.9 - this.dst.bottom
-            let mask = uiEffect.Mask.createRippleMask(this.rippleMaskCenter, this.rippleMaskRadius, this.rippleMaskWidth, 0.0)
-            this.filter = uiEffect.createFilter().maskTransition(mask, 0.5, false);
-          })
+        }
+    }.borderWidth(2)
+    .onClick(()=>{
+      this.enterNewPage=!this.enterNewPage;
+      if (this.enterNewPage) {
+        this.alpha=0;
+        this.rippleMaskRadius=0.1;
       }
-    }.alignItems(HorizontalAlign.Center).borderWidth(2)
+    })
   }
 }
 ```
