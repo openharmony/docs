@@ -1,4 +1,5 @@
 # Supporting Aging-Friendly Design
+<!--RP1-->
 
 ## Basic Concepts
 
@@ -9,8 +10,6 @@ Aging-friendly design offers a method to enlarge selected areas or components th
 * Aging-friendly rules
 
   To ensure that components enlarge appropriately when the system font size is greater than 1x, you need to configure the [configuration tag](../quick-start/app-configuration-file.md#configuration) for implementing an aging-friendly feature.
-
-<!--RP1--><!--RP1End-->
 
 * Aging-friendly operations
 
@@ -41,7 +40,6 @@ Aging-friendly design offers a method to enlarge selected areas or components th
 
 ## Example
 
-<!--RP2-->
 This example uses the **SideBarContainer** component to trigger an aging-friendly dialog box through a long press of the control button. Note that the dialog box does not appear if the system font size is at the 1x setting. Instead, it appears only when the system font size is set to greater than 1x.
 
 ```ts
@@ -255,4 +253,4 @@ struct TextPickerExample {
 | System Font at 1x (Before Aging-Friendly Features Are Enabled)| System Font at 1.75x (After Aging-Friendly Features Are Enabled)|
 | ---------------------------------- | ------------------------------------ |
 | ![](figures/aging_03.png)          | ![](figures/aging_04.png)            |
-<!--RP2End-->
+<!--RP1End-->
