@@ -901,7 +901,7 @@ function CustomButton(num1: Binding<number>, num2: MutableBinding<number>) {
 function CustomButtonObj(obj1: MutableBinding<ClassA>) {
   Row() {
     Column() {
-      Text(`props === ${obj1.value.props}}`)
+      Text(`props === ${obj1.value.props}`)
         .width(300)
         .height(40)
         .margin(10)
