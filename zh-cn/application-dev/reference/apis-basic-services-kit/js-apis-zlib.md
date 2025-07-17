@@ -157,13 +157,15 @@ let options: zlib.Options = {
 try {
   zlib.compressFile(inFile, outFile, options, (errData: BusinessError) => {
     if (errData !== null) {
-      console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+      console.error(`compressFile errData is errCode:${errData.code}  message:${errData.message}`);
+    } else {
+      console.info(`compressFile success.`);
     }
   })
 } catch (errData) {
   let code = (errData as BusinessError).code;
   let message = (errData as BusinessError).message;
-  console.error(`errData is errCode:${code}  message:${message}`);
+  console.error(`compressFile errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -284,13 +286,15 @@ let options: zlib.Options = {
 try {
   zlib.decompressFile(inFile, outFileDir, options, (errData: BusinessError) => {
     if (errData !== null) {
-      console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+      console.error(`decompressFile errData is errCode:${errData.code}  message:${errData.message}`);
+    } else {
+      console.info(`decompressFile success.`);
     }
   })
 } catch (errData) {
   let code = (errData as BusinessError).code;
   let message = (errData as BusinessError).message;
-  console.error(`errData is errCode:${code}  message:${message}`);
+  console.error(`decompressFile errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -408,6 +412,8 @@ try {
   zlib.decompressFile(inFile, outFileDir, (errData: BusinessError) => {
     if (errData !== null) {
       console.error(`decompressFile failed. code is ${errData.code}, message is ${errData.message}`);
+    } else {
+      console.info(`decompressFile success.`);
     }
   })
 } catch (errData) {
@@ -2558,7 +2564,7 @@ async function demo() {
           break;
         }
         console.info('have =  last = ', have, last)
-        if (last != 31 || (NEXT2() != 139 && last >= 157 && last <= 157)) {
+        if (last != 31 || NEXT2() != 139 ) {
           ret = first ? -3 : -1;
           console.info('inflateBackTest Call result last != 31 || (NEXT2() != 139 && last != 157)')
           break;
