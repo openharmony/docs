@@ -78,7 +78,7 @@
 
 具体开发实例如下：
 
-调用[openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8)接口打开凭据管理新会话。
+调用[openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8)接口一个新的凭据管理会话。
 
    ```ts
    let challenge: Uint8Array = await userIDM.openSession();
@@ -190,7 +190,7 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 
 ## 认证生物识别凭据
 
-录入完生物识别凭据后，用户可以进行生物识别认证。类似PIN码认证，开发者可以使用[auth](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth8)接口完成此操作。
+录入生物识别凭据后，用户可以进行生物识别认证。类似PIN码认证，开发者可以使用[auth](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth8)接口完成此操作。
 
 具体开发实例如下：
 

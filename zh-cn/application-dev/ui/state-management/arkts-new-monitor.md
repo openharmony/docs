@@ -1185,3 +1185,44 @@ struct Index {
   }
 }
 ```
+### 无法监听变量从可访问变为不可访问和从不可访问变为可访问
+\@Monitor仅会保存变量可访问时的值，当状态变量变为不可访问的状态时，并不会记录其值的变化。在下面的例子中，点击三个Button，均不会触发`onChange`的回调。
+如果需要监听可访问到不可访问和不可访问到可访问的状态变化，可以使用[addMonitor](./arkts-new-addMonitor-clearMonitor.md#监听变量从可访问到不访问和从不可访问到可访问)。
+
+```ts
+@ObservedV2
+class User {
+  @Trace age: number = 10;
+}
+
+@Entry
+@ComponentV2
+struct Page {
+  @Local user: User | undefined | null = new User();
+
+  @Monitor('user.age')
+  onChange(mon: IMonitor) {
+    mon.dirty.forEach((path: string) => {
+      console.info(`onChange: User property ${path} change from ${mon.value(path)?.before} to ${mon.value(path)?.now}`);
+    });
+  }
+
+  build() {
+    Column() {
+      Text(`User age ${this.user?.age}`).fontSize(20)
+      Button('set user to undefined').onClick(() => {
+        // age：可访问 -> 不可访问
+        this.user = undefined;
+      })
+      Button('set user to User').onClick(() => {
+        // age：不可访问 ->可访问
+        this.user = new User();
+      })
+      Button('set user to null').onClick(() => {
+        // age：可访问->不可访问
+        this.user = null;
+      })
+    }
+  }
+}
+```

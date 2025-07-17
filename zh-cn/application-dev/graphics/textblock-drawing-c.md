@@ -163,9 +163,10 @@ OH_Drawing_FontDestroy(font);
 
 ## 单字绘制
 
-相比字块绘制，单字绘制的优势在于能够利用字体退化机制，在当前字体无法显示某字符时，自动退化到使用系统字体绘制字符，从而提升对特殊字符的兼容性，避免字符缺失，增强用户体验。详细API说明请见[drawing_canvas.h](../reference/apis-arkgraphics2d/capi-drawing-canvas-h.md#oh_drawing_canvasdrawsinglecharacter)。
+单字绘制是图形渲染中针对文本渲染的一种精细化控制技术。相比字块绘制，其核心优势在于能够利用字体退化机制，在当前字体无法显示某字符时，自动退化到使用系统字体绘制字符，提升对特殊字符的兼容性，避免字符缺失。同时，单字绘制支持逐字符配置字体特征（如连字、替代字形），满足复杂排版需求，增强用户体验。详细API说明请见[drawing_canvas.h](../reference/apis-arkgraphics2d/capi-drawing-canvas-h.md#oh_drawing_canvasdrawsinglecharacter)。
 
-单字绘制的示例代码和效果图如下：
+基础场景：绘制无字体特征的字符  
+对于无需字体特征的常规文本渲染场景，可以使用OH_Drawing_CanvasDrawSingleCharacter绘制单个字符，使用OH_Drawing_FontMeasureSingleCharacter测量单个字符的宽度，示例代码和效果图如下：
 
 ```c++
 // 创建字型对象
@@ -188,6 +189,36 @@ OH_Drawing_FontDestroy(font);
 ```
 
 ![Snapshot_drawSingleCharacter](figures/Snapshot_drawSingleCharacter.jpg)
+
+进阶场景：绘制带字体特征的字符  
+对于需要字体特征的文本渲染场景，可以使用OH_Drawing_CanvasDrawSingleCharacterWithFeatures绘制单个字符，使用OH_Drawing_FontMeasureSingleCharacterWithFeatures测量单个字符的宽度，示例代码和效果图如下：
+
+```c++
+// 创建字型对象
+OH_Drawing_Font *font = OH_Drawing_FontCreate();
+// 设置文字大小
+OH_Drawing_FontSetTextSize(font, 100);
+// 创建字体特征对象
+OH_Drawing_FontFeatures* features = OH_Drawing_FontFeaturesCreate();
+OH_Drawing_FontFeaturesAddFeature(features, "frac", 1);
+float startX = 100;
+float startY = 100;
+const char* str = "a2+b2";
+for (int i = 0; i < 5; ++i) {
+    // 单字绘制
+    OH_Drawing_CanvasDrawSingleCharacterWithFeatures(canvas, &str[i], font, startX, startY, features);
+    float textWidth = 0.f;
+    // 测量单个字符的宽度
+    OH_Drawing_FontMeasureSingleCharacterWithFeatures(font, &str[i], features, &textWidth);
+    startX += textWidth;
+}
+// 释放字体特征对象
+OH_Drawing_FontFeaturesDestroy(features);
+// 释放字型对象
+OH_Drawing_FontDestroy(font);
+```
+
+![Snapshot_drawSingleCharacter](figures/Snapshot_drawSingleCharacterWithFeatures.png)
 
 <!--RP1-->
 ## 相关实例

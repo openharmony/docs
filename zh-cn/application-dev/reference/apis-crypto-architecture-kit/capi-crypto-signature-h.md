@@ -4,9 +4,9 @@
 
 定义验签接口。
 
-**库：** libohcrypto.so
-
 **引用文件：** <CryptoArchitectureKit/crypto_signature.h>
+
+**库：** libohcrypto.so
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -51,7 +51,7 @@
 | [OH_Crypto_ErrCode OH_CryptoSign_SetParam(OH_CryptoSign *ctx, CryptoSignature_ParamType type,const Crypto_DataBlob *value)](#oh_cryptosign_setparam) | 设置签名实例的指定参数。 |
 | [OH_Crypto_ErrCode OH_CryptoSign_GetParam(OH_CryptoSign *ctx, CryptoSignature_ParamType type, Crypto_DataBlob *value)](#oh_cryptosign_getparam) | 从签名实例获取指定参数。 |
 | [void OH_CryptoSign_Destroy(OH_CryptoSign *ctx)](#oh_cryptosign_destroy) | 销毁签名实例。 |
-| [OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_Create(Crypto_DataBlob *EccSignature,OH_CryptoEccSignatureSpec **spec)](#oh_cryptoeccsignaturespec_create) | 创建ECC签名规范。 |
+| [OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_Create(Crypto_DataBlob *eccSignature,OH_CryptoEccSignatureSpec **spec)](#oh_cryptoeccsignaturespec_create) | 创建ECC签名规范。 |
 | [OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_GetRAndS(OH_CryptoEccSignatureSpec *spec, Crypto_DataBlob *r,Crypto_DataBlob *s)](#oh_cryptoeccsignaturespec_getrands) | 获取ECC签名的r和s值。 |
 | [OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_SetRAndS(OH_CryptoEccSignatureSpec *spec, Crypto_DataBlob *r,Crypto_DataBlob *s)](#oh_cryptoeccsignaturespec_setrands) | 设置ECC签名的r和s值。 |
 | [OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_Encode(OH_CryptoEccSignatureSpec *spec, Crypto_DataBlob *out)](#oh_cryptoeccsignaturespec_encode) | 将ECC签名规范编码为DER格式的签名。 |
@@ -100,14 +100,14 @@ OH_Crypto_ErrCode OH_CryptoVerify_Create(const char *algoName, OH_CryptoVerify *
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char *algoName | 用于生成验签实例的算法名称。<br>例如"RSA1024\|PKCS1\|SHA256" |
+| const char *algoName | 用于生成验签实例的算法名称。<br> 例如"RSA1024\|PKCS1\|SHA256" |
 | [OH_CryptoVerify](capi-cryptosignatureapi-oh-cryptoverify.md) **verify | 指向验签实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |  CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_INVALID_PARAMS：参数无效。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoVerify_Init()
 
@@ -133,11 +133,14 @@ OH_Crypto_ErrCode OH_CryptoVerify_Init(OH_CryptoVerify *ctx, OH_CryptoPubKey *pu
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |  CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_INVALID_PARAMS：参数无效。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 **参考：**
 
+[OH_CryptoVerify_Update](#oh_cryptoverify_update)
+
 [OH_CryptoVerify_Final](#oh_cryptoverify_final)
+
 
 ### OH_CryptoVerify_Update()
 
@@ -163,11 +166,14 @@ OH_Crypto_ErrCode OH_CryptoVerify_Update(OH_CryptoVerify *ctx, Crypto_DataBlob *
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |  CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_INVALID_PARAMS：参数无效。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 **参考：**
 
+[OH_CryptoVerify_Init](#oh_cryptoverify_init)
+
 [OH_CryptoVerify_Final](#oh_cryptoverify_final)
+
 
 ### OH_CryptoVerify_Final()
 
@@ -198,7 +204,10 @@ bool OH_CryptoVerify_Final(OH_CryptoVerify *ctx, Crypto_DataBlob *in, Crypto_Dat
 
 **参考：**
 
+[OH_CryptoVerify_Init](#oh_cryptoverify_init)
+
 [OH_CryptoVerify_Update](#oh_cryptoverify_update)
+
 
 ### OH_CryptoVerify_Recover()
 
@@ -219,13 +228,13 @@ OH_Crypto_ErrCode OH_CryptoVerify_Recover(OH_CryptoVerify *ctx, Crypto_DataBlob 
 | -- | -- |
 | [OH_CryptoVerify](capi-cryptosignatureapi-oh-cryptoverify.md) *ctx | 指向验签实例。 |
 | [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *signData | 签名数据。 |
-| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *rawSignData |  验签恢复的数据。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *rawSignData | 验签恢复的数据。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |  CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_INVALID_PARAMS：参数无效。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoVerify_GetAlgoName()
 
@@ -250,7 +259,7 @@ const char *OH_CryptoVerify_GetAlgoName(OH_CryptoVerify *ctx)
 
 | 类型 | 说明 |
 | -- | -- |
-| const char | 返回验签算法名称。 |
+| const char * | 返回验签算法名称。 |
 
 ### OH_CryptoVerify_SetParam()
 
@@ -277,7 +286,7 @@ OH_Crypto_ErrCode OH_CryptoVerify_SetParam(OH_CryptoVerify *ctx, CryptoSignature
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |  CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_INVALID_PARAMS：参数无效。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoVerify_GetParam()
 
@@ -304,7 +313,7 @@ OH_Crypto_ErrCode OH_CryptoVerify_GetParam(OH_CryptoVerify *ctx, CryptoSignature
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |  CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_INVALID_PARAMS：参数无效。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoVerify_Destroy()
 
@@ -342,14 +351,14 @@ OH_Crypto_ErrCode OH_CryptoSign_Create(const char *algoName, OH_CryptoSign **sig
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char *algoName | 用于生成签名实例的算法名称。<br>例如"RSA\|PKCS1\|SHA384"、"ECC\|SHA384"。 |
+| const char *algoName | 用于生成签名实例的算法名称。<br> 例如"RSA\|PKCS1\|SHA384"、"ECC\|SHA384"。 |
 | [OH_CryptoSign](capi-cryptosignatureapi-oh-cryptosign.md) **sign | 签名实例。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |  CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_PARAMETER_CHECK_FAILED：参数检查失败。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoSign_Init()
 
@@ -375,11 +384,14 @@ OH_Crypto_ErrCode OH_CryptoSign_Init(OH_CryptoSign *ctx, OH_CryptoPrivKey *privK
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |  CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_PARAMETER_CHECK_FAILED：参数检查失败。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 **参考：**
 
+[OH_CryptoSign_Update](#oh_cryptosign_update)
+
 [OH_CryptoSign_Final](#oh_cryptosign_final)
+
 
 ### OH_CryptoSign_Update()
 
@@ -399,17 +411,20 @@ OH_Crypto_ErrCode OH_CryptoSign_Update(OH_CryptoSign *ctx, const Crypto_DataBlob
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoSign](capi-cryptosignatureapi-oh-cryptosign.md) *ctx | 指向签名实例。 |
-| const [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *in | 需要签名的数据。 |
+| [const Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *in | 需要签名的数据。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |  CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_PARAMETER_CHECK_FAILED：参数检查失败。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 **参考：**
 
+[OH_CryptoSign_Init](#oh_cryptosign_init)
+
 [OH_CryptoSign_Final](#oh_cryptosign_final)
+
 
 ### OH_CryptoSign_Final()
 
@@ -429,18 +444,21 @@ OH_Crypto_ErrCode OH_CryptoSign_Final(OH_CryptoSign *ctx, const Crypto_DataBlob 
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoSign](capi-cryptosignatureapi-oh-cryptosign.md) *ctx | 指向签名实例。 |
-| const [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *in | 需要签名的数据。 |
+| [const Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *in | 需要签名的数据。 |
 | [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *out | 签名结果。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |  CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_PARAMETER_CHECK_FAILED：参数检查失败。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 **参考：**
 
+[OH_CryptoSign_Init](#oh_cryptosign_init)
+
 [OH_CryptoSign_Update](#oh_cryptosign_update)
+
 
 ### OH_CryptoSign_GetAlgoName()
 
@@ -465,7 +483,7 @@ const char *OH_CryptoSign_GetAlgoName(OH_CryptoSign *ctx)
 
 | 类型 | 说明 |
 | -- | -- |
-| const char | 返回签名算法名称。 |
+| const char * | 返回签名算法名称。 |
 
 ### OH_CryptoSign_SetParam()
 
@@ -486,13 +504,13 @@ OH_Crypto_ErrCode OH_CryptoSign_SetParam(OH_CryptoSign *ctx, CryptoSignature_Par
 | -- | -- |
 | [OH_CryptoSign](capi-cryptosignatureapi-oh-cryptosign.md) *ctx | 指向签名实例。 |
 | [CryptoSignature_ParamType](#cryptosignature_paramtype) type | 签名参数类型。 |
-| const [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *value | 输入数据。 |
+| [const Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *value | 输入数据。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |  CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_PARAMETER_CHECK_FAILED：参数检查失败。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoSign_GetParam()
 
@@ -519,7 +537,7 @@ OH_Crypto_ErrCode OH_CryptoSign_GetParam(OH_CryptoSign *ctx, CryptoSignature_Par
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |  CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_PARAMETER_CHECK_FAILED：参数检查失败。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoSign_Destroy()
 
@@ -543,7 +561,7 @@ void OH_CryptoSign_Destroy(OH_CryptoSign *ctx)
 ### OH_CryptoEccSignatureSpec_Create()
 
 ```
-OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_Create(Crypto_DataBlob *EccSignature,OH_CryptoEccSignatureSpec **spec)
+OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_Create(Crypto_DataBlob *eccSignature,OH_CryptoEccSignatureSpec **spec)
 ```
 
 **描述**
@@ -557,14 +575,14 @@ OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_Create(Crypto_DataBlob *EccSignature
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *EccSignature | ECC签名（DER格式），如果EccSignature参数为NULL，将创建一个空的ECC签名规范。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *eccSignature | ECC签名（DER格式），如果EccSignature参数为NULL，将创建一个空的ECC签名规范。 |
 | [OH_CryptoEccSignatureSpec](capi-cryptosignatureapi-oh-cryptoeccsignaturespec.md) **spec | 输出的ECC签名规范。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |  CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_PARAMETER_CHECK_FAILED：参数检查失败。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoEccSignatureSpec_GetRAndS()
 
@@ -591,7 +609,7 @@ OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_GetRAndS(OH_CryptoEccSignatureSpec *
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |  CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_PARAMETER_CHECK_FAILED：参数检查失败。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoEccSignatureSpec_SetRAndS()
 
@@ -618,7 +636,7 @@ OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_SetRAndS(OH_CryptoEccSignatureSpec *
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |  CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_PARAMETER_CHECK_FAILED：参数检查失败。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoEccSignatureSpec_Encode()
 
@@ -644,7 +662,7 @@ OH_Crypto_ErrCode OH_CryptoEccSignatureSpec_Encode(OH_CryptoEccSignatureSpec *sp
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) |  CRYPTO_SUCCESS = 0 : 操作成功。<br>         CRYPTO_INVALID_PARAMS = 401 : 参数无效。<br>         CRYPTO_NOT_SUPPORTED = 801 : 操作不支持。<br>         CRYPTO_MEMORY_ERROR = 17620001 : 内存错误。<br>         CRYPTO_OPERTION_ERROR = 17630001 : 调用三方算法库API出错。 |
+| [OH_Crypto_ErrCode](capi-crypto-common-h.md#oh_crypto_errcode) | CRYPTO_SUCCESS：操作成功。<br>         CRYPTO_NOT_SUPPORTED：操作不支持。<br>         CRYPTO_MEMORY_ERROR：内存错误。<br>         CRYPTO_PARAMETER_CHECK_FAILED：参数检查失败。<br>         CRYPTO_OPERTION_ERROR：调用三方算法库API出错。 |
 
 ### OH_CryptoEccSignatureSpec_Destroy()
 

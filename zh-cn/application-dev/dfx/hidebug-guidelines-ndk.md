@@ -20,7 +20,7 @@
 | OH_HiDebug_BacktraceFromFp    | 获取从给定的栈帧指针开始的回溯帧。</br>**说明**：从API version 20开始，支持该接口。         |
 | OH_HiDebug_SymbolicAddress    | 通过给定的程序计数器（PC）获取详细的符号信息。 </br>**说明**：从API version 20开始，支持该接口。 |
 
-API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiDebug](../reference/apis-performance-analysis-kit/_hi_debug.md)。
+API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiDebug](../reference/apis-performance-analysis-kit/capi-hidebug-h.md)。
 
 ## 开发步骤
 

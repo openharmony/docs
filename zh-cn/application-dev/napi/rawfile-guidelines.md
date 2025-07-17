@@ -3,7 +3,7 @@
 ## 场景介绍
 
 开发者可以通过本指导了解在OpenHarmony应用中，如何使用Native Rawfile接口操作Rawfile目录和文件。功能包括文件列表遍历、文件打开、搜索、读取和关闭Rawfile。  
-64后缀相关接口属于新增接口，新接口支持打开更大的rawfile文件(超过2G以上建议使用)，具体请参考：[Rawfile接口介绍](../reference/apis-localization-kit/rawfile.md)。64相关的开发步骤和非64一致，将非64接口替换为64接口即可，例如：OH_ResourceManager_OpenRawFile替换为OH_ResourceManager_OpenRawFile64。
+64后缀相关接口属于新增接口，新接口支持打开更大的rawfile文件(超过2G以上建议使用)，具体请参考：[Rawfile接口介绍](../reference/apis-localization-kit/capi-rawfile.md)。64相关的开发步骤和非64一致，将非64接口替换为64接口即可，例如：OH_ResourceManager_OpenRawFile替换为OH_ResourceManager_OpenRawFile64。
 
 ## 接口说明
 
@@ -22,7 +22,7 @@
 | void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr) | 释放native resource manager相关资源。    |
 | bool OH_ResourceManager_IsRawDir(const NativeResourceManager *mgr, const char *path) | 判断路径是否是rawfile下的目录。    |
 
-详细的接口说明请参考[rawfile函数说明](../reference/apis-localization-kit/rawfile.md#函数说明)。
+详细的接口说明请参考[rawfile](../reference/apis-localization-kit/capi-rawfile.md)。
 
 ## 开发步骤
 

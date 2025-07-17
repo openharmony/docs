@@ -181,7 +181,7 @@ iconSize(size: Dimension | SizeOptions)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| size | [Dimension](ts-types.md#dimension10) \| [SizeOptions](ts-types.md#sizeoptions) |是 |图标尺寸，不支持设置百分比字符串。<br/>- 保存控件提供的系统图标，宽高默认值均为16vp。宽高设置值不一致时，取其中最小值作为宽高值；宽高仅设置其中一个值时，取该值作为宽高值。<br/>- 对于自定义图标，宽默认值为16vp，高根据自定义图标实际尺寸做自适应处理。宽高仅设置其中一个值时，未设置的另一个值做自适应处理；宽高均设置时按照指定宽高生效，当设置的宽高比例与自定义图标的宽高比例不一致时，图片被截断。|
+| size | [Dimension](ts-types.md#dimension10) \| [SizeOptions](ts-types.md#sizeoptions) |是 |图标尺寸，不支持设置百分比字符串。宽高默认值均为16vp。<br/>对于保存控件提供的系统图标：<br/>- 使用Dimension类型入参时，宽、高相等，均为设定值。<br/>- 使用SizeOptions类型入参时，若宽、高设定值不一致，则宽、高相等取两者较小值；若仅设定其中一个值，则取该值作为宽、高值。<br/>对于自定义图标：<br/>- 使用Dimension类型入参时，宽、高相等，均为设定值。<br/>- 使用SizeOptions类型入参时，建议同时设定宽和高，此时按照指定宽、高生效；若仅设定其中一个值，则宽高均显示为该设定值。<br/>- 当设定的宽高与自定义图标的宽高比例不一致时，图片按[ImageFit.Cover](ts-appendix-enums.md#imagefit)的方式填充显示区域。|
 
 ### iconBorderRadius<sup>20+</sup>
 
@@ -345,7 +345,7 @@ struct SetIcon {
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD })
           .setIcon($r('app.media.startIcon'))
           .iconSize({ width: 30, height: 40 })
-        // 设置保存控件的自定义图标大小，入参为SizeOptions类型且只设置一个值，宽高中的另一个会按原图比例自适应显示。
+        // 设置保存控件的自定义图标大小，入参为SizeOptions类型且只设置一个值。图片宽高均显示为设置值。
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD })
           .setIcon($r('app.media.startIcon'))
           .iconSize({ width: 40 })
