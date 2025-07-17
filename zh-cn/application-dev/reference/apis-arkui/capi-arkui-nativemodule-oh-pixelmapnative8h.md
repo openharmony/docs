@@ -1,8 +1,8 @@
-# ArkUI_DrawableDescriptor
+# OH_PixelmapNative*
 
 ## 概述
 
-定义 DrawableDescriptor 对象。
+定义OH_PixelmapNative对象指针类型。
 
 **起始版本：** 12
 
