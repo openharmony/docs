@@ -46,6 +46,8 @@ enum ArkWeb_ErrorCode
 | ARKWEB_LIBRARY_OPEN_FAILURE = 17100105     | 打开动态链接库失败。<br>**起始版本：** 15           |
 | ARKWEB_LIBRARY_SYMBOL_NOT_FOUND = 17100106 | 动态链接库中找不到所需的符号。<br>**起始版本：** 15 |
 | ARKWEB_COOKIE_MANAGER_NOT_INITIALIZED = 17100107 | CookieManager未初始化。<br>**起始版本：** 20 |
+| ARKWEB_COOKIE_MANAGER_INITIALIZE_FAILED = 17100108 | CookieManager初始化失败。<br>**起始版本：** 20 |
+| ARKWEB_COOKIE_SAVE_FAILED = 17100109 | 保存cookie失败。<br>**起始版本：** 20 |
 
 ### ArkWeb_BlanklessErrorCode
 
