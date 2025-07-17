@@ -6920,7 +6920,9 @@ getDecorButtonStyle(): DecorButtonStyle
 
 获取装饰栏按钮样式，仅对主窗和子窗生效。
 
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+<!--RP16-->
+此接口仅可在2in1设备下使用。
+<!--RP16End-->
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
