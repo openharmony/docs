@@ -630,7 +630,7 @@ let streamVolumeChangeCallback = (streamVolumeEvent: audio.StreamVolumeEvent) =>
   console.info(`Whether to updateUI: ${streamVolumeEvent.updateUi} `);
 };
 
-audioVolumeManager.on('streamVolumeChange', streamVolumeChangeCallback);
+audioVolumeManager.on('streamVolumeChange', audio.StreamUsage.STREAM_USAGE_MUSIC, streamVolumeChangeCallback);
 
 audioVolumeManager.off('streamVolumeChange', streamVolumeChangeCallback);
 ```
