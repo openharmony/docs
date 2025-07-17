@@ -52,7 +52,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 const TAG: string = '[SelectionExtensionAbility]';
 
 class StubTest extends rpc.RemoteObject {
-  constructor(des) {
+  constructor(des: string) {
     super(des);
   }
   onConnect(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
