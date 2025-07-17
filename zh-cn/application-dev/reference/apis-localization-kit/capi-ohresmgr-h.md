@@ -533,7 +533,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetConfiguration(const NativeResour
 
 **废弃版本：** 20
 
-**替代接口：** [OH_ResourceManager_GetResourceConfiguration](capi-ohresmgr-h.md#oh_resourcemanager_getresourceconfiguration)
+**替代接口：** [OH_ResourceManager_GetResourceConfiguration](#oh_resourcemanager_getresourceconfiguration)
 
 
 **参数：**
