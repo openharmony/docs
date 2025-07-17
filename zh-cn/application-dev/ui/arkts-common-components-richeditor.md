@@ -375,7 +375,7 @@ RichEditor(this.options)
   })
 ```
 
-![RichEditor_select_menu](figures/RichEditor_select_menu.jpg)
+![RichEditor_select_menu](figures/RichEditor_select_menu.gif)
 
 更多属性使用请参考[RichEditor属性](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#属性)。
 
