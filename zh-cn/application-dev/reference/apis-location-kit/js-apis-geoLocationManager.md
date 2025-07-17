@@ -537,6 +537,63 @@ POI信息结构体。
 | CYCLING     | 3 | 表示骑行。 |
 
 
+## BeaconFenceInfoType<sup>20+</sup>
+
+beacon围栏信息类型。当前仅支持设备制造商数据过滤。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Geofence
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| BEACON_MANUFACTURE_DATA   | 1 |  标识使用beacon设备制造商数据。 |
+
+
+## BeaconManufactureData<sup>20+</sup>
+
+beacon设备制造商数据。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Geofence
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| manufactureId | number | 否 | 否 | 制造商标识。例如：0X004C |
+| manufactureData | ArrayBuffer | 否 | 否 | 制造商数据的广播报文。例如：[0x1F,0x2F,0x3F] |
+| manufactureDataMask | ArrayBuffer | 否 | 否 | 搭配manufactureData使用，可设置过滤部分制造商数据。例如：[0xFF,0xFF,0xFF] |
+
+
+## BeaconFence<sup>20+</sup>
+
+beacon围栏的参数配置。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Geofence
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| identifier | string | 否 | 否 | 围栏标识标识。 |
+| type | [BeaconFenceInfoType](#beaconfenceinfotype20) | 否 | 否 | beacon围栏信息类型。 |
+| manufactureData | [BeaconManufactureData](#beaconmanufacturedata20) | 否 | 是 | beacon设备制造商数据。 |
+
+## BeaconFenceRequest<sup>20+</sup>
+
+beacon围栏请求参数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Geofence
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| beacon | [BeaconFence](#beaconfence20) | 否 | 否 | beacon围栏的参数配置。 |
+| transitionCallback | AsyncCallback&lt;[GeofenceTransition](#geofencetransition12)&gt; | 否 | 是 | beacon围栏事件信息。 |
+| fenceExtensionAbilityName | string | 否 | 是 | [FenceExtensionAbility](js-apis-app-ability-FenceExtensionAbility.md)名称。 |
+
+
 ## geoLocationManager.on('locationChange')
 
 on(type: 'locationChange', request: LocationRequest | ContinuousLocationRequest, callback: Callback&lt;Location&gt;): void
@@ -2673,5 +2730,151 @@ getDistanceBetweenLocations(location1: Location, location2: Location): number
     console.info("distance:" + distance);
   } catch(error) {
     console.error("getDistanceBetweenLocations: errCode" + error.code + ", errMessage" + error.message);
+  }
+  ```
+  
+  
+  ## geoLocationManager.addBeaconFence<sup>20+</sup>
+
+addBeaconFence(fenceRequest: BeaconFenceRequest): Promise&lt;number&gt;
+
+添加一个beacon围栏，并订阅地理围栏事件。使用Promise异步回调。
+
+APP可以在入参[BeaconFenceRequest](#beaconfencerequest20)中传入回调函数用于接收围栏事件；也可以传入[FenceExtensionAbility](js-apis-app-ability-FenceExtensionAbility.md)名称，在系统识别到围栏事件发生时通知APP。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Geofence
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fenceRequest | [BeaconFenceRequest](#beaconfencerequest20) | 是 | 添加beacon围栏请求参数。 |
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise<number> | Promise对象，返回beacon围栏ID。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.addBeaconFence} due to limited device capabilities.          |
+|3501100 | Failed to add a beacon fence because the location switch is off.                                           |
+|3501101 | Failed to add a beacon fence because the bluetooth switch is off.                                                 |
+|3501601 | The number of beacon fence exceeds the maximum. |
+|3501603 | Duplicate beacon fence information. |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  try {
+    let manufactureDataBuffer: Uint8Array = new Uint8Array([0X4C, 0X00, 0X02, 0X15, 0X00, 0X00, 0X18, 0X12, 0X00, 0X00,
+      0X10, 0X00, 0X80, 0X00, 0X00, 0X80, 0X5F, 0X9B, 0X34, 0XFB, 0X00, 0X01, 0X00, 0X08, 0Xd0]);
+    let manufactureDataMaskBuffer: Uint8Array = new Uint8Array([0X00, 0X00, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF,
+      0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0X00, 0X00, 0X00, 0X00, 0X00]);
+
+    let manufactureData:geoLocationManager.BeaconManufactureData = {
+      manufactureId: 0X004C,
+      manufactureData: manufactureDataBuffer.buffer,
+      manufactureDataMask: manufactureDataMaskBuffer.buffer
+    };
+
+    let beacon:geoLocationManager.BeaconFence = {
+      identifier: "11",
+      type: geoLocationManager.BeaconFenceInfoType.BEACON_MANUFACTURE_DATA,
+      manufactureData:manufactureData
+    };
+
+    let fenceRequest:geoLocationManager.BeaconFenceRequest = {
+      beacon: beacon,
+      transitionCallback: (err : BusinessError, transition : geoLocationManager.GeofenceTransition) => {
+        if (err) {
+          console.error("transitionCallback: err" + JSON.stringify(err));
+        }
+        if (transition) {
+          console.info("GeofenceTransition: err" + JSON.stringify(transition));
+        }
+      },
+      fenceExtensionAbilityName: "MyFenceExtensionAbility",
+    };
+    geoLocationManager.addBeaconFence(fenceRequest).then((id) => {
+      console.info("addBeaconFence success, fence id:" + id);
+    }).catch((err : BusinessError) => {
+      console.error('promise, addBeaconFence: error=' + JSON.stringify(err));
+    });
+  } catch(error) {
+    console.error("addBeaconFence: errCode" + error.code + ", errMessage" + error.message);
+  }
+  ```
+
+
+## geoLocationManager.removeBeaconFence<sup>20+</sup>
+
+removeBeaconFence(beaconFence?: BeaconFence): Promise&lt;void&gt;
+
+删除beacon围栏，并取消订阅地理围栏事件。使用Promise异步回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Geofence
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | beaconFence | [BeaconFence](#beaconfence20) | 否 | 传入beaconFence参数，删除指定围栏；不传入参数，删除该APP所有围栏。 |
+
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.addBeaconFence} due to limited device capabilities.          |
+|3501602 | Failed to delete the fence due to incorrect beacon fence information. |
+
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  try {
+    let manufactureDataBuffer: Uint8Array = new Uint8Array([0X4C, 0X00, 0X02, 0X15, 0X00, 0X00, 0X18, 0X12, 0X00, 0X00,
+      0X10, 0X00, 0X80, 0X00, 0X00, 0X80, 0X5F, 0X9B, 0X34, 0XFB, 0X00, 0X01, 0X00, 0X08, 0Xd0]);
+    let manufactureDataMaskBuffer: Uint8Array = new Uint8Array([0X00, 0X00, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF,
+      0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0XFF, 0X00, 0X00, 0X00, 0X00, 0X00]);
+
+    let manufactureData:geoLocationManager.BeaconManufactureData = {
+      manufactureId: 0X004C,
+      manufactureData: manufactureDataBuffer.buffer,
+      manufactureDataMask: manufactureDataMaskBuffer.buffer
+    };
+
+    let beacon:geoLocationManager.BeaconFence = {
+      identifier: "11",
+      type: geoLocationManager.BeaconFenceInfoType.BEACON_MANUFACTURE_DATA,
+      manufactureData:manufactureData
+    };
+    geoLocationManager.removeBeaconFence(beacon);
+  } catch(error) {
+    console.error("removeBeaconFence: errCode" + error.code + ", errMessage" + error.message);
   }
   ```
