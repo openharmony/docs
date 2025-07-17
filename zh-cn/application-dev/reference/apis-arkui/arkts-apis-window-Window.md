@@ -622,7 +622,6 @@ moveWindowToGlobalDisplay(x: number, y: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -674,8 +673,6 @@ clientToGlobalDisplay(winX: number, winY: number): Position
 **示例：**
 
 ```ts
-import { window } from '@kit.ArkUI';
-
 try {
   let position = windowClass.clientToGlobalDisplay(100, 100);
   console.info(`Succeeded in converting the position in the current window to the position in global display. Position: ` + JSON.stringify(position));
@@ -721,8 +718,6 @@ globalDisplayToClient(globalDisplayX: number, globalDisplayY: number): Position
 **示例：**
 
 ```ts
-import { window } from '@kit.ArkUI';
-
 try {
   let position = windowClass.globalDisplayToClient(100, 100);
   console.info(`Succeeded in converting in the position in global display to the position in the current window. Position: ` + JSON.stringify(position));
