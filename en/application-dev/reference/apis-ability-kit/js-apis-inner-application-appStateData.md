@@ -1,6 +1,6 @@
 # AppStateData
 
-The AppStateData module defines the application state data, which can be obtained through [appManager.on('applicationState')](./js-apis-app-ability-appManager.md#appmanageronapplicationstate).
+The module defines the application state data, which can be obtained through [appManager.on('applicationState')](./js-apis-app-ability-appManager.md#appmanageronapplicationstate14).
 
 > **NOTE**
 > 

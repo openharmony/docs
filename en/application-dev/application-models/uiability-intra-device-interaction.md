@@ -22,7 +22,7 @@ This scenario is possible when an application contains multiple [UIAbility](../r
 
 Assume that your application has two UIAbility components: EntryAbility and FuncAbility, either in the same module or different modules. To start FuncAbility from EntryAbility, proceed as follows:
 
-1. In EntryAbility, call [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) and pass the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter to start the UIAbility instance. In the **want** parameter, **bundleName** indicates the bundle name of the application to start; **abilityName** indicates the name of the UIAbility to start; **moduleName** is required only when the target UIAbility belongs to a different module from EntryAbility; **parameters** is used to carry custom information. For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+1. In EntryAbility, call [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability) and pass the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter to start the UIAbility instance. In the **want** parameter, **bundleName** indicates the bundle name of the application to start; **abilityName** indicates the name of the UIAbility to start; **moduleName** is required only when the target UIAbility belongs to a different module from EntryAbility; **parameters** is used to carry custom information. For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
     ```ts
     import { common, Want } from '@kit.AbilityKit';
@@ -55,7 +55,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
                   abilityName: 'FuncAbilityA',
                   parameters: {
                     // Custom information.
-                    info: 'From Page_UIAbilityComponentsInteractive of EntryAbility',
+                    info: 'From Page_UIAbilityComponentsInteractive of EntryAbility'
                   },
                 };
                 // context is the UIAbilityContext of the initiator UIAbility.
@@ -75,7 +75,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
     }
     ```
 
-2. In FuncAbility, use [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) to receive the parameters passed in by EntryAbility.
+2. In FuncAbility, use [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onnewwant) to receive the parameters passed in by EntryAbility.
 
     ```ts
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -94,7 +94,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
     >
     > In FuncAbility started, you can obtain the PID and bundle name of the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) through **parameters** in the passed [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter.
 
-3. To stop the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance after the FuncAbility service is not needed, call [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) in FuncAbility.
+3. To stop the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance after the FuncAbility service is not needed, call [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself) in FuncAbility.
 
     ```ts
     import { common } from '@kit.AbilityKit';
@@ -128,7 +128,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
 
     > **NOTE**
     >
-    > When **terminateSelf()** is called to stop the UIAbility instance, the snapshot of the instance is retained by default. That is, the mission corresponding to the instance is still displayed in Recents. If you do not want to retain the snapshot, set **removeMissionAfterTerminate** under the [abilities](../quick-start/module-configuration-file.md#abilities) tag to **true** in the [module.json5 file](../quick-start/module-configuration-file.md) of the corresponding UIAbility.
+    > When **terminateSelf()** is called to stop the UIAbility instance, the snapshot of the instance is retained by default. That is, the mission corresponding to the instance is still displayed in the recent task list. If you do not want to retain the snapshot, set **removeMissionAfterTerminate** under the [abilities](../quick-start/module-configuration-file.md#abilities) tag to **true** in the [module.json5 file](../quick-start/module-configuration-file.md) of the corresponding UIAbility.
 
 4. To stop all [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instances of the application, call [killAllProcesses()](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses) of [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md).
 
@@ -137,7 +137,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
 
 When starting FuncAbility from EntryAbility, you may want the result to be returned after the FuncAbility service is finished. For example, after the sign-in operation is finished in the sign-in [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) of your application, you want the sign-in result to be returned to the entry UIAbility.
 
-1. In EntryAbility, call [startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult-2) to start FuncAbility. Use **data** in the asynchronous callback to receive information returned after FuncAbility stops itself. For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+1. In EntryAbility, call [startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilityforresult-2) to start FuncAbility. Use **data** in the asynchronous callback to receive information returned after FuncAbility stops itself. For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
     ```ts
     import { common, Want } from '@kit.AbilityKit';
@@ -168,7 +168,7 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
                   abilityName: 'FuncAbilityA',
                   parameters: {
                     // Custom information.
-                    info: 'From UIAbilityComponentsInteractive of EntryAbility',
+                    info: 'From UIAbilityComponentsInteractive of EntryAbility'
                   }
                 };
                 context.startAbilityForResult(want).then((data) => {
@@ -197,7 +197,7 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
     }
     ```
 
-2. Call [terminateSelfWithResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to stop FuncAbility. Use the input parameter [abilityResult](../reference/apis-ability-kit/js-apis-inner-ability-abilityResult.md) to carry the information that FuncAbility needs to return to EntryAbility.
+2. Call [terminateSelfWithResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult) to stop FuncAbility. Use the input parameter [abilityResult](../reference/apis-ability-kit/js-apis-inner-ability-abilityResult.md) to carry the information that FuncAbility needs to return to EntryAbility.
 
     ```ts
     import { common } from '@kit.AbilityKit';
@@ -227,7 +227,7 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
                     moduleName: 'entry', // moduleName is optional.
                     abilityName: 'FuncAbilityB',
                     parameters: {
-                      info: 'From the Index page of FuncAbility',
+                      info: 'From the Index page of FuncAbility'
                     },
                   },
                 };
@@ -248,7 +248,7 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
     }
     ```
 
-3. After FuncAbility stops itself, EntryAbility uses [startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult-2) to receive the information returned by FuncAbility. The value of **RESULT_CODE** must be the same as that specified in the preceding step.
+3. After FuncAbility stops itself, EntryAbility uses [startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilityforresult-2) to receive the information returned by FuncAbility. The value of **RESULT_CODE** must be the same as that specified in the preceding step.
 
     ```ts
     import { common, Want } from '@kit.AbilityKit';
@@ -280,7 +280,7 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
                   abilityName: 'FuncAbilityA',
                   parameters: {
                     // Custom information.
-                    info: 'From UIAbilityComponentsInteractive of EntryAbility',
+                    info: 'From UIAbilityComponentsInteractive of EntryAbility'
                   }
                 };
                 context.startAbilityForResult(want).then((data) => {
@@ -379,7 +379,7 @@ struct Page_UIAbilityComponentsInteractive {
 
 ### Cold Starting UIAbility
 
-In cold start mode, obtain the parameters from the initiator [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) through the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) callback of the target UIAbility. Then, in the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) callback of the target UIAbility, parse the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter passed by the EntryAbility to obtain the URL of the page to be loaded, and pass the URL to the [windowStage.loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9) method.
+In cold start mode, obtain the parameters from the initiator [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) through the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate) callback of the target UIAbility. Then, in the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) callback of the target UIAbility, parse the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter passed by the EntryAbility to obtain the URL of the page to be loaded, and pass the URL to the [windowStage.loadContent()](../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9) method.
 
 
 ```ts
@@ -416,7 +416,7 @@ export default class EntryAbility extends UIAbility {
 
 ### Hot Starting UIAbility
 
-If the target [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) has been started, the initialization logic is not executed again. Instead, the [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) lifecycle callback is directly triggered. To implement redirection, parse the required parameters in **onNewWant()**.
+If the target [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) has been started, the initialization logic is not executed again. Instead, the [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onnewwant) lifecycle callback is directly triggered. To implement redirection, parse the required parameters in **onNewWant()**.
 
 An example scenario is as follows:
 
@@ -424,7 +424,7 @@ An example scenario is as follows:
 2. The user returns to the home screen, and the SMS application switches to the background.
 3. The user opens the Contacts application and finds a contact.
 4. The user touches the SMS button next to the contact. The UIAbility instance of the SMS application is restarted.
-5. Since the UIAbility instance of the SMS application has been started, the onNewWant() callback of the UIAbility is triggered, and the initialization logic such as [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) and [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) is skipped.
+5. Since the UIAbility instance of the SMS application has been started, the onNewWant() callback of the UIAbility is triggered, and the initialization logic such as [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate) and [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) is skipped.
 
 **Figure 1** Hot starting the target UIAbility
 
@@ -432,7 +432,7 @@ An example scenario is as follows:
 
 The development procedure is as follows:
 
-1. When the UIAbility instance of the SMS application is cold started, call [getUIContext()](../reference/apis-arkui/js-apis-window.md#getuicontext10) in the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) lifecycle callback to obtain the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md).
+1. When the UIAbility instance of the SMS application is cold started, call [getUIContext()](../reference/apis-arkui/arkts-apis-window-Window.md#getuicontext10) in the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) lifecycle callback to obtain the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md).
 
     ```ts
     import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -476,14 +476,14 @@ The development procedure is as follows:
     }
     ```
 
-2. Parse the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter passed in the [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback of the UIAbility of the SMS application, call [getRouter()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter) in the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md) class to obtain a [Router](../reference/apis-arkui/js-apis-arkui-UIContext.md#router) instance, and specify the target page. When the UIAbility instance of the SMS application is started again, the specified page of the UIAbility instance of the SMS application is displayed.
+2. Parse the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter passed in the [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onnewwant) callback of the UIAbility of the SMS application, call [getRouter()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter) in the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md) class to obtain a [Router](../reference/apis-arkui/js-apis-arkui-UIContext.md#router) instance, and specify the target page. When the UIAbility instance of the SMS application is started again, the specified page of the UIAbility instance of the SMS application is displayed.
 
     ```ts
     import { AbilityConstant, Want, UIAbility } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import type { Router, UIContext } from '@kit.ArkUI';
     import type { BusinessError } from '@kit.BasicServicesKit';
-      
+   
     const DOMAIN_NUMBER: number = 0xFF00;
     const TAG: string = '[EntryAbility]';
 
@@ -522,7 +522,7 @@ In floating window mode, an application is displayed on the screen as a floating
 
 In split-screen mode, two applications occupy the entire screen, side by side, horizontally or vertically. This mode helps users improve multi-task processing efficiency.
 
-The window mode is specified by the **windowMode** field in the [StartOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md) parameter of [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
+The window mode is specified by the **windowMode** field in the [StartOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md) parameter of [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability).
 
 > **NOTE**
 >
@@ -565,7 +565,7 @@ struct Page_UIAbilityComponentsInteractive {
               abilityName: 'FuncAbilityB',
               parameters: {
                 // Custom information.
-                info: 'From the Index page of EntryAbility',
+                info: 'From the Index page of EntryAbility'
               }
             };
             let options: StartOptions = {
@@ -597,7 +597,7 @@ The display effect is shown below.
 
 Call is an extension of the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) capability. It enables the UIAbility to be invoked by and communicate with external systems. The UIAbility invoked can be either started in the foreground or created and run in the background. You can use the call to implement data sharing between two UIAbility instances (CallerAbility and CalleeAbility) through IPC.
 
-The core API used for the call is [startAbilityByCall()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall), which differs from [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) in the following ways:
+The core API used for the call is [startAbilityByCall()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall), which differs from [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability) in the following ways:
 
 - **startAbilityByCall()** supports UIAbility launch in the foreground and background, whereas **startAbility()** supports UIAbility launch in the foreground only.
 
@@ -625,9 +625,9 @@ The following figure shows the call process.
 
 ![call](figures/call.png)
 
-- The CallerAbility uses [startAbilityByCall()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall) to obtain a [Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller) object and uses [call](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callercall) of the Caller object to send data to the CalleeAbility.
+- The CallerAbility uses [startAbilityByCall()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall) to obtain a [Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller) object and uses [call](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#call) of the Caller object to send data to the CalleeAbility.
 
-- The CalleeAbility, which holds a [Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee) object, uses [on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon) of the Callee object to register a callback. This callback is invoked when the CalleeAbility receives data from the CallerAbility.
+- The CalleeAbility, which holds a [Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee) object, uses [on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#on) of the Callee object to register a callback. This callback is invoked when the CalleeAbility receives data from the CallerAbility.
 
 > **NOTE**
 >
@@ -646,7 +646,7 @@ The following table describes the main APIs used for the call. For details, see 
 
 | API| Description|
 | -------- | -------- |
-| startAbilityByCall(want: Want): Promise&lt;Caller&gt; | Starts a UIAbility in the foreground (through the **want** configuration) or background (default) and obtains the caller object for communication with the UIAbility. For details, see [AbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartabilitybycall) or **ServiceExtensionContext**.|
+| startAbilityByCall(want: Want): Promise&lt;Caller&gt; | Starts a UIAbility in the foreground (through the **want** configuration) or background (default) and obtains the caller object for communication with the UIAbility. For details, see [AbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall) or **ServiceExtensionContext**.|
 | on(method: string, callback: CalleeCallBack): void | Callback invoked when the CalleeAbility registers a method.|
 | off(method: string): void | Callback invoked when the CalleeAbility deregisters a method.|
 | call(method: string, data: rpc.Parcelable): Promise&lt;void&gt; | Sends agreed parcelable data to the CalleeAbility.|
@@ -663,7 +663,7 @@ The implementation of using the call for [UIAbility](../reference/apis-ability-k
 
 ### Creating a CalleeAbility
 
-For the CalleeAbility, implement the callback to receive data and the methods to marshal and unmarshal data. When data needs to be received, use [on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon) to register a listener. When data does not need to be received, use [off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeoff) to deregister the listener.
+For the CalleeAbility, implement the callback to receive data and the methods to marshal and unmarshal data. When data needs to be received, use [on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#on) to register a listener. When data does not need to be received, use [off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#off) to deregister the listener.
 
 1. Configure the launch type of the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md).
 
@@ -711,9 +711,9 @@ For the CalleeAbility, implement the callback to receive data and the methods to
     }
     ```
 
-4. Implement [Callee.on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon) and [Callee.off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeoff).
+4. Implement [Callee.on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#on) and [Callee.off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#off).
 
-   The time to register a listener for the CalleeAbility depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the 'MSG_SEND_METHOD' listener is registered in [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) of the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) and deregistered in [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityondestroy). After receiving parcelable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The sample code is as follows:
+   The time to register a listener for the CalleeAbility depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the 'MSG_SEND_METHOD' listener is registered in [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate) of the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) and deregistered in [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#ondestroy). After receiving parcelable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The sample code is as follows:
 
 
     ```ts
@@ -812,7 +812,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 
 2. Obtain the [Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller) object.
 
-   The [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) attribute implements [startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall) to obtain the Caller object for communication. The following example uses **this.context** to obtain the UIAbilityContext, uses **startAbilityByCall** to start the CalleeAbility, obtain the Caller object, and register the [onRelease](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleronrelease) listener of the CallerAbility. You need to implement processing based on service requirements.
+   The [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) attribute implements [startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall) to obtain the Caller object for communication. The following example uses **this.context** to obtain the UIAbilityContext, uses **startAbilityByCall** to start the CalleeAbility, obtain the Caller object, and register the [onRelease](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onrelease) listener of the CallerAbility. You need to implement processing based on service requirements.
 
 
     ```ts

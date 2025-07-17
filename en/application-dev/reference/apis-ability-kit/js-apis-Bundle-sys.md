@@ -1,6 +1,6 @@
 # @ohos.bundle (Bundle) (System API)
 
-The **bundle** module provides APIs for obtaining information about an application, including [bundle information](js-apis-bundle-BundleInfo.md), [application information](js-apis-bundle-ApplicationInfo.md), and [ability information](js-apis-bundle-AbilityInfo.md). It also provides APIs to obtain and set the application disabling state.
+The module provides APIs for obtaining information about an application, including [bundle information](js-apis-bundle-BundleInfo.md), [application information](js-apis-bundle-ApplicationInfo.md), and [ability information](js-apis-bundle-AbilityInfo.md). It also provides APIs to obtain and set the application disabling state.
 
 > **NOTE**
 >
@@ -20,11 +20,11 @@ import bundle from '@ohos.bundle';
 
 | Permission                                        | APL        | Description           |
 |--------------------------------------------|--------------|---------------|
-| ohos.permission.CHANGE_ABILITY_ENABLED_STATE | system_basic | Permission to enable or disable an application or ability. |
-| ohos.permission.GET_BUNDLE_INFO | normal | Permission to query information about a specified bundle. |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all bundles.    |
+| ohos.permission.CHANGE_ABILITY_ENABLED_STATE | system_basic | Permission to enable or disable an application or ability.|
+| ohos.permission.GET_BUNDLE_INFO | normal | Permission to query information about a specified bundle.|
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to query information about all bundles.    |
 | ohos.permission.INSTALL_BUNDLE             | system_core  | Permission to install or uninstall bundles.     |
-| ohos.permission.REMOVE_CACHE_FILES | system_basic | Permission to clear cache files of a bundle. |
+| ohos.permission.REMOVE_CACHE_FILES | system_basic | Permission to clear cache files of a bundle.|
 
 For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
@@ -52,7 +52,7 @@ This is a system API.
 
 | Type                                                        | Description                                        |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| Promise<[BundleInstaller](js-apis-bundle-BundleInstaller-sys.md)> | Promise used to return the installation package. |
+| Promise<[BundleInstaller](js-apis-bundle-BundleInstaller-sys.md)> | Promise used to return the installation package.|
 
 **Example**
 
@@ -89,9 +89,9 @@ This is a system API.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description            |
+| Name  | Type                                                        | Mandatory| Description            |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
-| callback | AsyncCallback<[BundleInstaller](js-apis-bundle-BundleInstaller-sys.md)> | Yes  | Callback used to return the installation package. |
+| callback | AsyncCallback<[BundleInstaller](js-apis-bundle-BundleInstaller-sys.md)> | Yes  | Callback used to return the installation package.|
 
 **Example**
 
@@ -128,9 +128,9 @@ This is a system API.
 
 **Parameters**
 
-| Name     | Type               | Mandatory | Description                                 |
+| Name     | Type               | Mandatory| Description                                 |
 | ---------- | ------------------- | ---- | ------------------------------------- |
-| bundleName | string              | Yes  | Bundle name. |
+| bundleName | string              | Yes  | Bundle name.|
 | callback   | AsyncCallback\<void> | Yes  | Callback used to return the result.         |
 
 **Example**
@@ -171,15 +171,15 @@ This is a system API.
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                                 |
+| Name    | Type  | Mandatory| Description                                 |
 | ---------- | ------ | ---- | ------------------------------------- |
-| bundleName | string | Yes  | Bundle name. |
+| bundleName | string | Yes  | Bundle name.|
 
 **Return value**
 
 | Type         | Description                                |
 | ------------- | ------------------------------------ |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -218,10 +218,10 @@ This is a system API.
 
 **Parameters**
 
-| Name     | Type               | Mandatory | Description                            |
+| Name     | Type               | Mandatory| Description                            |
 | ---------- | ------------------- | ---- |--------------------------------|
 | bundleName | string              | Yes  | Bundle name.         |
-| isEnable   | boolean             | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite. |
+| isEnable   | boolean             | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite.|
 | callback   | AsyncCallback\<void> | Yes  | Callback used to return the result.                         |
 
 **Example**
@@ -262,16 +262,16 @@ This is a system API.
 
 **Parameters**
 
-| Name    | Type   | Mandatory | Description                                           |
+| Name    | Type   | Mandatory| Description                                           |
 | ---------- | ------- | ---- | ----------------------------------------------- |
 | bundleName | string  | Yes  | Bundle name.           |
-| isEnable   | boolean | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite. |
+| isEnable   | boolean | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite.|
 
 **Return value**
 
 | Type         | Description                                |
 | ------------- | ------------------------------------ |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -310,10 +310,10 @@ This is a system API.
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory | Description                                           |
+| Name  | Type                                        | Mandatory| Description                                           |
 | -------- | -------------------------------------------- | ---- | ----------------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | Yes  | Ability information.                                  |
-| isEnable | boolean                                      | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite. |
+| isEnable | boolean                                      | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite.|
 | callback | AsyncCallback\<void>                         | Yes  | Callback used to return the result.                   |
 
 ## bundle.setAbilityEnabled<sup>8+</sup> <sup>deprecated<sup>
@@ -338,16 +338,16 @@ This is a system API.
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory | Description                                           |
+| Name  | Type                                        | Mandatory| Description                                           |
 | -------- | -------------------------------------------- | ---- | ----------------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | Yes  | Ability information.                                  |
-| isEnable | boolean                                      | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite. |
+| isEnable | boolean                                      | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite.|
 
 **Return value**
 
 | Type         | Description                                |
 | ------------- | ------------------------------------ |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -392,10 +392,10 @@ This is a system API.
 
 **Parameters**
 
-| Name        | Type                                                        | Mandatory | Description                                            |
+| Name        | Type                                                        | Mandatory| Description                                            |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
 | permissionName | string                                                       | Yes  | Name of the permission.                                |
-| callback       | AsyncCallback<[PermissionDef](js-apis-bundle-PermissionDef-sys.md)> | Yes  | Callback used to return the permission details. |
+| callback       | AsyncCallback<[PermissionDef](js-apis-bundle-PermissionDef-sys.md)> | Yes  | Callback used to return the permission details.|
 
 **Example**
 
@@ -434,15 +434,15 @@ This is a system API.
 
 **Parameters**
 
-| Name        | Type  | Mandatory | Description            |
+| Name        | Type  | Mandatory| Description            |
 | -------------- | ------ | ---- | ---------------- |
-| permissionName | string | Yes  | Name of the permission. |
+| permissionName | string | Yes  | Name of the permission.|
 
 **Return value**
 
 | Type                                                  | Description                                                  |
 | ------------------------------------------------------ | ------------------------------------------------------ |
-| Promise<[PermissionDef](js-apis-bundle-PermissionDef-sys.md)> | Promise used to return the permission details. |
+| Promise<[PermissionDef](js-apis-bundle-PermissionDef-sys.md)> | Promise used to return the permission details.|
 
 **Example**
 
