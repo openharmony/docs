@@ -120,10 +120,10 @@
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称   | 类型 | 可读 | 可写 | 说明       |
+| 名称   | 类型 | 只读 | 可选 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
-| x      | number   | 是   | 是   | x坐标，单位为px，该参数应为整数。 |
-| y      | number   | 是   | 是   | y坐标，单位为px，该参数应为整数。 |
+| x      | number   | 否   | 否   | x坐标，单位为px，该参数应为整数。 |
+| y      | number   | 否   | 否   | y坐标，单位为px，该参数应为整数。 |
 
 ## RectChangeOptions<sup>12+</sup>
 
