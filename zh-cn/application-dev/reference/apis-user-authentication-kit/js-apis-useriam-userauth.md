@@ -157,7 +157,9 @@ try {
 
 ### onResult<sup>10+</sup>
 
-onResult(result: UserAuthResult): void
+ArkTS1.1: onResult(result: UserAuthResult): void
+
+ArkTS1.2: onResult: (result: UserAuthResult) => void
 
 回调函数，返回认证结果。认证成功时，可以通过UserAuthResult获取到认证成功的令牌信息。
 
@@ -173,7 +175,8 @@ onResult(result: UserAuthResult): void
 
 **示例1：**
 
-发起用户认证，采用认证可信等级≥ATL3的锁屏口令认证，获取认证结果：
+发起用户认证，采用认证可信等级≥ATL3的锁屏口令认证，获取认证结果。<br>
+ArkTS1.1示例：
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -210,9 +213,45 @@ try {
 }
 ```
 
+ArkTS1.2示例：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请输入密码',
+  };
+
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
+  // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
+  userAuthInstance.on('result', {
+    onResult: (result: userAuth.UserAuthResult) => {
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+    }
+  });
+  console.info('auth on success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+
 **示例2：**
 
-发起用户认证，采用认证可信等级≥ATL3的锁屏口令 + 认证类型相关 + 复用设备解锁最大有效时长认证，获取认证结果：
+发起用户认证，采用认证可信等级≥ATL3的锁屏口令+认证类型相关+复用设备解锁最大有效时长认证，获取认证结果。<br>
+ArkTS1.1示例：
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -253,9 +292,51 @@ try {
 }
 ```
 
+ArkTS1.2示例：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+let reuseUnlockResult: userAuth.ReuseUnlockResult = {
+  reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
+  reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
+}
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+    reuseUnlockResult: reuseUnlockResult,
+  };
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请输入密码',
+  };
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
+  // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
+  userAuthInstance.on('result', {
+    onResult: (result: userAuth.UserAuthResult) => {
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+    }
+  });
+  console.info('auth on success');
+  userAuthInstance.start();	
+  console.info('auth start success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+
 **示例3：**
 
-发起用户认证，采用认证可信等级≥ATL3的锁屏口令 + 任意应用认证类型相关 + 复用任意应用最大有效时长认证，获取认证结果：
+发起用户认证，采用认证可信等级≥ATL3的锁屏口令+任意应用认证类型相关 + 复用任意应用最大有效时长认证，获取认证结果。<br>
+ArkTS1.1示例：
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -284,6 +365,47 @@ try {
   // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
   userAuthInstance.on('result', {
     onResult (result) {
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+    }
+  });
+  console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+
+ArkTS1.2示例：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+let reuseUnlockResult: userAuth.ReuseUnlockResult = {
+  reuseMode: userAuth.ReuseMode.CALLER_IRRELEVANT_AUTH_TYPE_RELEVANT,
+  reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
+}
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+    reuseUnlockResult: reuseUnlockResult,
+  };
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请输入密码',
+  };
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
+  // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
+  userAuthInstance.on('result', {
+    onResult: (result: userAuth.UserAuthResult) => {
       console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
     }
   });
