@@ -14,7 +14,7 @@ import { deviceManager } from '@kit.DriverDevelopmentKit';
 
 ## deviceManager.queryDevices
 
-queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
+queryDevices(busType?: int): Array&lt;Readonly&lt;Device&gt;&gt;
 
 获取接入主设备的外部设备列表。如果没有设备接入，那么将会返回一个空的列表。
 
@@ -26,7 +26,7 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 
 | 参数名  | 类型   | 必填 | 说明                                 |
 | ------- | ------ | ---- | ------------------------------------ |
-| busType | number | 否   | 设备总线类型，不填则查找所有类型设备。 |
+| busType | int | 否   | 设备总线类型，不填则查找所有类型设备。 |
 
 **返回值：**
 
@@ -384,7 +384,7 @@ try {
 ```
 ## deviceManager.bindDriverWithDeviceId<sup>19+</sup>
 
-bindDriverWithDeviceId(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;;
+bindDriverWithDeviceId(deviceId: longr, onDisconnect: AsyncCallback&lt;long&gt;): Promise&lt;RemoteDeviceDriver&gt;;
 
 根据queryDevices()返回的设备信息绑定设备。
 
@@ -398,8 +398,8 @@ bindDriverWithDeviceId(deviceId: number, onDisconnect: AsyncCallback&lt;number&g
 
 | 参数名       | 类型                        | 必填 | 说明                         |
 | ------------ | --------------------------- | ---- | ---------------------------- |
-| deviceId     | number                      | 是   | 设备ID，通过queryDevices获得。 |
-| onDisconnect | AsyncCallback&lt;number&gt; | 是   | 绑定设备断开的回调。           |
+| deviceId     | long                     | 是   | 设备ID，通过queryDevices获得。 |
+| onDisconnect | AsyncCallback&lt;long&gt; | 是   | 绑定设备断开的回调。           |
 
 **返回值：**
 
@@ -423,7 +423,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.bindDriverWithDeviceId(12345678, (error : BusinessError, data : number) => {
+  deviceManager.bindDriverWithDeviceId(12345678, (error : BusinessError, data : long) => {
     console.error(`Device is disconnected`);
   }).then((data: deviceManager.RemoteDeviceDriver) => {
     console.info(`bindDriverWithDeviceId success, Device_Id is ${data.deviceId}.
@@ -438,7 +438,7 @@ try {
 
 ## deviceManager.unbindDriverWithDeviceId<sup>19+</sup>
 
-unbindDriverWithDeviceId(deviceId: number): Promise&lt;number&gt;
+unbindDriverWithDeviceId(deviceId: long): Promise&lt;int&gt;
 
 解除设备绑定。
 
@@ -450,13 +450,13 @@ unbindDriverWithDeviceId(deviceId: number): Promise&lt;number&gt;
 
 | 参数名   | 类型   | 必填 | 说明                           |
 | -------- | ------ | ---- | ------------------------------ |
-| deviceId | number | 是   | 设备ID，通过queryDevices获得。 |
+| deviceId | long | 是   | 设备ID，通过queryDevices获得。 |
 
 **返回值：**
 
 | 类型                  | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回设备ID。 |
+| Promise&lt;int&gt; | Promise对象，返回设备ID。 |
 
 **错误码：**
 
@@ -474,7 +474,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.unbindDriverWithDeviceId(12345678).then((data : number) => {
+  deviceManager.unbindDriverWithDeviceId(12345678).then((data : int) => {
     console.info(`unbindDriverWithDeviceId success, Device_Id is ${data}.`);
   }, (error : BusinessError) => {
     console.error(`unbindDriverWithDeviceId async fail. Code is ${error.code}, message is ${error.message}`);
@@ -493,7 +493,7 @@ try {
 | 名称        | 类型                | 必填 | 说明       |
 | ----------- | ------------------- | ---- | ---------- |
 | busType     | [BusType](#bustype) | 是   | 总线类型。 |
-| deviceId    | number              | 是   | 设备ID。   |
+| deviceId    | long             | 是   | 设备ID。   |
 | description | string              | 是   | 设备描述。 |
 
 ## USBDevice
@@ -504,8 +504,8 @@ USB设备信息，继承自[Device](#device)。
 
 | 名称      | 类型   | 必填 | 说明                |
 | --------- | ------ | ---- | ------------------- |
-| vendorId  | number | 是   | USB设备Vendor ID。  |
-| productId | number | 是   | USB设备Product ID。 |
+| vendorId  | int | 是   | USB设备Vendor ID。  |
+| productId |int | 是   | USB设备Product ID。 |
 
 ## BusType
 
