@@ -446,7 +446,7 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 addDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol&gt;, accountId: number): void
 
-禁用指定用户的星闪协议。NearLink Kit（星闪服务）提供一种低功耗、高速率的短距离通信服务，支持星闪设备之间的连接、数据交互。
+禁用指定用户的星闪协议。NearLink Kit（星闪服务）提供一种低功耗、高速率的短距离通信服务，支持星闪设备之间的连接、数据交互。<!--RP3--><!--RP3End-->
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -743,5 +743,5 @@ try {
 
 | 名称               | 值  | 说明    |
 | -----------------  | ---- | ----- |
-| SSAP   | 0 |  <!--RP1-->SSAP（SparkLink Service Access Protocol）协议。<!--RP1End--> |
-| DATA_TRANSFER      |1| <!--RP2-->数据传输协议。<!--RP2End--> |
+| SSAP   | 0 |  SSAP（SparkLink Service Access Protocol）协议。<!--RP1--><!--RP1End--> |
+| DATA_TRANSFER      |1| 数据传输协议。<!--RP2--><!--RP2End--> |
