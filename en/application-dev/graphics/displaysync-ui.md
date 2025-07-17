@@ -142,7 +142,7 @@ This section describes how to use different frame rates to change the font size 
 
 ## Sample Code
 ```ts
-   import { displaySync } from "@kit.ArkGraphics2D";
+import { displaySync } from "@kit.ArkGraphics2D";
 
 @Entry
 @Component

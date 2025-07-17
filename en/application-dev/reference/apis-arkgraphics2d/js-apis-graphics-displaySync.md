@@ -9,7 +9,7 @@ The displaySync module allows your application to draw its custom UI content at 
 ## Modules to Import
 
 ```ts
-   import { displaySync } from "@kit.ArkGraphics2D";
+import { displaySync } from "@kit.ArkGraphics2D";
 ```
 
 ## displaySync.create
