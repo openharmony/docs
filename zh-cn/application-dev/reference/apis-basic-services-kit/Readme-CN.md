@@ -106,7 +106,7 @@
     - [OH_Scan](c-apis-scan.md)
     - [OH_Print](_o_h___print.md)
     - [Pasteboard](capi-pasteboard.md)
-    - [TimeService](_time_service.md)
+    - [TimeService](capi-timeservice.md)
   - 头文件<!--basic-services-headerfile-->
     - [deviceinfo.h](deviceinfo_8h.md)
     - [ohbattery_info.h](capi-ohbattery-info-h.md)
@@ -118,7 +118,7 @@
     - [os_account_common.h](capi-os-account-common-h.md)
     - [ohprint.h](ohprint_8h.md)
     - [ohscan.h](c-apis-scan.md)
-    - [time_service.h](time__service_8h.md)
+    - [time_service.h](capi-time-service-h.md)
   - 结构体<!--basic-services-struct-->
     - [Print_Margin](_print___margin.md)
     - [Print_PageSize](_print___page_size.md)

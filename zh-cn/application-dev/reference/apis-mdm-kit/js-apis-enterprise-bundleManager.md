@@ -1,6 +1,6 @@
 # @ohos.enterprise.bundleManager（包管理）
 
-本模块提供包管理能力，包括添加包安装白名单、获取包安装白名单、移除包安装白名单等。
+本模块提供包管理能力，包括添加包安装允许名单、获取包安装允许名单、移除包安装允许名单等。
 
 > **说明：**
 >
@@ -20,7 +20,7 @@ import { bundleManager } from '@kit.MDMKit';
 
 addAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-添加应用至应用程序包安装白名单，添加至白名单的应用允许在当前/指定用户下安装，其它非白名单应用不允许安装。
+添加应用至应用程序包安装允许名单，添加至允许名单的应用允许在当前/指定用户下安装，其它非允许名单应用不允许安装。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -49,13 +49,16 @@ addAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
@@ -70,7 +73,7 @@ try {
 
 removeAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-在应用程序包安装白名单中移除应用，在白名单存在的情况下，不在应用程序包安装白名单中的应用不允许在当前/指定用户下安装。
+在应用程序包安装允许名单中移除应用，在允许名单存在的情况下，不在应用程序包安装允许名单中的应用不允许在当前/指定用户下安装。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -99,13 +102,16 @@ removeAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accoun
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
@@ -120,7 +126,7 @@ try {
 
 getAllowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
 
-获取当前/指定用户下的应用程序包安装白名单。
+获取当前/指定用户下的应用程序包安装允许名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -138,7 +144,7 @@ getAllowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&g
 
 | 类型                | 说明                           |
 | ------------------- | ------------------------------ |
-| Array&lt;string&gt; | 返回当前用户下的应用程序包安装白名单。 |
+| Array&lt;string&gt; | 返回当前用户下的应用程序包安装允许名单。 |
 
 **错误码**：
 
@@ -154,11 +160,13 @@ getAllowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&g
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -173,7 +181,7 @@ try {
 
 addDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-添加应用至应用程序包安装黑名单，添加至黑名单的应用不允许在当前/指定用户下安装。
+添加应用至应用程序包安装禁止名单，添加至禁止名单的应用不允许在当前/指定用户下安装。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -201,13 +209,16 @@ addDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accoun
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
@@ -222,7 +233,7 @@ try {
 
 removeDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-在应用程序包安装黑名单中移除应用，在黑名单存在的情况下，在应用程序包安装黑名单中的应用不允许在当前/指定用户下安装。
+在应用程序包安装禁止名单中移除应用，在禁止名单存在的情况下，在应用程序包安装禁止名单中的应用不允许在当前/指定用户下安装。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -250,13 +261,16 @@ removeDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, acc
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
@@ -271,7 +285,7 @@ try {
 
 getDisallowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
 
-获取当前/指定用户下的应用程序包安装黑名单。
+获取当前/指定用户下的应用程序包安装禁止名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -289,7 +303,7 @@ getDisallowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 
 | 类型                | 说明                           |
 | ------------------- | ------------------------------ |
-| Array&lt;string&gt; | 返回当前用户下的应用程序包安装黑名单。 |
+| Array&lt;string&gt; | 返回当前用户下的应用程序包安装禁止名单。 |
 
 **错误码**：
 
@@ -305,14 +319,17 @@ getDisallowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let result: Array<string> = bundleManager.getDisallowedInstallBundlesSync(wantTemp, 100);
   console.info(`Succeeded in getting disallowed install bundles, result : ${JSON.stringify(result)}`);
 } catch (err) {
@@ -324,7 +341,7 @@ try {
 
 addDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-添加应用至包卸载黑名单，添加至黑名单的应用不允许在当前/指定用户下卸载。
+添加应用至包卸载禁止名单，添加至禁止名单的应用不允许在当前/指定用户下卸载。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -353,15 +370,19 @@ addDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, acco
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
+  // 参数需根据实际情况进行替换
   bundleManager.addDisallowedUninstallBundlesSync(wantTemp, appIds, 100);
   console.info('Succeeded in adding disallowed uninstall bundles.');
 } catch (err) {
@@ -373,7 +394,7 @@ try {
 
 removeDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-在包卸载黑名单中移除应用。在黑名单存在的情况下，在包卸载黑名单中的应用不允许在当前/指定用户下卸载。
+在包卸载禁止名单中移除应用。在禁止名单存在的情况下，在包卸载禁止名单中的应用不允许在当前/指定用户下卸载。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -402,15 +423,19 @@ removeDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, a
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
+  // 参数需根据实际情况进行替换
   bundleManager.removeDisallowedUninstallBundlesSync(wantTemp, appIds, 100);
   console.info('Succeeded in removing disallowed uninstall bundles.');
 } catch (err) {
@@ -422,7 +447,7 @@ try {
 
 getDisallowedUninstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
 
-获取当前/指定用户下包卸载黑名单接口。
+获取当前/指定用户下包卸载禁止名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -440,7 +465,7 @@ getDisallowedUninstallBundlesSync(admin: Want, accountId?: number): Array&lt;str
 
 | 类型                | 说明                           |
 | ------------------- | ------------------------------ |
-| Array&lt;string&gt; | 返回当前用户下的包卸载黑名单。 |
+| Array&lt;string&gt; | 返回当前用户下的包卸载禁止名单。 |
 
 **错误码**：
 
@@ -456,14 +481,17 @@ getDisallowedUninstallBundlesSync(admin: Want, accountId?: number): Array&lt;str
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let result: Array<String> = bundleManager.getDisallowedUninstallBundlesSync(wantTemp, 100);
   console.info(`Succeeded in getting disallowed uninstall bundles, result : ${JSON.stringify(result)}`);
 } catch (err) {
@@ -511,14 +539,17 @@ uninstall(admin: Want, bundleName: string, userId?: number, isKeepData?: boolean
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 参数需根据实际情况进行替换
 bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
   console.info('Succeeded in uninstalling bundles.');
 }).catch((err: BusinessError) => {
@@ -565,14 +596,17 @@ install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam):
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 为当前用户安装应用
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap'];
 
 bundleManager.install(wantTemp, hapFilePaths).then(() => {
@@ -583,19 +617,23 @@ bundleManager.install(wantTemp, hapFilePaths).then(() => {
 ```
 
 ```ts
+import { bundleManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 为所有用户安装应用
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap'];
 const params: Record<string, string> = {
   'ohos.bms.param.enterpriseForAllUser': 'true'
 };
 let installParam: bundleManager.InstallParam = {
+  // 需根据实际情况进行替换
   userId: 100,
   installFlag: 0,
   parameters: params
@@ -648,9 +686,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { bundleManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let accountId: number = 100;
 bundleManager.getInstalledBundleList(wantTemp, accountId).then((result) => {
   console.info('Succeeded in getting installed bundle list.');

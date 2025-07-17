@@ -176,7 +176,7 @@ try {
 
 addOutgoingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, numbers: Array\<string>): void
 
-添加通话呼出的允许或禁用名单。当前仅支持手机和平板设备。
+添加通话呼出的允许或禁用名单，如果不添加名单，任意号码都可以呼出，添加后只有名单内的号码允许或禁止呼出。当前仅支持手机和平板设备。
 
 以下情况下，通过本接口添加通话呼出的允许或禁用名单，会报策略冲突：
 
@@ -198,7 +198,7 @@ addOutgoingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, numbers: 
 | --------- | ------------------------------------------------------- | ---- | -------------------------------------- |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 | policy | [adminManager.Policy](js-apis-enterprise-adminManager.md#policy20)    | 是   | 允许或禁用名单策略。BLOCK_LIST为禁用名单，TRUST_LIST为允许名单。   |
-| numbers | Array\<string>    | 是   | 通话号码列表。 数组总长度不能超过1000。例如，若当前允许名单数组中已有100个号码，则最多支持通过该接口再添加900个。  |
+| numbers | Array\<string>    | 是   | 通话号码列表，当前仅支持全号码匹配。数组总长度不能超过1000。例如，若当前允许名单数组中已有100个号码，则最多支持通过该接口再添加900个。  |
 
 **错误码**：
 
@@ -246,7 +246,7 @@ removeOutgoingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, number
 
 以下情况下，通过本接口移除通话呼出的允许或禁用名单，会报策略冲突：
 
-1. 已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了设备通话能力，再通过本接口移除通话呼出的禁用或允许名单，返回203错误码。通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口解除禁用设备通话能力后，可解除冲突。
+已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了设备通话能力，再通过本接口移除通话呼出的禁用或允许名单，返回203错误码。通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口解除禁用设备通话能力后，可解除冲突。
 
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
@@ -261,7 +261,7 @@ removeOutgoingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, number
 | ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 | policy | [adminManager.Policy](js-apis-enterprise-adminManager.md#policy20)    | 是   | 允许或禁用名单策略。BLOCK_LIST为禁用名单，TRUST_LIST为允许名单。   |
-| numbers | Array\<string>    | 是   | 待移除的通话号码数组。 数组总长度不能超过1000。  |
+| numbers | Array\<string>    | 是   | 待移除的通话号码数组。数组总长度不能超过1000。  |
 
 
 **错误码**：
@@ -363,7 +363,7 @@ try {
 
 addIncomingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, numbers: Array\<string>): void
 
-添加通话呼入的允许或禁用名单。当前仅支持手机和平板设备。
+添加通话呼入的允许或禁用名单，如果不添加名单，则任意号码都可以呼入，添加后仅名单内的号码允许或禁止呼入。当前仅支持手机和平板设备。
 
 以下情况下，通过本接口添加通话呼入的允许或禁用名单，会报策略冲突：
 
@@ -383,7 +383,7 @@ addIncomingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, numbers: 
 | --------- | ------------------------------------------------------- | ---- | -------------------------------------- |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 | policy | [adminManager.Policy](js-apis-enterprise-adminManager.md#policy20)    | 是   | 允许或禁用名单策略。BLOCK_LIST为禁用名单，TRUST_LIST为允许名单。   |
-| numbers | Array\<string>    | 是   | 通话号码列表。数组总长度不能超过1000。例如，若当前允许名单数组中已有100个号码，则最多支持通过该接口再添加900个。  |
+| numbers | Array\<string>    | 是   | 通话号码列表，当前仅支持全号码匹配。数组总长度不能超过1000。例如，若当前允许名单数组中已有100个号码，则最多支持通过该接口再添加900个。  |
 
 **错误码**：
 
@@ -446,7 +446,7 @@ removeIncomingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, number
 | ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 | policy | [adminManager.Policy](js-apis-enterprise-adminManager.md#policy20)    | 是   | 允许或禁用名单策略。BLOCK_LIST为禁用名单，TRUST_LIST为允许名单。   |
-| numbers | Array\<string>    | 是   | 待移除的通话号码数组。 数组总长度不能超过1000。   |
+| numbers | Array\<string>    | 是   | 待移除的通话号码数组。数组总长度不能超过1000。   |
 
 
 **错误码**：

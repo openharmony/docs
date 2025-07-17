@@ -2,10 +2,9 @@
 
 ## 概述
 
-提供rawfile目录相关功能。
+提供rawfile目录相关功能。功能包括遍历和关闭rawfile目录。
 
 **引用文件：** <rawfile/raw_dir.h>
- * 功能包括遍历和关闭rawfile目录。
 
 **起始版本：** 8
 

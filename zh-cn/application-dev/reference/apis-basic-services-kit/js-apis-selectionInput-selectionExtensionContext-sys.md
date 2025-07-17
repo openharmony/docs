@@ -72,12 +72,8 @@ import { rpc } from '@kit.IPCKit';
 import { Want } from '@kit.AbilityKit';
 
 class SelectionAbilityStub extends rpc.RemoteObject {
-  constructor(des) {
-    if (typeof des === 'string') {
-      super(des);
-    } else {
-      return null;
-    }
+  constructor(des: string) {
+    super(des);
   }
   onRemoteMessageRequest(
     code: number,
@@ -85,7 +81,7 @@ class SelectionAbilityStub extends rpc.RemoteObject {
     reply: rpc.MessageSequence,
     options: rpc.MessageOption
   ): boolean | Promise<boolean> {
-    console.error(`onRemoteMessageRequest error: ${error.code} ${error.message}`);
+    console.info(`onRemoteMessageRequest code: ${code}`);
     return true;
   }
 }
