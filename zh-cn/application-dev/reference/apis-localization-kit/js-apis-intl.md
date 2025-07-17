@@ -262,7 +262,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 let formatter: intl.DateTimeFormat = new intl.DateTimeFormat('zh-CN', { dateStyle: 'full', timeStyle: 'medium' });
 
 // 使用区域ID列表创建DateTimeFormat对象，因为ban为非法区域ID，因此使用zh区域ID创建DateTimeFormat对象
-formatter = new intl.DateTimeFormat(['ban', 'zh'], { dateStyle: 'full', timeStyle: 'medium' });
+formatter = new intl.DateTimeFormat(new Array<string>('ban', 'zh'), { dateStyle: 'full', timeStyle: 'medium' });
 ```
 
 ### format
@@ -463,7 +463,7 @@ format(number: number): string
 **示例：**
 ```ts
 // 使用区域ID列表创建NumberFormat对象，因为en-GB为合法的区域ID，因此使用en-GB创建NumberFormat对象
-let formatter: intl.NumberFormat = new intl.NumberFormat(['en-GB', 'zh'], { style: 'decimal', notation: 'scientific' });
+let formatter: intl.NumberFormat = new intl.NumberFormat(new Array<string>('en-GB', 'zh'), { style: 'decimal', notation: 'scientific' });
 let formattedNumber: string = formatter.format(1223); // formattedNumber = 1.223E3
 let options : intl.NumberOptions = {
   roundingPriority: "lessPrecision",
@@ -524,7 +524,7 @@ resolvedOptions(): NumberOptions
 
 **示例：**
 ```ts
-let formatter: intl.NumberFormat = new intl.NumberFormat(['en-GB', 'zh'], { style: 'decimal', notation: 'scientific' });
+let formatter: intl.NumberFormat = new intl.NumberFormat(new Array<string>('en-GB', 'zh'), { style: 'decimal', notation: 'scientific' });
 // 获取NumberFormat对象配置项
 let options: intl.NumberOptions = formatter.resolvedOptions();
 let style: string | undefined = options.style; // style = 'decimal'
