@@ -135,7 +135,7 @@ class SendableTestClass {
   printName() {
     console.info("sendable: SendableTestClass desc is: " + this.desc);
   }
-  get getNum(): number {
+  getNum(): number {
     return this.num;
   }
 }
