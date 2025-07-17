@@ -126,12 +126,16 @@ function testWithArray(args: [number, string]): string {
 }
 
 taskpool.execute<[number], number>(printArgs, 100).then((value: number) => { // 100: test number
-  console.info("taskpool result: " + value);
+  console.info("taskpool result: " + value); // "taskpool result: 100"
 });
 
-taskpool.execute<[number, string, number], string>(testWithThreeParams, 100, "test", 100).then((value: string) => {});
+taskpool.execute<[number, string, number], string>(testWithThreeParams, 100, "test", 100).then((value: string) => {
+	console.info("taskpool result: " + value); // "taskpool result: test"
+});
 
-taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then((value: string) => {});
+taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then((value: string) => {
+	console.info("taskpool result: " + value); // "taskpool result: success"
+);
 ```
 
 
@@ -2442,10 +2446,10 @@ async function asyRunner2() {
 
 | 名称     | 类型                | 只读 | 可选 | 说明                                                           |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
-| name<sup>12+</sup> | string             | 是   | 否   | 任务的名字。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                    |
-| taskId   | number             | 是   | 否   | 任务的ID。<br/> **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。                                                     |
-| state    | [State](#state10)  | 是   | 否   | 任务的状态。<br/> **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。                                                    |
-| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。<br/> **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。  |
+| name<sup>12+</sup> | string   | 否   | 否   | 任务的名字。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                    |
+| taskId   | number             | 否   | 否   | 任务的ID。任务的标识符，系统默认提供全局唯一值，不推荐修改此值。<br/> **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。                                                     |
+| state    | [State](#state10)  | 否   | 否   | 任务的状态。state标识任务的当前状态，不推荐修改此值。<br/> **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。                                                    |
+| duration | number             | 否   | 是   | 任务执行至当前所用的时间，默认为0，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。不推荐修改此值。<br/> **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。  |
 
 ## ThreadInfo<sup>10+</sup>
 
@@ -2461,9 +2465,9 @@ async function asyRunner2() {
 
 | 名称     | 类型                    | 只读 | 可选 | 说明                                                      |
 | -------- | ---------------------- | ---- | ---- | -------------------------------------------------------- |
-| tid      | number                 | 是   | 否   | 工作线程的标识符。返回为空时，代表没有任务执行。              |
-| taskIds  | number[]               | 是   | 否   | 在当前线程上运行的任务id列表。返回为空时，代表没有任务执行。   |
-| priority | [Priority](#priority)  | 是   | 否   | 当前线程的优先级。返回为空时，代表没有任务执行。              |
+| tid      | number                 | 否   | 否   | 工作线程的标识符。返回为空时，代表没有任务执行。 不推荐修改此值。 |
+| taskIds  | number[]               | 否   | 是   | 在当前线程上运行的任务id列表。返回为空时，代表没有任务执行。不推荐修改此值。   |
+| priority | [Priority](#priority)  | 否   | 是   | 当前线程的优先级。返回为空时，代表没有任务执行。 不推荐修改此值。             |
 
 ## TaskPoolInfo<sup>10+</sup>
 
@@ -2479,8 +2483,8 @@ async function asyRunner2() {
 
 | 名称          | 类型                              | 只读 | 可选 | 说明                  |
 | ------------- | -------------------------------- | ---- | ---- | -------------------- |
-| threadInfos   | [ThreadInfo[]](#threadinfo10)    | 是   | 否   | 工作线程的内部信息。   |
-| taskInfos     | [TaskInfo[]](#taskinfo10)        | 是   | 否   | 任务的内部信息。       |
+| threadInfos   | [ThreadInfo[]](#threadinfo10)    | 否   | 否   | 工作线程的内部信息。不推荐修改此值。|
+| taskInfos     | [TaskInfo[]](#taskinfo10)        | 否   | 否   | 任务的内部信息。不推荐修改此值。 |
 
 ## TaskResult<sup>20+</sup>
 
@@ -2496,8 +2500,8 @@ async function asyRunner2() {
 
 | 名称     | 类型                | 只读 | 可选 | 说明                                                           |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
-| result | Object             | 是   | 是   | 任务执行结果。默认为undefined。                                    |
-| error   | Error \| Object   | 是   | 是   | 错误信息。默认和BusinessError的message字段一致。                 |
+| result | Object             | 否   | 是   | 任务执行结果。默认为undefined。 不推荐修改此值。 |
+| error   | Error \| Object   | 否   | 是   | 错误信息。默认和BusinessError的message字段一致。不推荐修改此值。 |
 
 > **说明：**
 >

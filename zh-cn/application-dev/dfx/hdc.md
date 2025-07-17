@@ -25,15 +25,13 @@ hdc分为三部分：
 
 ### （可选）命令行直接执行hdc程序
 
-**SDK的toolchains目录调试**
+**安装目录调试**
 
-开发者可以在SDK的toolchains子目录下执行hdc命令进行设备调试。
+- 开发者可以在SDK的toolchains子目录下执行hdc命令进行设备调试。
 
-**（可选）hdc独立运行**
+- hdc支持独立运行，将安装子目录toolchains下的hdc可执行文件和libusb_shared依赖文件集中存放至自定义目录中，可在该目录下直接执行hdc命令，实现独立调试功能。
 
-hdc支持独立运行，将安装子目录toolchains下的hdc可执行文件和libusb_shared依赖文件集中存放至自定义目录中，可在该目录下直接执行hdc命令，实现独立调试功能。
-
-**（可选）添加hdc到系统环境变量**
+**添加hdc到系统环境变量**
 
 - Windows环境变量设置方法
    
@@ -56,7 +54,9 @@ hdc支持独立运行，将安装子目录toolchains下的hdc可执行文件和l
    2. 单击字母“i”，进入Insert模式。
    3. 输入以下内容，添加PATH信息。
 
-      `export PATH=$PATH:/path/to/your/hdc`
+      `PATH={DevEco Studio}/sdk/default/openharmony/toolchains:$PATH`
+      
+      其中{DevEco Studio}需替换为开发者实际安装DevEco Studio的绝对路径。
    
    4. 编辑完成后，单击Esc键，退出编辑模式，然后输入“:wq”，单击Enter键保存。
    5. 执行以下命令，使配置的环境变量生效。
@@ -514,6 +514,10 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
    | [-b _bundlename_] | 指定可调试应用包名，在可调试应用数据目录内，以非交互式模式执行命令。<br>此参数当前仅支持以非交互式模式执行命令，不支持缺省command参数执行命令进入交互式shell会话，<br>未配置此参数默认执行路径为系统根目录。 |
    | [command] | 需要在设备侧执行的单次命令，不同类型或版本的系统支持的command命令有所差异，可以通过hdc shell ls /system/bin查阅支持的命令列表。当前许多命令都是由[toybox](../tools/toybox.md)提供，可通过 hdc shell toybox --help 获取命令帮助。<br>缺省该参数，hdc将会启动一个交互式的shell会话，开发者可以在命令提示符下输入命令，比如 ls、cd、pwd 等。 |
 
+   > **注意：**
+   >
+   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“使用调试证书签名的应用”， 如何申请调试证书及签名可参考：[申请调试证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)。
+
    **返回值：**
    | 返回值 | 说明 |
    | -------- | -------- |
@@ -537,9 +541,25 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
    hdc shell -b com.example.myapplication ls data/storage/el2/base/
    ```
 
-   > **说明：**
-   >
-   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“使用调试证书签名的应用”， 如何申请调试证书及签名可参考：[申请调试证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)。
+   **常用调试工具**
+   
+   | 命令 | 说明 |
+   | -------- | -------- |
+   | [aa](../tools/aa-tool.md) | 应用调试工具 |
+   | [bm](../tools/bm-tool.md) | 包管理工具 |
+   | [cem](../tools/cem-tool.md) | 公共事件管理工具 |
+   | [anm](../tools/anm-tool.md) | 通知管理工具 |
+   | [edm](../tools/edm-tool.md) | 企业设备管理工具 |
+   | [param](../tools/param-tool.md) | 操作系统参数管理工具 |
+   | [power-shell](../tools/power-shell.md) | 设备电源状态转换工具 |
+   | [atm](../tools/atm-tool.md) | 程序访问控制管理工具 |
+   | [hilog](./hilog.md) | 日志管理工具 |
+   | [hidumper](./hidumper.md) | 系统信息导出工具 |
+   | [hitrace](./hitrace.md) | 系统打点及采集工具 |
+   | [hiperf](./hiperf.md) | 性能分析工具 |
+   | [mediatool](../tools/mediatool.md) | 媒体资源库工具 |
+   | [devicedebug](../tools/devicedebug-tool.md) | 调试应用发送信号工具 |
+   | [rawheap-translator](../tools/rawheap-translator.md) | rawheap文件解析工具 |
 
 ## 应用管理
 
@@ -1224,6 +1244,16 @@ hdc server和hdc daemon启动后，默认会互相发送心跳数据包，收到
 | Linux | /tmp/hdc_cmd/ | - |
 | MacOS | $TMPDIR/hdc_cmd/ | - |
 
+### OHOS_HDC_ENCRYPT_CHANNEL
+
+默认：通道加密功能关闭。
+
+用于设置hdc server和hdc daemon之间的TCP连接通道加密功能开关。
+
+设置为"1"表示开启TCP连接的通道加密功能；不设置或者设置为其它数字表示关闭通道加密功能。
+
+从API version 20开始，支持该参数。
+
 ### 环境变量配置方法
 
 以配置OHOS_HDC_CMD_RECORD环境变量为例，将其值设为 1，介绍环境变量配置方法。
@@ -1233,6 +1263,12 @@ hdc server和hdc daemon启动后，默认会互相发送心跳数据包，收到
 | Windows  | 在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量**中，添加环境变量名称为OHOS_HDC_CMD_RECORD，变量值为1。配置完毕后点击确认。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。  |
 | Linux  | 在~/.bash_profile文件末尾追加内容export OHOS_HDC_CMD_RECORD=1并保存后，执行`source ~/.bash_profile`生效当前环境变量。 |
 | MacOS  | 在~/.zshrc文件末尾追加内容export OHOS_HDC_CMD_RECORD=1并保存后，执行`source ~/.zshrc`生效当前环境变量。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。 |
+
+## hdc版本配套表
+| hdc版本 | API版本 | 新增特性 |
+|--------|--------|--------|
+| 3.1.0a | 12 | wait命令支持-t参数，详细说明参见[等待设备正常连接](#等待设备正常连接)。 |
+| 3.1.0e | 15及以上版本 | 1.file send命令支持-b参数：详细说明参见[文件传输](#文件传输)。<br/> 2.file recv命令支持-b参数：详细说明参见[文件传输](#文件传输)。<br/> 3.shell命令支持-b参数：详细说明参见[执行交互命令](#执行交互命令)。 |
 
 ## 常见问题
 
@@ -1577,7 +1613,7 @@ Device does not supported this shell command
 
 **处理步骤**
 
-升级设备系统版本到最新。
+升级设备系统版本到最新，具体版本可参考[hdc版本配套表](#hdc版本配套表)。
 
 ### E003005 （命令行）缺少参数
 
@@ -1675,6 +1711,6 @@ hdc file send/recv 命令带-b选项时，SDK中的hdc或设备系统版本不�
 
 **处理步骤**
 
-* 场景一：升级到最新系统版本。
+* 场景一：升级到最新系统版本，具体版本可参考[hdc版本配套表](#hdc版本配套表)。
 
-* 场景二：升级到最新SDK版本。
+* 场景二：升级到最新SDK版本，具体版本可参考[hdc版本配套表](#hdc版本配套表)。

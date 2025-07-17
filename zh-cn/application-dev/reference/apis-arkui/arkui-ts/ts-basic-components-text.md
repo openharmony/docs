@@ -94,7 +94,7 @@ textOverflow(options: TextOverflowOptions)
 
 设置文本超长时的显示方式。
 
-当[TextOverflowOptions](#textoverflowoptions18对象说明)设置为TextOverflow.None、TextOverflow.Clip或TextOverflowEllipsis时：
+当[TextOverflowOptions](#textoverflowoptions18对象说明)设置为TextOverflow.None、TextOverflow.Clip或TextOverflow.Ellipsis时：
 
 - 设置为TextOverflow.None、TextOverflow.Clip，文本超长时按最大行截断显示。
 
@@ -415,6 +415,12 @@ fontFamily(value: string | Resource)
 copyOption(value: CopyOptions)
 
 设置组件是否支持文本可复制粘贴。
+
+从API version 20开始，当Text组件执行复制操作时，会将HTML格式的内容添加到剪贴板中。
+
+- 当Text组件包含子组件时，仅支持[Span](ts-basic-components-span.md)和[ImageSpan](ts-basic-components-imagespan.md)子组件向剪贴板中添加HTML格式的内容。
+
+- 设置Text组件的属性字符串时，请参考属性字符串[toHtml](ts-universal-styled-string.md#tohtml14)接口文档，以了解支持转换为HTML的范围。
 
 设置copyOption为CopyOptions.InApp或者CopyOptions.LocalDevice时：
 
@@ -1136,6 +1142,10 @@ shaderStyle(shader: ShaderStyle)
 ## TextOverflowOptions<sup>18+</sup>对象说明
 
 文本超长显示方式对象。
+
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 

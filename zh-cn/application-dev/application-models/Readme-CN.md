@@ -21,7 +21,7 @@
       - [UIExtensionAbility（仅对系统应用开放）](uiextensionability.md)
       - [AutoFillExtensionAbility（仅对系统应用开放）](autofillextensionablility-guide.md)
       <!--DelEnd-->
-      - [UIServiceExtension](uiserviceextension.md)
+      - [使用通过UIServiceExtensionAbility实现的系统悬浮窗](uiserviceextension.md)
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
       - [使用AppServiceExtensionAbility实现后台服务](app-service-extension-ability.md)
     - [AbilityStage组件容器](abilitystage.md)
@@ -73,7 +73,14 @@
     - [设置任务快照的图标和名称](mission-set-icon-name-for-task-snapshot.md)
   <!--DelEnd-->
   - [Stage模型应用配置文件](config-file-stage.md)
-  - [标准意图接入规范](insight-intent-access-specifications.md)
+  - 意图框架开发指导<!--insight-intent-->
+    - [意图框架概述](insight-intent-overview.md)
+    - 开发意图<!--insight-intent-development-->
+      - [意图开发概述](insight-intent-definition.md)
+      - [使用配置文件开发意图](insight-intent-config-development.md)
+      - [使用装饰器开发意图](insight-intent-decorator-development.md)
+      - [附录：标准意图接入规范](insight-intent-access-specifications.md)
+    - [调试意图](insight-intent-debug.md)
 - FA模型开发指导<!--fa-model-development-->
   - [FA模型开发概述](fa-model-development-overview.md)
   - FA模型应用组件<!--fa-model-application-components-->

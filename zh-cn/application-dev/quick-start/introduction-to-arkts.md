@@ -104,7 +104,7 @@ factorial(n4)  //  9.33262154439441e+157
 ```typescript
 
 let bigIntger: BigInt = BigInt('999999999999999999999999999999999999999999999999999999999999');
-console.log('bigIntger' + bigIntger.toString());
+console.info('bigIntger' + bigIntger.toString());
 
 ```
 
@@ -120,7 +120,7 @@ let isDone: boolean = false;
 // ...
 
 if (isDone) {
-  console.log ('Done!');
+  console.info('Done!');
 }
 ```
 
@@ -274,9 +274,9 @@ type NullableObject = Object | null;
     let a:Object=1;
     let b:Object='1';
     // == 只比较值相等
-    console.log(a == b); // true
+    console.info(a == b); // true
     // === 比较值和类型都相等
-    console.log(a === b); // false
+    console.info(a === b); // false
 ```
 
 
@@ -338,12 +338,12 @@ if (condition1) {
 ```typescript
 let s1 = 'Hello';
 if (s1) {
-  console.log(s1); // 打印“Hello”
+  console.info(s1); // 打印“Hello”
 }
 
 let s2 = 'World';
 if (s2.length != 0) {
-  console.log(s2); // 打印“World”
+  console.info(s2); // 打印“World”
 }
 ```
 
@@ -402,12 +402,12 @@ let message = Math.random() > 0.5 ? 'Valid' : 'Failed';
 示例：
 
 ```typescript
-    console.log('a' ? 'true' : 'false'); // true
-    console.log('' ? 'true' : 'false'); // false
-    console.log(1 ? 'true' : 'false'); // true
-    console.log(0 ? 'true' : 'false'); // false
-    console.log(null ? 'true' : 'false'); // false
-    console.log(undefined ? 'true' : 'false'); // false
+    console.info('a' ? 'true' : 'false'); // true
+    console.info('' ? 'true' : 'false'); // false
+    console.info(1 ? 'true' : 'false'); // true
+    console.info(0 ? 'true' : 'false'); // false
+    console.info(null ? 'true' : 'false'); // false
+    console.info(undefined ? 'true' : 'false'); // false
 ```
 
 #### `For`语句
@@ -453,7 +453,7 @@ for (forVar of IterableExpression) {
 
 ```typescript
 for (let ch of 'a string object') {
-  console.log(ch);
+  console.info(ch);
 }
 ```
 
@@ -575,9 +575,9 @@ function divide (a: number, b: number): number{
 function process (a: number, b: number) {
   try {
     let res = divide(a, b);
-    console.log('result: ' + res);
+    console.info('result: ' + res);
   } catch (x) {
-    console.log('some error');
+    console.error('some error');
   }
 }
 ```
@@ -589,7 +589,7 @@ function processData(s: string) {
   let error: Error | null = null;
 
   try {
-    console.log('Data processed: ' + s);
+    console.info('Data processed: ' + s);
     // ...
     // 可能发生异常的语句
     // ...
@@ -601,7 +601,7 @@ function processData(s: string) {
   } finally {
     // 无论是否发生异常都会执行的代码
     if (error != null) {
-      console.log(`Error caught: input='${s}', message='${error.message}'`);
+      console.error(`Error caught: input='${s}', message='${error.message}'`);
     }
   }
 }
@@ -635,9 +635,9 @@ function add(x: string, y: string): string {
 ```typescript
 function hello(name?: string) {
   if (name == undefined) {
-    console.log('Hello!');
+    console.info('Hello!');
   } else {
-    console.log(`Hello, ${name}!`);
+    console.info(`Hello, ${name}!`);
   }
 }
 ```
@@ -685,8 +685,8 @@ function goo() { return 'goo'; }
 以下示例中两种函数声明方式都是有效的：
 
 ```typescript
-function hi1() { console.log('hi'); }
-function hi2(): void { console.log('hi'); }
+function hi1() { console.info('hi'); }
+function hi2(): void { console.info('hi'); }
 ```
 
 ### 函数的作用域
@@ -700,7 +700,7 @@ let outerVar = 'I am outer ';
 
 function func() {
     let outerVar = 'I am inside';
-    console.log(outerVar); // 输出: I am inside
+    console.info(outerVar); // 输出: I am inside
 }
 
 func();
@@ -723,7 +723,7 @@ function join(x: string, y: string): string {
 
 ```typescript
 let x = join('hello', 'world');
-console.log(x); // 输出: hello world
+console.info(x); // 输出: hello world
 ```
 
 ### 函数类型
@@ -817,7 +817,7 @@ class Person {
 
 ```typescript
 let p = new Person('John', 'Smith');
-console.log(p.fullName());
+console.info(p.fullName());
 ```
 
 或者，可以使用对象字面量创建实例：
@@ -1030,7 +1030,7 @@ class Cl {
     return 'this is a static method.';
   }
 }
-console.log(Cl.staticMethod());
+console.info(Cl.staticMethod());
 ```
 
 #### 继承
@@ -1405,7 +1405,7 @@ class RectangleSize implements AreaSize {
   private width: number = 0;
   private height: number = 0;
   someMethod(): void {
-    console.log('someMethod called');
+    console.info('someMethod called');
   }
   calculateAreaSize(): number {
     this.someMethod(); // 调用另一个方法并返回结果
@@ -1492,26 +1492,26 @@ interface MyInterface {
     static staticMethod(): void; 
 
     // 错误：接口中不能包含静态代码块
-    static { console.log("static") }; 
+    static { console.info("static") }; 
 } 
 
 abstract class MyAbstractClass {
     // 正确：抽象类可以有静态方法
-    static staticMethod(): void { console.log("static");}
+    static staticMethod(): void { console.info("static");}
 
     // 正确：抽象类可以有静态代码块
-    static { console.log("static initialization block");}
+    static { console.info("static initialization block");}
 }
 ```
 * 抽象类里面可以有方法的实现，但是接口完全都是抽象的，不存在方法的实现；
 ```typescript
 abstract class MyAbstractClass {
    // 正确：抽象类里面可以有方法的实现
-   func(): void { console.log("func");}
+   func(): void { console.info("func");}
 }
 interface MyInterface {
    // 错误：接口完全都是抽象的，不存在方法的实现
-   func(): void { console.log("func");}
+   func(): void { console.info("func");}
 }
 ```
 * 抽象类可以有构造函数，而接口不能有构造函数。
@@ -1819,10 +1819,10 @@ import("./Calc").then((obj: ESObject) => {
 ```typescript
 // say.ts
 export function hi() {
-  console.log('Hello');
+  console.info('Hello');
 }
 export function bye() {
-  console.log('Bye');
+  console.info('Bye');
 }
 ```
 

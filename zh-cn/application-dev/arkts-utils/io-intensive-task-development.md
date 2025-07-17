@@ -10,7 +10,7 @@ I/O密集型任务的性能关键在于I/O操作的速度和效率，而非CPU�
 1. 定义并发函数，内部密集调用I/O能力。
     ```ts
     // write.ets
-    import { fileIo } from '@kit.CoreFileKit'
+    import { fileIo } from '@kit.CoreFileKit';
 
     // 定义并发函数，内部密集调用I/O能力
     // 写入文件的实现
@@ -24,24 +24,25 @@ I/O密集型任务的性能关键在于I/O操作的速度和效率，而非CPU�
 
 	```ts
     // Index.ets
-    import { write } from './write'
+    import { write } from './write';
     import { BusinessError } from '@kit.BasicServicesKit';
     import { taskpool } from '@kit.ArkTS';
     import { common } from '@kit.AbilityKit';
 
     @Concurrent
     async function concurrentTest(context: common.UIAbilityContext): Promise<boolean> {
-      let filePath1: string = context.filesDir + "/path1.txt"; // 应用文件路径
+      // 应用文件路径
+      let filePath1: string = context.filesDir + "/path1.txt";
       let filePath2: string = context.filesDir + "/path2.txt";
       // 循环写文件操作
       let fileList: Array<string> = [];
       fileList.push(filePath1);
-      fileList.push(filePath2)
+      fileList.push(filePath2);
       for (let i: number = 0; i < fileList.length; i++) {
         write('Hello World!', fileList[i]).then(() => {
           console.info(`Succeeded in writing the file. FileList: ${fileList[i]}`);
         }).catch((err: BusinessError) => {
-          console.error(`Failed to write the file. Code is ${err.code}, message is ${err.message}`)
+          console.error(`Failed to write the file. Code is ${err.code}, message is ${err.message}`);
           return false;
         })
       }
@@ -71,7 +72,7 @@ I/O密集型任务的性能关键在于I/O操作的速度和效率，而非CPU�
                 // 数组较大时，I/O密集型任务分发也会抢占UI主线程，需要使用多线程能力
                 taskpool.execute(concurrentTest, context).then(() => {
                   // 调度结果处理
-                  console.info("taskpool: execute success")
+                  console.info("taskpool: execute success");
                 })
               })
           }

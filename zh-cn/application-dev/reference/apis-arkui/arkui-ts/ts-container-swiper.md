@@ -272,6 +272,8 @@ cachedCount(value: number)
 >  **说明：** 
 >
 >  - 在连续滑动场景中，一屏显示一个Swiper子组件时，通常将cachedCount值设置为1或2即可。最佳实践请参考[优化Swiper组件加载慢丢帧问题-缓存数据项](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-swiper_high_performance_development_guide#section143504547145)。
+>
+>  - 只在[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)中生效，生效后超出显示及缓存范围的子节点会被释放。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -458,6 +460,8 @@ nextMargin(value: Length, ignoreBlank?:boolean)
 
 当主轴方向为纵向布局时，nextMargin/prevMargin中任意一个大于子组件测算的高度，nextMargin和prevMargin均不显示。
 
+使用nextMargin/prevMargin接口时，不要对子组件进行[尺寸范围限制](ts-universal-attributes-size.md#constraintsize)，否则子节点主轴将不会被拉伸到预期长度，边距失去效果。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -478,6 +482,8 @@ prevMargin(value: Length, ignoreBlank?:boolean)
 当主轴方向为横向布局时，nextMargin/prevMargin中任意一个大于子组件测算的宽度，nextMargin和prevMargin均不显示。
 
 当主轴方向为纵向布局时，nextMargin/prevMargin中任意一个大于子组件测算的高度，nextMargin和prevMargin均不显示。
+
+使用nextMargin/prevMargin接口时，不要对子组件进行[尺寸范围限制](ts-universal-attributes-size.md#constraintsize)，否则子节点主轴将不会被拉伸到预期长度，边距失去效果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1588,6 +1594,24 @@ Swiper滑动行为拦截事件，在滑动前触发。Swiper会依据该事件�
 | ------ | ---- | ---- | ---- |
 | handler | [ContentWillScrollCallback](#contentwillscrollcallback15) | 是 | Swiper滑动时触发的回调。 |
 
+### onScrollStateChanged<sup>20+</sup>
+
+onScrollStateChanged(event: Callback\<ScrollState>)
+
+Swiper滑动状态变化事件回调，在跟手滑动、离手动画、停止三种滑动状态变化时触发，返回值为当前滑动状态。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| event  | [Callback](./ts-types.md#callback12)\<[ScrollState](ts-container-list.md#scrollstate枚举说明)> | 是   | 滑动状态变化的回调。 |
+
 ## OnSwiperAnimationStartCallback<sup>18+</sup>
 
 type OnSwiperAnimationStartCallback = (index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => void
@@ -1848,6 +1872,9 @@ struct SwiperExample {
       .onChange((index: number) => {
         console.info(index.toString());
       })
+      .onScrollStateChanged((event: ScrollState) => {
+        console.info("event: " + event);
+      })
       .onGestureSwipe((index: number, extraInfo: SwiperAnimationEvent) => {
         console.info("index: " + index);
         console.info("current offset: " + extraInfo.currentOffset);
@@ -2094,10 +2121,8 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // CommonUtil.ets
-import { i18n, intl } from '@kit.LocalizationKit';
-
 export class CommonUtil {
-  private static isRTL: boolean = i18n.isRTL((new intl.Locale()).language);
+  private static isRTL: boolean = false;
 
   public static setIsRTL(isRTL: boolean): void {
     CommonUtil.isRTL = isRTL;

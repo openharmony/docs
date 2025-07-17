@@ -75,8 +75,8 @@ AVSession的接入开发请参考指南[应用接入AVSession场景介绍](avses
 
 ## 完整示例
 
-[使用AVPlayer后台播放](https://gitee.com/harmonyos_samples/video-player)
+[使用AVPlayer后台播放](https://gitcode.com/harmonyos_samples/video-player)
 - 本示例主要展示通过系统播放器AVPlayer实现视频类应用的开发，功能包括后台播放和系统播控中心的交互。
 
-[使用AudioRenderer后台播放](https://gitee.com/harmonyos_samples/audio-interaction)
+[使用AudioRenderer后台播放](https://gitcode.com/harmonyos_samples/audio-interaction)
 - 本场景解决方案主要面向前台音频开发人员。指导开发者基于AudioRenderer开发音频播控功能。功能包括后台播放、系统播控中心的交互、适配不同类型的焦点打断策略、切换路由发声设备、切换输出设备等。

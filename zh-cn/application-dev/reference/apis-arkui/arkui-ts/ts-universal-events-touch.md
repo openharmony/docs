@@ -6,7 +6,7 @@
 >
 > 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 事件分发流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md)。
+> 事件分发可参考[事件交互流程](../../../ui/arkts-interaction-basic-principles.md#事件交互流程)，手势事件处理流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md)。
 >
 > 如需绑定手势事件可参考[绑定手势方法](./ts-gesture-settings.md)。
 
@@ -14,7 +14,7 @@
 
 onTouch(event: (event: TouchEvent) => void): T
 
-手指触摸动作触发该回调。鼠标左键按下时对应的事件也会转化成触摸事件并触发该回调。
+手指触摸动作触发该回调。触摸事件默认冒泡，事件会被多个组件消费，如果要阻止冒泡，参考[TouchEvent](#touchevent对象说明)的stopPropagation方法。鼠标左键按下时对应的事件也会转化成触摸事件并触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -87,8 +87,8 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | displayY<sup>10+</sup> | number                       | 触摸点相对于应用屏幕左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | screenX<sup>(deprecated)</sup> | number               | 触摸点相对于应用窗口左上角的X坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowX代替。   |
 | screenY<sup>(deprecated)</sup> | number               | 触摸点相对于应用窗口左上角的Y坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowY代替。   |
-| PressedTime<sup>15+</sup> | number | 当前手指按下的时间。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
-| pressure<sup>15+</sup> | number | 当前手指按着的压力值。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| PressedTime<sup>15+</sup> | number | 当前手指按下的时间。<br>单位：ns<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| pressure<sup>15+</sup> | number | 当前手指按着的压力值。<br/>取值范围：[0,65535)，压力越大值越大。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | width<sup>15+</sup> | number | 当前手指按压区域的宽。<br />单位：vp<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | height<sup>15+</sup> | number | 当前手指按压区域的高。<br />单位：vp<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |

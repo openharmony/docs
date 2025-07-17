@@ -8,17 +8,15 @@
 >
 > - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
 
+画刷对象，描述所绘制图形的填充信息。
+
 ## 导入模块
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
 ```
 
-## Brush
-
-画刷对象，描述所绘制图形的填充信息。
-
-### constructor<sup>12+</sup>
+## constructor<sup>12+</sup>
 
 constructor()
 
@@ -34,7 +32,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 const brush = new drawing.Brush();
 ```
 
-### constructor<sup>12+</sup>
+## constructor<sup>12+</sup>
 
 constructor(brush: Brush)
 
@@ -46,7 +44,7 @@ constructor(brush: Brush)
 
 | 参数名 | 类型        | 必填 | 说明              |
 | ------| ----------- | ---- | ---------------- |
-| brush     | [Brush](#brush) | 是   | 待复制的画刷对象。 |
+| brush     | [Brush](arkts-apis-graphics-drawing-Brush.md) | 是   | 待复制的画刷对象。 |
 
 **错误码：**
 
@@ -67,7 +65,7 @@ brush.setColor(brushColor);
 const newBrush = new drawing.Brush(brush);
 ```
 
-### setColor
+## setColor
 
 setColor(color: common2D.Color) : void
 
@@ -99,7 +97,7 @@ const brush = new drawing.Brush();
 brush.setColor(color);
 ```
 
-### setColor<sup>12+</sup>
+## setColor<sup>12+</sup>
 
 setColor(alpha: number, red: number, green: number, blue: number): void
 
@@ -133,7 +131,7 @@ const brush = new drawing.Brush();
 brush.setColor(255, 255, 0, 0);
 ```
 
-### setColor<sup>18+</sup>
+## setColor<sup>18+</sup>
 
 setColor(color: number) : void
 
@@ -164,7 +162,7 @@ const brush = new drawing.Brush();
 brush.setColor(0xffff0000);
 ```
 
-### setColor4f<sup>20+</sup>
+## setColor4f<sup>20+</sup>
 
 setColor4f(color4f: common2D.Color4f, colorSpace: colorSpaceManager.ColorSpaceManager | null): void
 
@@ -190,7 +188,7 @@ let color4f:common2D.Color4f = {alpha:1, red:0.5, green:0.4, blue:0.7};
 brush.setColor4f(color4f, colorSpace);
 ```
 
-### getColor<sup>12+</sup>
+## getColor<sup>12+</sup>
 
 getColor(): common2D.Color
 
@@ -215,7 +213,7 @@ brush.setColor(color);
 let colorGet = brush.getColor();
 ```
 
-### getColor4f<sup>20+</sup>
+## getColor4f<sup>20+</sup>
 
 getColor4f(): common2D.Color4f
 
@@ -241,7 +239,7 @@ brush.setColor4f(color4f, colorSpace);
 let color = brush.getColor4f();
 ```
 
-### getHexColor<sup>18+</sup>
+## getHexColor<sup>18+</sup>
 
 getHexColor(): number
 
@@ -267,7 +265,7 @@ let hex_color: number = brush.getHexColor();
 console.info('getHexColor: ', hex_color.toString(16));
 ```
 
-### setAntiAlias
+## setAntiAlias
 
 setAntiAlias(aa: boolean) : void
 
@@ -298,7 +296,7 @@ const brush = new drawing.Brush();
 brush.setAntiAlias(true);
 ```
 
-### isAntiAlias<sup>12+</sup>
+## isAntiAlias<sup>12+</sup>
 
 isAntiAlias(): boolean
 
@@ -321,7 +319,7 @@ const brush = new drawing.Brush();
 let isAntiAlias = brush.isAntiAlias();
 ```
 
-### setAlpha
+## setAlpha
 
 setAlpha(alpha: number) : void
 
@@ -352,7 +350,7 @@ const brush = new drawing.Brush();
 brush.setAlpha(128);
 ```
 
-### getAlpha<sup>12+</sup>
+## getAlpha<sup>12+</sup>
 
 getAlpha(): number
 
@@ -375,7 +373,7 @@ const brush = new drawing.Brush();
 let alpha = brush.getAlpha();
 ```
 
-### setColorFilter
+## setColorFilter
 
 setColorFilter(filter: ColorFilter) : void
 
@@ -407,7 +405,7 @@ let colorFilter = drawing.ColorFilter.createLinearToSRGBGamma();
 brush.setColorFilter(colorFilter);
 ```
 
-### setMaskFilter<sup>12+</sup>
+## setMaskFilter<sup>12+</sup>
 
 setMaskFilter(filter: MaskFilter): void
 
@@ -445,7 +443,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setShaderEffect<sup>12+</sup>
+## setShaderEffect<sup>12+</sup>
 
 setShaderEffect(shaderEffect: ShaderEffect): void
 
@@ -477,7 +475,7 @@ let shaderEffect = drawing.ShaderEffect.createLinearGradient({x: 100, y: 100}, {
 brush.setShaderEffect(shaderEffect);
 ```
 
-### setShadowLayer<sup>12+</sup>
+## setShadowLayer<sup>12+</sup>
 
 setShadowLayer(shadowLayer: ShadowLayer): void
 
@@ -543,7 +541,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setBlendMode
+## setBlendMode
 
 setBlendMode(mode: BlendMode) : void
 
@@ -574,7 +572,7 @@ const brush = new drawing.Brush();
 brush.setBlendMode(drawing.BlendMode.SRC);
 ```
 
-### setImageFilter<sup>12+</sup>
+## setImageFilter<sup>12+</sup>
 
 setImageFilter(filter: ImageFilter | null): void
 
@@ -607,7 +605,7 @@ brush.setImageFilter(imgFilter);
 brush.setImageFilter(null);
 ```
 
-### getColorFilter<sup>12+</sup>
+## getColorFilter<sup>12+</sup>
 
 getColorFilter(): ColorFilter
 
@@ -632,7 +630,7 @@ brush.setColorFilter(setColorFilter);
 let filter = brush.getColorFilter();   
 ```
 
-### reset<sup>12+</sup>
+## reset<sup>12+</sup>
 
 reset(): void
 

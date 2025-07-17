@@ -53,7 +53,7 @@
      ],
      actionType: wantAgent.OperationType.START_ABILITY,
      requestCode: 0,
-     wantAgentFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
+     actionFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
    };
    ```
 
@@ -72,7 +72,7 @@
      ],
      actionType: wantAgent.OperationType.SEND_COMMON_EVENT,
      requestCode: 0,
-     wantAgentFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG],
+     actionFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG],
    };
    ```
 

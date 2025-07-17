@@ -369,21 +369,21 @@ async function testPromiseError() {
   await new Promise<number>((resolve, reject) => {
     resolve(1);
   }).then(() => {
-    throw new Error('testPromise Error');
+    throw new Error('testPromise error');
   })
 }
 
 @Concurrent
 async function testPromiseError1() {
   await new Promise<string>((resolve, reject) => {
-    reject('testPromiseError1 Error msg');
+    reject('testPromiseError1 error msg');
   })
 }
 
 @Concurrent
 function testPromiseError2() {
   return new Promise<string>((resolve, reject) => {
-    reject('testPromiseError2 Error msg');
+    reject('testPromiseError2 error msg');
   })
 }
 
@@ -395,17 +395,17 @@ async function testConcurrentFunc() {
   taskpool.execute(task1).then((d: object) => {
     console.info(`task1 res is: ${d}`);
   }).catch((e: object) => {
-    console.error(`task1 catch e: ${e}`); // task1 catch e: Error: testPromise Error
+    console.error(`task1 catch e: ${e}`); // task1 catch e: Error: testPromise error
   })
   taskpool.execute(task2).then((d: object) => {
     console.info(`task2 res is: ${d}`);
   }).catch((e: object) => {
-    console.error(`task2 catch e: ${e}`); // task2 catch e: testPromiseError1 Error msg
+    console.error(`task2 catch e: ${e}`); // task2 catch e: testPromiseError1 error msg
   })
   taskpool.execute(task3).then((d: object) => {
     console.info(`task3 res is: ${d}`);
   }).catch((e: object) => {
-    console.error(`task3 catch e: ${e}`); // task3 catch e: testPromiseError2 Error msg
+    console.error(`task3 catch e: ${e}`); // task3 catch e: testPromiseError2 error msg
   })
 }
 

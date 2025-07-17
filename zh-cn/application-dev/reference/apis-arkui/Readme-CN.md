@@ -50,6 +50,7 @@
       - [NodeContent](js-apis-arkui-NodeContent.md)
   - 窗口管理<!--window-manager-api-->
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
+    - [@ohos.window.floatingBall (闪控球窗口)](js-apis-floatingBall.md)
     - @ohos.window (窗口)<!--js-apis-window-->
       - [模块描述](arkts-apis-window.md)
       - [Functions](arkts-apis-window-f.md)
@@ -102,7 +103,7 @@
       - [自定义事件拦截](arkui-ts/ts-universal-attributes-on-touch-intercept.md)
       - [自定义事件分发](arkui-ts/ts-universal-attributes-on-child-touch-test.md)
     - 无障碍相关<!--accessibility-related-->
-      - [无障碍事件](arkui-ts/ts-universal-accessibility-event.md)
+      - [无障碍控制操作](arkui-ts/ts-universal-accessibility-event.md)
       - [无障碍悬浮事件](arkui-ts/ts-universal-accessibility-hover-event.md)
     - 组件变化事件<!--component-change-->
       - [挂载卸载事件](arkui-ts/ts-universal-events-show-hide.md)

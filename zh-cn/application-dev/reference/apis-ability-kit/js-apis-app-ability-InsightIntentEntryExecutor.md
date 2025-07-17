@@ -28,7 +28,7 @@ import { InsightIntentEntryExecutor } from '@kit.AbilityKit';
 | ------------------ | ----------------| ---------- | ---- | ------------------------------------------------------------ |
 | executeMode        | [insightIntent.ExecuteMode](./js-apis-app-ability-insightIntent.md#executemode) | 否       | 否   | 表示意图调用执行模式。即拉起绑定的Ability时支持的执行模式。|
 | context            | [InsightIntentContext](./js-apis-app-ability-insightIntentContext.md)          | 否       | 否  | 表示意图调用执行上下文。 |
-| windowStage        | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9)       | 否       | 是   | 表示展示意图的窗口管理器。仅当execuMode字段取值为UI_ABILITY_FOREGROUND（即意图调用需要将UIAbility显示在前台时），该属性生效。    |
+| windowStage        | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md)       | 否       | 是   | 表示展示意图的窗口管理器。仅当executeMode字段取值为UI_ABILITY_FOREGROUND（即意图调用需要将UIAbility显示在前台时），该属性生效。    |
 | uiExtensionSession     | [UIExtensionContentSession](./js-apis-app-ability-uiExtensionContentSession.md)       | 否       | 是   | 表示[UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md)加载界面内容时创建的实例对象。仅当executeMode字段取值为UI_EXTENSION_ABILITY（即意图调用需要拉起UIExtensionAbility时），该属性生效。    |
 
 ### onExecute
@@ -42,7 +42,7 @@ onExecute(): Promise\<insightIntent.IntentResult\<T>>
 | 意图执行模式 | 接口调用时机和顺序 |
 | ----------- | -----------------|
 | [UI_ABILITY_FOREGROUND](./js-apis-app-ability-insightIntent.md#executemode)<br/>UIAbility前台模式 | - 若UIAbility冷启动，意图调用时UIAbility生命周期触发顺序：onCreate、onWindowStageCreate、onExecute、onForeground。<br/>- 若UIAbility热启动，且启动时UIAbility处于后台，意图调用时UIAbility生命周期触发顺序：onNewWant、onExecute、onForeground。<br/>- 若UIAbility热启动，且启动时UIAbility处于前台，意图调用时UIAbility生命周期触发顺序：onExecute。 |
-| [UI_ABILITY_FOREGROUND](./js-apis-app-ability-insightIntent.md#executemode)<br/>UIAbility后台模式 | - 若UIAbility冷启动，意图调用时UIAbility生命周期触发顺序：onCreate、onExecute、onBackground。<br/>- 若UIAbility热启动，意图调用时UIAbility生命周期触发顺序：onExecute。 |
+| [UI_ABILITY_BACKGROUND](./js-apis-app-ability-insightIntent.md#executemode)<br/>UIAbility后台模式 | - 若UIAbility冷启动，意图调用时UIAbility生命周期触发顺序：onCreate、onExecute、onBackground。<br/>- 若UIAbility热启动，意图调用时UIAbility生命周期触发顺序：onExecute。 |
 | [UI_EXTENSION_ABILITY](./js-apis-app-ability-insightIntent.md#executemode)<br />UIExtension模式 | 意图调用时UIExtensionAbility生命周期触发顺序：onCreate、onSessionCreate、onExecute、onForeground。 |
 |<!--DelRow-->[SERVICE_EXTENSION_ABILITY](./js-apis-app-ability-insightIntent-sys.md)<br />ServiceExtension模式 | 意图调用时ServiceExtensionAbility生命周期触发顺序：onCreate、onRequest、onExecute。 |
 
@@ -103,7 +103,7 @@ export default class PlayMusicDemo extends InsightIntentEntryExecutor<string> {
     storage.setOrCreate('songName', this.songName);
     // 根据executeMode参数的不同情况，提供不同拉起PlayMusicPage页面的方式。
     if (this.executeMode == insightIntent.ExecuteMode.UI_ABILITY_FOREGROUND) {
-      this.windowStage?.loadContent('pages/PlayMusicPage', storage);       
+      this.windowStage?.loadContent('pages/PlayMusicPage', storage);
     } else if (this.executeMode == insightIntent.ExecuteMode.UI_EXTENSION_ABILITY) {
       this.uiExtensionSession?.loadContent('pages/PlayMusicPage', storage);
     }

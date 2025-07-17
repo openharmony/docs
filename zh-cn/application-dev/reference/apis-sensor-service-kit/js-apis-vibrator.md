@@ -669,31 +669,35 @@ stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt;
 **示例**：
 
   ```ts
-   import { vibrator } from '@kit.SensorServiceKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-  
-   // 根据实际业务逻辑获取目标马达, 例如查找本地马达，此处示例仅做展示，开发者需要自行调整筛选逻辑。
-   const targetVibrator = vibratorInfoList.find((vibrator: vibrator.VibratorInfo) => {
-       return vibrator.isLocalVibrator;
-   });
-   if (!targetVibrator) {
-       return;
-   }
-   // 调用 vibrator.startVibration 开始振动。
-   // ...
+  import { vibrator } from '@kit.SensorServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-   // 使用try catch对可能出现的异常进行捕获
-   try {
-       // 根据实际业务场景停止马达振动。
-       vibrator.stopVibration({ deviceId: targetVibrator.deviceId, vibratorId: targetVibrator.vibratorId }).then(() => {
-         console.info('Succeed in stopping vibration');
-       }, (error: BusinessError) => {
-         console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-       });
-   } catch (error) {
-       let e: BusinessError = error as BusinessError;
-       console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-   }
+  function vibratorDemo() {
+    // 查询所有马达设备信息。
+    const vibratorInfoList: vibrator.VibratorInfo[] = vibrator.getVibratorInfoSync();
+    // 根据实际业务逻辑获取目标马达, 例如查找本地马达，此处示例仅做展示，开发者需要自行调整筛选逻辑。
+    const targetVibrator = vibratorInfoList.find((vibrator: vibrator.VibratorInfo) => {
+      return vibrator.isLocalVibrator;
+    });
+    if (!targetVibrator) {
+      return;
+    }
+    // 调用 vibrator.startVibration 开始振动。
+    // ...
+
+    // 使用try catch对可能出现的异常进行捕获。
+    try {
+      // 根据实际业务场景停止马达振动。
+      vibrator.stopVibration({ deviceId: targetVibrator.deviceId, vibratorId: targetVibrator.vibratorId }).then(() => {
+        console.info('Succeed in stopping vibration');
+      }, (error: BusinessError) => {
+        console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+      });
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+    }
+  }
   ```
 
 ## vibrator.stopVibrationSync<sup>12+</sup>
@@ -1098,12 +1102,12 @@ off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;)
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 
-| 名称 | 类型    | 说明                               |
-| ---- | ------ |----------------------------------|
-| timestamp    | number  | 报告事件的时间戳。                        |
-| deviceId    | number   | 设备的ID。                           |
-| vibratorCount    | number   | 设备上的马达的数量。                       |
-| isVibratorOnline    | boolean  | 指示设备的上线和下线状态，true表示上线，false表示下线。 |
+| 名称               | 类型      | 只读 | 可选 | 说明                               |
+|------------------|---------|----|----|----------------------------------|
+| timestamp        | number  | 是  | 否  | 报告事件的时间戳。                        |
+| deviceId         | number  | 是  | 否  | 设备的ID。                           |
+| vibratorCount    | number  | 是  | 否  | 设备上的马达的数量。                       |
+| isVibratorOnline | boolean | 是  | 否  | 指示设备的上线和下线状态，true表示上线，false表示下线。 |
 
 
 ## VibratorInfoParam<sup>19+</sup>
@@ -1127,22 +1131,24 @@ off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;)
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 
-| 名称 | 类型    | 说明         |
-| ---- | ------  |------------|
-| isEffectSupported   | boolean | 预制效果是否支持，true表示支持，false表示不支持。 |
+| 名称                | 类型      | 只读 | 可选 | 说明                            |
+|-------------------|---------|----|----|-------------------------------|
+| isEffectSupported | boolean | 是  | 否  | 预制效果是否支持，true表示支持，false表示不支持。 |
 
 
 ## VibratorInfo<sup>19+</sup>
 
 表示查询的马达信息。
 
-| 名称 | 类型    | 说明        |
-| ---- | ------ |-----------|
-| deviceId    | number | 设备ID。     |
-| vibratorId    | number | 马达ID。     |
-| deviceName    | string | 设备名称。     |
-| isHdHapticSupported    | boolean | 是否支持高清振动。 |
-| isLocalVibrator    | boolean | 是否为本地设备。  |
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+| 名称                  | 类型      | 只读 | 可选 | 说明        |
+|---------------------|---------|----|----|-----------| 
+| deviceId            | number  | 是  | 否  | 设备ID。     |
+| vibratorId          | number  | 是  | 否  | 马达ID。     |
+| deviceName          | string  | 是  | 否  | 设备名称。     |
+| isHdHapticSupported | boolean | 是  | 否  | 是否支持高清振动。 |
+| isLocalVibrator     | boolean | 是  | 否  | 是否为本地设备。  |
 
 
 ## vibrator.isHdHapticSupported<sup>12+</sup>
@@ -1552,10 +1558,10 @@ build(): VibratorPattern;
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称                     | 类型             | 必填 | 说明                                                         |
-|------------------------| ---------------- | ---- | ------------------------------------------------------------ |
-| id                     | number           | 否   | 马达ID， 默认值为0。                                       |
-| deviceId<sup>19+</sup> | number           | 否   | 设备ID。                                       | 
+| 名称                     | 类型             | 必填 | 说明                                                        |
+|------------------------| ---------------- | ---- |-----------------------------------------------------------|
+| id                     | number           | 否   | 马达ID， 默认值为0。                                              |
+| deviceId<sup>19+</sup> | number           | 否   | 设备ID。 <br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。 | 
 | usage                  | [Usage](#usage9) | 是   | 马达振动的使用场景。默认值为'unknown'，取值范围只允许在[Usage](#usage9)提供的类型中选取。 |
 
 ## Usage<sup>9+</sup>

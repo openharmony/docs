@@ -99,12 +99,12 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 | 名称              | 值   | 说明            |
 | ----------------- | ---- | --------------- |
-| APP_GALLERY       | 1    | 应用市场分发的应用。    |
+| APP_GALLERY       | 1    | 应用市场安装的应用。    |
 | ENTERPRISE        | 2    | 企业应用，可以安装到个人设备上。    |
-| ENTERPRISE_NORMAL | 3    | 普通企业应用，只能通过企业MDM应用安装在企业设备上。无需设备管理特权。    |
-| ENTERPRISE_MDM    | 4    | 企业MDM应用，只能安装在企业设备上。需要设备管理特权，比如远程锁定，安装普通企业应用等。    |
+| ENTERPRISE_NORMAL | 3    | 普通企业应用，只能通过企业MDM应用安装在企业设备上。    |
+| ENTERPRISE_MDM    | 4    | 企业MDM应用，只能安装在企业设备上。需要被激活[管理员特权](../apis-mdm-kit/js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin)后，才能安装普通企业应用。    |
 | OS_INTEGRATION    | 5    | 系统预置应用。    |
-| CROWDTESTING      | 6    | 众包测试应用。    |
+| CROWDTESTING      | 6    | 众包测试应用，是由应用市场分发给部分用户，有一定的有效期的特定应用，系统检测到应用的有效期到期后，会通知用户到应用市场更新release版本的应用。    |
 | NONE              | 7    | 其他。           |
 
 ## ApplicationInfoFlag<sup>12+</sup>
@@ -3563,7 +3563,7 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Pr
 
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | Promise对象，返回指定组件的Lablel值。 |
+| Promise\<string> | Promise对象，返回指定组件的label值。 |
 
 **错误码：**
 
@@ -3629,7 +3629,7 @@ getAbilityLabelSync(bundleName: string, moduleName: string, abilityName: string)
 
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
-| string | 指定组件的Lablel值。 |
+| string | 指定组件的label值。 |
 
 **错误码：**
 

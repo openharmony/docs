@@ -2,7 +2,8 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本Interface首批接口从API version 10开始支持。
 
 AVSessionController控制器可查看会话ID，并可完成对会话发送命令及事件，获取会话元数据，播放状态信息等操作。
 
@@ -20,7 +21,7 @@ import { avSession } from '@kit.AVSessionKit';
 
 | 名称      | 类型   | 只读 | 可选 | 说明                                    |
 | :-------- | :----- | :--- | :--- | :-------------------------------------- |
-| sessionId | string | 是   | 否   | AVSessionController对象唯一的会话标识。 |
+| sessionId<sup>10+</sup> | string | 是   | 否   | AVSessionController对象唯一的会话标识。 |
 
 
 **示例：**

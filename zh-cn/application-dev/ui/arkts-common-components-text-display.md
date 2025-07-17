@@ -103,19 +103,47 @@ Text可通过以下两种方式来创建：
 
 - 添加事件。
 
-  由于Span组件无尺寸信息，仅支持添加点击事件[onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)。
+  由于Span组件无尺寸信息，仅支持添加点击事件[onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)、悬浮事件[onHover](../reference/apis-arkui/arkui-ts/ts-universal-events-hover.md#onhover)。
 
 
   ```ts
-  Text() {
-    Span('I am Upper-span').fontSize(12)
-      .textCase(TextCase.UpperCase)
-      .onClick(() => {
-        console.info('我是Span——onClick');
-      })
+  // xxx.ets
+  @Entry
+  @Component
+  struct Index {
+    @State textStr1: string = '';
+    @State textStr2: string = '';
+
+    build() {
+      Row() {
+        Column() {
+          Text() {
+            Span('I am Upper-span')
+              .fontSize(12)
+              .textCase(TextCase.UpperCase)
+              .fontSize(30)
+              .onClick(() => {
+                console.info('Span onClick is triggering');
+                this.textStr1 = 'Span onClick is triggering';
+              })
+              .onHover(() => {
+                console.info('Span onHover is triggering');
+                this.textStr2 = 'Span onHover is triggering';
+              })
+          }
+
+          Text('onClick：' + this.textStr1)
+            .fontSize(20)
+          Text('onHover：' + this.textStr2)
+            .fontSize(20)
+        }.width('100%')
+      }
+      .height('100%')
+    }
   }
   ```
 
+  ![span_event](figures/span_event.gif)
 
 ## 创建自定义文本样式
 
@@ -383,6 +411,16 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001511580868](figures/zh-cn_image_0000001511580868.png)
 
+- 通过[fontFamily](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#fontfamily)属性设置字体列表。应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../reference/apis-arkui/js-apis-font.md)。
+
+  ```ts
+  Text("This is the text content with fontFamily")
+    .fontSize(30)
+    .fontFamily('HarmonyOS Sans')
+  ```
+
+  ![Text_font_family](figures/Text_font_family.png)
+
 - 从API version 20开始，支持通过[contentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#contenttransition20)属性设置数字翻牌效果。
 
   ```ts
@@ -516,11 +554,38 @@ Text可通过以下两种方式来创建：
 Text组件可以添加通用事件，可以绑定[onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)、[onTouch](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)等事件来响应操作。
 
 ```ts
-Text('点我')
-  .onClick(() => {
-      console.info('我是Text的点击响应事件');
-   })
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State textStr1: string = '';
+  @State textStr2: string = '';
+
+  build() {
+    Row() {
+      Column() {
+        Text('This is a text component.')
+          .fontSize(30)
+          .onClick(() => {
+            console.info('Text onClick is triggering');
+            this.textStr1 = 'Text onClick is triggering';
+          })
+          .onTouch(() => {
+            console.info('Text onTouch is triggering');
+            this.textStr2 = 'Text onTouch is triggering';
+          })
+        Text('onClick：' + this.textStr1)
+          .fontSize(20)
+        Text('onTouch：' + this.textStr2)
+          .fontSize(20)
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
 ```
+
+![text_event](figures/text_event.gif)
 
 ## 设置垂直居中
 

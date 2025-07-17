@@ -28,16 +28,19 @@ Animation APIs drive attribute values to continuously transit from one state to 
 
 
 
-- Attribute animation: It is the most basic animation type. It drives attribute changes frame by frame based on animation parameters to create an animation on a frame-by-frame basis.
+- Property animation: It is the most basic animation type. It drives property changes frame by frame based on animation parameters to create an animation on a frame-by-frame basis. Except for custom property animations, the animation process is system-driven with no application-side awareness of the intermediate states.
 
 - Transition animation: animation for transitioning when components appear and disappear. To maintain animation consistency, some animation curves have been built in and cannot be customized.
   - Whenever possible, avoid UIAbility redirection in your application. A UIAbility is a task in effect and is individually displayed on the recent tasks screen. Redirection between UIAbilities is redirection between tasks. In the typical scenario of viewing large images in an application, if you call the gallery UIAbility from the application to open large images, then the gallery UIAbility will appear on the recent tasks screen. This is not recommended. A more recommended practice is as follows: Build a large image component in the application and invoke that component through modal transition. In this way, the entire animation can be completed in one UIAbility.
   - To implement navigation, use the **Navigation** component, instead of the page+router mode. The page+router mode causes page separation, which is inconvenient for implementing linked transition effects. In addition, it does not allow for one-time development for multi-device deployment.
 
-- Component animation: Components provide default animations (such as the slide animation of the **List** component). Some of them even support custom animations.
+- Component animation: Components provide default animations (such as the slide animation of the **\<List>** component). Some of them even support custom animations.
 
 - Animation curve: You can use traditional and spring curves to control how the attribute values change, to create an engaging animation effect.
 
 - Animation connection: Make the transition between animations and between gestures and animations as natural as possible.
 
 - Advanced animation effects: You can up your animation game with advanced effects such as blur, shadow, color gradient, and the like.
+
+- Frame animation: The system provides interpolated values during the animation process, requiring you to manually update property values each frame to generate animation effects. Compared with the property animation, this type of animation offers the advantage of pause/resume animation control, but with inferior performance.
+

@@ -158,7 +158,10 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 7. 添加辅助轨。
    > **说明：**
    >
-   > 设置OH_MD_KEY_TRACK_REFERENCE_TYPE时，值必须为"hint"、"cdsc"、"font"、"hind"、"vdep"、"vplx"、"subt"、"thmb"、"auxl"、"cdtg"、"shsc"或"aest"其中一项。
+   > 设置OH_MD_KEY_TRACK_TYPE时，值为MEDIA_TYPE_AUXILIARY代表添加辅助轨。<br>
+   > 设置OH_MD_KEY_TRACK_REFERENCE_TYPE时，值必须为"hint"、"cdsc"、"font"、"hind"、"vdep"、"vplx"、"subt"、"thmb"、"auxl"、"cdtg"、"shsc"或"aest"其中一项。<br>
+   > 设置OH_MD_KEY_TRACK_DESCRIPTION时，值必须为"com.openharmony."开头且长度不超过256的字符串。<br>
+   > 设置OH_MD_KEY_REFERENCE_TRACK_IDS时，track id值必须大于等于0，且必须是已经存在的track id。
 
    **添加音频辅助轨**
 

@@ -10,9 +10,39 @@
    如果发现没有该维测日志表明taskpool.execute实际未调用，应用需排查taskpool.execute之前的其他业务逻辑是否执行完成。
 
    ```ts
-   console.info("test start");
-   ... // 其他业务逻辑
-   taskpool.execute(xxx);
+   import { taskpool } from '@kit.ArkTS';
+   
+   @Concurrent
+   function createTask(a: number, b:number) {
+     let sum = a + b;
+     return sum;
+   }
+   
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'Hello World';
+   
+     build() {
+       Row() {
+         Column() {
+           Text(this.message)
+             .fontSize(50)
+             .fontWeight(FontWeight.Bold)
+             .onClick(() => {
+               console.info("test start");
+               // 其他业务逻辑
+               // ...
+               let task: taskpool.Task = new taskpool.Task(createTask, 1, 2);
+               taskpool.execute(task);
+               // ...
+             })
+         }
+         .width('100%')
+       }
+       .height('100%')
+     }
+   }
    
    // 如果test start在控制台打印，但是并未出现Task Allocation: taskId:的日志，则taskpool.execute没有执行，应用需要排查其他业务逻辑。
    ```
@@ -52,13 +82,45 @@
    1. 如果在执行TaskPool任务过程中发生JS异常，TaskPool会捕获该JS异常并通过taskpool.execute().catch((e:Error)=>{})将异常信息返回，应用需要查看异常信息并修复。
 
       ```ts
-      taskpool.execute().then((res: object)=>{
-        // 任务执行完处理结果
-        ...
-      }).catch((e: Error)=>{
-        // 任务发生异常后处理异常
-        ...
-      })
+      import { taskpool } from '@kit.ArkTS';
+      
+      @Concurrent
+      function createTask(a: number, b:number) {
+        let sum = a + b;
+        return sum;
+      }
+      
+      @Entry
+      @Component
+      struct Index {
+        @State message: string = 'Hello World';
+      
+        build() {
+          Row() {
+            Column() {
+              Text(this.message)
+                .fontSize(50)
+                .fontWeight(FontWeight.Bold)
+                .onClick(() => {
+                  console.info("test start");
+                  // 其他业务逻辑
+                  // ...
+                  let task: taskpool.Task = new taskpool.Task(createTask, 1, 2);
+                  taskpool.execute(task).then((res: object)=>{
+                    // 任务执行完处理结果
+                    // ...
+                  }).catch((e: Error)=>{
+                    // 任务发生异常后处理异常
+                    // ...
+                  })
+                  // ...
+                })
+            }
+            .width('100%')
+          }
+          .height('100%')
+        }
+      }
       ```
 
    2. 如果.catch分支无异常信息返回，但是应用通过TaskPool任务实现的功能发生问题，应用需要查看TaskPool任务逻辑是否发生阻塞，导致功能异常。
@@ -93,10 +155,10 @@
 ```ts
 // hilog 日志片段1（模拟）
 // seqRunner共有四个任务
-taskpool:: taskId 389508780288 in seqRunnner 393913878464 immediately.
-taskpool:: add taskId: 394062838784 to seqRunnner 393913878464
-taskpool:: add taskId: 393918679936 to seqRunnner 393913878464
-taskpool:: add taskId: 393918673408 to seqRunnner 393913878464
+taskpool:: taskId 389508780288 in seqRunner 393913878464 immediately.
+taskpool:: add taskId: 394062838784 to seqRunner 393913878464
+taskpool:: add taskId: 393918679936 to seqRunner 393913878464
+taskpool:: add taskId: 393918673408 to seqRunner 393913878464
 
 // hilog 日志片段2（模拟）
 // 查看第二个任务, 发现任务执行到执行结束间隔2s
@@ -237,7 +299,7 @@ TaskPool实现任务的函数（Concurrent函数）入参和返回结果需满�
 
 ## Sendable类A的实例对象a传递到子线程后，使用a instanceof A判断返回false
 
-应用在子线程使用instanceof接口时，需要在导出Sendable类A的ets文件使用"use shared"指令标记该模块为[共享模块](../arkts-utils/arkts-sendable-module.md#共享模块)。
+应用在子线程使用instanceof接口时，需要在导出Sendable类A的ets文件使用"use shared"指令标记该模块为[共享模块](../arkts-utils/arkts-sendable-module.md)。
 
 **代码示例**
 
@@ -370,7 +432,7 @@ TaskPool的任务执行函数Concurrent Function只能使用局部变量和函�
 
 **解决方案**
 
-1. 自定义Sendable类。[Sendable对象](arkts-sendable.md#sendable对象简介)可以在不同的子线程中共享，开发者可以将任务执行后的结果保存到Sendable对象上。
+1. 自定义Sendable类。[Sendable对象](arkts-sendable.md)可以在不同的子线程中共享，开发者可以将任务执行后的结果保存到Sendable对象上。
 
 2. TaskPool任务执行后的结果可以在.then中返回，需要保存的数据如果仅在当前线程使用，可以在.then中将执行结果保存到自定义的数据结构中。
 
@@ -387,7 +449,96 @@ TaskPool的任务执行函数Concurrent Function只能使用局部变量和函�
        console.info('execute task success');
        // 保存到自定义的数据结构
      }).catch((e: BusinessError) => {
-       console.error('execute task error: ${e.message}');
+       console.error('execute task error: ' + e.message);
      })
     }
    ```
+
+## Sendable类在子线程无法加载
+
+**问题描述**
+
+Sendable装饰器修饰的类与Observed装饰器修饰的类定义在同一个ets文件中，在TaskPool子线程加载Sendable类时捕获到错误信息：SendableItem is not initialized。
+
+```ts
+// Index.ets: 在Index页面新增以下代码
+import { taskpool } from '@kit.ArkTS'
+import { BusinessError } from '@kit.BasicServicesKit'
+import { SendableItem } from './sendable'
+
+@Concurrent
+function createTask() {
+  let data = new SendableItem();
+}
+
+function executeTask() {
+  let task = new taskpool.Task(createTask);
+  taskpool.execute(task).then((res) => {
+    console.info('execute task success');
+  }).catch((e: BusinessError) => {
+    console.error('execute task error: ' + e.message);
+  })
+}
+
+executeTask();
+```
+
+```ts
+// sendable.ets
+@Observed
+export class NormalItem {
+  age: number = 0;
+}
+
+@Sendable
+export class SendableItem {
+  name: string = '';
+}
+```
+
+**根因分析**
+
+Observed装饰器仅支持在UI线程使用，不能在子线程、Worker、TaskPool中直接或者间接使用，否则会导致应用功能失效甚至crash。由于sendable.ets文件中定义了Observed装饰器修饰的类，即使该类没有被显式调用也可能被解析执行，当解析到Observed这类UI装饰器时则抛出异常：Observed is not defined，导致当前文件中的其他模块的解析被中断。在TaskPool子线程加载Sendable类时抛出异常：SendableItem is not initialized。
+
+**解决方案**
+
+将Observed装饰器修饰的类NormalItem剥离到单独的ets文件后，TaskPool子线程再去加载Sendable类SendableItem，应用运行符合预期。
+
+```ts
+// Index.ets: 在Index页面新增以下代码
+import { taskpool } from '@kit.ArkTS'
+import { BusinessError } from '@kit.BasicServicesKit'
+import { SendableItem } from './sendable'
+
+@Concurrent
+function createTask() {
+  let data = new SendableItem();
+}
+
+function executeTask() {
+  let task = new taskpool.Task(createTask);
+  taskpool.execute(task).then((res) => {
+    console.info('execute task success');
+  }).catch((e: BusinessError) => {
+    console.error('execute task error: ' + e.message);
+  })
+}
+
+executeTask();
+```
+
+```ts
+// sendable.ets
+@Sendable
+export class SendableItem {
+  name: string = '';
+}
+```
+
+```ts
+// ui.ets
+@Observed
+export class NormalItem {
+  age: number = 0;
+}
+```

@@ -399,18 +399,6 @@ export default class EntryAbility extends UIAbility {
 | values     | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 要更新的数据。 |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。     |
 
-## ChangeType<sup>12+</sup>
-
-数据变更类型枚举。
-
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Consumer
-
-| 名称     | 值          | 说明          |
-| ---------| ------------| --------------|
-| INSERT   | 0           | 表示数据添加。|
-| DELETE   | 1           | 表示数据删除。|
-| UPDATE   | 2           | 表示数据更新。|
-
 ## SubscriptionType<sup>12+</sup>
 
 数据订阅类型枚举。
@@ -429,7 +417,7 @@ export default class EntryAbility extends UIAbility {
 
 | 名称       | 类型                                                         | 必填 | 说明           |
 | ---------- | ------------------------------------------------------------ | ---- | -------------- |
-| type       | [ChangeType](#changetype12)      | 是   | 通知变更的类型。 |
+| type       | [ChangeType](js-apis-data-dataShare.md#changetype20)      | 是   | 通知变更的类型。 |
 | uri        | string                                                       | 是   | 指定uri。      |
 | values     | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt;| 是   | 更新的数据。   |
 

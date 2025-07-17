@@ -55,25 +55,25 @@ AAC、Flac、MP3、G711mu<!--RP3--><!--RP3End-->。
 
 支持的解封装格式如下：
 
-| 媒体格式  | 封装格式                      | 码流格式                      |
+| 媒体格式  | 封装格式                      | 轨道格式                      |
 | -------- | :----------------------------| :----------------------------|
-| 音视频     | mp4                        |<!--RP4-->视频码流：AVC(H.264)、MPEG4，音频码流：AAC、MPEG(MP3)，字幕流：WEBVTT<!--RP4End-->|
-| 音视频     | fmp4                       |<!--RP5-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)<!--RP5End-->|
-| 音视频     | mkv                        |<!--RP6-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)、OPUS<!--RP6End-->|
-| 音视频     | mpeg-ts                    |<!--RP7-->视频码流：AVC(H.264)、MPEG2、MPEG4，音频码流：AAC、MPEG(MP3)<!--RP7End-->|
-| 音视频     | flv                        |<!--RP8-->视频码流：AVC(H.264)，音频码流：AAC<!--RP8End-->|
-| 音视频     | mpeg-ps                    |视频码流：AVC(H.264)、MPEG2，音频码流：MPEG(MP2、MP3)|
-| 音视频     | avi                        |视频码流：H.263、AVC(H.264)、MPEG2、MPEG4，音频码流：AAC、MPEG(MP2、MP3)、PCM|
-| 音频       | m4a                        |<!--RP9-->音频码流：AAC<!--RP9End-->|
-| 音频       | aac                        |音频码流：AAC|
-| 音频       | mp3                        |音频码流：MPEG(MP3)|
-| 音频       | ogg                        |音频码流：Vorbis|
-| 音频       | flac                       |音频码流：Flac|
-| 音频       | wav                        |音频码流：PCM、G711mu、G711a|
-| 音频       | amr                        |音频码流：AMR(amrnb、amrwb)|
-| 音频       | ape                        |音频码流：APE|
-| 外挂字幕   | srt                        |字幕流：SRT|
-| 外挂字幕   | webvtt                     |字幕流：WEBVTT|
+| 音视频     | mp4                        |<!--RP4-->视频轨：AVC(H.264)、MPEG4<br>音频轨：AAC、MPEG(MP3)<br>字幕轨：WEBVTT<br>辅助轨：AUXL(AAC、MP3)<br>timed metadata轨<!--RP4End-->|
+| 音视频     | fmp4                       |<!--RP5-->视频轨：AVC(H.264)<br>音频轨：AAC、MPEG(MP3)<!--RP5End-->|
+| 音视频     | mkv                        |<!--RP6-->视频轨：AVC(H.264)<br>音频轨：AAC、MPEG(MP3)、OPUS<!--RP6End-->|
+| 音视频     | mpeg-ts                    |<!--RP7-->视频轨：AVC(H.264)、MPEG2、MPEG4<br>音频轨：AAC、MPEG(MP3)<!--RP7End-->|
+| 音视频     | flv                        |<!--RP8-->视频轨：AVC(H.264)<br>音频轨：AAC<!--RP8End-->|
+| 音视频     | mpeg-ps                    |视频轨：AVC(H.264)、MPEG2<br>音频轨：MPEG(MP2、MP3)|
+| 音视频     | avi                        |视频轨：H.263、AVC(H.264)、MPEG2、MPEG4<br>音频轨：AAC、MPEG(MP2、MP3)、PCM|
+| 音频       | m4a                        |<!--RP9-->音频轨：AAC<!--RP9End-->|
+| 音频       | aac                        |音频轨：AAC|
+| 音频       | mp3                        |音频轨：MPEG(MP3)|
+| 音频       | ogg                        |音频轨：Vorbis|
+| 音频       | flac                       |音频轨：Flac|
+| 音频       | wav                        |音频轨：PCM、G711mu、G711a|
+| 音频       | amr                        |音频轨：AMR(amrnb、amrwb)|
+| 音频       | ape                        |音频轨：APE|
+| 外挂字幕   | srt                        |字幕轨：SRT|
+| 外挂字幕   | webvtt                     |字幕轨：WEBVTT|
 
 DRM解密能力支持的解封装格式：<!--RP10-->mp4(H.264，AAC)、mpeg-ts(H.264，AAC)<!--RP10End-->。
 
@@ -90,8 +90,9 @@ DRM解密能力支持的解封装格式：<!--RP10-->mp4(H.264，AAC)、mpeg-ts(
 | m4a      | -                     | AAC              | jpeg、png、bmp |
 | mp3      | -                     | MPEG（MP3）      | -              |
 | amr      | -                     | AMR(amrnb、amrwb) | -             |
-| wav      | -                     | G711mu(pcm-mulaw) | -             |
+| wav      | -                     | G711mu(pcm-mulaw) 、raw(pcm)| -             |
 | aac      | -                     | AAC               | -             |
+| flac     | -                     | Flac              | jpeg、png、bmp |
 
 > **说明：**
 >
@@ -176,13 +177,13 @@ mp3封装格式：
    | OH_MD_KEY_HEIGHT                   | 高度                  |   -   |  必须  |
 
 wav封装格式：
-   |                key                 |         描述         | g711mu  |
-   | ---------------------------------- | :------------------: | :----: |
-   | OH_MD_KEY_AUD_SAMPLE_RATE          | 采样率                |  必须  |
-   | OH_MD_KEY_AUD_CHANNEL_COUNT        | 声道数                |  必须  |
-   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | 输出音频流格式         |  可选  |
-   | OH_MD_KEY_CHANNEL_LAYOUT           | 通道布局              |  可选  |
-   | OH_MD_KEY_BITRATE                  | 码率                  |  必须  |
+   |                key                 |         描述         | g711mu  | raw  |
+   | ---------------------------------- | :------------------: | :----: | :----: |
+   | OH_MD_KEY_AUD_SAMPLE_RATE          | 采样率                |  必须  |  必须  |
+   | OH_MD_KEY_AUD_CHANNEL_COUNT        | 声道数                |  必须  |  必须  |
+   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | 输出音频流格式         |  可选  |  必须  |
+   | OH_MD_KEY_CHANNEL_LAYOUT           | 通道布局              |  可选  |  可选  |
+   | OH_MD_KEY_BITRATE                  | 码率                  |  必须  |  可选  |
 
 aac封装格式：
    |                key                 |         描述         |  aac   |
@@ -194,5 +195,15 @@ aac封装格式：
    | OH_MD_KEY_BITRATE                  | 码率                  |  可选  |
    | OH_MD_KEY_PROFILE                  | 编码档次              |  必须  |
    | OH_MD_KEY_AAC_IS_ADTS              | 是否为ADTS格式        |  必须  |
+
+flac封装格式：
+   |                key                 |         描述         |  flac   |
+   | ---------------------------------- | :------------------: | :----: |
+   | OH_MD_KEY_AUD_SAMPLE_RATE          | 采样率                |  必须  |
+   | OH_MD_KEY_AUD_CHANNEL_COUNT        | 声道数                |  必须  |
+   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | 输出音频流格式         |  必须  |
+   | OH_MD_KEY_CHANNEL_LAYOUT           | 通道布局              |  可选  |
+   | OH_MD_KEY_BITRATE                  | 码率                  |  可选  |
+   | OH_MD_KEY_CODEC_CONFIG             | 编解码器特定数据       |  可选  |
    
 具体开发指导请参考[媒体数据封装](audio-video-muxer.md)。
