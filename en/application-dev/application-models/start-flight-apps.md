@@ -2,7 +2,7 @@
 
 This topic describes how to open the vertical domain panel of flight applications.
 
-For example, in a travel scheduling application, if a user inputs the flight number for an upcoming journey, the application can identify this flight number and provide a link to track the flight status. After the user touches the link, the application calls [UIAbilityContext.startAbilityByType](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybytype11) or [UIExtensionContentSession.startAbilityByType](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionstartabilitybytype11) to open a panel. This panel displays all available applications on the device that support flight query, enabling the user to select and switch to the application that meets their needs.
+For example, in a travel scheduling application, if a user inputs the flight number for an upcoming journey, the application can identify this flight number and provide a link to track the flight status. After the user touches the link, the application calls [UIAbilityContext.startAbilityByType](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybytype11) or [UIExtensionContentSession.startAbilityByType](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#startabilitybytype11) to open a panel. This panel displays all available applications on the device that support flight query, enabling the user to select and switch to the application that meets their needs.
 
 ## Parameters on the Flight Application Panel
 
@@ -79,8 +79,7 @@ If the **type** field in **startAbilityByType** is set to **flight**, two intent
         }
     }
     ```
-    Effect
-    
+    Effect   
     ![Effect example](./figures/start-flight-panel.png)
 
 ## Developing a Target Application
@@ -153,7 +152,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-const TAG = 'EntryAbility'
+const TAG = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {
     windowStage: window.WindowStage | null = null;

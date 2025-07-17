@@ -1,6 +1,6 @@
-# @ohos.app.ability.OpenLinkOptions (OpenLinkOptions)
+# @ohos.app.ability.OpenLinkOptions (Optional Parameters of openLink)
 
-**OpenLinkOptions** can be used as an input parameter of [openLink()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) to indicate whether to enable only App Linking and pass in optional parameters in the form of key-value pairs.
+**OpenLinkOptions** can be used as an input parameter of [openLink()](js-apis-inner-application-uiAbilityContext.md#openlink12) to indicate whether to enable only App Linking and pass in optional parameters in the form of key-value pairs.
 
 > **NOTE**
 >
@@ -14,7 +14,7 @@
 import { OpenLinkOptions } from '@kit.AbilityKit';
 ```
 
-## Properties
+## OpenLinkOptions
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
