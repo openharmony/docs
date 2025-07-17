@@ -212,15 +212,8 @@ DevEco Studio的Profiler工具可抓取状态变量的变化打点。在Profiler
 
 ## Trace调试能力
 
-ArkUI Trace调试信息是指在应用开发和性能分析过程中，通过ArkUI框架及系统DFX子系统自动生成的性能打点数据。这些Trace信息能够帮助开发者了解应用在渲染、布局、事件处理等各个阶段的详细执行流程和耗时情况，从而定位性能瓶颈、优化应用体验。
-
-Trace调试信息通常包括但不限于：Vsync信号、UI渲染流程、布局计算、懒加载、页面加载、合成渲染等关键节点的耗时与执行顺序。通过配合SmartPerf-Host等工具进行可视化分析，开发者可以直观地查看各类Trace的具体含义和作用。
-
-详细的ArkUI Trace调试信息说明、常用Trace节点释义及实际分析案例，请参考：[常用Trace使用指导](../performance/common-trace-using-instructions.md)。
+ArkUI内部针对关键的UI处理流程添加了trace信息，帮助开发者通过trace工具观测应用的UI耗时，辅助定位问题。详细trace说明及案例参考：[常用Trace使用指导](../performance/common-trace-using-instructions.md)。
 
 ## Inspector调试能力
 
-ArkUI Inspector是DevEco Studio内置的页面布局检查工具，能够帮助开发者在真机上实时查看应用的UI层级结构、组件属性和布局效果。通过Inspector，开发者可以直观分析页面组件的嵌套关系、定位布局问题、优化UI结构，从而提升应用的界面质量和性能。
-
-详细的ArkUI Inspector使用方法、典型场景和优化案例，请参考：[页面布局检查器ArkUI Inspector使用指导](../performance/arkUI-inspector.md)。
-
+ArkUI Inspector是DevEco Studio内置的页面布局检查工具，帮助开发者查看应用的UI层级结构、组件属性和布局效果。详细Inspector使用方法及案例参考：[页面布局检查器ArkUI Inspector使用指导](../performance/arkUI-inspector.md)。
