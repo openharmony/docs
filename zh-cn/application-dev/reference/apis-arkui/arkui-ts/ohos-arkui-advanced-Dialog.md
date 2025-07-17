@@ -719,7 +719,7 @@ struct Index {
 ![popover_dialog](figures/advanced_dialog_popover_dialog.png)
 
 ### 示例10（弹出框按钮设置默认获焦）
-从API version 18 开始，该示例展示了设置默认获焦按钮弹出框（以AlertDialog为例），包含defaultFocus等内容。
+从API version 18开始，该示例展示了设置默认获焦按钮弹出框（以AlertDialog为例），包含defaultFocus等内容。
 
 ```ts
 import { AlertDialog } from '@kit.ArkUI';
