@@ -101,20 +101,22 @@ struct WebComponent {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
+    <head>
+      <meta charset="utf-8">
+    </head>
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
       <p id="webDemo"></p>
+      <script type="text/javascript">
+        function htmlTest() {
+          // This function call expects to return "Web test"
+          let webStr = objTestName.webTest();
+          document.getElementById("webDemo").innerHTML=webStr;
+          console.log('objTestName.webTest result:'+ webStr)
+        }
+      </script>
     </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      // This function call expects to return "Web test"
-      let webStr = objTestName.webTest();
-      document.getElementById("webDemo").innerHTML=webStr;
-      console.log('objTestName.webTest result:'+ webStr)
-    }
-</script>
 </html>
 ```
 
@@ -551,7 +553,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-  updataContent: string = '<body><div><image src=resource://rawfile/xxx.png alt="image -- end" width="500" height="250"></image></div></body>'
+  updataContent: string = '<body><div><image src="resource://rawfile/xxx.png" alt="image -- end" width="500" height="250"></image></div></body>'
 
   build() {
     Column() {
@@ -1155,31 +1157,33 @@ struct Index {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
+    <head>
+      <meta charset="utf-8">
+    </head>
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
       <p id="webDemo"></p>
       <p id="asyncDemo"></p>
+      <script type="text/javascript">
+        function htmlTest() {
+          // This function call expects to return "ArkUI Web Component"
+          let str=objName.test("webtest data");
+          objName.testNumber(1);
+          objName.asyncTestBool(true);
+          document.getElementById("demo").innerHTML=str;
+          console.log('objName.test result:'+ str)
+
+          // This function call expects to return "Web test"
+          let webStr = objTestName.webTest();
+          document.getElementById("webDemo").innerHTML=webStr;
+          console.log('objTestName.webTest result:'+ webStr)
+
+          objAsyncName.asyncTest();
+          objAsyncName.asyncString("async test data");
+        }
+      </script>
     </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      // This function call expects to return "ArkUI Web Component"
-      let str=objName.test("webtest data");
-      objName.testNumber(1);
-      objName.asyncTestBool(true);
-      document.getElementById("demo").innerHTML=str;
-      console.log('objName.test result:'+ str)
-
-      // This function call expects to return "Web test"
-      let webStr = objTestName.webTest();
-      document.getElementById("webDemo").innerHTML=webStr;
-      console.log('objTestName.webTest result:'+ webStr)
-
-      objAsyncName.asyncTest();
-      objAsyncName.asyncString("async test data");
-    }
-</script>
 </html>
 ```
 更多示例，请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。
@@ -1263,16 +1267,18 @@ struct WebComponent {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-  <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
+  </head>
   <body>
-      Hello world!
+    Hello world!
+    <script type="text/javascript">
+      function test() {
+        console.log('Ark WebComponent')
+        return "This value is from index.html"
+      }
+    </script>
   </body>
-  <script type="text/javascript">
-  function test() {
-      console.log('Ark WebComponent')
-      return "This value is from index.html"
-  }
-  </script>
 </html>
 ```
 
@@ -1354,16 +1360,18 @@ struct WebComponent {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-  <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
+  </head>
   <body>
-      Hello world!
+    Hello world!
+    <script type="text/javascript">
+      function test() {
+        console.log('Ark WebComponent')
+        return "This value is from index.html"
+      }
+    </script>
   </body>
-  <script type="text/javascript">
-  function test() {
-      console.log('Ark WebComponent')
-      return "This value is from index.html"
-  }
-  </script>
 </html>
 ```
 
@@ -1462,7 +1470,7 @@ struct WebComponent {
             if (e) {
               console.info('url: ', e.url);
             }
-          } catch (error) {
+          } catch (resError) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
@@ -1551,7 +1559,7 @@ struct WebComponent {
                   }
                 }
               });
-          } catch (error) {
+          } catch (resError) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
@@ -1869,18 +1877,20 @@ struct WebComponent {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
+    <head>
+      <meta charset="utf-8">
+    </head>
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
+      <script type="text/javascript">
+        function htmlTest() {
+          let str=objName.test();
+          document.getElementById("demo").innerHTML=str;
+          console.log('objName.test result:'+ str)
+        }
+      </script>
     </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      let str=objName.test();
-      document.getElementById("demo").innerHTML=str;
-      console.log('objName.test result:'+ str)
-    }
-</script>
 </html>
 ```
 
@@ -3540,12 +3550,12 @@ struct WebComponent {
 <button onclick="func()">click</button>
 <script>
     // 检测浏览器是否在线。
-    let online = navigator.onLine;
-    document.getElementById("demo").innerHTML = "浏览器在线：" + online;
+    var online1 = navigator.onLine;
+    document.getElementById("demo").innerHTML = "浏览器在线：" + online1;
 
     function func(){
-      var online = navigator.onLine;
-      document.getElementById("demo").innerHTML = "浏览器在线：" + online;
+      var online2 = navigator.onLine;
+      document.getElementById("demo").innerHTML = "浏览器在线：" + online2;
     }
 </script>
 </body>
@@ -6315,27 +6325,29 @@ struct Index {
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
+    <head>
+      <meta charset="utf-8">
+    </head>
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
       <p id="webDemo"></p>
-    </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      // This function call expects to return "ArkUI Web Component"
-      let str=objName.test("webtest data");
-      objName.testNumber(1);
-      objName.testBool(true);
-      document.getElementById("demo").innerHTML=str;
-      console.log('objName.test result:'+ str)
+      <script type="text/javascript">
+        function htmlTest() {
+          // This function call expects to return "ArkUI Web Component"
+          let str=objName.test("webtest data");
+          objName.testNumber(1);
+          objName.testBool(true);
+          document.getElementById("demo").innerHTML=str;
+          console.log('objName.test result:'+ str)
 
-      // This function call expects to return "Web test"
-      let webStr = objTestName.webTest();
-      document.getElementById("webDemo").innerHTML=webStr;
-      console.log('objTestName.webTest result:'+ webStr)
-    }
-</script>
+          // This function call expects to return "Web test"
+          let webStr = objTestName.webTest();
+          document.getElementById("webDemo").innerHTML=webStr;
+          console.log('objTestName.webTest result:'+ webStr)
+        }
+      </script>
+    </body>
 </html>
 ```
 
@@ -7207,7 +7219,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
    async function readRawFile(path: string, context: UIContext) {
      try {
-       return await context.getHostContext()!.resourceManager.getRawFileContent(path);;
+       return await context.getHostContext()!.resourceManager.getRawFileContent(path);
      } catch (err) {
        return new Uint8Array(0);
      }
