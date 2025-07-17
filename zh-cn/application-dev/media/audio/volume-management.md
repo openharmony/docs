@@ -78,10 +78,10 @@ audioVolumeManager.getMaxVolumeByStream(audio.StreamUsage.STREA_USAGE_MUSIC);
 ```ts
 import { audio } from '@kit.AudioKit';
 
-audioVolumeManager.on('streamVolumeChange', (streamVolumeEvent: audio.StreamVolumeEvent) => {
+audioVolumeManager.on('streamVolumeChange', audio.StreamUsage.STREAM_USAGE_MUSIC, (streamVolumeEvent: audio.StreamVolumeEvent) => {
   console.info(`StreamUsagem: ${streamVolumeEvent.streamUsage} `);
-  console.info(`Volume level: ${volumeEvent.volume} `);
-  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+  console.info(`Volume level: ${streamVolumeEvent.volume} `);
+  console.info(`Whether to updateUI: ${streamVolumeEvent.updateUi} `);
 });
 ```
 

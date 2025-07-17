@@ -469,9 +469,9 @@ try {
 }
 ```
 
-## isStreamMutedByStream<sup>20+</sup>
+## isSystemMutedForStream<sup>20+</sup>
 
-isStreamMutedByStream(streamUsage: StreamUsage): boolean
+isSystemMutedForStream(streamUsage: StreamUsage): boolean
 
 检查指定音频流是否静音
 
@@ -505,7 +505,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { audio } from '@kit.AudioKit'
 
 try {
-  let isMuted : boolean = audio.getAudioManager().getVolumeManager().isStreamMutedByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
+  let isMuted : boolean = audio.getAudioManager().getVolumeManager().isSystemMutedForStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
   console.info(`Checks whether the system is muted based on the stream success.`);
 } catch (err) {
   let error = err as BusinessError;
@@ -587,7 +587,7 @@ try {
 **示例：**
 
 ```ts
-audioVolumeManager.on('streamVolumeChange', (streamVolumeEvent: audio.StreamVolumeEvent) => {
+audioVolumeManager.on('streamVolumeChange', audio.StreamUsage.STREAM_USAGE_MUSIC, (streamVolumeEvent: audio.StreamVolumeEvent) => {
   console.info(`StreamUsage of stream: ${streamVolumeEvent.streamUsage} `);
   console.info(`Volume level: ${streamVolumeEvent.volume} `);
   console.info(`Whether to updateUI: ${streamVolumeEvent.updateUi} `);
