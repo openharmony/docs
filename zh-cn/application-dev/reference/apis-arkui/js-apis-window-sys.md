@@ -2826,7 +2826,7 @@ raiseMainWindowAboveTarget(windowId: number): Promise&lt;void&gt;
 
 传入目标主窗口的id，调用窗口和目标窗口需满足：同应用进程、显示在同一屏幕、低于锁屏、非置顶主窗、非模态主窗且无模应用子窗。
 
-调用该接口抬升应用主窗口高于焦点窗口，则被抬升应用主窗口自动获焦；调用该接口降低焦点窗口，则Z序最高的应用主窗口自动获焦
+调用该接口抬升应用主窗口高于焦点窗口，则被抬升应用中Z序最高的窗口自动获焦；调用该接口降低焦点窗口，则Z序最高的应用窗口自动获焦。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2861,22 +2861,120 @@ raiseMainWindowAboveTarget(windowId: number): Promise&lt;void&gt;
 
 ```ts
 // EntryAbility.ets
+import { UIAbility, Want, StartOptions, AbilityConstant } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-  // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let targetId: number = 102;
-    windowStage.getMainWindow().then((mainWindow) => {
-      mainWindow.raiseMainWindowAboveTarget(targetId).then(() => {
-        console.info('Succeeded in raising the main window above target.');
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to raise the main window above target. Cause code: ${err.code}, message: ${err.message}`);
-      });
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}.`);
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      try {
+        let want: Want = {
+          abilityName: "RaiseMainWindowAbility",
+          bundleName: "com.example.MyApplication"
+        };
+        let options: StartOptions = {
+          windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING
+        };
+        this.context.startAbility(want, options);
+      } catch (err) {
+        console.error(`Failed to start the ability. Cause code: ${err.code}, message: ${err.message}.`);
+      }
+      setTimeout(async () => {
+        let mainWindow: window.Window | null | undefined = windowStage.getMainWindowSync();
+        let targetId: number | null | undefined = AppStorage.get('higher_window_id');
+        mainWindow.raiseMainWindowAboveTarget(targetId).then(() => {
+          console.log('Succeeded in raising main window above target.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to raise main window above target. Cause code: ${err.code}, message: ${err.message}.`)
+        });
+      }, 3000)
     });
+  }
+}
+```
+```ts
+// 新建文件src/main/ets/raisemainwindowability/RaiseMainWindowAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class RaiseMainWindowAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    AppStorage.setOrCreate('higher_window_id', windowStage.getMainWindowSync().getWindowProperties().id);
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}.`);
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+  }
+}
+```
+```json5
+//module.json5
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "2in1"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "RaiseMainWindowAbility",
+        "launchType": "multiton",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ]
   }
 }
 ```
