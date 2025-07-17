@@ -133,6 +133,12 @@
     // 传递给Web组件一个错误码并结束该请求。
     OH_ArkWebResourceHandler_DidFinish(resourceHandler);
   ```
+  
+  在api20及以上版本，如果你希望返回一个网络错误码来结束请求，也可以直接调用OH_ArkWebResourceHandler_DidFailWithErrorV2接口来返回一个默认的网络错误码ARKWEB_ERR_CONNECTION_FAILED并结束该请求，错误码详情参考[网络错误码(arkweb_net_error_list.h)](../reference/apis-arkweb/capi-arkweb-net-error-list-h.md)。
+  ```c++
+    // 直接返回网络错误码ARKWEB_ERR_CONNECTION_FAILED结束该请求。
+    OH_ArkWebResourceHandler_DidFailWithErrorV2(resourceHandler_, ARKWEB_ERR_FAILED, true);
+  ```
 
 ## 完整示例
 
@@ -421,6 +427,7 @@ public:
     void DidReceiveData(const uint8_t *buffer, int64_t bufLen);
     void DidFinish();
     void DidFailWithError(ArkWeb_NetError errorCode);
+    void DidFailWithErrorV2(ArkWeb_NetError errorCode, bool completeIfNoResponse);
 
 private:
     const ArkWeb_ResourceRequest *resourceRequest_{nullptr};
@@ -664,6 +671,14 @@ void RawfileRequest::DidFailWithError(ArkWeb_NetError errorCode)
     OH_LOG_INFO(LOG_APP, "did finish with error %{public}d.", errorCode);
     if (!stopped_) {
         OH_ArkWebResourceHandler_DidFailWithError(resourceHandler_, errorCode);
+    }
+}
+
+void RawfileRequest::DidFailWithErrorV2(ArkWeb_NetError errorCode, bool completeIfNoResponse)
+{
+    OH_LOG_INFO(LOG_APP, "did finish with error %{public}d.", errorCode);
+    if (!stopped_) {
+        OH_ArkWebResourceHandler_DidFailWithErrorV2(resourceHandler_, errorCode, completeIfNoResponse);
     }
 }
 ```
