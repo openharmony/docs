@@ -13,7 +13,7 @@ A Harmony Archive (HAR) is a static shared package that can contain code, C++ li
 - An HAR does not support the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) component in the configuration file, but supports the [UIAbility](../application-models/uiability-overview.md) component.
 > **NOTE**
 >
-> If the [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) API is used to start the UIAbility in the HAR, the value of **moduleName** in the API parameter must be the module name of the [HAP](hap-package.md) or [HSP](in-app-hsp.md) that depends on the HAR.
+> If the [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability) API is used to start the UIAbility in the HAR, the value of **moduleName** in the API parameter must be the module name of the [HAP](hap-package.md) or [HSP](in-app-hsp.md) that depends on the HAR.
 - An HAR does not support the declaration of the [pages](./module-configuration-file.md#pages) tag in the configuration file. Still, it can include pages, which can be redirected through a [named route](../ui/arkts-routing.md#named-route).
 - An HAR does not support referencing resources in the **AppScope** folder. This is because the content in the **AppScope** folder is not packaged into the HAR during building.
 - An HAR can depend on other HARs, but does not support cyclic dependency or dependency transfer.

@@ -3276,32 +3276,24 @@
             - [@system.cipher (Cipher Algorithm)](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)
         - C APIs<!--crypto-architecture-c-->
           - Modules<!--crypto-architecture-module-->
-            - [CryptoArchitectureKit](reference/apis-crypto-architecture-kit/capi-cryptoarchitecturekit.md)
-            - [CryptoAsymKeyApi](reference/apis-crypto-architecture-kit/capi-cryptoasymkeyapi.md)
-            - [CryptoCommonApi](reference/apis-crypto-architecture-kit/capi-cryptocommonapi.md)
-            - [CryptoDigestApi](reference/apis-crypto-architecture-kit/capi-cryptodigestapi.md)
-            - [CryptoSignatureApi](reference/apis-crypto-architecture-kit/capi-cryptosignatureapi.md)
-            - [CryptoSymCipherApi](reference/apis-crypto-architecture-kit/capi-cryptosymcipherapi.md)
-            - [CryptoSymKeyApi](reference/apis-crypto-architecture-kit/capi-cryptosymkeyapi.md)
+            - [CryptoAsymKeyApi](reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md)	
+            - [CryptoCommonApi](reference/apis-crypto-architecture-kit/_crypto_common_api.md)	
+            - [CryptoDigestApi](reference/apis-crypto-architecture-kit/_crypto_digest_api.md)	
+            - [CryptoSignatureApi](reference/apis-crypto-architecture-kit/_crypto_signature_api.md)	
+            - [CryptoSymCipherApi](reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md)	
+            - [CryptoSymKeyApi](reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md)
+
           - Header Files<!--crypto-architecture-headerfile-->
-            - [crypto_architecture_kit.h](reference/apis-crypto-architecture-kit/capi-crypto-architecture-kit-h.md)
-            - [crypto_asym_key.h](reference/apis-crypto-architecture-kit/capi-crypto-asym-key-h.md)
-            - [crypto_common.h](reference/apis-crypto-architecture-kit/capi-crypto-common-h.md)
-            - [crypto_digest.h](reference/apis-crypto-architecture-kit/capi-crypto-digest-h.md)
-            - [crypto_signature.h](reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md)
-            - [crypto_sym_cipher.h](reference/apis-crypto-architecture-kit/capi-crypto-sym-cipher-h.md)
-            - [crypto_sym_key.h](reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md)
+            - [crypto_asym_key.h](reference/apis-crypto-architecture-kit/crypto__asym__key_8h.md)	
+            - [crypto_common.h](reference/apis-crypto-architecture-kit/crypto__common_8h.md)	
+            - [crypto_digest.h](reference/apis-crypto-architecture-kit/crypto__digest_8h.md)	
+            - [crypto_signature.h](reference/apis-crypto-architecture-kit/crypto__signature_8h.md)	
+            - [crypto_sym_cipher.h](reference/apis-crypto-architecture-kit/crypto__sym__cipher_8h.md)	
+            - [crypto_sym_key.h](reference/apis-crypto-architecture-kit/crypto__sym__key_8h.md)
+
           - Structs<!--crypto-architecture-struct-->
-            - [Crypto_DataBlob](reference/apis-crypto-architecture-kit/capi-crypto-datablob.md)
-            - [OH_CryptoKeyPair](reference/apis-crypto-architecture-kit/capi-oh-cryptokeypair.md)
-            - [OH_CryptoPubKey](reference/apis-crypto-architecture-kit/capi-oh-cryptopubkey.md)
-            - [OH_CryptoAsymKeyGenerator](reference/apis-crypto-architecture-kit/capi-oh-cryptoasymkeygenerator.md)
-            - [OH_CryptoDigest](reference/apis-crypto-architecture-kit/capi-oh-cryptodigest.md)
-            - [OH_CryptoVerify](reference/apis-crypto-architecture-kit/capi-oh-cryptoverify.md)
-            - [OH_CryptoSymCipher](reference/apis-crypto-architecture-kit/capi-oh-cryptosymcipher.md)
-            - [OH_CryptoSymCipherParams](reference/apis-crypto-architecture-kit/capi-oh-cryptosymcipherparams.md)
-            - [OH_CryptoSymKey](reference/apis-crypto-architecture-kit/capi-oh-cryptosymkey.md)
-            - [OH_CryptoSymKeyGenerator](reference/apis-crypto-architecture-kit/capi-oh-cryptosymkeygenerator.md)
+            - [Crypto_DataBlob](reference/apis-crypto-architecture-kit/_crypto___data_blob.md)
+
         - Error Codes<!--crypto-architecture-arkts-errcode-->
           - [Crypto Framework Error Codes](reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md)
       - Data Protection Kit<!--data-protection-api-->

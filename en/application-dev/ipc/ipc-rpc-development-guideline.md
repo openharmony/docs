@@ -168,7 +168,7 @@ Create a ServiceExtensionAbility as follows:
     let connectId = featureAbility.connectAbility(want, connect);
   ```
 
-  In the stage model, the [connectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) API of **common.UIAbilityContext** is used to connect to an ability.
+  In the stage model, the [connectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability) API of **common.UIAbilityContext** is used to connect to an ability.
   In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
   <!--code_no_check-->
@@ -261,7 +261,7 @@ Create a ServiceExtensionAbility as follows:
     featureAbility.disconnectAbility(connectId, disconnectCallback);
    ```
 
-   The **common.UIAbilityContext** provides the [disconnectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability-1) API to disconnect from the service. The **connectId** is saved when the service is connected.
+   The **common.UIAbilityContext** provides the [disconnectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectserviceextensionability-1) API to disconnect from the service. The **connectId** is saved when the service is connected.
    In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
   <!--code_no_check-->

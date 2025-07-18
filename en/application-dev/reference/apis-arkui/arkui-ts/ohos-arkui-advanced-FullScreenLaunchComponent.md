@@ -42,12 +42,12 @@ FullScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: A
 | appId | string | Yes| - |  Application ID of the atomic service to be launched. It is the unique identifier for the atomic service.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<!--RP1--><!--RP1End-->|
 | options | [AtomicServiceOptions](../../apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md) | No| - | Parameters for launching the atomic service.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onError<sup>18+<sup> | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | No| - | Triggered when an exception occurs during the execution of an embedded atomic service. You can obtain the error information based on the **code**, **name**, and **message** parameters in the callback and rectify the exception accordingly.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
-| onTerminated<sup>18+<sup> | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](ts-container-embedded-component.md#terminationinfo)> | No| - | Triggered when an embedded atomic service exits properly by calling [terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) or [terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself).<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| onTerminated<sup>18+<sup> | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](ts-container-embedded-component.md#terminationinfo)> | No| - | Triggered when an embedded atomic service exits properly by calling [terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult) or [terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself).<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 > **NOTE**
 >
-> - If the atomic service exits by calling [terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult), the information it carries is passed to the callback parameter.
-> - If the atomic service exits by calling [terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself), the callback parameter has a default **code** value of **0** and **want** of **undefined**.
+> - If the atomic service exits by calling [terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult), the information it carries is passed to the callback parameter.
+> - If the atomic service exits by calling [terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself), the callback parameter has a default **code** value of **0** and **want** of **undefined**.
 
 ## Example
 
