@@ -40,7 +40,7 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 ### ArkUI
 
 - 文本与输入组件能力增强。包括：
-  - 文本组件支持通过NODE_IMMUTABLE_FONT_WEIGHT属性，设置文字粗细不会跟随系统字体粗细而变化。（[API参考-C API](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype)）
+  - 文本组件支持通过NODE_IMMUTABLE_FONT_WEIGHT属性，设置文字粗细不会跟随系统字体粗细而变化。（[API参考-C API](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeattributetype)）
   - 文本组件支持对选中的文本提供分享服务（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-text-common.md#%E5%B1%9E%E6%80%A7)）、支持按音节连字符换行（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-appendix-enums.md#wordbreak11)）。
   - 文本组件新增支持设置文本选择菜单显示在独立窗口。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#textmenucontroller16)）
   - 富文本（RichEditor）组件支持设置最大行数。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#maxlength18)）
@@ -76,7 +76,7 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
   - Swiper/Tabs组件增加页面选中元素改变时触发的回调，返回当前选中或将要隐藏的元素的索引值。（[API参考-Swiper](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-swiper.md)、[API参考-Tabs](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md)）
   - Swiper组件增加控制手指或者鼠标等按下屏幕时子组件是否停止自动播放的能力。（[API参考-Swiper](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-swiper.md#onunselected18)）
   - Swiper组件CAPI能力增强，可设置缓存节点是否显示、数字导航点和导航箭头的样式。（[API参考-CAPI](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___native_module.md)）
-  - List组件支持设置布局样式和滚动效果（NODE_LIST_SCROLL_TO_INDEX_IN_GROUP、 NODE_LIST_LANES、NODE_LIST_SCROLL_SNAP_ALIGN、NODE_LIST_MAINTAIN_VISIBLE_CONTENT_POSITION）（[API参考-CAPI](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype)）。
+  - List组件支持设置布局样式和滚动效果（NODE_LIST_SCROLL_TO_INDEX_IN_GROUP、 NODE_LIST_LANES、NODE_LIST_SCROLL_SNAP_ALIGN、NODE_LIST_MAINTAIN_VISIBLE_CONTENT_POSITION）（[API参考-CAPI](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeattributetype)）。
 
 - 新增C API，支持可配置用户自定义数据的手势中断事件回调函数。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___native_gesture_a_p_i__2.md)）
 
