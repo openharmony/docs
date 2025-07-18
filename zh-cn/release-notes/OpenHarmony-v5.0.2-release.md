@@ -51,7 +51,7 @@ OpenHarmony 5.0.2 Release版本对标准系统的能力进行持续完善，以�
 - C API通用能力增强 。包括：
   - 支持为OH_NativeXComponent实例注册带有返回值的按键事件回调。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.2-Release/zh-cn/application-dev/reference/apis-arkui/_o_h___native_x_component.md#oh_nativexcomponent_registerkeyeventcallbackwithresult)）
   - 支持获取节点的各种自定义属性。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.2-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_nodeutils_getnodetype)）
-  - NodeAttributeType新增获取滚动类组件及所有子组件全展开尺寸的C API属性定义。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.2-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeattributetype)）
+  - NodeAttributeType新增获取滚动类组件及所有子组件全展开尺寸的C API属性定义。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.2-Release/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype)）
 
 - 按键事件新增unicode对象，支持返回当前keyEvent对应按键的unicode码值。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.2-Release/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)）
 

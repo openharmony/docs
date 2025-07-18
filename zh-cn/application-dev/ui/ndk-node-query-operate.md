@@ -238,7 +238,7 @@ nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
 
 > **说明：**
 >
-> 当前仅支持以下类型的[ArkUI_NodeType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodetype)进行移动操作：ARKUI_NODE_STACK、ARKUI_NODE_XCOMPONENT、ARKUI_NODE_EMBEDDED_COMPONENT。对于其他类型的节点，移动操作不会生效。
+> 当前仅支持以下类型的[ArkUI_NodeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodetype)进行移动操作：ARKUI_NODE_STACK、ARKUI_NODE_XCOMPONENT、ARKUI_NODE_EMBEDDED_COMPONENT。对于其他类型的节点，移动操作不会生效。
 
 1. ArkTS侧接入Native组件。
     ```ts
