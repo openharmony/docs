@@ -2633,7 +2633,12 @@ try {
 
 setLoudnessGain(loudnessGain: number): Promise\<void>
 
-设置播放响度，使用Promise异步回调。该接口仅支持类型为[STREAM_USAGE_MUSIC](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)、[STREAM_USAGE_MOVIE](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)或[STREAM_USAGE_AUDIOBOOK](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)的音频流。该接口不支持高清通路的响度设置。
+设置播放响度。使用Promise异步回调。
+
+> **说明：**
+>
+> - 该接口仅支持类型为[STREAM_USAGE_MUSIC](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)、[STREAM_USAGE_MOVIE](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)或[STREAM_USAGE_AUDIOBOOK](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)的音频流。
+> - 该接口不支持高清通路的响度设置。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
