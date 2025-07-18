@@ -694,8 +694,8 @@ maskTransition(alphaMask: Mask, factor?: number, inverse?: boolean): Filter
 | 参数名         | 类型                  | 必填 | 说明                       |
 | ------------- | --------------------- | ---- | ------------------------- |
 | alphaMask     | [Mask](#mask20)       | 是   | 通过遮罩指定转场效果的作用区域。|
-| factor        | number                | 否   | 转场过渡系数，取值范围为[0.0,1.0]（factor 值越大画面越接近转场后页面，超出范围自动截断到[0.0,1.0]） |
-| inverse       | boolean               | 否   | 是否启用反向转场，默认false。（inverse为true表示反向转场：factor 值越大，画面越接近转场前页面） |
+| factor        | number                | 否   | 转场过渡系数，取值范围为[0.0, 1.0]（factor值越大画面越接近转场后页面，超出范围自动截断到[0.0, 1.0]）。 |
+| inverse       | boolean               | 否   | 是否启用反向转场，默认值为false。（inverse为true表示反向转场：factor值越大，画面越接近转场前页面。） |
  
 **返回值：**
 
