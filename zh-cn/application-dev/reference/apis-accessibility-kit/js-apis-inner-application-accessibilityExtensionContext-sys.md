@@ -507,16 +507,17 @@ getAccessibilityWindowsSync(displayId?: number): Array\<[AccessibilityElement](#
 import { AccessibilityElement } from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let displayId: number = 0;
-
 try {
-    let windowList: AccessibilityElement[] = axContext.getAccessibilityWindowsSync(displayId);
-    for (let window of windowList) {
-      console.log(`window id: ${window.windowId}`);
-    }
-  } catch (err) {
-      console.log(`[FAILED]: ${err.code} ${err.message}`)
-  }
+  let displayId: number = 0;
+  let windowList = context?.getAccessibilityWindowsSync(displayId);
+  if (windowList) {
+    for (let window of windowList) {
+      console.log(`getAccessibilityWindowsSync: windowId: ${window.windowId}`);
+    }
+  }
+} catch (err) {
+  console.log(`[FAILED] getAccessibilityWindowsSync: ${err.code} ${err.message}`)
+}
 ```
 
 ## AccessibilityElement<sup>12+</sup>
