@@ -261,7 +261,7 @@ int OH_NativeVSync_SetExpectedFrameRateRange(OH_NativeVSync* nativeVsync, OH_Nat
 
 **描述**
 
-设置VSync期望帧率以及期望帧率的范围。
+设置VSync期望帧率及其范围。实际帧率可能因系统功耗、性能和硬件规格等限制而与设置的期望值不一致。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeVsync
 
@@ -280,5 +280,4 @@ int OH_NativeVSync_SetExpectedFrameRateRange(OH_NativeVSync* nativeVsync, OH_Nat
 | 类型 | 说明 |
 | -- | -- |
 | int | 返回值为0表示成功，其他返回值可参考[OHNativeErrorCode](capi-graphic-error-code-h.md#ohnativeerrorcode)。 |
-
 
