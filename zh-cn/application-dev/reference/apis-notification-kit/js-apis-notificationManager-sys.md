@@ -287,7 +287,7 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 
 | 参数名     | 类型                      | 必填 | 说明                     |
 | -------- | ------------------------- | ---- | ------------------------ |
-| slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)\> | 是   | 要创建的通知渠道对象数组。 |
+| slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)\> | 是   | 要创建的通知渠道对象数组。数组中的元素个数为0~5。 |
 | callback | AsyncCallback\<void\>     | 是   | 表示被指定通道的回调方法。     |
 
 **错误码：**
@@ -344,7 +344,7 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 | 参数名  | 类型                      | 必填 | 说明                     |
 | ----- | ------------------------- | ---- | ------------------------ |
-| slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)\> | 是   | 要创建的通知渠道对象数组。 |
+| slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot-sys.md)\> | 是   | 要创建的通知渠道对象数组。数组中的元素个数为0~5。 |
 
 **返回值：**
 
@@ -1545,7 +1545,7 @@ getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallbac
 | 参数名     | 类型                                                         | 必填 | 说明                           |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
 | filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | 是   | 查询普通实况窗的过滤条件。 |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | 是   | 获取满足条件的普通实况通知信息的回调函数。 |
+| callback | AsyncCallback\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)> | 是   | 获取满足条件的普通实况通知信息的回调函数。 |
 
 **错误码：**
 
@@ -2929,7 +2929,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect to the service.                |
-| 1600004  | Notification is not enabled.              |
+| 1600004  | Notification disabled.              |
 | 1600005  | Notification slot disabled.         |
 | 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
@@ -3842,7 +3842,6 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |
 | 202      | Not system application.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
@@ -4610,17 +4609,15 @@ disableNotificationFeature(disabled: boolean, bundleList: Array\<string\>): Prom
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 202      | Permission verification failed. A non-system application calls a system API. |
+| 201      | Permission denied. |
+| 202      | Not system application to call the interface. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801 | Capability not supported. | 
 | 1600001      | Internal error.                     |
 | 1600002      | Marshalling or unmarshalling error. |
 
 **示例：**
 
 ```ts
-import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -4728,8 +4725,8 @@ setTargetDeviceStatus(deviceType: string, status: number): Promise\<void\>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 202      | Permission verification failed. A non-system application calls a system API. |
+| 201      | Permission denied. |
+| 202      | Not system application to call the interface. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -4776,14 +4773,13 @@ setDistributedEnabledBySlot(slot: SlotType, deviceType: string, enabled: boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 202      | Permission verification failed. A non-system application calls a system API. |
+| 201      | Permission denied. |
+| 202      | Not system application to call the interface. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -4829,14 +4825,13 @@ isDistributedEnabledBySlot(slot: SlotType, deviceType: string): Promise\<boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 202      | Permission verification failed. A non-system application calls a system API. |
+| 201      | Permission denied. |
+| 202      | Not system application to call the interface. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
@@ -5190,15 +5185,15 @@ export default class EntryAbility extends UIAbility {
 
 **系统接口**：此接口为系统接口。
 
-| 名称                         | 类型                         | 必填 | 说明            |
-| ---------------------------- | ---------------------------- | --- | --------------- |
-| bundleName                   | string                       | 是   | Bundle名称。    |
-| notificationId               | number                       | 是   | 通知ID。        |
-| label<sup>11+</sup>          | string                       | 否   | 通知标签。      |
-| contentType                  | [ContentType](./js-apis-notificationManager.md#contenttype)  | 是   | 通知类型。      |
-| creatorUserId<sup>11+</sup>  | number                       | 是   | 通知的user ID。 |
-| slotType<sup>11+</sup>       | [SlotType](./js-apis-notificationManager.md#slottype)        | 是   | 渠道类型。      |
-| extraInfos<sup>11+</sup>     | [key: string]: object        | 否   | 实况通知的附加信息。 |
+| 名称                         | 类型                          | 只读 | 可选 | 说明            |
+| ---------------------------- | ---------------------------- | ---- | ---- |--------------- |
+| bundleName                   | string                       |  否  | 否   | Bundle名称。    |
+| notificationId               | number                       |  否  | 否   | 通知ID。        |
+| label<sup>11+</sup>          | string                       |  否  | 是   | 通知标签。      |
+| contentType                  | [ContentType](./js-apis-notificationManager.md#contenttype)  |  否  | 否   | 通知类型。      |
+| creatorUserId<sup>11+</sup>  | number                       |  否  | 否   | 通知的user ID。 |
+| slotType<sup>11+</sup>       | [SlotType](./js-apis-notificationManager.md#slottype)        |  否  | 否   | 渠道类型。      |
+| extraInfos<sup>11+</sup>     | Record<string, Object>       |  否  | 是   | 实况通知的附加信息。 |
 
 ## NotificationCheckResult<sup>10+</sup>
 
@@ -5208,10 +5203,10 @@ export default class EntryAbility extends UIAbility {
 
 **系统接口**：此接口为系统接口。
 
-| 名称    | 类型                                  | 必填 | 说明                   |
-| ------- | ------------------------------------ | ---- | ---------------------- |
-| code    | number                               | 是   | 0-display，1-no display。 |
-| message | string                               | 是   | 结果信息。    |
+| 名称    | 类型     | 只读 | 可选 | 说明                     |
+| ------- | ------- | ---- | ---- | ----------------------- |
+| code    | number  |  否  | 否   | 0-display，1-no display。|
+| message | string  |  否  | 否   | 结果信息。                |
 
 
 ## ButtonOptions<sup>11+</sup>
@@ -5224,9 +5219,9 @@ export default class EntryAbility extends UIAbility {
 
 **系统接口**：此接口为系统接口。
 
-| 名称    | 类型                                  | 必填 | 说明                   |
-| ------- | ------------------------------------ | ---- | ---------------------- |
-| buttonName    | string                         | 是   | 按钮名称。 |
+| 名称       |   类型  | 只读 | 可选 | 说明                    |
+| ---------- | ------ | ---- | ---- | ---------------------- |
+| buttonName | string |  否  | 否   | 按钮名称。              |
 
 
 ## SystemLiveViewSubscriber<sup>11+</sup>
