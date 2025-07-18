@@ -554,9 +554,9 @@ let autoStartApp: Want = {
 
 try {
   let res: boolean = applicationManager.isModifyAutoStartAppsDisallowed(wantTemp, autoStartApp, 100);
-  console.info(`Succeeded in is disallowModify auto start app: ${JSON.stringify(res)}`);
+  console.info(`Succeeded in getting disallow modify auto start app: ${JSON.stringify(res)}`);
 } catch(err) {
-  console.error(`Failed to get is disallowModify auto start app. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to get disallow modify auto start app. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -825,9 +825,9 @@ let keepAliveApp: string = 'com.example.keepAliveApplication';
 
 try {
   let res: boolean = applicationManager.isModifyKeepAliveAppsDisallowed(wantTemp, 100, keepAliveApp);
-  console.info(`Succeeded in disallowing modify keep alive app: ${JSON.stringify(res)}`);
+  console.info(`Succeeded in getting disallow modify keep alive app: ${JSON.stringify(res)}`);
 } catch(err) {
-  console.error(`Failed to disallow modify keep alive app. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to get disallow modify keep alive app. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
