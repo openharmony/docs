@@ -409,9 +409,20 @@ predicate函数返回值说明：
 **适配建议：** 
   手动实现展开逻辑。
   ```typescript
-  function flatten(arr: any[]): number[] {
-    return arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
+  function flatten(arr: Array<number|Array<number>> | Array<number>) : number[] {
+    const result: number[] = [] as Array<number>
+    for (const item of arr) {
+      if (Array.isArray(item)) {
+        result.push(...flatten(item as Array<number>))
+      } else {
+        result.push(item as number)
+      }
+      return result;
+    }
   }
+  const parts = [1, [2, 3], 4, 5, 6] as Array<number|Array<number>>
+  const arr = flatten(parts)
+  console.log(arr); //[1,2,3,4,5,6]
   ```
 
 
