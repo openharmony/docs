@@ -541,7 +541,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetConfiguration(const NativeResour
 | 参数项 | 描述 |
 | -- | -- |
 | const [NativeResourceManager](capi-rawfile-nativeresourcemanager.md) *mgr | 指向[NativeResourceManager](capi-rawfile-nativeresourcemanager.md)的指针，此指针通过[OH_ResourceManager_InitNativeResourceManager](capi-raw-file-manager-h.md#oh_resourcemanager_initnativeresourcemanager)方法获取。 |
-| [ResourceManager_Configuration](capi-resourcemanager-resourcemanager-configuration.md) *configuration | 写入获取的设备配置。其中configuration.screenDensity的返回值为设备DPI除以160取整后所得值。 |
+| [ResourceManager_Configuration](capi-resourcemanager-resourcemanager-configuration.md) *configuration | 写入获取的设备配置。其中configuration.screenDensity的返回值为设备DPI除以160取整后的值。 |
 
 **返回：**
 
