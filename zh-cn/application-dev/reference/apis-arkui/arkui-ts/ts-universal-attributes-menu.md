@@ -1147,3 +1147,7 @@ struct Index {
 ```
 
 ![menu-outline](figures/menuOutline.png)
+
+### 示例18 （bindMenu传入带参数的CustomBuilder）
+
+该示例为
