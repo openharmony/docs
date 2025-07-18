@@ -365,7 +365,7 @@ The application is not allowed to send notifications due to permission settings.
 
 **处理步骤**
 
-该应用受到企业设备管理[Enterprise Device Manager](../../mdm/mdm-kit-admin.md)的权限管控，应用无法主动退出权限管控名单。
+该应用受到[企业设备管理](../../mdm/mdm-kit-intro.md)的权限管控，应用无法主动退出权限管控名单。
 
 ## 1600021 跨设备通信超时
 
