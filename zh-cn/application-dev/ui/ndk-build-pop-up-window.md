@@ -7,7 +7,7 @@
 [通过创建弹窗控制器显示自定义弹窗](#通过创建弹窗控制器显示自定义弹窗)：此时在命名为ArkUI_NativeDialogAPI_x （x表示版本）的结构体里，定义了弹窗接口集合，用于实现各种弹窗控制。
 
 
-[通过创建自定义弹窗的内容对象显示自定义弹窗](#通过创建自定义弹窗的内容对象显示自定义弹窗)：该方式下弹窗接口定义在[native_dialog.h](../reference/apis-arkui/native__dialog_8h.md#函数)的函数中。
+[通过创建自定义弹窗的内容对象显示自定义弹窗](#通过创建自定义弹窗的内容对象显示自定义弹窗)：该方式下弹窗接口定义在[native_dialog.h](../reference/apis-arkui/capi-native-dialog-h.md#函数)的函数中。
 
 
 > **说明：**
@@ -23,7 +23,7 @@
 ### 通过创建弹窗控制器显示自定义弹窗
 
 - 创建弹窗控制器：
-  [ArkUI_NativeDialogHandle](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialog8h.md)表示指向弹窗控制器的指针，可以通过调用[ArkUI_NativeDialogAPI_x](../reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md)的[create](../reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md#create)接口创建一个弹窗控制器。
+  [ArkUI_NativeDialogHandle](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialog8h.md)表示指向弹窗控制器的指针，可以通过调用[ArkUI_NativeDialogAPI_x](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialogapi-1.md)的[create](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialogapi-1.md#create)接口创建一个弹窗控制器。
 该方法返回ArkUI_NativeDialogHandle类型的数据。
   ```
   ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
@@ -94,7 +94,7 @@
    }
    ```
 
-2. 以下介绍两种控制弹窗样式的方式，弹窗接口请参考[native_dialog.h](../reference/apis-arkui/native__dialog_8h.md)。
+2. 以下介绍两种控制弹窗样式的方式，弹窗接口请参考[native_dialog.h](../reference/apis-arkui/capi-native-dialog-h.md)。
 
 - 通过controller控制弹窗样式。
    ```

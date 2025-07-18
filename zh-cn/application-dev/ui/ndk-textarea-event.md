@@ -12,7 +12,7 @@
 
 - 注册事件
     
-    事件注册有统一接口，详情请参见[registerNodeEvent](../../application-dev/reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#registernodeevent)。输入框支持的事件类型，请参见[NativeNode组件支持的事件类型定义](../../application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype)，搜索前缀NODE_TEXT_AREA_。
+    事件注册有统一接口，详情请参见[registerNodeEvent](../../application-dev/reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#registernodeevent)。输入框支持的事件类型，请参见[NativeNode组件支持的事件类型定义](../../application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype)，搜索前缀NODE_TEXT_AREA_。
 
     ```c++
     // 创建两个文本组件，展示事件内收到的信息。
@@ -39,7 +39,7 @@
 
 - 注册事件回调
 
-    事件回调注册有统一接口，详情请参见[registerNodeEventReceiver](../../application-dev/reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#registernodeeventreceiver)。
+    事件回调注册有统一接口，详情请参见[registerNodeEventReceiver](../../application-dev/reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#registernodeeventreceiver)。
 
     ```c++
     nodeApi->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
