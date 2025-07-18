@@ -28,7 +28,7 @@
 | getSlot(slotType: SlotType): Promise\<NotificationSlot\> | 获取一个指定类型的通知渠道。       |
 | removeSlot(slotType: SlotType): Promise\<void\>          | 删除此应用程序指定类型的通知渠道。  |
 
-除了可以使用`addslot()`创建通知渠道，还可以在发布通知的[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)中携带notificationSlotType字段，如果对应渠道不存在，会自动创建。
+除了可以使用`addSlot()`创建通知渠道，还可以在发布通知的[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)中携带notificationSlotType字段，如果对应渠道不存在，会自动创建。
 
 ## 开发步骤
 

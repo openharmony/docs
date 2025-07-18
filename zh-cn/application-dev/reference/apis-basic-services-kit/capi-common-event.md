@@ -2041,7 +2041,7 @@ CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoBundleName(CommonEvent_PublishI
 ### OH_CommonEvent_SetPublishInfoPermissions
 
 ```cpp
-CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoPermissions(CommonEvent_PublishInfo* info，const char* permissions[], int32_t num)
+CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoPermissions(CommonEvent_PublishInfo* info, const char* permissions[], int32_t num)
 ```
 
 **描述**

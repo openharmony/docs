@@ -384,7 +384,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
-| 1600007  | The notification is not exist.           |
+| 1600007  | The notification does not exist.           |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -451,7 +451,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
-| 1600007  | The notification is not exist.           |
+| 1600007  | The notification does not exist.           |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -507,7 +507,7 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
-| 1600007  | The notification is not exist.      |
+| 1600007  | The notification does not exist.      |
 
 **示例：**
 
@@ -563,7 +563,7 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
-| 1600007  | The notification is not exist.      |
+| 1600007  | The notification does not exist.      |
 
 **示例：**
 
