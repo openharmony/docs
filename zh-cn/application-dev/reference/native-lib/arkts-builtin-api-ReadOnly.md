@@ -152,7 +152,7 @@ predicate函数返回值说明：
 
 **示例：**  
   ```typescript
-  let arr: ReadonlyArray<number> = [2,3];
+  let arr: ReadonlyArray<number> = [2,3] as Array<number>;
   let limit = 2;
   arr.every(v => v > limit); // false
   ```
