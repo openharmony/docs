@@ -590,7 +590,7 @@ moveWindowToGlobalDisplay(x: number, y: number): Promise&lt;void&gt;
 
 全屏模式窗口不支持该操作。
 
-在非2in1设备和平板设备的非自由多窗模式下，子窗会跟随主窗移动。
+在非2in1设备，以及平板设备的非自由多窗模式下，子窗会跟随主窗移动。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -640,7 +640,7 @@ try {
 
 clientToGlobalDisplay(winX: number, winY: number): Position
 
-提供将相对于当前窗口左上角的坐标转换为相对于主屏幕左上角的全局坐标的能力。
+将相对于当前窗口左上角的坐标转换为相对于主屏幕左上角的全局坐标。
 
 不支持在经过显示缩放的窗口中调用，例如手机或平板设备在非自由多窗模式下的悬浮窗场景。
 
@@ -685,7 +685,7 @@ try {
 
 globalDisplayToClient(globalDisplayX: number, globalDisplayY: number): Position
 
-提供将相对于主屏幕左上角的全局坐标转换为相对于当前窗口左上角的坐标的能力。
+将相对于主屏幕左上角的全局坐标转换为相对于当前窗口左上角的坐标。
 
 不支持在经过显示缩放的窗口中调用，例如手机或平板设备在非自由多窗模式下的悬浮窗场景。
 
@@ -4385,10 +4385,12 @@ on(type: 'rectChangeInGlobalDisplay', callback: Callback&lt;RectChangeOptions&gt
 **示例：**
 
 ```ts
+const callback = (rectChangeOptions: window.RectChangeOptions) => {
+  console.info(`Succeeded in enabling the listener for window rect changes in global display. Data: ` + JSON.stringify(rectChangeOptions));
+}
+
 try {
-  windowClass.on('rectChangeInGlobalDisplay', (data: window.RectChangeOptions) => {
-      console.info(`Succeeded in enabling the listener for window rect changes in global display. Data: ` + JSON.stringify(data));
-  });
+  windowClass.on('rectChangeInGlobalDisplay', callback);
 } catch (exception) {
   console.error(`Failed to disable the listener for window rect changes in global display. Cause code: ${exception.code}, message: ${exception.message}`);
 }
