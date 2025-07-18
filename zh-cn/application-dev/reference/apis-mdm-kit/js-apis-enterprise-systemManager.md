@@ -446,7 +446,7 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 addDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol&gt;, accountId: number): void
 
-为指定用户添加禁用的星闪协议名单。NearLink Kit（星闪服务）提供一种低功耗、高速率的短距离通信服务，支持星闪设备之间的连接、数据交互。用户级别禁用的星闪协议后，键盘手写笔等系统服务和系统应用不受影响。<!--RP3--><!--RP3End-->
+为指定用户添加禁用的星闪协议名单。NearLink Kit（星闪服务）提供一种低功耗、高速率的短距离通信服务，支持星闪设备之间的连接、数据交互。本接口对键盘、手写笔等系统服务和系统应用不生效。<!--RP3--><!--RP3End-->
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
