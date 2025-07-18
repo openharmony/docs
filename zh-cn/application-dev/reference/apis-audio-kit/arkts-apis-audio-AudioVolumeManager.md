@@ -609,14 +609,6 @@ off(type: 'streamVolumeChange', callback?: Callback\<StreamVolumeEvent>): void
 | type     | string                                 | 是   | 事件回调类型，支持的事件为'volumeChange'，当取消监听系统音量变化事件时，触发该事件。 |
 | callback | Callback<[StreamVolumeEvent](arkts-apis-audio-i.md#streamvolumeevent20)> | 否   | 回调函数，返回变化后的音量信息。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 6800101 | Parameter verification failed. |
-
 **示例：**
 
 ```ts
