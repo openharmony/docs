@@ -417,8 +417,8 @@ predicate函数返回值说明：
       } else {
         result.push(item as number)
       }
-      return result;
     }
+    return result;
   }
   const parts = [1, [2, 3], 4, 5, 6] as Array<number|Array<number>>
   const arr = flatten(parts)
