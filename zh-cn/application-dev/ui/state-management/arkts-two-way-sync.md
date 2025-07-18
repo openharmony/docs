@@ -9,14 +9,14 @@
 
 > **说明：**
 >
-> $$还用于[@Builder装饰器的按引用传递参数](arkts-builder.md#按引用传递参数)，开发者需要注意两种用法的区别。
+> `$$`还用于[@Builder装饰器的按引用传递参数](arkts-builder.md#按引用传递参数)，开发者需要注意两种用法的区别。
 
 
 ## 使用规则
 
-- 当前$$支持基础类型变量，以及[\@State](arkts-state.md)、[\@Link](arkts-link.md)和[\@Prop](arkts-prop.md)装饰的变量。
+- 当前`$$`支持基础类型变量，以及[\@State](arkts-state.md)、[\@Link](arkts-link.md)和[\@Prop](arkts-prop.md)装饰的变量。
 
-- 当前$$支持的组件：
+- 当前`$$`支持的组件：
 
   | 组件                                                         | 支持的参数/属性 | 起始API版本 |
   | ------------------------------------------------------------ | --------------- | ----------- |
@@ -46,7 +46,7 @@
   | [GridItem](../../reference/apis-arkui/arkui-ts/ts-container-griditem.md) | selected | 10 |
   | [ListItem](../../reference/apis-arkui/arkui-ts/ts-container-listitem.md) | selected | 10 |
 
-- $$绑定的变量变化时，会触发UI的同步刷新。
+- `$$`绑定的变量变化时，会触发UI的同步刷新。
 
 
 ## 使用示例
