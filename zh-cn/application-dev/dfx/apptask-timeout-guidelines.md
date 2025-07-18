@@ -52,7 +52,7 @@
 
    （1）20次检测均未发生主线程超时150ms事件，无trace文件生成。
 
-   ![dump-trace1](figures/dump-trace1.png)
+   ![dump-trace1](figures/dump-trace1.PNG)
 
    （2）20次检测至少有一次发生主线程超时150ms事件，生成trace文件。
 

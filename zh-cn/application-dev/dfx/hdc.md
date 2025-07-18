@@ -12,7 +12,7 @@ hdc分为三部分：
 
 关系如下图所示：
 
-![hdc_image_005](figures/hdc_image_005.png)
+![hdc_image_005](figures/hdc_image_005.PNG)
 
 > **说明：**
 >
@@ -363,7 +363,7 @@ $ hdc -t connect-key1 wait # 多设备需使用-t指定连接设备
 
 远程连接场景是指客户端（通常是开发者使用的本地电脑）通过网络与服务端（通常是连接了调试设备的服务器或开发机）建立连接，实现客户端对目标设备的远程调试，控制和管理。
 
-![hdc_image_004](figures/hdc_image_004.png)
+![hdc_image_004](figures/hdc_image_004.PNG)
 
 远程连接使用-s参数来指定服务端的网络参数，包括地址和端口号，该设置只在当前命令执行期间有效，命令格式如下：
 
