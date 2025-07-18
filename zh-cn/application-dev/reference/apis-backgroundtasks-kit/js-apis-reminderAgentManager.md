@@ -19,6 +19,8 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 发布后台代理提醒。使用callback异步回调。
 
+如果指定了[ReminderRequest.ringDuration](#reminderrequest)参数，且值大于0，则铃声默认在闹钟通道上播放。
+
 > **说明：**
 >
 > 该接口需要申请通知弹窗权限[NotificationManager.requestEnableNotification](../apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10)后调用。
@@ -69,6 +71,8 @@ reminderAgentManager.publishReminder(timer, (err: BusinessError, reminderId: num
 publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 发布后台代理提醒。使用promise异步回调。
+
+如果指定了[ReminderRequest.ringDuration](#reminderrequest)参数，且值大于0，则铃声默认在闹钟通道上播放。
 
 > **说明：**
 >
