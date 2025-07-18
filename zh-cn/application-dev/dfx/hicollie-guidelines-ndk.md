@@ -26,7 +26,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 ## 日志规格
 
-1. 业务线程卡死故障日志以appfreeze-开头，生成在“设备/data/log/faultlog/faultlogger/”路径下。该日志文件名格式为“appfreeze-应用包名-应用UID-秒级时间”。具体规格可参考[应用冻屏（AppFreeze）日志规格](appfreeze-guidelines.md#应用无响应日志分析)。
+1. 业务线程卡死故障日志以appfreeze-开头，生成在“设备/data/log/faultlog/faultlogger/”路径下。该日志文件名格式为“appfreeze-应用包名-应用UID-秒级时间”。具体规格可参考[应用冻屏（AppFreeze）日志规格](appfreeze-guidelines.md#日志规格)。
 
 2. OH_HiCollie_Init_StuckDetection日志规格，请参考[主线程超时事件日志规格](hiappevent-watcher-mainthreadjank-events.md#主线程超时事件日志规格)。
 

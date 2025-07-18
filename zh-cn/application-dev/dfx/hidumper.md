@@ -351,7 +351,7 @@ Size        Rss         Pss         Clean       Dirty       Clean       Dirty   
   > 具体使用步骤为：
   > 
   > 1. 应用调用[jsLeakWatcher.enable](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md#jsleakwatcherenable)接口。
-  > 2. 应用调用[jsLeakWatcher.watch](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md/js-apis-jsleakwatcher#jsleakwatcherwatch)接口。
+  > 2. 应用调用[jsLeakWatcher.watch](../reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md#jsleakwatcherwatch)接口。
   > 3. 用户执行hidumper --mem-jsheap [pid] --leakobj命令，导出虚拟机堆内存和泄露对象信息。
   
   使用样例：
