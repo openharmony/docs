@@ -40,7 +40,7 @@ import { userAccessCtrl } from '@kit.UserAuthenticationKit';
 | authTrustLevel | [userAuth.AuthTrustLevel](js-apis-useriam-userauth.md#authtrustlevel8) | 否 | 否 |认证信任等级。|
 | authType | [userAuth.UserAuthType](js-apis-useriam-userauth.md#userauthtype8) | 否 | 否  |身份认证的凭据类型。|
 | tokenType | [AuthTokenType](#authtokentype) | 否 | 否 |认证令牌类型。|
-| userId | number | 否 | 否  |用户ID。|
+| userId | ArkTS1.1: number <br/> ArkTS1.2: int | 否 | 否  |用户ID。|
 | timeInterval | bigint | 否  | 否  |自AuthToken签发至当前的时间，以毫秒表示。|
 | secureUid | bigint    | 否  | 是  |安全用户ID。|
 | enrolledId | bigint   | 否  | 是  |凭据注册ID。|
@@ -49,7 +49,9 @@ import { userAccessCtrl } from '@kit.UserAuthenticationKit';
 
 ## userAccessCtrl.verifyAuthToken
 
-verifyAuthToken(authToken: Uint8Array, allowableDuration: number): Promise\<AuthToken>
+ArkTS1.1: verifyAuthToken(authToken: Uint8Array, allowableDuration: number): Promise\<AuthToken>
+
+ArkTS1.2: verifyAuthToken(authToken: Uint8Array, allowableDuration: int): Promise\<AuthToken>
 
 验证认证令牌。
 
@@ -64,7 +66,7 @@ verifyAuthToken(authToken: Uint8Array, allowableDuration: number): Promise\<Auth
 | 参数名     | 类型                        | 必填 | 说明       |
 | ---------- | --------------------------- | ---- | ---------- |
 | authToken | Uint8Array | 是   | 需要被验证的AuthToken。最大长度为1024。 |
-| allowableDuration  | number  | 是   | 从AuthToken签发起允许认证的时间间隔，以毫秒表示。有效时长值应大于0，最大值为86400000毫秒。 |
+| allowableDuration  | ArkTS1.1: number <br/> ArkTS1.2: int | 是   | 从AuthToken签发起允许认证的时间间隔，以毫秒表示。有效时长值应大于0，最大值为86400000毫秒。 |
 
 **返回值：**
 
@@ -87,6 +89,7 @@ verifyAuthToken(authToken: Uint8Array, allowableDuration: number): Promise\<Auth
 
 **示例：**
 
+ArkTS1.1示例:
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -116,7 +119,57 @@ try {
             console.error('userAuthInstance callback result.token is null');
             return;
         }
-        // 发起 AuthToken 验证请求。
+        // 发起AuthToken验证请求。
+        userAccessCtrl.verifyAuthToken(result.token, allowableDuration)
+            .then((retAuthToken: userAccessCtrl.AuthToken) => {
+                Object.keys(retAuthToken).forEach((key) => {
+                    console.info(`retAuthToken key:${key}, value:${retAuthToken[key]}`);
+                })
+            }).catch ((error: BusinessError) => {
+                console.error(`verify authToken error. Code is ${error?.code}, message is ${error?.message}`);
+            })
+    }
+  });
+  console.info('auth on success');
+  // 启动认证。
+  userAuthInstance.start();
+  console.info('auth start success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+ArkTS1.2示例:
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAccessCtrl } from '@kit.UserAuthenticationKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+try {
+  const rand = cryptoFramework.createRandom();
+  const allowableDuration: int = 5000;
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请输入密码',
+  };
+
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
+  // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
+  userAuthInstance.on('result', {
+    onResult (result) {
+        if (!result.token) {
+            console.error('userAuthInstance callback result.token is null');
+            return;
+        }
+        // 发起AuthToken验证请求。
         userAccessCtrl.verifyAuthToken(result.token, allowableDuration)
             .then((retAuthToken: userAccessCtrl.AuthToken) => {
                 Object.keys(retAuthToken).forEach((key) => {

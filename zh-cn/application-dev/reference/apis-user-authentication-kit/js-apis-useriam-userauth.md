@@ -28,8 +28,8 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 | 名称         | 类型    | 只读 | 可选 | 说明                 |
 | ------------ | ---------- | ---- | ---- | -------------------- |
-| credentialDigest       | number | 否   |  否 | 注册的凭据摘要，在凭据增加时随机生成。|
-| credentialCount        | number | 否   |  否 | 注册的凭据数量。       |
+| credentialDigest       | ArkTS1.1: number <br/> ArkTS1.2: int | 否   |  否 | 注册的凭据摘要，在凭据增加时随机生成。|
+| credentialCount        | ArkTS1.1: number <br/> ArkTS1.2: int | 否   |  否 | 注册的凭据数量。       |
 
 ## ReuseMode<sup>12+</sup>
 
@@ -58,7 +58,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 | 名称         | 类型   | 必填 | 说明                 |
 | ------------ | ---------- | ---- | -------------------- |
 | reuseMode        | [ReuseMode](#reusemode12) | 是   | 复用解锁认证结果的模式。       |
-| reuseDuration    | number | 是   | 允许复用解锁认证结果的有效时长，有效时长的值应大于0，最大值为[MAX_ALLOWABLE_REUSE_DURATION](#常量)。 |
+| reuseDuration    | ArkTS1.1: number <br/> ArkTS1.2: int | 是   | 允许复用解锁认证结果的有效时长，有效时长的值应大于0，最大值为[MAX_ALLOWABLE_REUSE_DURATION](#常量)。 |
 
 ## userAuth.getEnrolledState<sup>12+</sup>
 
@@ -146,7 +146,7 @@ try {
 
 | 名称     | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
-| result   | number                         | 是   | 用户认证结果。若成功返回SUCCESS，若失败返回相应错误码，参见[UserAuthResultCode](#userauthresultcode9)。 |
+| result   | ArkTS1.1: number <br/> ArkTS1.2: int  | 是   | 用户认证结果。若成功返回SUCCESS，若失败返回相应错误码，参见[UserAuthResultCode](#userauthresultcode9)。 |
 | token    | Uint8Array                     | 否   | 认证成功时，返回认证成功的令牌信息。                  |
 | authType | [UserAuthType](#userauthtype8) | 否   | 认证成功时，返回认证类型。                           |
 | enrolledState<sup>12+</sup> | [EnrolledState](#enrolledstate12) | 否   |  认证成功时，返回注册凭据的状态。|

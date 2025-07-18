@@ -21,7 +21,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 | 名称           | 类型                               | 必填 | 说明                                                         |
 | -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| userId<sup>18+</sup> | number | 否   |要认证的目标用户ID，值为大于等于0的正整数。默认值为当前用户的ID。|
+| userId<sup>18+</sup> | ArkTS1.1: number <br/> ArkTS1.2: int | 否   |要认证的目标用户ID，值为大于等于0的正整数。默认值为当前用户的ID。|
 
 ## WindowModeType<sup>10+</sup>
 
@@ -218,7 +218,9 @@ try {
 
 ## userAuth.getUserAuthWidgetMgr<sup>10+</sup>
 
-getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr
+ArkTS1.1: getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr
+
+ArkTS1.2: getUserAuthWidgetMgr(version: int): UserAuthWidgetMgr
 
 获取UserAuthWidgetMgr对象，用于执行用户身份认证。
 
@@ -235,7 +237,7 @@ getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr
 
 | 参数名  | 类型   | 必填 | 说明                 |
 | ------- | ------ | ---- | -------------------- |
-| version | number | 是   | 表示认证组件的版本。 |
+| version | ArkTS1.1: number <br/> ArkTS1.2: int | 是   | 表示认证组件的版本。 |
 
 **返回值：**
 
