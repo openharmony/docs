@@ -36,27 +36,27 @@ XComponent组件负责创建Surface，并通过回调将Surface的相关信息�
 
 **生命周期**：
 
-- OnSurfaceCreated回调    	
+- onSurfaceCreated回调
 
   触发时刻：XComponent准备好Surface后触发。
 
-  ArkTS侧OnSurfaceCreated的时序如下图：
+  ArkTS侧onSurfaceCreated的时序如下图：
 
   ![OnSurfaceCreated](./figures/onSurfaceCreated1.png)
 
-- OnSurfaceChanged回调
+- onSurfaceChanged回调
 
   触发时刻：Surface大小变化触发重新布局之后触发。
 
-  ArkTS侧OnSurfaceChanged的时序如下图：
+  ArkTS侧onSurfaceChanged的时序如下图：
 
   ![OnSurfaceChanged](./figures/onSurfaceChanged1.png)
 
-- OnSurfaceDestroyed回调
+- onSurfaceDestroyed回调
 
   触发时刻：XComponent组件被销毁时触发，与一般ArkUI的组件销毁时机一致。
 
-  ArkTS侧OnSurfaceDestroyed的时序图：
+  ArkTS侧onSurfaceDestroyed的时序图：
 
   ![OnSurfaceDestroyed](./figures/onSurfaceDestroyed1.png)
 
