@@ -38,7 +38,7 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | selectTextInForWard | bool   | 否    | 是|选定组件内文本时是否向前选择，如：true。      |
 | offset              | string | 否   | 是|设置光标的偏移量，如：'1'。    |
 | spanId              | string | 否   |是 |对SPAN文本进行点击操作时文本id。                |
-| scrollType          | string | 否   | 是|组件滚动类型，包括SCROLL_FORWARD（向前滚动）和SCROLL_BACKWARD（向后滚动）。 |
+| scrollType          | string | 否   | 是|组件滚动类型，'fullScreen'（全屏）或者'halfScreen'（半屏）。 |
 
 例如：选中文本输入框中index从0到7的字符时，executeAction(AccessibilityAction.SET_SELECTION, parameter)方法设置的参数如下:
 ```ts
