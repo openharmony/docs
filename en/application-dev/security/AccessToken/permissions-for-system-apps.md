@@ -5063,7 +5063,7 @@ Allows a system application to trigger local WantAgent instances.
 
 ## ohos.permission.SANDBOX_ACCESS_MANAGER_EXT
 
-Allows an application to access the sandbox directory of other extended applications.
+Allows an application to access the sandbox directories of other extended applications.
 
 **Permission level**: system_core
 
