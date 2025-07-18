@@ -31,7 +31,7 @@
 | -- | -- | -- |
 | [typedef void (\*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo* mediaKeySystemInfo)](#drm_mediakeysysteminfocallback) | DRM_MediaKeySystemInfoCallback | DRM_MediaKeySystemInfo回调函数指针类型，不返回解封装器实例，适用于单个解封装器实例场景。需要使用OH_AVDemuxer_SetMediaKeySystemInfoCallback接口将其设置为回调。 |
 | [typedef void (\*Demuxer_MediaKeySystemInfoCallback)(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *mediaKeySystemInfo)](#demuxer_mediakeysysteminfocallback) | Demuxer_MediaKeySystemInfoCallback | DRM_MediaKeySystemInfo回调函数指针类型，返回解封装器实例，适用于多个解封装器实例场景。需要使用OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback接口将其设置为回调，推荐使用。 |
-| [OH_AVDemuxer *OH_AVDemuxer_CreateWithSource(OH_AVSource *source)](#oh_avdemuxer_createwithsource) | - | 通过source实例创建OH_AVDemuxer实例。source的创建、销毁及使用，详情请参考[OH_AVSource](capi-avsource-oh-avsource.md)。 |
+| [OH_AVDemuxer *OH_AVDemuxer_CreateWithSource(OH_AVSource *source)](#oh_avdemuxer_createwithsource) | - | 通过source实例创建OH_AVDemuxer实例。source的创建、销毁及使用，详情请参考[OH_AVSource](_a_v_source.md)。 |
 | [OH_AVErrCode OH_AVDemuxer_Destroy(OH_AVDemuxer *demuxer)](#oh_avdemuxer_destroy) | - | 销毁OH_AVDemuxer实例并清理内部资源。同一实例只能被销毁一次。注意，销毁的实例在被重新创建之前不能再被使用。建议实例销毁成功后将指针置为NULL。 |
 | [OH_AVErrCode OH_AVDemuxer_SelectTrackByID(OH_AVDemuxer *demuxer, uint32_t trackIndex)](#oh_avdemuxer_selecttrackbyid) | - | 指定读取sample的轨道，解封装器将会从该轨道中读取数据，未指定的轨道不会读取。注意，通过多次调用接口并传入不同轨道的索引来选中多个轨道。调用OH_AVDemuxer_ReadSample时只会读取被选中的轨道中数据，同一轨道被选择多次时，接口会返回AV_ERR_OK，并且只会生效一次。 |
 | [OH_AVErrCode OH_AVDemuxer_UnselectTrackByID(OH_AVDemuxer *demuxer, uint32_t trackIndex)](#oh_avdemuxer_unselecttrackbyid) | - | 移除读取sample的轨道，未选中的轨道的数据不会被解封装器读取。注意，通过多次调用接口并传入不同轨道的索引来取消对多个轨道的选择。同一轨道被多次取消选择时，接口会返回AV_ERR_OK，并且只会生效一次。 |
@@ -95,7 +95,7 @@ OH_AVDemuxer *OH_AVDemuxer_CreateWithSource(OH_AVSource *source)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVSource](capi-avsource-oh-avsource.md) *source | 指向OH_AVSource实例的指针。 |
+| [OH_AVSource](_a_v_source.md#oh_avsource) *source | 指向OH_AVSource实例的指针。 |
 
 **返回：**
 
