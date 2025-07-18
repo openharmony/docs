@@ -864,6 +864,43 @@ struct ReusableChildTwoPage {
 
 ![arkts-builder-usage-scenario7](figures/arkts-builder-usage-scenario7.gif)
 
+### 用变量存储@Builder函数（ArkTS1.2）
+
+使用变量存储@Builder函数，并在UI组件中使用。
+
+```ts
+import { Builder, Component, Column, Color, Entry, ForEach, Text } from '@ohos.arkui.component';
+import { State } from '@ohos.arkui.stateManagement';
+
+@Builder
+function MyBuilder(value: string, size: number) {
+  Text(value).fontSize(size)
+}
+
+@Builder
+function YourBuilder(value: string, size: number) {
+  Text(value).fontSize(size).fontColor(Color.Pink)
+}
+
+let globalBuilder: @Builder (value: string, size: number) => void = MyBuilder; // 使用变量封装Builder函数
+let builderArr: (@Builder (value: string, size: number) => void)[] = [MyBuilder, YourBuilder]; // 使用列表封装多个Builder函数
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello world!';
+
+  build() {
+    Column() {
+      globalBuilder(this.message, 50) // 使用Builder变量
+      ForEach(builderArr, (builder: @Builder (value: string, size: number) => void) => { // 展开Builder列表
+        builder(this.message, 30);
+      })
+    }
+  }
+}
+```
+
 ## 常见问题
 
 ### \@Builder存在两个或者两个以上参数
