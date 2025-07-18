@@ -516,13 +516,12 @@ import { image } from '@kit.ImageKit';
 import { drawing } from '@kit.ArkGraphics2D';
 
 class DrawingRenderNode extends RenderNode {
-  pixelMap: image.PixelMap | null = null;
-
   async draw(context : DrawContext) {
+    let pixelMap: image.PixelMap = globalThis.getInstance().getPixelMap("test_2.jpg");
     const canvas = context.canvas;
     let options = new drawing.SamplingOptions(drawing.FilterMode.FILTER_MODE_NEAREST);
-    if (this.pixelMap != null) {
-      canvas.drawImage(this.pixelMap, 0, 0, options);
+    if (pixelMap != null) {
+      canvas.drawImage(pixelMap, 0, 0, options);
     }
   }
 }
@@ -560,13 +559,13 @@ import { image } from '@kit.ImageKit';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
 
 class DrawingRenderNode extends RenderNode {
-pixelMap: image.PixelMap | null = null;
   draw(context : DrawContext) {
+    let pixelMap: image.PixelMap = globalThis.getInstance().getPixelMap("test_2.jpg");
     const canvas = context.canvas;
     let pen = new drawing.Pen();
     canvas.attachPen(pen);
     let rect: common2D.Rect = { left: 0, top: 0, right: 200, bottom: 200 };
-    canvas.drawImageRect(this.pixelMap, rect);
+    canvas.drawImageRect(pixelMap, rect);
     canvas.detachPen();
   }
 }
@@ -606,8 +605,8 @@ import { image } from '@kit.ImageKit';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
 
 class DrawingRenderNode extends RenderNode {
-pixelMap: image.PixelMap | null = null;
   draw(context : DrawContext) {
+    let pixelMap: image.PixelMap = globalThis.getInstance().getPixelMap("test_2.jpg");
     const canvas = context.canvas;
     let pen = new drawing.Pen();
     canvas.attachPen(pen);
@@ -775,15 +774,14 @@ import { image } from '@kit.ImageKit';
 import { drawing } from '@kit.ArkGraphics2D';
 
 class DrawingRenderNode extends RenderNode {
-  pixelMap: image.PixelMap | null = null;
-
   async draw(context : DrawContext) {
+    let pixelMap: image.PixelMap = globalThis.getInstance().getPixelMap("test_2.jpg");
     const canvas = context.canvas;
-    if (this.pixelMap != null) {
+    if (pixelMap != null) {
       const brush = new drawing.Brush(); // 只支持brush，使用pen没有绘制效果。
       canvas.attachBrush(brush);
       let verts : Array<number> = [0, 0, 50, 0, 410, 0, 0, 180, 50, 180, 410, 180, 0, 360, 50, 360, 410, 360]; // 18
-      canvas.drawPixelMapMesh(this.pixelMap, 2, 2, verts, 0, null, 0);
+      canvas.drawPixelMapMesh(pixelMap, 2, 2, verts, 0, null, 0);
       canvas.detachBrush();
     }
   }

@@ -97,13 +97,12 @@ import { RenderNode } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
-  pixelMap: image.PixelMap | null = null;
-
   async draw(context : DrawContext) {
+    let pixelMap: image.PixelMap = globalThis.getInstance().getPixelMap("test_2.jpg");
     let matrix = new drawing.Matrix();
     let options = new drawing.SamplingOptions(drawing.FilterMode.FILTER_MODE_NEAREST);
-    if (this.pixelMap != null) {
-      let imageShader = drawing.ShaderEffect.createImageShader(this.pixelMap, drawing.TileMode.REPEAT, drawing.TileMode.MIRROR, options, matrix);
+    if (pixelMap != null) {
+      let imageShader = drawing.ShaderEffect.createImageShader(pixelMap, drawing.TileMode.REPEAT, drawing.TileMode.MIRROR, options, matrix);
     }
   }
 }

@@ -85,14 +85,13 @@ import { RenderNode } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
-  pixelMap: image.PixelMap | null = null;
-
   async draw(context : DrawContext) {
+    let pixelMap: image.PixelMap = globalThis.getInstance().getPixelMap("test_2.jpg");
     const canvas = context.canvas;
     let srcRect: common2D.Rect = { left: 10, top: 10, right: 80, bottom: 80 };
     let dstRect: common2D.Rect = { left: 200, top: 200, right: 400, bottom: 400 };
-    if (this.pixelMap != null) {
-      let filter = drawing.ImageFilter.createFromImage(this.pixelMap, srcRect, dstRect);
+    if (pixelMap != null) {
+      let filter = drawing.ImageFilter.createFromImage(pixelMap, srcRect, dstRect);
     }
   }
 }
