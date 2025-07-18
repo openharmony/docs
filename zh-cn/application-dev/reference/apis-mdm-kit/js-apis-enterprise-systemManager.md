@@ -446,7 +446,7 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 addDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol&gt;, accountId: number): void
 
-禁用指定用户的星闪协议。NearLink Kit（星闪服务）提供一种低功耗、高速率的短距离通信服务，支持星闪设备之间的连接、数据交互。<!--RP3--><!--RP3End-->
+为指定用户添加禁用的星闪协议名单。NearLink Kit（星闪服务）提供一种低功耗、高速率的短距离通信服务，支持星闪设备之间的连接、数据交互。用户级别禁用的星闪协议后,键盘和手写笔等系统服务和系统应用不受影响。<!--RP3--><!--RP3End-->
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -479,18 +479,20 @@ import { Want } from '@kit.AbilityKit';
 import systemManager from '@ohos.enterprise.systemManager';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 需根据实际情况进行替换
 let protocols: systemManager.NearLinkProtocol[] = [systemManager.NearLinkProtocol.SSAP,
   systemManager.NearLinkProtocol.DATA_TRANSFER];
 
 try {
   systemManager.addDisallowedNearLinkProtocols(wantTemp, protocols, 100);
-  console.info('Succeeded in adding nearlink protocols disabled');
+  console.info('Succeeded in adding the disabled Starlink protocol list for the specified user.');
 } catch (err) {
-  console.error(`Failed to adding nearlink protocols disabled. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to add the disabled Starlink protocol list for the specified user. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -498,7 +500,7 @@ try {
 
 removeDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol&gt;, accountId: number): void
 
-启用指定用户的星闪协议。
+为指定用户移除禁用的星闪协议名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -531,18 +533,20 @@ import { Want } from '@kit.AbilityKit';
 import systemManager from '@ohos.enterprise.systemManager';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 需根据实际情况进行替换
 let protocols: systemManager.NearLinkProtocol[] = [systemManager.NearLinkProtocol.SSAP,
   systemManager.NearLinkProtocol.DATA_TRANSFER];
 
 try {
   systemManager.removeDisallowedNearLinkProtocols(wantTemp, protocols, 100);
-  console.info('Succeeded in adding nearlink protocols disabled');
+   console.info('Succeeded in removing the disabled Starlink protocol list for the specified user.');
 } catch (err) {
-  console.error(`Failed to adding nearlink protocols disabled. Code is ${err.code}, message is ${err.message}`);
+   console.error(`Failed to remove the disabled Starlink protocol list for the specified user. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -550,7 +554,7 @@ try {
 
 getDisallowedNearLinkProtocols(admin: Want, accountId: number): Array&lt;NearLinkProtocol&gt;
 
-获取指定用户禁用的星闪协议。
+获取指定用户下禁用的星闪协议名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -569,7 +573,7 @@ getDisallowedNearLinkProtocols(admin: Want, accountId: number): Array&lt;NearLin
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;          | 禁用指定用户星闪协议列表。 |
+| Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;          | 指定用户下禁用的星闪协议名单。 |
 
 **错误码**：
 
@@ -588,15 +592,16 @@ import { Want } from '@kit.AbilityKit';
 import systemManager from '@ohos.enterprise.systemManager';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
   let result: systemManager.NearLinkProtocol[] = systemManager.getDisallowedNearLinkProtocols(wantTemp, 100);
-  console.info(`Succeeded in querying is the nearlink protocol disabled : ${result}`);
+  console.info(`Succeeded in querying the disabled Starlink protocol list for the specified user: ${result}`);
 } catch (err) {
-  console.error(`Failed to set nearlink protocols disabled. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to query the disabled Starlink protocol list for the specified user. Code is ${err.code}, message is ${err.message}`);
 }
 ```
   
@@ -740,6 +745,8 @@ try {
 星闪协议枚举。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称               | 值  | 说明    |
 | -----------------  | ---- | ----- |
