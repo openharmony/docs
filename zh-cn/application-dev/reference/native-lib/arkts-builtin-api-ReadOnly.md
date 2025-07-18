@@ -487,7 +487,7 @@ callbackfn函数参数说明：
 **示例：**  
   ```typescript
   class Logger {
-    log(v: number) { console.info(v + this.offset); }
+    log(v: number) { console.info((v + this.offset).toString()); }
     offset = 10;
   }
   let arr: ReadonlyArray<number> = [1,2];
