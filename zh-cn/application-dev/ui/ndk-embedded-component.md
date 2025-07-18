@@ -9,11 +9,11 @@ ArkUI在Native侧提供的能力是ArkTS的子集，某些能力不会在Native�
 
 > **说明：**
 >
-> - 使用[OH_ArkUI_EmbeddedComponentOption_Create](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_embeddedcomponentoption_create)获取[ArkUI_EmbeddedComponentOption](../reference/apis-arkui/capi-arkui-nativemodule-arkui-embeddedcomponentoption.md)后，可以使用[OH_ArkUI_EmbeddedComponentOption_SetOnError](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_embeddedcomponentoption_setonerror)设置onError回调，使用[OH_ArkUI_EmbeddedComponentOption_SetOnTerminated](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_embeddedcomponentoption_setonterminated)设置onTerminated回调。可以使用[OH_ArkUI_NodeUtils_MoveTo](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_nodeutils_moveto)迁移节点。
+> - 使用[OH_ArkUI_EmbeddedComponentOption_Create](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_embeddedcomponentoption_create)获取[ArkUI_EmbeddedComponentOption](../reference/apis-arkui/capi-arkui-nativemodule-arkui-embeddedcomponentoption.md)后，可以使用[OH_ArkUI_EmbeddedComponentOption_SetOnError](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_embeddedcomponentoption_setonerror)设置onError回调，使用[OH_ArkUI_EmbeddedComponentOption_SetOnTerminated](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_embeddedcomponentoption_setonterminated)设置onTerminated回调。可以使用[OH_ArkUI_NodeUtils_MoveTo](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodeutils_moveto)迁移节点。
 >
-> - 使用[OH_ArkUI_EmbeddedComponentOption_SetOnTerminated](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_embeddedcomponentoption_setonterminated)设置onTerminated回调时，返回的want参数，只支持提供方返回的want参数的key，value解析，不支持嵌套解析。
+> - 使用[OH_ArkUI_EmbeddedComponentOption_SetOnTerminated](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_embeddedcomponentoption_setonterminated)设置onTerminated回调时，返回的want参数，只支持提供方返回的want参数的key，value解析，不支持嵌套解析。
 >
-> - 在EmbeddedComponent销毁时，调用[OH_ArkUI_EmbeddedComponentOption_Dispose](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_embeddedcomponentoption_dispose)释放内存。
+> - 在EmbeddedComponent销毁时，调用[OH_ArkUI_EmbeddedComponentOption_Dispose](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_embeddedcomponentoption_dispose)释放内存。
 >
 > - EmbeddedComponent组件需要使用[setAttribute](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#setattribute)设置宽高才能显示。
 

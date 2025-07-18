@@ -92,7 +92,7 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 
 - 支持设置EmbeddedComponent或UIExtensionComponent组件的占用事件，指定手势事件的响应方式。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-uiExtension.md#occupyevents18)）
 
-- 支持将当前FrameNode移动到目标FrameNode的指定位置，实现跨实例节点迁移。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-frameNode.md#moveto18)、[API参考-CAPI](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_nodeutils_moveto)）
+- 支持将当前FrameNode移动到目标FrameNode的指定位置，实现跨实例节点迁移。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-frameNode.md#moveto18)、[API参考-CAPI](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodeutils_moveto)）
 
 - NodeController新增节点上下树和绑定解绑前后的生命周期回调接口（onAttach、onDetach、onWillBind、onWillUnbind、onBind、onUnbind）。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-nodeController.md)）
 

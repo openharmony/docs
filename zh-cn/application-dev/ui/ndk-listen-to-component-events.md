@@ -64,7 +64,7 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
 
 - 获取事件信息
 
-  ArkUI框架提供了[OH_ArkUI_NodeEvent_GetInputEvent()](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_nodeevent_getinputevent)接口，用于从输入交互相关的组件事件（如NODE_ON_CLICK、NODE_TOUCH_EVENT等，具体可参见每个枚举定义的说明）中获取基础事件对象。然后，可通过调用[OH_ArkUI_PointerEvent_GetDisplayX()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_getdisplayx)、[OH_ArkUI_PointerEvent_GetDisplayXByIndex()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_getdisplayxbyindex)、[OH_ArkUI_UIInputEvent_GetAction()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_uiinputevent_getaction)和[OH_ArkUI_UIInputEvent_GetEventTime()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_uiinputevent_geteventtime)等接口，从基础事件中获取更多信息。应用根据获取的事件信息，在事件执行过程中实现差异化交互逻辑。
+  ArkUI框架提供了[OH_ArkUI_NodeEvent_GetInputEvent()](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodeevent_getinputevent)接口，用于从输入交互相关的组件事件（如NODE_ON_CLICK、NODE_TOUCH_EVENT等，具体可参见每个枚举定义的说明）中获取基础事件对象。然后，可通过调用[OH_ArkUI_PointerEvent_GetDisplayX()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_getdisplayx)、[OH_ArkUI_PointerEvent_GetDisplayXByIndex()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_getdisplayxbyindex)、[OH_ArkUI_UIInputEvent_GetAction()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_uiinputevent_getaction)和[OH_ArkUI_UIInputEvent_GetEventTime()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_uiinputevent_geteventtime)等接口，从基础事件中获取更多信息。应用根据获取的事件信息，在事件执行过程中实现差异化交互逻辑。
 
   ```cpp
   // 注册click事件
