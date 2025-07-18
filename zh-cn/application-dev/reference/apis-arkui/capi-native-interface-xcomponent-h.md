@@ -85,7 +85,7 @@
 | [int32_t OH_NativeXComponent_AttachNativeRootNode(OH_NativeXComponent* component, ArkUI_NodeHandle root)](#oh_nativexcomponent_attachnativerootnode) | 将通过ArkUI的Native接口创建出来的UI组件挂载到当前XComponent上。 |
 | [int32_t OH_NativeXComponent_DetachNativeRootNode(OH_NativeXComponent* component, ArkUI_NodeHandle root)](#oh_nativexcomponent_detachnativerootnode) | 将ArkUI的Native组件从当前XComponent上卸载。 |
 | [int32_t OH_NativeXComponent_RegisterUIInputEventCallback(OH_NativeXComponent *component,void (\*callback)(OH_NativeXComponent *component, ArkUI_UIInputEvent *event,ArkUI_UIInputEvent_Type type),ArkUI_UIInputEvent_Type type)](#oh_nativexcomponent_registeruiinputeventcallback) | 为此[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例注册UI输入事件回调，并使能收到UI输入事件时回调此函数。当前仅支持轴事件。 |
-| [int32_t OH_NativeXComponent_RegisterOnTouchInterceptCallback(OH_NativeXComponent* component, HitTestMode (\*callback)(OH_NativeXComponent* component, ArkUI_UIInputEvent* event))](#oh_nativexcomponent_registerontouchinterceptcallback) | 为此[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例注册自定义事件拦截回调，并使能在做触摸测试时回调此函数。通过该回调获取到的事件对象不支持UIInput相关信息操作接口，建议切换为通过注册native node上的[NODE_ON_TOUCH_INTERCEPT](_ark_u_i___native_module.md#arkui_nodeeventtype)通用事件来支持。 |
+| [int32_t OH_NativeXComponent_RegisterOnTouchInterceptCallback(OH_NativeXComponent* component, HitTestMode (\*callback)(OH_NativeXComponent* component, ArkUI_UIInputEvent* event))](#oh_nativexcomponent_registerontouchinterceptcallback) | 为此[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例注册自定义事件拦截回调，并使能在做触摸测试时回调此函数。通过该回调获取到的事件对象不支持UIInput相关信息操作接口，建议切换为通过注册native node上的[NODE_ON_TOUCH_INTERCEPT](capi-native-node-h.md#arkui_nodeeventtype)通用事件来支持。 |
 | [int32_t OH_NativeXComponent_SetNeedSoftKeyboard(OH_NativeXComponent* component, bool needSoftKeyboard)](#oh_nativexcomponent_setneedsoftkeyboard) | 为此[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例设置是否需要软键盘。 |
 | [int32_t OH_NativeXComponent_RegisterSurfaceShowCallback(OH_NativeXComponent* component, void (\*callback)(OH_NativeXComponent* component, void* window))](#oh_nativexcomponent_registersurfaceshowcallback) | 为此[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例注册Surface显示回调，该回调在应用窗口已经从后台回到前台时触发。 |
 | [int32_t OH_NativeXComponent_RegisterSurfaceHideCallback(OH_NativeXComponent* component, void (\*callback)(OH_NativeXComponent* component, void* window))](#oh_nativexcomponent_registersurfacehidecallback) | 为此[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例注册Surface隐藏回调，该回调在应用窗口已经从前台进入后台时触发。 |
@@ -1314,7 +1314,7 @@ int32_t OH_NativeXComponent_RegisterOnTouchInterceptCallback(OH_NativeXComponent
 **描述：**
 
 
-为此[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例注册自定义事件拦截回调，并使能在做触摸测试时回调此函数。通过该回调获取到的事件对象不支持UIInput相关信息操作接口，建议切换为通过注册native node上的[NODE_ON_TOUCH_INTERCEPT](_ark_u_i___native_module.md#arkui_nodeeventtype)通用事件来支持。
+为此[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例注册自定义事件拦截回调，并使能在做触摸测试时回调此函数。通过该回调获取到的事件对象不支持UIInput相关信息操作接口，建议切换为通过注册native node上的[NODE_ON_TOUCH_INTERCEPT](capi-native-node-h.md#arkui_nodeeventtype)通用事件来支持。
 
 **起始版本：** 12
 
