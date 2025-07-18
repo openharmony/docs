@@ -341,7 +341,7 @@ struct TextPickerDialogExample {
 
 列表选择器弹窗通过UIContext中的[showActionSheet](../reference/apis-arkui/js-apis-arkui-UIContext.md#showactionsheet)接口实现。
 
-选择器弹窗中，selected字段的字体最大放大倍数为2。
+列表选择弹窗中，title字段的字体最大放大倍数为2。
 
 该示例通过配置width、height、transition等接口，定义了弹窗的样式以及弹出动效。
 
