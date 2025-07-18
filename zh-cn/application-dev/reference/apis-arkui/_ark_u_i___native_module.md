@@ -268,7 +268,7 @@
 | [ArkUI_ListItemSwipeEdgeEffect](#arkui_listitemswipeedgeeffect) { ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_SPRING = 0, ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_NONE } | 定义 Listitem 组件SwipeAction方法的滚动模式。  | 
 | [ArkUI_AnimationStatus](#arkui_animationstatus) { ARKUI_ANIMATION_STATUS_INITIAL, ARKUI_ANIMATION_STATUS_RUNNING, ARKUI_ANIMATION_STATUS_PAUSED, ARKUI_ANIMATION_STATUS_STOPPED } | 定义帧动画的播放状态。  | 
 | [ArkUI_AnimationFillMode](#arkui_animationfillmode) { ARKUI_ANIMATION_FILL_MODE_NONE, ARKUI_ANIMATION_FILL_MODE_FORWARDS, ARKUI_ANIMATION_FILL_MODE_BACKWARDS, ARKUI_ANIMATION_FILL_MODE_BOTH } | 定义帧动画组件在动画开始前和结束后的状态。  | 
-| [ArkUI_ErrorCode](#arkui_errorcode) {<br/>ARKUI_ERROR_CODE_NO_ERROR = 0, ARKUI_ERROR_CODE_PARAM_INVALID = 401,<br/>ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE = 150001, ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002, ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT = 150003, <br/>ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102, ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE = 106103,<br/>ARKUI_ERROR_CODE_NODE_ADAPTER_NONE_HOST = 106104, ARKUI_ERROR_CODE_NODE_ADAPTER_EXIST_IN_HOST = 106105, ARKUI_ERROR_CODE_NODE_ADAPTER_CHILD_NODE_EXIST = 106106, ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE = 106107,<br/>ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID = 106108, ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN = 106109, ARKUI_ERROR_CODE_NODE_INDEX_INVALID = 106200, ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201,<br/>ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202, ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203, ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001, ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH = 180002, ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT = 180003, ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL = 180004, ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT  = 180005, ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101<br/>} | 定义错误码枚举值。  | 
+| [ArkUI_ErrorCode](#arkui_errorcode) {<br/>ARKUI_ERROR_CODE_NO_ERROR = 0, ARKUI_ERROR_CODE_PARAM_INVALID = 401,<br/>ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE = 150001, ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002, ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT = 150003, <br/>ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102, ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE = 106103,<br/>ARKUI_ERROR_CODE_NODE_ADAPTER_NONE_HOST = 106104, ARKUI_ERROR_CODE_NODE_ADAPTER_EXIST_IN_HOST = 106105, ARKUI_ERROR_CODE_NODE_ADAPTER_CHILD_NODE_EXIST = 106106, ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INDEX_OUT_OF_RANGE = 106107,<br/>ARKUI_ERROR_CODE_NODE_EVENT_PARAM_INVALID = 106108, ARKUI_ERROR_CODE_NODE_EVENT_NO_RETURN = 106109, ARKUI_ERROR_CODE_NODE_INDEX_INVALID = 106200, ARKUI_ERROR_CODE_GET_INFO_FAILED = 106201,<br/>ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR = 106202, ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE = 106203,  ARKUI_ERROR_CODE_ON_INVALID_THREAD = 106204, ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER = 180001, ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH = 180002, ARKUI_ERROR_CODE_NOT_CLONED_POINTER_EVENT = 180003, ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL = 180004, ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT  = 180005, ARKUI_ERROR_CODE_INVALID_STYLED_STRING = 180101<br/>} | 定义错误码枚举值。  | 
 | [ArkUI_ScrollSource](#arkui_scrollsource) {<br/>ARKUI_SCROLL_SOURCE_DRAG = 0, ARKUI_SCROLL_SOURCE_FLING, ARKUI_SCROLL_SOURCE_EDGE_EFFECT, ARKUI_SCROLL_SOURCE_OTHER_USER_INPUT,<br/>ARKUI_SCROLL_SOURCE_SCROLL_BAR, ARKUI_SCROLL_SOURCE_SCROLL_BAR_FLING, ARKUI_SCROLL_SOURCE_SCROLLER, ARKUI_SCROLL_SOURCE_ANIMATION<br/>} | 定义滚动来源枚举值。  | 
 | [ArkUI_SafeAreaType](#arkui_safeareatype) { ARKUI_SAFE_AREA_TYPE_SYSTEM = 1, ARKUI_SAFE_AREA_TYPE_CUTOUT = 1 &lt;&lt; 1, ARKUI_SAFE_AREA_TYPE_KEYBOARD = 1 &lt;&lt; 2 } | 定义扩展安全区域的枚举值。  | 
 | [ArkUI_ListItemGroupArea](#arkui_listitemgrouparea) { ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE = 0, ARKUI_LIST_ITEM_SWIPE_AREA_NONE = 1, ARKUI_LIST_ITEM_SWIPE_AREA_ITEM = 2, ARKUI_LIST_ITEM_SWIPE_AREA_HEADER = 3, ARKUI_LIST_ITEM_SWIPE_AREA_FOOTER = 4<br/>} | 定义组件区域的枚举值。 | 
@@ -2460,6 +2460,7 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_GET_INFO_FAILED  | 查询路由导航信息失败。  | 
 | ARKUI_ERROR_CODE_BUFFER_SIZE_ERROR  | 传入的buffer size异常。  | 
 | ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE | 当前节点无法获得焦点。 |
+| ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD | 此节点未在合法的线程上操作。 |
 | ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR | 当前节点对应的祖先节点中存在无法获焦节点。 |
 | ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT | 当前节点不存在。 |
 | ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER  | 非滚动类容器。  | 
@@ -3256,6 +3257,7 @@ enum ArkUI_NativeAPIVariantKind
 | ARKUI_NATIVE_DIALOG  | 弹窗相关接口类型，详见&lt;arkui/native_dialog.h&gt;中的结构体类型定义。  | 
 | ARKUI_NATIVE_GESTURE  | 手势相关接口类型，详见&lt;arkui/native_gesture.h&gt;中的结构体类型定义。  | 
 | ARKUI_NATIVE_ANIMATE  | 动画相关接口类型。详见&lt;arkui/native_animate.h&gt;中的结构体类型定义。  | 
+| ARKUI_MULTI_THREAD_NATIVE_NODE  | 多线程UI组件相关接口类型。详见&lt;arkui/native_node.h&gt;中的结构体类型定义。  |
 
 
 ### ArkUI_NavDestinationState
@@ -18335,3 +18337,86 @@ void OH_ArkUI_TextCascadePickerRangeContentArray_Destroy(ArkUI_TextCascadePicker
 | 名称 | 描述 |
 | -------- | -------- |
 | handle | 指向TextCascadePickerRangeContentHandle的指针。|
+
+
+### OH_ArkUI_PostAsyncUITask()
+
+```
+int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskData,
+    void (*asyncUITask)(void* asyncUITaskData), void (*onFinish)(void* asyncUITaskData))
+```
+**描述：**
+
+将UI任务抛到ArkUI框架提供的非UI线程中执行。
+
+适用于UI组件创建并行化场景，开发者可以使用此接口在非UI线程创建UI组件，创建完成后回到UI线程将其挂载到UI树上。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| context | UI实例对象指针。 |
+| asyncUITaskData | 开发者自定义数据指针，作为asyncUITask和onFinish的入参。 |
+| asyncUITask| 在非UI线程执行的函数。|
+| onFinish | asyncUITask执行完成后，在UI线程执行的函数。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) context对象无效或asyncUITask为空指针。
+
+### OH_ArkUI_PostUITask()
+
+```
+int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData))
+```
+**描述：**
+
+将UI任务抛到UI线程中执行。
+
+适用于UI组件创建并行化场景，当开发者需要在自己维护的非UI线程中创建UI组件，使用此接口在UI线程将非UI线程创建的组件挂载到UI树上。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| context | UI实例对象指针。  |
+| taskData | 开发者自定义数据指针，作为task的入参。 |
+| task | 在UI线程执行的函数。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) context对象无效或task为空指针。
+
+### OH_ArkUI_PostUITaskAndWait()
+
+```
+int32_t OH_ArkUI_PostUITaskAndWait(ArkUI_ContextHandle context, void* taskData, void (*task)(void* taskData))
+```
+**描述：**
+
+将UI任务抛到UI线程中执行，调用此接口的线程阻塞等待UI线程中的UI任务执行完成。
+
+适用于UI组件创建并行化场景，当开发者在非UI线程创建组件的过程中需要执行只支持UI线程的业务逻辑时，使用此接口回到UI线程执行业务逻辑，业务完成后继续在非UI线程创建组件。
+
+可能导致非UI线程长时间阻塞，不建议频繁使用。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| context | UI实例对象指针。  |
+| taskData | 开发者自定义数据指针，作为task的入参。 |
+| task | 在UI线程执行的函数。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) context对象无效或task为空指针。

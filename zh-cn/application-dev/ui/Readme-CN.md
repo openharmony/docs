@@ -144,6 +144,7 @@
     - [构建自定义组件](ndk-build-custom-components.md)
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
     - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
+    - [NDK支持多线程创建组件](ndk-build-on-multi-thread.md)
   - 使用互操作功能构建UI<!--arkts-use-interop-ui-->
     - [ArkTS1.2使用ArkTS1.1自定义组件](interop-compatible-component.md)
     - [ArkTS1.2使用ArkTS1.1全局自定义构建函数](interop-compatible-builder.md)
