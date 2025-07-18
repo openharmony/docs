@@ -7437,6 +7437,9 @@ getSystemResourceManager(): ResourceManager
 
 > **说明**
 >
+> 当前接口获取到的系统资源管理ResourceManager对象中的Configuration为默认值。默认值如下：
+> {"locale": "", "direction": -1, "deviceType": -1, "screenDensity": 0, "colorMode": 1, "mcc": 0, "mnc": 0}。
+> 
 > 从API version 10开始支持，从API version 20开始废弃，建议使用[resourceManager.getSysResourceManager](#resourcemanagergetsysresourcemanager20)替代。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
