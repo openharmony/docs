@@ -559,7 +559,7 @@ float OH_ArkUI_DragEvent_GetPreviewTouchPointX(ArkUI_DragEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| float | float 返回拖拽跟手点的x轴坐标，单位为PX，传入参数无效时返回默认值 0。 |
+| float | float 返回拖拽跟手点的x轴坐标，单位为px，传入参数无效时返回默认值0。 |
 
 ### OH_ArkUI_DragEvent_GetPreviewTouchPointY()
 
@@ -585,7 +585,7 @@ float OH_ArkUI_DragEvent_GetPreviewTouchPointY(ArkUI_DragEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| float | float 返回拖拽跟手点的y轴坐标，单位为PX，传入参数无效时返回默认值 0。 |
+| float | float 返回拖拽跟手点的y轴坐标，单位px，传入参数无效时返回默认值0。|
 
 ### OH_ArkUI_DragEvent_GetPreviewRectWidth()
 
@@ -611,7 +611,7 @@ float OH_ArkUI_DragEvent_GetPreviewRectWidth(ArkUI_DragEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| float | float 返回拖拽跟手图宽度，单位为PX，传入参数无效时返回默认值 0。 |
+| float | float 返回拖拽跟手图宽度，单位为px，传入参数无效时返回默认值0。|
 
 ### OH_ArkUI_DragEvent_GetPreviewRectHeight()
 
@@ -637,7 +637,7 @@ float OH_ArkUI_DragEvent_GetPreviewRectHeight(ArkUI_DragEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| float | float 返回拖拽跟手图高度，单位为PX，传入参数无效时返回默认值 0。 |
+| float | float 返回拖拽跟手图高度，单位为px，传入参数无效时返回默认值0。|
 
 ### OH_ArkUI_DragEvent_GetTouchPointXToWindow()
 
@@ -663,7 +663,7 @@ float OH_ArkUI_DragEvent_GetTouchPointXToWindow(ArkUI_DragEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| float | float 返回跟手点相对于window的x轴坐标，单位为PX，传入参数无效时返回默认值 0。 |
+| float | float 返回跟手点相对于window的x轴坐标，单位为px，传入参数无效时返回默认值0。|
 
 ### OH_ArkUI_DragEvent_GetTouchPointYToWindow()
 
@@ -689,7 +689,7 @@ float OH_ArkUI_DragEvent_GetTouchPointYToWindow(ArkUI_DragEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| float | float 返回跟手点相对于window的y轴坐标，单位为PX，传入参数无效时返回默认值 0。 |
+| float | float 返回跟手点相对于window的y轴坐标，单位为px，传入参数无效时返回默认值0。|
 
 ### OH_ArkUI_DragEvent_GetTouchPointXToDisplay()
 
@@ -715,7 +715,7 @@ float OH_ArkUI_DragEvent_GetTouchPointXToDisplay(ArkUI_DragEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| float | float 返回拖拽跟手点相对于当前Display的x轴坐标，单位为PX，传入参数无效时返回默认值 0。 |
+| float | float 返回拖拽跟手点相对于当前Display的x轴坐标，单位为px，传入参数无效时返回默认值0。|
 
 ### OH_ArkUI_DragEvent_GetTouchPointYToDisplay()
 
@@ -741,7 +741,7 @@ float OH_ArkUI_DragEvent_GetTouchPointYToDisplay(ArkUI_DragEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| float | float 返回拖拽跟手点相对于当前Display的y轴坐标，单位为PX，传入参数无效时返回默认值 0。 |
+| float | float 返回拖拽跟手点相对于当前Display的y轴坐标，单位为px，传入参数无效时返回默认值0。|
 
 ### OH_ArkUI_DragEvent_GetVelocityX()
 
@@ -767,7 +767,7 @@ float OH_ArkUI_DragEvent_GetVelocityX(ArkUI_DragEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| float | float 返回当前拖拽的x轴方向移动速度，单位为PX/s，传入参数无效时返回默认值 0。 |
+| float | float 返回当前拖拽的x轴方向移动速度，单位为px/s，传入参数无效时返回默认值0。|
 
 ### OH_ArkUI_DragEvent_GetVelocityY()
 
@@ -793,7 +793,7 @@ float OH_ArkUI_DragEvent_GetVelocityY(ArkUI_DragEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| float | float 返回当前拖拽的y轴方向移动速度，单位为PX/s，传入参数无效时返回默认值 0。 |
+| float | float 返回当前拖拽的y轴方向移动速度，单位为px/s，传入参数无效时返回默认值0。|
 
 ### OH_ArkUI_DragEvent_GetVelocity()
 
@@ -819,7 +819,7 @@ float OH_ArkUI_DragEvent_GetVelocity(ArkUI_DragEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| float | float 返回当前拖拽移动速度，单位为PX/s，传入参数无效时返回默认值 0。 |
+| float | float 返回当前拖拽移动速度，单位为px/s，传入参数无效时返回默认值0。|
 
 ### OH_ArkUI_DragEvent_GetModifierKeyStates()
 
@@ -1493,7 +1493,7 @@ int32_t OH_ArkUI_DragAction_SetTouchPointX(ArkUI_DragAction* dragAction, float x
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_DragAction](capi-arkui-nativemodule-arkui-dragaction.md)* dragAction | 拖拽行为对象。 |
-| float x | 跟手点坐标x值。 |
+| float x | 跟手点坐标x值，单位为px。 |
 
 **返回：**
 
@@ -1520,7 +1520,7 @@ int32_t OH_ArkUI_DragAction_SetTouchPointY(ArkUI_DragAction* dragAction, float y
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_DragAction](capi-arkui-nativemodule-arkui-dragaction.md)* dragAction | 拖拽行为对象。 |
-| float y | 跟手点坐标y值。 |
+| float y | 跟手点坐标y值，单位为px。 |
 
 **返回：**
 
@@ -1916,7 +1916,7 @@ ArkUI_ErrorCode OH_ArkUI_DragEvent_IsRemote(ArkUI_DragEvent* event, bool* isRemo
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_DragEvent](capi-arkui-nativemodule-arkui-dragevent.md)* event | 指向<b>ArkUI_DragEvent</b>对象的指针。 |
-| bool* isRemote | 布尔变量指针，用来接收是否是跨设备拖拽。 |
+| bool* isRemote | 布尔变量指针，用来接收是否是跨设备拖拽。true表示是跨设备拖拽，false表示非跨设备拖拽。|
 
 **返回：**
 
