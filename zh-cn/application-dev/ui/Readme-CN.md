@@ -11,6 +11,7 @@
       - [渲染控制](arkts-v1.2-deprecated-rendering-control-apis.md)
       - [弹窗类组件](arkts-v1.2-deprecated-dialog-apis.md)
       - [表单类组件](arkts-v1.2-deprecated-form-apis.md)
+      - [文本类组件](arkts-v1.2-deprecated-text-apis.md)
       - [布局回调](arkts-v1.2-deprecated-inspector.md)
       - [路由和导航类接口](arkts-v1.2-deprecated-router-navigation.md)
       - [动效类接口](arkts-v1.2-deprecated-animation.md)
