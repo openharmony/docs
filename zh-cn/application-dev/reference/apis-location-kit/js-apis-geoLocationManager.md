@@ -252,6 +252,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | -------- | -------- | -------- | -------- | -------- |
 | geofenceId | number| 否 | 否 | 表示地理围栏ID。 |
 | transitionEvent | [GeofenceTransitionEvent](#geofencetransitionevent12) | 否 | 否 | 表示当前发生的地理围栏事件。 |
+| beaconFence<sup>20+</sup> | [BeaconFence](#beaconfence20) | 否 | 是 | beacon围栏的参数配置。仅beacon围栏使用。<br/>从API version 20开始，支持该字段。 |
 
 
 ## GnssGeofenceRequest<sup>12+</sup>
@@ -575,7 +576,7 @@ beacon围栏的参数配置。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| identifier | string | 否 | 否 | 围栏标识标识。 |
+| identifier | string | 否 | 否 | beacon围栏标识。 |
 | type | [BeaconFenceInfoType](#beaconfenceinfotype20) | 否 | 否 | beacon围栏信息类型。 |
 | manufactureData | [BeaconManufactureData](#beaconmanufacturedata20) | 否 | 是 | beacon设备制造商数据。 |
 
@@ -2734,7 +2735,7 @@ getDistanceBetweenLocations(location1: Location, location2: Location): number
   ```
   
   
-  ## geoLocationManager.addBeaconFence<sup>20+</sup>
+## geoLocationManager.addBeaconFence<sup>20+</sup>
 
 addBeaconFence(fenceRequest: BeaconFenceRequest): Promise&lt;number&gt;
 
@@ -2743,6 +2744,8 @@ addBeaconFence(fenceRequest: BeaconFenceRequest): Promise&lt;number&gt;
 APP可以在入参[BeaconFenceRequest](#beaconfencerequest20)中传入回调函数用于接收围栏事件；也可以传入[FenceExtensionAbility](js-apis-app-ability-FenceExtensionAbility.md)名称，在系统识别到围栏事件发生时通知APP。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Geofence
 
@@ -2825,6 +2828,8 @@ removeBeaconFence(beaconFence?: BeaconFence): Promise&lt;void&gt;
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
 **系统能力**：SystemCapability.Location.Location.Geofence
 
 **参数**：
@@ -2847,7 +2852,7 @@ removeBeaconFence(beaconFence?: BeaconFence): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 |201 | Permission verification failed. The application does not have the permission required to call the API.                 |
-|801 | Capability not supported. Failed to call ${geoLocationManager.addBeaconFence} due to limited device capabilities.          |
+|801 | Capability not supported. Failed to call ${geoLocationManager.removeBeaconFence} due to limited device capabilities.          |
 |3501602 | Failed to delete the fence due to incorrect beacon fence information. |
 
 
@@ -2876,5 +2881,31 @@ removeBeaconFence(beaconFence?: BeaconFence): Promise&lt;void&gt;
     geoLocationManager.removeBeaconFence(beacon);
   } catch(error) {
     console.error("removeBeaconFence: errCode" + error.code + ", errMessage" + error.message);
+  }
+  ```
+## geoLocationManager.isBeaconFenceSupported<sup>20+</sup>
+
+isBeaconFenceSupported(): boolean;
+
+判断是否支持beacon围栏。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Geofence
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | true：支持beacon围栏。<br/>false：不支持beacon围栏。 |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+      let isBeaconFenceSupported = geoLocationManager.isBeaconFenceSupported();
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
