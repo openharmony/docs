@@ -452,7 +452,6 @@ getUserRestricted(admin: Want, settingsItem: string): boolean
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { restrictions } from '@kit.MDMKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
