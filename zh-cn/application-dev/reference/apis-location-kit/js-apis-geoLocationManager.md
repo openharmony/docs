@@ -2759,7 +2759,7 @@ APP可以在入参[BeaconFenceRequest](#beaconfencerequest20)中传入回调函�
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise<number> | Promise对象，返回beacon围栏ID。 |
+  | Promise&lt;number&gt; | Promise对象，返回beacon围栏ID。 |
 
 **错误码**：
 
@@ -2843,7 +2843,7 @@ removeBeaconFence(beaconFence?: BeaconFence): Promise&lt;void&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise<void> | Promise对象。无返回结果的Promise对象。 |
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
