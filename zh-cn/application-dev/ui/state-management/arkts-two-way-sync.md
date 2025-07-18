@@ -1,7 +1,7 @@
 # $$语法：系统组件双向同步
 
 
-$$运算符为系统组件提供TS变量的引用，使得TS变量和系统组件的内部状态保持同步。
+`$$`运算符为系统组件提供TS变量的引用，使得TS变量和系统组件的内部状态保持同步。
 
 
 内部状态具体指什么取决于组件。例如，[TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)组件的text参数。
