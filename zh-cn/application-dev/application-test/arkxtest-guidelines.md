@@ -557,7 +557,7 @@ hdc shell uitest dumpLayout -p /data/local/tmp/1.json
 |-------|--------------|------|-----------------|
 | -W    | \<true/false> | 否   | 录制过程中是否保存操作坐标对应的控件信息到/data/local/tmp/record.csv文件中。true表示保存控件信息，false表示仅记录坐标信息，不设置时默认为true。 |
 | -l    |              | 否   | 在每次操作后保存当前布局信息，文件保存路径：/data/local/tmp/layout_录制启动时间戳_操作序号.json。 | 
-| -c    | \<true/false> | 否   | 是否将录制到的操作事件信息打印到控制台，true表示打印，flase表示打印，不设置时默认为true。 | 
+| -c    | \<true/false> | 否   | 是否将录制到的操作事件信息打印到控制台，true表示打印，false表示打印，不设置时默认为true。 | 
 
 ```bash
 # 将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。
@@ -901,11 +901,11 @@ UI测试用例执行失败，查看hilog日志发现日志中有“Get windows f
 hdc shell param set persist.ace.testmode.enabled 1
 ```
 
-**2. 失败日志有“uitest-api dose not allow calling concurrently”错误信息**
+**2. 失败日志有“uitest-api does not allow calling concurrently”错误信息**
 
 **问题描述**
 
-UI测试用例执行失败，查看hilog日志发现日志中有“uitest-api dose not allow calling concurrently”错误信息。
+UI测试用例执行失败，查看hilog日志发现日志中有“uitest-api does not allow calling concurrently”错误信息。
 
 **可能原因**
 
