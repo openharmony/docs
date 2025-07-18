@@ -45,6 +45,34 @@ class EntryAbility extends AccessibilityExtensionAbility {
 let p : Parameter = { selectTextBegin: '0', selectTextEnd: '8', selectTextInForWard: true }
 ```
 
+## AccessibilityGrid<sup>20+</sup>
+
+辅助功能网格信息。
+详见[AccessibilityElement.currentItem](#accessibilityelement12)。
+
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
+
+| 名称                  | 类型     | 只读  |可选| 说明                                |
+| ------------------- | ------ | ---- | ----|--------------------------------- |
+| rowIndex             | number | 是   |是 |网格行索引。                 |
+| columnIndex          | number | 是  | 是|网格列索引。        |
+
+
+## AccessibilitySpan<sup>20+</sup>
+
+辅助功能span信息。
+详见[AccessibilityElement.spans](#accessibilityelement12)。
+
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
+
+| 名称                  | 类型     | 只读  |可选| 说明                                |
+| ------------------- | ------ | ---- | ----|--------------------------------- |
+| spanId             | number | 是   |是 |spanId。                 |
+| spanText          | string | 是  | 是|span文本。        |
+| accessibilityText          | string | 是  | 是|span 的辅助功能文本。        |
+| accessibilityDescription          | string | 是  | 是|span的辅助功能描述。        |
+| accessibilityLevel          | string | 是  | 是|span的辅助功能级别。        |
+
 
 ## startAbility<sup>12+</sup>
 
@@ -481,11 +509,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayId: number = 0;
 
-let windowList: AccessibilityElement[] = axContext.getAccessibilityWindowsSync(displayId);
-
-for (let window of windowList) {
-  console.log(`window id: ${window.windowId}`);
-}
+try {
+    let windowList: AccessibilityElement[] = axContext.getAccessibilityWindowsSync(displayId);
+    for (let window of windowList) {
+      console.log(`window id: ${window.windowId}`);
+    }
+  } catch (err) {
+      console.log(`[FAILED]: ${err.code} ${err.message}`)
+  }
 ```
 
 ## AccessibilityElement<sup>12+</sup>
@@ -555,8 +586,8 @@ for (let window of windowList) {
 | accessibilityGroup<sup>20+</sup>  | boolean                                                            | 是  | 否  | 元素是否为无障碍组。值为 **true** 表示元素是无障碍组，**false** 表示相反情况。<br>默认值：**false**。|
 | accessibilityLevel<sup>20+</sup>             | string                                                             | 是  | 否  | 组件的无障碍级别。|
 | navDestinationId<sup>20+</sup>             | number                                                             | 是  | 否  | 组件的导航目标 ID。|
-| currentItem<sup>20+</sup>             | AccessibilityGrid                                                             | 是  | 否  | 组件网格中的当前项。|
-| spans<sup>20+</sup>             | AccessibilitySpan[]                                                             | 是  | 否  | 组件的跨度数组。|
+| currentItem<sup>20+</sup>             | [AccessibilityGrid](#accessibilitygrid20)                                                             | 是  | 否  | 组件网格中的当前项。|
+| spans<sup>20+</sup>             | [AccessibilitySpan](#accessibilityspan20)[]                                                             | 是  | 否  | 组件的跨度数组。|
 | accessibilityVisible<sup>20+</sup>  | boolean                                                            | 是  | 否  | 组件是否无障碍可见。|
 | mainWindowId<sup>20+</sup>             | number                                                             | 是  | 否 | 组件的主窗口 ID。|
 | clip<sup>20+</sup>  | boolean                                                            | 是  | 否  | 组件是否需要裁剪。|
