@@ -2,19 +2,19 @@
 
 ## 场景介绍
 
-[napi_create_async_work](../reference/native-lib/napi.md#napi_create_async_work)是Node-API接口之一，用于创建一个异步工作对象。可以在需要执行耗时操作的场景中使用，以避免阻塞env所在的ArkTS线程，确保应用程序的性能和响应性能。例如以下场景：
+[napi_create_async_work](../reference/native-lib/napi.md#napi_create_async_work)是Node-API接口之一，用于创建一个异步工作对象。在需要执行耗时操作的场景中使用，避免阻塞env所在的ArkTS线程，确保应用程序的性能和响应性能。例如以下场景：
 
 - 文件操作：读取大型文件或执行复杂的文件操作时，可以使用异步工作对象来避免阻塞env所在的ArkTS线程。
 
-- 网络请求：当需要进行网络请求并等待响应时，使用异步工作对象可以确保主线程不被阻塞，从而提高应用程序的响应性能。
+- 网络请求：当需要进行网络请求并等待响应时，使用异步工作对象确保主线程不被阻塞，提高应用程序的响应性能。
 
-- 数据库操作：当需要执行复杂的数据库查询或写入操作时，使用异步工作对象可以确保主线程不被阻塞，从而提高应用程序的并发性能。
+- 数据库操作：当需要执行复杂的数据库查询或写入操作时，使用异步工作对象确保主线程不被阻塞，提高应用程序的并发性能。
 
-- 图像处理：当需要对大型图像进行处理或执行复杂的图像算法时，使用异步工作对象可以确保主线程不被阻塞，从而提高应用程序的实时性能。
+- 图像处理：当需要对大型图像进行处理或执行复杂的图像算法时，使用异步工作对象确保主线程不被阻塞，提高应用程序的实时性能。
 
-napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中的napi_value的生命周期管理进行了兜底。
+napi_queue_async_work接口使用uv_queue_work能力，并管理回调中napi_value的生命周期。
 
-异步调用支持callback方式和Promise方式，使用哪种方式由应用开发者决定。下面为两种方式的示例代码：
+异步调用支持callback和Promise两种方式，选择哪种方式由开发者决定。以下是两种方式的示例代码：
 
 ![NAPI 异步任务线程](figures/napi_async_work.png)
 
@@ -22,7 +22,7 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
 
 ![NAPI Promise异步流程](figures/napi_async_work_with_promise.png)
 
-1. 使用napi_create_async_work创建异步任务，并使用napi_queue_async_work将异步任务加入队列，等待执行。
+1. 使用napi_create_async_work创建异步任务，使用napi_queue_async_work将任务加入队列，等待执行。
 
    ```cpp
    // 调用方提供的data context，该数据会传递给execute和complete函数
@@ -92,7 +92,7 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
    ```
    <!-- @[napi_second_call_back_main](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/napi_init.cpp) -->
 
-4. 模块初始化以及ArkTS侧调用接口。
+4. 模块初始化和ArkTS侧调用接口。
 
    ```cpp
    // 模块初始化
@@ -223,6 +223,6 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
 
 ## 注意事项
 - 调用napi_cancel_async_work接口，无论底层uv是否失败都会返回napi_ok。若因为底层uv导致取消任务失败，complete callback中的status会传入对应错误值，请在complete callback中对status进行处理。
-- NAPI的异步工作项（napi_async_work）建议单次使用。napi_queue_async_work后，该napi_async_work需在complete回调执行时或执行后，通过napi_delete_async_work完成释放。同一个napi_async_work只允许释放一次，尝试重复释放会导致未定义行为。
-`napi_async_work`的`execute_cb`会运行在一个独立的工作线程，该线程从uv线程池中取出，不同工作线程之间互不影响。
-- 在任务的执行时序上，`napi_async_work`仅可保证`complete_cb`执行在`execute_cb`之后。对于不同`napi_async_work`，`execute_cb`执行在各自的工作线程上，因此无法保证不同`execute_cb`执行的先后时序。在对任务执行有顺序要求的情况下，推荐使用`napi_threadsafe_function`系列的接口，此类接口是保序的, 可参考[链接](use-napi-thread-safety.md)
+- NAPI的异步工作项（napi_async_work）建议单次使用。napi_queue_async_work后，该napi_async_work需在complete回调执行时或执行后，通过napi_delete_async_work完成释放。同一个napi_async_work只允许释放一次，重复释放会导致未定义行为。
+`napi_async_work`的`execute_cb`运行在一个独立的工作线程中，该线程从uv线程池中取出。不同工作线程之间互不影响。
+- 在任务的执行时序上，`napi_async_work`仅保证`complete_cb`在`execute_cb`之后执行。不同`napi_async_work`的`execute_cb`在各自的工作线程上运行，因此无法保证不同`execute_cb`的执行顺序。如果任务执行需要顺序，建议使用`napi_threadsafe_function`系列接口，这些接口是保序的。具体使用方法可参考[链接](use-napi-thread-safety.md)。
