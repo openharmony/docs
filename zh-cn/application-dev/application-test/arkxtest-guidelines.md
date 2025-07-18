@@ -724,11 +724,11 @@ UI测试用例执行失败，查看hilog日志发现日志中有“Get windows f
 hdc shell param set persist.ace.testmode.enabled 1
 ```
 
-**2. 失败日志有“uitest-api dose not allow calling concurrently”错误信息**
+**2. 失败日志有“uitest-api does not allow calling concurrently”错误信息**
 
 **问题描述**
 
-UI测试用例执行失败，查看hilog日志发现日志中有“uitest-api dose not allow calling concurrently”错误信息。
+UI测试用例执行失败，查看hilog日志发现日志中有“uitest-api does not allow calling concurrently”错误信息。
 
 **可能原因**
 
