@@ -422,7 +422,7 @@ predicate函数返回值说明：
   }
   const parts = [1, [2, 3], 4, 5, 6] as Array<number|Array<number>>
   const arr = flatten(parts)
-  console.log(arr); //[1,2,3,4,5,6]
+  console.log(arr) //[1,2,3,4,5,6]
   ```
 
 
