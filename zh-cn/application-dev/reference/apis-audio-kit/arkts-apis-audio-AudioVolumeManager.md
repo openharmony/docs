@@ -341,7 +341,7 @@ audioVolumeManager.off('appVolumeChange', appVolumeChangeCallback);
 
 getVolumeByStream(streamUsage: StreamUsage): number
 
-获取指定音频流的音量
+获取指定音频流的音量。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -349,7 +349,7 @@ getVolumeByStream(streamUsage: StreamUsage): number
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage)                                 | 是   | 要获取音量值的音频流。 |
+| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage)                                 | 是   | 需要获取音量值的音频流。 |
 
 **返回值：**
 
@@ -368,7 +368,7 @@ getVolumeByStream(streamUsage: StreamUsage): number
 **示例：**
 
 ```ts
-// 获取指定音频流的音量值
+// 获取指定音频流的音量值。
 import { BusinessError } from '@kit.BasicServicesKit';
 import { audio } from '@kit.AudioKit'
 
@@ -385,7 +385,7 @@ try {
 
 getMinVolumeByStream(streamUsage: StreamUsage): number
 
-获取指定音频流的最小音量
+获取指定音频流的最小音量。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -393,7 +393,7 @@ getMinVolumeByStream(streamUsage: StreamUsage): number
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage)                                 | 是   | 要获取最小音量值的音频流。 |
+| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage)                                 | 是   | 需要获取的最小音量值的音频流。 |
 
 **返回值：**
 
@@ -412,7 +412,7 @@ getMinVolumeByStream(streamUsage: StreamUsage): number
 **示例：**
 
 ```ts
-// 获取指定音频流的最小音量
+// 获取指定音频流的最小音量。
 import { BusinessError } from '@kit.BasicServicesKit';
 import { audio } from '@kit.AudioKit'
 
@@ -429,7 +429,7 @@ try {
 
 getMaxVolumeByStream(streamUsage: StreamUsage): number
 
-获取指定音频流的最小音量
+获取指定音频流的最大音量
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -437,7 +437,7 @@ getMaxVolumeByStream(streamUsage: StreamUsage): number
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage)                                 | 是   | 要获取最大音量值的音频流。 |
+| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage)                                 | 是   | 需要获取的最大音量值的音频流。 |
 
 **返回值：**
 
@@ -456,7 +456,7 @@ getMaxVolumeByStream(streamUsage: StreamUsage): number
 **示例：**
 
 ```ts
-// 获取指定音频流的最大音量
+// 获取指定音频流的最大音量。
 import { BusinessError } from '@kit.BasicServicesKit';
 import { audio } from '@kit.AudioKit'
 
@@ -473,7 +473,7 @@ try {
 
 isSystemMutedForStream(streamUsage: StreamUsage): boolean
 
-检查指定音频流是否静音
+检查指定音频流是否静音。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -481,13 +481,13 @@ isSystemMutedForStream(streamUsage: StreamUsage): boolean
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage)                                 | 是   | 要检查是否静音的音频流 |
+| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage)                                 | 是   | 检查是否为静音的音频流。 |
 
 **返回值：**
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| boolean | 音频流的静音状态。 |
+| boolean | 音频流是否为静音状态，true表示音频流已静音，false表示音频流未静音。 |
 
 **错误码：**
 
@@ -500,7 +500,7 @@ isSystemMutedForStream(streamUsage: StreamUsage): boolean
 **示例：**
 
 ```ts
-// 检查指定音频流是否静音
+// 检查指定音频流是否静音。
 import { BusinessError } from '@kit.BasicServicesKit';
 import { audio } from '@kit.AudioKit'
 
@@ -517,7 +517,7 @@ try {
 
 getVolumeInUnitOfDbByStream(streamUsage: StreamUsage, volumeLevel: number, device: DeviceType): number
 
-获取系统通过音频流，音量等级和设备类型计算出的音量db值
+获取系统通过音频流、音量等级和设备类型计算出的音量db值。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -525,15 +525,15 @@ getVolumeInUnitOfDbByStream(streamUsage: StreamUsage, volumeLevel: number, devic
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage)                                 | 是   | 音频流 |
-| volumeLevel     | number                                 | 是   | 音量值等级 |
-| device     | [DeviceType](arkts-apis-audio-e.md#deviceType)                                 | 是   | 设备类型 |
+| streamUsage     | [StreamUsage](arkts-apis-audio-e.md#streamusage)                                 | 是   | 音频流。 |
+| volumeLevel     | number                                 | 是   | 音量值等级。 |
+| device     | [DeviceType](arkts-apis-audio-e.md#devicetype)                                 | 是   | 设备类型。 |
 
 **返回值：**
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| number | 音频流的音量db值 |
+| number | 音频流的音量db值。 |
 
 **错误码：**
 
@@ -546,7 +546,7 @@ getVolumeInUnitOfDbByStream(streamUsage: StreamUsage, volumeLevel: number, devic
 **示例：**
 
 ```ts
-// 获取系统通过音频流，音量等级和设备类型计算出的音量db值
+// 获取系统通过音频流、音量等级和设备类型计算出的音量db值。
 import { BusinessError } from '@kit.BasicServicesKit';
 import { audio } from '@kit.AudioKit'
 
@@ -578,7 +578,7 @@ try {
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -596,7 +596,7 @@ audioVolumeManager.on('streamVolumeChange', audio.StreamUsage.STREAM_USAGE_MUSIC
 
 ## off('streamVolumeChange')<sup>20+</sup>
 
-off(type: 'streamVolumeChange', callback?: Callback<StreamVolumeEvent>): void
+off(type: 'streamVolumeChange', callback?: Callback\<StreamVolumeEvent>): void
 
 取消监听系统音频流音量变化事件（当系统音频流音量发生变化时触发）。使用callback异步回调。
 
@@ -611,7 +611,7 @@ off(type: 'streamVolumeChange', callback?: Callback<StreamVolumeEvent>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|

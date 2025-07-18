@@ -609,17 +609,17 @@ isStreamActive(streamUsage: StreamUsage): boolean
 
 | 参数名     | 类型                                | 必填 | 说明         |
 | ---------- | ----------------------------------- | ---- | ------------ |
-| streamUsage | [StreamVolumeEvent](arkts-apis-audio-i.md#streamvolumeevent20) | 是   | 音频流使用类型。 |
+| streamUsage | [StreamUsage](arkts-apis-audio-e.md#streamusage) | 是   | 音频流使用类型。 |
 
 **返回值：**
 
 | 类型                   | 说明                                                     |
 | ---------------------- | -------------------------------------------------------- |
-| boolean | 流的活跃状态。返回true表示活跃，返回false表示不活跃。 |
+| boolean | 流是否处于活跃状态。返回true表示活跃，返回false表示不活跃。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
