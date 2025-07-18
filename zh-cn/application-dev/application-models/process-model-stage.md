@@ -12,7 +12,7 @@
 - **主进程**：默认情况下，应用中（同一Bundle名称）的所有UIAbility<!--Del-->、ServiceExtensionAbility和DataShareExtensionAbility<!--DelEnd-->均是运行在同一个独立进程（主进程）中，即图1中的“Main Process1”。
 - **ExtensioinAbility进程**：应用中（同一Bundle名称）的所有同一类型ExtensionAbility<!--Del-->（除ServiceExtensionAbility和DataShareExtensionAbility外）<!--DelEnd-->均是运行在一个独立进程中，如图1中“FormExtensionAbility Process”、“其他类型ExtensionAbility Process”（其他类型的ExtensionAbility组件）。
 
-  特别地，对于继承自[UIExtensionAbility](./uiextensionability.md)的ExtensionAbility，可以为每个实例配置独立进程。例如ShareExtensionAbility可以指定每个ShareExtensionAbility实例分别运行在一个独立进程，详见[UIExtensionAbility](./uiextensionability.md)。
+  特别地，对于继承自[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)的ExtensionAbility，可以为每个实例配置独立进程。例如ShareExtensionAbility可以指定每个ShareExtensionAbility实例分别运行在一个独立进程，详见[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)。
 
 - **Render进程**：应用中的Web组件运行时，系统会为之分配一个Render进程，用于渲染。如图1中的“Render Process”。
 
