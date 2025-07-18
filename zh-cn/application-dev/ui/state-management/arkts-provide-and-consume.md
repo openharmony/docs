@@ -16,7 +16,7 @@
 >
 > 从API version 20开始，@Consume装饰的变量支持设置默认值。当查找不到@Provide的匹配结果时，@Consume装饰的变量会使用默认值进行初始化；当查找到@Provide的匹配结果时，@Consume装饰的变量会优先使用@Provide匹配结果的值，默认值不生效。
 >
-> 从API version 20开始，通过配置[BuilderNode](../../reference/apis-arkui/js-apis-arkui-builderNode.md)的[BuildOptions](../../reference/apis-arkui/js-apis-arkui-builderNode.md#buildoptions12)参数`enableProvideConsumeCrossing`为true，使得\@Provide和\@Consume支持跨[BuilderNode](../../reference/apis-arkui/js-apis-arkui-builderNode.md)双向同步。但需要注意，BuilderNode会在上树前构造节点，所以BuilderNode内部定义的\@Consume需要设置默认值，并在BuilderNode上树后，重新获取最近的\@Provide数据，与之建立双向同步关系。具体可见[\@Consume在跨BuilderNode场景下和\@Provide建立双向同步](#consume在跨buildernode场景下，和provide建立双向同步)。
+> 从API version 20开始，通过配置[BuilderNode](../../reference/apis-arkui/js-apis-arkui-builderNode.md)的[BuildOptions](../../reference/apis-arkui/js-apis-arkui-builderNode.md#buildoptions12)参数`enableProvideConsumeCrossing`为true，使得\@Provide和\@Consume支持跨[BuilderNode](../../reference/apis-arkui/js-apis-arkui-builderNode.md)双向同步。但需要注意，BuilderNode会在上树前构造节点，所以BuilderNode内部定义的\@Consume需要设置默认值，并在BuilderNode上树后，重新获取最近的\@Provide数据，与之建立双向同步关系。具体可见[\@Consume在跨BuilderNode场景下和\@Provide建立双向同步](#consume在跨buildernode场景下和provide建立双向同步)。
 
 ## 概述
 
@@ -771,7 +771,7 @@ struct Child {
 - Child是Parent的子组件，Child在初始化@Consume装饰的三个属性时，textOne根据'firstKey'别名绑定Parent中的provideOne属性，provideOne的值会覆盖textOne的默认值，所以textOne初始化的值为undefined；textTwo根据'secondKey'别名绑定Parent中的providedTwo属性，textTwo初始化的值为'the second provider'；textThree在祖先组件中不存在匹配结果，如果@Consume没有设置默认值，则会抛出运行时错误，示例中textThree有默认值'defaultValue'，所以textThree初始化的值为'defaultValue'。
 - @Consume装饰的属性设置的默认值仅在祖先组件没有匹配结果时才生效，有匹配结果时无影响。
 
-### \@Consume在跨BuilderNode场景下，和\@Provide建立双向同步
+### \@Consume在跨BuilderNode场景下和\@Provide建立双向同步
 BuilderNode支持\@Provide/\@Consume，需注意：
 1. 在BuilderNode子树中定义的\@Consume需要设置默认值，或者在子树中已存在配对的\@Provide，否则会发生运行时报错。
 2. BuilderNode上树后，设置默认值的\@Consume会向上查找\@Provide，根据key的匹配规则找到最近的\@Provide后，会和\@Provide建立双向同步关系。如果找不到配对的\@Provide，则\@Consume仍使用默认值。

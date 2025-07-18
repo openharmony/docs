@@ -1,6 +1,6 @@
 # @ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility) (System API)
 
-The AutoFillExtensionAbility module, inherited from [ExtensionAbility](js-apis-app-ability-extensionAbility.md), provides APIs for automatically filling in and saving accounts and passwords.
+The AutoFillExtensionAbility module provides APIs for automatically filling in and saving accounts and passwords. It inherits from [ExtensionAbility](js-apis-app-ability-extensionAbility.md).
 
 > **NOTE**
 > 
@@ -16,18 +16,20 @@ The AutoFillExtensionAbility module, inherited from [ExtensionAbility](js-apis-a
 import { AutoFillExtensionAbility } from '@kit.AbilityKit';
 ```
 
-## Properties
+## AutoFillExtensionAbility
+
+### Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext-sys.md)  | Yes| No| Context of the AutoFillExtensionAbility. This context is inherited from **ExtensionContext**.|
+| context | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext-sys.md)  | No| No| Context of the AutoFillExtensionAbility. This context inherits from **ExtensionContext**.|
 
 
-## AutoFillExtensionAbility.onCreate
+### onCreate
 
 onCreate(): void
 
@@ -48,7 +50,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionAbility.onFillRequest
+### onFillRequest
 
 onFillRequest(session: UIExtensionContentSession, request: FillRequest, callback: FillRequestCallback): void
 
@@ -99,7 +101,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionAbility.onSaveRequest
+### onSaveRequest
 
 onSaveRequest(session: UIExtensionContentSession, request: SaveRequest, callback: SaveRequestCallback): void
 
@@ -148,7 +150,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionAbility.onUpdateRequest<sup>12+</sup>
+### onUpdateRequest<sup>12+</sup>
 
 onUpdateRequest(request: UpdateRequest): void
 
@@ -176,11 +178,11 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionAbility.onSessionDestroy
+### onSessionDestroy
 
 onSessionDestroy(session: UIExtensionContentSession): void
 
-Called when a **UIExtensionContentSession** instance is destroyed for this AutoFillExtensionAbility.
+Called when a UIExtensionContentSession instance is destroyed for this AutoFillExtensionAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -203,7 +205,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionAbility.onForeground
+### onForeground
 
 onForeground(): void
 
@@ -224,7 +226,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionAbility.onBackground
+### onBackground
 
 onBackground(): void
 
@@ -245,7 +247,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void | Promise&lt;void&gt;
 

@@ -121,6 +121,8 @@ on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
 
 设置半模态窗口变化的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
@@ -159,7 +161,7 @@ async function onPickerStateChange(context: common.Context) {
 
 off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
 
-取消半模态窗口变化的监听事件，关闭后，不再进行该事件回调。
+取消半模态窗口变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 

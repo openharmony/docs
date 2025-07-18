@@ -7,7 +7,7 @@ ArkTS支持开发者自定义Native Sendable对象，Sendable对象提供了并�
 1. 接口声明中自定义Sendable类。
 
    ```ts
-   // Index.d.ts
+   // Index.d.ets
    @Sendable
    export class MyObject {
      constructor(arg: number);

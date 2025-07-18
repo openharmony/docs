@@ -1,4 +1,4 @@
-# @ohos.app.ability.appRecovery (appRecovery)
+# @ohos.app.ability.appRecovery (Application Recovery)
 
 The appRecovery module provides APIs for recovering faulty applications.
 

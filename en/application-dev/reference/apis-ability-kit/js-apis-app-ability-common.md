@@ -290,6 +290,19 @@ Defines the level-2 module UIServiceExtensionConnectCallback.
 | --- | --- |
 | [_UIServiceExtensionConnectCallback.default](js-apis-inner-application-uiServiceExtensionconnectcallback.md) | Level-2 module UIServiceExtensionConnectCallback.|
 
+## AppServiceExtensionContext<sup>20+</sup>
+
+type AppServiceExtensionContext = _AppServiceExtensionContext.default
+
+Defines the context environment for an [AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md), allowing you to access the resources of this ability.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Model restriction**: This API can be used only in the stage model.
+
+| Type| Description|
+| --- | --- |
+| [_AppServiceExtensionContext.default](js-apis-inner-application-appServiceExtensionContext.md) | Context environment of the [AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md).|
 
 **Example**
 
@@ -314,4 +327,5 @@ let embeddableUIAbilityContext: common.EmbeddableUIAbilityContext;
 let photoEditorExtensionContext: common.PhotoEditorExtensionContext;
 let uiServiceProxy : common.UIServiceProxy;
 let uiServiceExtensionConnectCallback : common.UIServiceExtensionConnectCallback;
+let appServiceExtensionContext : common.AppServiceExtensionContext;
 ```

@@ -1,6 +1,6 @@
 # @ohos.bundle.appControl (appControl) (System API)
 
-The appControl module provides APIs for setting, obtaining, and deleting the disposed status of an application. An application in the disposed status is forbidden to run. When a user clicks the application icon on the home screen, the corresponding page is displayed based on the disposal intent.  
+The module provides APIs for setting, obtaining, and deleting the disposed status of an application. An application in the disposed status is forbidden to run. When a user clicks the application icon on the home screen, the corresponding page is displayed based on the disposal intent.  
 
 > **NOTE**
 >
@@ -30,7 +30,7 @@ Sets the disposed status for an application. This API uses a promise to return t
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application).              |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-and-appidentifier-of-an-application).              |
 | disposedWant | Want  | Yes| Disposal intent of the application.|
 
 **Return value**
@@ -91,9 +91,9 @@ Sets the disposed status for an application. This API uses an asynchronous callb
 
 | Name      | Type                             | Mandatory  | Description                                   |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application).                     |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-and-appidentifier-of-an-application).                     |
 | disposedWant | Want  | Yes| Disposal intent of the application.|
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
+| callback    | AsyncCallback\<void> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -149,7 +149,7 @@ Sets the disposed status for an application. This API returns the result synchro
 
 | Name      | Type                             | Mandatory  | Description                                   |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application).                     |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-and-appidentifier-of-an-application).                     |
 | disposedWant | Want  | Yes| Disposal intent of the application.|
 
 **Error codes**
@@ -198,7 +198,7 @@ Obtains the disposed status of an application. This API uses a promise to return
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-and-appidentifier-of-an-application). |
 
 **Return value**
 
@@ -256,8 +256,8 @@ Obtains the disposed status of an application. This API uses an asynchronous cal
 
 | Name      | Type    | Mandatory  | Description                                 |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
-| callback    | AsyncCallback\<Want> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the disposed status obtained; otherwise, **err** is an error object.                   |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-and-appidentifier-of-an-application). |
+| callback    | AsyncCallback\<Want> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null** and **data** is the disposed status obtained; otherwise, **err** is an error object.                   |
 
 **Error codes**
 
@@ -310,7 +310,7 @@ Obtains the disposed status of an application. This API returns the result synch
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-and-appidentifier-of-an-application). |
 
 **Return value**
 
@@ -364,7 +364,7 @@ Deletes the disposed status for an application. This API uses a promise to retur
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appId  | string | Yes   | appId or appIdentifier of the target application. If a rule is set using appId, it must be deleted using appId; the same principle applies to appIdentifier.<br>**NOTE**<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-and-appidentifier-of-an-application).<br>[appIdentifier](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo) is also the unique identifier of an application. It is a random string allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers. For details about how to obtain the value, see [Obtaining appIdentifier of an Application](#obtaining-appid-and-appidentifier-of-an-application). |
 
 **Return value**
 
@@ -422,8 +422,8 @@ Deletes the disposed status for an application. This API uses an asynchronous ca
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
+| appId  | string | Yes   | appId or appIdentifier of the target application. If a rule is set using appId, it must be deleted using appId; the same principle applies to appIdentifier.<br>**NOTE**<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-and-appidentifier-of-an-application).<br>[appIdentifier](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo) is also the unique identifier of an application. It is a random string allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers. For details about how to obtain the value, see [Obtaining appIdentifier of an Application](#obtaining-appid-and-appidentifier-of-an-application). |
+| callback    | AsyncCallback\<void> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the operation is successful, **err** is **null**. otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -474,7 +474,7 @@ Deletes the disposed status for an application or an application clone. This API
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appId  | string | Yes   | appId or appIdentifier of the target application. If a rule is set using appId, it must be deleted using appId; the same principle applies to appIdentifier.<br>**NOTE**<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-and-appidentifier-of-an-application).<br>[appIdentifier](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo) is also the unique identifier of an application. It is a random string allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers. For details about how to obtain the value, see [Obtaining appIdentifier of an Application](#obtaining-appid-and-appidentifier-of-an-application). |
 | appIndex<sup>12+</sup>   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to delete the disposed status of the main application. A value greater than 0 means to delete the disposed status of the application clone. |
 
 **Error codes**
@@ -506,9 +506,10 @@ try {
 }
 ```
 
-## Obtaining appId of an Application
+## Obtaining appId and appIdentifier of an Application
 
-**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. It can be obtained by calling [getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo14).
+**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. It can be obtained by calling [getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo14).<br>
+[appIdentifier](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo) is also the unique identifier of an application. It is a random string allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.
 
 **Example**
 
@@ -518,11 +519,14 @@ import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.example.myapplication';
 let appId: string;
+let appIdentifier: string;
 try {
   bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
     .then((data) => {
       appId = data.signatureInfo.appId;
+      appIdentifier = data.signatureInfo.appIdentifier;
       console.info("appId is " + appId);
+      console.info("appIdentifier is " + appIdentifier);
     }).catch((error: BusinessError) => {
       let message = (error as BusinessError).message;
       console.error("getBundleInfo failed " + message);
@@ -549,8 +553,8 @@ Obtains the disposed rule of an application or an application clone.
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
-| appIndex<sup>12+</sup>   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to obtain the disposed rule of the main application. A value greater than 0 means to obtain the disposed rule of the application clone.   |
+| appId  | string | Yes   | appId or appIdentifier of the target application. If a rule is set using appId, it must be obtained using appId; the same principle applies to appIdentifier.<br>**NOTE**<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-and-appidentifier-of-an-application).<br>[appIdentifier](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo) is also the unique identifier of an application. It is a random string allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers. For details about how to obtain the value, see [Obtaining appIdentifier of an Application](#obtaining-appid-and-appidentifier-of-an-application). |
+| appIndex<sup>12+</sup>   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to obtain the disposed rule of the main application. A value greater than 0 means to obtain the disposed rule of the application clone with the specified index.   |
 
 **Return value**
 
@@ -605,9 +609,9 @@ Sets the disposed rule for an application or an application clone.
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appId  | string | Yes   | appId or appIdentifier of the target application. If a rule is set using appId, it overwrites the one set with appIdentifier, and the reverse is also true.<br>**NOTE**<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-and-appidentifier-of-an-application).<br>[appIdentifier](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo) is also the unique identifier of an application. It is a random string allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers. For details about how to obtain the value, see [Obtaining appIdentifier of an Application](#obtaining-appid-and-appidentifier-of-an-application). |
 | rule | [DisposedRule](#disposedrule11) | Yes| Disposed rule to set.|
-| appIndex<sup>12+</sup>   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to set the disposed rule for the main application. A value greater than 0 means to set the disposed rule for the application clone.           |
+| appIndex<sup>12+</sup>   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to set the disposed rule for the main application. A value greater than 0 means to set the disposed rule for the application clone with the specified index.           |
 
 **Error codes**
 
@@ -660,6 +664,93 @@ try {
 }
 ```
 
+## appControl.setDisposedRules<sup>20+</sup>
+
+setDisposedRules(disposedRuleConfigurations: Array\<DisposedRuleConfiguration\>): void
+
+Sets disposed rules in batches for an application or an application clone.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+
+**Parameters**
+
+| Name                    | Type                                                        | Mandatory| Description                                                        |
+| -------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| disposedRuleConfigurations | Array<[DisposedRuleConfiguration](#disposedruleconfiguration20)> | Yes  | Configuration for the disposed rules in batches, including the appId of the target application, the index of the application clone, and the rules themselves. The maximum number of disposed rules in an array is 1000.<br>**NOTE**<br>1. If multiple **DisposedRuleConfiguration** entries in the array have the same appId and appIndex, the later entry will overwrite the earlier one.<br>2. If an application already has set disposed rules, re-setting the rules will replace the existing ones. Identical appId and appIndex values indicate the same application instance.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Permission denied. A non-system application is not allowed to call a system API. |
+| 801      | Capability not supported.                                    |
+| 17700005 | The specified app ID is invalid.                             |
+| 17700061 | AppIndex is not in the valid range.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { appControl, Want, bundleManager } from '@kit.AbilityKit';
+
+let want: Want = {
+  bundleName: 'com.example.myapplication',
+  moduleName: 'entry',
+  abilityName: 'EntryAbility'
+};
+let elementName: bundleManager.ElementName = {
+  bundleName: 'com.example.myapplication',
+  moduleName: 'entry',
+  abilityName: 'EntryAbility'
+};
+let rule: appControl.DisposedRule = {
+  want: want,
+  componentType: appControl.ComponentType.UI_ABILITY,
+  disposedType: appControl.DisposedType.BLOCK_APPLICATION,
+  controlType: appControl.ControlType.ALLOWED_LIST,
+  elementList: [
+    elementName
+  ],
+  priority: 100
+};
+
+let disposedRuleConfiguration: appControl.DisposedRuleConfiguration = {
+  appId: 'com.example.myapplication_BInGTMPMdc6v55s/UFIJHL5NLREXjOuxm/DsyMhlFmLAZC9/Gk+ruqS9OZr/dvFuaIaQQL1pKolvzK/zYNHvJ/I=',
+  appIndex: 0,
+  disposedRule: rule,
+};
+
+let disposedRuleConfigurations: Array<appControl.DisposedRuleConfiguration> = [];
+disposedRuleConfigurations.push(disposedRuleConfiguration);
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('setDisposedRules', { type: ButtonType.Normal })
+          .onClick(() => {
+            try {
+              appControl.setDisposedRules(disposedRuleConfigurations);
+              console.info('setDisposedRules success');
+            } catch (error) {
+              let err: BusinessError = error as BusinessError;
+              console.error(`setDisposedRules failed, errCode:${err.code}, message:${err.message}`);
+            }
+          });
+      }
+    }
+  }
+}
+```
+
 ## appControl.setUninstallDisposedRule<sup>15+</sup>
 
 setUninstallDisposedRule(appIdentifier: string, rule: UninstallDisposedRule, appIndex:? number): void
@@ -676,7 +767,7 @@ Sets an uninstallation disposed rule for an application or an application clone.
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appIdentifier  | string | Yes   | appIdentifier of the target application.<br> If the application does not have an appIdentifier, use its appId instead. **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appIdentifier  | string | Yes   | appIdentifier of the target application.<br>If the application does not have an appIdentifier, use its appId instead. **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-and-appidentifier-of-an-application). |
 | rule | [UninstallDisposedRule](#uninstalldisposedrule15) | Yes| Uninstallation disposed rule.|
 | appIndex   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to set the uninstallation disposed rule for the main application. A value greater than 0 means to set the uninstallation disposed rule for the application clone.       |
 
@@ -737,7 +828,7 @@ Obtains the uninstallation disposed rule of an application or an application clo
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appIdentifier  | string | Yes   | appIdentifier of the target application.<br> If the application does not have an appIdentifier, use its appId instead. **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appIdentifier  | string | Yes   | appIdentifier of the target application.<br>If the application does not have an appIdentifier, use its appId instead. **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-and-appidentifier-of-an-application). |
 | appIndex   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to obtain the uninstallation disposed rule of the main application. A value greater than 0 means to obtain the uninstallation disposed rule of the application clone.             |
 
 **Return value**
@@ -792,7 +883,7 @@ Deletes an uninstallation disposed rule for an application or an application clo
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appIdentifier  | string | Yes   | appIdentifier of the target application.<br> If the application does not have an appIdentifier, use its appId instead. **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appIdentifier  | string | Yes   | appIdentifier of the target application.<br>If the application does not have an appIdentifier, use its appId instead. **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-and-appidentifier-of-an-application). |
 | appIndex   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to delete the uninstallation disposed rule of the main application. A value greater than 0 means to delete the uninstallation disposed rule of the application clone.           |
 
 **Error codes**
@@ -832,14 +923,14 @@ Defines a disposed rule.
 
 **System API**: This is a system API.
 
-| Name     | Type          | Readable| Writable| Description                       |
+| Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| want | [Want](js-apis-app-ability-want.md)     | Yes  | Yes  | Page displayed when the application is disposed of.|
-| componentType | [ComponentType](#componenttype11)  | Yes  | Yes  | Type of application component that functions as the displayed page.|
-| disposedType | [DisposedType](#disposedrule11) | Yes| Yes| Type of application disposal.|
-| controlType | [ControlType](#controltype11) | Yes| Yes| Control type of application disposal.|
-| elementList | Array\<[ElementName](js-apis-bundleManager-elementName.md)> | Yes| Yes| List of application components to be disposed of or exempted.|
-| priority | number | Yes| Yes| Priority of the disposed rule.|
+| want | [Want](js-apis-app-ability-want.md)     | No  | No  | Page displayed when the application is disposed of.|
+| componentType | [ComponentType](#componenttype11)  | No  | No  | Type of application component that functions as the displayed page.|
+| disposedType | [DisposedType](#disposedrule11) | No  | No| Type of application disposal.|
+| controlType | [ControlType](#controltype11) | No  | No| Control type of application disposal.|
+| elementList | Array\<[ElementName](js-apis-bundleManager-elementName.md)> | No  | No| List of application components to be disposed of or exempted.|
+| priority | number | No  | No| Priority of the disposed rule, which is used to sort the query results of the rule list. The value is an integer. A smaller value indicates a higher priority.|
 
 ### ComponentType<sup>11+</sup>
 
@@ -885,24 +976,38 @@ Enumerates the control type of application disposal.
 
 Describes an uninstallation disposed rule.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
 
  **System API**: This is a system API.
 
-| Name     | Type          | Readable| Writable| Description                       |
+| Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| want | [Want](js-apis-app-ability-want.md)     | Yes  | Yes  | Page displayed when the application is disposed of.|
-| UninstallComponentType | [UninstallComponentType](#uninstallcomponenttype15)  | Yes  | Yes  | Type of the ability to start during interception.|
-| priority | number | Yes| Yes| Priority of the disposed rule.|
+| want | [Want](js-apis-app-ability-want.md)     | No  | No  | Page displayed when the application is disposed of.|
+| UninstallComponentType | [UninstallComponentType](#uninstallcomponenttype15)  | No  | No  | Type of the ability to start during interception.|
+| priority | number | No| No| Priority of the disposed rule, which is used to sort the query results of the rule list. The value is an integer. A smaller value indicates a higher priority.|
 
 ### UninstallComponentType<sup>15+</sup>
 
 Enumerates the types of abilities during uninstallation.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
 
  **System API**: This is a system API.
 
 | Name   | Value  | Description                |
 | ------- | ---- | -------------------- |
 | EXTENSION | 1    | Extension ability.|
+
+## DisposedRuleConfiguration<sup>20+</sup>
+
+Describes the configurations for setting disposed rules in batches.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+
+ **System API**: This is a system API.
+
+| Name        | Type                           | Read-Only| Optional| Description                                                        |
+| ------------ | ------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| appId        | string                          | No  | No  | appId or appIdentifier of the target application. Identical appId and appIndex values indicate the same application instance. If a rule is set using appId, it overwrites the one set with appIdentifier, and the reverse is also true.<br>**NOTE**<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain appId, see [Obtaining appId of an Application](#obtaining-appid-and-appidentifier-of-an-application).<br>appIdentifier is the unique ID of the application. It is the [app ID](https://developer.huawei.com/consumer/en/doc/app/agc-help-createharmonyapp-0000001945392297), which is a random string, allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers. For details about how to obtain appIdentifier, see [Obtaining appIdentifier of an application](#obtaining-appid-and-appidentifier-of-an-application).|
+| appIndex     | number                          | No  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to set the disposed rules for the main application. A value greater than 0 means to set the disposed rules for the application clone with the specified index.|
+| disposedRule | [DisposedRule](#disposedrule11) | No  | No  | Disposal rule of the application, including the type of the ability to be started during disposal.        |

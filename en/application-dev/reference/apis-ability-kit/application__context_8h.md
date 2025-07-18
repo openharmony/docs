@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **application_context.h** file declares the context capability at the application level.
+The file declares the context capability at the application level.
 
 **Library**: libability_runtime.so
 
@@ -36,5 +36,6 @@ The **application_context.h** file declares the context capability at the applic
 | [AbilityRuntime_ErrorCode](_ability_runtime.md#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetBundleCodeDir](_ability_runtime.md#oh_abilityruntime_applicationcontextgetbundlecodedir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level installation file directory.  |
 | [AbilityRuntime_ErrorCode](_ability_runtime.md#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetDistributedFilesDir](_ability_runtime.md#oh_abilityruntime_applicationcontextgetdistributedfilesdir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level distributed file directory.|
 | [AbilityRuntime_ErrorCode](_ability_runtime.md#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetCloudFileDir](_ability_runtime.md#oh_abilityruntime_applicationcontextgetcloudfiledir)(char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level cloud file directory.    |
+| [AbilityRuntime_ErrorCode](_ability_runtime.md#abilityruntime_errorcode) [OH_AbilityRuntime_ApplicationContextGetResourceDir](_ability_runtime.md#oh_abilityruntime_applicationcontextgetresourcedir)(const char* moduleName, char* buffer, const int32_t bufferSize, int32_t* writeLength) | Obtains the application-level resource directory.    |
 | [AbilityRuntime_ErrorCode](_ability_runtime.md#abilityruntime_errorcode) [OH_AbilityRuntime_StartSelfUIAbility](_ability_runtime.md#oh_abilityruntime_startselfuiability)([AbilityBase_Want](_ability_base.md#abilitybase_want) *want) | Starts the UIAbility of the current application.    |
 | [AbilityRuntime_ErrorCode](_ability_runtime.md#abilityruntime_errorcode) [OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions](_ability_runtime.md#oh_abilityruntime_startselfuiabilitywithstartoptions)([AbilityBase_Want](_ability_base.md#abilitybase_want) *want, [AbilityRuntime_StartOptions](_ability_runtime.md#abilityruntime_startoptions) *options) | Starts the UIAbility of the current application.    |

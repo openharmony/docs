@@ -1,6 +1,6 @@
 # AbilityStartCallback
 
-The AbilityStartCallback module describes the callback invoked to return the UIExtensionAbility startup result.
+The module describes the callback invoked to return the UIExtensionAbility startup result.
 
 > **NOTE**
 >
@@ -81,7 +81,7 @@ Called when the UIExtensionAbility is terminated.
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Result returned when [terminateSelfWithResult](js-apis-inner-application-uiExtensionContext.md#uiextensioncontextterminateselfwithresult12) is called to terminate the UIExtensionAbility.|
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Result returned when [terminateSelfWithResult](js-apis-inner-application-uiExtensionContext.md#terminateselfwithresult12) is called to terminate the UIExtensionAbility.|
 
 **Example**
 

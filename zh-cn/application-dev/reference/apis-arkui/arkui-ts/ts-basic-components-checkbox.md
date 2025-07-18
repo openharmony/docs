@@ -931,4 +931,4 @@ enum SelectedState {
 }
 ```
 
-![checkbox06](figures/checkbox06.gif)
+![checkbox6](figures/checkbox6.gif)

@@ -53,7 +53,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | --------------- | ---------------------------------------- | ---- | --------------- |
 | height          | [SheetSize](#sheetsize枚举说明)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 半模态高度，默认是LARGE。<br/>**说明：**<br/>API version 12之前，底部弹窗横屏时该属性设置无效，高度为距离屏幕顶部8vp。<br/>API version 12开始，底部弹窗横屏时该属性设置生效，最大高度为距离屏幕顶部8vp。<br/>API version 14开始，底部弹窗横屏时，无状态栏则最大高度为距离屏幕顶部8vp，有状态栏则最大高度为距离状态栏8vp。<br/>底部弹窗时，当设置detents时，该属性设置无效。<br/>底部弹窗竖屏时，最大高度为距离状态栏8vp。<br />居中弹窗和跟手弹窗设置类型为SheetSize.LARGE和SheetSize.MEDIUM无效，显示默认高度560vp。居中弹窗和跟手弹窗最小高度为320vp，最大高度为窗口短边的90%。当使用Length设置的高度和使用SheetSize.FIT_CONTENT自适应的高度大于最大高度，则显示最大高度，小于最小高度，则显示最小高度。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | detents<sup>11+</sup> | [([SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length)), ( [SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length))?, ([SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length))?] | 否 | 半模态页面的切换高度档位。<br/>**说明：**<br/>从API version 12开始，底部弹窗横屏时该属性设置生效。<br/>底部弹窗竖屏生效，元组中第一个高度为初始高度。<br />面板可跟手滑动切换档位，松手后是否滑动至目标档位有两个判断条件：速度和距离。速度超过阈值，则执行滑动至与手速方向一致的目标档位；速度小于阈值，则引入距离判断条件，当位移距离>当前位置与目标位置的1/2，滑动至与手速方向一致的目标档位，位移距离当前位置与目标位置的1/2，返回至当前档位。速度阈值：1000，距离阈值：50%。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| preferType<sup>11+</sup> | [SheetType](#sheettype11枚举说明) | 否 | 半模态页面的样式。<br/>**说明：**<br/>半模态在不同窗口所支持的显示类型：<br/>1. 宽度 < 600vp：底部、全屏。<br/>2. 600vp <= 宽度 < 840vp：底部、居中、跟手、侧边、全屏。默认居中样式。<br/>3. 宽度 >= 840vp：底部、居中、跟手、侧边、全屏。默认跟手样式。<br/>4. API version 20开始，窗口宽度大于600vp时，preferType支持设置为SheetType.SIDE。<br/>5. API version 20开始，preferType支持设置为SheetType.CONTENT_COVER，支持设置为全屏模态样式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| preferType<sup>11+</sup> | [SheetType](#sheettype11枚举说明) | 否 | 半模态页面的样式。<br/>**说明：**<br/>半模态在不同窗口所支持的显示类型：<br/>1. 宽度 < 600vp：底部、全屏。<br/>2. 600vp <= 宽度 < 840vp：底部、居中、跟手、侧边、全屏。默认居中样式。<br/>3. 宽度 >= 840vp：底部、居中、跟手、侧边、全屏。默认跟手样式。<br/>4. API version 20开始，窗口宽度大于600vp时，preferType支持设置为SheetType.SIDE。<br/>5. API version 20开始，preferType支持设置为SheetType.CONTENT_COVER，支持设置为全屏模态样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | 否 | 是否显示关闭图标。<br/> 2in1设备默认无按钮底板。<br/> 默认值：true。<br/> true：显示关闭图标。<br/> false：不显示关闭图标。<br/>**说明：**<br/>Resource需要为boolean类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | dragBar         | boolean                                  | 否    | 是否显示控制条。<br/>**说明：**<br/>半模态面板的detents属性设置多个不同高度并且设置生效时，默认显示控制条。否则不显示控制条。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | blurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 半模态面板的模糊背景。默认无模糊背景。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -179,31 +179,31 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 **bindSheet全屏模态样式不支持的接口**
 | 名称             | 说明              |
 | --------------- |  --------------- |
-| [height](#sheetoptions)          | 高度只支持全屏高度。 |
-| [width](#sheetoptions)           | 宽度只支持全屏宽度。 |
-| [detents](#sheetoptions) | 无挡位能力。|
-| [dragBar](#sheetoptions)         | 不支持拖动条。  |
-| [onDetentsDidChange](#sheetoptions) | 无挡位能力。|
-| [showClose](#sheetoptions)          | 不支持显示关闭按钮。 |
-| [title](#sheetoptions)          | 不支持显示标题栏。 |
-| [uiContext](#sheetoptions) | 不支持指定显示层级。|
-| [mode](#sheetoptions) | 不支持指定显示层级。 |
-| [scrollSizeMode](#sheetoptions) | 无挡位能力。  |
-| [keyboardAvoidMode](#sheetoptions) | 无避让软键盘能力，需自定义避让。 |
-| [enableHoverMode](#sheetoptions)  | 无悬停态避让能力。|
-| [hoverModeArea](#sheetoptions)    | 无悬停态避让能力。|
-| [detentSelection](#sheetoptions) | 无挡位能力。 |
-| [showInSubWindow](#sheetoptions) | 不支持指定显示层级。 |
-| [radius](#sheetoptions)         | 不支持圆角。  |
-| [borderWidth](#sheetoptions)         | 不支持边框宽度。  |
-| [borderColor](#sheetoptions)         | 不支持边框颜色。  |
-| [borderStyle](#sheetoptions)         | 不支持边框样式。  |
-| [shadow](#sheetoptions)         | 不支持阴影。  |
-| [maskColor](#sheetoptions)      | 不支持蒙层颜色。  |
-| [enableOutsideInteractive](#sheetoptions) | 不支持设置是否允许交互。  |
-| [effectEdge](#sheetoptions)     | 不支持边缘回弹效果。  |
-| [enableFloatingDragBar](#sheetoptions) | 不支持浮动拖动条。  |
-| [onWillSpringBackWhenDismiss](#sheetoptions) | 无回弹效果。  |
+| height          | 高度只支持全屏高度。 |
+| width           | 宽度只支持全屏宽度。 |
+| detents | 无挡位能力。|
+| dragBar         | 不支持拖动条。  |
+| onDetentsDidChange | 无挡位能力。|
+| showClose          | 不支持显示关闭按钮。 |
+| title          | 不支持显示标题栏。 |
+| uiContext | 不支持指定显示层级。|
+| mode | 不支持指定显示层级。 |
+| scrollSizeMode | 无挡位能力。  |
+| keyboardAvoidMode | 无避让软键盘能力，需自定义避让。 |
+| enableHoverMode  | 无悬停态避让能力。|
+| hoverModeArea    | 无悬停态避让能力。|
+| detentSelection | 无挡位能力。 |
+| showInSubWindow | 不支持指定显示层级。 |
+| radius         | 不支持圆角。  |
+| borderWidth         | 不支持边框宽度。  |
+| borderColor         | 不支持边框颜色。  |
+| borderStyle         | 不支持边框样式。  |
+| shadow         | 不支持阴影。  |
+| maskColor      | 不支持蒙层颜色。  |
+| enableOutsideInteractive | 不支持设置是否允许交互。  |
+| effectEdge     | 不支持边缘回弹效果。  |
+| enableFloatingDragBar | 不支持浮动拖动条。  |
+| onWillSpringBackWhenDismiss | 无回弹效果。  |
 
 ## SheetDismiss<sup>11+</sup>
 
@@ -506,9 +506,9 @@ struct bindSheetExample {
           title: { title: "title", subtitle: "subtitle" },
           preferType: SheetType.CENTER,
 
-          onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
-            if (DismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
-              DismissSheetAction.dismiss(); //注册dismiss行为
+          onWillDismiss: ((dismissSheetAction: DismissSheetAction) => {
+            if (dismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
+              dismissSheetAction.dismiss(); //注册dismiss行为
             }
           }),
 

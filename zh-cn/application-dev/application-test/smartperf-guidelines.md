@@ -974,7 +974,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     | ChildProcCpuUsage       | 子进程用户态CPU使用率。          |%| 
     | ProcSCpuUsage           | 进程内核态CPU使用率。     |%| 
     | ChildProcSCpuUsage      | 子进程内核态CPU使用率。     |%|
-    | gpuFrequ                | 整机GPU的频率。          |%|
+    | gpuFrequency            | 整机GPU的频率。          |%|
     | gpuLoad                 | 整机GPU的负载占比。      |%|
     | hw-instructions         | 执行的指令数。          |-|
     | cycles per instruction  | 每条指令的平均周期数。    |单位：ns|

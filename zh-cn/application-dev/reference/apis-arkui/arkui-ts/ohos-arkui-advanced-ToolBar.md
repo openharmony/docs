@@ -268,7 +268,7 @@ struct Index {
 ![zh-cn_image_toolbar_example01](figures/zh-cn_image_toolbar_example01.png)
 
 ### 示例2（设置工具栏自定义样式）
-该示例通过设置属性ToolBarModifier自定义工具栏高度、背景色、按压效果等样式。
+从API version 13开始，该示例通过设置属性ToolBarModifier自定义工具栏高度、背景色、按压效果等样式。
 ```ts
 import {
   SymbolGlyphModifier,
@@ -367,7 +367,7 @@ struct Index {
 
 
 ### 示例3（设置工具栏自定义播报）
-该示例通过设置工具栏子项属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+从API version 18开始，该示例通过设置工具栏子项属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
 import { ToolBar, ToolBarOptions, ItemState } from '@kit.ArkUI';
 
