@@ -327,7 +327,7 @@ RichEditor(this.options)
   })
   .onDidChange((rangeBefore: TextRange, rangeAfter: TextRange) => {
     this.infoShowController.addTextSpan('\n图文变化后，触发回调：\nrangeBefore:' + JSON.stringify(rangeBefore) +
-      '\nrangeAfter：' + JSON.stringify(rangeBefore), {
+      '\nrangeAfter：' + JSON.stringify(rangeAfter), {
       style: {
         fontColor: Color.Gray,
         fontSize: 10
@@ -412,13 +412,13 @@ struct on_cut_copy_paste {
   infoShowController: RichEditorController = new RichEditorController();
   infoShowOptions: RichEditorOptions = { controller: this.infoShowController }
 
-  PopDataFromPasteboard() {
+  popDataFromPasteboard() {
     let selection = this.controller.getSelection();
     let start = selection.selection[0];
     let end = selection.selection[1];
     if (start == end) {
       start = this.controller.getCaretOffset();
-      end = this.controller.getCaretOffset();
+      end = start;
     }
     let moveOffset = 0;
     let sysBoard = pasteboard.getSystemPasteboard();
@@ -460,7 +460,7 @@ struct on_cut_copy_paste {
               event.preventDefault();
             }
             console.info('RichEditor onPaste')
-            this.PopDataFromPasteboard()
+            this.popDataFromPasteboard()
           })
           .width(300)
           .height(70)
