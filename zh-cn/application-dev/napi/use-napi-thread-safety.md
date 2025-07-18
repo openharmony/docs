@@ -3,19 +3,19 @@
 
 ## 场景介绍
 
-napi_create_threadsafe_function是Node-API接口之一，用于创建一个线程安全的JavaScript函数。主要用于在多个线程之间共享和调用，而不会出现竞争条件或死锁。例如以下场景：
+napi_create_threadsafe_function是Node-API接口之一，用于创建一个线程安全的JavaScript函数。该函数主要用于在多个线程之间共享和调用，避免竞争条件和死锁。包含以下场景：
 
 
-- 异步计算：如果需要进行耗时的计算或IO操作，可以创建一个线程安全的函数，将计算或IO操作放在另一个线程中执行，避免阻塞主线程，提高程序的响应速度。
+- 异步计算：若需执行耗时的计算或IO操作，可创建线程安全的函数，在另一线程中完成计算或IO操作，避免阻塞主线程，提升程序响应速度。
 
-- 数据共享：如果多个线程需要访问同一份数据，可以创建一个线程安全的函数，确保数据的读写操作不会发生竞争条件或死锁等问题。
+- 数据共享：若多个线程需访问同一份数据，可以创建一个线程安全的函数，避免数据进行读写操作时发生竞争条件或死锁等问题。
 
-- 多线程编程：如果需要进行多线程编程，可以创建一个线程安全的函数，确保多个线程之间的通信和同步操作正确无误。
+- 多线程编程：若需要进行多线程编程，可以创建一个线程安全的函数，确保多个线程之间的通信和同步操作正确。
 
 
 ## 使用示例
 
-1. 在Native入口定义线程安全函数。
+1. 定义线程安全函数在Native入口。
    ```c++
    #include "napi/native_api.h"
    #include "hilog/log.h"
@@ -50,7 +50,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
    }
    ```
 
-2. 在工作线程中调用ExecuteWork，并执行线程安全函数。
+2. 在工作线程中调用ExecuteWork并执行线程安全函数。
    ```c++
    static void ExecuteWork(napi_env env, void *data)
    {
@@ -67,7 +67,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
    }
    ```
 
-3. 在JS线程执行异步回调函数。
+3. 在JS线程中执行异步回调函数。
    ```c++
    static constexpr int INT_NUM_2 = 2;   // int类型数值2
    static constexpr int INT_BUF_32 = 32; // int类型字符串长度32
@@ -134,7 +134,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
    }
    ```
 
-5. 模块初始化以及ArkTS侧调用接口。
+5. 初始化模块并在ArkTS侧调用接口。
    ```c++
    // 模块初始化
    static napi_value Init(napi_env env, napi_value exports) {
