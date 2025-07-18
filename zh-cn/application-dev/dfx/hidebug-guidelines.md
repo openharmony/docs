@@ -174,7 +174,7 @@ HiDebug可用于VM内存数据，GC统计数据的获取，以及VM堆转储。
 
 ## 获取应用Trace记录
 
-HiTrace提供业务流程调用链跟踪的维测接口，帮助开发者迅速获取指定业务流程调用链的运行日志，定位跨设备、跨进程、跨线程的故障问题，详情请参考[Trace性能跟踪](hitracemeter.md)。为了便于实现HiTrace的自动化采集，HiDebug模块提供了启动以及停止HiTrace采集的接口。
+HiTrace提供业务流程调用链跟踪的维测接口，帮助开发者迅速获取指定业务流程调用链的运行日志，定位跨设备、跨进程、跨线程的故障问题，详情请参考[Trace性能跟踪](hitracemeter-intro.md)。为了便于实现HiTrace的自动化采集，HiDebug模块提供了启动以及停止HiTrace采集的接口。
 
 ### 接口说明(ArkTS)
 

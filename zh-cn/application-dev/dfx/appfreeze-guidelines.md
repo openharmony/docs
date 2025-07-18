@@ -22,7 +22,7 @@
 | APP_INPUT_BLOCK | 用户输入响应超时。 |
 | LIFECYCLE_TIMEOUT | Ability生命周期切换超时。 |
 
-当应用发生上述故障时，为了保证可恢复，会杀死应用。并上报应用冻屏事件，可通过HiAppEvent订阅[应用冻屏事件](freeze-events.md)。
+当应用发生上述故障时，为了保证可恢复，会杀死应用。并上报应用冻屏事件，可通过HiAppEvent订阅[应用冻屏事件](hiappevent-watcher-freeze-events.md)。
 
 ### THREAD_BLOCK_6S 应用主线程卡死超时
 
@@ -191,7 +191,7 @@ mainHandler dump is:
 
 ```
 Tid:13680, Name:les.freezedebug
-#00 pc 000000000000186c [shmm](__kernel_gettimeofday+72)
+#00 pc 000000000000186c [shmm] (__kernel_gettimeofday+72)
 #01 pc 00000000001d887c /system/lib/ld-musl-aarch64.so.1(gettimeofday+40)(f1a940981720250b920ee26d2d76af5b)
 #02 pc 000000000058fb5c /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::builtins::BuiltinsDate::Now(panda::ecmascript::EcmaRuntimeCallInfo*)+48)(0f1928b77d36d27edb5512bd89806a6f)
 #03 pc 0000000000cff5dc /system/lib64/module/arkcompiler/stub.an(RTStub_PushCallArgsAndDispatchNative+40)

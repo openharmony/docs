@@ -1,12 +1,12 @@
 # hitrace
 
 
-hitrace命令行工具提供trace信息（包含系统提供的打点和开发者使用[HitraceMeter接口](hitracemeter.md)在应用中设置的打点）采集能力，支持多种方式采集文本格式或二进制格式trace信息，帮助开发者观测程序运行情况及定位故障问题。
+hitrace命令行工具提供trace信息（包含系统提供的打点和开发者使用[HitraceMeter接口](hitracemeter-intro.md)在应用中设置的打点）采集能力，支持多种方式采集文本格式或二进制格式trace信息，帮助开发者观测程序运行情况及定位故障问题。
 
 
 ## 环境要求
 
-- 根据hdc命令行工具指导，完成[ERROR:Invalid link:zh-cn_topic_0000002319218769.xml#xref476124935150255,link:zh-cn_topic_0000002313463717.xml#环境准备](zh-cn_topic_0000002313463717.xml#环境准备)。
+- 根据hdc命令行工具指导，完成[hdc](hdc.md#环境准备)。
 
 - 确保设备已正常连接，并执行hdc shell。
 
@@ -517,7 +517,7 @@ $ hitrace -z -b 102400 -t 10 sched freq idle disk -o /data/local/tmp/test.ftrace
 
 打点级别优先级从高到低分别为 M（Commercial）、C（Critical）、I（Info）、D（Debug），低于trace输出级别阈值的打点将不会生效。
 
-开发者可使用带trace级别的打点接口（参考[ERROR:Invalid link:zh-cn_topic_0000002319218769.xml#xref129391650154214,link:zh-cn_topic_0000002313498789.xml](zh-cn_topic_0000002313498789.xml)和[ERROR:Invalid link:zh-cn_topic_0000002319218769.xml#xref2939250184212,link:zh-cn_topic_0000002313465801.xml](zh-cn_topic_0000002313465801.xml)中的API version 19的trace打点接口），测试不同阈值下的trace输出是否符合预期。
+开发者可使用带trace级别的打点接口（参考[js-apis-hitracemeter](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)和[_hitrace](../reference/apis-performance-analysis-kit/capi-trace-h.md)中的API version 19的trace打点接口），测试不同阈值下的trace输出是否符合预期。
 
 ```shell
 // 设置trace输出级别阈值

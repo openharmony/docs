@@ -228,7 +228,7 @@
 
 1. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造资源泄漏场景，以触发资源泄漏事件。
 
-   此处需要使用[ERROR:Invalid link:zh-cn_topic_0000002284562324.xml#xref152853425150255,link:zh-cn_topic_0000002350032222.xml#hidebugsetappresourcelimit12](zh-cn_topic_0000002350032222.xml#hidebugsetappresourcelimit12)设置内存限制，造成内存泄漏，同步在“开发者选项”中打开“系统资源泄漏日志”(打开或关闭开关均需重启设备)。接口示例代码如下：
+   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存泄漏，同步在“开发者选项”中打开“系统资源泄漏日志”(打开或关闭开关均需重启设备)。接口示例代码如下：
 
    ```ts
     import hidebug from "@ohos.hidebug";
