@@ -702,7 +702,7 @@ try {
 
 setPermissionManagedState(admin: Want, applicationInstance: ApplicationInstance, permissions: Array\<string>, managedState: PermissionManagedState): void
 
-设置指定应用的[user_grant权限](../../security/AccessToken/permissions-for-all-user.md)的管理策略。部分权限需要同时授予才能生效。
+设置指定应用的[user_grant权限](../../security/AccessToken/permissions-for-all-user.md)的管理策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION
 
@@ -715,9 +715,9 @@ setPermissionManagedState(admin: Want, applicationInstance: ApplicationInstance,
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。      |
-| applicationInstance    | [ApplicationInstance<sup>20+</sup>](#applicationinstance20)  | 是 | 指定应用实例。 |
+| applicationInstance    | [ApplicationInstance](#applicationinstance20)  | 是 | 指定应用实例。 |
 | permissions | Array&lt;string&gt;  | 是 | 需要管理的权限名称列表，仅支持user_grant权限。 |
-| managedState | [PermissionManagedState<sup>20+</sup>](#permissionmanagedstate20) | 是 | 应用权限的管理策略。 |
+| managedState | [PermissionManagedState](#permissionmanagedstate20) | 是 | 应用权限的管理策略。 |
 
 **错误码**：
 
@@ -774,14 +774,14 @@ getPermissionManagedState(admin: Want, applicationInstance: ApplicationInstance,
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。      |
-| applicationInstance  | [ApplicationInstance<sup>20+</sup>](#applicationinstance20)  | 是 | 指定应用实例。 |
+| applicationInstance  | [ApplicationInstance](#applicationinstance20)  | 是 | 指定应用实例。 |
 | permission | string | 是 | 需要获取管理策略的权限名称，仅支持user_grant权限。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| [PermissionManagedState<sup>20+</sup>](#permissionmanagedstate20) | 应用权限的管理策略。|
+| [PermissionManagedState](#permissionmanagedstate20) | 应用权限的管理策略。|
 
 **错误码**：
 
