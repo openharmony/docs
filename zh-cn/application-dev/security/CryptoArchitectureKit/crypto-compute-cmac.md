@@ -102,7 +102,7 @@ CMAC通过使用分组密码（如AES）和一个密钥生成认证码，确保�
 
 5. 调用[Mac.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-3)，获取Mac计算结果。
 
-6. 调用[Mac.getMacLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmaclength)，获取Mac消息认证码的长度，单位为Byte。
+6. 调用[Mac.getMacLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmaclength)，获取Mac消息认证码的长度，单位为字节。
 
 - 以使用await方式分段传入数据，获取消息认证码计算结果为例。
 
