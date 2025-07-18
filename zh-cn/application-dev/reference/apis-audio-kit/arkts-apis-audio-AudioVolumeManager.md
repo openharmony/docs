@@ -429,7 +429,7 @@ try {
 
 getMaxVolumeByStream(streamUsage: StreamUsage): number
 
-获取指定音频流的最大音量
+获取指定音频流的最大音量。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
