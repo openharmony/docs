@@ -10,9 +10,9 @@
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
-> - 进行日历或日程的读取时，需要申请ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR权限。
+> - 进行日历或日程的读取时，需要申请ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR权限。
 > 
-> - 进行日历或日程的添加、删除或修改时，需要申请ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR权限。
+> - 进行日历或日程的添加、删除或修改时，需要申请ohos.permission.WRITE_CALENDAR 或 ohos.permission.WRITE_WHOLE_CALENDAR权限。
 
 申请对应权限之后，支持的相关操作可见下表。
 
@@ -128,7 +128,7 @@ createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calend
 
 根据日历账户信息，创建一个Calendar对象，使用callback异步回调。
 
-**需要权限**： ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**需要权限**： ohos.permission.WRITE_CALENDAR 或 ohos.permission.WRITE_WHOLE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -180,7 +180,7 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
 根据日历账户信息，创建一个Calendar对象，使用Promise异步回调。
 
-**需要权限**： ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**需要权限**： ohos.permission.WRITE_CALENDAR 或 ohos.permission.WRITE_WHOLE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -232,7 +232,7 @@ deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 
 删除指定Calendar对象，使用callback异步回调。
 
-**需要权限**： ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**需要权限**： ohos.permission.WRITE_CALENDAR 或 ohos.permission.WRITE_WHOLE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -290,7 +290,7 @@ deleteCalendar(calendar: Calendar): Promise\<void>
 
 删除指定Calendar对象，使用Promise异步回调。
 
-**需要权限**： ohos.permission.WRITE_CALENDAR or ohos.permission.WRITE_WHOLE_CALENDAR
+**需要权限**： ohos.permission.WRITE_CALENDAR 或 ohos.permission.WRITE_WHOLE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -349,7 +349,7 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 
 获取默认Calendar对象，默认Calendar是日历存储首次运行时创建的，若创建Event时不关注其Calendar归属，则无须通过[createCalendar()](#createcalendar)创建Calendar，直接使用默认Calendar，使用callback异步回调。
 
-**需要权限**：ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**需要权限**：ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -394,7 +394,7 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 
 获取指定Calendar对象，使用callback异步回调。
 
-**需要权限**： ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**需要权限**： ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -449,7 +449,7 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
 获取默认Calendar对象或者指定Calendar对象，使用Promise异步回调。
 
-**需要权限**： ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**需要权限**： ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -498,7 +498,7 @@ getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 
 获取当前应用所有创建的Calendar对象以及默认Calendar对象，使用callback异步回调。
 
-**需要权限**：ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**需要权限**：ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -543,7 +543,7 @@ getAllCalendars(): Promise\<Calendar[]>
 
 获取当前应用所有创建的Calendar对象以及默认Calendar对象，使用Promise异步回调。
 
-**需要权限**： ohos.permission.READ_CALENDAR or ohos.permission.READ_WHOLE_CALENDAR
+**需要权限**： ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
