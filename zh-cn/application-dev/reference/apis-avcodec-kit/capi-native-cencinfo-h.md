@@ -281,7 +281,7 @@ OH_AVErrCode OH_AVCencInfo_SetAVBuffer(OH_AVCencInfo *cencInfo, OH_AVBuffer *buf
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVCencInfo](capi-multimedia-drm-oh-avcencinfo.md) *cencInfo | 指向OH_AVCencInfo实例的指针。 |
-| [OH_AVBuffer](capi-multimedia-drm-oh-avbuffer.md) *buffer | 携带数据的帧buffer。 |
+| [OH_AVBuffer](_core.md#oh_avbuffer) *buffer | 携带数据的帧buffer。 |
 
 **返回：**
 
