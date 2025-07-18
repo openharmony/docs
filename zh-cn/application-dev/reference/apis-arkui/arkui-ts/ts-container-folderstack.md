@@ -44,6 +44,10 @@ FolderStack(options?: FolderStackOptions)
 
 ## 属性
 
+>  **说明：**
+>
+>  设置offset和margin属性，可能会导致上下半屏遮挡折痕区，不建议开发者使用。
+
 除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### alignContent
@@ -93,10 +97,6 @@ autoHalfFold(value: boolean)
 | 参数名 | 类型    | 必填 | 说明                                |
 | ------ | ------- | ---- | ----------------------------------- |
 | value  | boolean | 是   | 是否开启自动旋转。<br/>默认值：true，设置true表示开启自动旋转，设置false表示关闭自动旋转。 |
-
->  **说明：**
->
->  设置offset和margin属性，可能会导致上下半屏遮挡折痕区，不建议开发者使用。
 
 ## 事件
 
