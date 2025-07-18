@@ -1782,7 +1782,7 @@ on(type: 'play', callback: () => void): void
 
 设置播放命令监听事件。注册该监听，说明应用支持播放指令。
 
-每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1819,7 +1819,7 @@ on(type: 'pause', callback: () => void): void
 
 设置暂停命令监听事件。注册该监听，说明应用支持暂停指令。
 
-每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1856,7 +1856,7 @@ on(type:'stop', callback: () => void): void
 
 设置停止命令监听事件。注册该监听，说明应用支持停止指令。
 
-每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1893,7 +1893,7 @@ on(type:'playNext', callback: () => void): void
 
 设置播放下一首命令监听事件。注册该监听，说明应用支持下一首指令。
 
-每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1930,7 +1930,7 @@ on(type:'playPrevious', callback: () => void): void
 
 设置播放上一首命令监听事件。注册该监听，说明应用支持上一首指令。
 
-每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1967,7 +1967,7 @@ on(type: 'fastForward', callback: (time?: number) => void): void
 
 设置快进命令监听事件。注册该监听，说明应用支持快进指令。
 
-每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2003,6 +2003,8 @@ currentAVSession.on('fastForward', (time?: number) => {
 on(type:'rewind', callback: (time?: number) => void): void
 
 设置快退命令监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2113,6 +2115,8 @@ on(type:'playWithAssetId', callback: Callback\<string>): void
 
 设置指定资源id进行播放的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -2147,7 +2151,7 @@ currentAVSession.on('playWithAssetId', playWithAssetIdCallback);
 
 off(type: 'playWithAssetId', callback?: Callback\<string>): void
 
-取消指定资源id进行播放的事件监听，关闭后，不再进行该事件回调。
+取消指定资源id进行播放的事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2180,6 +2184,8 @@ currentAVSession.off('playWithAssetId');
 on(type: 'seek', callback: (time: number) => void): void
 
 设置跳转节点监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2216,6 +2222,8 @@ on(type: 'setSpeed', callback: (speed: number) => void): void
 
 设置播放速率的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -2250,6 +2258,8 @@ currentAVSession.on('setSpeed', (speed: number) => {
 on(type: 'setLoopMode', callback: (mode: LoopMode) => void): void
 
 设置循环模式的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2286,6 +2296,8 @@ on(type: 'setTargetLoopMode', callback: Callback\<LoopMode>): void
 
 设置目标循环模式的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -2318,7 +2330,9 @@ currentAVSession.on('setTargetLoopMode', (mode: avSession.LoopMode) => {
 
 on(type: 'toggleFavorite', callback: (assetId: string) => void): void
 
-设置是否收藏的监听事件
+设置是否收藏的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2355,6 +2369,8 @@ on(type: 'skipToQueueItem', callback: (itemId: number) => void): void
 
 设置播放列表其中某项被选中的监听事件，session端可以选择对这个单项歌曲进行播放。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -2389,6 +2405,8 @@ currentAVSession.on('skipToQueueItem', (itemId: number) => {
 on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void
 
 设置蓝牙/有线等外设接入的按键输入事件的监听，监听多媒体按键事件中播放、暂停、上下一首、快进、快退的指令。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2428,6 +2446,8 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 
 设置播放设备变化的监听事件。应用接入[系统投播组件](ohos-multimedia-avcastpicker.md)，当用户通过组件切换设备时，会收到设备切换的回调。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -2462,6 +2482,8 @@ currentAVSession.on('outputDeviceChange', (state: avSession.ConnectionState, dev
 on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Object}) => void): void
 
 设置自定义控制命令变化的监听器。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2526,9 +2548,7 @@ struct Index {
 
 off(type: 'play', callback?: () => void): void
 
-取消会话播放事件监听，关闭后，不再进行该事件回调。
-
-取消回调时，需要更新支持的命令列表。
+取消会话播放事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2561,9 +2581,7 @@ currentAVSession.off('play');
 
 off(type: 'pause', callback?: () => void): void
 
-取消会话暂停事件监听，关闭后，不再进行该事件回调。
-
-取消回调时，需要更新支持的命令列表。
+取消会话暂停事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2596,9 +2614,7 @@ currentAVSession.off('pause');
 
 off(type: 'stop', callback?: () => void): void
 
-取消会话停止事件监听，关闭后，不再进行该事件回调。
-
-取消回调时，需要更新支持的命令列表。
+取消会话停止事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2631,9 +2647,7 @@ currentAVSession.off('stop');
 
 off(type: 'playNext', callback?: () => void): void
 
-取消会话播放下一首事件监听，关闭后，不再进行该事件回调。
-
-取消回调时，需要更新支持的命令列表。
+取消会话播放下一首事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2666,9 +2680,7 @@ currentAVSession.off('playNext');
 
 off(type: 'playPrevious', callback?: () => void): void
 
-取消会话播放上一首事件监听，关闭后，不再进行该事件回调。
-
-取消回调时，需要更新支持的命令列表。
+取消会话播放上一首事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2701,9 +2713,7 @@ currentAVSession.off('playPrevious');
 
 off(type: 'fastForward', callback?: () => void): void
 
-取消会话快进事件监听，关闭后，不再进行该事件回调。
-
-取消回调时，需要更新支持的命令列表。
+取消会话快进事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2736,7 +2746,7 @@ currentAVSession.off('fastForward');
 
 off(type: 'rewind', callback?: () => void): void
 
-取消会话快退事件监听，关闭后，不再进行该事件回调。
+取消会话快退事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2769,7 +2779,7 @@ currentAVSession.off('rewind');
 
 off(type: 'seek', callback?: (time: number) => void): void
 
-取消监听跳转节点事件。
+取消跳转节点事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2802,7 +2812,7 @@ currentAVSession.off('seek');
 
 off(type: 'setSpeed', callback?: (speed: number) => void): void
 
-取消监听播放速率变化事件。
+取消播放速率变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2835,7 +2845,7 @@ currentAVSession.off('setSpeed');
 
 off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 
-取消监听循环模式变化事件。
+取消循环模式变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2868,7 +2878,7 @@ currentAVSession.off('setLoopMode');
 
 off(type: 'setTargetLoopMode', callback?: Callback\<LoopMode>): void
 
-取消监听目标循环模式变化事件。
+取消目标循环模式变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -2900,7 +2910,7 @@ currentAVSession.off('setTargetLoopMode');
 
 off(type: 'toggleFavorite', callback?: (assetId: string) => void): void
 
-取消监听是否收藏的事件
+取消是否收藏的事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2933,7 +2943,7 @@ currentAVSession.off('toggleFavorite');
 
 off(type: 'skipToQueueItem', callback?: (itemId: number) => void): void
 
-取消监听播放列表单项选中的事件
+取消播放列表单项选中的事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2966,7 +2976,7 @@ currentAVSession.off('skipToQueueItem');
 
 off(type: 'handleKeyEvent', callback?: (event: KeyEvent) => void): void
 
-取消监听按键事件。
+取消按键事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2999,7 +3009,7 @@ currentAVSession.off('handleKeyEvent');
 
 off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: OutputDeviceInfo) => void): void
 
-取消监听播放设备变化的事件。
+取消播放设备变化的事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3033,7 +3043,7 @@ currentAVSession.off('outputDeviceChange');
 
 off(type: 'commonCommand', callback?: (command: string, args: {[key: string]: Object}) => void): void
 
-取消监听自定义控制命令的变化。
+取消自定义控制命令的变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3068,6 +3078,8 @@ on(type: 'answer', callback: Callback\<void>): void
 
 设置通话接听的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -3101,7 +3113,7 @@ currentAVSession.on('answer', () => {
 
 off(type: 'answer', callback?: Callback\<void>): void
 
-取消通话接听事件的监听。
+取消通话接听事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3136,6 +3148,8 @@ on(type: 'hangUp', callback: Callback\<void>): void
 
 设置通话挂断的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -3169,7 +3183,7 @@ currentAVSession.on('hangUp', () => {
 
 off(type: 'hangUp', callback?: Callback\<void>): void
 
-取消通话挂断事件的监听。
+取消通话挂断事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3204,6 +3218,8 @@ on(type: 'toggleCallMute', callback: Callback\<void>): void
 
 设置通话静音的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -3237,7 +3253,7 @@ currentAVSession.on('toggleCallMute', () => {
 
 off(type: 'toggleCallMute', callback?: Callback\<void>): void
 
-取消通话静音事件的监听。
+取消通话静音事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3271,6 +3287,8 @@ currentAVSession.off('toggleCallMute');
 on(type: 'castDisplayChange', callback: Callback\<CastDisplayInfo>): void
 
 设置扩展屏投播显示设备变化的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3310,7 +3328,7 @@ currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) =>
 
  off(type: 'castDisplayChange', callback?: Callback\<CastDisplayInfo>): void
 
-取消扩展屏投播显示设备变化事件监听，关闭后，不再进行该事件回调。
+取消扩展屏投播显示设备变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4364,6 +4382,8 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 
 设置播放状态变化的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
@@ -4402,7 +4422,7 @@ aVCastController.on('playbackStateChange', playbackFilter, (playbackState: avSes
 
 off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void): void
 
-媒体控制器取消监听播放状态变化的事件。
+取消播放状态变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4436,6 +4456,8 @@ on(type: 'mediaItemChange', callback: Callback\<AVQueueItem>): void
 
 设置投播当前播放媒体内容的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
@@ -4468,7 +4490,7 @@ aVCastController.on('mediaItemChange', (item: avSession.AVQueueItem) => {
 
 off(type: 'mediaItemChange'): void
 
-取消设置投播当前播放媒体内容的监听事件。
+取消设置投播当前播放媒体内容事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4500,6 +4522,8 @@ aVCastController.off('mediaItemChange');
 on(type: 'playNext', callback: Callback\<void>): void
 
 设置播放下一首资源的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4533,7 +4557,7 @@ aVCastController.on('playNext', () => {
 
 off(type: 'playNext'): void
 
-取消设置播放下一首资源的监听事件。
+取消设置播放下一首资源事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4565,6 +4589,8 @@ aVCastController.off('playNext');
 on(type: 'playPrevious', callback: Callback\<void>): void
 
 设置播放上一首资源的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4598,7 +4624,7 @@ aVCastController.on('playPrevious', () => {
 
 off(type: 'playPrevious'): void
 
-取消设置播放上一首资源的监听事件。
+取消设置播放上一首资源事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4631,6 +4657,8 @@ on(type: 'requestPlay', callback: Callback\<AVQueueItem>): void
 
 设置请求播放的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
@@ -4661,7 +4689,7 @@ aVCastController.on('requestPlay', (item: avSession.AVQueueItem) => {
 
 off(type: 'requestPlay', callback?: Callback\<AVQueueItem>): void
 
-取消设置请求播放的监听事件。
+取消设置请求播放事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -4693,6 +4721,8 @@ on(type: 'endOfStream', callback: Callback\<void>): void
 
 设置播放结束的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
@@ -4723,7 +4753,7 @@ aVCastController.on('endOfStream', () => {
 
 off(type: 'endOfStream', callback?: Callback\<void>): void
 
-取消设置播放结束的监听事件。
+取消设置播放结束事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -4754,6 +4784,8 @@ aVCastController.off('endOfStream');
 on(type: 'seekDone', callback: Callback\<number>): void
 
 设置seek结束的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4787,7 +4819,7 @@ aVCastController.on('seekDone', (pos: number) => {
 
 off(type: 'seekDone'): void
 
-取消设置seek结束的监听事件。
+取消设置seek结束事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4819,6 +4851,8 @@ aVCastController.off('seekDone');
 on(type: 'validCommandChange', callback: Callback\<Array\<AVCastControlCommandType>>)
 
 会话支持的有效命令变化监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -4852,7 +4886,7 @@ aVCastController.on('validCommandChange', (validCommands: avSession.AVCastContro
 
 off(type: 'validCommandChange', callback?: Callback\<Array\<AVCastControlCommandType>>)
 
-媒体控制器取消监听会话有效命令变化的事件。
+取消会话有效命令变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -4884,6 +4918,8 @@ aVCastController.off('validCommandChange');
 on(type: 'error', callback: ErrorCallback): void
 
 监听远端播放器的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4925,7 +4961,7 @@ aVCastController.on('error', (error: BusinessError) => {
 
 off(type: 'error'): void
 
-取消监听播放的错误事件。
+取消播放的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4964,6 +5000,8 @@ on(type: 'keyRequest', callback: KeyRequestCallback): void
 
 在线DRM资源投播时，设置许可证请求的事件监听。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
@@ -4997,7 +5035,7 @@ aVCastController.on('keyRequest', keyRequestCallback);
 
 off(type: 'keyRequest', callback?: KeyRequestCallback): void
 
-取消监听许可证请求的事件。
+取消许可证请求事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5030,6 +5068,8 @@ aVCastController.off('keyRequest');
 on(type: 'castControlGenericError', callback: ErrorCallback): void
 
 监听投播通用错误事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -5074,7 +5114,7 @@ aVCastController.on('castControlGenericError', (error: BusinessError) => {
 
 off(type: 'castControlGenericError', callback?: ErrorCallback): void
 
-取消监听投播通用的错误事件。
+取消投播通用的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -5104,6 +5144,8 @@ aVCastController.off('castControlGenericError');
 on(type: 'castControlIoError', callback: ErrorCallback): void
 
 监听投播输入/输出的错误事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -5151,7 +5193,7 @@ aVCastController.on('castControlIoError', (error: BusinessError) => {
 
 off(type: 'castControlIoError', callback?: ErrorCallback): void
 
-取消监听投播输入/输出的错误事件。
+取消投播输入/输出的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -5181,6 +5223,8 @@ aVCastController.off('castControlIoError');
 on(type: 'castControlParsingError', callback: ErrorCallback): void
 
 监听投播解析的错误事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -5216,7 +5260,7 @@ aVCastController.on('castControlParsingError', (error: BusinessError) => {
 
 off(type: 'castControlParsingError', callback?: ErrorCallback): void
 
-取消监听投播解析的错误事件。
+取消投播解析的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -5246,6 +5290,8 @@ aVCastController.off('castControlParsingError');
 on(type: 'castControlDecodingError', callback: ErrorCallback): void
 
 监听投播解码的错误事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -5281,7 +5327,7 @@ aVCastController.on('castControlDecodingError', (error: BusinessError) => {
 
 off(type: 'castControlDecodingError', callback?: ErrorCallback): void
 
-取消监听投播解码的错误事件。
+取消投播解码的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -5311,6 +5357,8 @@ aVCastController.off('castControlDecodingError');
 on(type: 'castControlAudioRendererError', callback: ErrorCallback): void
 
 监听投播音频渲染器的错误事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -5345,7 +5393,7 @@ aVCastController.on('castControlAudioRendererError', (error: BusinessError) => {
 
 off(type: 'castControlAudioRendererError', callback?: ErrorCallback): void
 
-取消监听投播音频渲染器的错误事件。
+取消投播音频渲染器的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -5375,6 +5423,8 @@ aVCastController.off('castControlAudioRendererError');
 on(type: 'castControlDrmError', callback: ErrorCallback): void
 
 监听投播drm的错误事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -5415,7 +5465,7 @@ aVCastController.on('castControlDrmError', (error: BusinessError) => {
 
 off(type: 'castControlDrmError', callback?: ErrorCallback): void
 
-取消监听投播drm的错误事件。
+取消投播drm的错误事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -7147,6 +7197,8 @@ on(type: 'metadataChange', filter: Array\<keyof AVMetadata> | 'all', callback: (
 
 设置元数据变化的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -7186,7 +7238,7 @@ avsessionController.on('metadataChange', ['assetId', 'title', 'description'], (m
 
 off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 
-媒体控制器取消监听元数据变化的事件。
+取消元数据变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7220,6 +7272,8 @@ avsessionController.off('metadataChange');
 on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', callback: (state: AVPlaybackState) => void)
 
 设置播放状态变化的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7259,7 +7313,7 @@ avsessionController.on('playbackStateChange', ['state', 'speed', 'loopMode'], (p
 
 off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 
-媒体控制器取消监听播放状态变化的事件。
+取消播放状态变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7293,6 +7347,8 @@ avsessionController.off('playbackStateChange');
 on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callback: Callback\<CallMetadata>): void
 
 设置通话元数据变化的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7332,7 +7388,7 @@ avsessionController.on('callMetadataChange', ['name'], (callmetadata: avSession.
 
 off(type: 'callMetadataChange', callback?: Callback\<CallMetadata>): void
 
-取消设置通话元数据变化的监听事件。
+取消设置通话元数据变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7366,6 +7422,8 @@ avsessionController.off('callMetadataChange');
 on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback: Callback\<AVCallState>): void
 
 设置通话状态变化的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7405,7 +7463,7 @@ avsessionController.on('callStateChange', ['state'], (callstate: avSession.AVCal
 
 off(type: 'callStateChange', callback?: Callback\<AVCallState>): void
 
-取消设置通话状态变化的监听事件。
+取消设置通话状态变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7440,6 +7498,8 @@ on(type: 'sessionDestroy', callback: () => void)
 
 会话销毁的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -7473,8 +7533,7 @@ avsessionController.on('sessionDestroy', () => {
 
 off(type: 'sessionDestroy', callback?: () => void)
 
-媒体控制器取消监听会话的销毁事件。
-
+取消监听会话的销毁事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -7507,6 +7566,8 @@ avsessionController.off('sessionDestroy');
 on(type: 'activeStateChange', callback: (isActive: boolean) => void)
 
 会话的激活状态的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7541,7 +7602,7 @@ avsessionController.on('activeStateChange', (isActive: boolean) => {
 
 off(type: 'activeStateChange', callback?: (isActive: boolean) => void)
 
-媒体控制器取消监听会话激活状态变化的事件。
+取消监听会话激活状态变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7575,6 +7636,8 @@ avsessionController.off('activeStateChange');
 on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>) => void)
 
 会话支持的有效命令变化监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7610,7 +7673,7 @@ avsessionController.on('validCommandChange', (validCommands: avSession.AVControl
 
 off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandType>) => void)
 
-媒体控制器取消监听会话有效命令变化的事件。
+取消监听会话有效命令变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7645,6 +7708,8 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 
 设置播放设备变化的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -7678,7 +7743,7 @@ avsessionController.on('outputDeviceChange', (state: avSession.ConnectionState, 
 
 off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: OutputDeviceInfo) => void): void
 
-媒体控制器取消监听分布式设备变化的事件。
+取消监听分布式设备变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7712,6 +7777,8 @@ avsessionController.off('outputDeviceChange');
 on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key: string]: Object}) => void): void
 
 媒体控制器设置会话自定义事件变化的监听器。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7762,7 +7829,7 @@ if (controller !== undefined) {
 
 off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key: string]: Object}) => void): void
 
-媒体控制器取消监听会话事件的变化通知。
+取消会话事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7797,6 +7864,8 @@ on(type: 'queueItemsChange', callback: (items: Array<[AVQueueItem](#avqueueitem1
 
 媒体控制器设置会话自定义播放列表变化的监听器。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -7830,7 +7899,7 @@ avsessionController.on('queueItemsChange', (items: avSession.AVQueueItem[]) => {
 
 off(type: 'queueItemsChange', callback?: (items: Array<[AVQueueItem](#avqueueitem10)\>) => void): void
 
-媒体控制器取消监听播放列表变化的事件。
+取消播放列表变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7865,6 +7934,8 @@ on(type: 'queueTitleChange', callback: (title: string) => void): void
 
 媒体控制器设置会话自定义播放列表的名称变化的监听器。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -7898,7 +7969,7 @@ avsessionController.on('queueTitleChange', (title: string) => {
 
 off(type: 'queueTitleChange', callback?: (title: string) => void): void
 
-媒体控制器取消监听播放列表名称变化的事件。
+取消播放列表名称变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7932,6 +8003,8 @@ avsessionController.off('queueTitleChange');
 on(type: 'extrasChange', callback: (extras: {[key: string]: Object}) => void): void
 
 媒体控制器设置自定义媒体数据包事件变化的监听器。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7982,7 +8055,7 @@ if (controller !== undefined) {
 
 off(type: 'extrasChange', callback?: (extras: {[key: string]: Object}) => void): void
 
-媒体控制器取消监听自定义媒体数据包变化事件。
+取消自定义媒体数据包变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -8604,6 +8677,8 @@ on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
 
 设置半模态窗口变化的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
@@ -8642,7 +8717,7 @@ async function onPickerStateChange(context: common.Context) {
 
 off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
 
-取消半模态窗口变化的监听事件，关闭后，不再进行该事件回调。
+取消半模态窗口变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
