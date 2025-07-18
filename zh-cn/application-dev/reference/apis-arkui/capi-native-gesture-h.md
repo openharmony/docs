@@ -710,7 +710,7 @@ float OH_ArkUI_SwipeGesture_GetAngle(const ArkUI_GestureEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| float | 滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数。 |
+| float | 滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数。单位为deg。|
 
 ### OH_ArkUI_SwipeGesture_GetVelocity()
 
@@ -762,7 +762,7 @@ float OH_ArkUI_RotationGesture_GetAngle(const ArkUI_GestureEvent* event)
 
 | 类型 | 说明 |
 | -- | -- |
-| float | 旋转角度。 |
+| float | 旋转角度。单位为deg。|
 
 ### OH_ArkUI_PinchGesture_GetScale()
 
@@ -1049,7 +1049,7 @@ int32_t OH_ArkUI_GestureEventTargetInfo_IsScrollBegin(ArkUI_GestureEventTargetIn
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_GestureEventTargetInfo](capi-arkui-nativemodule-arkui-gestureeventtargetinfo.md)* info | 手势事件目标信息。 |
-| bool* ret | 当前滚动类容器组件是否在顶部。 |
+| bool* ret | 当前滚动类容器组件是否在顶部。true表示在顶部，false表示不在顶部。|
 
 **返回：**
 
@@ -1427,7 +1427,7 @@ int32_t OH_ArkUI_GetGestureParam_repeat(ArkUI_GestureRecognizer* recognizer, boo
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_GestureRecognizer](capi-arkui-nativemodule-arkui-gesturerecognizer.md)* recognizer | 手势识别器指针。 |
-| bool* isRepeat | 手势识别器是否连续触发事件回调。 |
+| bool* isRepeat | 手势识别器是否连续触发事件回调。true表示连续触发，false表示不连续触发。|
 
 **返回：**
 
@@ -1454,7 +1454,7 @@ int32_t OH_ArkUI_GetGestureParam_distance(ArkUI_GestureRecognizer* recognizer, d
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_GestureRecognizer](capi-arkui-nativemodule-arkui-gesturerecognizer.md)* recognizer | 手势识别器指针。 |
-| double* distance | 手势识别器的手指允许的移动距离范围。 |
+| double* distance | 手势识别器的手指允许的移动距离范围。单位为px。|
 
 **返回：**
 
@@ -1481,7 +1481,7 @@ int32_t OH_ArkUI_GetGestureParam_speed(ArkUI_GestureRecognizer* recognizer, doub
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_GestureRecognizer](capi-arkui-nativemodule-arkui-gesturerecognizer.md)* recognizer | 手势识别器指针。 |
-| double* speed | 手势识别器的识别滑动的最小速度。 |
+| double* speed | 手势识别器的识别滑动的最小速度。单位为px/s。|
 
 **返回：**
 
@@ -1508,7 +1508,7 @@ int32_t OH_ArkUI_GetGestureParam_duration(ArkUI_GestureRecognizer* recognizer, i
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_GestureRecognizer](capi-arkui-nativemodule-arkui-gesturerecognizer.md)* recognizer | 手势识别器指针。 |
-| int* duration | 手势识别器的触发长按的最短时间。 |
+| int* duration | 手势识别器的触发长按的最短时间。单位为ms。|
 
 **返回：**
 
@@ -1535,7 +1535,7 @@ int32_t OH_ArkUI_GetGestureParam_angle(ArkUI_GestureRecognizer* recognizer, doub
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_GestureRecognizer](capi-arkui-nativemodule-arkui-gesturerecognizer.md)* recognizer | 手势识别器指针。 |
-| double* angle | 手势识别器的旋转手势的最小改变度数。 |
+| double* angle | 手势识别器的旋转手势的最小改变度数。单位为deg。|
 
 **返回：**
 
