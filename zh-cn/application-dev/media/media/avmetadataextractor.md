@@ -82,7 +82,7 @@
    });
    ```
 
-3. 获取元数据：调用fetchMetadata()，可以获取到一个[AVMetadata](../../reference/apis-media-kit/arkts-apis-media-i#avmetadata11)对象，通过访问该对象的各个属性，可以获取到元数据。
+3. 获取元数据：调用fetchMetadata()，可以获取到一个[AVMetadata](../../reference/apis-media-kit/arkts-apis-media-i.md#avmetadata11)对象，通过访问该对象的各个属性，可以获取到元数据。
    ```ts
    // 获取元数据（callback模式）。
    avMetadataExtractor.fetchMetadata((error, metadata) => {
