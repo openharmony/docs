@@ -1152,7 +1152,7 @@ axContext.getAccessibilityFocusedElement().then((focus: AccessibilityElement) =>
 })
 ```
 
-### findElementByAccessibilityHintText<sup>20+</sup>
+### findElementsByAccessibilityHintText<sup>20+</sup>
 
 findElementsByAccessibilityHintText(hintText: string): Promise\<Array\<AccessibilityElement>>;
 
@@ -1206,10 +1206,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let windowId: number = 10;
 
 axContext.getRootInActiveWindow(windowId).then((root: AccessibilityElement) => {
-    root.findElementByAccessibilityHintText('location').then((elements: AccessibilityElement[]) => {
-        console.log("findElementByAccessibilityHintText size=" + elements.length)
+    root.findElementsByAccessibilityHintText('location').then((elements: AccessibilityElement[]) => {
+        console.log("findElementsByAccessibilityHintText size=" + elements.length)
     }).catch((err) => {
-        console.log(`findElementByAccessibilityHintText failed, code: ${err.code}, message: ${err.message}`);
+        console.log(`findElementsByAccessibilityHintText failed, code: ${err.code}, message: ${err.message}`);
     })
 }).catch((err) => {
   console.log(`getRootInActiveWindow failed, code: ${err.code}, message: ${err.message}`);
