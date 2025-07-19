@@ -475,36 +475,125 @@ export default class EntryAbility extends UIAbility {
     }
     ```
 
-2. 在短信应用UIAbility的[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onnewwant)回调中解析调用方传递过来的[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)参数，通过调用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md)中的[getRouter()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)方法获取[Router](../reference/apis-arkui/js-apis-arkui-UIContext.md#router)对象，并进行指定页面的跳转。此时再次启动该短信应用的UIAbility实例时，即可跳转到该短信应用的UIAbility实例的指定页面。
+2. 在短信应用UIAbility的[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onnewwant)回调中通过AppStorage设置全局变量nameForNavi的值，并进行指定页面的跳转。此时再次启动该短信应用的UIAbility实例时，即可跳转到该短信应用的UIAbility实例的指定页面。
 
-    ```ts
-    import { AbilityConstant, Want, UIAbility } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
-    import type { Router, UIContext } from '@kit.ArkUI';
-    import type { BusinessError } from '@kit.BasicServicesKit';
-   
-    const DOMAIN_NUMBER: number = 0xFF00;
-    const TAG: string = '[EntryAbility]';
+    1. 导入相关模块，并在onNewWant()生命周期回调中设置全局变量nameForNavi的值。
 
-    export default class EntryAbility extends UIAbility {
-      funcAbilityWant: Want | undefined = undefined;
-      uiContext: UIContext | undefined = undefined;
-      // ...
-      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        if (want?.parameters?.router && want.parameters.router === 'funcA') {
-          let funcAUrl = 'pages/Page_HotStartUp';
-          if (this.uiContext) {
-            let router: Router = this.uiContext.getRouter();
-            router.pushUrl({
-              url: funcAUrl
-            }).catch((err: BusinessError) => {
-              hilog.error(DOMAIN_NUMBER, TAG, `Failed to push url. Code is ${err.code}, message is ${err.message}`);
-            });
+        ```ts
+        import { AbilityConstant, Want, UIAbility } from '@kit.AbilityKit';
+        import { hilog } from '@kit.PerformanceAnalysisKit';
+
+        const DOMAIN_NUMBER: number = 0xFF00;
+        const TAG: string = '[EntryAbility]';
+
+        export default class EntryAbility extends UIAbility {
+          // ...
+          onNewWant(want: Want, launchParam: AbilityConstant.   LaunchParam): void {
+            hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'onNewWant');
+            AppStorage.setOrCreate<string>('nameForNavi', 'pageOne'); 
           }
         }
-      }
-    }
-    ```
+        ```
+
+    2. 在Index页面显示时触发onPageShow回调，获取全局变量nameForNavi的值，并进行执行页面的跳转。
+
+        ```ts
+        // Index.ets
+        @Entry
+        @Component
+        struct Index {
+          @State message: string = 'Index';
+          pathStack: NavPathStack = new NavPathStack();
+
+          onPageShow(): void {
+            let somePage = AppStorage.get<string>('nameForNavi')
+            if (somePage) {
+              this.pathStack.pushPath({ name: somePage }, false);
+              AppStorage.delete('nameForNavi');
+            }
+          }
+
+          build() {
+            Navigation(this.pathStack) {
+              Text(this.message)
+                .id('Index')
+                .fontSize($r('app.float.page_text_font_size'))
+                .fontWeight(FontWeight.Bold)
+                .alignRules({
+                  center: { anchor: '__container__', align: VerticalAlign.Center },
+                  middle: { anchor: '__container__', align: HorizontalAlign.Center }
+                })
+            }
+            .mode(NavigationMode.Stack)
+            .height('100%')
+            .width('100%')
+          }
+        }
+        ```
+
+    3. 实现Navigation子页面。
+
+        ```ts
+        // PageOne.ets
+        @Builder
+        export function PageOneBuilder() {
+          PageOne();
+        }
+
+        @Component
+        export struct PageOne {
+          @State message: string = 'PageOne';
+          pathStack: NavPathStack = new NavPathStack();
+
+          build() {
+            NavDestination() {
+              Text(this.message)
+                .id('PageOne')
+                .fontSize($r('app.float.page_text_font_size'))
+                .fontWeight(FontWeight.Bold)
+                .alignRules({
+                  center: { anchor: '__container__', align: VerticalAlign.Center },
+                  middle: { anchor: '__container__', align: HorizontalAlign.Center }
+                })
+            }
+            .onReady((context: NavDestinationContext) => {
+              this.pathStack = context.pathStack;
+            })
+            .height('100%')
+            .width('100%')
+          }
+        }
+        ```
+
+    4. 在系统配置文件`route_map.json`中配置子页信息（参考[系统路由表](../ui/arkts-navigation-navigation.md#系统路由表)）。
+
+        ```ts
+        // route_map.json
+        {
+          "routerMap": [
+            {
+              "name": "pageOne",
+              "pageSourceFile": "src/main/ets/pages/PageOne.ets",
+              "buildFunction": "PageOneBuilder",
+              "data": {
+                "description": "this is pageOne"
+              }
+            }
+          ]
+        }
+        ```
+
+    5. 在[module.json5配置文件](../quick-start/module-configuration-file.md#modulejson5配置文件)中配置routerMap路由映射。
+
+        ```ts
+        // module.json5
+        {
+          "module":{
+            // ...
+            "routerMap": "$profile:route_map",
+          }
+        }
+        ```
 
 > **说明：**
 >
