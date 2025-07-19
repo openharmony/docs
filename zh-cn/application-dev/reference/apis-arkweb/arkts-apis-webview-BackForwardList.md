@@ -22,12 +22,14 @@ import { webview } from '@kit.ArkWeb';
 
 | 名称         | 类型   | 只读 | 可选 | 说明                                                         |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| currentIndex | number | 否   | 否   | 当前在页面历史列表中的索引。                                 |
-| size         | number | 否   | 否   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
+| currentIndex | ArkTS1.1: number<br>ArkTS1.2: int | 否   | 否   | 当前在页面历史列表中的索引。                                 |
+| size         | ArkTS1.1: number<br>ArkTS1.2: int | 否   | 否   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
 
 ## getItemAtIndex
 
-getItemAtIndex(index: number): HistoryItem
+ArkTS1.1: getItemAtIndex(index: number): HistoryItem
+
+ArkTS1.2: getItemAtIndex(index: int): HistoryItem
 
 获取历史列表中指定索引的历史记录项信息。
 
@@ -37,7 +39,7 @@ getItemAtIndex(index: number): HistoryItem
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| index  | number | 是   | 指定历史列表中的索引。 |
+| index  | ArkTS1.1: number<br>ArkTS1.2: int | 是   | 指定历史列表中的索引。 |
 
 **返回值：**
 
@@ -55,6 +57,7 @@ getItemAtIndex(index: number): HistoryItem
 
 **示例：**
 
+ArkTS1.1示例：
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -71,6 +74,39 @@ struct WebComponent {
     Column() {
       Button('getBackForwardEntries')
         .onClick(() => {
+          try {
+            let list = this.controller.getBackForwardEntries();
+            let historyItem = list.getItemAtIndex(list.currentIndex);
+            console.log("HistoryItem: " + JSON.stringify(historyItem));
+            this.icon = historyItem.icon;
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+ArkTS1.2示例：
+```ts
+// xxx.ets
+import webview from '@ohos.web.webview';
+import { Text, Entry, Column, Component, BusinessError, Button, Web, ClickEvent } from '@ohos.arkui.component';
+import type image from '@ohos.multimedia.image';
+import { State } from '@ohos.arkui.stateManagement';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController(undefined);
+  @State icon: image.PixelMap | undefined = undefined;
+
+  build() {
+    Column(undefined) {
+      Button('getBackForwardEntries')
+        .onClick((e: ClickEvent) => {
           try {
             let list = this.controller.getBackForwardEntries();
             let historyItem = list.getItemAtIndex(list.currentIndex);
