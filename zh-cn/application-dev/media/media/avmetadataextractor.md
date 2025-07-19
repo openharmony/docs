@@ -100,8 +100,8 @@
    ```ts
    // 获取视频资源的宽和高。
    let metadata = await avMetadataExtractor.fetchMetadata();
-   let width = metadta.videoWidth;
-   let height = metadta.videoeight;
+   let width = metadata.videoWidth;
+   let height = metadata.videoHeight;
    ```
 
 5. 对于音频资源而言，除了可以通过AVMetadata对象来获取音频资源的标题、时长等元数据外，还可以获取专辑封面：调用fetchAlbumCover()，可以获取到专辑封面。
