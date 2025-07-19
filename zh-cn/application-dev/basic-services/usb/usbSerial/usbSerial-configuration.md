@@ -72,6 +72,7 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
 
     ```ts
     // 此处对列表中的第一台USB设备判断是否拥有访问权限
+    // 将包含以下代码的函数声明为异步函数，使用async修饰
     let portId: number = portList[0].portId;
     if (!serial.hasSerialRight(portId)) {
       await serial.requestSerialRight(portId).then(result => {
