@@ -679,6 +679,202 @@ hdrBrightnessRatio(ratio: number): Filter
 filter.hdrBrightnessRatio(2.0)
 ```
 
+### maskTransition<sup>20+</sup>
+maskTransition(alphaMask: Mask, factor?: number, inverse?: boolean): Filter
+
+为组件内容提供基于[Mask](#mask20)的转场效果。
+
+不建议在屏幕尺寸发生改变的过程中使用此效果，如：旋转屏幕，折叠屏开合屏幕等。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| alphaMask     | [Mask](#mask20)       | 是   | 通过遮罩指定转场效果的作用区域。|
+| factor        | number                | 否   | 转场过渡系数，取值范围为[0.0, 1.0]，默认值为1.0。factor值越大画面越接近转场后页面，超出范围自动截断到[0.0, 1.0]。 |
+| inverse       | boolean               | 否   | 是否启用反向转场，true表示启用，false表示不启用，默认值为false。 |
+ 
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回挂载了转场效果的Filter。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { uiEffect, common2D } from "@kit.ArkGraphics2D";
+
+@Entry
+@Component
+struct Index {
+  context = this.getUIContext()
+  @State alpha: number = 0
+  @State enterNewPage:boolean = false
+  @State rippleMaskCenter: common2D.Point = {x:0.5, y:0.5}
+  @State rippleMaskRadius: number = 0.1
+  build() {
+    Stack() {
+      //转场前页面
+      Image($r("app.media.before")).width("100%").height("100%")
+        if (this.enterNewPage){
+          //转场后页面
+          Column().width("100%").height("100%").backgroundImage($r("app.media.after"))
+            .backgroundFilter(uiEffect.createFilter()
+              .maskTransition(
+                uiEffect.Mask.createRadialGradientMask(this.rippleMaskCenter, this.rippleMaskRadius,this.rippleMaskRadius, [[1, 0], [1, 1]]),
+                this.alpha))
+            .onAppear(() => {
+              this.context.animateTo({ duration: 1000 }, () => {
+                this.rippleMaskRadius = 1.3
+              })
+              this.context.animateTo({ duration: 800 }, () => {
+                this.alpha = 1
+              })
+            })
+        }
+    }.borderWidth(2)
+    .onClick(()=>{
+      this.enterNewPage=!this.enterNewPage;
+      if (this.enterNewPage) {
+        this.alpha=0;
+        this.rippleMaskRadius=0.1;
+      }
+    })
+  }
+}
+```
+
+### directionLight<sup>20+</sup>
+directionLight(direction: common2D.Point3d, color: Color, intensity: number, bumpMask?: Mask): Filter
+
+为组件内容提供基于[Mask](#mask20)和平行光的光照效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| direction  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12)         | 是   | 方向光的入射方向。|
+| color  | [Color](#color20)         | 是   | 光照颜色。|
+| intensity  | number         | 是   | 光照强度，非负数。|
+| bumpMask  | [Mask](#mask20)         | 否   | 置换贴图，用于描述二维图像表面的三维细节，通过法线增强图像局部表面细节和光照反射效果。默认为空，表现为全局无细节平面光照效果。|
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回挂载了由置换贴图控制的光照效果的Filter。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { uiEffect, common2D } from "@kit.ArkGraphics2D";
+
+@Entry
+@Component
+struct Index {
+  @State rippleMaskCenter: common2D.Point = {x:0.5, y:0.5}
+  @State rippleMaskRadius: number = 0.0
+  @State rippleMaskWidth: number = 0.0
+  @State color: Color = Color.Transparent
+
+  build() {
+    Column() {
+      RelativeContainer() {
+        Image($r("app.media.back")).width("100%").height("100%")
+        Stack()
+          .width("100%")
+          .height("100%")
+          .backgroundColor(this.color)
+          .backgroundFilter(uiEffect.createFilter()
+            .directionLight(
+              {x:0, y:0, z:-1}, {red:2.0, green:2.0, blue:2.0, alpha:1.0}, 0.5,
+              uiEffect.Mask.createRippleMask(this.rippleMaskCenter, this.rippleMaskRadius, this.rippleMaskWidth, 0.0)
+              ))
+          .onClick(() => {
+            animateTo({duration: 1000}, () => {
+              this.rippleMaskWidth = 1.0;
+            })
+          })
+      }
+    }.alignItems(HorizontalAlign.Center).borderWidth(2)
+  }
+}
+```
+
+### variableRadiusBlur<sup>20+</sup>
+variableRadiusBlur(radius: number, radiusMap: Mask): Filter
+
+为组件内容提供基于[Mask](#mask20)的渐变模糊效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| radius  | number         | 是   | 最大模糊半径，该值越大越模糊。取值范围为[0, 128]。模糊半径设置为0时不模糊；模糊半径设置小于0的值时，按值为0处理；设置大于128的值时，按值为128处理。|
+| radiusMap  |  [Mask](#mask20)    | 是   | 代表模糊程度的Mask对象。|
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回当前效果的Filter对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { uiEffect } from "@kit.ArkGraphics2D";
+
+@Entry
+@Component
+struct VariableRadiusBlurExample {
+  @State maskExample: uiEffect.Mask = uiEffect.Mask.createRippleMask({x: 0.5, y: 0.5}, 0.2, 0.1)
+
+  build() {
+    Stack() {
+      Image($rawfile('test.png'))
+      Row()
+        .width("100%")
+        .height("100%")
+        .backgroundFilter(uiEffect.createFilter().variableRadiusBlur(64, this.maskExample))
+    }
+  }
+}
+```
+
 ## TileMode
 像素填充模式枚举。
 
