@@ -20,6 +20,7 @@
       - [AlphabetIndexer](arkts-v1.2-deprecated-alphabet-indexer.md)
       - [UIExtensionComponent (系统接口)](arkts-v1.2-deprecated-uiextension.md)
       - [AbilityComponent (系统接口)](arkts-v1.2-deprecated-abilitycomponent.md)
+      - [状态管理](arkts-v1.2-deprecated-state-management-apis.md)
   - 学习UI范式基本语法<!--arkts-ui-paradigm-basic-syntax-->
     - [基本语法概述](../ui/state-management/arkts-basic-syntax-overview.md)
     - [声明式UI描述](../ui/state-management/arkts-declarative-ui-description.md)
