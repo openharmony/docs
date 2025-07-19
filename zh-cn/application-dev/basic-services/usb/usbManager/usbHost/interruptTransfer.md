@@ -71,6 +71,7 @@
 
     ```ts
     // 此处对列表中的第一台USB设备判断是否拥有访问权限
+    // 将包含以下代码的函数声明为异步函数，使用async修饰
     let usbDevice: usbManager.USBDevice = usbDevices[0];
     if(!usbManager.hasRight(usbDevice.name)) {
       await usbManager.requestRight(usbDevice.name).then(result => {
