@@ -1011,7 +1011,7 @@ on(eventType: 'windowStageLifecycleEvent', callback: Callback&lt;WindowStageLife
 >
 > 2.当前接口不提供WindowStage的获焦失焦状态监听，对于windowStage获焦失焦状态有监听需求的情况下，推荐使用[on('windowEvent')](arkts-apis-window-Window.md#onwindowevent10)；
 >
-> 3.其他系统机制及其生命周期状态切换的详细说明，请参考开发指导。
+> 3.其他系统机制及其生命周期状态切换的详细说明，请参考 [开发指导](arkts-apis-window-lifecycle-event.md)。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
