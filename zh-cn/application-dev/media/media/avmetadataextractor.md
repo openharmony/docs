@@ -96,7 +96,7 @@
    let metadata = await avMetadataExtractor.fetchMetadata();
    ```
 
-4. 对于视频资源：可以通过fetchMetadata的结果拿到视频资源的宽、高等数据。
+4. 对于视频资源：可以通过fetchMetadata获取的AVMetadata对象metadata拿到视频资源的宽、高等数据。
    ```ts
    // 获取视频资源的宽和高。
    let metadata = await avMetadataExtractor.fetchMetadata();
@@ -104,7 +104,7 @@
    let height = metadata.videoHeight;
    ```
 
-5. 对于音频资源而言，除了可以通过AVMetadata对象来获取音频资源的标题、时长等元数据外，还可以获取专辑封面：调用fetchAlbumCover()，可以获取到专辑封面。
+5. 对于音频资源而言，除了可以通过AVMetadata对象来获取音频资源的标题、时长等元数据外，还可以获取专辑封面（例如，调用fetchAlbumCover()，可以获取到专辑封面）。
    ```ts
    import { image } from '@kit.ImageKit';
    // pixelMap对象声明，用于图片显示。
