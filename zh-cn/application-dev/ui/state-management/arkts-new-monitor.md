@@ -524,6 +524,49 @@ struct Index {
 }
 ```
 
+- 当@Monitor传入多个路径参数时，以参数的全拼接结果判断是否重复监听。以下示例中，`Monitor 1`、`Monitor 2`与`Monitor 3`都监听了name属性的变化。由于`Monitor 2`与`Monitor 3`的入参全拼接相等，因此`Monitor 2`不生效，仅`Monitor 3`生效。当name属性变化时，将同时触发onNameAgeChange与onNamePositionChangeDuplicate方法。但请注意，`Monitor 2`与`Monitor 3`的写法仍然被视作在一个类中对同一个属性进行多次@Monitor的监听，这是不建议的。
+
+```ts
+@ObservedV2
+class Info {
+  @Trace name: string = "Tom";
+  @Trace age: number = 25;
+  @Trace position: string = "North";
+  @Monitor("name", "age") // Monitor 1
+  onNameAgeChange(monitor: IMonitor) {
+    monitor.dirty.forEach((path: string) => {
+      console.info(`onNameAgeChange path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+    });
+  }
+  @Monitor("name", "position") // Monitor 2
+  onNamePositionChange(monitor: IMonitor) {
+    monitor.dirty.forEach((path: string) => {
+      console.info(`onNamePositionChange path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+    });
+  }
+  // 重复监听name、position，仅最后定义的生效
+  @Monitor("name", "position") // Monitor3
+  onNamePositionChangeDuplicate(monitor: IMonitor) {
+    monitor.dirty.forEach((path: string) => {
+      console.info(`onNamePositionChangeDuplicate path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+    });
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  info: Info = new Info();
+  build() {
+    Column() {
+      Button("change name")
+        .onClick(() => {
+          this.info.name = "Jack"; // 同时触发onNameAgeChange与onNamePositionChangeDuplicate方法
+        })
+    }
+  }
+}
+```
+
 - \@Monitor的参数需要为监听属性名的字符串，仅可以使用字符串字面量、const常量、enum枚举值作为参数。如果使用变量作为参数，仅会监听\@Monitor初始化时，变量值所对应的属性。当更改变量时，\@Monitor无法实时改变监听的属性，即\@Monitor监听的目标属性从初始化时便已经确定，无法动态更改。不建议开发者使用变量作为\@Monitor的参数进行初始化。
 
 ```ts
