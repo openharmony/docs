@@ -2826,6 +2826,12 @@ void* OH_ArkUI_LayoutConstraint_Dispose(ArkUI_LayoutConstraint* Constraint)
 | -- | -- |
 | [ArkUI_LayoutConstraint](capi-arkui-nativemodule-arkui-layoutconstraint.md)* Constraint | 约束尺寸。 |
 
+**返回：**
+
+| 类型                          | 说明 |
+|-----------------------------| -- |
+| void* | 空指针。 |
+
 ### OH_ArkUI_LayoutConstraint_GetMaxWidth()
 
 ```
