@@ -1,5 +1,11 @@
 # Function Flow Runtime Kit（任务并发调度服务）<!--function-flow-runtime-api-->
 
+<!--Kit: Function Flow Runtime Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @chuchihtung; @yanleo-->
+<!--SE: @geoffrey_guo; @huangyouzhong-->
+<!--TSE: @lotsof; @sunxuhao-->
+
 - C API<!--function-flow-runtime-c-->
   - 模块<!--function-flow-runtime-module-->
     - [FFRT](_f_f_r_t.md)
