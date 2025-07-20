@@ -1337,7 +1337,9 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.info('onWindowStageCreate');
     try {
-      windowStage.setCustomDensity(-1.0);
+      windowStage.setCustomDensity(2.0);
+      windowStage.setCustomDensity(3.0, true);
+      windowStage.setCustomDensity(-1.0, false);
     } catch (exception) {
       console.error(`Failed to set custom density. Cause code: ${exception.code}, message: ${exception.message}`);
     }
