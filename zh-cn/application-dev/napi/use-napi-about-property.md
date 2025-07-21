@@ -635,7 +635,7 @@ static napi_value SetterCallback(napi_env env, napi_callback_info info)
     std::memset(buf, 0, length + 1);
     napi_get_value_string_utf8(env, argv[0], buf, length + 1, &length);
     napi_create_string_utf8(env, buf, length, &result);
-    delete buf;
+    delete[] buf;
     return result;
 }
 static napi_value DefineMethodProperties(napi_env env, napi_callback_info info)
