@@ -134,7 +134,7 @@
     OH_ArkWebResourceHandler_DidFinish(resourceHandler);
   ```
   
-  在API version 20及以上版本，如果你希望返回一个网络错误码来结束请求，也可以直接调用OH_ArkWebResourceHandler_DidFailWithErrorV2接口来返回一个默认的网络错误码ARKWEB_ERR_CONNECTION_FAILED并结束该请求，错误码详情参考[网络错误码(arkweb_net_error_list.h)](../reference/apis-arkweb/capi-arkweb-net-error-list-h.md)。
+从API version 20开始，如果希望返回一个网络错误码来结束本次网络请求，也可以直接调用OH_ArkWebResourceHandler_DidFailWithErrorV2接口返回一个默认的网络错误码ARKWEB_ERR_CONNECTION_FAILED并结束该网络请求，错误码详情参考[网络错误码(arkweb_net_error_list.h)](../reference/apis-arkweb/capi-arkweb-net-error-list-h.md)。
   ```c++
     // 直接返回网络错误码ARKWEB_ERR_CONNECTION_FAILED结束该请求。
     OH_ArkWebResourceHandler_DidFailWithErrorV2(resourceHandler_, ARKWEB_ERR_FAILED, true);
