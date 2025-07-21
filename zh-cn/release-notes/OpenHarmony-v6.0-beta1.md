@@ -101,7 +101,7 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 
 ### DFX
 
-- 新增使用HiDebug对应用主线程进行栈回溯的能力。（[指南](../application-dev/dfx/hidebug-guidelines-ndk.md#获取堆栈信息)）
+- 新增使用HiDebug对应用主线程进行栈回溯的能力。（[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/dfx/hidebug-guidelines-ndk.md#%E4%BD%BF%E7%94%A8hidebug%E5%AF%B9%E5%BA%94%E7%94%A8%E4%B8%BB%E7%BA%BF%E7%A8%8B%E8%BF%9B%E8%A1%8C%E6%A0%88%E5%9B%9E%E6%BA%AF)）
 
 - 支持sanitizer事件对接到HiAppEvent。（[指南](https://gitee.com/openharmony/docs/blob/OpenHarmony-6.0-Beta1/zh-cn/application-dev/dfx/hiappevent-watcher-address-sanitizer-events.md)）
 
