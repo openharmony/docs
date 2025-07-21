@@ -257,10 +257,10 @@ static OH_Crypto_ErrCode doTestEccGenKeyPairBySpec()
     size_t bLen = ConvertHex(b, bStr.size() / 2, bStr.c_str());
     size_t nLen = ConvertHex(n, nStr.size() / 2, nStr.c_str());
     Crypto_DataBlob pData = {.data = p, .len = pLen};
-    Crypto_DataBlob aData = {.data = a, .len = gxLen};
-    Crypto_DataBlob bData = {.data = b, .len = gyLen};
-    Crypto_DataBlob gxData = {.data = gx, .len = aLen};
-    Crypto_DataBlob gyData = {.data = gy, .len = bLen};
+    Crypto_DataBlob aData = {.data = a, .len = aLen};
+    Crypto_DataBlob bData = {.data = b, .len = bLen};
+    Crypto_DataBlob gxData = {.data = gx, .len = gxLen};
+    Crypto_DataBlob gyData = {.data = gy, .len = gyLen};
     Crypto_DataBlob nData = {.data = n, .len = nLen};
     Crypto_DataBlob hData = {.data = h, .len = sizeof(h)};
 
