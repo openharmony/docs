@@ -67,6 +67,7 @@
   - [webSocket错误码](errorcode-net-webSocket.md)
   - [网络连接管理错误码](errorcode-net-connection.md)
   - [以太网连接错误码](errorcode-net-ethernet.md)
+  - [扩展认证错误码](errorcode-net-eap.md)
   - [网络共享错误码](errorcode-net-sharing.md)
   - [策略管理错误码](errorcode-net-policy.md)
   - [MDNS错误码](errorcode-net-mdns.md)

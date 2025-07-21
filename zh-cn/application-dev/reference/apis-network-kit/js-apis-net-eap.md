@@ -1,4 +1,4 @@
-# @ohos.net.eap (网络管理EAP模块)
+# @ohos.net.eap (扩展认证)
 
 该模块提供了第三方客户端介入802.1X认证（一种基于端口的网络接入控制协议）流程的机制，支撑客户端的定制认证等功能。
 
@@ -29,7 +29,7 @@ regCustomEapHandler(netType: number, eapCode: number, eapType: number, callback:
 | 参数名                              | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
 | netType| number|是|网络类型。|
-| eapCode|number |是|需要进行定制的EAP code，取值为1，2，3，4 。code=1 Request, code=2 Response, code=3 Success, code=4 Failure。|
+| eapCode|number |是|需要进行定制的EAP code，取值为1、2、3、4 。code=1 Request、 code=2 Response、 code=3 Success、 code=4 Failure。|
 | eapType| number |是|需要进行定制处理的EAP method类型。|
 | callback| Callback\<[EapData](#eapdata)\> |是|对指定的code+type的报文进行回调处理。|
 
@@ -81,7 +81,7 @@ unregCustomEapHandler(netType:number, eapCode: number, eapType: number, callback
 | 参数名                            | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
 | netType| number|是|网络类型。|
-| eapCode|number |是|需要进行定制的EAP code，取值为1，2，3，4 。code=1 Request, code=2 Response, code=3 Success, code=4 Failure。|
+| eapCode|number |是|需要进行定制的EAP code，取值为1、2、3、4 。code=1 Request、 code=2 Response、 code=3 Success、 code=4 Failure。|
 | eapType| number |是|需要进行定制处理的EAP method类型。|
 | callback| Callback\<[EapData](#eapdata)\> |是|对指定的code+type的报文进行回调处理。|
 
@@ -124,7 +124,7 @@ replyCustomEapData(result: CustomResult, data: EapData): void
 
 该接口用于通知系统已完成该步定制化处理。
 
- >**说明: **
+ >**说明: ** 
  >
  >- 若用于处理rx时的callback，传给系统的EAP数据需要剥离服务器添加的定制部分。
  >- 若用于处理tx时的callback，传给系统的EAP数据为经过添加定制部分后的EAP数据。
