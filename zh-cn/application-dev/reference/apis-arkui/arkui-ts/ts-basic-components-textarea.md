@@ -1808,7 +1808,7 @@ struct TextAreaExample {
           .height(60)
           .onWillDelete((info: DeleteValue) => {
             this.deleteValue = info.deleteValue;
-            info.direction;
+            this.deleteDirection = info.direction;
             return true;
           })
           .onDidDelete((info: DeleteValue) => {
