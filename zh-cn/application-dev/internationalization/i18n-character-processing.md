@@ -54,7 +54,7 @@ let unicodeType: string = i18n.Unicode.getType('a'); // unicodeType = 'U_LOWERCA
 
 音译是指将采用某个文字系统或字母表表示的文本转换为发音相同的采用另一个文字系统或字母表表示的文本的过程，并不等同于翻译。使用Transliterator类的[transform](../reference/apis-localization-kit/js-apis-i18n.md#transform9)接口可以实现音译功能，具体开发步骤如下：
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块支持中文汉字转拼音，但当中文文本中包含多音字时，可能出现部分多音字无法按照正确的发音转换为拼音的问题。
 
 1. 导入模块。
@@ -200,7 +200,6 @@ let breakText: string = iterator.getLineBreakText(); // breakText = 'Apple is my
 **开发实例**
 ```ts
 // 导入模块
-import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
 
 try {
