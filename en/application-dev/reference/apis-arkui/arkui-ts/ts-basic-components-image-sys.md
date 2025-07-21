@@ -14,35 +14,35 @@ The **Image** component is usually used to display images in applications.
 
 analyzerConfig(config: ImageAnalyzerConfig)
 
-Sets the type of the AI analyzer, including subject recognition and character recognition. By default, all types are supported. The type of the AI analyzer cannot be dynamically modified.
+Sets the AI image analysis types, including subject recognition and character recognition. By default, all types are supported. The types cannot be dynamically modified.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                         | Mandatory | Description        |
+| Name| Type                                         | Mandatory| Description        |
 | ------ | --------------------------------------------- | ---- | ------------ |
-| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | Yes  | Type of the AI analyzer. |
+| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | Yes  | AI image analysis types.|
 
 ### edgeAntialiasing<sup>11+</sup>
 
 edgeAntialiasing(value: number)
 
-Sets the edge antialiasing for the image. This attribute applies only to an SVG image. The value range is $[0.333, 1.333]$. The value is valid up to three decimal places.
+Sets antialiasing for the image. This attribute applies only to SVG images. The value range is $(0.333, 1.333]$, with precision limited to 3 decimal places.
 
-This attribute can be used to fix aliasing in SVG images on devices with PPI lower than 200, but it may compromise the performance. Exercise caution when using this attribute.
+This attribute can be used to optimize jagged edges in SVG images on devices with PPI lower than 200, but it may compromise the performance. Exercise caution when using this attribute.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type  | Mandatory | Description                               |
+| Name| Type  | Mandatory| Description                               |
 | ------ | ------ | ---- | ----------------------------------- |
-| value  | number | Yes  | Edge antialiasing of the image.<br>Default value: **$0$** |
+| value  | number | Yes  | Antialiasing strength of the image.<br>Default value: **0.0**.|
 
 ### pointLight<sup>11+</sup>
 
@@ -54,11 +54,11 @@ Sets the point light style.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                        | Mandatory | Description        |
+| Name| Type                                                        | Mandatory| Description        |
 | ------ | ------------------------------------------------------------ | ---- | ------------ |
-| value  | [PointLightStyle](ts-universal-attributes-point-light-style-sys.md#pointlightstyle) | Yes  | Point light style. |
+| value  | [PointLightStyle](ts-universal-attributes-point-light-style-sys.md#pointlightstyle) | Yes  | Point light style.|
 
 ### enhancedImageQuality<sup>12+</sup>
 
@@ -66,7 +66,7 @@ enhancedImageQuality(imageQuality: ResolutionQuality)
 
 Sets the image resolution for decoding the image.
 
-This attribute does not support non-decoded image types such as SVG, [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7), and [DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor).
+This attribute does not support non-decoded image types such as SVG, [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md), and [DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor).
 
 **System API**: This is a system API.
 
@@ -74,9 +74,9 @@ This attribute does not support non-decoded image types such as SVG, [PixelMap](
 
 **Parameters**
 
-| Name | Type                                   | Mandatory | Description                            |
+| Name| Type                                   | Mandatory| Description                            |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| imageQuality | [ResolutionQuality](#resolutionquality12) | Yes  | Image resolution used for decoding. |
+| imageQuality | [ResolutionQuality](#resolutionquality12) | Yes  | Image resolution used for decoding.|
 
 ## ResolutionQuality<sup>12+</sup>
 

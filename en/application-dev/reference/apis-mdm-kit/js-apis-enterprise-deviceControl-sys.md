@@ -1,16 +1,16 @@
-# @ohos.enterprise.deviceControl (Device Control) (System interface)
+# @ohos.enterprise.deviceControl (Device Control) (System API)
 
 The **deviceControl** module provides APIs for device control.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
+> - The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
 > 
-> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.deviceControl](js-apis-enterprise-deviceControl.md).
+> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.deviceControl](js-apis-enterprise-deviceControl.md).
 
 ## Modules to Import
 
@@ -22,7 +22,7 @@ import { deviceControl } from '@kit.MDMKit';
 
 resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 
-Restores device factory settings through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Restores factory settings. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESET_DEVICE
 
@@ -33,8 +33,8 @@ Restores device factory settings through the specified device administrator appl
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
+| callback | AsyncCallback\<void> | Yes| Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -51,7 +51,6 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 **Example**
 
 ```ts
-import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -72,7 +71,7 @@ deviceControl.resetFactory(wantTemp, (err) => {
 
 resetFactory(admin: Want): Promise\<void>
 
-Restores device factory settings through the specified device administrator application. This API uses a promise to return the result.
+Restores factory settings. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_RESET_DEVICE
 
@@ -83,7 +82,7 @@ Restores device factory settings through the specified device administrator appl
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
@@ -106,7 +105,6 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 **Example**
 
 ```ts
-import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -125,7 +123,7 @@ deviceControl.resetFactory(wantTemp).then(() => {
 
 shutdown(admin: Want): void
 
-Shuts down the device through the specified device administrator application.
+Shuts down the device.
 
 **Required permissions**: ohos.permission.ENTERPRISE_REBOOT
 
@@ -136,7 +134,7 @@ Shuts down the device through the specified device administrator application.
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 
 **Error codes**
 
@@ -153,7 +151,6 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 **Example**
 
 ```ts
-import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -172,7 +169,7 @@ try {
 
 reboot(admin: Want): void
 
-Reboots the device through the specified device administrator application.
+Reboots the device.
 
 **Required permissions**: ohos.permission.ENTERPRISE_REBOOT
 
@@ -183,7 +180,7 @@ Reboots the device through the specified device administrator application.
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 
 **Error codes**
 
@@ -200,7 +197,6 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 **Example**
 
 ```ts
-import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -219,7 +215,7 @@ try {
 
 lockScreen(admin: Want): void
 
-Locks the device screen through the specified device administrator application.
+Locks the device screen immediately.  
 
 **Required permissions**: ohos.permission.ENTERPRISE_LOCK_DEVICE
 
@@ -230,7 +226,7 @@ Locks the device screen through the specified device administrator application.
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 
 **Error codes**
 
@@ -247,7 +243,6 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 **Example**
 
 ```ts
-import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {

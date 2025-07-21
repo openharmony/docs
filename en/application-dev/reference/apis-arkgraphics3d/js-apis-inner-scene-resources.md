@@ -71,7 +71,7 @@ function destroy() : void {
 ```
 
 ## Shader
-Shader resource, which inherits from [SceneResource](#sceneresource).
+Shader resource, which inherits from [SceneResource](#sceneresource-1).
 
 ### Properties
 
@@ -126,7 +126,7 @@ Describes the order in which materials are rendered, controlling the sequence of
 | renderSortLayerOrder | number | No| Yes| Rendering order of different objects within the same rendering layer. A smaller value indicates an earlier rendering order. The value range is [0, 255]. The default value is **0**.|
 
 ## Material
-Material resource, which inherits from [SceneResource](#sceneresource).
+Material resource, which inherits from [SceneResource](#sceneresource-1).
 
 ### Properties
 
@@ -245,7 +245,7 @@ Defines the deformation of 3D models by adjusting the weights of different defor
 | targets | Record<string, number> | Yes| No| Used to store the names and weights of deformation targets. The weight value is usually within the range of [0.0, 1.0].|
 
 ## Mesh
-Mesh resource, which inherits from [SceneResource](#sceneresource).
+Mesh resource, which inherits from [SceneResource](#sceneresource-1).
 ### Properties
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
@@ -257,12 +257,12 @@ Mesh resource, which inherits from [SceneResource](#sceneresource).
 | materialOverride | [Material](#material) | No| Yes| Material. The default value is undefined.|
 
 ## MeshResource<sup>18+</sup>
-Mesh resource, which inherits from [SceneResource](#sceneresource).
+Mesh resource, which inherits from [SceneResource](#sceneresource-1).
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
 
 ## Animation
-Animation resource, which inherits from [SceneResource](#sceneresource).
+Animation resource, which inherits from [SceneResource](#sceneresource-1).
 ### Properties
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
@@ -500,7 +500,7 @@ Enumerates the environment background types, which are used to define how the ba
 | BACKGROUND_EQUIRECTANGULAR | 3 | Equirectangular background.|
 
 ## Environment
-Environment resource, which inherits from [SceneResource](#sceneresource).
+Environment resource, which inherits from [SceneResource](#sceneresource-1).
 ### Properties
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
@@ -516,7 +516,7 @@ Environment resource, which inherits from [SceneResource](#sceneresource).
 | irradianceCoefficients | [Vec3](js-apis-inner-scene-types.md#vec3)[] | No| Yes| Irradiance coefficients. The default value is undefined.|
 
 ## Image
-Image resource, which inherits from [SceneResource](#sceneresource).
+Image resource, which inherits from [SceneResource](#sceneresource-1).
 ### Properties
 
 **System capability**: SystemCapability.ArkUi.Graphics3D

@@ -662,6 +662,50 @@ function loadPlugin(): void {
 }
 ```
 
+### registerResourcePath<sup>20+</sup>
+registerResourcePath(protocol: string, uri: string): boolean
+
+注册shader等资产文件所在的路径目录及其检索名，通过检索名查找并替换shader内部关联文件的路径描述，找到对应的资产路径目录，实现资产及其关联文件的正确加载。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| protocol | string | 是 | 要注册的路径检索名，必须是系统未预定义或未注册且非空的检索名称，且符合命名规范。|
+| uri | string | 是 | 要注册的资产路径目录，与检索名对应，必须是资产文件所在文件夹路径，且符合路径描述规范。|
+
+**返回值：**
+| 类型 | 说明 |
+| ---- | ---- |
+| boolean | 返回资产文件路径是否注册成功。true表示注册成功；false表示注册失败，可能原因为检索名已被注册或输入参数不可用。 |
+
+**示例：**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext,
+  RenderResourceFactory } from '@kit.ArkGraphics3D';
+
+function registerResourcePath(): void {
+  Scene.load($rawfile("shaders/custom_shader/custom_material_sample.shader"))
+    .then(scene => {
+      const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
+      if (!renderContext) {
+        console.error("RenderContext is null");
+        return false;
+      }
+      return renderContext.registerResourcePath("protocol", "OhosRawFile://uri");
+    })
+    .then(result => {
+      if (result) {
+        console.info("resource path registration success");
+      } else {
+        console.error("resource path registration failed");
+      }
+    });
+}
+```
+
 ## RenderParameters<sup>15+</sup>
 渲染参数接口。
 

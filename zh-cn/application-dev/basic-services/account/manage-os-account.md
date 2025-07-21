@@ -54,7 +54,7 @@ accountManager.createOsAccount(name, type, (err: BusinessError, osAccountInfo: o
 
 ## 查询所有已创建的系统账号
 
-账号管理界面通常需要获取所有账号信息时，以方便用户操作不同账号。
+账号管理界面通常需要获取所有账号信息，以方便用户操作不同账号。
 
 具体开发实例如下：
 
@@ -138,7 +138,7 @@ accountManager.activateOsAccount(localId, (err: BusinessError)=>{
 
 ## 删除系统账号
 
-不再使用某个系统账号时，可以将该系统账号删除。
+不再使用某个系统账号时，可以删除该账号。
 
 具体开发实例如下：
 

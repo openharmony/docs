@@ -15,11 +15,11 @@ ArkUI开发框架在NDK接口提供了列表组件，使用列表可以轻松高
 
 ### NodeAdapter介绍 
 
-NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadapterhandle)对象替代ArkTS侧的LazyForEach功能，用于按需生成子组件，NodeAdapter支持在List/ListItemGroup、Grid、WaterFlow、Swiper组件中使用。
+NDK提供了[NodeAdapter](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nodeadapter8h.md)对象替代ArkTS侧的LazyForEach功能，用于按需生成子组件，NodeAdapter支持在List/ListItemGroup、Grid、WaterFlow、Swiper组件中使用。
 
 - 设置了NodeAdapter属性的节点，不再支持addChild等直接添加子组件的接口。子组件完全由NodeAdapter管理，使用属性方法设置NodeAdapter时，会判断父组件是否已经存在子节点，如果父组件已经存在子节点，则设置NodeAdapter操作失败，返回错误码。
 
-- NodeAdapter通过相关事件通知开发者按需生成组件，类似组件事件机制，开发者使用NodeAdapter时要注册[事件监听器](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_nodeadapter_registereventreceiver)，在监听器事件中处理逻辑，相关事件通过[ArkUI_NodeAdapterEventType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadaptereventtype)定义。另外NodeAdapter不会主动释放不在屏幕内显示的组件对象，开发者需要在[NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_ADAPTER](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeadaptereventtype)事件中进行组件对象的释放，或者进行缓存复用。下图展示了典型列表滑动场景下的事件触发机制：
+- NodeAdapter通过相关事件通知开发者按需生成组件，类似组件事件机制，开发者使用NodeAdapter时要注册[事件监听器](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodeadapter_registereventreceiver)，在监听器事件中处理逻辑，相关事件通过[ArkUI_NodeAdapterEventType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeadaptereventtype)定义。另外NodeAdapter不会主动释放不在屏幕内显示的组件对象，开发者需要在[NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_ADAPTER](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeadaptereventtype)事件中进行组件对象的释放，或者进行缓存复用。下图展示了典型列表滑动场景下的事件触发机制：
   ![zh-cn_image_0000001949769409](figures/zh-cn_image_0000001949769409.png)
 
 
@@ -403,8 +403,8 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
     ```c++
     // ArkUIListItemNode.h 
     //提供列表项的封装类。 
-    #ifndef MYAPPLICATION_ARKUISTACKNODE_H 
-    #define MYAPPLICATION_ARKUISTACKNODE_H 
+    #ifndef MYAPPLICATION_ARKUILISTITEMNODE_H 
+    #define MYAPPLICATION_ARKUILISTITEMNODE_H 
     #include "ArkUINode.h" 
     namespace NativeModule{ 
     class ArkUIListItemNode : public ArkUINode { 
@@ -437,7 +437,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
         std::shared_ptr<ArkUINode> swipeContent_ = nullptr; 
     }; 
     }// namespace NativeModule 
-    #endif// MYAPPLICATION_ARKUISTACKNODE_H
+    #endif// MYAPPLICATION_ARKUILISTITEMNODE_H
     ```
 
 2. 创建ListItem时，创建ListItem的划出组件，并绑定点击事件，在点击事件中执行删除数据源操作。ListItem复用时，更新划出组件的绑定事件。

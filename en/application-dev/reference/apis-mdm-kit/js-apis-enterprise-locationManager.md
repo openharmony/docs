@@ -4,11 +4,11 @@ The **locationManager** module provides location service management capabilities
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is enabled.
+> - The APIs of this module can be called only by a device administrator application that is enabled. For details, see [MDM Kit Development](../../mdm/mdm-kit-guide.md).
 > 
 
 ## Modules to Import
@@ -21,7 +21,7 @@ import { locationManager } from '@kit.MDMKit';
 
 setLocationPolicy(admin: Want, policy: LocationPolicy): void
 
-Sets the location service policy.
+Sets a location service policy.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_LOCATION
 
@@ -50,7 +50,6 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { locationManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -102,7 +101,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { locationManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

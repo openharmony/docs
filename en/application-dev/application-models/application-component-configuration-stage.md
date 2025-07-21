@@ -12,7 +12,7 @@ Icons and labels are usually configured together. They correspond to the **icon*
 ### Generation Mechanism
 * If the HAP file contains UIAbility configuration, the following scenarios are possible:
 
-  * If the **icon** and **label** fields under **abilities** of the **module.json5** file are configured, and under **skills** of the corresponding ability, **entities** contains **entity.system.home** and **actions** contains **ohos.want.action.home** or **action.system.home**, the system returns the icon and label configured in **module.json5**. If there are multiple abilities that meet the requirements, the system returns the icon and label specified for the ability corresponding to **mainElement** in **module.json5**.
+  * If the **icon** and **label** fields under **abilities** of the **module.json5** file are configured, and under **skills** of the corresponding ability, **entities** contains **entity.system.home** and **actions** contains **ohos.want.action.home**, the system returns the icon and label configured in **module.json5**. If there are multiple abilities that meet the requirements, the system returns the icon and label specified for the ability corresponding to **mainElement** in **module.json5**.
 
   * If the **icon** and **label** fields under **abilities** of the **module.json5** file are not configured, the system returns the icon and label configured in **app.json5**.
 
@@ -22,7 +22,7 @@ Icons and labels are usually configured together. They correspond to the **icon*
 ### Use Scenarios
 <!--RP1-->
 - Used to display an application on an application screen, for example, application list in **Settings**, or permissions requested by the application in **Settings > Privacy manager**.
-- Used to display an application on the home screen. for example, applications displayed on the home screen or in **Recents**.
+- Used to display an application on the home screen. for example, applications displayed on the home screen or in the recent task list.
 <!--RP1End-->
 
 The following figure shows the effect.
@@ -88,3 +88,20 @@ To configure the device types supported by the module, set the [deviceTypes](../
 ## Configuring the Module Permission
 
 The [requestPermissions](../security/AccessToken/declare-permissions.md) field in the [module.json5 file](../quick-start/module-configuration-file.md) is used to configure the permission information required by the module to access the protected part of the system or other applications. This field declares the name of the permission to request, the reason for requesting the permission, and the scenario where the permission is used.
+
+## Configuring the Launch Mode
+
+From API version 20 onwards, the **startMode** field can be used to customize the mode for starting an application upon an icon tap. This setting takes effect only when **launchType** is set to [singleton](./uiability-launch-type.md#singleton) and is designed for applications with multiple UIAbilities. The **startMode** field must be specified in the [app.json5](../quick-start/app-configuration-file.md#tags-in-the-configuration-file) file.
+
+- The default value is **mainTask**, indicating that the main UIAbility of the application is always started when the icon is tapped.
+- The value can be **recentTask**, which means that the most recently used UIAbility is started when the icon is tapped.
+
+```json
+{
+  ...
+  "app": {
+    "startMode": "mainTask"
+    ...
+  }
+}
+```

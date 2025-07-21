@@ -1,16 +1,19 @@
 # 使用HiCollie监控函数执行时间超长问题（C/C++）
 
-HiCollie模块对外提供函数执行时间超长的检测机制。
+## 简介
+
+任务执行超时指要监控的业务代码逻辑执行时长超过业务逻辑预期时间。本文面向开发者介绍HiCollie模块对外提供函数执行时间超长的检测能力。
 
 ## 接口说明
 
-| 接口名                          | 描述                              |
-| ------------------------------  | --------------------------------- |
-| OH_HiCollie_SetTimer | 注册定时器，用于检测函数或代码块执行是否超过自定义时间。<br/>结合OH_HiCollie_CancelTimer接口配套使用，应在调用耗时的函数之前使用。|
-| OH_HiCollie_CancelTimer | 取消定时器。<br/>结合OH_HiCollie_SetTimer接口配套使用，执行函数或代码块后使用，OH_HiCollie_CancelTimer通过id将该任务取消；<br/>若未在自定义时间内取消，则执行回调函数，在特定自定义超时动作下，生成故障日志。|
+| 接口名 | 描述 |
+| -------- | -------- |
+| OH_HiCollie_SetTimer | 注册定时器，用于检测函数或代码块执行是否超过自定义时间。<br/>结合OH_HiCollie_CancelTimer接口配套使用，应在调用耗时的函数之前使用。<br/>说明：从API version 18开始，支持该接口。 |
+| OH_HiCollie_CancelTimer | 取消定时器。<br/>结合OH_HiCollie_SetTimer接口配套使用，执行函数或代码块后使用，OH_HiCollie_CancelTimer通过id将该任务取消；<br/>若未在自定义时间内取消，则执行回调函数，在特定自定义超时动作下，生成故障日志。<br/>说明：从API version 18开始，支持该接口。 |
 
-- API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiCollie](../reference/apis-performance-analysis-kit/_hi_collie.md)。
-- 函数执行时间超长故障日志以syswarning-开头，生成在”设备/data/log/faultlog/faultlogger/”路径下。文件名格式为“syswarning-应用包名-应用UID-秒级时间.log”。
+- API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiCollie](../reference/apis-performance-analysis-kit/capi-hicollie-h.md)。
+
+- 函数执行时间超长故障日志以syswarning-开头，生成在“设备/data/log/faultlog/faultlogger/”路径下。文件名格式为“syswarning-应用包名-应用UID-秒级时间.log”。
 
 ## 开发步骤
 
@@ -35,31 +38,31 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
                - Index.ets
    ```
 
-2. 编辑"CMakeLists.txt"文件，添加源文件及动态库：
+2. 编辑“CMakeLists.txt”文件，添加源文件及动态库。
 
    ```cmake
    # 依赖动态库libhilog_ndk.z.so(日志输出)，libohhicollie.so（HiCollie对外检测接口）
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libohhicollie.so)
    ```
 
-3. 编辑"napi_init.cpp"文件，导入依赖头文件、定义LOG_TAG与测试方法以及注册TestHiCollieTimerNdk为ArkTS接口：
+3. 编辑“napi_init.cpp”文件，导入依赖头文件、定义LOG_TAG与测试方法以及注册TestHiCollieTimerNdk为ArkTS接口。
 
    ```c++
    #include "napi/native_api.h"
    #include "hicollie/hicollie.h"
    #include "hilog/log.h"
-
+   
    #include <unistd.h>
-
+   
    #undef LOG_TAG
    #define LOG_TAG "testTag"
-
+   
    //定义回调函数
    void CallBack(void*)
    {
      OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimerNdk callBack");  // 回调函数中打印日志
    }
-
+   
    static napi_value TestHiCollieTimerNdk(napi_env env, napi_callback_info info)
    {
      int id;
@@ -72,7 +75,7 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
      }
      return 0;
    }
-
+   
    EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports)
    {
@@ -83,7 +86,7 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
        return exports;
    }
    EXTERN_C_END
-
+   
    static napi_module demoModule = {
        .nm_version = 1,
        .nm_flags = 0,
@@ -93,20 +96,20 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
        .nm_priv = ((void*)0),
        .reserved = { 0 },
    };
-
+   
    extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
    {
        napi_module_register(&demoModule);
    }
    ```
 
-4. 编辑"index.d.ts"文件，定义ArkTS接口：
+4. 编辑“index.d.ts”文件，定义ArkTS接口。
 
    ```ts
    export const TestHiCollieTimerNdk: () => void;
    ```
 
-5. 编辑"Index.ets"文件：
+5. 编辑“Index.ets”文件。
 
    ```ts
    import testNapi from 'libentry.so';
@@ -122,7 +125,7 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
            Button("TestHiCollieTimerNdk")
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-             .onClick(testNapi.TestHiCollieTimerNdk);  //添加点击事件，触发TestHiCollieTimerNdk方法。
+             .onClick(testNapi.TestHiCollieTimerNdk);  //添加点击事件，触发testHiCollieTimerNdk方法。
          }
          .width('100%')
        }
@@ -131,17 +134,17 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
    }
    ```
 
-6. 点击DevEco Studio界面中的运行按钮，运行应用工程:
+6. 点击IDE界面中的运行按钮，运行应用工程。
 
-7. 在DevEco Studio的底部，切换到“Log->HiLog”窗口，设置日志的过滤条件为“testTag”:
-   
-   点击“testHiCollieTimerNdk”按钮执行程序，日志窗口打印任务id:
-   
+7. 在DevEco Studio的底部，切换到“Log->HiLog”窗口，设置日志的过滤条件为“testTag”。
+
+   （1）点击“testHiCollieTimerNdk”按钮执行程序，日志窗口打印任务id。
+
    ```
    .../testTag ... HiCollieTimer taskId: x
    ```
 
-   等待2s后，执行回调函数，日志窗口打印:
+   （2）等待2s后，执行回调函数，日志窗口打印。
 
    ```
    .../testTag ... HiCollieTimerNdk CallBack

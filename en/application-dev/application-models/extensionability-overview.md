@@ -1,35 +1,50 @@
 # ExtensionAbility Component
 
 
-The [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) component is used for specific scenarios such as widget development and input method development.
+[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) components are application components for specific scenarios. Each ExtensionAbility component corresponds to a specific real-world scenario. For example, [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) is used for widget scenarios, [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) is used for input method scenarios, and [WorkSchedulerExtensionAbility](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) is used for deferred task scenarios. You can use ExtensionAbility components of different types in your application to add new capabilities and interact more deeply with the system or other applications.
 
+All types of ExtensionAbility components are defined by the system and are usually managed by the corresponding system services in a unified manner. For example, the [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) component is managed by the input method management service. You cannot directly inherit from ExtensionAbility components. Instead, you can only implement or access the provided [ExtensionAbility types](../reference/apis-ability-kit/js-apis-bundleManager.md#extensionabilitytype).
 
-The system defines an [ExtensionAbility type](../reference/apis-ability-kit/js-apis-bundleManager.md#extensionabilitytype) for every specific scenario. You can use (implement and access) only the types that have been defined. All types of ExtensionAbility components are managed by the corresponding system services in a unified manner. For example, the [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) component is managed by the input method management service.
+## ExtensionAbility Types
 
 The table below lists the ExtensionAbility types defined in the system.
 
 > **NOTE**
 > 
-> - The column **Allow Third-Party Apps to Implement** specifies whether third-party applications can inherit the **ExtensionAbility** parent class and implement their own service logic for a type of ExtensionAbility.
-> - The column **Allow Third-Party Apps to Access** specifies whether third-party applications can access external services provided by a type of ExtensionAbility.
-> - The column **Allow Independent ExtensionAbility Sandbox** specifies whether an independent sandbox is provided for an ExtensionAbility. In versions earlier than API version 12, an application and its ExtensionAbilities use the same sandbox. Since API version 12, a new ExtensionAbility uses an independent sandbox. Currently, the InputMethodExtensionAbility runs in an independent sandbox for security purposes.
-> - The column **Allow ExtensionAbilities to Access Sendable Data in Strict Mode** specifies whether an ExtensionAbility can access sendable data in strict mode. Sendable data is implemented by configuring <!--Del-->[<!--DelEnd-->data-group-ids<!--Del-->](../security/app-provision-structure.md#bundle-info) and [dataGroupIds](../quick-start/module-configuration-file.md#extensionabilities) of the application. Strict access indicates that the sendable data is read-only, and non-strict access indicates that the data can be read and written.
+> - The column **Allow Third-Party Apps to Implement** specifies whether third-party applications can inherit from this ExtensionAbility to implement their own service logic.
+> - The column **Allow Independent ExtensionAbility Sandbox** specifies whether this ExtensionAbility runs in a sandbox separate from the main application's, preventing direct access between them.
 
+| ExtensionAbility Type                | Description| Allow Third-Party Apps<br>to Implement                 | Allow Independent<br>ExtensionAbility Sandbox|
+|--------------------------------------|---------|-------------------------------------------|-----------------------|
+| [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)  | Provides extended capabilities related to [service widgets](../form/formkit-overview.md).|  Yes| No|
+| [WorkSchedulerExtensionAbility](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) | Provides extended capabilities related to [deferred tasks](../task-management/work-scheduler.md).     | Yes| No|
+| [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) | Provides extended capabilities related to [input method applications](../inputmethod/ime-kit-intro.md).     | Yes| Yes|
+| <!--Del-->[<!--DelEnd-->ServiceExtensionAbility<!--Del-->](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)<!--DelEnd-->| Provides extended capabilities related to background services.<br>Third-party applications can connect to this ExtensionAbility and communicate with it.|No| No|
+| [AccessibilityExtensionAbility](../reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md)|Provides extended capabilities related to accessibility services, supporting access and operation of the foreground UI.| Yes| No|
+| <!--Del-->[<!--DelEnd-->DataShareExtensionAbility<!--Del-->](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)<!--DelEnd-->| Provides extended capabilities related to data sharing, providing data reading and writing services.<br>Third-party applications can connect to this ExtensionAbility for data reading and writing.| No| No|
+|<!--DelRow-->[StaticSubscriberExtensionAbility](../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)|Provides extended capabilities related to static broadcast, used to handle static events such as startup events. Third-party application cannot access this ExtensionAbility.|No| No|
+|<!--DelRow-->[WallpaperExtensionAbility](../reference/apis-basic-services-kit/js-apis-WallpaperExtensionAbility-sys.md)|Provides extended capabilities to implement wallpapers displayed on home screen. Third-party application cannot access this ExtensionAbility.|No| No|
+| [BackupExtensionAbility](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md) | Provides extended capabilities for [data backup and restore](../file-management/app-file-backup-overview.md).     | Yes| No|
+|<!--DelRow-->[WindowExtensionAbility](../reference/apis-arkui/js-apis-application-windowExtensionAbility-sys.md)|Provides extended capabilities that allow system applications to pull up and embed UIs of other applications. Third-party application cannot access this ExtensionAbility.| No| No|
+| [EnterpriseAdminExtensionAbility](../reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md)|Provides extended capabilities to handle management events during [enterprise management](../mdm/mdm-kit-admin.md).<br>Example events are application installation events on the device and excessive incorrect lock screen password input events.|Yes| No|
+| [PrintExtensionAbility](../reference/apis-basic-services-kit/js-apis-app-ability-PrintExtensionAbility.md)|Provides extended capabilities for printing photos and documents in office scenarios.|Yes| No|
+| [ShareExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md) | Provides extended capabilities related to the share template service.| Yes| No|
+| [DriverExtensionAbility](../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)   | Provides extended capabilities for [driver development](../device/driver/driverextensionability.md).     | Yes| No|
+| [ActionExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-actionExtensionAbility.md)| Provides extended capabilities for custom operation service templates.|Yes| No|
+| <!--RP3-->[AdsServiceExtensionAbility](../reference/apis-ads-kit/js-apis-adsserviceextensionability.md)<!--RP3End-->| Provides extended capabilities related to background custom ad services.|Yes| No|
+| [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md) | Provides extended capabilities for [UI embedding across processes](embeddeduiextensionability.md).| Yes| No|
+| [FenceExtensionAbility](../reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md) | Provides extended capabilities for the <!--RP1-->[geofence](../device/location/fenceExtensionAbility.md)<!--RP1End-->.| Yes| No|
+| [DistributedExtensionAbility](../reference/apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)|Provides extended capabilities and lifecycle callbacks for distributed ability creation, destruction, and connection.|Yes| No|
+| [AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md) | Provides extended capabilities for the application background service, which provides lifecycle callbacks for creating, destroying, connecting to, and disconnecting from the application background service.| Yes| No|
+|<!--DelRow-->[SelectionExtensionAbility](../reference/apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility-sys.md) | Provides extended capabilities for the word selection service, which provides lifecycle callbacks for connecting to and disconnecting from the system application background service. Third-party application cannot access this ExtensionAbility.| No| No|
+<!--RP2--><!--RP2End-->
 
-System applications are not restricted. They can implement all the ExtensionAbility types defined in the system and access external services provided by all the ExtensionAbility types.
-
-| ExtensionAbility Type                | Description| Allow Third-Party Apps to Implement                 | Allow Third-Party Apps to Access                                                | Allow Independent ExtensionAbility Sandbox                 | Allow ExtensionAbilities to Access Sendable Data in Strict Mode                 |
-| ------------------------ | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | 
- | [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)                 | ExtensionAbility component of the FORM type, which provides APIs related to [widgets](../form/formkit-overview.md).     | Yes| No| No| In non-strict mode, sendable data can be read and written.|
-| [WorkSchedulerExtensionAbility](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) | ExtensionAbility component of the WORK_SCHEDULER type, which provides callbacks for [deferred tasks](../task-management/work-scheduler.md).     | Yes| N/A| No| In non-strict mode, sendable data can be read and written.|
-| [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) | ExtensionAbility component of the INPUT_METHOD type, which is used to develop [input method applications](../inputmethod/ime-kit-intro.md).     | Yes| Yes| Yes| If full mode is enabled in input method management (in non-strict mode), sendable data can be read and written. If full mode is not enabled (in strict mode), sendable data can be read only.|
-| [BackupExtensionAbility](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md) | ExtensionAbility component of the BACKUP type, which provides APIs for [backing up and restoring application data](../file-management/app-file-backup-overview.md).     | Yes| N/A| No| In non-strict mode, sendable data can be read and written.|
-| [DriverExtensionAbility](../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)            | ExtensionAbility component of the DRIVER type, which provides the [driver-related extension framework](../device/driver/driverextensionability.md).     | Yes| Yes| No| In non-strict mode, sendable data can be read and written.|
-| [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md) | ExtensionAbility component of the EMBEDDED_UI type, which provides the [embedded UI across processes](embeddeduiextensionability.md).| Yes| Yes| No| In non-strict mode, sendable data can be read and written.|
-| [ShareExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md) | ExtensionAbility component of the SHARE type, which is used to extend the sharing template service.| Yes| Yes| No| In non-strict mode, sendable data can be read and written.|
-| [FenceExtension](../reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md) | ExtensionAbility component of the FENCE type, which provides the <!--RP1-->[geofence](../device/location/fenceExtensionAbility.md)<!--RP1End--> capability.| Yes| No| No| In non-strict mode, sendable data can be read and written.|
-
-
+> **NOTE**
+> 
+> Unless otherwise configured, all ExtensionAbility instances of the same type within an application (with the same bundle name) share a single process. Exceptions:
+>
+> - ServiceExtensionAbility (only for system applications), DataShareExtensionAbility (only for system applications), and all UIAbility instances run in the same independent process (main process).
+> - The UIExtensionAbility and its child classes ExtensionAbility can specify a separate process via the [extensionProcessMode](../quick-start/module-configuration-file.md#extensionabilities) field in the **module.json5** file.
 
 ## Accessing ExtensionAbility of the Specified Type
 
@@ -44,13 +59,10 @@ The following uses [InputMethodExtensionAbility](../reference/apis-ime-kit/js-ap
 
 ## Implementing ExtensionAbility of the Specified Type
 
-The following uses [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) as an example. The widget framework provides the base class **FormExtensionAbility**. You can derive this base class to create your own class (for example, **MyFormExtensionAbility**) and implement the callbacks, such as **onCreate()** and [onUpdateForm()](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onupdateform), to provide specific widget features. For details, see [Service Widget](../form/formkit-overview.md).
+The following uses [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) as an example. The widget framework provides the base class **FormExtensionAbility**. You can derive this base class to create your own class (for example, **MyFormExtensionAbility**) and implement the callbacks, such as **onCreate()** and [onUpdateForm()](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonupdateform), to provide specific widget features. For details, see [Service Widget](../form/formkit-overview.md).
 
 You do not need to care when to add or delete a widget. The lifecycle of the FormExtensionAbility instance and the lifecycle of the [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) process where the FormExtensionAbility instance is located are scheduled and managed by FormManagerService.
 
 ![form_extension](figures/form_extension.png)
 
-
-> **NOTE**
->
-> For an application, all ExtensionAbility components of the same type run in an independent process, whereas the UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility components run in another independent process. For details, see [Process Model (Stage Model)](process-model-stage.md).
+<!--no_check-->

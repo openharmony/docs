@@ -30,6 +30,10 @@ Search(options?: SearchOptions)
 
 Search初始化参数。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -136,7 +140,7 @@ textAlign(value: TextAlign)
 
 >  **说明：**  
 >
->  textAlign只能调整文本整体的布局，不影响字符的显示顺序。若需要调整字符的显示顺序，请参考[镜像状态字符对齐](../../../ui/arkts-mirroring-display.md#镜像状态字符对齐)。
+>  textAlign只能调整文本整体的布局，不影响字符的显示顺序。若需要调整字符的显示顺序，请参考[镜像状态字符对齐](../../../ui/arkts-internationalization.md#镜像状态字符对齐)。
 
 ### copyOption<sup>9+</sup>
 
@@ -1296,7 +1300,7 @@ struct SearchExample {
         .onChange((value: string) => {
           this.text = value;
         })
-        .onSubmit((value: String) => {
+        .onSubmit((value: string) => {
           console.log("trigger search onsubmit" + value);
         })
 
@@ -1525,7 +1529,7 @@ struct SearchExample {
           .height(60)
           .onWillDelete((info: DeleteValue) => {
             this.deleteValue = info.deleteValue;
-            info.direction;
+            this.deleteDirection = info.direction;
             return true;
           })
           .onDidDelete((info: DeleteValue) => {

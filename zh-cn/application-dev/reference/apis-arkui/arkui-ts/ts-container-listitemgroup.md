@@ -360,7 +360,7 @@ function itemHead(params: HeadBuilderParams) {
 
 @Builder
 function itemFoot(params: FootBuilderParams) {
-  Text('共' + params.num + '节课')
+  Text('共' + params.num.toString() + '节课')
     .fontSize(20)
     .height('48vp')
     .width('100%')

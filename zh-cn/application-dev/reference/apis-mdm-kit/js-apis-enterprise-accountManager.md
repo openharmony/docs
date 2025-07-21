@@ -50,14 +50,17 @@ disallowOsAccountAddition(admin: Want, disallow: boolean, accountId?: number): v
 **示例：**
 
 ```ts
+import { accountManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   accountManager.disallowOsAccountAddition(wantTemp, true, 100);
   console.info('Succeeded in disallowing os account addition.');
 } catch (err) {
@@ -104,14 +107,17 @@ isOsAccountAdditionDisallowed(admin: Want, accountId?: number): boolean
 **示例：**
 
 ```ts
+import { accountManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let isDisallowed: boolean = accountManager.isOsAccountAdditionDisallowed(wantTemp, 100);
   console.info(`Succeeded in querying the os account addition or not: ${isDisallowed}`);
 } catch (err) {
@@ -160,14 +166,17 @@ addOsAccountAsync(admin: Want, name: string, type: osAccount.OsAccountType): Pro
 **示例**：
 
 ```ts
+import { accountManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError, osAccount } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 参数需根据实际情况进行替换
 accountManager.addOsAccountAsync(wantTemp, "TestAccountName", osAccount.OsAccountType.NORMAL).then((info) => {
   console.info(`Succeeded in creating os account: ${JSON.stringify(info)}`);
 }).catch((err: BusinessError) => {
@@ -205,25 +214,28 @@ setDomainAccountPolicy(admin: Want, domainAccountInfo: osAccount.DomainAccountIn
 **示例：**
 
 ```ts
+import { accountManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError, osAccount } from '@kit.BasicServicesKit';
 
 async function setDomainAccountPolicy() {
   let wantTemp: Want = {
+    // 需根据实际情况进行替换
     bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility',
+    abilityName: 'EntryAbility'
   };
   let policy: accountManager.DomainAccountPolicy = {
+    // 需根据实际情况进行替换
     authenticationValidityPeriod: 300,
     passwordValidityPeriod: 420,
-    passwordExpirationNotification: 60,
-  }
+    passwordExpirationNotification: 60
+  };
   // 设置全局域账号策略
   let accountInfo: osAccount.DomainAccountInfo = {
     domain: '',
     accountName: '',
-    serverConfigId: '',
-  }
+    serverConfigId: ''
+  };
   try {
     accountManager.setDomainAccountPolicy(wantTemp, accountInfo, policy);
     console.info('Succeeded in setting global domainAccount policy.');
@@ -234,8 +246,9 @@ async function setDomainAccountPolicy() {
   let accountInfo2: osAccount.DomainAccountInfo = {
     domain: '',
     accountName: '',
-    serverConfigId: '',
-  }
+    serverConfigId: ''
+  };
+  // 需根据实际情况替换
   let userId: number = 100;
   await osAccount.getAccountManager().getOsAccountDomainInfo(userId)
     .then((domainAccountInfo: osAccount.DomainAccountInfo) => {
@@ -290,21 +303,23 @@ getDomainAccountPolicy(admin: Want, domainAccountInfo: osAccount.DomainAccountIn
 **示例：**
 
 ```ts
+import { accountManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError, osAccount } from '@kit.BasicServicesKit';
 
 async function getDomainAccountPolicy() {
   let wantTemp: Want = {
+    // 需根据实际情况进行替换
     bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility',
+    abilityName: 'EntryAbility'
   };
   let domainAccountPolicy: accountManager.DomainAccountPolicy = {}
   // 查询全局域账号策略
   let accountInfo: osAccount.DomainAccountInfo = {
     domain: '',
     accountName: '',
-    serverConfigId: '',
-  }
+    serverConfigId: ''
+  };
   try {
     domainAccountPolicy = accountManager.getDomainAccountPolicy(wantTemp, accountInfo);
     console.info('Succeeded in getting global domain account policy.');
@@ -315,8 +330,9 @@ async function getDomainAccountPolicy() {
   let accountInfo2: osAccount.DomainAccountInfo = {
     domain: '',
     accountName: '',
-    serverConfigId: '',
-  }
+    serverConfigId: ''
+  };
+  // 需根据实际情况进行替换
   let userId: number = 100;
   await osAccount.getAccountManager()
     .getOsAccountDomainInfo(userId)

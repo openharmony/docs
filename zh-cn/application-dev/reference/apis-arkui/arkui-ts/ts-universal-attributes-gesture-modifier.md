@@ -66,14 +66,14 @@ class MyButtonModifier implements GestureModifier {
         new TapGestureHandler({ count: 2, fingers: 1 })
           .tag("aaa")
           .onAction((event: GestureEvent) => {
-            console.log("button tap ")
+            console.info("button tap ")
           })
       )
     } else {
       event.addGesture(
         new PanGestureHandler()
           .onActionStart(()=>{
-            console.log("Pan start");
+            console.info("Pan start");
           })
       )
     }

@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleResourceManager (bundleResourceManager) (System API)
 
-The **bundleResourceManager** module provides APIs for obtaining resource information, including [BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md) and [LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md).
+The module provides APIs for obtaining resource information, including [BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md) and [LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md).
 
 > **NOTE**
 >
@@ -13,17 +13,8 @@ The **bundleResourceManager** module provides APIs for obtaining resource inform
 ## Modules to Import
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 ```
-
-## Required Permissions
-
-| Permission                                      | APL    | Description           |
-| ------------------------------------------ | ------------ | ------------------|
-| ohos.permission.GET_BUNDLE_RESOURCES| system_basic | Allows an application to obtain resource information of another application.|
-| ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | Allows an application to read the list of installed applications.|
-
-For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 ## Enums
 
@@ -35,13 +26,14 @@ Enumerates the resource information flags, which indicate the type of resource i
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Resource
 
-| Name                                     | Value        | Description                                                        |
-| ----------------------------------------- | ---------- | ------------------------------------------------------------ |
-| GET_RESOURCE_INFO_ALL                   | 0x00000001 | Both the application icon and label are obtained.|
-| GET_RESOURCE_INFO_WITH_LABEL          | 0x00000002 | Only the application label is obtained.|
-| GET_RESOURCE_INFO_WITH_ICON           | 0x00000004 | Only the application icon is obtained.|
-| GET_RESOURCE_INFO_WITH_SORTED_BY_LABEL| 0x00000008 | The obtained information is sorted by label. It must be used together with **GET_RESOURCE_INFO_ALL** or **GET_RESOURCE_INFO_WITH_LABEL**.|
-| GET_RESOURCE_INFO_WITH_DRAWABLE_DESCRIPTOR<sup>12+</sup>| 0x00000010 | The [drawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor-sys.md) object of the application icon is obtained.|
+| Name                                                    | Value        | Description                                                        |
+| -------------------------------------------------------- | ---------- | ------------------------------------------------------------ |
+| GET_RESOURCE_INFO_ALL                                    | 0x00000001 | Both the application icon and label are obtained.                               |
+| GET_RESOURCE_INFO_WITH_LABEL                             | 0x00000002 | Only the application label is obtained.                     |
+| GET_RESOURCE_INFO_WITH_ICON                              | 0x00000004 | Only the application icon is obtained.                     |
+| GET_RESOURCE_INFO_WITH_SORTED_BY_LABEL                   | 0x00000008 | The obtained information is sorted by label. It must be used together with **GET_RESOURCE_INFO_ALL** or **GET_RESOURCE_INFO_WITH_LABEL**.|
+| GET_RESOURCE_INFO_WITH_DRAWABLE_DESCRIPTOR<sup>12+</sup> | 0x00000010 | The [drawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor-sys.md) object of the application icon is obtained.|
+| GET_RESOURCE_INFO_ONLY_WITH_MAIN_ABILITY<sup>20+</sup>   | 0x00000020 | The resource information about abilities that show icons only on the home screen is obtained. It is valid only in the [getLauncherAbilityResourceInfo](#bundleresourcemanagergetlauncherabilityresourceinfo) and [getAllLauncherAbilityResourceInfo](#bundleresourcemanagergetalllauncherabilityresourceinfo) APIs.|
 
 
 ## APIs
@@ -87,13 +79,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.example.myapplication";
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
-    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, bundleFlags);
+    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, resourceFlag);
     hilog.info(0x0000, 'testTag', 'getBundleResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo.label));
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -141,13 +133,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.example.myapplication";
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
-    let resourceInfo = bundleResourceManager.getLauncherAbilityResourceInfo(bundleName, bundleFlags);
+    let resourceInfo = bundleResourceManager.getLauncherAbilityResourceInfo(bundleName, resourceFlag);
     hilog.info(0x0000, 'testTag', 'getLauncherAbilityResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo[0].label));
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -172,7 +164,7 @@ Obtains the bundle resource information of all applications based on the given r
 | Name    | Type  | Mandatory| Description               |
 | ----------- | ------ | ---- | --------------------- |
 | resourceFlags | [number](#resourceflag) | Yes  | Type of the resource information to obtain.|
-| callback | AsyncCallback\<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the resource information of the application obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)>> | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the information is successfully obtained, **err** is **null** and **data** is the bundle resource information. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -187,12 +179,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
-    bundleResourceManager.getAllBundleResourceInfo(bundleFlags, (err, data) => {
+    bundleResourceManager.getAllBundleResourceInfo(resourceFlag, (err, data) => {
         if (err) {
             hilog.error(0x0000, 'testTag', 'getAllBundleResourceInfo failed. err: %{public}s', err.message);
             return;
@@ -242,12 +234,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
-    bundleResourceManager.getAllBundleResourceInfo(bundleFlags).then(data=> {
+    bundleResourceManager.getAllBundleResourceInfo(resourceFlag).then(data=> {
         hilog.info(0x0000, 'testTag', 'getAllBundleResourceInfo successfully. Data length: %{public}s', JSON.stringify(data.length));
     }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getAllBundleResourceInfo failed. err: %{public}s', err.message);
@@ -275,7 +267,7 @@ Obtains the resource information of the entry abilities of the current applicati
 | Name    | Type  | Mandatory| Description               |
 | ----------- | ------ | ---- | --------------------- |
 | resourceFlags | [number](#resourceflag) | Yes  | Type of the resource information to obtain.|
-| callback | AsyncCallback\<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the resource information of the entry abilities obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>> | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the information is successfully obtained, **err** is **null** and **data** is the launcher ability resource information. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -290,12 +282,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
-    bundleResourceManager.getAllLauncherAbilityResourceInfo(bundleFlags, (err, data) => {
+    bundleResourceManager.getAllLauncherAbilityResourceInfo(resourceFlag, (err, data) => {
         if (err) {
             hilog.error(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed. err: %{public}s', err.message);
             return;
@@ -310,7 +302,7 @@ try {
 
 ### bundleResourceManager.getAllLauncherAbilityResourceInfo
 
-getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)) : Promise<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>>
+getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)): Promise<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>>
 
 Obtains the resource information of the entry abilities of the current application based on the given resource flags. This API uses a promise to return the result.
 
@@ -344,12 +336,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
-    bundleResourceManager.getAllLauncherAbilityResourceInfo(bundleFlags).then(data=> {
+    bundleResourceManager.getAllLauncherAbilityResourceInfo(resourceFlag).then(data=> {
         hilog.info(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo successfully. Data length: %{public}s', JSON.stringify(data.length));
     }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed. err: %{public}s', err.message);
@@ -403,14 +395,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.example.myapplication";
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 let appIndex = 1;
 try {
-    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, bundleFlags, appIndex);
+    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, resourceFlag, appIndex);
     hilog.info(0x0000, 'testTag', 'getBundleResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo.label));
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -459,14 +451,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.example.myapplication";
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 let appIndex = 1;
 try {
-    let resourceInfo = bundleResourceManager.getLauncherAbilityResourceInfo(bundleName, bundleFlags, appIndex);
+    let resourceInfo = bundleResourceManager.getLauncherAbilityResourceInfo(bundleName, resourceFlag, appIndex);
     hilog.info(0x0000, 'testTag', 'getLauncherAbilityResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo[0].label));
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -491,7 +483,7 @@ Obtains the ExtensionAbility resource information of an application based on the
 | Name    | Type  | Mandatory| Description               |
 | ----------- | ------ | ---- | --------------------- |
 | bundleName | string | Yes  | Bundle name of the application.|
-| extensionAbilityType | [bundleManager.ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | Yes  | ExtensionAbility type. Only **ExtensionAbilityType.INPUTMETHOD**, **ExtensionAbilityType.SHARE** and **ExtensionAbilityType.ACTION** are supported.|
+| extensionAbilityType | [bundleManager.ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | Yes  | ExtensionAbility type. Only **ExtensionAbilityType.INPUT_METHOD**, **ExtensionAbilityType.SHARE** and **ExtensionAbilityType.ACTION** are supported.|
 | [resourceFlags](#resourceflag) | number | Yes  | Resource information flags, which indicate the type of resource information to obtain.|
 | appIndex | number | No  | ID of the application clone. The default value is **0**. The value ranges from 0 to 5. The value **0** indicates the main application.|
 
@@ -520,9 +512,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName = "com.example.myapplication";
 let extensionAbilityType = bundleManager.ExtensionAbilityType.INPUT_METHOD;
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
-    let resourceInfo = bundleResourceManager.getExtensionAbilityResourceInfo(bundleName, extensionAbilityType, bundleFlags);
+    let resourceInfo = bundleResourceManager.getExtensionAbilityResourceInfo(bundleName, extensionAbilityType, resourceFlag);
     console.info('getExtensionAbilityResourceInfo successfully. Data label: ' + JSON.stringify(resourceInfo[0].label));
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -530,3 +522,31 @@ try {
     console.error(`getExtensionAbilityResourceInfo failed, err code:${code}, err msg: ${message}`);
 }
 ```
+
+## BundleResourceInfo
+
+type BundleResourceInfo = _BundleResourceInfo
+
+Defines the icon and name of an application.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Resource
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md#bundleresourceinfo) |Icon and name of the application.|
+
+## LauncherAbilityResourceInfo
+
+type LauncherAbilityResourceInfo = _LauncherAbilityResourceInfo
+
+Defines the entry icon and name of an application.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Resource
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md#launcherabilityresourceinfo) |Entry icon and name of the application.|

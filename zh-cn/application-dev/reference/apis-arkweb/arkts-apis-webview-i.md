@@ -162,30 +162,15 @@ WebViewController与Web组件的绑定状态。
 
 ## BlanklessInfo<sup>20+</sup>
 
-无白屏加载的预测信息，主要包括预测错误码，预测的快照相似度，预测加载的时长，应用需根据此信息来决策是否启用无白屏加载插帧。
+页面首屏加载预测信息，主要包括首屏相似度预测值，首屏加载耗时预测值，预测错误码，应用需根据此信息来决策是否启用无白屏加载插帧方案。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称        | 类型   | 只读 | 可选 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| errCode | WebBlanklessErrorCode | 否   | 否   | 见[WebBlanklessErrorCode](#webblanklesserrorcode20)定义。 |
-| similarity | number | 否   | 否   | 无白屏加载的快照相似度，根据历史加载首屏快照计算相似度，范围为0~1.0，1.0表示完全一致，数值越接近1，相似度越高。该值存在滞后性，本地加载的相似性将在下次加载时才可反映。建议当相似度为0时，应用不启用插帧功能。 |
-| loadingTime | int | 否   | 否   | 根据历史加载首屏的耗时估计本次加载的耗时，单位ms，取值范围需大于0。 |
-
-## WebBlanklessErrorCode<sup>20+</sup>
-
-无白屏加载的异常错误码。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称 | 值 | 说明 |
-| ------------------------------- | - | ---------- |
-| SUCCESS | 0 | 成功。 |
-| ERR_UNKNOWN   | -1 | 未知错误，内部状态错误等。 |
-| ERR_INVALID_PARAM   | -2 | 参数不合法。 |
-| ERR_CONTROLLER_NOT_INITED   | -3 | web controller未绑定组件。 |
-| ERR_KEY_NOT_MATCH   | -4 | 未匹配到key值，对于[setBlanklessLoadingWithKey](./arkts-apis-webview-WebviewController.md#setblanklessloadingwithkey20)需与[getBlanklessInfoWithKey](./arkts-apis-webview-WebviewController.md#getblanklessinfowithkey20)配套使用并且key值一致，否则返回该错误码。 |
-| ERR_SIGNIFICANT_CHANGE   | -5 | 当相似度较低（<0.33）时，系统会判定为跳变太大，[setBlanklessLoadingWithKey](./arkts-apis-webview-WebviewController.md#setblanklessloadingwithkey20)接口不会成功启用插帧。 |
+| errCode | WebBlanklessErrorCode | 否   | 否   | 无白屏加载的异常错误码，见[WebBlanklessErrorCode](./arkts-apis-webview-e.md#webblanklesserrorcode20)定义。 |
+| similarity | number | 否   | 否   | 首屏相似度，根据历史加载首屏内容计算相似度，范围为0~1.0，1.0表示完全一致，数值越接近1，相似度越高。该值存在滞后性，本地加载的相似性将在下次加载时才可反映。建议当相似度较低时，应用不启用无白屏加载插帧方案。 |
+| loadingTime | int | 否   | 否   | 根据历史加载首屏耗时预测本次加载耗时，单位ms，取值范围需大于0。 |
 
 ## HistoryItem
 
