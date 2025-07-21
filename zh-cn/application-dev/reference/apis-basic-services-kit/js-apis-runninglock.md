@@ -34,7 +34,7 @@ isSupported(type: RunningLockType): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -43,6 +43,7 @@ isSupported(type: RunningLockType): boolean
 **示例：**
 
 ```js
+import runningLock from '@ohos.runningLock'
 try {
     let isSupported = runningLock.isSupported(runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL);
     console.info('BACKGROUND type supported: ' + isSupported);
@@ -71,7 +72,7 @@ create(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -80,10 +81,24 @@ create(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLo
 
 **示例：**
 
+ArkTS1.1示例：
 ```js
+import runningLock from '@ohos.runningLock'
 
 runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
     if (typeof err === 'undefined') {
+        console.info('created running lock: ' + lock);
+    } else {
+        console.error('create running lock failed, err: ' + err);
+    }
+});
+```
+ArkTS1.2示例：
+```js
+import runningLock from '@ohos.runningLock'
+
+runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error | null, lock: runningLock.RunningLock | undefined) => {
+    if (!err) {
         console.info('created running lock: ' + lock);
     } else {
         console.error('create running lock failed, err: ' + err);
@@ -116,7 +131,7 @@ create(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -126,6 +141,7 @@ create(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 **示例：**
 
 ```js
+import runningLock from '@ohos.runningLock'
 
 runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL)
 .then((lock: runningLock.RunningLock) => {
@@ -274,7 +290,8 @@ runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.B
 
 ### hold<sup>9+</sup>
 
-hold(timeout: number): void
+ArkTS1.1: hold(timeout: number): void  
+ArkTS1.2: hold(timeout: int): void
 
 锁定和持有RunningLock。
 
@@ -286,21 +303,23 @@ hold(timeout: number): void
 
 | 参数名  | 类型   | 必填 | 说明                                      |
 | ------- | ------ | ---- | ----------------------------------------- |
-| timeout | number | 是   | 锁定和持有RunningLock的时长，单位：毫秒。<br>该参数必须为数字类型：<br>**-1**：永久持锁，需要主动释放。<br>**0**：默认3s后超时释放。<br>**>0**：按传入值超时释放。|
+| timeout | ArkTS1.1: number<br>ArkTS1.2: int | 是   | 锁定和持有RunningLock的时长，单位：毫秒。<br>该参数必须为数字类型：<br>**-1**：永久持锁，需要主动释放。<br>**0**：默认3s后超时释放。<br>**>0**：按传入值超时释放。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息     |
 |---------|----------|
-| 401     | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; |
 | 201     | If the permission is denied.|
 
 **示例：**
 
 ```ts
 // RunningLockTest.ets
+import runningLock from '@ohos.runningLock'
+
 class RunningLockTest {
     public static recordLock: runningLock.RunningLock;
 
@@ -309,12 +328,12 @@ class RunningLockTest {
             RunningLockTest.recordLock.hold(500);
             console.info('hold running lock success');
         } else {
-            runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
-                if (typeof err === 'undefined') {
+            runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error | null, lock: runningLock.RunningLock | undefined) => {
+                if (!err) {
                     console.info('create running lock: ' + lock);
                     RunningLockTest.recordLock = lock;
                     try {
-                        lock.hold(500);
+                        lock!.hold(500);
                         console.info('hold running lock success');
                     } catch(err) {
                         console.error('hold running lock failed, err: ' + err);
@@ -340,7 +359,7 @@ unhold(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息     |
 |---------|----------|
@@ -351,6 +370,8 @@ unhold(): void
 
 ```ts
 // RunningLockTest.ets
+import runningLock from '@ohos.runningLock'
+
 class RunningLockTest {
     public static recordLock: runningLock.RunningLock;
 
@@ -359,12 +380,14 @@ class RunningLockTest {
             RunningLockTest.recordLock.unhold();
             console.info('unhold running lock success');
         } else {
-            runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
-                if (typeof err === 'undefined') {
+            runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error | null, lock: runningLock.RunningLock | undefined) => {
+                if (!err) {
                     console.info('create running lock: ' + lock);
                     RunningLockTest.recordLock = lock;
                     try {
-                        lock.unhold();
+                        lock!.hold(500);
+                        // Finish other tasks before unhold lock.
+                        lock!.unhold();
                         console.info('unhold running lock success');
                     } catch(err) {
                         console.error('unhold running lock failed, err: ' + err);
@@ -396,6 +419,8 @@ isHolding(): boolean
 
 ```ts
 // RunningLockTest.ets
+import runningLock from '@ohos.runningLock'
+
 class RunningLockTest {
     public static recordLock: runningLock.RunningLock;
 
@@ -404,11 +429,11 @@ class RunningLockTest {
             let isHolding = RunningLockTest.recordLock.isHolding();
             console.info('check running lock holding status: ' + isHolding);
         } else {
-            runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
-                if (typeof err === 'undefined') {
+            runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error | null, lock: runningLock.RunningLock | undefined) => {
+                if (!err) {
                     console.info('create running lock: ' + lock);
                     RunningLockTest.recordLock = lock;
-                    let isHolding = lock.isHolding();
+                    let isHolding = lock!.isHolding();
                     console.info('check running lock holding status: ' + isHolding);
                 } else {
                     console.error('create running lock failed, err: ' + err);
