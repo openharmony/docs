@@ -32,6 +32,7 @@
 | [native_interface_focus.h](native__interface__focus_8h.md) | 提供NativeFocus相关接口定义。 |
 | [native_key_event.h](native__key_event_8h.md) | 提供NativeKeyEvent相关接口定义。  |
 | [native_node.h](native__node_8h.md) | 提供NativeNode接口的类型定义。  |
+| [native_node_ani.h](native__node__ani_8h.md) | 提供ArkTS1.2的FrameNode转换NodeHandle的方式。  |
 | [native_node_napi.h](native__node__napi_8h.md) | 提供ArkTS侧的FrameNode转换NodeHandle的方式。  |
 | [native_type.h](native__type_8h.md) | 提供NativeModule公共的类型定义。  |
 | [styled_string.h](styled__string_8h.md) | 提供ArkUI在Native侧的属性字符串能力。  |
@@ -929,6 +930,8 @@
 | int32_t [OH_ArkUI_VisibleAreaEventOptions_GetRatios](#oh_arkui_visibleareaeventoptions_getratios) ([ArkUI_VisibleAreaEventOptions](#arkui_visibleareaeventoptions) \*option, float\* value, int32_t\* size) | 获取阈值数组。<br/>**起始版本：** 17  | 
 | int32_t [OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval](#oh_arkui_visibleareaeventoptions_getexpectedupdateinterval) ([ArkUI_VisibleAreaEventOptions](#arkui_visibleareaeventoptions) \*option,) |  获取预期更新间隔。<br/>**起始版本：** 17 | 
 | int32_t [OH_ArkUI_EnableDropDisallowedBadge](#oh_arkui_enabledropdisallowedbadge) ([ArkUI_ContextHandle](#arkui_contexthandle-12) uiContext, bool enabled) | 设置是否可以显示禁用角标。<br />**起始版本：** 20  | 
+| int32_t [OH_ArkUI_NativeModule_GetNodeHandleFromAniValue](#oh_arkui_nativemodule_getnodehandlefromanivalue)  (ani_env* env, ani_object frameNode, [ArkUI_NodeHandle](#arkui_nodehandle) \*handle) | 获取ArkTS侧创建的FrameNode节点对象映射到Native侧的ArkUI_NodeHandle。<br />**起始版本：** 20  | 
+| int32_t [OH_ArkUI_NativeModule_GetContextFromAniValue](#oh_arkui_nativemodule_getcontextfromanivalue)  (ani_env* env, ani_object context, [ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) \*handle) | 获取ArkTS侧创建的UIContext对象映射到Native侧的ArkUI_ContextHandle。<br />**起始版本：** 20  | 
 
 
 ## 宏定义说明
@@ -19657,3 +19660,50 @@ int32_t OH_ArkUI_PostUITaskAndWait(ArkUI_ContextHandle context, void* taskData, 
 
 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。
 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) context对象无效或task为空指针。
+
+### OH_ArkUI_NativeModule_GetNodeHandleFromAniValue
+
+```
+int32_t OH_ArkUI_NativeModule_GetNodeHandleFromAniValue(ani_env* env, ani_object frameNode, ArkUI_NodeHandle* handle)
+```
+
+**描述**
+
+获取ArkTS侧创建的FrameNode节点对象映射到Native侧的ArkUI_NodeHandle。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | ANI的环境指针。| 
+| frameNode | ArkTS侧创建的FrameNode对象。| 
+| handle | ArkUI_NodeHandle指针。| 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
+
+### OH_ArkUI_NativeModule_GetContextFromAniValue()
+
+```
+int32_t OH_ArkUI_NativeModule_GetContextFromAniValue(ani_env* env, ani_object context, ArkUI_ContextHandle* handle)
+```
+**描述：**
+
+获取ArkTS侧创建的UIContext对象映射到Native侧的ArkUI_ContextHandle。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| env | ANI的环境指针。  |
+| context | ArkTS侧创建的UIContext对象。  |
+| handle | ArkUI_ContextHandle指针。  |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
