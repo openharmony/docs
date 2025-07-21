@@ -19587,9 +19587,9 @@ int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskD
 ```
 **描述：**
 
-将UI任务抛到ArkUI框架提供的非UI线程中执行。
+将asyncUITask函数抛到ArkUI框架提供的非UI线程中执行，asyncUITask函数执行完成后在UI线程调用onFinish函数。
 
-适用于UI组件创建并行化场景，开发者可以使用此接口在非UI线程创建UI组件，创建完成后回到UI线程将其挂载到UI树上。
+适用于多线程创建UI组件场景，开发者可以使用此接口在非UI线程创建UI组件，之后在UI线程将创建完成的组件挂载到UI主树上。
 
 **起始版本：** 20
 
@@ -19598,9 +19598,9 @@ int32_t OH_ArkUI_PostAsyncUITask(ArkUI_ContextHandle context, void* asyncUITaskD
 | 名称 | 描述 |
 | -------- | -------- |
 | context | UI实例对象指针。 |
-| asyncUITaskData | 开发者自定义数据指针，作为asyncUITask和onFinish的入参。 |
+| asyncUITaskData | 开发者自定义数据指针，作为asyncUITask和onFinish的入参。可以传入空指针。 |
 | asyncUITask| 在非UI线程执行的函数。|
-| onFinish | asyncUITask执行完成后，在UI线程执行的函数。 |
+| onFinish | asyncUITask执行完成后，在UI线程执行的函数。可以传入空指针。 |
 
 **返回：**
 
@@ -19614,9 +19614,9 @@ int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*
 ```
 **描述：**
 
-将UI任务抛到UI线程中执行。
+将task函数抛到UI线程中执行。
 
-适用于UI组件创建并行化场景，当开发者需要在自己维护的非UI线程中创建UI组件，使用此接口在UI线程将非UI线程创建的组件挂载到UI树上。
+适用于多线程创建UI组件场景，当开发者在自己创建的线程中创建UI组件时，可以使用此接口将创建完成的组件在UI线程挂载UI主树上。
 
 **起始版本：** 20
 
@@ -19625,7 +19625,7 @@ int32_t OH_ArkUI_PostUITask(ArkUI_ContextHandle context, void* taskData, void (*
 | 名称 | 描述 |
 | -------- | -------- |
 | context | UI实例对象指针。  |
-| taskData | 开发者自定义数据指针，作为task的入参。 |
+| taskData | 开发者自定义数据指针，作为task的入参。可以传入空指针。 |
 | task | 在UI线程执行的函数。 |
 
 **返回：**
@@ -19640,11 +19640,11 @@ int32_t OH_ArkUI_PostUITaskAndWait(ArkUI_ContextHandle context, void* taskData, 
 ```
 **描述：**
 
-将UI任务抛到UI线程中执行，调用此接口的线程阻塞等待UI线程中的UI任务执行完成。
+将task函数抛到UI线程中执行，调用此接口的线程会阻塞等待task函数执行完成。在UI线程调用此接口等价于同步调用task函数。
 
-适用于UI组件创建并行化场景，当开发者在非UI线程创建组件的过程中需要执行只支持UI线程的业务逻辑时，使用此接口回到UI线程执行业务逻辑，业务完成后继续在非UI线程创建组件。
+适用于多线程创建UI组件场景，当开发者在多线程创建组件的过程中需要调用只支持UI线程的函数时，使用此接口回到UI线程调用函数，调用完成后继续多线程创建组件。
 
-可能导致非UI线程长时间阻塞，不建议频繁使用。
+当UI线程负载很高时，调用此接口的非UI线程可能长时间阻塞，会影响多线程创建UI组件的性能收益，不建议频繁使用。
 
 **起始版本：** 20
 
@@ -19653,7 +19653,7 @@ int32_t OH_ArkUI_PostUITaskAndWait(ArkUI_ContextHandle context, void* taskData, 
 | 名称 | 描述 |
 | -------- | -------- |
 | context | UI实例对象指针。  |
-| taskData | 开发者自定义数据指针，作为task的入参。 |
+| taskData | 开发者自定义数据指针，作为task的入参。可以传入空指针。 |
 | task | 在UI线程执行的函数。 |
 
 **返回：**
