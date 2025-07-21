@@ -207,7 +207,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
   })
 ```
 
-## workScheduler.obtainAllWorks<sup>deprecated<sup>
+## workScheduler.obtainAllWorks<sup>(deprecated)<sup>
 
 obtainAllWorks(callback : AsyncCallback\<void>) : Array\<WorkInfo>
 > 从API version 10开始不再维护，建议使用[workScheduler.obtainAllWorks<sup>10+<sup>](#workschedulerobtainallworks10)替代
@@ -341,7 +341,7 @@ stopAndClearWorks(): void
   }
 ```
 
-## workScheduler.isLastWorkTimeOut<sup>deprecated<sup>
+## workScheduler.isLastWorkTimeOut<sup>(deprecated)<sup>
 
 isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
