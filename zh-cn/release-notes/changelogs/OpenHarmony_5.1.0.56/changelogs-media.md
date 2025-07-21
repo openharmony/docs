@@ -28,7 +28,7 @@ API 10
 
 **变更的接口/组件**
 
-无变更接口
+- [media.createSoundPool](../../../application-dev/reference/apis-media-kit/js-apis-media.md#media.createSoundPool)
 
 **适配指导**
 
