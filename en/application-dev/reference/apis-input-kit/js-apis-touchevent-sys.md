@@ -50,4 +50,4 @@ Defines a touch event.
 
 | Name        | Type      | Read-Only  | Optional  | Description       |
 | ---------- | ---------- | ---- | ---- | --------- |
-| fixedMode  | [FixedMode](#fixedmode)   | No   | Yes   | Defines the coordinate correction mode.<br> **NOTE**: This API takes effect only for mobile phones.|
+| fixedMode  | [FixedMode](#fixedmode)   | No   | Yes   | Coordinate correction mode.<br> **NOTE**: This API takes effect only for mobile phones.|

@@ -25,6 +25,8 @@ The following table lists the common APIs provided by the **inputEventClient** m
 Assume that an application calls the Home key to return to the home screen. When the Home key is pressed, check whether [injectEvent](../../reference/apis-input-kit/js-apis-inputeventclient-sys.md#inputeventclientinjectevent) is called to inject the Home key to determine if the Home key takes effect.
 
 ```js
+import { inputEventClient } from '@kit.InputKit';
+
 try {
   let backKeyDown: inputEventClient.KeyEvent = {
     isPressed: true,
@@ -54,6 +56,6 @@ try {
   let eventUp: EventUp = { KeyEvent: backKeyUp }
   inputEventClient.injectEvent(eventUp);// Inject the Home key release event and check whether the Home key function takes effect and whether the application returns to the home screen.
 } catch (error) {
-  console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
