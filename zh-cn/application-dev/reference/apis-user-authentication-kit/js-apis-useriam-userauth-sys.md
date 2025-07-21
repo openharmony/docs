@@ -100,7 +100,7 @@ interface  EventData {
   payload: PayLoad;
 }
 interface PayLoad {
-  type: string[];
+  type: Object[];
 }
 try {
   const eventData : EventData = {
@@ -205,12 +205,6 @@ const userAuthWidgetMgrVersion = 1;
 try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
   console.info('get userAuthWidgetMgr instance success');
-  userAuthWidgetMgr.on('command', {
-    sendCommand(cmdData) {
-      console.info(`The cmdData is ${cmdData}`);
-    }
-  })
-  console.info('subscribe authentication event success');
   userAuthWidgetMgr.off('command', {
     sendCommand(cmdData) {
       console.info(`The cmdData is ${cmdData}`);
