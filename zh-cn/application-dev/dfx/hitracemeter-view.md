@@ -193,7 +193,7 @@
 实际开发中，如customCategory和customArgs字段不需要，则传入空字符串（仅开始同步trace打点接口和开始异步trace打点接口涉及这两个字段）。
 
 
-针对这两个字段是否为空字符串的情况，以未开启HiTraceChain时的格式为例，进行说明。HiTraceChain具体使用指导请参考[使用HiTraceChain打点](hitracechain.md)。
+针对这两个字段是否为空字符串的情况，以未开启HiTraceChain时的格式为例，进行说明。HiTraceChain具体使用指导请参考[使用HiTraceChain打点](hitracechain-intro.md)。
 
 
 API 19前的trace打点接口默认将这两个字段视为空字符串。

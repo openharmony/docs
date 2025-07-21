@@ -169,142 +169,6 @@ static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
 
 3. 编辑“test_backtrace.cpp”文件如下：
 
-<<<<<<< HEAD
-    ```c++
-    #include "test_backtrace.h"
-    #include <condition_variable>
-    #include <csignal>
-    #include <unistd.h>
-    #include <sys/syscall.h>
-    #include "hidebug/hidebug.h"
-    #include "hilog/log.h"
-
-    #define MAX_FRAME_SIZE 256 // 最大栈回溯深度，应根据业务场景调整该值。
-
-    namespace {
-        constexpr auto LOG_PRINT_DOMAIN = 0xFF00;
-        std::condition_variable cv_; // 用于控制线程与主线程的逻辑顺序。
-        std::mutex mutex_; // 用于控制线程与主线程的逻辑顺序。
-        int pcSize = -1;
-    }
-
-    class BackTraceObject { // 封装了抓栈过程中需要使用的资源，在使用过程中请注意线程安全和异步信号安全。
-    public:
-        static BackTraceObject& GetInstance();
-        BackTraceObject(const BackTraceObject&) = delete;
-        BackTraceObject& operator=(const BackTraceObject&) = delete;
-        BackTraceObject(BackTraceObject&&) = delete;
-        BackTraceObject& operator=(BackTraceObject&&) = delete;
-        bool Init(uint32_t size);
-        void Release();
-        int BackTraceFromFp(void* startFp, int size); // 该函数异步信号安全。
-        void SymbolicAddress(int index); // 该函数较为耗费性能，请避免频繁调用。
-        void PrintStackFrame(void* pc, const HiDebug_StackFrame& frame);
-    private:
-        BackTraceObject() = default;
-        ~BackTraceObject() = default;
-        HiDebug_Backtrace_Object backtraceObject_ = nullptr;
-        void** pcs_ = nullptr;
-    };
-
-    BackTraceObject& BackTraceObject::GetInstance() { // 单例模式，用于信号处理函数线程与请求抓栈线程共同访问，以进行数据交互，注意该类非异步信号安全，应在业务逻辑中保证同一时刻仅单个线程在访问该类。
-        static BackTraceObject instance;
-        return instance;
-    }
-
-    bool BackTraceObject::Init(uint32_t size) { // 初始化，申请资源。
-        backtraceObject_ = OH_HiDebug_CreateBacktraceObject();
-        if (backtraceObject_ == nullptr) {
-            return false;
-        }
-        pcs_  = new (std::nothrow) void*[size]{nullptr};
-        if (pcs_ == nullptr) {
-            return false;
-        }
-        return true;
-    }
-
-    void BackTraceObject::Release() { // 释放栈回溯及栈解析的资源。
-        OH_HiDebug_DestroyBacktraceObject(backtraceObject_);
-        backtraceObject_ = nullptr;
-        delete[] pcs_;
-        pcs_ = nullptr;
-    }
-
-    int BackTraceObject::BackTraceFromFp(void* startFp, int size) { // 根据startFp进行栈回溯，获取pc地址。
-        if (size <= MAX_FRAME_SIZE) {
-            return OH_HiDebug_BacktraceFromFp(backtraceObject_, startFp, pcs_, size); // OH_HiDebug_BacktraceFromFp接口调用示例。
-        }
-        return 0;
-    }
-
-    void BackTraceObject::PrintStackFrame(void* pc, const HiDebug_StackFrame& frame) { // 用来输出栈内容的函数。
-        if (frame.type == HIDEBUG_STACK_FRAME_TYPE_JS) { // 根据栈帧的类型，区分不同的栈帧输出方式。
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TestTag",
-                "js stack frame info for pc: %{public}p is "
-                "relativePc: %{public}p "
-                "line: %{public}d "
-                "column: %{public}d "
-                "mapName: %{public}s "
-                "functionName: %{public}s "
-                "url: %{public}s "
-                "packageName: %{public}s.",
-                pc,
-                reinterpret_cast<void*>(frame.frame.js.relativePc),
-                frame.frame.js.line,
-                frame.frame.js.column,
-                frame.frame.js.mapName,
-                frame.frame.js.functionName,
-                frame.frame.js.url,
-                frame.frame.js.packageName
-            );
-        } else {
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "TestTag",
-                "native stack frame info for pc: %{public}p is "
-                "relativePc: %{public}p "
-                "funcOffset: %{public}p "
-                "mapName: %{public}s "
-                "functionName: %{public}s "
-                "buildId: %{public}s "
-                "reserved: %{public}s.",
-                pc,
-                reinterpret_cast<void*>(frame.frame.native.relativePc),
-                reinterpret_cast<void*>(frame.frame.native.funcOffset),
-                frame.frame.native.mapName,
-                frame.frame.native.functionName,
-                frame.frame.native.buildId,
-                frame.frame.native.reserved
-            );
-        }
-    }
-
-    void BackTraceObject::SymbolicAddress(int index) { // 进行栈解析的接口。
-        if (index < 0 || index >= MAX_FRAME_SIZE) {
-            return;
-        }
-        OH_HiDebug_SymbolicAddress(backtraceObject_, pcs_[index], this, [] (void* pc, void* arg, const HiDebug_StackFrame* frame) {
-            reinterpret_cast<BackTraceObject*>(arg)->PrintStackFrame(pc, *frame);
-        }); // 调用OH_HiDebug_SymbolicAddress接口解析栈。
-    }
-    
-    void SignalHandler(int sig, siginfo_t *si, void* context) { // 信号处理函数。
-        if (sig != SIGUSR1) {
-            return;
-        }
-        auto startFp = reinterpret_cast<ucontext_t *>(context)->uc_mcontext.regs[29]; // 读取寄存器X29中存放的fp地址。
-        std::unique_lock<std::mutex> lock(mutex_);
-        pcSize = BackTraceObject::GetInstance().BackTraceFromFp(reinterpret_cast<void*>(startFp), MAX_FRAME_SIZE); // 该函数异步信号安全，仅异步信号安全函数可在信号处理函数内使用。
-        cv_.notify_all(); // 栈回溯结束，通知给请求回栈的线程。
-    }
-
-    void InitSignalHandle() { // 注册信号处理函数。
-        struct sigaction action{0};
-        sigfillset(&action.sa_mask);
-        action.sa_sigaction = SignalHandler;
-        action.sa_flags = SA_RESTART | SA_SIGINFO | SA_ONSTACK;
-        sigaction(SIGUSR1, &action, nullptr); // 注意: 所使用的信号应避免与原有信号冲突。
-    }
-=======
    ```
    #include "test_backtrace.h"
    #include <condition_variable>
@@ -417,7 +281,7 @@ static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
        if (index < 0 || index >= MAX_FRAME_SIZE) {
            return;
        }
-       OH_HiDebug_SymbolicAddress(backtraceObject_, pcs_[index], this, [](void* pc, void* arg, const HiDebug_StackFrame* frame) {
+       OH_HiDebug_SymbolicAddress(backtraceObject_, pcs_[index], this, [] (void* pc, void* arg, const HiDebug_StackFrame* frame) {
            reinterpret_cast<BackTraceObject*>(arg)->PrintStackFrame(pc, *frame);
        }); // 调用OH_HiDebug_SymbolicAddress接口解析栈。
    }
@@ -464,7 +328,6 @@ static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
        BackTraceObject::GetInstance().Release(); // 栈回溯并且解析结束后，及时释放资源。
    }
    ```
->>>>>>> 15551ad... DFX 整改指南
 
 4. 编辑“CMakeLists.txt”文件，添加库依赖：
 

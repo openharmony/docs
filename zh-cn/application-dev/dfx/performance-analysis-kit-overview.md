@@ -13,26 +13,26 @@ Performance Analysis Kit（性能分析服务）为开发者提供应用事件�
 
 ## 能力范围
 
-- [HiLog流水日志](hilog-dev.md)，提供开发者记录和获取流水日志能力。
+- [HiLog流水日志](hilog-guidelines-arkts.md)，提供开发者记录和获取流水日志能力。
 
-- [HiAppEvent应用事件](hiappevent.md)，提供开发者记录故障、行为、安全、统计事件的能力，并订阅系统事件，设置数据处理者完成数据上传。
+- [HiAppEvent应用事件](hiappevent-intro.md)，提供开发者记录故障、行为、安全、统计事件的能力，并订阅系统事件，设置数据处理者完成数据上传。
 
-- [HiTraceMeter](hitracemeter.md)和[HiTraceChain跟踪](hitracechain.md)，提供开发者Trace度量和跨线程、跨进程分布式跟踪的能力。
+- [HiTraceMeter](hitracemeter-intro.md)和[HiTraceChain跟踪](hitracechain-intro.md)，提供开发者Trace度量和跨线程、跨进程分布式跟踪的能力。
 
-- [HiChecker开发态检测](hichecker.md)，提供开发者检测应用线程耗时调用、元能力资源泄露等问题。
+- [HiChecker开发态检测](hichecker-guidelines-arkts.md)，提供开发者检测应用线程耗时调用、元能力资源泄露等问题。
 
-- [HiDebug资源采集](hidebug.md)，提供开发者获取应用、系统资源的使用情况。
+- [HiDebug资源采集](hidebug-guidelines.md)，提供开发者获取应用、系统资源的使用情况。
 
-- [HiCollie耗时检测](hicollie.md)，提供开发者检测业务线程卡死、卡顿，以及上报卡死事件的能力。
+- [HiCollie耗时检测](hicollie-guidelines-ndk.md)，提供开发者检测业务线程卡死、卡顿，以及上报卡死事件的能力。
 
-- [调试命令](debugging-commands.md)提供包含[hdc](hdc.md)、[hilog](hilog.md)、[hidumper](hidumper.md)、[hitrace](hitrace.md)、[hiperf](hiperf.md)等命令行工具用于调试系统和应用。
+- 调试命令提供包含[hdc](hdc.md)、[hilog](hilog.md)、[hidumper](hidumper.md)、[hitrace](hitrace.md)、[hiperf](hiperf.md)等命令行工具用于调试系统和应用。
 
 
 ## 亮点/特征
 
 **便捷的构建APM系统**
 
-- 提供接口（[HiDebug](hidebug.md)、[HiAppEvent](hiappevent.md)、[HiLog](hilog-dev.md)）可自建端侧APM（Application Performance Management，应用性能管理平台）SDK，与厂商自研APM对接。
+- 提供接口（[HiDebug](hidebug-guidelines.md)、[HiAppEvent](hiappevent-intro.md)、[HiLog](hilog-guidelines-arkts.md)）可自建端侧APM（Application Performance Management，应用性能管理平台）SDK，与厂商自研APM对接。
 
 - 基于[HiAppEvent自定义事件](event-subscription-overview.md#应用事件)，订阅系统事件功能，快捷记录和收集运营和运维所需事件。
 

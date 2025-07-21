@@ -8,12 +8,12 @@
 
 ## 检测原理
 
-代码执行过程中未捕获的异常或错误导致应用意外退出时，应用会在抛出未处理的异常时崩溃，生成对应的JS Crash崩溃日志文件，并上报崩溃事件，开发者可通过HiAppEvent订阅[崩溃事件](crash-events.md)。如果想进一步了解如何分析JS Crash问题，请参见[JS Crash类问题分析方法](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-app-crash-js-way)。
+代码执行过程中未捕获的异常或错误导致应用意外退出时，应用会在抛出未处理的异常时崩溃，生成对应的JS Crash崩溃日志文件，并上报崩溃事件，开发者可通过HiAppEvent订阅[崩溃事件](hiappevent-watcher-crash-events.md)。如果想进一步了解如何分析JS Crash问题，请参见[JS Crash类问题分析方法](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-app-crash-js-way)。
 
 
 ## 约束与限制
 
-在async修饰的异步函数中主动抛出异常，不会产生JS Crash导致应用崩溃，开发者可以通过[ErrorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror)观测该异常，样例代码参考[Async函数内部异常的处理机制](../arkts-utils/arkts-runtime-faq.md#Async函数内部异常的处理机制)。
+在async修饰的异步函数中主动抛出异常，不会产生JS Crash导致应用崩溃，开发者可以通过[ErrorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror)观测该异常，样例代码参考[Async函数内部异常的处理机制](../arkts-utils/arkts-runtime-faq.md#async函数内部异常的处理机制)。
 
 
 ## 日志获取
