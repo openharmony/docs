@@ -194,6 +194,8 @@ OH_Drawing_DestroyTypography(typographyBreakWord);
 
 - **占位符绘制：** 可以在不确定文本内容时保持文本布局的稳定性，使得文本显示更为流畅和自然。
 
+- **自动间距绘制：** 可以在一些字符混排切换的地方自动添加额外间距，提升阅读体验。
+
 
 ### 装饰线
 
@@ -609,3 +611,64 @@ OH_Drawing_DestroyTypography(typographyNoPlaceholder);
 
 
 ![zh-cn_image_0000002211443820](figures/zh-cn_image_0000002211443820.png)
+
+
+### 自动间距
+
+使能自动间距，则会在文本排版时自动调整CJK（中文字符、日文字符、韩文字符）与西文（拉丁字母、西里尔字母、希腊字母）、CJK与数字、CJK与版权符号、版权符号与数字、版权符号与西文之间的间距。例如，在中英文混排场景中，使能自动间距即可在中英文切换的地方自动添加额外间距，提升阅读体验。
+
+
+| 接口定义 | 描述 | 
+| -------- | -------- |
+| void OH_Drawing_SetTypographyTextAutoSpace(OH_Drawing_TypographyStyle \*style, bool enableAutoSpace) |设置文本排版时是否使能自动间距。\n默认不使能自动间距，一旦使能则会自动调整CJK（中文字符、日文字符、韩文字符）与西文（拉丁字母、西里尔字母、希腊字母）、CJK与数字、CJK与版权符号、版权符号与数字、版权符号与西文之间的间距。 | 
+
+
+示例及示意效果如下所示：
+
+
+```c++
+// 创建一个 TypographyStyle 创建 Typography 时需要使用
+OH_Drawing_TypographyStyle *typoStyle = OH_Drawing_CreateTypographyStyle();
+// 设置使能自动间距，默认为false
+OH_Drawing_SetTypographyTextAutoSpace(typoStyle, true);
+// 设置文字内容
+const char *text = "test测试©test©测试。";
+
+OH_Drawing_TextStyle *txtStyle = OH_Drawing_CreateTextStyle();
+// 设置文字颜色、大小、字重，不设置 TextStyle 会使用 TypographyStyle 中的默认 TextStyle
+OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
+OH_Drawing_SetTextStyleFontSize(txtStyle, 100);
+
+// 创建 FontCollection，FontCollection 用于管理字体匹配逻辑
+OH_Drawing_FontCollection *fc = OH_Drawing_CreateSharedFontCollection();
+// 使用 FontCollection 和 之前创建的 TypographyStyle 创建 TypographyCreate。TypographyCreate 用于创建 Typography
+OH_Drawing_TypographyCreate *handler = OH_Drawing_CreateTypographyHandler(typoStyle, fc);
+
+// 将文本样式添加到 handler 中
+OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
+// 将文本添加到 handler 中
+OH_Drawing_TypographyHandlerAddText(handler, text);
+// 创建段落
+OH_Drawing_Typography *typography = OH_Drawing_CreateTypography(handler);
+// 设置排版宽度
+double layoutWidth = 1310;
+// 将段落按照排版宽度进行排版
+OH_Drawing_TypographyLayout(typography, layoutWidth);
+// 设置文本在画布上绘制的起始位置
+double position[2] = {0, 1140};
+// 将文本绘制到画布上
+OH_Drawing_TypographyPaint(typography, canvas, position[0], position[1]);
+
+// 释放内存
+OH_Drawing_DestroyTypographyStyle(typoStyle);
+OH_Drawing_DestroyTextStyle(txtStyle);
+OH_Drawing_DestroyFontCollection(fc);
+OH_Drawing_DestroyTypographyHandler(handler);
+OH_Drawing_DestroyTypography(typography);
+```
+
+
+| 段落样式设置（自动间距） | 示意效果 | 
+| -------- | -------- |
+| 不使能自动间距 | ![zh-cn_image_xxx004](figures/zh-cn_image_xxx004.png) | 
+| 使能自动间距 | ![zh-cn_image_xxx005](figures/zh-cn_image_xxx005.png) | 
