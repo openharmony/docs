@@ -233,7 +233,7 @@
    }
    ```
 
-6. 将RegisterWatcher注册为ArkTS接口。
+6. 将RegisterWatcher及TestHiCollieTimerNdk注册为ArkTS接口。
 
    编辑“napi_init.cpp”文件，将RegisterWatcher及TestHiCollieTimerNdk注册为ArkTS接口：
 
