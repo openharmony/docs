@@ -49,6 +49,14 @@
   */
   import { huks } from '@kit.UniversalKeystoreKit';
 
+  function StringToUint8Array(str: string) {
+    let arr: number[] = new Array();
+    for (let i = 0, j = str.length; i < j; ++i) {
+      arr.push(str.charCodeAt(i));
+    }
+    return new Uint8Array(arr);
+  }
+
   /*
   * 确定密钥别名和封装密钥属性参数集
   */
@@ -131,14 +139,6 @@
       value: StringToUint8Array(srcKeyAliasSecond + 'final'),
     }],
     inData: StringToUint8Array(agreeX25519InData)
-  }
-
-  function StringToUint8Array(str: string) {
-    let arr: number[] = new Array();
-    for (let i = 0, j = str.length; i < j; ++i) {
-      arr.push(str.charCodeAt(i));
-    }
-    return new Uint8Array(arr);
   }
 
   class throwObject {

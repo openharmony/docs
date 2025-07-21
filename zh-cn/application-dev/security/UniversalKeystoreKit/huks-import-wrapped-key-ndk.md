@@ -585,5 +585,8 @@ static napi_value IsKeyExist(napi_env env, napi_callback_info info)
     } else {
         // 成功。
     }
+    napi_value ret;
+    napi_create_int32(env, ohResult.errorCode, &ret);
+    return ret;
 }
 ```

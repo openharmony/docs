@@ -139,5 +139,8 @@ static napi_value HmacKey(napi_env env, napi_callback_info info)
         }
     } while (0);
     OH_Huks_FreeParamSet(&hmacParamSet);
+    napi_value ret;
+    napi_create_int32(env, ohResult.errorCode, &ret);
+    return ret;
 }
 ```
