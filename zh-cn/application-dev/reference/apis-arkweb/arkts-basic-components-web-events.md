@@ -3244,7 +3244,7 @@ export default class EntryAbility extends UIAbility {
   加载的html文件
   ```html
   <!-- index.html -->
-  <!Document>
+  <!DOCTYPE html>
   <html>
   <head>
       <title>同层渲染测试html</title>
@@ -3253,7 +3253,7 @@ export default class EntryAbility extends UIAbility {
   <body>
   <div>
       <div id="bodyId">
-          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1" style = "background-color:red"/>
       </div>
   </div>
   </body>
@@ -3404,7 +3404,7 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
 加载的html文件
   ```html
   <!-- index.html -->
-  <!Document>
+  <!DOCTYPE html>
   <html>
   <head>
       <title>同层渲染测试html</title>
@@ -3413,7 +3413,7 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
   <body>
   <div>
       <div id="bodyId">
-         <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1?" style = "background-color:red"/>
+         <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1" style = "background-color:red"/>
       </div>
   </div>
   </body>
@@ -3563,7 +3563,7 @@ onViewportFitChanged(callback: OnViewportFitChangedCallback)
             } else if (viewportFit === ViewportFit.CONTAINS) {
               // index.html网页不支持沉浸式布局，可调用expandSafeArea调整web控件布局视口为安全区域。
             } else {
-              // 默认值，可不作处理
+              // 默认值，可不作处理。
             }
           })
       }
@@ -3767,7 +3767,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
 
 onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
 
-当网页中同层标签（例如Embed标签或Object标签）在视口内的可见性发生变化时，将触发该回调。同层标签默认不可见，若在页面首次加载时已可见，则会上报；若不可见，则不会上报。同层标签全部不可见才视为不可见，部分可见或全部可见则视为可见。
+当网页中同层标签（例如<embed\>标签或<embed\>标签）在视口内的可见性发生变化时，将触发该回调。同层标签默认不可见，若在页面首次加载时已可见，则会上报；若不可见，则不会上报。同层标签全部不可见才视为不可见，部分可见或全部可见则视为可见。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3899,7 +3899,7 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
   <body>
   <div>
       <div id="bodyId">
-          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1?" style = "background-color:red"/>
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1" style = "background-color:red"/>
       </div>
   </div>
   </body>
