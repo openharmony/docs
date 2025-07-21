@@ -1,6 +1,6 @@
 # TaskPool简介
 
-TaskPool为应用程序提供多线程环境，降低资源消耗、提高系统性能，无需管理线程生命周期。具体接口信息及使用方法详情请见[TaskPool](../reference/apis-arkts/js-apis-taskpool.md)。
+TaskPool为应用程序提供多线程环境，降低资源消耗并提高系统性能。无需管理线程生命周期。具体接口信息及使用方法，请参见[TaskPool](../reference/apis-arkts/js-apis-taskpool.md)。
 
 ## TaskPool运作机制
 
@@ -8,7 +8,7 @@ TaskPool运作机制示意图
 
 ![zh-cn_image_0000001964858368](figures/zh-cn_image_0000001964858368.png)
 
-TaskPool支持开发者在宿主线程提交任务到任务队列，系统选择合适的工作线程执行任务，再将结果返回给宿主线程。接口易用，支持任务执行、取消和指定优先级，同时通过系统统一线程管理，结合动态调度及负载均衡算法，可以节约系统资源。系统默认启动一个任务工作线程，任务多时会扩容。工作线程数量上限取决于设备的物理核数，内部管理具体数量，确保调度和执行效率最优。长时间无任务分发时会缩容，减少工作线程数量。具体扩缩容机制详情请见[TaskPool扩缩容机制](taskpool-introduction.md#taskpool扩缩容机制)。
+TaskPool支持在宿主线程提交任务到任务队列，系统选择合适的工作线程执行任务，并将结果返回给宿主线程。接口易用，支持任务执行、取消和指定优先级。通过系统统一线程管理，结合动态调度和负载均衡算法，可以节约系统资源。系统默认启动一个任务工作线程，任务多时会自动扩容。工作线程数量上限由设备的物理核数决定，内部管理具体数量，确保调度和执行效率最优。长时间无任务分发时会缩容，减少工作线程数量。具体扩缩容机制请参见[TaskPool扩缩容机制](taskpool-introduction.md#taskpool扩缩容机制)。
 
 ## TaskPool注意事项
 
@@ -18,7 +18,7 @@ TaskPool支持开发者在宿主线程提交任务到任务队列，系统选择
 
 - 任务函数（[LongTask](../reference/apis-arkts/js-apis-taskpool.md#longtask12)除外）在TaskPool工作线程中的执行时长不能超过3分钟。否则，任务将被强制终止。需要注意的是，这里的3分钟限制仅统计TaskPool线程的​​同步运行时长​​，不包含异步操作（如Promise或async/await）的等待时长。例如，数据库的插入、删除、更新等操作，如果是异步操作，仅计入CPU实际处理时长（如SQL解析），网络传输或磁盘I/O等待时长不计入；如果是同步操作，整个操作时长（含I/O阻塞时间）均计入限制。开发者可通过[Task](../reference/apis-arkts/js-apis-taskpool.md#task)的属性ioDuration、cpuDuration获取执行当前任务的异步IO耗时和CPU耗时。
 
-- 实现任务的函数入参需满足序列化支持的类型，详情请参见[线程间通信对象](interthread-communication-overview.md)。目前不支持使用[@State装饰器](../ui/state-management/arkts-state.md)、[@Prop装饰器](../ui/state-management/arkts-prop.md)、[@Link装饰器](../ui/state-management/arkts-link.md)等装饰器修饰的复杂类型。
+- 实现任务的函数入参需满足序列化支持的类型。详情请参见[线程间通信对象](interthread-communication-overview.md)。目前不支持使用[@State装饰器](../ui/state-management/arkts-state.md)、[@Prop装饰器](../ui/state-management/arkts-prop.md)、[@Link装饰器](../ui/state-management/arkts-link.md)等装饰器修饰的复杂类型。
 
 - ArrayBuffer参数在TaskPool中默认转移，需要设置转移列表的话可通过接口[setTransferList()](../reference/apis-arkts/js-apis-taskpool.md#settransferlist10)设置。如果需要多次调用使用ArrayBuffer作为参数的task，则需要通过接口[setCloneList()](../reference/apis-arkts/js-apis-taskpool.md#setclonelist11)把ArrayBuffer在线程中的传输行为改成拷贝传递，避免对原有对象产生影响。
 
@@ -47,7 +47,7 @@ TaskPool支持开发者在宿主线程提交任务到任务队列，系统选择
   }
   ```
 
-- 由于不同线程中上下文对象是不同的，因此TaskPool工作线程只能使用线程安全的库，例如UI相关的非线程安全库不能使用。
+- 由于不同线程中上下文对象不同，TaskPool工作线程只能使用线程安全的库。例如，不能使用UI相关的非线程安全库。
 
 - 序列化传输的数据量限制为16MB。
 
@@ -57,13 +57,13 @@ TaskPool支持开发者在宿主线程提交任务到任务队列，系统选择
 
 - 不支持在TaskPool工作线程中使用[AppStorage](../ui/state-management/arkts-appstorage.md)。
 
-- TaskPool支持开发者在宿主线程封装任务并提交给任务队列，理论上支持的任务数量没有上限。然而，任务的执行效率受限于任务的优先级和系统资源。当工作线程达到最大数量时，任务的执行效率可能会下降。
+- TaskPool支持在宿主线程封装任务并提交给任务队列，理论上支持的任务数量没有上限。然而，任务的执行效率受限于任务的优先级和系统资源。当工作线程达到最大数量时，任务的执行效率可能会下降
 
 - TaskPool不支持指定任务所运行的线程，任务会被分配到空闲的线程中执行。如果需要指定任务所运行的线程，建议使用[Worker](worker-introduction.md)。
 
 ## \@Concurrent装饰器
 
-在使用[TaskPool](../reference/apis-arkts/js-apis-taskpool.md)时，执行的并发函数需要使用该装饰器修饰，否则无法通过相关校验。
+使用[TaskPool](../reference/apis-arkts/js-apis-taskpool.md)时，执行的并发函数必须用该装饰器修饰，否则无法通过校验。
 
 > **说明：**
 >
@@ -75,8 +75,8 @@ TaskPool支持开发者在宿主线程提交任务到任务队列，系统选择
 | -------- | -------- |
 | 装饰器参数 | 无。 |
 | 使用场景 | 仅支持在Stage模型的工程中使用。仅支持在.ets文件中使用。 |
-| 装饰的函数类型 | 允许标注async函数或普通函数。禁止标注generator、箭头函数、类方法。不支持类成员函数或者匿名函数。 |
-| 装饰的函数内的变量类型 | 允许使用local变量、入参和通过import引入的变量。禁止使用闭包变量。 |
+| 装饰的函数类型 | 允许标注为async函数或普通函数。禁止标注为generator、箭头函数、类方法。不支持类成员函数或者匿名函数。 |
+| 装饰的函数内的变量类型 | 允许使用局部变量、入参和通过import引入的变量，禁止使用闭包变量。 |
 | 装饰的函数内的返回值类型 | 支持的类型请查[线程间通信对象](interthread-communication-overview.md)。 |
 
 > **说明：**
@@ -143,7 +143,7 @@ struct Index {
 
 #### 并发函数返回Promise
 
-并发函数中返回Promise时需要特别关注。如示例所示，testPromise和testPromise1等需处理Promise并返回结果。
+在并发函数中返回Promise时需特别注意。如示例所示，testPromise和testPromise1等函数需处理Promise并返回结果。
 
 示例：
 
@@ -255,7 +255,7 @@ struct Index {
 
 #### 并发函数中使用自定义类或函数
 
-在并发函数中使用自定义类或函数时，需将其定义在不同的文件中，否则会被认为是闭包。如以下示例所示。
+在并发函数中使用自定义类或函数时，需将其定义在单独的文件中，否则可能被视为闭包。如下示例所示。
 
 示例：
 
@@ -357,7 +357,7 @@ export class MyTestB {
 
 #### 并发异步函数中使用Promise
 
-在并发异步函数中使用Promise时，建议搭配await使用。这样TaskPool可以捕获Promise中的异常。推荐使用示例如下。
+在并发异步函数中使用Promise时，建议搭配await使用，这样TaskPool可以捕获Promise中的异常。推荐使用示例如下。
 
 示例：
 
@@ -436,11 +436,11 @@ struct Index {
 
 ### 扩容机制
 
-一般情况下，开发者向任务队列提交任务时会触发扩容检测。扩容检测首先判断当前空闲的工作线程数是否大于任务数，如果大于，说明线程池中存在空闲工作线程，无需扩容。否则，通过负载计算确定所需工作线程数并创建。
+一般情况下，向任务队列提交任务时会触发扩容检测。扩容检测首先判断当前空闲工作线程数是否大于任务数。如果大于，说明线程池中有空闲工作线程，无需扩容。否则，通过负载计算确定所需工作线程数并创建。
 
 ### 缩容机制
 
-扩容后，TaskPool新建多个工作线程，但当任务数减少后，这些线程就会处于空闲状态，造成资源浪费，因此TaskPool提供缩容机制。TaskPool使用了定时器，定时检测当前负载。定时器30s触发一次，每次尝试释放空闲的工作线程。释放的线程需要满足如下条件：
+扩容后，TaskPool创建多个工作线程，但当任务数减少后，这些线程就会处于空闲状态，造成资源浪费，因此，TaskPool提供了缩容机制。TaskPool使用定时器，每30秒检测一次当前负载，并尝试释放空闲的工作线程。释放的线程需满足以下条件：
 
 - 该线程空闲时长达到30s。
 
