@@ -30,7 +30,7 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
 | BundleStats属性 | 含义 | 统计路径 |
 | -------- | -------- | -------- |
 | appSize | 应用安装文件大小（单位为Byte） | 应用安装文件保存在以下目录：<br/>/data/storage/el1/bundle |
-| cacheSize | 应用缓存文件大小（单位为Byte） | 应用的缓存文件保存在以下目录：<br/>/data/app/el1-el5/\${userId}/base/\${bundleName}/cache <br/>/data/app/el1-el5/\${userId}/base/\${bundleName}/haps/\${moduleName}/cache<br/>/data/app/el2/\${userId}/sharefiles/\${bundleName}/cache<br/>/data/app/el2/\${userId}/sharefiles/\${bundleName}/haps/\${moduleName}/cache |
+| cacheSize | 应用缓存文件大小（单位为Byte） | 应用的缓存文件保存在以下目录：<br/>/data/storage/el1/base/cache<br/>/data/storage/el1/base/haps/entry/cache<br/>/data/storage/el2/base/cache<br/>/data/storage/el2/base/haps/entry/cache |
 | dataSize | 应用文件存储大小（除应用安装文件）（单位为Byte） | 应用文件由本地文件、分布式文件以及数据库文件组成。<br/>本地文件保存在以下目录（注意缓存文件目录为以下目录的子目录）：<br/>/data/storage/el1/base<br/>/data/storage/el2/base<br/>分布式文件保存在以下目录：<br/>/data/storage/el2/distributedfiles<br/>数据库文件保存在以下目录：<br/>/data/storage/el1/database<br/>/data/storage/el2/database |
 
 ## 开发示例
