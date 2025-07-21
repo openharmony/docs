@@ -29,9 +29,11 @@ regCustomEapHandler(netType: number, eapCode: number, eapType: number, callback:
 | netType| number|是|网络类型。|
 | eapCode|number |是|需要进行定制的EAP code. 取值范围为1，2，3，4 。|
 | eapType| number |是|需要进行定制处理的EAP method类型。|
-| callback| Callback\<EapData\> |是|对指定的code+type的报文进行回调处理。|
+| callback| Callback\<[EapData](#eapdata)\> |是|对指定的code+type的报文进行回调处理。|
 
 **错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -79,9 +81,11 @@ unregCustomEapHandler(netType:number, eapCode: number, eapType: number, callback
 | netType| number|是|网络类型。|
 | eapCode|number |是|需要进行定制的EAP code. 取值范围为1，2，3，4。|
 | eapType| number |是|需要进行定制处理的EAP method类型。|
-| callback| Callback |是|对指定的code+type的报文进行回调处理。|
+| callback| Callback\<[EapData](#eapdata)\> |是|对指定的code+type的报文进行回调处理。|
 
 **错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -131,10 +135,12 @@ replyCustomEapData(result: CustomResult, data: EapData): void
 
 | 参数名                            | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
-| result | CustomResult|是|定制化判定结果。|
-| data | EapData |是|经过定制化的eap数据。|
+| result | [CustomResult](#customresult)|是|定制化判定结果。|
+| data | [EapData](#eapdata) |是|经过定制化的eap数据。|
 
 **错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -175,9 +181,11 @@ startEthEap(netId: number, profile: EthEapProfile): void
 | 参数名                            | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
 | netId| number|是|以太网卡Id。|
-| profile|EthEapProfile |是|eap配置信息。|
+| profile|[EthEapProfile](#etheapprofile) |是|eap配置信息。|
 
 **错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -234,9 +242,11 @@ logOffEthEap(netId: number): void
 | 参数名                            | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
 | netId | number|是|以太网卡Id。|
-| profile | EthEapProfile|是|eap配置。|
+| profile | [EthEapProfile](#etheapprofile)|是|eap配置。|
 
 **错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -269,9 +279,9 @@ EAP信息。
 
 | **名称** | **类型** | **只读** | **可选** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| msgId | number | 是 | 否 | 伪随机数，用于关联处理前后的eap数据。 |
-| eapBuffer | Uint8Array | 是 | 否 | 从eap header开始的eap原始数据，未加密。|
-| bufferLen| number | 是 | 否 | 数据长度。 |
+| msgId | number | fou | 否 | 伪随机数，用于关联处理前后的eap数据。 |
+| eapBuffer | Uint8Array | 否 | 否 | 从eap header开始的eap原始数据，未加密。|
+| bufferLen| number | 否 | 否 | 数据长度。 |
 
 ## CustomResult
 
@@ -328,8 +338,8 @@ EAP信息。
 
 | 名称              | 类型                          | 只读 | 可选 | 说明                             |
 | ----------------- | ----------------------------- | ---- |----| -------------------------------- |
-| eapMethod         | EapMethod      | 否   | 否 | AP认证方式。                     |
-| phase2Method      | Phase2Method| 否   | 否 | 第二阶段认证方式。               |
+| eapMethod         | [EapMethod](#eapmethod)      | 否   | 否 | AP认证方式。                     |
+| phase2Method      | [Phase2Method](#phase2method)| 否   | 否 | 第二阶段认证方式。               |
 | identity          | string                        | 否   | 否 | 身份信息。                       |
 | anonymousIdentity | string                        | 否   | 否 | 匿名身份。                       |
 | password          | string                        | 否   | 否 | 密码。                           |
