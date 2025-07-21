@@ -196,7 +196,7 @@ backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, options?: BackgroundImage
 
 | 参数名 | 类型                                            | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)          | 是   | 图片地址，支持网络图片资源地址、本地图片资源地址、Base64和PixelMap资源，不支持svg和gif类型的图片。 |
+| src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)          | 是   | 图片地址，支持网络图片资源地址、本地图片资源地址、Base64和PixelMap资源，不支持svg、gif和webp等类型的动图。 |
 | options | [BackgroundImageOptions](ts-universal-attributes-image-effect.md#backgroundimageoptions18) | 否   | 设置背景图选项。 |
 
 **返回值：**

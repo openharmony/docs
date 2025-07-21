@@ -43,18 +43,18 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            console.log("Text click");
+            console.info("Text click");
           })
       }
       .width(400)
       .height(300)
       .backgroundColor(Color.Pink)
       .onClick(() => {
-        console.log("Column click");
+        console.info("Column click");
       })
       // 调用onTouchIntercept修改该组件的HitTestMode属性
       .onTouchIntercept((event: TouchEvent) => {
-        console.log("OnTouchIntercept + " + JSON.stringify(event));
+        console.info("OnTouchIntercept + " + JSON.stringify(event));
         // 使用touches时需要先校验是否为空
         if (event && event.touches) {
           let touches = event.touches;
