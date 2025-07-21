@@ -25,18 +25,18 @@ For the complete list of APIs and example code, see [Traffic Management](../refe
 | getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void; | Obtains the real-time uplink data traffic of the specified NIC.                               |
 | getCellularRxBytes(callback: AsyncCallback\<number>): void;  | Obtains the real-time downlink data traffic of the cellular network.                                  |
 | getCellularTxBytes(callback: AsyncCallback\<number>): void;  | Obtains the real-time uplink data traffic of the cellular network.                                  |
-| getAllRxBytes(callback: AsyncCallback\<number>): void;       | Obtains the real-time downlink data traffic of the all NICs.                               |
-| getAllTxBytes(callback: AsyncCallback\<number>): void;       | Obtains the real-time uplink data traffic of the all NICs.                               |
+| getAllRxBytes(callback: AsyncCallback\<number>): void;       | Obtains the real-time downlink data traffic of all NICs.                               |
+| getAllTxBytes(callback: AsyncCallback\<number>): void;       | Obtains the real-time uplink data traffic of all NICs.                               |
 | getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void; | Obtains the real-time downlink data traffic of the specified application.                               |
 | getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void; | Obtains the real-time uplink data traffic of the specified application.                               |
-| <!--DelRow-->getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | Obtains the historical data traffic of the specified NIC. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md).|
-| <!--DelRow-->getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void; | Obtains the historical data traffic of the specified application. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md).|
+| <!--DelRow-->getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | Obtains the historical data traffic of the specified NIC. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsgettrafficstatsbyiface10).|
+| <!--DelRow-->getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void; | Obtains the historical data traffic of the specified application. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsgettrafficstatsbyuid10).|
 | getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number>): void; | Obtains the real-time downlink data traffic of the specified socket.                             |
 | getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number>): void; | Obtains the real-time uplink data traffic of the specified socket.                             |
-| <!--DelRow-->on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void; | Subscribes to traffic change events. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md).|
-| <!--DelRow-->off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void; | Unsubscribes from traffic change events. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md).|
-| <!--DelRow-->getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise\<UidNetStatsInfo\>; | Obtains the traffic statistics of all applications on the specified network within the specified period. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md).|
-| <!--DelRow-->getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise\<NetStatsInfoSequence\>; | Obtains the traffic statistics of the specified application on the specified network within the specified period. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md).|
+| <!--DelRow-->on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void; | Subscribes to traffic change events. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsonnetstatschange10).|
+| <!--DelRow-->off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void; | Unsubscribes from traffic change events. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsoffnetstatschange10).|
+| <!--DelRow-->getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise\<UidNetStatsInfo\>; | Obtains the traffic statistics of all applications on the specified network within the specified period. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsgettrafficstatsbynetwork12).|
+| <!--DelRow-->getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise\<NetStatsInfoSequence\>; | Obtains the traffic statistics of the specified application on the specified network within the specified period. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsgettrafficstatsbynetwork12).|
 
 ## Obtaining Real-Time Traffic Data by NIC or UID
 
@@ -71,12 +71,12 @@ statistics.getCellularTxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 
-// Obtain the real-time downlink data traffic of the all NICs. 
+// Obtain the real-time downlink data traffic of all NICs. 
 statistics.getAllRxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 
-// Obtain the real-time uplink data traffic of the all NICs. 
+// Obtain the real-time uplink data traffic of all NICs. 
 statistics.getAllTxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
@@ -88,8 +88,8 @@ statistics.getUidRxBytes(uid).then((stats: number) => {
 });
 
 // Obtain the real-time uplink data traffic of the specified application. 
-let uids = 20010038;
-statistics.getUidTxBytes(uids).then((stats: number) => {
+let uid = 20010038;
+statistics.getUidTxBytes(uid).then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 
@@ -116,8 +116,8 @@ tcp.getSocketFd().then((sockfd: number) => {
 <!--Del-->
 ## Obtaining Historical Traffic Data by NIC or UID
 
-1. Obtain the historical data traffic of the specified NIC. 
-2. Obtain the historical data traffic of the specified application. 
+1. Obtain the historical data traffic of the specified NIC.
+2. Obtain the historical data traffic of the specified application.
 
 ```ts
 import { statistics } from '@kit.NetworkKit';

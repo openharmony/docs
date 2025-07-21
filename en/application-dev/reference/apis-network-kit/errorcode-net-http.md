@@ -134,7 +134,7 @@ The access to the specified resource is denied by the server.
 
 Check whether access to the requested resource is allowed.
 
-## 2300016 HTT2 Framing Layer Error
+## 2300016 HTTP2 Framing Layer Eerror
 
 **Error Message**
 
@@ -324,7 +324,7 @@ Failed to receive data from the peer.
 
 **Description**
 
-This error code is reported if an error occurs while receiving network data from the peer end.
+This error code is reported if an error occurred while receiving network data from the peer end.
 
 **Cause**
 
@@ -464,7 +464,7 @@ Check the server for files that already exist.
 
 **Error Message**
 
-The SSL CA certificate does not exist or is unaccessible.
+The SSL CA certificate does not exist or is inaccessible.
 
 **Description**
 
@@ -550,15 +550,15 @@ An incorrect server domain name is configured for the atomic service.
 
 Configure a correct server domain name for the atomic service.
 
-## 2300999 Unknown Error
+## 2300999 Internal Error
 
 **Error Message**
 
-Unknown error.
+Internal error.
 
 **Description**
 
-This error code is reported if an unknown error occurs.
+This error code is reported if an internal server error occurs.
 
 **Cause**
 

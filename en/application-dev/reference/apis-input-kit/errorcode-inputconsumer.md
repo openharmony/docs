@@ -1,4 +1,4 @@
-# Input Consumer Error Codes
+# Global Hotkey Error Codes
 
 > **NOTE**
 >
