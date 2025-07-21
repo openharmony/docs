@@ -1904,7 +1904,7 @@
           - [@ohos.ability.screenLockFileManager (Sensitive Data Access Management Under Lock Screen)](reference/apis-ability-kit/js-apis-screenLockFileManager.md)
           - [@ohos.app.ability.abilityManager (Ability Information Management)](reference/apis-ability-kit/js-apis-app-ability-abilityManager.md)
           - [@ohos.app.ability.appManager (Application Management)](reference/apis-ability-kit/js-apis-app-ability-appManager.md)
-          - @ohos.app.ability.appRecovery (Application Recovery) (reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)
+          - [@ohos.app.ability.appRecovery (Application Recovery)](reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)
           - [@ohos.app.ability.Configuration (System Environment Information)](reference/apis-ability-kit/js-apis-app-ability-configuration.md)
           - [@ohos.app.ability.ConfigurationConstant (System Environment Information Constants)](reference/apis-ability-kit/js-apis-app-ability-configurationConstant.md)
           - [@ohos.app.ability.continueManager (Cross-Device Migration)](reference/apis-ability-kit/js-apis-app-ability-continueManager.md)
