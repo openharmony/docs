@@ -255,6 +255,7 @@
     - [查询和操作自定义节点](ndk-node-query-operate.md)
     - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md)
     - [在NDK中保证多实例场景功能正常](ndk-scope-task.md)
+    - [NDK支持多线程创建组件](ndk-build-on-multi-thread.md)
   - 使用互操作功能构建UI<!--arkts-use-interop-ui-->
     - [ArkTS1.2使用ArkTS1.1自定义组件](interop-compatible-component.md)
     - [ArkTS1.2与ArkTS1.1应用间状态存储互操作](interop-storages.md)
