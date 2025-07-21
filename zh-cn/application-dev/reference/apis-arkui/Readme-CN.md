@@ -486,6 +486,7 @@
     - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
     - [native_key_event.h](native__key_event_8h.md)
     - [native_node.h](native__node_8h.md)
+    - [native_node_ani.h](native__node__ani_8h.md)
     - [native_node_napi.h](native__node__napi_8h.md)
     - [native_type.h](native__type_8h.md)
     - [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md)

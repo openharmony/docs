@@ -3247,6 +3247,7 @@
           - [native_interface_xcomponent.h](reference/apis-arkui/native__interface__xcomponent_8h.md)
           - [native_key_event.h](reference/apis-arkui/native__key_event_8h.md)
           - [native_node.h](reference/apis-arkui/native__node_8h.md)
+          - [native_node_ani.h](reference/apis-arkui/native__node__ani_8h.md)
           - [native_node_napi.h](reference/apis-arkui/native__node__napi_8h.md)
           - [native_type.h](reference/apis-arkui/native__type_8h.md)
           - [native_xcomponent_key_event.h](reference/apis-arkui/native__xcomponent__key__event_8h.md)
