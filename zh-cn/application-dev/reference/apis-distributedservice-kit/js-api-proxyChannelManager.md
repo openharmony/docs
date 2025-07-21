@@ -302,7 +302,7 @@ off(type:&nbsp;'receiveData', channelId:&nbsp;number, callback?:&nbsp;Callback&l
 | --------- | ---------------------------------------- | ---- | -------- |
 | type      | string | 是 | 设置订阅类型，固定取值为'receiveData'。|
 | channelId | number | 是    | 打开代理通道时获取的channelId。 |
-| callback  | Callback&lt;[DataInfo](#datainfo)&gt; | 否 | 注册的回调函数。 |
+| callback  | Callback&lt;[DataInfo](#datainfo)&gt; | 否 | 注册的回调函数。一次会移除所有注册的回调函数。 |
 
 **错误码：**
 
@@ -416,7 +416,7 @@ off(type:&nbsp;'channelStateChange', channelId:&nbsp;number, callback?:&nbsp;Cal
 | --------- | ---------------------------------------- | ---- | -------- |
 | type      | string | 是 | 设置订阅类型为'channelStateChange'。|
 | channelId | number | 是    | 打开代理通道时获取的channelId。 |
-| callback  | Callback&lt;[ChannelStateInfo](#channelstateinfo)&gt; | 否 | 注册的回调函数。 |
+| callback  | Callback&lt;[ChannelStateInfo](#channelstateinfo)&gt; | 否 | 注册的回调函数。一次会移除所有注册的回调函数。 |
 
 **错误码：**
 
