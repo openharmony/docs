@@ -168,7 +168,7 @@ export { ResManager } from './src/main/ets/ResManager';
 You can reference APIs in an HSP and implement page redirection in the HSP through page routing.
 
 ### Referencing APIs
-To use HSP APIs, you need to configure the dependency on them in the **oh-package.json5** file. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-import-V13).
+To use HSP APIs, you need to configure the dependency on them in the **oh-package.json5** file. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-har-import).
 You can then call the external APIs of the HSP in the same way as calling the APIs in the HAR. In this example, the external APIs are the following ones exported from **library**:
 
 ```ts
