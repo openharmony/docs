@@ -10,7 +10,7 @@
 
 shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWithCallback): T
 
-提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件。此接口对应的capi接口为[setInnerGestureParallelTo](../_ark_u_i___native_gesture_a_p_i__1.md#setinnergestureparallelto)。
+提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件。此接口对应的capi接口为[setInnerGestureParallelTo](../capi-arkui-nativemodule-arkui-nativegestureapi-1.md#setinnergestureparallelto)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

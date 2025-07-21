@@ -506,9 +506,9 @@ struct bindSheetExample {
           title: { title: "title", subtitle: "subtitle" },
           preferType: SheetType.CENTER,
 
-          onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
-            if (DismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
-              DismissSheetAction.dismiss(); //注册dismiss行为
+          onWillDismiss: ((dismissSheetAction: DismissSheetAction) => {
+            if (dismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
+              dismissSheetAction.dismiss(); //注册dismiss行为
             }
           }),
 
