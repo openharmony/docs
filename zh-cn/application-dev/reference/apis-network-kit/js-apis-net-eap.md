@@ -1,9 +1,9 @@
 # @ohos.net.eap (网络管理EAP模块)
 
-该模块提供了三方客户端介入802.1X认证流程的机制，支撑客户端的定制认证。
+该模块提供了第三方客户端介入802.1X认证流程的机制，支撑客户端的定制认证等功能。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -14,21 +14,22 @@ import {eap} from '@kit.NetworkKit';
 
 ## eap.regCustomEapHandler
 
-regCustomEapHandler(netType: number, eapCode: number, eapType: number, callback: Callback\<EapData\>): void;
+regCustomEapHandler(netType: number, eapCode: number, eapType: number, callback: Callback\<EapData\>): void
 
-用于指定需要定制化处理的EAP报文类型和对应的处理callback。系统会将符合条件的EAP报文送入callback函数中供企业应用获取
+用于指定需要定制化处理的EAP报文类型和对应的处理callback。系统会将符合条件的EAP报文送入callback函数中供企业应用获取。
 
 **需要权限**：ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 
 **系统能力**：SystemCapability.Communication.NetManager.Eap
+
 **参数：**
 
 | 参数名                              | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
-| netType| number|是|网络类型|
-| eapCode|number |是|需要进行定制的EAP code. 取值范围为1，2，3，4|
-| eapType| number |是|需要进行定制处理的EAP method类型|
-| callback| Callback |是|对指定的code+type的报文进行回调处理|
+| netType| number|是|网络类型。|
+| eapCode|number |是|需要进行定制的EAP code. 取值范围为1，2，3，4 。|
+| eapType| number |是|需要进行定制处理的EAP method类型。|
+| callback| Callback\<EapData\> |是|对指定的code+type的报文进行回调处理。|
 
 **错误码**：
 
@@ -50,7 +51,7 @@ let netType = 1;
 let eapCode = 1;
 let eapType = 25;
 let  eapData = (eapData:EapData):void => {
-  console.log("rsp result",JSON.stringify(eapData))
+  console.info("rsp result",JSON.stringify(eapData))
 }
     
 try {
@@ -63,21 +64,22 @@ try {
 
 ## eap.unregCustomEapHandler
 
-unregCustomEapHandler(netType:number, eapCode: number, eapType: number, callback: Callback\<EapData\>): void;
+unregCustomEapHandler(netType:number, eapCode: number, eapType: number, callback: Callback\<EapData\>): void
 
-用于指定需要取消定制化处理的EAP报文类型和对应的处理callback
+用于指定需要取消定制化处理的EAP报文类型和对应的处理callback。使用callback异步回调。
 
 **需要权限**：ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 
 **系统能力**：SystemCapability.Communication.NetManager.Eap
+
 **参数：**
 
-| 类型                            | 类型|必填|说明|
+| 参数名                            | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
-| netType| number|是|网络类型|
-| eapCode|number |是|需要进行定制的EAP code. 取值范围为1，2，3，4|
-| eapType| number |是|需要进行定制处理的EAP method类型|
-| callback| Callback |是|对指定的code+type的报文进行回调处理|
+| netType| number|是|网络类型。|
+| eapCode|number |是|需要进行定制的EAP code. 取值范围为1，2，3，4。|
+| eapType| number |是|需要进行定制处理的EAP method类型。|
+| callback| Callback |是|对指定的code+type的报文进行回调处理。|
 
 **错误码**：
 
@@ -99,7 +101,7 @@ let netType = 1;
 let eapCode = 1;
 let eapType = 25;
 let  eapData = (eapData:EapData):void => {
-  console.log("rsp result",JSON.stringify(eapData))
+  console.info("rsp result",JSON.stringify(eapData))
 }
     
 try {
@@ -112,18 +114,25 @@ try {
 
 ## eap.replyCustomEapData
 
-replyCustomEapData(result:number, data: number): void;
+replyCustomEapData(result: CustomResult, data: EapData): void
 
-该接口用于通知系统已完成该步定制化处理。若用于处理rx时的callback，传给系统的eap数据需要剥离服务器添加的定制部分。若用于处理tx时的callback，传给系统的eap数据为经过添加定制部分后的eap数据
+该接口用于通知系统已完成该步定制化处理。
+
+ >**说明: **
+ >
+ >- 若用于处理rx时的callback，传给系统的eap数据需要剥离服务器添加的定制部分。
+ >- 若用于处理tx时的callback，传给系统的eap数据为经过添加定制部分后的eap数据。
 
 **需要权限**：ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
+
 **系统能力**：SystemCapability.Communication.NetManager.Eap
+
 **参数：**
 
 | 参数名                            | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
-| result| CustomResult|是|定制化判定结果|
-| data|EapData |是|经过定制化的eap数据|
+| result | CustomResult|是|定制化判定结果。|
+| data | EapData |是|经过定制化的eap数据。|
 
 **错误码**：
 
@@ -154,17 +163,19 @@ try {
 
 ## eap.startEthEap
 
-startEthEap(netId: number, profile: EthEapProfile): void;
+startEthEap(netId: number, profile: EthEapProfile): void
 该接口用于指定一个以太网卡发起EAP认证。
 
 **需要权限**：ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
+
 **系统能力**：SystemCapability.Communication.NetManager.Eap
+
 **参数：**
 
 | 参数名                            | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
-| netId| number|是|network Id|
-| profile|EthEapProfile |是|eap profile|
+| netId| number|是|以太网卡Id。|
+| profile|EthEapProfile |是|eap配置信息。|
 
 **错误码**：
 
@@ -173,9 +184,9 @@ startEthEap(netId: number, profile: EthEapProfile): void;
 |201 | Permission denied.          |
 |33200001 | Invalid netId.          |
 |33200003 | Invalid profile.          |
-|33200009 | netmanager stop.          |
-|33200010 | invalid eth state.          |
-|33200099 | internal error.          |
+|33200009 | Netmanager stop.          |
+|33200010 | Invalid eth state.          |
+|33200099 | Internal error.          |
 
 **示例：**
 
@@ -203,7 +214,7 @@ let profile: eap.EthEapProfile = {
     
 try {
   eap.startEthEap(netId, profile);
-  console.log('startEthEap success');
+  console.info('startEthEap success');
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -211,17 +222,19 @@ try {
 
 ## eap.logOffEthEap
 
-logOffEthEap(netId: number): void;
+logOffEthEap(netId: number): void
 该接口用于指定一个以太网卡从EAP已认证状态退出。
 
 **需要权限**：ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
+
 **系统能力**：SystemCapability.Communication.NetManager.Eap
+
 **参数：**
 
 | 参数名                            | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
-| netId| number|是|network Id|
-| profile|EthEapProfile|是|eap profile|
+| netId | number|是|以太网卡Id。|
+| profile | EthEapProfile|是|eap配置。|
 
 **错误码**：
 
@@ -250,7 +263,7 @@ try{
 
 ## EapData
 
-Eap信息
+EAP信息。
 
 ​**系统能力**​：SystemCapability.Communication.NetManager.Eap
 
@@ -262,7 +275,7 @@ Eap信息
 
 ## CustomResult
 
-表示eap认证处理结果的枚举
+表示EAP认证处理结果的枚举。
 
 ​**系统能力**​：SystemCapability.Communication.NetManager.Eap
 
@@ -270,7 +283,7 @@ Eap信息
 | -------- | -------- | -------- |
 | RESULT_FAIL | 0 | 认证流程结束，结果失败。 |
 | RESULT_NEXT | 1 | 认证当前流程成功，跳转到下一步。 |
-| RESULT_FINISH | 2 |认证流程结束，结果成功。 |
+| RESULT_FINISH | 2 | 认证流程结束，结果成功。 |
 
 ## EapMethod
 
@@ -307,7 +320,7 @@ Eap信息
 | PHASE2_AKA | 6 | AKA类型。 |
 | PHASE2_AKA_PRIME | 7 | AKA Prime类型。 |
 
-## WifiEapProfile
+## EthEapProfile
 
 可扩展身份验证协议配置信息。
 
@@ -320,10 +333,10 @@ Eap信息
 | identity          | string                        | 否   | 否 | 身份信息。                       |
 | anonymousIdentity | string                        | 否   | 否 | 匿名身份。                       |
 | password          | string                        | 否   | 否 | 密码。                           |
-| caCertAliases     | string                        | 否   | 否 | CA 证书别名。                    |
-| caPath            | string                        | 否   | 否 | CA 证书路径。                    |
+| caCertAliases     | string                        | 否   | 否 | CA证书别名。                    |
+| caPath            | string                        | 否   | 否 | CA证书路径。                    |
 | clientCertAliases | string                        | 否   | 否 | 客户端证书别名。                 |
-| certEntry         | Uint8Array                    | 否   | 否 | CA 证书内容。                    |
+| certEntry         | Uint8Array                    | 否   | 否 | CA证书内容。                    |
 | certPassword      | string                        | 否   | 否 | CA证书密码。                     |
 | altSubjectMatch   | string                        | 否   | 否 | 替代主题匹配。                   |
 | domainSuffixMatch | string                        | 否   | 否 | 域后缀匹配。                     |

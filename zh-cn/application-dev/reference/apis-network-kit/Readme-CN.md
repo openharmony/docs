@@ -14,6 +14,7 @@
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
   - [@ohos.net.netFirewall (网络防火墙)](js-apis-net-netfirewall.md)
   - [@ohos.net.networkSecurity (Network Security)](js-apis-networkSecurity.md)
+  - [@ohos.net.eap (扩展认证)](js-apis-net-eap.md)
   - [@ohos.app.ability.VpnExtensionAbility(三方VPN能力)](js-apis-VpnExtensionAbility.md)
   - [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md)
   <!--Del-->
