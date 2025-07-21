@@ -251,7 +251,8 @@ struct PositiveOfOnClick {
       .onClick(() => {
         // 业务代码
         // ...
-    })
+      })
+  }
 }
 ```
 
