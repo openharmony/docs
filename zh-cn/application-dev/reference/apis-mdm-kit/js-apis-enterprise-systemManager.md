@@ -446,7 +446,7 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 setInstallLocalEnterpriseAppEnabled(admin: Want, isEnable: boolean): void
 
-设置是否开启本地安装企业应用。开启后，支持安装签名证书分发类型为enterprise_normal的企业应用（仅在企业定制设备<!--RP1--><!--RP1End-->上生效）。该能力当前仅支持2in1设备。
+设置是否支持本地安装企业应用。开启后，支持安装签名证书分发类型为enterprise_normal的企业应用（仅在企业定制设备<!--RP1--><!--RP1End-->上生效）。该能力当前仅支持PC/2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -459,7 +459,7 @@ setInstallLocalEnterpriseAppEnabled(admin: Want, isEnable: boolean): void
 | 参数名   | 类型                                  | 必填  | 说明 |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 企业设备管理扩展组件。 |
-| isEnable | boolean | 是 | 是否开启本地安装企业应用。true表示开启，false表示关闭。 |
+| isEnable | boolean | 是 | 是否支持本地安装企业应用。true表示支持，false表示不支持。 |
 
 **错误码**：
 
@@ -496,7 +496,7 @@ try {
 
 getInstallLocalEnterpriseAppEnabled(admin: Want): boolean
 
-获取企业应用是否开启本地安装。该能力当前仅支持2in1设备。
+获取企业应用是否支持本地安装。该能力当前仅支持PC/2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -514,7 +514,7 @@ getInstallLocalEnterpriseAppEnabled(admin: Want): boolean
 
 | 类型   | 说明                                |
 | ------ | ----------------------------------- |
-| boolean | 是否开启本地安装企业应用，true为开启，false为关闭。 |
+| boolean | 是否支持本地安装企业应用，true为支持，false为不支持。 |
 
 **错误码**：
 
