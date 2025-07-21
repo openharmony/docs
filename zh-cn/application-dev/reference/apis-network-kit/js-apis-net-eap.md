@@ -126,8 +126,8 @@ replyCustomEapData(result: CustomResult, data: EapData): void
 
  > **说明**:
  >
- >- 若用于处理rx时的callback，传给系统的EAP数据需要剥离服务器添加的定制部分。
- >- 若用于处理tx时的callback，传给系统的EAP数据为经过添加定制部分后的EAP数据。
+ >- 若用于处理收EAP数据包(rx)时的callback，传给系统的EAP数据需要剥离服务器添加的定制部分。
+ >- 若用于处理发EAP数据包(tx)时的callback，传给系统的EAP数据为经过添加定制部分后的EAP数据。
 
 **需要权限**：ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 
