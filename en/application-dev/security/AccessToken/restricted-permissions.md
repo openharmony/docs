@@ -677,4 +677,6 @@ Allows an application to request continuous tasks of special types, such as comp
 
 **Authorization mode**: system_grant
 
+**Supported devices**: General
+
 **Valid since**: 20
