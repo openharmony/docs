@@ -4538,7 +4538,7 @@
             - [hiappevent_cfg.h](reference/apis-performance-analysis-kit/capi-hiappevent-cfg-h.md)
             - [hiappevent_event.h](reference/apis-performance-analysis-kit/capi-hiappevent-event-h.md)
             - [hiappevent_param.h](reference/apis-performance-analysis-kit/capi-hiappevent-param-h.md)
-            - [hicollie.h](reference/apis-performance-analysis-kit/capi-hidebug-h.md)
+            - [hicollie.h](reference/apis-performance-analysis-kit/capi-hicollie-h.md)
             - [hidebug.h](reference/apis-performance-analysis-kit/capi-hidebug-h.md)
             - [hidebug_type.h](reference/apis-performance-analysis-kit/capi-hidebug-type-h.md)
             - [log.h](reference/apis-performance-analysis-kit/capi-log-h.md)
