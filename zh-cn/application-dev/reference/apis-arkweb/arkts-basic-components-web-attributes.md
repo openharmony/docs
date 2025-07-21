@@ -328,7 +328,7 @@ onlineImageAccess(onlineImageAccess: boolean)
 
 zoomAccess(zoomAccess: boolean)
 
-设置是否支持手势进行缩放。
+设置是否支持手势进行缩放，传入undefined与null时为false。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -533,7 +533,7 @@ multiWindowAccess(multiWindow: boolean)
 
 horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
-设置是否显示横向滚动条，包括系统默认滚动条和用户自定义滚动条。
+设置是否显示横向滚动条，包括系统默认滚动条和用户自定义滚动条，传入undefined与null时为false。
 
 > **说明：**
 >
@@ -615,7 +615,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 verticalScrollBarAccess(verticalScrollBar: boolean)
 
-设置是否显示纵向滚动条，包括系统默认滚动条和用户自定义滚动条。
+设置是否显示纵向滚动条，包括系统默认滚动条和用户自定义滚动条，传入undefined与null时为false。
 
 > **说明：**
 >
@@ -2567,7 +2567,7 @@ struct WebComponent {
 
 enableHapticFeedback(enabled: boolean)
 
-设置Web组件长按文本选择是否开启振动。 需配置"ohos.permission.VIBRATE"。
+设置Web组件长按文本选择是否开启振动。需配置"ohos.permission.VIBRATE"。传入undefined与null时为false。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
