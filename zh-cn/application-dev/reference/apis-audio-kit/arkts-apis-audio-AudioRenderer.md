@@ -2640,7 +2640,7 @@ setLoudnessGain(loudnessGain: number): Promise\<void>
 > - 该接口仅支持类型为[STREAM_USAGE_MUSIC](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)、[STREAM_USAGE_MOVIE](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)或[STREAM_USAGE_AUDIOBOOK](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)的音频流。
 > - 该接口不支持高清通路的响度设置。
 > - 由于音频框架与硬件之间存在缓冲区，响度调节实际生效存在延迟，时长取决于缓冲区长度。
-> - 建议在音频开始播放前预先设置响度，以实现最佳均衡效果。
+> - 建议在不同音频开始播放前预先设置响度，以实现最佳均衡效果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
