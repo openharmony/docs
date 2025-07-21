@@ -48,7 +48,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            - napi_init.cpp
          ets:
            entryability:
-             EntryAbility.ts
+             - EntryAbility.ts
            pages:
              - Index.ets
    ```
