@@ -1299,7 +1299,11 @@ export default class EntryAbility extends UIAbility {
 
 setCustomDensity(density: number): void
 
-支持应用主窗口自定义其显示大小缩放系数，子窗和系统窗口会跟随主窗生效。当存在同时使用该接口和[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，以最后调用的设置效果为准。
+支持应用主窗口自定义其显示大小缩放系数。
+
+子窗和系统窗口会跟随主窗生效，已创建的子窗和系统窗口不会立即跟随主窗的customDensity变化重新布局，会在子窗或系统窗口下一次位置、大小，系统缩放大小等窗口布局信息变化时跟随主窗的customDensity变化重新布局。
+
+当存在同时使用该接口和[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，以最后调用的设置效果为准。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -1344,15 +1348,13 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## setCustomDensity<sup>15+</sup>
+## setCustomDensity<sup>20+</sup>
 
 setCustomDensity(density: number, applyToSubWindow?: boolean): void
 
 支持应用主窗口自定义其显示大小缩放系数，子窗和系统窗口会跟随主窗生效。当存在同时使用该接口和[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，以最后调用的设置效果为准。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
