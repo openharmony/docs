@@ -1400,32 +1400,41 @@
     - 调测调优<!--system-debug-optimize-->
       - Performance Analysis Kit（性能分析服务）<!--performance-analysis-kit-->
         - [Performance Analysis Kit简介](dfx/performance-analysis-kit-overview.md)
-        - HiLog使用指导<!--hilog-dev-->
+        - 故障检测<!--fault-analysis-->
+          - [简介](dfx/fault-detection-overview.md)
+          - 崩溃检测<!--crash-detection-->
+            - [崩溃检测概述](dfx/crash-detection-overview.md)
+            - [JS Crash（进程崩溃）检测](dfx/jscrash-guidelines.md)
+            - [Cpp Crash（进程崩溃）检测](dfx/cppcrash-guidelines.md)
+          - [AddrSanitizer（地址越界）检测](dfx/address-sanitizer-guidelines.md)
+          - [AppFreeze（应用冻屏）检测](dfx/appfreeze-guidelines.md)
+          - [任务超时检测](dfx/apptask-timeout-guidelines.md)
+        - 日志打印<!--hilog-dev-->
           - [使用HiLog打印日志（ArkTS）](dfx/hilog-guidelines-arkts.md)
           - [使用HiLog打印日志（C/C++）](dfx/hilog-guidelines-ndk.md)
-        - HiAppEvent使用指导<!--hiappevent-->
+        - 事件订阅<!--hiappevent-->
           - [HiAppEvent介绍](dfx/hiappevent-intro.md)
-          - 事件订阅<!--event-subscription-->
-            - 应用事件<!--app-event-->
-              - [订阅应用事件（ArkTS）](dfx/hiappevent-watcher-app-events-arkts.md)
-              - [订阅应用事件（C/C++）](dfx/hiappevent-watcher-app-events-ndk.md)
+          - 使用Hiappevent订阅事件<!--event-subscription-->
+            - [事件订阅简介](dfx/event-subscription-overview.md)
+            - [事件订阅（ArkTS）](dfx/hiappevent-watcher-app-events-arkts.md)
+            - [事件订阅（C/C++）](dfx/hiappevent-watcher-app-events-ndk.md)
             - 系统事件<!--system-events-->
               - 崩溃事件<!--crash-events-->
                 - [崩溃事件介绍](dfx/hiappevent-watcher-crash-events.md)
                 - [订阅崩溃事件（ArkTS）](dfx/hiappevent-watcher-crash-events-arkts.md)
                 - [订阅崩溃事件（C/C++）](dfx/hiappevent-watcher-crash-events-ndk.md)
-              - 卡死事件<!--freeze-events-->
-                - [卡死事件介绍](dfx/hiappevent-watcher-freeze-events.md)
-                - [订阅卡死事件（ArkTS）](dfx/hiappevent-watcher-freeze-events-arkts.md)
-                - [订阅卡死事件（C/C++）](dfx/hiappevent-watcher-freeze-events-ndk.md)
+              - 应用冻屏事件<!--freeze-events-->
+                - [应用冻屏事件介绍](dfx/hiappevent-watcher-freeze-events.md)
+                - [订阅应用冻屏事件（ArkTS）](dfx/hiappevent-watcher-freeze-events-arkts.md)
+                - [订阅应用冻屏事件（C/C++）](dfx/hiappevent-watcher-freeze-events-ndk.md)
               - 资源泄漏事件<!--resource-leak-events-->
                 - [资源泄漏事件介绍](dfx/hiappevent-watcher-resourceleak-events.md)
                 - [订阅资源泄漏事件（ArkTS）](dfx/hiappevent-watcher-resourceleak-events-arkts.md)
                 - [订阅资源泄漏事件（C/C++）](dfx/hiappevent-watcher-resourceleak-events-ndk.md)
-              - 踩内存事件<!--address-sanitizer-events-->
-                - [踩内存事件介绍](dfx/hiappevent-watcher-address-sanitizer-events.md)
-                - [订阅踩内存事件（ArkTS）](dfx/hiappevent-watcher-address-sanitizer-events-arkts.md)
-                - [订阅踩内存事件（C/C++）](dfx/hiappevent-watcher-address-sanitizer-events-ndk.md)
+              - 地址越界事件<!--address-sanitizer-events-->
+                - [地址越界事件介绍](dfx/hiappevent-watcher-address-sanitizer-events.md)
+                - [订阅地址越界事件（ArkTS）](dfx/hiappevent-watcher-address-sanitizer-events-arkts.md)
+                - [订阅地址越界事件（C/C++）](dfx/hiappevent-watcher-address-sanitizer-events-ndk.md)
               - 主线程超时事件<!--main-thread-jank-events-->
                 - [主线程超时事件介绍](dfx/hiappevent-watcher-mainthreadjank-events.md)
                 - [订阅主线程超时事件（ArkTS）](dfx/hiappevent-watcher-mainthreadjank-events-arkts.md)
@@ -1437,37 +1446,39 @@
                 - [应用查杀事件介绍](dfx/hiappevent-watcher-app-killed-events.md)
                 - [订阅应用查杀事件（ArkTS）](dfx/hiappevent-watcher-app-killed-events-arkts.md)
                 - [订阅应用查杀事件（C/C++）](dfx/hiappevent-watcher-app-killed-events-ndk.md)
-        <!--Del-->
+          <!--Del-->
           - [事件上报](dfx/hiappevent-event-reporting.md)
-        <!--DelEnd-->
-        - HiTraceMeter使用指导<!--hitracemeter-->
+          <!--DelEnd-->
+          - [HiAppEvent常见问题](dfx/hiappevent-faq.md)
+        - 性能跟踪<!--hitracemeter-->
+          - [HiTraceMeter介绍](dfx/hitracemeter-intro.md)
           - [使用HiTraceMeter跟踪性能（ArkTS）](dfx/hitracemeter-guidelines-arkts.md)
           - [使用HiTraceMeter跟踪性能（C/C++）](dfx/hitracemeter-guidelines-ndk.md)
           - [查看HiTraceMeter日志](dfx/hitracemeter-view.md)
-        - HiTraceChain使用指导<!--hitracechain-->
+        - 分布式调用链跟踪<!--hitracechain-->
+          - [HiTraceChain介绍](dfx/hitracechain-intro.md)
           - [使用HiTraceChain打点（ArkTS）](dfx/hitracechain-guidelines-arkts.md)
           - [使用HiTraceChain打点（C/C++）](dfx/hitracechain-guidelines-ndk.md)
-        - HiChecker使用指导<!--hichecker-->
-          - [使用HiChecker检测问题（ArkTS/JS）](dfx/hichecker-guidelines-arkts.md)
-        - HiDebug使用指导<!--hidebug-->
-          - [使用HiDebug获取调试信息（ArkTS）](dfx/hidebug-guidelines-arkts.md)
-          - [使用HiDebug获取调试信息（C/C++）](dfx/hidebug-guidelines-ndk.md)
-        - HiCollie使用指导<!--hicollie-->
+        - 检测模式<!--hichecker-->
+          - [使用HiChecker检测问题（ArkTS）](dfx/hichecker-guidelines-arkts.md)
+        - 系统调试信息获取<!--hidebug-->
+          - [HiDebug能力概述](dfx/hidebug-guidelines.md)
+          - [HiDebug接口使用示例(ArkTS)](dfx/hidebug-guidelines-arkts.md)
+          - [HiDebug接口使用示例(C/C++)](dfx/hidebug-guidelines-ndk.md)
+        - 业务线程超时检测<!--hicollie-->
           - [使用HiCollie检测业务线程卡死卡顿问题（C/C++）](dfx/hicollie-guidelines-ndk.md)
-          - [使用HiCollie监控函数执行时间超长问题（C/C++)](dfx/hicollie-settimer-guidelines-ndk.md)
-        - 错误管理<!--error-manager-->
+          - [使用HiCollie监控函数执行时间超长问题（C/C++）](dfx/hicollie-settimer-guidelines-ndk.md)
+        - 错误管理及应用恢复<!--error-manager-->
           - [错误管理开发指导](dfx/errormanager-guidelines.md)
           - [应用恢复开发指导](dfx/apprecovery-guidelines.md)
-        - 故障分析<!--fault-analysis-->
-          - [分析JS Crash（进程崩溃）](dfx/jscrash-guidelines.md)
-          - [分析CppCrash（进程崩溃）](dfx/cppcrash-guidelines.md)
-          - [分析AppFreeze（应用无响应）](dfx/appfreeze-guidelines.md)
+        - [Performance Analysis Kit术语](dfx/performance-analysis-kit-terminology.md)
         - 命令行工具<!--perform-command-line-utilities-->
           - [hdc](dfx/hdc.md)
           - [hilog](dfx/hilog.md)
           - [hidumper](dfx/hidumper.md)
           - [hitrace](dfx/hitrace.md)
           - [hiperf](dfx/hiperf.md)
+          - [hiprofiler](dfx/hiprofiler.md)
         <!--Del-->
           - [hisysevent](dfx/hisysevent.md)
           - [uinput](dfx/uinput.md)
