@@ -472,6 +472,12 @@ try {
   };
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
+  userAuthInstance.on('result', {
+    onResult (result) {
+      console.info(`auth on result = ${JSON.stringify(result)}`);
+    }
+  });
+  console.info('auth on success');
   userAuthInstance.off('result', {
     onResult (result) {
       console.info(`auth off result = ${JSON.stringify(result)}`);
@@ -793,8 +799,10 @@ try {
       switch (result.tip) {
         case userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
           // do something;
+          break;
         case userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
           // do something;
+          break;
         default:
           // do others.
       }
@@ -868,8 +876,10 @@ try {
       switch (result.tip) {
         case userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
           // do something;
+          break;
         case userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
           // do something;
+          break;
         default:
           // do others.
       }
