@@ -2,7 +2,7 @@
 
 ## 概述
 
-MediaKeySession字段
+MediaKeySession字段。
 
 **起始版本：** 12
 
