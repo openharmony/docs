@@ -58,11 +58,11 @@
       },
       // 任务快照变化
       onMissionSnapshotChanged: (mission: number) => {
-        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionMovedToFront-------');
+        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionSnapshotChanged-------');
       },
       // 任务被移动到前台
       onMissionMovedToFront: (mission: number) => {
-        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionClosed-------');
+        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionMovedToFront-------');
       },
       // 任务图标变化
       onMissionIconUpdated: (mission: number, icon: image.PixelMap) => {
