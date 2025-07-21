@@ -38,12 +38,20 @@ PluginComponent(options: PluginComponentOptions)
 >
 > 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数       | 类型   | 描述                        |
 | ---------- | ------ | --------------------------- |
 | template<sup>9+</sup>   | [PluginComponentTemplate](#plugincomponenttemplate9类型说明) | 组件模板，用于跟提供方定义的组件绑定。                |
 | data<sup>9+</sup>       | any    | 传给插件组件提供方使用的数据。 |
 
 ## PluginComponentTemplate<sup>9+</sup>类型说明
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数       | 类型   | 描述                        |
 | ---------- | ------ | --------------------------- |
@@ -109,6 +117,10 @@ onError(callback:&nbsp;PluginErrorCallback)
 
 发生错误时调用回调。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数     | 类型               | 描述                        |
 | -------- | ------------------ | --------------------------- |
 | info     | [PluginErrorData](#pluginerrordata18类型说明)  | 发生错误时提供的数据。 |
@@ -120,6 +132,10 @@ onError(callback:&nbsp;PluginErrorCallback)
 > **说明：**
 >
 > 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数       | 类型   | 描述                        |
 | ---------- | ------ | -------------------------- |
