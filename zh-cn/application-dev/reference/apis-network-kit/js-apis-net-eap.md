@@ -1,8 +1,8 @@
 # @ohos.net.eap (网络管理EAP模块)
 
-该模块提供了第三方客户端介入802.1X认证流程的机制，支撑客户端的定制认证等功能。
+该模块提供了第三方客户端介入802.1X认证（一种基于端口的网络接入控制协议）流程的机制，支撑客户端的定制认证等功能。
 
-> **说明：**
+> **说明：** 
 >
 > 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -16,7 +16,9 @@ import {eap} from '@kit.NetworkKit';
 
 regCustomEapHandler(netType: number, eapCode: number, eapType: number, callback: Callback\<EapData\>): void
 
-用于指定需要定制化处理的EAP报文类型和对应的处理callback。系统会将符合条件的EAP报文送入callback函数中供企业应用获取。
+用于指定需要定制化处理的EAP报文类型和对应的处理callback。使用callback异步回调。
+
+系统会将符合条件的EAP报文送入callback函数中供企业应用获取。
 
 **需要权限**：ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 
@@ -27,13 +29,13 @@ regCustomEapHandler(netType: number, eapCode: number, eapType: number, callback:
 | 参数名                              | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
 | netType| number|是|网络类型。|
-| eapCode|number |是|需要进行定制的EAP code. 取值范围为1，2，3，4 。|
+| eapCode|number |是|需要进行定制的EAP code，取值为1，2，3，4 。code=1 Request, code=2 Response, code=3 Success, code=4 Failure。|
 | eapType| number |是|需要进行定制处理的EAP method类型。|
 | callback| Callback\<[EapData](#eapdata)\> |是|对指定的code+type的报文进行回调处理。|
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -79,13 +81,13 @@ unregCustomEapHandler(netType:number, eapCode: number, eapType: number, callback
 | 参数名                            | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
 | netType| number|是|网络类型。|
-| eapCode|number |是|需要进行定制的EAP code. 取值范围为1，2，3，4。|
+| eapCode|number |是|需要进行定制的EAP code，取值为1，2，3，4 。code=1 Request, code=2 Response, code=3 Success, code=4 Failure。|
 | eapType| number |是|需要进行定制处理的EAP method类型。|
 | callback| Callback\<[EapData](#eapdata)\> |是|对指定的code+type的报文进行回调处理。|
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -124,8 +126,8 @@ replyCustomEapData(result: CustomResult, data: EapData): void
 
  >**说明: **
  >
- >- 若用于处理rx时的callback，传给系统的eap数据需要剥离服务器添加的定制部分。
- >- 若用于处理tx时的callback，传给系统的eap数据为经过添加定制部分后的eap数据。
+ >- 若用于处理rx时的callback，传给系统的EAP数据需要剥离服务器添加的定制部分。
+ >- 若用于处理tx时的callback，传给系统的EAP数据为经过添加定制部分后的EAP数据。
 
 **需要权限**：ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 
@@ -136,11 +138,11 @@ replyCustomEapData(result: CustomResult, data: EapData): void
 | 参数名                            | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
 | result | [CustomResult](#customresult)|是|定制化判定结果。|
-| data | [EapData](#eapdata) |是|经过定制化的eap数据。|
+| data | [EapData](#eapdata) |是|经过定制化的EAP数据。|
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -170,6 +172,7 @@ try {
 ## eap.startEthEap
 
 startEthEap(netId: number, profile: EthEapProfile): void
+
 该接口用于指定一个以太网卡发起EAP认证。
 
 **需要权限**：ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
@@ -181,11 +184,11 @@ startEthEap(netId: number, profile: EthEapProfile): void
 | 参数名                            | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
 | netId| number|是|以太网卡Id。|
-| profile|[EthEapProfile](#etheapprofile) |是|eap配置信息。|
+| profile|[EthEapProfile](#etheapprofile) |是|EAP配置信息。|
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -231,6 +234,7 @@ try {
 ## eap.logOffEthEap
 
 logOffEthEap(netId: number): void
+
 该接口用于指定一个以太网卡从EAP已认证状态退出。
 
 **需要权限**：ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
@@ -242,11 +246,11 @@ logOffEthEap(netId: number): void
 | 参数名                            | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
 | netId | number|是|以太网卡Id。|
-| profile | [EthEapProfile](#etheapprofile)|是|eap配置。|
+| profile | [EthEapProfile](#etheapprofile)|是|EAP配置。|
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -279,8 +283,8 @@ EAP信息。
 
 | **名称** | **类型** | **只读** | **可选** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| msgId | number | fou | 否 | 伪随机数，用于关联处理前后的eap数据。 |
-| eapBuffer | Uint8Array | 否 | 否 | 从eap header开始的eap原始数据，未加密。|
+| msgId | number | 否 | 否 | 伪随机数，用于关联处理前后的EAP数据。 |
+| eapBuffer | Uint8Array | 否 | 否 | 从EAP header开始的EAP原始数据，未加密。|
 | bufferLen| number | 否 | 否 | 数据长度。 |
 
 ## CustomResult
