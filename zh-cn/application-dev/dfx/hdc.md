@@ -1387,16 +1387,6 @@ hdc server运行的电脑中配置环境变量OHOS_HDC_HEARTBEAT为“1”后，
 | Linux | /tmp/hdc_cmd/ |  |
 | MacOS | $TMPDIR/hdc_cmd/ |  |
 
-### OHOS_HDC_ENCRYPT_CHANNEL
-
-默认：通道加密功能关闭。
-
-用于设置hdc server和hdc daemon之间的TCP连接通道加密功能开关。
-
-设置为"1"表示开启TCP连接的通道加密功能；不设置或者设置为其它数字表示关闭通道加密功能。
-
-从API version 20开始，支持该参数。
-
 > **说明：**
 >
 > hdc server运行时默认监听电脑端的8710端口，可通过设置系统环境变量OHOS_HDC_SERVER_PORT自定义监听的端口号。
