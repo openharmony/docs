@@ -1,4 +1,4 @@
-# EAP错误码
+# 扩展认证错误码
 
 > **说明：**
 >
@@ -84,7 +84,7 @@ Invalid size of eap data.
 
 **错误描述**
 
-不合法的eap 数据长度值。
+不合法的eap数据长度值。
 
 **可能原因**
 
@@ -98,7 +98,7 @@ bufferLen传入EAP data数据长度的值。
 
 **错误信息**
 
-Invalid netType.
+Invalid net type.
 
 **错误描述**
 
@@ -110,14 +110,14 @@ Invalid netType.
 
 **处理步骤**
 
-传入支持的合法网络类型 WLAN: 1 ETH: 2。
+传入支持的合法网络类型: WLAN: 1; ETH: 2。
 
 
 ## 33200007 无效的eapCode值
 
 **错误信息**
 
-Invalid eapCode.
+Invalid eap code.
 
 **错误描述**
 
@@ -129,8 +129,7 @@ eap code不合法。
 
 **处理步骤**
 
-eap code取合法取值范围1，2，3，4。
-
+eap code的合法取值为1、2、3、4。
 
 ## 33200008 无效的eapType值
 
