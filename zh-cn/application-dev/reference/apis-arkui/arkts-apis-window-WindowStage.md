@@ -1352,7 +1352,7 @@ export default class EntryAbility extends UIAbility {
 
 setCustomDensity(density: number, applyToSubWindow?: boolean): void
 
-支持应用主窗口自定义其显示大小缩放系数，并设置子窗和系统窗口跟随主窗重新布局的生效时机。
+支持应用主窗口自定义其显示大小缩放系数，并设置已创建的子窗和系统窗口跟随主窗重新布局的生效时机。
 
 当存在同时使用该接口和[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，以最后调用的设置效果为准。
 
