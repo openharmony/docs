@@ -35,7 +35,7 @@ regCustomEapHandler(netType: number, eapCode: number, eapType: number, callback:
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[扩展认证错误码](errorcode-net-eap.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -87,7 +87,7 @@ unregCustomEapHandler(netType:number, eapCode: number, eapType: number, callback
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[扩展认证错误码](errorcode-net-eap.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -124,7 +124,7 @@ replyCustomEapData(result: CustomResult, data: EapData): void
 
 该接口用于通知系统已完成该步定制化处理。
 
- > **说明: **
+ > **说明**:
  >
  >- 若用于处理rx时的callback，传给系统的EAP数据需要剥离服务器添加的定制部分。
  >- 若用于处理tx时的callback，传给系统的EAP数据为经过添加定制部分后的EAP数据。
@@ -142,7 +142,7 @@ replyCustomEapData(result: CustomResult, data: EapData): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[扩展认证错误码](errorcode-net-eap.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -188,7 +188,7 @@ startEthEap(netId: number, profile: EthEapProfile): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[扩展认证错误码](errorcode-net-eap.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -250,7 +250,7 @@ logOffEthEap(netId: number): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[eap错误码](errorcode-net-eap.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[扩展认证错误码](errorcode-net-eap.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
