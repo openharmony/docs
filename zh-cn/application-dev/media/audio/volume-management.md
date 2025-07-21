@@ -44,7 +44,7 @@ let audioVolumeManager = audioManager.getVolumeManager();
 
 ### 获取音量信息
 
-管理音频组音量的接口由AudioVolumeManager提供，在使用之前，需要使用[getVolumeManager()](../../reference/apis-audio-kit/arkts-apis-audio-AudioManager.md#getvolumemanager9)获取AudioVolumeManager实例。
+管理系统音量的接口由AudioVolumeManager提供，在使用之前，需要使用[getVolumeManager()](../../reference/apis-audio-kit/arkts-apis-audio-AudioManager.md#getvolumemanager9)获取AudioVolumeManager实例。
 
 ```ts
 import { audio } from '@kit.AudioKit';
@@ -53,7 +53,7 @@ let audioManager = audio.getAudioManager();
 let audioVolumeManager = audioManager.getVolumeManager();
 ```
 
-使用[AudioVolumeManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeManager.md)获取指定流的音量信息。
+使用[AudioVolumeManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeManager.md)获取指定流类型的音量信息。
 
 示例代码如下所示：
 

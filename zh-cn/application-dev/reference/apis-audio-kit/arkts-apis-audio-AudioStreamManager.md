@@ -503,6 +503,9 @@ isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): v
 
 获取指定音频流活跃状态。使用callback异步回调。
 
+> **说明：**
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[isStreamActive](arkts-apis-audio-AudioStreamManager.md#isStreamActive20)替代。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
@@ -532,6 +535,9 @@ isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 获取指定音频流是否为活跃状态。使用Promise异步回调。
 
+> **说明：**
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[isStreamActive](arkts-apis-audio-AudioStreamManager.md#isStreamActive20)替代。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
@@ -559,6 +565,9 @@ audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value: boolean) =
 isActiveSync(volumeType: AudioVolumeType): boolean
 
 获取指定音频流是否为活跃状态。同步返回结果。
+
+> **说明：**
+> 从API version 10开始支持，从API version 20开始废弃，建议使用[isStreamActive](arkts-apis-audio-AudioStreamManager.md#isStreamActive20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
