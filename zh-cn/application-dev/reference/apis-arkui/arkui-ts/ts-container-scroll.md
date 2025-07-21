@@ -227,7 +227,7 @@ initialOffset(value: OffsetOptions)
 
 maxZoomScale(scale: number)
 
-设置Scroll组件的最大双指缩放比例。
+设置Scroll组件内容的最大手势缩放比例。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -237,13 +237,13 @@ maxZoomScale(scale: number)
 
 | 参数名 | 类型    | 必填 | 说明                                  |
 | ------ | ------- | ---- | ------------------------------------- |
-| scale  | number  | 是   |Scroll组件的最大双指缩放比例。<br>默认值：1<br>取值范围：(0, +∞)，小于或等于0时按默认值1处理。|
+| scale  | number  | 是   |Scroll组件内容的最大手势缩放比例。<br>默认值：1<br>取值范围：(0, +∞)，小于或等于0时按默认值1处理。|
 
 ### minZoomScale<sup>20+</sup>
 
 minZoomScale(scale: number)
 
-设置Scroll组件的最小双指缩放比例。
+设置Scroll组件内容的最小手势缩放比例。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -253,7 +253,7 @@ minZoomScale(scale: number)
 
 | 参数名 | 类型    | 必填 | 说明                                  |
 | ------ | ------- | ---- | ------------------------------------- |
-| scale  | number  | 是   |Scroll组件的最小双指缩放比例。<br>默认值：1<br>取值范围：(0, maxZoomScale]，小于或等于0时按默认值1处理，大于maxZoomScale时按maxZoomScale处理。|
+| scale  | number  | 是   |Scroll组件内容的最小手势缩放比例。<br>默认值：1<br>取值范围：(0, maxZoomScale]，小于或等于0时按默认值1处理，大于maxZoomScale时按maxZoomScale处理。|
 
 >  **说明：**
 >
@@ -1746,7 +1746,7 @@ struct ScrollZoomExample {
   build() {
     Column() {
       Scroll() {
-        Image($r('app.media.image1'))
+        Image($r('app.media.image1')) // 'app.media.image1'仅作示例，请替换实际图片。
       }
       .height(400)
       .scrollable(ScrollDirection.FREE)
