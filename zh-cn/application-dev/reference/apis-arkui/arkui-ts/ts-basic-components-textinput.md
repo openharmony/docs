@@ -1813,8 +1813,8 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
-  @State passWordSrc1: Resource = $r('app.media.ImageOne');
-  @State passWordSrc2: Resource = $r('app.media.ImageTwo');
+  @State passWordSrc1: Resource = $r('app.media.ImageOne'); // 'app.media.ImageOne'仅作示例，请替换为实际使用图片
+  @State passWordSrc2: Resource = $r('app.media.ImageTwo'); // 'app.media.ImageTwo'仅作示例，请替换为实际使用图片
   @State textError: string = '';
   @State text: string = '';
   @State nameText: string = 'test';
@@ -2503,7 +2503,7 @@ struct TextInputExample {
           .height(60)
           .onWillDelete((info: DeleteValue) => {
             this.deleteValue = info.deleteValue;
-            info.direction;
+            this.deleteDirection = info.direction;
             return true;
           })
           .onDidDelete((info: DeleteValue) => {
