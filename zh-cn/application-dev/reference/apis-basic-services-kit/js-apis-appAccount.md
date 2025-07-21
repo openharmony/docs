@@ -1184,7 +1184,7 @@ getCustomDataSync(name: string, key: string): string;
   ```ts
   try {
       let value = appAccountManager.getCustomDataSync('ZhangSan', 'age');
-      console.info('getCustomDataSync successfully, vaue: ' + value);
+      console.info('getCustomDataSync successfully, value: ' + value);
   } catch (err) {
     console.error('getCustomDataSync failed, error: ' + JSON.stringify(err));
   }
