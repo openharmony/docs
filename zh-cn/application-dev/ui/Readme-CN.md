@@ -202,7 +202,7 @@
       - [自定义渲染节点 (RenderNode)](arkts-user-defined-arktsNode-renderNode.md)
       - [自定义声明式节点 (BuilderNode)](arkts-user-defined-arktsNode-builderNode.md)
       - [设置自定义节点跨语言属性](arkts-user-defined-arktsNode-crossLanguage.md)
-    - 自定义绘制
+    - 自定义绘制<!--arkts-draw-->
       - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
       - [自定义绘制修改器 (DrawModifier)](arkts-user-defined-extension-drawModifier.md)
     - Modifier机制<!--arkts-modifier-->
