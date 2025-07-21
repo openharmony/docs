@@ -1300,7 +1300,7 @@ struct SearchExample {
         .onChange((value: string) => {
           this.text = value;
         })
-        .onSubmit((value: String) => {
+        .onSubmit((value: string) => {
           console.log("trigger search onsubmit" + value);
         })
 
@@ -1529,7 +1529,7 @@ struct SearchExample {
           .height(60)
           .onWillDelete((info: DeleteValue) => {
             this.deleteValue = info.deleteValue;
-            info.direction;
+            this.deleteDirection = info.direction;
             return true;
           })
           .onDidDelete((info: DeleteValue) => {
