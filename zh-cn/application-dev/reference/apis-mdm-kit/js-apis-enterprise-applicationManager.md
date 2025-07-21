@@ -175,7 +175,7 @@ try {
 
 addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-添加开机自启动应用名单。该能力当前仅支持2in1设备。
+添加开机自启动应用名单。该能力当前仅支持PC/2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -227,7 +227,7 @@ try {
 
 removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-删除开机自启动应用名单。该能力当前仅支持2in1设备。
+删除开机自启动应用名单。该能力当前仅支持PC/2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -279,7 +279,7 @@ try {
 
 getAutoStartApps(admin: Want): Array\<Want>
 
-查询开机自启动应用名单。该能力当前仅支持2in1设备。
+查询开机自启动应用名单。该能力当前仅支持PC/2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -330,7 +330,7 @@ try {
 
 addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, disallowModify: boolean): void
 
-添加开机自启动应用名单，设置用户禁止取消应用自启。该能力当前仅支持2in1设备。
+添加开机自启动应用名单，并设置是否禁止用户取消应用自启。该能力当前仅支持PC/2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -343,9 +343,9 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, di
 | 参数名        | 类型                                                         | 必填 | 说明                                   |
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                         |
-| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。Want需要传入bundleName和abilityName，数组总长度不能超过10。例如：若当前已通过本接口设置5个应用，则最多还能通过本接口再设置5个。 |
+| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用名单。Want需要传入bundleName和abilityName，数组总长度不能超过10。例如：若当前已通过本接口设置5个应用，则最多还能通过本接口再设置5个。 |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
-| disallowModify | boolean | 是   | true禁止用户取消自启，false允许用户取消自启<br>配置后，用户可通过设置-应用和元服务-应用启动管理，管理应用的自启动。 |
+| disallowModify | boolean | 是   | true禁止用户取消自启，false允许用户取消自启。<br>配置后，用户可通过设置-应用和元服务-应用启动管理，管理应用的自启。 |
 
 **错误码**：
 
@@ -389,7 +389,7 @@ try {
 
 removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number): void
 
-删除开机自启动应用名单。该能力当前仅支持2in1设备。
+删除开机自启动应用名单。该能力当前仅支持PC/2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -402,7 +402,7 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number)
 | 参数名        | 类型                                                         | 必填 | 说明             |
 | ------------- | ------------------------------------------------------------ | ---- | ---------------- |
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。   |
-| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。 |
+| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用名单。 |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
 
 **错误码**：
@@ -447,7 +447,7 @@ try {
 
 getAutoStartApps(admin: Want, accountId: number): Array\<Want>
 
-查询开机自启动应用名单。该能力当前仅支持2in1设备。
+查询开机自启动应用名单。该能力当前仅支持PC/2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -466,7 +466,7 @@ getAutoStartApps(admin: Want, accountId: number): Array\<Want>
 
 | 类型                                                         | 说明                 |
 | ------------------------------------------------------------ | -------------------- |
-| Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 应用自启动名单数组。 |
+| Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 应用自启动名单。 |
 
 **错误码**：
 
@@ -502,7 +502,7 @@ try {
 
 isModifyAutoStartAppsDisallowed(admin: Want, autoStartApp: Want, accountId: number): boolean
 
-查询应用是否禁止取消自启。该能力当前仅支持2in1设备。
+查询应用是否禁止取消自启动。该能力当前仅支持PC/2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -522,7 +522,7 @@ isModifyAutoStartAppsDisallowed(admin: Want, autoStartApp: Want, accountId: numb
 
 | 类型                                                         | 说明                 |
 | ------------------------------------------------------------ | -------------------- |
-| boolean | 是否禁止取消应用自启。true禁止取消自启，false允许取消自启。|
+| boolean | 是否禁止取消应用自启动。true禁止取消自启动，false允许取消自启动。|
 
 **错误码**：
 
@@ -564,7 +564,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): void
 
-添加保活应用，当前仅支持2in1设备。如果将应用添加至应用运行黑名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
+添加保活应用，当前仅支持PC/2in1设备。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -616,7 +616,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, disallowModify: boolean): void
 
-添加保活应用，并设置是否禁止用户取消应用保活，当前仅支持2in1设备。如果将应用添加至应用运行黑名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
+添加保活应用，并设置是否禁止用户取消应用保活，当前仅支持PC/2in1设备。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -631,7 +631,7 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, di
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | bundleNames    | Array&lt;string&gt;                                     | 是   | 应用包名数组，指定需要添加保活的应用，最大支持5个。                                   |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
-| disallowModify | boolean | 是   | true禁止用户取消保活，false 允许用户取消保活<br>配置后，用户可在toB设备中，通过设置-应用和元服务-应用常驻管理，管理应用常驻保活。 |
+| disallowModify | boolean | 是   | true表示禁止用户取消保活，false表示允许用户取消保活<br>配置后，用户可在企业定制设备中，通过设置-应用和元服务-应用常驻管理，管理应用常驻保活。 |
 
 **错误码**：
 
@@ -643,7 +643,7 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, di
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 9200010  | A conflict policy has been configured. |
 | 9201005  | Add keep alive applications failed. |
-| 201  | Permission verification failed. The application does not have the permission required to call the API. |
+| 201  | Permission verification failed.The application does not have the permission required to call the API. |
 
 **示例：**
 
@@ -672,7 +672,7 @@ try {
 
 removeKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): void
 
-移除保活应用，当前仅支持2in1设备。
+移除保活应用，当前仅支持PC/2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -722,7 +722,7 @@ try {
 
 getKeepAliveApps(admin: Want, accountId: number): Array&lt;string>
 
-获取保活应用包名，当前仅支持2in1设备。
+获取保活应用包名，当前仅支持PC/2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -776,7 +776,7 @@ try {
 
 isModifyKeepAliveAppsDisallowed(admin: Want, accountId: number, bundleName: string): boolean
 
-查询应用是否禁止取消保活。该能力当前仅支持2in1设备。
+查询应用是否禁止取消保活。该能力当前仅支持PC/2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -796,7 +796,7 @@ isModifyKeepAliveAppsDisallowed(admin: Want, accountId: number, bundleName: stri
 
 | 类型                                                         | 说明                 |
 | ------------------------------------------------------------ | -------------------- |
-| boolean | 是否禁止取消应用保活。true禁止取消保活，false允许取消保活。|
+| boolean | 是否禁止取消应用保活。true表示禁止用户取消保活，false表示允许用户取消保活。|
 
 **错误码**：
 
