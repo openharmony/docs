@@ -2,11 +2,11 @@
 
 ## 简介
 
-使用Node-API接口获取和设置ArkTS对象的属性。通过合理使用这些函数，实现更复杂的功能和逻辑。
+使用Node-API接口获取和设置ArkTS对象的属性，实现更复杂的功能和逻辑。
 
 ## 基本概念
 
-在ArkTS对象属性的相关开发中，需要处理ArkTS对象属性，确保正确地访问、设置、删除属性，并了解属性的继承关系和枚举特性。以下是一些关键概念：
+处理ArkTS对象属性，确保正确访问、设置、删除属性，并了解属性的继承关系和枚举特性。以下是一些关键概念：
 
 - **对象（Object）**：在ArkTS中，对象是一种复合数据类型，它允许存储多个不同类型的值作为一个单独的实体。对象是属性和方法的集合。属性是与对象相关联的值，而方法则是对象可以执行的操作。
 - **属性（Property）**：在ArkTS中，属性是对象特征的键值对。每个属性都有一个名字（也称为键或标识符）和一个值。属性的值可以是任意数据类型，包括基本类型、对象和函数。
@@ -15,24 +15,24 @@
 
 ## 场景和功能介绍
 
-以下Node-API接口提供了对ArkTS对象属性的基本操作，包括设置、获取、删除和检查属性是否存在。使用场景如下：
+以下Node-API接口提供了对ArkTS对象属性的操作，包括设置、获取、删除和检查属性是否存在。使用场景如下：
 | 接口 | 描述 |
 | -------- | -------- |
-| napi_get_property_names | 在进行对象操作或调试时，有时需要获取对象的属性和属性名。此接口可以帮助提取对象的属性名，用于动态获取对象的属性信息的场景。 |
-| napi_set_property | 通过此接口可以动态地向对象添加属性。也可修改对象的属性值，满足动态属性值变更的需求。 |
-| napi_get_property | 在调用Node-API模块的函数或方法时，可能需要将ArkTS对象的属性值作为参数传递。通过此接口可以获取属性值，并将其传递给其他函数进行处理。 |
-| napi_has_property | 在进行属性访问之前，通常需要先检查对象中是否存在指定的属性。通过调用此接口可以判断给定对象是否包含特定的属性，从而避免访问不存在属性导致的异常或错误。 |
-| napi_delete_property | 在需要删除一个ArkTS对象上的某个属性时，可以使用这个函数。 |
-| napi_has_own_property | 在需要检查一个ArkTS对象是否直接拥有（而不是从其原型链上继承）某个属性时，可以使用这个函数。 |
-| napi_set_named_property | 在需要将一个值赋给ArkTS对象的命名属性时，可以使用这个函数。 |
-| napi_get_named_property | 在需要从ArkTS对象中获取一个命名属性的值时，可以使用这个函数。 |
-| napi_has_named_property | 在需要检查一个ArkTS对象是否包含某个命名属性时，可以使用这个函数。 |
-| napi_define_properties | 当需要在指定Object中自定义属性，并从ArkTS中访问和操作这些属性时，可以使用这个函数。 |
-| napi_get_all_property_names | 当需要遍历一个对象的所有属性，并对其进行处理时，可以使用此接口获取所有属性名称的数组，然后检查数组中是否包含特定的属性名。 |
+| napi_get_property_names | 在进行对象操作或调试时，有时需要获取对象的属性和属性名。此接口可以提取对象的属性名，用于动态获取对象的属性信息。 |
+| napi_set_property | 此接口可以动态地向对象添加属性。也可修改对象的属性值，满足动态属性值变更的需求。 |
+| napi_get_property | 在调用Node-API模块的函数或方法时，可能需要将ArkTS对象的属性值作为参数传递。此接口可以获取属性值，并将其传递给其他函数。 |
+| napi_has_property | 在进行属性访问之前，通常需要先检查对象中是否存在指定的属性。此接口可以检查对象中是否存在指定的属性，避免访问不存在属性导致的异常。 |
+| napi_delete_property | 此函数用于删除ArkTS对象上的属性。 |
+| napi_has_own_property | 此函数用于检查ArkTS对象是否直接拥有（而不是从其原型链上继承）某个属性。 |
+| napi_set_named_property | 此函数用于将值赋给ArkTS对象的命名属性。 |
+| napi_get_named_property | 此函数用于获取ArkTS对象的命名属性值。 |
+| napi_has_named_property | 此函数用于检查ArkTS对象是否包含某个命名属性。 |
+| napi_define_properties | 此函数可以在指定的Object中自定义属性，从ArkTS访问和操作这些属性。 |
+| napi_get_all_property_names | 此接口可以获取对象的所有属性名称，检查是否包含特定属性名。 |
 
 ## 使用示例
 
-Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
+Node-API接口开发流程可参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md)，本文展示接口对应C++及ArkTS代码。
 
 ### napi_get_property_names
 
@@ -205,7 +205,7 @@ try {
 
 ### napi_has_property
 
-检查对象中是否存在指定的属性，可以避免访问不存在属性导致的异常或错误。
+检查对象中是否存在指定的属性，避免访问不存在属性导致的异常。
 
 cpp部分代码
 
@@ -267,7 +267,7 @@ try {
 ### napi_delete_property
 
 尝试从给定的Object中删除由key指定的属性，并返回操作的结果。
-如果对象是一个不可扩展的对象，或者属性是不可配置的，则可能无法删除该属性。
+如果对象不可扩展或属性不可配置，则可能无法删除该属性。
 
 cpp部分代码
 
@@ -333,7 +333,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_delete_property config: %{publ
 
 ### napi_has_own_property
 
-用于检查传入的Object是否具有自己的命名属性，不包括从原型链上继承的属性。
+用于检查传入的Object是否包含自己的命名属性，不包括从原型链上继承的属性。
 
 cpp部分代码
 
@@ -400,7 +400,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_own_property inherited: %{
 
 ### napi_set_named_property
 
-用于在传入的ArkTS对象上设置一个命名属性。
+在传入的ArkTS对象上添加一个命名属性。
 
 cpp部分代码
 
@@ -459,7 +459,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_named_property: %{public}s
 
 ### napi_get_named_property
 
-用于从ArkTS对象中获取命名属性的值。
+从ArkTS对象中获取命名属性的值。
 
 cpp部分代码
 
@@ -528,7 +528,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_named_property : %{public}
 
 ### napi_has_named_property
 
-用于检查ArkTS对象中是否包含指定的命名属性。
+检查ArkTS对象中是否具有指定的命名属性。
 
 cpp部分代码
 
@@ -594,7 +594,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_named_property : %{public}
 
 ### napi_define_properties
 
-用于定义对象的属性。
+设置对象的属性。
 
 cpp部分代码
 
@@ -635,7 +635,7 @@ static napi_value SetterCallback(napi_env env, napi_callback_info info)
     std::memset(buf, 0, length + 1);
     napi_get_value_string_utf8(env, argv[0], buf, length + 1, &length);
     napi_create_string_utf8(env, buf, length, &result);
-    delete buf;
+    delete[] buf;
     return result;
 }
 static napi_value DefineMethodProperties(napi_env env, napi_callback_info info)
@@ -722,7 +722,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API setter::%{public}s ', testNapi.crea
 
 ### napi_get_all_property_names
 
-用于获取传入的ArkTS对象的所有属性名。
+获取传入的ArkTS对象的所有属性名。
 
 cpp部分代码
 

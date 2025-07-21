@@ -148,7 +148,7 @@ transferToImageBitmap(): ImageBitmap
 struct OffscreenCanvasPage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(300, 500);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(400, 600);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -156,14 +156,14 @@ struct OffscreenCanvasPage {
         .width('100%')
         .height('100%')
         .borderWidth(5)
-        .borderColor('#057D02')
+        .borderColor('rgb(39,135,217)')
         .backgroundColor('#FFFFFF')
         .onReady(() => {
           let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.fillStyle = '#CDCDCD'
-          offContext.fillRect(0, 0, 300, 500)
+          offContext.fillRect(0, 0, 400, 600)
           offContext.fillStyle = '#000000'
-          offContext.font = '70px serif bold'
+          offContext.font = '40px serif bold'
           offContext.fillText("Offscreen : Hello World!", 20, 60)
           let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
@@ -320,6 +320,11 @@ struct OffscreenCanvasExamplePage {
 Worker线程在onmessage中接收到主线程postMessage发送的OffscreenCanvas，并进行绘制。
 
 ```ts
+import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+import { image } from '@kit.ImageKit';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
 workerPort.onmessage = (e: MessageEvents) => {
   if (e.data.myOffCanvas) {
     let offCanvas: OffscreenCanvas = e.data.myOffCanvas

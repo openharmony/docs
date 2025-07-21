@@ -429,7 +429,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
@@ -444,7 +444,7 @@ connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle)
 
 ## connection.setAppNet<sup>9+</sup>
 
-setAppNet(netHandle: NetHandle): Promise\<void>
+setAppNet(netHandle: NetHandle): Promise\<void\>
 
 将App异步绑定到特定的网络，绑定后App只能通过netHandle对应的网络访问网络。使用Promise方式作为异步方法。
 
@@ -462,7 +462,7 @@ setAppNet(netHandle: NetHandle): Promise\<void>
 
 | 类型                                        | 说明                          |
 | ------------------------------------------- | ----------------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -484,7 +484,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
 
@@ -645,7 +645,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
@@ -699,7 +699,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
 
@@ -754,7 +754,7 @@ let connectionproperties: connection.ConnectionProperties;
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   netHandle = connection.getDefaultNetSync();
@@ -803,7 +803,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
@@ -861,7 +861,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
@@ -919,7 +919,7 @@ let getNetCapabilitiesSync: connection.NetCapabilities;
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
 
@@ -1755,15 +1755,219 @@ import { connection } from '@kit.NetworkKit';
 let pacUrl = connection.getPacUrl();
 ```
 
+## connection.setNetExtAttribute<sup>20+</sup>
+
+setNetExtAttribute(netHandle: NetHandle, netExtAttribute: string): Promise\<void\>
+
+为netHandle对应的网络设置扩展属性，标识网络的安全级别。使用Promise异步回调。
+
+> **说明：**
+> 该接口所需的权限目前仅支持PC设备。
+
+**需要权限**：ohos.permission.SET_NET_EXT_ATTRIBUTE
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名    | 类型                                              | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| netHandle | [NetHandle](#nethandle)                                         | 是   | 数据网络的句柄。           |
+| netExtAttribute | string                                      | 是   | 需要设置的网络扩展属性。                                         |
+
+**返回值：**
+
+| 类型                   | 说明                    |
+| ---------------------- | ----------------------- |
+| Promise\<void\> | Promise对象，无返回结果。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
+    return;
+  }
+  let netExtAttribute: string = "xxx";
+  connection.setNetExtAttribute(netHandle, netExtAttribute).then(() => {
+    console.info("setNetExtAttribute success");
+  }).catch((error: BusinessError) => {
+    console.error("setNetExtAttribute failed, err: " + error.code);
+  })
+});
+```
+
+## connection.setNetExtAttributeSync<sup>20+</sup>
+
+setNetExtAttributeSync(netHandle: NetHandle, netExtAttribute: string): void
+
+使用同步方法为netHandle对应的网络设置扩展属性，标识网络的安全级别。
+
+> **说明：**
+> 该接口所需的权限目前仅支持PC设备。
+
+**需要权限**：ohos.permission.SET_NET_EXT_ATTRIBUTE
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名    | 类型                                              | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| netHandle | [NetHandle](#nethandle)                  | 是   | 数据网络的句柄。             |
+| netExtAttribute | string                             | 是   | 需要设置的网络扩展属性。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let netExtAttribute: string = "xxx";
+let netHandle = connection.getDefaultNetSync();
+if (netHandle.netId != 0) {
+  connection.setNetExtAttributeSync(netHandle, netExtAttribute);
+}
+```
+
+## connection.getNetExtAttribute<sup>20+</sup>
+
+getNetExtAttribute(netHandle: NetHandle): Promise\<string\>
+
+获取netHandle对应网络的扩展属性，以确定网络的安全级别。使用Promise异步回调。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名    | 类型                      | 必填 | 说明                           |
+| --------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| netHandle | [NetHandle](#nethandle)                | 是   | 数据网络的句柄。             |
+
+**返回值：**
+
+| 类型                   | 说明                    |
+| ---------------------- | ----------------------- |
+| Promise\<string\> | Promise对象。以Promise形式返回的网络扩展属性。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
+    return;
+  }
+  connection.getNetExtAttribute(netHandle).then((netExtAttribute: string) => {
+    console.info("getNetExtAttribute: " + netExtAttribute);
+  }).catch((error: BusinessError) => {
+    console.error("getNetExtAttribute failed, err: " + error.code);
+  })
+});
+```
+
+## connection.getNetExtAttributeSync<sup>20+</sup>
+
+getNetExtAttributeSync(netHandle: NetHandle): string
+
+使用同步方法获取netHandle对应网络的扩展属性，以确定网络的安全级别。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名    | 类型                                              | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| netHandle | [NetHandle](#nethandle)                   | 是   | 数据网络的句柄。         |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ----------------------- |
+| string | 以同步方式返回的网络扩展属性。|
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let netHandle = connection.getDefaultNetSync();
+if (netHandle.netId != 0) {
+  let netExtAttribute: string = connection.getNetExtAttributeSync(netHandle);
+  console.info("getNetExtAttribute: " + netExtAttribute);
+}
+```
 
 ## NetConnection
 
 网络连接的句柄。
 
 > **说明：**
-> 设备从无网络到有网络会触发netAvailable事件、netCapabilitiesChange事件和netConnectionPropertiesChange事件；
-> 设备从有网络到无网络状态会触发netLost事件；
-> 设备从WiFi到蜂窝会触发netLost事件（WiFi丢失）之后触发 netAvailable事件（蜂窝可用）；
+>
+>（1）设备从无网络状态转变为有网络状态时，将触发netAvailable事件、netCapabilitiesChange事件和netConnectionPropertiesChange事件；
+>
+>（2）接收到netAvailable事件后，若设备从有网络状态转变为无网络状态，将触发netLost事件；
+>
+>（3）若未接收到netAvailable事件，则将直接接收到netUnavailable事件；
+>
+>（4）设备从WiFi网络切换至蜂窝网络时，将先触发netLost事件（WiFi丢失），随后触发netAvailable事件（蜂窝可用）。
 
 ### register
 
@@ -2150,7 +2354,7 @@ interface Data {
 
   connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常情况，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
   }
   let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
   let udp : socket.UDPSocket = socket.constructUDPSocketInstance();
@@ -2217,7 +2421,7 @@ bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void\>
 
 | 类型           | 说明                   |
 | -------------- | ---------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -2243,7 +2447,7 @@ interface Data {
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandle的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -2324,7 +2528,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandler的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   let host = "xxxx";
@@ -2379,7 +2583,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandler的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   let host = "xxxx";
@@ -2426,7 +2630,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandler的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   let host = "xxxx";
@@ -2481,7 +2685,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以根据实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，netHandler的netId为0，属于异常场景。可根据实际情况添加处理机制。
     return;
   }
   let host = "xxxx";

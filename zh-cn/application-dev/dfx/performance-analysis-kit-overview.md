@@ -5,37 +5,49 @@ Performance Analysis Kit（性能分析服务）为开发者提供应用事件�
 ## 使用场景
 
 - 应用调试：提供流水日志功能，帮助开发者记录和获取日志，进行问题分析。
+
 - 问题定位：提供各类场景的故障现场，包含可靠性、性能、功耗、分布式故障相关的日志、事件、跟踪。
+
 - 线上监控：提供应用构建线上观测所需的日志、事件、跟踪接口，方便开发者记录、分析应用线上运行情况。
+
 
 ## 能力范围
 
-- HiLog流水日志，提供开发者记录和获取流水日志能力。
-- HiTraceMeter和HiTraceChain跟踪，提供开发者Trace度量和跨线程跨进程分布式跟踪的能力。
-- HiAppEvent应用事件，提供开发者记录故障、行为、安全、统计事件的能力，并订阅系统事件，设置数据处理者完成数据上传。
-- FaultLogger故障日志管理，提供开发者主动查询故障日志的通道。
-- HiDebug资源采集，提供开发者获取应用、系统资源的使用情况。
+- [HiLog流水日志](hilog-guidelines-arkts.md)，提供开发者记录和获取流水日志能力。
+
+- [HiAppEvent应用事件](hiappevent-intro.md)，提供开发者记录故障、行为、安全、统计事件的能力，并订阅系统事件，设置数据处理者完成数据上传。
+
+- [HiTraceMeter](hitracemeter-intro.md)和[HiTraceChain跟踪](hitracechain-intro.md)，提供开发者Trace度量和跨线程、跨进程分布式跟踪的能力。
+
+- [HiChecker开发态检测](hichecker-guidelines-arkts.md)，提供开发者检测应用线程耗时调用、元能力资源泄露等问题。
+
+- [HiDebug资源采集](hidebug-guidelines.md)，提供开发者获取应用、系统资源的使用情况。
+
+- [HiCollie耗时检测](hicollie-guidelines-ndk.md)，提供开发者检测业务线程卡死、卡顿，以及上报卡死事件的能力。
+
+- 调试命令提供包含[hdc](hdc.md)、[hilog](hilog.md)、[hidumper](hidumper.md)、[hitrace](hitrace.md)、[hiperf](hiperf.md)等命令行工具用于调试系统和应用。
+
 
 ## 亮点/特征
 
-**快速构建APM系统**
+**便捷的构建APM系统**
 
-- 提供接口（HiDebug、HiAppEvent、HiLog）可自建端侧APM（Application Performance Management，应用性能管理平台）SDK，与厂商自研APM对接。
-- 基于HiAppEvent自定义事件、订阅系统事件功能，快捷记录和收集运营和运维所需事件。
+- 提供接口（[HiDebug](hidebug-guidelines.md)、[HiAppEvent](hiappevent-intro.md)、[HiLog](hilog-guidelines-arkts.md)）可自建端侧APM（Application Performance Management，应用性能管理平台）SDK，与厂商自研APM对接。
 
-**强大的异常处理机制**
+- 基于[HiAppEvent自定义事件](event-subscription-overview.md#应用事件)，订阅系统事件功能，快捷记录和收集运营和运维所需事件。
+
+**强大的故障检测与异常处理机制**
+
+- 提供全方位的故障检测能力，涵盖稳定性[故障检测](fault-detection-overview.md)、[性能检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/perf-detection)与[功耗检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/power-detection)。
 
 - 提供精简标准完备的异常日志，支持精准记录异常传播路径。
+
 - 全面的异常检测机制，实时感知异常，通知应用，自动拉起恢复。
 
 **全面的基础维测能力**
 
 - 日志提供分级分类功能，支持多语言，隐私处理和流量控制。
+
 - 提供完备的事件框架和事件打点、记录、上报机制。
+
 - 支持追踪进程轨迹，进行程序性能分析。
-
-## 故障分析
-
-基于 Performance Analysis Kit（性能分析服务），为开发者提供了完善的故障检测、异常处理等能力。由于故障种类异常繁多，产品和软件业务不同，故障的原因和表现也千差万别，因此分析定位疑难问题是对工程师经验、能力、智慧的多重考验。稳定性是应用的重要质量属性，很大程度上决定了应用的开发效率和交付成本，严重影响应用质量和体验。通常可以通过开发态和运行态的故障管理设计来提升版本质量，包括故障检测、故障分析、定位、恢复、质量度量等。
-
-为了帮助开发者更好更快的定位和解决各类应用稳定性故障，本章节还会介绍JS Crash、CppCrash、AppFreeze、资源泄露等故障的通用定位方法以及一些通用分析案例。相关内容需要开发者有编程语言、操作系统等基础知识，案例分析过程还会关联 DevEco Studio 相关能力以及 SDK 相关套件的基础运用和实践。

@@ -1034,7 +1034,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
      async selectFile(result: FileSelectorResult): Promise<void> {
        let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
        let photoPicker = new photoAccessHelper.PhotoViewPicker();
-       // 过滤选择媒体文件类型为IMAGE
+       // 过滤选择媒体文件类型为IMAGE_VIDEO
        photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
        // 设置最大选择数量
        photoSelectOptions.maxSelectNumber = 5;
@@ -2028,7 +2028,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
   <body>
     <h1>onContextMenuShow</h1>
     <a href="http://www.example.com" style="font-size:27px">链接www.example.com</a>
-    // rawfile下放任意一张图片命名为example.png
+    <!-- rawfile下放任意一张图片命名为example.png -->
     <div><img src="example.png"></div>
     <p>选中文字鼠标右键弹出菜单</p>
   </body>
@@ -4117,73 +4117,9 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
   </html>
   ```
 
-## onSslErrorReceive<sup>(deprecated)</sup>
-
-onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => void)
-
-通知用户加载资源时发生SSL错误。
-
-> **说明：**
->
-> 从API version 8开始支持，从API version 9开始废弃。建议使用[onSslErrorEventReceive<sup>9+</sup>](#onsslerroreventreceive9)替代。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-## onFileSelectorShow<sup>(deprecated)</sup>
-
-onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void)
-
-调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
-
-> **说明：**
->
-> 从API version 8开始支持，从API version 9开始废弃。建议使用[onShowFileSelector<sup>9+</sup>](#onshowfileselector9)替代。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-## onUrlLoadIntercept<sup>(deprecated)</sup>
-
-onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
-
-当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。
-从API version 10开始不再维护，建议使用[onLoadIntercept<sup>10+</sup>](#onloadintercept10)代替。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名    | 类型   | 必填   | 说明                  |
-| ------ | ------ | ---- | --------------------- |
-| callback | (event?: { data:string \| [WebResourceRequest](./arkts-basic-components-web-WebResourceRequest.md) }) => boolean | 是 | url的相关信息。<br>返回值：boolean，true表示阻止此次加载，false表示允许此次加载。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .onUrlLoadIntercept((event) => {
-            if (event) {
-              console.log('onUrlLoadIntercept ' + event.data.toString());
-            }
-            return true
-          })
-      }
-    }
-  }
-  ```
-
 ## onNativeEmbedMouseEvent<sup>20+</sup>
 
-onNativeEmbedMouseEvent(callback: (event: NativeEmbedMouseInfo) => void)
+onNativeEmbedMouseEvent(callback: MouseInfoCallback)
 
 在同层标签上执行以下行为时触发该回调：
 
@@ -4197,7 +4133,7 @@ onNativeEmbedMouseEvent(callback: (event: NativeEmbedMouseInfo) => void)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback       | (event: [NativeEmbedMouseInfo](./arkts-basic-components-web-i.md#nativeembedmouseinfo20)) => void | 是 | 当鼠标/触摸板点击到同层标签时触发该回调。 |
+| callback       | [MouseInfoCallback](./arkts-basic-components-web-t.md#mouseinfocallback20) | 是 | 当鼠标/触摸板点击到同层标签时触发该回调。 |
 
 **示例：**
 
@@ -4309,7 +4245,7 @@ onNativeEmbedMouseEvent(callback: (event: NativeEmbedMouseInfo) => void)
   }
   ```
 加载的html文件
-  ```
+  ```html
   <!-- index.html -->
   <!Document>
   <html>
@@ -4370,4 +4306,68 @@ struct WebComponent {
     }
   }
 }
+  ```
+
+## onSslErrorReceive<sup>(deprecated)</sup>
+
+onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => void)
+
+通知用户加载资源时发生SSL错误。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[onSslErrorEventReceive<sup>9+</sup>](#onsslerroreventreceive9)替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+## onFileSelectorShow<sup>(deprecated)</sup>
+
+onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void)
+
+调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[onShowFileSelector<sup>9+</sup>](#onshowfileselector9)替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+## onUrlLoadIntercept<sup>(deprecated)</sup>
+
+onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
+
+当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。
+从API version 10开始不再维护，建议使用[onLoadIntercept<sup>10+</sup>](#onloadintercept10)代替。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                  |
+| ------ | ------ | ---- | --------------------- |
+| callback | (event?: { data:string \| [WebResourceRequest](./arkts-basic-components-web-WebResourceRequest.md) }) => boolean | 是 | url的相关信息。<br>返回值：boolean，true表示阻止此次加载，false表示允许此次加载。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onUrlLoadIntercept((event) => {
+            if (event) {
+              console.log('onUrlLoadIntercept ' + event.data.toString());
+            }
+            return true
+          })
+      }
+    }
+  }
   ```

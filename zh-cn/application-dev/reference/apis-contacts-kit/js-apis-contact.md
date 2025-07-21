@@ -752,7 +752,7 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
       console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in isLocalContact.`);
+    console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -787,7 +787,7 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
       console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in isLocalContact.`);
+    console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -4321,9 +4321,9 @@ promise.then((data) => {
 
 | 名称                  | 值 | 说明                               |
 | --------------------- | ---- | ---------------------------------- |
-| SHOW_FILTER    | 0 | 仅展示符合过滤条件的联系人。 |
-| DEFAULT_SELECT            | 1 | 默认勾选符合过滤条件的联系人。                 |
-| SHOW_FILTER_AND_DEFAULT_SELECT | 2 | 默认勾选仅展示符合过滤条件的联系人。                     |
+| SHOW_FILTER    | 0 | 仅展示符合过滤条件的联系人。<br/>**系统能力**：SystemCapability.Applications.Contacts |
+| DEFAULT_SELECT            | 1 | 默认勾选符合过滤条件的联系人。<br/>**系统能力**：SystemCapability.Applications.Contacts                 |
+| SHOW_FILTER_AND_DEFAULT_SELECT | 2 | 默认勾选仅展示符合过滤条件的联系人。<br/>**系统能力**：SystemCapability.Applications.Contacts                     |
 
 ## FilterClause<sup>15+</sup>
 
@@ -4363,12 +4363,12 @@ promise.then((data) => {
 
 | 名称                  | 值 | 说明                               |
 | --------------------- | ---- | ---------------------------------- |
-| IS_NOT_NULL    | 0 | 对应字段不为空。 |
-| EQUAL_TO            | 1 | 对应字段等于某值。                 |
-| NOT_EQUAL_TO | 2 | 对应字段不等于某值。                     |
-| IN | 3 | 对应字段值在某数组中。                     |
-| NOT_IN | 4 | 对应字段值不在某数组中。                     |
-| CONTAINS | 5 | 对应字段值包含某值。                     |
+| IS_NOT_NULL    | 0 | 对应字段不为空。<br/>**系统能力**：SystemCapability.Applications.Contacts |
+| EQUAL_TO            | 1 | 对应字段等于某值。<br/>**系统能力**：SystemCapability.Applications.Contacts |
+| NOT_EQUAL_TO | 2 | 对应字段不等于某值。<br/>**系统能力**：SystemCapability.Applications.Contacts |
+| IN | 3 | 对应字段值在某数组中。<br/>**系统能力**：SystemCapability.Applications.Contacts |
+| NOT_IN | 4 | 对应字段值不在某数组中。<br/>**系统能力**：SystemCapability.Applications.Contacts  |
+| CONTAINS | 5 | 对应字段值包含某值<br/>**系统能力**：SystemCapability.Applications.Contacts。 |
 
 ## DataFilter<sup>15+</sup>
 
@@ -4393,9 +4393,9 @@ promise.then((data) => {
 
 | 名称                  | 值 | 说明                               |
 | --------------------- | --- | ---------------------------------- |
-| EMAIL    | 0 | 联系人邮箱。 |
-| PHONE            | 1 | 联系人电话。                 |
-| ORGANIZATION | 2 | 联系人单位。                     |
+| EMAIL    | 0 | 联系人邮箱。<br/>**系统能力**：SystemCapability.Applications.Contacts。 |
+| PHONE            | 1 | 联系人电话。<br/>**系统能力**：SystemCapability.Applications.Contacts。 |
+| ORGANIZATION | 2 | 联系人单位。<br/>**系统能力**：SystemCapability.Applications.Contacts。 |
 
 ## Contact
 

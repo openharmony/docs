@@ -230,7 +230,7 @@ formattedRange = numberRangeFormat.formatRange(2.9, 3.1); // formattedRange = '~
 
 | 取值 | 显示效果 | 
 | -------- | -------- |
-| long | -12,3000 hectares | 
+| long | -12,300 hectares | 
 | short | -12,300 ha | 
 | narrow | -12,300ha | 
 

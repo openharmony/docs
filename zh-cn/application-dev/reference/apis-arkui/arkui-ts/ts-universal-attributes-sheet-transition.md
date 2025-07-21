@@ -53,7 +53,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | --------------- | ---------------------------------------- | ---- | --------------- |
 | height          | [SheetSize](#sheetsize枚举说明)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 半模态高度，默认是LARGE。<br/>**说明：**<br/>API version 12之前，底部弹窗横屏时该属性设置无效，高度为距离屏幕顶部8vp。<br/>API version 12开始，底部弹窗横屏时该属性设置生效，最大高度为距离屏幕顶部8vp。<br/>API version 14开始，底部弹窗横屏时，无状态栏则最大高度为距离屏幕顶部8vp，有状态栏则最大高度为距离状态栏8vp。<br/>底部弹窗时，当设置detents时，该属性设置无效。<br/>底部弹窗竖屏时，最大高度为距离状态栏8vp。<br />居中弹窗和跟手弹窗设置类型为SheetSize.LARGE和SheetSize.MEDIUM无效，显示默认高度560vp。居中弹窗和跟手弹窗最小高度为320vp，最大高度为窗口短边的90%。当使用Length设置的高度和使用SheetSize.FIT_CONTENT自适应的高度大于最大高度，则显示最大高度，小于最小高度，则显示最小高度。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | detents<sup>11+</sup> | [([SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length)), ( [SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length))?, ([SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length))?] | 否 | 半模态页面的切换高度档位。<br/>**说明：**<br/>从API version 12开始，底部弹窗横屏时该属性设置生效。<br/>底部弹窗竖屏生效，元组中第一个高度为初始高度。<br />面板可跟手滑动切换档位，松手后是否滑动至目标档位有两个判断条件：速度和距离。速度超过阈值，则执行滑动至与手速方向一致的目标档位；速度小于阈值，则引入距离判断条件，当位移距离>当前位置与目标位置的1/2，滑动至与手速方向一致的目标档位，位移距离当前位置与目标位置的1/2，返回至当前档位。速度阈值：1000，距离阈值：50%。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| preferType<sup>11+</sup> | [SheetType](#sheettype11枚举说明) | 否 | 半模态页面的样式。<br/>**说明：**<br/>半模态在不同窗口所支持的显示类型：<br/>1. 宽度 < 600vp：底部。<br/>2. 600vp <= 宽度 < 840vp：底部、居中、跟手、侧边。默认居中样式。<br/>3. 宽度 >= 840vp：底部、居中、跟手、侧边。默认跟手样式。<br/>4. API version 20开始，窗口宽度大于600vp时，preferType支持设置为SheetType.SIDE侧边样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| preferType<sup>11+</sup> | [SheetType](#sheettype11枚举说明) | 否 | 半模态页面的样式。<br/>**说明：**<br/>半模态在不同窗口所支持的显示类型：<br/>1. 宽度 < 600vp：底部、全屏。<br/>2. 600vp <= 宽度 < 840vp：底部、居中、跟手、侧边、全屏。默认居中样式。<br/>3. 宽度 >= 840vp：底部、居中、跟手、侧边、全屏。默认跟手样式。<br/>4. API version 20开始，窗口宽度大于600vp时，preferType支持设置为SheetType.SIDE。<br/>5. API version 20开始，preferType支持设置为SheetType.CONTENT_COVER，支持设置为全屏模态样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | 否 | 是否显示关闭图标。<br/> 2in1设备默认无按钮底板。<br/> 默认值：true。<br/> true：显示关闭图标。<br/> false：不显示关闭图标。<br/>**说明：**<br/>Resource需要为boolean类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | dragBar         | boolean                                  | 否    | 是否显示控制条。<br/>**说明：**<br/>半模态面板的detents属性设置多个不同高度并且设置生效时，默认显示控制条。否则不显示控制条。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | blurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 半模态面板的模糊背景。默认无模糊背景。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -85,6 +85,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | effectEdge<sup>18+</sup> | number | 否 | 设置半模态面板内容区边缘回弹效果，支持单边生效。<br/>**默认值**：默认双边生效，即[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START \| [EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END（即数值3）。<br />**说明：**<br />1. 仅上边缘生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START。<br/>2. 仅下边缘生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END。<br/>3. 双边生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START \| [EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END（即数值3）。<br/>4. 双边不生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START & [EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END（即数值0）。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | showInSubWindow<sup>19+</sup> | boolean                                  | 否    | 半模态是否在独立子窗中显示。<br>默认值：false<br>**说明：** <br>1. 若属性值为true，半模态可以在独立子窗口中展示，并且可以超过应用窗口范围。<br>2. 若属性值为false，半模态只能在应用窗口范围内展示。<br>3. 不建议在showInSubWindow为true的弹窗嵌套显示另一个showInSubWindow为true的弹窗，半模态可能会影响其他组件行为。<br>4. 不建议在showInSubWindow为true的弹窗中使用CalendarPicker、CalendarPickerDialog、DatePickerDialog、TextPickerDialog、TimePickerDialog等picker组件，半模态会影响上述组件行为。<br>5. 半模态显示期间该属性不支持动态切换。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 | enableFloatingDragBar<sup>20+</sup>              | boolean | 否   | 控制条是否悬浮显示，true为悬浮显示，false为不悬浮显示。<br />默认值：false <br /> **说明：** <br>悬浮效果只在控制条显示的场景生效，且控制条不占位。<br /> title传入[CustomBuilder](ts-types.md#custombuilder8)时enableFloatingDragBar始终为false。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| modalTransition<sup>20+</sup> | [ModalTransition](ts-types.md#modaltransition10) | 否 | bindSheet全屏模态样式的系统转场方式。<br/>默认值：ModalTransition.DEFAULT<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## SheetSize枚举说明
 
@@ -120,6 +121,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | CENTER | 1    | 居中弹窗。 <br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | POPUP  | 2    | 跟手弹窗。跟手弹窗面板不支持跟手滑动，下滑面板不关闭。<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | SIDE<sup>20+</sup>   | 3    | 侧边弹窗。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| CONTENT_COVER<sup>20+</sup>   | 4    | 全屏弹窗。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 **半模态侧边弹窗样式：**
 
@@ -152,6 +154,56 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | placement | 只支持气泡样式。 |
 | placementOnTarget | 只支持气泡样式。|
 | showInSubWindow | 不支持指定显示层级。 |
+
+**bindSheet全屏模态样式说明：**
+
+1. 全屏样式显示页面效果为铺满全屏，不支持边框、阴影、标题栏、关闭按钮、圆角等。
+
+2. builder内容默认布局在安全区内。
+
+3. 全屏样式支持系统转场方式[ModalTransition](ts-types.md#modaltransition10)，默认值为`ModalTransition.DEFAULT`，不支持自定义转场。
+
+4. 不支持挡位能力，不支持`detents`和`detentSelection`接口。
+
+5. 不支持上下滑动，仅支持侧滑关闭。
+
+6. 不支持宽高自定义，宽高默认为全屏。
+
+7. 不支持指定其他显示层级接口，如`showInSubWindow = true`、`mode = SheetMode.EMBEDDED`。全屏弹窗的层级与`SheetMode.OVERLAY`相同，仅支持在当前`UIContext`内顶层显示，位于所有页面之上，与弹窗类组件显示在同一层级。
+
+8. 默认不避让软键盘，需自定义避让软键盘。
+
+9. 不支持蒙层效果。
+
+
+**bindSheet全屏模态样式不支持的接口**
+| 名称             | 说明              |
+| --------------- |  --------------- |
+| height          | 高度只支持全屏高度。 |
+| width           | 宽度只支持全屏宽度。 |
+| detents | 无挡位能力。|
+| dragBar         | 不支持拖动条。  |
+| onDetentsDidChange | 无挡位能力。|
+| showClose          | 不支持显示关闭按钮。 |
+| title          | 不支持显示标题栏。 |
+| uiContext | 不支持指定显示层级。|
+| mode | 不支持指定显示层级。 |
+| scrollSizeMode | 无挡位能力。  |
+| keyboardAvoidMode | 无避让软键盘能力，需自定义避让。 |
+| enableHoverMode  | 无悬停态避让能力。|
+| hoverModeArea    | 无悬停态避让能力。|
+| detentSelection | 无挡位能力。 |
+| showInSubWindow | 不支持指定显示层级。 |
+| radius         | 不支持圆角。  |
+| borderWidth         | 不支持边框宽度。  |
+| borderColor         | 不支持边框颜色。  |
+| borderStyle         | 不支持边框样式。  |
+| shadow         | 不支持阴影。  |
+| maskColor      | 不支持蒙层颜色。  |
+| enableOutsideInteractive | 不支持设置是否允许交互。  |
+| effectEdge     | 不支持边缘回弹效果。  |
+| enableFloatingDragBar | 不支持浮动拖动条。  |
+| onWillSpringBackWhenDismiss | 无回弹效果。  |
 
 ## SheetDismiss<sup>11+</sup>
 
@@ -454,9 +506,9 @@ struct bindSheetExample {
           title: { title: "title", subtitle: "subtitle" },
           preferType: SheetType.CENTER,
 
-          onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
-            if (DismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
-              DismissSheetAction.dismiss(); //注册dismiss行为
+          onWillDismiss: ((dismissSheetAction: DismissSheetAction) => {
+            if (dismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
+              dismissSheetAction.dismiss(); //注册dismiss行为
             }
           }),
 
@@ -801,3 +853,65 @@ struct SheetSideExample {
 ```
 
 ![zh-cn_sheet](figures/zh-cn_sheet8_side.png)
+
+### 示例9（半模态ContentCover全屏样式）
+
+此示例实现半模态的全屏显示效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ContentCoverExample {
+  @State isShow: boolean = false
+
+  @Builder
+  myBuilder() {
+    Column() {
+      Button("Close Content Cover Sheet")
+        .margin(10)
+        .fontSize(20)
+        .onClick(() => {
+          this.isShow = false;
+        })
+    }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+
+  build() {
+    Column() {
+      Button("Show Content Cover Sheet")
+        .onClick(() => {
+          this.isShow = true
+        })
+        .fontSize(20)
+        .margin(10)
+        .bindSheet(this.isShow, this.myBuilder(), {
+          modalTransition: ModalTransition.DEFAULT,
+          preferType: SheetType.CONTENT_COVER,
+          backgroundColor: '#ffd5d5d5',
+          maskColor: '#ff707070',
+          onWillAppear: () => {
+            console.log("ContentCover onWillAppear.")
+          },
+          onAppear: () => {
+            console.log("ContentCover onAppear.")
+          },
+          onWillDisappear: () => {
+            console.log("ContentCover onWillDisappear.")
+          },
+          onDisappear: () => {
+            console.log("ContentCover onDisappear.")
+          },
+        })
+    }
+    .justifyContent(FlexAlign.Center)
+    .backgroundColor(Color.White)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+![zh-cn_sheet](figures/zh-cn_sheet9_content_cover.gif)

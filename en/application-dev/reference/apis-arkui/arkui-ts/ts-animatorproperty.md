@@ -4,20 +4,34 @@ With property animations, you can animate changes to certain component propertie
 
 > **NOTE**
 >
-> This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
->
-> **Widget capability**: This API can be used in ArkTS widgets since API version 9.
+> This feature is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## APIs
 
-animation(value:AnimateParam)
+animation(value:AnimateParam): T
+
+Sets a property animation for the component.
+
+> **NOTE**
+>
+> When a single page contains a large number of components with animations, use **renderGroup** to minimize frame freezing and improve animation performance. For best practices, see [Animation Usage Guide - Using RenderGroup](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-fair-use-animation#section1223162922415).
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
-| Name   | Type                               | Mandatory| Description                                   |
+| Name  | Type                               | Mandatory| Description                                   |
 | ----- | --------------------------------- | ---- | ------------------------------------- |
 | value | [AnimateParam](ts-explicit-animation.md#animateparam) | Yes   | Animation settings.                          |
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 Property animations only affect attributes that are specified before the **animation** API and do not affect properties of the component constructor.
  ```

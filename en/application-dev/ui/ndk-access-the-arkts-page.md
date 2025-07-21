@@ -96,7 +96,7 @@ After obtaining a function pointer struct, use the functions within the struct t
   arkUINativeNodeApi->setAttribute(stack, NODE_BACKGROUND_COLOR, &item);
   ```
 
-  You can query the range of attributes supported by the NDK API through the[ArkUI_NodeAttributeType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeattributetype) API.
+  You can query the range of attributes supported by the NDK API through the [ArkUI_NodeAttributeType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeattributetype) API.
 
 - Register events.
   ```
