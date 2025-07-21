@@ -58,7 +58,7 @@ static napi_value GetValueStringUtf8(napi_env env, napi_callback_info info)
     napi_get_value_string_utf8(env, args[0], buf, length + 1, &length);
     napi_value result = nullptr;
     status = napi_create_string_utf8(env, buf, length, &result);
-    delete buf;
+    delete[] buf;
     if (status != napi_ok) {
         return nullptr;
     };
@@ -70,7 +70,7 @@ static napi_value GetValueStringUtf8(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getValueStringUtf8: (param: string | number) => string | void;
+export const getValueStringUtf8: (param: string | number) => string | undefined;
 ```
 
 ArkTS侧示例代码
@@ -111,7 +111,7 @@ static napi_value CreateStringUtf8(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const createStringUtf8: () => string | void;
+export const createStringUtf8: () => string | undefined;
 ```
 
 ArkTS侧示例代码
@@ -200,7 +200,7 @@ static napi_value CreateStringUtf16(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const createStringUtf16: () => string | void;
+export const createStringUtf16: () => string | undefined;
 ```
 
 ArkTS侧示例代码
@@ -245,7 +245,7 @@ static napi_value GetValueStringLatin1(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getValueStringLatin1: (param: number | string) => string | void;
+export const getValueStringLatin1: (param: number | string) => string | undefined;
 ```
 
 ArkTS侧示例代码
@@ -289,7 +289,7 @@ static napi_value CreateStringLatin1(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const createStringLatin1: () => string | void;
+export const createStringLatin1: () => string | undefined;
 ```
 
 ArkTS侧示例代码
