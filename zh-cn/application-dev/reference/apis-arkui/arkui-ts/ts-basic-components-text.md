@@ -1289,32 +1289,26 @@ function style(TextAlign: TextAlign) {
 struct TextExample1 {
   @State changeTextAlignIndex: number = 0;
   @State changeDecorationIndex: number = 0;
-  @State TextAlign: TextAlign[] = [TextAlign.Start, TextAlign.Center, TextAlign.End];
-  @State TextAlignStr: string[] = ['Start', 'Center', 'End'];
-  @State TextDecorationType: TextDecorationType[] =
-    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline];
-  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline'];
-  @State TextDecorationStyle: TextDecorationStyle[] =
-    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY];
-  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY'];
+  @State textAlign: TextAlign[] = [TextAlign.Start, TextAlign.Center, TextAlign.End];
+  @State textAlignStr: string[] = ['Start', 'Center', 'End'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       // 设置文本水平方向对齐方式
       // 单行文本
       Text('textAlign').fontSize(9).fontColor(0xCCCCCC)
-      Text(`TextAlign set to ${this.TextAlignStr[this.changeTextAlignIndex]}.`)
-        .style(this.TextAlign[this.changeTextAlignIndex])
+      Text(`TextAlign set to ${this.textAlignStr[this.changeTextAlignIndex]}.`)
+        .style(this.textAlign[this.changeTextAlignIndex])
 
       // 多行文本
-      Text(`This is the text content with textAlign set to ${this.TextAlignStr[this.changeTextAlignIndex]}.`)
-        .style(this.TextAlign[this.changeTextAlignIndex])
+      Text(`This is the text content with textAlign set to ${this.textAlignStr[this.changeTextAlignIndex]}.`)
+        .style(this.textAlign[this.changeTextAlignIndex])
         .margin(5)
 
       Row() {
-        Button('当前TextAlign类型：' + this.TextAlignStr[this.changeTextAlignIndex]).onClick(() => {
+        Button('当前TextAlign类型：' + this.textAlignStr[this.changeTextAlignIndex]).onClick(() => {
           this.changeTextAlignIndex++;
-          if (this.changeTextAlignIndex > (this.TextAlignStr.length - 1)) {
+          if (this.changeTextAlignIndex > (this.textAlignStr.length - 1)) {
             this.changeTextAlignIndex = 0;
           }
         })
@@ -1361,6 +1355,7 @@ struct TextExample1 {
 该示例通过decoration、letterSpacing、textCase、fontFamily、textShadow、fontStyle、textIndent、fontWeight属性展示了不同样式的文本效果。
 
 ```ts
+// xxx.ets
 @Extend(Text)
 function style() {
   .font({ size: 12 })
@@ -1374,30 +1369,30 @@ function style() {
 @Component
 struct TextExample2 {
   @State changeDecorationIndex: number = 0;
-  @State TextDecorationType: TextDecorationType[] =
+  @State textDecorationType: TextDecorationType[] =
     [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline];
-  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline'];
-  @State TextDecorationStyle: TextDecorationStyle[] =
+  @State textDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline'];
+  @State textDecorationStyle: TextDecorationStyle[] =
     [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY];
-  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY'];
+  @State textDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       Text('decoration').fontSize(9).fontColor(0xCCCCCC)
       Text('This is the text content with the decoration set to LineThrough and the color set to Red.')
         .decoration({
-          type: this.TextDecorationType[this.changeDecorationIndex],
+          type: this.textDecorationType[this.changeDecorationIndex],
           color: Color.Red,
-          style: this.TextDecorationStyle[this.changeDecorationIndex]
+          style: this.textDecorationStyle[this.changeDecorationIndex]
         })
         .style()
         .margin(5)
 
       Row() {
-        Button('当前decoration类型：' + this.TextDecorationTypeStr[this.changeDecorationIndex] + ' & ' +
-        this.TextDecorationStyleStr[this.changeDecorationIndex]).onClick(() => {
+        Button('decoration type：' + this.textDecorationTypeStr[this.changeDecorationIndex] + ' & ' +
+        this.textDecorationStyleStr[this.changeDecorationIndex]).onClick(() => {
           this.changeDecorationIndex++;
-          if (this.changeDecorationIndex > (this.TextDecorationTypeStr.length - 1)) {
+          if (this.changeDecorationIndex > (this.textDecorationTypeStr.length - 1)) {
             this.changeDecorationIndex = 0;
           }
         })
@@ -1479,6 +1474,7 @@ struct TextExample2 {
 该示例通过maxLines、textOverflow、ellipsisMode属性展示了文本超长省略以及调整省略位置的效果。
 
 ```ts
+// xxx.ets
 @Extend(Text)
 function style() {
   .textAlign(TextAlign.Center)
