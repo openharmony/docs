@@ -1826,6 +1826,12 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 | predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。        |
 | columns    | Array&lt;string&gt;                  | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
+**返回值**：
+
+| 类型                                                    | 说明                                               |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
@@ -1836,12 +1842,6 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 | 14800000  | Inner error. |
 | 14800014  | The RdbStore or ResultSet is already closed. |
 | 14800015  | The database does not respond. |
-
-**返回值**：
-
-| 类型                                                    | 说明                                               |
-| ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -1884,6 +1884,12 @@ querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 | predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。                      |
 | columns    | Array&lt;string&gt;             | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。默认值为空。 |
 
+**返回值**：
+
+| 类型                    | 说明                                |
+| ----------------------- | ----------------------------------- |
+| [ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset) | 如果操作成功，则返回ResultSet对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
@@ -1894,12 +1900,6 @@ querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 | 14800000     | Inner error.                                                 |
 | 14800014     | The RdbStore or ResultSet is already closed.                                              |
 | 14800015     | The database does not respond.                                        |
-
-**返回值**：
-
-| 类型                    | 说明                                |
-| ----------------------- | ----------------------------------- |
-| [ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset) | 如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -3113,7 +3113,7 @@ if (store != undefined) {
       console.error(`execute sql failed, code is ${e.code},message is ${e.message}`);
     });
   }).catch((err: BusinessError) => {
-    console.error(`createTransaction faided, code is ${err.code},message is ${err.message}`);
+    console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
   });
 }
 ```
@@ -4141,7 +4141,7 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;, callback: A
 ```ts
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetails) => {
-    console.info(`Progess: ${progressDetails}`);
+    console.info(`Progress: ${progressDetails}`);
   }, (err) => {
     if (err) {
       console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
@@ -4233,7 +4233,7 @@ const tables = ["table1", "table2"];
 
 if (store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, (progressDetail: relationalStore.ProgressDetails) => {
-    console.info(`Progess: ${progressDetail}`);
+    console.info(`Progress: ${progressDetail}`);
   }, (err) => {
     if (err) {
       console.error(`Cloud sync failed, code is ${err.code},message is ${err.message}`);
@@ -5254,6 +5254,7 @@ cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
 | cursor    | number           | 否   | 整数类型，表示数据游标，小于此游标的脏数据将被清理。当此参数不填时，清理当前表的所有脏数据。 |
 
 **返回值：**
+
 | 参数名    | 说明                                               |
 | -------- | ------------------------------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。        |
@@ -5703,6 +5704,12 @@ queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise
 | predicates | [RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。        |
 | columns    | Array&lt;string&gt;                  | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
+**返回值**：
+
+| 类型                                                    | 说明                                               |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。其中，14800011错误码处理可参考[数据库备份与恢复](../../database/data-backup-and-restore.md)。
@@ -5728,12 +5735,6 @@ queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise
 | 14800032  | SQLite: Abort due to constraint violation. |
 | 14800033  | SQLite: Data type mismatch. |
 | 14800034  | SQLite: Library used incorrectly. |
-
-**返回值**：
-
-| 类型                                                    | 说明                                               |
-| ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 

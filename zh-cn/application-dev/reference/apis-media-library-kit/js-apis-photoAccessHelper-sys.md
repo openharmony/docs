@@ -5104,7 +5104,7 @@ class PhotoProxyImpl implements photoAccessHelper.PhotoProxy {
   // 应用实现PhotoProxy。
 }
 
-async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset) {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset, context: Context) {
   console.info('addResourceByPhotoProxyDemo');
   try {
     let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;

@@ -1171,7 +1171,7 @@ GWP-Asan配置项。可用于配置是否使能、采样频率，以及最大分
 
 | 名称         | 类型  | 只读  | 可选 | 说明 |
 |--------------|------|-------|-------|-----|
-|alwaysEnabled | bool | 否  | 是 | true：100%使能GWP-Asan。<br/>false：1/128概率使能GWP-Asan。<br/> 默认值：false。|
+|alwaysEnabled | boolean | 否  | 是 | true：100%使能GWP-Asan。<br/>false：1/128概率使能GWP-Asan。<br/> 默认值：false。|
 |sampleRate    |number| 否  |是|GWP-Asan采样频率，默认值为2500，需要传入大于0的正整数，若传入小数则向上取整。<br/> 1/sampleRate的概率对分配的内存进行采样。|
 |maxSimutaneousAllocations|number|否|是|最大分配的插槽数，默认值为1000，需要传入大于0的正整数，若传入小数则向上取整。<br/>当插槽用尽时，新分配的内存将不再受监控。<br/>释放已使用的内存后，其占用的插槽将自动复用，以便于后续内存的监控。|
 
@@ -1194,6 +1194,8 @@ hidebug.disableGwpAsanGrayscale();
 getGwpAsanGrayscaleState(): number
 
 获取当前GWP-Asan剩余使能天数。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值**：
 

@@ -22,6 +22,7 @@ CPU密集型任务是指需要占用系统资源进行大量计算的任务，�
 3. 结果数组汇总处理。
 
 ```ts
+// Index.ets
 import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
@@ -44,6 +45,7 @@ function histogramStatistic(pixelBuffer: ArrayBuffer): void {
 
   taskpool.execute(group, taskpool.Priority.HIGH).then((ret: Object) => {
     // 步骤3: 结果数组汇总处理
+    console.info('execute group success');
   })
 }
 

@@ -71,7 +71,7 @@ audio.createAudioRenderer(audioRendererOptions,(err, data) => {
   if (err) {
     console.error(`AudioRenderer Created: Error: ${err}`);
   } else {
-    console.info('AudioRenderer Created: Success: SUCCESS');
+    console.info('AudioRenderer Created: SUCCESS');
     let audioRenderer = data;
   }
 });
@@ -124,7 +124,7 @@ let audioRenderer: audio.AudioRenderer;
 
 audio.createAudioRenderer(audioRendererOptions).then((data) => {
   audioRenderer = data;
-  console.info('AudioFrameworkRenderLog: AudioRenderer Created : Success : Stream Type: SUCCESS');
+  console.info('AudioFrameworkRenderLog: AudioRenderer Created : SUCCESS');
 }).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRenderLog: AudioRenderer Created : ERROR : ${err}`);
 });
@@ -175,7 +175,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
   if (err) {
     console.error(`AudioCapturer Created : Error: ${err}`);
   } else {
-    console.info('AudioCapturer Created : Success : SUCCESS');
+    console.info('AudioCapturer Created : SUCCESS');
     let audioCapturer = data;
   }
 });
@@ -232,7 +232,7 @@ let audioCapturer: audio.AudioCapturer;
 
 audio.createAudioCapturer(audioCapturerOptions).then((data) => {
   audioCapturer = data;
-  console.info('AudioCapturer Created : Success : Stream Type: SUCCESS');
+  console.info('AudioCapturer Created : SUCCESS');
 }).catch((err: BusinessError) => {
   console.error(`AudioCapturer Created : ERROR : ${err}`);
 });
