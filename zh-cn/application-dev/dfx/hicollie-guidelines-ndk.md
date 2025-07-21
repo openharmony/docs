@@ -41,16 +41,16 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      src:
        main:
          cpp:
-           - types:
-               libentry:
-                 - index.d.ts
+           types:
+           libentry:
+             - index.d.ts
            - CMakeLists.txt
            - napi_init.cpp
          ets:
-           - entryability:
-               - EntryAbility.ts
-           - pages:
-               - Index.ets
+           entryability:
+             - EntryAbility.ts
+           pages:
+             - Index.ets
    ```
 
 2. 编辑“CMakeLists.txt”文件，添加源文件及动态库：
