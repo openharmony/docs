@@ -1365,7 +1365,7 @@ setCustomDensity(density: number, applyToSubWindow?: boolean): void
 | 参数名           | 类型    | 必填 | 说明                         |
 | ---------------- | ------- | ---- | ---------------------------- |
 | density | number | 是   | 自定义显示大小缩放系数。该参数为浮点数，取值范围为[0.5, 4.0]或-1.0。4.0表示窗口可显示的最大显示大小缩放系数，-1.0表示窗口使用系统显示大小缩放系数。 |
-| applyToSubWindow<sup>20+</sup> | boolean | 否   | 自定义是否立即更新customDensity给已创建的子窗和系统窗口。true表示已创建的子窗和系统窗口会立即跟随主窗的customDensity变化重新布局；false表示已创建的子窗和系统窗口不会立即跟随主窗的customDensity变化重新布局，会在子窗或系统窗口下一次位置、大小，系统缩放大小等窗口布局信息变化时跟随主窗的customDensity变化重新布局。默认值为false。 |
+| applyToSubWindow | boolean | 否   | 自定义是否立即更新customDensity给已创建的子窗和系统窗口。true表示已创建的子窗和系统窗口会立即跟随主窗的customDensity变化重新布局；false表示已创建的子窗和系统窗口不会立即跟随主窗的customDensity变化重新布局，会在子窗或系统窗口下一次位置、大小，系统缩放大小等窗口布局信息变化时跟随主窗的customDensity变化重新布局。默认值为false。 |
 
 **错误码：**
 
