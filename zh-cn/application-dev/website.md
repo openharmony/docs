@@ -441,6 +441,7 @@
               - [Repeat：可复用的循环渲染](ui/state-management/arkts-new-rendering-control-repeat.md)
               - [getTarget接口：获取状态管理框架代理前的原始对象](ui/state-management/arkts-new-getTarget.md)
               - [makeObserved接口：将非观察数据变为可观察数据](ui/state-management/arkts-new-makeObserved.md)
+              - [addMonitor/clearMonitor接口：动态添加/取消监听](ui/state-management/arkts-new-addMonitor-clearMonitor.md)
             - [MVVM模式（状态管理V2）](ui/state-management/arkts-mvvm-V2.md)
           - V1V2混用和迁移指导<!--v1v2-migration-->
             - [自定义组件混用场景指导](ui/state-management/arkts-custom-component-mixed-scenarios.md)
