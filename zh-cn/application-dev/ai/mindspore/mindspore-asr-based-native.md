@@ -198,19 +198,23 @@
        auto rawFile = OH_ResourceManager_OpenRawFile(nativeResourceManager, modelName.c_str());
        if (rawFile == nullptr) {
            LOGE("MS_LITE_ERR: Open model file failed");
+           return BinBuffer(nullptr, 0);
        }
        long fileSize = OH_ResourceManager_GetRawFileSize(rawFile);
        if (fileSize <= 0) {
            LOGE("MS_LITE_ERR: FileSize not correct");
+           return BinBuffer(nullptr, 0);
        }
        void *buffer = malloc(fileSize);
        if (buffer == nullptr) {
            LOGE("MS_LITE_ERR: OH_ResourceManager_ReadRawFile failed");
+           return BinBuffer(nullptr, 0);
        }
        int ret = OH_ResourceManager_ReadRawFile(rawFile, buffer, fileSize);
        if (ret == 0) {
            LOGE("MS_LITE_LOG: OH_ResourceManager_ReadRawFile failed");
            OH_ResourceManager_CloseRawFile(rawFile);
+           return BinBuffer(nullptr, 0);
        }
        OH_ResourceManager_CloseRawFile(rawFile);
        BinBuffer res(buffer, fileSize);
