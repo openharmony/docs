@@ -1057,7 +1057,7 @@ setTextSelection选中文字时的配置。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 类型                                                         | 必填 | 说明                                   |
-| ----- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| start | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 滚动条起始边距。<br/>默认值：0，单位：vp |
-| end   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 滚动条末尾边距。<br/>默认值：0，单位：vp |
+| 名称  | 类型                                                         | 只读 | 可选 | 说明                                   |
+| ----- | ------------------------------------------------------------ | ---- | -- | -------------------------------------- |
+| start | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 是 | 滚动条起始边距。<br/>默认值：0，单位：vp |
+| end   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 是 | 滚动条末尾边距。<br/>默认值：0，单位：vp |
