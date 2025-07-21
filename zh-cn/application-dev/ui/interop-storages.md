@@ -2,7 +2,7 @@
 
 ## 概述
 
-应用间状态存储互操作适用于[ArkTS1.2互操作](../quick-start/arkts-interop-overview.md)中应用间使用AppStorage，LocalStorage，PersistentStorage，Environment的场景。
+应用间状态存储互操作适用于[ArkTS1.2使用ArkTS1.1自定义组件](./interop-compatible-component.md)中应用间使用AppStorage，LocalStorage，PersistentStorage，Environment的场景。
 
 ## 架构原理
 
@@ -18,15 +18,15 @@
 
 ## 参数传递规则
 
-- 遵循语言[交互基本原则](../quick-start/arkts-interop-overview.md#交互基本原则)的规范。
+- 遵循ArkTS1.2使用ArkTS1.1自定义组件[约束与限制](./interop-compatible-component.md#约束与限制)。
 
-- 遵循ArkTS1.1 AppStorage[限制条件](../quick-start/arkts-appstorage.md#限制条件)。
+- 遵循ArkTS1.1 AppStorage[限制条件](./state-management/arkts-appstorage.md#限制条件)。
 
-- 遵循ArkTS1.1 LocalStorage[限制条件](../quick-start/arkts-localstorage.md#限制条件)。
+- 遵循ArkTS1.1 LocalStorage[限制条件](./state-management/arkts-localstorage.md#限制条件)。
 
-- 遵循ArkTS1.1 PersistentStorage[限制条件](../quick-start/arkts-persiststorage.md#限制条件)。
+- 遵循ArkTS1.1 PersistentStorage[限制条件](./state-management/arkts-persiststorage.md#限制条件)。
 
-- 遵循ArkTS1.1 Environment[限制条件](../quick-start/arkts-environment.md#限制条件)。
+- 遵循ArkTS1.1 Environment[限制条件](./state-management/arkts-environment.md#限制条件)。
 
 ## 开发场景
 
@@ -42,7 +42,7 @@
 
 @Component
 export struct MainPage {
-  //1.1绑定1.2AppStorage数据
+  // 1.1绑定1.2AppStorage数据
   @StorageLink('LinkA') appLink: string = 'dynamicA';
   @StorageProp('LinkA') appProp: string = 'dynamicA';
   build() {
@@ -89,7 +89,7 @@ import { AppStorage, StorageLink, StoragePropRef } from '@ohos.arkui.stateManage
 @Entry
 @Component
 struct MyStateSample {
-  //1.2使用AppStorage，初始化key 'LinkA'
+  // 1.2使用AppStorage，初始化key 'LinkA'
   linkAFlag: boolean = AppStorage.setOrCreate<string>('LinkA', '333', Type.from<string>());
 
   @StorageLink('LinkA') appLink: string = 'staticA';
@@ -173,7 +173,7 @@ import { LocalStorage, IStorageProperties, LocalStorageLink, LocalStoragePropRef
 const para: Record<string, IStorageProperties> = {'LinkA': {value: 'test', ttype: Type.from<string>()}};
 const storageInst = (): LocalStorage => new LocalStorage(para);
 
-@Entry({ storage: "storageInst" })
+@Entry({ storage: 'storageInst' })
 @Component
 struct MyStateSample {
   @LocalStorageLink('LinkA') localLink: string = 'staticA';
@@ -210,7 +210,7 @@ struct MyStateSample {
 
 @Component
 export struct MainPage {
-  //1.1绑定1.2PersistentStorage数据
+  // 1.1绑定1.2PersistentStorage数据
   @StorageLink('LinkA') persistLink: string = 'dynamicB';
   @StorageProp('LinkA') persistProp: string = 'dynamicB';
   build() {
@@ -257,7 +257,7 @@ import { PersistentStorage, StorageLink, StoragePropRef } from '@ohos.arkui.stat
 @Entry
 @Component
 struct MyStateSample {
-  //1.2使用PersistentStorage，初始化key 'LinkA'
+  // 1.2使用PersistentStorage，初始化key 'LinkA'
   persistFlag: boolean = PersistentStorage.persistProp('LinkA', Type.from<string>(), 'hello');
 
   @StorageLink('LinkA') persistLink: string = 'staticB';
