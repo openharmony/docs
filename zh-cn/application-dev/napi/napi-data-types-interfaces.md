@@ -52,7 +52,7 @@ typedef struct {
 
 ### napi_value
 
-napi_value是一个C的结构体指针，表示一个ArkTS/JS对象的引用。napi_value持有了ArkTS/JS对象，同时，napi_value受[napi_handle_scope](#napi_handle_scope)管理，scope中napi_value持有的JS对象不会被释放；出scope后，napi_value将失效，不再持有对应的ArkTS/JS对象。
+napi_value是一个C的结构体指针，表示一个ArkTS/JS对象的引用。napi_value持有了ArkTS/JS对象，同时，napi_value受[napi_handle_scope](#内存管理类型)管理，scope中napi_value持有的JS对象不会被释放；出scope后，napi_value将失效，不再持有对应的ArkTS/JS对象。
 
 ### napi_env
 
