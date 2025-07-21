@@ -8,7 +8,7 @@
 
 - 多行文本绘制与显示
 
-- 多类型文本绘制与显示
+- 多样式文本绘制与显示
 
 
 ## 多语言文本绘制与显示
@@ -427,6 +427,7 @@ struct Font08 {
 | -------- | -------- |
 | 文本对齐方式为text.TextAlign.LEFT，最大行数为3，断词策略为text.WordBreak.BREAK_WORD。 | ![zh-cn_image_0000002246563849](figures/zh-cn_image_0000002246563849.png) | 
 | 文本对齐方式为text.TextAlign.RIGHT，最大行数为3，断词策略为text.WordBreak.BREAK_WORD。 | ![zh-cn_image_0000002211443900](figures/zh-cn_image_0000002211443900.png) | 
+| 文本对齐方式为text.TextAlign.JUSTIFY ，最大行数为10 ，断词策略为text.WordBreak.BREAK_WORD。 | ![zh-cn_image_xxx01](figures/zh-cn_image_xxx01.png) | 
 | 文本对齐方式为text.TextAlign.LEFT，最大行数为3，断词策略为text.WordBreak.BREAK_ALL。 | ![zh-cn_image_0000002211603680](figures/zh-cn_image_0000002211603680.png) | 
 | 文本对齐方式为text.TextAlign.LEFT ，最大行数为10 ，断词策略为text.WordBreak.BREAK_ALL。 | ![zh-cn_image_0000002246563845](figures/zh-cn_image_0000002246563845.png) | 
 
@@ -446,6 +447,8 @@ struct Font08 {
 - **文本阴影绘制：** 主要通过在文本周围添加阴影效果，以提升文本的层次感和立体感，从而使文本更具吸引力。
 
 - **占位符绘制：** 可以在不确定文本内容时保持文本布局的稳定性，使得文本显示更为流畅和自然。
+
+- **自动间距绘制：** 可以在一些字符混排切换的地方自动添加额外间距，提升阅读体验。
 
 ### 装饰线
 
@@ -480,6 +483,11 @@ struct Font08 {
 占位符绘制用于处理文本中占位符符号的渲染。
 
 占位符也是用来实现图文混排的关键，是指在实际图像或内容注册之前，用来预先提供货替代某个位置的视觉元素。
+
+### 自动间距
+
+使能自动间距，则会在文本排版时自动调整CJK（中文字符、日文字符、韩文字符）与西文（拉丁字母、西里尔字母、希腊字母）、CJK与数字、CJK与版权符号、版权符号与数字、版权符号与西文之间的间距。例如，在中英文混排场景中，使能自动间距即可在中英文切换的地方自动添加额外间距，提升阅读体验。
+
 
 ### 开发步骤
 
@@ -518,7 +526,7 @@ struct Font08 {
        green: 0,
        blue: 0
      },
-     fontSize: 300,
+     fontSize: 150,
      // 设置装饰线
      decoration: decorations,
      // 可变字体
@@ -530,11 +538,13 @@ struct Font08 {
    };
    ```
 
-3. 初始化段落样式。
+3. 初始化段落样式，并使能自动间距。
 
    ```ts
    let myParagraphStyle: text.ParagraphStyle = {
-     textStyle: myTextStyle
+     textStyle: myTextStyle,
+     // 使能自动间距
+     autospace: true
    };
    ```
 
@@ -558,7 +568,7 @@ struct Font08 {
    // 更新文本样式
    paragraphBuilder.pushStyle(myTextStyle);
    // 添加文本
-   paragraphBuilder.addText("1/2 1/3 1/4 ");
+   paragraphBuilder.addText("1/2 1/3 1/4 test测试©test©测试");
    ```
 
 5. 排版段落并进行文本绘制。
@@ -629,7 +639,7 @@ class MyRenderNode extends RenderNode {
         green: 0,
         blue: 0
       },
-      fontSize: 300,
+      fontSize: 150,
       // 设置装饰线
       decoration: decorations,
       // 可变字体
@@ -641,7 +651,9 @@ class MyRenderNode extends RenderNode {
     };
 
     let myParagraphStyle: text.ParagraphStyle = {
-      textStyle: myTextStyle
+      textStyle: myTextStyle,
+      // 使能自动间距
+      autospace: true
     };
 
     let fontCollection = text.FontCollection.getGlobalInstance();
@@ -661,7 +673,7 @@ class MyRenderNode extends RenderNode {
     // 更新文本样式
     paragraphBuilder.pushStyle(myTextStyle);
     // 添加文本
-    paragraphBuilder.addText("1/2 1/3 1/4 ");
+    paragraphBuilder.addText("1/2 1/3 1/4 test测试©test©测试");
 
     // 生成段落
     let paragraph = paragraphBuilder.build();
@@ -770,7 +782,7 @@ struct Font08 {
 
 ### 效果展示
 
-| 样式设置（装饰线样式、可变字体、文本阴影、字体特征、占位符） | 示意效果 | 
+| 样式设置（装饰线样式、可变字体、文本阴影、字体特征、占位符、自动间距） | 示意效果 | 
 | -------- | -------- |
-| 不开启装饰线、可变字体、文本阴影、字体特征，不添加占位符。 | ![zh-cn_image_0000002211603688](figures/zh-cn_image_0000002211603688.png) | 
-| 开启装饰线、可变字体、文本阴影、字体特征，添加占位符。 | ![zh-cn_image_0000002211443912](figures/zh-cn_image_0000002211443912.png) | 
+| 不开启装饰线、可变字体、文本阴影、字体特征，不添加占位符，不使能自动间距。 | ![zh-cn_image_xxx002](figures/zh-cn_image_xxx002.png) | 
+| 开启装饰线、可变字体、文本阴影、字体特征，添加占位符，使能自动间距。 | ![zh-cn_image_xxx003](figures/zh-cn_image_xxx003.png) | 
