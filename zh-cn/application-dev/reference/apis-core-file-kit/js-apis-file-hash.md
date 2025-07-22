@@ -210,6 +210,12 @@ digest(): string
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
+**返回值：**
+
+| 类型 | 说明 |
+| ------ | --------------------------------------------------------- |
+| string | 返回数据的哈希值。该哈希值表示为十六进制数字串，所有字母均大写。|
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
