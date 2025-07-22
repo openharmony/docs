@@ -1367,6 +1367,7 @@
         - [Stationary开发指导](device/stationary/stationary-guidelines.md)
         - [获取用户动作开发指导](device/stationary/motion-guidelines.md)
         - [设备状态感知开发指导](device/stationary/deviceStatus-guidelines.md)
+        - [用户状态感知开发指导](device/stationary/userStatus-guidelines.md)
       - Sensor Service Kit（传感器服务）<!--sensor-service-kit-->
         - [Sensor Service Kit开发简介](device/sensor/sensorservice-kit-intro.md)
         - 传感器<!--sensor-->
@@ -3882,6 +3883,7 @@
           - [@ohos.net.webSocket (WebSocket连接)](reference/apis-network-kit/js-apis-webSocket.md)
           - [@ohos.net.netFirewall (网络防火墙)](reference/apis-network-kit/js-apis-net-netfirewall.md)
           - [@ohos.net.networkSecurity (Network Security)](reference/apis-network-kit/js-apis-networkSecurity.md)
+          - [@ohos.net.eap (扩展认证)](reference/apis-network-kit/js-apis-net-eap.md)
           - [@ohos.app.ability.VpnExtensionAbility(三方VPN能力)](reference/apis-network-kit/js-apis-VpnExtensionAbility.md)
           - [VpnExtensionContext](reference/apis-network-kit/js-apis-inner-application-VpnExtensionContext.md)
           <!--Del-->
@@ -3934,6 +3936,7 @@
           - [webSocket错误码](reference/apis-network-kit/errorcode-net-webSocket.md)
           - [网络连接管理错误码](reference/apis-network-kit/errorcode-net-connection.md)
           - [以太网连接错误码](reference/apis-network-kit/errorcode-net-ethernet.md)
+          - [扩展认证错误码](reference/apis-network-kit/errorcode-net-eap.md)
           - [网络共享错误码](reference/apis-network-kit/errorcode-net-sharing.md)
           - [策略管理错误码](reference/apis-network-kit/errorcode-net-policy.md)
           - [MDNS错误码](reference/apis-network-kit/errorcode-net-mdns.md)
@@ -4322,6 +4325,7 @@
           - [@ohos.multimodalAwareness.motion (动作感知能力)](reference/apis-multimodalawareness-kit/js-apis-awareness-motion.md)
           - [@js-apis-awareness-metadataBinding (回旋镖)](reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding.md)
           - [@ohos.multimodalAwareness.deviceStatus (设备状态感知)](reference/apis-multimodalawareness-kit/js-apis-awareness-deviceStatus.md)
+          - [@ohos.multimodalAwareness.userStatus (用户状态感知)](reference/apis-multimodalawareness-kit/js-apis-awareness-userStatus.md)
           <!--Del-->
           - [@js-apis-awareness-metadataBinding (回旋镖)(系统接口)](reference/apis-multimodalawareness-kit/js-apis-awareness-metadataBinding-sys.md)
           <!--DelEnd-->
@@ -4329,6 +4333,7 @@
           - [行为动作感知错误码](reference/apis-multimodalawareness-kit/errorcode-motion.md)
           - [回旋镖错误码](reference/apis-multimodalawareness-kit/errorcode-metadataBinding.md)
           - [设备状态感知错误码](reference/apis-multimodalawareness-kit/errorcode-deviceStatus.md)
+          - [用户状态感知错误码](reference/apis-multimodalawareness-kit/errorcode-userStatus.md)
       - Sensor Service Kit（传感器服务）<!--sensor-service-api-->
         - ArkTS API<!--sensor-service-arkts-->
           - [@ohos.sensor(传感器)](reference/apis-sensor-service-kit/js-apis-sensor.md)
