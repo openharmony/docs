@@ -1242,11 +1242,11 @@ error: install parse unexpected.
 **处理步骤**
 
 * 场景一：查看设备存储空间，若已满，清理存储满足安装所需空间。
-<!--RP5-->
+<!--RP4-->
   ```bash
   hdc shell df -h /system
   ```
-<!--RP5End-->
+<!--RP4End-->
 
 * 场景二：查看本地HAP与推送到设备上HAP的md5值，若不一致则表示推送过程HAP损毁，请尝试重传。
 
@@ -2678,12 +2678,12 @@ error: install parse native so failed.
 
     <!--Del-->
     * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。
-    <!--RP6-->
+    <!--RP4-->
       ```
       cd /system/
       ls
       ```
-    <!--RP6End-->
+    <!--RP4End-->
       ![示例图](figures/zh-cn_image_0000001609001262.png)
       * 存在lib64文件夹：则“abiFilters”参数中需要包含arm64-v8a类型。
       * 不存在lib64文件夹：则“abiFilters”参数中需要至少包含armeabi/armeabi-v7a中的一个类型。<!--DelEnd-->
