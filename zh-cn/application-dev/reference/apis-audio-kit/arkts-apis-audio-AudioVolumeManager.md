@@ -193,6 +193,9 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 监听系统音量变化事件（当系统音量发生变化时触发）。使用callback异步回调。
 
+> **说明：**
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[on('streamVolumeChange')](arkts-apis-audio-AudioVolumeManager.md#onstreamvolumechange20)替代。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -226,6 +229,9 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 off(type: 'volumeChange', callback?: Callback\<VolumeEvent>): void
 
 取消监听系统音量变化事件。使用callback异步回调。
+
+> **说明：**
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[off('streamVolumeChange')](arkts-apis-audio-AudioVolumeManager.md#offstreamvolumechange20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
