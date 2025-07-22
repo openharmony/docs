@@ -37,7 +37,7 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | selectTextEnd       | string | 否   | 是|选定组件内文本时的结束坐标，如：'8'。      |
 | selectTextInForWard | bool   | 否    | 是|选定组件内文本时是否向前选择，如：true。      |
 | offset              | string | 否   | 是|设置光标的偏移量，如：'1'。    |
-| spanId              | string | 否   |是 |对超链接文本文本进行点击操作时文本编号。                |
+| spanId              | string | 否   |是 |对超链接文本进行点击操作时文本编号。                |
 | scrollType          | string | 否   | 是|组件滚动类型，包括'fullScreen'（全屏）和'halfScreen'（半屏）。 |
 
 例如：选中文本输入框中index从0到7的字符时，executeAction(AccessibilityAction.SET_SELECTION, parameter)方法设置的参数如下:
@@ -67,8 +67,8 @@ let p : Parameter = { selectTextBegin: '0', selectTextEnd: '8', selectTextInForW
 
 | 名称                  | 类型     | 只读  |可选| 说明                                |
 | ------------------- | ------ | ---- | ----|--------------------------------- |
-| spanId             | number | 是   |是 |超链接文本标编号。                 |
-| spanText          | string | 是  | 是|超链接文本。        |
+| spanId             | number | 是   |是 |超链接文本编号。                 |
+| spanText          | string | 是  | 是|超链接文本的文本内容。        |
 | accessibilityText          | string | 是  | 是|超链接文本的辅助功能文本。        |
 | accessibilityDescription          | string | 是  | 是|超链接文本的辅助功能描述。        |
 | accessibilityLevel          | string | 是  | 是|超链接文本的辅助功能级别。        |
