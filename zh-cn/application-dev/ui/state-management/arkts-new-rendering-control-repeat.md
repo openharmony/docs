@@ -27,7 +27,12 @@ Repeat根据容器组件的**有效加载范围**（屏幕可视区域+预加载
 - Repeat当前不支持动画效果。
 - 滚动容器组件内只能包含一个Repeat。以List为例，同时包含ListItem、ForEach、LazyForEach的场景是不推荐的；同时包含多个Repeat也是不推荐的。
 - 当Repeat与自定义组件或[@Builder](./arkts-builder.md)函数混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化。详见[Repeat与@Builder混用](#repeat与builder混用)。
-- Repeat不支持NodeController。
+
+> **注意：**
+>
+> Repeat功能依赖数组属性的动态修改。如果数组对象被密封（sealed）或冻结（frozen），将导致Repeat部分功能失效，因为密封操作会禁止对象扩展属性并锁定现有属性的配置。
+>
+> 常见触发场景：<br>1）可观察数据的转换：使用[makeObserved](../../reference/apis-arkui/js-apis-StateManagement.md#makeobserved)将普通数组（如[collections.Array](../../reference/apis-arkts/js-apis-arkts-collections.md#collectionsarray)）转换为可观察数据时，某些实现会自动密封数组。<br>2）主动对象保护：显式调用`Object.seal()`或`Object.freeze()`防止数组被修改。
 
 ## 循环渲染能力说明
 
@@ -143,7 +148,7 @@ struct RepeatExampleWithTemplates {
 
 当**滚动容器组件滑动/数组改变**时，Repeat将失效的子组件节点（离开有效加载范围）加入空闲节点缓存池中，即断开组件节点与页面组件树的连接但不销毁节点。在需要生成新的组件时，对缓存池里的组件节点进行复用。
 
-Repeat组件默认开启节点复用功能。从API version 18开始，可以通过配置`reusable`字段选择是否启用复用功能。为了提高渲染性能，建议开发者保持节点复用。代码示例见[VirtualScrollOptions对象说明](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions对象说明)。
+Repeat组件默认开启节点复用功能。从API version 18开始，可以通过配置`reusable`字段选择是否启用复用功能。为了提高渲染性能，建议开发者保持节点复用。代码示例见[VirtualScrollOptions对象说明](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions)。
 
 从API version 18开始，Repeat支持L2缓存自定义组件冻结。详细描述见[缓存池自定义组件冻结](./arkts-custom-components-freezeV2.md#repeat)。
 
@@ -198,7 +203,7 @@ Repeat的`.key()`属性为每个子组件生成一个键值。Repeat通过键值
 
 当数据源总长度较长，或数据项加载耗时较长时，可使用Repeat数据精准懒加载特性，避免在初始化时加载所有数据。
 
-开发者可以设置`.virtualScroll()`的`totalCount`属性值或`onTotalCount`自定义方法用于计算期望的数据源长度，设置`onLazyLoading`属性实现数据精准懒加载，实现在节点首次渲染时加载对应的数据。详细说明和注意事项见[VirtualScrollOptions对象说明](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions对象说明)。
+开发者可以设置`.virtualScroll()`的`totalCount`属性值或`onTotalCount`自定义方法用于计算期望的数据源长度，设置`onLazyLoading`属性实现数据精准懒加载，实现在节点首次渲染时加载对应的数据。详细说明和注意事项见[VirtualScrollOptions](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions)。
 
 **示例1**
 
@@ -399,7 +404,7 @@ struct RepeatVirtualScrollOnMove {
 
 运行效果：
 
-![Repeat-Drag-Sort](figures/ForEach-Drag-Sort.gif)
+![Repeat-Drag-Sort](./figures/repeat-drag-sort.gif)
 
 ## 常见使用场景
 
@@ -1092,7 +1097,7 @@ struct RepeatTemplateSingle {
 
 运行效果：
 
-![Repeat-case1-Error](./figures/Repeat-Case1-Error.gif)
+![repeat-case1-wrong](./figures/repeat-case1-wrong.gif)
 
 以下为修正后的示例：
 在一些场景中，我们不希望屏幕外的数据源变化影响屏幕中List列表Scroller停留的位置，可以通过List组件的[onScrollIndex](../../ui/arkts-layout-development-create-list.md#响应滚动位置)事件对列表滚动动作进行监听，当列表发生滚动时，获取列表滚动位置。使用Scroller组件的[scrollToIndex](../../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrolltoindex)特性，滑动到指定index位置，实现屏幕外的数据源增加/删除数据时，Scroller停留的位置不变的效果。
@@ -1156,7 +1161,7 @@ struct RepeatTemplateSingle {
 
 运行效果：
 
-![Repeat-case1-Succ](./figures/Repeat-Case1-Succ.gif)
+![repeat-case1-fixed](./figures/repeat-case1-fixed.gif)
 
 ### totalCount值大于数据源长度
 

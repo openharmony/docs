@@ -25,7 +25,7 @@ You can implement the lifecycle callbacks (as described in the table below) in *
 
 | API| Description|
 | -------- | -------- |
-| onCreate() | Called when the ability is created for the first time. You can initialize the application in this callback.|
+| onCreate() | Called when the ability is started for the first time. You can initialize the application in this callback.|
 | onDestroy() | Called when the ability is destroyed. In this callback, you can make preparations for application exit, such as recycling resources and clearing the cache.|
 | onActive() | Called when the ability is switched to the foreground and gains focus.|
 | onInactive() | Called when the ability loses focus. An ability loses focus when it is about to enter the background state.|

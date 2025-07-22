@@ -29,7 +29,7 @@ Text(content?: string | Resource , value?: TextOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | 否 | 文本内容。包含子组件Span且未设置[属性字符串](ts-universal-styled-string.md#属性字符串)时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>默认值：' ' |
+| content | string \| [Resource](ts-types.md#resource) | 否 | 文本内容。包含子组件[Span](ts-basic-components-span.md)且未设置[属性字符串](ts-universal-styled-string.md#属性字符串)时不生效，显示Span内容。<br/>默认值：' ' |
 | value<sup>11+</sup> | [TextOptions](#textoptions11) | 否 | 文本组件初始化选项。|
 
 ## 属性
@@ -134,7 +134,7 @@ maxLines(value: number)
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| value  | number | 是   | 文本的最大行数。 |
+| value  | number | 是   | 文本的最大行数。<br/>**说明：** <br/>取值范围：[0, INT32_MAX]<br/>设置为0时，不显示文本内容。 |
 
 ### lineHeight
 
@@ -595,7 +595,7 @@ enableDataDetector(enable: boolean)
 
 该接口依赖设备底层应具有文本识别能力，否则设置不会生效。
 
-当enableDataDetector设置为true，同时不设置dataDetectorConfig属性时，默认识别所有类型的实体，所识别实体的color和decoration会被更改为如下样式：
+当enableDataDetector设置为true，同时不设置[dataDetectorConfig](#datadetectorconfig11)属性时，默认识别所有类型的实体，所识别实体的color和decoration会被更改为如下样式：
 
 ```ts
 color: '#ff007dff'
@@ -757,7 +757,7 @@ privacySensitive(supported: boolean)
 
 lineBreakStrategy(strategy: LineBreakStrategy)
 
-设置折行规则。该属性在wordBreak不等于breakAll的时候生效，且不支持连词符。
+设置折行规则。该属性在[wordBreak](#wordbreak11)不等于WordBreak.BREAK_ALL的时候生效，且不支持连词符。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -974,7 +974,7 @@ marqueeOptions(options: Optional\<TextMarqueeOptions>)
 
 | 参数名 | 类型                                       | 必填 | 说明                                       |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
-| options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextMarqueeOptions](#textmarqueeoptions18对象说明)> | 是 | 当text组件的textOverflow属性设置为MARQUEE时，可通过marqueeOptions设置跑马灯动效具体的属性，如开关、步长、循环次数、方向等。 |
+| options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextMarqueeOptions](#textmarqueeoptions18对象说明)> | 是 | 当Text组件的textOverflow属性设置为MARQUEE时，可通过marqueeOptions设置跑马灯动效具体的属性，如开关、步长、循环次数、方向等。 |
 
 ## TextSpanType<sup>11+</sup>枚举说明
 
@@ -1236,32 +1236,26 @@ function style(TextAlign: TextAlign) {
 struct TextExample1 {
   @State changeTextAlignIndex: number = 0;
   @State changeDecorationIndex: number = 0;
-  @State TextAlign: TextAlign[] = [TextAlign.Start, TextAlign.Center, TextAlign.End];
-  @State TextAlignStr: string[] = ['Start', 'Center', 'End'];
-  @State TextDecorationType: TextDecorationType[] =
-    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline];
-  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline'];
-  @State TextDecorationStyle: TextDecorationStyle[] =
-    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY];
-  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY'];
+  @State textAlign: TextAlign[] = [TextAlign.Start, TextAlign.Center, TextAlign.End];
+  @State textAlignStr: string[] = ['Start', 'Center', 'End'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       // 设置文本水平方向对齐方式
       // 单行文本
       Text('textAlign').fontSize(9).fontColor(0xCCCCCC)
-      Text(`TextAlign set to ${this.TextAlignStr[this.changeTextAlignIndex]}.`)
-        .style(this.TextAlign[this.changeTextAlignIndex])
+      Text(`TextAlign set to ${this.textAlignStr[this.changeTextAlignIndex]}.`)
+        .style(this.textAlign[this.changeTextAlignIndex])
 
       // 多行文本
-      Text(`This is the text content with textAlign set to ${this.TextAlignStr[this.changeTextAlignIndex]}.`)
-        .style(this.TextAlign[this.changeTextAlignIndex])
+      Text(`This is the text content with textAlign set to ${this.textAlignStr[this.changeTextAlignIndex]}.`)
+        .style(this.textAlign[this.changeTextAlignIndex])
         .margin(5)
 
       Row() {
-        Button('当前TextAlign类型：' + this.TextAlignStr[this.changeTextAlignIndex]).onClick(() => {
+        Button('当前TextAlign类型：' + this.textAlignStr[this.changeTextAlignIndex]).onClick(() => {
           this.changeTextAlignIndex++;
-          if (this.changeTextAlignIndex > (this.TextAlignStr.length - 1)) {
+          if (this.changeTextAlignIndex > (this.textAlignStr.length - 1)) {
             this.changeTextAlignIndex = 0;
           }
         })
@@ -1308,6 +1302,7 @@ struct TextExample1 {
 该示例通过decoration、letterSpacing、textCase、fontFamily、textShadow、fontStyle、textIndent、fontWeight属性展示了不同样式的文本效果。
 
 ```ts
+// xxx.ets
 @Extend(Text)
 function style() {
   .font({ size: 12 })
@@ -1321,30 +1316,30 @@ function style() {
 @Component
 struct TextExample2 {
   @State changeDecorationIndex: number = 0;
-  @State TextDecorationType: TextDecorationType[] =
+  @State textDecorationType: TextDecorationType[] =
     [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline];
-  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline'];
-  @State TextDecorationStyle: TextDecorationStyle[] =
+  @State textDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline'];
+  @State textDecorationStyle: TextDecorationStyle[] =
     [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY];
-  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY'];
+  @State textDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       Text('decoration').fontSize(9).fontColor(0xCCCCCC)
       Text('This is the text content with the decoration set to LineThrough and the color set to Red.')
         .decoration({
-          type: this.TextDecorationType[this.changeDecorationIndex],
+          type: this.textDecorationType[this.changeDecorationIndex],
           color: Color.Red,
-          style: this.TextDecorationStyle[this.changeDecorationIndex]
+          style: this.textDecorationStyle[this.changeDecorationIndex]
         })
         .style()
         .margin(5)
 
       Row() {
-        Button('当前decoration类型：' + this.TextDecorationTypeStr[this.changeDecorationIndex] + ' & ' +
-        this.TextDecorationStyleStr[this.changeDecorationIndex]).onClick(() => {
+        Button('decoration type：' + this.textDecorationTypeStr[this.changeDecorationIndex] + ' & ' +
+        this.textDecorationStyleStr[this.changeDecorationIndex]).onClick(() => {
           this.changeDecorationIndex++;
-          if (this.changeDecorationIndex > (this.TextDecorationTypeStr.length - 1)) {
+          if (this.changeDecorationIndex > (this.textDecorationTypeStr.length - 1)) {
             this.changeDecorationIndex = 0;
           }
         })
@@ -1426,6 +1421,7 @@ struct TextExample2 {
 该示例通过maxLines、textOverflow、ellipsisMode属性展示了文本超长省略以及调整省略位置的效果。
 
 ```ts
+// xxx.ets
 @Extend(Text)
 function style() {
   .textAlign(TextAlign.Center)

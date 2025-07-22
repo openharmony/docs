@@ -22,11 +22,10 @@ Web组件的文本选中菜单是一种通过自定义元素实现的上下文�
     onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
       let items = menuItems.filter((menuItem) => {
         // 过滤用户需要的系统按键
-        return (
+        return
           menuItem.id.equals(TextMenuItemId.CUT) ||
           menuItem.id.equals(TextMenuItemId.COPY) ||
-          menuItem.id.equals((TextMenuItemId.PASTE))
-        )
+          menuItem.id.equals(TextMenuItemId.PASTE);
       });
       let customItem1: TextMenuItem = {
         content: 'customItem1',

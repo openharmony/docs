@@ -4,7 +4,7 @@ During application development, you may need to use different resources, such as
 
 - Application resources: configure device- or configuration-specific resources in the resource files.
 
-- System resources: Obtain the ID and configuration-specific values of colors, fonts, or other resources in [Resources](https://gitee.com/openharmony/docs/blob/master/en/design/ux-design/design-resources.md); obtain system icons in [HarmonyOS Symbol](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/).
+- System resources: Obtain the ID and configuration-specific values of colors, fonts, or other resources in [Resources](https://gitee.com/openharmony/docs/blob/master/en/design/ux-design/design-resources.md); obtain system icons in [HarmonyOS Symbol](https://developer.huawei.com/consumer/en/design/harmonyos-symbol/).
 
 
 ## Resource Categories
@@ -340,15 +340,15 @@ The following shows the **attr** attribute configured in **string**. The **strin
         fontColor: string = '[hsp].color.font_color';
         image: string = '[hsp].media.string';
         rawfile: string = '[hsp].icon.png';
-    
+      
         build() {
           Row() {
             Text($r(this.text))
               .fontSize($r(this.fontSize))
               .fontColor($r(this.fontColor))
-    
+      
             Image($r(this.image))
-    
+      
             Image($rawfile(this.rawfile))
           }
         }
@@ -362,7 +362,7 @@ The following shows the **attr** attribute configured in **string**. The **strin
 
 ### System Resources
 
-You can obtain the ID and configuration-specific values of colors, fonts, or other resources in [Resources](https://gitee.com/openharmony/docs/blob/master/en/design/ux-design/design-resources.md), obtain system icons in [HarmonyOS Symbol](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/), and further set the icon colors through [SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md).
+You can obtain the ID and configuration-specific values of colors, fonts, or other resources in [Resources](https://gitee.com/openharmony/docs/blob/master/en/design/ux-design/design-resources.md), obtain system icons in [HarmonyOS Symbol](https://developer.huawei.com/consumer/en/design/harmonyos-symbol/), and further set the icon colors through [SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md).
 
 To access system resources, use the "$r('sys.type.resource_name')" format, where **sys** indicates the system resource, **type** indicates the resource type, such as color, float, string, media, or symbol, and **resource_name** indicates the resource name.
 
@@ -372,7 +372,7 @@ To access system resources, use the "$r('sys.type.resource_name')" format, where
 >
 > - For preset applications, you are advised to use system resources. For third-party applications, you can choose to use system resources or custom application resources as required.
 >
-> - Currently, when the system font loaded on the UI is displayed (you can view the font in the **system/etc/fontconfig.json** file), the default font is HarmonyOS Sans and follows the standards [Chinese coded character set GB18030-2022](https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=A1931A578FE14957104988029B0833D3).
+> - Currently, when the system font loaded on the UI is displayed (you can view the font in the **system/etc/fontconfig.json** file), the default font is HarmonyOS Sans.
 
 ```ts
 Text('Hello')

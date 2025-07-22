@@ -56,11 +56,13 @@ getBluetoothInfo(admin: Want): BluetoothInfo
 **示例：**
 
 ```ts
+import { bluetoothManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -75,7 +77,7 @@ try {
 
 addAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
-添加蓝牙设备可用白名单。如果调用[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了蓝牙，就无法调用此接口，否则会冲突；如果调用此接口后再全局禁用，则可以禁用成功。
+添加蓝牙设备可用名单。如果调用[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了蓝牙，就无法调用此接口，否则会冲突；如果调用此接口后再全局禁用，则可以禁用成功。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -105,12 +107,15 @@ addAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 **示例：**
 
 ```ts
+import { bluetoothManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
 try {
     bluetoothManager.addAllowedBluetoothDevices(wantTemp,deviceIds);
@@ -124,7 +129,7 @@ try {
 
 removeAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
-移除蓝牙设备可用白名单。
+移除蓝牙设备可用名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -153,12 +158,15 @@ removeAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 **示例：**
 
 ```ts
+import { bluetoothManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
 try {
     bluetoothManager.removeAllowedBluetoothDevices(wantTemp,deviceIds);
@@ -172,7 +180,7 @@ try {
 
 getAllowedBluetoothDevices(admin: Want): Array\<string>
 
-获取蓝牙设备可用白名单。
+获取蓝牙设备可用名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -190,7 +198,7 @@ getAllowedBluetoothDevices(admin: Want): Array\<string>
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Array\<string> | 可用白名单中蓝牙设备MAC地址的数组。 |
+| Array\<string> | 可用名单中蓝牙设备MAC地址的数组。 |
 
 **错误码**：
 
@@ -206,11 +214,13 @@ getAllowedBluetoothDevices(admin: Want): Array\<string>
 **示例：**
 
 ```ts
+import { bluetoothManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
     let result: Array<string> = bluetoothManager.getAllowedBluetoothDevices(wantTemp);

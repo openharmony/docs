@@ -1,4 +1,4 @@
-# Dark and Light Mode Adaptation
+# Implementing Dark and Light Mode Adaptation
 
 ## Overview
 

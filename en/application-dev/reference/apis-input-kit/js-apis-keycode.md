@@ -364,6 +364,6 @@ Keycode value.
 | KEYCODE_BTN_7                    |  3107 | Button 7                        |
 | KEYCODE_BTN_8                    |  3108 | Button 8                        |
 | KEYCODE_BTN_9                    |  3109 | Button 9                        |
-| KEYCODE_DAGGER_CLICK<sup>18+</sup> | 3211 | Single tapping the smart watch's X-TAP sensor |
-| KEYCODE_DAGGER_DOUBLE_CLICK<sup>18+</sup> | 3212 | Double tapping the smart watch's X-TAP sensor |
-| KEYCODE_DAGGER_LONG_PRESS<sup>18+</sup> | 3213 | Long-pressing the smart watch's X-TAP sensor |
+| KEYCODE_DAGGER_CLICK<sup>18+</sup> | 3211 | Single tapping the smart watch's X-TAP sensor|
+| KEYCODE_DAGGER_DOUBLE_CLICK<sup>18+</sup> | 3212 | Double tapping the smart watch's X-TAP sensor|
+| KEYCODE_DAGGER_LONG_PRESS<sup>18+</sup> | 3213 | Long-pressing the smart watch's X-TAP sensor|

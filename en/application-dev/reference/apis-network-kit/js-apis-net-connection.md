@@ -20,6 +20,8 @@ createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnectio
 
 Creates a **NetConnection** object, where [netSpecifier](#netspecifier) specifies the network, and **timeout** specifies the timeout duration in ms. **timeout** is configurable only when **netSpecifier** is specified. If neither of them is present, the default network is used.
 
+**Note**: **createNetConnection** supports up to 2,000 registered callbacks. Exceeding this limit will result in a registration failure.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
@@ -29,7 +31,7 @@ Creates a **NetConnection** object, where [netSpecifier](#netspecifier) specifie
 | Name      | Type                         | Mandatory| Description                                                        |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | netSpecifier | [NetSpecifier](#netspecifier) | No  | Network specifier, which specifies the characteristics of a network. If this parameter is not set or is set to **undefined**, the default network is used.                  |
-| timeout      | number                        | No  | Timeout duration for obtaining the network specified by **netSpecifier**. This parameter is valid only when **netSpecifier** is specified. The default value is **0** if **netSpecifier** is **undefined**.|
+| timeout      | number                        | No  | Timeout interval for obtaining the network specified by **netSpecifier**. The input value must be an uint32_t integer. This parameter is valid only when **netSpecifier** is present. If **netSpecifier** is **undefined**, the value is **0** by default.|
 
 **Return value**
 
@@ -659,7 +661,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.setAppNet(netHandle).then(() => {
     console.log("success");
   }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   })
 });
 ```
@@ -1131,7 +1133,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.isDefaultNetMetered((error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log('data: ' + data);
 });
 ```
@@ -1240,7 +1242,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.hasDefaultNet((error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log('data: ' + data);
 });
 ```
@@ -1353,7 +1355,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.reportNetConnected(netHandle, (error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 });
 ```
@@ -1497,6 +1499,8 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 **Required permissions**: ohos.permission.INTERNET
 
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Parameters**
@@ -1540,6 +1544,8 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress\>\>
 Resolves the host name by using the corresponding network to obtain all IP addresses. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1765,7 +1771,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connection.removeCustomDnsRule("xxxx").then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
 })
 ```
 
@@ -1848,7 +1854,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connection.clearCustomDnsRules().then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
 })
 ```
 
@@ -1935,6 +1941,8 @@ register(callback: AsyncCallback\<void>): void
 
 Registers a listener for network status changes.
 
+**Note**: After using this API, you need to call **unregister** to cancel the registration in a timely manner.
+
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -1968,7 +1976,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let netCon: connection.NetConnection = connection.createNetConnection();
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2007,7 +2015,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let netCon: connection.NetConnection = connection.createNetConnection();
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2039,7 +2047,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // Call register to register a listener.
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // Subscribe to netAvailable events. Event notifications can be received only after register is called.
@@ -2049,7 +2057,7 @@ netCon.on('netAvailable', (data: connection.NetHandle) => {
 
 // Call unregister to unregister the listener.
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2079,7 +2087,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // Call register to register a listener.
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // Subscribe to netBlockStatusChange events. Event notifications can be received only after register is called.
@@ -2089,7 +2097,7 @@ netCon.on('netBlockStatusChange', (data: connection.NetBlockStatusInfo) => {
 
 // Call unregister to unregister the listener.
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2121,7 +2129,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // Call register to register a listener.
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // Subscribe to netCapabilitiesChange events. Event notifications can be received only after register is called.
@@ -2131,7 +2139,7 @@ netCon.on('netCapabilitiesChange', (data: connection.NetCapabilityInfo) => {
 
 // Call unregister to unregister the listener.
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2161,7 +2169,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // Call register to register a listener.
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // Subscribe to netConnectionPropertiesChange events. Event notifications can be received only after register is called.
@@ -2171,7 +2179,7 @@ netCon.on('netConnectionPropertiesChange', (data: connection.NetConnectionProper
 
 // Call unregister to unregister the listener.
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2203,7 +2211,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // Call register to register a listener.
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // Subscribe to netLost events. Event notifications can be received only after register is called.
@@ -2213,7 +2221,7 @@ netCon.on('netLost', (data: connection.NetHandle) => {
 
 // Call unregister to unregister the listener.
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2245,7 +2253,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // Call register to register a listener.
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // Subscribe to netUnavailable events. Event notifications can be received only after register is called.
@@ -2255,7 +2263,7 @@ netCon.on('netUnavailable', () => {
 
 // Call unregister to unregister the listener.
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2322,7 +2330,7 @@ interface Data {
               port:8080,
               family:1} as socket.NetAddress, (error: Error) => {
       if (error) {
-        console.log('bind fail');
+        console.error('bind fail');
         return;
       }
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
@@ -2416,7 +2424,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
               port:8080,
               family:1} as socket.NetAddress, (error: Error) => {
       if (error) {
-        console.log('bind fail');
+        console.error('bind fail');
         return;
       }
       netHandle.bindSocket(tcp).then(() => {
@@ -2696,7 +2704,7 @@ Represents the HTTP proxy configuration.
 | Name   | Type  | Mandatory| Description                     |
 | ------ | ------ | --- |------------------------- |
 | host  | string | Yes |  Host name of the proxy server.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| port  | number | Yes |  Host port.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| port  | number | Yes |  Host port. The value range is [0, 65535].<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | exclusionList  | Array\<string\> | Yes | List of the names of hosts that do not use a proxy. Host names can be domain names, IP addresses, or wildcards. The detailed matching rules are as follows:<br>- Domain name matching:<br>  - Exact match: The host name of the proxy server exactly matches any host name in the list.<br>  - Partial match: The host name of the proxy server contains any host name in the list.<br>For example, if **ample.com** is set in the host name list, **ample.com**, **www.ample.com**, and **ample.com:80** are matched, and **www.example.com** and **ample.com.org** are not matched.<br>- IP address matching: The host name of the proxy server exactly matches any IP address in the list.<br>- Both the domain name and IP address are added to the list for matching.<br>- A single asterisk (*) is the only valid wildcard. If the list contains only wildcards, the wildcards match all host names; that is, the HTTP proxy is disabled. A wildcard can only be added independently. It cannot be added to the list together with other domain names or IP addresses. Otherwise, the wildcard does not take effect.<br>- Host names are case insensitive.<br>- Protocol prefixes such as **http** and **https** are ignored during matching.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | username<sup>12+</sup>  | string | No|  Name of the user who uses the proxy.|
 | password<sup>12+</sup>  | string | No|  Password of the user who uses the proxy.|
@@ -2727,15 +2735,16 @@ let config: wifiManager.WifiDeviceConfig = {
   securityType: wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
 };
 // Obtain the network ID of the registered WLAN through wifiManager.addCandidateConfig.
-let networkId: number = await wifiManager.addCandidateConfig(config);
-let netConnectionWlan = connection.createNetConnection({
-  netCapabilities: {
-    bearerTypes: [connection.NetBearType.BEARER_WIFI]
-  },
-  bearerPrivateIdentifier: `${networkId}`
-});
-netConnectionWlan.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+wifiManager.addCandidateConfig(config,(error,networkId) => {
+ let netConnectionWlan = connection.createNetConnection({
+   netCapabilities: {
+     bearerTypes: [connection.NetBearType.BEARER_WIFI]
+   },
+   bearerPrivateIdentifier: `${networkId}`
+ });
+ netConnectionWlan.register((error: BusinessError) => {
+   console.error(JSON.stringify(error));
+ });
 });
 ```
 
@@ -2843,7 +2852,7 @@ Defines a network address.
 | ------- | ------ | -- |---------------------------- |
 | address | string | Yes|Network address.                      |
 | family  | number | No|Address family identifier. The value is **1** for IPv4 and **2** for IPv6. The default value is **1**.|
-| port    | number | No|Port number. The value ranges from **0** to **65535**.  |
+| port    | number | No|Port number. The value range is [0, 65535]. The default value is **0**. |
 
 ## HttpRequest
 
@@ -2865,8 +2874,6 @@ type TCPSocket = socket.TCPSocket
 
 Defines a **TCPSocket** object.
 
-**Atomic service API**: This API can be used in atomic services since API version 10.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 |       Type      |            Description            |
@@ -2878,8 +2885,6 @@ Defines a **TCPSocket** object.
 type UDPSocket = socket.UDPSocket
 
 Defines a **UDPSocket** object.
-
-**Atomic service API**: This API can be used in atomic services since API version 10.
 
 **System capability**: SystemCapability.Communication.NetStack
 

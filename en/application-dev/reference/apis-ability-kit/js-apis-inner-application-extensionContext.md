@@ -1,8 +1,8 @@
 # ExtensionContext
 
-The **ExtensionContext** module, inherited from **Context**, implements the context for Extension abilities.
+The ExtensionContext module implements the context for ExtensionAbilities. It inherits from Context.
 
-This module provides APIs for accessing resources of a specific Extension ability. An Extension ability can use the context directly provided by **ExtensionContext** or that extended from **ExtensionContext**.
+This module provides APIs for accessing resources of a specific ExtensionAbility. An ExtensionAbility can use the context directly provided by ExtensionContext or that extended from ExtensionContext.
 
 > **NOTE**
 >
@@ -21,14 +21,14 @@ import { common } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Readable| Writable| Description| 
+| Name| Type| Read-Only| Optional| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | Yes| No| Information about the HAP file.<br>(See **api\bundle\hapModuleInfo.d.ts** in the **SDK** directory.) |
-| config   | [Configuration](js-apis-app-ability-configuration.md) | Yes| No| Module configuration information.<br>(See **api\@ohos.app.ability.Configuration.d.ts** in the **SDK** directory.)|
-| extensionAbilityInfo | [ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md) | Yes| No| Extension ability information.<br>(See **api\bundle\extensionAbilityInfo.d.ts** in the **SDK** directory.)|
+| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | No| No| Information about the HAP file.<br>(See **api\bundle\hapModuleInfo.d.ts** in the **SDK** directory.) |
+| config   | [Configuration](js-apis-app-ability-configuration.md) | No| No| Module configuration information.<br>(See **api\@ohos.app.ability.Configuration.d.ts** in the **SDK** directory.)|
+| extensionAbilityInfo | [ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md) | No| No| ExtensionAbility information.<br>(See **api\bundle\extensionAbilityInfo.d.ts** in the **SDK** directory.)|
 
 ## When to Use
-**ExtensionContext** provides information about an Extension ability, module, and HAP file. You can use the information based on service requirements.
+ExtensionContext provides information about an ExtensionAbility, module, and HAP file. You can use the information based on service requirements.
 
 **Example**
 
@@ -65,7 +65,7 @@ import { GlobalContext } from '../GlobalContext';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAddForm(want: Want) {
-    console.log(`FormExtensionAbility onAddForm, want: ${want.abilityName}`);
+    console.info(`FormExtensionAbility onAddForm, want: ${want.abilityName}`);
     let dataObj1: Record<string, string> = {
       'temperature': '11c',
       'time': '11:00'

@@ -86,9 +86,9 @@ import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let encodeImage: image.PixelMap | undefined = undefined;
-let captrueMetadata: string = "";
+let captureMetadata: string = "";
 metadataBinding.decodeImage(encodeImage).then((metadata: string) =>{
-	captrueMetadata = metadata;
+	captureMetadata = metadata;
 }).catch((error:BusinessError)=>{
 	console.error("decode image error" + error);
 }); 

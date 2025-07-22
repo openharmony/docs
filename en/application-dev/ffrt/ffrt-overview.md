@@ -62,4 +62,4 @@ The FFRT programming model supports two methods to build task dependency graphs:
 - **Task dependency**: Task dependencies are directly described.
 - **Data flow**: Task dependencies are described based on the relationship between data producers and consumers.
 
-You can select a proper method described above based on service characteristics to simplify service models and development.
+You can select an appropriate mode to build task dependency graphs based on service characteristics, thereby simplifying service models and reducing development complexity.

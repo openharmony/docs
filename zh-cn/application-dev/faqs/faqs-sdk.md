@@ -70,5 +70,5 @@ target_link_libraries(entry PUBLIC
 
 **参考文档：**
 
-[Native开发指导](../reference/apis-localization-kit/rawfile.md)
+[Native开发指导](../reference/apis-localization-kit/capi-rawfile.md)
 

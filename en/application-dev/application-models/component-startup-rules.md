@@ -4,9 +4,9 @@
 Component startup refers to the behavior of starting or connecting to an application component.
 
 
-- Start the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md), ServiceExtensionAbility, and DataShareExtensionAbility components. For example, you can use [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability), **startServiceExtensionAbility()**, [startAbilityByCall()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall), and [openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12).
+- Start the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md), ServiceExtensionAbility, and DataShareExtensionAbility components. For example, you can use [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability), **startServiceExtensionAbility()**, [startAbilityByCall()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall), and [openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12).
 
-- Connect to the ServiceExtensionAbility and DataShareExtensionAbility components. For example, you can use [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) and **createDataShareHelper()**.
+- Connect to the ServiceExtensionAbility and DataShareExtensionAbility components. For example, you can use [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability) and **createDataShareHelper()**.
 
 ## General Component Startup Rules
 
@@ -46,7 +46,7 @@ The preceding component startup rules take effect since API version 9. Familiari
 
 - Starting the ServiceExtensionAbility and DataShareExtensionAbility components
 
-- Using [startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall) to start the UIAbility component
+- Using [startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall) to start the UIAbility component
 
 ![startup-rule](figures/component-startup-inner-stage.png)
 
@@ -59,6 +59,6 @@ The preceding component startup rules take effect since API version 9. Familiari
 
 - Starting the ServiceExtensionAbility and DataShareExtensionAbility components
 
-- Using [startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall) to start the UIAbility component
+- Using [startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall) to start the UIAbility component
 
 ![component-startup-rules](figures/component-startup-inter-stage.png)

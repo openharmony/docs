@@ -14,7 +14,8 @@
 ## 子组件
 
 
-仅支持[FlowItem](ts-container-flowitem.md)子组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）。
+仅支持[FlowItem](ts-container-flowitem.md)子组件和自定义组件。自定义组件在WaterFlow下使用时，建议使用FlowItem作为自定组件的顶层组件，不建议给自定义组件设置属性和事件方法。
+支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）。
 
 >  **说明：**
 >
@@ -1456,7 +1457,7 @@ struct WaterFlowDemo {
           .width('100%')
           .height(this.itemHeightArray[item % 100])
           .backgroundColor(this.colors[item % 5])
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .columnsTemplate('repeat(auto-fill,80)')
       .columnsGap(10)
@@ -1550,7 +1551,7 @@ struct Index {
               .justifyContent(FlexAlign.Center)
               .alignItems(HorizontalAlign.Center)
             }
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }
         .columnsTemplate('1fr')
         .height("90%")
@@ -1617,7 +1618,7 @@ struct WaterFlowDemo {
             .width('100%')
             .height(this.itemHeightArray[item % 100])
             .backgroundColor(this.colors[item % 5])
-          }, (item: string) => item)
+          }, (item: number) => item.toString())
         }
         .columnsTemplate('repeat(auto-fill,80)')
         .columnsGap(10)

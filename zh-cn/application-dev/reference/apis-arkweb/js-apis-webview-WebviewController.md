@@ -6403,6 +6403,12 @@ struct WebComponent {
             document.getElementById("show_num").value = ++num;
         }, 1000);
     }
+
+    function resetTimer() {
+        clearInterval(timer);
+        document.getElementById("show_num").value = 0;
+        num = 0;
+    }
 </script>
 ```
 

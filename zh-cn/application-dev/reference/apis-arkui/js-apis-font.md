@@ -70,6 +70,7 @@ struct FontExample {
     // familyName和familySrc都支持系统Resource
     this.uiContext.getFont().registerFont({
       // 建议使用 this.getUIContext().getFont().registerFont()接口
+      // 'app.string.font_name'和'app.string.font_src'仅作示例，请替换为实际使用资源字符串
       familyName: $r('app.string.font_name'),
       familySrc: $r('app.string.font_src')
     })
@@ -77,7 +78,7 @@ struct FontExample {
     // familySrc支持RawFile
     this.uiContext.getFont().registerFont({
       familyName: 'mediumRawFile',
-      familySrc: $rawfile('font/medium.ttf')
+      familySrc: $rawfile('font/medium.ttf')// 'font/medium.ttf'仅作示例，请替换为实际使用资源字体文件
     })
 
     // 注册iconFont

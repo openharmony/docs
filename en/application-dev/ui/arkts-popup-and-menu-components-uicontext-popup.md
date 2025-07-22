@@ -1,4 +1,4 @@
-# Global Popups Independent of UI Components (openPopup)
+# Global Popup Independent of UI Components (openPopup)
 
 The [Popup](arkts-popup-and-menu-components-popup.md) API is a great option for creating popups, but it relies on a bound UI component to work. Since API version 18, however, the global API [openPopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#openpopup18) offers a more flexible solution. This API can be used directly or encapsulated in scenarios where no bound UI components are available, making it ideal for use cases such as event callbacks or when integrating with external systems.
 

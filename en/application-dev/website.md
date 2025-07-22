@@ -70,7 +70,7 @@
             - [UIExtensionAbility (for System Applications Only)](application-models/uiextensionability.md)
             - [AutoFillExtensionAbility (for System Applications Only)](application-models/autofillextensionablility-guide.md)
             <!--DelEnd-->
-            - [UIServiceExtension](application-models/uiserviceextension.md)
+            - [Using UIServiceExtensionAbility for System Floating Windows](application-models/uiserviceextension.md)
             - [EmbeddedUIExtensionAbility](application-models/embeddeduiextensionability.md)
           - [AbilityStage Component Container](application-models/abilitystage.md)
           - [Context](application-models/application-context-stage.md)
@@ -88,7 +88,7 @@
             - [Cross-Device Migration](application-models/hop-cross-device-migration.md)
             - [Multi-device Collaboration](application-models/hop-multi-device-collaboration.md)
           <!--DelEnd-->
-          - [Subscribing to System Environment Variable Changes](application-models/subscribe-system-environment-variable-changes.md)
+          - [Obtaining/Setting Environment Variables](application-models/subscribe-system-environment-variable-changes.md)
         - Inter-Application Redirection<!--inter-app-redirection-->
           - [Overview of Application Redirection](application-models/link-between-apps-overview.md)
           - Starting a Specified Application<!--directional-redirection-->
@@ -455,7 +455,7 @@
           - [Component Navigation (Recommended)](ui/arkts-navigation-navigation.md)
           - [Navigation Transition](ui/arkts-navigation-transition.md)
           - [Page Routing (@ohos.router) (Not Recommended)](ui/arkts-routing.md)
-          - [Page Routing](ui/arkts-router-to-navigation.md)
+          - [Transition from Router to Navigation](ui/arkts-router-to-navigation.md)
         - Using Text<!--arkts-use-text-->
           - [Introduction to Text](ui/arkts-text-introduction.md)
           - [Text Display (Text/Span)](ui/arkts-common-components-text-display.md)
@@ -463,7 +463,7 @@
           - [Rich Text (RichEditor)](ui/arkts-common-components-richeditor.md)
           - [Symbol Glyph (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
           - [Styled String (StyledString/MutableStyledString)](ui/arkts-styled-string.md)
-        - Using Dialog Box<!--arkts-use-dialog-->
+        - Using Popup Windows<!--arkts-use-dialog-->
           - [Popup Window Overview](ui/arkts-dialog-overview.md)
           - Using Dialog Boxes (Dialog)<!--arkts-use-dialogs-->
             - [Dialog Box Overview](ui/arkts-base-dialog-overview.md)
@@ -474,15 +474,15 @@
             - [Dialog Box Layer Management](ui/arkts-dialog-levelorder.md)
             - [Dialog Controller](ui/arkts-dialog-controller.md)
             - [Dialog Box Focus Policy](ui/arkts-dialog-focusable.md)
-          - Using a Menu<!--arkts-use-menu-->
+          - Using Menus<!--arkts-use-menu-->
             - [Menu Overview](ui/arkts-menu-overview.md)
             - [Menu Control (Menu)](ui/arkts-popup-and-menu-components-menu.md)
-            - [Global Menus Independent of UI Components (openMenu)](ui/arkts-popup-and-menu-components-uicontext-menu.md)
-          - Using a Popup<!--arkts-use-popup-->
+            - [Global Menu Independent of UI Components (openMenu)](ui/arkts-popup-and-menu-components-uicontext-menu.md)
+          - Using Popups<!--arkts-use-popup-->
             - [Popup Overview](ui/arkts-popup-overview.md)
             - [Popup](ui/arkts-popup-and-menu-components-popup.md)
-            - [Global Popups Independent of UI Components (openPopup)](ui/arkts-popup-and-menu-components-uicontext-popup.md)
-          - Binding a Modal Page<!--arkts-bind-modal-->
+            - [Global Popup Independent of UI Components (openPopup)](ui/arkts-popup-and-menu-components-uicontext-popup.md)
+          - Binding Modal Pages<!--arkts-bind-modal-->
             - [Modal Page Overview](ui/arkts-modal-overview.md)
             - [Binding a Semi-Modal Page (bindSheet)](ui/arkts-sheet-page.md)
             - [Binding a Full-Modal Page (bindContentCover)](ui/arkts-contentcover-page.md)
@@ -547,12 +547,12 @@
         - Implementing Accessibility and Aging-Friendly Design<!--arkts-support-accessibility-friendliness-->
           - [Supporting Accessibility](ui/arkts-universal-attributes-accessibility.md)
           - [Supporting Aging-Friendly Design](ui/arkui-support-for-aging-adaptation.md)
-        - Theme Settings<!--arkts-theme-->
-          - [Dark and Light Mode Adaptation](ui/ui-dark-light-color-adaptation.md)
+        - Setting the Theme<!--arkts-theme-->
+          - [Implementing Dark and Light Mode Adaptation](ui/ui-dark-light-color-adaptation.md)
           - [Configuring In-Application Theme Skinning](ui/theme_skinning.md)
         - [Using the UI Context API for UI Operations (UIContext)](ui/arkts-global-interface.md)
         - [Using Component Snapshot (ComponentSnapshot)](ui/arkts-uicontext-component-snapshot.md)
-        - Embedded Components<!--arkts-ui-cross-process-->
+        - Using Embedded Components<!--arkts-ui-cross-process-->
           - [Atomic Service Full Screen Launch Component (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
           - [In-Application Embedded Component (EmbeddedComponent)](ui/arkts-embedded-components.md)
           <!--Del-->
@@ -1455,9 +1455,9 @@
         - [Video Decoding](media/avcodec/video-decoding.md)
         - [Concurrently Creating a Video Decoder and Initializing NativeWindow](media/avcodec/parallel-decoding-nativeWindow.md)
         - [Video Variable Frame Rate](media/avcodec/video-variable-refreshrate.md)
-      - Media Data Muxing and Demuxing<!--file-muxing-demuxing-->
-        - [Media Data Muxing](media/avcodec/audio-video-muxer.md)
-        - [Media Data Demuxing](media/avcodec/audio-video-demuxer.md)
+      - Media Data Multiplexing and Demultiplexing<!--file-muxing-demuxing-->
+        - [Media Data Multiplexing](media/avcodec/audio-video-muxer.md)
+        - [Media Data Demultiplexing](media/avcodec/audio-video-demuxer.md)
     - AVSession Kit<!--avsession-kit-->
       - [Introduction to AVSession Kit](media/avsession/avsession-overview.md)
       - Local AVSession<!--local-avsession-->
@@ -1740,20 +1740,20 @@
           - [Working with ArrayBuffer Using Node-API](napi/use-napi-about-arraybuffer.md)
           - [Working with BigInt Using Node-API](napi/use-napi-about-bigint.md)
           - [Working with Buffer Using Node-API](napi/use-napi-about-buffer.md)
-          - [Creating Basic Data Types Using Node-API](napi/use-napi-basic-data-types.md)
+          - [Working with Basic Data Types Using Node-API](napi/use-napi-basic-data-types.md)
           - [Working with Classes Using Node-API](napi/use-napi-about-class.md)
           - [Working with Cleanup Hooks Using Node-API](napi/use-napi-about-cleanuphook.md)
           - [Working with Date Using Node-API](napi/use-napi-about-date.md)
           - [Error Handling Using Node-API](napi/use-napi-about-error.md)
-          - [Associating Data with a Running Environment to Tide their Lifecycle Using Node-API](napi/use-napi-about-environmental-life-cycle.md)
-          - [Creating and Calling Functions Using Node-API](napi/use-napi-about-function.md)
+          - [Associating Data with a Running Environment to Tide Their Lifecycle Using Node-API](napi/use-napi-about-environmental-life-cycle.md)
+          - [Working with Functions Using Node-API](napi/use-napi-about-function.md)
           - [Performing Lifecycle Management Using Node-API](napi/use-napi-life-cycle.md)
           - [Working with Objects Using Node-API](napi/use-napi-about-object.md)
-          - [Using Other Node-API Utilities](napi/use-napi-about-other-practical-tools.md)
+          - [Working with Other Node-API Utilities](napi/use-napi-about-other-practical-tools.md)
           - [Working with Primitives Using Node-API](napi/use-napi-about-primitive.md)
           - [Implementing Asynchronous Operations Using Node-API](napi/use-napi-about-promise.md)
           - [Setting ArkTS Object Properties Using Node-API](napi/use-napi-about-property.md)
-          - [Creating and Obtaining String Values Using Node-API](napi/use-napi-about-string.md)
+          - [Working with String Using Node-API](napi/use-napi-about-string.md)
           - [Customizing Asynchronous Operations Using Node-API](napi/use-napi-about-custom-asynchronous-operations.md)
         - Node-API Use Cases<!--napi-scenarios-->
           - [Asynchronous Task Development Using Node-API](napi/use-napi-asynchronous-task.md)
@@ -1767,7 +1767,8 @@
           - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](napi/use-call-threadsafe-function-with-priority.md)
           - [Analyzing Exceptions and Crashes Triggered by Using Node-API](napi/use-napi-about-crash.md)
           - [Calling an ArkTS Method with Return Value of a promise Using Node-API](napi/use-napi-method-promise.md)
-        - [Node-API FAQs](napi/use-napi-faqs.md)
+        - Node-API FAQs<!--napi-questions-->
+          - [Node-API FAQs](napi/use-napi-faqs.md)
       - Using JSVM-API<!--jsvm-->
         - [JSVM-API Overview](napi/jsvm-introduction.md)
         - [JSVM-API Data Types and APIs](napi/jsvm-data-types-interfaces.md)
@@ -1845,40 +1846,40 @@
       - ArkTS APIs<!--ability-arkts-->
         - Stage Model<!--stage-model-->
           - [@ohos.app.ability.Ability (Ability Base Class)](reference/apis-ability-kit/js-apis-app-ability-ability.md)
-          - [@ohos.app.ability.AbilityConstant (AbilityConstant)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md)
-          - [@ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)](reference/apis-ability-kit/js-apis-app-ability-abilityLifecycleCallback.md)
-          - [@ohos.app.ability.AbilityStage (AbilityStage)](reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)
+          - [@ohos.app.ability.AbilityConstant (Ability-related Constants)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md)
+          - [@ohos.app.ability.abilityLifecycleCallback (UIAbility Lifecycle Callback Listener)](reference/apis-ability-kit/js-apis-app-ability-abilityLifecycleCallback.md)
+          - [@ohos.app.ability.AbilityStage (AbilityStage Container)](reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)
           - [@ohos.app.ability.ActionExtensionAbility (ExtensionAbility for Custom Actions)](reference/apis-ability-kit/js-apis-app-ability-actionExtensionAbility.md)
-          - [@ohos.app.ability.application (Application)](reference/apis-ability-kit/js-apis-app-ability-application.md)
-          - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](reference/apis-ability-kit/js-apis-app-ability-applicationStateChangeCallback.md)
+          - [@ohos.app.ability.application (Application Basic Capability)](reference/apis-ability-kit/js-apis-app-ability-application.md)
+          - [@ohos.app.ability.ApplicationStateChangeCallback (Application Foreground/Background State Change Listener)](reference/apis-ability-kit/js-apis-app-ability-applicationStateChangeCallback.md)
           - [@ohos.app.ability.AtomicServiceOptions (AtomicServiceOptions)](reference/apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md)
-          - [@ohos.app.ability.autoFillManager (autoFillManager)](reference/apis-ability-kit/js-apis-app-ability-autoFillManager.md)
-          - [@ohos.app.ability.ChildProcess](reference/apis-ability-kit/js-apis-app-ability-childProcess.md)
-          - [@ohos.app.ability.childProcessManager (childProcessManager)](reference/apis-ability-kit/js-apis-app-ability-childProcessManager.md)
-          - [@ohos.app.ability.ChildProcessArgs (ChildProcessArgs)](reference/apis-ability-kit/js-apis-app-ability-childProcessArgs.md)
-          - [@ohos.app.ability.ChildProcessOptions (ChildProcessOptions)](reference/apis-ability-kit/js-apis-app-ability-childProcessOptions.md)
+          - [@ohos.app.ability.autoFillManager (Auto Fill Framework)](reference/apis-ability-kit/js-apis-app-ability-autoFillManager.md)
+          - [@ohos.app.ability.ChildProcess (Child Process Base Class)](reference/apis-ability-kit/js-apis-app-ability-childProcess.md)
+          - [@ohos.app.ability.childProcessManager (Child Process Management)](reference/apis-ability-kit/js-apis-app-ability-childProcessManager.md)
+          - [@ohos.app.ability.ChildProcessArgs (Child Process Arguments)](reference/apis-ability-kit/js-apis-app-ability-childProcessArgs.md)
+          - [@ohos.app.ability.ChildProcessOptions (Child Process Startup Options)](reference/apis-ability-kit/js-apis-app-ability-childProcessOptions.md)
           - [@ohos.app.ability.common (Context)](reference/apis-ability-kit/js-apis-app-ability-common.md)
-          - [@ohos.app.ability.contextConstant (ContextConstant)](reference/apis-ability-kit/js-apis-app-ability-contextConstant.md)
+          - [@ohos.app.ability.contextConstant (Context-related Constants)](reference/apis-ability-kit/js-apis-app-ability-contextConstant.md)
           - [@ohos.app.ability.EmbeddableUIAbility (Embeddable UIAbility)](reference/apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md)
           - [@ohos.app.ability.EmbeddedUIExtensionAbility (ExtensionAbilities for Embeddable UI in Cross-Process Scenarios)](reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)
-          - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](reference/apis-ability-kit/js-apis-app-ability-environmentCallback.md)
+          - [@ohos.app.ability.EnvironmentCallback (System Environment Change Listener)](reference/apis-ability-kit/js-apis-app-ability-environmentCallback.md)
           - [@ohos.app.ability.ExtensionAbility (ExtensionAbility Base Class)](reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)
-          - [@ohos.app.ability.insightIntent (insightIntent)](reference/apis-ability-kit/js-apis-app-ability-insightIntent.md)
+          - [@ohos.app.ability.insightIntent (Basic Capability for Intent Calls)](reference/apis-ability-kit/js-apis-app-ability-insightIntent.md)
           - [@ohos.app.ability.InsightIntentContext (InsightIntent Call Execution Context)](reference/apis-ability-kit/js-apis-app-ability-insightIntentContext.md)
           - [@ohos.app.ability.InsightIntentExecutor (Base Class for InsightIntent Call Execution)](reference/apis-ability-kit/js-apis-app-ability-insightIntentExecutor.md)
           - [@ohos.app.ability.PhotoEditorExtensionAbility (Image Editing)](reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)
-          - [@ohos.app.ability.OpenLinkOptions (OpenLinkOptions)](reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md)
-          - [@ohos.app.ability.ShareExtensionAbility (ExtensionAbility for Sharing)](reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md)
-          - [@ohos.app.ability.StartOptions (StartOptions)](reference/apis-ability-kit/js-apis-app-ability-startOptions.md)
-          - [@ohos.app.ability.UIAbility (UIAbility)](reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)
+          - [@ohos.app.ability.OpenLinkOptions (Optional Parameters of openLink)](reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md)
+          - [@ohos.app.ability.ShareExtensionAbility (Share Details Page ExtensionAbility)](reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md)
+          - [@ohos.app.ability.StartOptions (Optional Parameters of startAbility)](reference/apis-ability-kit/js-apis-app-ability-startOptions.md)
+          - [@ohos.app.ability.UIAbility (ExtensionAbilities with UI)](reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)
           - [@ohos.app.ability.UIExtensionAbility (Base Class for ExtensionAbilities with UI)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)
           - [@ohos.app.ability.UIExtensionContentSession (UI Operation Class for ExtensionAbilities with UI)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)
-          - [@ohos.app.ability.sendableContextManager](reference/apis-ability-kit/js-apis-app-ability-sendableContextManager.md)
-          - [@ohos.app.appstartup.StartupConfig](reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)
-          - [@ohos.app.appstartup.StartupConfigEntry](reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md)
-          - [@ohos.app.appstartup.StartupListener](reference/apis-ability-kit/js-apis-app-appstartup-startupListener.md)
-          - [@ohos.app.appstartup.startupManager](reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md)
-          - [@ohos.app.appstartup.StartupTask](reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)
+          - [@ohos.app.ability.sendableContextManager (Sendable Context Management)](reference/apis-ability-kit/js-apis-app-ability-sendableContextManager.md)
+          - [@ohos.app.appstartup.StartupConfig (Startup Framework Configuration Information)](reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)
+          - [@ohos.app.appstartup.StartupConfigEntry (Startup Task Configuration)](reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md)
+          - [@ohos.app.appstartup.StartupListener (Startup Task Listener)](reference/apis-ability-kit/js-apis-app-appstartup-startupListener.md)
+          - [@ohos.app.appstartup.startupManager (AppStartup Management)](reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md)
+          - [@ohos.app.appstartup.StartupTask (Startup Task)](reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)
           <!--Del-->
           - [@ohos.app.ability.AbilityConstant (AbilityConstant) (System API)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant-sys.md)
           - [@ohos.app.ability.application (Application) (System API)](reference/apis-ability-kit/js-apis-app-ability-application-sys.md)
@@ -1901,19 +1902,19 @@
         - Both Models (Recommended)<!--both-models-->
           - [@ohos.abilityAccessCtrl (Ability Access Control)](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)
           - [@ohos.ability.screenLockFileManager (Sensitive Data Access Management Under Lock Screen)](reference/apis-ability-kit/js-apis-screenLockFileManager.md)
-          - [@ohos.app.ability.abilityManager (AbilityManager)](reference/apis-ability-kit/js-apis-app-ability-abilityManager.md)
-          - [@ohos.app.ability.appManager (appManager)](reference/apis-ability-kit/js-apis-app-ability-appManager.md)
-          - [@ohos.app.ability.appRecovery (appRecovery)](reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)
-          - [@ohos.app.ability.Configuration (Configuration)](reference/apis-ability-kit/js-apis-app-ability-configuration.md)
-          - [@ohos.app.ability.ConfigurationConstant (ConfigurationConstant)](reference/apis-ability-kit/js-apis-app-ability-configurationConstant.md)
-          - [@ohos.app.ability.continueManager (continueManager)](reference/apis-ability-kit/js-apis-app-ability-continueManager.md)
+          - [@ohos.app.ability.abilityManager (Ability Information Management)](reference/apis-ability-kit/js-apis-app-ability-abilityManager.md)
+          - [@ohos.app.ability.appManager (Application Management)](reference/apis-ability-kit/js-apis-app-ability-appManager.md)
+          - [@ohos.app.ability.appRecovery (Application Recovery)](reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)
+          - [@ohos.app.ability.Configuration (System Environment Information)](reference/apis-ability-kit/js-apis-app-ability-configuration.md)
+          - [@ohos.app.ability.ConfigurationConstant (System Environment Information Constants)](reference/apis-ability-kit/js-apis-app-ability-configurationConstant.md)
+          - [@ohos.app.ability.continueManager (Cross-Device Migration)](reference/apis-ability-kit/js-apis-app-ability-continueManager.md)
           - [@ohos.app.ability.dataUriUtils (DataUriUtils)](reference/apis-ability-kit/js-apis-app-ability-dataUriUtils.md)
           - [@ohos.app.ability.dialogRequest (dialogRequest)](reference/apis-ability-kit/js-apis-app-ability-dialogRequest.md)
-          - [@ohos.app.ability.errorManager (ErrorManager)](reference/apis-ability-kit/js-apis-app-ability-errorManager.md)
+          - [@ohos.app.ability.errorManager (Error Observation Management)](reference/apis-ability-kit/js-apis-app-ability-errorManager.md)
           - [@ohos.app.ability.Want (Want)](reference/apis-ability-kit/js-apis-app-ability-want.md)
           - [@ohos.app.ability.wantAgent (WantAgent)](reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
-          - [@ohos.app.ability.wantConstant (wantConstant)](reference/apis-ability-kit/js-apis-app-ability-wantConstant.md)
-          - [@ohos.continuation.continuationManager (continuationManager)](reference/apis-ability-kit/js-apis-continuation-continuationManager.md)
+          - [@ohos.app.ability.wantConstant (Want Constants)](reference/apis-ability-kit/js-apis-app-ability-wantConstant.md)
+          - [@ohos.continuation.continuationManager (Continuation/Collaboration Management)](reference/apis-ability-kit/js-apis-continuation-continuationManager.md)
           <!--Del-->
           - [@ohos.abilityAccessCtrl (Application Access Control) (System API)](reference/apis-ability-kit/js-apis-abilityAccessCtrl-sys.md)
           - [@ohos.ability.screenLockFileManager (Sensitive Data Access Management Under Lock Screen) (System API)](reference/apis-ability-kit/js-apis-screenLockFileManager-sys.md)
@@ -2101,13 +2102,13 @@
             <!--DelEnd-->
       - C APIs<!--ability-c-->
         - Modules<!--ability-module-->
-          - [AbilityAccessControl](reference/apis-ability-kit/_ability_access_control.md)
+          - [AbilityAccessControl](reference/apis-ability-kit/capi-abilityaccesscontrol.md)
           - [AbilityBase](reference/apis-ability-kit/_ability_base.md)
           - [AbilityRuntime](reference/apis-ability-kit/_ability_runtime.md)
           - [Bundle](reference/apis-ability-kit/_bundle.md)
           - [ChildProcess](reference/apis-ability-kit/c-apis-ability-childprocess.md)
         - Header Files<!--ability-headerfile-->
-          - [ability_access_control.h](reference/apis-ability-kit/ability__access__control_8h.md)
+          - [ability_access_control.h](reference/apis-ability-kit/capi-ability-access-control-h.md)
           - [ability_base_common.h](reference/apis-ability-kit/ability__base__common_8h.md)
           - [ability_runtime_common.h](reference/apis-ability-kit/ability__runtime__common_8h.md)
           - [application_context.h](reference/apis-ability-kit/application__context_8h.md)
@@ -2419,6 +2420,7 @@
             - [Obscuring](reference/apis-arkui/arkui-ts/ts-universal-attributes-obscured.md)
             - [Universal Text Attributes](reference/apis-arkui/arkui-ts/ts-universal-attributes-text-style.md)
             - [Drag and Drop Control](reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md)
+            - [Drag-and-Drop Sorting](reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-sorting.md)
             - [Safe Area](reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md)
             - [Render Fit](reference/apis-arkui/arkui-ts/ts-universal-attributes-renderfit.md)
             - [Event Monopolization](reference/apis-arkui/arkui-ts/ts-universal-attributes-monopolize-events.md)
@@ -2683,7 +2685,7 @@
           - [Basic Types](reference/apis-arkui/arkui-ts/ts-types.md)
           - [Pixel Units](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
           - [Enums](reference/apis-arkui/arkui-ts/ts-appendix-enums.md)
-          - [Common Event Callback](reference/apis-arkui/arkui-ts/ts-uicommonevent.md)
+          - [Common Event Callbacks](reference/apis-arkui/arkui-ts/ts-uicommonevent.md)
           - [SVG Tags](reference/apis-arkui/arkui-ts/ts-basic-svg.md)
           <!--Del-->
           - [Enums (System API)](reference/apis-arkui/arkui-ts/ts-appendix-enums-sys.md)
@@ -3254,17 +3256,17 @@
           <!--DelEnd-->
         - C APIs<!--asset-store-c-->
           - Modules<!--asset-store-module-->
-            - [AssetApi](reference/apis-asset-store-kit/_asset_api.md)
-            - [AssetType](reference/apis-asset-store-kit/_asset_type.md)
+            - [AssetApi](reference/apis-asset-store-kit/capi-assetapi.md)
+            - [AssetType](reference/apis-asset-store-kit/capi-assettype.md)
           - Header Files<!--asset-store-headerfile-->
-            - [asset_api.h](reference/apis-asset-store-kit/asset__api_8h.md)
-            - [asset_type.h](reference/apis-asset-store-kit/asset__type_8h.md)
+            - [asset_api.h](reference/apis-asset-store-kit/capi-asset-api-h.md)
+            - [asset_type.h](reference/apis-asset-store-kit/capi-asset-type-h.md)
           - Structs<!--asset-store-struct-->
-            - [Asset_Attr](reference/apis-asset-store-kit/_asset___attr.md)
-            - [Asset_Blob](reference/apis-asset-store-kit/_asset___blob.md)
-            - [Asset_Result](reference/apis-asset-store-kit/_asset___result.md)
-            - [Asset_ResultSet](reference/apis-asset-store-kit/_asset___result_set.md)
-            - [Asset_Value](reference/apis-asset-store-kit/union_asset___value.md)
+            - [Asset_Blob](reference/apis-asset-store-kit/capi-asset-blob.md)
+            - [Asset_Value](reference/apis-asset-store-kit/capi-asset-value.md)
+            - [Asset_Attr](reference/apis-asset-store-kit/capi-asset-attr.md)
+            - [Asset_Result](reference/apis-asset-store-kit/capi-asset-result.md)
+            - [Asset_ResultSet](reference/apis-asset-store-kit/capi-asset-resultset.md)
         - Error Codes<!--asset-store-arkts-errcode-->
           - [Asset Store Service Error Code](reference/apis-asset-store-kit/errorcode-asset.md)
       - Crypto Architecture Kit<!--crypto-architecture-api-->
@@ -3274,21 +3276,24 @@
             - [@system.cipher (Cipher Algorithm)](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)
         - C APIs<!--crypto-architecture-c-->
           - Modules<!--crypto-architecture-module-->
-            - [CryptoAsymKeyApi](reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md)
-            - [CryptoCommonApi](reference/apis-crypto-architecture-kit/_crypto_common_api.md)
-            - [CryptoDigestApi](reference/apis-crypto-architecture-kit/_crypto_digest_api.md)
-            - [CryptoSignatureApi](reference/apis-crypto-architecture-kit/_crypto_signature_api.md)
-            - [CryptoSymCipherApi](reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md)
+            - [CryptoAsymKeyApi](reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md)	
+            - [CryptoCommonApi](reference/apis-crypto-architecture-kit/_crypto_common_api.md)	
+            - [CryptoDigestApi](reference/apis-crypto-architecture-kit/_crypto_digest_api.md)	
+            - [CryptoSignatureApi](reference/apis-crypto-architecture-kit/_crypto_signature_api.md)	
+            - [CryptoSymCipherApi](reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md)	
             - [CryptoSymKeyApi](reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md)
+
           - Header Files<!--crypto-architecture-headerfile-->
-            - [crypto_asym_key.h](reference/apis-crypto-architecture-kit/crypto__asym__key_8h.md)
-            - [crypto_common.h](reference/apis-crypto-architecture-kit/crypto__common_8h.md)
-            - [crypto_digest.h](reference/apis-crypto-architecture-kit/crypto__digest_8h.md)
-            - [crypto_signature.h](reference/apis-crypto-architecture-kit/crypto__signature_8h.md)
-            - [crypto_sym_cipher.h](reference/apis-crypto-architecture-kit/crypto__sym__cipher_8h.md)
+            - [crypto_asym_key.h](reference/apis-crypto-architecture-kit/crypto__asym__key_8h.md)	
+            - [crypto_common.h](reference/apis-crypto-architecture-kit/crypto__common_8h.md)	
+            - [crypto_digest.h](reference/apis-crypto-architecture-kit/crypto__digest_8h.md)	
+            - [crypto_signature.h](reference/apis-crypto-architecture-kit/crypto__signature_8h.md)	
+            - [crypto_sym_cipher.h](reference/apis-crypto-architecture-kit/crypto__sym__cipher_8h.md)	
             - [crypto_sym_key.h](reference/apis-crypto-architecture-kit/crypto__sym__key_8h.md)
+
           - Structs<!--crypto-architecture-struct-->
             - [Crypto_DataBlob](reference/apis-crypto-architecture-kit/_crypto___data_blob.md)
+
         - Error Codes<!--crypto-architecture-arkts-errcode-->
           - [Crypto Framework Error Codes](reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md)
       - Data Protection Kit<!--data-protection-api-->
@@ -3299,9 +3304,9 @@
           <!--DelEnd-->
         - C APIs<!--data-protection-c-->
           - Modules<!--data-protection-module-->
-            - [DlpPermissionApi](reference/apis-data-protection-kit/_dlp_permission_api.md)
+            - [DlpPermissionApi](reference/apis-data-protection-kit/capi-dlppermissionapi.md)
           - Header Files<!--data-protection-headerfile-->
-            - [dlp_permission_api.h](reference/apis-data-protection-kit/dlp__permission__api_8h.md)
+            - [dlp_permission_api.h](reference/apis-data-protection-kit/capi-dlp-permission-api-h.md)
         - Error Codes<!--data-protection-arkts-errcode-->
           - [DLP Service Error Codes](reference/apis-data-protection-kit/errorcode-dlp.md)
       - Device Certificate Kit<!--device-certificate-api-->
@@ -3962,7 +3967,7 @@
           - [FaultLogger Error Codes](reference/apis-performance-analysis-kit/errorcode-faultlogger.md)
           - [Application Event Logging Error Codes](reference/apis-performance-analysis-kit/errorcode-hiappevent.md)
           - [HiDebug Error Codes](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug.md)
-          - [Hidebug CpuUsage Error Codes](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug-cpuusage.md)
+          - [HiDebug CpuUsage Error Codes](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug-cpuusage.md)
           - [HiCollie Error Codes](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hicollie.md)
           <!--Del-->
           - [HiSysEvent Error Codes](reference/apis-performance-analysis-kit/errorcode-hisysevent-sys.md)
@@ -4604,7 +4609,7 @@
         - [JSVM_ScriptOrigin](reference/common/_j_s_v_m___script_origin.md)
         - [JSVM_TypeTag](reference/common/_j_s_v_m___type_tag.md)
         - [JSVM_VMInfo](reference/common/_j_s_v_m___v_m_info.md)
-  - Native API Standard Libraries<!--standard-library-->
+  - Standard Libraries<!--standard-library-->
     - [libc](reference/native-lib/musl.md)
     - [libc++](reference/native-lib/cpp.md)
     - [Node-API](reference/native-lib/napi.md)

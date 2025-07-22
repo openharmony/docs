@@ -11,7 +11,8 @@
 
 ## 子组件
 
-仅支持[GridItem](ts-container-griditem.md)子组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）。
+仅支持[GridItem](ts-container-griditem.md)子组件和自定义组件。自定义组件在Grid下使用时，建议使用GridItem作为自定组件的顶层组件，不建议给自定义组件设置属性和事件方法。
+支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）。
 
 >  **说明：**
 >
@@ -870,8 +871,8 @@ Grid组件可见区域item变化事件的回调类型。
 @Entry
 @Component
 struct GridExample {
-  @State numbers1: String[] = ['0', '1', '2', '3', '4'];
-  @State numbers2: String[] = ['0', '1', '2', '3', '4', '5'];
+  @State numbers1: string[] = ['0', '1', '2', '3', '4'];
+  @State numbers2: string[] = ['0', '1', '2', '3', '4', '5'];
   layoutOptions3: GridLayoutOptions = {
     regularSize: [1, 1],
     onGetRectByIndex: (index: number) => {
@@ -924,10 +925,10 @@ struct GridExample {
               .fontSize(16)
               .backgroundColor(0xF9CF93)
               .width('100%')
-              .height("100%")
+              .height('100%')
               .textAlign(TextAlign.Center)
           }
-          .height("100%")
+          .height('100%')
           .width('100%')
         }, (day: string) => day)
       }
@@ -1191,7 +1192,7 @@ struct GridExample {
               Grid(this.gridScroller) {
                 ForEach(this.numbers, (item: number) => {
                   GridItem() {
-                    Text(item + '')
+                    Text(item)
                       .fontSize(16)
                       .backgroundColor(0xF9CF93)
                       .width('100%')
@@ -1359,7 +1360,7 @@ struct GridExample {
         if (!isSuccess || insertIndex >= this.numbers.length) {
           return;
         }
-        console.info('beixiang' + itemIndex + '', insertIndex + ''); //itemIndex拖拽起始位置，insertIndex拖拽插入位置
+        console.info('itemIndex:' + itemIndex + ', insertIndex:' + insertIndex); //itemIndex拖拽起始位置，insertIndex拖拽插入位置
         this.changeIndex(itemIndex, insertIndex);
       })
     }.width('100%').margin({ top: 5 })
@@ -1927,12 +1928,11 @@ struct GridExample {
       return;
     }
     console.debug('start index: ' + index.toString());
-    const targetIndex = index + 1
-    this.setChecked = !
-    this.selectedIndexes.includes(targetIndex.toString())
+    const targetIndex = index + 1;
+    this.setChecked = !this.selectedIndexes.includes(targetIndex.toString());
     this.startIndex = index;
-    this.selectedIndexes.push(targetIndex.toString())
-    this.updateIndex = index
+    this.selectedIndexes.push(targetIndex.toString());
+    this.updateIndex = index;
 
   }
   slideActionUpdate(index: number): void {
@@ -2015,7 +2015,7 @@ struct GridExample {
   }
 
   panGestureAction(type: SlideActionType, event: GestureEvent | undefined): void {
-    if (this.stopGesture) {
+    if (this.stopGesture || !event) {
       return;
     }
     const finger = event!.fingerList[0];
