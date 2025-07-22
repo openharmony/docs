@@ -1230,7 +1230,7 @@ int32_t OH_NativeXComponent_AttachNativeRootNode(OH_NativeXComponent* component,
 
 **废弃版本：** 20
 
-**替代接口：** {@link OH_ArkUI_NodeContent_AddNode}
+**替代接口：** [OH_ArkUI_NodeContent_AddNode](capi-native-node-h.md#oh_arkui_nodecontent_addnode)
 
 
 **参数：**
