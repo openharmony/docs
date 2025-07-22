@@ -26,11 +26,7 @@ linearGradient(value: LinearGradientOptions): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-<<<<<<< HEAD
-| value  | {<br/>angle?:&nbsp;number&nbsp;\|&nbsp;string,<br/>direction?:&nbsp;[GradientDirection](ts-appendix-enums.md#gradientdirection),<br/>colors:&nbsp;Array&lt;[[ResourceColor](ts-types.md#resourcecolor),&nbsp;number]&gt;,<br/>repeating?:&nbsp;boolean<br/>} | 是   | 线性渐变。<br/>- angle：线性渐变的起始角度。角度为0度时渐变方向为从下往上（即0点方向）。0点方向顺时针旋转为正向角度。<br/> 取值范围：(-∞,+∞)，设置的值大于0时，按顺时针方向，小于0时，按逆时针方向。 <br/>  默认值：180 <br/>角度为字符串时，合法的取值为纯数字或纯数字后带"deg"（度）、"rad"（弧度）、"grad"（梯度）、"turn"（圈）单位，例如："90"、 "90deg"、"1.57rad"。<br/>- direction：线性渐变的方向，设置angle为非undefined后不生效。设置为GradientDirection.None时，按默认方向渐变。<br/>  默认值：GradientDirection.Bottom <br/>- [colors](#radialgradientoptions18对象说明)：指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。ResourceColor表示颜色，number表示该颜色所处的位置，取值范围为[0, 1.0]，设置的值小于0时，按0处理，设置的值大于1.0时，按1.0处理。0表示需要设置渐变色的开始处，1.0表示渐变色的结束处。为了实现多个颜色渐变效果，多个数组中的number类型参数应递增设置。如果后一个数组中的number类型参数小于前一个数组的number类型参数，将按照等于前一个数组number值处理。<br> 默认值：[]，无渐变效果。<br/>- repeating：为渐变的颜色重复着色。 <br/>  默认值：false |
-=======
 | value  | [LinearGradientOptions](#lineargradientoptions18对象说明) | 是   | 线性渐变。 |
->>>>>>> 50f1ae7a5ce... aa
 
 **返回值：**
 
@@ -65,6 +61,10 @@ linearGradient(options: Optional\<LinearGradientOptions>): T
 ## LinearGradientOptions<sup>18+</sup>对象说明
 
 线性渐变的参数。
+
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -131,20 +131,14 @@ sweepGradient(options: Optional\<SweepGradientOptions>): T
 
 角度渐变参数。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-<<<<<<< HEAD
-| 名称                                       | 类型                                                         | 必填 | 说明                                                         |
-| ------------------------------------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| center                                     | [[Length](./ts-types.md#length), Length]                     | 是   | 为角度渐变的中心点，即相对于当前组件左上角的坐标。           |
-| start                                      | number&nbsp;\|&nbsp;string                                   | 否   | 角度渐变的起点。&nbsp;默认值：0。 <br/>角度为字符串时，合法的取值为纯数字或纯数字后带"deg"（度）、"rad"（弧度）、"grad"（梯度）、"turn"（圈）单位。例如："90"、 "90deg"、"1.57rad"。取值有0~360度的限制，转换为度的单位之后，值在0~360度之间，设置为小于0度的值时，按值为0度处理，设置为大于360度的值时，按值为360度处理。                           |
-| end                                        | number&nbsp;\|&nbsp;string                                   | 否   | 角度渐变的终点。&nbsp;默认值：0。 <br/>角度为字符串时，合法的取值为纯数字或纯数字后带"deg"（度）、"rad"（弧度）、"grad"（梯度）、"turn"（圈）单位。例如："90"、 "90deg"、"1.57rad"。取值有0~360度的限制，转换为度的单位之后，值在0~360度之间，设置为小于0度的值时，按值为0度处理，设置为大于360度的值时，按值为360度处理。                           |
-| rotation                                   | number&nbsp;\|&nbsp;string                                   | 否   | 角度渐变的旋转角度。默认值：0。 <br/>角度为字符串时，合法的取值为纯数字或纯数字后带"deg"（度）、"rad"（弧度）、"grad"（梯度）、"turn"（圈）单位。例如："90"、 "90deg"、"1.57rad"。取值有0~360度的限制，转换为度的单位之后，值在0~360度之间，设置为小于0度的值时，按值为0度处理，设置为大于360度的值时，按值为360度处理。                             |
-| [colors](#radialgradientoptions18对象说明) | Array&lt;[[ResourceColor](ts-types.md#resourcecolor),&nbsp;number] | 是   | 指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。 |
-| repeating                                  | boolean                                                      | 否   | 为渐变的颜色重复着色。<br>默认值：false。<br>true：允许为渐变的颜色重复着色。<br>false：不允许为渐变的颜色重复着色。                       |
-=======
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 | 名称                                       | 类型                                                         | 只读 | 可选 | 说明                                                         |
@@ -153,9 +147,8 @@ sweepGradient(options: Optional\<SweepGradientOptions>): T
 | start<sup>7+</sup>                                     | number&nbsp;\|&nbsp;string                                   | 否 | 是   | 角度渐变的起点。&nbsp;默认值：0。<br/>角度为字符串时，合法的取值为纯数字或纯数字后带"deg"（度）、"rad"（弧度）、"grad"（梯度）、"turn"（圈）单位。例如："90"、 "90deg"、"1.57rad"。取值有0~360度的限制，转换为度的单位之后，值在0~360度之间，设置为小于0度的值时，按值为0度处理，设置为大于360度的值时，按值为360度处理。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。                            |
 | end<sup>7+</sup>                                       | number&nbsp;\|&nbsp;string                                   | 否 | 是  | 角度渐变的终点。&nbsp;默认值：0。<br/>角度为字符串时，合法的取值为纯数字或纯数字后带"deg"（度）、"rad"（弧度）、"grad"（梯度）、"turn"（圈）单位。例如："90"、 "90deg"、"1.57rad"。取值有0~360度的限制，转换为度的单位之后，值在0~360度之间，设置为小于0度的值时，按值为0度处理，设置为大于360度的值时，按值为360度处理。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。                            |
 | rotation<sup>7+</sup>                                   | number&nbsp;\|&nbsp;string                                   | 否 | 是   | 角度渐变的旋转角度。默认值：0。<br/>角度为字符串时，合法的取值为纯数字或纯数字后带"deg"（度）、"rad"（弧度）、"grad"（梯度）、"turn"（圈）单位。例如："90"、 "90deg"、"1.57rad"。取值有0~360度的限制，转换为度的单位之后，值在0~360度之间，设置为小于0度的值时，按值为0度处理，设置为大于360度的值时，按值为360度处理。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。                              |
-| colors<sup>7+</sup> | Array&lt;[[ResourceColor](ts-types.md#resourcecolor),&nbsp;number]&gt; | 是   | 指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| colors<sup>7+</sup> | Array&lt;[[ResourceColor](ts-types.md#resourcecolor),&nbsp;number]&gt; | 否 | 是   | 指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | repeating<sup>7+</sup>                                 | boolean                                                      | 否 | 是   | 为渐变的颜色重复着色。<br>默认值：false <br>true：允许为渐变的颜色重复着色。<br>false：不允许为渐变的颜色重复着色。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。                       |
->>>>>>> 50f1ae7a5ce... aa
 
 ## radialGradient
 
@@ -210,18 +203,14 @@ radialGradient(options: Optional\<RadialGradientOptions>): T
 
 径向渐变参数。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-<<<<<<< HEAD
-| 名称      | 类型                                                         | 必填 | 说明                                                   |
-| --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------ |
-| center    | &nbsp;[[Length](./ts-types.md#length), Length]               | 是   | 径向渐变的中心点，即相对于当前组件左上角的坐标。       |
-| radius    | [Length](./ts-types.md#length)                                  | 是   | 径向渐变的半径。<br/>取值范围：[0,+∞)。设置的值小于0时，按值为0处理。设置的值为undefined时，系统会自适应渐变半径。               |
-| colors    | Array&lt;[[ResourceColor](ts-types.md#resourcecolor),&nbsp;number]&gt; | 是   | 指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。 |
-| repeating | boolean                                                     | 否   | 为渐变的颜色重复着色。默认值：false。                  |
-=======
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 | 名称      | 类型                                                         | 只读 | 可选 | 说明                                                   |
@@ -230,7 +219,6 @@ radialGradient(options: Optional\<RadialGradientOptions>): T
 | radius<sup>7+</sup>    | [Length](./ts-types.md#length)                                  | 否 | 否   | 径向渐变的半径。<br/>取值范围：[0,+∞)。设置的值小于0时，按值为0处理。设置的值为undefined时，系统会自适应渐变半径。   <br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。           |
 | colors<sup>7+</sup>    | Array&lt;[[ResourceColor](ts-types.md#resourcecolor),&nbsp;number]&gt; | 否 | 否   | 指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。<br> 默认值：[]，无渐变效果。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | repeating<sup>7+</sup> | boolean                                                     | 否 | 是   | 为渐变的颜色重复着色。默认值：false。 <br>true：允许为渐变的颜色重复着色。<br>false：不允许为渐变的颜色重复着色。    <br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。             |
->>>>>>> 50f1ae7a5ce... aa
 
 >  **说明：** 
 >
