@@ -2714,7 +2714,7 @@ setTransform(transform?: Matrix2D): void
   @Component
   struct TransFormDemo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
-    private context1: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.  settings);
+    private context1: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     private context2: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {

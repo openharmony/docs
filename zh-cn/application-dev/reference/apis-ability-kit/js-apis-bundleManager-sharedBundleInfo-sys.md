@@ -25,7 +25,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | 名称             | 类型                           | 只读 | 可选 | 说明                   |
 | ---------------- | ------------------------------ | ---- | ---- | ---------------------- |
 | name             | string                         | 是   | 否   | 应用共享包名称。       |
-| compatiblePolicy | bundleManager.CompatiblePolicy | 是   | 否   | 共享包兼容策略的类型。 |
+| compatiblePolicy | bundleManager.[CompatiblePolicy](js-apis-bundleManager.md#compatiblepolicy10) | 是   | 否   | 共享包兼容策略的类型。 |
 | sharedModuleInfo | Array\<SharedModuleInfo>       | 是   | 否   | 应用共享模块信息。     |
 
 ## SharedModuleInfo

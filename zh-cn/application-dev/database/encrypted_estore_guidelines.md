@@ -490,7 +490,7 @@ struct Index {
           lockStatus ? this.message = "解锁" : this.message = "加锁";
         }).margin("5");
         Button('store type').onClick(async (event: ClickEvent) => {
-          e_secretKeyObserver.getCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
+          e_secretKeyObserver.getCurrentStatus() ? this.message = "estore" : this.message = "cstore";
         }).margin("5");
 
         Button("put").onClick(async (event: ClickEvent) => {
@@ -930,7 +930,7 @@ struct Index {
           lockStatus ? this.message = "解锁" : this.message = "加锁";
         }).margin("5");
         Button('store type').onClick(async (event: ClickEvent) => {
-          e_secretKeyObserver.getCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
+          e_secretKeyObserver.getCurrentStatus() ? this.message = "estore" : this.message = "cstore";
           console.info(`ECDB_Encry current store : ${this.message}`);
         }).margin("5");
 

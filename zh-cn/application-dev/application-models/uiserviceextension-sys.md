@@ -126,7 +126,6 @@
           width: 500,
           height: 500
         };
-        config.windowRect = rect;
         // 创建子窗
         config.windowName = 'sub_window'
         config.windowAttribute = window.ExtensionWindowAttribute.SUB_WINDOW;

@@ -176,17 +176,23 @@ TextInput，TextArea组件输入多字符后，需要实现点击清空。
 
 **代码示例**
 
-```
+```ts
+// xxx.ets
+@Entry
+@Component
 struct Index {
-@State text: string = 'Hello World'
-controller: TextInputController = new TextInputController()
+  @State text: string = 'Hello World';
+  controller: TextInputController = new TextInputController();
+
   build() {
     Row() {
       Column() {
-        TextInput({ placeholder: 'Please input your words.', text: this.text,
-          controller:this.controller}).onChange((value) => {
-            this.text = value
-          })
+        TextInput({
+          placeholder: 'Please input your words.', text: this.text,
+          controller: this.controller
+        }).onChange((value: string) => {
+          this.text = value;
+        })
         Button("Clear TextInput").onClick(() => {
           this.text = "";
         })

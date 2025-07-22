@@ -49,13 +49,14 @@
    import { BusinessError } from '@kit.BasicServicesKit';
 
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
-
+   let appId: string = 'com.example.datamanagertest';
+   let storeId: string = 'storeId';
    export default class EntryAbility extends UIAbility {
      onCreate() {
        let context = this.context;
        const kvManagerConfig: distributedKVStore.KVManagerConfig = {
          context: context,
-         bundleName: 'com.example.datamanagertest'
+         bundleName: appId
        };
        try {
          // 创建KVManager实例
@@ -87,10 +88,12 @@
    import { BusinessError } from '@kit.BasicServicesKit';
 
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
+   let appId: string = 'com.example.datamanagertest';
+   let storeId: string = 'storeId';
    let context = featureAbility.getContext(); // 获取context
    const kvManagerConfig: distributedKVStore.KVManagerConfig = {
      context: context,
-     bundleName: 'com.example.datamanagertest'
+     bundleName: appId
    };
    try {
      kvManager = distributedKVStore.createKVManager(kvManagerConfig);
@@ -143,7 +146,7 @@
        // schema未定义可以不填，定义方法请参考上方schema示例。
        securityLevel: distributedKVStore.SecurityLevel.S3
      };
-     kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+     kvManager.getKVStore<distributedKVStore.SingleKVStore>(storeId, options, (err, store: distributedKVStore.SingleKVStore) => {
        if (err) {
          console.error(`Failed to get KVStore: Code:${err.code},message:${err.message}`);
          return;
@@ -260,7 +263,7 @@
       // appId为应用的bundleName
       kvManager = kvManager as distributedKVStore.KVManager;
       kvStore = undefined;
-      kvManager.closeKVStore('appId', 'storeId', (err: BusinessError)=> {
+      kvManager.closeKVStore(appId, storeId, (err: BusinessError)=> {
         if (err) {
           console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
           return;
@@ -280,7 +283,7 @@
       // appId为应用的bundleName
       kvManager = kvManager as distributedKVStore.KVManager;
       kvStore = undefined;
-      kvManager.deleteKVStore('appId', 'storeId', (err: BusinessError)=> {
+      kvManager.deleteKVStore(appId, storeId, (err: BusinessError)=> {
         if (err) {
           console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
           return;

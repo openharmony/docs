@@ -771,7 +771,7 @@ class A {
 根据依赖模块的类型，混淆规则分为以下两个来源：
 
 - **本地HAR/HSP模块**
-  指该模块配置文件·build-profile.json5`中`arkOptions.obfuscation.consumerFiles`字段指定的混淆配置文件内容。
+  指该模块配置文件`build-profile.json5`中`arkOptions.obfuscation.consumerFiles`字段指定的混淆配置文件内容。
 
 - **远程HAR/HSP包**
   指该远程HAR/HSP包中obfuscation.txt文件内容。

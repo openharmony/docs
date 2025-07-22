@@ -24,19 +24,19 @@
      src:
        main:
          cpp:
-           - json:
+           json:
              - json.h
              - json-forwards.h
-           - types:
+           types:
              libentry:
                - index.d.ts
            - CMakeLists.txt
-           - napi_init.cpp
            - jsoncpp.cpp
-       ets:
-           - entryability:
+           - napi_init.cpp
+         ets:
+           entryability:
              - EntryAbility.ets
-             - pages:
+           pages:
              - Index.ets
    ```
 
@@ -45,7 +45,7 @@
    ```cmake
    # 新增jsoncpp.cpp(解析订阅事件中的json字符串)源文件
    add_library(entry SHARED napi_init.cpp jsoncpp.cpp)
-   # 新增动态库依赖libhiappevent_ndk.z.so、libhilog_ndk.z.so(日志输出)及libohhicollie.so（hicollie检测）
+   # 新增动态库依赖libhiappevent_ndk.z.so、libhilog_ndk.z.so（日志输出）及libohhicollie.so（hicollie检测）
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libohhicollie.so libhiappevent_ndk.z.so)
    ```
 
@@ -67,7 +67,7 @@
 
    - onReceive类型观察者
 
-   编辑“napi_init.cpp”文件，定义onReceive类型观察者相关方法：
+   编辑“napi_init.cpp”文件，定义onReceive类型观察者相关函数：
 
    ```c++
    //定义一变量，用来缓存创建的观察者的指针。
@@ -79,7 +79,7 @@
                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.domain=%{public}s", appEventGroups[i].appEventInfos[j].domain);
                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.name=%{public}s", appEventGroups[i].appEventInfos[j].name);
                OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d", appEventGroups[i].appEventInfos[j].type);
-               if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) == 0 && 
+               if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) == 0 &&
                    strcmp(appEventGroups[i].appEventInfos[j].name, EVENT_APP_HICOLLIE) == 0) {
                    Json::Value params;
                    Json::Reader reader(Json::Features::strictMode());
@@ -134,7 +134,7 @@
 
    - onTrigger类型观察者
 
-   编辑“napi_init.cpp”文件，定义OnTrigger类型观察者相关方法：
+   编辑“napi_init.cpp”文件，定义OnTrigger类型观察者相关函数：
 
    ```c++
    //定义一变量，用来缓存创建的观察者的指针。
@@ -208,9 +208,9 @@
     }
    ```
 
-5. 将TestHiCollieTimerNdk注册为ArkTS接口。
+5. 新增TestHiCollieTimerNdk函数。
 
-   编辑“napi_init.cpp”文件，将testHiCollieTimerNdk注册为ArkTS接口：
+   编辑“napi_init.cpp”文件，新增TestHiCollieTimerNdk函数，构造任务执行超时事件：
 
    ```c++
    // 引入hicollie.h头文件
@@ -233,9 +233,9 @@
    }
    ```
 
-6. 将RegisterWatcher注册为ArkTS接口。
+6. 将RegisterWatcher及TestHiCollieTimerNdk注册为ArkTS接口。
 
-   编辑“napi_init.cpp”文件，将RegisterWatcher注册为ArkTS接口：
+   编辑“napi_init.cpp”文件，将RegisterWatcher及TestHiCollieTimerNdk注册为ArkTS接口：
 
    ```c++
    EXTERN_C_START

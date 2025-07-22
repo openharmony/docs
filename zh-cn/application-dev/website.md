@@ -250,11 +250,11 @@
         - [E类加密数据库的使用 (ArkTS)](database/encrypted_estore_guidelines.md)
       - 跨应用数据共享<!--cross-app-data-share-->
         - [跨应用数据共享概述](database/data-share-overview.md)
-        <!--Del-->
         - 一对多跨应用数据共享<!--one-to-many-data-share-->
+          <!--Del-->
           - [通过DataShareExtensionAbility实现数据共享 (ArkTS)(仅对系统应用开放)](database/share-data-by-datashareextensionability.md)
           - [通过数据管理服务实现数据共享静默访问 (ArkTS)(仅对系统应用开放)](database/share-data-by-silent-access.md)
-        <!--DelEnd-->
+          <!--DelEnd-->
           - [应用间配置共享 (ArkTS)](database/share-config.md)
         - 多对多跨应用数据共享<!--many-to-many-data-share-->
           - [通过标准化数据通路实现数据共享 (ArkTS)](database/unified-data-channels.md)
@@ -441,6 +441,7 @@
               - [Repeat：可复用的循环渲染](ui/state-management/arkts-new-rendering-control-repeat.md)
               - [getTarget接口：获取状态管理框架代理前的原始对象](ui/state-management/arkts-new-getTarget.md)
               - [makeObserved接口：将非观察数据变为可观察数据](ui/state-management/arkts-new-makeObserved.md)
+              - [addMonitor/clearMonitor接口：动态添加/取消监听](ui/state-management/arkts-new-addMonitor-clearMonitor.md)
             - [MVVM模式（状态管理V2）](ui/state-management/arkts-mvvm-V2.md)
           - V1V2混用和迁移指导<!--v1v2-migration-->
             - [自定义组件混用场景指导](ui/state-management/arkts-custom-component-mixed-scenarios.md)
@@ -575,7 +576,7 @@
             - [自定义渲染节点 (RenderNode)](ui/arkts-user-defined-arktsNode-renderNode.md)
             - [自定义声明式节点 (BuilderNode)](ui/arkts-user-defined-arktsNode-builderNode.md)
             - [设置自定义节点跨语言属性](ui/arkts-user-defined-arktsNode-crossLanguage.md)
-          - 自定义绘制
+          - 自定义绘制<!--arkts-draw-->
             - [使用画布绘制自定义图形 (Canvas)](ui/arkts-drawing-customization-on-canvas.md)
             - [自定义绘制修改器 (DrawModifier)](ui/arkts-user-defined-extension-drawModifier.md)
           - Modifier机制<!--arkts-modifier-->
@@ -583,6 +584,7 @@
             - [内容修改器 (ContentModifier)](ui/arkts-common-attributes-content-modifier.md)
             - [属性修改器 (AttributeModifier)](ui/arkts-user-defined-extension-attributeModifier.md)
             - [属性更新器 (AttributeUpdater)](ui/arkts-user-defined-extension-attributeUpdater.md)
+        - [UI国际化](ui/arkts-internationalization.md)
         - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
           - [支持无障碍](ui/arkts-universal-attributes-accessibility.md)
           - [支持适老化](ui/arkui-support-for-aging-adaptation.md)
@@ -891,7 +893,7 @@
       - [IME Kit简介](inputmethod/ime-kit-intro.md)
       - [实现一个输入法应用](inputmethod/inputmethod-application-guide.md)
       - [在自绘编辑框中使用输入法](inputmethod/use-inputmethod-in-custom-edit-box.md)
-      - [切换输入法应用](inputmethod/switch-inputmehod-guide.md)
+      - [切换输入法应用](inputmethod/switch-inputmethod-guide.md)
       - [输入法子类型开发指南](inputmethod/input-method-subtype-guide.md)
       - [在自绘编辑框中使用输入法(C/C++)](inputmethod/use-inputmethod-in-custom-edit-box-ndk.md)
       - [输入法应用沉浸模式](inputmethod/inputmethod-immersive-mode-guide.md)
@@ -3418,7 +3420,7 @@
           - [NativeDisplayManager_DisplayHdrFormat](reference/apis-arkui/capi-nativedisplaymanager-displayhdrformat.md)
           - [NativeDisplayManager_DisplayColorSpace](reference/apis-arkui/capi-nativedisplaymanager-displaycolorspace.md)
           - [NativeDisplayManager_DisplayInfo](reference/apis-arkui/capi-nativedisplaymanager-displayinfo.md)
-         - [NativeDisplayManager_DisplaysInfo](reference/apis-arkui/capi-nativedisplaymanager-displaysinfo.md)
+          - [NativeDisplayManager_DisplaysInfo](reference/apis-arkui/capi-nativedisplaymanager-displaysinfo.md)
       - 错误码<!--arkui-arkts-errcode-->
         - UI界面<!--arkui-ui-arkts-errcode-->
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
@@ -3698,17 +3700,25 @@
         - [@ohos.inputMethodList (输入法切换列表控件)](reference/apis-ime-kit/js-apis-inputmethodlist.md)
       - C API<!--ime-c-->
         - 模块<!--ime-module-->
-          - [InputMethod](reference/apis-ime-kit/_input_method.md)
+          - [InputMethod](reference/apis-ime-kit/capi-inputmethod.md)
         - 头文件<!--ime-headerfile-->
-          - [inputmethod_attach_options_capi.h](reference/apis-ime-kit/inputmethod__attach__options__capi_8h.md)
-          - [inputmethod_controller_capi.h](reference/apis-ime-kit/inputmethod__controller__capi_8h.md)
-          - [inputmethod_cursor_info_capi.h](reference/apis-ime-kit/inputmethod__cursor__info__capi_8h.md)
-          - [inputmethod_inputmethod_proxy_capi.h](reference/apis-ime-kit/inputmethod__inputmethod__proxy__capi_8h.md)
-          - [inputmethod_private_command_capi.h](reference/apis-ime-kit/inputmethod__private__command__capi_8h.md)
-          - [inputmethod_text_avoid_info_capi.h](reference/apis-ime-kit/inputmethod__text__avoid__info__capi_8h.md)
-          - [inputmethod_text_config_capi.h](reference/apis-ime-kit/inputmethod__text__config__capi_8h.md)
-          - [inputmethod_text_editor_proxy_capi.h](reference/apis-ime-kit/inputmethod__text__editor__proxy__capi_8h.md)
-          - [inputmethod_types_capi.h](reference/apis-ime-kit/inputmethod__types__capi_8h.md)
+          - [inputmethod_attach_options_capi.h](reference/apis-ime-kit/capi-inputmethod-attach-options-capi-h.md)
+          - [inputmethod_controller_capi.h](reference/apis-ime-kit/capi-inputmethod-controller-capi-h.md)
+          - [inputmethod_cursor_info_capi.h](reference/apis-ime-kit/capi-inputmethod-cursor-info-capi-h.md)
+          - [inputmethod_inputmethod_proxy_capi.h](reference/apis-ime-kit/capi-inputmethod-inputmethod-proxy-capi-h.md)
+          - [inputmethod_private_command_capi.h](reference/apis-ime-kit/capi-inputmethod-private-command-capi-h.md)
+          - [inputmethod_text_avoid_info_capi.h](reference/apis-ime-kit/capi-inputmethod-text-avoid-info-capi-h.md)
+          - [inputmethod_text_config_capi.h](reference/apis-ime-kit/capi-inputmethod-text-config-capi-h.md)
+          - [inputmethod_text_editor_proxy_capi.h](reference/apis-ime-kit/capi-inputmethod-text-editor-proxy-capi-h.md)
+          - [inputmethod_types_capi.h](reference/apis-ime-kit/capi-inputmethod-types-capi-h.md)
+        - 结构体<!--ime-struct-->
+          - [InputMethod_AttachOptions](reference/apis-ime-kit/capi-inputmethod-inputmethod-attachoptions.md)
+          - [InputMethod_CursorInfo](reference/apis-ime-kit/capi-inputmethod-inputmethod-cursorinfo.md)
+          - [InputMethod_InputMethodProxy](reference/apis-ime-kit/capi-inputmethod-inputmethod-inputmethodproxy.md)
+          - [InputMethod_PrivateCommand](reference/apis-ime-kit/capi-inputmethod-inputmethod-privatecommand.md)
+          - [InputMethod_TextAvoidInfo](reference/apis-ime-kit/capi-inputmethod-inputmethod-textavoidinfo.md)
+          - [InputMethod_TextConfig](reference/apis-ime-kit/capi-inputmethod-inputmethod-textconfig.md)
+          - [InputMethod_TextEditorProxy](reference/apis-ime-kit/capi-inputmethod-inputmethod-texteditorproxy.md)
       - 错误码<!--ime-arkts-errcode-->
         - [输入法框架错误码](reference/apis-ime-kit/errorcode-inputmethod-framework.md)
     - IPC Kit（进程间通信服务）<!--ipc-api-->
@@ -4040,35 +4050,35 @@
           <!--DelEnd-->
         - C API<!--network-c-->
           - 模块<!--network-module-->
-            - [Netstack](reference/apis-network-kit/netstack.md)
-            - [NetConnection](reference/apis-network-kit/_net_connection.md)
+            - [NetConnection](reference/apis-network-kit/capi-netconnection.md)
+            - [Netstack](reference/apis-network-kit/capi-netstack.md)
           - 头文件<!--network-headerfile-->
-            - [net_connection.h](reference/apis-network-kit/net__connection_8h.md)
-            - [net_connection_type.h](reference/apis-network-kit/net__connection__type_8h.md)
-            - [net_ssl_c.h](reference/apis-network-kit/net__ssl__c_8h.md)
-            - [net_ssl_c_type.h](reference/apis-network-kit/net__ssl__c__type_8h.md)
-            - [net_websocket.h](reference/apis-network-kit/net__websocket_8h.md)
-            - [net_websocket_type.h](reference/apis-network-kit/net__websocket__type_8h.md)
+            - [net_connection.h](reference/apis-network-kit/capi-net-connection-h.md)
+            - [net_connection_type.h](reference/apis-network-kit/capi-net-connection-type-h.md)
+            - [net_ssl_c.h](reference/apis-network-kit/capi-net-ssl-c-h.md)
+            - [net_ssl_c_type.h](reference/apis-network-kit/capi-net-ssl-c-type-h.md)
+            - [net_websocket.h](reference/apis-network-kit/capi-net-websocket-h.md)
+            - [net_websocket_type.h](reference/apis-network-kit/capi-net-websocket-type-h.md)
           - 结构体<!--network-struct-->
-            - [NetConn_ConnectionProperties](reference/apis-network-kit/_net_conn___connection_properties.md)
-            - [NetConn_HttpProxy](reference/apis-network-kit/_net_conn___http_proxy.md)
-            - [NetConn_NetAddr](reference/apis-network-kit/_net_conn___net_addr.md)
-            - [NetConn_NetCapabilities](reference/apis-network-kit/_net_conn___net_capabilities.md)
-            - [NetConn_NetHandle](reference/apis-network-kit/_net_conn___net_handle.md)
-            - [NetConn_NetHandleList](reference/apis-network-kit/_net_conn___net_handle_list.md)
-            - [NetConn_Route](reference/apis-network-kit/_net_conn___route.md)
-            - [NetConn_NetConnCallback](reference/apis-network-kit/_net_conn___net_conn_callback.md)
-            - [NetConn_NetSpecifier](reference/apis-network-kit/_net_conn___net_specifier.md)
-            - [NetStack_CertBlob](reference/apis-network-kit/_net_stack___cert_blob.md)
-            - [NetStack_CertificatePinning](reference/apis-network-kit/_net_stack___certificate_pinning.md)
-            - [NetStack_Certificates](reference/apis-network-kit/_net_stack___certificates.md)
-            - [WebSocket](reference/apis-network-kit/_web_socket.md)
-            - [WebSocket_CloseOption](reference/apis-network-kit/_web_socket___close_option.md)
-            - [WebSocket_CloseResult](reference/apis-network-kit/_web_socket___close_result.md)
-            - [WebSocket_ErrorResult](reference/apis-network-kit/_web_socket___error_result.md)
-            - [WebSocket_Header](reference/apis-network-kit/_web_socket___header.md)
-            - [WebSocket_OpenResult](reference/apis-network-kit/_web_socket___open_result.md)
-            - [WebSocket_RequestOptions](reference/apis-network-kit/_web_socket___request_options.md)
+            - [NetConn_NetHandle](reference/apis-network-kit/capi-netconnection-netconn-nethandle.md)
+            - [NetConn_NetCapabilities](reference/apis-network-kit/capi-netconnection-netconn-netcapabilities.md)
+            - [NetConn_NetAddr](reference/apis-network-kit/capi-netconnection-netconn-netaddr.md)
+            - [NetConn_Route](reference/apis-network-kit/capi-netconnection-netconn-route.md)
+            - [NetConn_HttpProxy](reference/apis-network-kit/capi-netconnection-netconn-httpproxy.md)
+            - [NetConn_ConnectionProperties](reference/apis-network-kit/capi-netconnection-netconn-connectionproperties.md)
+            - [NetConn_NetHandleList](reference/apis-network-kit/capi-netconnection-netconn-nethandlelist.md)
+            - [NetConn_NetSpecifier](reference/apis-network-kit/capi-netconnection-netconn-netspecifier.md)
+            - [NetConn_NetConnCallback](reference/apis-network-kit/capi-netconnection-netconn-netconncallback.md)
+            - [NetStack_CertBlob](reference/apis-network-kit/capi-netstack-netstack-certblob.md)
+            - [NetStack_CertificatePinning](reference/apis-network-kit/capi-netstack-netstack-certificatepinning.md)
+            - [NetStack_Certificates](reference/apis-network-kit/capi-netstack-netstack-certificates.md)
+            - [WebSocket](reference/apis-network-kit/capi-netstack-websocket.md)
+            - [WebSocket_CloseResult](reference/apis-network-kit/capi-netstack-websocket-closeresult.md)
+            - [WebSocket_CloseOption](reference/apis-network-kit/capi-netstack-websocket-closeoption.md)
+            - [WebSocket_ErrorResult](reference/apis-network-kit/capi-netstack-websocket-errorresult.md)
+            - [WebSocket_OpenResult](reference/apis-network-kit/capi-netstack-websocket-openresult.md)
+            - [WebSocket_Header](reference/apis-network-kit/capi-netstack-websocket-header.md)
+            - [WebSocket_RequestOptions](reference/apis-network-kit/capi-netstack-websocket-requestoptions.md)
         - 已停止维护的接口<!--network-arkts-dep-->
           - [@system.network (网络状态)](reference/apis-network-kit/js-apis-system-network.md)
           - [@system.fetch (数据请求)](reference/apis-network-kit/js-apis-system-fetch.md)
@@ -4282,29 +4292,32 @@
       - Function Flow Runtime Kit（任务并发调度服务）<!--function-flow-runtime-api-->
         - C API<!--function-flow-runtime-c-->
           - 模块<!--function-flow-runtime-module-->
-            - [FFRT](reference/apis-ffrt-kit/_f_f_r_t.md)
+            - [FFRT](reference/apis-ffrt-kit/capi-ffrt.md)
           - 头文件<!--function-flow-runtime-headerfile-->
-            - [condition_variable.h](reference/apis-ffrt-kit/condition__variable_8h.md)
-            - [loop.h](reference/apis-ffrt-kit/loop_8h.md)
-            - [mutex.h](reference/apis-ffrt-kit/mutex_8h.md)
-            - [queue.h](reference/apis-ffrt-kit/queue_8h.md)
-            - [shared_mutex.h](reference/apis-ffrt-kit/shared__mutex_8h.md)
-            - [sleep.h](reference/apis-ffrt-kit/sleep_8h.md)
-            - [task.h](reference/apis-ffrt-kit/task_8h.md)
-            - [timer.h](reference/apis-ffrt-kit/timer_8h.md)
-            - [type_def.h](reference/apis-ffrt-kit/type__def_8h.md)
+            - [condition_variable.h](reference/apis-ffrt-kit/capi-condition-variable-h.md)
+            - [loop.h](reference/apis-ffrt-kit/capi-loop-h.md)
+            - [mutex.h](reference/apis-ffrt-kit/capi-mutex-h.md)
+            - [queue.h](reference/apis-ffrt-kit/capi-queue-h.md)
+            - [shared_mutex.h](reference/apis-ffrt-kit/capi-shared-mutex-h.md)
+            - [sleep.h](reference/apis-ffrt-kit/capi-sleep-h.md)
+            - [task.h](reference/apis-ffrt-kit/capi-task-h.md)
+            - [timer.h](reference/apis-ffrt-kit/capi-timer-h.md)
+            - [type_def.h](reference/apis-ffrt-kit/capi-type-def-h.md)
           - 结构体<!--function-flow-runtime-struct-->
-            - [ffrt_cond_t](reference/apis-ffrt-kit/ffrt__cond__t.md)
-            - [ffrt_condattr_t](reference/apis-ffrt-kit/ffrt__condattr__t.md)
-            - [ffrt_dependence_t](reference/apis-ffrt-kit/ffrt__dependence__t.md)
-            - [ffrt_deps_t](reference/apis-ffrt-kit/ffrt__deps__t.md)
-            - [ffrt_function_header_t](reference/apis-ffrt-kit/ffrt__function__header__t.md)
-            - [ffrt_mutex_t](reference/apis-ffrt-kit/ffrt__mutex__t.md)
-            - [ffrt_mutexattr_t](reference/apis-ffrt-kit/ffrt__mutexattr__t.md)
-            - [ffrt_queue_attr_t](reference/apis-ffrt-kit/ffrt__queue__attr__t.md)
-            - [ffrt_rwlock_t](reference/apis-ffrt-kit/ffrt__rwlock__t.md)
-            - [ffrt_rwlockattr_t](reference/apis-ffrt-kit/ffrt__rwlockattr__t.md)
-            - [ffrt_task_attr_t](reference/apis-ffrt-kit/ffrt__task__attr__t.md)
+            - [ffrt_cond_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-cond-t.md)
+            - [ffrt_condattr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-condattr-t.md)
+            - [ffrt_dependence_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-dependence-t.md)
+            - [ffrt_deps_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-deps-t.md)
+            - [ffrt_function_header_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-function-header-t.md)
+            - [ffrt_mutex_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-mutex-t.md)
+            - [ffrt_mutexattr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-mutexattr-t.md)
+            - [ffrt_queue_attr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-queue-attr-t.md)
+            - [ffrt_rwlock_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-rwlock-t.md)
+            - [ffrt_rwlockattr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-rwlockattr-t.md)
+            - [ffrt_task_attr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-task-attr-t.md)
+            - [ffrt_loop_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-loop-t.md)
+            - [ffrt_queue_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-queue-t.md)
+            - [ffrt_task_handle_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-task-handle-t.md)
       - Input Kit（多模输入服务）<!--input-api-->
         - ArkTS API<!--input-arkts-->
           - [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis-input-kit/js-apis-inputdevice.md)
@@ -4538,7 +4551,7 @@
             - [hiappevent_cfg.h](reference/apis-performance-analysis-kit/capi-hiappevent-cfg-h.md)
             - [hiappevent_event.h](reference/apis-performance-analysis-kit/capi-hiappevent-event-h.md)
             - [hiappevent_param.h](reference/apis-performance-analysis-kit/capi-hiappevent-param-h.md)
-            - [hicollie.h](reference/apis-performance-analysis-kit/capi-hidebug-h.md)
+            - [hicollie.h](reference/apis-performance-analysis-kit/capi-hicollie-h.md)
             - [hidebug.h](reference/apis-performance-analysis-kit/capi-hidebug-h.md)
             - [hidebug_type.h](reference/apis-performance-analysis-kit/capi-hidebug-type-h.md)
             - [log.h](reference/apis-performance-analysis-kit/capi-log-h.md)

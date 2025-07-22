@@ -24,7 +24,7 @@ When a USB device is inserted, you can use **usbManager** to obtain basic inform
 
 ### Environment Setup
 
-- Install [DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio) 4.1 or later on the PC.
+- Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/) 4.1 or later on the PC.
 - Update the public SDK to API version 16 or later. For details, see [Update Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/faqs/full-sdk-switch-guide.md).
 - Install hdc on the PC. You can use it to interact with a real device or the Emulator on Windows, Linux, or macOS. For details, see [HDC Configuration](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/hdc).
 - Use a USB cable to connect an OpenHarmony device to the PC.

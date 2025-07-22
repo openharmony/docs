@@ -135,7 +135,10 @@ struct Object {
 static void DerefItem(napi_env env, void *data, void *hint) {
     // 可选的原生回调，用于在ArkTS对象被垃圾回收时释放原生实例
     OH_LOG_INFO(LOG_APP, "Node-API DerefItem");
-    (void)hint;
+    Object *obj = reinterpret_cast<Object *>(data);
+    if (obj != nullptr) {
+        delete obj;
+    }
 }
 
 static napi_value Wrap(napi_env env, napi_callback_info info)

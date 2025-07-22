@@ -2,7 +2,7 @@
 
 开发者可以调用本模块的Native API接口，完成同步模式的视频解码。
 
-当前支持的解码能力请参考[AVCodec支持的格式](avcodec-support-formats.md#视频解码)。
+当前支持的解码能力，请参考[AVCodec支持的格式](avcodec-support-formats.md#视频解码)。
 
 视频解码的限制约束、支持的能力、状态机调用关系请参考[视频解码](video-decoding.md)。
 
@@ -54,7 +54,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     #include <shared_mutex>
     ```
     
-2. 全局变量（仅做参考，可以根据实际情况将其封装到对象中）。
+2. 全局变量（仅作参考，可以根据实际情况将其封装到对象中）。
 
     ```c++
     // 视频帧宽度。
@@ -76,7 +76,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 ### Surface模式
 
-参考以下示例代码，开发者可以完成Surface模式下视频解码的全流程，实现同步模式的数据轮转。此处以输入H.264码流文件，解码送显输出为例。
+参考以下示例代码，可以完成Surface模式下视频解码的全流程，实现同步模式的数据轮转。此处以输入H.264码流文件，解码送显输出为例。
 
 
 1. 创建解码器实例。
@@ -123,7 +123,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     > **注意：**
     >
-    > 1. 使能视频解码同步模式，必须要配置OH_MD_KEY_ENABLE_SYNC_MODE为1。
+    > 1. 要使能视频解码同步模式，必须将OH_MD_KEY_ENABLE_SYNC_MODE配置为1。
     > 2. 同步模式在调用OH_VideoDecoder_Configure接口前不能调用OH_VideoDecoder_RegisterCallback接口，否则为异步模式。
     >
 
@@ -307,7 +307,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ```c++
     bool result = true;
-    int64_t timeoutUs = 0; // 单位：微秒（us），负值：无限等待；0：立即退出；正值：指定时间timeout后退出。
+    int64_t timeoutUs = 0; // 单位：微秒（us），负值：无限等待；0：立即退出；正值：指定时间后结束后退出。
 
     while (!outputDone && result) {
         if (!inputDone) {
@@ -412,7 +412,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 ### Buffer模式
 
-参考以下示例代码，开发者可以完成Buffer模式下视频解码的全流程，实现同步模式的数据轮转。此处以输入H.264码流文件，解码成YUV文件为例。
+参考以下示例代码，可以完成Buffer模式下视频解码的全流程，实现同步模式的数据轮转。此处以输入H.264码流文件，解码成YUV文件为例。
 
 1. 创建解码器实例。
 
@@ -451,7 +451,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     > **注意：**
     >
-    > 1. 使能视频解码同步模式，必须要配置OH_MD_KEY_ENABLE_SYNC_MODE为1。
+    > 1. 要使能视频解码同步模式，必须将OH_MD_KEY_ENABLE_SYNC_MODE配置为1。
     > 2. 同步模式在调用OH_VideoDecoder_Configure接口前不能调用OH_VideoDecoder_RegisterCallback接口，否则为异步模式。
     >
 
@@ -550,6 +550,12 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     bool DecoderOutput(OH_AVCodec *videoDec, int64_t timeoutUs)
     {
         uint32_t index;
+        int32_t cropTop = 0;
+        int32_t cropBottom = 0;
+        int32_t cropLeft = 0;
+        int32_t cropRight = 0;
+        int32_t widthStride = 0;
+        int32_t heightStride = 0;
         std::shared_lock<std::shared_mutex> lock(codecMutex);
 
         OH_AVErrCode ret = OH_VideoDecoder_QueryOutputBuffer(videoDec, &index, timeoutUs);
@@ -611,7 +617,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
   
     ```c++
     bool result = true;
-    int64_t timeoutUs = 0; // 单位：微秒（us），负值：无限等待；0：立即退出；正值：指定时间timeout后退出。
+    int64_t timeoutUs = 0; // 单位：微秒（us），负值：无限等待；0：立即退出；正值：指定时间结束后退出。
 
     while (!outputDone && result) {
         if (!inputDone) {
@@ -623,4 +629,4 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-后续流程（包括刷新解码器、重置解码器、停止解码器、销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤9-12。
+后续流程（包括刷新、重置停止和销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤9-12。

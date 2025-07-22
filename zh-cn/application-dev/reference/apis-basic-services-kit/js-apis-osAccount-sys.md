@@ -539,7 +539,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
   let localId: number = 100;
   try {
     accountManager.setOsAccountConstraints(localId, ['constraint.location.set'], false).then(() => {
-      console.log('setOsAccountConstraints succsuccessfully');
+      console.info('setOsAccountConstraints successfully');
     }).catch((err: BusinessError) => {
       console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
     });
@@ -2213,7 +2213,7 @@ constructor()
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 **错误码：**
 
@@ -2938,7 +2938,7 @@ constructor()
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 **错误码：**
 
@@ -4078,7 +4078,7 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
 
 getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
 
-查询指定的域账号信息，callback方式。
+查询指定的域账号信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4134,7 +4134,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 
 getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountInfo&gt;
 
-查询指定的域账号信息，promise方式。
+查询指定的域账号信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5296,8 +5296,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | ------------ | ---------------------------- | ----- | -----|----------------- |
 | result       | number                       | 否    | 否   | 指示结果。         |
 | authSubType  | [AuthSubType](#authsubtype8) | 否    | 否   | 指示认证凭据子类型。|
-| remainTimes  | number                       | 否    | 是   | 指示剩余次数。     |
-| freezingTime | number                       | 否    | 是   | 指示冻结时间。     |
+| remainTimes  | number                       | 否    | 是   | 指示剩余次数，默认为-1。     |
+| freezingTime | number                       | 否    | 是   | 指示冻结时间，默认为-1。     |
 | enrollmentProgress<sup>10+</sup> | string   | 否    | 是   | 指示录入进度，默认为空。 |
 | sensorInfo<sup>10+</sup> | string           | 否    | 是   | 指示传感器信息，默认为空。 |
 | nextPhaseFreezingTime<sup>12+</sup> | number | 否    | 是   | 指示下次冻结时间，默认为undefined。 |
@@ -5663,8 +5663,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | shortName | string | 是   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符。|
-| disallowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否   | 表示预置应用禁止名单，名单中的应用不可被安装在设备上。|
-| allowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否   | 表示预置应用允许名单，仅名单中的应用可以被安装在设备上。|
+| disallowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否   | 表示预置应用禁止名单，名单中的应用不可被安装在设备上，默认为空列表。|
+| allowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否   | 表示预置应用允许名单，仅名单中的应用可以被安装在设备上，默认为std::nullopt。|
 
 ## CreateOsAccountForDomainOptions<sup>12+</sup>
 
