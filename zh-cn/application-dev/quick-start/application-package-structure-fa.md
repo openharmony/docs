@@ -4,7 +4,8 @@
 基于[FA模型](application-configuration-file-overview-fa.md)开发的应用，其应用程序包结构如下图应用程序包结构（FA模型）所示。开发者需要熟悉应用程序包结构相关的基本概念。
 
 >
-> **说明：** API version 8及更早的版本支持的应用模型，FA模型已经不再主推。建议使用新的Stage模型进行开发。
+> **说明：** 
+> API version 8及更早的版本支持的应用模型，FA模型已经不再主推。建议使用新的Stage模型进行开发。
 >
 
 
