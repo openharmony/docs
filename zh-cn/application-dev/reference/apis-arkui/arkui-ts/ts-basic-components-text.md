@@ -775,6 +775,8 @@ textSelectable(mode: TextSelectableMode)
 
 设置是否支持文本可选择、可获焦以及Touch后能否获取焦点。
 
+需配合[copyOption](#copyoption9)使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
