@@ -88,6 +88,7 @@ export default function abilityTest() {
       const ability: UIAbility = await delegator.getCurrentTopAbility();
       console.info("get top ability");
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
+      done();
     })
   })
 }
