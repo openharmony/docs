@@ -125,8 +125,8 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility'
 };
 let certFileArray: Uint8Array = new Uint8Array();
-// 变量 context 需要在 MainAbility 的 onCreate 回调函数中进行初始化
-// test.cer 需要放置在 rawfile 目录下
+// 变量context需要在MainAbility的onCreate回调函数中进行初始化
+// test.cer需要放置在rawfile目录下
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 context.resourceManager.getRawFileContent("test.cer").then((value) => {
@@ -194,8 +194,8 @@ let wantTemp: Want = {
 };
 let certFileArray: Uint8Array = new Uint8Array();
 let accountId: number = 100;
-// 变量 context 需要在 MainAbility 的 onCreate 回调函数中进行初始化
-// test.cer 需要放置在 rawfile 目录下
+// 变量context需要在MainAbility的onCreate回调函数中进行初始化
+// test.cer需要放置在rawfile目录下
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
 const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 context.resourceManager.getRawFileContent("test.cer").then((value) => {
