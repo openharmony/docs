@@ -600,16 +600,16 @@ constructor(value?: TextStyleInterface)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 类型                                                          | 必填 | 说明                                                                                                                                                                                                                                                                                                 |
-| ----------- | ------------------------------------------------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| fontColor   | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | 字体颜色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                  |
-| fontFamily  | [ResourceStr](ts-types.md#resourcestr)                           | 否   | 文本字体。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                  |
-| fontSize    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 字体大小。如果LengthMetrics的unit值是percent，当前设置不生效，处理为16fp。<br/>单位：[fp](ts-pixel-units.md) <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                        |
+| 名称        | 类型     | 必填 | 说明      |
+| ----------- | ----------------------------------- | ---- | ---------------------------- |
+| fontColor   | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | 字体颜色。<br/>默认为主题色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| fontFamily  | [ResourceStr](ts-types.md#resourcestr)                           | 否   | 文本字体。<br/>默认为主题字体。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| fontSize    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 字体大小。<br/>默认字体大小为16fp。<br/>如果LengthMetrics的unit值是percent，当前设置不生效，处理为16fp。<br/>单位：[fp](ts-pixel-units.md) <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | fontWeight  | number\| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 字体粗细。<br/>number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle)                      | 否   | 字体样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                  |
-| strokeWidth<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 文本描边宽度。如果LengthMetrics的unit值是percent，当前设置不生效，处理为0。<br/>设置值小于0时为实心字，大于0时为空心字。<br/>默认值为0。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                      |
-| strokeColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | 文本描边颜色。<br/>默认值为字体颜色，设置异常值时取字体颜色。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                              |
-| superscript<sup>20+</sup> | [SuperscriptStyle](ts-text-common.md#superscriptstyle20枚举说明)                       | 否   | 文本上下角标。<br/>默认值：SuperscriptStyle.NORMAL。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                              |
+| fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle)                      | 否   | 字体样式。<br/>默认值：FontStyle.Normal<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| strokeWidth<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 文本描边宽度。如果LengthMetrics的unit值是percent，当前设置不生效，处理为0。<br/>设置值小于0时为实心字，大于0时为空心字。<br/>默认值为0。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| strokeColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | 文本描边颜色。<br/>默认值为字体颜色，设置异常值时取字体颜色。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| superscript<sup>20+</sup> | [SuperscriptStyle](ts-text-common.md#superscriptstyle20枚举说明)     | 否   | 文本上下角标。<br/>默认值：SuperscriptStyle.NORMAL<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## GestureStyle
 
@@ -703,7 +703,7 @@ constructor(value: DecorationStyleInterface, options?: DecorationOptions)
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [DecorationStyleInterface](#decorationstyleinterface) | 是   | 文本装饰线设置项。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+| value | [DecorationStyleInterface](#decorationstyleinterface) | 是   | 文本装饰线设置项。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID,&nbsp;<br/>&nbsp;thicknessScale:&nbsp;1.0<br/>} |
 | options | [DecorationOptions](#decorationoptions20) | 否   | 文本装饰线额外配置选项。<br/>默认值：<br/>{<br/>&nbsp;enableMultiType:&nbsp;undefined<br/>} |
 
 ## DecorationStyleInterface
@@ -1085,8 +1085,8 @@ invalidate(): void
 | maxLines   | number   | 是    | 是    | 获取属性字符串文本段落的最大行数。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   | 是    | 是   | 获取属性字符串文本段落超长时的显示方式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是    | 是    | 获取属性字符串文本段落的断行规则。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| leadingMargin   | number \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 是    | 是   | 获取属性字符串文本段落的缩进。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| paragraphSpacing<sup>19+</sup>  | number | 是    | 是   | 获取属性字符串文本段落的段落间距。单位VP。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
+| leadingMargin   | number \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 是    | 是   | 获取属性字符串文本段落的缩进。<br/>返回为number类型时，单位为vp。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| paragraphSpacing<sup>19+</sup>  | number | 是    | 是   | 获取属性字符串文本段落的段落间距。<br/>单位：vp<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 
 >  **说明：**
 >
@@ -1116,12 +1116,12 @@ constructor(value?: ParagraphStyleInterface)
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  否  | 设置文本段落在水平方向的对齐方式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| textIndent | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | 否    | 设置文本段落的首行文本缩进。不支持百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| maxLines   | number   | 否    | 设置文本段落的最大行数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   |  否    | 设置文本段落超长时的显示方式。<br />需配合maxLines使用，单独设置不生效。不支持TextOverflow.MARQUEE。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置文本段落的断行规则。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 否    | 设置文本段落的缩进。不支持百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  否  | 设置文本段落在水平方向的对齐方式。<br/>默认值：TextAlign.Start<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| textIndent | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | 否    | 设置文本段落的首行文本缩进。不支持百分比。<br/>默认值：0<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| maxLines   | number   | 否    | 设置文本段落的最大行数，默认不限制。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   |  否    | 设置文本段落超长时的显示方式。<br/>默认值：TextOverflow.None<br />需配合maxLines使用，单独设置不生效。不支持TextOverflow.MARQUEE。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置文本段落的断行规则。<br/>默认值：WordBreak.NORMAL<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 否    | 设置文本段落的缩进。不支持百分比。<br/>默认值：0<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | paragraphSpacing<sup>19+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | 设置文本段落的段落间距。<br/>段落间距默认大小为0。不支持百分比。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 
 ## UserDataSpan
