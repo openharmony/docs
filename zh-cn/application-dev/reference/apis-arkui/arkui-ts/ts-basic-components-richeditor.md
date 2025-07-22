@@ -154,10 +154,6 @@ decoration:{
 当enableDataDetector设置为true，并且[copyOptions](#copyoptions)设置为CopyOptions.LocalDevice或CopyOptions.CROSS_DEVICE，组件在非编辑态选中内容，选中区包含单个AI实体时，根据AI实体的类型，在文本选择菜单中显示AI菜单选项。
 AI菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url（打开链接）、email（新建邮件）、phoneNumber（呼叫）、address（导航至该位置）、dateTime（新建日程提醒）。
 
-从API version 20开始，组件文本选择菜单支持显示问问小艺。
-组件在编辑态下，[copyOptions](#copyoptions)设置为CopyOptions.LocalDevice或CopyOptions.CROSS_DEVICE，组件内选中任意文本内容时，文本选择菜单与鼠标右键菜单中都可以显示问问小艺选项。组件在非编辑态下，enableDataDetector设置为true，并且[copyOptions](#copyoptions)设置为CopyOptions.LocalDevice或CopyOptions.CROSS_DEVICE，组件内选中文本，文本选择菜单与鼠标右键菜单中不显示其他AI菜单时，显示问问小艺选项。
-问问小艺选项为[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的askAI（问问小艺）。
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
