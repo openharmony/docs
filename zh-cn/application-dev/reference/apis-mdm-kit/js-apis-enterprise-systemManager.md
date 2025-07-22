@@ -441,15 +441,17 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
   });
 ```
 
-## systemManager.setAutoUnlockAfterReboot
+## systemManager.setAutoUnlockAfterReboot<sup>20+</sup>
 
 setAutoUnlockAfterReboot(admin: Want, isAllowed: boolean): void
 
-设置重启自动解锁。
+设置重启自动解锁，仅针对无锁屏密码设备生效，当前仅支持PC/2ni设备使用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -472,10 +474,12 @@ setAutoUnlockAfterReboot(admin: Want, isAllowed: boolean): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+import { systemManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 let isAllowed: boolean = true;
 try {
@@ -486,7 +490,7 @@ try {
 }
 ```
 
-## systemManager.getAutoUnlockAfterReboot
+## systemManager.getAutoUnlockAfterReboot<sup>20+</sup>
 
 getAutoUnlockAfterReboot(admin: Want): boolean
 
@@ -495,6 +499,8 @@ getAutoUnlockAfterReboot(admin: Want): boolean
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -506,7 +512,7 @@ getAutoUnlockAfterReboot(admin: Want): boolean
 
 | 类型   | 说明                                |
 | ------ | ----------------------------------- |
-| boolean | 返回true表示开启重启自动解锁，false表示不开启重启自动解锁。 |
+| boolean | 返回true表示已开启重启自动解锁，false表示未开启重启自动解锁。 |
 
 **错误码**：
 
@@ -522,11 +528,12 @@ getAutoUnlockAfterReboot(admin: Want): boolean
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
+import { systemManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
   systemManager.getAutoUnlockAfterReboot(wantTemp);
