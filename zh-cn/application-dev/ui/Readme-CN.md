@@ -32,6 +32,7 @@
     - [@AnimatableExtend装饰器：定义可动画属性](../ui/state-management/arkts-animatable-extend.md)
     - [@Require装饰器：校验构造传参](../ui/state-management/arkts-require.md)
     - [@Reusable装饰器：组件复用](../ui/state-management/arkts-reusable.md)
+    - [$$()语法：系统组件双向同步（ArkTS1.2）](state-management/arkts-two-way-sync1.2.md) 
   - 学习UI范式状态管理<!--arkts-state-management-->
     - [状态管理概述](state-management/arkts-state-management-overview.md)
     - 状态管理（V1）<!--arkts-state-management-v1-->
@@ -50,7 +51,7 @@
       - 其他状态管理<!--arkts-other-state-mgmt-functions-->
         - [其他状态管理概述](state-management/arkts-other-state-mgmt-functions-overview.md)
         - [\@Watch装饰器：状态变量更改通知](state-management/arkts-watch.md)
-        - [$$语法：系统组件双向同步](state-management/arkts-two-way-sync.md)
+        - [$$语法：系统组件双向同步（ArkTS1.1）](state-management/arkts-two-way-sync.md)
         - [\@Track装饰器：class对象属性级更新](state-management/arkts-track.md)
         - [自定义组件冻结功能](state-management/arkts-custom-components-freeze.md)
       - [MVVM模式](state-management/arkts-mvvm.md)
@@ -72,7 +73,7 @@
       - 其他状态管理<!--arkts-new-other-state-mgmt-->
         - [AppStorageV2: 应用全局UI状态存储](state-management/arkts-new-appstoragev2.md)
         - [PersistenceV2: 持久化存储UI状态](state-management/arkts-new-persistencev2.md)
-        - [!!语法：双向绑定](state-management/arkts-new-binding.md)
+        - [!!语法：双向绑定（ArkTS1.1）](state-management/arkts-new-binding.md)
         - [自定义组件冻结功能](state-management/arkts-custom-components-freezeV2.md)
         - [Repeat：可复用的循环渲染](state-management/arkts-new-rendering-control-repeat.md)
         - [getTarget接口：获取状态管理框架代理前的原始对象](state-management/arkts-new-getTarget.md)

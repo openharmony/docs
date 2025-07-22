@@ -430,6 +430,7 @@
   - 状态管理与渲染控制<!--state-management-and-rendering-control-->
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
     - [状态变量变化监听](arkui-ts/ts-state-management-watch-monitor.md)
+    - [组件双向绑定（ArkTS1.2）](js-apis-twoWayBinding1.2.md)
     - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
     - [LazyForEach](arkui-ts/ts-rendering-control-lazyforeach.md)
     - [Repeat](arkui-ts/ts-rendering-control-repeat.md)
