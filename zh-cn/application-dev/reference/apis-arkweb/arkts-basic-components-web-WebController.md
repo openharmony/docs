@@ -643,16 +643,18 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
   <!-- index.html -->
   <!DOCTYPE html>
   <html>
-      <meta charset="utf-8">
+      <head>
+          <meta charset="utf-8">
+      </head>
       <body>
           Hello world!
+          <script type="text/javascript">
+              function htmlTest() {
+                  str = objName.test("test function")
+                  console.log('objName.test result:'+ str)
+              }
+          </script>
       </body>
-      <script type="text/javascript">
-      function htmlTest() {
-          str = objName.test("test function")
-          console.log('objName.test result:'+ str)
-      }
-  </script>
   </html>
 
   ```
@@ -708,16 +710,18 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
   <!-- index.html -->
   <!DOCTYPE html>
   <html>
-    <meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
+    </head>
     <body>
         Hello world!
+        <script type="text/javascript">
+            function test() {
+                console.log('Ark WebComponent')
+                return "This value is from index.html"
+            }
+        </script>
     </body>
-    <script type="text/javascript">
-    function test() {
-        console.log('Ark WebComponent')
-        return "This value is from index.html"
-    }
-    </script>
   </html>
   ```
 
