@@ -440,7 +440,7 @@ struct Library {
         .width(312)
         .height(40)
         .margin(12)
-        .fontColor('#FFFFFF 90%')
+        .fontColor('#FFFFFF,90%')
         .onClick(() => {
           this.allBooks.push(new Book("JA", 512));
         })
@@ -448,7 +448,7 @@ struct Library {
         .width(312)
         .height(40)
         .margin(12)
-        .fontColor('#FFFFFF 90%')
+        .fontColor('#FFFFFF,90%')
         .onClick(() => {
           if (this.allBooks.length > 0) {
             this.allBooks.shift();
@@ -460,7 +460,7 @@ struct Library {
         .width(312)
         .height(40)
         .margin(12)
-        .fontColor('#FFFFFF 90%')
+        .fontColor('#FFFFFF,90%')
         .onClick(() => {
           this.allBooks.forEach((book) => book.readIt = true)
         })
