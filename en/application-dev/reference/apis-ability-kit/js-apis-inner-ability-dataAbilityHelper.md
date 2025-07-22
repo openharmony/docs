@@ -1,6 +1,6 @@
 # DataAbilityHelper
 
-The **DataAbilityHelper** object is obtained through [acquireDataAbilityHelper](js-apis-ability-featureAbility.md#featureabilityacquiredataabilityhelper7).
+A DataAbilityHelper object is obtained through [acquireDataAbilityHelper](js-apis-ability-featureAbility.md#featureabilityacquiredataabilityhelper7).
 
 > **NOTE**
 > 
@@ -342,7 +342,7 @@ Converts the URI that refers to a DataAbility into a normalized URI. This API us
 | Name    | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                 | Yes  | URI object to normalize.                                     |
-| callback | AsyncCallback\<string> | Yes  | Callback used to return the normalized URI object if the Data ability supports URI normalization. If the Data ability does not support URI normalization, **null** is returned.|
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the normalized URI object if the DataAbility supports URI normalization. If the DataAbility does not support URI normalization, null is returned.|
 
 **Example**
 
@@ -383,7 +383,7 @@ Converts the URI that refers to a DataAbility into a normalized URI. This API us
 
 | Type            | Description                                                  |
 | ---------------- | ------------------------------------------------------ |
-| Promise\<string> | Promise used to return the normalized URI object if the Data ability supports URI normalization. If the Data ability does not support URI normalization, **null** is returned.|
+| Promise\<string> | Promise used to return the normalized URI object if the DataAbility supports URI normalization. If the DataAbility does not support URI normalization, null is returned.|
 
 **Example**
 
@@ -561,7 +561,7 @@ Inserts a single data record into the database. This API uses an asynchronous ca
 | Name        | Type                  | Mandatory| Description                                                  |
 | ------------ | ---------------------- | ---- | ------------------------------------------------------ |
 | uri          | string                 | Yes  | URI of the data to insert.                              |
-| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)       | Yes  | Data record to insert. If this parameter is **null**, a blank row will be inserted.|
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)       | Yes  | Data record to insert. If this parameter is null, a blank row will be inserted.|
 | callback     | AsyncCallback\<number> | Yes  | Callback used to return the index of the inserted data record.                    |
 
 **Example**
@@ -605,7 +605,7 @@ Inserts a single data record into the database. This API uses a promise to retur
 | Name        | Type            | Mandatory| Description                                                  |
 | ------------ | ---------------- | ---- | ------------------------------------------------------ |
 | uri          | string           | Yes  | URI of the data to insert.                              |
-| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket) | Yes  | Data record to insert. If this parameter is **null**, a blank row will be inserted.|
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket) | Yes  | Data record to insert. If this parameter is null, a blank row will be inserted.|
 
 **Return value**
 
@@ -732,7 +732,7 @@ Deletes one or more data records from the database. This API uses an asynchronou
 | Name        | Type                             | Mandatory| Description                                            |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | Yes  | URI of the data to delete.                        |
-| predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**.|
+| predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is null.|
 | callback     | AsyncCallback\<number>            | Yes  | Callback used to return the number of deleted data records.              |
 
 **Example**
@@ -771,7 +771,7 @@ Deletes one or more data records from the database. This API uses a promise to r
 | Name        | Type                             | Mandatory| Description                                            |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | Yes  | URI of the data to delete.                        |
-| predicates | dataAbility.DataAbilityPredicates | No  | Filter criteria. You should define the processing logic when this parameter is **null**.|
+| predicates | dataAbility.DataAbilityPredicates | No  | Filter criteria. You should define the processing logic when this parameter is null.|
 
 **Return value**
 
@@ -848,7 +848,7 @@ Updates data in the database. This API uses an asynchronous callback to return t
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | Yes  | URI of the data to update.                        |
 | valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)                  | Yes  | New values.                              |
-| predicates   | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**.|
+| predicates   | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is null.|
 | callback     | AsyncCallback\<number>            | Yes  | Callback used to return the number of updated data records.                |
 
 **Example**
@@ -895,7 +895,7 @@ Updates data in the database. This API uses a promise to return the result.
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | Yes  | URI of the data to update.                        |
 | valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)                  | Yes  | New values.                              |
-| predicates   | dataAbility.DataAbilityPredicates | No  | Filter criteria. You should define the processing logic when this parameter is **null**.|
+| predicates   | dataAbility.DataAbilityPredicates | No  | Filter criteria. You should define the processing logic when this parameter is null.|
 
 **Return value**
 
@@ -986,9 +986,9 @@ Queries data in the database. This API uses an asynchronous callback to return t
 | Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | Yes  | URI of the data to query.                        |
-| columns    | Array\<string>                | Yes  | Columns to query. If this parameter is **null**, all columns will be queried.  |
-| predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. When **null** is passed in, you need to customize the logic for querying data in the database.|
-| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)>         | Yes  | Callback used to return the result.                        |
+| columns    | Array\<string>                | Yes  | Columns to query. If this parameter is null, all columns will be queried.  |
+| predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. When null is passed in, you need to customize the logic for querying data in the database.|
+| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md)>         | Yes  | Callback used to return the result.                        |
 
 **Example**
 
@@ -1027,7 +1027,7 @@ Queries data in the database. This API uses an asynchronous callback to return t
 | Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | Yes  | URI of the data to query.                        |
-| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)>         | Yes  | Callback used to return the result.                        |
+| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md)>         | Yes  | Callback used to return the result.                        |
 
 **Example**
 
@@ -1063,8 +1063,8 @@ Queries data in the database. This API uses an asynchronous callback to return t
 | Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | Yes  | URI of the data to query.                        |
-| columns    | Array\<string>                | Yes  | Columns to query. If this parameter is **null**, all columns will be queried.  |
-| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)>         | Yes  | Callback used to return the result.                        |
+| columns    | Array\<string>                | Yes  | Columns to query. If this parameter is null, all columns will be queried.  |
+| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md)>         | Yes  | Callback used to return the result.                        |
 
 **Example**
 
@@ -1101,8 +1101,8 @@ Queries data in the database. This API uses an asynchronous callback to return t
 | Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | Yes  | URI of the data to query.                        |
-| predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. When **null** is passed in, you need to customize the logic for querying data in the database.|
-| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)>         | Yes  | Callback used to return the result.                        |
+| predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. When null is passed in, you need to customize the logic for querying data in the database.|
+| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md)>         | Yes  | Callback used to return the result.                        |
 
 **Example**
 
@@ -1140,14 +1140,14 @@ Queries data in the database. This API uses a promise to return the result.
 | Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | Yes  | URI of the data to query.                        |
-| columns    | Array\<string>               | No  | Columns to query. If this parameter is **null**, all columns will be queried.  |
-| predicates | dataAbility.DataAbilityPredicates | No  | Filter criteria. When **null** is passed in, you need to customize the logic for querying data in the database.|
+| columns    | Array\<string>               | No  | Columns to query. If this parameter is null, all columns will be queried.  |
+| predicates | dataAbility.DataAbilityPredicates | No  | Filter criteria. When null is passed in, you need to customize the logic for querying data in the database.|
 
 **Return value**
 
 | Type               | Description          |
 | ------------------- | -------------- |
-| Promise\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)> | Promise used to return the result.|
+| Promise\<[ResultSet](../apis-arkdata/arkts-apis-data-relationalStore-ResultSet.md)> | Promise used to return the result.|
 
 **Example**
 
@@ -1267,7 +1267,7 @@ Operates data in the database in batches. This API uses an asynchronous callback
 | ----------| ---------------------------------| ---- | ------------------------------------------------ |
 | uri       | string                           | Yes  | URI of the DataAbility. Example: 'dataability:///com.example.xxx.xxxx'.|
 | operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>        | Yes  | An array holding the data operations on the database.  |
-| callback      |  AsyncCallback\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>>    | Yes  | Callback used to return the result of each operation in the **DataAbilityResult** array.     |
+| callback      |  AsyncCallback\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>>    | Yes  | Callback used to return the result of each operation in the DataAbilityResult array.     |
 
 **Example**
 
@@ -1311,7 +1311,7 @@ Operates data in the database in batches. This API uses a promise to return the 
 
 | Type| Description|
 |------ | ------- |
-|Promise\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>> | Promise used to return the result of each operation in the **DataAbilityResult** array.|
+|Promise\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>> | Promise used to return the result of each operation in the DataAbilityResult array.|
 
 **Example**
 
@@ -1336,10 +1336,12 @@ dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbi
 
 ## PacMap
 
-Defines the **PacMap** type used for data storage.
+Defines the PacMap type used for data storage.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 | Name| Type| Read-Only| Optional| Description|
 | ----- | ---- | ---- | ---- | ---- |
 | [key: string]  | number \| string \| boolean \| Array\<string \| number \| boolean> \| null  | No| No| Data stored in key-value pairs.|
+
+<!--no_check-->

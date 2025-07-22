@@ -18,7 +18,7 @@ The vertical domain panel provides secure and trusted applications available on 
 
 ### Matching Rules
 
-The [UIAbilityContext.startAbilityByType](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybytype11) and [UIExtensionContentSession.startAbilityByType](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionstartabilitybytype11) APIs can be used to start a vertical domain panel based on the business category specified by the caller. The vertical applications available on the device are displayed on the panel.
+The [UIAbilityContext.startAbilityByType](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybytype11) and [UIExtensionContentSession.startAbilityByType](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#startabilitybytype11) APIs can be used to start a vertical domain panel based on the business category specified by the caller. The vertical applications available on the device are displayed on the panel.
 
 
 Based on the **type** and **wantParams.sceneType** values passed in the **startAbilityByType** API, the system matches the target application that declares the corresponding [linkFeature](../quick-start/module-configuration-file.md#skills) in the **module.json5** file based on the following mappings.

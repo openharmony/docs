@@ -119,7 +119,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = '';
 try {
-  metadataBinding.off('operationSubmitMetadata', bundleName, (evnet: number)=>{});
+  metadataBinding.off('operationSubmitMetadata', bundleName, (event: number)=>{});
 } catch (error) {
   console.error("unsubscript screenshot event" + error);
 }

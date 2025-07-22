@@ -21,8 +21,9 @@
       - [UIExtensionAbility (for System Applications Only)](uiextensionability.md)
       - [AutoFillExtensionAbility (for System Applications Only)](autofillextensionablility-guide.md)
       <!--DelEnd-->
-      - [UIServiceExtensionAbility](uiserviceextension.md)
+      - [Using UIServiceExtensionAbility for System Floating Windows](uiserviceextension.md)
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
+      - [Using AppServiceExtensionAbility for Background Services](app-service-extension-ability.md)
     - [AbilityStage Component Container](abilitystage.md)
     - [Context](application-context-stage.md)
     - Want<!--want-->
@@ -39,7 +40,7 @@
       - [Cross-Device Migration](hop-cross-device-migration.md)
       - [Multi-device Collaboration](hop-multi-device-collaboration.md)
     <!--DelEnd-->
-    - [Subscribing to System Environment Variable Changes](subscribe-system-environment-variable-changes.md)
+    - [Obtaining/Setting Environment Variables](subscribe-system-environment-variable-changes.md)
   - Inter-Application Redirection<!--inter-app-redirection-->
     - [Overview of Application Redirection](link-between-apps-overview.md)
     - Starting a Specified Application<!--directional-redirection-->
@@ -72,6 +73,14 @@
     - [Setting the Icon and Name of a Mission Snapshot](mission-set-icon-name-for-task-snapshot.md)
   <!--DelEnd-->
   - [Application Configuration File](config-file-stage.md)
+  - InsightIntent Framework Development<!--insight-intent-->
+    - [InsightIntent Framework Overview](insight-intent-overview.md)
+    - Intent Development<!--insight-intent-development-->
+      - [Intent Development Overview](insight-intent-definition.md)
+      - [Developing Intents Using Configuration Files](insight-intent-config-development.md)
+      - [Developing Intents Using Decorators](insight-intent-decorator-development.md)
+      - [Appendix: Standard Intent Access Specifications](insight-intent-access-specifications.md)
+    - [Debugging Intents](insight-intent-debug.md)
 - FA Model Development<!--fa-model-development-->
   - [FA Model Development Overview](fa-model-development-overview.md)
   - FA Model Application Components<!--fa-model-application-components-->

@@ -21,7 +21,7 @@ The implementation code is as follows:
 ```c
 #include <stdio.h>
 #include <unistd.h>
-#include "ffrt/ffrt.h"
+#include "ffrt/ffrt.h" // From the OpenHarmony third-party library "@ppd/ffrt"
 
 ffrt_queue_t create_bank_system(const char *name, int concurrency)
 {

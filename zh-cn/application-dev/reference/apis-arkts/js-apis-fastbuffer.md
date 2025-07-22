@@ -910,18 +910,18 @@ keys(): IterableIterator&lt;number&gt;
 import { fastbuffer } from '@kit.ArkTS';
 
 let buf = fastbuffer.from('buffer');
-let numbers = Array.from(buf.keys());
-for (const key of numbers) {
+let keys = buf.keys();
+for (const key of keys) {
   console.info(key.toString());
-  /*
-  输出结果：0
-           1
-           2
-           3
-           4
-           5
-  */
 }
+/*
+输出结果：0
+        1
+        2
+        3
+        4
+        5
+*/
 ```
 
 ### values

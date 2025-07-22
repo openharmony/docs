@@ -95,15 +95,13 @@ videoElement.addEventListener('leavepictureinpicture', function (event) {
 
   ```ts
   // xxx.ets
-  import {webview} from '@kit.ArkWeb';
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct Index {
-    @State videoSrc: Resource = $rawfile('PictureInPicture.html')
-
-
-    controller: webview.WebviewController = new webview.WebviewController()
+    @State videoSrc: Resource = $rawfile('PictureInPicture.html');
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {

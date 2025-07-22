@@ -1330,8 +1330,8 @@ UDMF提供的数据操作接口包含三个可选参数：intention、key和visi
 
 | 名称     | 类型                                  | 只读 | 可选 | 说明                                                             |
 | -------- |-------------------------------------| ---- | ---- |----------------------------------------------------------------|
-| progress | number                              | 是   | 否   | 系统上报拖拽任务进度百分比。取值范围为[-1-100]的整数，其中-1时代表本次获取数据失败，100时表示本次获取数据完成。 |
-| status | [ListenerStatus](#listenerstatus15) | 是   | 否   | 系统上报拖拽任务的状态码。                                                  |
+| progress | number                              | 否   | 否   | 系统上报拖拽任务进度百分比。取值范围为[-1-100]的整数，其中-1时代表本次获取数据失败，100时表示本次获取数据完成。 |
+| status | [ListenerStatus](#listenerstatus15) | 否   | 否   | 系统上报拖拽任务的状态码。                                                  |
 
 ## DataProgressListener<sup>15+</sup>
 
@@ -1360,13 +1360,13 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 
 **参数：**
 
-| 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
-|----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
-| progressIndicator    | [ProgressIndicator](#progressindicator15)       | 是 | 定义进度条指示选项，可选择是否采用系统默认进度显示。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。                                                                                                                         |
-| dataProgressListener | [DataProgressListener](#dataprogresslistener15) | 是 | 表示获取统一数据时的进度和数据监听器。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。                                                                                                                                |
-| destUri              | string                                          | 否 | 拷贝文件的目标路径。若不支持文件处理，则不需要设置此参数,默认为空；若支持文件处理，须设置一个已经存在的目录。若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。不填写时获取到到的uri为源端路径URI，填写后获取到的uri为目标路径uri。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
-| fileConflictOptions  | [FileConflictOptions](#fileconflictoptions15)   | 否   | 定义文件拷贝冲突时的选项，默认为OVERWRITE。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。                                                                                                                         |
-| acceptableInfo<sup>20+</sup>  | [DataLoadInfo](#dataloadinfo20)   | 否   | 定义接收方对数据类型和数据记录数量的接收能力。延迟加载场景下，发送方可根据此信息生成并返回更合适的数据内容。默认为空，不提供接收方数据接收能力。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。   |
+| 名称                   | 类型                                              | 只读 | 可选 | 说明                                                                                                                                                 |
+|----------------------|-------------------------------------------------| ---- | ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
+| progressIndicator    | [ProgressIndicator](#progressindicator15)       | 否   | 否   | 定义进度条指示选项，可选择是否采用系统默认进度显示。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。                                                                                                                         |
+| dataProgressListener | [DataProgressListener](#dataprogresslistener15) | 否   | 否   | 表示获取统一数据时的进度和数据监听器。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。                                                                                                                                |
+| destUri              | string                                          | 否   | 是   | 拷贝文件的目标路径。若不支持文件处理，则不需要设置此参数，默认为空；若支持文件处理，须设置一个已经存在的目录。若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。不填写时获取到到的uri为源端路径URI，填写后获取到的uri为目标路径uri。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| fileConflictOptions  | [FileConflictOptions](#fileconflictoptions15)   | 否   | 是   | 定义文件拷贝冲突时的选项，默认为OVERWRITE。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。                                                                                                                         |
+| acceptableInfo<sup>20+</sup>  | [DataLoadInfo](#dataloadinfo20)   | 否   | 是   | 定义接收方对数据类型和数据记录数量的接收能力。延迟加载场景下，发送方可根据此信息生成并返回更合适的数据内容。默认为空，不提供接收方数据接收能力。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。   |
 
 ## DataLoadInfo<sup>20+</sup>
 

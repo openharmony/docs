@@ -99,8 +99,6 @@
     - [创建弧形列表 (ArcList)](arkts-layout-development-create-arclist.md)（圆形屏幕推荐使用）
     - [创建网格 (Grid/GridItem)](arkts-layout-development-create-grid.md)
     - [创建瀑布流 (WaterFlow)](arkts-layout-development-create-waterflow.md)
-  - 添加组件<!--arkts-add-component-->
-    - [自定义渲染 (XComponent)](napi-xcomponent-guidelines.md)
   - 使用文本<!--arkts-use-text-->
     - [文本概述](arkts-text-introduction.md)
     - [文本显示 (Text/Span)](arkts-common-components-text-display.md)
@@ -114,14 +112,15 @@
     - [视频播放 (Video)](arkts-common-components-video-player.md)
     - [创建轮播 (Swiper)](arkts-layout-development-create-looping.md)
     - [创建弧形轮播 (ArcSwiper)](arkts-layout-development-arcswiper.md)（圆形屏幕推荐使用）
-  - 信息展示<!--arkts-information-display-->
-    - [进度条 (Progress)](arkts-common-components-progress-indicator.md)
   - 表单选择<!--arkts-form-selection-->
     - [表单与选择组件概述](arkts-forms-overview.md)
     - [按钮 (Button)](arkts-common-components-button.md)
     - [弧形按钮 (ArcButton)](arkts-advanced-components-arcbutton.md)（圆形屏幕推荐使用）
     - [单选框 (Radio)](arkts-common-components-radio-button.md)
     - [切换按钮 (Toggle)](arkts-common-components-switch.md)
+  - 添加组件<!--arkts-add-component-->
+    - [自定义渲染 (XComponent)](napi-xcomponent-guidelines.md)
+    - [进度条 (Progress)](arkts-common-components-progress-indicator.md)
   - 使用弹窗<!--arkts-use-dialog-->
      - [弹窗概述](arkts-dialog-overview.md)
      - 使用弹出框 (Dialog)<!--arkts-use-dialogs-->
@@ -151,7 +150,6 @@
     - [几何图形绘制概述](arkts-shape-overview.md)
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
     - [形状裁剪 (clipShape)](arkts-clip-shape.md)
-    - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
   - [添加交互响应](arkts-interaction-development-guide-overview.md)
     - [交互响应概述](arkts-interaction-capability-overview.md)
     - [交互基础机制说明](arkts-interaction-basic-principles.md)
@@ -194,8 +192,6 @@
       - [阴影](arkts-shadow-effect.md)
       - [色彩](arkts-color-effect.md)
     - [帧动画（ohos.animator）](arkts-animator.md)
-  - Modifier机制<!--arkts-modifier-mechanism-->
-    - [ContentModifier (内容修改器)](arkts-common-attributes-content-modifier.md)
   - 使用自定义能力<!--arkts-user-defined-capabilities-->
     - [自定义能力概述](arkts-user-defined.md)
     - [自定义组合](arkts-user-defined-composition.md)
@@ -206,12 +202,15 @@
       - [自定义渲染节点 (RenderNode)](arkts-user-defined-arktsNode-renderNode.md)
       - [自定义声明式节点 (BuilderNode)](arkts-user-defined-arktsNode-builderNode.md)
       - [设置自定义节点跨语言属性](arkts-user-defined-arktsNode-crossLanguage.md)
-    - 自定义扩展<!--arkts-modifier-->
+    - 自定义绘制<!--arkts-draw-->
+      - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
+      - [自定义绘制修改器 (DrawModifier)](arkts-user-defined-extension-drawModifier.md)
+    - Modifier机制<!--arkts-modifier-->
       - [自定义扩展概述](arkts-user-defined-modifier.md)
+      - [内容修改器 (ContentModifier)](arkts-common-attributes-content-modifier.md)
       - [属性修改器 (AttributeModifier)](arkts-user-defined-extension-attributeModifier.md)
       - [属性更新器 (AttributeUpdater)](arkts-user-defined-extension-attributeUpdater.md)
-      - [自定义绘制修改器 (DrawModifier)](arkts-user-defined-extension-drawModifier.md)
-  - [使用镜像能力](arkts-mirroring-display.md)
+  - [UI国际化](arkts-internationalization.md)
   - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
     - [支持无障碍](arkts-universal-attributes-accessibility.md)
     - [支持适老化](arkui-support-for-aging-adaptation.md)
@@ -229,29 +228,34 @@
     - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
     - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](arkts-isolated-components.md)
     <!--DelEnd-->
-  - 使用NDK接口构建UI<!--arkts-use-ndk-->
-    - [NDK接口概述](ndk-build-ui-overview.md)
-    - [接入ArkTS页面](ndk-access-the-arkts-page.md)
-    - 添加交互事件<!--arkts-add-event-->
-      - [监听组件事件](ndk-listen-to-component-events.md)
-      - [绑定手势事件](ndk-bind-gesture-events.md)
-      - [拖拽事件](ndk-drag-event.md)
-      - [监听组件布局和绘制送显事件](ndk-inspector-component-observer.md)
-    - [使用动画](ndk-use-animation.md)
-    - 构建布局<!--arkts-build-layout-ndk-->
-      - [使用列表](ndk-loading-long-list.md)
-      - [使用瀑布流](ndk-waterflow.md)
-    - 使用文本<!--arkts-build-text-ndk-->
-        - [Text组件的文本绘制与显示](ndk-styled-string.md)
-        - [输入框文本事件监听](ndk-textarea-event.md)
-    - [构建弹窗](ndk-build-pop-up-window.md)
-    - [构建自定义组件](ndk-build-custom-components.md)
-    - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
-    - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
-    - [自定义绘制](arkts-user-defined-draw.md)
-    - [查询和操作自定义节点](ndk-node-query-operate.md)
-    - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md)
-    - [在NDK中保证多实例场景功能正常](ndk-scope-task.md)
+  - UI开发调优<!--ui-inspector-profiler-->
+    - [预览](ui-ide-previewer.md)
+    - [调试](ui-inspector-profiler.md)
+  - UI高性能开发<!--ui-performance-->
+    - [UI性能优化概览](ui-performance-overview.md)
+- UI开发 (基于NDK构建UI)<!--arkts-use-ndk-->
+  - [NDK接口概述](ndk-build-ui-overview.md)
+  - [接入ArkTS页面](ndk-access-the-arkts-page.md)
+  - 添加交互事件<!--arkts-add-event-->
+    - [监听组件事件](ndk-listen-to-component-events.md)
+    - [绑定手势事件](ndk-bind-gesture-events.md)
+    - [拖拽事件](ndk-drag-event.md)
+    - [监听组件布局和绘制送显事件](ndk-inspector-component-observer.md)
+  - [使用动画](ndk-use-animation.md)
+  - 构建布局<!--arkts-build-layout-ndk-->
+    - [使用列表](ndk-loading-long-list.md)
+    - [使用瀑布流](ndk-waterflow.md)
+  - 使用文本<!--arkts-build-text-ndk-->
+      - [Text组件的文本绘制与显示](ndk-styled-string.md)
+      - [输入框文本事件监听](ndk-textarea-event.md)
+  - [构建弹窗](ndk-build-pop-up-window.md)
+  - [构建自定义组件](ndk-build-custom-components.md)
+  - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
+  - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
+  - [自定义绘制](arkts-user-defined-draw.md)
+  - [查询和操作自定义节点](ndk-node-query-operate.md)
+  - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md)
+  - [在NDK中保证多实例场景功能正常](ndk-scope-task.md)
 - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明<!--js-framework-overview-->

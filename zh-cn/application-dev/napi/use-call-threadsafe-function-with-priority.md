@@ -70,20 +70,24 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
 
     static void WorkComplete(napi_env env, napi_status status, void *data) {
         CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
+        if (callbackData == nullptr) {
+            return;
+        }
         napi_release_threadsafe_function(callbackData->tsfn, napi_tsfn_release);
         napi_delete_async_work(env, callbackData->work);
         callbackData->work = nullptr;
         callbackData->tsfn = nullptr;
+        delete callbackData;
     }
 
     static napi_value CallThreadSafeWithPriority(napi_env env, napi_callback_info info) {
         size_t argc = 1;
         napi_value jsCb = nullptr;
-        CallbackData *callbackData = nullptr;
-        napi_get_cb_info(env, info, &argc, &jsCb, nullptr, reinterpret_cast<void **>(&callbackData));
+        CallbackData *callbackData = new CallbackData();
+        napi_get_cb_info(env, info, &argc, &jsCb, nullptr, nullptr);
         napi_value resourceName = nullptr;
         napi_create_string_utf8(env, "Thread-safe Function Demo", NAPI_AUTO_LENGTH, &resourceName);
-        napi_create_threadsafe_function(env, jsCb, nullptr, resourceName, 0, 1, callbackData, nullptr, callbackData, CallJs,
+        napi_create_threadsafe_function(env, jsCb, nullptr, resourceName, 0, 1, nullptr, nullptr, nullptr, CallJs,
                                         &callbackData->tsfn);
         napi_create_async_work(env, nullptr, resourceName, ExecuteWork, WorkComplete, callbackData, &callbackData->work);
         napi_queue_async_work(env, callbackData->work);
@@ -94,9 +98,8 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
     EXTERN_C_START
     static napi_value Init(napi_env env, napi_value exports)
     {
-        CallbackData *callbackData = new CallbackData();
         napi_property_descriptor desc[] = {
-            { "callThreadSafeWithPriority", nullptr, CallThreadSafeWithPriority, nullptr, nullptr, nullptr, napi_default, callbackData }
+            { "callThreadSafeWithPriority", nullptr, CallThreadSafeWithPriority, nullptr, nullptr, nullptr, napi_default, nullptr }
         };
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
@@ -146,7 +149,7 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
 
     include_directories(${NATIVERENDER_ROOT_PATH}
                         ${NATIVERENDER_ROOT_PATH}/include)
-    add_library(entry SHARED hello.cpp)
+    add_library(entry SHARED napi_init.cpp)
     target_link_libraries(entry PUBLIC libace_napi.z.so)
     ```
     <!-- @[napi_call_threadsafe_function_with_priority_cmake](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/CMakeLists.txt) -->

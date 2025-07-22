@@ -4928,7 +4928,7 @@
 
 **支持设备**：General
 
-**起始版本**：20
+**起始版本**：19
 
 ## ohos.permission.MANAGE_FILE_ENCRYPTION
 
@@ -5033,6 +5033,20 @@
 允许系统应用触发本地WantAgent实例。
 
 **权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20
+
+## ohos.permission.SANDBOX_ACCESS_MANAGER_EXT
+
+允许应用访问其它扩展应用的沙箱目录。
+
+**权限级别**：system_core
 
 **授权方式**：系统授权（system_grant）
 

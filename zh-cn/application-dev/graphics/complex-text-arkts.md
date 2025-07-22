@@ -250,7 +250,7 @@ struct Font08 {
    ```ts
    let myParagraphStyle: text.ParagraphStyle = {
      textStyle: myTextStyle,
-     // 本文对齐方式
+     // 文本对齐方式
      align: text.TextAlign.LEFT,
      // 最大行数
      maxLines: 3,
@@ -312,7 +312,7 @@ class MyRenderNode extends RenderNode {
     
     let myParagraphStyle: text.ParagraphStyle = {
       textStyle: myTextStyle,
-      // 本文对齐方式
+      // 文本对齐方式
       align: text.TextAlign.LEFT,
       // 最大行数
       maxLines: 3,
@@ -471,7 +471,7 @@ struct Font08 {
 
 **文本阴影**（[TextShadow](../reference/apis-arkgraphics2d/js-apis-graphics-text.md#textshadow)）为文本提供了深度感，使得文本在背景上更具立体感。通常用于提升文本的视觉吸引力或增强可读性，尤其是在色彩对比度较低的场景下。
 
-其中，TesxtShadow有三个属性，分别为阴影颜色color、阴影基于当前文本的偏移位置point、阴影半径blurRadius。
+其中，TextShadow有三个属性，分别为阴影颜色color、阴影基于当前文本的偏移位置point、阴影半径blurRadius。
 
 使用阴影效果需要在文本样式中设置对应的阴影效果数组，从而在文本绘制时生效。
 
@@ -578,7 +578,7 @@ struct Font08 {
    let placeholderRects = paragraph.getRectsForPlaceholders();//获取全部占位符的数组
    let left = placeholderRects[0].rect.left//获取第一个占位符的左边界
    let top = placeholderRects[0].rect.top//获取第一个占位符的上边界
-   let right = placeholderRects[0].rect.right//获取第一个占位符的有边界
+   let right = placeholderRects[0].rect.right//获取第一个占位符的右边界
    let bottom = placeholderRects[0].rect.bottom//获取第一个占位符的下边界
    let pen: drawing.Pen =  new drawing.Pen()
    let pen_color : common2D.Color = { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 }
@@ -673,7 +673,7 @@ class MyRenderNode extends RenderNode {
     let placeholderRects = paragraph.getRectsForPlaceholders();//获取全部占位符的数组
     let left = placeholderRects[0].rect.left// 获取第一个占位符的左边界
     let top = placeholderRects[0].rect.top// 获取第一个占位符的上边界
-    let right = placeholderRects[0].rect.right// 获取第一个占位符的有边界
+    let right = placeholderRects[0].rect.right// 获取第一个占位符的右边界
     let bottom = placeholderRects[0].rect.bottom// 获取第一个占位符的下边界
     let pen: drawing.Pen =  new drawing.Pen()
     let pen_color : common2D.Color = { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 }

@@ -1,6 +1,6 @@
 # AutoFillExtensionContext (System API)
 
-The **AutoFillExtensionContext** module, inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md), provides the context environment for the AutoFillExtensionAbility.
+The AutoFillExtensionContext module provides the context environment for the AutoFillExtensionAbility. It inherits from [ExtensionContext](js-apis-inner-application-extensionContext.md).
 
 > **NOTE**
 >
@@ -10,7 +10,7 @@ The **AutoFillExtensionContext** module, inherited from [ExtensionContext](js-ap
 
 ## Usage
 
-Before using the **AutoFillExtensionContext** module, you must define a child class that inherits from **AutoFillExtensionAbility**.
+Before using the AutoFillExtensionContext module, you must define a child class that inherits from AutoFillExtensionAbility.
 
 ```ts
 import { AutoFillExtensionAbility } from '@kit.AbilityKit';

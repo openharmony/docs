@@ -114,6 +114,17 @@
 | width  | number   | 是   | 是   | 窗口宽度，单位为px，该参数应为整数。 |
 | height | number   | 是   | 是   | 窗口高度，单位为px，该参数应为整数。 |
 
+## Position<sup>20+</sup>
+
+窗口或组件的位置。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称   | 类型 | 只读 | 可选 | 说明       |
+| ------ | -------- | ---- | ---- | ---------- |
+| x      | number   | 否   | 否   | x坐标，单位为px，该参数应为整数。 |
+| y      | number   | 否   | 否   | y坐标，单位为px，该参数应为整数。 |
+
 ## RectChangeOptions<sup>12+</sup>
 
 窗口矩形（窗口位置及窗口大小）变化返回的值及变化原因。

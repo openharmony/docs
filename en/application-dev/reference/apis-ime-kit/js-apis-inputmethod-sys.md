@@ -47,7 +47,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | 202      | not system application.  |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800005 | configuration persistence error.        |
-| 12800008 | input method manager service error. |
+| 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **Example**
 
@@ -239,7 +239,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | -------- | ----------------------------------- |
 | 202      | not system application.  |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800008 | input method manager service error. |
+| 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **Example**
 
@@ -292,7 +292,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | -------- | -------------------------------------- |
 | 201      | permissions check fails. |
 | 202      | not system application. |
-| 12800008 | input method manager service error. |
+| 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception.  |
 | 12800018 | the input method is not found. |
 | 12800019 | current operation cannot be applied to the preconfigured default input method. |
 

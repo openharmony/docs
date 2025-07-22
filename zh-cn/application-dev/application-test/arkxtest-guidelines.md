@@ -99,81 +99,79 @@ export default function abilityTest() {
 本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口，<!--RP1-->具体请参考[API文档](../reference/apis-test-kit/js-apis-uitest.md)<!--RP1End-->。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的场景是：在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
 
 1. 编写Index.ets页面代码，作为被测示例demo。
+    ```ts
+    @Entry
+    @Component
+    struct Index {
+      @State message: string = 'Hello World';
 
-  ```ts
-  @Entry
-  @Component
-  struct Index {
-    @State message: string = 'Hello World';
-
-    build() {
-      Row() {
-        Column() {
-          Text(this.message)
-            .fontSize(50)
-            .fontWeight(FontWeight.Bold)
-          Text("Next")
-            .fontSize(50)
-            .margin({top:20})
-            .fontWeight(FontWeight.Bold)
-          Text("after click")
-            .fontSize(50)
-            .margin({top:20})
-            .fontWeight(FontWeight.Bold)
+      build() {
+        Row() {
+          Column() {
+            Text(this.message)
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+            Text("Next")
+              .fontSize(50)
+              .margin({top:20})
+              .fontWeight(FontWeight.Bold)
+            Text("after click")
+              .fontSize(50)
+              .margin({top:20})
+              .fontWeight(FontWeight.Bold)
+          }
+          .width('100%')
         }
-        .width('100%')
+        .height('100%')
       }
-      .height('100%')
     }
-  }
-  ```
+    ```
 
 2. 在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
+    ```ts
+    import { describe, it, expect } from '@ohos/hypium';
+    // 导入测试依赖kit
+    import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+    import { UIAbility, Want } from '@kit.AbilityKit';
 
-  ```ts
-  import { describe, it, expect } from '@ohos/hypium';
-  // 导入测试依赖kit
-  import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
-  import { UIAbility, Want } from '@kit.AbilityKit';
-
-  const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-  function sleep(time: number) {
-    return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
-  }
-  export default function abilityTest() {
-    describe('ActsAbilityTest', () => {
-       it('testUiExample',0, async (done: Function) => {
-          console.info("uitest: TestUiExample begin");
-          await sleep(1000);
-          const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-          //start tested ability
-          const want: Want = {
-             bundleName: bundleName,
-             abilityName: 'EntryAbility'
-          }
-          await delegator.startAbility(want);
-          await sleep(1000);
-          //check top display ability
-          const ability: UIAbility = await delegator.getCurrentTopAbility();
-          console.info("get top ability");
-          expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
-          //ui test code
-          //init driver
-          const driver = Driver.create();
-          await driver.delayMs(1000);
-          //find button on text 'Next'
-          const button = await driver.findComponent(ON.text('Next'));
-          //click button
-          await button.click();
-          await driver.delayMs(1000);
-          //check text
-          await driver.assertComponentExist(ON.text('after click'));
-          await driver.pressBack();
-          done();
-       })
-    })
-  }
-  ```
+    const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+    function sleep(time: number) {
+      return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
+    }
+    export default function abilityTest() {
+      describe('ActsAbilityTest', () => {
+        it('testUiExample',0, async (done: Function) => {
+            console.info("uitest: TestUiExample begin");
+            await sleep(1000);
+            const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+            //start tested ability
+            const want: Want = {
+              bundleName: bundleName,
+              abilityName: 'EntryAbility'
+            }
+            await delegator.startAbility(want);
+            await sleep(1000);
+            //check top display ability
+            const ability: UIAbility = await delegator.getCurrentTopAbility();
+            console.info("get top ability");
+            expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
+            //ui test code
+            //init driver
+            const driver = Driver.create();
+            await driver.delayMs(1000);
+            //find button on text 'Next'
+            const button = await driver.findComponent(ON.text('Next'));
+            //click button
+            await button.click();
+            await driver.delayMs(1000);
+            //check text
+            await driver.assertComponentExist(ON.text('after click'));
+            await driver.pressBack();
+            done();
+        })
+      })
+    }
+    ```
 
 #### 编写白盒性能测试脚本
 
@@ -559,7 +557,7 @@ hdc shell uitest dumpLayout -p /data/local/tmp/1.json
 |-------|--------------|------|-----------------|
 | -W    | \<true/false> | 否   | 录制过程中是否保存操作坐标对应的控件信息到/data/local/tmp/record.csv文件中。true表示保存控件信息，false表示仅记录坐标信息，不设置时默认为true。 |
 | -l    |              | 否   | 在每次操作后保存当前布局信息，文件保存路径：/data/local/tmp/layout_录制启动时间戳_操作序号.json。 | 
-| -c    | \<true/false> | 否   | 是否将录制到的操作事件信息打印到控制台，true表示打印，flase表示打印，不设置时默认为true。 | 
+| -c    | \<true/false> | 否   | 是否将录制到的操作事件信息打印到控制台，true表示打印，false表示打印，不设置时默认为true。 | 
 
 ```bash
 # 将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。
@@ -903,11 +901,11 @@ UI测试用例执行失败，查看hilog日志发现日志中有“Get windows f
 hdc shell param set persist.ace.testmode.enabled 1
 ```
 
-**2. 失败日志有“uitest-api dose not allow calling concurrently”错误信息**
+**2. 失败日志有“uitest-api does not allow calling concurrently”错误信息**
 
 **问题描述**
 
-UI测试用例执行失败，查看hilog日志发现日志中有“uitest-api dose not allow calling concurrently”错误信息。
+UI测试用例执行失败，查看hilog日志发现日志中有“uitest-api does not allow calling concurrently”错误信息。
 
 **可能原因**
 
