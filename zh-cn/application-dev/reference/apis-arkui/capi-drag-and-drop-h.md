@@ -868,7 +868,7 @@ int32_t OH_ArkUI_DragEvent_StartDataLoading(ArkUI_DragEvent* event, OH_UdmfGetDa
 | -- | -- |
 | [ArkUI_DragEvent](capi-arkui-nativemodule-arkui-dragevent.md)* event | ArkUI_DragEvent事件指针。 |
 | [OH_UdmfGetDataParams](../apis-arkdata/capi-udmf-oh-udmfgetdataparams.md)* options | OH_UdmfGetDataParams参数指针。 |
-| char* key | 返回数据设置成功之后的key值，字符串长度不小于 {@link UDMF_KEY_BUFFER_LEN}。 |
+| char* key | 返回数据设置成功之后的key值，字符串长度不小于[UDMF_KEY_BUFFER_LEN](../apis-arkdata/capi-udmf-h.md#udmf_key_buffer_len)。 |
 | unsigned int keyLen | 表示key字符串的长度。 |
 
 **返回：**
