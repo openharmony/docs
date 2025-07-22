@@ -75,7 +75,7 @@ export const createArray: () => number[];
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_array:%{public}s', JSON.stringify(testNapi.createArray()));
@@ -117,7 +117,7 @@ export const createArrayWithLength: (length: number) => void[];
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let array = testNapi.createArrayWithLength(6);
@@ -165,7 +165,7 @@ export const getArrayLength: (arr: Array<any>) => number | undefined;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 const arr = [0, 1, 2, 3, 4, 5];
@@ -213,7 +213,7 @@ export const isArray: <T>(data: Array<T> | T) => boolean | undefined;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   let value = new Array<number>(1);
@@ -269,7 +269,7 @@ export const napiSetElement: <T>(arr: Array<T>, index: number, value: T) => void
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 let arr = [10, 20, 30];
 testNapi.napiSetElement<number | string>(arr, 1, 'newElement');
@@ -325,7 +325,7 @@ export const napiGetElement: <T>(arr: Array<T>, index: number) => number | strin
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 interface MyObject {
@@ -383,7 +383,7 @@ export const napiHasElement: <T>(arr: Array<T>, index: number) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let arr = [10, 'hello', null, 'world'];
@@ -430,7 +430,7 @@ ArkTS侧示例代码
 
 ```ts
 // 需要同时导入前文示例代码中的napiHasElement、napiGetElement接口
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let arr = [10, 'hello', null, 'world'];
@@ -462,7 +462,7 @@ static napi_value CreateTypedArray(napi_env env, napi_callback_info info)
     size_t elementSize = 0;
     // 根据传递的类型值选择创建对应的类型数组
     arrayType = static_cast<napi_typedarray_type>(typeNum);
-        switch (typeNum) {
+    switch (typeNum) {
     case napi_int8_array:
     case napi_uint8_array:
     case napi_uint8_clamped_array:
@@ -527,7 +527,7 @@ export const createTypedArray: <T>(type: TypedArrayTypes) => T;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 // 传递要创建的类型值
@@ -613,7 +613,7 @@ export const isTypedarray: (data: Object) => boolean | undefined;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   let value = new Uint8Array([1, 2, 3, 4]);
@@ -693,7 +693,7 @@ export const getTypedarrayInfo: <T>(typeArray: T, infoType: number) => ArrayBuff
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 // 传入TypedArray类型数据。TypedArray是一种用来描述二进制数据的类数组数据视图，没有直接构造器，可以用其子类构造类数组
@@ -768,7 +768,7 @@ export const createDataView: (arraybuffer:ArrayBuffer) => DataView | undefined;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 const arrayBuffer = new ArrayBuffer(16);
@@ -819,7 +819,7 @@ export const isDataView: (date: DataView | string) => boolean | undefined;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   let buffer = new ArrayBuffer(16);
@@ -893,7 +893,7 @@ export const getDataViewInfo: (dataView: DataView, infoType: number) => ArrayBuf
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 // 创建一个ArrayBuffer
