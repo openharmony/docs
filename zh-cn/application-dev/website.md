@@ -3549,8 +3549,6 @@
           - [ArkWeb_WebMessageAPI](reference/apis-arkweb/capi-web-arkweb-webmessageapi.md)
           - [ArkWeb_CookieManagerAPI](reference/apis-arkweb/capi-web-arkweb-cookiemanagerapi.md)
           - [ArkWeb_JavaScriptValueAPI](reference/apis-arkweb/capi-web-arkweb-javascriptvalueapi.md)
-      - Longque JS API<!--longque-js-api-->
-        - [Longque-JS-API](reference/apis-arkweb/arkts-apis-longque.md)
       - 错误码<!--arkweb-arkts-errcode-->
         - [Webview错误码](reference/apis-arkweb/errorcode-webview.md)
     - Background Tasks Kit（后台任务开发服务）<!--background-tasks-api-->
