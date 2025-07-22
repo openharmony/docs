@@ -1,6 +1,6 @@
 # 智能拍摄跟踪开发指南
 
-在视频录制和直播等应用场景中，开发者希望为拥有机械体配件设备的用户提供更丰富的拍摄体验，如人脸智能跟踪和自动构图等专业拍摄功能。
+从API version 20开始，支持使用机械设备管理。在视频录制和直播等应用场景中，开发者希望为拥有机械体配件设备的用户提供更丰富的拍摄体验，如人脸智能跟踪和自动构图等专业拍摄功能。
 
 智能拍摄跟踪，可以通过机械体配件设备实现人脸跟踪和物体追踪等自动化拍摄功能，提升拍摄质量和用户体验，帮助开发者构建出更智能、更高效的拍摄解决方案。
 
@@ -26,21 +26,21 @@
 
 ### 开发准备
 
-1. 一台支持MechanicKit协议的机械体配件设备。
+1.一台支持MechanicKit协议的机械体配件设备。
 
-2. 机械体配件设备与开发设备完成蓝牙连接。
+2.机械体配件设备与开发设备完成蓝牙连接。
 
 ### 管理设备连接状态
 
 动态管理设备连接状态，确保设备连接或断开时应用能及时响应。
 
-1. 导入机械设备管理模块文件。
+1.导入机械设备管理模块文件。
 
 ```ts
 import mechanicManager from '@kit.MechanicKit';
 ```
 
-2. 获取已连接的机械设备列表。
+2.获取已连接的机械设备列表。
 
 ```ts
 let savedMechanicIds: number[] = [];
@@ -69,7 +69,7 @@ try {
 }
 ```
 
-3. 监听设备连接状态变化。
+3.监听设备连接状态变化。
 
 ```ts
 const attachStateChangeCallback = (info: mechanicManager.AttachStateChangeInfo) => {
@@ -88,7 +88,7 @@ const attachStateChangeCallback = (info: mechanicManager.AttachStateChangeInfo) 
 mechanicManager.on('attachStateChange', attachStateChangeCallback);
 ```
 
-4. 处理设备连接和断开事件。
+4.处理设备连接和断开事件。
 
 ```ts
 function handleDeviceAttached(mechInfo: mechanicManager.MechInfo) {
@@ -104,7 +104,7 @@ function handleDeviceDetached(mechInfo: mechanicManager.MechInfo) {
 }
 ```
 
-5. 取消监听。
+5.取消监听。
 
 ```ts
 // 取消特定回调的监听
@@ -115,7 +115,7 @@ mechanicManager.off('attachStateChange', attachStateChangeCallback);
 
 开启智能拍摄功能，机械体设备将自动识别人脸进行跟踪拍摄。
 
-1. 启用摄像头智能跟踪功能。
+1.启用摄像头智能跟踪功能。
 
 ```ts
 try {
@@ -135,7 +135,7 @@ try {
 }
 ```
 
-2. 监听跟踪变化。
+2.监听跟踪变化。
 
 ```ts
 const trackingStateCallback = (eventInfo : mechanicManager.TrackingEventInfo) => {
@@ -159,7 +159,7 @@ const trackingStateCallback = (eventInfo : mechanicManager.TrackingEventInfo) =>
 mechanicManager.on('trackingStateChange', trackingStateCallback);
 ```
 
-3. 处理跟踪事件。
+3.处理跟踪事件。
 
 ```ts
 function handleTrackingEnabled() {
@@ -198,7 +198,7 @@ function updateLayoutUI(layout : mechanicManager.CameraTrackingLayout) {
 }
 ```
 
-4. 取消监听。
+4.取消监听。
 
 ```ts
 // 取消跟踪状态监听

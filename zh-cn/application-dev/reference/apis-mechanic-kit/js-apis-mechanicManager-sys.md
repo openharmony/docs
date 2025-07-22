@@ -20,6 +20,8 @@ setUserOperation(operation: Operation, mac: string, params: string): void
 
 设置用户的连接或断开操作。
 
+**需要权限**：ohos.permission.CONNECT_MECHANIC_HARDWARE
+
 **系统能力**：SystemCapability.Mechanic.Core
 
 **系统接口**：该接口为系统接口。
@@ -38,6 +40,7 @@ setUserOperation(operation: Operation, mac: string, params: string): void
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
+| 201 | Permission denied. |
 | 202 | Not system application. |
 | 33300001 | Service exception. |
 
@@ -556,9 +559,9 @@ console.info(`'Query the rotation axis status successfully, axis state:' ${axisS
 
 | 名称   | 类型 | 只读 | 可选 | 说明|
 | ----- | ---- | ---- | --- | --- |
-| yaw | number | 否 | 是 | 偏航角，范围为[-2π， 2π]，以弧度为单位。 |
-| roll | number | 否 | 是 | 横滚角，范围为[-2π， 2π]，以弧度为单位。 |
-| pitch | number | 否 | 是 | 俯仰角，范围为[-2π， 2π]，以弧度为单位。 |
+| yaw | number | 否 | 是 | 偏航角，范围为[-2*Math.PI， 2*Math.PI]，以弧度为单位。 |
+| roll | number | 否 | 是 | 横滚角，范围为[-2*Math.PI， 2*Math.PI]，以弧度为单位。 |
+| pitch | number | 否 | 是 | 俯仰角，范围为[-2*Math.PI， 2*Math.PI]，以弧度为单位。 |
 
 ## EulerAngles
 
@@ -570,9 +573,9 @@ console.info(`'Query the rotation axis status successfully, axis state:' ${axisS
 
 | 名称   | 类型 | 只读 | 可选 | 说明|
 | ----- | ---- | ---- | --- | --- |
-| yaw | number | 否 | 是 | 偏航角，范围为[-2π， 2π]，以弧度为单位。 |
-| roll | number | 否 | 是 | 横滚角，范围为[-2π， 2π]，以弧度为单位。 |
-| pitch | number | 否 | 是 | 俯仰角，范围为[-2π， 2π]，以弧度为单位。 |
+| yaw | number | 否 | 是 | 偏航角，范围为[-2*Math.PI， 2*Math.PI]，以弧度为单位。 |
+| roll | number | 否 | 是 | 横滚角，范围为[-2*Math.PI， 2*Math.PI]，以弧度为单位。 |
+| pitch | number | 否 | 是 | 俯仰角，范围为[-2*Math.PI， 2*Math.PI]，以弧度为单位。 |
 
 ## RotationSpeed
 

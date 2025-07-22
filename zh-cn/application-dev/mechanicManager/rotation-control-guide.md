@@ -1,6 +1,6 @@
 # 设备转动控制开发指南
 
-在视频录制和直播等应用场景中，开发者希望为拥有机械体配件设备的用户提供更丰富的拍摄体验，如控制机械体配件设备转动功能。
+从API version 20开始，支持使用机械设备管理。在视频录制和直播等应用场景中，开发者希望为拥有机械体配件设备的用户提供更丰富的拍摄体验，如控制机械体配件设备转动功能。
 
 拍摄控制，可以将手机作为控制终端，操控云台或机械臂等机械体配件设备进行精准的角度调整和运动轨迹控制，帮助开发者快速构建控制机械配件设备的应用。
 
@@ -33,21 +33,21 @@
 
 ### 开发准备
 
-1. 一台支持MechanicKit协议的机械体配件设备。
+1.一台支持MechanicKit协议的机械体配件设备。
 
-2. 机械体配件设备与开发设备完成蓝牙连接。
+2.机械体配件设备与开发设备完成蓝牙连接。
 
 ### 管理设备连接状态
 
 动态管理设备连接状态，确保设备连接或断开时应用能及时响应。
 
-1. 导入机械设备管理模块文件。
+1.导入机械设备管理模块文件。
 
 ```ts
 import mechanicManager from '@kit.MechanicKit';
 ```
 
-2. 获取已连接的机械设备列表。
+2.获取已连接的机械设备列表。
 
 ```ts
 let savedMechanicIds: number[] = [];
@@ -76,7 +76,7 @@ try {
 }
 ```
 
-3. 监听设备连接状态变化。
+3.监听设备连接状态变化。
 
 ```ts
 const attachStateChangeCallback = (info: mechanicManager.AttachStateChangeInfo) => {
@@ -95,7 +95,7 @@ const attachStateChangeCallback = (info: mechanicManager.AttachStateChangeInfo) 
 mechanicManager.on('attachStateChange', attachStateChangeCallback);
 ```
 
-4. 处理设备连接和断开事件。
+4.处理设备连接和断开事件。
 
 ```ts
 mechanicManager.on('attachStateChange', attachStateChangeCallback);
@@ -113,7 +113,7 @@ function handleDeviceDetached(mechInfo:  mechanicManager.MechInfo) {
 }
 ```
 
-5. 取消监听。
+5.取消监听。
 
 ```ts
 // 取消特定回调的监听
@@ -124,7 +124,7 @@ mechanicManager.off('attachStateChange', attachStateChangeCallback);
 
 精准控制机械体配件设备转动，如角度调整和运动轨迹控制等，帮助开发者实现灵活的机械体配件设备操作功能。
 
-1. 查询设备当前状态和限制。
+1.查询设备当前状态和限制。
 
 ```ts
 try {
@@ -167,7 +167,7 @@ try {
 }
 ```
 
-2. 执行相对角度旋转。
+2.执行相对角度旋转。
 
 ```ts
 //执行转动控制前需要先关闭跟踪拍摄功能
@@ -226,7 +226,7 @@ async function rotateByRelativeAngles() {
 }
 ```
 
-3. 以指定速度持续转动。
+3.以指定速度持续转动。
 
 ```ts
 async function rotateBySpeed() {
@@ -261,7 +261,7 @@ async function rotateBySpeed() {
 }
 ```
 
-4. 监听旋转轴状态变化。
+4.监听旋转轴状态变化。
 
 ```ts
 const rotationAxesCallback = (info: mechanicManager.RotationAxesStateChangeInfo) => {
@@ -283,7 +283,7 @@ const rotationAxesCallback = (info: mechanicManager.RotationAxesStateChangeInfo)
 mechanicManager.on('rotationAxesStatusChange', rotationAxesCallback);
 ```
 
-5. 停止设备运动。
+5.停止设备运动。
 
 ```ts
 async function stopDeviceMoving() {
