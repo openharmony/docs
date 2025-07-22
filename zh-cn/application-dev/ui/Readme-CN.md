@@ -5,6 +5,8 @@
   - 从ArkTS1.1到ArkTS1.2的UI适配指导<!--ui-arkts-migration-guide-->
     - ArkTS1.2不再支持的UI接口<!--ui-deprecated-apis-->
       - [绘制组件](arkts-v1.2-deprecated-drawing-apis.md)
+      - [弹窗类组件](arkts-v1.2-deprecated-dialog-apis.md)
+      - [表单类组件](arkts-v1.2-deprecated-form-apis.md)
       - [布局回调](arkts-v1.2-deprecated-inspector.md)
       - [UIExtensionComponent (系统接口)](arkts-v1.2-deprecated-uiextension.md)
       - [AbilityComponent (系统接口)](arkts-v1.2-deprecated-abilitycomponent.md)
