@@ -24,6 +24,10 @@ EffectComponent()
 
 创建特效绘制合并组件，用于对子组件背景模糊特效的绘制合并。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## 事件
 
 不支持通用事件。
