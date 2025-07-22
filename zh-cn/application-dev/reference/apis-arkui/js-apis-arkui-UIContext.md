@@ -166,6 +166,8 @@ getMediaQuery(): MediaQuery
 
 **示例：**
 
+完整示例请参考[mediaquery示例](js-apis-mediaquery.md#示例)。
+
 <!--code_no_check-->
 ```ts
 uiContext.getMediaQuery();
@@ -1134,6 +1136,8 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 **示例：**
 
+完整示例请参考[示例4（设置键盘避让模式为压缩）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例4设置键盘避让模式为压缩)、[示例5（设置键盘避让模式为上抬）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例5设置键盘避让模式为上抬)以及[示例6（切换避让模式）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例6切换避让模式)。
+
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
@@ -1172,6 +1176,8 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 | [KeyboardAvoidMode](#keyboardavoidmode11)| 返回当前的页面避让模式。|
 
 **示例：**
+
+完整示例请参考[示例4（设置键盘避让模式为压缩）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例4设置键盘避让模式为压缩)、[示例5（设置键盘避让模式为上抬）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例5设置键盘避让模式为上抬)以及[示例6（切换避让模式）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例6切换避让模式)。
 
 ```ts
 // EntryAbility.ets
@@ -4755,6 +4761,8 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 | [mediaQuery.MediaQueryListener](js-apis-mediaquery.md#mediaquerylistener) | 媒体事件监听句柄，用于注册和去注册监听回调。 |
 
 **示例：**
+
+完整示例请参考[mediaquery示例](js-apis-mediaquery.md#示例)。
 
 <!--code_no_check-->
 ```ts
