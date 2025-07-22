@@ -214,11 +214,11 @@ struct Index {
     Row() {
       Row() {
         Button('button1').id('button1').onKeyEvent((event) => {
-          console.log("button1");
+          console.info("button1");
           return true
         })
         Button('button1').id('button2').onKeyEvent((event) => {
-          console.log("button2");
+          console.info("button2");
           return true
         })
       }

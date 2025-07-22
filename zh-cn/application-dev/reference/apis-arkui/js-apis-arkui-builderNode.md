@@ -10,7 +10,9 @@
 > 
 > 当前不支持在预览器中使用BuilderNode。
 > 
-> BuilderNode下的自定义组件支持使用[@Prop](../../ui/state-management/arkts-prop.md)装饰器，不支持使用[@Reusable](../../ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../ui/state-management/arkts-link.md)。
+> BuilderNode下的自定义组件支持使用[@Prop](../../ui/state-management/arkts-prop.md)装饰器。不支持使用[@Link](../../ui/state-management/arkts-link.md)装饰器来跨越BuilderNode同步外界的数据和状态。
+>
+> 如果BuilderNode的子节点是自定义组件，不支持该自定义组件使用[@Reusable](../../ui/state-management/arkts-reusable.md)装饰器，详细内容参见[BuilderNode在子自定义组件中使用@Reusable装饰器](../../ui/arkts-user-defined-arktsNode-builderNode.md#buildernode在子自定义组件中使用reusable装饰器)。
 > 
 > 从API version 12开始，自定义组件支持接收[LocalStorage](../../ui/state-management/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../ui/state-management/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../ui/state-management/arkts-localstorage.md#localstoragelink)。
 > 
@@ -798,7 +800,7 @@ reuse(param?: Object): void
 recycle(): void
 
 - 触发BuilderNode中自定义组件的回收。自定义组件的回收是组件复用机制中的环节，具体信息请参见[@Reusable装饰器：组件复用](../../ui/state-management/arkts-reusable.md)。
-- BuilderNode通过reuse和recycle完成其内外自定义组件之间的复用事件传递，具体使用场景请参见[节点复用能力](../../ui/arkts-user-defined-arktsNode-builderNode.md#节点复用能力)。
+- BuilderNode通过reuse和recycle完成其内外自定义组件之间的复用事件传递，具体使用场景请参见[BuilderNode调用reuse和recycle接口实现节点复用能力](../../ui/arkts-user-defined-arktsNode-builderNode.md#buildernode调用reuse和recycle接口实现节点复用能力)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1898,7 +1900,7 @@ struct ConsumeChild {
   @Consume @Watch("ChangeData") message: string = ""
 
   ChangeData() {
-    console.log(`ChangeData ${this.message}`);
+    console.info(`ChangeData ${this.message}`);
   }
 
   build() {
@@ -1909,6 +1911,7 @@ struct ConsumeChild {
       Button("Click to change message to append C")
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
+          // 修改Consume的变量
           this.message = this.message + "C"
         })
     }
@@ -1933,6 +1936,7 @@ struct Index {
   private builderNode: BuilderNode<[string]> = new BuilderNode<[string]>(this.getUIContext());
 
   aboutToAppear(): void {
+    // 设置enableProvideConsumeCrossing为true，支持BuilderNode内部自定义组件ConsumeChild的@Consume与其所在页面中的@Provide数据互通
     this.builderNode.build(wrapBuilder(CreateText), "Test Consume", { enableProvideConsumeCrossing: true })
     this.content.addFrameNode(this.builderNode.getFrameNode())
   }
@@ -1957,4 +1961,4 @@ struct Index {
 }
 ```
 
-![enableProvideConsumeCrossing](figures/builderNode_consume.png)
+![enableProvideConsumeCrossing](figures/BuilderNode_Consume.gif)

@@ -255,7 +255,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct Index {
   handleSaveButtonClick: SaveButtonCallback =
-    async (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError<void>) => {
+    async (event: ClickEvent, result: SaveButtonOnClickResult, error?: BusinessError) => {
       if (result == SaveButtonOnClickResult.SUCCESS) {
         try {
           const context = this.getUIContext().getHostContext();

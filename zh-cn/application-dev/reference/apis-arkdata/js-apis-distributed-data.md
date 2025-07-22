@@ -3494,7 +3494,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
-关闭由[SingleKvStore.getResultSet](#getresultset8)返回的KvStoreResultSet对象，使用callback异步回调。
+关闭由[SingleKVStore.getResultSet](#getresultset8)返回的KvStoreResultSet对象，使用callback异步回调。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3528,7 +3528,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
-关闭由[SingleKvStore.getResultSet](#getresultset8)返回的KvStoreResultSet对象，使用Promise异步回调。
+关闭由[SingleKVStore.getResultSet](#getresultset8)返回的KvStoreResultSet对象，使用Promise异步回调。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5256,7 +5256,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIds    |string[]               | 是    |需要同步DeviceKvStore数据库的设备networkId列表。 |
+| deviceIds    |string[]               | 是    |需要同步DeviceKVStore数据库的设备networkId列表。 |
 | mode            |[SyncMode](#syncmode)  | 是    |同步模式。  |
 | delayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒），默认为0。  |
 

@@ -1,4 +1,4 @@
-# @ohos.app.ability.appManager (appManager)
+# @ohos.app.ability.appManager (Application Management)
 
 The appManager module implements application management. You can use the APIs of this module to query whether the application is undergoing a stability test, whether the application is running on a RAM constrained device, the memory size of the application, and information about the running process.
 
@@ -266,7 +266,7 @@ Obtains information about the running processes of this application. This API us
 
 > **NOTE**
 >
-> - In versions earlier than API version 11, this API requires the **ohos.permission.GET_RUNNING_INFO** permission, which is available only for system applications.
+> - In versions earlier than API version 11, this API requires the ohos.permission.GET_RUNNING_INFO permission, which is available only for system applications.
 > - Since API version 11, this API is used only to obtain the process information of the caller. No permission is required.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -308,7 +308,7 @@ Obtains information about the running processes of this application. This API us
 
 > **NOTE**
 >
-> - In versions earlier than API version 11, this API requires the **ohos.permission.GET_RUNNING_INFO** permission, which is available only for system applications.
+> - In versions earlier than API version 11, this API requires the ohos.permission.GET_RUNNING_INFO permission, which is available only for system applications.
 > - Since API version 11, this API is used only to obtain the process information of the caller. No permission is required.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -686,7 +686,7 @@ Kills a process by bundle name. This API uses an asynchronous callback to return
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name.|
 | clearPageStack | boolean | Yes| Whether to clear the page stack. The value **true** means to clear the page stack, and **false** means the opposite.|
-| appIndex | number | No| Index of an application clone.|
+| appIndex | number | No| ID of an application clone. The default value is **0**. If the value is **0**, all processes of the main application are terminated. If the value is greater than 0, all processes of the specified application clone are terminated.|
 
 **Return value**
 
@@ -780,6 +780,30 @@ try {
 }
 ```
 
+## AbilityStateData<sup>14+</sup>
+
+type AbilityStateData = _AbilityStateData.default
+
+Defines the ability state data.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_AbilityStateData.default](js-apis-inner-application-abilityStateData.md) | Ability state data.|
+
+## AppStateData<sup>14+</sup>
+
+type AppStateData = _AppStateData.default
+
+Defines the application state data.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_AppStateData.default](js-apis-inner-application-appStateData.md) | Application state data.|
+
 ## ApplicationStateObserver<sup>14+</sup>
 
 type ApplicationStateObserver = _ApplicationStateObserver.default
@@ -805,3 +829,15 @@ Defines the ProcessInformation module.
 | Type| Description|
 | --- | --- |
 | [_ProcessInformation](js-apis-inner-application-processInformation.md) | ProcessInformation module.|
+
+## ProcessData<sup>14+</sup>
+
+type ProcessData = _ProcessData.default
+
+Defines the process data.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_ProcessData.default](js-apis-inner-application-processData.md) | Process data.|

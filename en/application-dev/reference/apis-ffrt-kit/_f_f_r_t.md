@@ -113,15 +113,17 @@ Function Flow Runtime (FFRT) is a software runtime library that works with the F
 | FFRT_C_API void [ffrt_queue_destroy](#ffrt_queue_destroy) ([ffrt_queue_t](#ffrt_queue_t) queue) | Destroys a queue. | 
 | FFRT_C_API void [ffrt_queue_submit](#ffrt_queue_submit) ([ffrt_queue_t](#ffrt_queue_t) queue, [ffrt_function_header_t](ffrt__function__header__t.md) \*f, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Submits a task to a queue. | 
 | FFRT_C_API [ffrt_task_handle_t](#ffrt_task_handle_t) [ffrt_queue_submit_h](#ffrt_queue_submit_h) ([ffrt_queue_t](#ffrt_queue_t) queue, [ffrt_function_header_t](ffrt__function__header__t.md) \*f, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Submits a task to a queue, and obtains the task handle. | 
+| FFRT_C_API void [ffrt_queue_submit_f](#ffrt_queue_submit_f) ([ffrt_queue_t](#ffrt_queue_t) queue, [ffrt_function_t](#ffrt_function_t) func, void \*arg, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Submits a task to a queue. It is a simplified form of **ffrt_queue_submit**. | 
+| FFRT_C_API [ffrt_task_handle_t](#ffrt_task_handle_t) [ffrt_queue_submit_h_f](#ffrt_queue_submit_h_f) ([ffrt_queue_t](#ffrt_queue_t) queue, [ffrt_function_t](#ffrt_function_t) func, void \*arg, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Submits a task to a queue, and obtains the task handle. It is a simplified form of **ffrt_queue_submit_h**. | 
 | FFRT_C_API void [ffrt_queue_wait](#ffrt_queue_wait) ([ffrt_task_handle_t](#ffrt_task_handle_t) handle) | Waits until a task in the queue is complete. | 
 | FFRT_C_API int [ffrt_queue_cancel](#ffrt_queue_cancel) ([ffrt_task_handle_t](#ffrt_task_handle_t) handle) | Cancels a task in the queue. | 
 | FFRT_C_API [ffrt_queue_t](#ffrt_queue_t) [ffrt_get_main_queue](#ffrt_get_main_queue) (void) | Obtains the main thread queue. | 
 | FFRT_C_API [ffrt_queue_t](#ffrt_queue_t) [ffrt_get_current_queue](#ffrt_get_current_queue) (void) | Obtains the ArkTS Worker thread queue. | 
 | FFRT_C_API int [ffrt_rwlock_init](#ffrt_rwlock_init) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock, const [ffrt_rwlockattr_t](ffrt__rwlockattr__t.md) \*attr) | Initializes a read-write lock. | 
 | FFRT_C_API int [ffrt_rwlock_wrlock](#ffrt_rwlock_wrlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | Obtains a write lock. | 
-| FFRT_C_API int [ffrt_rwlock_trywrlock](#ffrt_rwlock_trywrlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | Attempts to obtain a write lock; if it fails, the function returns immediately. | 
+| FFRT_C_API int [ffrt_rwlock_trywrlock](#ffrt_rwlock_trywrlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | Attempts to obtain a write lock. | 
 | FFRT_C_API int [ffrt_rwlock_rdlock](#ffrt_rwlock_rdlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | Obtains a read lock. | 
-| FFRT_C_API int [ffrt_rwlock_tryrdlock](#ffrt_rwlock_tryrdlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | Attempts to obtain a read lock; if it fails, the function returns immediately. | 
+| FFRT_C_API int [ffrt_rwlock_tryrdlock](#ffrt_rwlock_tryrdlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | Attempts to obtain a read lock. | 
 | FFRT_C_API int [ffrt_rwlock_unlock](#ffrt_rwlock_unlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | Releases the read-write lock. | 
 | FFRT_C_API int [ffrt_rwlock_destroy](#ffrt_rwlock_destroy) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | Destroys the read-write lock. | 
 | FFRT_C_API int [ffrt_usleep](#ffrt_usleep) (uint64_t usec) | Sets the fixed sleep time. | 
@@ -144,6 +146,8 @@ Function Flow Runtime (FFRT) is a software runtime library that works with the F
 | FFRT_C_API void \* [ffrt_alloc_auto_managed_function_storage_base](#ffrt_alloc_auto_managed_function_storage_base) ([ffrt_function_kind_t](#ffrt_function_kind_t) kind) | Applies for memory for the task execution function struct. | 
 | FFRT_C_API void [ffrt_submit_base](#ffrt_submit_base) ([ffrt_function_header_t](ffrt__function__header__t.md) \*f, const [ffrt_deps_t](ffrt__deps__t.md) \*in_deps, const [ffrt_deps_t](ffrt__deps__t.md) \*out_deps, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Submits a task. | 
 | FFRT_C_API [ffrt_task_handle_t](#ffrt_task_handle_t) [ffrt_submit_h_base](#ffrt_submit_h_base) ([ffrt_function_header_t](ffrt__function__header__t.md) \*f, const [ffrt_deps_t](ffrt__deps__t.md) \*in_deps, const [ffrt_deps_t](ffrt__deps__t.md) \*out_deps, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Submits a task, and obtains the task handle. | 
+| FFRT_C_API void [ffrt_submit_f](#ffrt_submit_f) ([ffrt_function_t](#ffrt_function_t) func, void \*arg, const [ffrt_deps_t](ffrt__deps__t.md) \*in_deps, const [ffrt_deps_t](ffrt__deps__t.md) \*out_deps, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Submits a task. It is a simplified form of **ffrt_submit_base**. | 
+| FFRT_C_API [ffrt_task_handle_t](#ffrt_task_handle_t) [ffrt_submit_h_f](#ffrt_submit_h_f) ([ffrt_function_t](#ffrt_function_t) func, void \*arg, const [ffrt_deps_t](ffrt__deps__t.md) \*in_deps, const [ffrt_deps_t](ffrt__deps__t.md) \*out_deps, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Submits a task, and obtains the task handle. It is a simplified form of **ffrt_submit_h_base**. | 
 | FFRT_C_API uint32_t [ffrt_task_handle_inc_ref](#ffrt_task_handle_inc_ref) ([ffrt_task_handle_t](#ffrt_task_handle_t) handle) | Increases the number of task handle references. | 
 | FFRT_C_API uint32_t [ffrt_task_handle_dec_ref](#ffrt_task_handle_dec_ref) ([ffrt_task_handle_t](#ffrt_task_handle_t) handle) | Decreases the number of task handle references. | 
 | FFRT_C_API void [ffrt_task_handle_destroy](#ffrt_task_handle_destroy) ([ffrt_task_handle_t](#ffrt_task_handle_t) handle) | Destroys a task handle. | 
@@ -1108,6 +1112,8 @@ FFRT_C_API void ffrt_queue_attr_set_timeout (ffrt_queue_attr_t * attr, uint64_t 
 **Description**
 Sets the queue timeout.
 
+The minimum timeout value is 1 ms. Any value set below this threshold will default to 1 ms.
+
 **Since**: 10
 
 **Parameters**
@@ -1198,6 +1204,32 @@ Submits a task to a queue.
 | attr | Pointer to the task attribute. | 
 
 
+### ffrt_queue_submit_f()
+
+```
+FFRT_C_API void ffrt_queue_submit_f (ffrt_queue_t queue, ffrt_function_t func, void * arg, const ffrt_task_attr_t * attr )
+```
+**Description**
+Submits a task to a queue. It is a simplified form of **ffrt_queue_submit**.
+
+Assuming no destroy callback is needed, the task function and parameters are encapsulated into a queue task structure, which is then passed to **ffrt_queue_submit** along with other parameters.
+
+**Since**: 20
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| queue | Queue handle. | 
+| func | Task function. | 
+| arg | Pointer to the argument. | 
+| attr | Pointer to the task attribute. | 
+
+**Reference**
+
+[ffrt_queue_submit](#ffrt_queue_submit)
+
+
 ### ffrt_queue_submit_h()
 
 ```
@@ -1219,6 +1251,36 @@ Submits a task to a queue, and obtains the task handle.
 **Returns**
 
 Returns a non-null task handle if the task is submitted; returns a null pointer otherwise.
+
+
+### ffrt_queue_submit_h_f()
+
+```
+FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h_f (ffrt_queue_t queue, ffrt_function_t func, void * arg, const ffrt_task_attr_t * attr )
+```
+**Description**
+Submits a task to a queue, and obtains the task handle. It is a simplified form of **ffrt_queue_submit_h**.
+
+Assuming no destroy callback is needed, the task function and parameters are encapsulated into a queue task structure, which is then passed to **ffrt_queue_submit_h** along with other parameters.
+
+**Since**: 20
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| queue | Queue handle. | 
+| func | Task function. | 
+| arg | Pointer to the argument. | 
+| attr | Pointer to the task attribute. | 
+
+**Returns**
+
+Returns a non-null task handle if the task is submitted; returns a null pointer otherwise.
+
+**Reference**
+
+[ffrt_queue_submit_h](#ffrt_queue_submit_h)
 
 
 ### ffrt_queue_wait()
@@ -1256,7 +1318,7 @@ Destroys the read-write lock.
 
 **Returns**
 
-Returns **ffrt_success** if the read-write lock is successfully destroyed; returns **ffrt_error_inval** otherwise. For details, see [ffrt_error_t](#ffrt_error_t).
+Returns **ffrt_success** if the read-write lock is successfully destroyed; returns **ffrt_error_inval** otherwise.
 
 
 ### ffrt_rwlock_init()
@@ -1278,7 +1340,7 @@ Initializes a read-write lock.
 
 **Returns**
 
-Returns **ffrt_success** if the read-write lock is successfully initialized; returns **ffrt_error_inval** otherwise. For details, see [ffrt_error_t](#ffrt_error_t).
+Returns **ffrt_success** if the read-write lock is successfully initialized; returns **ffrt_error_inval** otherwise.
 
 
 ### ffrt_rwlock_rdlock()
@@ -1299,7 +1361,7 @@ Obtains a read lock.
 
 **Returns**
 
-Returns **ffrt_success** if the read lock is successfully obtained; returns **ffrt_error_inval** otherwise or blocks the task. For details, see [ffrt_error_t](#ffrt_error_t).
+Returns **ffrt_success** if the read lock is successfully obtained; returns **ffrt_error_inval** otherwise or blocks the task.
 
 
 ### ffrt_rwlock_tryrdlock()
@@ -1320,7 +1382,7 @@ Attempts to obtain a read lock; if it fails, the function returns immediately.
 
 **Returns**
 
-Returns **ffrt_success** if the read lock is obtained successfully; returns **ffrt_error_inval** if the lock does not exist; returns **ffrt_error_busy** if the read lock fails to be obtained. For details, see [ffrt_error_t](#ffrt_error_t).
+Returns **ffrt_success** if the read lock is successfully obtained; returns **ffrt_error_inval** or **ffrt_error_busy** otherwise.
 
 
 ### ffrt_rwlock_trywrlock()
@@ -1329,7 +1391,7 @@ Returns **ffrt_success** if the read lock is obtained successfully; returns **ff
 FFRT_C_API int ffrt_rwlock_trywrlock (ffrt_rwlock_t * rwlock)
 ```
 **Description**
-Attempts to obtain a write lock; if it fails, the function returns immediately.
+Attempts to obtain a write lock.
 
 **Since**: 18
 
@@ -1341,7 +1403,7 @@ Attempts to obtain a write lock; if it fails, the function returns immediately.
 
 **Returns**
 
-Returns **ffrt_success** if the write lock is obtained successfully; returns **ffrt_error_inval** if the lock does not exist; returns **ffrt_error_busy** if the write lock fails to be obtained. For details, see [ffrt_error_t](#ffrt_error_t).
+Returns **ffrt_success** if the write lock is successfully obtained; returns **ffrt_error_inval** or **ffrt_error_busy** otherwise.
 
 
 ### ffrt_rwlock_unlock()
@@ -1362,7 +1424,7 @@ Releases the read-write lock.
 
 **Returns**
 
-Returns **ffrt_success** if the read-write lock is successfully released; returns **ffrt_error_inval** otherwise. For details, see [ffrt_error_t](#ffrt_error_t).
+Returns **ffrt_success** if the read-write lock is successfully released; returns **ffrt_error_inval** otherwise.
 
 
 ### ffrt_rwlock_wrlock()
@@ -1383,7 +1445,7 @@ Obtains a write lock.
 
 **Returns**
 
-Returns **ffrt_success** if the write lock is successfully obtained; returns **ffrt_error_inval** otherwise or blocks the task. For details, see [ffrt_error_t](#ffrt_error_t).
+Returns **ffrt_success** if the write lock is successfully obtained; returns **ffrt_error_inval** otherwise or blocks the task.
 
 
 ### ffrt_submit_base()
@@ -1404,6 +1466,32 @@ Submits a task.
 | in_deps | Pointer to the input dependencies. | 
 | out_deps | Pointer to the output dependencies. | 
 | attr | Pointer to the task attribute. | 
+
+### ffrt_submit_f()
+
+```
+FFRT_C_API void ffrt_submit_f (ffrt_function_t func, void * arg, const ffrt_deps_t * in_deps, const ffrt_deps_t * out_deps, const ffrt_task_attr_t * attr )
+```
+**Description**
+Submits a task. It is a simplified form of **ffrt_submit_base**.
+
+Assuming no destroy callback is needed, the task function and parameters are encapsulated into a general task structure, which is then passed to **ffrt_submit_base** along with other parameters.
+
+**Since**: 20
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| func | Task function. | 
+| arg | Pointer to the argument. | 
+| in_deps | Pointer to the input dependencies. | 
+| out_deps | Pointer to the output dependencies. | 
+| attr | Pointer to the task attribute. | 
+
+**Reference**
+
+[ffrt_submit_base](#ffrt_submit_base)
 
 
 ### ffrt_submit_h_base()
@@ -1428,6 +1516,37 @@ Submits a task, and obtains the task handle.
 **Returns**
 
 Returns a non-null task handle if the task is submitted; returns a null pointer otherwise.
+
+
+### ffrt_submit_h_f()
+
+```
+FFRT_C_API ffrt_task_handle_t ffrt_submit_h_f (ffrt_function_t func, void * arg, const ffrt_deps_t * in_deps, const ffrt_deps_t * out_deps, const ffrt_task_attr_t * attr )
+```
+**Description**
+Submits a task, and obtains the task handle. It is a simplified form of **ffrt_submit_h_base**.
+
+Assuming no destroy callback is needed, the task function and parameters are encapsulated into a general task structure, which is then passed to **ffrt_submit_h_base** along with other parameters.
+
+**Since**: 20
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| func | Task function. | 
+| arg | Pointer to the argument. | 
+| in_deps | Pointer to the input dependencies. | 
+| out_deps | Pointer to the output dependencies. | 
+| attr | Pointer to the task attribute. | 
+
+**Returns**
+
+Returns a non-null task handle if the task is submitted; returns a null pointer otherwise.
+
+**Reference**
+
+[ffrt_submit_h_base](#ffrt_submit_h_base)
 
 
 ### ffrt_task_attr_destroy()

@@ -2559,14 +2559,13 @@ entries(): IterableIterator&lt;[K, V]&gt;
 let pro = new util.LRUCache<number, number>();
 pro.put(2, 10);
 pro.put(3, 15);
-let pair:Iterable<Object[]> = pro.entries();
-let arrayValue = Array.from(pair);
-for (let value of arrayValue) {
+let pair = pro.entries();
+for (let value of pair) {
   console.info(value[0]+ ', '+ value[1]);
-  // 输出结果：
-  // 2, 10
-  // 3, 15
 }
+// 输出结果：
+// 2, 10
+// 3, 15
 ```
 
 ### [Symbol.iterator]<sup>9+</sup>
@@ -2591,14 +2590,13 @@ for (let value of arrayValue) {
 let pro = new util.LRUCache<number, number>();
 pro.put(2, 10);
 pro.put(3, 15);
-let pair:Iterable<Object[]> = pro[Symbol.iterator]();
-let arrayValue = Array.from(pair);
-for (let value of arrayValue) {
+
+for (let value of pro) {
   console.info(value[0]+ ', '+ value[1]);
-  // 输出结果：
-  // 2, 10
-  // 3, 15
 }
+// 输出结果：
+// 2, 10
+// 3, 15
 ```
 
 ## ScopeComparable<sup>8+</sup>

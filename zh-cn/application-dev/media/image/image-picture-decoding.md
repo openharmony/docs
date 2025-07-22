@@ -121,11 +121,11 @@
          let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
          // 获取辅助图信息。
          if(auxPicture != null) {
-            let auxinfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
-            console.info('GetAuxiliaryPictureInfo Type: ' + auxinfo.auxiliaryPictureType +
-               ' height: ' + auxinfo.size.height + ' width: ' + auxinfo.size.width +
-               ' rowStride: ' +  auxinfo.rowStride +  ' pixelFormat: ' + auxinfo.pixelFormat +
-               ' colorSpace: ' +  auxinfo.colorSpace);
+            let auxInfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
+            console.info('GetAuxiliaryPictureInfo Type: ' + auxInfo.auxiliaryPictureType +
+               ' height: ' + auxInfo.size.height + ' width: ' + auxInfo.size.width +
+               ' rowStride: ' +  auxInfo.rowStride +  ' pixelFormat: ' + auxInfo.pixelFormat +
+               ' colorSpace: ' +  auxInfo.colorSpace);
             // 将辅助图数据读到ArrayBuffer。
             auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
                console.info('Read pixels to buffer success.');
