@@ -227,11 +227,8 @@ Video控制器主要用于控制视频的状态，包括播放、暂停、停止
     @State videoSrc: Resource = $rawfile('videoTest.mp4')
     @State previewUri: string = 'common/videoIcon.png'
     @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
-    @State showControls: boolean = true
-    @State sliderStartTime: string = ''
     @State currentTime: number = 0
     @State durationTime: number = 0
-    @State durationStringTime: string = ''
     controller: VideoController = new VideoController()
 
     build() {
