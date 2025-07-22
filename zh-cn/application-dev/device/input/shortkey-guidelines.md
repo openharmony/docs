@@ -25,16 +25,27 @@ import { shortKey } from '@kit.InputKit';
 ```js
 import { shortKey } from '@kit.InputKit';
 
-try {
-  shortKey.setKeyDownDuration("screenshot", 500, (error) => {//设置截屏应用screenshot延迟时间为5秒（500毫秒）
-    if (error) {
-      console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            shortKey.setKeyDownDuration("screenshot", 500, (error) => {//设置截屏应用screenshot延迟时间为5秒（500毫秒）
+              if (error) {
+                console.error(`Set key down duration failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+                return;
+              }
+              console.info(`Set key down duration success`);
+            });
+          } catch (error) {
+            console.error(`Set key down duration failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+          }
+        })
     }
-    console.info(`Set key down duration success`);
-  });
-} catch (error) {
-  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
