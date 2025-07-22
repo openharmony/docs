@@ -169,7 +169,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 4. 全局变量。
 
-    仅做参考，可以根据实际情况将其封装到对象中。
+    仅作参考，可以根据实际情况将其封装到对象中。
 
     ```c++
     // 视频帧宽度。
@@ -194,7 +194,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 ### Surface模式
 
-参考以下示例代码，开发者可以完成Surface模式下视频解码的全流程，实现异步模式的数据轮转。此处以输入H.264码流文件，解码送显输出为例。
+参考以下示例代码，可以完成Surface模式下视频解码的全流程，实现异步模式的数据轮转。此处以输入H.264码流文件，解码送显输出为例。
 
 1. 添加头文件。
 
@@ -762,7 +762,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 ### Buffer模式
 
-参考以下示例代码，开发者可以完成Buffer模式下视频解码的全流程，实现异步模式的数据轮转。此处以输入H.264码流文件，解码成YUV文件为例。
+参考以下示例代码，可以完成Buffer模式下视频解码的全流程，实现异步模式的数据轮转。此处以输入H.264码流文件，解码成YUV文件为例。
 
 
 1. 添加头文件。
@@ -1148,12 +1148,12 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         int32_t height;
     };
 
-    struct DstRect // 目标内存区域的宽、高跨距，由开发者自行设置。
+    struct DstRect // 目标内存区域的宽跨距、高跨距，由开发者自行设置。
     {
         int32_t wStride;
         int32_t hStride;
     };
-    // 源内存区域的宽、高跨距，通过回调函数OnStreamChanged或接口OH_VideoDecoder_GetOutputDescription获取。
+    // 源内存区域的宽跨距、高跨距，通过回调函数OnStreamChanged或接口OH_VideoDecoder_GetOutputDescription获取。
     struct SrcRect
     {
         int32_t wStride;
@@ -1199,7 +1199,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数来获取数据的宽、高、跨距、像素格式。
 
-后续流程（包括刷新解码器、重置解码器、停止解码器、销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤13-16。
+后续流程（包括刷新、重置、停止和销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤13-16。
 
 <!--RP5-->
 <!--RP5End-->

@@ -13,7 +13,15 @@ The **InputMethodExtensionAbility** module provides APIs for developing input me
 import { InputMethodExtensionAbility } from '@kit.IMEKit';
 ```
 
-## Attributes
+## InputMethodExtensionAbility
+
+Defines the **InputMethodExtensionAbility** class.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+### context
+
+Context of the **InputMethodExtensionAbility**.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -21,11 +29,11 @@ import { InputMethodExtensionAbility } from '@kit.IMEKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [InputMethodExtensionContext](js-apis-inputmethod-extension-context.md) | No| No| Context of the **InputMethodExtension**, which is inherited from **ExtensionContext**.|
 
-## InputMethodExtensionAbility.onCreate
+### onCreate
 
 onCreate(want: Want): void
 
-Called when the **InputMethodExtension** ability is started to implement initialization.
+Called when the **InputMethodExtensionAbility** is started to implement initialization.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -33,7 +41,7 @@ Called when the **InputMethodExtension** ability is started to implement initial
 
 | Name| Type         | Mandatory| Description                            |
 | ------ | ----------- | ---- | ------------------------------- |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Information related to the **InputMethodExtension** ability, including the ability name and bundle name.|
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Information related to the **InputMethodExtensionAbility**, including the ability name and bundle name.|
 
 **Example**
 
@@ -47,11 +55,11 @@ class InputMethodExt extends InputMethodExtensionAbility {
 }
 ```
 
-## InputMethodExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void
 
-Called when this **InputMethodExtension** ability is destroyed to clear resources.
+Called when this **InputMethodExtensionAbility** is destroyed to clear resources.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 

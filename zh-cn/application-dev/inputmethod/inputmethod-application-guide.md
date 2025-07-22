@@ -327,7 +327,7 @@
            "icon": "$media:app_icon",
            "srcEntry": "./ets/InputMethodExtensionAbility/InputMethodService.ts",
            "type": "inputMethod",
-           "exported": true,
+           "exported": true
          }
        ]
      }

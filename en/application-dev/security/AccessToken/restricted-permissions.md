@@ -666,3 +666,17 @@ Allows an atomic service to request differentiated storage space.
 
 **Valid since**: 20
 <!--DelEnd-->
+
+## ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM
+
+Allows an application to request continuous tasks of special types, such as computing tasks.
+
+<!--RP48--><!--RP48End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Supported devices**: General
+
+**Valid since**: 20

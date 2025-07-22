@@ -22,7 +22,7 @@ If the **type** field in **startAbilityByType** is set to **finance**, **wantPar
     @Entry
     @Component
     struct Index {
-        @State hideAbility: string = 'hideAbility'
+        @State hideAbility: string = 'hideAbility';
 
         build() {
             Row() {
@@ -126,7 +126,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-const TAG = 'EntryAbility'
+const TAG = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {
     windowStage: window.WindowStage | null = null;

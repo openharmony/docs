@@ -1,6 +1,6 @@
 # @ohos.bundle.defaultAppManager (Default Application Management)
 
-The **DefaultAppManager** module provides APIs to query whether the current application is the default application of a specific type.
+The module provides APIs to query whether the current application is the default application of a specific type.
 
 > **NOTE**
 >
@@ -86,7 +86,7 @@ Checks whether this application is the default application of a system-defined a
 | Name        | Type                             | Mandatory  | Description                                     |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
 | type  | string                          | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](#applicationtype) or [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).                           |
-| callback    | AsyncCallback\<boolean> | Yes   | Callback used to return the result. If the application is the default application, **true** is returned; otherwise, **false** is returned.|
+| callback    | AsyncCallback\<boolean> | Yes   | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the application is the default application, **true** is returned; otherwise, **false** is returned.|
 
 **Error codes**
 

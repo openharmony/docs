@@ -634,7 +634,7 @@ getInsertSqlInfo(table: string, values: ValuesBucket, conflict?: ConflictResolut
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Parameter is out of valid range. |
 
 
 **示例：**
@@ -682,7 +682,7 @@ getUpdateSqlInfo(predicates: RdbPredicates, values: ValuesBucket, conflict?: Con
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Parameter is out of valid range. |
 
 
 **示例：**
@@ -730,7 +730,7 @@ getDeleteSqlInfo(predicates: RdbPredicates): SqlInfo
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Parameter is out of valid range. |
 
 
 **示例：**
@@ -771,7 +771,7 @@ getQuerySqlInfo(predicates: RdbPredicates, columns?: Array\<string>): SqlInfo
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause.|
+| 14800001       | Invalid arguments. Possible causes: 1. Parameter is out of valid range. |
 
 
 **示例：**

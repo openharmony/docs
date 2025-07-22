@@ -437,7 +437,7 @@
 >
 > 系统由内向外执行节点上的onTouchTestDone回调。 
 
-在NDK中onTouchTestDone与preventBegin对应的接口分别为[OH_ArkUI_SetTouchTestDoneCallback](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_settouchtestdonecallback)和[OH_ArkUI_PreventGestureRecognizerBegin](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_preventgesturerecognizerbegin)，它们的使用方式及功能与ArkTS接口一致。
+在NDK中onTouchTestDone与preventBegin对应的接口分别为[OH_ArkUI_SetTouchTestDoneCallback](../reference/apis-arkui/capi-native-gesture-h.md#oh_arkui_settouchtestdonecallback)和[OH_ArkUI_PreventGestureRecognizerBegin](../reference/apis-arkui/capi-native-gesture-h.md#oh_arkui_preventgesturerecognizerbegin)，它们的使用方式及功能与ArkTS接口一致。
 
 以下通过一个简化的视频播放界面交互为例来说明具体的用法：
 
@@ -602,7 +602,7 @@ struct Index {
                 let recognizer = allRecognizers[i];
                 let inspectorInfo = recognizer.getEventTargetInfo().getId();
                 if (inspectorInfo !== "progress_layer") {
-                  // 但用户操作到进度条区域时，禁用掉所有非progress_layer上的手势，这样只会
+                  // 用户操作到进度条区域时，禁用掉所有非progress_layer上的手势
                   recognizer.preventBegin();
                 }
               }

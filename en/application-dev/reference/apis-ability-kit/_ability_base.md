@@ -28,17 +28,17 @@ As the basic definition module of Ability Kit, AbilityBase provides definitions 
 
 | Name                                                        | Description                        |
 | ------------------------------------------------------------ | ---------------------------- |
-| [AbilityBase_Element](_ability_base_element.md#abilitybase_element) {<br>    char* bundleName;<br>    char* moduleName;<br>    char* abilityName;<br>} | Element struct.|
+| [AbilityBase_Element](_ability_base_element.md) {<br>    char* bundleName;<br>    char* moduleName;<br>    char* abilityName;<br>} | Element struct.|
 | [AbilityBase_Want](#abilitybase_want)  | Want struct.|
 
 ### Functions
 
 | Name                                                        | Description                        |
 | ------------------------------------------------------------ | ---------------------------- |
-| [AbilityBase_Want](#abilitybase_want)* [OH_AbilityBase_CreateWant](#oh_abilitybase_createwant)([AbilityBase_Element](_ability_base_element.md#abilitybase_element) element) | Creates Want.|
+| [AbilityBase_Want](#abilitybase_want)* [OH_AbilityBase_CreateWant](#oh_abilitybase_createwant)([AbilityBase_Element](_ability_base_element.md) element) | Creates Want.|
 | [AbilityBase_ErrorCode](#abilitybase_errorcode) [OH_AbilityBase_DestroyWant](#oh_abilitybase_destroywant)([AbilityBase_Want](#abilitybase_want)* want) | Destroys Want. Want cannot be used after being destroyed. Otherwise, undefined behavior may occur.|
-| [AbilityBase_ErrorCode](#abilitybase_errorcode) [OH_AbilityBase_SetWantElement](#oh_abilitybase_setwantelement)([AbilityBase_Want](#abilitybase_want)* want, [AbilityBase_Element](_ability_base_element.md#abilitybase_element) element) | Sets the Element struct, which consists of **bundleName**, **moduleName**, and **abilityName** in Want.|
-| [AbilityBase_ErrorCode](#abilitybase_errorcode) [OH_AbilityBase_GetWantElement](#oh_abilitybase_getwantelement)([AbilityBase_Want](#abilitybase_want)* want, [AbilityBase_Element](_ability_base_element.md#abilitybase_element)* element) | Obtains the Element struct, which consists of **bundleName**, **moduleName**, and **abilityName** in Want.|
+| [AbilityBase_ErrorCode](#abilitybase_errorcode) [OH_AbilityBase_SetWantElement](#oh_abilitybase_setwantelement)([AbilityBase_Want](#abilitybase_want)* want, [AbilityBase_Element](_ability_base_element.md) element) | Sets the Element struct, which consists of **bundleName**, **moduleName**, and **abilityName** in Want.|
+| [AbilityBase_ErrorCode](#abilitybase_errorcode) [OH_AbilityBase_GetWantElement](#oh_abilitybase_getwantelement)([AbilityBase_Want](#abilitybase_want)* want, [AbilityBase_Element](_ability_base_element.md)* element) | Obtains the Element struct, which consists of **bundleName**, **moduleName**, and **abilityName** in Want.|
 | [AbilityBase_ErrorCode](#abilitybase_errorcode) [OH_AbilityBase_SetWantCharParam](#oh_abilitybase_setwantcharparam)([AbilityBase_Want](#abilitybase_want)* want, const char* key, const char* value) | Sets **Param** in Want. For details about **Param**, see [parameters in Want](js-apis-inner-ability-want.md).|
 | [AbilityBase_ErrorCode](#abilitybase_errorcode) [OH_AbilityBase_GetWantCharParam](#oh_abilitybase_getwantcharparam)([AbilityBase_Want](#abilitybase_want)* want, const char* key, char* value, size_t valueSize) | Obtains **Param** set by [OH_AbilityBase_SetWantCharParam](#oh_abilitybase_setwantcharparam) in Want.|
 | [AbilityBase_ErrorCode](#abilitybase_errorcode) [OH_AbilityBase_AddWantFd](#oh_abilitybase_addwantfd)([AbilityBase_Want](#abilitybase_want)* want, const char* key, int32_t fd) | Adds a Want file descriptor. The file descriptor can be obtained through [fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen).|
@@ -111,7 +111,7 @@ Creates Want.
 
 **Returns**
 
-Returns **AbilityBase_Want**, which is a Want struct.
+**AbilityBase_Want**, which is a Want struct.
 
 
 ### OH_AbilityBase_DestroyWant
@@ -133,9 +133,9 @@ Destroys Want. Want cannot be used after being destroyed. Otherwise, undefined b
 
 **Returns**
 
-Returns **ABILITY_BASE_ERROR_CODE_NO_ERROR** if Want is destroyed.
+**ABILITY_BASE_ERROR_CODE_NO_ERROR**: Want is destroyed.
 
-Returns **ABILITY_BASE_ERROR_CODE_PARAM_INVALID** if **element** is invalid.
+**ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **element** is invalid.
 
 ### OH_AbilityBase_SetWantElement
 
@@ -157,9 +157,9 @@ Sets the Element struct, which consists of **bundleName**, **moduleName**, and *
 
 **Returns**
 
-Returns **ABILITY_BASE_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_BASE_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_BASE_ERROR_CODE_PARAM_INVALID** if **want** is set to a null pointer or **element** is invalid.
+**ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or **element** is invalid.
 
 ### OH_AbilityBase_GetWantElement
 
@@ -181,9 +181,9 @@ Obtains the Element struct, which consists of **bundleName**, **moduleName**, an
 
 **Returns**
 
-Returns **ABILITY_BASE_ERROR_CODE_NO_ERROR** if the element struct is obtained.
+**ABILITY_BASE_ERROR_CODE_NO_ERROR**: The element struct is obtained.
 
-Returns **ABILITY_BASE_ERROR_CODE_PARAM_INVALID** if **want** is set to a null pointer or **element** is invalid.
+**ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or **element** is invalid.
 
 ### OH_AbilityBase_SetWantCharParam
 
@@ -206,9 +206,9 @@ Sets **Param** in Want. For details about **Param**, see [parameters in Want](js
 
 **Returns**
 
-Returns **ABILITY_BASE_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_BASE_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_BASE_ERROR_CODE_PARAM_INVALID** if **want** is a null pointer or invalid.
+**ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
 
 ### OH_AbilityBase_GetWantCharParam
 
@@ -232,9 +232,9 @@ Obtains **Param** set by [OH_AbilityBase_SetWantCharParam](#oh_abilitybase_setwa
 
 **Returns**
 
-Returns **ABILITY_BASE_ERROR_CODE_NO_ERROR** if the param struct is obtained.
+**ABILITY_BASE_ERROR_CODE_NO_ERROR**: The param struct is obtained.
 
-Returns **ABILITY_BASE_ERROR_CODE_PARAM_INVALID** if **want** is a null pointer or invalid.
+**ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
 
 ### OH_AbilityBase_AddWantFd
 
@@ -257,9 +257,9 @@ Adds a Want file descriptor. The file descriptor can be obtained through [fs.ope
 
 **Returns**
 
-Returns **ABILITY_BASE_ERROR_CODE_NO_ERROR** if the Want file descriptor is added.
+**ABILITY_BASE_ERROR_CODE_NO_ERROR**: The Want file descriptor is added.
 
-Returns **ABILITY_BASE_ERROR_CODE_PARAM_INVALID** if **want** is a null pointer or invalid.
+**ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
 
 ### OH_AbilityBase_GetWantFd
 
@@ -282,16 +282,15 @@ Obtains a Want file descriptor.
 
 **Returns**
 
-Returns **ABILITY_BASE_ERROR_CODE_NO_ERROR** if the Want file descriptor is obtained.
+**ABILITY_BASE_ERROR_CODE_NO_ERROR**: The Want file descriptor is obtained.
 
-Returns **ABILITY_BASE_ERROR_CODE_PARAM_INVALID** if **want** is a null pointer or invalid.
+**ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
 
 ### OH_AbilityBase_SetWantUri
 
 ```
 AbilityBase_ErrorCode OH_AbilityBase_SetWantUri(AbilityBase_Want* want, const char* uri)
 ```
-
 **Description**
 
 Sets **uri** in Want. For details about **uri**, see [uri in Want](js-apis-app-ability-want.md).
@@ -307,16 +306,15 @@ Sets **uri** in Want. For details about **uri**, see [uri in Want](js-apis-app-a
 
 **Returns**
 
-Returns **ABILITY_BASE_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_BASE_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_BASE_ERROR_CODE_PARAM_INVALID** if **want** is a null pointer or invalid.
+**ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
 
 ### OH_AbilityBase_GetWantUri
 
 ```
 AbilityBase_ErrorCode OH_AbilityBase_GetWantUri(AbilityBase_Want* want, char* uri, size_t uriSize)
 ```
-
 **Description**
 
 Obtains **uri** set in Want. For details about **uri**, see [uri in Want](js-apis-app-ability-want.md).
@@ -333,16 +331,15 @@ Obtains **uri** set in Want. For details about **uri**, see [uri in Want](js-api
 
 **Returns**
 
-Returns **ABILITY_BASE_ERROR_CODE_NO_ERROR** if the URI string in Want is successfully obtained.
+**ABILITY_BASE_ERROR_CODE_NO_ERROR**: The URI string in Want is obtained.
 
-Returns **ABILITY_BASE_ERROR_CODE_PARAM_INVALID** if **want** is a null pointer or invalid.
+**ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
 
 ### OH_AbilityBase_SetWantInt32Param
 
 ```
 AbilityBase_ErrorCode OH_AbilityBase_SetWantInt32Param(AbilityBase_Want* want, const char* key, int32_t value)
 ```
-
 **Description**
 
 Sets a value of the int32_t type in Want.
@@ -359,16 +356,15 @@ Sets a value of the int32_t type in Want.
 
 **Returns**
 
-Returns **ABILITY_BASE_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_BASE_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_BASE_ERROR_CODE_PARAM_INVALID** if **want** is a null pointer or invalid.
+**ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
 
 ### OH_AbilityBase_GetWantInt32Param
 
 ```
 AbilityBase_ErrorCode OH_AbilityBase_GetWantInt32Param(AbilityBase_Want* want, const char* key, int32_t* value)
 ```
-
 **Description**
 
 Obtains a value of the int32_t type set in Want.
@@ -385,9 +381,9 @@ Obtains a value of the int32_t type set in Want.
 
 **Returns**
 
-Returns **ABILITY_BASE_ERROR_CODE_NO_ERROR** if the value of the int32_t type is successfully obtained.
+**ABILITY_BASE_ERROR_CODE_NO_ERROR**: The value of the int32_t type is obtained.
 
-Returns **ABILITY_BASE_ERROR_CODE_PARAM_INVALID** if **want** is a null pointer or invalid.
+**ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
 
 
 ### OH_AbilityBase_SetWantBoolParam
@@ -395,7 +391,6 @@ Returns **ABILITY_BASE_ERROR_CODE_PARAM_INVALID** if **want** is a null pointer 
 ```
 AbilityBase_ErrorCode OH_AbilityBase_SetWantBoolParam(AbilityBase_Want* want, const char* key, bool value)
 ```
-
 **Description**
 
 Sets a value of the bool type in Want.
@@ -412,16 +407,15 @@ Sets a value of the bool type in Want.
 
 **Returns**
 
-Returns **ABILITY_BASE_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_BASE_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_BASE_ERROR_CODE_PARAM_INVALID** if **want** is a null pointer or invalid.
+**ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
 
 ### OH_AbilityBase_GetWantBoolParam
 
 ```
 AbilityBase_ErrorCode OH_AbilityBase_GetWantBoolParam(AbilityBase_Want* want, const char* key, bool* value)
 ```
-
 **Description**
 
 Obtains a value of the bool type set in Want.
@@ -438,16 +432,15 @@ Obtains a value of the bool type set in Want.
 
 **Returns**
 
-Returns **ABILITY_BASE_ERROR_CODE_NO_ERROR** if the value of the bool type is successfully obtained.
+**ABILITY_BASE_ERROR_CODE_NO_ERROR**: The value of the bool type is obtained.
 
-Returns **ABILITY_BASE_ERROR_CODE_PARAM_INVALID** if **want** is a null pointer or invalid.
+**ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
 
 ### OH_AbilityBase_SetWantDoubleParam
 
 ```
 AbilityBase_ErrorCode OH_AbilityBase_SetWantDoubleParam(AbilityBase_Want* want, const char* key, double value)
 ```
-
 **Description**
 
 Sets a value of the double type in Want.
@@ -464,16 +457,15 @@ Sets a value of the double type in Want.
 
 **Returns**
 
-Returns **ABILITY_BASE_ERROR_CODE_NO_ERROR** if the setting is successful.
+**ABILITY_BASE_ERROR_CODE_NO_ERROR**: The setting is successful.
 
-Returns **ABILITY_BASE_ERROR_CODE_PARAM_INVALID** if **want** is a null pointer or invalid.
+**ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.
 
 ### OH_AbilityBase_GetWantDoubleParam
 
 ```
 AbilityBase_ErrorCode OH_AbilityBase_GetWantDoubleParam(AbilityBase_Want* want, const char* key, double* value)
 ```
-
 **Description**
 
 Obtains a value of the double type set in Want.
@@ -490,6 +482,6 @@ Obtains a value of the double type set in Want.
 
 **Returns**
 
-Returns **ABILITY_BASE_ERROR_CODE_NO_ERROR** if the value of the double type is successfully obtained.
+**ABILITY_BASE_ERROR_CODE_NO_ERROR**: The value of the double type is successfully obtained.
 
-Returns **ABILITY_BASE_ERROR_CODE_PARAM_INVALID** if **want** is a null pointer or invalid.
+**ABILITY_BASE_ERROR_CODE_PARAM_INVALID**: **want** is null or invalid.

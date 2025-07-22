@@ -59,6 +59,7 @@
 | [typedef void (\*OH_AudioRenderer_OnMarkReachedCallback)(OH_AudioRenderer* renderer, uint32_t samplePos, void* userData)](#oh_audiorenderer_onmarkreachedcallback) | OH_AudioRenderer_OnMarkReachedCallback | 到达标记位置时回调。 |
 | [typedef int32_t (\*OH_AudioRenderer_WriteDataWithMetadataCallback)(OH_AudioRenderer* renderer,void* userData, void* audioData, int32_t audioDataSize, void* metadata, int32_t metadataSize)](#oh_audiorenderer_writedatawithmetadatacallback) | OH_AudioRenderer_WriteDataWithMetadataCallback | 该函数指针将指向用于同时写入音频数据和元数据的回调函数。 |
 | [typedef OH_AudioData_Callback_Result (\*OH_AudioRenderer_OnWriteDataCallback)(OH_AudioRenderer* renderer, void* userData,void* audioData, int32_t audioDataSize)](#oh_audiorenderer_onwritedatacallback) | OH_AudioRenderer_OnWriteDataCallback | 该函数指针将指向用于写入音频数据的回调函数。<br>回调函数仅用来写入音频数据，请勿在回调函数中调用AudioRenderer相关接口。<br>该函数的返回结果表示填充到缓冲区的数据是否有效。如果结果无效，用户填写的数据将不被播放。回调函数结束后，音频服务会把audioData指针数据放入队列里等待播放，因此请勿在回调外再次更改audioData指向的数据, 且务必保证往audioData填满audioDataSize长度的待播放数据, 否则会导致音频服务播放杂音。 |
+| [typedef int32_t (\*OH_AudioRenderer_OnWriteDataCallbackAdvanced)(OH_AudioRenderer* renderer, void* userData,void* audioData, int32_t audioDataSize)](#oh_audiorenderer_onwritedatacallbackadvanced) | OH_AudioRenderer_OnWriteDataCallbackAdvanced | 该函数指针将指向用于写入音频数据的回调函数。不同于OH_AudioRenderer_OnWriteDataCallback，此函数允许应用填充[0, audioDataSize]长度的数据。<br>其中audioDataSize为回调buffer的长度。调用方通过返回值告知系统写入的数据长度。<br>如果返回0，回调线程将会sleep一段时间。<br>否则，系统可能会立刻进行下一次回调。 |
 
 ## 枚举类型说明
 
@@ -526,5 +527,33 @@ typedef OH_AudioData_Callback_Result (*OH_AudioRenderer_OnWriteDataCallback)(OH_
 | 类型 | 说明 |
 | -- | -- |
 | [OH_AudioData_Callback_Result](#oh_audiodata_callback_result) | AUDIO_DATA_CALLBACK_RESULT_INVALID：音频数据回调结果无效，且音频数据不播放。<br>        AUDIO_DATA_CALLBACK_RESULT_VALID：音频数据回调结果有效，将播放音频数据。 |
+
+### OH_AudioRenderer_OnWriteDataCallbackAdvanced()
+
+```
+typedef int32_t (*OH_AudioRenderer_OnWriteDataCallbackAdvanced)(OH_AudioRenderer* renderer, void* userData,void* audioData, int32_t audioDataSize)
+```
+
+**描述**
+
+该函数指针将指向用于写入音频数据的回调函数。不同于OH_AudioRenderer_OnWriteDataCallback，此函数允许应用填充[0, audioDataSize]长度的数据。<br>其中audioDataSize为回调buffer的长度。调用方通过返回值告知系统写入的数据长度。<br>如果返回0，回调线程将会sleep一段时间。<br>否则，系统可能会立刻进行下一次回调。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_AudioRenderer](capi-ohaudio-oh-audiorendererstruct.md)* renderer | 指向发生回调的实例。 |
+|  void* userData | 指向通过回调函数传递的应用数据指针。 |
+| void* audioData | 指向让应用填充音频数据的指针。 |
+|  int32_t audioDataSize | 应用应写入音频数据的数据长度，以字节为单位。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 应用实际填充有效音频数据的长度。返回值必须在[0, audioDataSize]范围内。<br>如果返回值小于0，系统将调整为0。并且，如果返回值大于audioDataSize，系统将其调整到audioDataSize。<br>注意返回值必须是单个采样点大小的整数倍。<br>比如，双声道s16格式的音频数据，必须是4(216/8)的整数倍。<br>否则，可能造成播放杂音。 |
 
 

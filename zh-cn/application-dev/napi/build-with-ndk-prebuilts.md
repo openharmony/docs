@@ -2,6 +2,12 @@
 
 在NDK工程中，可以通过CMake语法规则引入并使用预构建库。在引用预构建库时，模块libs目录中的预构建库，以及在`CMakeList.txt`编译脚本中声明的预构建库都会被打包。
 
+## 预构建库使用约束
+
+1.确保引入的SO动态库是通过[HarmonyOS NDK 编译工具链](build-with-ndk-overview.md)编译生成，如何通过[HarmonyOS NDK 编译工具链](build-with-ndk-overview.md)编译预构建库，请参照[CMake构建三方库适配流程](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-cmake-adapts-to-harmonyos#section1826019653918)。
+
+2.确保引入的SO动态库的依赖库也导入到工程中且通过[HarmonyOS NDK 编译工具链](build-with-ndk-overview.md)编译生成。
+
 ## 直接引入预构建库
 
 可以通过直接将预构建的库文件复制到项目文件中, 来使用预构建库。例如在项目中需要使用预构建库`libavcodec_ffmpeg.so`，其开发态存放路径如下图所示：

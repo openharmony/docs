@@ -35,12 +35,12 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_Drawing_TextDirection](#oh_drawing_textdirection) | - | 文字方向。/ |
-| [OH_Drawing_TextAlign](#oh_drawing_textalign) | - | 文字对齐方式/ |
-| [OH_Drawing_FontWeight](#oh_drawing_fontweight) | - | 字重。/ |
-| [OH_Drawing_TextBaseline](#oh_drawing_textbaseline) | - | 基线位置。/ |
-| [OH_Drawing_TextDecoration](#oh_drawing_textdecoration) | - | 文本装饰。/ |
-| [OH_Drawing_FontStyle](#oh_drawing_fontstyle) | - | 区分字体是否为斜体。/ |
+| [OH_Drawing_TextDirection](#oh_drawing_textdirection) | - | 文字方向。 |
+| [OH_Drawing_TextAlign](#oh_drawing_textalign) | - | 文字对齐方式。|
+| [OH_Drawing_FontWeight](#oh_drawing_fontweight) | - | 字重。 |
+| [OH_Drawing_TextBaseline](#oh_drawing_textbaseline) | - | 基线位置。 |
+| [OH_Drawing_TextDecoration](#oh_drawing_textdecoration) | - | 文本装饰。 |
+| [OH_Drawing_FontStyle](#oh_drawing_fontstyle) | - | 区分字体是否为斜体。 |
 | [OH_Drawing_PlaceholderVerticalAlignment](#oh_drawing_placeholderverticalalignment) | OH_Drawing_PlaceholderVerticalAlignment | 占位符垂直对齐枚举。 |
 | [OH_Drawing_TextDecorationStyle](#oh_drawing_textdecorationstyle) | OH_Drawing_TextDecorationStyle | 文本装饰样式枚举。 |
 | [OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal) | OH_Drawing_EllipsisModal | 省略号样式枚举。 |

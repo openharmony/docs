@@ -15,7 +15,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### hilog日志生成
 
-业务代码中，如果调用了hilog接口，那么业务运行时就会生成对应的hilog日志。
+业务代码中，如果调用了HiLog接口，那么业务运行时就会生成对应的hilog日志。
 
 ### hilog日志查看
 
@@ -31,19 +31,16 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### hilog日志格式说明
 
-```text
-日期  时间          进程号 线程号 日志级别 domainID/日志tag: 日志内容
-
-04-19 17:02:14.735  5394  5394 I A03200/testTag: this is a info level hilog
-```
-
-如上，这是一条domainID为0x3200、日志tag是"testTag"的INFO级别的日志：
+| 第一列 | 第二列 | 第三列 | 第四列 |  第五列 | 第六列 | 第七列 |
+| -------- | -------- | -------- | -------- | -------- | -------- | -------- |
+| 日期 | 时间戳 | 进程号 | 线程号 | 日志级别 | domainID/日志tag: | 日志内容 |
+| 04-19 | 17:02:14.735 | 5394 | 5394 | I | A03200/testTag: | this is a info level hilog |
 
 > **说明：**
 >
-> -  日志级别：I表示Info级别，其余级别参考[日志等级](../reference/apis-performance-analysis-kit/capi-log-h.md#loglevel)首字母。
+> 日志级别：I表示Info级别，其余级别参考[日志等级](../reference/apis-performance-analysis-kit/capi-log-h.md#loglevel)首字母。
 >
-> -  domainID：A03200中A表示应用日志（LOG_APP），3200表示domainID为0x3200。
+> domainID：A03200中A表示应用日志（LOG_APP），3200表示domainID为0x3200。
 
 <!--RP15End-->
 
@@ -68,16 +65,18 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 | -T | --tag | &lt;tag&gt; | 指定tag。 | 
 | -P | --pid | &lt;pid&gt; | 标识不同的pid。 | 
 | -e | --regex | &lt;expr&gt; | 只打印日志消息与&lt;expr&gt;匹配的行，其中&lt;expr&gt;是一个正则表达式。 |
-| -v | --format | &lt;format&gt; | 显示格式控制。 | 
+| -v | --format | &lt;format&gt; | 显示格式控制。 |
+|  |  | color/colour | 不同级别显示不同颜色，缺省时按照黑白颜色模式处理。 |  
 |  |  | time | 显示本地时间。 | 
-|  |  | color/colour | 不同级别显示不同颜色，缺省时按照黑白颜色模式处理。 | 
 |  |  | epoch | 显示相对1970时间。 | 
 |  |  | monotonic | 显示相对启动时间。 | 
+|  |  | msec | 显示毫秒精度时间。 |
 |  |  | usec | 显示微秒精度时间。 | 
 |  |  | nsec | 显示纳秒精度时间。 | 
 |  |  | year | 显示将年份添加到显示的时间。 | 
 |  |  | zone | 显示将本地时区添加到显示的时间。 | 
 |  |  | wrap | 日志换行显示时，新行不增加时间戳等前缀。 |
+|  |  | long | 显示所有数据字段，用空格分隔信息。 |
 | -r | - | - | 清除buffer日志，配合-t指定某一类型使用，默认app和core。 | 
 | -g | - | - | 查询buffer的大小，配合-t指定某一类型使用，默认app和core。 | 
 | -G | --buffer-size | &lt;size&gt; | 设置指定&lt;type&gt;日志类型缓冲区的大小，配合-t指定某一类型使用，默认app和core， 可使用B/K/M为单位，范围为64K-16M。 | 
@@ -108,45 +107,42 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 |  |  | domainon | 打开domain超限管控开关。 | 
 |  |  | domainoff | 关闭domain超限管控开关。 | 
 | -b | --baselevel | &lt;loglevel&gt; | 设置可打印日志的最低等级：D(DEBUG)/I(INFO)/W(WARN)/E(ERROR)/F(FATAL)。可以和-D、-T结合使用，设置指定日志可打印的最低等级。 | 
-| | --persist| - |配置日志级别设置命令持久化（重启设置不会丢失）。|
+| - | --persist| - |配置日志级别设置命令持久化（重启设置不会丢失）。|
 <!--RP18End-->
 
-## 常见使用场景
 
-### 查看帮助命令
+## 查看帮助命令
 
-   ```shell
-   hilog -h
-   ```
+```shell
+hilog -h
+```
 
-   **使用样例：**
+**使用样例**：
 
-   ```shell
-    $ hilog -h
-    Usage:
-    -h --help
-      Show all help information.
-      Show single help information with option:
-      query/clear/buffer/stats/persist/private/kmsg/flowcontrol/baselevel/domain/combo
-    Querying logs options:
-      No option performs a blocking read and keeps printing.
-      -x --exit
-        Performs a non-blocking read and exits when all logs in buffer are printed.
-      -a <n>, --head=<n>
-        Show n lines logs on head of buffer.
-      -z <n>, --tail=<n>
-        Show n lines logs on tail of buffer.
-   ```
+```shell
+ $ hilog -h
+ Usage:
+ -h --help
+   Show all help information.
+   Show single help information with option:
+   query/clear/buffer/stats/persist/private/kmsg/flowcontrol/baselevel/domain/combo
+ Querying logs options:
+   No option performs a blocking read and keeps printing.
+   -x --exit
+     Performs a non-blocking read and exits when all logs in buffer are printed.
+   -a <n>, --head=<n>
+     Show n lines logs on head of buffer.
+   -z <n>, --tail=<n>
+     Show n lines logs on tail of buffer.
+```
 
-### 查看日志
+## **非阻塞读日志**
 
-#### 非阻塞读日志
+```shell
+hilog -x
+```
 
-   ```shell
-   hilog -x
-   ```
-
-   **使用样例：**
+**使用样例**：
 
 <!--RP1-->
    ```shell
@@ -160,13 +156,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    ```
 <!--RP1End-->
 
-#### 查看指定级别日志
+## **查看指定级别日志**
 
-   ```shell
-   hilog -L D/I/W/E/F
-   ```
+```shell
+hilog -L D/I/W/E/F
+```
 
-   **使用样例：**
+**使用样例**：
 
 <!--RP2-->
    ```shell
@@ -181,13 +177,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    ```
 <!--RP2End-->
 
-#### 查看指定类型日志
+## **查看指定类型日志**
 
-   ```shell
-   hilog -t app
-   ```
+```shell
+hilog -t app
+```
 
-   **使用样例：**
+**使用样例**：
 
 <!--RP3-->
    ```shell
@@ -200,13 +196,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    ```
 <!--RP3End-->
 
-#### 查看指定domain日志
+## **查看指定domain日志**
 
-   ```shell
-   hilog -D 01B06
-   ```
+```shell
+hilog -D 01B06
+```
 
-   **使用样例：**
+**使用样例**：
 
 <!--RP4-->
    ```shell
@@ -219,13 +215,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    ```
 <!--RP4End-->
 
-#### 查看指定TAG日志
+## **查看指定TAG日志**
 
-   ```shell
-   hilog -T tag
-   ```
+```shell
+hilog -T tag
+```
 
-   **使用样例：**
+**使用样例**：
 
 <!--RP5-->
    ```shell
@@ -241,13 +237,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    ```
 <!--RP5End-->
 
-#### 查看缓冲区前n行日志
+## **查看缓冲区前n行日志**
 
-   ```shell
-   hilog -a 8
-   ```
+```shell
+hilog -a 8
+```
 
-   **使用样例：**
+**使用样例**：
 
 <!--RP6-->
    ```shell
@@ -263,13 +259,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    ```
 <!--RP6End-->
 
-#### 查看缓冲区后n行日志
+## **查看缓冲区后n行日志**
 
-   ```shell
-   hilog -z 8
-   ```
+```shell
+hilog -z 8
+```
 
-   **使用样例：**
+**使用样例**：
 
 <!--RP7-->
    ```shell
@@ -285,13 +281,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    ```
 <!--RP7End-->
 
-#### 查看指定进程日志
+## **查看指定进程日志**
 
-   ```shell
-   hilog -P pid
-   ```
+```shell
+hilog -P pid
+```
 
-   **使用样例：**
+**使用样例**：
 
 <!--RP8-->
    ```shell
@@ -306,13 +302,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    ```
 <!--RP8End-->
 
-#### 查看符合正则匹配关键字的日志
+## **查看符合正则匹配关键字的日志**
 
-   ```shell
-   hilog -e start
-   ```
+```shell
+hilog -e start
+```
 
-   **使用样例：**
+**使用样例**：
 
 <!--RP9-->
    ```shell
@@ -328,13 +324,15 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    ```
 <!--RP9End-->
 
-#### 查看不同显示格式的日志
+## **查看不同显示格式的日志**
 
-   ```shell
-   hilog -v time/color/epoch/monotonic/usec/nsec/year/zone/wrap
-   ```
+```shell
+hilog -v time/color/epoch/monotonic/usec/nsec/year/zone/wrap
+```
 
-   **使用样例：**
+**使用样例**：
+
+显示本地时间，以纳秒为单位显示时间。
 
 <!--RP10-->
    ```shell
@@ -346,7 +344,11 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    11-15 16:36:21.802  2809  2831 E C02D06/XCollie: Send kick,foundation to hungtask Successful
    11-15 16:36:21.911   882  3016 I C01F0B/TelephonyVSim: state machine ProcessEvent Id: 125
    11-15 16:36:21.911   882  3016 I C01F0B/TelephonyVSim: StateProcess
+   ```
 
+以纳秒为单位显示时间。
+
+   ```shell
    $ hilog -v nsec
    11-15 16:37:09.010658555  1134  1723 I C02B01/HrilExt: [BoosterRawInd-(hril_booster.cpp:296)] RilExt: BoosterRawInd
    11-15 16:37:09.010676263  1134  1723 I C02B01/HrilExt: [BoosterRawInd-(hril_booster.cpp:328)] check need notify to satellite:indType 6
@@ -357,87 +359,86 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    ```
 <!--RP10End-->
 
+## 查看和设置落盘任务
 
-### 查看和设置落盘任务
+**查看落盘任务**
 
-#### 查看落盘任务
+```shell
+hilog -w query
+```
 
-   ```shell
-   hilog -w query
-   ```
+当前不存在落盘任务：
 
-   当前不存在落盘任务：
+```shell
+$ hilog -w query
+Persist task query failed
+No running persistent task [CODE: -63]
+```
 
-   ```shell
-   $ hilog -w query
-   Persist task query failed
-   No running persistent task [CODE: -63]
-   ```
+当前存在落盘任务：
 
-   当前存在落盘任务：
+```shell
+$ hilog -w query
+1 init,core,app,only_prerelease zlib /data/log/hilog/hilog 4.0M 1000
+2 kmsg zlib /data/log/hilog/hilog_kmsg 4.0M 100
+```
 
-   ```shell
-   $ hilog -w query
-   1 init,core,app,only_prerelease zlib /data/log/hilog/hilog 4.0M 1000
-   2 kmsg zlib /data/log/hilog/hilog_kmsg 4.0M 100
-   ```
+**设置落盘任务**
 
-#### 设置落盘任务
+> **说明：**
+>
+> 当前没有落盘任务时，才能开启落盘任务，如果已经存在落盘任务，需要先停止落盘任务。
 
-   > **说明：**
-   >
-   > 当前没有落盘任务时，才能开启落盘任务，如果已经存在落盘任务，需要先停止落盘任务。
+开启hilog落盘任务，并且设置落盘文件数量为1000个：
 
-   开启hilog落盘任务，并且设置落盘文件数量为1000个：
+```shell
+$ hilog -w start -n 1000
+Persist task [jobid:1][fileNum:1000][fileSize:4194304] start successfully
+```
 
-   ```shell
-   $ hilog -w start -n 1000
-   Persist task [jobid:1][fileNum:1000][fileSize:4194304] start successfully
-   ```
+开启kmsglog落盘任务，并且设置落盘文件数量为100个：
 
-   开启kmsglog落盘任务，并且设置落盘文件数量为100个：
+```shell
+$ hilog -w start -n 100 -t kmsg
+Persist task [jobid:2][fileNum:100][fileSize:4194304] start successfully
+```
 
-   ```shell
-   $ hilog -w start -n 100 -t kmsg
-   Persist task [jobid:2][fileNum:100][fileSize:4194304] start successfully
-   ```
+开启落盘任务时可以自定义落盘规则，其中压缩方式可以为zlib、zstd、none。
 
-   开启落盘任务时可以自定义落盘规则，其中压缩方式可以为zlib、zstd、none。
+以设置落盘文件名为kmsglog，大小为2M，数量为100个，其压缩方式为zlib压缩为例，命令行为：
 
-   以设置落盘文件名为kmsglog，大小为2M，数量为100个, 其压缩方式为zlib压缩为例，命令行为：
+```shell
+$ hilog -w start -t kmsg -f kmsglog -l 2M -n 100 -m zlib
+Persist task [jobid:2][fileNum:100][fileSize:2097152] start successfully
+```
 
-   ```shell
-   $ hilog -w start -t kmsg -f kmsglog -l 2M -n 100 -m zlib
-   Persist task [jobid:2][fileNum:100][fileSize:2097152] start successfully
-   ```
+**关闭落盘任务**
 
-#### 关闭落盘任务
+停止当前落盘任务：
 
-   停止当前落盘任务：
+```shell
+$ hilog -w stop
+Persist task [jobid:1] stop successfully
+Persist task [jobid:2] stop successfully
+```
 
-   ```shell
-   $ hilog -w stop
-   Persist task [jobid:1] stop successfully
-   Persist task [jobid:2] stop successfully
-   ```
+## 查看和设置日志级别
 
-### 查看和设置日志级别
+**查看全局日志级别**
 
-#### 查看全局日志级别
-
-   ```shell
-   $ param get hilog.loggable.global
-   I
-   ```
+```shell
+$ param get hilog.loggable.global
+I
+```
 <!--RP17-->
 全局日志级别默认为INFO;
 <!--RP17End-->
 
 <!--RP16-->
-#### 设置日志级别
+## 设置日志级别
 
    ```text
-   // 设置全局日志级别
+   // 设置全局日志级别，重启后失效
    hilog -b D/I/W/E/F
 
    // 设置全局日志级别，重启仍生效
@@ -472,172 +473,163 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### 查看日志缓冲区大小
 
-   ```shell
-   hilog -g
-   ```
+```shell
+hilog -g
+```
 
-   **使用样例：**
+**使用样例**：
 
-   ```shell
-   $ hilog -g
-   Log type app buffer size is 16.0M
-   Log type init buffer size is 16.0M
-   Log type core buffer size is 16.0M
-   Log type only_prerelease buffer size is 16.0M
-   ```
+```shell
+$ hilog -g
+Log type app buffer size is 16.0M
+Log type init buffer size is 16.0M
+Log type core buffer size is 16.0M
+Log type only_prerelease buffer size is 16.0M
+```
 
 ### 修改日志缓冲区大小
 
-   ```shell
-   hilog -G size
-   ```
+```shell
+hilog -G size
+```
 
-   **使用样例：**
+**使用样例**：
 
-   ```shell
-   $ hilog -G 16M
-   Set log type app buffer size to 16.0M successfully
-   Set log type init buffer size to 16.0M successfully
-   Set log type core buffer size to 16.0M successfully
-   Set log type only_prerelease buffer size to 16.0M successfully
-   ```
+```shell
+$ hilog -G 16M
+Set log type app buffer size to 16.0M successfully
+Set log type init buffer size to 16.0M successfully
+Set log type core buffer size to 16.0M successfully
+Set log type only_prerelease buffer size to 16.0M successfully
+```
 
 ### 清除缓冲区日志
 
-   ```
-   hilog -r
-   ```
+```shell
+hilog -r
+```
 
-   **使用样例：**
-   ```
-   $ hilog -r
-   Log type core,app,only_prerelease buffer clear successfully
-   ```
+**使用样例**：
+
+```shell
+$ hilog -r
+Log type core,app,only_prerelease buffer clear successfully
+```
 
 ### 内核日志读取开关控制
 
-   ```shell
-   hilog -k on/off
-   ```
+```shell
+hilog -k on/off
+```
 
-   **使用样例：**
+**使用样例**：
 
-   ```shell
-   $ hilog -k on
-   Set hilogd storing kmsg log on successfully
+```shell
+$ hilog -k on
+Set hilogd storing kmsg log on successfully
 
-   $ hilog -k off
-   Set hilogd storing kmsg log off successfully
-   ```
+$ hilog -k off
+Set hilogd storing kmsg log off successfully
+```
 
 ### 查询统计信息
 
-   ```shell
-   hilog -s
-   ```
+```shell
+hilog -s
+```
 
-   **使用样例：**
+> **说明：**
+>
+> 需要先执行 param set persist.sys.hilog.stats true 设置该属性开启统计功能，并且重启后，才能正式开始统计。
 
-   ```shell
-   $ param set persist.sys.hilog.stats true
-   Set parameter persist.sys.hilog.stats true success
-   $ reboot
-   $ hilog -s
-   Log statistic report (Duration: 0h0m32s.564, From: 11-15 16:04:08.628):
-   Total lines: 137517, length: 8.0M
-   DEBUG lines: 0(0%), length: 0.0B(0%)
-   INFO lines: 101795(74%), length: 6.1M(76%)
-   WARN lines: 10268(7.5%), length: 719.9K(8.8%)
-   ERROR lines: 25452(19%), length: 1.2M(15%)
-   FATAL lines: 2(0.0015%), length: 259.0B(0.0031%)
-   ------------------------------------------------------------
-   Domain Table:
-   LOGTYPE- DOMAIN---- TAG----------------------------- MAX_FREQ-- TIME---------------- MAX_TP---- TIME---------------- LINES----- LENGTH---- DROPPED---
-   app----- 0xf00----- -------------------------------- 924.00---- 11-15 16:04:25.594-- 111975.00- 11-15 16:04:25.594-- 3386------ 371.5K---- 0---------
-   app----- 0x0------- -------------------------------- 285.00---- 11-15 16:04:34.877-- 44242.00-- 11-15 16:04:34.877-- 990------- 129.2K---- 0---------
-   ```
+**使用样例**：
 
-   **统计信息说明**
-   ```
-   MAX_FREQ：日志打印频率最高的每秒行数。
-   TIME：    对应发生时间。
-   MAX_TP：  日志打印频率最高的每秒字节数。
-   LINES：   统计周期内的总行数。
-   LENGTH：  统计周期内的总字节数。
-   DROPPED： 统计周期内丢失的行数。
-   ```
+```shell
+$ param set persist.sys.hilog.stats true
+Set parameter persist.sys.hilog.stats true success
+$ reboot
+$ hilog -s
+Log statistic report (Duration: 0h0m32s.564, From: 11-15 16:04:08.628):
+Total lines: 137517, length: 8.0M
+DEBUG lines: 0(0%), length: 0.0B(0%)
+INFO lines: 101795(74%), length: 6.1M(76%)
+WARN lines: 10268(7.5%), length: 719.9K(8.8%)
+ERROR lines: 25452(19%), length: 1.2M(15%)
+FATAL lines: 2(0.0015%), length: 259.0B(0.0031%)
+------------------------------------------------------------
+Domain Table:
+LOGTYPE- DOMAIN---- TAG----------------------------- MAX_FREQ-- TIME---------------- MAX_TP---- TIME---------------- LINES----- LENGTH---- DROPPED---
+app----- 0xf00----- -------------------------------- 924.00---- 11-15 16:04:25.594-- 111975.00- 11-15 16:04:25.594-- 3386------ 371.5K---- 0---------
+app----- 0x0------- -------------------------------- 285.00---- 11-15 16:04:34.877-- 44242.00-- 11-15 16:04:34.877-- 990------- 129.2K---- 0---------
+```
+
+**统计信息说明**
+
+```shell
+MAX_FREQ：日志打印频率最高的每秒行数。
+TIME：    对应发生时间。
+MAX_TP：  日志打印频率最高的每秒字节数。
+LINES：   统计周期内的总行数。
+LENGTH：  统计周期内的总字节数。
+DROPPED： 统计周期内丢失的行数。
+```
 
 ### 清除统计信息
 
-   ```shell
-   hilog -S
-   ```
+```shell
+hilog -S
+```
 
-   **使用样例：**
+**使用样例**：
 
-   ```shell
-   $ hilog -S
-   Statistic info clear successfully
-   ```
+```shell
+$ hilog -S
+Statistic info clear successfully
+```
 
 ### 进程超限开关
 
-   ```shell
-   hilog -Q pidon/pidoff
-   ```
+```shell
+hilog -Q pidon/pidoff
+```
 
-   **使用样例：**
+**使用样例**：
 
-   开启进程超限管控：
+开启进程超限管控：
 
-   ```shell
-   $ hilog -Q pidon
-   Set flow control by process to enabled successfully
-   ```
+```shell
+$ hilog -Q pidon
+Set flow control by process to enabled successfully
+```
 
-   关闭进程超限管控：
-   ```shell
-   $ hilog -Q pidoff
-   Set flow control by process to disabled successfully
-   ```
+关闭进程超限管控：
+
+```shell
+$ hilog -Q pidoff
+Set flow control by process to disabled successfully
+```
 
 ### domain超限开关
 
-   ```shell
-   hilog -Q domainon/domainoff
-   ```
+```shell
+hilog -Q domainon/domainoff
+```
 
-   **使用样例：**
+**使用样例**：
 
-   开启domain超限管控：
-   ```shell
-   $ hilog -Q domainon
-   Set flow control by domain to enabled successfully
-   ```
+开启domain超限管控：
 
-   关闭domain超限管控：
-   ```shell
-   $ hilog -Q domainoff
-   Set flow control by domain to disabled successfully
-   ```
+```shell
+$ hilog -Q domainon
+Set flow control by domain to enabled successfully
+```
 
-<!--Del-->
-### 隐私开关
+关闭domain超限管控：
 
-   ```shell
-   hilog -p on/off
-   ```
-
-   **使用样例：**
-
-   ```shell
-   # hilog -p on
-   Set hilog privacy format on successfully
-   #
-   # hilog -p off
-   Set hilog privacy format off successfully
-   ```
-<!--DelEnd-->
+```shell
+$ hilog -Q domainoff
+Set flow control by domain to disabled successfully
+```
 
 ## hilog超限机制介绍
 
@@ -650,7 +642,6 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 进程维度管控，打印到LOG_APP buffer里面的应用日志适配了pid超限机制，当某进程打印的LOG_APP类型日志量在一秒内超过阈值时会触发管控，超限提示日志示例如下：
 
 <!--RP11-->
-
 ```text
 04-19 17:02:34.219  5394  5394 W A00032/LOGLIMIT: ==com.example.myapplication LOGS OVER PROC QUOTA, 3091 DROPPED==
 ```
@@ -660,12 +651,12 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 **处理方式**：可参考[进程超限开关](#进程超限开关)，关闭对应管控机制。
 
+
 ### 系统日志
 
 domainID维度管控，打印到LOG_CORE buffer里面的系统日志适配了domain超限机制，当某domainID打印的LOG_CORE类型日志量在一秒内超过阈值时触发管控，超限提示日志示例如下：
 
 <!--RP12-->
-
 ```text
 04-19 17:02:34.219  5394  5394 W C02C02/LOGLIMIT: 108 line(s) dropped in a second!
 ```
@@ -687,12 +678,13 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 > **说明：**
 >
 > 当出现这些打印时，说明日志已经丢失，无法恢复找回。
->
+> 
 > 如果是在线运维场景出现，需要参考下方处理方式并且本地复现，然后查看完整日志。
+
 
 ### LOGLIMIT
 
-含义：日志打印超限，该进程或者domainID被管控。属于领域日志量超出hilog规格后的主动管控，需要领域对日志进行精简和整改。提示日志示例如下：
+**含义**：日志打印超限，该进程或者domainID被管控。属于领域日志量超出hilog规格后的主动管控，需要领域对日志进行精简和整改。提示日志示例如下：
 
 <!--RP13-->
 ```text
@@ -700,77 +692,80 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 ```
 <!--RP13End-->
 
-
-处理方式：可参考[hilog超限机制介绍](#hilog超限机制介绍)，关闭对应管控机制。
+**处理方式**：可参考[hilog超限机制介绍](#hilog超限机制介绍)，关闭对应管控机制。
 
 
 ### Slow reader missed
 
-
-含义：打印时间点前后日志量太大，hilog buffer中的日志还未落盘已经被循环覆盖了。提示日志示例如下：
+**含义**：打印时间点前后日志量太大，hilog buffer中的日志还未落盘已经被循环覆盖了。提示日志示例如下：
 
 ```text
 04-19 17:02:34.219     0     0 I C00000/HiLog: ========Slow reader missed log lines: 137
 ```
 
-原因：以下任意一种情况，均有可能导致全局日志丢失。
+**原因**：以下任意一种情况，均有可能导致全局日志丢失。
 
-   - 日志级别设置为D。
+- 日志级别设置为D。
 
-   - 关闭了超限管控。
+- 关闭了超限管控。
 
-   - 有模块在循环打印日志。
+- 有模块在循环打印日志。
 
-处理方式：
+**处理方式**：
 
-   - 通过hilog -g命令查询buffer大小（hilog buffer大小默认是256KB）。
+- 通过hilog -g命令查询buffer大小（hilog buffer大小默认是256KB）。
 
-   - 通过hilog -G命令扩大hilog buffer大小。如下命令表示将buffer大小修改为16MB（当前允许的最大规格为16MB）。
-     ```shell
-     hilog -G 16M
-     ```
+- 通过hilog -G命令扩大hilog buffer大小。如下命令表示将buffer大小修改为16MB（当前允许的最大规格为16MB）。
 
-   - 同时查看是否后台有领域频繁打印日志。若发现某个领域日志频繁打印，影响正常日志读取，可参考“"write socket failed”的规避方式，通过命令关闭其领域的日志打印。
+  ```shell
+  hilog -G 16M
+  ```
+
+- 同时查看是否后台有领域频繁打印日志。若发现某个领域日志频繁打印，影响正常日志读取，可参考“"write socket failed”的规避方式，通过命令关闭其领域的日志打印。
+
 
 ### write socket failed
 
-含义：日志写入socket失败，出现丢包问题。提示日志示例如下：
+**含义**：日志写入socket失败，出现丢包问题。提示日志示例如下：
 
 <!--RP14-->
 ```text
 04-19 17:02:34.219  5394  5394 W A00032/HiLog: write socket failed, 8 line(s) dropped!
 ```
 <!--RP14End-->
-    
-原因：以下任意一种情况，均有可能导致进程日志丢失。
 
-   - 日志级别设置为D。
+**原因**：以下任意一种情况，均有可能导致进程日志丢失。
 
-   - 关闭了超限管控。
+- 日志级别设置为D。
 
-   - 有模块在循环打印日志。
+- 关闭了超限管控。
 
-   - 存在高负载问题，如果出现CPU高负载或者低内存问题，会导致socket服务端处理日志过慢，socket通道中日志堆积严重，也会导致客户端写入socket数据失败。
+- 有模块在循环打印日志。
 
-处理方式：关闭其他领域的日志打印，只打印本模块的日志。
+- 存在高负载问题，如果出现CPU高负载或者低内存问题，会导致socket服务端处理日志过慢，socket通道中日志堆积严重，也会导致客户端写入socket数据失败。
 
-   - 关闭其他领域日志：
-     ```shell
-     hilog -b X
-     ```
+**处理方式**：关闭其他领域的日志打印，只打印本模块的日志。
 
-   - 打开本模块的日志打印：
+- 关闭其他领域日志：
 
-     LOG_APP类型：
-     ```shell
-     hilog -b I -D 0x3200（将03200 domain能够打印出来的日志级别设为INFO）
-    
-     hilog -b I -D 0x3201（将03201 domain能够打印出来的日志级别设为INFO）
-     ```
-    
-     LOG_CORE类型：
-     ```shell
-     hilog -b I -D d003200（将03200 domain能够打印出来的日志级别设为INFO）
-    
-     hilog -b I -D d003201（将03201 domain能够打印出来的日志级别设为INFO）
-     ```
+  ```shell
+  hilog -b X
+  ```
+
+- 打开本模块的日志打印：
+
+  LOG_APP类型：
+
+  ```shell
+  hilog -b I -D 0x3200（将03200 domain能够打印出来的日志级别设为INFO）
+  
+  hilog -b I -D 0x3201（将03201 domain能够打印出来的日志级别设为INFO）
+  ```
+
+  LOG_CORE类型：
+
+  ```shell
+  hilog -b I -D d003200（将03200 domain能够打印出来的日志级别设为INFO）
+  
+  hilog -b I -D d003201（将03201 domain能够打印出来的日志级别设为INFO）
+  ```

@@ -1,6 +1,6 @@
 # @ohos.bundle.launcherBundleManager (launcherBundleManager)
 
-The bundle.launcherBundleManager module providers APIs for the launcher application to obtain the [launcher ability information](js-apis-bundleManager-launcherAbilityInfo.md).
+The module providers APIs for the launcher application to obtain the [launcher ability information](js-apis-bundleManager-launcherAbilityInfo.md).
 
 > **NOTE**
 >
@@ -33,7 +33,7 @@ Obtains the launcher ability information based on the given bundle name and user
 
 | Type                         | Description                                              |
 | ----------------------------- | -------------------------------------------------- |
-| Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\> | Array of the **LauncherAbilityInfo** objects obtained.|
+| Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\> | Array of the LauncherAbilityInfo objects obtained.|
 
 **Error codes**
 
@@ -54,7 +54,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let data = launcherBundleManager.getLauncherAbilityInfoSync("com.example.demo", 100);
-    console.log("data is " + JSON.stringify(data));
+    console.info("data is " + JSON.stringify(data));
 } catch (errData) {
     let code = (errData as BusinessError).code;
     let message = (errData as BusinessError).message;
@@ -73,3 +73,39 @@ Defines the information about the launcher ability.
 | Type                                                        | Description          |
 | ------------------------------------------------------------ | -------------- |
 | [_LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md) | Ability information of the home screen application.|
+
+## ShortcutInfo<sup>20+</sup>
+
+type ShortcutInfo = _ShortcutInfo
+
+Defines the shortcut information defined in the [module.json5](../../quick-start/module-configuration-file.md#shortcuts) file of the application.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_ShortcutInfo](./js-apis-bundleManager-shortcutInfo.md#shortcutinfo) | Shortcut information defined in the **module.json5** file.|
+
+## ShortcutWant<sup>20+</sup>
+
+type ShortcutWant = _ShortcutWant
+
+Defines the target [wants](../../quick-start/module-configuration-file.md#wants) defined in the shortcut configuration.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_ShortcutWant](./js-apis-bundleManager-shortcutInfo.md#shortcutwant) | Target [wants](../../quick-start/module-configuration-file.md#wants) defined in the shortcut configuration.|
+
+## ParameterItem<sup>20+</sup>
+
+type ParameterItem = _ParameterItem
+
+Defines the custom data in the shortcut configuration.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_ParameterItem](./js-apis-bundleManager-shortcutInfo.md#parameteritem) | Custom data in the shortcut configuration.|

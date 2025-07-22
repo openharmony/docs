@@ -68,10 +68,10 @@
 
 ## NDK组件模块
 
-NDK提供的UI组件能力如组件创建、树操作、属性设置、事件注册等是通过函数指针结构体（如[ArkUI_NativeNodeAPI_1](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)）进行暴露，该函数指针结构体可以通过[模块查询接口](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_getmoduleinterface)获取。
+NDK提供的UI组件能力如组件创建、树操作、属性设置、事件注册等是通过函数指针结构体（如[ArkUI_NativeNodeAPI_1](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md)）进行暴露，该函数指针结构体可以通过[模块查询接口](../reference/apis-arkui/capi-native-interface-h.md#oh_arkui_getmoduleinterface)获取。
 
 > **说明：**
-> - [模块查询接口](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_getmoduleinterface)带有初始化NDK的逻辑，建议先调用该接口进行全局初始化，再使用NDK进行UI构造。
+> - [模块查询接口](../reference/apis-arkui/capi-native-interface-h.md#oh_arkui_getmoduleinterface)带有初始化NDK的逻辑，建议先调用该接口进行全局初始化，再使用NDK进行UI构造。
 
 ```
 ArkUI_NativeNodeAPI_1* arkUINativeNodeApi = nullptr;
@@ -88,7 +88,7 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
   arkUINativeNodeApi->disposeNode(listNode);
   ```
 
-  获取NDK接口支持的组件范围可以通过查询[ArkUI_NodeType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodetype)枚举值。
+  获取NDK接口支持的组件范围可以通过查询[ArkUI_NodeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodetype)枚举值。
 
 - 组件树操作。
   ```
@@ -109,7 +109,7 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
   arkUINativeNodeApi->setAttribute(stack, NODE_BACKGROUND_COLOR, &item);
   ```
 
-  获取NDK接口支持的属性范围可以通过查询[ArkUI_NodeAttributeType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeattributetype)枚举值。
+  获取NDK接口支持的属性范围可以通过查询[ArkUI_NodeAttributeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype)枚举值。
 
 - 事件注册。
   ```
@@ -120,7 +120,7 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
   arkUINativeNodeApi->registerNodeEvent(stack, NODE_ON_CLICK, 0, nullptr);
   ```
 
-  获取NDK接口支持的事件范围可以通过查询[ArkUI_NodeEventType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype)枚举值。
+  获取NDK接口支持的事件范围可以通过查询[ArkUI_NodeEventType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype)枚举值。
 
 
 ## 示例
@@ -307,7 +307,7 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
 
 4. 由于NDK接口提供的是C接口，为了使用面向对象的方式简化编程和工程管理，这里建议使用C++进行二次封装，下面示例代码展示了示例界面中所需的列表，文本组件封装类。
    
-   1）获取ArkUI在NDK接口的入口模块[ArkUI_NativeNodeAPI_1](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)，该结构体模块提供了一系列组件创建、树构建、属性设置和事件注册等函数指针。
+   1）获取ArkUI在NDK接口的入口模块[ArkUI_NativeNodeAPI_1](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md)，该结构体模块提供了一系列组件创建、树构建、属性设置和事件注册等函数指针。
    
    ```c
    // NativeModule.h
