@@ -50,9 +50,9 @@ Calendar Kit为用户提供了一系列接口来获取日历账户，并使用�
 
 - 使用Calendar Kit的相关能力，需要获取读取或写入日历、日程的权限。具体指导可见[声明权限](../security/AccessToken/declare-permissions.md)。
 
-  - 进行日历或日程的读取时，需要申请ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR权限。
+  - 进行日历或日程的读取时，需要申请ohos.permission.READ_CALENDAR或ohos.permission.READ_WHOLE_CALENDAR权限。
 
-  - 进行日历或日程的添加、删除或修改时，需要申请ohos.permission.WRITE_CALENDAR 或 ohos.permission.WRITE_WHOLE_CALENDAR权限。
+  - 进行日历或日程的添加、删除或修改时，需要申请ohos.permission.WRITE_CALENDAR或ohos.permission.WRITE_WHOLE_CALENDAR权限。
 
   申请对应权限之后，支持的相关操作可见下表。
 
