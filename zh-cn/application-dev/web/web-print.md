@@ -40,9 +40,9 @@ Web组件打印html页面时可通过W3C标准协议接口和应用接口两种�
   <body>
       <div>
           <h1><b>
-                  <center>This is a test page for printing</center>
+                  <p style="text-align: center;">This is a test page for printing</p>
               </b>
-              <hr color=#00cc00 width=95%>
+              <hr color="#00cc00" width="95%">
           </h1>
           <button class="Button Button--outline" onclick="window.print();">Print</button>
           <p> content content content </p>
@@ -138,8 +138,7 @@ Web组件打印html页面时可通过W3C标准协议接口和应用接口两种�
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { print } from '@kit.BasicServicesKit'
+import { BusinessError, print } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
