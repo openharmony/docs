@@ -8,5 +8,4 @@
 
 **相关模块：** [ArkUI_NativeModule](capi-arkui-nativemodule.md)
 
-**所在头文件：** native_animate.h
-
+**所在头文件：** [native_animate.h](capi-native-animate-h.md)

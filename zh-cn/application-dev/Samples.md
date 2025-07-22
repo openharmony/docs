@@ -2033,7 +2033,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例中主要介绍开发者在利用[Native XComponent](reference/apis-arkui/native__interface__xcomponent_8h.md)来获取[NativeWindow](reference/apis-arkgraphics2d/capi-nativewindow.md)实例，通过数据填充改变矩形框颜色。并提供从[NativeImage](reference/apis-arkgraphics2d/capi-oh-nativeimage.md)中获取NativeWindow进行buffer轮转的案例，通过NativeWindow生产buffer来触发NativeImage的可用帧回调。
+本示例中主要介绍开发者在利用[Native XComponent](reference/apis-arkui/capi-native-interface-xcomponent-h.md)来获取[NativeWindow](reference/apis-arkgraphics2d/capi-nativewindow.md)实例，通过数据填充改变矩形框颜色。并提供从[NativeImage](reference/apis-arkgraphics2d/capi-oh-nativeimage.md)中获取NativeWindow进行buffer轮转的案例，通过NativeWindow生产buffer来触发NativeImage的可用帧回调。
 
 ##### 使用
 

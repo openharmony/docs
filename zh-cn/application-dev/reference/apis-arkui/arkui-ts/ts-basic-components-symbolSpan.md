@@ -242,7 +242,7 @@ struct Index {
           Text() {
             SymbolSpan($r('sys.symbol.ohos_wifi'))
               .fontSize(96)
-              .effectStrategy(1)
+              .effectStrategy(SymbolEffectStrategy.SCALE)
           }
         }
 
@@ -251,7 +251,7 @@ struct Index {
           Text() {
             SymbolSpan($r('sys.symbol.ohos_wifi'))
               .fontSize(96)
-              .effectStrategy(2)
+              .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
           }
         }
       }

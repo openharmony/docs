@@ -5060,3 +5060,17 @@ Allows a system application to trigger local WantAgent instances.
 **Supported devices**：General
 
 **Valid since**：20
+
+## ohos.permission.SANDBOX_ACCESS_MANAGER_EXT
+
+Allows an application to access the sandbox directories of other extended applications.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**：General
+
+**Valid since**: 20

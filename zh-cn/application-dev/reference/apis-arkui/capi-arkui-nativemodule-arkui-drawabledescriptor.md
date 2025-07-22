@@ -8,5 +8,5 @@
 
 **相关模块：** [ArkUI_NativeModule](capi-arkui-nativemodule.md)
 
-**所在头文件：** drawable_descriptor.h
+**所在头文件：** [drawable_descriptor.h](capi-drawable-descriptor-h.md)
 

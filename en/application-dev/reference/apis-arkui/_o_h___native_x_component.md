@@ -28,7 +28,7 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 | [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md) | Describes the touch event.                |
 | [OH_NativeXComponent_HistoricalPoint](_o_h___native_x_component___historical_point.md) | Represents a historical touch point.|
 | [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md) | Describes the mouse event.                |
-| [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md) | Registers callbacks for the Surface lifecycle and touch event.|
+| [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md) | Registers callbacks for the surface lifecycle and touch event.|
 | [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md) | Registers callbacks for the mouse event.           |
 | [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md) | Defines the expected frame rate range. |
 
@@ -38,11 +38,11 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 | Name                                      | Description                                  |
 | ---------------------------------------- | ------------------------------------ |
 | [OH_NativeXComponent](#oh_nativexcomponent) | Provides an encapsulated **OH_NativeXComponent** instance.         |
-| [OH_NativeXComponent_Callback](#oh_nativexcomponent_callback) | Registers callbacks for the Surface lifecycle and touch event.               |
+| [OH_NativeXComponent_Callback](#oh_nativexcomponent_callback) | Registers callbacks for the surface lifecycle and touch event.               |
 | [OH_NativeXComponent_MouseEvent_Callback](#oh_nativexcomponent_mouseevent_callback) | Registers callbacks for the mouse event.                          |
 | [OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent) | Provides an encapsulated **OH_NativeXComponent_KeyEvent** instance.|
 | [OH_NativeXComponent_ExtraMouseEventInfo](#oh_nativexcomponent_extramouseeventinfo) | Provides an encapsulated instance of extended mouse event information.|
-| [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback) | Defines Surface lifecycle callback functions.|
+| [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback) | Defines surface lifecycle callback functions.|
 | [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) | Provides an encapsulated **OH_ArkUI_SurfaceHolder** instance.|
 | [OHNativeWindow](#ohnativewindow) | Provides an encapsulated **NativeWindow** instance.|
 
@@ -68,8 +68,8 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 | Name                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
 | [OH_NativeXComponent_GetXComponentId](#oh_nativexcomponent_getxcomponentid) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, char \*id, uint64_t \*size) | Obtains the ID of the ArkUI XComponent.           |
-| [OH_NativeXComponent_GetXComponentSize](#oh_nativexcomponent_getxcomponentsize) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, const void \*window, uint64_t \*width, uint64_t \*height) | Obtains the size of the Surface held by the ArkUI XComponent. |
-| [OH_NativeXComponent_GetXComponentOffset](#oh_nativexcomponent_getxcomponentoffset) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, const void \*window, double \*x, double \*y) | Obtains the offset of the Surface held by the **XComponent** relative to the upper left corner of its parent component.|
+| [OH_NativeXComponent_GetXComponentSize](#oh_nativexcomponent_getxcomponentsize) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, const void \*window, uint64_t \*width, uint64_t \*height) | Obtains the size of the surface held by the ArkUI XComponent. |
+| [OH_NativeXComponent_GetXComponentOffset](#oh_nativexcomponent_getxcomponentoffset) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, const void \*window, double \*x, double \*y) | Obtains the offset of the surface held by the **XComponent** relative to the upper left corner of its parent component.|
 | [OH_NativeXComponent_GetTouchEvent](#oh_nativexcomponent_gettouchevent) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, const void \*window, [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md) \*touchEvent) | Obtains the touch event scheduled by the ArkUI XComponent.       |
 | [OH_NativeXComponent_GetTouchPointToolType](#oh_nativexcomponent_gettouchpointtooltype) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, uint32_t pointIndex, [OH_NativeXComponent_TouchPointToolType](#oh_nativexcomponent_touchpointtooltype) \*toolType) | Obtains the ArkUI XComponent touch point tool type.       |
 | [OH_NativeXComponent_GetTouchPointTiltX](#oh_nativexcomponent_gettouchpointtiltx) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, uint32_t pointIndex, float \*tiltX) | Obtains the angle between the Y-Z plane of the ArkUI XComponent touch point and the x-axis.    |
@@ -100,12 +100,12 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 | int32_t [OH_NativeXComponent_RegisterUIInputEventCallback](#oh_nativexcomponent_registeruiinputeventcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type), [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type) | Registers a UI input event callback for an **OH_NativeXComponent** instance and enables the callback to be invoked when a UI input event is received. |
 | int32_t [OH_NativeXComponent_RegisterOnTouchInterceptCallback](#oh_nativexcomponent_registerontouchinterceptcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_HitTestMode](_ark_u_i___event_module.md#hittestmode)(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event)) | Registers a custom event intercept callback for an **OH_NativeXComponent** and enables the callback during the hit test. |
 | int32_t [OH_NativeXComponent_SetNeedSoftKeyboard](#oh_nativexcomponent_setneedsoftkeyboard) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool isNeedSoftKeyboard) | Sets whether the soft keyboard is required for an **OH_NativeXComponent** instance. |
-| int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](#oh_nativexcomponent_registersurfaceshowcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers a Surface display callback for an **OH_NativeXComponent** instance. The callback is invoked after the application is switched to the foreground.|
-| int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](#oh_nativexcomponent_registersurfacehidecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers a Surface hiding callback for an **OH_NativeXComponent** instance. The callback is invoked after the application is switched to the background.|
+| int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](#oh_nativexcomponent_registersurfaceshowcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers a surface display callback for an **OH_NativeXComponent** instance. The callback is invoked after the application is switched to the foreground.|
+| int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](#oh_nativexcomponent_registersurfacehidecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers a surface hiding callback for an **OH_NativeXComponent** instance. The callback is invoked after the application is switched to the background.|
 | int32_t [OH_NativeXComponent_GetTouchEventSourceType](#oh_nativexcomponent_gettoucheventsourcetype) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, int32_t pointId, [OH_NativeXComponent_EventSourceType](#oh_nativexcomponent_eventsourcetype) \*sourceType) | Obtains the touch event source type of an **OH_NativeXComponent** instance. |
 | [OH_NativeXComponent](#oh_nativexcomponent) \* [OH_NativeXComponent_GetNativeXComponent](#oh_nativexcomponent_getnativexcomponent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | Obtains a pointer of the **OH_NativeXComponent** type based on the specified component instance created by the native API. |
 | int32_t [OH_NativeXComponent_GetNativeAccessibilityProvider](#oh_nativexcomponent_getnativeaccessibilityprovider)([OH_NativeXComponent](#oh_nativexcomponent)* component, [ArkUI_AccessibilityProvider](./arkui_native_interface_accessibility.md#arkui_accessibilityprovider)** handle); | Obtains a pointer of the **ArkUI_AccessibilityProvider** type based on an **OH_NativeXComponent** instance.|
-| int32_t [OH_NativeXComponent_RegisterKeyEventCallbackWithResult](#oh_nativexcomponent_registerkeyeventcallbackwithresult) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers a key event callback with a return value for this **OH_NativeXComponent** instance. | 
+| int32_t [OH_NativeXComponent_RegisterKeyEventCallbackWithResult](#oh_nativexcomponent_registerkeyeventcallbackwithresult) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | Registers a key event callback with a return value for this **OH_NativeXComponent** instance. |
 |int32_t [OH_ArkUI_XComponent_StartImageAnalyzer](#oh_arkui_xcomponent_startimageanalyzer) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData,void (\*callback)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_XComponent_ImageAnalyzerState](#arkui_xcomponent_imageanalyzerstate) statusCode, void \*userData))|Starts AI image analysis for this XComponent instance.|
 |int32_t [OH_ArkUI_XComponent_StopImageAnalyzer](#oh_arkui_xcomponent_stopimageanalyzer)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|Stops AI image analysis for this XComponent instance.|
 |[OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* [OH_ArkUI_SurfaceCallback_Create](#oh_arkui_surfacecallback_create)()|Creates an **OH_ArkUI_SurfaceCallback** object.|
@@ -114,16 +114,16 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 |void [OH_ArkUI_SurfaceHolder_Dispose](#oh_arkui_surfaceholder_dispose)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder)|Disposes of an **OH_ArkUI_SurfaceHolder** object.|
 |int32_t [OH_ArkUI_SurfaceHolder_SetUserData](#oh_arkui_surfaceholder_setuserdata)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder, void* userData)|Stores custom data in an **OH_ArkUI_SurfaceHolder** instance.|
 |void* [OH_ArkUI_SurfaceHolder_GetUserData](#oh_arkui_surfaceholder_getuserdata)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder)|Obtains the custom data stored in an **OH_ArkUI_SurfaceHolder** instance.|
-|void [OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent](#oh_arkui_surfacecallback_setsurfacecreatedevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback, void (\*onSurfaceCreated)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)\* surfaceHolder))|Sets the creation callback event in the Surface lifecycle callback.|
-|void [OH_ArkUI_SurfaceCallback_SetSurfaceChangedEvent](#oh_arkui_surfacecallback_setsurfacechangedevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback, void (\*onSurfaceChanged)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)\* surfaceHolder, uint64_t width, uint64_t height))|Sets the size change callback event in the Surface lifecycle callback. |
-|void [OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent](#oh_arkui_surfacecallback_setsurfacedestroyedevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback, void (\*onSurfaceDestroyed)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)\* surfaceHolder))|Sets the destruction callback event in the Surface lifecycle callback. |
-|int32_t [OH_ArkUI_SurfaceHolder_AddSurfaceCallback](#oh_arkui_surfaceholder_addsurfacecallback)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder, [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback)|Adds a Surface lifecycle callback to an **OH_ArkUI_SurfaceHolder** instance.|
-|int32_t [OH_ArkUI_SurfaceHolder_RemoveSurfaceCallback](#oh_arkui_surfaceholder_removesurfacecallback)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder, [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback)|Removes a previously added Surface lifecycle callback from an **OH_ArkUI_SurfaceHolder** instance.|
+|void [OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent](#oh_arkui_surfacecallback_setsurfacecreatedevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback, void (\*onSurfaceCreated)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)\* surfaceHolder))|Sets the creation callback event in the surface lifecycle callback.|
+|void [OH_ArkUI_SurfaceCallback_SetSurfaceChangedEvent](#oh_arkui_surfacecallback_setsurfacechangedevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback, void (\*onSurfaceChanged)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)\* surfaceHolder, uint64_t width, uint64_t height))|Sets the size change callback event in the surface lifecycle callback.|
+|void [OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent](#oh_arkui_surfacecallback_setsurfacedestroyedevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback, void (\*onSurfaceDestroyed)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)\* surfaceHolder))|Sets the destruction callback event in the surface lifecycle callback.|
+|int32_t [OH_ArkUI_SurfaceHolder_AddSurfaceCallback](#oh_arkui_surfaceholder_addsurfacecallback)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder, [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback)|Adds a surface lifecycle callback to an **OH_ArkUI_SurfaceHolder** instance.|
+|int32_t [OH_ArkUI_SurfaceHolder_RemoveSurfaceCallback](#oh_arkui_surfaceholder_removesurfacecallback)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder, [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback)|Removes a previously added surface lifecycle callback from an **OH_ArkUI_SurfaceHolder** instance.|
 |[OHNativeWindow](#ohnativewindow)* [OH_ArkUI_XComponent_GetNativeWindow](#oh_arkui_xcomponent_getnativewindow)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder)|Obtains the **NativeWindow** instance associated with an **OH_ArkUI_SurfaceHolder** instance.|
-|int32_t [OH_ArkUI_XComponent_SetAutoInitialize](#oh_arkui_xcomponent_setautoinitialize)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool autoInitialize)|Sets whether the XComponent needs to automatically initialize the Surface.|
-|int32_t [OH_ArkUI_XComponent_Initialize](#oh_arkui_xcomponent_initialize)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|Initializes the Surface held by the XComponent.|
-|int32_t [OH_ArkUI_XComponent_Finalize](#oh_arkui_xcomponent_finalize)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|Destroys the Surface held by the XComponent.|
-|int32_t [OH_ArkUI_XComponent_IsInitialized](#oh_arkui_xcomponent_isinitialized)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool* isInitialized)|Checks whether the Surface held by the XComponent is initialized.|
+|int32_t [OH_ArkUI_XComponent_SetAutoInitialize](#oh_arkui_xcomponent_setautoinitialize)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool autoInitialize)|Sets whether the **XComponent** component needs to automatically initialize the surface.|
+|int32_t [OH_ArkUI_XComponent_Initialize](#oh_arkui_xcomponent_initialize)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|Initializes the surface held by the **XComponent** component.|
+|int32_t [OH_ArkUI_XComponent_Finalize](#oh_arkui_xcomponent_finalize)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|Destroys the surface held by the **XComponent** component.|
+|int32_t [OH_ArkUI_XComponent_IsInitialized](#oh_arkui_xcomponent_isinitialized)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool* isInitialized)|Checks whether the surface held by the **XComponent** component is initialized.|
 |int32_t [OH_NativeXComponent_GetExtraMouseEventInfo](#oh_nativexcomponent_getextramouseeventinfo)([OH_NativeXComponent](#oh_nativexcomponent)* component, [OH_NativeXComponent_ExtraMouseEventInfo](#oh_nativexcomponent_extramouseeventinfo)** extraMouseEventInfo)| Obtains extended mouse event information from an **OH_NativeXComponent** instance.|
 |int32_t [OH_NativeXComponent_GetMouseEventModifierKeyStates](#oh_nativexcomponent_getmouseeventmodifierkeystates)([OH_NativeXComponent_ExtraMouseEventInfo](#oh_nativexcomponent_extramouseeventinfo)* extraMouseEventInfo, uint64_t* keys)|Obtains the state of modifier keys from an **OH_NativeXComponent_ExtraMouseEventInfo** instance.|
 |int32_t [OH_NativeXComponent_GetKeyEventModifierKeyStates](#oh_nativexcomponent_getkeyeventmodifierkeystates)([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)* keyEvent, uint64_t* keys)|Obtains the state of modifier keys from a key event.|
@@ -136,8 +136,8 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 |int32_t [OH_ArkUI_XComponent_SetNeedSoftKeyboard](#oh_arkui_xcomponent_setneedsoftkeyboard)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool needSoftKeyboard) | Sets whether the soft keyboard is required for the XComponent.|
 |[ArkUI_AccessibilityProvider](_o_h___native_x_component.md#oh_arkui_accessibilityprovider_create)* [OH_ArkUI_AccessibilityProvider_Create](#oh_arkui_accessibilityprovider_create)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | Creates an **ArkUI_AccessibilityProvider** instance for the XComponent.|
 |void [OH_ArkUI_AccessibilityProvider_Dispose](#oh_arkui_accessibilityprovider_dispose)([ArkUI_AccessibilityProvider](_o_h___native_x_component.md#oh_arkui_accessibilityprovider_create)* provider)|Destroys the [ArkUI_AccessibilityProvider](arkui_native_interface_accessibility.md#arkui_accessibilityprovider) instance created using [OH_ArkUI_AccessibilityProvider_Create](#oh_arkui_accessibilityprovider_create).|
-|void [OH_ArkUI_SurfaceCallback_SetSurfaceShowEvent](#oh_arkui_surfacecallback_setsurfaceshowevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback,void (\*onSurfaceShow)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder))|Sets the Surface show callback for this **OH_ArkUI_SurfaceCallback** instance.|
-|void [OH_ArkUI_SurfaceCallback_SetSurfaceHideEvent](#oh_arkui_surfacecallback_setsurfacehideevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback,void (\*onSurfaceHide)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder))|Sets the Surface hiding callback for this **OH_ArkUI_SurfaceCallback** instance.|
+|void [OH_ArkUI_SurfaceCallback_SetSurfaceShowEvent](#oh_arkui_surfacecallback_setsurfaceshowevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback,void (\*onSurfaceShow)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder))|Sets a surface display callback for this **OH_ArkUI_SurfaceCallback** instance. The callback is invoked when the application window has returned to the foreground from the background.|
+|void [OH_ArkUI_SurfaceCallback_SetSurfaceHideEvent](#oh_arkui_surfacecallback_setsurfacehideevent)([OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback)* callback,void (\*onSurfaceHide)([OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder)* surfaceHolder))|Sets a surface hiding callback for this **OH_ArkUI_SurfaceCallback** instance. The callback is invoked when the application window has entered the background from the foreground.|
 
 ### Variables
 
@@ -153,7 +153,7 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 | [OH_NativeXComponent_TouchPoint::type](#type-13) = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN | Touch type of the touch event.                    |
 | [OH_NativeXComponent_TouchPoint::size](#size-13) = 0.0 | Contact area between the finger pad and the screen.                 |
 | [OH_NativeXComponent_TouchPoint::force](#force-13) = 0.0 | Pressure of the touch event.                    |
-| [OH_NativeXComponent_TouchPoint::timeStamp](#timestamp-13) = 0 | Timestamp of the touch point.                   |
+| [OH_NativeXComponent_TouchPoint::timeStamp](#timestamp-13) = 0 | Timestamp of the touch event.                   |
 | [OH_NativeXComponent_TouchPoint::isPressed](#ispressed) = false | Whether the current point is pressed.                     |
 | [OH_NativeXComponent_TouchEvent::id](#id-23) = 0 | Unique identifier of the finger.                     |
 | [OH_NativeXComponent_TouchEvent::screenX](#screenx-24) = 0.0 | X coordinate of the touch point relative to the upper left corner of the application window where the XComponent is located.              |
@@ -173,10 +173,10 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 | [OH_NativeXComponent_MouseEvent::screenY](#screeny-34) = 0.0 | Y coordinate of the clicked point relative to the upper left corner of the screen.            |
 | [OH_NativeXComponent_MouseEvent::timestamp](#timestamp) = 0 | Timestamp of the mouse event.                   |
 | [OH_NativeXComponent_MouseEvent::action](#action) = [OH_NativeXComponent_MouseEventAction::OH_NATIVEXCOMPONENT_MOUSE_NONE](#oh_nativexcomponent_mouseeventaction) | Action of the mouse event.                     |
-| [OH_NativeXComponent_MouseEvent::button](#button) = [OH_NativeXComponent_MouseEventButton::OH_NATIVEXCOMPONENT_NONE_BUTTON](#oh_nativexcomponent_mouseeventbutton) | Enumerates the mouse event buttons.                       |
-| [OH_NativeXComponent_Callback::OnSurfaceCreated](#onsurfacecreated) | Invoked when a Surface is created.                 |
-| [OH_NativeXComponent_Callback::OnSurfaceChanged](#onsurfacechanged) | Invoked when the Surface changes.                |
-| [OH_NativeXComponent_Callback::OnSurfaceDestroyed](#onsurfacedestroyed) | Invoked when the Surface is destroyed.               |
+| [OH_NativeXComponent_MouseEvent::button](#button) = [OH_NativeXComponent_MouseEventButton::OH_NATIVEXCOMPONENT_NONE_BUTTON](#oh_nativexcomponent_mouseeventbutton) | Mouse event button.                       |
+| [OH_NativeXComponent_Callback::OnSurfaceCreated](#onsurfacecreated) | Invoked when a surface is created.                 |
+| [OH_NativeXComponent_Callback::OnSurfaceChanged](#onsurfacechanged) | Invoked when the surface changes.                |
+| [OH_NativeXComponent_Callback::OnSurfaceDestroyed](#onsurfacedestroyed) | Invoked when the surface is destroyed.               |
 | [OH_NativeXComponent_Callback::DispatchTouchEvent](#dispatchtouchevent) | Invoked when a touch event is triggered.                  |
 | [OH_NativeXComponent_MouseEvent_Callback::DispatchMouseEvent](#dispatchmouseevent) | Invoked when a mouse event is triggered.                  |
 | [OH_NativeXComponent_MouseEvent_Callback::DispatchHoverEvent](#dispatchhoverevent) | Invoked when a hover event is triggered.                  |
@@ -188,7 +188,7 @@ Describes the surface and touch event held by the ArkUI XComponent, which can be
 | [OH_NativeXComponent_HistoricalPoint::type](#type-33) = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN | Touch type of the touch event.                    |
 | [OH_NativeXComponent_HistoricalPoint::size](#size-33) = 0.0 | Contact area between the finger pad and the screen.                 |
 | [OH_NativeXComponent_HistoricalPoint::force](#force-33) = 0.0 | Pressure of the touch event.                    |
-| [OH_NativeXComponent_HistoricalPoint::timeStamp](#timestamp-33) | Timestamp of the touch point. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
+| [OH_NativeXComponent_HistoricalPoint::timeStamp](#timestamp-33) | Timestamp of the touch event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
 | [OH_NativeXComponent_HistoricalPoint::titlX](#titlx) | Angle between the projection on the x-y plane and the z-axis of the touch event.|
 | [OH_NativeXComponent_HistoricalPoint::titlY](#titly) | Angle between the projection on the y-z plane and the z-axis of the current touch event.|
 | [OH_NativeXComponent_HistoricalPoint::sourceTool](#sourcetool) | Source tool of the touch event.|
@@ -220,7 +220,7 @@ typedef struct OH_NativeXComponent_Callback OH_NativeXComponent_Callback
 
 **Description**
 
-Registers callbacks for the Surface lifecycle and touch event.
+Registers callbacks for the surface lifecycle and touch event.
 
 **Since**
 
@@ -269,7 +269,7 @@ typedef struct OH_ArkUI_SurfaceCallback OH_ArkUI_SurfaceCallback
 
 **Description**
 
-Defines Surface lifecycle callback functions.
+Defines surface lifecycle callback functions.
 
 > **NOTE**
 >
@@ -330,7 +330,7 @@ Provides an encapsulated instance of extended mouse event information.
 
 > **NOTE**
 >
-> The specific definition of this type is not directly exposed. You can use the [OH_NativeXComponent_GetMouseEventModifierKeyStates](#oh_nativexcomponent_getmouseeventmodifierkeystates) API to obtain the state of modifier keys from an instance of this type.
+> The specific definition of this type is not directly exposed. You call the [OH_NativeXComponent_GetMouseEventModifierKeyStates](#oh_nativexcomponent_getmouseeventmodifierkeystates) API to obtain the pressed states of modifier keys (**Ctrl**, **Shift**, and **Alt**).
 
 **Since**
 
@@ -519,7 +519,7 @@ Enumerates the mouse event key codes.
 | KEY_EXPLORER                 | Explorer key, which is used to start the explorer application.      |
 | KEY_ENVELOPE                 | Email key, which is used to start the email application.    |
 | KEY_ENTER                    | Enter key.                        |
-| KEY_DEL                      | Delete key.                        |
+| KEY_DEL                      | Backspace/Delete key.                        |
 | KEY_GRAVE                    | Key **`**.                      |
 | KEY_MINUS                    | Key **-**.                      |
 | KEY_EQUALS                   | Key **=**.                      |
@@ -535,7 +535,7 @@ Enumerates the mouse event key codes.
 | KEY_PAGE_UP                  | Page Up key.                      |
 | KEY_PAGE_DOWN                | Page Down key.                      |
 | KEY_ESCAPE                   | ESC key.                       |
-| KEY_FORWARD_DEL              | Delete key.                        |
+| KEY_FORWARD_DEL              | Forward Delete key.                        |
 | KEY_CTRL_LEFT                | Left Ctrl key.                     |
 | KEY_CTRL_RIGHT               | Right Ctrl key.                     |
 | KEY_CAPS_LOCK                | Caps Lock key.                      |
@@ -913,6 +913,10 @@ Attaches the UI component created through the native API of ArkUI to this **OH_N
 
 **Since**: 12
 
+**Deprecated from**: 20
+
+**Substitute**: [OH_ArkUI_NodeContent_AddNode](./_ark_u_i___native_module.md#oh_arkui_nodecontent_addnode)
+
 **Parameters**
 
 | Name| Description|
@@ -924,7 +928,7 @@ Attaches the UI component created through the native API of ArkUI to this **OH_N
 
 **0**: success
 
--**2**: parameter error
+**-2**: parameter error
 
 
 ### OH_NativeXComponent_DetachNativeRootNode()
@@ -938,6 +942,10 @@ Detaches the native component of ArkUI from this **OH_NativeXComponent** instanc
 
 **Since**: 12
 
+**Deprecated from**: 20
+
+**Substitute**: [OH_ArkUI_NodeContent_RemoveNode](./_ark_u_i___native_module.md#oh_arkui_nodecontent_removenode)
+
 **Parameters**
 
 | Name| Description|
@@ -949,7 +957,7 @@ Detaches the native component of ArkUI from this **OH_NativeXComponent** instanc
 
 **0**: success
 
--**2**: parameter error
+**-2**: parameter error
 
 
 
@@ -961,7 +969,7 @@ int32_t OH_NativeXComponent_GetKeyEvent (OH_NativeXComponent * component, OH_Nat
 
 **Description**
 
-Obtains the key event scheduled by ArkUI XComponent.
+Obtains the key event scheduled by the ArkUI XComponent.
 
 **Parameters**
 
@@ -972,7 +980,7 @@ Obtains the key event scheduled by ArkUI XComponent.
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -998,7 +1006,7 @@ Obtains the action of the specified key event.
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1024,7 +1032,7 @@ Obtains the key code of the specified key event.
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1050,7 +1058,7 @@ Obtains the device ID of the specified key event.
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1076,7 +1084,7 @@ Obtains the source type of the specified key event.
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1102,7 +1110,7 @@ Obtains the timestamp of the specified key event.
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1117,7 +1125,7 @@ int32_t OH_NativeXComponent_GetHistoricalPoints (OH_NativeXComponent * component
 
 **Description**
 
-Obtains the historical touch points of the XComponent.
+Obtains the historical touch point data for the touch event of an **OH_NativeXComponent** instance. Some input devices report touch points at very high frequencies (up to 1 ms intervals). However, since UI updates typically do not require such high-frequency updates, the system consolidates touch events and reports them once per frame. All touch points collected during the current frame are preserved as historical touch points for applications that need direct access to this raw data.
 
 **Parameters**
 
@@ -1125,11 +1133,12 @@ Obtains the historical touch points of the XComponent.
 | ---------- | ----------------------------- |
 | component  | Pointer to the **OH_NativeXComponent** instance.|
 | window     | Handle to the **NativeWindow** instance.             |
-| historicalPoints | Pointer to the current historical touch point.               |
+| size       | Length of the historical touch point array.     |
+| historicalPoints | Pointer to the historical touch point array.               |
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1144,7 +1153,7 @@ int32_t OH_NativeXComponent_GetMouseEvent (OH_NativeXComponent * component, cons
 
 **Description**
 
-Obtains the mouse event scheduled by ArkUI XComponent.
+Obtains the mouse event scheduled by the ArkUI XComponent.
 
 **Parameters**
 
@@ -1156,7 +1165,7 @@ Obtains the mouse event scheduled by ArkUI XComponent.
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1204,7 +1213,7 @@ Obtains the touch event scheduled by the ArkUI XComponent.
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1231,7 +1240,7 @@ Obtains the angle between the Y-Z plane of the ArkUI XComponent touch point and 
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1258,7 +1267,7 @@ Obtains the angle between the X-Z plane of the ArkUI XComponent touch point and 
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1285,7 +1294,7 @@ Obtains the X coordinate of the touch point relative to the upper left corner of
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1312,7 +1321,7 @@ Obtains the Y coordinate of the touch point relative to the upper left corner of
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1339,7 +1348,7 @@ Obtains the X coordinate of the touch point relative to the upper left corner of
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1366,7 +1375,7 @@ Obtains the Y coordinate of the touch point relative to the upper left corner of
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1393,7 +1402,7 @@ Obtains the ArkUI XComponent touch point tool type.
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1420,7 +1429,7 @@ Obtains the ID of ArkUI XComponent.
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1435,7 +1444,7 @@ int32_t OH_NativeXComponent_GetXComponentOffset (OH_NativeXComponent * component
 
 **Description**
 
-Obtains the offset of the Surface held by the XComponent relative to the upper left corner of its parent component.
+Obtains the offset of the surface held by the XComponent relative to the upper left corner of its parent component.
 
 **Parameters**
 
@@ -1443,12 +1452,12 @@ Obtains the offset of the Surface held by the XComponent relative to the upper l
 | --------- | ----------------------------- |
 | component | Pointer to the **OH_NativeXComponent** instance.|
 | window    | Handle to the **NativeWindow** instance.            |
-| x         | Pointer to the X coordinate of the current Surface relative to the upper left corner of the XComponent's parent component.        |
-| y         | Pointer to the Y coordinate of the current Surface relative to the upper left corner of the XComponent's parent component.        |
+| x         | Pointer to the X coordinate of the current surface relative to the upper left corner of the XComponent's parent component.        |
+| y         | Pointer to the Y coordinate of the current surface relative to the upper left corner of the XComponent's parent component.        |
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1463,7 +1472,7 @@ int32_t OH_NativeXComponent_GetXComponentSize (OH_NativeXComponent * component, 
 
 **Description**
 
-Obtains the size of the Surface held by the ArkUI XComponent.
+Obtains the size of the surface held by the ArkUI XComponent.
 
 **Parameters**
 
@@ -1471,12 +1480,12 @@ Obtains the size of the Surface held by the ArkUI XComponent.
 | --------- | ----------------------------- |
 | component | Pointer to the **OH_NativeXComponent** instance.|
 | window    | Handle to the **NativeWindow** instance.            |
-| width     | Pointer to the width of the current Surface.          |
-| height    | Pointer to the height of the current Surface.          |
+| width     | Pointer to the width of the current surface.          |
+| height    | Pointer to the height of the current surface.          |
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1502,7 +1511,7 @@ Registers the blur event callback for this **OH_NativeXComponent** instance.
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1524,11 +1533,11 @@ Registers a callback for this **OH_NativeXComponent** instance.
 | Name       | Description                           |
 | --------- | ----------------------------- |
 | component | Pointer to the **OH_NativeXComponent** instance.|
-| callback  | Pointer to the Surface lifecycle and touch event callback.   |
+| callback  | Pointer to the surface lifecycle and touch event callback.   |
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1554,7 +1563,7 @@ Registers the focus event callback for this **OH_NativeXComponent** instance.
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1580,7 +1589,7 @@ Registers the key event callback for this **OH_NativeXComponent** instance.
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1606,7 +1615,7 @@ Registers a key event callback with a return value for this **OH_NativeXComponen
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1632,7 +1641,7 @@ Registers the mouse event callback for this **OH_NativeXComponent** instance.
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1656,7 +1665,7 @@ Registers the display update callback for this **OH_NativeXComponent** instance 
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1683,7 +1692,8 @@ UI input–related operations are not supported on event objects received throug
 
 **Returns**
 
-Returns **0** if the operation is successful; returns **401** if a parameter exception occurs.
+**0**: The operation is successful.
+**401**: Any parameter error occurs.
 
 ### OH_NativeXComponent_RegisterUIInputEventCallback()
 
@@ -1706,7 +1716,7 @@ Registers a UI input event callback for an **OH_NativeXComponent** instance and 
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 ### OH_NativeXComponent_SetExpectedFrameRateRange()
 
@@ -1726,7 +1736,7 @@ Sets the expected frame rate range.
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1750,7 +1760,7 @@ Deregisters the display update callback for this **OH_NativeXComponent** instanc
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1775,7 +1785,7 @@ Sets whether the soft keyboard is required for an **OH_NativeXComponent** instan
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1789,18 +1799,18 @@ int32_t OH_NativeXComponent_RegisterSurfaceShowCallback (OH_NativeXComponent * c
 
 **Description**
 
-Registers a Surface display callback for an **OH_NativeXComponent** instance. The callback is invoked after the application is switched to the foreground.
+Registers a surface display callback for an **OH_NativeXComponent** instance. The callback is invoked after the application is switched to the foreground.
 
 **Parameters**
 
 | Name       | Description                           |
 | --------- | ----------------------------- |
 | component | Pointer to the **OH_NativeXComponent** instance.|
-| callback  | Pointer to the Surface display callback.<br> - **window**: handle to the **NativeWindow** instance.              |
+| callback  | Pointer to the surface display callback.<br> - **window**: handle to the **NativeWindow** instance.              |
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -1814,18 +1824,18 @@ int32_t OH_NativeXComponent_RegisterSurfaceHideCallback (OH_NativeXComponent * c
 
 **Description**
 
-Registers a Surface hiding callback for an **OH_NativeXComponent** instance. The callback is invoked after the application is switched to the background.
+Registers a surface hiding callback for an **OH_NativeXComponent** instance. The callback is invoked after the application is switched to the background.
 
 **Parameters**
 
 | Name       | Description                           |
 | --------- | ----------------------------- |
 | component | Pointer to the **OH_NativeXComponent** instance.|
-| callback  | Pointer to the Surface hiding callback.<br> - **window**: handle to the **NativeWindow** instance.              |
+| callback  | Pointer to the surface hiding callback.<br> - **window**: handle to the **NativeWindow** instance.              |
 
 **Returns**
 
-Returns the status code of the execution.
+Result code.
 
 **Since**
 
@@ -2099,7 +2109,7 @@ void OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent(OH_ArkUI_SurfaceCallback* c
 
 **Description**
 
-Sets the creation callback event in the Surface lifecycle callback.
+Sets the creation callback event in the surface lifecycle callback.
 
 **Since**
 
@@ -2109,8 +2119,8 @@ Sets the creation callback event in the Surface lifecycle callback.
 
 | Name     | Description                                   |
 | --------- | --------------------------------------- |
-| callback |  Pointer to the Surface lifecycle callback.|
-| onSurfaceCreated |  Callback event triggered when the Surface is created.<br> - **surfaceHolder**: pointer to an [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) instance.|
+| callback |  Pointer to the surface lifecycle callback.|
+| onSurfaceCreated |  Callback event triggered when the surface is created.<br> - **surfaceHolder**: pointer to an [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) instance.|
 
 ### OH_ArkUI_SurfaceCallback_SetSurfaceChangedEvent()
 
@@ -2120,7 +2130,7 @@ void OH_ArkUI_SurfaceCallback_SetSurfaceChangedEvent(OH_ArkUI_SurfaceCallback* c
 
 **Description**
 
-Sets the size change callback event in the Surface lifecycle callback. 
+Sets the size change callback event in the surface lifecycle callback.
 
 **Since**
 
@@ -2130,8 +2140,8 @@ Sets the size change callback event in the Surface lifecycle callback.
 
 | Name     | Description                                   |
 | --------- | --------------------------------------- |
-| callback |  Pointer to the Surface lifecycle callback.|
-| onSurfaceChanged |  Callback event triggered when the Surface size changes. <br> - **surfaceHolder**: pointer to an [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) instance.<br> - **width**: new width of the Surface after the size change.<br> - **height**: new height of the Surface after the size change.|
+| callback |  Pointer to the surface lifecycle callback.|
+| onSurfaceChanged |  Callback event triggered when the surface size changes. <br> - **surfaceHolder**: pointer to an [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) instance.<br> - **width**: new width of the surface after the size change.<br> - **height**: new height of the surface after the size change.|
 
 ### OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent()
 
@@ -2141,7 +2151,7 @@ void OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent(OH_ArkUI_SurfaceCallback*
 
 **Description**
 
-Sets the destruction callback event in the Surface lifecycle callback. 
+Sets the destruction callback event in the surface lifecycle callback.
 
 **Since**
 
@@ -2151,8 +2161,8 @@ Sets the destruction callback event in the Surface lifecycle callback.
 
 | Name     | Description                                   |
 | --------- | --------------------------------------- |
-| callback |  Pointer to the Surface lifecycle callback.|
-| onSurfaceDestroyed |  Callback event triggered when the Surface is destroyed.<br> - **surfaceHolder**: pointer to an [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) instance.|
+| callback |  Pointer to the surface lifecycle callback.|
+| onSurfaceDestroyed |  Callback event triggered when the surface is destroyed.<br> - **surfaceHolder**: pointer to an [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) instance.|
 
 ### OH_ArkUI_SurfaceHolder_AddSurfaceCallback()
 
@@ -2162,7 +2172,7 @@ int32_t OH_ArkUI_SurfaceHolder_AddSurfaceCallback(OH_ArkUI_SurfaceHolder* surfac
 
 **Description**
 
-Adds a Surface lifecycle callback to an [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) instance.
+Adds a surface lifecycle callback to an [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) instance.
 
 **Since**
 
@@ -2189,7 +2199,7 @@ int32_t OH_ArkUI_SurfaceHolder_RemoveSurfaceCallback(OH_ArkUI_SurfaceHolder* sur
 
 **Description**
 
-Removes a previously added Surface lifecycle callback from an [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) instance.
+Removes a previously added surface lifecycle callback from an [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) instance.
 
 **Since**
 
@@ -2240,7 +2250,7 @@ int32_t OH_ArkUI_XComponent_SetAutoInitialize(ArkUI_NodeHandle node, bool autoIn
 
 **Description**
 
-Sets whether the XComponent needs to automatically initialize the Surface.
+Sets whether the **XComponent** component needs to automatically initialize the surface.
 
 **Since**
 
@@ -2250,8 +2260,8 @@ Sets whether the XComponent needs to automatically initialize the Surface.
 
 | Name     | Description                                   |
 | --------- | --------------------------------------- |
-| node |  Pointer to the XComponent instance.|
-| autoInitialize |  Whether the XComponent needs to automatically initialize the Surface. If **autoInitialize** is **true**, the **OnSurfaceCreated** callback will be triggered when the component is attached to the tree, and the **OnSurfaceDestroyed** callback will be triggered when the component is detached from the tree. The default value of **autoInitialize** is **true**.|
+| node |  Pointer to the **XComponent** component instance.|
+| autoInitialize |  Whether the XComponent needs to automatically initialize the surface. If **autoInitialize** is **true**, the **OnSurfaceCreated** callback will be triggered when the component is attached to the tree, and the **OnSurfaceDestroyed** callback will be triggered when the component is detached from the tree. The default value of **autoInitialize** is **true**.|
 
 **Returns**
 
@@ -2267,7 +2277,7 @@ int32_t OH_ArkUI_XComponent_Initialize(ArkUI_NodeHandle node)
 
 **Description**
 
-Initializes the Surface held by the XComponent.
+Initializes the surface held by the **XComponent** component.
 
 **Since**
 
@@ -2277,7 +2287,7 @@ Initializes the Surface held by the XComponent.
 
 | Name     | Description                                   |
 | --------- | --------------------------------------- |
-| node |  Pointer to the XComponent instance.|
+| node |  Pointer to the **XComponent** component instance.|
 
 **Returns**
 
@@ -2285,7 +2295,7 @@ Initializes the Surface held by the XComponent.
 
 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode): A parameter error occurs.
 
-[ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID](_ark_u_i___native_module.md#arkui_errorcode): The Surface held by the XComponent has been initialized.
+[ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID](_ark_u_i___native_module.md#arkui_errorcode): The surface held by the **XComponent** component has been initialized.
 
 ### OH_ArkUI_XComponent_Finalize()
 
@@ -2295,7 +2305,7 @@ int32_t OH_ArkUI_XComponent_Finalize(ArkUI_NodeHandle node)
 
 **Description**
 
-Destroys the Surface held by the XComponent.
+Destroys the surface held by the **XComponent** component.
 
 **Since**
 
@@ -2305,7 +2315,7 @@ Destroys the Surface held by the XComponent.
 
 | Name     | Description                                   |
 | --------- | --------------------------------------- |
-| node |  Pointer to the XComponent instance.|
+| node |  Pointer to the **XComponent** component instance.|
 
 **Returns**
 
@@ -2313,7 +2323,7 @@ Destroys the Surface held by the XComponent.
 
 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode): A parameter error occurs.
 
-[ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID](_ark_u_i___native_module.md#arkui_errorcode): The Surface held by the XComponent has been destroyed.
+[ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID](_ark_u_i___native_module.md#arkui_errorcode): The surface held by the **XComponent** component has been destroyed.
 
 ### OH_ArkUI_XComponent_IsInitialized()
 
@@ -2323,7 +2333,7 @@ int32_t OH_ArkUI_XComponent_IsInitialized(ArkUI_NodeHandle node, bool* isInitial
 
 **Description**
 
-Checks whether the Surface held by the XComponent is initialized.
+Checks whether the surface held by the **XComponent** component is initialized.
 
 **Since**
 
@@ -2333,8 +2343,8 @@ Checks whether the Surface held by the XComponent is initialized.
 
 | Name     | Description                                   |
 | --------- | --------------------------------------- |
-| node |  Pointer to the XComponent instance.|
-| isInitialized |  Whether the Surface held by the XComponent is initialized.|
+| node |  Pointer to the **XComponent** component instance.|
+| isInitialized |  Whether the surface held by the **XComponent** component is initialized.|
 
 **Returns**
 
@@ -2400,7 +2410,9 @@ Obtains the state of modifier keys from an [OH_NativeXComponent_ExtraMouseEventI
 
 > **NOTE**
 >
-> The modifier key press state information obtained through this API is stored in a 64-bit unsigned integer. To determine the state of a specific modifier key, perform a bitwise AND (&) operation between the 64-bit unsigned integer and the enumerated values of the [ArkUI_ModifierKeyName](./_ark_u_i___event_module.md#arkui_modifierkeyname) type. A result of **0** indicates that the modifier key is not pressed, while a result of **1** indicates that the modifier key is pressed.
+> This API can be used to obtain the press state of the **Ctrl**, **Shift**, and **Alt** keys.
+>
+> The modifier key press state information obtained through this API is stored in a 64-bit unsigned integer. To determine the state of a specific modifier key, perform a bitwise AND (&) operation between the 64-bit unsigned integer and the enumerated values of the [ArkUI_ModifierKeyName](./_ark_u_i___event_module.md#arkui_modifierkeyname) type. A result of **0** indicates that the modifier key is not pressed, while a result of **1** indicates that the modifier key is pressed. For example, using the **ARKUI_MODIFIER_KEY_CTRL** enumerated value with the obtained **keys** value through the AND (&) operation allows you to obtain the press state of the **Ctrl** key.
 >
 > Passing a null pointer for either the **component** or **keys** parameter is considered an invalid input.
 
@@ -2566,7 +2578,7 @@ Sets the expected frame rate range for the XComponent.
 
 > **NOTE**
 >
-> The XComponent instance passed to this API must be created using the [ArkUI NDK API](../../ui/ndk-access-the-arkts-page.md) or constructed through [NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md).
+> The XComponent instance passed to this API must be created using the [ArkUI NDK API](../../ui/ndk-access-the-arkts-page.md) or constructed through [NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19).
 >
 > For the [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md) object:<br>- The value of the [min](#min) member must be less than or equal to the value of the [max](#max) member.<br>- The value of the [expected](#expected) member must be greater than or equal to the value of the [min](#min) member and less than or equal to the value of the [max](#max) member.
 
@@ -2600,7 +2612,7 @@ Registers a frame callback function for the XComponent.
 
 > **NOTE**
 >
-> The XComponent instance passed to this API must be created using the [ArkUI NDK API](../../ui/ndk-access-the-arkts-page.md) or constructed through [NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md).
+> The XComponent instance passed to this API must be created using the [ArkUI NDK API](../../ui/ndk-access-the-arkts-page.md) or constructed through [NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19).
 
 **Returns**
 
@@ -2630,7 +2642,7 @@ Unregisters the frame callback function for the XComponent.
 
 > **NOTE**
 >
-> The XComponent instance passed to this API must be created using the [ArkUI NDK API](../../ui/ndk-access-the-arkts-page.md) or constructed through [NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md).
+> The XComponent instance passed to this API must be created using the [ArkUI NDK API](../../ui/ndk-access-the-arkts-page.md) or constructed through [NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19).
 
 **Returns**
 
@@ -2661,7 +2673,7 @@ Sets whether the soft keyboard is required for the XComponent.
 
 > **NOTE**
 >
-> The XComponent instance passed to this API must be created using the [ArkUI NDK API](../../ui/ndk-access-the-arkts-page.md) or constructed through [NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md).
+> The XComponent instance passed to this API must be created using the [ArkUI NDK API](../../ui/ndk-access-the-arkts-page.md) or constructed through [NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19).
 >
 > The default value of **needSoftKeyboard** of the XComponent is **false**.
 
@@ -2693,7 +2705,7 @@ Creates an [ArkUI_AccessibilityProvider](arkui_native_interface_accessibility.md
 
 > **NOTE**
 >
-> The XComponent instance passed to this API must be created using the [ArkUI NDK API](../../ui/ndk-access-the-arkts-page.md) or constructed through [NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md).
+> The XComponent instance passed to this API must be created using the [ArkUI NDK API](../../ui/ndk-access-the-arkts-page.md) or constructed through [NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19).
 
 **Returns**
 
@@ -2729,7 +2741,7 @@ void OH_ArkUI_SurfaceCallback_SetSurfaceShowEvent(
 
 **Description**
 
-Sets the Surface show callback for this [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback) instance.
+Sets a surface display callback for this [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback) instance. The callback is invoked when the application window has returned to the foreground from the background.
 
 **Since**
 
@@ -2740,7 +2752,7 @@ Sets the Surface show callback for this [OH_ArkUI_SurfaceCallback](#oh_arkui_sur
 | Name| Description|
 | -------- | -------- |
 | callback | Pointer to the [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback) instance.|
-|onSurfaceShow|Pointer to the Surface show callback.<br> - **surfaceHolder**: pointer to an [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) instance.|
+|onSurfaceShow|Pointer to the surface display callback.<br> - **surfaceHolder**: pointer to an [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) instance.|
 
 ### OH_ArkUI_SurfaceCallback_SetSurfaceHideEvent()
 
@@ -2752,7 +2764,7 @@ void OH_ArkUI_SurfaceCallback_SetSurfaceHideEvent(
 
 **Description**
 
-Sets the Surface hiding callback for this [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback) instance.
+Sets a surface hiding callback for this [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback) instance. The callback is invoked when the application window has entered the background from the foreground.
 
 **Since**
 
@@ -2763,7 +2775,7 @@ Sets the Surface hiding callback for this [OH_ArkUI_SurfaceCallback](#oh_arkui_s
 | Name| Description|
 | -------- | -------- |
 | callback | Pointer to the [OH_ArkUI_SurfaceCallback](#oh_arkui_surfacecallback) instance.|
-|onSurfaceHide|Pointer to the Surface hiding callback.<br> - **surfaceHolder**: pointer to an [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) instance.|
+|onSurfaceHide|Pointer to the surface hiding callback.<br> - **surfaceHolder**: pointer to an [OH_ArkUI_SurfaceHolder](#oh_arkui_surfaceholder) instance.|
 
 <!--  -->
 
@@ -2864,7 +2876,7 @@ Invoked when a hover event is triggered.
 | Name       | Description                           |
 | --------- | ----------------------------- |
 | component | Pointer to the **OH_NativeXComponent** instance.|
-| isHover  | Whether the mouse pointer or stylus is hovering over the component. <br>**true**: The mouse pointer or stylus has entered the component.<br>**false**: The mouse pointer or stylus has left the component.|
+| isHover  | Whether the mouse pointer or stylus is hovering over the component.<br>**true**: The mouse pointer or stylus has entered the component.<br>**false**: The mouse pointer or stylus has left the component.|
 
 **Since**
 
@@ -3043,7 +3055,7 @@ void(* OH_NativeXComponent_Callback::OnSurfaceChanged) (OH_NativeXComponent *com
 
 **Description**
 
-Invoked when the Surface changes.
+Invoked when the surface changes.
 
 **Parameters**
 
@@ -3065,7 +3077,7 @@ void(* OH_NativeXComponent_Callback::OnSurfaceCreated) (OH_NativeXComponent *com
 
 **Description**
 
-Invoked when a Surface is created.
+Invoked when a surface is created.
 
 **Parameters**
 
@@ -3274,7 +3286,7 @@ long long OH_NativeXComponent_TouchPoint::timeStamp = 0
 
 **Description**
 
-Timestamp of the touch point. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.
+Timestamp of the touch event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.
 
 **Since**
 
@@ -3289,7 +3301,7 @@ long long OH_NativeXComponent_TouchEvent::timeStamp = 0
 
 **Description**
 
-Timestamp of the touch point. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.
+Timestamp of the touch event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.
 
 **Since**
 
@@ -3304,7 +3316,7 @@ int64_t OH_NativeXComponent_HistoricalPoint::timeStamp = 0
 
 **Description**
 
-Timestamp of the touch point. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.
+Timestamp of the touch event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.
 
 **Since**
 
@@ -3349,7 +3361,7 @@ OH_NativeXComponent_TouchEventType OH_NativeXComponent_TouchPoint::type = OH_Nat
 
 **Description**
 
-Touch type of the touch point.
+Touch type of the touch event.
 
 **Since**
 
@@ -3364,7 +3376,7 @@ OH_NativeXComponent_TouchEventType OH_NativeXComponent_TouchEvent::type = OH_Nat
 
 **Description**
 
-Touch type of the touch point.
+Touch type of the touch event.
 
 **Since**
 
@@ -3374,12 +3386,12 @@ Touch type of the touch point.
 ### type [3/3]
 
 ```
-OH_NativeXComponent_HistoricalPoint OH_NativeXComponent_TouchEvent::type = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN
+OH_NativeXComponent_TouchEventType OH_NativeXComponent_HistoricalPoint::type = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN
 ```
 
 **Description**
 
-Touch type of the touch point.
+Touch type of the touch event.
 
 **Since**
 

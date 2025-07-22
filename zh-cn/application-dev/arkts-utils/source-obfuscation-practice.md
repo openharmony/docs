@@ -1,6 +1,6 @@
 # 不同包类型的源码混淆建议
 
-由于不同包类型的用途及构建流程的差异，开发者对不同包类型使用混淆有不同的注意事项。本文对[HAP](../quick-start/hap-package.md)、[HAR](../quick-start/har-package.md)和[HSP](../quick-start/in-app-hsp.md)三种包类型分别提供建议，帮助开发者高效使用混淆。
+不同包类型的用途和构建流程存在差异，对不同包类型使用混淆时，开发者需要注意不同事项。本文针对[HAP](../quick-start/hap-package.md)、[HAR](../quick-start/har-package.md)和[HSP](../quick-start/in-app-hsp.md)三种包类型，分别提供混淆建议，帮助开发者高效使用混淆。
 
 为了对混淆在不同包类型下的行为有更清晰的理解，建议开发者在对不同包类型进行配置前，充分了解混淆原理及混淆开启流程，并优先阅读[Stage模型应用程序包结构](../quick-start/application-package-structure-stage.md)（了解不同包类型之间的差异点）。
 
@@ -13,7 +13,7 @@
 3. 导入导出名称混淆（`-enable-export-obfuscation`）
 4. 文件名混淆（`-enable-filename-obfuscation`）
 
-开启混淆功能后，需要配置白名单进行适配，来保证应用运行功能正常。
+开启混淆功能后，需配置白名单以保证应用运行功能正常。
 
 - 对于新开发的应用，建议直接打开以上选项，在开发迭代过程中增加白名单配置。
 - 对于已开发一定功能的应用，建议按照以上顺序逐步打开各个选项，对比不同选项的混淆产物，熟悉新增选项的具体效果，参考[混淆选项配置指导](source-obfuscation-guide.md#混淆选项配置指导)排查适配。
@@ -44,8 +44,8 @@
     | [本地源码HSP包](#本地源码hsp包) | NA | 否 | 是 | 否 |
     | [集成态HSP包](#集成态hsp包) | 二进制字节码和声明文件 | 否 | 是 | 是 |
 
-6. 了解需要[配置白名单的场景](source-obfuscation.md#保留选项)，将白名单配置到obfuscation-rules.txt文件中。
-7. 构建应用，验证HAP包功能。若功能异常，则继续排查是否遗漏白名单。
+6. 需要了解[配置白名单的场景](source-obfuscation.md#保留选项)，将白名单配置到obfuscation-rules.txt文件中。
+7. 构建应用，验证HAP包功能。若功能异常，需排查白名单是否遗漏。
 8. 应用功能正常，即可发布应用包。
 
 ## HAR包混淆建议
@@ -87,14 +87,14 @@
 ### HSP包通用建议
 
 1. HSP包的开发者需充分了解[三种混淆配置文件](source-obfuscation-guide.md#三种混淆配置文件)以及[混淆规则的合并策略](source-obfuscation.md#混淆规则合并策略)，以及在被HAP包使用时的[HAP包混淆建议](#hap包混淆建议)中的注意事项，确保被应用依赖时本模块所有功能正常。
-2. 由于HSP包是独立构建，并且只会构建一次，因此要重点关注模块内部的混淆效果，同时让其他模块正常调用接口即可。
-3. 由于consumer配置的传递性，**HSP包开发者不应在其中配置开启混淆的能力，而应仅配置保留白名单的规则。为了减少对依赖方的影响，建议仅使用`-keep-global-name`和`-keep-property-name`两种白名单配置。**
+2. 由于HSP包是独立构建，并且只会构建一次，因此要重点关注模块内部的混淆效果，确保其他模块正常调用接口即可。
+3. 由于consumer配置的传递性，**HSP包开发者不应在其中配置开启混淆的能力，而应仅配置保留白名单的规则。为了减少对依赖方的影响，建议仅使用`-keep-global-name`和`-keep-property-name`两种白名单配置**。
 
 ### 本地源码HSP包
 
-1. 本地源码HSP包要明确对外提供哪些接口及其相关属性，并将这些名称配置到obfuscation-rules.txt及consumer-rules.txt中。
+1. 本地源码HSP包需明确对外提供的接口及其属性，并将这些名称配置到obfuscation-rules.txt和consumer-rules.txt中。
 2. 对于模块内部混淆效果，开发者可以参阅[HAP包混淆建议](#hap包混淆建议)中的所有建议。
-3. 功能验证时，应同时构建主模块和HSP包，然后验证HSP包提供的全部接口功能。
+3. 功能验证时，应同时构建主模块和HSP包，验证HSP包的接口功能。
 
 ### 集成态HSP包
 
@@ -104,4 +104,5 @@
 
 > **说明**
 >
-> HSP生成`obfuscation.txt`的规则仅来源于当前模块的`consumer-rules.txt`文件，不包括依赖模块的`consumer-rules.txt`文件或`obfuscation.txt`文件。
+> HSP生成`obfuscation.txt`的规则仅来源于当前模块的`consumer-rules.txt`文件。不包括依赖模块的`consumer-rules.txt`文件或`obfuscation.txt`文件。
+开发者可以参阅HAP包混淆建议中的所有建议，确保集成态HSP包的内部混淆效果。集成态HSP包发布后需验证使用方开启混淆时接口可以被正常调用。

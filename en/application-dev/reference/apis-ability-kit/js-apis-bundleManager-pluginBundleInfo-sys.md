@@ -1,6 +1,6 @@
 # PluginBundleInfo (System API)
 
-The PluginBundleInfo module defines plugin information, which is obtained through the [bundleManager.getAllPluginInfo](js-apis-bundleManager-sys.md#bundlemanagergetallplugininfo19) API.
+The module defines plugin information, which is obtained through the [bundleManager.getAllPluginInfo](js-apis-bundleManager-sys.md#bundlemanagergetallplugininfo19) API.
 
 > **NOTE**
 >
@@ -8,8 +8,13 @@ The PluginBundleInfo module defines plugin information, which is obtained throug
 >
 > The APIs provided by this module are system APIs.
 
-## PluginBundleInfo
+## Modules to Import
 
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+```
+
+## PluginBundleInfo
 Defines the plugin information.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
@@ -18,17 +23,16 @@ Defines the plugin information.
 
 | Name          | Type  | Read-Only| Optional| Description          |
 | -------------- | ------ | ---- | ---- | -------------- |
-| label   | string | Yes  | Yes  | Plugin name.  |
-| labelId   | number | Yes  | Yes  | Resource ID of the plugin name.  |
-| icon   | string | Yes  | Yes  | Plugin icon.  |
-| iconId   | number | Yes  | Yes  | Resource ID of the plugin icon.  |
-| pluginBundleName   | string | Yes  | Yes  | Bundle name of the application for which the plugin is installed.  |
-| versionCode   | string | Yes  | Yes  | Version number of the plugin.  |
-| versionName   | string | Yes  | Yes  | Version name of the plugin.  |
-| pluginModuleInfos   | Array<[PluginModuleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginmoduleinfo)> | Yes  | Yes  | Module information of the plugin.  |
+| label   | string | Yes  | No  | Plugin name.  |
+| labelId   | number | Yes  | No  | Resource ID of the plugin name.  |
+| icon   | string | Yes  | No  | Plugin icon.  |
+| iconId   | number | Yes  | No  | Resource ID of the plugin icon.  |
+| pluginBundleName   | string | Yes  | No  | Bundle name of the application for which the plugin is installed.  |
+| versionCode   | string | Yes  | No  | Version number of the plugin.  |
+| versionName   | string | Yes  | No  | Version name of the plugin.  |
+| pluginModuleInfos   | Array<[PluginModuleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginmoduleinfo)> | Yes  | No  | Module information of the plugin.  |
 
 ## PluginModuleInfo
-
 Defines the module information of a plugin.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
@@ -37,6 +41,6 @@ Defines the module information of a plugin.
 
 | Name          | Type  | Read-Only| Optional| Description          |
 | -------------- | ------ | ---- | ---- | -------------- |
-| moduleName   | string | Yes  | Yes  |  Module name of the plugin. |
-| descriptionId   | number | Yes  | Yes  |  Resource ID of the module description. |
-| description   | string | Yes  | Yes  |  Description of the module. |
+| moduleName   | string | Yes  | No  |  Module name of the plugin. |
+| descriptionId   | number | Yes  | No  |  Resource ID of the module description. |
+| description   | string | Yes  | No  |  Description of the module. |
