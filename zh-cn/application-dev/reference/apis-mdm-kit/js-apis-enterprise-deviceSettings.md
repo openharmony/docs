@@ -136,7 +136,7 @@ setHomeWallpaper(admin: Want, fd: number): Promise&lt;void&gt;
 | 参数名 | 类型                                                    | 必填 | 说明                                 |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------ |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。               |
-| fd     | number                                                  | 是   | 需要设置为桌面壁纸图片的文件描述符，可以通过file.fs的[openSync](../apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口获取应用沙箱目录下的图片文件描述符。建议壁纸图片大小不超过100MB。 |
+| fd     | number                                                  | 是   | 需要设置为桌面壁纸图片的文件描述符，可以通过file.fs的[openSync](../apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口获取应用沙箱目录下的图片文件描述符。壁纸图片大小不能超过100MB。 |
 
 **返回值：**
 
