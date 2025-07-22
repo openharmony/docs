@@ -97,7 +97,7 @@ import { RenderNode } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
-  async draw(context : DrawContext) {
+  draw(context : DrawContext) {
     const width = 1000;
     const height = 1000;
     const bufferSize = width * height * 4;

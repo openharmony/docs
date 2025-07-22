@@ -247,7 +247,7 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateSweepGradientWithLocalMatr
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)* | 函数会返回一个指针，指针指向创建的着色器对象[OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)。<br> 存在以下任意一种情况时，会返回空指针：1.可用内存为空；2.centerPt、colors任意为空；3.tileMode超出枚举范围。 |
+| [OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)* | 函数会返回一个指针，指针指向创建的着色器对象[OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)。<br>存在以下任意一种情况时，会返回空指针：1.可用内存为空；2.centerPt、colors任意为空；3.tileMode超出枚举范围。 |
 
 ### OH_Drawing_ShaderEffectCreateSweepGradient()
 
@@ -278,7 +278,7 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateSweepGradient(const OH_Dra
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)* | 返回创建的着色器对象的指针。 |
+| [OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)* |  函数会返回一个指针，指针指向创建的着色器对象[OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)。<br>存在以下任意一种情况时，会返回空指针：1.可用内存为空；2.centerPt、colors任意为空；3.tileMode超出枚举范围。
 
 ### OH_Drawing_ShaderEffectCreateImageShader()
 
@@ -309,7 +309,7 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateImageShader(OH_Drawing_Ima
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)* | 返回创建的着色器对象的指针。 |
+| [OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)* | 函数会返回一个指针，指针指向创建的着色器对象[OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)。<br>存在以下任意一种情况时，会返回空指针：1.可用内存为空；2.image、samplingOptions任意为空；3.tileX、tileY超出枚举范围。 |
 
 ### OH_Drawing_ShaderEffectCreateTwoPointConicalGradient()
 
@@ -344,7 +344,7 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateTwoPointConicalGradient(co
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)* | 函数会返回一个指针，指针指向创建的着色器对象[OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)。如果对象返回NULL，表示创建失败；可能的原因是可用内存为空，或者是startPt、endPt、colors至少一个为NULL。 |
+| [OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)* | 函数会返回一个指针，指针指向创建的着色器对象[OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)。如果对象返回NULL，表示创建失败；可能的原因是：1.可用内存为空；2.startPt、endPt、colors任意为空；3.tileMode超出枚举范围。 |
 
 ### OH_Drawing_ShaderEffectCreateCompose()
 
@@ -373,7 +373,7 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateCompose(OH_Drawing_ShaderE
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)* | 函数会返回一个指针，指针指向创建的着色器对象[OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)。<br> 当可用内存为空，或者是dst、src任意一个为空，或mode超出枚举范围时，结果返回NULL，表示创建失败。 |
+| [OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)* | 函数会返回一个指针，指针指向创建的着色器对象[OH_Drawing_ShaderEffect](capi-drawing-oh-drawing-shadereffect.md)。<br>当可用内存为空，或者是dst、src任意一个为空，或mode超出枚举范围时，结果返回NULL，表示创建失败。 |
 
 ### OH_Drawing_ShaderEffectDestroy()
 

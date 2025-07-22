@@ -85,7 +85,7 @@ import { RenderNode } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
-  async draw(context : DrawContext) {
+  draw(context : DrawContext) {
     const width = 1000;
     const height = 1000;
     const bufferSize = width * height * 4;
@@ -106,7 +106,6 @@ class DrawingRenderNode extends RenderNode {
     }
 
     let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
-    const canvas = context.canvas;
     let srcRect: common2D.Rect = { left: 10, top: 10, right: 80, bottom: 80 };
     let dstRect: common2D.Rect = { left: 200, top: 200, right: 400, bottom: 400 };
     if (pixelMap != null) {
