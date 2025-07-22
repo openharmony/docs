@@ -475,7 +475,7 @@ getModifierKeyState?(keys: Array<string\>): boolean
 
 | 参数名 | 类型                | 必填 | 说明                                                         |
 | ------ | ------------------- | ---- | ------------------------------------------------------------ |
-| keys   | Array&lt;string&gt; | 是   | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\| 'Alt' \| 'Shift'。 |
+| keys   | Array&lt;string&gt; | 是   | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\| 'Alt' \| 'Shift'。<br/>**说明：**<br/>此接口不支持在手写笔场景下使用。 |
 
 **错误码：**
 
@@ -740,7 +740,7 @@ struct Index {
       callback(event);
       return true;
     } catch (e) {
-      console.log("getData failed, code = " + (e as BusinessError).code + ", message = " + (e as BusinessError).message);
+      console.error("getData failed, code = " + (e as BusinessError).code + ", message = " + (e as BusinessError).message);
       return false;
     }
   }
@@ -1045,7 +1045,7 @@ struct ImageExample {
           .height('90%')
           .width('100%')
           .onDrop((event?: DragEvent, extraParams?: string) => {
-            console.log("enter onDrop")
+            console.info("enter onDrop")
             let context = this.uiContext.getHostContext() as common.UIAbilityContext;
             let pathDir: string = context.distributedFilesDir;
             let destUri = fileUri.getUriFromPath(pathDir);
@@ -1059,12 +1059,12 @@ struct ImageExample {
                     this.blockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
                   }
                 } else {
-                  console.log('dragData arr is null');
+                  console.info('dragData arr is null');
                 }
               } else {
-                console.log('dragData is undefined');
+                console.info('dragData is undefined');
               }
-              console.log(`percentage: ${progress.progress}`);
+              console.info(`percentage: ${progress.progress}`);
             };
             let options: DataSyncOptions = {
               destUri: destUri,
@@ -1074,9 +1074,9 @@ struct ImageExample {
             }
             try {
               this.udKey = (event as DragEvent).startDataLoading(options);
-              console.log('udKey: ', this.udKey);
+              console.info('udKey: ', this.udKey);
             } catch(e) {
-              console.log(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+              console.error(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
             }
           }, {disableDataPrefetch: true})
         }
@@ -1089,7 +1089,7 @@ struct ImageExample {
           try {
             this.getUIContext().getDragController().cancelDataLoading(this.udKey);
           } catch (e) {
-            console.log(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+            console.error(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
           }
         })
         .margin({top: 10})
@@ -1143,7 +1143,7 @@ struct Index {
       callback(event);
       return true;
     } catch (e) {
-      console.log("getData failed, code = " + (e as BusinessError).code + ", message = " + (e as BusinessError).message);
+      console.error("getData failed, code = " + (e as BusinessError).code + ", message = " + (e as BusinessError).message);
       return false;
     }
   }

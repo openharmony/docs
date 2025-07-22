@@ -247,6 +247,8 @@ inputFilter(value: ResourceStr, error?: Callback\<string>)
 
 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。
 
+单字符输入场景仅支持单字符匹配，多字符输入场景支持字符串匹配，例如粘贴。
+
 从API version 11开始，设置inputFilter且输入的字符不为空字符，会导致设置输入框类型(即type接口)附带的文本过滤效果失效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -1797,8 +1799,8 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
-  @State passWordSrc1: Resource = $r('app.media.ImageOne');
-  @State passWordSrc2: Resource = $r('app.media.ImageTwo');
+  @State passWordSrc1: Resource = $r('app.media.ImageOne'); // 'app.media.ImageOne'仅作示例，请替换为实际使用图片
+  @State passWordSrc2: Resource = $r('app.media.ImageTwo'); // 'app.media.ImageTwo'仅作示例，请替换为实际使用图片
   @State textError: string = '';
   @State text: string = '';
   @State nameText: string = 'test';
@@ -2487,7 +2489,7 @@ struct TextInputExample {
           .height(60)
           .onWillDelete((info: DeleteValue) => {
             this.deleteValue = info.deleteValue;
-            info.direction;
+            this.deleteDirection = info.direction;
             return true;
           })
           .onDidDelete((info: DeleteValue) => {

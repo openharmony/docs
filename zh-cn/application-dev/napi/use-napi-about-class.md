@@ -61,7 +61,7 @@ export const newInstance: (obj: Object, param: string) => Object;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 class Fruit {
   name: string;
@@ -132,7 +132,10 @@ struct Object {
 static void DerefItem(napi_env env, void *data, void *hint) {
     // 可选的原生回调，用于在ArkTS对象被垃圾回收时释放原生实例
     OH_LOG_INFO(LOG_APP, "Node-API DerefItem");
-    (void)hint;
+    Object *obj = reinterpret_cast<Object *>(data);
+    if (obj != nullptr) {
+        delete obj;
+    }
 }
 
 static napi_value Wrap(napi_env env, napi_callback_info info)
@@ -195,7 +198,7 @@ export const removeWrap: (obj: Object) => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
     class Obj {}

@@ -66,7 +66,7 @@ export const getCbContext: () => Object;
 ArkTS 侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 function summation(arr: Array<number>) {
   let sum: number = 0;
@@ -154,7 +154,7 @@ export const objCallFunction: (obj: Object, func: Function) => number;
 ArkTS 侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 function returnNumber() {
@@ -214,7 +214,7 @@ export const calculateArea: (width: number, height: number) => number;
 ArkTS 侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API create_function:%{public}d ', testNapi.calculateArea(1.2, 4));

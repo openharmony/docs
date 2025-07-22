@@ -141,7 +141,7 @@
         this.getUIContext().getComponentSnapshot().createFromBuilder(()=>{this.pixelMapBuilder()},
         (error: Error, pixmap: image.PixelMap) => {
             if(error){
-              console.log("error: " + JSON.stringify(error))
+              console.error("error: " + JSON.stringify(error))
               return;
             }
             this.pixmap = pixmap;
@@ -226,7 +226,7 @@
          callback(event);
          return true;
        } catch (e) {
-         console.log("getData failed, code: " + (e as BusinessError).code + ", message: " + (e as BusinessError).message);
+         console.error("getData failed, code: " + (e as BusinessError).code + ", message: " + (e as BusinessError).message);
          return false;
        }
     }
@@ -296,7 +296,7 @@ struct Index {
       callback(event);
       return true;
     } catch (e) {
-      console.log("getData failed, code: " + (e as BusinessError).code + ", message: " + (e as BusinessError).message);
+      console.error("getData failed, code: " + (e as BusinessError).code + ", message: " + (e as BusinessError).message);
       return false;
     }
   }
@@ -314,7 +314,7 @@ struct Index {
     this.getUIContext().getComponentSnapshot().createFromBuilder(()=>{this.pixelMapBuilder()},
       (error: Error, pixmap: image.PixelMap) => {
         if(error){
-          console.log("error: " + JSON.stringify(error))
+          console.error("error: " + JSON.stringify(error))
           return;
         }
         this.pixmap = pixmap;
@@ -714,9 +714,9 @@ struct DropAnimationExample {
           })
           .onDragEnd((event) => {
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              console.log('Drag Success');
+              console.info('Drag Success');
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              console.log('Drag failed');
+              console.info('Drag failed');
             }
           })
       }.width('45%')

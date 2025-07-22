@@ -646,6 +646,9 @@ struct ContactsList {
       // 字母表索引组件
       AlphabetIndexer({ arrayValue: alphabets, selected: 0 })
         .selected(this.selectedIndex)
+        .onSelect((index: number) => {
+          this.listScroller.scrollToIndex(index);
+        })
     }
   }
 }

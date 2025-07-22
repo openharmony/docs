@@ -54,7 +54,7 @@ Stack的构造函数。
 **示例：**
 
 ```ts
-let stack : Stack<number | string | Object> = new Stack();
+let stack = new Stack<number | string | Object>();
 ```
 
 
@@ -90,16 +90,17 @@ push(item: T): T
 
 **示例：**
 
-```
+```ts
 class C1 {
   name: string = ""
   age: string = ""
 }
-let stack : Stack<number | string | C1> = new Stack();
+let stack = new Stack<number | string | C1>();
 let result = stack.push("a");
 let result1 = stack.push(1);
 let c : C1  = {name : "Dylan", age : "13"};
 let result2 = stack.push(c);
+console.info("length:", stack.length);  // length: 3
 ```
 
 ### pop
@@ -129,14 +130,14 @@ pop(): T
 **示例：**
 
 ```ts
-let stack : Stack<number> = new Stack();
+let stack = new Stack<number>();
 stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(2);
 stack.push(4);
 let result = stack.pop(); 
-console.log("result = " + result); // result = 4
+console.info("result = " + result); // result = 4
 ```
 
 ### peek
@@ -166,12 +167,13 @@ peek(): T
 **示例：**
 
 ```ts
-let stack : Stack<number> = new Stack();
+let stack = new Stack<number>();
 stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(2);
 let result = stack.peek();
+console.info("result:", result);  // result: 2
 ```
 
 ### locate
@@ -207,12 +209,13 @@ locate(element: T): number
 **示例：**
 
 ```ts
-let stack : Stack<number> = new Stack();
+let stack = new Stack<number>();
 stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(2);
-let result = stack.locate(2);
+let result = stack.locate(5);
+console.info("result:", result);  // result: 2
 ```
 
 ### forEach
@@ -253,12 +256,12 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
-let stack : Stack<number> = new Stack();
+let stack = new Stack<number>();
 stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(4);
-stack.forEach((value : number, index ?: number) :void => {
+stack.forEach((value : number, index: number) :void => {
   console.info("value:" + value, "index:" + index);
 });
 /**
@@ -296,12 +299,13 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-let stack : Stack<number> = new Stack();
+let stack = new Stack<number>();
 stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(4);
 let result = stack.isEmpty();
+console.info("result:", result);  // result: false
 ```
 
 ### [Symbol.iterator]
@@ -330,24 +334,30 @@ let result = stack.isEmpty();
 
 **示例：**
 ```ts
-let stack : Stack<number> = new Stack();
+let stack = new Stack<number>();
 stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(4);
 
 // 使用方法一：
-while(!stack.isEmpty()) {
-  // 业务逻辑
-  let item = stack.pop();
-  console.info("value:" + item);
+for (let value of stack) {
+  console.info("value:", value);
 }
+// value: 2
+// value: 4
+// value: 5
+// value: 4
 
 // 使用方法二：
 let iter = stack[Symbol.iterator]();
 let temp: IteratorResult<number> = iter.next().value;
 while(temp != undefined) {
-  console.info("value:" + temp);
+  console.info("value: " + temp);
   temp = iter.next().value;
 }
+// value: 2
+// value: 4
+// value: 5
+// value: 4
 ```

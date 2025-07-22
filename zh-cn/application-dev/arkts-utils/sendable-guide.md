@@ -51,7 +51,7 @@ struct Index {
           let sensorTask = new taskpool.LongTask(SensorListener);
           emitter.on({ eventId: 0 }, (data) => {
             // Do something here
-            console.info(`Receive ACCELEROMETER data: {${data.data?.x}, ${data.data?.y}, ${data.data?.z}`);
+            console.info(`Receive ACCELEROMETER data: {${data.data?.x}, ${data.data?.y}, ${data.data?.z}}`);
           });
           taskpool.execute(sensorTask).then(() => {
             console.info("Add listener of ACCELEROMETER success");

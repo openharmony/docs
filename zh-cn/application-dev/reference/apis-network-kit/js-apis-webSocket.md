@@ -344,7 +344,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
   promise.then((value: boolean) => {
     console.info("send success")
   }).catch((err:string) => {
-    console.error(`send fail, error:" + JSON.stringify(err))
+    console.error("send fail, error:" + JSON.stringify(err))
   });
 });
 ```
@@ -494,7 +494,7 @@ let promise = ws.close();
 promise.then((value: boolean) => {
     console.info("close success")
 }).catch((err:string) => {
-    console.error(`close fail, error:" + JSON.stringify(err))
+    console.error("close fail, error:" + JSON.stringify(err))
 });
 ```
 
@@ -1584,6 +1584,8 @@ type HttpProxy = connection.HttpProxy
 | clientPort | number | 否   | 否   | 客户端的端口号port。 |
 
 ## ClientConnectionCloseCallback<sup>19+</sup>
+
+type ClientConnectionCloseCallback = (clientConnection: WebSocketConnection, closeReason: CloseResult) => void
 
 关闭WebSocketServer连接时，订阅close事件得到的指定客户端的关闭结果。
 

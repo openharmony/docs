@@ -47,7 +47,7 @@ class A2 {
   prop1: string = '';
 }
 function test(input: A1) {
-  console.log(input.prop1);
+  console.info(input.prop1);
 }
 let a2 = new A2();
 a2.prop1 = 'prop a2';
@@ -63,7 +63,7 @@ class A2 {
   a: string = '';
 }
 function test(input: A1) {
-  console.log(input.prop1);
+  console.info(input.prop1);
 }
 let a2 = new A2();
 a2.a = 'prop a2';
@@ -323,7 +323,7 @@ class TestA { static prop1: number = 0; } TestA.prop1;
 ```ts
 // 混淆前：
 if (flag) {
-  console.log("hello");
+  console.info("hello");
 }
 ```
 
@@ -339,7 +339,7 @@ if (flag) {
     例如：
 
     ```js
-    console.log("in tolevel");
+    console.info("in tolevel");
     ```
 
 2. 代码块中的调用
@@ -347,7 +347,7 @@ if (flag) {
 
     ```ts
     function foo() {
-    console.log('in block');
+    console.info('in block');
     }
     ```
   
@@ -356,7 +356,7 @@ if (flag) {
   
     ```ts
     namespace ns {
-    console.log('in ns');
+    console.info('in ns');
     }
     ```
   
@@ -366,10 +366,10 @@ if (flag) {
     ```js
     switch (value) {
     case 1:
-        console.log("in switch case");
+        console.info("in switch case");
         break;
     default:
-        console.warn("default");
+        console.info("default");
     }
     ```
 

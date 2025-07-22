@@ -335,7 +335,6 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 待创建的相册名参数规格为：
 - 相册名字符串长度为1~255。
 - 不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
-- 英文字符大小写不敏感。
 - 相册名不允许重名。
 
 > **说明：** 
@@ -397,7 +396,6 @@ createAlbum(name: string): Promise&lt;Album&gt;
 待创建的相册名参数规格为：
 - 相册名字符串长度为1~255。
 - 不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
-- 英文字符大小写不敏感。
 - 相册名不允许重名。
 
 > **说明：** 
@@ -1437,7 +1435,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
-### grantPhotoUriPermission<sup>15+</sup>
+### grantPhotoUriPermission<sup>19+</sup>
 
 grantPhotoUriPermission(tokenId: number, uri: string, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
 
@@ -1472,7 +1470,7 @@ grantPhotoUriPermission(tokenId: number, uri: string, photoPermissionType: Photo
 | -------- | ---------------------------------------- |
 | 201 |  Permission denied.         |
 | 202 |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 13900020 | Invalid argument. Possible causes: 1. Incorrect uri format; 2. The value of photoPermissionType or hideSensitiveType is out of range. |
 | 14000011       | Internal system error.         |
 
 **示例：**
@@ -1497,7 +1495,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
-### grantPhotoUrisPermission<sup>15+</sup>
+### grantPhotoUrisPermission<sup>19+</sup>
 
 grantPhotoUrisPermission(tokenId: number, uriList: Array&lt;string&gt;, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
 
@@ -1532,7 +1530,7 @@ grantPhotoUrisPermission(tokenId: number, uriList: Array&lt;string&gt;, photoPer
 | -------- | ---------------------------------------- |
 | 201 |  Permission denied.         |
 | 202 |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 13900020 | Invalid argument. Possible causes: 1. Incorrect uri format; 2. The value of photoPermissionType or hideSensitiveType is out of range. |
 | 14000011       | Internal system error.         |
 
 **示例：**
@@ -1560,7 +1558,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
-### cancelPhotoUriPermission<sup>15+</sup>
+### cancelPhotoUriPermission<sup>19+</sup>
 
 cancelPhotoUriPermission(tokenId: number, uri: string, photoPermissionType: PhotoPermissionType): Promise&lt;number&gt;
 
@@ -1594,7 +1592,7 @@ cancelPhotoUriPermission(tokenId: number, uri: string, photoPermissionType: Phot
 | -------- | ---------------------------------------- |
 | 201 |  Permission denied.         |
 | 202 |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 13900020 | Invalid argument. Possible causes: 1. Incorrect uri format; 2. The value of photoPermissionType or hideSensitiveType is out of range. |
 | 14000011       | Internal system error.         |
 
 **示例：**
@@ -5106,7 +5104,7 @@ class PhotoProxyImpl implements photoAccessHelper.PhotoProxy {
   // 应用实现PhotoProxy。
 }
 
-async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset) {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset, context: Context) {
   console.info('addResourceByPhotoProxyDemo');
   try {
     let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;

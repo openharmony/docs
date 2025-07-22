@@ -407,7 +407,7 @@ LIFECYCLE_TIMEOUT：
 
 ```
 DOMAIN:AAFWK
-STRINGID:LIFECYCLE
+STRINGID:LIFECYCLE_TIMEOUT
 TIMEOUT TIMESTAMP:2023/03/10-17:06:53:65
 PID:1561
 UID:20010039
@@ -469,7 +469,7 @@ PreInstalled:Yes
 Foreground:No   --> 是否处于前台
 Pid:15440
 Uid:20020029
-Reason:THREAD BLOCK 6S
+Reason:THREAD_BLOCK_6S
 appfreeze: com.xxx.xxx THREAD_BLOCK 6S at 20240410164052
 DisplayPowerInfo:powerState: AWAKE
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -482,7 +482,7 @@ DisplayPowerInfo:powerState: AWAKE
 ```
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 DOMAIN:AAFWK
-STRINGID: THREAD BLOCK 6S
+STRINGID:THREAD_BLOCK_6S
 TIMESTAMP: 2024/04/10-16:40:52:743   --> 故障上报时间戳
 PID:15440
 UID:20020029
@@ -1309,7 +1309,7 @@ Tid:2918, Name:example.sceneboard
 ```ts
 public static xxxFunction(fileUris: string[]): void {
     //...
-    for (const fileuril of fileUrils) {
+    for (const fileUri of fileUris) {
         let file = fs.openSync(fileUri, fs.OpenMode.READ_ONLY);
         //...
     }
@@ -1463,7 +1463,7 @@ Tid:5235, Name:edialibrarydata
 ```ts
 public static xxxFunction(fileUris: string[]): void {
     //...
-    for (const fileuril of fileUrils) {
+    for (const fileUri of fileUris) {
         let file = fs.openSync(fileUri, fs.OpenMode.READ_ONLY);
         //...
     }
@@ -1477,7 +1477,7 @@ public static xxxFunction(fileUris: string[]): void {
 public static async xxxFunction(fileUris: string[]): void {
     //...
     AppStorage.setOrCreate<boolean>('isLoadingPic', true); --> 用于页面 load 效果展示
-    for (const fileuril of fileUrils) {
+    for (const fileUri of fileUris) {
         let file = await fs.open(fileUri, fs.OpenMode.READ_ONLY);
         //...
     }

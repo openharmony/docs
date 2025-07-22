@@ -176,17 +176,23 @@ TextInput，TextArea组件输入多字符后，需要实现点击清空。
 
 **代码示例**
 
-```
+```ts
+// xxx.ets
+@Entry
+@Component
 struct Index {
-@State text: string = 'Hello World'
-controller: TextInputController = new TextInputController()
+  @State text: string = 'Hello World';
+  controller: TextInputController = new TextInputController();
+
   build() {
     Row() {
       Column() {
-        TextInput({ placeholder: 'Please input your words.', text: this.text,
-          controller:this.controller}).onChange((value) => {
-            this.text = value
-          })
+        TextInput({
+          placeholder: 'Please input your words.', text: this.text,
+          controller: this.controller
+        }).onChange((value: string) => {
+          this.text = value;
+        })
         Button("Clear TextInput").onClick(() => {
           this.text = "";
         })
@@ -471,23 +477,28 @@ Scroll组件需要设置Scroll高度，或者使用Flex布局限制Scroll高度�
 
 **代码示例**
 
-```
+```ts
 // xxx.ets
-@Entry@Componentstruct VideoCreateComponent {
+@Entry
+@Component
+struct VideoCreateComponent {
   @State videoSrc: Resource = $rawfile('video1.mp4')
   @State previewUri: Resource = $r('app.media.poster1')
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
   @State isAutoPlay: boolean = false
-  @State showControls: boolean = true
+  @State showControls: boolean = false
   controller: VideoController = new VideoController()
-   build() {
+
+  build() {
     Column() {
       Video({
         src: this.videoSrc,
         previewUri: this.previewUri,
         currentProgressRate: this.curRate,
         controller: this.controller
-      }).width('100%').height(600)
+      })
+        .width('100%')
+        .height(600)
         .autoPlay(this.isAutoPlay)
         .controls(this.showControls)
         .onStart(() => {
@@ -514,7 +525,7 @@ Scroll组件需要设置Scroll高度，或者使用Flex布局限制Scroll高度�
         .onUpdate((e) => {
           console.info('onUpdate is ' + e.time)
         })
-             Row() {
+      Row() {
         Button('src').onClick(() => {
           this.videoSrc = $rawfile('video2.mp4') // 切换视频源
         }).margin(5)
@@ -526,7 +537,8 @@ Scroll组件需要设置Scroll高度，或者使用Flex布局限制Scroll高度�
           this.showControls = !this.showControls // 切换是否显示视频控制栏
         }).margin(5)
       }
-       Row() {
+
+      Row() {
         Button('start').onClick(() => {
           this.controller.start() // 开始播放
         }).margin(5)
@@ -540,7 +552,8 @@ Scroll组件需要设置Scroll高度，或者使用Flex布局限制Scroll高度�
           this.controller.setCurrentTime(10, SeekMode.Accurate) // 精准跳转到视频的10s位置
         }).margin(5)
       }
-       Row() {
+
+      Row() {
         Button('rate 0.75').onClick(() => {
           this.curRate = PlaybackSpeed.Speed_Forward_0_75_X // 0.75倍速播放
         }).margin(5)
@@ -552,7 +565,8 @@ Scroll组件需要设置Scroll高度，或者使用Flex布局限制Scroll高度�
         }).margin(5)
       }
     }
-  }}
+  }
+}
 ```
 
 **参考链接**

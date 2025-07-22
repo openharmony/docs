@@ -80,7 +80,7 @@ export const getLastErrorInfo: (str: string) => string;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_last_error_info: %{public}s', testNapi.getLastErrorInfo('message'));
@@ -122,7 +122,7 @@ export const createTypeError: () => Error;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   throw testNapi.createTypeError();
@@ -164,7 +164,7 @@ export const createRangeError: () => Error;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   throw testNapi.createRangeError();
@@ -214,7 +214,7 @@ export const napiThrow: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   testNapi.napiThrow();
@@ -268,7 +268,7 @@ export const napiThrowError: (dividend: number, divisor: number) => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   testNapi.napiThrowErrorMessage();
@@ -327,7 +327,7 @@ export const throwTypeError: (message: string) => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   testNapi.throwTypeErrorMessage();
@@ -392,7 +392,7 @@ export const throwRangeError: (num: number) => number | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   testNapi.throwRangeErrorMessage();
@@ -443,7 +443,7 @@ export const napiIsError: <T>(obj: T) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   throw new Error("throwing an error");
@@ -488,7 +488,7 @@ export const getAndClearLastException: () => Error | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 // 这里获取到最后一个未处理的异常
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_and_clear_last_exception, error.message: %{public}s',
@@ -539,7 +539,7 @@ export const isExceptionPending: () => Object | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 interface MyObject {
   code: string;
@@ -586,7 +586,7 @@ export const fatalError: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   testNapi.fatalError();
@@ -632,7 +632,7 @@ export const fatalException: (err: Error) => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 const err = new Error("a fatal exception occurred");

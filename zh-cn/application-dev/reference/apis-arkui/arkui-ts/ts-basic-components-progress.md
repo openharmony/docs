@@ -31,6 +31,8 @@ Progress(options: ProgressOptions)
 
 ## ProgressOptions\<Type>对象说明
 
+进度条选项。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -43,6 +45,8 @@ Progress(options: ProgressOptions)
 | style<sup>(deprecated)</sup> | [ProgressStyle](#progressstyle枚举说明) | 否    | 指定进度条样式。<br/>该参数从API version8开始废弃，建议使用type替代。<br/>默认值：ProgressStyle.Linear |
 
 ## ProgressType<sup>8+</sup>枚举说明
+
+进度条类型。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -60,6 +64,8 @@ Progress(options: ProgressOptions)
 
 ##  ProgressStyle枚举说明 
 
+进度条样式。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -75,6 +81,8 @@ Progress(options: ProgressOptions)
 | Capsule<sup>8+</sup>   | 4 | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同，中段的进度展示效果与Linear相同。当高度大于宽度时，自适应垂直显示。 |
 
 ##  ProgressStyleMap对象说明 
+
+进度条类型和样式的映射表。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -182,6 +190,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## ProgressConfiguration<sup>12+</sup>
 
+进度条配置。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -193,6 +203,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## CommonProgressStyleOptions<sup>10+</sup>
 
+进度条通用样式选项。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -203,6 +215,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## ScanEffectOptions<sup>10+</sup>
 
+扫光效果选项。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -212,6 +226,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | enableScanEffect | boolean | 否 | 扫光效果的开关。<br/>默认值：false，false表示关闭扫光效果，true表示开启扫光效果。仅支持Linear、Ring、Capsule类型的进度条。 |
 
 ## ProgressStyleOptions<sup>8+</sup>
+
+进度条样式选项。
 
 继承自[CommonProgressStyleOptions](#commonprogressstyleoptions10)。
 
@@ -228,6 +244,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | scaleWidth   | [Length](ts-types.md#length) | 否   | 设置环形进度条刻度粗细（不支持百分比设置）。刻度粗细大于进度条宽度时，为系统默认粗细。<br/>默认值：2.0vp |
 
 ## CapsuleStyleOptions<sup>10+</sup>
+
+胶囊样式选项。
 
 继承自[ScanEffectOptions](#scaneffectoptions10)和[CommonProgressStyleOptions](#commonprogressstyleoptions10)。
 
@@ -247,6 +265,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## RingStyleOptions<sup>10+</sup>
 
+环形无刻度样式选项。
+
 继承自[ScanEffectOptions](#scaneffectoptions10)和[CommonProgressStyleOptions](#commonprogressstyleoptions10)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -261,6 +281,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## LinearStyleOptions<sup>10+</sup>
 
+线性样式选项。
+
 继承自[ScanEffectOptions](#scaneffectoptions10)和[CommonProgressStyleOptions](#commonprogressstyleoptions10)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -273,6 +295,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | strokeRadius   | [PX](ts-types.md#px10)    \| [VP](ts-types.md#vp10)    \| [LPX](ts-types.md#lpx10)    \| [Resource](ts-types.md#resource)| 否   | 设置线性进度条的圆角半径。<br/>取值范围[0, strokeWidth / 2]。默认值：strokeWidth / 2。 |
 
 ## ScaleRingStyleOptions<sup>10+</sup>
+
+环形有刻度样式选项。
 
 继承自[CommonProgressStyleOptions](#commonprogressstyleoptions10)。
 
@@ -288,6 +312,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## EclipseStyleOptions<sup>10+</sup>
 
+圆形样式选项。圆形样式的显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。
+
 继承自[CommonProgressStyleOptions](#commonprogressstyleoptions10)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -295,6 +321,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## ProgressStatus<sup>10+</sup>枚举说明
+
+进度条的当前状态。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

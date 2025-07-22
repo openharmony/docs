@@ -1,4 +1,4 @@
-# 获取最近访问列表
+# 获取最近访问列表场景
 
 为了快速访问最近使用的[Sendable](arkts-sendable.md)对象，从API version 18开始，ArkTS引入了[SendableLruCache](../reference/apis-arkts/arkts-apis-arkts-utils-SendableLruCache.md)。开发者可以通过向SendableLruCache实例中添加、删除和获取Sendable对象，实现快速访问最近使用的Sendable对象。本文提供使用SendableLruCache实现获取最近使用列表的开发指导，以书架为例，每次打开一本图书后，需将图书信息更新到最近访问列表中，并在下次访问书架页面时显示最近访问的图书列表。
 
@@ -80,6 +80,7 @@
            .fontSize(20)
            .padding(10)
            .fontWeight(FontWeight.Bold)
+           .position({ x: "50%" })
            .onClick(() => {
              this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
@@ -112,6 +113,7 @@
            .fontSize(20)
            .padding(10)
            .fontWeight(FontWeight.Bold)
+           .position({ x: "50%" })
            .onClick(() => {
              this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
@@ -144,6 +146,7 @@
            .fontSize(20)
            .padding(10)
            .fontWeight(FontWeight.Bold)
+           .position({ x: "50%" })
            .onClick(() => {
              this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
@@ -176,6 +179,7 @@
            .fontSize(20)
            .padding(10)
            .fontWeight(FontWeight.Bold)
+           .position({ x: "50%" })
            .onClick(() => {
              this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })

@@ -166,7 +166,7 @@ css样式`height：<number> vh`和Web组件大小自适应页面布局存在计�
   ```
   <body>
     <div id = "1">
-      <div id = "2"><div style = "height: 20px"><div/></div>
+      <div id = "2"><div style = "height: 20px"></div></div>
       <div id = "3" style = "height: 20px">子dom</div>
     </div>
   </body>

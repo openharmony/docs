@@ -74,7 +74,7 @@ const char* srcCallNative = R"JS(const myObject = {};
     const proto = getPrototype(myObject);
     console.log(proto === Object.prototype);)JS";
 ```
-<!-- @[oh_jsvm_get_prototype](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getprototype/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_prototype](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getprototype/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -127,7 +127,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createObject())JS";
 ```
-<!-- @[oh_jsvm_create_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createobject/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createobject/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -177,7 +177,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(let obj = { data: 55, message: "hello world"};
   objectFreeze(obj))JS";
 ```
-<!-- @[oh_jsvm_object_freeze](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectfreeze/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_object_freeze](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectfreeze/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -240,7 +240,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS( let obj = { data: 55, message: "hello world"};
   objectSeal(obj))JS";
 ```
-<!-- @[oh_jsvm_object_seal](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectseal/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_object_seal](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectseal/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -259,7 +259,8 @@ cpp部分代码
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
 // OH_JSVM_Typeof的样例方法
-static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info) {
+static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info)
+{
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
@@ -267,50 +268,50 @@ static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info) {
     OH_JSVM_Typeof(env, args[0], &valueType);
     JSVM_Value type = nullptr;
     switch (valueType) {
-    case JSVM_UNDEFINED:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is undefined");
-        OH_JSVM_CreateStringUtf8(env, "Input type is undefined", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_NULL:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is null");
-        OH_JSVM_CreateStringUtf8(env, "Input type is null", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_BOOLEAN:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is boolean");
-        OH_JSVM_CreateStringUtf8(env, "Input type is boolean", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_NUMBER:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is number");
-        OH_JSVM_CreateStringUtf8(env, "Input type is number", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_STRING:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is string");
-        OH_JSVM_CreateStringUtf8(env, "Input type is string", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_SYMBOL:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is symbol");
-        OH_JSVM_CreateStringUtf8(env, "Input type is symbol", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_OBJECT:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is object");
-        OH_JSVM_CreateStringUtf8(env, "Input type is object", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_FUNCTION:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is function");
-        OH_JSVM_CreateStringUtf8(env, "Input type is function", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_EXTERNAL:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is external");
-        OH_JSVM_CreateStringUtf8(env, "Input type is external", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_BIGINT:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is bigint");
-        OH_JSVM_CreateStringUtf8(env, "Input type is bigint", JSVM_AUTO_LENGTH, &type);
-        break;
-    default:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type does not match any");
-        OH_JSVM_CreateStringUtf8(env, " ", JSVM_AUTO_LENGTH, &type);
-        break;
+        case JSVM_UNDEFINED:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is undefined");
+            OH_JSVM_CreateStringUtf8(env, "Input type is undefined", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_NULL:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is null");
+            OH_JSVM_CreateStringUtf8(env, "Input type is null", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_BOOLEAN:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is boolean");
+            OH_JSVM_CreateStringUtf8(env, "Input type is boolean", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_NUMBER:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is number");
+            OH_JSVM_CreateStringUtf8(env, "Input type is number", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_STRING:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is string");
+            OH_JSVM_CreateStringUtf8(env, "Input type is string", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_SYMBOL:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is symbol");
+            OH_JSVM_CreateStringUtf8(env, "Input type is symbol", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_OBJECT:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is object");
+            OH_JSVM_CreateStringUtf8(env, "Input type is object", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_FUNCTION:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is function");
+            OH_JSVM_CreateStringUtf8(env, "Input type is function", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_EXTERNAL:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is external");
+            OH_JSVM_CreateStringUtf8(env, "Input type is external", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_BIGINT:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is bigint");
+            OH_JSVM_CreateStringUtf8(env, "Input type is bigint", JSVM_AUTO_LENGTH, &type);
+            break;
+        default:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type does not match any");
+            OH_JSVM_CreateStringUtf8(env, " ", JSVM_AUTO_LENGTH, &type);
+            break;
     }
     return type;
 }
@@ -326,7 +327,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getTypeof(true);)JS";
 ```
-<!-- @[oh_jsvm_typeof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/typeof/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_typeof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/typeof/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -383,7 +384,7 @@ const char* srcCallNative = R"JS(class Person {
      instanceOf(new Person('Alice', 30), Person);
      ;)JS";
 ```
-<!-- @[oh_jsvm_instanceof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/instanceof/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_instanceof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/instanceof/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -480,7 +481,7 @@ const char* srcCallNative = R"JS(
          setTypeTagToObject(obj, 0);
          checkObjectTypeTag(obj,0);)JS";
 ```
-<!-- @[oh_jsvm_check_object_type_tag](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/checkobjecttypetag/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_check_object_type_tag](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/checkobjecttypetag/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -537,7 +538,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createExternal())JS";
 ```
-<!-- @[oh_jsvm_create_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createexternal/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createexternal/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -591,7 +592,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getValueExternal())JS";
 ```
-<!-- @[oh_jsvm_get_value_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getvalueexternal/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_value_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getvalueexternal/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -639,7 +640,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createSymbol())JS";
 ```
-<!-- @[oh_jsvm_create_symbol](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createsymbol/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_symbol](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createsymbol/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -692,7 +693,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(symbolFor())JS";
 ```
-<!-- @[oh_jsvm_symbol_for](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/symbolfor/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_symbol_for](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/symbolfor/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts

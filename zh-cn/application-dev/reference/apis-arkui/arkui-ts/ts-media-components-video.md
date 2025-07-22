@@ -73,7 +73,7 @@ Video(value: VideoOptions)
 
 muted(value: boolean)
 
-设置是否静音。
+设置视频是否静音。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -83,7 +83,7 @@ muted(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                         |
 | ------ | ------- | ---- | ---------------------------- |
-| value  | boolean | 是   | 是否静音。<br/>true：开启静音；false：关闭静音。<br/>默认值：false |
+| value  | boolean | 是   | 视频是否静音。<br/>true：开启静音；false：关闭静音。<br/>默认值：false |
 
 > **说明：**
 >
@@ -93,7 +93,7 @@ muted(value: boolean)
 
 autoPlay(value: boolean)
 
-设置是否自动播放。
+设置视频是否自动播放。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -129,7 +129,7 @@ controls(value: boolean)
 
 objectFit(value: ImageFit)
 
-设置视频填充模式。
+设置视频的填充模式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -725,7 +725,6 @@ interface FullscreenObject {
 struct ImageAnalyzerExample {
   @State videoSrc: Resource = $rawfile('video1.mp4');
   @State previewUri: Resource = $r('app.media.poster1');
-  @State showControls: boolean = true;
   controller: VideoController = new VideoController();
   config: ImageAnalyzerConfig = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
@@ -819,11 +818,10 @@ struct Index {
 // xxx.ets
 @Entry
 @Component
-struct video {
+struct VideoObject {
   @State videoSrc: Resource = $rawfile('rabbit.mp4');
   @State previewUri: Resource = $r('app.media.tree');
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
-  @State isAutoPlay: boolean = true;
   @State showControls: boolean = true;
   controller: VideoController = new VideoController();
 

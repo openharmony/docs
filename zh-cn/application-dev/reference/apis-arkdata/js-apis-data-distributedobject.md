@@ -487,8 +487,8 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
 g_object.setSessionId("123456");
 g_object.save("local", (err: BusinessError, result:distributedDataObject.SaveSuccessResponse) => {
     if (err) {
-        console.info("save failed, error code = " + err.code);
-        console.info("save failed, error message: " + err.message);
+        console.error("save failed, error code = " + err.code);
+        console.error("save failed, error message: " + err.message);
         return;
     }
     console.info("save callback");
@@ -545,8 +545,8 @@ g_object.save("local").then((callbackInfo: distributedDataObject.SaveSuccessResp
     console.info("save version " + callbackInfo.version);
     console.info("save deviceId " + callbackInfo.deviceId);
 }).catch((err: BusinessError) => {
-    console.info("save failed, error code = " + err.code);
-    console.info("save failed, error message: " + err.message);
+    console.error("save failed, error code = " + err.code);
+    console.error("save failed, error message: " + err.message);
 });
 ```
 
@@ -583,8 +583,8 @@ g_object.setSessionId("123456");
 // 持久化数据
 g_object.save("local", (err: BusinessError, result: distributedDataObject.SaveSuccessResponse) => {
     if (err) {
-        console.info("save failed, error code = " + err.code);
-        console.info("save failed, error message: " + err.message);
+        console.error("save failed, error code = " + err.code);
+        console.error("save failed, error message: " + err.message);
         return;
     }
     console.info("save callback");
@@ -595,8 +595,8 @@ g_object.save("local", (err: BusinessError, result: distributedDataObject.SaveSu
 // 删除持久化保存的数据
 g_object.revokeSave((err: BusinessError, result: distributedDataObject.RevokeSaveSuccessResponse) => {
     if (err) {
-      console.info("revokeSave failed, error code = " + err.code);
-      console.info("revokeSave failed, error message: " + err.message);
+      console.error("revokeSave failed, error code = " + err.code);
+      console.error("revokeSave failed, error message: " + err.message);
       return;
     }
     console.info("revokeSave callback");
@@ -640,16 +640,16 @@ g_object.save("local").then((result: distributedDataObject.SaveSuccessResponse) 
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
 }).catch((err: BusinessError) => {
-    console.info("save failed, error code = " + err.code);
-    console.info("save failed, error message: " + err.message);
+    console.error("save failed, error code = " + err.code);
+    console.error("save failed, error message: " + err.message);
 });
 // 删除持久化保存的数据
 g_object.revokeSave().then((result: distributedDataObject.RevokeSaveSuccessResponse) => {
     console.info("revokeSave callback");
     console.info("sessionId" + result.sessionId);
 }).catch((err: BusinessError)=> {
-    console.info("revokeSave failed, error code = " + err.code);
-    console.info("revokeSave failed, error message = " + err.message);
+    console.error("revokeSave failed, error code = " + err.code);
+    console.error("revokeSave failed, error message = " + err.message);
 });
 ```
 

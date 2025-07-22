@@ -56,7 +56,7 @@ ArrayList的构造函数。
 **示例：**
 
 ```ts
-let arrayList: ArrayList<string | number> = new ArrayList();
+let arrayList = new ArrayList<string | number>();
 ```
 
 
@@ -97,7 +97,7 @@ class C1 {
   name: string = ""
   age: string = ""
 }
-let arrayList: ArrayList<string | number | boolean | Array<number> | C1> = new ArrayList();
+let arrayList = new ArrayList<string | number | boolean | Array<number> | C1>();
 let result1 = arrayList.add("a");
 let result2 = arrayList.add(1);
 let b = [1, 2, 3];
@@ -105,6 +105,7 @@ let result3 = arrayList.add(b);
 let c : C1 = {name: "Dylan", age: "13"}
 let result4 = arrayList.add(c);
 let result5 = arrayList.add(false);
+console.info("length:", arrayList.length);  // length: 5
 ```
 
 ### insert
@@ -137,10 +138,11 @@ insert(element: T, index: number): void
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number | string | boolean> = new ArrayList();
+let arrayList = new ArrayList<number | string | boolean>();
 arrayList.insert("A", 0);
 arrayList.insert(0, 1);
 arrayList.insert(true, 2);
+console.info("length:", arrayList.length);  // length: 3
 ```
 
 ### has
@@ -176,10 +178,10 @@ has(element: T): boolean
 **示例：**
 
 ```ts
-let arrayList: ArrayList<string> = new ArrayList();
+let arrayList = new ArrayList<string>();
 arrayList.add("squirrel");
 let result: boolean = arrayList.has("squirrel");
-console.log("result = ", result); // result = true
+console.info("result:", result);  // result: true
 ```
 
 ### getIndexOf
@@ -215,7 +217,7 @@ getIndexOf(element: T): number
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -224,7 +226,7 @@ arrayList.add(1);
 arrayList.add(2);
 arrayList.add(4);
 let result: number = arrayList.getIndexOf(2); 
-console.log("result = ", result); // result = 0
+console.info("result = ", result); // result = 0
 ```
 
 ### getLastIndexOf
@@ -260,7 +262,7 @@ getLastIndexOf(element: T): number
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -269,7 +271,7 @@ arrayList.add(1);
 arrayList.add(2);
 arrayList.add(4);
 let result: number = arrayList.getLastIndexOf(2);
-console.log("result = ", result); // result = 5
+console.info("result = ", result); // result = 5
 ```
 
 ### removeByIndex
@@ -307,14 +309,14 @@ removeByIndex(index: number): T
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(2);
 arrayList.add(4);
 let result: number = arrayList.removeByIndex(2);
-console.log("result = ", result); // result = 5
+console.info("result = ", result); // result = 5
 ```
 
 ### remove
@@ -350,13 +352,13 @@ remove(element: T): boolean
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: boolean = arrayList.remove(2);
-console.log(result); // result =  true
+console.info(result); // result =  true
 ```
 
 ### removeByRange
@@ -389,7 +391,7 @@ removeByRange(fromIndex: number, toIndex: number): void
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -435,7 +437,7 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -484,7 +486,7 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -535,7 +537,7 @@ comparator的参数说明：
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -581,13 +583,13 @@ subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: ArrayList<number> = arrayList.subArrayList(2, 4);
-console.log("result = ", result.length); // result = 2
+console.info("result = ", result.length); // result = 2
 ```
 
 ### clear
@@ -611,7 +613,7 @@ clear(): void
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -647,13 +649,13 @@ clone(): ArrayList&lt;T&gt;
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result:  ArrayList<number> = arrayList.clone();
-console.log("result = ", result.length); // result = 4
+console.info("result = ", result.length); // result = 4
 ```
 
 ### getCapacity
@@ -683,13 +685,13 @@ getCapacity(): number
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: number = arrayList.getCapacity();
-console.log("result = ", result); // result = 10
+console.info("result = ", result); // result = 10
 ```
 
 ### convertToArray
@@ -719,13 +721,13 @@ convertToArray(): Array&lt;T&gt;
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: Array<number> = arrayList.convertToArray();
-console.log("result = ", result); // result =  2,4,5,4
+console.info("result = ", result); // result =  2,4,5,4
 ```
 
 ### isEmpty
@@ -755,13 +757,13 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: boolean = arrayList.isEmpty();
-console.log("result = ", result); // result =  false
+console.info("result = ", result); // result =  false
 ```
 
 ### \[index: number\]<sup>12+</sup>
@@ -798,13 +800,13 @@ console.log("result = ", result); // result =  false
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: number = arrayList[2];
-console.log("result = ", result); // result =  5
+console.info("result = ", result); // result =  5
 ```
 
 ### increaseCapacityTo
@@ -835,14 +837,14 @@ increaseCapacityTo(newCapacity: number): void
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.increaseCapacityTo(2);
 arrayList.increaseCapacityTo(8);
-console.log("result = ", arrayList.length); // result = 4
+console.info("result = ", arrayList.length); // result = 4
 ```
 
 ### trimToCurrentLength
@@ -866,13 +868,13 @@ trimToCurrentLength(): void
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.trimToCurrentLength();
-console.log("result = ", arrayList.length); // result = 4
+console.info("result = ", arrayList.length); // result = 4
 ```
 
 ### [Symbol.iterator]
@@ -902,34 +904,30 @@ console.log("result = ", arrayList.length); // result = 4
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 
 // 使用方法一：
-let numbers: Array<number> = arrayList.convertToArray();
-for (let item of numbers) {
-  console.info(`value : ${item}`);
+for (let value of arrayList) {
+  console.info("value:", value);
 }
-/**
- * value : 2
- * value : 4
- * value : 5
- * value : 4
- * */
+// value: 2
+// value: 4
+// value: 5
+// value: 4
+
 // 使用方法二：
 let iter = arrayList[Symbol.iterator]();
 let temp: IteratorResult<number> = iter.next();
 while(!temp.done) {
-    console.info(`value:${temp.value}`);
-    temp = iter.next();
+  console.info("value:", temp.value);
+  temp = iter.next();
 }
-/**
- * value:2
- * value:4
- * value:5
- * value:4
- * */
+// value: 2
+// value: 4
+// value: 5
+// value: 4
 ```

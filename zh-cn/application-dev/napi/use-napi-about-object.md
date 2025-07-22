@@ -66,7 +66,7 @@ export const getPrototype: (object: Object) => Object;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 // 定义一个类
 class Person {
@@ -88,7 +88,7 @@ let applePrototype = testNapi.getPrototype(person);
 if (applePrototype === Person.prototype) {
   hilog.info(0x0000, 'Node-API', 'get_prototype_success');
 } else {
-  hilog.info(0x0000, 'Node-API', 'get_prototype_fail');
+  hilog.error(0x0000, 'Node-API', 'get_prototype_fail');
 }
 ```
 
@@ -129,7 +129,7 @@ export const createObject: () => { name: string };
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   const myObject = testNapi.createObject();
@@ -181,7 +181,7 @@ export const objectFreeze: (objFreeze: Object) => Obj;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   class Obj {
@@ -238,7 +238,7 @@ export const objectSeal : (objSeal: Object) => Obj;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   class Obj {
@@ -336,7 +336,7 @@ export const napiTypeOf : <T>(value: T) => string | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   let varUndefined: undefined;
@@ -404,7 +404,7 @@ export const napiInstanceOf: (date: Object, construct: Object) => boolean | void
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   class Person {
@@ -506,7 +506,7 @@ export const checkObjectTypeTag: (obj: Object, index: number) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 class Obj {
   data: number = 0
@@ -585,7 +585,7 @@ export const getExternalType: (externalData: Object) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 const externalData = testNapi.createExternal();
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_external:%{public}s', testNapi.getExternalType(externalData));
@@ -627,7 +627,7 @@ export const getValueExternal: () => number;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 hilog.info(0x0000, 'Node-API', 'get_value_external:%{public}d', testNapi.getValueExternal());
 ```
@@ -664,7 +664,7 @@ export const createSymbol : () => symbol;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 let varSymbol = testNapi.createSymbol();
 hilog.info(0x0000, 'Node-API', 'createSymbol:%{public}s', typeof varSymbol);

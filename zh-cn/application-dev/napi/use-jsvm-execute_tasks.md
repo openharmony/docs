@@ -132,7 +132,7 @@ static int32_t TestJSVM() {
 }
 
 ```
-<!-- @[oh_jsvm_pump_message_loop_and_perform_microtask_checkpoint](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/pumpmessageloop/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_pump_message_loop_and_perform_microtask_checkpoint](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/pumpmessageloop/src/main/cpp/hello.cpp) -->
 预期输出结果
 ```
 JSVM API TEST: Called with instance [object Object]
@@ -147,7 +147,7 @@ JSVM API TEST: Called Finally
 
 cpp 部分代码
 
-```
+```cpp
 // OH_JSVM_SetMicrotaskPolicy的样例方法
 static int SetMicrotaskPolicy(JSVM_VM vm, JSVM_Env env) {
     // 默认或将策略设置为 JSVM_MICROTASK_AUTO 的行为

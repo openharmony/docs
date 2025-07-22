@@ -218,6 +218,10 @@ text(txt: string, pattern?: MatchPattern): On
 
 指定目标控件文本属性，支持多种匹配模式，返回On对象自身。
 
+> **说明**
+>
+> 如果控件的无障碍属性[accessibilityLevel](../apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md#accessibilitylevel)设置为'no'或'no-hide-descendants'，无法使用本接口指定目标控件的文本属性用于查找控件。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
@@ -1128,6 +1132,10 @@ async function demo() {
 getText(): Promise\<string>
 
 获取控件对象的文本信息，使用Promise异步回调。
+
+> **说明**
+>
+> 如果控件的无障碍属性[accessibilityLevel](../apis-arkui/arkui-ts/ts-universal-attributes-accessibility.md#accessibilitylevel)设置为'no'或'no-hide-descendants'，无法使用本接口获取控件的文本信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

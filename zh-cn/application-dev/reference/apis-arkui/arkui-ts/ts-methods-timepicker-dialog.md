@@ -36,6 +36,8 @@ static show(options?: TimePickerDialogOptions)
 
 ## TimePickerDialogOptions对象说明
 
+时间选择器弹窗选项。
+
 继承自[TimePickerOptions](ts-basic-components-timepicker.md#timepickeroptions对象说明)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

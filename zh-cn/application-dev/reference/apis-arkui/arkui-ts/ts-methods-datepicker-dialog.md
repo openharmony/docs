@@ -36,6 +36,8 @@ static show(options?: DatePickerDialogOptions)
 
 ## DatePickerDialogOptions对象说明
 
+日期选择器弹窗选项。
+
 继承自[DatePickerOptions](ts-basic-components-datepicker.md#datepickeroptions对象说明)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -89,6 +91,8 @@ static show(options?: DatePickerDialogOptions)
 | strokeColor     | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置开关内部图标颜色。<br/>默认值：Color.White。 |
 
 ## PickerDialogButtonStyle<sup>12+</sup>类型说明
+
+选择器按钮样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

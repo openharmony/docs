@@ -38,7 +38,7 @@
    import { text } from '@kit.ArkGraphics2D';
    ```
 
-2. 创建段落样式，并使用构造段落生成器PargraphBuilder生成段落实例。
+2. 创建段落样式，并使用构造段落生成器ParagraphBuilder生成段落实例。
 
    ```ts
    // 设置文本样式

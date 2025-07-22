@@ -39,8 +39,8 @@
    // 异步锁
    const asyncLock = new ArkTSUtils.locks.AsyncLock();
    // 创建子Worker
-   const copyWorker1 = new worker.ThreadWorker('entry/ets/pages/ChildWorker');
-   const copyWorker2 = new worker.ThreadWorker('entry/ets/pages/ChildWorker');
+   const copyWorker1 = new worker.ThreadWorker('entry/ets/pages/ChildWorker.ets');
+   const copyWorker2 = new worker.ThreadWorker('entry/ets/pages/ChildWorker.ets');
 
    workerPort.onmessage = (e : MessageEvents) => {
      let array = e.data as collections.Array<CopyEntry>;
@@ -94,11 +94,11 @@
    }
 
    workerPort.onmessageerror = (e : MessageEvents) => {
-     console.info('onmessageerror:' + e.data);
+     console.error('onmessageerror:' + e.data);
    }
 
    workerPort.onerror = (e : ErrorEvent) => {
-     console.info('onerror:' + e.message);
+     console.error('onerror:' + e.message);
    }
    ```
    ```ts
@@ -116,15 +116,27 @@
    }
 
    workerPort.onmessageerror = (e : MessageEvents) => {
-     console.info('onmessageerror:' + e.data);
+     console.error('onmessageerror:' + e.data);
    }
 
    workerPort.onerror = (e : ErrorEvent) => {
-     console.info('onerror:' + e.message);
+     console.error('onerror:' + e.message);
+   }
+   ```
+3. 在模块级build-profile.json5中添加ParentWorker.ets和ChildWorker.ets信息，确保Worker线程文件被打包到应用中。
+
+   ```json
+   "buildOption": {
+     "sourceOption": {
+       "workers": [
+         "./src/main/ets/pages/ParentWorker.ets",
+         "./src/main/ets/pages/ChildWorker.ets"
+       ]
+     }
    }
    ```
 
-3. 在UI主进程页面，创建父Worker并准备克隆任务所需的数据，准备完成后将数据发送给父Worker。
+4. 在UI主进程页面，创建父Worker并准备克隆任务所需的数据，准备完成后将数据发送给父Worker。
 
    ```ts
    // Index.ets
@@ -135,7 +147,7 @@
    function promiseCase() {
      let p: Promise<void> = new Promise<void>((resolve: Function, reject: Function) => {
        setTimeout(() => {
-         resolve(1);
+         resolve();
        }, 100)
      }).then(undefined, (error: BusinessError) => {
      })
@@ -143,7 +155,7 @@
    }
 
    async function postMessageTest() {
-     let ss = new worker.ThreadWorker("entry/ets/pages/ParentWorker");
+     let ss = new worker.ThreadWorker("entry/ets/pages/ParentWorker.ets");
      let isTerminate = false;
      ss.onexit = () => {
        isTerminate = true;

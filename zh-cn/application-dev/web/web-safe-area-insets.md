@@ -210,7 +210,7 @@ Web组件启用沉浸式效果时，渲染内容可能与非安全区域重叠�
 .tabs {
     justify-content: space-around;
     bottom: 0;
-    height: calc(env(safe-area-inset-bottom) + 40px); /* 增加tab区域高度以避让下方安全区域 */
+    height: calc(env(safe-area-inset-bottom) + 40px); /* 增加tab区域高度以避让下方非安全区域 */
 }
 ```
 
