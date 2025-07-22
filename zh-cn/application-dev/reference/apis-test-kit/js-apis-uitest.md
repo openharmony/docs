@@ -5087,7 +5087,7 @@ import { Driver, UiWindow } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let window: UiWindow = await driver.findWindow({actived: true});
-  let rect = await window.getTitle();
+  let title = await window.getTitle();
 }
 ```
 

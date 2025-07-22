@@ -63,7 +63,7 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.huawei.com
 如下示例代码实现的场景是：启动测试页面，检查设备当前显示的页面是否为预期页面。
 
 ```ts
-import { describe, it, expect } from '@ohos/hypium';
+import { describe, it, expect, Level } from '@ohos/hypium';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
@@ -73,7 +73,7 @@ function sleep(time: number) {
 }
 export default function abilityTest() {
   describe('ActsAbilityTest', () =>{
-    it('testUiExample',0, async (done: Function) => {
+    it('testUiExample',Level.LEVEL3, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       await sleep(1000);
       const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -88,7 +88,6 @@ export default function abilityTest() {
       const ability: UIAbility = await delegator.getCurrentTopAbility();
       console.info("get top ability");
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
-      done();
     })
   })
 }
@@ -104,7 +103,7 @@ export default function abilityTest() {
     @Component
     struct Index {
       @State message: string = 'Hello World';
-
+    
       build() {
         Row() {
           Column() {
@@ -129,18 +128,18 @@ export default function abilityTest() {
 
 2. 在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
     ```ts
-    import { describe, it, expect } from '@ohos/hypium';
+    import { describe, it, expect, Level } from '@ohos/hypium';
     // 导入测试依赖kit
     import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
     import { UIAbility, Want } from '@kit.AbilityKit';
-
+    
     const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
     function sleep(time: number) {
       return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
     }
     export default function abilityTest() {
       describe('ActsAbilityTest', () => {
-        it('testUiExample',0, async (done: Function) => {
+        it('testUiExample',Level.LEVEL3, async (done: Function) => {
             console.info("uitest: TestUiExample begin");
             await sleep(1000);
             const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -195,16 +194,16 @@ export default function abilityTest() {
 - 在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
 
   ```ts
-  import { describe, it, expect } from '@ohos/hypium';
+  import { describe, it, expect, Level } from '@ohos/hypium';
   import { PerfMetric, PerfTest, PerfTestStrategy, PerfMeasureResult } from '@kit.TestKit';
   import { PerfUtils } from '../../../main/ets/utils/PerfUtils';
-
+  
   export default function PerfTestTest() {
     describe('PerfTestTest', () => {
-      it('testExample0', 0, async (done: Function) => {
+      it('testExample0', Level.LEVEL3, async (done: Function) => {
         let metrics: Array<PerfMetric> = [PerfMetric.DURATION, PerfMetric.CPU_USAGE] // 指定被测指标
         let actionCode = async (finish: Callback<boolean>) => { // 测试代码段中使用uitest进行列表滑动
-          await await PerfUtils.CalculateTest()
+          await PerfUtils.CalculateTest()
           finish(true);
         };
         let perfTestStrategy: PerfTestStrategy = {  // 定义测试策略
@@ -270,15 +269,15 @@ export default function abilityTest() {
 - 在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
 
   ```ts
-  import { describe, it, expect } from '@ohos/hypium';
+  import { describe, it, expect, Level } from '@ohos/hypium';
   import { PerfMetric, PerfTest, PerfTestStrategy, PerfMeasureResult } from '@kit.TestKit';
   import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
   import { Want } from '@kit.AbilityKit';
-
+  
   const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
   export default function PerfTestTest() {
     describe('PerfTestTest', () => {
-      it('testExample',0, async (done: Function) => {
+      it('testExample',Level.LEVEL3, async (done: Function) => {
         let driver = Driver.create();
         await driver.delayMs(1000);
         const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -662,7 +661,7 @@ hdc shell uitest uiInput longClick 100 100
 ```shell  
 # 执行快滑操作，stepLength_缺省。
 hdc shell uitest uiInput fling 10 10 200 200 500 
-``` 
+```
 
 #### uiInput swipe/drag使用示例
 
@@ -686,9 +685,9 @@ hdc shell uitest uiInput drag 10 10 100 100 500
 
 | 配置参数             | 必填       | 描述 |
 |-------------------|-------------|----------|
-| direction         | 否 | 滑动方向，取值范围：[0,1,2,3]，默认值为0。<br> 0代表向左滑动，1代表向右滑动，2代表向上滑动，3代表向下滑动。    | 
-| swipeVelocityPps_ | 否| 滑动速度，单位：px/s，取值范围：200-40000。<br> 默认值: 600。    | 
-| stepLength        | 否        | 滑动步长。<br> 默认值: 滑动距离/50。为更好的模拟效果，推荐参数缺省/使用默认值。 |
+| direction         | 否 | 滑动方向，取值范围：[0,1,2,3]，默认值为0。<br> 0代表向左滑动，1代表向右滑动，2代表向上滑动，3代表向下滑动。    |
+| swipeVelocityPps_ | 否| 滑动速度，单位：px/s，取值范围：200-40000。<br> 默认值: 600。    |
+| stepLength | 否 | 滑动步长。<br/>默认值: 滑动距离/50。为更好的模拟效果，推荐参数缺省/使用默认值。 |
 
 ```shell  
 # 执行左滑操作。
