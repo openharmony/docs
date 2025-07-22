@@ -75,9 +75,11 @@ arkOptions/tscConfig中maxFlowDepth字段展示。
 
 ```typescript
 // 在工程名/build-profile.json5文件中
-"arkOptions": {
-  "tscConfig": {
-    "maxFlowDepth": 2222
+{
+  "arkOptions": {
+    "tscConfig": {
+      "maxFlowDepth": 2222
+    }
   }
 }
 ```
