@@ -250,11 +250,11 @@
         - [E类加密数据库的使用 (ArkTS)](database/encrypted_estore_guidelines.md)
       - 跨应用数据共享<!--cross-app-data-share-->
         - [跨应用数据共享概述](database/data-share-overview.md)
-        <!--Del-->
         - 一对多跨应用数据共享<!--one-to-many-data-share-->
+          <!--Del-->
           - [通过DataShareExtensionAbility实现数据共享 (ArkTS)(仅对系统应用开放)](database/share-data-by-datashareextensionability.md)
           - [通过数据管理服务实现数据共享静默访问 (ArkTS)(仅对系统应用开放)](database/share-data-by-silent-access.md)
-        <!--DelEnd-->
+          <!--DelEnd-->
           - [应用间配置共享 (ArkTS)](database/share-config.md)
         - 多对多跨应用数据共享<!--many-to-many-data-share-->
           - [通过标准化数据通路实现数据共享 (ArkTS)](database/unified-data-channels.md)
@@ -3420,7 +3420,7 @@
           - [NativeDisplayManager_DisplayHdrFormat](reference/apis-arkui/capi-nativedisplaymanager-displayhdrformat.md)
           - [NativeDisplayManager_DisplayColorSpace](reference/apis-arkui/capi-nativedisplaymanager-displaycolorspace.md)
           - [NativeDisplayManager_DisplayInfo](reference/apis-arkui/capi-nativedisplaymanager-displayinfo.md)
-         - [NativeDisplayManager_DisplaysInfo](reference/apis-arkui/capi-nativedisplaymanager-displaysinfo.md)
+          - [NativeDisplayManager_DisplaysInfo](reference/apis-arkui/capi-nativedisplaymanager-displaysinfo.md)
       - 错误码<!--arkui-arkts-errcode-->
         - UI界面<!--arkui-ui-arkts-errcode-->
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
