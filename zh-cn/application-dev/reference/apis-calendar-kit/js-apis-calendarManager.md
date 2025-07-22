@@ -180,7 +180,7 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
 根据日历账户信息，创建一个Calendar对象，使用Promise异步回调。
 
-**需要权限**： ohos.permission.WRITE_CALENDAR 或 ohos.permission.WRITE_WHOLE_CALENDAR
+**需要权限**： ohos.permission.WRITE_CALENDAR或ohos.permission.WRITE_WHOLE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -349,7 +349,7 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 
 获取默认Calendar对象，默认Calendar是日历存储首次运行时创建的，若创建Event时不关注其Calendar归属，则无须通过[createCalendar()](#createcalendar)创建Calendar，直接使用默认Calendar，使用callback异步回调。
 
-**需要权限**：ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR
+**需要权限**：ohos.permission.READ_CALENDAR或ohos.permission.READ_WHOLE_CALENDAR
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
