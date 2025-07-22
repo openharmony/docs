@@ -668,13 +668,9 @@ workerPort.onmessage = (e: MessageEvents) => {
   let object: SendableObject = e.data;
   let sendableContext: sendableContextManager.SendableContext = object.sendableContext;
   if (object.contextName == 'BaseContext') {
-    try {
-      let context: common.Context = sendableContextManager.convertToContext(sendableContext);
-      sendableContextManager.setEventHubMultithreadingEnabled(context, true);
-      context.eventHub.emit('event1', 'xingming', 40);
-    } catch (error) {
-      hilog.error(DOMAIN, 'testTag', 'convertToContext failed %{public}s', JSON.stringify(error));
-    }
+    let context: common.Context = sendableContextManager.convertToContext(sendableContext);
+    sendableContextManager.setEventHubMultithreadingEnabled(context, true);
+    context.eventHub.emit('event1', 'xingming', 40);
   }
 };
 
