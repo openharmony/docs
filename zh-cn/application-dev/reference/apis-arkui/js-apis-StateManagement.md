@@ -1249,7 +1249,7 @@ struct CompV2 {
           () => this.number2, // GetterCallback
           (val: number) => {
             this.number2 = val;
-          }) // SetterCallback
+          }) // SetterCallback 必须提供，否则触发时会造成运行时错误
       )
     }
   }
@@ -1323,7 +1323,7 @@ struct CompV2 {
 ### value<sup>20+</sup>
 set value(newValue: T): void
 
-提供set访问器，用于设置当前绑定值的值。
+提供set访问器，用于设置当前绑定值的值。构造MutableBinding类实例时必须提供set访问器，否则触发set访问器会造成运行时错误。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1382,7 +1382,7 @@ struct CompV2 {
           () => this.number2, // GetterCallback
           (val: number) => {
             this.number2 = val;
-          }) // SetterCallback
+          }) // SetterCallback 必须提供，否则触发时会造成运行时错误
       )
     }
   }
