@@ -1,4 +1,4 @@
-# @ohos.identifier.oaid (广告标识服务)
+# @ohos.identifier.oaid (开放匿名设备标识服务)
 
 本模块提供开放匿名设备标识符（Open Anonymous Device Identifier, OAID，以下简称OAID）的获取能力。
 
@@ -30,7 +30,7 @@ getOAID(): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[广告标识服务错误码参考](errorcode-oaid.md)。
+以下错误码的详细介绍请参见[开放匿名设备标识服务错误码参考](errorcode-oaid.md)。
 
 | 错误码ID | 错误信息                         |
 |----------|----------------------------------|
@@ -69,7 +69,7 @@ getOAID(callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[广告标识服务错误码参考](errorcode-oaid.md)。
+以下错误码的详细介绍请参见[开放匿名设备标识服务错误码参考](errorcode-oaid.md)。
 
 | 错误码ID | 错误信息                         |
 |----------|----------------------------------|
