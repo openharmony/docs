@@ -27,6 +27,11 @@
 | 名称  | 描述   |
 |--------------|-----------|
 | [void* OH_ArkUI_QueryModuleInterfaceByName(ArkUI_NativeAPIVariantKind type, const char* structName)](#oh_arkui_querymoduleinterfacebyname)        | 需调用该函数初始化C-API环境，并获取指定类型的Native模块接口集合。 |
+
+### 宏定义
+
+| 名称  | 描述   |
+|--------------|-----------|
 | [OH_ArkUI_GetModuleInterface(nativeAPIVariantKind, structType, structPtr)](#oh_arkui_getmoduleinterface)      | 基于结构体类型获取对应结构体指针的宏函数。 |
 
 ## 枚举类型说明
