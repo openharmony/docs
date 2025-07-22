@@ -594,6 +594,7 @@
         - UI系统场景化能力<!--arkts-ui-system-scenarization-capability-->
           - [使用UI上下文接口操作界面（UIContext）](ui/arkts-global-interface.md)
           - [使用组件截图（ComponentSnapshot）](ui/arkts-uicontext-component-snapshot.md)
+          - [检查页面布局](ui/arkts-inspector-overview.md)
           - [媒体查询 (@ohos.mediaquery)](ui/arkts-layout-development-media-query.md)
           - 嵌入式组件<!--arkts-ui-cross-process-->
             - [全屏启动原子化服务 (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
