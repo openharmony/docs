@@ -507,7 +507,7 @@ NDK接口针对UI组件的事件，提供了监听函数的方式。首先，可
        list->RegisterOnScrollIndex([](int32_t index) { OH_LOG_INFO(LOG_APP, "on list scroll index: %{public}d", index); });
        // 4: 注册挂载事件。
        list->RegisterOnAppear([]() { OH_LOG_INFO(LOG_APP, "on list mount to tree"); });
-       // 4: 注册卸载事件。
+       // 5: 注册卸载事件。
        list->RegisterOnDisappear([]() { OH_LOG_INFO(LOG_APP, "on list unmount from tree"); });
        return list;
    }

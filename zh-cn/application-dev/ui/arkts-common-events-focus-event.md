@@ -313,7 +313,7 @@ struct FocusEventExample {
         })
           // 监听第二个组件的失焦事件，失焦后改变颜色
         .onBlur(() => {
-          this.twoButtonColor = Color.Grey;
+          this.twoButtonColor = Color.Gray;
         })
 
       Button('Third Button')
@@ -683,7 +683,7 @@ struct morenjiaodian {
         })
           // 监听第二个组件的失焦事件，失焦后改变颜色
         .onBlur(() => {
-          this.twoButtonColor = Color.Grey;
+          this.twoButtonColor = Color.Gray;
         })
 
       Button('Third Button')
@@ -1247,9 +1247,7 @@ struct FocusOnclickExample {
         .fontSize(30)
         .onClick(() => {
           this.count++
-          if (this.count <= 0) {
-            this.name = "count is negative number"
-          } else if (this.count % 2 === 0) {
+          if (this.count % 2 === 0) {
             this.name = "count is even number"
           } else {
             this.name = "count is odd number"

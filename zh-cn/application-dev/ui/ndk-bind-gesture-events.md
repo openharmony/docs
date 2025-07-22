@@ -150,24 +150,24 @@ ArkUI_NodeHandle testGestureExample() {
         float velocity = OH_ArkUI_PanGesture_GetVelocity(event);
         float velocityX = OH_ArkUI_PanGesture_GetVelocityX(event);
         float velocityY = OH_ArkUI_PanGesture_GetVelocityY(event);
-       float OffsetX = OH_ArkUI_PanGesture_GetOffsetX(event);
-        float OffsetY = OH_ArkUI_PanGesture_GetOffsetY(event);
+        float offsetX = OH_ArkUI_PanGesture_GetOffsetX(event);
+        float offsetY = OH_ArkUI_PanGesture_GetOffsetY(event);
         float scale = OH_ArkUI_PinchGesture_GetScale(event);
-        float CenterX = OH_ArkUI_PinchGesture_GetCenterX(event);
-        float CenterY = OH_ArkUI_PinchGesture_GetCenterY(event);
+        float centerX = OH_ArkUI_PinchGesture_GetCenterX(event);
+        float centerY = OH_ArkUI_PinchGesture_GetCenterY(event);
         float angle = OH_ArkUI_SwipeGesture_GetAngle(event);
         float VelocityS = OH_ArkUI_SwipeGesture_GetVelocity(event);
         float angleR = OH_ArkUI_RotationGesture_GetAngle(event);
-       float repeat = OH_ArkUI_LongPress_GetRepeatCount(event);
+        float repeat = OH_ArkUI_LongPress_GetRepeatCount(event);
 
         OH_LOG_Print(
             LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
             "onPanActionCallBack,longPressGesturecallback actionType:%{public}d,velocity%{public}f,velocityX"
             "%{public}f;"
-            "velocityY%{public}f,OffsetX%{public}f,OffsetY%{public}f,scale%{public}fCenterX"
-            "%{public}fCenterY"
+            "velocityY%{public}f,offsetX%{public}f,offsetY%{public}f,scale%{public}fcenterX"
+            "%{public}fcenterY"
             "%{public}fangle%{public}fVelocityS%{public}fangleR%{public}frepeat%{public}f",
-            actionType, velocity, velocityX, velocityY, OffsetX, OffsetY, scale, CenterX, CenterY, angle, VelocityS,
+            actionType, velocity, velocityX, velocityY, offsetX, offsetY, scale, centerX, centerY, angle, VelocityS,
             angleR, repeat);
     };
     gestureApi->setGestureEventTarget(longPressGesture,
@@ -193,11 +193,11 @@ ArkUI_NodeHandle testGestureExample() {
         float velocity = OH_ArkUI_PanGesture_GetVelocity(event);
         float velocityX = OH_ArkUI_PanGesture_GetVelocityX(event);
         float velocityY = OH_ArkUI_PanGesture_GetVelocityY(event);
-        float OffsetX = OH_ArkUI_PanGesture_GetOffsetX(event);
-        float OffsetY = OH_ArkUI_PanGesture_GetOffsetY(event);
+        float offsetX = OH_ArkUI_PanGesture_GetOffsetX(event);
+        float offsetY = OH_ArkUI_PanGesture_GetOffsetY(event);
         float scale = OH_ArkUI_PinchGesture_GetScale(event);
-        float CenterX = OH_ArkUI_PinchGesture_GetCenterX(event);
-        float CenterY = OH_ArkUI_PinchGesture_GetCenterY(event);
+        float centerX = OH_ArkUI_PinchGesture_GetCenterX(event);
+        float centerY = OH_ArkUI_PinchGesture_GetCenterY(event);
         float angle = OH_ArkUI_SwipeGesture_GetAngle(event);
         float VelocityS = OH_ArkUI_SwipeGesture_GetVelocity(event);
         float angleR = OH_ArkUI_RotationGesture_GetAngle(event);
@@ -209,10 +209,10 @@ ArkUI_NodeHandle testGestureExample() {
                      "onPanActionCallBack, swipeGesture callback actionType: %{public}d, velocity "
                      "%{public}f,velocityX "
                      "%{public}f; "
-                     "velocityY %{public}f, OffsetX %{public}f, OffsetY %{public}f, scale %{public}fCenterX "
-                     "%{public}f CenterY"
+                     "velocityY %{public}f, offsetX %{public}f, offsetY %{public}f, scale %{public}fcenterX "
+                     "%{public}f centerY"
                      " %{public}f angle %{public}f VelocityS %{public}f angleR %{public}f repeat %{public}f",
-                     actionType, velocity, velocityX, velocityY, OffsetX, OffsetY, scale, CenterX, CenterY, angle,
+                     actionType, velocity, velocityX, velocityY, offsetX, offsetY, scale, centerX, centerY, angle,
                      VelocityS, angleR, repeat);
 
         ArkUI_NumberValue value[] = {{.f32 = 0}, {.f32 = 0}, {.f32 = 0}, {.f32 = angleR}, {.f32 = 0}};

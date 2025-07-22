@@ -190,11 +190,11 @@ import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 @Entry
 @Component
 struct ImageExample {
-  @State uri: string = ""
-  @State AblockArr: string[] = []
-  @State BblockArr: string[] = []
-  @State AVisible: Visibility = Visibility.Visible
-  @State dragSuccess :Boolean = false
+  @State uri: string = "";
+  @State aBlockArr: string[] = [];
+  @State bBlockArr: string[] = [];
+  @State AVisible: Visibility = Visibility.Visible;
+  @State dragSuccess :Boolean = false;
 
   build() {
     Column() {
@@ -225,7 +225,7 @@ struct ImageExample {
             .fontSize('15dp')
             .height('10%')
           List(){
-            ForEach(this.AblockArr, (item:string, index) => {
+            ForEach(this.aBlockArr, (item:string, index) => {
               ListItem() {
                 Image(item)
                   .width(100)
@@ -240,7 +240,7 @@ struct ImageExample {
           .allowDrop([uniformTypeDescriptor.UniformDataType.TEXT])
           .onDrop((event?: DragEvent, extraParams?: string) => {
             this.uri = JSON.parse(extraParams as string).extraInfo;
-            this.AblockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
+            this.aBlockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
             console.info("ondrop not udmf data");
           })
           .border({width: 1})
@@ -254,7 +254,7 @@ struct ImageExample {
             .fontSize('15dp')
             .height('10%')
           List(){
-            ForEach(this.BblockArr, (item:string, index) => {
+            ForEach(this.bBlockArr, (item:string, index) => {
               ListItem() {
                 Image(item)
                   .width(100)
@@ -276,7 +276,7 @@ struct ImageExample {
               if(arr.length > 0) {
                 let image = arr[0] as unifiedDataChannel.Image;
                 this.uri = image.imageUri;
-                this.BblockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
+                this.bBlockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
               } else {
                 console.info(`dragData arr is null`)
               }
@@ -553,7 +553,7 @@ struct ImageDrag {
 
   public async createPixelMap(pixelMap: unifiedDataChannel.SystemDefinedPixelMap): Promise<image.PixelMap | null> {
     let mWidth: number = (pixelMap.details?.width ?? -1) as number;
-    let mHeight: number = (pixelMap.details?.width ?? -1) as number;
+    let mHeight: number = (pixelMap.details?.height ?? -1) as number;
     let mPixelFormat: image.PixelMapFormat =
       (pixelMap.details?.['pixel-format'] ?? image.PixelMapFormat.UNKNOWN) as image.PixelMapFormat;
     let mItemPixelMapData: Uint8Array = pixelMap.rawData;
