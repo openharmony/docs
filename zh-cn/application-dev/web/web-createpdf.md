@@ -12,12 +12,12 @@ Web组件提供了保存前端页面为PDF的功能。应用通过Web组件的[c
     ]
   ```
 
-### 功能概述
+## 功能概述
 通过[createPdf](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#createpdf14)生成实例后，调用`pdfArrayBuffer`方法获取二进制数据流，再使用`fileIo`方法将二进制数据流保存为PDF文件。
 
 
-### 使用步骤
-#### 1.初始化Web组件
+## 使用步骤
+1.初始化Web组件。
 加载指定页面并确保页面渲染完成，可使用`onPageEnd`事件监听。
 ```ts
 Web({ src: 'www.example.com', controller: this.controller })
@@ -28,7 +28,7 @@ Web({ src: 'www.example.com', controller: this.controller })
   })
 ```
 
-#### 2.触发PDF生成
+2.触发PDF生成。
 页面加载完成后调用`createPdf`接口。
 ```ts
 // 方法一：异步callback方式获取
@@ -53,7 +53,7 @@ this.controller.createPdf(this.pdfConfig)
   })
 ```
 
-#### 3.保存PDF文件
+3.保存PDF文件。
 调用`pdfArrayBuffer`接口获取PDF二进制数据流，调用`fileIo`方法将二进制数据流保存为PDF文件。
 可将`Uint8Array`转换为Blob对象或Base64字符串，以便进行本地存储或网络传输。
 ```ts
@@ -74,7 +74,9 @@ fs.write(file.fd, Uint8Array.buffer).then((writeLen: number) => {
 });
 ```
 
-#### 完整示例一（异步callback方式获取）
+## 示例
+### 示例1（异步callback方式获取）
+通过异步callback的方式调用`createPdf`接口，获取到的result通过`pdfArrayBuffer`接口获取到PDF二进制数据流，最后使用`fileIo`方法将二进制数据流保存为PDF文件。
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { webview } from '@kit.ArkWeb';
@@ -131,7 +133,8 @@ struct Index {
 }
 ```
 
-#### 完整示例二（Promise方式异步获取）
+### 示例2（Promise方式异步获取）
+通过Promise异步的方式调用`createPdf`接口，获取到的result通过`pdfArrayBuffer`接口获取到PDF二进制数据流，最后使用`fileIo`方法将二进制数据流保存为PDF文件。
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { webview } from '@kit.ArkWeb';
