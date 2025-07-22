@@ -1,4 +1,4 @@
-# PersistenceV2: 持久化储存UI状态
+# PersistenceV2: 持久化存储UI状态
 
 为了增强状态管理框架对持久化存储UI的能力，开发者可以使用PersistenceV2存储持久化的数据。
 
@@ -17,7 +17,7 @@ PersistenceV2提供状态变量持久化能力，开发者可以通过connect或
 
 ## 概述
 
-PersistenceV2是在应用UI启动时会被创建的单例。它的目的是为了提供应用状态数据的中心存储，这些状态数据在应用级别都是可访问的。数据通过唯一的键字符串值访问。不同于AppStorageV2，PersistenceV2还将最新数据储存在设备磁盘上（持久化）。这意味着，应用退出再次启动后，依然能保存选定的结果。
+PersistenceV2是在应用UI启动时会被创建的单例。它的目的是为了提供应用状态数据的中心存储，这些状态数据在应用级别都是可访问的。数据通过唯一的键字符串值访问。不同于AppStorageV2，PersistenceV2还将最新数据存储在设备磁盘上（持久化）。这意味着，应用退出再次启动后，依然能保存选定的结果。
 
 对于与PersistenceV2关联的[\@ObservedV2](./arkts-new-observedV2-and-trace.md)对象，该对象的[\@Trace](./arkts-new-observedV2-and-trace.md)属性的变化，会触发**整个关联对象的自动持久化**；非[\@Trace](./arkts-new-observedV2-and-trace.md)属性的变化则不会，如有必要，可调用PersistenceV2 API手动持久化。请注意：被PersistenceV2持久化的类属性必须要有初值，否则不支持持久化。
 
@@ -27,7 +27,7 @@ PersistenceV2支持应用的[主线程](../../application-models/thread-model-st
 
 ## 使用说明
 
-### connect：创建或获取储存的数据
+### connect：创建或获取存储的数据
 
 ```JavaScript
 static connect<T extends object>(
@@ -58,7 +58,7 @@ static connect<T extends object>(
 >
 >7、因为存储路径在应用第一个ability启动时就已确定，为该ability所属的module。如果一个ability调用了connect，并且该ability能被不同module的拉起， 那么ability存在多少种启动方式，就会有多少份数据副本。
 
-### globalConnect：创建或获取储存的数据
+### globalConnect：创建或获取存储的数据
 
 ```ts
 // globalConnect 接口
@@ -109,7 +109,7 @@ class ConnectOptions<T extends object> {
 >
 > 9、EL5加密要想生效，需要开发者在module.json中配置字段ohos.permission.PROTECT_SCREEN_LOCK_DATA，使用说明见[声明权限](../../security/AccessToken/declare-permissions.md)。
 
-### remove：删除指定key的储存数据
+### remove：删除指定key的存储数据
 
 ```ts
 static remove<T>(keyOrType: string | TypeConstructorWithArgs<T>): void;
@@ -583,8 +583,8 @@ struct Page1 {
         let want: Want = {
           deviceId: '', // deviceId为空代表本设备
           bundleName: 'com.example.myPersistenceV2', // 在app.json5中查看
-          moduleName: 'newModule', // 在需要跳转的moudle的module.json5中查看，非必选参数
-          abilityName: 'NewModuleAbility',  // 跳转启动的abiltity，在跳转模块对应的ability.ets文件中查看
+          moduleName: 'newModule', // 在需要跳转的module的module.json5中查看，非必选参数
+          abilityName: 'NewModuleAbility',  // 跳转启动的ability，在跳转模块对应的ability.ets文件中查看
           uri:'src/main/ets/pages/Index'
         }
         // context为调用方UIAbility的UIAbilityContext
