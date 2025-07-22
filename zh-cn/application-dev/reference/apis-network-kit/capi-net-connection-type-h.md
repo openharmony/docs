@@ -54,8 +54,8 @@
 | [typedef void (\*OH_NetConn_NetLost)(NetConn_NetHandle *netHandle)](#oh_netconn_netlost) | OH_NetConn_NetLost | 网络断开回调。 |
 | [typedef void (\*OH_NetConn_NetUnavailable)(void)](#oh_netconn_netunavailable) | OH_NetConn_NetUnavailable | 网络不可用回调，在指定的超时时间内网络未激活时触发该回调，如果未设置超时时间则不会触发该回调。 |
 | [typedef void (\*OH_NetConn_NetBlockStatusChange)(NetConn_NetHandle *netHandle, bool blocked)](#oh_netconn_netblockstatuschange) | OH_NetConn_NetBlockStatusChange | 网络阻塞状态变更回调。 |
-| [OH_NetConn_QueryProbeResult](#oh_netconn_queryproberesult)(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo)| 查询探测结果。 |
-| [OH_NetConn_QueryTraceRoute](#oh_netconn_querytraceroute)(char *destination, NetConn_TraceRouteOption *option, NetConn_TraceRouteInfo *traceRouteInfo)| 查询跟踪路由。 |
+| [OH_NetConn_QueryProbeResult](#oh_netconn_queryproberesult)(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo)| OH_NetConn_QueryProbeResult/查询探测结果。 |
+| [OH_NetConn_QueryTraceRoute](#oh_netconn_querytraceroute)(char *destination, NetConn_TraceRouteOption *option, NetConn_TraceRouteInfo *traceRouteInfo)| OH_NetConn_QueryTraceRoute/查询跟踪路由。 |
 
 ## 枚举类型说明
 
