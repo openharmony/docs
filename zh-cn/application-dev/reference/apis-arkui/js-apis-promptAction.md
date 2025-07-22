@@ -1069,20 +1069,20 @@ struct Index {
             ],
             onWillAppear:() => {
               console.info("promptAction menu cycle life onWillAppear");
-                  this.onWillAppear = true;
+              this.onWillAppear = true;
             },
             onDidAppear:() => {
               console.info("promptAction menu cycle life onDidAppear");
-                  this.onDidAppear = true;
+              this.onDidAppear = true;
             },
             onWillDisappear:() => {
               this.isShown = false;
               console.info("promptAction menu cycle life onWillDisappear");
-                  this.onWillDisappear = true;
+              this.onWillDisappear = true;
             },
             onDidDisappear:() => {
               console.info("promptAction menu cycle life onDidDisappear");
-                  this.onDidDisappear = true;
+              this.onDidDisappear = true;
             }
           })
             .then(data => {
