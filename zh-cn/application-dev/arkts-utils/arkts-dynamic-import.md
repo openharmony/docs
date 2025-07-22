@@ -305,7 +305,7 @@ import(harName).then((obj: ESObject) => {
 }
 
 // 变量动态import本模块自己的单文件src/main/ets/index.ets
-let filePath = './Calc';
+let filePath = './utils/Calc';
 import(filePath).then((obj: ESObject) => {
     console.info('DynamicImport I am a file');
 }
