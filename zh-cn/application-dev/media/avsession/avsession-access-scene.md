@@ -18,7 +18,7 @@ AVSession会对后台的音频播放、VOIP通话做约束，所以通常来说�
 
 1. 确定应用需要创建的会话类型，[创建对应的会话](#创建不同类型的会话)，不同类型决定了播控中心展示的控制模板样式。
 2. 按需[创建后台任务](#创建后台任务)。
-3. [设置必要的元数据（Metadata）](#设置元数据)，以在播控中心展示响应的信息，包括不限于：当前媒体的ID（assetId），上一首媒体的ID（previousAssetId），下一首媒体的ID（nextAssetId），标题（title），专辑作者（author），专辑名称（album），词作者（writer），媒体时长（duration）等属性。
+3. [设置必要的元数据（Metadata）](#设置元数据)，以在播控中心展示相应的信息，包括不限于：当前媒体的ID（assetId），上一首媒体的ID（previousAssetId），下一首媒体的ID（nextAssetId），标题（title），专辑作者（author），专辑名称（album），词作者（writer），媒体时长（duration）等属性。
 4. [设置播放相关的状态](#设置播放状态)，包括不限于：当前媒体的播放状态（state）、播放位置（position）、播放倍速（speed）、缓冲时间（bufferedTime）、循环模式（loopMode）、是否收藏（isFavorite）、正在播放的媒体Id（activeItemId）、自定义媒体数据（extras）等属性。
 5. 按需[注册不同的控制命令](#注册控制命令)，包括不限于：播放/暂停、上下一首、快进快退、收藏、循环模式、进度条。
 6. 应用退出或者无对应业务时，注销会话。
