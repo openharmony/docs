@@ -1900,7 +1900,7 @@ struct ConsumeChild {
   @Consume @Watch("ChangeData") message: string = ""
 
   ChangeData() {
-    console.log(`ChangeData ${this.message}`);
+    console.info(`ChangeData ${this.message}`);
   }
 
   build() {
@@ -1911,6 +1911,7 @@ struct ConsumeChild {
       Button("Click to change message to append C")
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
+          // 修改Consume的变量
           this.message = this.message + "C"
         })
     }
@@ -1935,6 +1936,7 @@ struct Index {
   private builderNode: BuilderNode<[string]> = new BuilderNode<[string]>(this.getUIContext());
 
   aboutToAppear(): void {
+    // 设置enableProvideConsumeCrossing为true，支持BuilderNode内部自定义组件ConsumeChild的@Consume与其所在页面中的@Provide数据互通
     this.builderNode.build(wrapBuilder(CreateText), "Test Consume", { enableProvideConsumeCrossing: true })
     this.content.addFrameNode(this.builderNode.getFrameNode())
   }
@@ -1959,4 +1961,4 @@ struct Index {
 }
 ```
 
-![enableProvideConsumeCrossing](figures/builderNode_consume.png)
+![enableProvideConsumeCrossing](figures/BuilderNode_Consume.gif)
