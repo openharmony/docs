@@ -217,7 +217,6 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
              .onPageBegin((event) => {
                this.controller.onCreateNativeMediaPlayer((handler: webview.NativeMediaPlayerHandler, mediaInfo:    webview.MediaInfo) => {
                  // 接管当前的媒体。
-
                  // 使用同层渲染流程提供的 surface 来构造一个本地播放器组件。
                  this.node_controller = new MyNodeController(mediaInfo.surfaceInfo.id, NodeRenderType.RENDER_TYPE_TEXTURE);
                  this.node_controller.build();
@@ -226,7 +225,8 @@ Web组件提供了应用接管网页中媒体播放的能力，用来支持应�
                  this.show_native_media_player = true;
 
                  // 返回一个本地播放器实例给 ArkWeb 内核。
-                 return null;
+                 let nativePlayer: webview.NativeMediaPlayerBridge = new NativeMediaPlayerImpl(handler, mediaInfo);
+                 return nativePlayer;
                });
              })
          }
@@ -512,7 +512,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
       this.nativePlayerInfo = nativePlayerInfo;
       this.mediaHandler = handler;
       this.surfaceId = mediaInfo.surfaceInfo.id;
-      this.mediaSource = mediaInfo.mediaSrcList.find((item)=>{item.source.indexOf('.mp4') > 0})?.source
+      this.mediaSource = mediaInfo.mediaSrcList.find((item) => item.source.indexOf('.mp4') > 0)?.source
         || mediaInfo.mediaSrcList[0].source;
       this.httpHeaders = mediaInfo.headers;
       this.nativePlayer = new AVPlayerDemo();
@@ -795,7 +795,7 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
     static toNodeRect(rectInPx: webview.RectEvent, uiContext: UIContext) : Rect {
       let rect = new Rect();
       rect.x = uiContext.px2vp(rectInPx.x);
-      rect.y = uiContext.px2vp(rectInPx.x);
+      rect.y = uiContext.px2vp(rectInPx.y);
       rect.width = uiContext.px2vp(rectInPx.width);
       rect.height = uiContext.px2vp(rectInPx.height);
       return rect;
@@ -1047,8 +1047,6 @@ ArkWeb内核需要本地播放器的状态信息来更新到网页（例如：�
       });
       avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
         console.info(`AVPlayer state bufferingUpdate success,and infoType value is:${infoType}, value is : ${value}`);
-        if (infoType == media.BufferingInfoType.BUFFERING_PERCENT) {
-        }
         listener?.onBufferedTimeChanged(value);
       })
       avPlayer.on('videoSizeChange', (width: number, height: number) => {
