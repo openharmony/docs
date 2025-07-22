@@ -107,7 +107,8 @@ OH_UdmfRecord_AddFileUri(record, fileUri);
 // 4. 获取fileUri数据。
 OH_UdsFileUri* fileUri1 = OH_UdsFileUri_Create();
 OH_UdmfRecord_GetFileUri(record, fileUri1);
-OH_LOG_INFO(LOG_APP, "fileUri1 = %{public}s.", fileUri1);
+const char* fileUriStr = OH_UdsFileUri_GetFileUri(fileUri1);
+OH_LOG_INFO(LOG_APP, "fileUri1 = %{public}s.", fileUriStr);
 // 5. 使用完成后销毁指针。
 OH_UdsFileUri_Destroy(fileUri);
 OH_UdmfRecord_Destroy(record);
