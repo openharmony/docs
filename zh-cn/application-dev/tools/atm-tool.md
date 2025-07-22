@@ -229,7 +229,7 @@ atm dump -r
 #     {
 #       "tokenId": 537088946,
 #       "isRemote": 0,
-#       "bundleName": com.ohos.permissionmanager,
+#       "bundleName": "com.ohos.permissionmanager",
 #       "permissionRecords": [
 #         {
 #           "permissionName": "ohos.permission.GET_INSTALLED_BUNDLE_LIST",
@@ -246,7 +246,7 @@ atm dump -r
 #               "timestamp": "1501837281916",
 #               "duration": 0,
 #               "count": 1,
-#               "usedType": 0,
+#               "usedType": 0
 #             },
 #           ]
 #           "rejectRecords": [
