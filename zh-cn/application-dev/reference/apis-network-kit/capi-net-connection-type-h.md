@@ -29,9 +29,9 @@
 | [NetConn_NetHandleList](capi-netconnection-netconn-nethandlelist.md) | NetConn_NetHandleList | 网络列表。 |
 | [NetConn_NetSpecifier](capi-netconnection-netconn-netspecifier.md) | NetConn_NetSpecifier | 网络的特征集。 |
 | [NetConn_NetConnCallback](capi-netconnection-netconn-netconncallback.md) | NetConn_NetConnCallback | 网络状态监听回调集合。 |
-| [NetConn_ProbeResultInfo](_net_conn___net_specifier.md) | 探测结果。 |
-| [NetConn_TraceRouteOption](_net_conn___net_specifier.md) | 路由参数选项。 |
-| [NetConn_TraceRouteInfo](_net_conn___net_specifier.md) | 路由结果。 |
+| [NetConn_ProbeResultInfo](capi-netconnection-netconn-proberesultinfo.md) | 探测结果。 |
+| [NetConn_TraceRouteOption](capi-netconnection-netconn-tracerouteinfo.md) | 路由参数选项。 |
+| [NetConn_TraceRouteInfo](capi-netconnection-netconn-tracerouteinfo.md) | 路由结果。 |
 
 ### 枚举
 
