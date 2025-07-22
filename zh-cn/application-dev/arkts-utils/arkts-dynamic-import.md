@@ -317,8 +317,8 @@ import(filePath).then((obj: ESObject) => {
 "buildOption": {
   "arkOptions": {
     "runtimeOnly": {
-      "packages": [ "myhar" ]  // 配置本模块变量动态import其他模块名，要求与dependencies中配置的名字一致。
-      "sources": [ "./src/main/ets/utils/Calc.ets" ]  // 配置本模块变量动态import自己的文件路径，路径相对于当前build-profile.json5文件。
+      "packages": [ "myhar" ],  // 配置本模块变量动态import其他模块名，要求与dependencies中配置的名字一致。
+      "sources": [ "./src/main/ets/Calc.ets" ]  // 配置本模块变量动态import自己的文件路径，路径相对于当前build-profile.json5文件。
     }
   }
 }
