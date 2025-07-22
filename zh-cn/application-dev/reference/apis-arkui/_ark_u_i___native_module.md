@@ -17435,7 +17435,7 @@ float OH_ArkUI_WaterFlowSectionOption_GetColumnGap (ArkUI_WaterFlowSectionOption
 | 名称 | 描述 |
 | -------- | -------- |
 | option | FlowItem分组配置信息。  |
-| index | FlowItem索引值。  |
+| index | 分组配置信息数组索引值。  |
 
 **返回：**
 
@@ -17458,7 +17458,7 @@ int32_t OH_ArkUI_WaterFlowSectionOption_GetCrossCount (ArkUI_WaterFlowSectionOpt
 | 名称 | 描述 |
 | -------- | -------- |
 | option | FlowItem分组配置信息。  |
-| index | FlowItem索引值。  |
+| index | 分组配置信息数组索引值。  |
 
 **返回：**
 
@@ -17481,7 +17481,7 @@ int32_t OH_ArkUI_WaterFlowSectionOption_GetItemCount (ArkUI_WaterFlowSectionOpti
 | 名称 | 描述 |
 | -------- | -------- |
 | option | FlowItem分组配置信息。  |
-| index | FlowItem索引值。  |
+| index | 分组配置信息数组索引值。  |
 
 **返回：**
 
@@ -17504,7 +17504,7 @@ ArkUI_Margin OH_ArkUI_WaterFlowSectionOption_GetMargin (ArkUI_WaterFlowSectionOp
 | 名称 | 描述 |
 | -------- | -------- |
 | option | FlowItem分组配置信息。  |
-| index | FlowItem索引值。  |
+| index | 分组配置信息数组索引值。  |
 
 **返回：**
 
@@ -17527,7 +17527,7 @@ float OH_ArkUI_WaterFlowSectionOption_GetRowGap (ArkUI_WaterFlowSectionOption * 
 | 名称 | 描述 |
 | -------- | -------- |
 | option | FlowItem分组配置信息。  |
-| index | FlowItem索引值。  |
+| index | 分组配置信息数组索引值。  |
 
 **返回：**
 
@@ -17572,8 +17572,8 @@ void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex (Ark
 | 名称 | 描述 |
 | -------- | -------- |
 | option | FlowItem分组配置信息。  |
-| index | FlowItem索引值。  |
-| callback | 根据index获取指定Item的主轴大小。  |
+| index | 分组配置信息数组索引值。  |
+| callback | 根据index获取指定Item的主轴大小。itemIndex：FlowItem索引值。  |
 
 
 ### OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithUserData()
@@ -17592,9 +17592,9 @@ void OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithU
 | 名称 | 描述 |
 | -------- | -------- |
 | option | FlowItem分组配置信息。  |
-| index | FlowItem索引值。  |
+| index | 分组配置信息数组索引值。  |
 | userData | FlowItem自定义数据。  |
-| callback | 根据index获取指定Item的主轴大小。  |
+| callback | 根据index获取指定Item的主轴大小。itemIndex：FlowItem索引值。  |
 
 
 ### OH_ArkUI_WaterFlowSectionOption_SetColumnGap()
@@ -17613,7 +17613,7 @@ void OH_ArkUI_WaterFlowSectionOption_SetColumnGap (ArkUI_WaterFlowSectionOption 
 | 名称 | 描述 |
 | -------- | -------- |
 | option | FlowItem分组配置信息。  |
-| index | FlowItem索引值。  |
+| index | 分组配置信息数组索引值。  |
 | columnGap | 列间距。  |
 
 
@@ -17633,7 +17633,7 @@ void OH_ArkUI_WaterFlowSectionOption_SetCrossCount (ArkUI_WaterFlowSectionOption
 | 名称 | 描述 |
 | -------- | -------- |
 | option | FlowItem分组配置信息。  |
-| index | FlowItem索引值。  |
+| index | 分组配置信息数组索引值。  |
 | crossCount | 布局栅格数量。  |
 
 
@@ -17653,7 +17653,7 @@ void OH_ArkUI_WaterFlowSectionOption_SetItemCount (ArkUI_WaterFlowSectionOption 
 | 名称 | 描述 |
 | -------- | -------- |
 | option | FlowItem分组配置信息。  |
-| index | FlowItem索引值。  |
+| index | 分组配置信息数组索引值。  |
 | itemCount | 分组中FlowItem数量。  |
 
 
@@ -17673,7 +17673,7 @@ void OH_ArkUI_WaterFlowSectionOption_SetMargin (ArkUI_WaterFlowSectionOption * o
 | 名称 | 描述 |
 | -------- | -------- |
 | option | FlowItem分组配置信息。  |
-| index | FlowItem索引值。  |
+| index | 分组配置信息数组索引值。  |
 | marginTop | FlowItem上外边距。  |
 | marginRight | FlowItem右外边距。  |
 | marginBottom | FlowItem下外边距。  |
@@ -17696,7 +17696,7 @@ void OH_ArkUI_WaterFlowSectionOption_SetRowGap (ArkUI_WaterFlowSectionOption * o
 | 名称 | 描述 |
 | -------- | -------- |
 | option | FlowItem分组配置信息。  |
-| index | FlowItem索引值。  |
+| index | 分组配置信息数组索引值。  |
 | rowGap | 行间距。  |
 
 
