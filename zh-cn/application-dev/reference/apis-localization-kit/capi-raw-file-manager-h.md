@@ -6,6 +6,10 @@
 
 **引用文件：** <rawfile/raw_file_manager.h>
 
+**库：** librawfile.z.so
+
+**系统能力：** SystemCapability.Global.ResourceManager
+
 **起始版本：** 8
 
 **相关模块：** [rawfile](capi-rawfile.md)
