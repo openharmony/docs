@@ -29,6 +29,9 @@
 | [NetConn_NetHandleList](capi-netconnection-netconn-nethandlelist.md) | NetConn_NetHandleList | 网络列表。 |
 | [NetConn_NetSpecifier](capi-netconnection-netconn-netspecifier.md) | NetConn_NetSpecifier | 网络的特征集。 |
 | [NetConn_NetConnCallback](capi-netconnection-netconn-netconncallback.md) | NetConn_NetConnCallback | 网络状态监听回调集合。 |
+| [NetConn_ProbeResultInfo](_net_conn___net_specifier.md) | 探测结果。 |
+| [NetConn_TraceRouteOption](_net_conn___net_specifier.md) | 路由参数选项。 |
+| [NetConn_TraceRouteInfo](_net_conn___net_specifier.md) | 路由结果。 |
 
 ### 枚举
 
@@ -51,6 +54,8 @@
 | [typedef void (\*OH_NetConn_NetLost)(NetConn_NetHandle *netHandle)](#oh_netconn_netlost) | OH_NetConn_NetLost | 网络断开回调。 |
 | [typedef void (\*OH_NetConn_NetUnavailable)(void)](#oh_netconn_netunavailable) | OH_NetConn_NetUnavailable | 网络不可用回调，在指定的超时时间内网络未激活时触发该回调，如果未设置超时时间则不会触发该回调。 |
 | [typedef void (\*OH_NetConn_NetBlockStatusChange)(NetConn_NetHandle *netHandle, bool blocked)](#oh_netconn_netblockstatuschange) | OH_NetConn_NetBlockStatusChange | 网络阻塞状态变更回调。 |
+| [OH_NetConn_QueryProbeResult](#oh_netconn_queryproberesult)(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo)| 查询探测结果。 |
+| [OH_NetConn_QueryTraceRoute](#oh_netconn_querytraceroute)(char *destination, NetConn_TraceRouteOption *option, NetConn_TraceRouteInfo *traceRouteInfo)| 查询跟踪路由。 |
 
 ## 枚举类型说明
 
@@ -269,4 +274,79 @@ typedef void (*OH_NetConn_NetBlockStatusChange)(NetConn_NetHandle *netHandle, bo
 | -- | -- |
 | [NetConn_NetHandle](capi-netconnection-netconn-nethandle.md) *netHandle | 网络句柄。 |
 |  bool blocked | 指示网络是否将被阻塞的标志。 |
+
+### OH_NetConn_QueryProbeResult()
+
+```
+int32_t OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo);
+```
+
+**描述**
+
+查询探测结果。
+
+**系统能力：** SystemCapability.Communication.NetManager.Core
+
+**起始版本：** 20
+
+**参数:**
+
+| 参数项 | 描述 | 
+| -------- | -------- |
+| destination  |  目的地址。 |
+| duration  |  时长。 |
+| NetConn_ProbeResultInfo  |  探测结果。 |
+
+**返回：**
+
+0 - 成功。
+
+201 - 缺少权限。
+
+401 - 参数错误。
+
+2100003 - 内部错误。
+
+**Permission：**
+
+ohos.permission.INTERNET
+
+
+### OH_NetConn_QueryTraceRoute()
+
+```
+int32_t OH_NetConn_QueryTraceRoute(char *destination, NetConn_TraceRouteOption *option, NetConn_TraceRouteInfo *traceRouteInfo);
+```
+
+**描述**
+
+查询跟踪路由。
+
+**系统能力：** SystemCapability.Communication.NetManager.Core
+
+**起始版本：** 20
+
+**参数:**
+
+| 参数项 | 描述 | 
+| -------- | -------- |
+| destination  |  目的地址。 |
+| NetConn_TraceRouteOption  |  路由参数选项。 |
+| NetConn_TraceRouteInfo  |  路由结果。 |
+
+**返回：**
+
+0 - 成功。
+
+201 - 缺少权限。
+
+401 - 参数错误。
+
+2100003 - 内部错误。
+
+**Permission：**
+
+ohos.permission.INTERNET 
+ohos.permission.LOCATION 
+ohos.permission.ACCESS_TRACE_ROUTE_INFO
 
