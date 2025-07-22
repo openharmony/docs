@@ -132,7 +132,7 @@ makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档�
 
 ### 支持类型
 
-- 支持未被@Observed或@ObserveV2装饰的类。
+- 支持未被@Observed或@ObservedV2装饰的类。
 - 支持Array、Map、Set和Date。
 - 支持collections.Array, collections.Set和collections.Map。
 - JSON.parse返回的Object。
