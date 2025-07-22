@@ -667,11 +667,10 @@ OH_Drawing_DestroyTypographyHandler(handler);
 OH_Drawing_DestroyTypography(typography);
 ```
 
-
 | 段落样式设置（自动间距） | 示意效果 | 
 | -------- | -------- |
-| 不使能自动间距 | ![zh-cn_image_xxx004](figures/zh-cn_image_xxx004.png) | 
-| 使能自动间距 | ![zh-cn_image_xxx005](figures/zh-cn_image_xxx005.png) | 
+| 不使能自动间距 | ![zh-cn_image_autoSpace_1](figures/zh-cn_image_autoSpace_1.png) | 
+| 使能自动间距 | ![zh-cn_image_autoSpace_2](figures/zh-cn_image_autoSpace_2.png) | 
 
 
 ## 样式的拷贝、绘制与显示
@@ -760,4 +759,4 @@ OH_Drawing_DestroyTypographyHandler(handlerCopy);
 OH_Drawing_DestroyTypography(typographyCopy);
 ```
 	
-![zh-cn_image_xxx006](figures/zh-cn_image_xxx006.png)
+![zh-cn_image_styleCopy_1](figures/zh-cn_image_styleCopy_1.png)
