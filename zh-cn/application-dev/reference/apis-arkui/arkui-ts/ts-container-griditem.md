@@ -186,9 +186,9 @@ GridItem样式对象。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 类型                  | 必填 | 说明                         |
-| ----- | -------------------- | ---- | ---------------------------- |
-| style | [GridItemStyle](#griditemstyle11枚举说明) | 否   | 设置GridItem样式。<br/>默认值：GridItemStyle.NONE<br/>设置为GridItemStyle.NONE时无样式。<br/>设置为GridItemStyle.PLAIN时，显示Hover、Press态样式。 |
+| 名称  | 类型                  | 只读 | 可选 | 说明                         |
+| ----- | -------------------- | ---- | --- | ---------------------------- |
+| style | [GridItemStyle](#griditemstyle11枚举说明) | 否   | 是 | 设置GridItem样式。<br/>默认值：GridItemStyle.NONE<br/>设置为GridItemStyle.NONE时无样式。<br/>设置为GridItemStyle.PLAIN时，显示Hover、Press态样式。 |
 
 ## GridItemStyle<sup>11+</sup>枚举说明
 

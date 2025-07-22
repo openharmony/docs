@@ -44,7 +44,7 @@ scrollBarColor(color: Color | number | string): T
 
 | 参数名 | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
-| color  | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 是   | 滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度）<br/>number为HEX格式颜色，支持rgb或者argb，示例：0xffffff。string为rgb或者argb格式颜色，示例：'#ffffff'。 |
+| color  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度）<br/>number为HEX格式颜色，支持rgb或者argb，示例：0xffffff。string为rgb或者argb格式颜色，示例：'#ffffff'。 |
 
 **返回值：**
 
@@ -66,7 +66,7 @@ scrollBarWidth(value: number | string): T
 
 | 参数名 | 类型                       | 必填 | 说明                                      |
 | ------ | -------------------------- | ---- | ----------------------------------------- |
-| value  | string&nbsp;\|&nbsp;number | 是   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp <br/>取值范围：设置为小于0的值时，按默认值处理。设置为0时，不显示滚动条。 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp <br/>取值范围：设置为小于0的值时，按默认值处理。设置为0时，不显示滚动条。 |
 
 **返回值：**
 
@@ -472,10 +472,10 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型         |   描述         |
-| ---------- | ---------- | ---------- |
-| x | number |  当前拖拽点的x坐标，单位vp。    |
-| y | number |  当前拖拽点的y坐标，单位vp。    |
+| 名称         | 类型         | 只读 | 可选 |   说明         |
+| ---------- | ---------- | -- | -- | ---------- |
+| x | number | 否 | 否 |  当前拖拽点的x坐标，单位vp。    |
+| y | number | 否 | 否 |  当前拖拽点的y坐标，单位vp。    |
 
 ## NestedScrollOptions<sup>10+</sup>对象说明
 
@@ -485,23 +485,21 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型  | 必填 | 描述              |
-| ----- | ------ | ------ | ----------------- |
-| scrollForward | [NestedScrollMode](ts-appendix-enums.md#nestedscrollmode10) | 是 | 滚动组件往末尾端滚动时的嵌套滚动选项。 |
-| scrollBackward | [NestedScrollMode](ts-appendix-enums.md#nestedscrollmode10) | 是 | 滚动组件往起始端滚动时的嵌套滚动选项。 |
+| 名称   | 类型  | 只读 | 可选 | 说明              |
+| ----- | ------ | ------ | -- | ----------------- |
+| scrollForward | [NestedScrollMode](ts-appendix-enums.md#nestedscrollmode10) | 否 | 否 | 滚动组件往末尾端滚动时的嵌套滚动选项。 |
+| scrollBackward | [NestedScrollMode](ts-appendix-enums.md#nestedscrollmode10) | 否 | 否 | 滚动组件往起始端滚动时的嵌套滚动选项。 |
 
 ## EdgeEffectOptions<sup>11+</sup>对象说明
 
 [edgeEffect](#edgeeffect11)属性参数对象。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名   | 类型  | 必填 | 描述              |
-| ----- | ------| ------- | ----------------- |
-| alwaysEnabled | boolean | 是 | 组件内容大小小于组件自身时，设置是否开启滑动效果。设置为true开启滑动效果，设置为false关闭滑动效果。|
-| effectEdge<sup>18+</sup> | number | 否 | 设置边缘效果生效的边缘。<br/>如果设置[EffectEdge](#effectedge18枚举说明).START表示只有起始边生效。如果设置[EffectEdge](#effectedge18枚举说明).END表示只有末尾边生效。<br/>默认值为[EffectEdge](#effectedge18枚举说明).START \| [EffectEdge](#effectedge18枚举说明).END表示双边同时生效。当设置为其它异常值时，则默认双边同时生效。<br/>如果需要双边都不生效，可将edgeEffect设置为EdgeEffect.None。 |
+| 名称   | 类型  | 只读 | 可选 | 说明              |
+| ----- | ------| ------- | -- | ----------------- |
+| alwaysEnabled | boolean | 否 | 否 | 组件内容大小小于组件自身时，设置是否开启滑动效果。设置为true开启滑动效果，设置为false关闭滑动效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| effectEdge<sup>18+</sup> | number | 否 | 是 | 设置边缘效果生效的边缘。<br/>如果设置[EffectEdge](#effectedge18枚举说明).START表示只有起始边生效。如果设置[EffectEdge](#effectedge18枚举说明).END表示只有末尾边生效。<br/>默认值为[EffectEdge](#effectedge18枚举说明).START \| [EffectEdge](#effectedge18枚举说明).END表示双边同时生效。当设置为其它异常值时，则默认双边同时生效。<br/>如果需要双边都不生效，可将edgeEffect设置为EdgeEffect.None。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## FadingEdgeOptions<sup>14+</sup>对象说明
 
@@ -511,9 +509,9 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名           | 类型                                                         | 必填 | 描述                                                         |
-| ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| fadingEdgeLength | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 设置边缘渐隐长度。如果设置小于0的值则取默认值，默认长度为32vp。<br/>如果设置的长度超过容器高度的一半时，渐隐长度取容器高度的一半。 |
+| 名称           | 类型                                                         | 只读 | 可选 | 说明                                                         |
+| ---------------- | ------------------------------------------------------------ | ---- | -- | ------------------------------------------------------------ |
+| fadingEdgeLength | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 是 | 设置边缘渐隐长度。如果设置小于0的值则取默认值，默认长度为32vp。<br/>如果设置的长度超过容器高度的一半时，渐隐长度取容器高度的一半。 |
 
 ## EffectEdge<sup>18+</sup>枚举说明
 
@@ -595,9 +593,9 @@ type OnScrollCallback = (scrollOffset: number, scrollState: ScrollState) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ------ | ------ | ------|
-| offsetRemain | number | 是 | 将要滑动偏移量，单位vp。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ------ | ------ | ------ | -- | ------|
+| offsetRemain | number | 否 | 否 | 将要滑动偏移量，单位vp。 |
 
 ## ChildrenMainSize<sup>12+</sup>对象说明
 
@@ -613,7 +611,7 @@ type OnScrollCallback = (scrollOffset: number, scrollState: ScrollState) => void
 
 ### constructor<sup>12+</sup>
 
-constructor(childDefaultSize: number): void
+constructor(childDefaultSize: number)
 
 ChildrenMainSize有参构造函数。
 
@@ -623,14 +621,22 @@ ChildrenMainSize有参构造函数。
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | childDefaultSize | number | 是    | 子组件在主轴方向的默认大小。<br/>单位：vp<br/>**说明：** <br/>必须是有限的非负数值，否则抛出异常。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.   |
 
 
 ### childDefaultSize<sup>12+</sup>
 
-set childDefaultSize(value: number): void
+set childDefaultSize(value: number)
 
 修改子组件在主轴方向的默认大小。
 
@@ -640,7 +646,7 @@ set childDefaultSize(value: number): void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | value | number | 是    | 子组件在主轴方向的默认大小。<br/>单位：vp<br/>**说明：** <br/>必须是有限的非负数值，否则抛出异常。|
 
@@ -650,7 +656,7 @@ set childDefaultSize(value: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.   |
 
 get childDefaultSize(): number
 
@@ -678,7 +684,7 @@ splice(start: number, deleteCount?: number, childrenSize?: Array\<number>): void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | start | number | 是    | 从0开始计算的索引值，表示要开始修改子组件在主轴方向大小信息的位置。<br/>**说明：** <br/>1. 必须是有限的非负数值，否则抛出异常。<br/>2. 非整数会被截断为整数。<br/>3. 超过最大索引值不生效。<br/>取值范围：[0, +∞) |
 | deleteCount | number | 否    | 从start开始删除的大小信息的数量。<br/>**说明：** <br/>1.  必须是有限的非负数值，否则处理为0。<br/>2. 非整数会被截断为整数。<br/>3. start + deleteCount - 1可以超过最大索引值，会删除索引值start开始之后的所有子组件的大小信息。<br/>默认值为+∞。 <br/>取值范围：[0, +∞) |
@@ -691,7 +697,7 @@ splice(start: number, deleteCount?: number, childrenSize?: Array\<number>): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.   |
 
 
 > **说明：**
@@ -713,7 +719,7 @@ update(index: number, childSize: number): void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | index | number | 是    | 从0开始计算的索引值，表示要开始修改子组件在主轴方向大小信息的位置。<br/>**说明：** <br/>1. 必须是有限的非负数值，否则抛出异常。<br/>2. 非整数会被截断为整数。<br/>3. 超过最大索引值不生效。 <br/>取值范围：[0, +∞)|
 | childSize | number | 是    | 要更新成的大小。<br/>单位：vp <br/>**说明：** <br/>1.数值如果是有限的非负值，则认为是指定的大小，后续不随默认大小的变化而变化。<br/>2. 数值如果不是有限的非负值，会被处理成默认大小，后续会随默认大小的变化而变化。  <br/>取值范围：[0, +∞)|
@@ -724,7 +730,7 @@ update(index: number, childSize: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.   |
 
 ## UIScrollableCommonEvent<sup>19+</sup>
 用于设置滚动事件回调。
