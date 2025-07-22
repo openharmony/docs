@@ -741,6 +741,27 @@ Web组件进入全屏回调事件的详情。
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url | string | 是 | 页面的URL地址。                       |
 
+## OnPdfLoadEvent<sup>20+</sup>
+
+定义PDF加载成功或失败时触发的函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| url | string | 否 | 否 | 页面的URL地址。  |
+| result | [PdfLoadResult](./arkts-basic-components-web-e.md#pdfloadresult20) | 否 | 否 | PDF页面加载结果。  |
+
+## OnPdfScrollEvent<sup>20+</sup>
+
+定义PDF页面滚动到底时触发的函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| url | string | 否 | 否 | 页面的URL地址。    |
+
 ## Header
 
 Web组件返回的请求/响应头对象。
