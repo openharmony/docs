@@ -115,7 +115,7 @@ ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;L
 | 参数名 | 类型                                               | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | types  | Array <[LayoutSafeAreaType](ts-types.md#layoutsafeareatype12)> | 否   | 配置扩展布局安全区域的种类。<br />默认值：[LayoutSafeAreaType.SYSTEM]<br />扩展至系统默认非安全区域。<br />非法值：按默认值处理。 |
-| edges  | Array <[LayoutSafeAreaEdge](ts-types.md#layoutsafeareaedge12)> | 否   | 扩展布局安全区域的方向且支持[镜像能力](../../../ui/arkts-mirroring-display.md)。<br />默认值：[LayoutSafeAreaEdge.ALL]<br />扩展至所有方向。<br />非法值：按默认值处理。|
+| edges  | Array <[LayoutSafeAreaEdge](ts-types.md#layoutsafeareaedge12)> | 否   | 扩展布局安全区域的方向且支持[镜像能力](../../../ui/arkts-internationalization.md)。<br />默认值：[LayoutSafeAreaEdge.ALL]<br />扩展至所有方向。<br />非法值：按默认值处理。|
 
 **返回值：**
 
@@ -393,7 +393,7 @@ NONE模式
 
 ### 示例7（滚动类容器扩展安全区）
 
-该示例通过在滚动类容器内调用expandSafeArea属性实现沉浸式效果。
+该示例通过在滚动类容器内调用expandSafeArea属性实现沉浸式效果，Scroll内的Swiper可以延伸到状态栏上。
 
 ```ts
 class SwiperDataSource implements IDataSource {

@@ -146,7 +146,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     使用OH_AI_ModelSetTrainMode接口设置训练模式，使用OH_AI_RunStep接口进行模型训练。
 
     ```c
-    // Set Traim Mode
+    // Set Train Mode
     ret = OH_AI_ModelSetTrainMode(model, true);
     if (ret != OH_AI_STATUS_SUCCESS) {
         printf("OH_AI_ModelSetTrainMode failed, ret: %d.\n", ret);
@@ -433,12 +433,12 @@ int TrainDemo(int argc, const char **argv) {
     return ret;
   }
 
-  // Set Traim Mode
+  // Set Train Mode
   ret = OH_AI_ModelSetTrainMode(model, true);
   if (ret != OH_AI_STATUS_SUCCESS) {
     printf("OH_AI_ModelSetTrainMode failed, ret: %d.\n", ret);
     OH_AI_ModelDestroy(&model);
-	OH_AI_ContextDestroy(&context);
+    OH_AI_ContextDestroy(&context);
     return ret;
   }
 
@@ -477,7 +477,8 @@ int TrainDemo(int argc, const char **argv) {
   OH_AI_ContextDestroy(&context);
 
   // Use The Exported Model to predict
-  ret = ModelPredict(strcat(export_infer_model, ".ms"));
+  char *exported_model = strcat(export_infer_model, ".ms");
+  ret = ModelPredict(exported_model);
   if (ret != OH_AI_STATUS_SUCCESS) {
     printf("Exported Model to predict failed, ret: %d.\n", ret);
     return ret;

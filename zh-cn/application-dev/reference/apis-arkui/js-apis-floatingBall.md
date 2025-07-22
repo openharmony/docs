@@ -521,7 +521,7 @@ try {
 | title | string | 否 | 否 | 闪控球标题，不可为空字符串，大小不超过64字节。 |
 | content | string | 否 | 是 | 闪控球内容，可选字段，大小不超过64字节。不传入时默认为空字符串，不显示闪控球内容。 |
 | backgroundColor | string | 否 | 是 | 闪控球背景颜色，可选字段，为不带透明度的十六进制颜色格式（例如'#008EF5'或'#FF008EF5'），不传入时闪控球使用默认颜色（浅色模式'#FFFFFF'，深色模式'#000000'）。 |
-| icon | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 是 | 闪控球图标，可选字段，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/js-apis-image.md#getpixelbytesnumber7)获取）。建议图标像素宽高为128px*128px。实际显示效果依赖于设备能力和闪控球UI样式，不传入时不显示闪控球图标。 |
+| icon | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 是 | 闪控球图标，可选字段，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/arkts-apis-image-PixelMap.md#getpixelbytesnumber7)获取）。建议图标像素宽高为128px*128px。实际显示效果依赖于设备能力和闪控球UI样式，不传入时不显示闪控球图标。 |
 
 ## FloatingBallState
 

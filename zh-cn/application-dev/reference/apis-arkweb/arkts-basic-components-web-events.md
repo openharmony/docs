@@ -1034,7 +1034,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
      async selectFile(result: FileSelectorResult): Promise<void> {
        let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
        let photoPicker = new photoAccessHelper.PhotoViewPicker();
-       // 过滤选择媒体文件类型为IMAGE
+       // 过滤选择媒体文件类型为IMAGE_VIDEO
        photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
        // 设置最大选择数量
        photoSelectOptions.maxSelectNumber = 5;
@@ -2028,7 +2028,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
   <body>
     <h1>onContextMenuShow</h1>
     <a href="http://www.example.com" style="font-size:27px">链接www.example.com</a>
-    // rawfile下放任意一张图片命名为example.png
+    <!-- rawfile下放任意一张图片命名为example.png -->
     <div><img src="example.png"></div>
     <p>选中文字鼠标右键弹出菜单</p>
   </body>
@@ -3454,8 +3454,8 @@ export default class EntryAbility extends UIAbility {
 
   加载的html文件
   ```html
-  <!-- index.html -->
-  <!Document>
+  <!--index.html-->
+  <!DOCTYPE html>
   <html>
   <head>
       <title>同层渲染测试html</title>
@@ -3464,7 +3464,7 @@ export default class EntryAbility extends UIAbility {
   <body>
   <div>
       <div id="bodyId">
-          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1" style = "background-color:red"/>
       </div>
   </div>
   </body>
@@ -3614,8 +3614,8 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
   ```
 加载的html文件
   ```html
-  <!-- index.html -->
-  <!Document>
+  <!--index.html-->
+  <!DOCTYPE html>
   <html>
   <head>
       <title>同层渲染测试html</title>
@@ -3624,7 +3624,7 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
   <body>
   <div>
       <div id="bodyId">
-         <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1?" style = "background-color:red"/>
+         <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1" style = "background-color:red"/>
       </div>
   </div>
   </body>
@@ -3774,7 +3774,7 @@ onViewportFitChanged(callback: OnViewportFitChangedCallback)
             } else if (viewportFit === ViewportFit.CONTAINS) {
               // index.html网页不支持沉浸式布局，可调用expandSafeArea调整web控件布局视口为安全区域。
             } else {
-              // 默认值，可不作处理
+              // 默认值，可不作处理。
             }
           })
       }
@@ -3978,7 +3978,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
 
 onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
 
-当网页中同层标签（例如Embed标签或Object标签）在视口内的可见性发生变化时，将触发该回调。同层标签默认不可见，若在页面首次加载时已可见，则会上报；若不可见，则不会上报。同层标签全部不可见才视为不可见，部分可见或全部可见则视为可见。若要获取因同层标签CSS属性（包括visibility、display以及尺寸变化）导致的可见状态变化，需配置[nativeEmbedOptions](./arkts-basic-components-web-attributes.md#nativeembedoptions16)，并将[EmbedOptions](./arkts-basic-components-web-i.md#embedoptions16)中的supportCssDisplayChange参数设为true。
+当网页中同层标签（例如<embed\>标签或<embed\>标签）在视口内的可见性发生变化时，将触发该回调。同层标签默认不可见，若在页面首次加载时已可见，则会上报；若不可见，则不会上报。同层标签全部不可见才视为不可见，部分可见或全部可见则视为可见。若要获取因同层标签CSS属性（包括visibility、display以及尺寸变化）导致的可见状态变化，需配置[nativeEmbedOptions](./arkts-basic-components-web-attributes.md#nativeembedoptions16)，并将[EmbedOptions](./arkts-basic-components-web-i.md#embedoptions16)中的supportCssDisplayChange参数设为true。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4110,7 +4110,7 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
   <body>
   <div>
       <div id="bodyId">
-          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1?" style = "background-color:red"/>
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1" style = "background-color:red"/>
       </div>
   </div>
   </body>
@@ -4246,8 +4246,8 @@ onNativeEmbedMouseEvent(callback: MouseInfoCallback)
   ```
 加载的html文件
   ```html
-  <!-- index.html -->
-  <!Document>
+  <!--index.html-->
+  <!DOCTYPE html>
   <html>
   <head>
       <title>同层渲染测试</title>

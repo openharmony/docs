@@ -1,6 +1,6 @@
 # ApplicationContext (System API)
 
-The ApplicationContext module, inherited from [Context](js-apis-inner-application-context.md), provides application-level context capabilities, including APIs for registering and deregistering the lifecycle of application components.
+The ApplicationContext module inherits from [Context](js-apis-inner-application-context.md). It provides application-level context capabilities, including APIs for registering and deregistering the lifecycle of application components.
 
 > **NOTE**
 >
@@ -16,17 +16,14 @@ import { common } from '@kit.AbilityKit';
 
 ## Instructions
 
-Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContext** instance through the **context** instance.
+Before calling any APIs in ApplicationContext, obtain an ApplicationContext instance through the context instance.
 
 ## ApplicationContext.preloadUIExtensionAbility<sup>12+</sup>
 
 preloadUIExtensionAbility(want: Want): Promise\<void\>
 
-Preloads a **UIExtensionAbility** instance.
-
-The preloaded **UIExtensionAbility** instance is sent to the **onCreate** lifecycle of the UIExtensionAbility and waits to be loaded by the current application.
-
-A **UIExtensionAbility** instance can be preloaded for multiple times. Each time a preloaded **UIExtensionAbility** instance is loaded, the next preloaded **UIExtensionAbility** instance is sent to the **onCreate** lifecycle of the UIExtensionAbility.
+Preloads a UIExtensionAbility instance.
+The preloaded UIExtensionAbility instance is sent to the **onCreate** lifecycle of the UIExtensionAbility and waits to be loaded by the current application. A UIExtensionAbility instance can be preloaded for multiple times. Each time a preloaded UIExtensionAbility instance is loaded, the next preloaded UIExtensionAbility instance is sent to the **onCreate** lifecycle of the UIExtensionAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -48,10 +45,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 201     | The application does not have permission to call the interface. |
+| 202     | The application is not system-app, can not use system-api. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16200011 | The context does not exist. |
 | 16000050 | Internal error. |
 

@@ -85,7 +85,7 @@ struct SnapshotExample {
           // 建议使用this.getUIContext().getComponentSnapshot().get()
           componentSnapshot.get("root", (error: Error, pixmap: image.PixelMap) => {
             if (error) {
-              console.log("error: " + JSON.stringify(error))
+              console.error("error: " + JSON.stringify(error))
               return;
             }
             this.pixmap = pixmap
@@ -169,7 +169,7 @@ struct SnapshotExample {
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
             }).catch((err:Error) => {
-            console.log("error: " + err)
+            console.error("error: " + err)
           })
         }).margin(10)
     }
@@ -266,7 +266,7 @@ struct OffscreenSnapshotExample {
           componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()},
             (error: Error, pixmap: image.PixelMap) => {
               if(error){
-                console.log("error: " + JSON.stringify(error))
+                console.error("error: " + JSON.stringify(error))
                 return;
               }
               this.pixmap = pixmap
@@ -274,7 +274,7 @@ struct OffscreenSnapshotExample {
               // ....
               // 获取组件大小和位置
               let info = this.getUIContext().getComponentUtils().getRectangleById("builder")
-              console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
+              console.info(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             }, 320, true, {scale : 2, waitUntilRenderFinished : true})
         })
       Image(this.pixmap)
@@ -381,9 +381,9 @@ struct OffscreenSnapshotExample {
               // ....
               // 获取组件大小和位置
               let info = this.getUIContext().getComponentUtils().getRectangleById("builder")
-              console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
+              console.info(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             }).catch((err:Error) => {
-            console.log("error: " + err)
+            console.error("error: " + err)
           })
         })
       Image(this.pixmap)

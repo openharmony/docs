@@ -12,6 +12,6 @@ When starting a modal page, you can transfer custom data to the autofill service
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Type                  | Mandatory| Description                                                |
-| ---- | ---------------------- | ---- | ---------------------------------------------------- |
-| data | Record<string, Object> | Yes  | Custom data transferred for starting the modal page. The data is of the Record type.|
+| Name| Type                  | Read-Only| Optional| Description                                                |
+| ---- | ---------------------- | ---- | ---- | ---------------------------------------------------- |
+| data | Record<string, Object> | No  | No  | Custom data transferred for starting the modal page. The data is of the Record type.|

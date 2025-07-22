@@ -455,6 +455,7 @@ struct Index {
 | 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
 | mouseEvent | [MouseEvent](js-apis-mouseevent.md#mouseevent) | 否    |  否 | 鼠标注入描述信息。   |
+| useGlobalCoordinate<sup>20+</sup> | boolean | 否    |  是 | 是否使用全局坐标来计算注入的鼠标事件。默认值为false，取值为false表示使用当前屏幕坐标来计算注入的鼠标事件，取值为true表示使用全局坐标来计算注入的鼠标事件。  |
 
 ## TouchEventData<sup>11+</sup>
 
@@ -465,3 +466,4 @@ struct Index {
 | 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
 | touchEvent | [TouchEvent](js-apis-touchevent.md#touchevent) | 否    |  否 | 触摸屏注入描述信息。   |
+| useGlobalCoordinate<sup>20+</sup> | boolean | 否    |  是 | 是否使用全局坐标来计算注入的触摸屏事件。默认值为false，取值为false表示使用当前屏幕坐标来计算注入的触摸屏事件，取值为true表示使用全局坐标来计算注入的触摸屏事件。   |

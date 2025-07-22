@@ -106,14 +106,11 @@
 ```ts
 import { connection } from '@kit.NetworkKit';
 
-async function test() {
-  const netConnection = connection.createNetConnection();
-
-  /* 监听默认网络改变。 */
-  netConnection.on('netAvailable', (data: connection.NetHandle) => {
-    console.log(JSON.stringify(data));
-  });
-}
+const netConnection = connection.createNetConnection();
+// 监听默认网络改变。
+netConnection.on('netAvailable', (data: connection.NetHandle) => {
+ console.log(JSON.stringify(data));
+})
 ```
 
 ### 默认网络变化后重新建立网络连接
@@ -123,57 +120,66 @@ async function test() {
 <!--RP1End-->
 
 #### 原网络连接使用Socket模块建立连接
-
 ```ts
 import { connection, socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 创建socket对象。
 let sock: socket.TCPSocket = socket.constructTCPSocketInstance();
 
-async function useSocket() {
+function useSocket() {
+  let netAddress: socket.NetAddress = {
+    address: '192.168.xx.xxx',
+    port: 8080
+  }
   let tcpConnectOptions: socket.TCPConnectOptions = {
-    address: {
-      address: '192.168.xx.xxx',
-      port: 8080
-    },
+    address: netAddress,
     timeout: 6000
   }
 
-  /* 建立socket连接。 */
+  // 建立socket连接。
   sock.connect(tcpConnectOptions, (err: BusinessError) => {
     if (err) {
       console.error('connect fail');
       return;
     }
     console.log('connect success');
-
-    /* 通过socket发送数据。 */
     let tcpSendOptions: socket.TCPSendOptions = {
       data: 'Hello, server!'
     }
-    sock.send(tcpSendOptions).then(() => {
-      console.log('send success');
-    }).catch((err: BusinessError) => {
-      console.error('send fail');
-    });
+    socketSend(tcpSendOptions);
   })
 }
 
-async function socketTest() {
+// 通过socket发送数据。
+function socketSend(tcpSendOptions: socket.TCPSendOptions) {
+  sock.send(tcpSendOptions).then(() => {
+    console.log('send success');
+  }).catch((err: BusinessError) => {
+    console.error('send fail');
+  });
+}
+
+
+function socketTest() {
   const netConnection = connection.createNetConnection();
-  netConnection.on('netAvailable', async (netHandle: connection.NetHandle) => {
-    console.log('default network changed');
-    await sock.close();
+  // 网络切换会导致网络发生中断，原socket失效，故需重新建立socket。
+  netConnection.on('netAvailable', (netHandle: connection.NetHandle) => {
+    console.info("default network changed: " + JSON.stringify(netHandle));
+    sock.close();
     sock = socket.constructTCPSocketInstance();
+    // 通过socket发送数据。
     useSocket();
   });
-  try {
-    netConnection.register(() => {
-    });
-    useSocket();
-  } catch (e) {
-    console.error(e.code.toString());
-  }
+
+  // 订阅指定网络状态变化的通知。
+  netConnection.register((error: BusinessError) => {
+    if (error) {
+      console.error("register fail: " + JSON.stringify(error));
+    } else {
+      console.info("register success");
+    }
+  });
 }
 ```
 
@@ -186,41 +192,13 @@ async function socketTest() {
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
-2. 从@kit.NetworkKit中导入connection命名空间。
-
+2. 示例代码
     ```ts
-    // 引入包名。
+    // 从@kit.NetworkKit中导入connection命名空间。
     import { connection } from '@kit.NetworkKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-    ```
 
-3. 调用[getAllNets](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetallnets)方法，获取所有处于连接状态的网络列表。
-
-    ```ts
-    // 构造单例对象。
-    export class GlobalContext {
-      public netList: connection.NetHandle[] = [];
-      private constructor() {}
-      private static instance: GlobalContext;
-      private _objects = new Map<string, Object>();
-
-      public static getContext(): GlobalContext {
-        if (!GlobalContext.instance) {
-          GlobalContext.instance = new GlobalContext();
-        }
-        return GlobalContext.instance;
-      }
-
-      getObject(value: string): Object | undefined {
-        return this._objects.get(value);
-      }
-
-      setObject(key: string, objectClass: Object): void {
-        this._objects.set(key, objectClass);
-      }
-    }
-
-    // 获取所有处于连接状态的网络列表。
+    // 调用getAllNets方法，获取所有处于连接状态的网络列表。
     connection.getAllNets().then((data: connection.NetHandle[]) => {
       console.info("Succeeded to get data: " + JSON.stringify(data));
       if (data) {
@@ -233,125 +211,108 @@ async function socketTest() {
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
+2. 查询默认网络或指定网络连接信息代码示例
+   
+   通过调用[getDefaultNet](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetdefaultnet)方法，获取默认的数据网络(NetHandle)；调用[getNetCapabilities](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilities)方法，获取该NetHandle对应网络的能力信息。能力信息包含了网络类型(蜂窝网络、Wi-Fi网络、以太网网络等)、网络具体能力等网络信息。也可以调用[getConnectionProperties](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetconnectionproperties)方法，获取该NetHandle对应网络的连接信息。
 
-2. 从@kit.NetworkKit中导入connection命名空间。
 
     ```ts
+    // 从@kit.NetworkKit中导入connection命名空间。
     import { connection } from '@kit.NetworkKit';
     import { BusinessError } from '@kit.BasicServicesKit';
+    
+    function getDefaultNetsInfo() {
+      let netHandleInfo:connection.NetHandle|null = null;
+      // 调用getDefaultNet方法，获取默认的数据网络(NetHandle)。
+      connection.getDefaultNet().then((data:connection.NetHandle) => {
+        if (data.netId == 0) {
+          console.log("don't have defaultNet");
+          // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理。
+          return;
+        }
+        if (data) {
+          console.info("getDefaultNet get data: " + JSON.stringify(data));
+          // 获取netHandle对应网络的能力信息。能力信息包含了网络类型、网络具体能力等网络信息。
+          netHandleInfo = data;
+          connection.getNetCapabilities(netHandleInfo).then((data: connection.NetCapabilities) => {
+            console.info("getNetCapabilities get data: " + JSON.stringify(data));
+            // 获取网络类型(bearerTypes)。
+            let bearerTypes: Set<number> = new Set(data.bearerTypes);
+            let bearerTypesNum = Array.from(bearerTypes.values());
+            for (let item of bearerTypesNum) {
+              if (item == 0) {
+                // 蜂窝网络。
+                console.log(JSON.stringify("BEARER_CELLULAR"));
+              } else if (item == 1) {
+                // Wi-Fi网络。
+                console.log(JSON.stringify("BEARER_WIFI"));
+              } else if (item == 3) {
+                // 以太网网络。
+                console.log(JSON.stringify("BEARER_ETHERNET"));
+              }
+            }
+    
+            // 获取网络具体能力(networkCap)。
+            let itemNumber : Set<number> = new Set(data.networkCap);
+            let dataNumber = Array.from(itemNumber.values());
+            for (let item of dataNumber) {
+              if (item == 0) {
+                // 表示网络可以访问运营商的MMSC(Multimedia Message Service，多媒体短信服务)发送和接收彩信。
+                console.log(JSON.stringify("NET_CAPABILITY_MMS"));
+              } else if (item == 11) {
+                // 表示网络流量未被计费。
+                console.log(JSON.stringify("NET_CAPABILITY_NOT_METERED"));
+              } else if (item == 12) {
+                // 表示该网络应具有访问Internet的能力，该能力由网络提供者设置。
+                console.log(JSON.stringify("NET_CAPABILITY_INTERNET"));
+              } else if (item == 15) {
+                // 表示网络不使用VPN(Virtual Private Network，虚拟专用网络)。
+                console.log(JSON.stringify("NET_CAPABILITY_NOT_VPN"));
+              } else if (item == 16) {
+                // 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置。
+                console.log(JSON.stringify("NET_CAPABILITY_VALIDATED"));
+              }
+            }
+          })
+        }
+      });
+    
+      // 获取netHandle对应的网络的连接信息。
+      connection.getConnectionProperties(netHandleInfo).then((data: connection.ConnectionProperties) => {
+        console.info("getConnectionProperties get data: " + JSON.stringify(data));
+      })
+    }
     ```
-
-3. 通过调用[getDefaultNet](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetdefaultnet)方法，获取默认的数据网络(NetHandle)；调用[getNetCapabilities](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilities)方法，获取该NetHandle对应网络的能力信息。能力信息包含了网络类型(蜂窝网络、Wi-Fi网络、以太网网络等)、网络具体能力等网络信息。也可以调用[getConnectionProperties](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetconnectionproperties)方法，获取该NetHandle对应网络的连接信息。
+3. 查询所有网络连接信息代码示例
+   
+   通过调用[getAllNets](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetallnets)方法，获取所有处于连接状态的网络列表(Array\<NetHandle>)。然后遍历获取到的NetHandle数组，分别调用[getNetCapabilities](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilities)方法，获取该NetHandle对应网络的能力信息，能力信息包含了网络类型(蜂窝网络、Wi-Fi网络、以太网网络等)、网络具体能力等网络信息。也可以调用[getConnectionProperties](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetconnectionproperties)方法，获取该NetHandle对应网络的连接信息。
 
     ```ts
-    // 构造单例对象。
-    export class GlobalContext {
-      public netList: connection.NetHandle[] = [];
-      public netHandle: connection.NetHandle|null = null;
-      private constructor() {}
-      private static instance: GlobalContext;
-      private _objects = new Map<string, Object>();
+    // 从@kit.NetworkKit中导入connection命名空间。
+    import { connection } from '@kit.NetworkKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-      public static getContext(): GlobalContext {
-        if (!GlobalContext.instance) {
-          GlobalContext.instance = new GlobalContext();
-        }
-        return GlobalContext.instance;
-      }
-
-      getObject(value: string): Object | undefined {
-        return this._objects.get(value);
-      }
-
-      setObject(key: string, objectClass: Object): void {
-        this._objects.set(key, objectClass);
-      }
-    }
-
-    // 调用getDefaultNet方法，获取默认的数据网络(NetHandle)。
-    connection.getDefaultNet().then((data:connection.NetHandle) => {
-      if (data.netId == 0) {
-        // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理。
-        return;
-      }
-      if (data) {
-        console.info("getDefaultNet get data: " + JSON.stringify(data));
-        GlobalContext.getContext().netHandle = data;
-        // 获取netHandle对应网络的能力信息。能力信息包含了网络类型、网络具体能力等网络信息。
-        connection.getNetCapabilities(GlobalContext.getContext().netHandle).then(
-          (data: connection.NetCapabilities) => {
-          console.info("getNetCapabilities get data: " + JSON.stringify(data));
-          // 获取网络类型(bearerTypes)。
-          let bearerTypes: Set<number> = new Set(data.bearerTypes);
-          let bearerTypesNum = Array.from(bearerTypes.values());
-          for (let item of bearerTypesNum) {
-            if (item == 0) {
-              // 蜂窝网络。
-              console.log(JSON.stringify("BEARER_CELLULAR"));
-            } else if (item == 1) {
-              // Wi-Fi网络。
-              console.log(JSON.stringify("BEARER_WIFI"));
-            } else if (item == 3) {
-              // 以太网网络。
-              console.log(JSON.stringify("BEARER_ETHERNET"));
-            }
-          }
-
-          // 获取网络具体能力(networkCap)。
-          let itemNumber : Set<number> = new Set(data.networkCap);
+    function getAllNetsInfo() {
+      // 调用getAllNets,获取所有处于连接状态的网络列表(Array<NetHandle>)。
+      connection.getAllNets().then((data: connection.NetHandle[]) => {
+        console.info("getAllNets get data: " + JSON.stringify(data));
+        if (data) {
+          let itemNumber : Set<connection.NetHandle> = new Set(data);
           let dataNumber = Array.from(itemNumber.values());
           for (let item of dataNumber) {
-            if (item == 0) {
-              // 表示网络可以访问运营商的MMSC(Multimedia Message Service，多媒体短信服务)发送和接收彩信。
-              console.log(JSON.stringify("NET_CAPABILITY_MMS"));
-            } else if (item == 11) {
-              // 表示网络流量未被计费。
-              console.log(JSON.stringify("NET_CAPABILITY_NOT_METERED"));
-            } else if (item == 12) {
-              // 表示该网络应具有访问Internet的能力，该能力由网络提供者设置。
-              console.log(JSON.stringify("NET_CAPABILITY_INTERNET"));
-            } else if (item == 15) {
-              // 表示网络不使用VPN(Virtual Private Network，虚拟专用网络)。
-              console.log(JSON.stringify("NET_CAPABILITY_NOT_VPN"));
-            } else if (item == 16) {
-              // 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置。
-              console.log(JSON.stringify("NET_CAPABILITY_VALIDATED"));
-            }
+            // 循环获取网络列表每个netHandle对应网络的能力信息。
+            connection.getNetCapabilities(item).then((data: connection.NetCapabilities) => {
+              console.info("getNetCapabilities get data: " + JSON.stringify(data));
+            })
+
+            // 循环获取网络列表每个netHandle对应的网络的连接信息。
+            connection.getConnectionProperties(item).then((data: connection.ConnectionProperties) => {
+              console.info("getConnectionProperties get data: " + JSON.stringify(data));
+            })
           }
-        })
-      }
-    });
-
-    // 获取netHandle对应网络的连接信息。连接信息包含了链路信息、路由信息等。
-    connection.getConnectionProperties(GlobalContext.getContext().netHandle).then((data: connection.ConnectionProperties) => {
-      console.info("getConnectionProperties get data: " + JSON.stringify(data));
-    })
-    ```
-
-4. 或者通过调用[getAllNets](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetallnets)方法，获取所有处于连接状态的网络列表(Array\<NetHandle>)。然后遍历获取到的NetHandle数组，分别调用[getNetCapabilities](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilities)方法，获取该NetHandle对应网络的能力信息，能力信息包含了网络类型(蜂窝网络、Wi-Fi网络、以太网网络等)、网络具体能力等网络信息。也可以调用[getConnectionProperties](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetconnectionproperties)方法，获取该NetHandle对应网络的连接信息。
-
-    ```ts
-    // 调用getAllNets,获取所有处于连接状态的网络列表(Array<NetHandle>)。
-    connection.getAllNets().then((data: connection.NetHandle[]) => {
-      console.info("getAllNets get data: " + JSON.stringify(data));
-      if (data) {
-        GlobalContext.getContext().netList = data;
-
-        let itemNumber : Set<connection.NetHandle> = new Set(GlobalContext.getContext().netList);
-        let dataNumber = Array.from(itemNumber.values());
-        for (let item of dataNumber) {
-          // 循环获取网络列表每个netHandle对应网络的能力信息。
-          connection.getNetCapabilities(item).then((data: connection.NetCapabilities) => {
-            console.info("getNetCapabilities get data: " + JSON.stringify(data));
-          })
-
-          // 循环获取网络列表每个netHandle对应的网络的连接信息。
-          connection.getConnectionProperties(item).then((data: connection.ConnectionProperties) => {
-            console.info("getConnectionProperties get data: " + JSON.stringify(data));
-          })
         }
-      }
-    })
+      })
+    }
     ```
 
 ## 判断默认网络是否可以访问互联网
@@ -361,36 +322,38 @@ async function socketTest() {
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
-2. 从@kit.NetworkKit中导入connection命名空间。
+2. 代码示例
+   
+   调用[getDefaultNetSync](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetdefaultnetsync9)方法，获取当前默认网络的netHandle，netHandle有效的情况下，调用[getNetCapabilitiesSync](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilitiessync10)方法，获取NetHandle对应网络的能力信息，根据获取到的能力信息，判断networkCap数组中的值判断网络是否可用。
+   NET_CAPABILITY_CHECKING_CONNECTIVITY表示在进行连通性判断的过程中，当不处于连通性判断过程中，且networkCap数组中包含NET_CAPABILITY_VALIDATED表示网络连通性校验通过，可以访问互联网。
 
     ```ts
-    // 引入包名。
+    // 从@kit.NetworkKit中导入connection命名空间。
     import { connection } from '@kit.NetworkKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-    ```
 
-3. 调用[getDefaultNetSync](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetdefaultnetsync9)方法，获取当前默认网络的netHandle，netHandle有效的情况下，调用[getNetCapabilitiesSync](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilitiessync10)方法，获取NetHandle对应网络的能力信息，根据获取到的能力信息，判断networkCap数组中的值判断网络是否可用。
-
-    ```ts
-    judgeHasNet(): boolean {
-      try {
-        let netHandle = connection.getDefaultNetSync();
-        if (!netHandle || netHandle.netId === 0) {
-          return false;
-        }
-        let netCapabilities = connection.getNetCapabilitiesSync(netHandle);
-        let cap = netCapabilities.networkCap || [];
-        if (!cap.includes(connection.NetCap.NET_CAPABILITY_CHECKING_CONNECTIVITY) && cap.includes(connection.NetCap.NET_CAPABILITY_VALIDATED)) {
-          // NET_CAPABILITY_CHECKING_CONNECTIVITY表示在进行连通性判断的过程中，当不处于连通性判断过程中，且networkCap数组中包含NET_CAPABILITY_VALIDATED表示网络连通性校验通过
-          return true;
-        } else {
-          return false;
-        }
-      } catch (e) {
-        let err = e as BusinessError;
-        console.error("judgeHasNet error" + JSON.stringify(err));
+    // 获取默认激活的数据网络。
+    let netHandle = connection.getDefaultNetSync();
+    if (!netHandle || netHandle.netId === 0) {
+      console.error("getDefaultNetSync fail");
+    } else {
+      console.info("default network: " + JSON.stringify(netHandle));
+      // 获取netHandle对应网络的能力信息。
+      let netCapabilities = connection.getNetCapabilitiesSync(netHandle);
+      let cap = netCapabilities.networkCap;
+      console.info("network capabilities: " + JSON.stringify(netCapabilities));
+      // 判断网络是否可以访问互联网。
+      if (cap?.includes(connection.NetCap.NET_CAPABILITY_CHECKING_CONNECTIVITY)) {
+        // 正在验证网络连通性，请稍后重试。
+        console.info("default network is checking， please try again later");
       }
-      return false;
+      if (cap?.includes(connection.NetCap.NET_CAPABILITY_VALIDATED)) {
+        // 网络连通性验证成功，当前默认网络可以访问互联网。
+        console.info("default network is validated");
+      } else {
+        // 网络连通性验证失败，当前默认网络不可以访问互联网。
+        console.info("default network is not validated");
+      }
     }
     ```
 
@@ -399,17 +362,13 @@ async function socketTest() {
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
-2. 从@kit.NetworkKit中导入connection命名空间。
-
+2. 代码示例
+   
+   调用[getAddressesByName](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetaddressesbyname)方法，使用默认网络解析主机名以获取所有IP地址。
     ```ts
-    // 引入包名。
+    // 从@kit.NetworkKit中导入connection命名空间。
     import { connection } from '@kit.NetworkKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-    ```
-
-    3. 调用[getAddressesByName](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetaddressesbyname)方法，使用默认网络解析主机名以获取所有IP地址。
-
-    ```ts
     // 使用默认网络解析主机名以获取所有IP地址。
     connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
       console.info("Succeeded to get data: " + JSON.stringify(data));

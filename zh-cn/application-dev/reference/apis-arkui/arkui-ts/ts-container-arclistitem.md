@@ -102,7 +102,7 @@ struct ArcListItemExample {
               .backgroundColor(0x17A98D)
           }
           .autoScale(item % 3 == 0 || item % 5 == 0)
-        }, (item: string) => item)
+        }, (item: number) => item.toString())
       }
       .space(LengthMetrics.px(10))
       .borderRadius(this.watchSize)

@@ -347,7 +347,7 @@ colorGradient(colors: Array\<Color>, positions: Array\<common2D.Point>, strength
 | colors  | Array\<[Color](#color20)>         | 是   | 颜色数组，多个颜色的渐变。数组长度取值范围[0, 12], 每一个颜色值取值范围为大于等于0。数组长度等于0或大于12时无效果，colors、positions和strengths的数组长度不相等时无效果。|
 | positions  | Array\<[common2D.Point](js-apis-graphics-common2D.md#point12)>         | 是   | 位置数组，颜色对应的分布位置。数组长度取值范围[0, 12]。数组长度等于0或大于12时无效果，colors、positions和strengths的数组长度不相等时无效果。|
 | strengths  | Array\<number>         | 是   | 强度数组，颜色对应的扩散强度。数组长度取值范围[0, 12], 每一个强度值取值范围为大于等于0。数组长度等于0或大于12时无效果，colors、positions和strengths的数组长度不相等时无效果。|
-| alphaMask  | [Mask](#mask20)         | 否   | 遮罩alpha，颜色对应的alpha显示遮罩。设置为null或者不设置时，默认图片全部都有颜色渐变效果。|
+| alphaMask  | [Mask](#mask20)         | 否   | 遮罩alpha，颜色对应的alpha显示遮罩。不设置时，默认组件内容全部有颜色渐变效果。|
 
 **返回值：**
 
@@ -472,8 +472,8 @@ edgeLight(alpha: number, color?: Color, mask?: Mask, bloom?: boolean): Filter
 | 参数名         | 类型                  | 必填 | 说明                       |
 | ------------- | --------------------- | ---- | ------------------------- |
 | alpha  | number         | 是   | 指定描边高光透明度，越大描边越明显。取值范围为[0, 1]。设置为0时无描边；设置小于0的值时，按值为0处理；设置大于1的值时，按值为1处理。|
-| color  | [Color](#color20) | 否   | 指定描边高光颜色，设置为null或者不设置时，默认使用原图颜色。如果有值，使用指定颜色。设置不为null时，Color中的alpha不发挥作用，仅使用rgb。|
-| mask  | [Mask](#mask20) | 否   | 指定描边高光强度。设置为null或者不设置时，默认图片全部都有描边高光效果。|
+| color  | [Color](#color20) | 否   | 指定描边高光颜色，不设置时，将默认使用组件内容的原始颜色。如果有值，使用指定颜色。设置不为null时，Color中的alpha不发挥作用，仅使用rgb。|
+| mask  | [Mask](#mask20) | 否   | 指定描边高光强度。不设置时，默认组件内容全部有描边高光效果。|
 | bloom  | boolean | 否   | 指定描边是否发光。设置为true时，有描边和发光效果；设置为false时，只有描边效果无发光效果；不设置时，默认为true。小于16*16的图片默认只有描边效果，无发光效果，此参数失去作用。 |
 
 **返回值：**
@@ -527,7 +527,7 @@ displacementDistort(displacementMap: Mask, factor?: [number, number]): Filter
 | 参数名         | 类型                  | 必填 | 说明                       |
 | ------------- | --------------------- | ---- | ------------------------- |
 | mask  | [Mask](#mask20) | 是   | 指定扭曲程度。与factor相乘后共同决定扭曲程度。|
-| factor  | [number, number] | 否   | 指定水平、竖直方向扭曲程度系数，越大扭曲程度越明显，取值范围为[0.0, 10.0]。设置为null或者不设置时，默认值为1.0。设置为0时无扭曲；设置小于0的值时按0处理；设置大于10的值时，按值为10处理。与mask相乘后共同决定扭曲程度。 |
+| factor  | [number, number] | 否   | 指定水平、竖直方向扭曲程度系数，系数的绝对值越大，扭曲程度越明显，建议取值范围为[-10.0, 10.0]。不设置时，默认值为1.0。设置为0时，无扭曲效果。与mask相乘后共同决定扭曲程度。 |
 
 **返回值：**
 
@@ -577,7 +577,7 @@ maskDispersion(dispersionMask: Mask, alpha: number, rFactor?: [number, number], 
 **参数：**
 | 参数名         | 类型                  | 必填 | 说明                       |
 | ------------- | --------------------- | ---- | ------------------------- |
-| dispersionMask  | [Mask](#mask20)         | 是   | 置换贴图，用于控制色散的强度、方向和透明度。当前仅支持PixelMapMask类型的置换贴图。|
+| dispersionMask  | [Mask](#mask20)         | 是   | 置换贴图，用于控制色散的强度、方向和透明度。建议使用PixelMapMask类型的置换贴图。|
 | alpha  | number         | 是   | 色散整体透明度，透明度越小效果越透明。取值范围为[0, 1.0]。透明度设置为0时色散效果不生效；透明度设置小于0的值时，按值为0处理；设置大于1.0的值时，按值为1.0处理。|
 | rFactor  | [number, number]         | 否   | X/Y方向上R通道的色散基础偏移，偏移越大红色色散效果越明显。每个方向上的取值范围为[-1.0, 1.0]。偏移设置小于-1.0的值时，按值为-1.0处理；设置大于1.0的值时，按值为1.0处理。|
 | gFactor  | [number, number]         | 否   | X/Y方向上G通道的色散基础偏移，偏移越大绿色色散效果越明显。取值范围同rFactor。|
@@ -677,6 +677,202 @@ hdrBrightnessRatio(ratio: number): Filter
 
 ```ts
 filter.hdrBrightnessRatio(2.0)
+```
+
+### maskTransition<sup>20+</sup>
+maskTransition(alphaMask: Mask, factor?: number, inverse?: boolean): Filter
+
+为组件内容提供基于[Mask](#mask20)的转场效果。
+
+不建议在屏幕尺寸发生改变的过程中使用此效果，如：旋转屏幕，折叠屏开合屏幕等。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| alphaMask     | [Mask](#mask20)       | 是   | 通过遮罩指定转场效果的作用区域。|
+| factor        | number                | 否   | 转场过渡系数，取值范围为[0.0, 1.0]，默认值为1.0。factor值越大画面越接近转场后页面，超出范围自动截断到[0.0, 1.0]。 |
+| inverse       | boolean               | 否   | 是否启用反向转场，true表示启用，false表示不启用，默认值为false。 |
+ 
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回挂载了转场效果的Filter。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { uiEffect, common2D } from "@kit.ArkGraphics2D";
+
+@Entry
+@Component
+struct Index {
+  context = this.getUIContext()
+  @State alpha: number = 0
+  @State enterNewPage:boolean = false
+  @State rippleMaskCenter: common2D.Point = {x:0.5, y:0.5}
+  @State rippleMaskRadius: number = 0.1
+  build() {
+    Stack() {
+      //转场前页面
+      Image($r("app.media.before")).width("100%").height("100%")
+        if (this.enterNewPage){
+          //转场后页面
+          Column().width("100%").height("100%").backgroundImage($r("app.media.after"))
+            .backgroundFilter(uiEffect.createFilter()
+              .maskTransition(
+                uiEffect.Mask.createRadialGradientMask(this.rippleMaskCenter, this.rippleMaskRadius,this.rippleMaskRadius, [[1, 0], [1, 1]]),
+                this.alpha))
+            .onAppear(() => {
+              this.context.animateTo({ duration: 1000 }, () => {
+                this.rippleMaskRadius = 1.3
+              })
+              this.context.animateTo({ duration: 800 }, () => {
+                this.alpha = 1
+              })
+            })
+        }
+    }.borderWidth(2)
+    .onClick(()=>{
+      this.enterNewPage=!this.enterNewPage;
+      if (this.enterNewPage) {
+        this.alpha=0;
+        this.rippleMaskRadius=0.1;
+      }
+    })
+  }
+}
+```
+
+### directionLight<sup>20+</sup>
+directionLight(direction: common2D.Point3d, color: Color, intensity: number, bumpMask?: Mask): Filter
+
+为组件内容提供基于[Mask](#mask20)和平行光的光照效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| direction  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12)         | 是   | 方向光的入射方向。|
+| color  | [Color](#color20)         | 是   | 光照颜色。|
+| intensity  | number         | 是   | 光照强度，非负数。|
+| bumpMask  | [Mask](#mask20)         | 否   | 置换贴图，用于描述二维图像表面的三维细节，通过法线增强图像局部表面细节和光照反射效果。默认为空，表现为全局无细节平面光照效果。|
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回挂载了由置换贴图控制的光照效果的Filter。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { uiEffect, common2D } from "@kit.ArkGraphics2D";
+
+@Entry
+@Component
+struct Index {
+  @State rippleMaskCenter: common2D.Point = {x:0.5, y:0.5}
+  @State rippleMaskRadius: number = 0.0
+  @State rippleMaskWidth: number = 0.0
+  @State color: Color = Color.Transparent
+
+  build() {
+    Column() {
+      RelativeContainer() {
+        Image($r("app.media.back")).width("100%").height("100%")
+        Stack()
+          .width("100%")
+          .height("100%")
+          .backgroundColor(this.color)
+          .backgroundFilter(uiEffect.createFilter()
+            .directionLight(
+              {x:0, y:0, z:-1}, {red:2.0, green:2.0, blue:2.0, alpha:1.0}, 0.5,
+              uiEffect.Mask.createRippleMask(this.rippleMaskCenter, this.rippleMaskRadius, this.rippleMaskWidth, 0.0)
+              ))
+          .onClick(() => {
+            animateTo({duration: 1000}, () => {
+              this.rippleMaskWidth = 1.0;
+            })
+          })
+      }
+    }.alignItems(HorizontalAlign.Center).borderWidth(2)
+  }
+}
+```
+
+### variableRadiusBlur<sup>20+</sup>
+variableRadiusBlur(radius: number, radiusMap: Mask): Filter
+
+为组件内容提供基于[Mask](#mask20)的渐变模糊效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| radius  | number         | 是   | 最大模糊半径，该值越大越模糊。取值范围为[0, 128]。模糊半径设置为0时不模糊；模糊半径设置小于0的值时，按值为0处理；设置大于128的值时，按值为128处理。|
+| radiusMap  |  [Mask](#mask20)    | 是   | 代表模糊程度的Mask对象。|
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回当前效果的Filter对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { uiEffect } from "@kit.ArkGraphics2D";
+
+@Entry
+@Component
+struct VariableRadiusBlurExample {
+  @State maskExample: uiEffect.Mask = uiEffect.Mask.createRippleMask({x: 0.5, y: 0.5}, 0.2, 0.1)
+
+  build() {
+    Stack() {
+      Image($rawfile('test.png'))
+      Row()
+        .width("100%")
+        .height("100%")
+        .backgroundFilter(uiEffect.createFilter().variableRadiusBlur(64, this.maskExample))
+    }
+  }
+}
 ```
 
 ## TileMode
@@ -893,8 +1089,8 @@ static createRippleMask(center: common2D.Point, radius: number, width: number, o
 **参数：**
 | 参数名  | 类型                                      | 必填 | 说明                       |
 | ------- | ---------------------------------------- | ---- | ------------------------- |
-| center | [common2D.Point](js-apis-graphics-common2D.md#point12) | 是 | 设置波环圆心在屏幕上的位置，[0, 0]为屏幕左上角，[1, 1]为屏幕的右下角。<br/>取值范围[-10, 10]，超出边界会在实现时自动截断。 |
-| radius | number | 是 | 设置波环的半径，半径为1等于屏幕的高度。<br/>取值范围[0, 10]，超出边界会在实现时自动截断。 |
+| center | [common2D.Point](js-apis-graphics-common2D.md#point12) | 是 | 设置波环圆心在组件上的位置，[0, 0]为组件左上角，[1, 1]为组件的右下角。<br/>取值范围[-10, 10]，超出边界会在实现时自动截断。 |
+| radius | number | 是 | 设置波环的半径，半径为1等于组件的高度。<br/>取值范围[0, 10]，超出边界会在实现时自动截断。 |
 | width | number | 是 | 设置波环的宽度。<br/>取值范围[0, 10]，超出边界会在实现时自动截断。 |
 | offset | number | 否 | 设置波峰位置的偏移。<br/>默认值为0，表示波峰在波环的正中心；<br/>-1.0表示波峰在波环的最内侧；<br/>1.0表示波峰在波环的最外侧。<br/>取值范围[-1, 1]，超出边界会在实现时自动截断。 |
 
@@ -998,9 +1194,9 @@ static createRadialGradientMask(center: common2D.Point, radiusX: number, radiusY
 **参数：**
 | 参数名  | 类型                                      | 必填 | 说明                       |
 | ------- | ---------------------------------------- | ---- | ------------------------- |
-| center | [common2D.Point](js-apis-graphics-common2D.md#point12)  | 是 | 设置椭圆的中心点，[0, 0]为屏幕左上角，[1, 1]为屏幕的右下角。<br/>取值范围[-10, 10]，可取浮点数，超出边界会在实现时自动截断。 |
-| radiusX | number  | 是 | 设置椭圆的长轴，半径为1等于屏幕的高度。<br/>取值范围[0, 10]，可取浮点数，超出边界会在实现时自动截断。 |
-| radiusY | number  | 是 | 设置椭圆的短轴，半径为1等于屏幕的高度。<br/>取值范围[0, 10]，可取浮点数，超出边界会在实现时自动截断。 |
+| center | [common2D.Point](js-apis-graphics-common2D.md#point12)  | 是 | 设置椭圆的中心点，[0, 0]为组件左上角，[1, 1]为组件的右下角。<br/>取值范围[-10, 10]，可取浮点数，超出边界会在实现时自动截断。 |
+| radiusX | number  | 是 | 设置椭圆的长轴，半径为1等于组件的高度。<br/>取值范围[0, 10]，可取浮点数，超出边界会在实现时自动截断。 |
+| radiusY | number  | 是 | 设置椭圆的短轴，半径为1等于组件的高度。<br/>取值范围[0, 10]，可取浮点数，超出边界会在实现时自动截断。 |
 | values | Array<[number, number]>     | 是 | 数组中保存的二元数组表示梯度：[RGBA颜色, 位置]。RGBA颜色四通道使用相同的值，可看作一个灰度值；位置表示沿径向方向向外时RGBA颜色对应的分布位置；RGBA颜色与位置的取值范围均为[0, 1]，可取浮点数，小于0的转为0，大于1的转为1。<br/>位置参数值须严格递增，Array数组中二元数组个数必须大于等于2，二元数组中的元素不能为空，否则该椭圆分布效果不生效。 |
 
 **返回值：**
@@ -1050,7 +1246,7 @@ static createWaveGradientMask(center: common2D.Point, width: number, propagation
 **参数：**
 | 参数名  | 类型                                      | 必填 | 说明                       |
 | ------- | ---------------------------------------- | ---- | ------------------------- |
-| center | [common2D.Point](js-apis-graphics-common2D.md#point12)  | 是 | 设置单波波源的中心点，[0, 0]为屏幕左上角，[1, 1]为屏幕的右下角。<br/>取值范围[-10, 10]，可取浮点数，超出边界会在实现时自动截断。 |
+| center | [common2D.Point](js-apis-graphics-common2D.md#point12)  | 是 | 设置单波波源的中心点，[0, 0]为组件左上角，[1, 1]为组件的右下角。<br/>取值范围[-10, 10]，可取浮点数，超出边界会在实现时自动截断。 |
 | width | number  | 是 | 设置单波圆环的宽度。<br/>取值范围[0, 5]，可取浮点数，超出边界会在实现时自动截断。 |
 | propagationRadius | number  | 是 | 设置单波圆环的扩散外径。<br/>取值范围[0, 10]，可取浮点数，超出边界会在实现时自动截断。 |
 | blurRadius | number  | 是 | 设置单波圆环的模糊外径，模糊半径为0则是实边圆环，否则是虚边圆环。<br/>取值范围[0, 5]，可取浮点数，超出边界会在实现时自动截断。 |

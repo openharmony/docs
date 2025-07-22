@@ -3,7 +3,7 @@
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
-
+<!--Del-->
 ## 29300001 Invalid Parameter
 
 **Error Message**
@@ -17,7 +17,7 @@ An error occurs during parameter verification. Specifically, **dataType** is not
 **Solution**
 
 Correct invalid parameter values.
-
+<!--DelEnd-->
 
 ## 29300002 System Service Abnormal
 
@@ -40,16 +40,16 @@ System services do not work properly. Try again later or restart the device.
 
 **Error Message**
 
-The application is not enabled the data protection under lock screen.
+The application has not enabled the data protection under lock screen.
 
 **Possible Causes**
 
-1. The **ohos.permission.PROTECT_SCREEN_LOCK_DATA** permission is not configured in through [requestpermissions](../../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file) to enable sensitive data access management on the lock screen.
+1. The ohos.permission.PROTECT_SCREEN_LOCK_DATA permission is not configured through [requestpermissions](../../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file) to enable sensitive data access management on the lock screen.
 2. The device does not support sensitive data access management on the lock screen.
 
 **Solution**
 
-Configure the **ohos.permission.PROTECT_SCREEN_LOCK_DATA** permission through [requestpermissions](../../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file) to enable sensitive data access management on the lock screen.
+Configure the ohos.permission.PROTECT_SCREEN_LOCK_DATA permission through [requestpermissions](../../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file) to enable sensitive data access management on the lock screen.
 
 
 ## 29300004 Permission to Access Sensitive Data on the Lock Screen Has Been Revoked

@@ -2,7 +2,7 @@
 
 开发者可以调用本模块的Native API接口，完成同步模式的视频编码。
 
-当前支持的编码能力请参考[AVCodec支持的格式](avcodec-support-formats.md#视频编码)。
+当前支持的编码能力，请参考[AVCodec支持的格式](avcodec-support-formats.md#视频编码)。
 
 视频编码的限制约束、支持的能力、状态机调用关系请参考[视频编码](video-encoding.md)。
 
@@ -54,7 +54,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     #include <shared_mutex>
     ```
     
-2. 全局变量（仅做参考，可以根据实际情况将其封装到对象中）。
+2. 全局变量（仅作参考，可以根据实际情况将其封装到对象中）。
 
     ```c++
     // 视频帧宽度。
@@ -80,7 +80,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 ### Surface模式
 
-参考以下示例代码，开发者可以完成Surface模式下视频编码的全流程，实现同步模式的数据轮转。此处以输入surface数据，编码成H.264格式为例。
+参考以下示例代码，可以完成Surface模式下视频编码的全流程，实现同步模式的数据轮转。此处以输入surface数据，编码成H.264格式为例。
 
 
 1. 创建编码器实例。
@@ -128,9 +128,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     > **注意：**
     >
-    > - 使能视频编码同步模式，必须要配置OH_MD_KEY_ENABLE_SYNC_MODE为1。
-    > - 同步模式在调用OH_VideoEncoder_Configure接口前不能调用OH_VideoEncoder_RegisterCallback或OH_VideoEncoder_RegisterParameterCallback接口，否则为异步模式。
-    > - 不支持Surface模式的随帧通路的同步模式。
+    > 1. 要使能视频编码同步模式，必须将OH_MD_KEY_ENABLE_SYNC_MODE配置为1。
+    > 2. 同步模式在调用OH_VideoEncoder_Configure接口前不能调用OH_VideoEncoder_RegisterCallback或OH_VideoEncoder_RegisterParameterCallback接口，否则为异步模式。
+    > 3. 不支持Surface模式的随帧通路的同步模式。
     >
 
 3. 设置surface。
@@ -238,7 +238,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
    ```c++
     bool result = true;
-    int64_t timeoutUs = 0; // 单位：微秒（us），负值：无限等待；0：立即退出；正值：指定时间timeout后退出。    
+    int64_t timeoutUs = 0; // 单位：微秒（us），负值：无限等待；0：立即退出；正值：指定时间结束后退出。    
 
     while (!outputDone && result) {
         if (!outputDone ) {
@@ -345,7 +345,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 ### Buffer模式
 
-参考以下示例代码，开发者可以完成Buffer模式下视频编码的全流程，实现同步模式的数据轮转。此处以输入YUV文件，编码成H.264格式为例。
+参考以下示例代码，可以完成Buffer模式下视频编码的全流程，实现同步模式的数据轮转。此处以输入YUV文件，编码成H.264格式为例。
 
 1. 创建编码器实例。
 
@@ -355,7 +355,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 通过codecname创建编码器，应用有特殊需求，比如选择支持某种分辨率规格的编码器，可先查询capability，再根据codec name创建编码器。
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
     const char *name = OH_AVCapability_GetName(capability);
-    OH_AVCodec *videoEnc = OH_videoEncoder_CreateByName(name);
+    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(name);
     if (videoEnc == nullptr) {
         printf("create videoEnc failed");
         return;
@@ -383,8 +383,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     > **注意：**
     >
-    > - 使能视频编码同步模式，必须要配置OH_MD_KEY_ENABLE_SYNC_MODE为1。
-    > - 同步模式在调用OH_VideoEncoder_Configure接口前不能调用OH_VideoEncoder_RegisterCallback或OH_VideoEncoder_RegisterParameterCallback接口，否则为异步模式。
+    > 1. 要使能视频编码同步模式，必须将OH_MD_KEY_ENABLE_SYNC_MODE配置为1。
+    > 2. 同步模式在调用OH_VideoEncoder_Configure接口前不能调用OH_VideoEncoder_RegisterCallback或OH_VideoEncoder_RegisterParameterCallback接口，否则为异步模式。
     >
 
 3. 调用OH_VideoEncoder_Prepare()编码器就绪。
@@ -439,7 +439,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
                 // 写入图像数据。
                 int32_t frameSize = 0;
                 bool isFirstFrame = true;
-                // 获取视频宽、高跨距。
+                // 获取视频宽跨距和高跨距。
                 if (isFirstFrame) {
                     OH_AVFormat *format = OH_VideoEncoder_GetInputDescription(codec);
                     OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
@@ -457,7 +457,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
                     }
                     inputFile->read(reinterpret_cast<char *>(addr), frameSize);
                 } else {
-                    // 如果跨距不等于宽，需要开发者按照跨距进行偏移，视频编码Buffer“步骤-8. 写入编码图像”。
+                    // 如果跨距不等于宽，开发者需要按照跨距进行偏移，详情请参考视频编码Buffer模式“步骤-8. 写入编码图像”。
                 }
 
                 // 配置buffer info信息。
@@ -577,7 +577,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
   
     ```c++
     bool result = true;
-    int64_t timeoutUs = 0; // 单位：微秒（us），负值：无限等待；0：立即退出；正值：指定时间timeout后退出。
+    int64_t timeoutUs = 0; // 单位：微秒（us），负值：无限等待；0：立即退出；正值：指定时间结束后退出。
 
     while (!outputDone && result) {
         if (!inputDone) {
@@ -589,4 +589,4 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-后续流程（包括刷新编码器、重置编码器、停止编码器、销毁编码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤9-12。
+后续流程（包括刷新、重置、停止和销毁编码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤9-12。

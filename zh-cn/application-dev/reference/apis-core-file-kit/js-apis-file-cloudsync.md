@@ -873,3 +873,373 @@ unregisterChange(uri: string): void
 | type | [NotifyType](#notifytype12) | 是   | 更改的通知类型。|
 | isDirectory | Array&lt;boolean&gt; | 是   | 指示更改的URI是否为目录。true：是目录。false：非目录。|
 | uris | Array&lt;string&gt; | 是   | 需要更改的URI列表。|
+
+
+## HistoryVersion<sup>20+</sup>
+
+端云文件历史版本信息，调用端云文件版本管理类[FileVersion](#fileversion20)的[gethistoryversionlist](#gethistoryversionlist20)方法时，历史版本列表中的属性。
+
+### 属性
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+| 名称     | 类型   | 说明 |
+| ---------- | ------ | ---- |
+| editedTime | number | 文件内容修改时间。 |
+| fileSize | number | 文件大小，单位：Byte。 |
+| versionId | string | 文件版本号。 |
+| originalFileName | string | 当前版本对应的文件名。 |
+| sha256 | string | 当前版本对应文件内容的哈希值。 |
+| autoResolved | boolean | 当前版本是否为自动解决冲突的版本。<br>应用设置手动解冲突时，默认返回false，无意义。<br>应用设置自动解冲突时，端侧会自动解冲突，true表示当前版本存在冲突，端云服务已自动解决冲突，false表示无冲突，未自动解冲突。 |
+
+**补充说明**：当本地和他端同时修改文件产生冲突时，当前端云同步有自动解冲突机制，但有些应用希望由用户手动解决冲突，此时应用可以通过在项目工程的/entry/src/main/resources/base/profile目录下增加cloudkit_config.json文件，并配置manualConflictResolutionEnable为true，表示手动解决冲突使能；若应用不需要手动解决冲突，可以不配置该文件或者配置manualConflictResolutionEnable为false，表示采用已有的自动解冲突策略。
+
+配置文件cloudkit_config.json样例：
+
+  ```json
+  {
+    "cloudKitConfig": {
+      "cloudFileSyncConfig": {
+        "manualConflictResolutionEnable": "true"
+      }
+    }
+  }
+  ```
+
+## VersionDownloadProgress<sup>20+</sup>
+
+历史版本文件下载状态和进度信息，调用端云文件版本管理类[FileVersion](#fileversion20)的[downloadHistoryVersion](#downloadhistoryversion20)方法时，回调函数的入参类型。
+
+### 属性
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+| 名称 | 类型 | 必填 | 说明 |
+| ---------- | ------ | ------ | ---- |
+| state | [State](#state11) | 是 | 所选版本云文件的下载状态。 |
+| progress | number | 是 | 下载进度。 |
+| errType | [DownloadErrorType](#downloaderrortype11) | 是 | 若出现下载失败，失败的错误类型。 |
+
+## FileVersion<sup>20+</sup>
+
+端云文件版本管理类。支持对端云文件的历史版本进行管理，提供获取文件历史版本信息列表的能力，通过历史版本信息，可将历史版本下载到本地；并提供历史版本文件替换当前本地文件的能力，针对版本冲突，提供查询冲突标志，解除冲突标志的能力。
+
+### construct<sup>20+</sup>
+
+constructor()
+
+端云文件版本管理的构造函数，用于获取FileVersion类的实例。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 22400005 | Inner error. Possible causes: 1.Failed to access the database or execute the SQL statement. 2.System error, such as a null pointer, insufficient memory or a JS engine exception. |
+
+**示例：**
+
+  ```ts
+  let fileVersion = new cloudSync.FileVersion();
+  ```
+
+### getHistoryVersionList<sup>20+</sup>
+
+getHistoryVersionList(uri: string, versionNumLimit: number): Promise&lt;Array&lt;HistoryVersion&gt;&gt;
+
+获取历史版本列表，可限制传出列表长度，当云上版本数量小于参数限制时，按照实际版本数量返回历史版本列表。使用Promise异步回调。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| uri | string | 是   |  文件的URI。 |
+| versionNumLimit | number | 是 | 历史版本列表长度限制。 |
+
+**返回值：**
+
+| 类型  | 说明 |
+| ------ | ---- |
+| Promise&lt;Array&lt;[HistoryVersion](#historyversion20)&gt;&gt; | Promise对象，返回历史版本列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 13600001 | IPC error. Possible causes: 1.IPC failed or timed out. 2.Failed to load the service. |
+| 13900002 | No such file or directory. |
+| 13900010 | Try again. |
+| 13900012 | Permission denied by the file system. |
+| 13900020 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 14000002 | Invalid URI. |
+| 22400002 | Network unavailable. |
+| 22400005 | Inner error. Possible causes: 1.Failed to access the database or execute the SQL statement. 2.System error, such as a null pointer, insufficient memory or a JS engine exception. |
+
+**示例：**
+
+  ```ts
+  import { fileUri } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let fileVersion = new cloudSync.FileVersion();
+
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+  let limit = 10;
+
+  fileVersion.getHistoryVersionList(uri, limit).then((versionList: Array<cloudSync.HistoryVersion>) => {
+    for(let i = 0, len = versionList.length; i < len; i++) {
+      console.info("get history versionId: " + versionList[i].versionId);
+    }
+  }).catch((err: BusinessError) => {
+    console.error("get history version failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+### downloadHistoryVersion<sup>20+</sup>
+
+downloadHistoryVersion(uri: string, versionId: string, callback: Callback&lt;[VersionDownloadProgress](#versiondownloadprogress20)&gt;): Promise&lt;string&gt;
+
+根据版本号获取指定文件的某一版本的文件内容。用户通过版本号指定云上某一版本，将其下载到本地临时存储路径，临时文件由应用自行决定是否替换原始文件，也可以选择保留或直接删除。使用Promise异步回调。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| uri | string | 是   |  文件的URI。 |
+| versionId | string | 是 | 文件某一版本的版本号，格式以接口[gethistoryversionlist](#gethistoryversionlist20)返回为准。 |
+| callback | Callback&lt;[VersionDownloadProgress](#versiondownloadprogress20)&gt; | 是 | 下载进度的回调。 |
+
+**返回值：**
+
+| 类型  | 说明 |
+| ------ | ---- |
+| Promise&lt;string&gt; | Promise对象，返回历史版本临时存储文件的URI。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 13600001 | IPC error. Possible causes: 1.IPC failed or timed out. 2.Failed to load the service. |
+| 13900002 | No such file or directory. |
+| 13900010 | Try again. |
+| 13900012 | Permission denied by the file system. |
+| 13900020 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 14000002 | Invalid URI. |
+| 22400002 | Network unavailable. |
+| 22400005 | Inner error. Possible causes: 1.Failed to access the database or execute the SQL statement. 2.System error, such as a null pointer, insufficient memory or a JS engine exception. |
+
+**示例：**
+
+  ```ts
+  import { fileUri } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let fileVersion = new cloudSync.FileVersion();
+
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+  let versionId = '123456'; // 以 getHistoryVersionList 方法返回的格式为准，此处仅作为 demo 示例。
+
+  let callback = (data: cloudSync.VersionDownloadProgress) => {
+    if (data.state == cloudSync.State.RUNNING) {
+      console.info("download progress: " + data.progress);
+    } else if (data.state == cloudSync.State.FAILED) {
+      console.info("download failed errType: " + data.errType);
+    } else if (data.state == cloudSync.State.COMPLETED) {
+      console.info("download version file success");
+    }
+  };
+
+  fileVersion.downloadHistoryVersion(uri, versionId, callback).then((fileUri: string) => {
+    console.info("success to begin download, downloadFileUri: " + fileUri);
+  }).catch((err: BusinessError) => {
+    console.error("download history version file failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+### replaceFileWithHistoryVersion<sup>20+</sup>
+
+replaceFileWithHistoryVersion(originalUri: string, versionUri: string): Promise&lt;void&gt;
+
+提供使用历史版本文件替换本地文件的能力。在替换前，需要调用[downloadHistoryVersion](#downloadhistoryversion20)方法对选择的历史版本进行下载并拿到versionUri；直接调用此接口或者versionUri非法会产生异常；替换完成后会删除临时存储文件。使用Promise异步回调。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| originalUri | string | 是   |  本地文件的URI。 |
+| versionUri | string | 是 | 历史版本文件的URI。 |
+
+**返回值：**
+
+| 类型  | 说明 |
+| ------ | ---- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 13600001 | IPC error. Possible causes: 1.IPC failed or timed out. 2.Failed to load the service. |
+| 13900002 | No such file or directory. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900010 | Try again. |
+| 13900012 | Permission denied by the file system. |
+| 13900020 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 14000002 | Invalid URI. |
+| 22400005 | Inner error. Possible causes: 1.Failed to access the database or execute the SQL statement. 2.System error, such as a null pointer, insufficient memory or a JS engine exception. |
+| 22400007 | Version file not exist. |
+
+**示例：**
+
+  ```ts
+  import { fileUri } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let fileVersion = new cloudSync.FileVersion();
+
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+  let versionId = '123456'; // 以 getHistoryVersionList 方法返回的格式为准，此处仅作为 demo 示例。
+
+  let callback = (data: cloudSync.VersionDownloadProgress) => {
+    if (data.state == cloudSync.State.RUNNING) {
+      console.info("download progress: " + data.progress);
+    } else if (data.state == cloudSync.State.FAILED) {
+      console.info("download failed errType: " + data.errType);
+    } else if (data.state == cloudSync.State.COMPLETED) {
+      console.info("download version file success");
+    }
+  };
+
+  let versionUri = await fileVersion.downloadHistoryVersion(uri, versionId, callback);
+  fileVersion.replaceFileWithHistoryVersion(uri, versionUri).then(() => {
+    console.info("replace file with history version success.");
+  }).catch((err: BusinessError) => {
+    console.error("replace file with history version filed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+### isFileConflict<sup>20+</sup>
+
+isFileConflict(uri: string): Promise&lt;boolean&gt;
+
+获取本地文件版本冲突标志。使用Promise异步回调。此方法只有应用在配置手动解冲突后才会生效，否则默认自动解冲突，返回值为false，由同步流程自动完成解冲突；
+
+当应用配置手动解冲突后，调用此方法会返回当前文件是否与云侧文件产生冲突，并且由应用提示用户对冲突进行处理，在冲突解决前不会再自动同步上云。当处理完冲突后，需要调用[clearfileconflict](#clearfileconflict20)方法来清除冲突标志，后续才会继续触发同步，与云端保持一致。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| uri | string | 是   |  文件的URI。 |
+
+**返回值：**
+
+| 类型  | 说明 |
+| ------ | ---- |
+| Promise&lt;boolean&gt; | Promise对象，返回本地文件和云端文件的冲突标志，true表示冲突，false表示不冲突。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 13600001 | IPC error. Possible causes: 1.IPC failed or timed out. 2.Failed to load the service. |
+| 13900002 | No such file or directory. |
+| 13900010 | Try again. |
+| 13900012 | Permission denied by the file system. |
+| 13900020 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 14000002 | Invalid URI. |
+| 22400005 | Inner error. Possible causes: 1.Failed to access the database or execute the SQL statement. 2.System error, such as a null pointer, insufficient memory or a JS engine exception. |
+
+**示例：**
+
+  ```ts
+  import { fileUri } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let fileVersion = new cloudSync.FileVersion();
+
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+
+  fileVersion.isFileConflict(uri).then((isConflict: boolean) => {
+    console.info("current file is conflict: " + isConflict);
+  }).catch((err: BusinessError) => {
+    console.error("get current file conflict flag failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+### clearFileConflict<sup>20+</sup>
+
+clearFileConflict(uri: string): Promise&lt;void&gt;
+
+清除本地文件版本冲突标志。如果产生冲突，本地解决冲突后需要调用此方法来清除冲突标记，后续才可以触发自动同步机制，和云上保持一致。使用Promise异步回调。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| uri | string | 是   |  待清除冲突标志的文件URI。 |
+
+**返回值：**
+
+| 类型  | 说明 |
+| ------ | ---- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 13600001 | IPC error. Possible causes: 1.IPC failed or timed out. 2.Failed to load the service. |
+| 13900002 | No such file or directory. |
+| 13900010 | Try again. |
+| 13900012 | Permission denied by the file system. |
+| 13900020 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 14000002 | Invalid URI. |
+| 22400005 | Inner error. Possible causes: 1.Failed to access the database or execute the SQL statement. 2.System error, such as a null pointer, insufficient memory or a JS engine exception. |
+
+**示例：**
+
+  ```ts
+  import { fileUri } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let fileVersion = new cloudSync.FileVersion();
+
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+
+  let isConflict = await fileVersion.isFileConflict(uri);
+  fileVersion.clearFileConflict(uri).then(() => {
+    console.info("clean file conflict flag success");
+  }).catch((err: BusinessError) => {
+    console.error("clean file conflict flag failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
