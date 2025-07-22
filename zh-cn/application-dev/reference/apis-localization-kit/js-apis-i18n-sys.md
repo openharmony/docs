@@ -846,6 +846,121 @@ try {
 }
 ```
 
+### getSystemNumericalDatePatterns<sup>20+</sup>
+
+static getSystemNumericalDatePatterns(): Map&lt;string, string&gt;
+
+获取系统支持的数字日期格式及其示例。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| Map&lt;string, string&gt; | 获取系统支持的数字日期格式及其示例。其中Map的key表示数字日期格式，形如`dd/MM/y`；value表示数字日期示例，形如`18/07/2025`。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let datePatterns: Map<string, string> = i18n.System.getSystemNumericalDatePatterns();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getSystemNumericalDatePatterns failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getUsingNumericalDatePattern<sup>20+</sup>
+
+static getUsingNumericalDatePattern(): string
+
+获取系统当前使用的数字日期格式。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| string | 系统当前使用的数字日期格式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let datePattern: string = i18n.System.getUsingNumericalDatePattern();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getUsingNumericalDatePattern failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### setSystemNumericalDatePattern<sup>20+</sup>
+
+static setSystemNumericalDatePattern(identifier: string): void
+
+设置系统的数字日期格式。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型      | 必填   | 说明                              |
+| ---- | ------- | ---- | ------------------------------- |
+| identifier | string | 是 | 系统支持的数字日期格式。支持的范围可以通过[getSystemNumericalDatePatterns](#getsystemnumericaldatepatterns20)获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  i18n.System.setSystemNumericalDatePattern("dd/MM/y"); // 如果设置当前系统不支持的数字日期格式，系统会抛出8900001错误码
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.setSystemNumericalDatePattern failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
 ## SystemLocaleManager<sup>10+</sup>
 
 ### constructor<sup>10+</sup>
