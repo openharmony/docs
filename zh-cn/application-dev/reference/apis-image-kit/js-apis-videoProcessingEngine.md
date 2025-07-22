@@ -168,6 +168,7 @@ enhanceDetail(sourceImage: image.PixelMap, width: number, height: number, level?
 **示例：**
 
 ```ts
+import image from '@kit.ImageKit';
 import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
 async function enhanceDetail(sourceImage: image.PixelMap, width: number, height: number) {
   videoProcessingEngine.initializeEnvironment();
@@ -213,6 +214,7 @@ enhanceDetail(sourceImage: image.PixelMap, scale: number, level?: QualityLevel):
 **示例：**
 
 ```ts
+import image from '@kit.ImageKit';
 import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
 async function enhanceDetail(sourceImage: image.PixelMap, scale: number) {
   videoProcessingEngine.initializeEnvironment();
@@ -260,6 +262,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, width: number, height: number, le
 **示例：**
 
 ```ts
+import image from '@kit.ImageKit';
 import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
 async function enhanceDetailSync(sourceImage:image.PixelMap, width: number, height: number) {
   videoProcessingEngine.initializeEnvironment();
@@ -307,6 +310,7 @@ enhanceDetailSync(sourceImage: image.PixelMap, scale: number, level?: QualityLev
 **示例：**
 
 ```ts
+import image from '@kit.ImageKit';
 import videoProcessingEngine from '@ohos.multimedia.videoProcessingEngine';
 async function enhanceDetailSync(sourceImage:image.PixelMap, scale: number) {
   videoProcessingEngine.initializeEnvironment();

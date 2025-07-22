@@ -361,17 +361,17 @@ struct FocusAndBlurExample {
             .height(45)
             .margin(5)
             .onFocus(() => {
-              console.log("Button1 onFocus");
+              console.info("Button1 onFocus");
             })
             .onBlur(() => {
-              console.log("Button1 onBlur");
+              console.info("Button1 onBlur");
             })
         }
         .onFocus(() => {
-          console.log("Row1 onFocus");
+          console.info("Row1 onFocus");
         })
         .onBlur(() => {
-          console.log("Row1 onBlur");
+          console.info("Row1 onBlur");
         })
 
         Row() { // 父节点Row2
@@ -380,17 +380,17 @@ struct FocusAndBlurExample {
             .height(45)
             .margin(5)
             .onFocus(() => {
-              console.log("Button2 onFocus");
+              console.info("Button2 onFocus");
             })
             .onBlur(() => {
-              console.log("Button2 onBlur");
+              console.info("Button2 onBlur");
             })
         }
         .onFocus(() => {
-          console.log("Row2 onFocus");
+          console.info("Row2 onFocus");
         })
         .onBlur(() => {
-          console.log("Row2 onBlur");
+          console.info("Row2 onBlur");
         })
       }.width('100%').margin({ top: 5 })
     }.width('100%')
@@ -577,7 +577,7 @@ struct ScopeFocusExample {
         .margin(5)
         .onClick(() => {
           this.scopeFocusState = !this.scopeFocusState;
-          console.log("Button1 onFocus");
+          console.info("Button1 onFocus");
         })
       Button('Button2')
         .width(140)

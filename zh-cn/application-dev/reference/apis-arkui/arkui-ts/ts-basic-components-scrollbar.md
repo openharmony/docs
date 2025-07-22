@@ -241,7 +241,7 @@ struct StickyNestedScroll {
                   .fontSize(16)
               }
               .listCard()
-            }, (item: string) => item)
+            }, (item: number) => item.toString())
           }
           .scrollBar(BarState.Off)
           .nestedScroll({

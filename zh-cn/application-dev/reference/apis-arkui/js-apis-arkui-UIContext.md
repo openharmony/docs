@@ -176,10 +176,7 @@ getComponentUtils(): ComponentUtils
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-uiContext.getComponentUtils();
-```
+完整示例请参考[getComponentUtils](js-apis-arkui-componentUtils.md)中的示例。
 
 ### getUIInspector
 
@@ -1329,10 +1326,7 @@ getDragController(): DragController
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-uiContext.getDragController();
-```
+完整示例请参考[DragController](#dragcontroller11)中的示例。
 
 ### keyframeAnimateTo<sup>11+</sup>
 
@@ -1369,10 +1363,7 @@ getFocusController(): FocusController
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-uiContext.getFocusController();
-```
+完整示例请参考[FocusController](js-apis-arkui-UIContext.md#focuscontroller12)中的示例。
 
 ### getFilteredInspectorTree<sup>12+</sup>
 
@@ -1528,12 +1519,15 @@ struct ComponentPage {
       Button('getFilteredInspectorTreeById').onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         try {
-          let inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1);
-          console.log(`result1: ${inspectorStr}`);
+          let inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1, ["id", "src"]);
+          console.info(`result1: ${inspectorStr}`);
           inspectorStr = JSON.stringify(JSON.parse(inspectorStr)['$children'][0]);
-          console.log(`result2: ${inspectorStr}`);
+          console.info(`result2: ${inspectorStr}`);
+          inspectorStr = uiContext.getFilteredInspectorTreeById('TEXT', 1, ["src"]);
+          inspectorStr = JSON.stringify(JSON.parse(inspectorStr)['$children'][0]);
+          console.info(`result3: ${inspectorStr}`);
         } catch(e) {
-          console.log(`getFilteredInspectorTreeById error: ${e}`);
+          console.info(`getFilteredInspectorTreeById error: ${e}`);
         }
       })
     }
@@ -1545,10 +1539,11 @@ struct ComponentPage {
 返回的JSON字符串结构如下：
 <!--code_no_check-->
 ```ts
-result1: {"$type":"root","width":"1260.000000","height":"2720.000000","$resolution":"3.250000","$children":[{"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"borderStyle":"BorderStyle.Solid","borderColor":"#FF000000","borderWidth":"0.00vp","borderRadius":{"topLeft":"0.00vp","topRight":"0.00vp","bottomLeft":"0.00vp","bottomRight":"0.00vp"}}}]}
-result2: {"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"borderStyle":"BorderStyle.Solid","borderColor":"#FF000000","borderWidth":"0.00vp","borderRadius":{"topLeft":"0.00vp","topRight":"0.00vp","bottomLeft":"0.00vp","bottomRight":"0.00vp"}}}
+result1: {"$type":"root","width":"1260.000000","height":"2720.000000","$resolution":"3.250000","$children":[{"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"id":"TEXT","isLayoutDirtyMarked":false,"isRenderDirtyMarked":false,"isMeasureBoundary":false,"hasPendingRequest":false,"isFirstBuilding":false}}]}
+result2: {"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"id":"TEXT","isLayoutDirtyMarked":false,"isRenderDirtyMarked":false,"isMeasureBoundary":false,"hasPendingRequest":false,"isFirstBuilding":false}}
+result3: {"$type":"Text","$ID":6,"type":"build-in","$rect":"[457.00, 123.00],[804.00,199.00]","$debugLine":"","$attrs":{"isLayoutDirtyMarked":false,"isRenderDirtyMarked":false,"isMeasureBoundary":false,"hasPendingRequest":false,"isFirstBuilding":false}}
 ```
-若需获取getFilteredInspectorTreeById方法中首个参数id指定的组件，须参照示例代码将getFilteredInspectorTreeById方法结果先转换为json对象，随后提取$children数组的首项。
+若需获取getFilteredInspectorTreeById方法中首个参数id指定的组件，须参照示例代码将getFilteredInspectorTreeById方法结果先转换为json对象，随后提取$children数组的首项。通过result2和result3的结果对比可知，如果filters参数由["id", "src"]改为["src"]，获取到的\$attrs属性将缺少"id"这一key。
 
 
 ### getCursorController<sup>12+</sup>
@@ -1569,10 +1564,7 @@ getCursorController(): CursorController
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-uiContext.CursorController();
-```
+完整示例请参考[CursorController](#cursorcontroller12)中的示例。
 
 ### getContextMenuController<sup>12+</sup>
 
@@ -1640,10 +1632,7 @@ getComponentSnapshot(): ComponentSnapshot
 
 **示例：**
 
-<!--code_no_check-->
-```ts
-uiContext.getComponentSnapshot();
-```
+完整示例请参考[ComponentSnapshot](#componentsnapshot12)中的示例。
 
 ### vp2px<sup>12+</sup>
 
@@ -4199,13 +4188,83 @@ on(type: 'willClick', callback: GestureEventListenerCallback): void
 **示例：**
 
 ```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
+// 定义监听回调函数
+function willClickGestureCallback(event: GestureEvent, node?: FrameNode) {
+  console.info('Example willClickCallback GestureEvent is called');
+}
 
-// callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('willClick', callback);
+function willClickCallback(event: ClickEvent, node?: FrameNode) {
+  console.info('Example willClickCallback ClickEvent is called');
+}
+
+function didClickGestureCallback(event: GestureEvent, node?: FrameNode) {
+  console.info('Example didClickCallback GestureEvent is called');
+}
+
+function didClickCallback(event: ClickEvent, node?: FrameNode) {
+  console.info('Example didClickCallback ClickEvent is called');
+}
+
+@Entry
+@Component
+struct ClickExample {
+  @State clickCount: number = 0;
+  @State tapGestureCount: number = 0;
+
+  aboutToAppear(): void {
+    // 添加监听
+    let observer = this.getUIContext().getUIObserver();
+    observer.on('willClick', willClickGestureCallback);
+    observer.on('willClick', willClickCallback);
+    observer.on('didClick', didClickGestureCallback);
+    observer.on('didClick', didClickCallback);
+  }
+
+  aboutToDisappear(): void {
+    // 取消监听
+    let observer = this.getUIContext().getUIObserver();
+    observer.off('willClick', willClickGestureCallback);
+    observer.off('willClick', willClickCallback);
+    // 如果不选择回调，则会取消所有监听的回调
+    observer.off('didClick');
+  }
+
+  build() {
+    Column() {
+      /**
+       * onClick和TapGesture在后端的处理是一致的
+       * 所以无论是触发onClick还是触发TapGesture
+       * on('willClick')两种类型入参的回调（GestureEvent和ClickEvent）都会被触发
+       * 同理，on('didClick')的两种回调也会被触发
+       */
+      Column() {
+        Text('Click Count: ' + this.clickCount)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .onClick((event: ClickEvent) => {
+        this.clickCount++;
+        console.info('Example Click event is called');
+      })
+
+      Column() {
+        Text('TapGesture Count: ' + this.tapGestureCount)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .gesture(TapGesture({ count: 2 }).onAction((event: TapGestureEvent) => {
+        this.tapGestureCount++;
+        console.info('Example Click event is called');
+      }))
+    }
+  }
+}
 ```
 
 ### off('willClick')<sup>12+</sup>
@@ -4227,15 +4286,7 @@ off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
 **示例：**
 
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('willClick', callback);
-```
+完整示例请参考[on('willClick')](#onwillclick12)中的示例。
 
 ### on('didClick')<sup>12+</sup>
 
@@ -4256,15 +4307,7 @@ on(type: 'didClick', callback: GestureEventListenerCallback): void
 
 **示例：**
 
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('didClick', callback);
-```
+完整示例请参考[on('willClick')](#onwillclick12)中的示例。
 
 ### off('didClick')<sup>12+</sup>
 
@@ -4285,15 +4328,7 @@ off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
 **示例：**
 
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('didClick', callback);
-```
+完整示例请参考[on('willClick')](#onwillclick12)中的示例。
 
 ### on('willClick')<sup>12+</sup>
 
@@ -4314,15 +4349,7 @@ on(type: 'willClick', callback: ClickEventListenerCallback): void
 
 **示例：**
 
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('willClick', callback);
-```
+完整示例请参考[on('willClick')](#onwillclick12)中的示例。
 
 ### off('willClick')<sup>12+</sup>
 
@@ -4343,15 +4370,7 @@ off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
 **示例：**
 
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('willClick', callback);
-```
+完整示例请参考[on('willClick')](#onwillclick12)中的示例。
 
 ### on('didClick')<sup>12+</sup>
 
@@ -4372,15 +4391,7 @@ on(type: 'didClick', callback: ClickEventListenerCallback): void
 
 **示例：**
 
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('didClick', callback);
-```
+完整示例请参考[on('willClick')](#onwillclick12)中的示例。
 
 ### off('didClick')<sup>12+</sup>
 
@@ -4401,15 +4412,7 @@ off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
 **示例：**
 
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('didClick', callback);
-```
+完整示例请参考[on('willClick')](#onwillclick12)中的示例。
 
 ### on('tabContentUpdate')<sup>12+</sup>
 
@@ -4724,15 +4727,7 @@ off(type: 'beforePanStart', callback?: PanListenerCallback): void
 
 **示例：**
 
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver, FrameNode } from '@kit.ArkUI';
-
-// callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => {};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('beforePanStart', callback);
-```
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例。
 
 ### on('afterPanStart')<sup>19+</sup>
 
@@ -8966,6 +8961,10 @@ cancelDataLoading(key: string): void
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. |
 | 190004      | Operation failed. |
+
+**示例：**
+
+请参考[拖拽异步获取数据](./arkui-ts/ts-universal-events-drag-drop.md#示例3拖拽异步获取数据)。
 
 ### notifyDragStartRequest<sup>18+</sup>
 

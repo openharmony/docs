@@ -246,7 +246,7 @@ struct PanGestureWithFingerCount {
           })
           .onActionUpdate((event: GestureEvent) => {
             if (event) {
-              console.log('fingerInfos',JSON.stringify(event.fingerInfos))
+              console.info('fingerInfos',JSON.stringify(event.fingerInfos))
               this.offsetX = this.positionX + event.offsetX
               this.offsetY = this.positionY + event.offsetY
               this.fingerCount = event.fingerInfos?.length || 0  // 更新触点数量,记录下参与当前手势的有效触点的数量

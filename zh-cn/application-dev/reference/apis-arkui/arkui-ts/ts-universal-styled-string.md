@@ -1237,7 +1237,7 @@ struct styled_string_demo1 {
   @State color1: Color = Color.Blue;
   scroll: Scroller = new Scroller();
   fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
-  fontStyleAttr2: StyledStringValue = new TextStyle({ fontColor: Color.Orange });
+  fontStyleAttr2: TextStyle = new TextStyle({ fontColor: Color.Orange });
   // 创建可读写属性字符串的对象mutableStyledString1
   mutableStyledString1: MutableStyledString = new MutableStyledString("运动45分钟");
   // 创建构造入参有字符串和样式的对象mutableStyledString2
@@ -1501,7 +1501,7 @@ import { LengthMetrics, LengthUnit } from '@kit.ArkUI';
 @Component
 struct styled_string_demo3 {
   fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
-  fontStyleAttr2: StyledStringValue = new TextStyle({
+  fontStyleAttr2: TextStyle = new TextStyle({
     fontColor: Color.Orange,
     fontSize: LengthMetrics.vp(20),
     fontWeight: FontWeight.Bolder,
@@ -1509,7 +1509,7 @@ struct styled_string_demo3 {
     fontFamily: "Arial",
     superscript: SuperscriptStyle.SUPERSCRIPT
   });
-  fontStyleAttr3: StyledStringValue = new TextStyle({
+  fontStyleAttr3: TextStyle = new TextStyle({
     fontColor: Color.Orange,
     fontSize: LengthMetrics.vp(20),
     fontWeight: FontWeight.Lighter,
@@ -2043,7 +2043,6 @@ struct styled_string_demo6 {
   customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 80, 10);
   customSpan2: MyCustomSpan = new MyCustomSpan("World", 80, 40);
   style: MutableStyledString = new MutableStyledString(this.customSpan1);
-  textStyle: MutableStyledString = new MutableStyledString("123");
   textController: TextController = new TextController();
   isPageShow: boolean = true;
 
@@ -2112,7 +2111,7 @@ struct styled_string_demo6 {
 
 ```ts
 // xxx.ets
-class MyUserDateSpan extends UserDataSpan {
+class MyUserDataSpan extends UserDataSpan {
   constructor(name: string, age: number) {
     super();
     this.name = name;
@@ -2133,7 +2132,7 @@ struct styled_string_demo7 {
     start: 0,
     length: 11,
     styledKey: StyledStringKey.USER_DATA,
-    styledValue: new MyUserDateSpan("hello", 21)
+    styledValue: new MyUserDataSpan("hello", 21)
   }]);
 
   onPageShow(): void {
@@ -2145,7 +2144,7 @@ struct styled_string_demo7 {
       Text(undefined, { controller: this.controller })
       Button("get user data").onClick(() => {
         let arr = this.styleString.getStyles(0, this.styleString.length);
-        let userDataSpan = arr[0].styledValue as MyUserDateSpan;
+        let userDataSpan = arr[0].styledValue as MyUserDataSpan;
         this.name = userDataSpan.name;
         this.age = userDataSpan.age;
       })
@@ -2173,8 +2172,8 @@ struct styled_string_demo8 {
   imagePixelMap: image.PixelMap | undefined = undefined;
   @State html: string | undefined = undefined;
   @State styledString: StyledString | undefined = undefined;
-  controller1: TextController = new TextController;
-  controller2: TextController = new TextController;
+  controller1: TextController = new TextController();
+  controller2: TextController = new TextController();
   private uiContext: UIContext = this.getUIContext();
 
   async aboutToAppear() {
@@ -2208,7 +2207,7 @@ struct styled_string_demo8 {
             styledValue: new TextStyle({ fontColor: Color.Green, fontSize: LengthMetrics.px(50) })
           }]);
           if (this.imagePixelMap !== undefined) {
-            let mutableStyledString2 = new MutableStyledString(new ImageAttachment({
+            let mutableStyledString2: MutableStyledString = new MutableStyledString(new ImageAttachment({
               value: this.imagePixelMap,
               size: { width: 50, height: 50 },
             }));
@@ -2245,7 +2244,7 @@ struct styled_string_demo8 {
 @Entry
 @Component
 struct styled_string_demo9 {
-  urlString: StyledStringValue = new UrlStyle("https://www.example.com");
+  urlString: UrlStyle = new UrlStyle("https://www.example.com");
   mutableStyledString: MutableStyledString = new MutableStyledString("Hello World", [{
     start: 0,
     length: "Hello".length,

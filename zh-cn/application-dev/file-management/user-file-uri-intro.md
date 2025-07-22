@@ -175,6 +175,7 @@ system_basic等级及以上的应用使用此类URI的方式除了上述通过ph
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { dataSharePredicates } from '@kit.ArkData';
+import { common } from '@kit.AbilityKit';
 
 // 定义一个URI数组，用于接收PhotoViewPicker选择图片返回的URI
 let uris: Array<string> = [];
