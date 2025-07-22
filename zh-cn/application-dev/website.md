@@ -3614,19 +3614,19 @@
           - [@system.file (文件存储)](reference/apis-core-file-kit/js-apis-system-file.md)
       - C API<!--core-file-c-->
         - 模块<!--core-file-module-->
-          - [Environment](reference/apis-core-file-kit/_environment.md)
-          - [FileIO](reference/apis-core-file-kit/_file_i_o.md)
-          - [FileShare](reference/apis-core-file-kit/file_share.md)
-          - [Fileuri](reference/apis-core-file-kit/fileuri.md)
+          - [Environment](reference/apis-core-file-kit/capi-environment.md)
+          - [FileIO](reference/apis-core-file-kit/capi-fileio.md)
+          - [fileShare](reference/apis-core-file-kit/capi-fileshare.md)
+          - [fileUri](reference/apis-core-file-kit/capi-fileuri.md)
         - 头文件<!--core-file-headerfile-->
-          - [error_code.h](reference/apis-core-file-kit/error__code_8h.md)
-          - [oh_environment.h](reference/apis-core-file-kit/oh__environment_8h.md)
-          - [oh_file_share.h](reference/apis-core-file-kit/oh__file__share_8h.md)
-          - [oh_file_uri.h](reference/apis-core-file-kit/oh__file__uri_8h.md)
-          - [oh_fileio.h](reference/apis-core-file-kit/oh__fileio_8h.md)
+          - [oh_environment.h](reference/apis-core-file-kit/capi-oh-environment-h.md)
+          - [error_code.h](reference/apis-core-file-kit/capi-error-code-h.md)
+          - [oh_fileio.h](reference/apis-core-file-kit/capi-oh-fileio-h.md)
+          - [oh_file_share.h](reference/apis-core-file-kit/capi-oh-file-share-h.md)
+          - [oh_file_uri.h](reference/apis-core-file-kit/capi-oh-file-uri-h.md)
         - 结构体<!--core-file-struct-->
-          - [FileShare_PolicyErrorResult](reference/apis-core-file-kit/_file_share___policy_error_result.md)
-          - [FileShare_PolicyInfo](reference/apis-core-file-kit/_file_share___policy_info.md)
+          - [FileShare_PolicyErrorResult](reference/apis-core-file-kit/capi-fileshare-fileshare-policyerrorresult.md)
+          - [FileShare_PolicyInfo](reference/apis-core-file-kit/capi-fileshare-fileshare-policyinfo.md)
       - 错误码<!--core-file-arkts-errcode-->
         - [文件管理错误码](reference/apis-core-file-kit/errorcode-filemanagement.md)
     - Form Kit（卡片开发服务）<!--form-api-->
