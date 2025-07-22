@@ -333,7 +333,7 @@ node_api_get_module_file_name | 否 |
     add_definitions( "-DLOG_TAG=\"testTag\"")
 
     include_directories(${NATIVERENDER_ROOT_PATH}
-                        ${NATIVERENDER_ROOT_PATH}/include
+                        ${NATIVERENDER_ROOT_PATH}/include)
 
     add_library(entry SHARED napi_init.cpp)
     target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)

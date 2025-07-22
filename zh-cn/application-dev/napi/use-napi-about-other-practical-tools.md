@@ -53,13 +53,13 @@ static napi_value GetModuleFileName(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getModuleFileName: () => string | void;
+export const getModuleFileName: () => string | undefined;
 ```
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let filename = testNapi.getModuleFileName();
@@ -99,13 +99,13 @@ static napi_value StrictEquals(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const strictEquals : (lhs: string, rhs: string | number) => boolean | void;
+export const strictEquals: (lhs: string, rhs: string | number) => boolean | undefined;
 ```
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   let lhs = "123";
@@ -117,7 +117,6 @@ try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_strict_equals: %{public}s', testNapi.strictEquals(lhs, num));
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_strict_equals error: %{public}s', error.message);
-
 }
 ```
 
