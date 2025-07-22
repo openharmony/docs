@@ -134,10 +134,10 @@ Web组件可以通过W3C标准协议接口拉起摄像头和麦克风，通过[o
       // 返回的Promise对象
       let promise = navigator.mediaDevices.getUserMedia(constraints);
       // then()异步，调用MediaStream对象作为参数
-      promise.then(function (MediaStream) {
+      promise.then(function(MediaStream) {
         video.srcObject = MediaStream;
         video.play();
-      }).catch(function (error) {
+      }).catch(function(err) {
     	  console.log(err.name + ": " + err.message);
       });
     }
