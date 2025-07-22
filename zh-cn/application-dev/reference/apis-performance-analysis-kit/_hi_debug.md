@@ -113,7 +113,7 @@
 | void [OH_HiDebug_GetAppMemoryLimit](#oh_hidebug_getappmemorylimit) ([HiDebug_MemoryLimit](_hi_debug___memory_limit.md) \*memoryLimit) | 获取应用程序进程的内存限制。 | 
 | [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_StartAppTraceCapture](#oh_hidebug_startapptracecapture) ([HiDebug_TraceFlag](#hidebug_traceflag) flag, uint64_t tags, uint32_t limitSize, char \*fileName, uint32_t length) | 启动应用trace采集。 | 
 | [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_StopAppTraceCapture](#oh_hidebug_stopapptracecapture) () | 停止采集应用程序trace。 | 
-| [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_GetGraphicsMemory](#oh_hidebug_getgraphicsmemory) (uint32_t \*value) | 获取应用gpu显存大小。 | 
+| [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_GetGraphicsMemory](#oh_hidebug_getgraphicsmemory) (uint32_t \*value) | 获取应用GPU显存大小。 | 
 | int [OH_HiDebug_BacktraceFromFp](#oh_hidebug_backtracefromfp) ([HiDebug_Backtrace_Object](#hidebug_backtrace_object) object, void \*startFp, void \*\*pcArray, int size) | 根据给定的fp地址进行栈回溯，该函数异步信号安全。 | 
 | [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_SymbolicAddress](#oh_hidebug_symbolicaddress) ([HiDebug_Backtrace_Object](#hidebug_backtrace_object) object, void \*pc, void \*arg, [OH_HiDebug_SymbolicAddressCallback](#oh_hidebug_symbolicaddresscallback) callback) | 通过给定的pc地址获取详细的符号信息，该函数非异步信号安全。 | 
 | [HiDebug_Backtrace_Object](#hidebug_backtrace_object) [OH_HiDebug_CreateBacktraceObject](#oh_hidebug_createbacktraceobject) (void) | 创建一个用于栈回溯及栈解析的对象，该函数非异步信号安全。 | 
@@ -875,6 +875,10 @@ double OH_HiDebug_GetAppCpuUsage ()
 
 获取进程的CPU使用率百分比。
 
+> **注意：**
+>
+> 由于该接口涉及跨进程通信，耗时较长，建议不要在主线程中直接调用。
+
 **起始版本：** 12
 
 **返回：**
@@ -911,6 +915,10 @@ void OH_HiDebug_GetAppNativeMemInfo (HiDebug_NativeMemInfo * nativeMemInfo)
 
 获取应用程序进程的内存信息。
 
+> **注意：**
+>
+> 由于该接口需要读取/proc/{pid}/smaps_rollup节点信息，耗时较长，建议不要在主线程中直接调用。
+
 **起始版本：** 12
 
 **参数:**
@@ -930,6 +938,10 @@ HiDebug_ThreadCpuUsagePtr OH_HiDebug_GetAppThreadCpuUsage ()
 
 获取应用所有线程CPU使用情况。
 
+> **注意：**
+>
+> 由于该接口涉及跨进程通信，耗时较长，建议不要在主线程中直接调用。
+
 **起始版本：** 12
 
 **返回：**
@@ -945,7 +957,11 @@ HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemory (uint32_t * value)
 
 **描述**
 
-获取应用gpu显存大小。
+获取应用GPU显存大小。
+
+> **注意：**
+>
+> 由于该接口涉及多次跨进程通信，其耗时可能超过1秒，建议不要在主线程中直接调用该接口。
 
 **起始版本：** 14
 
@@ -973,6 +989,10 @@ double OH_HiDebug_GetSystemCpuUsage ()
 **描述**
 
 获取系统的CPU资源占用情况百分比。
+
+> **注意：**
+>
+> 由于该接口涉及跨进程通信，耗时较长，建议不要在主线程中直接调用。
 
 **起始版本：** 12
 
@@ -1065,6 +1085,10 @@ HiDebug_ErrorCode OH_HiDebug_SymbolicAddress (HiDebug_Backtrace_Object object, v
 **描述**
 
 通过给定的pc地址获取详细的符号信息，该函数非异步信号安全。
+
+> **注意：**
+>
+> 由于该接口涉及多次IO操作，耗时较长，建议不要在主线程中直接调用。
 
 **起始版本：** 20
 
