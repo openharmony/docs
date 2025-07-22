@@ -150,11 +150,9 @@ decoration:{
 
 当copyOptions设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本和复制功能。
 
-从API 20开始支持AI菜单。当enableDataDetector设置为true，并且[copyOptions](#copyoptions)设置为CopyOptions.LocalDevice或CopyOptions.CROSS_DEVICE时，AI菜单生效，菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url（打开链接）、email（新建邮件）、phoneNumber（呼叫）、address（导航至该位置）、dateTime（新建日程提醒）。
-
-AI菜单生效时，需要非编辑态选中单个AI实体，才能展示AI菜单。
-
-从API version 20开始，支持选中文本后，在文本选择菜单与鼠标右键菜单中显示问问小艺选项。当[copyOptions](#copyoptions)设置为CopyOptions.LocalDevice或CopyOptions.CROSS_DEVICE时，若enableDataDetector设置为false，显示问问小艺选项。若enableDataDetector设置为true，此时选中范围内，没有包括一个完整的AI实体或包括超过一个完整的AI实体，才能展示对应的选项。相关选项为[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的askAI（问问小艺）。
+从API version 20开始，组件文本选择菜单支持显示AI菜单。
+当enableDataDetector设置为true，并且[copyOptions](#copyoptions)设置为CopyOptions.LocalDevice或CopyOptions.CROSS_DEVICE，组件在非编辑态选中内容，选中区包含单个AI实体时，根据AI实体的类型，在文本选择菜单中显示AI菜单选项。
+AI菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url（打开链接）、email（新建邮件）、phoneNumber（呼叫）、address（导航至该位置）、dateTime（新建日程提醒）。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1186,7 +1184,7 @@ RichEditor组件的控制器，继承自[RichEditorBaseController](#richeditorba
 ### 导入对象
 
 ```
-controller: RichEditorController = new RichEditorController()；
+controller: RichEditorController = new RichEditorController();
 ```
 
 ### addTextSpan
@@ -1483,7 +1481,7 @@ toStyledString(value: RichEditorRange): StyledString
 ### 导入对象
 
 ```
-controller: RichEditorStyledStringController = new RichEditorStyledStringController()；
+controller: RichEditorStyledStringController = new RichEditorStyledStringController();
 ```
 
 ### getSelection<sup>12+</sup>
@@ -2216,13 +2214,13 @@ struct RichEditorExample {
   controller: RichEditorController = new RichEditorController();
 
   // 自定义键盘组件
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
+        ForEach(['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'], (item: string) => {
           GridItem() {
-            Button(item + "")
-              .width(110).onClick(() => {
+            Button(item).width(110).onClick(() => {
               this.controller.addTextSpan(item + '', {
                 offset: this.controller.getCaretOffset(),
                 style:
@@ -2240,12 +2238,13 @@ struct RichEditorExample {
 
   build() {
     Column() {
-      RichEditor({ controller: this.controller })
-        // 绑定自定义键盘
-        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
-        .height(200)
+      RichEditor({ controller: this.controller })// 绑定自定义键盘
+        .customKeyboard(this.CustomKeyboardBuilder())
+        .border({ width: 1 })
         .borderWidth(1)
         .borderColor(Color.Red)
+        .margin(10)
+        .height(200)
         .width("100%")
     }
   }
@@ -3481,14 +3480,14 @@ struct Index {
   private end: number = -1;
   @State message: string = "[-1, -1]"
   @State content: string = ""
-  @State visable :number = 0;
-  @State index:number = 0;
-  @State offsetx: number = 0;
-  @State textShadows : (ShadowOptions | Array<ShadowOptions> ) =
-    [{ radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },{ radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
-      { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },{ radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
-      { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }];
-  @State textshadowOf : ShadowOptions[] = [];
+  @State textShadows : Array<ShadowOptions> = [
+    { radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },
+    { radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
+    { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },
+    { radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
+    { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }
+  ];
+
   build() {
     Column() {
       Column() {
@@ -4262,25 +4261,27 @@ struct TextExample7 {
 @Entry
 @Component
 struct RichEditorDemo {
-  @State color: Color|string = "";
+  @State color: Color = Color.Black;
   controller: RichEditorController = new RichEditorController();
+
   build() {
     Column() {
-      Row(){
+      Row() {
         Button("改为红色").onClick(() => {
           this.color = Color.Red;
         })
-      }.margin({top:50})
+      }.margin({ top: 50 })
+
       RichEditor({ controller: this.controller })
-        .onReady(()=>{
+        .onReady(() => {
           this.controller.addTextSpan('通过caretColor和selectedBackgroundColor属性设置光标和选中背景色');
         })
         .width("100%")
         .border({ width: 1, radius: 5 })
         .key('RichEditor')
-        .caretColor(this.color)  //光标颜色
-        .selectedBackgroundColor(this.color)  //选中背景色
-        .margin({top:50})
+        .caretColor(this.color)//光标颜色
+        .selectedBackgroundColor(this.color)//选中背景色
+        .margin({ top: 50 })
     }
     .width('100%')
   }
@@ -4496,14 +4497,15 @@ struct RichEditorExample {
 @Component
 struct RichEditorExample {
   controller: RichEditorController = new RichEditorController();
-  @State height1:string|number = '80%';
-  @State height2:number = 100;
-  @State supportAvoidance:boolean = true;
+  @State height1: string | number = '80%';
+  @State height2: number = 100;
+  @State supportAvoidance: boolean = true;
 
   // 自定义键盘组件
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
-      Row(){
+      Row() {
         Button('增加特表情包').onClick(() => {
           this.controller.addTextSpan("\uD83D\uDE0A",
             {
@@ -4514,12 +4516,12 @@ struct RichEditorExample {
             })
         })
       }
+
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
+        ForEach(['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'], (item: string) => {
           GridItem() {
-            Button(item + "")
-              .width(110).onClick(() => {
-              this.controller.addTextSpan(item + '', {
+            Button(item).width(110).onClick(() => {
+              this.controller.addTextSpan(item, {
                 offset: this.controller.getCaretOffset(),
                 style:
                 {
@@ -4537,16 +4539,16 @@ struct RichEditorExample {
 
   build() {
     Column() {
-      Row(){
+      Row() {
         Button("20%")
           .fontSize(24)
-          .onClick(()=>{
+          .onClick(() => {
             this.height1 = "20%";
           })
         Button("80%")
           .fontSize(24)
-          .margin({left:20})
-          .onClick(()=>{
+          .margin({ left: 20 })
+          .onClick(() => {
             this.height1 = "80%";
           })
       }
@@ -4554,10 +4556,12 @@ struct RichEditorExample {
       .alignItems(VerticalAlign.Bottom)
       .height(this.height1)
       .width("100%")
-      .padding({bottom:50})
-      RichEditor({ controller: this.controller })
-        // 绑定自定义键盘
-        .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
+      .padding({ bottom: 50 })
+
+      RichEditor({ controller: this.controller })// 绑定自定义键盘
+        .customKeyboard(this.CustomKeyboardBuilder(), { supportAvoidance: this.supportAvoidance })
+        .margin(10)
+        .border({ width: 1 })
         .borderWidth(1)
         .borderColor(Color.Red)
         .width("100%")
@@ -4679,7 +4683,7 @@ struct RichEditorExample {
         .onPaste(()=>{
           console.info('测试log：onPaste');
         })
-      Text('测试文字去Hellow')
+      Text('测试文字Hello')
         .lineHeight(50)
         .fontSize(24)
         .draggable(true)
@@ -5022,7 +5026,7 @@ struct Index {
 }
 ```
 
-![StyledString](figures/StyledString(example20).gif)
+![StyledString](figures/StyledString_example20.gif)
 
 ### 示例22（获取布局信息）
 通过[getLayoutManager](#getlayoutmanager12)接口获取布局管理器对象，通过[getLineCount](ts-text-common.md#getlinecount)接口获取组件内容或[placeholder](#placeholder12)的总行数，通过[getGlyphPositionAtCoordinate](ts-text-common.md#getglyphpositionatcoordinate)接口获取较为接近给定坐标的字形的位置信息，通过[getLineMetrics](ts-text-common.md#getlinemetrics)接口获取指定行的行信息、文本样式信息、以及字体属性信息。
@@ -5204,7 +5208,7 @@ struct RichEditor_example {
   @State e: boolean = true;
   @State bs_num: number = 0;
   @State bs: (BarState | undefined)[] = [BarState.Auto, BarState.On, BarState.Off, undefined];
-  @State bs_string: (String)[] = ["Auto", "On", "Off", "undefined"];
+  @State bs_string: string[] = ["Auto", "On", "Off", "undefined"];
 
   build() {
     Column({space: 3}) {
