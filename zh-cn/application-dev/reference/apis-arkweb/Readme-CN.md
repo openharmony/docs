@@ -90,7 +90,5 @@
     - [ArkWeb_ProxyObjectWithResult](_ark_web___proxy_object_with_result.md)
     - [ArkWeb_WebMessageAPI](_ark_web___web_message_a_p_i.md)
     - [ArkWeb_WebMessagePortAPI](_ark_web___web_message_port_a_p_i.md)
-- Longque JS API<!--longque-js-api-->
-  - [Longque-JS-API](arkts-apis-longque.md)
 - 错误码<!--arkweb-arkts-errcode-->
   - [Webview错误码](errorcode-webview.md)

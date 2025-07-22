@@ -3370,8 +3370,6 @@
           - [ArkWeb_ProxyObjectWithResult](reference/apis-arkweb/_ark_web___proxy_object_with_result.md)
           - [ArkWeb_WebMessageAPI](reference/apis-arkweb/_ark_web___web_message_a_p_i.md)
           - [ArkWeb_WebMessagePortAPI](reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md)
-      - Longque JS API<!--longque-js-api-->
-        - [Longque-JS-API](reference/apis-arkweb/arkts-apis-longque.md)
       - 错误码<!--arkweb-arkts-errcode-->
         - [Webview错误码](reference/apis-arkweb/errorcode-webview.md)
     - Background Tasks Kit（后台任务开发服务）<!--background-tasks-api-->
