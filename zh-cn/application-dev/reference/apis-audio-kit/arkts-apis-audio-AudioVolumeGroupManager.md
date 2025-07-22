@@ -31,7 +31,7 @@ getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): v
 | 参数名     | 类型                                | 必填 | 说明               |
 | ---------- | ----------------------------------- | ---- | ------------------ |
 | volumeType | [AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype) | 是   | 音量流类型。       |
-| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调函数。当获取指定流的音量成功，err为undefined，data为获取到的指定流的音量；否则为错误对象。指定流的音量等级范围可通过[getMinVolume](#getminvolume9)和[getMaxVolume](#getmaxvolume9)获取。 |
+| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调函数。当获取指定流的音量成功，err为undefined，data为获取到的指定流的音量；否则为错误对象。指定流的音量等级范围可通过[getMinVolume](#getminvolumedeprecated)和[getMaxVolume](#getmaxvolumedeprecated)获取。 |
 
 **示例：**
 
@@ -68,7 +68,7 @@ getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 | 类型                  | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回指定流的音量。指定流的音量等级范围可通过[getMinVolume](#getminvolume9)和[getMaxVolume](#getmaxvolume9)获取。 |
+| Promise&lt;number&gt; | Promise对象，返回指定流的音量。指定流的音量等级范围可通过[getMinVolume](#getminvolumedeprecated)和[getMaxVolume](#getmaxvolumedeprecated)获取。 |
 
 **示例：**
 
@@ -99,7 +99,7 @@ getVolumeSync(volumeType: AudioVolumeType): number
 
 | 类型                  | 说明                      |
 | --------------------- | ------------------------- |
-| number | 返回指定流的音量。指定流的音量等级范围可通过[getMinVolume](#getminvolume9)和[getMaxVolume](#getmaxvolume9)获取。 |
+| number | 返回指定流的音量。指定流的音量等级范围可通过[getMinVolume](#getminvolumedeprecated)和[getMaxVolume](#getmaxvolumedeprecated)获取。 |
 
 **错误码：**
 
