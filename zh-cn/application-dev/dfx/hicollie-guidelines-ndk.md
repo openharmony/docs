@@ -41,16 +41,16 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      src:
        main:
          cpp:
-           - types:
-               libentry:
-                 - index.d.ts
+           types:
+             libentry:
+               - index.d.ts
            - CMakeLists.txt
            - napi_init.cpp
          ets:
-           - entryability:
-               - EntryAbility.ts
-           - pages:
-               - Index.ets
+           entryability:
+             - EntryAbility.ts
+           pages:
+             - Index.ets
    ```
 
 2. 编辑“CMakeLists.txt”文件，添加源文件及动态库：
@@ -400,9 +400,10 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      build() {
        RelativeContainer() {
          Column() {
-           //选择对应的功能，在此处添加不同的点击事件
+           //选择下方对应的功能，可在此处添加不同的点击事件
            
-         }.width('100%')
+         }
+         .width('100%')
        }
        .height('100%')
        .width('100%')
@@ -413,37 +414,43 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    （1）添加点击事件，触发OH_HiCollie_Init_JankDetection方法。
 
    ```ts
-   Button("testHiCollieJankNdk", { stateEffect:true, type: ButtonType.Capsule})
-     .width('75%')
-     .height(50)
-     .margin(15)
-     .fontSize(20)
-     .fontWeight(FontWeight.Bold)
-     .onClick(testNapi.testHiCollieJankNdk);
+   Column() {
+     Button("testHiCollieJankNdk", { stateEffect:true, type: ButtonType.Capsule})
+       .width('75%')
+       .height(50)
+       .margin(15)
+       .fontSize(20)
+       .fontWeight(FontWeight.Bold)
+       .onClick(testNapi.testHiCollieJankNdk);
+   }
    ```
 
    （2）添加点击事件，触发OH_HiCollie_Init_StuckDetection方法。
 
    ```ts
-   Button("testHiCollieStuckNdk", { stateEffect:true, type: ButtonType.Capsule})
-     .width('75%')
-     .height(50)
-     .margin(15)
-     .fontSize(20)
-     .fontWeight(FontWeight.Bold)
-     .onClick(testNapi.testHiCollieStuckNdk);
+   Column() {
+     Button("testHiCollieStuckNdk", { stateEffect:true, type: ButtonType.Capsule})
+       .width('75%')
+       .height(50)
+       .margin(15)
+       .fontSize(20)
+       .fontWeight(FontWeight.Bold)
+       .onClick(testNapi.testHiCollieStuckNdk);
+   }
    ```
 
    （3）添加点击事件，触发OH_HiCollie_Init_StuckDetectionWithTimeout方法。
 
    ```ts
-   Button("testHiCollieStuckWithTimeoutNdk", { stateEffect:true, type: ButtonType.Capsule})
-     .width('75%')
-     .height(50)
-     .margin(15)
-     .fontSize(20)
-     .fontWeight(FontWeight.Bold)
-     .onClick(testNapi.testHiCollieStuckWithTimeoutNdk);
+   Column() {
+     Button("testHiCollieStuckWithTimeoutNdk", { stateEffect:true, type: ButtonType.Capsule})
+       .width('75%')
+       .height(50)
+       .margin(15)
+       .fontSize(20)
+       .fontWeight(FontWeight.Bold)
+       .onClick(testNapi.testHiCollieStuckWithTimeoutNdk);
+   }
    ```
 
 6. 点击DevEco Studio界面中的运行按钮，运行应用工程。
