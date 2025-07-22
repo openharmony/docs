@@ -305,7 +305,7 @@ import(harName).then((obj: ESObject) => {
 }
 
 // 变量动态import本模块自己的单文件src/main/ets/index.ets
-let filePath = './Calc';
+let filePath = './utils/Calc';
 import(filePath).then((obj: ESObject) => {
     console.info('DynamicImport I am a file');
 }
@@ -318,7 +318,7 @@ import(filePath).then((obj: ESObject) => {
   "arkOptions": {
     "runtimeOnly": {
       "packages": [ "myhar" ],  // 配置本模块变量动态import其他模块名，要求与dependencies中配置的名字一致。
-      "sources": [ "./src/main/ets/Calc.ets" ]  // 配置本模块变量动态import自己的文件路径，路径相对于当前build-profile.json5文件。
+      "sources": [ "./src/main/ets/utils/Calc.ets" ]  // 配置本模块变量动态import自己的文件路径，路径相对于当前build-profile.json5文件。
     }
   }
 }
