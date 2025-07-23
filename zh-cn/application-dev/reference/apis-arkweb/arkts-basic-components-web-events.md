@@ -4214,6 +4214,7 @@ onNativeEmbedMouseEvent(callback: MouseInfoCallback)
     @State mouseButton: string = '';
     controller: webview.WebviewController = new webview.WebviewController();
     private nodeController: MyNodeController = new MyNodeController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Column() {
@@ -4226,8 +4227,8 @@ onNativeEmbedMouseEvent(callback: MouseInfoCallback)
                 this.nodeController.setRenderOption({
                   surfaceId: embed.surfaceId as string,
                   renderType: NodeRenderType.RENDER_TYPE_TEXTURE,
-                  width: px2vp(embed.info?.width),
-                  height: px2vp(embed.info?.height)
+                  width: this.uiContext!.px2vp(embed.info?.width),
+                  height: this.uiContext!.px2vp(embed.info?.height)
                 });
                 this.nodeController.rebuild();
               }
