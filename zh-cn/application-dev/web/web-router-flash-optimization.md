@@ -5,7 +5,7 @@
 
 使用Navigation等路由策略导航至Web组件页面时，通常根据网页的回调通知判断是否隐藏系统导航栏。若决定隐藏，Web组件布局会进行调整。这一布局调整过程可简化为如下四个阶段：
 ![web-router-flash-optimization.png](figures/web-router-flash-optimization.png)
-图中四个状态的说明（从左至右）。
+图中四个状态的说明（从左至右）：
 
 1. 将应用路由至Web页面，页面顶部为系统导航栏，底部是Web组件。在此情况下，网页能够正常加载。
 
