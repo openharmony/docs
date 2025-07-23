@@ -271,7 +271,7 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 设置系统默认菜单的扩展项，允许配置扩展项的文本内容、图标和回调方法。
 
-调用[disableMenuItems](../js-apis-arkui-UIContext.md#disablemenuitems20)或[disableSystemServiceMenuItems](../js-apis-arkui-UIContext.md#disablesystemservicemenuitems20)接口屏蔽文本选择菜单内的系统服务菜单项时，editMenuOptions接口内回调方法[onCreateMenu](./ts-text-common.md#oncreatemenu12)的入参列表中不包含被屏蔽的菜单选项。
+调用[disableMenuItems](../arkts-apis-uicontext-textmenucontroller.md#disablemenuitems20)或[disableSystemServiceMenuItems](../arkts-apis-uicontext-textmenucontroller.md#disablesystemservicemenuitems20)接口屏蔽文本选择菜单内的系统服务菜单项时，editMenuOptions接口内回调方法[onCreateMenu](./ts-text-common.md#oncreatemenu12)的入参列表中不包含被屏蔽的菜单选项。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
