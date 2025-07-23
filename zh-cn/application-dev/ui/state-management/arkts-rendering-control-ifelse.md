@@ -278,7 +278,7 @@ struct Index {
           })
         })
 
-      Button("play directlp")
+      Button("play directly")
         .onClick(() => {
           // 直接改if条件，不在动画当中，可以正常切换，也不会加默认转场
           if (this.data1) {
