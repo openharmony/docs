@@ -1013,7 +1013,7 @@ setFont(font: string): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| font | string | 是   | 设置字体类型，字体可以通过[UIContext.registerFont](../apis-arkui/js-apis-arkui-UIContext.md#registerfont)方法进行注册使用。  |
+| font | string | 是   | 设置字体类型，字体可以通过[UIContext.registerFont](../apis-arkui/arkts-apis-uicontext-font.md#registerfont)方法进行注册使用。  |
 
 **错误码**：
 

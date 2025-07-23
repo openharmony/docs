@@ -24,7 +24,7 @@ Promise是JavaScript中用来处理异步操作的对象，Promise有pending（�
 | OH_JSVM_IsPromise            | 查询Promise是否为Promise对象|
 | OH_JSVM_CreatePromise        | 创建一个延迟对象和一个JavaScript promise|
 | OH_JSVM_ResolveDeferred      | 通过与之关联的延迟对象来解析JavaScript promise|
-| OH_JSVM_RejectDeferred       | 通过与之关联的延迟对象来拒绝JavaScript Promise|
+| OH_JSVM_RejectDeferred       | 通过与之关联的延迟对象来拒绝JavaScript promise|
 | OH_JSVM_PromiseRegisterHandler | 为 Promise 创建兑现或拒绝后的回调 |
 
 ## 使用示例
@@ -170,7 +170,7 @@ OH_JSVM_RejectDeferred reject
 
 ## OH_JSVM_PromiseRegisterHandler
 
-用于设置 Promise 解析或拒绝后的回调，效果等价于调用原生的 `Promise.then()` 或 `Promise.catch()`
+用于设置 Promise 解析或拒绝后的回调，等效于调用原生的 `Promise.then()` 或 `Promise.catch()`。
 
 以下仅对 cpp 部分代码进行展示，其余框架代码如 `TestJSVM` 函数参考 [使用JSVM-API接口进行任务队列相关开发](use-jsvm-execute_tasks.md) OH_JSVM_SetMicrotaskPolicy 段落中的实现。
 

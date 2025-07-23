@@ -12,5 +12,5 @@
 ## 规格约束
 
 * Popup的弹出需要等待页面全部构建完成才能展示，因此[show](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup)不能在页面构建中设置为true，否则会导致popup弹窗显示位置及形状错误。
-* openPopup的弹出需要传入有效的[TargetInfo](../reference/apis-arkui/js-apis-arkui-UIContext.md#targetinfo18)，否则无法弹出气泡。
-* 其他规格约束，具体可参考[Popup控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md)、[openPopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#openpopup18) 说明。
+* openPopup的弹出需要传入有效的[TargetInfo](../reference/apis-arkui/arkts-apis-uicontext-i.md#targetinfo18)，否则无法弹出气泡。
+* 其他规格约束，具体可参考[Popup控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md)、[openPopup](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#openpopup18) 说明。

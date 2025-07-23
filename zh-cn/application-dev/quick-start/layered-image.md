@@ -25,13 +25,13 @@
 * HAP中不包含UIAbility，系统将返回app.json5中的icon和label。
 
 >
-> *说明：*
+> **说明：**
 > 
 > 在编译构建时，app.json5文件所在AppScope目录下的资源文件会合入到模块下面资源目录中，如果两个目录下存在重名文件，编译打包后只会保留AppScope目录下的资源文件。
 >
 > 例如，app.json5和module.json5中配置的分层图标的资源文件名称一致、图标不一致，AppScope目录下的资源文件会覆盖模块中的文件，最后的效果是app.json5中的配置图标生效。
 > 
-> 如果应用配置中未设置入口UIAbility，点击桌面图标将直接进入应用详情页。其他情况下，点击桌面图标将直接进入应用页面。应用未配置入口UIAbility包含2种场景：
+> 如果应用配置中未设置入口UIAbility，点击桌面图标将直接进入应用详情页（设置->应用和元服务下，点击任意应用即可进入该应用的应用详情页）。其他情况下，点击桌面图标将直接进入应用页面。应用未配置入口UIAbility包含2种场景：
 >
 >   1. 应用没有配置任何UIAbility。
 >   2. 所有UIAbility中skills标签下的entities未配置或配置内容不包括 "entity.system.home"，并且actions未配置或配置内容不包括 "ohos.want.action.home"。
@@ -91,7 +91,7 @@
 
       本例中，前景资源文件名为“foreground.png”，背景资源文件名为“background.png”。
 
-  2. 在“AppScope\resources\base\media”文件夹下app_layered_image.json文件中，配置分层图标的前景资源与背景资源信息。
+  2. 在“AppScope\resources\base\media”文件夹下app_layered_image.json分层图标资源文件中，配置分层图标的前景资源与背景资源信息。
 
       ```json
       {
@@ -119,7 +119,7 @@
 
       本例中采用的前景资源和背景资源的文件名分别为“foreground.png”和“background.png”。
 
-  2. 在“entry\src\main\resources\base\media”文件夹下layered_image.json文件中，配置分层图标的前景资源与背景资源信息。
+  2. 在“entry\src\main\resources\base\media”文件夹下layered_image.json分层图标资源文件中，配置分层图标的前景资源与背景资源信息。
 
       ```json
       {
@@ -139,7 +139,7 @@
           "abilities": [
             "name": "EntryAbility",
             // ...
-            "icon": "$media:layered_image", // 修改icon的配置为分层图标的资源配置路径
+            "icon": "$media:layered_image", // icon配置为分层图标资源文件的索引
             "label": "$string:EntryAbility_label", // 需要在entry/src/main/resources/base/element/string.json配置name为EntryAbility_label的资源，已存在可以忽略
             "skills": [
               {
@@ -160,7 +160,8 @@
 
 >
 > **说明：**
-> DevEco Studio NEXT Beta1(5.0.3.814) 及之后的版本，创建应用时默认模板中包含分层图标的资源文件，不同版本生成的资源文件名称会存在不一致，文件名称支持手动修改，如果分层图标资源文件不存在则需要手动创建，文件名称需要符合资源命名规范，由数字、字母、点和下划线组成。
+>
+> DevEco Studio NEXT Beta1(5.0.3.814) 及之后的版本，创建应用时默认模板中包含分层图标的资源文件，不同版本生成的资源文件名称可能不同，文件名称支持手动修改。如果分层图标资源文件不存在则需要手动创建，文件名称需要符合资源命名规范，由数字、字母、点和下划线组成。
 >
 
 <!--Del-->

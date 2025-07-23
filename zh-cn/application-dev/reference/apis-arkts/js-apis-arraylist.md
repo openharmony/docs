@@ -358,7 +358,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: boolean = arrayList.remove(2);
-console.info(result); // result =  true
+console.info("result = ", result); // result =  true
 ```
 
 ### removeByRange
@@ -494,12 +494,10 @@ arrayList.add(4);
 arrayList.forEach((value: number, index?: number) => {
   console.info("value:" + value, "index:" + index);
 });
-/**
- * value:2 index:0
- * value:4 index:1
- * value:5 index:2
- * value:4 index:3
- * /
+// value:2 index:0
+// value:4 index:1
+// value:5 index:2
+// value:4 index:3
 ```
 
 ### sort

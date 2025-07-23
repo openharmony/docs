@@ -485,7 +485,7 @@ getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): v
 获取指定流的音量。使用callback异步回调。
 
 > **说明：**
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[getVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getvolume9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。在API 9-19建议使用[getVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getvolumedeprecated)替代；API 20及以后，建议使用[getVolumeByStream](arkts-apis-audio-AudioVolumeManager.md#getvolumebystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -517,7 +517,7 @@ getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 获取指定流的音量。使用Promise异步回调。
 
 > **说明：**
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[getVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getvolume9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。在API 9-19建议使用[getVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getvolumedeprecated)替代；API 20及以后，建议使用[getVolumeByStream](arkts-apis-audio-AudioVolumeManager.md#getvolumebystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -548,7 +548,7 @@ getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 获取指定流的最小音量。使用callback异步回调。
 
 > **说明：**
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolume9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。在API 9-19建议使用[getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolumedeprecated)替代；API 20及以后，建议使用[getMinVolumeByStream](arkts-apis-audio-AudioVolumeManager.md#getminvolumebystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -580,7 +580,7 @@ getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 获取指定流的最小音量。使用Promise异步回调。
 
 > **说明：**
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolume9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。在API 9-19建议使用[getMinVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getminvolumedeprecated)替代；API 20及以后，建议使用[getMinVolumeByStream](arkts-apis-audio-AudioVolumeManager.md#getminvolumebystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -611,7 +611,7 @@ getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 获取指定流的最大音量。使用callback异步回调。
 
 > **说明：**
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolume9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。在API 9-19建议使用[getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolumedeprecated)替代；API 20及以后，建议使用[getMaxVolumeByStream](arkts-apis-audio-AudioVolumeManager.md#getmaxvolumebystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -643,7 +643,7 @@ getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 获取指定流的最大音量。使用Promise异步回调。
 
 > **说明：**
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolume9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。在API 9-19建议使用[getMaxVolume](arkts-apis-audio-AudioVolumeGroupManager.md#getmaxvolumedeprecated)替代；API 20及以后，建议使用[getMaxVolumeByStream](arkts-apis-audio-AudioVolumeManager.md#getmaxvolumebystream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -744,7 +744,7 @@ isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): voi
 获取指定音量流的静音状态。使用callback异步回调。
 
 > **说明：**
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[isMute](arkts-apis-audio-AudioVolumeGroupManager.md#ismute9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。在API 9-19建议使用[isMute](arkts-apis-audio-AudioVolumeGroupManager.md#ismutedeprecated)替代；API 20及以后，建议使用[isSystemMutedForStream](arkts-apis-audio-AudioVolumeManager.md#issystemmutedforstream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -776,7 +776,7 @@ isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 获取指定音量流的静音状态。使用Promise异步回调。
 
 > **说明：**
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[isMute](arkts-apis-audio-AudioVolumeGroupManager.md#ismute9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。在API 9-19建议使用[isMute](arkts-apis-audio-AudioVolumeGroupManager.md#ismutedeprecated)替代；API 20及以后，建议使用[isSystemMutedForStream](arkts-apis-audio-AudioVolumeManager.md#issystemmutedforstream20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -807,7 +807,7 @@ isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): v
 获取指定音量流的活跃状态。使用callback异步回调。
 
 > **说明：**
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[isActive](arkts-apis-audio-AudioStreamManager.md#isactive9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。在API 9-19建议使用[isActive](arkts-apis-audio-AudioStreamManager.md#isactivedeprecated)替代；API 20及以后，建议使用[isStreamActive](arkts-apis-audio-AudioStreamManager.md#isstreamactive20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -839,7 +839,7 @@ isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 获取指定音量流的活跃状态。使用Promise异步回调。
 
 > **说明：**
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[isActive](arkts-apis-audio-AudioStreamManager.md#isactive9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。在API 9-19建议使用[isActive](arkts-apis-audio-AudioStreamManager.md#isactivedeprecated)替代；API 20及以后，建议使用[isStreamActive](arkts-apis-audio-AudioStreamManager.md#isstreamactive20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 

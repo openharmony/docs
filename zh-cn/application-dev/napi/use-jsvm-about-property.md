@@ -10,8 +10,8 @@
 
 - **对象（Object）**：在JavaScript中，对象是一种复合数据类型，它允许存储多个不同类型的值作为一个单独的实体。对象是属性和方法的集合。属性是与对象相关联的值，而方法则是对象可以执行的操作。
 - **属性（Property）**：在JavaScript中，属性是对象特征的键值对。每个属性都有一个名字（也称为键或标识符）和一个值。属性的值可以是任意数据类型，包括基本类型、对象和函数。
-- **可枚举属性（EnumerableProperty）**：在JavaScript中，对象的属性分为可枚举和不可枚举之分，它们是由属性的enumerable值决定的，即内部 “可枚举” 标志设置为true或false。可枚举性决定了这个属性能否被 `for...in` 查找遍历到。
-- **自有属性（OwnProperty）**：自有属性是直接定义在对象上的属性，而不是从原型链上继承来的属性。
+- **可枚举属性（EnumerableProperty）**：在JavaScript中，对象的属性分为可枚举和不可枚举之分，它们是由属性的enumerable值决定的，即内部 “可枚举” 标志设置为true或false。可枚举性决定了属性是否能被 `for...in` 遍历到。
+- **自有属性（OwnProperty）**：自有属性是直接定义在对象上的属性，而不是从原型链继承的。
 
 ## 接口说明
 
@@ -31,7 +31,7 @@
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
+参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅展示接口对应的C++代码。
 
 ### OH_JSVM_GetPropertyNames
 
@@ -239,7 +239,7 @@ JSVM OH_JSVM_HasProperty success:0
 ### OH_JSVM_DeleteProperty
 
 尝试从给定的Object中删除由key指定的属性，并返回操作的结果。
-如果对象是一个不可扩展的对象，或者属性是不可配置的，则无法删除该属性。
+如果对象是一个不可扩展的对象，或者属性是不可配置的，则可能无法删除该属性。
 
 cpp部分代码：
 
@@ -531,7 +531,7 @@ JSVM OH_JSVM_HasNamedProperty success:1
 
 ### OH_JSVM_DefineProperties
 
-用于定义对象的自定义属性，可一次性为对象设置多个属性。
+用于定义对象的自定义属性，可一次性为对象设置若干个属性。
 
 cpp部分代码：
 
@@ -664,7 +664,7 @@ JSVM getterCallback success:Hello world!
 
 ### OH_JSVM_GetAllPropertyNames
 
-获取给定对象的所有可用属性名称, 结果变量将存储一个包含所有可枚举属性名称的JavaScript数组。
+获取给定对象的所有可枚举属性名称，结果变量将存储一个包含这些属性名称的JavaScript数组。
 
 cpp部分代码：
 

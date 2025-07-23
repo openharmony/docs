@@ -415,7 +415,7 @@ measureText(text: string, encoding: TextEncoding): number
 
 > **说明：**
 >
-> 此接口用于测量原始字符串的文本宽度，若想测量排版后的文本宽度，建议使用[measure.measureText](../apis-arkui/js-apis-arkui-UIContext.md#measuretext12)替代。
+> 此接口用于测量原始字符串的文本宽度，若想测量排版后的文本宽度，建议使用[measure.measureText](../apis-arkui/arkts-apis-uicontext-measureutils.md#measuretext12)替代。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
