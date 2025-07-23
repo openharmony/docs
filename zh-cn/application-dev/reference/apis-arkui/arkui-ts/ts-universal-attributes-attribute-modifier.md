@@ -476,6 +476,7 @@ struct attributeDemo {
 | gestureModifier          | 不支持   | is not callable           | 不支持modifier相关的属性。                |
 | onAccessibilityHover     | 不支持   | is not callable           | -                                         |
 | onChildTouchTest         | 不支持   | is not callable           | -                                         |
+| onDigitalCrown           | 不支持   | is not callable.          | -                                       |
 | onDragStart              | 不支持   | Method not implemented.   | 不支持返回值为CustomBuilder。             |
 | onPreDrag                | 不支持   | Method not implemented.   | -                                         |
 | onTouchIntercept         | 不支持   | is not callable           | -                                         |
