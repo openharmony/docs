@@ -18,7 +18,7 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [jumpNo](#jumpNo) | 当前路由跳数。 |
-| [address[NETCONN_MAX_STR_LEN];](#address[NETCONN_MAX_STR_LEN];) | 当前路由地址。 |
+| [address[NETCONN_MAX_STR_LEN]](#address[NETCONN_MAX_STR_LEN]) | 当前路由地址。 |
 | [rtt[NETCONN_MAX_RTT_NUM]](#rtt[NETCONN_MAX_RTT_NUM) | 探测结果。 |
 
 
