@@ -503,6 +503,7 @@
             - [弹出框层级管理](ui/arkts-dialog-levelorder.md)
             - [弹出框控制器](ui/arkts-dialog-controller.md)
             - [弹出框焦点策略](ui/arkts-dialog-focusable.md)
+            - [弹出框蒙层控制](ui/arkts-dialog-mask.md)
            - 菜单<!--arkts-use-menu-->
              - [菜单概述](ui/arkts-menu-overview.md)
              - [菜单控制 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
