@@ -445,7 +445,7 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 
 setAutoUnlockAfterReboot(admin: Want, isAllowed: boolean): void
 
-设置重启自动解锁，仅针对无锁屏密码设备生效，当前仅支持PC/2ni设备使用。
+设置重启自动解锁，仅针对无锁屏密码设备生效，当前仅支持PC/2in1设备使用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -494,7 +494,7 @@ try {
 
 getAutoUnlockAfterReboot(admin: Want): boolean
 
-获取是否开启重启自动解锁。
+获取是否开启重启自动解锁，当前仅支持PC/2in1设备使用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -512,7 +512,7 @@ getAutoUnlockAfterReboot(admin: Want): boolean
 
 | 类型   | 说明                                |
 | ------ | ----------------------------------- |
-| boolean | 返回true表示已开启重启自动解锁，false表示未开启重启自动解锁。 |
+| boolean | 返回true表示已开启重启自动解锁，返回false表示未开启重启自动解锁。 |
 
 **错误码**：
 
