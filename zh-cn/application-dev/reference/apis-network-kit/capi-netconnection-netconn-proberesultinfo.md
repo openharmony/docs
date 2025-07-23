@@ -16,5 +16,5 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| uint8_t lossRate | 跳数大小。 |
+| uint8_t lossRate | 丢包率。 |
 | uint32_t rtt[NETCONN_MAX_RTT_NUM] | 时延结果，包含最小、平均、最大、标准差。 |
