@@ -419,7 +419,7 @@
        "abilities": [
            {
                "backgroundModes": [
-               "audioRecording",
+               "audioRecording"
                ], // 后台模式类型
                "type": "service"  // ability类型为service
            }
