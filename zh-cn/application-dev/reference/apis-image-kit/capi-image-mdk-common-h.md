@@ -26,12 +26,6 @@
 | -- | -- | -- |
 | [IRNdkErrCode](#irndkerrcode) | IRNdkErrCode | 可能被使用的接口返回值的枚举。 |
 
-### 宏定义
-
-| 名称 | 描述 |
-| -- | -- |
-| IMAGE_RESULT_BASE 62980096 | 可能被使用的接口返回值的枚举。<br>**起始版本：** 10 |
-
 ## 枚举类型说明
 
 ### IRNdkErrCode
