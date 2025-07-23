@@ -30,10 +30,10 @@ Defines the user age group detection result.
 
 **System capability**: SystemCapability.MultimodalAwareness.UserStatus
 
-| Name               | Type  | Description                  |
-| ------------------- | ---- | ---------------------- |
-| ageGroup  | [UserAgeGroup](#useragegroup)   | User age group, for example, child or adult.|
-| confidence  | float    | Confidence of the detection result. The value is a floating point number ranging from 0 to 1. A larger value indicates a higher confidence.|
+| Name               | Type  |Readable|Writable| Description                  |
+| ------------------- | ---- |----|----| ---------------------- |
+| ageGroup  | [UserAgeGroup](#useragegroup)   |Yes|No| User age group, for example, child or adult.|
+| confidence  | float    |Yes|No| Confidence of the detection result. The value is a floating point number ranging from 0 to 1. A larger value indicates a higher confidence.|
 
 
 ## userStatus.on('userAgeGroupDetected')
@@ -61,7 +61,7 @@ For details about the error codes, see [User Status Awareness Error Codes](error
 | -------- | ------------------------------------------------------------ |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
 | 33900001 | Service exception. Possible causes: <br>1. System error, such as a null pointer and container-related exception. <br>2. Node-API invocation exception, such as invalid Node-API status.|
-| 33900002 | Subscription failed. Possible causes: <br>1. Callback registration failure. <br>2. Failed to bind native object to js wrapper. <br>3. N-API invocation exception, invalid N-API status. <br>4. IPC request exception. |
+| 33900002 | Subscription failed. Possible causes: <br>1. Callback registration failed. <br>2. Failed to bind the native object to the JS wrapper. <br>3. Node-API invocation exception, such as invalid Node-API status. <br>4. IPC request exception. |
 
 **Example**
 
