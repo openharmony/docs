@@ -22,7 +22,7 @@
 | -- | -- |
 | [int32_t OH_NetConn_HasDefaultNet(int32_t *hasDefaultNet)](#oh_netconn_hasdefaultnet) | 查询是否有默认激活的数据网络。 |
 | [int32_t OH_NetConn_GetDefaultNet(NetConn_NetHandle *netHandle)](#oh_netconn_getdefaultnet) | 获取激活的默认的数据网络。 |
-| [int32_t OH_NetConn_IsDefaultNetMetered(int32_t *isMetered)](#oh_netconn_isdefaultnetmetered) | 查询默认网络是否按流量计费。 |
+| [int32_t OH_NetConn_IsDefaultNetMetered(int32_t *isMetered)](#oh_netconn_isdefaultnetmetered) | 查询默认数据网络是否记流量。 |
 | [int32_t OH_NetConn_GetConnectionProperties(NetConn_NetHandle *netHandle, NetConn_ConnectionProperties *prop)](#oh_netconn_getconnectionproperties) | 查询某个数据网络的链路信息。 |
 | [int32_t OH_NetConn_GetNetCapabilities(NetConn_NetHandle *netHandle, NetConn_NetCapabilities *netCapabilities)](#oh_netconn_getnetcapabilities) | 查询某个网络的能力集。 |
 | [int32_t OH_NetConn_GetDefaultHttpProxy(NetConn_HttpProxy *httpProxy)](#oh_netconn_getdefaulthttpproxy) | 查询默认的网络代理。 |
@@ -42,7 +42,8 @@
 | [int32_t OH_NetConn_UnregisterNetConnCallback(uint32_t callBackId)](#oh_netconn_unregisternetconncallback) | 注销监听网络状态变化的回调。 |
 | [NetConn_ErrorCode OH_NetConn_SetPacUrl(const char *pacUrl)](#oh_netconn_setpacurl) | 设置系统级代理自动配置（PAC）脚本地址。 |
 | [NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl)](#oh_netconn_getpacurl) | 获取系统级代理自动配置（PAC）脚本地址。 |
-
+| [int32_t OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo)](#oh_netconn_queryproberesult) | 查询网络探测结果。 |
+| [int32_t OH_NetConn_QueryTraceRoute(char *destination, NetConn_TraceRouteOption *option,NetConn_TraceRouteInfo *traceRouteInfo)](#oh_netconn_querytraceroute) | 查询网络跟踪路由。 |
 
 ## 函数说明
 
@@ -154,7 +155,7 @@ int32_t OH_NetConn_GetConnectionProperties(NetConn_NetHandle *netHandle, NetConn
 
 | 参数项 | 描述 |
 | -- | -- |
-| [NetConn_NetHandle](capi-netconnection-netconn-nethandle.md) *netHandle | 存放网络ID。 |
+| nethandle | 存放网络ID。 |
 | [NetConn_ConnectionProperties](capi-netconnection-netconn-connectionproperties.md) *prop | 存放链路信息。 |
 
 **返回：**
@@ -182,10 +183,10 @@ int32_t OH_NetConn_GetNetCapabilities(NetConn_NetHandle *netHandle, NetConn_NetC
 
 **参数：**
 
-| 参数项                                                                     | 描述 |
-|-------------------------------------------------------------------------| -- |
+| 参数项 | 描述 |
+| -- | -- |
 | [NetConn_NetHandle](capi-netconnection-netconn-nethandle.md) *netHandle | 存放网络ID。 |
-| [NetConn_NetCapabilities](capi-netconnection-netconn-netcapabilities.md) *netCapabilities                            | 存放能力集。 |
+| netCapacities | 存放能力集。 |
 
 **返回：**
 
@@ -397,7 +398,7 @@ int32_t OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果码。<br>         NETMANAGER_EXT_SUCCESS 如果操作成功。<br>         NETMANAGER_ERR_PERMISSION_DENIED 缺少权限，请添加权限。<br>         NETMANAGER_ERR_PARAMETER_ERROR 参数错误。请输入正确的参数。 |
+| int32_t | 返回结果码。<br>         {@link NETMANAGER_EXT_SUCCESS} 如果操作成功。<br>         {@link NETMANAGER_ERR_PERMISSION_DENIED} 缺少权限，请添加权限。<br>         {@link NETMANAGER_ERR_PARAMETER_ERROR} 参数错误。请输入正确的参数。 |
 
 ### OH_NetConn_UnregisterDnsResolver()
 
@@ -667,4 +668,63 @@ NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl)
 | 类型 | 说明 |
 | -- | -- |
 | [NetConn_ErrorCode](capi-net-connection-type-h.md#netconn_errorcode) | 结果定义在 [NetConn_ErrorCode](capi-net-connection-type-h.md#netconn_errorcode)。<br>         [NETCONN_SUCCESS](capi-net-connection-type-h.md#netconn_errorcode) 成功。<br>         [NETCONN_PARAMETER_ERROR](capi-net-connection-type-h.md#netconn_errorcode) 参数错误。<br>         [NETCONN_OPERATION_FAILED](capi-net-connection-type-h.md#netconn_errorcode) 无法连接到服务。<br>         [NETCONN_INTERNAL_ERROR](capi-net-connection-type-h.md#netconn_errorcode) 内部错误。 |
+
+### OH_NetConn_QueryProbeResult()
+
+```
+int32_t OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo)
+```
+
+**描述**
+
+查询网络探测结果。
+
+**需要权限：** ohos.permission.INTERNET
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| char *destination | 目的地址。 |
+| int32_t duration | 探测持续时间。单位：秒。 |
+| [NetConn_ProbeResultInfo](capi-netconnection-netconn-proberesultinfo.md) *probeResultInfo | 丢包率和往返时间（RTT）。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 0 - 成功。<br>         201 - 缺少权限。<br>         401 - 参数错误。<br>         2100003 - 内部错误。 |
+
+### OH_NetConn_QueryTraceRoute()
+
+```
+int32_t OH_NetConn_QueryTraceRoute(char *destination, NetConn_TraceRouteOption *option,NetConn_TraceRouteInfo *traceRouteInfo)
+```
+
+**描述**
+
+查询网络跟踪路由。
+
+**需要权限：** ohos.permission.INTERNET、ohos.permission.LOCATION 和 ohos.permission.ACCESS_TRACE_ROUTE_INFO
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| char *destination | 目的地址。 |
+| [NetConn_TraceRouteOption](capi-netconnection-netconn-tracerouteoption.md) *option | 路由参数选项。 |
+| [NetConn_TraceRouteInfo](capi-netconnection-netconn-tracerouteinfo.md) *traceRouteInfo | 路由结果。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 0 - 成功。<br>         201 - 缺少权限。 |
+
 
