@@ -30,7 +30,6 @@ function StringToUint8Array(str: string) {
 
 /* 1.确定密钥别名 */
 let keyAliasString = "key anon attest";
-let aliasString = keyAliasString;
 let aliasUint8 = StringToUint8Array(keyAliasString);
 let securityLevel = StringToUint8Array('sec_level');
 let challenge = StringToUint8Array('challenge_data');
@@ -179,8 +178,8 @@ async function publicAnonAttestKey(keyAlias: string, huksOptions: huks.HuksOptio
 }
 
 async function AnonAttestKeyTest() {
-  await publicGenKeyFunc(aliasString, genOptions);
-  await publicAnonAttestKey(aliasString, huksOptions);
+  await publicGenKeyFunc(keyAliasString, genOptions);
+  await publicAnonAttestKey(keyAliasString, huksOptions);
   console.info('anon attest certChain data: ' + anonAttestCertChain)
 }
 ```
