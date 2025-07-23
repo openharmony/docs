@@ -1,6 +1,6 @@
 #  ArcButton
 
-The **ArcButton** component represents an arc button specifically designed for circular screens. It offers various button styles, such as emphasized, normal, and warning, tailored for watch UIs.
+The **ArcButton** component represents an arc button specifically designed for circular screens on wearables. It offers various button styles, such as emphasized, normal, and warning.
 
 > **NOTE**
 >
@@ -8,7 +8,7 @@ The **ArcButton** component represents an arc button specifically designed for c
 
 ## Modules to Import
 
-```
+```ts
 import {
   ArcButton,
   ArcButtonOptions,
@@ -63,17 +63,17 @@ Defines the default or custom style parameters for the **ArcButton** component.
 | status           | [ArcButtonStatus](#arcbuttonstatus)                          | Yes  | Status of the arc button.<br>Default value: **ArcButtonStatus.NORMAL**         |
 | label     | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Text displayed on the arc button.                                          |
 | backgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | Yes  | Background blur style of the arc button.<br>Default value: **BlurStyle.NONE**|
-| backgroundColor  | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | Yes  | Background color of the arc button.<br>Default value: **Color.Black**                |
+| backgroundColor  | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | Yes  | Background color of the arc button.<br>This property takes effect only when **ArcButtonStyleMode** is set to **CUSTOM**.<br>Default value: **Color.Black**                |
 | shadowColor      | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | Yes  | Shadow color of the arc button.<br>Default value: **Color.Black**                |
 | shadowEnabled    | boolean                                                      | Yes  | Whether to enable the shadow for the arc button.<br>Default value: **false**<br>The value **true** means to enable the shadow, and **false** means the opposite.|
 | fontSize | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | Yes  | Font size of the arc button.<br>Default value: **19fp**                       |
-| fontColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | Yes  | Font color of the arc button.<br>Default value: **Color.White**                |
-| pressedFontColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | Yes  | Font color of the arc button when pressed.<br>Default value: **Color.White**            |
+| fontColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | Yes  | Font color of the arc button.<br>This property takes effect only when **ArcButtonStyleMode** is set to **CUSTOM**.<br>Default value: **Color.White**                |
+| pressedFontColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | Yes  | Font color of the arc button when pressed.<br>This property takes effect only when **ArcButtonStyleMode** is set to **CUSTOM**.<br>Default value: **Color.White**            |
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle)                  | Yes  | Font style of the arc button.<br>Default value: **FontStyle.Normal**           |
 | fontFamily | string \| [Resource](ts-types.md#resource)                   | Yes  | Font family of the arc button.                                            |
 | fontMargin | [LocalizedMargin](ts-types.md#localizedmargin12)             | Yes  | Margin of the arc button text.<br>Default value: **{ start: 24vp, top: 10vp,end: 24vp, bottom: 16vp }**|
 |onTouch | [Callback](ts-types.md#voidcallback12)&lt; [TouchEvent](ts-universal-events-touch.md#touchevent)&gt; | No  | Callback triggered by touch actions on the arc button.|
-|onClick | [Callback](ts-types.md#voidcallback12)&lt;[ClickEvent](ts-universal-events-click.md#clickevent)) &gt; | No  | Callback triggered by click actions on the arc button.|
+|onClick | [Callback](ts-types.md#voidcallback12)&lt;[ClickEvent](ts-universal-events-click.md#clickevent) &gt; | No  | Callback triggered by click actions on the arc button.|
 
 ### constructor
 
@@ -87,7 +87,7 @@ A constructor used to create an **ArcButton** component.
 
 **Parameters**
 
-| Name   | Type                                             | Mandatory| Description                                         |
+| Name| Type                                             | Mandatory| Description                                         |
 | ------- | ------------------------------------------------- | ---- | --------------------------------------------- |
 | options | [CommonArcButtonOptions](#commonarcbuttonoptions) | Yes  | Text, background color, shadow, and other parameters of the **ArcButton** component.|
 
@@ -101,20 +101,20 @@ Defines the default or custom style parameters for the **ArcButton** component.
 
 | Name               | Type                                                        | Mandatory| Description                                                        |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| position            | [ArcButtonPosition](#arcbuttonposition)                      | Yes  | Type of the arc button.<br>Default value: **ArcButtonPosition.BOTTOM_EDGE**|
-| styleMode           | [ArcButtonStyleMode](#arcbuttonstylemode)                    | Yes  | Style mode for the arc button.<br>Default value: **ArcButtonStyleMode.EMPHASIZED_LIGHT**|
-| status              | [ArcButtonStatus](#arcbuttonstatus)                          | Yes  | Status of the arc button.<br>Default value: **ArcButtonStatus.NORMAL**           |
-| label               | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Text displayed on the arc button.                                          |
-| backgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | Yes  | Background blur style of the arc button.<br>Default value: **BlurStyle.NONE**           |
-| backgroundColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | Yes  | Background color of the arc button.<br>Default value: **Color.Black**                  |
-| shadowColor         | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | Yes  | Shadow color of the arc button.<br>Default value: **Color.Black**                  |
-| shadowEnabled       | boolean                                                      | Yes  | Whether to enable the shadow for the arc button.<br>Default value: **false**<br>The value **true** means to enable the shadow, and **false** means the opposite.|
-| fontSize            | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | Yes  | Font size of the arc button.<br>Default value: **19fp**                         |
-| fontColor           | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | Yes  | Font color of the arc button.<br>Default value: **Color.White**                  |
-| pressedFontColor    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | Yes  | Font color of the arc button when pressed.<br>Default value: **Color.White**              |
-| fontStyle           | [FontStyle](ts-appendix-enums.md#fontstyle)                  | Yes  | Font style of the arc button.<br>Default value: **FontStyle.Normal**             |
-| fontFamily          | string \| [Resource](ts-types.md#resource)                   | Yes  | Font family of the arc button.                                            |
-| fontMargin          | [LocalizedMargin](ts-types.md#localizedmargin12)             | Yes  | Margin of the arc button text.<br>Default value: **{ start: 24vp, top: 10vp,end: 24vp, bottom: 16vp }**|
+| position            | [ArcButtonPosition](#arcbuttonposition)                      |No | Type of the arc button.<br>Default value: **ArcButtonPosition.BOTTOM_EDGE**|
+| styleMode           | [ArcButtonStyleMode](#arcbuttonstylemode)                    | No | Style mode for the arc button.<br>Default value: **ArcButtonStyleMode.EMPHASIZED_LIGHT**|
+| status              | [ArcButtonStatus](#arcbuttonstatus)                          |No  | Status of the arc button.<br>Default value: **ArcButtonStatus.NORMAL**           |
+| label               | [ResourceStr](ts-types.md#resourcestr)                       |No| Text displayed on the arc button.                                          |
+| backgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | No | Background blur style of the arc button.<br>Default value: **BlurStyle.NONE**           |
+| backgroundColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | No| Background color of the arc button.<br>This property takes effect only when **ArcButtonStyleMode** is set to **CUSTOM**.<br>Default value: **Color.Black**                  |
+| shadowColor         | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | No | Shadow color of the arc button.<br>Default value: **Color.Black**                  |
+| shadowEnabled       | boolean                                                      | No| Whether to enable the shadow for the arc button.<br>Default value: **false**<br>The value **true** means to enable the shadow, and **false** means the opposite.|
+| fontSize            | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No | Font size of the arc button.<br>Default value: **19fp**                         |
+| fontColor           | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  |No | Font color of the arc button.<br>This property takes effect only when **ArcButtonStyleMode** is set to **CUSTOM**.<br>Default value: **Color.White**                  |
+| pressedFontColor    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)  | No | Font color of the arc button when pressed.<br>This property takes effect only when **ArcButtonStyleMode** is set to **CUSTOM**.<br>Default value: **Color.White**              |
+| fontStyle           | [FontStyle](ts-appendix-enums.md#fontstyle)                  | No | Font style of the arc button.<br>Default value: **FontStyle.Normal**             |
+| fontFamily          | string \| [Resource](ts-types.md#resource)                   |No | Font family of the arc button.                                            |
+| fontMargin          | [LocalizedMargin](ts-types.md#localizedmargin12)             | No | Margin of the arc button text.<br>Default value: **{ start: 24vp, top: 10vp,end: 24vp, bottom: 16vp }**|
 | onTouch             | [Callback](ts-types.md#voidcallback12)&lt; [TouchEvent](ts-universal-events-touch.md#touchevent)&gt; | No  | Callback triggered by touch actions on the arc button.                            |
 | onClick             | [Callback](ts-types.md#voidcallback12)&lt;[ClickEvent](ts-universal-events-click.md#clickevent)) &gt; | No  | Callback triggered by click actions on the arc button.                                |
 
@@ -146,7 +146,7 @@ Enumerates the style modes that can be set for **ArcButton**.
 | EMPHASIZED_DARK  | 1    | Emphasized, dark color.|
 | NORMAL_LIGHT     | 2    | Normal, light color.|
 | NORMAL_DARK      | 3    | Normal, dark color.|
-| CUSTOM           | 4    | Custom style.|
+| CUSTOM           | 4    | Custom button color and font color.|
 
 
 ## ArcButtonStatus
@@ -175,21 +175,20 @@ This example shows the usage of **ArcButton**.
 ```ts
 // xxx.ets
 import {
-  ColorMetrics,
   LengthMetrics,
   LengthUnit,
   ArcButton,
   ArcButtonOptions,
   ArcButtonStatus,
   ArcButtonStyleMode,
-  ArcButtonTypeMode,
+  ArcButtonPosition,
 }  from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
 struct Index {
-  @Local topOptions: ArcButtonOptions = new ArcButtonOptions({})
-  @Local bottomOptions: ArcButtonOptions = new ArcButtonOptions({})
+  @Local topOptions: ArcButtonOptions = new ArcButtonOptions({});
+  @Local bottomOptions: ArcButtonOptions = new ArcButtonOptions({});
 
   aboutToAppear() {
     this.topOptions = new ArcButtonOptions({
@@ -207,7 +206,7 @@ struct Index {
       fontSize: new LengthMetrics(15, LengthUnit.FP),
       shadowEnabled: true,
       onClick: () => {
-        console.info('click from ArcButton.')
+        console.info('click from ArcButton.');
       }
     })
   }

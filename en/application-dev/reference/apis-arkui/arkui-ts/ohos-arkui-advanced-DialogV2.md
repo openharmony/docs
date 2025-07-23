@@ -7,6 +7,8 @@ This component is implemented based on [state management V2](../../../ui/state-m
 > **NOTE**
 >
 > This component is supported since API version 18. Updates will be marked with a superscript to indicate their earliest API version.
+> 
+> This component is not supported on wearables.
 
 ## Modules to Import
 
@@ -18,7 +20,7 @@ Not supported
 
 ## TipsDialogV2
 
-TipsDialogV2({imageRes: ResourceStr, imageSize?: SizeOptions, imageBorderColor: ColorMetrics, imageBorderWidth: LengthMetrics, title?: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, checked?: boolean, onCheckedChange?: AdvancedDialogV2OnCheckedChange, primaryButton?: AdvancedDialogV2Button, secondaryButton?: AdvancedDialogV2Button})
+TipsDialogV2({imageRes: ResourceStr | PixelMap, imageSize?: SizeOptions, imageBorderColor: ColorMetrics, imageBorderWidth: LengthMetrics, title?: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, checked?: boolean, onCheckedChange?: AdvancedDialogV2OnCheckedChange, primaryButton?: AdvancedDialogV2Button, secondaryButton?: AdvancedDialogV2Button})
 
 Displays an image-attached confirmation dialog box.
 
@@ -28,19 +30,19 @@ Displays an image-attached confirmation dialog box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name              | Type                                                                                                   | Mandatory| Decorator               | Description                                                                |
-|------------------|-------------------------------------------------------------------------------------------------------|----|----------------------|--------------------------------------------------------------------|
-| imageRes         | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | Yes | @Param<br>@Require | Image to be displayed.                                                            |
-| imageSize        | [SizeOptions](ts-types.md#sizeoptions)                                                                | No | @Param               | Size of the image.<br>Default value: **64\*64vp**                                       |
-| imageBorderColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                              | No | @Param               | Stroke color of the image.<br>Default value: **Color.Black**                                      |
-| imageBorderWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                            | No | @Param               | Stroke width of the image.<br>By default, there is no stroke effect.                                              |
-| title            | [ResourceStr](ts-types.md#resourcestr)                                                                | No | @Param               | Title of the dialog box.<br>It is not displayed by default.                                         |
-| content          | [ResourceStr](ts-types.md#resourcestr)                                                                | No | @Param               | Content of the dialog box.<br>It is not displayed by default.                                         |
-| checkTips        | [ResourceStr](ts-types.md#resourcestr)                                                                | No | @Param               | Content of the check box.<br>It is not displayed by default.                                        |
-| checked          | boolean                                                                                               | No | @Param               | Whether to select the check box. The value **true** means to select the check box, and **false** means the opposite.<br>Default value: **false**|
-| onCheckedChange  | [AdvancedDialogV2OnCheckedChange](#advanceddialogv2oncheckedchange)                                   | No | @Param               | Event triggered when the selected status of the check box changes.<br>By default, there is no event.                               |
-| primaryButton    | [AdvancedDialogV2Button](#advanceddialogv2button)                                                     | No | @Param               | Left button of the dialog box.<br>It is not displayed by default.                                         |
-| secondaryButton  | [AdvancedDialogV2Button](#advanceddialogv2button)                                                     | No | @Param               | Right button of the dialog box.<br>It is not displayed by default.                                         |
+| Name              | Type                                                                                                   | Mandatory| Decorator               | Description                                                        |
+|------------------|-------------------------------------------------------------------------------------------------------|----|----------------------|------------------------------------------------------------|
+| imageRes         | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes | @Param<br>@Require | Image to be displayed.                                                    |
+| imageSize        | [SizeOptions](ts-types.md#sizeoptions)                                                                | No | @Param               | Size of the image.<br>Default value: **64\*64vp**.                                |
+| imageBorderColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                              | No | @Param               | Stroke color of the image.<br>Default value: **Color.Black**.                               |
+| imageBorderWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                            | No | @Param               | Stroke width of the image.<br>By default, there is no stroke effect.                                      |
+| title            | [ResourceStr](ts-types.md#resourcestr)                                                                | No | @Param               | Title of the dialog box.<br>It is not displayed by default.<br> **NOTE**<br>If the title exceeds two lines, it will be truncated with an ellipsis (...).      |
+| content          | [ResourceStr](ts-types.md#resourcestr)                                                                | No | @Param               | Content of the dialog box.<br>It is not displayed by default.                                      |
+| checkTips        | [ResourceStr](ts-types.md#resourcestr)                                                                | No | @Param               | Content of the check box.<br>It is not displayed by default.                                     |
+| checked          | boolean                                                                                               | No | @Param               | Whether to select the check box.<br>**true**: The check box is selected. **false**: The check box is not selected.<br>Default value: **false**.|
+| onCheckedChange  | [AdvancedDialogV2OnCheckedChange](#advanceddialogv2oncheckedchange)                                   | No | @Param               | Event triggered when the selected status of the check box changes.<br>By default, there is no event.                              |
+| primaryButton    | [AdvancedDialogV2Button](#advanceddialogv2button)                                                     | No | @Param               | Left button of the dialog box.<br>It is not displayed by default.                                      |
+| secondaryButton  | [AdvancedDialogV2Button](#advanceddialogv2button)                                                     | No | @Param               | Right button of the dialog box.<br>It is not displayed by default.                                      |
 
 ## AdvancedDialogV2OnCheckedChange
 
@@ -54,7 +56,7 @@ Defines the event triggered when the selected status of the check box changes.
 
 | Name    | Type     | Mandatory| Description                                                 |
 | :------ |:--------| :- | :-------------------------------------------------- |
-| checked | boolean | Yes | Whether to select the check box.<br> |
+| checked | boolean | Yes | Whether to select the check box.<br>**true**: The check box is selected.<br> **false**: The check box is not selected.|
 
 ## SelectDialogV2
 
@@ -68,13 +70,13 @@ Displays a dialog box from which the user can select items presented in a list o
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name           | Type                                                      | Mandatory| Decorator              | Description                                                 |
-| ------------- | -------------------------------------------------------- | -- |---------------------|-----------------------------------------------------|
-| title         | [ResourceStr](ts-types.md#resourcestr)                   | Yes | @Param<br>@Require | Title of the dialog box.                                           |
-| content       | [ResourceStr](ts-types.md#resourcestr)                   | No | @Param              | Content of the dialog box. It is not displayed by default.                                     |
-| selectedIndex | number                                                   | No | @Param              | Index of the selected item in the dialog box.<br>Default value: **-1**<br>Value range: less than the length of the length of **radioContent**|
-| confirm       | [AdvancedDialogV2Button](#advanceddialogv2button)        | No | @Param              | Button at the bottom of the dialog box.<br>It is not displayed by default.                        |
-| radioContent  | [SheetInfo](ts-methods-action-sheet.md#sheetinfo)\[] | Yes | @Param<br>@Require | List of items displayed in the dialog box. You can set text and a selection callback for each item.                  |
+| Name           | Type                                                      | Mandatory| Decorator              | Description                                                                             |
+| ------------- | -------------------------------------------------------- | -- |---------------------|---------------------------------------------------------------------------------|
+| title         | [ResourceStr](ts-types.md#resourcestr)                   | Yes | @Param<br>@Require | Title of the dialog box.<br> **NOTE**<br>If the title exceeds two lines, it will be truncated with an ellipsis (...).                                                |
+| content       | [ResourceStr](ts-types.md#resourcestr)                   | No | @Param              | Content of the dialog box. It is not displayed by default.                                                                 |
+| selectedIndex | number                                                   | No | @Param              | Index of the selected item in the dialog box.<br>The default value is **-1**, indicating that there is no selected option. Values beyond the valid range are treated as no selected option.<br>Value range: less than the length of the list of items displayed in the dialog box.|
+| confirm       | [AdvancedDialogV2Button](#advanceddialogv2button)        | No | @Param              | Button at the bottom of the dialog box.<br>It is not displayed by default.                                                         |
+| radioContent  | [SheetInfo](ts-methods-action-sheet.md#sheetinfo)\[] | Yes | @Param<br>@Require | List of items displayed in the dialog box. You can set text and a selection callback for each item.                                              |
 
 ## ConfirmDialogV2
 
@@ -90,7 +92,7 @@ Displays an error dialog box that informs the user of an operational error (for 
 
 | Name             | Type                                                                 | Mandatory| Decorator | Description                                                        |
 |-----------------| ------------------------------------------------------------------- | -- | ------ |------------------------------------------------------------|
-| title           | [ResourceStr](ts-types.md#resourcestr)                              | Yes | @Param<br>@Require | Title of the dialog box.                                                  |
+| title           | [ResourceStr](ts-types.md#resourcestr)                              | Yes | @Param<br>@Require | Title of the dialog box.<br> **NOTE**<br>If the title exceeds two lines, it will be truncated with an ellipsis (...).                                                   |
 | content         | [ResourceStr](ts-types.md#resourcestr)                              | No | @Param | Content of the dialog box.<br>It is not displayed by default.                                 |
 | checkTips       | [ResourceStr](ts-types.md#resourcestr)                              | No | @Param | Content of the check box.<br>It is not displayed by default.                           |
 | checked         | boolean                                                             | No | @Param | Whether to select the check box. The value **true** means to select the check box, and **false** means the opposite.<br>Default value: **false**|
@@ -112,8 +114,8 @@ Displays an alert dialog box to prompt the user to confirm an action that is irr
 
 | Name             | Type                                               | Mandatory| Decorator               | Description                  |
 | --------------- | ------------------------------------------------- | -- | :------------------- | -------------------- |
-| primaryTitle    | [ResourceStr](ts-types.md#resourcestr)            | No | @Param               | Primary title of the dialog box.<br>It is not displayed by default. |
-| secondaryTitle  | [ResourceStr](ts-types.md#resourcestr)            | No | @Param               | Secondary title of the dialog box.<br>It is not displayed by default.      |
+| primaryTitle    | [ResourceStr](ts-types.md#resourcestr)            | No | @Param               | Primary title of the dialog box.<br>It is not displayed by default.<br>**NOTE**<br>If the title exceeds two lines, it will be truncated with an ellipsis (...). |
+| secondaryTitle  | [ResourceStr](ts-types.md#resourcestr)            | No | @Param               | Secondary title of the dialog box.<br>It is not displayed by default.<br>**NOTE**<br>If the title exceeds two lines, it will be truncated with an ellipsis (...).      |
 | content         | [ResourceStr](ts-types.md#resourcestr)            | Yes | @Param<br>@Require | Content of the dialog box.<br>      |
 | primaryButton   | [AdvancedDialogV2Button](#advanceddialogv2button) | No | @Param               | Left button of the dialog box.<br>It is not displayed by default.|
 | secondaryButton | [AdvancedDialogV2Button](#advanceddialogv2button) | No | @Param               | Right button of the dialog box.<br>It is not displayed by default.|
@@ -130,9 +132,9 @@ Displays a loading dialog box to inform the user of the operation progress.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Type                                    | Mandatory| Decorator | Description                 |
-| ------- | -------------------------------------- | -- | :----- |---------------------|
-| content | [ResourceStr](ts-types.md#resourcestr) | No | @Param | Content of the dialog box.<br>It is empty by default.|
+| Name     | Type                                    | Mandatory| Decorator | Description                                              |
+| ------- | -------------------------------------- | -- | :----- |--------------------------------------------------|
+| content | [ResourceStr](ts-types.md#resourcestr) | No | @Param | Content of the dialog box.<br>It is empty by default.<br> **NOTE**<br>If the title exceeds 10 lines, it will be truncated with an ellipsis (...).|
 
 ## CustomContentDialogV2
 
@@ -149,8 +151,8 @@ Displays a dialog box that contains custom content and operation area.
 | Name                | Type                                                  | Mandatory| Decorator        | Description                      |
 | ------------------ | ---------------------------------------------------- | -- | ------------- | ------------------------ |
 | contentBuilder     | [CustomBuilder](ts-types.md#custombuilder8)          | Yes | @BuilderParam | Content of the dialog box.                  |
-| primaryTitle       | [ResourceStr](ts-types.md#resourcestr)               | No | @Param        | Primary title of the dialog box.<br>It is not displayed by default.            |
-| secondaryTitle     | [ResourceStr](ts-types.md#resourcestr)               | No | @Param        | Secondary title of the dialog box.<br>It is not displayed by default.          |
+| primaryTitle       | [ResourceStr](ts-types.md#resourcestr)               | No | @Param        | Primary title of the dialog box.<br>It is not displayed by default.<br>**NOTE**<br>If the title exceeds two lines, it will be truncated with an ellipsis (...).            |
+| secondaryTitle     | [ResourceStr](ts-types.md#resourcestr)               | No | @Param        | Secondary title of the dialog box.<br>It is not displayed by default.<br> **NOTE**<br>If the title exceeds two lines, it will be truncated with an ellipsis (...).         |
 | contentAreaPadding | [LocalizedPadding](ts-types.md#localizedpadding12)     | No | @Param        | Padding of the content area of the dialog box.<br>It is not displayed by default.        |
 | buttons            | [AdvancedDialogV2Button](#advanceddialogv2button)\[] | No | @Param        | Buttons in the operation area of the dialog box. A maximum of four buttons are allowed.<br>It is not displayed by default.|
 
@@ -164,9 +166,9 @@ Defines the event triggered when the visibility of the popover dialog box change
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Type     | Mandatory| Description                                                                    |
-| :------ | :------ | :- |:-----------------------------------------------------------------------|
-| visible | boolean | Yes | Visibility of the popover dialog box.<br>**true**: The popover dialog box is displayed.<br> **false**: The popover dialog box is hidden.|
+| Name    | Type     | Mandatory| Description                                                                   |
+| :------ | :------ | :- |:----------------------------------------------------------------------|
+| visible | boolean | Yes | Whether the popover dialog box is visible.<br>**true**: The popover dialog box is displayed.<br>**false**: The popover dialog box is hidden.                          |
 
 ## PopoverDialogV2
 
@@ -182,7 +184,7 @@ Displays a popover dialog box that is positioned relative to the target componen
 
 | Name           | Type                                                               | Mandatory| Decorator              | Description                                                |
 | ------------- |-------------------------------------------------------------------| -- |---------------------| -------------------------------------------------- |
-| visible       | boolean                                                           | Yes | @Param<br>@Require | Whether the popover dialog box is visible.                                        |
+| visible       | boolean                                                           | Yes | @Param<br>@Require | Whether the popover dialog box is visible.<br>**false**: The popover dialog box is hidden.                                        |
 | \$visible     | [PopoverDialogV2OnVisibleChange](#popoverdialogv2onvisiblechange) | No | @Event              | Callback invoked when the visibility of the dialog box changes. Use the **!!** syntax for two-way binding with **visible**.<br>By default, there is no callback.|
 | popover       | [PopoverDialogV2Options](#popoverdialogv2options)                 | Yes | @Param<br>@Require | Options of the popover dialog box.                                        |
 | targetBuilder | [CustomBuilder](ts-types.md#custombuilder8)                       | Yes | @BuilderParam       | Target component relative to which the popover dialog box is positioned.                                     |
@@ -229,8 +231,8 @@ Defines the button used in a dialog box to perform actions.
 | fontColor    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                | No | @Trace | Font color of the button.<br>The setting follows **buttonStyle** by default.                                            |
 | buttonStyle  | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11) | No | @Trace | Style of the button.<br>Default value: **ButtonStyleMode.NORMAL** for 2-in-1 devices and **ButtonStyleMode.TEXTUAL** for other devices|
 | role         | [ButtonRole](ts-basic-components-button.md#buttonrole12)           | No | @Trace | Role of the button.<br>Default value: **ButtonRole.NORMAL**                                         |
-| defaultFocus | boolean                                                                | No | @Trace | Whether the button is the default focus.<br>Default value: **false**                                                   |
-| enabled       | boolean                                                                | No | @Trace | Whether the button is enabled.<br>Default value: **true**                                                 |
+| defaultFocus | boolean                                                                | No | @Trace | Whether the button is the default focus.<br>**true**: The button is the default focus.<br>**false**: The button is not the default focus.<br>Default value: **false**.                        |
+| enabled       | boolean                                                                | No | @Trace | Whether the button is enabled.<br>**true**: The button is enabled.<br>**false**: The button is disabled.<br>Default value: **true**.                                                        |
 
 > **NOTE**
 >
@@ -260,16 +262,16 @@ Provides options used to initialize an **AdvancedDialogV2Button** object.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name          | Type                                                                    | Mandatory| Description                                                                               |
-|:-------------|:-----------------------------------------------------------------------|:---|:----------------------------------------------------------------------------------|
-| content      | [ResourceStr](ts-types.md#resourcestr)                                 | Yes | Content of the button.                                                                           |
-| action       | [AdvancedDialogV2ButtonAction](#advanceddialogv2buttonaction)          | No | Action triggered when the button is clicked.<br>By default, there is no action.                                                                   |
-| background   | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                              | No | Background of the button.<br> The setting follows **buttonStyle** by default.                                                   |
-| fontColor    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                              | No | Font color of the button.<br>The setting follows **buttonStyle** by default.                                                        |
+| Name          | Type                                                                    | Mandatory| Description                                                                         |
+|:-------------|:-----------------------------------------------------------------------|:---|:----------------------------------------------------------------------------|
+| content      | [ResourceStr](ts-types.md#resourcestr)                                 | Yes | Content of the button.                                                                     |
+| action       | [AdvancedDialogV2ButtonAction](#advanceddialogv2buttonaction)          | No | Action triggered when the button is clicked.<br>By default, there is no action.                                                       |
+| background   | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                              | No | Background of the button.<br> The setting follows **buttonStyle** by default.                                             |
+| fontColor    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                              | No | Font color of the button.<br>The setting follows **buttonStyle** by default.                                            |
 | buttonStyle  | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11) | No | Style of the button.<br>Default value: **ButtonStyleMode.NORMAL** for 2-in-1 devices and **ButtonStyleMode.TEXTUAL** for other devices|
 | role         | [ButtonRole](ts-basic-components-button.md#buttonrole12)           | No | Role of the button.<br>Default value: **ButtonRole.NORMAL**                                         |
-| defaultFocus | boolean                                                                | No | Whether the button is the default focus.<br>Default value: **false**                                                               |
-| enabled       | boolean                                                                | No | Whether the button is enabled.<br>Default value: **true**                                                              |
+| defaultFocus | boolean                                                                | No | Whether the button is the default focus.<br>**true**: The button is the default focus.<br>**false**: The button is not the default focus.<br>Default value: **false**.                        |
+| enabled       | boolean                                                                | No | Whether the button is enabled.<br>**true**: The button is enabled.<br>**false**: The button is disabled.<br>Default value: **true**.                                                        |
 
 ## Example
 
@@ -278,7 +280,7 @@ Provides options used to initialize an **AdvancedDialogV2Button** object.
 This example implements a dialog box with an image above the text content, through the use of **imageRes**, **content**, and other properties.
 
 ```ts
-import { TipsDialogV2, AdvancedDialogV2Button, promptAction } from '@kit.ArkUI';
+import { TipsDialogV2, AdvancedDialogV2Button, UIContext  } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -321,7 +323,8 @@ struct Index {
             .width(96)
             .height(40)
             .onClick(() => {
-              promptAction.openCustomDialog({
+              let uiContext: UIContext = this.getUIContext();
+              uiContext.getPromptAction().openCustomDialog({
                 builder: () => {
                   this.dialogBuilder();
                 },
@@ -344,7 +347,7 @@ struct Index {
 This example presents a dialog box consisting solely of a list defined with **selectedIndex** and **radioContent**.
 
 ```ts
-import { SelectDialogV2, AdvancedDialogV2Button ,promptAction } from '@kit.ArkUI';
+import { SelectDialogV2, AdvancedDialogV2Button ,UIContext  } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -389,7 +392,8 @@ struct Index {
             .width(96)
             .height(40)
             .onClick(() => {
-              promptAction.openCustomDialog({
+              let uiContext: UIContext = this.getUIContext();
+              uiContext.getPromptAction().openCustomDialog({
                 builder: () => {
                   this.dialogBuilder();
                 }
@@ -412,7 +416,7 @@ struct Index {
 This example illustrates a dialog box that combines text content with check boxes defined with **content** and **checkTips**.
 
 ```ts
-import { ConfirmDialogV2, AdvancedDialogV2Button, promptAction } from '@kit.ArkUI';
+import { ConfirmDialogV2, AdvancedDialogV2Button, UIContext  } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -429,6 +433,7 @@ struct Index {
       primaryButton: new AdvancedDialogV2Button({
         content: 'Deny',
         action: () => {
+          console.info('Callback when the primary button is clicked');
         },
       }),
       secondaryButton: new AdvancedDialogV2Button({
@@ -453,7 +458,8 @@ struct Index {
             .width(96)
             .height(40)
             .onClick(() => {
-              promptAction.openCustomDialog({
+              let uiContext: UIContext = this.getUIContext();
+              uiContext.getPromptAction().openCustomDialog({
                 builder: () => {
                   this.dialogBuilder();
                 },
@@ -477,7 +483,7 @@ struct Index {
 This example demonstrates a simple text-only dialog box defined with **primaryTitle**, **secondaryTitle**, and **content**.
 
 ```ts
-import { AlertDialogV2, AdvancedDialogV2Button, promptAction } from '@kit.ArkUI';
+import { AlertDialogV2, AdvancedDialogV2Button, UIContext  } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -491,6 +497,7 @@ struct Index {
       primaryButton: new AdvancedDialogV2Button({
         content: 'Cancel',
         action: () => {
+          console.info('Callback when the primary button is clicked');
         },
       }),
       secondaryButton: new AdvancedDialogV2Button({
@@ -511,7 +518,8 @@ struct Index {
             .width(96)
             .height(40)
             .onClick(() => {
-              promptAction.openCustomDialog({
+              let uiContext: UIContext = this.getUIContext();
+              uiContext.getPromptAction().openCustomDialog({
                 builder: () => {
                   this.dialogBuilder();
                 }
@@ -534,7 +542,7 @@ struct Index {
 This example implements a loading dialog box that contains a progress indicator.
 
 ```ts
-import { LoadingDialogV2, promptAction } from '@kit.ArkUI';
+import { LoadingDialogV2, UIContext  } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -554,7 +562,8 @@ struct Index {
             .width(96)
             .height(40)
             .onClick(() => {
-              promptAction.openCustomDialog({
+              let uiContext: UIContext = this.getUIContext();
+              uiContext.getPromptAction().openCustomDialog({
                 builder: () => {
                   this.dialogBuilder();
                 }
@@ -577,7 +586,7 @@ struct Index {
 This example presents a dialog box with a custom theme, through the use of **content**, **theme**, and other properties.
 
 ```ts
-import { CustomColors, CustomTheme, LoadingDialogV2, promptAction } from '@kit.ArkUI';
+import { CustomColors, CustomTheme, LoadingDialogV2, UIContext  } from '@kit.ArkUI';
 
 class CustomThemeImpl implements CustomTheme {
   colors?: CustomColors;
@@ -612,7 +621,8 @@ struct Index {
             .width(96)
             .height(40)
             .onClick(() => {
-              promptAction.openCustomDialog({
+              let uiContext: UIContext = this.getUIContext();
+              uiContext.getPromptAction().openCustomDialog({
                 builder: () => {
                   this.dialogBuilder();
                 }
@@ -635,7 +645,7 @@ struct Index {
 This example implements a dialog box with custom content defined with **contentBuilder** and **buttons**.
 
 ```ts
-import { CustomContentDialogV2, AdvancedDialogV2Button, promptAction } from '@kit.ArkUI';
+import { CustomContentDialogV2, AdvancedDialogV2Button, UIContext  } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -666,7 +676,8 @@ struct Index {
     Column() {
       Button("Open CustomContentDialogV2")
         .onClick(() => {
-          promptAction.openCustomDialog({
+            let uiContext: UIContext = this.getUIContext();
+            uiContext.getPromptAction().openCustomDialog({
             builder: () => {
               this.dialogBuilder();
             }

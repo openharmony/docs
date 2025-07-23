@@ -7,12 +7,14 @@ The **SubHeader** component represents a subheader that signifies the top of a l
 > **NOTE**
 >
 > This component is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This component is not supported on wearables.
 
 
 ## Modules to Import
 
 ```ts
-import { SubHeader } from '@kit.ArkUI'
+import { SubHeader } from '@kit.ArkUI';
 ```
 
 
@@ -77,7 +79,7 @@ TextModifier, titleBuilder?: () => void, contentMargin?: LocalizedMargin, conten
 | -------- | -------- | -------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | options | Array&lt;[SelectOption](ts-basic-components-select.md#selectoption)&gt; | Yes| Options of an item in the drop-down list box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                |
 | selected | number | No| Index of the initially selected item in the drop-down list box.<br>The value must be greater than or equal to -1.<br>The index of the first item is 0.<br>If this property is not set, the default value **-1** is used, indicating that the option is not selected.<br>Values less than -1 are treated as no selection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| value | string | No| Text content of the drop-down list button itself.<br>The default value is an empty string.<br>**NOTE**<br>If the text is longer than the column width, it will be truncated.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                |
+| value | [ResourceStr](ts-types.md#resourcestr) | No| Text content of the drop-down list button itself.<br>The default value is an empty string.<br>**NOTE**<br>If the text length exceeds the column width, it will be truncated. The Resource type is supported since API version 20.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                      |
 | onSelect | (index: number, value?: string) =&gt; void | No| Callback invoked when an item in the drop-down list box is selected.<br>- **index**: index of the selected option.<br>- **value**: value of the selected option.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                          |
 | defaultFocus<sup>18+</sup> | boolean | No| Whether the drop-down button is the default focus.<br>**true**: The drop-down button is the default focus.<br>**false**: The drop-down button is not the default focus.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                |
 
@@ -102,9 +104,9 @@ TextModifier, titleBuilder?: () => void, contentMargin?: LocalizedMargin, conten
 | Name| Type| Mandatory| Description                                                                                                                                                                                                                                             |
 | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | fontColor | Array&lt;[ResourceColor](ts-types.md#resourcecolor)&gt; | No| Color of the [symbol glyph](ts-basic-components-symbolGlyph.md).<br>Default value: depending on the rendering strategy                                                                                                                                                                      |
-| fontSize | number \|string \|[Resource](ts-types.md#Resource) | No| Size of the [symbol glyph](ts-basic-components-symbolGlyph.md).<br>The value must be greater than or equal to 0.<br>Default value: system default value                                                                                                                                                             |
-| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | No| Font weight of the [symbol glyph](ts-basic-components-symbolGlyph.md).<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
-| renderingStrategy | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11) | No| Rendering strategy of the [symbol glyph](ts-basic-components-symbolGlyph.md).<br>Default value: **SymbolRenderingStrategy.SINGLE**<br>**NOTE**<br>For the resources referenced in **$r('sys.symbol.ohos_*')**, only **ohos_trash_circle**, **ohos_folder_badge_plus**, and **ohos_lungs** support the **MULTIPLE_COLOR** modes.                                      |
+| fontSize | number \|string \|[Resource](ts-types.md#resource) | No| Size of the [symbol glyph](ts-basic-components-symbolGlyph.md).<br>The value must be greater than or equal to 0.<br>Default value: system default value                                                                                                                                                             |
+| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | No| Weight of the [symbol glyph](ts-basic-components-symbolGlyph.md).<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**.|
+| renderingStrategy | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11) | No| Rendering strategy of the [symbol glyph](ts-basic-components-symbolGlyph.md).<br>Default value: **SymbolRenderingStrategy.SINGLE**.<br>**NOTE**<br>For the resources referenced in **$r('sys.symbol.ohos_*')**, only **ohos_trash_circle**, **ohos_folder_badge_plus**, and **ohos_lungs** support the **MULTIPLE_COLOR** modes.                                      |
 | effectStrategy | [SymbolEffectStrategy](ts-basic-components-symbolGlyph.md#symboleffectstrategy11) | No| Effect strategy of the [symbol glyph](ts-basic-components-symbolGlyph.md).<br>Default value: **SymbolEffectStrategy.NONE**<br>**NOTE**<br>For the resources referenced in **$r('sys.symbol.ohos_*')**, only **ohos_wifi** supports the hierarchical effect.                                                                                      |
 
 ## Events
@@ -115,7 +117,7 @@ The [universal events](ts-component-general-events.md) are not supported.
 This example demonstrates how to implement a subheader where the left side contains an icon and a secondary title, and the right side has a text button.
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -129,7 +131,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: 'Operation',
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }]
       })
@@ -140,11 +142,11 @@ struct SubHeaderExample {
 
 ![en-us_image_subheader_example01](figures/en-us_image_subheader_example01.png)
 
-### Example 2: Implementing a Double-Line Text Content-rich Subheader
+### Example 2: Implementing a Double-Line Text Content-Rich Subheader
 This example showcases a subheader with a primary title and a secondary title on the left, and a text button with a right arrow on the right.
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -158,7 +160,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: 'More',
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }]
       })
@@ -169,11 +171,11 @@ struct SubHeaderExample {
 
 ![Subheader 2](figures/en-us_image_subheader_example02.png)
 
-### Example 3: Implementing a Spinner Content-rich Subheader
+### Example 3: Implementing a Spinner Content-Rich Subheader
 This example showcases a subheader with content and events for selection on the left, and an icon-attached button on the right.
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -187,7 +189,7 @@ struct SubHeaderExample {
           value: 'selectDemo',
           selected: 2,
           onSelect: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         },
         operationType: OperationType.ICON_GROUP,
@@ -195,17 +197,17 @@ struct SubHeaderExample {
         operationItem: [{
           value: $r('sys.media.ohos_ic_public_email'),
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            Prompt.showToast({ message: 'demo' })
           }
         }, {
           value: $r('sys.media.ohos_ic_public_email'),
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }, {
           value: $r('sys.media.ohos_ic_public_email'),
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }]
       })
@@ -221,7 +223,7 @@ This example demonstrates how to set the icon symbol for the left side of the su
 
 ```ts
 
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -239,7 +241,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: 'Operation',
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }]
       })
@@ -254,7 +256,7 @@ struct SubHeaderExample {
 The following example shows how to set **operationType** to **OperationType.ICON_GROUP** for the right side of the subheader, with **operationItem** set to a symbol icon.
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -268,7 +270,7 @@ struct SubHeaderExample {
           value: 'selectDemo',
           selected: 2,
           onSelect: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         },
         operationType: OperationType.ICON_GROUP,
@@ -276,17 +278,17 @@ struct SubHeaderExample {
         operationItem: [{
           value: $r('sys.symbol.ohos_lungs'),
           action: () => {
-            promptAction.showToast({ message: 'icon1' });
+            Prompt.showToast({ message: 'icon1' });
           }
         }, {
           value: $r('sys.symbol.ohos_lungs'),
           action: () => {
-            promptAction.showToast({ message: 'icon2' });
+            Prompt.showToast({ message: 'icon2' });
           }
         }, {
           value: $r('sys.symbol.ohos_lungs'),
           action: () => {
-            promptAction.showToast({ message: 'icon3' });
+            Prompt.showToast({ message: 'icon3' });
           }
         }],
         // Set the symbol style for the right side icons.
@@ -311,7 +313,7 @@ struct SubHeaderExample {
  This example demonstrates how to customize the title content with a **titleBuilder** object for the subheader.
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -339,7 +341,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: 'More info',
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }]
       })
@@ -353,7 +355,7 @@ struct SubHeaderExample {
 This example demonstrates how to set the font style, margin, and padding for the primary and secondary titles in the subheader.
 
 ```ts
-import { promptAction, OperationType, SubHeader, LengthMetrics, TextModifier } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader, LengthMetrics, TextModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -373,7 +375,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: 'More info',
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }],
         // Set the margin and padding for the subheader.
@@ -389,9 +391,9 @@ struct SubHeaderExample {
 
 
 ### Example 8: Implementing Announcement for the Button on the Right Side
-This example customizes the screen reader announcement text by setting the **accessibilityText**, **accessibilityDescription**, and **accessibilityLevel** properties of the button on the right side of the subheader.
+This example customizes the screen reader announcement text by setting the **accessibilityText**, **accessibilityDescription**, and **accessibilityLevel** properties of the button on the right side of the subheader. This functionality is supported since API version 18.
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -407,7 +409,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: 'Operation',
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            Prompt.showToast({ message: 'demo' })
           }
         }]
       })
@@ -420,7 +422,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: 'More',
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            Prompt.showToast({ message: 'demo' })
           }
         }]
       })
@@ -458,9 +460,9 @@ struct SubHeaderExample {
 ![figures/en-us_image_subheader_example08](figures/en-us_image_subheader_example08.png)
 
 ### Example 9: Enabling the Button on the Right Side to Receive Default Focus
-This example demonstrates how to use **defaultFocus** to enable the button on the right side of the subheader to receive default focus.
+This example demonstrates how to use **defaultFocus** to enable the button on the right side of the subheader to receive default focus. This functionality is supported since API version 18.
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -476,7 +478,7 @@ struct SubHeaderExample {
           value: 'Action',
           defaultFocus: true,
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            Prompt.showToast({ message: 'demo' })
           }
         }]
       })

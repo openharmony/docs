@@ -1,18 +1,20 @@
 # SelectionMenu
 
 
-The **SelectionMenu** component is a context menu designed for use with the [RichEditor](ts-basic-components-richeditor.md) component, allowing you to bind a custom context menu on selection through the [bindSelectionMenu](./ts-basic-components-richeditor.md#bindselectionmenu) API. This component is not intended for standalone use, and you are advised to display it by right-clicking or by selecting text with a mouse device.
+The **SelectionMenu** component serves as a context menu designed specifically for text selection in the [RichEditor](ts-basic-components-richeditor.md) or [Text](ts-basic-components-text.md) component. This component must be bound to either a **RichEditor** component through its [bindSelectionMenu](ts-basic-components-richeditor.md#bindselectionmenu) API or a **Text** component using its [bindSelectionMenu](ts-basic-components-text.md#bindselectionmenu11) API to work properly, as it cannot operate as an independent UI element. It is recommended that this component be displayed through mouse right-click or text selection events.
 
 
 > **NOTE**
 >
 > This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This component is not supported on wearables.
 
 
 ## Modules to Import
 
-```
-import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@kit.ArkUI'
+```ts
+import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@kit.ArkUI';
 ```
 
 ## Child Components
@@ -23,7 +25,7 @@ Not supported
 
 SelectionMenu(options: SelectionMenuOptions): void
 
-Defines a custom context menu on selection. When the input parameter is empty, the sizes of the menu and its content area are 0, making the menu invisible. In this case, for example, if a right-click context menu is bound to the **RichEditor** component, it will not be displayed when the component is right-clicked.
+Defines a **SelectionMenu** component. When the input parameter is empty, the sizes of the component and its content area are 0, making the component invisible. In this case, for example, if the **SelectionMenu** component activated through right clicks is bound to a **RichEditor** component, it will not be displayed when the **RichEditor** component is right-clicked.
 
 **Decorator**: @Builder
 
@@ -35,11 +37,11 @@ Defines a custom context menu on selection. When the input parameter is empty, t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [SelectionMenuOptions](#selectionmenuoptions) | Yes| Options of the context menu on selection.|
+| options | [SelectionMenuOptions](#selectionmenuoptions) | Yes| Configuration options of the **SelectionMenu** component.|
 
 ## SelectionMenuOptions
 
-Defines the options of the context menu on selection.
+Defines the configuration options of the **SelectionMenu** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -60,16 +62,14 @@ Defines the options of the context menu on selection.
 
 Describes the edit menu options.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| icon | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.|
+| icon | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| builder | () =&gt; void | No| Builder of the custom component displayed upon click. It must be used with @Builder for building the custom component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| action | () =&gt; void | No| Action triggered when the menu option is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No| Symbol icon resource, which has higher priority than **icon**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
-| builder | () =&gt; void | No| Builder of the custom component displayed upon click. It must be used with @Builder for building the custom component.|
-| action | () =&gt; void | No| Action triggered when the menu option is clicked.|
 
 
 ## ExpandedMenuOptions
@@ -117,7 +117,7 @@ import {
   ExpandedMenuOptions,
   EditorEventInfo,
   SelectionMenuOptions
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @Component
