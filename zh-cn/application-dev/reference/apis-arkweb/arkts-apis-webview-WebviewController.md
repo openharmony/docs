@@ -6117,7 +6117,7 @@ setScrollable(enable: boolean, type?: ScrollType): void
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ---------------------- |
-| enable     | boolean   | 是   | 表示是否将网页设置为允许滚动。<br>true表示设置为允许滚动，false表示禁止滚动。 |
+| enable     | boolean   | 是   | 表示是否将网页设置为允许滚动。<br>true表示设置为允许滚动，false表示禁止滚动。<br>默认值：true。 |
 | type       | [ScrollType](./arkts-apis-webview-e.md#scrolltype12) |  否 | 网页可触发的滚动类型，支持缺省配置。<br/> - enable为false时，表示禁止ScrollType类型的滚动，当ScrollType缺省时表示禁止所有类型网页滚动。<br/> - enable为true时，ScrollType缺省与否，都表示允许所有类型的网页滚动。|
 
 **错误码：**
