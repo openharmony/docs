@@ -336,7 +336,7 @@ zoomAccess(zoomAccess: boolean)
 
 | 参数名        | 类型    | 必填   | 说明          |
 | ---------- | ------- | ---- | ------------- |
-| zoomAccess | boolean | 是    | 设置是否支持手势进行缩放。<br>true表示设置支持手势进行缩放，false表示设置不支持手势进行缩放。<br>默认值：true。 |
+| zoomAccess | boolean | 是    | 设置是否支持手势进行缩放。<br>true表示设置支持手势进行缩放，false表示设置不支持手势进行缩放。<br>默认值：true。<br>默认值：true。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -546,7 +546,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 | 参数名                 | 类型    | 必填   | 说明         |
 | ------------------- | ------- | ---- | ------------ |
-| horizontalScrollBar | boolean | 是    | 设置是否显示横向滚动条。<br>true表示设置显示横向滚动条，false表示设置不显示横向滚动条。<br>默认值：true。 |
+| horizontalScrollBar | boolean | 是    | 设置是否显示横向滚动条。<br>true表示设置显示横向滚动条，false表示设置不显示横向滚动条。<br>默认值：true。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -628,7 +628,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 | 参数名               | 类型    | 必填   | 说明         |
 | ----------------- | ------- | ---- | ------------ |
-| verticalScrollBar | boolean | 是    | 设置是否显示纵向滚动条。<br>true表示设置显示纵向滚动条，false表示设置不显示纵向滚动条。<br>默认值：true。 |
+| verticalScrollBar | boolean | 是    | 设置是否显示纵向滚动条。<br>true表示设置显示纵向滚动条，false表示设置不显示纵向滚动条。<br>默认值：true。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -2478,7 +2478,7 @@ struct WebComponent {
 
 enableHapticFeedback(enabled: boolean)
 
-设置Web组件长按文本选择是否开启振动。 需配置"ohos.permission.VIBRATE"。
+设置Web组件长按文本选择是否开启振动。需配置"ohos.permission.VIBRATE"。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2486,7 +2486,7 @@ enableHapticFeedback(enabled: boolean)
 
 | 参数名     | 类型        | 必填   | 说明 |
 | --------- | ---------   | ------ | ------------- |
-| enabled   | boolean | 是  | 是否开启振动。<br>true表示开启振动，false表示不开启振动。<br>默认值：true。 |
+| enabled   | boolean | 是  | 是否开启振动。<br>true表示开启振动，false表示不开启振动。<br>默认值：true。<br>传入undefined与null时为false。 |
 
 **示例：**
 
