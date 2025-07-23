@@ -2,9 +2,9 @@
 
 ## 概述
 
-路由结果。
+定义跟踪路由信息。
 
-**起始版本：** 12
+**起始版本：** 20
 
 **相关模块：** [NetConnection](capi-netconnection.md)
 
@@ -12,49 +12,10 @@
 
 ## 汇总
 
-
 ### 成员变量
 
 | 名称 | 描述 |
-| -------- | -------- |
-| [jumpNo](#jumpNo) | 当前路由跳数。 |
-| [address[NETCONN_MAX_STR_LEN]](#address[NETCONN_MAX_STR_LEN]) | 当前路由地址。 |
-| [rtt[NETCONN_MAX_RTT_NUM]](#rtt[NETCONN_MAX_RTT_NUM) | 探测结果。 |
-
-
-## 结构体成员变量说明
-
-
-### jumpNo
-
-```
-uint8_t jumpNo;
-```
-
-**描述**
-
-当前路由跳数。
-
-### address
-
-```
-char address[NETCONN_MAX_STR_LEN];
-```
-
-**描述**
-
-当前路由地址。
-
-### rtt
-
-```
-uint32_t rtt[NETCONN_MAX_RTT_NUM];
-```
-
-**描述**
-
-时延结果，rtt数组，共计4个rtt成员：
-rtt[0] - rttMin: 探测过程中的最小rtt值；
-rtt[1] - rttMax: 探测过程中的最大rtt值；
-rtt[2] - rttAvg: 探测过程中的平均rtt值；
-rtt[3] - rttStd: 探测过程中的rtt标准差。
+| -- | -- |
+| uint8_t jumpNo | 跳数大小。 |
+| char address[NETCONN_MAX_STR_LEN] | 主机名或地址。 |
+| uint32_t rtt[NETCONN_MAX_RTT_NUM] | 往返时间（单位：微秒）。 |
