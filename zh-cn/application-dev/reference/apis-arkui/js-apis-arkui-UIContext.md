@@ -1964,9 +1964,8 @@ struct Index {
         }
         .onClick(() => {
           let uiContext: UIContext = this.getUIContext();
-          let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
           let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
+          console.info(`Window widthBp: ${widthBp}`);
         })
       }
       .width('100%')
@@ -2015,8 +2014,7 @@ struct Index {
         .onClick(() => {
           let uiContext: UIContext = this.getUIContext();
           let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
-          let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
+          console.info(`Window heightBP: ${heightBp}`);
         })
       }
       .width('100%')
