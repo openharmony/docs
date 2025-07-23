@@ -47,7 +47,7 @@
             - [Worker和宿主线程的即时消息通信](worker-communicates-with-mainthread.md)
             - [Worker同步调用宿主线程的接口](worker-invoke-mainthread-interface.md)
             - [多级Worker间高性能消息通信](worker-postMessage-sendable.md)
-    - 应用多线程开发<!--multithread-develop-guide-->
+    - 应用多线程开发实践<!--multithread-develop-guide-->
         - [应用多线程开发概述](multithread-develop-overview.md)
         - 耗时任务并发场景<!--time-consuming-task-->
             - [耗时任务并发场景简介](time-consuming-task-overview.md)
