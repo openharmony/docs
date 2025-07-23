@@ -459,7 +459,7 @@ addDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
-| protocols  | Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;               | 是   | 星闪协议枚举列表。 |
+| protocols  | Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;               | 是   | 星闪协议列表。 |
 | accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
 
 **错误码**：
@@ -476,8 +476,8 @@ addDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol
 **示例：**
 
 ```ts
+import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
-import systemManager from '@ohos.enterprise.systemManager';
 
 let wantTemp: Want = {
   // 需根据实际情况进行替换
@@ -489,8 +489,11 @@ let wantTemp: Want = {
 let protocols: systemManager.NearLinkProtocol[] = [systemManager.NearLinkProtocol.SSAP,
   systemManager.NearLinkProtocol.DATA_TRANSFER];
 
+// 需根据实际情况进行替换
+let accountId: number = 100;
+
 try {
-  systemManager.addDisallowedNearLinkProtocols(wantTemp, protocols, 100);
+  systemManager.addDisallowedNearLinkProtocols(wantTemp, protocols, accountId);
   console.info('Succeeded in adding the disabled Starlink protocol list for the specified user.');
 } catch (err) {
   console.error(`Failed to add the disabled Starlink protocol list for the specified user. Code is ${err.code}, message is ${err.message}`);
@@ -514,7 +517,7 @@ removeDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProto
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
-| protocols  | Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;               | 是   | 星闪协议枚举列表。 |
+| protocols  | Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;               | 是   | 星闪协议列表。 |
 | accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
 
 **错误码**：
@@ -531,8 +534,8 @@ removeDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProto
 **示例：**
 
 ```ts
+import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
-import systemManager from '@ohos.enterprise.systemManager';
 
 let wantTemp: Want = {
   // 需根据实际情况进行替换
@@ -544,11 +547,13 @@ let wantTemp: Want = {
 let protocols: systemManager.NearLinkProtocol[] = [systemManager.NearLinkProtocol.SSAP,
   systemManager.NearLinkProtocol.DATA_TRANSFER];
 
+// 需根据实际情况进行替换
+let accountId: number = 100;
 try {
-  systemManager.removeDisallowedNearLinkProtocols(wantTemp, protocols, 100);
-   console.info('Succeeded in removing the disabled Starlink protocol list for the specified user.');
+  systemManager.removeDisallowedNearLinkProtocols(wantTemp, protocols, accountId);
+  console.info('Succeeded in removing the disabled Starlink protocol list for the specified user.');
 } catch (err) {
-   console.error(`Failed to remove the disabled Starlink protocol list for the specified user. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to remove the disabled Starlink protocol list for the specified user. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -590,8 +595,8 @@ getDisallowedNearLinkProtocols(admin: Want, accountId: number): Array&lt;NearLin
 **示例：**
 
 ```ts
+import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
-import systemManager from '@ohos.enterprise.systemManager';
 
 let wantTemp: Want = {
   // 需根据实际情况进行替换
@@ -599,8 +604,11 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility'
 };
 
+// 需根据实际情况进行替换
+let accountId: number = 100;
+
 try {
-  let result: systemManager.NearLinkProtocol[] = systemManager.getDisallowedNearLinkProtocols(wantTemp, 100);
+  let result: systemManager.NearLinkProtocol[] = systemManager.getDisallowedNearLinkProtocols(wantTemp, accountId);
   console.info(`Succeeded in querying the disabled Starlink protocol list for the specified user: ${result}`);
 } catch (err) {
   console.error(`Failed to query the disabled Starlink protocol list for the specified user. Code is ${err.code}, message is ${err.message}`);
@@ -753,4 +761,4 @@ try {
 | 名称               | 值  | 说明    |
 | -----------------  | ---- | ----- |
 | SSAP   | 0 |  SSAP（SparkLink Service Access Protocol）协议。<!--RP1--><!--RP1End--> |
-| DATA_TRANSFER      |1| 数据传输协议。<!--RP2--><!--RP2End--> |
+| DATA_TRANSFER      | 1 | 数据传输协议。<!--RP2--><!--RP2End--> |
