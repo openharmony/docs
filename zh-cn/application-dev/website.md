@@ -378,6 +378,8 @@
         - 从ArkTS1.1到ArkTS1.2的UI适配指导<!--ui-arkts-migration-guide-->
           - ArkTS1.2不再支持的UI接口<!--ui-deprecated-apis-->
             - [滚动与滑动](ui/arkts-v1.2-deprecated-scrollable-apis.md)
+            - [像素单位转换](arkts-v1.2-deprecated-ts-pixel-units-apis.md)
+            - [页面上下文](arkts-v1.2-deprecated-ts-pixel-units-apis.md)
             - [绘制组件](ui/arkts-v1.2-deprecated-drawing-apis.md)
             - [弹窗类组件](ui/arkts-v1.2-deprecated-dialog-apis.md)
             - [表单类组件](ui/arkts-v1.2-deprecated-form-apis.md)
