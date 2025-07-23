@@ -48,14 +48,17 @@ setValue(admin: Want, item: string, value: string): void
 **示例：**
 
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 需根据实际情况进行替换
   deviceSettings.setValue(wantTemp, 'screenOff', '3000');
   console.info(`Succeeded in setting screen off time.`);
 } catch (err) {
@@ -100,14 +103,17 @@ getValue(admin: Want, item: string): string
 **示例：**
 
 ```ts
+import { deviceSettings } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let result: string = deviceSettings.getValue(wantTemp, 'screenOff');
   console.info(`Succeeded in getting screen off time, result : ${result}`);
 } catch (err) {

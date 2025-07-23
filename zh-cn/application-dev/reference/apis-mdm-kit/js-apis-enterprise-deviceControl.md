@@ -49,14 +49,17 @@ operateDevice(admin: Want, operate: string, addition?: string): void
 **示例：**
 
 ```ts
+import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   deviceControl.operateDevice(wantTemp, 'resetFactory');
 } catch (err) {
   console.error(`Failed to reset factory. Code is ${err.code}, message is ${err.message}`);
