@@ -61,7 +61,7 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 | -------- | ------------------------------------------------------------ |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
 | 33900001 | Service exception. Possible causes: <br>1. System error, such as a null pointer and container-related exception. <br>2. Node-API invocation exception, such as invalid Node-API status.|
-| 33900002 | Subscription failed. Possible causes: <br>1. Callback registration failure. <br>2. Failed to bind native object to js wrapper. <br>3. Node-API invocation exception, invalid Node-API status. <br>4. IPC request exception. |
+| 33900002 | Subscription failed. Possible causes: <br>1. Callback registration failed. <br>2. Failed to bind the native object to the JS wrapper. <br>3. Node-API invocation exception, such as invalid Node-API status. <br>4. IPC request exception. |
 
 **示例**：
 
