@@ -900,7 +900,7 @@ try {
 
 | 名称         | 类型     | 只读 | 可选 | 说明                            |
 | ----------- | --------| ---- | ---- | --------------------------- |
-| appIdentifier | string | 否 | 否 | 要设置卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId和appIdentifier](../apis-ability-kit/js-apis-appControl-sys.md#获取应用的appid和appidentifier)。 |
+| appIdentifier | string | 否 | 否 | 要设置卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。|
 | accountId  | number     | 否 | 否 | 用户ID，指定具体用户，取值范围：大于等于0。accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。         |
 | appIndex  | number     | 否 | 否 | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示主应用。appIndex大于0时，表示指定的分身应用。        |
 
