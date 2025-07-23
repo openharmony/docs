@@ -83,7 +83,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmCreateThrowError},
 };
 static JSVM_CallbackStruct *method = param;
-// JsVmThrow方法别名，供JS调用
+// JsVmCreateThrowError方法别名，供JS调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmCreateThrowError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -170,7 +170,7 @@ static JSVM_Value JsVmThrowTypeError(JSVM_Env env, JSVM_CallbackInfo info) {
         char *buffer = new char[length + 1];
         // 获取入参的字符串内容
         OH_JSVM_GetValueStringUtf8(env, argv[0], buffer, length + 1, nullptr);
-        // 作为error信息填入到OH_JSVM_ThrowError接口中
+        // 作为error信息填入到OH_JSVM_ThrowTypeError接口中
         OH_JSVM_ThrowTypeError(env, "self defined error code", buffer);
         delete[] buffer;
     }
@@ -455,7 +455,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmCreateSyntaxError},
 };
 static JSVM_CallbackStruct *method = param;
-// JsVmThrow方法别名，供JS调用
+// JsVmCreateSyntaxError方法别名，供JS调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmCreateSyntaxError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -518,7 +518,7 @@ cpp部分代码：
 
 ```cpp
 // hello.cpp
-// OH_JSVM_GetAndClearLastException的样例方法
+// OH_JSVM_IsExceptionPending的样例方法
 static JSVM_Value JsVmIsExceptionPending(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_Status status;
     bool isExceptionPending = false;
