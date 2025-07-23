@@ -1151,3 +1151,53 @@ struct Index {
 ```
 
 ![menu-outline](figures/menuOutline.png)
+
+### 示例18 （bindMenu传入带参数的CustomBuilder）
+
+该示例通过在bindMenu中传入带参数的CustomBuilder来配置菜单的具体属性。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State menuItermList: string[] = ['新建', '历史', '书签', '设置']
+
+  @Builder
+  MenuBuilder(itemList: string[]) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+      ForEach(itemList, (item: string, index) => {
+        Row() {
+          Text(item)
+            .width('100%')
+            .height(32)
+            .fontWeight(400)
+            .fontSize(14)
+            .fontColor(Color.Black)
+            .textAlign(TextAlign.Center)
+        }
+        .onClick(() => {
+          console.info('handle' + item + 'Clicked!')
+        })
+        if (index != itemList.length - 1) {
+          Divider().height(10).width('80%').color('#ccc')
+        }
+      })
+    }
+    .width(100)
+  }
+
+  build() {
+    Column() {
+      Text('click for Menu')
+        .bindMenu(this.MenuBuilder(this.menuItermList))
+    }
+    .height('100%')
+    .width('100%')
+    .backgroundColor('#f0f0f0')
+  }
+}
+
+```
+
+![bindMenu-CustomBuilder](figures/bindMenuWithCustomBuilder.gif)
