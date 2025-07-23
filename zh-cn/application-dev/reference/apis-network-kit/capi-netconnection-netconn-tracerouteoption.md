@@ -16,5 +16,5 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| uint8_t maxJumpNumber | 最大跳数，默认值为 30。 |
-| NetConn_PacketsType packetsType | 数据包类型。 |
+| uint8_t maxJumpNumber | 探测结果最大跳数，需要和TraceRouteInfo设置一致，最大可设置30跳，默认为30跳。 |
+| NetConn_PacketsType packetsType | 探测包协议类型，默认为NETCONN_PACKETS_ICMP。 |
