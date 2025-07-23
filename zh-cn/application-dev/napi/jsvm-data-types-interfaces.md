@@ -35,7 +35,7 @@
         JSVM_NO_EXTERNAL_BUFFERS_ALLOWED,     /* 不允许外部缓冲区 */
         JSVM_CANNOT_RUN_JS,                   /* 不能执行JS */
         JSVM_INVALID_TYPE,                    /* 非法类型 */
-        JSVM_JIT_MODE_EXPECTD,                /* 期望在JIT模式下执行 */
+        JSVM_JIT_MODE_EXPECTED,                /* 期望在JIT模式下执行 */
     } JSVM_Status;
 ```
 
@@ -54,11 +54,11 @@ typedef struct {
 
 ### JSVM_Value
 
-在C++代码中，用于表示一个JavaScript值。
+在C++代码中，表示JavaScript值。
 
 ### JSVM_Env
 
-- 用于表示JSVM-API执行时的上下文，Native侧函数入参，并传递给函数中的JSVM-API接口。
+- 表示JSVM-API执行时的上下文，作为Native函数的参数传递给JSVM-API接口。
 
 - 退出Native侧插件时，JSVM_Env将失效，该事件通过回调传递给OH_JSVM_SetInstanceData。
 
@@ -87,7 +87,7 @@ typedef enum {
 
 ### JSVM_TypedarrayType
 
-TypedArray的基本二进制标量数据类型。
+TypedArray 的基本二进制标量数据类型。
 
 ```c++
 typedef enum {
@@ -127,13 +127,13 @@ typedef enum {
 ### 编译选项相关类型
 #### JSVM_CompileOptions
 
-配合编译接口 OH_JSVM_CompileScriptWithOptions 使用，是其参数中 options 数组的元素类型。
+配合 OH_JSVM_CompileScriptWithOptions 接口使用，是其参数中 options 数组的元素类型。
 
 其中：
 - id 代表这个编译选项的类型。
 - content 代表编译选项的内容。
 
-id 的值和 content 的类型需要对应使用，详细对应关系参考下面对各个选项类型的介绍。
+id 的值和 content 的类型需对应使用，具体对应关系请参见各选项类型的介绍。
 
 ```c
 typedef struct {
@@ -153,7 +153,7 @@ typedef struct {
 
 #### JSVM_CompileOptionId
 
-JSVM_CompileOptions 中的 id 对应类型， 每个值都有其对应的 content 类型, 其中 JSVM_COMPILE_ENABLE_SOURCE_MAP 对应的类型为 bool，当同时传入的 JSVM_ScriptOrigin 中 sourceMapUrl 不为空时生效。
+JSVM_CompileOptions 中的 id 对应类型，每个值有对应的 content 类型。JSVM_COMPILE_ENABLE_SOURCE_MAP 的类型为 bool，当 JSVM_ScriptOrigin 中的 sourceMapUrl 不为空时生效。
 
 ```c
 typedef enum {
@@ -172,7 +172,7 @@ typedef enum {
 
 #### JSVM_CompileMode
 
-当 id 为 JSVM_COMPILE_MODE，content 的类型，每个值代表一种编译模式：
+当 id 为 JSVM_COMPILE_MODE 时，content 类型的每个值代表一种编译模式。
 
 - JSVM_COMPILE_MODE_DEFAULT : 默认的编译选项。
 - JSVM_COMPILE_MODE_CONSUME_CODE_CACHE : 消耗 codecache 进行编译。
@@ -197,7 +197,7 @@ typedef enum {
 
 #### JSVM_CodeCache
 
-当 id 为 JSVM_COMPILE_CODE_CACHE 时，content 的类型：
+当 id 为 JSVM_COMPILE_CODE_CACHE 时，content 的类型为：
 
 - cache : 指向 code cache 的指针。
 - length : 代表 code cache 的大小。
@@ -213,7 +213,7 @@ typedef struct {
 
 #### JSVM_ScriptOrigin
 
-当 id 为 JSVM_COMPILE_SCRIPT_ORIGIN 时，content 的类型，存放待编译脚本的源码信息：
+当 id 为 JSVM_COMPILE_SCRIPT_ORIGIN 时，content 存放待编译脚本的源码信息。
 
 - sourceMapUrl : sourceMap 的路径，当前仅支持运行设备上的本地路径，可以为空。
 - resourceName : 待编译的 js script 的名字。
@@ -234,23 +234,23 @@ typedef struct {
 ### JSVM
 ### 内存管理类型
 
-JSVM-API包含以下内存管理类型：
+JSVM-API 包含以下内存管理类型：
 
 **JSVM_HandleScope**
 
-JSVM_HandleScope数据类型是用来管理JavaScript对象的生命周期的。它允许JavaScript对象在一定范围内保持活动状态，以便在JavaScript代码中使用。在创建JSVM_HandleScope时，所有在该范围内创建的JavaScript对象都会保持活动状态，直到结束。这样可以避免在JavaScript代码中使用已经被释放的对象，从而提高代码的可靠性和性能。
+JSVM_HandleScope 数据类型用于管理 JavaScript 对象的生命周期。它确保在指定范围内创建的 JavaScript 对象保持活动状态，直到该范围结束。这样可以防止使用已释放的对象，提高代码的可靠性和性能。
 
 **JSVM_EscapableHandleScope**
 
-- 由OH_JSVM_OpenEscapableHandleScope接口创建，由OH_JSVM_CloseEscapableHandleScope接口关闭。
+- 由 OH_JSVM_OpenEscapableHandleScope 接口创建，由 OH_JSVM_CloseEscapableHandleScope 接口关闭。
 
 - 表示一种特殊类型的句柄范围，用于将在JSVM_EscapableHandleScope范围内创建的值返回给父scope。
 
-- 用于OH_JSVM_EscapeHandle接口，将JSVM_EscapableHandleScope提升到JavaScript对象，以便在外部作用域使用。
+- 用于 OH_JSVM_EscapeHandle 接口，将 JSVM_EscapableHandleScope 范围内的值提升为 JavaScript 对象，以便在外部作用域使用。
 
 **JSVM_Ref**
 
-指向JSVM_Value，允许用户管理JavaScript值的生命周期。
+指向JSVM_Value，允许开发者管理JavaScript值的生命周期。
 
 **JSVM_TypeTag**
 
@@ -263,11 +263,11 @@ typedef struct {
 } JSVM_TypeTag;
 ```
 
-- 存储了两个无符号64位整数的128位值，用它来标记JavaScript对象，确保它们属于某种类型。
+- 存储了两个无符号64位整数的128位值，用它来标识JavaScript对象，确保它们属于某种类型。
 
 - 比OH_JSVM_Instanceof更强的类型检查，如果对象的原型被操纵，OH_JSVM_Instanceof可能会报告误报。
 
-- JSVM_TypeTag 在与 OH_JSVM_Wrap 结合使用时最有用，因为它确保从包装对象检索的指针可以安全地转换为与先前应用于JavaScript对象的类型标记相对应的Native类型。
+- JSVM_TypeTag 在与 OH_JSVM_Wrap 结合使用时最有用，因为它确保从包装对象检索的指针可以安全地转换为与先前应用于JavaScript对象的类型标签相对应的Native类型。
 
 ### 回调类型
 
@@ -286,7 +286,7 @@ typedef struct {
 
 **JSVM_Callback**
 
-JSVM_CallbackStruct 指针类型的类型别名。
+JSVM_CallbackStruct 指针类型的别名。
 
 定义如下:
 
@@ -296,7 +296,7 @@ typedef JSVM_CallbackStruct* JSVM_Callback;
 
 **JSVM_CallbackInfo**
 
-用户定义的 Native callback，第一个参数类型是 JSVM_Env，第二个参数类型是 JSVM_CallbackInfo。JSVM_CallbackInfo 表示从 JS 侧调用到 Native 侧时携带的调用信息，如参数列表。在实现 Native callback 时，一般使用 OH_JSVM_GetCbInfo 接口从 JSVM_CallbackInfo 中提取调用信息。
+用户定义的 Native callback，第一个参数类型是 JSVM_Env，第二个参数类型是 JSVM_CallbackInfo。JSVM_CallbackInfo 表示从 JS 侧调用到 Native 侧时携带的调用信息，如参数列表。在实现 Native callback 时，一般使用 OH_JSVM_GetCbInfo 接口从 JSVM_CallbackInfo 中获取调用信息。
 
 **JSVM_Finalize**
 
@@ -310,7 +310,7 @@ typedef void (*JSVM_Finalize)(JSVM_Env env, void* finalizeData, void* finalizeHi
 
 **JSVM_PropertyHandlerConfigurationStruct**
 
-当执行对象的getter、setter、deleter和enumerator作时，对应的的回调将会触发。
+当执行对象的getter、setter、deleter和enumerator操作时，对应的回调将会触发。
 
 ```c++
 typedef struct {
@@ -353,7 +353,7 @@ typedef struct {
 
 **JSVM_PropertyHandlerCfg**
 
-包含属性监听回调的结构的指针类型。
+包含属性监听回调的结构指针。
 
 基本用法如下:
 
@@ -390,10 +390,10 @@ typedef JSVM_PropertyHandlerConfigurationStruct* JSVM_PropertyHandlerCfg;
 
 JSVM 提供了多种配置选项，允许开发者在执行 `OH_JSVM_Init` 时灵活配置其行为。可以通过 `OH_JSVM_GetVMInfo` 接口获取当前 JSVM 版本所对应的 V8 引擎版本。JSVM 中可支持的选项范围与对应的 V8 引擎版本可支持的选项范围保持一致。`OH_JSVM_GetVMInfo` 接口的使用参考[使用JSVM-API接口获取JSVM API的版本号](use-jsvm-about-version.md)。
 
-**注意：** 建议开发者在非必要情况下，仅使用 JSVM 内部的默认配置选项。
+**注意：** 建议开发者在没有特殊需求的情况下，仅使用 JSVM 内部的默认配置选项。
 
 场景示例：
-常规模式下初始化 VM 平台
+常规模式下初始化 VM 平台。
 ```c++
 static void NormalInit(bool &vmInit) {
     if (!vmInit) {
@@ -407,7 +407,7 @@ static void NormalInit(bool &vmInit) {
 ```
 
 场景示例：
-初始化低内存占用的 VM 平台
+初始化低内存占用的 VM 平台。
 ```c++
 static void LowMemoryInit(bool &vmInit) {
     if (!vmInit) {
@@ -426,7 +426,7 @@ static void LowMemoryInit(bool &vmInit) {
 ```
 
 场景示例：
-初始化低GC触发频次的 VM 平台
+初始化低GC触发频次的 VM 平台。
 ```c++
 static void LowGCFrequencyInit(bool &vmInit) {
     if (!vmInit) {
@@ -445,13 +445,13 @@ static void LowGCFrequencyInit(bool &vmInit) {
 ```
 
 执行结果：
-使用以上三个接口可以分别初始化具备不同能力的 VM 平台。初始化之后，可以创建 VM 实例，并执行 JavaScript 脚本。其中，
+使用以上三个接口可以分别初始化具备不同特性的 VM 平台。初始化之后，可以创建 VM 实例，并执行 JavaScript 脚本。其中，
 调用 LowGCFrequencyInit 接口进行 VM 平台初始化执行 JavaScript 脚本，相比调用 NormalInit 接口所触发的 GC 频次更低。调用 LowMemoryInit 接口进行 VM 平台初始化执行 JavaScript 脚本，相比调用 NormalInit 接口所占用内存更少。
 
 ##### 创建 VM 实例
 
 场景示例:
-创建及销毁JavaScript引擎实例，包含创建及销毁JS执行上下文环境
+创建及销毁 JavaScript 引擎实例，包含创建及销毁 JS 执行上下文环境
 ```c++
 bool VM_INIT = false;
 
@@ -565,7 +565,7 @@ static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] na
 | OH_JSVM_RunScript               | 执行编译脚本                                                                             |
 
 场景示例：
-编译及执行JS代码(创建vm，注册function，执行js，销毁vm)。
+编译及执行 JS 代码（创建 VM 实例，注册函数，执行 JS，销毁 VM 实例）
 
 cpp 部分代码
 
@@ -839,7 +839,7 @@ JSVM-API WebAssembly 接口提供了 WebAssembly 字节码编译、WebAssembly �
 | OH_JSVM_CreateSyntaxError| 创建一个JS SyntaxError并返回 |
 
 场景示例：
-以TypeError为例。创建，判断，并抛出JS TypeError。
+以TypeError为例。创建、判断，并抛出JS TypeError。
 
 ```c++
 JSVM_Value code = nullptr;
@@ -885,9 +885,9 @@ if (status != JSVM_OK) // 当执行失败出现异常时
 
 ### 对象生命周期管理
 
-在调用JSVM-API接口时，底层VM堆中的对象可能会作为JSVM_Values返回句柄。这些句柄必须在Native方法退出或主动释放掉前，使其关联的对象处于“活动”状态，防止被引擎回收掉。
+在调用JSVM-API接口时，底层VM堆中的对象可能会作为JSVM_Values返回句柄。这些句柄必须在Native方法销毁或主动释放掉前，使其关联的对象处于“活动”状态，防止被引擎回收掉。
 
-当对象句柄被返回时，它们与一个“scope”相关联。默认作用域的生命周期与本机方法调用的生命周期相关联，这些句柄及关联的对象将在Native方法的生命周期内保持活动状态。
+当对象句柄被返回时，它们与一个“scope”相关联。默认作用域的生命周期与Native方法调用的生命周期相关联，这些句柄及关联的对象将在Native方法的生命周期内保持活动状态。
 
 然而，在许多情况下，句柄必须保持有效的时间范围并不与Native方法的生命周期相同。下面将介绍可用于更改句柄的生命周期的JSVM-API方法。
 
@@ -908,7 +908,7 @@ if (status != JSVM_OK) // 当执行失败出现异常时
 | OH_JSVM_ReleaseScript | 释放持久化保存过的 JSVM_Script，释放之后 JSVM_Script 不再可用，应当置为空 |
 
 场景示例：
-通过handlescope保护在scope范围内创建的对象在该范围内不被回收。
+通过handle scope保护在scope范围内创建的对象在该范围内不被回收。
 
 ```c++
 JSVM_HandleScope scope;
@@ -918,7 +918,7 @@ OH_JSVM_CreateObject(env, &obj);
 OH_JSVM_CloseHandleScope(env, scope);
 ```
 
-通过escapable handlescope保护在scope范围内创建的对象在父作用域范围内不被回收
+通过escapable handle scope保护在scope范围内创建的对象在父作用域范围内不被回收
 
 ```c++
 JSVM_EscapableHandleScope scope;
@@ -1009,7 +1009,7 @@ OH_JSVM_CloseHandleScope(env, scope);
 |OH_JSVM_CreateSet | 创建一个新的 JavaScript Set对象 |
 
 场景示例:
-创建指定长度的数组。
+创建指定长度的JavaScript数组。
 
 ```c++
 size_t arrayLength = 2;
@@ -1024,7 +1024,7 @@ for (uint32_t i = 0; i < arrayLength; i++)
 }
 ```
 
-创建typedarray，以Int32Array为例：
+创建TypedArray，以Int32Array为例：
 
 ```c++
 JSVM_Value arrayBuffer = nullptr;
@@ -1042,7 +1042,7 @@ OH_JSVM_CreateTypedarray(env, JSVM_TypedarrayType::JSVM_INT32_ARRAY, typedArrayL
 return result;
 ```
 
-创建number和string:
+创建number和string：
 
 ```c++
 const char *testStringStr = "test";
@@ -1055,14 +1055,14 @@ OH_JSVM_CreateDouble(env, 10.1, &testNumber1);
 OH_JSVM_CreateInt32(env, 10, &testNumber2);
 ```
 
-创建Map:
+创建Map：
 
 ```c++
 JSVM_Value value = nullptr;
 OH_JSVM_CreateMap(env, &value);
 ```
 
-创建RegExp:
+创建RegExp：
 
 ```c++
 JSVM_Value value = nullptr;
@@ -1072,7 +1072,7 @@ JSVM_Value result = nullptr;
 OH_JSVM_CreateRegExp(env, value, JSVM_RegExpFlags::JSVM_REGEXP_GLOBAL, &result);
 ```
 
-创建Set:
+创建Set：
 
 ```c++
 JSVM_Value value;
@@ -1112,7 +1112,7 @@ OH_JSVM_CreateSet(env, &value);
 |OH_JSVM_GetUndefined | 返回 JavaScript Undefined 对象 |
 
 场景示例：
-创建64位的BigInt，并获取64位int值。
+创建64位的 BigInt，并获取64位 Int 值。
 
 ```c++
 int64_t testValue = INT64_MAX;
@@ -1123,7 +1123,7 @@ bool flag = false;
 OH_JSVM_GetValueBigintInt64(env, result, &resultValue, &flag);
 ```
 
-创建一个Int32Array，并获取其长度，byteoffset等信息。
+创建一个 Int32Array，并获取其长度、byteOffset 等信息。
 
 ```c++
 JSVM_Value arrayBuffer = nullptr;
@@ -1157,7 +1157,7 @@ size_t arrayBufferLength = 0;
 OH_JSVM_GetArraybufferInfo(env, retArrayBuffer, &tmpArrayBufferPtr, &arrayBufferLength);
 ```
 
-根据 UTF-8 编码的C字符串创建一个 JavaScript 字符串，以及获取给定 JavaScript 字符串的 UTF-8 编码C字符串。
+根据 UTF-8 编码的 C 字符串创建一个 JavaScript 字符串，以及获取给定 JavaScript 字符串的 UTF-8 编码 C 字符串。
 
 ```c++
 const char *testStringStr = "testString";
@@ -1188,10 +1188,10 @@ JS值操作和抽象操作。
 |OH_JSVM_Typeof | 返回 JavaScript 对象的类型 |
 |OH_JSVM_Instanceof | 判断一个对象是否是某个构造函数的实例 |
 |OH_JSVM_IsArray | 判断一个 JavaScript 对象是否为 Array 类型对象|
-|OH_JSVM_IsArraybuffer | 判断一个 JavaScript 对象是否为 Arraybuffer 类型对象 |
+|OH_JSVM_IsArraybuffer | 判断一个 JavaScript 对象是否为 ArrayBuffer 类型对象 |
 |OH_JSVM_IsDate | 判断一个 JavaScript 对象是否为 Date 类型对象 |
-|OH_JSVM_IsTypedarray | 判断一个 JavaScript 对象是否为 Typedarray 类型对象 |
-|OH_JSVM_IsDataview | 判断一个 JavaScript 对象是否为 Dataview 类型对象 |
+|OH_JSVM_IsTypedarray | 判断一个 JavaScript 对象是否为 TypedArray 类型对象 |
+|OH_JSVM_IsDataview | 判断一个 JavaScript 对象是否为 DataView 类型对象 |
 |OH_JSVM_IsUndefined | 此API检查传入的值是否为Undefined。这相当于JS中的`value === undefined`。 |
 |OH_JSVM_IsNull | 此API检查传入的值是否为Null对象。这相当于JS中的`value === null`。 |
 |OH_JSVM_IsNullOrUndefined | 此API检查传入的值是否为Null或Undefined。这相当于JS中的`value == null`。 |
@@ -1212,7 +1212,7 @@ JS值操作和抽象操作。
 |OH_JSVM_IsDetachedArraybuffer | 检查给定的 ArrayBuffer 是否已被分离(detached) |
 
 场景示例:
-判断JS值是否为数组类型
+判断JS值是否为Array类型
 
 ```c++
 JSVM_Value array = nullptr;
@@ -1221,7 +1221,7 @@ bool isArray = false;
 OH_JSVM_IsArray(env, array, &isArray);
 ```
 
-将int32类型转换为string类型
+将int32类型的目标值转换为string类型
 
 ```c++
 int32_t num = 123;
@@ -1238,7 +1238,7 @@ OH_JSVM_GetValueStringUtf8(env, stringValue, buffer, bufferSize, &copied);
 // buffer:"123";
 ```
 
-将boolean类型转换为bigint类型
+将boolean类型的目标值转换为bigint类型
 
 ```c++
 JSVM_Value boolValue;
@@ -1247,7 +1247,7 @@ JSVM_Value bigIntValue;
 OH_JSVM_CoerceToBigInt(env, boolValue, &bigIntValue);
 ```
 
-判断两个JS值类型是否严格相同：先比较操作数类型，操作数类型不同就是不相等，操作数类型相同时，比较值是否相等，相等才返回true。
+判断两个JSVM_Value对象类型是否严格相同：先比较操作数类型，操作数类型不同就是不相等，操作数类型相同时，比较值是否相等，相等才返回true。
 
 ```c++
 JSVM_Value value = nullptr;
@@ -1259,7 +1259,7 @@ bool isArray = true;
 OH_JSVM_StrictEquals(env, value, value, &isArray);
 ```
 
-判断两个JS值类型是否宽松相同：判断两个操作数的类型是否相同，若不相同，且可以转换为相同的数据类型，转换为相同的数据类型后，值做严格相等比较，其他的都返回false。
+判断两个JSVM_Value对象类型是否宽松相同：判断两个操作数的类型是否相同，若不相同，且可以转换为相同的数据类型，转换为相同的数据类型后，值做严格相等比较，其他的都返回false。
 
 ```c++
 JSVM_HandleScope handleScope;
@@ -1274,7 +1274,7 @@ OH_JSVM_Equals(env, lhs, rhs, &isEquals); // 这里isEquals的值是true
 OH_JSVM_CloseHandleScope(env, handleScope);
 ```
 
-判断JS值是否为构造函数
+判断传入的JS值是否为构造函数
 
 ```c++
 JSVM_Value SayHello(JSVM_Env env, JSVM_CallbackInfo info)
@@ -1290,7 +1290,7 @@ bool isConstructor = false;
 OH_JSVM_IsConstructor(env, value, &isConstructor); // 这里isConstructor的值是true
 ```
 
-判断JS值是否为map类型
+判断传入的JS值是否为Map类型
 
 ```c++
 JSVM_Value value = nullptr;
@@ -1299,7 +1299,7 @@ bool isMap = false;
 OH_JSVM_IsMap(env, value, &isMap); // 这里isMap的值是true
 ```
 
-判断JS值是否为Set类型
+判断传入的JS值是否为Set类型
 
 ```c++
 JSVM_Value value;
@@ -1350,7 +1350,7 @@ JS对象属性的增加、删除、获取和判断。
 |OH_JSVM_ObjectGetPrototypeOf | 获取给定JavaScript对象的原型。 |
 
 场景示例:
-JS对象属性的增删获取和判断
+JS对象属性的增加、删除、获取和判断。
 
 ```c++
 // 创建一个空对象
@@ -1431,7 +1431,7 @@ JS函数操作。
 |OH_JSVM_CreateFunctionWithScript | 根据传入的函数体和函数参数列表，创建一个新的 JavaScript Function对象 |
 
 场景示例:
-创建JavaScript函数操作
+创建JavaScript函数操作。
 
 ```c++
 JSVM_Value SayHello(JSVM_Env env, JSVM_CallbackInfo info)
@@ -1454,7 +1454,7 @@ static JSVM_Value JsvmCreateFunction(JSVM_Env env, JSVM_CallbackInfo info)
 }
 ```
 
-在C/C++侧获取并调用JS方法
+在C/C++侧调用JS方法。
 
 ```c++
 static JSVM_Value CallFunction(JSVM_Env env, JSVM_CallbackInfo info)
@@ -1478,7 +1478,7 @@ static JSVM_Value CallFunction(JSVM_Env env, JSVM_CallbackInfo info)
 }
 ```
 
-创建Function:
+创建JavaScript函数:
 
 ```c++
 JSVM_Value script;
@@ -2085,8 +2085,8 @@ OH_JSVM_CreateArrayBufferFromBackingStoreData(env, backingStore, 100, 30, 20, &a
 // 在 JS 中使用创建的 ArrayBuffer
 JSVM_Value js_global;
 JSVM_Value name;
-OH_JSVM_GetGlobal(env, &js_global);
-OH_JSVM_CreateStringUtf8(env, "buffer", JSVM_AUTO_LENGTH, &name);
+OH_JSVM_GetGlobal(jsvm_env, &js_global);
+OH_JSVM_CreateStringUtf8(jsvm_env, "buffer", JSVM_AUTO_LENGTH, &name);
 OH_JSVM_SetProperty(env, js_global, name, arrayBuffer);
 
 JSVM_Script script;
@@ -2216,7 +2216,7 @@ OH_JSVM_JsonParse(env, jsonString, &result);
 |OH_JSVM_IsCallable| 检查传入的值是否可调用 |
 
 场景示例：
-检查传入的值是否可调用
+检查传入的值是否可调用。
 
 ```c++
 static JSVM_Value NapiIsCallable(JSVM_Env env, JSVM_CallbackInfo info) {
@@ -2297,7 +2297,7 @@ Lock操作。
 |OH_JSVM_ReleaseLock| 释放指定环境的锁 |
 
 场景示例：
-加锁解锁操作
+加锁解锁操作。
 
 ```c++
 class LockWrapper {
@@ -2392,7 +2392,7 @@ static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_call
 
 #### 场景介绍
 
-使用OH_JSVM_SetInstanceData()函数，检索与当前运行的JSVM环境相关联的数据。
+使用OH_JSVM_SetInstanceData()函数，设置与当前运行的JSVM环境相关联的数据。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -2487,7 +2487,7 @@ static napi_value GetInstanceData(napi_env env1, napi_callback_info info)
 
 #### 场景介绍
 
-在虚拟机内部启动任务队列的运行，检查队列中是否有微任务等待，任务队列可由外部事件循环执行。
+在虚拟机内部启动任务队列的运行，检查队列中是否有待处理的微任务。任务队列可由外部事件循环执行。
 
 #### 接口说明
 | 接口 | 功能说明 |

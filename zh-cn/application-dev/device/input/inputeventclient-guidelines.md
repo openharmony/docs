@@ -27,36 +27,47 @@ import { inputEventClient } from '@kit.InputKit';
 ```js
 import { inputEventClient } from '@kit.InputKit';
 
-try {
-  let backKeyDown: inputEventClient.KeyEvent = {
-    isPressed: true,
-    keyCode: 2,
-    keyDownDuration: 0,
-    isIntercepted: false
-  }//Home按键按下事件
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let backKeyDown: inputEventClient.KeyEvent = {
+              isPressed: true,
+              keyCode: 2,
+              keyDownDuration: 0,
+              isIntercepted: false
+            }//Home按键按下事件
 
-  class EventDown {
-    KeyEvent: inputEventClient.KeyEvent | null = null
+            class EventDown {
+              KeyEvent: inputEventClient.KeyEvent | null = null
+            }
+
+            let eventDown: EventDown = { KeyEvent: backKeyDown }
+            inputEventClient.injectEvent(eventDown);//注入Home按键按下事件
+
+            let backKeyUp: inputEventClient.KeyEvent = {
+              isPressed: false,
+              keyCode: 2,
+              keyDownDuration: 0,
+              isIntercepted: false
+            };//Home按键抬起事件
+
+            class EventUp {
+              KeyEvent: inputEventClient.KeyEvent | null = null
+            }
+
+            let eventUp: EventUp = { KeyEvent: backKeyUp }
+            inputEventClient.injectEvent(eventUp);//注入Home按键抬起事件,查看Home键功能是否生效，应用是否返回桌面
+          } catch (error) {
+            console.error(`Failed to inject KeyEvent, error: ${JSON.stringify(error, ["code", "message"])}`);
+          }
+        })
+    }
   }
-
-  let eventDown: EventDown = { KeyEvent: backKeyDown }
-  inputEventClient.injectEvent(eventDown);//注入Home按键按下事件
-
-  let backKeyUp: inputEventClient.KeyEvent = {
-    isPressed: false,
-    keyCode: 2,
-    keyDownDuration: 0,
-    isIntercepted: false
-  };//Home按键抬起事件
-
-  class EventUp {
-    KeyEvent: inputEventClient.KeyEvent | null = null
-  }
-
-  let eventUp: EventUp = { KeyEvent: backKeyUp }
-  inputEventClient.injectEvent(eventUp);//注入Home按键抬起事件,查看Home键功能是否生效，应用是否返回桌面
-} catch (error) {
-  console.error(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 

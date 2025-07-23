@@ -522,7 +522,7 @@ startDataLoading(options: DataSyncOptions): string
 
 | 参数名  | 类型                                  | 必填 | 说明                                                         |
 | ------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [DataSyncOptions](#datasyncoptions15) | 是   | 拖拽数据。数据传输过程中可使用[cancelDataLoading](../js-apis-arkui-UIContext.md#canceldataloading15)接口取消。 |
+| options | [DataSyncOptions](#datasyncoptions15) | 是   | 拖拽数据。数据传输过程中可使用[cancelDataLoading](../arkts-apis-uicontext-dragcontroller.md#canceldataloading15)接口取消。 |
 
 **错误码：**
 

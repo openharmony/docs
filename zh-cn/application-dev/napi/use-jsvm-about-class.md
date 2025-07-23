@@ -15,7 +15,7 @@
 
 | 接口                | 功能说明                           |
 | ------------------- | ---------------------------------- |
-| OH_JSVM_NewInstance   | 通过给定的构造函数，构建一个实例。|
+| OH_JSVM_NewInstance   | 通过给定的构造函数，创建一个实例。|
 | OH_JSVM_GetNewTarget  | 获取函数的元属性new.target。|
 | OH_JSVM_DefineClass   | 用于在JavaScript中定义一个类，并与对应的C类进行封装和交互。它提供了创建类的构造函数、定义属性和方法的能力，支持C和JavaScript之间的数据交互。|
 | OH_JSVM_Wrap           | 在JavaScript对象中封装原生实例。稍后可以使用OH_JSVM_Unwrap()解包原生实例。|
@@ -210,7 +210,7 @@ NewInstance:{"name":"lilei"}
 
 ### OH_JSVM_Unwrap
 
-解包先前封装在JavaScript对象中的原生实例
+解包JavaScript对象中先前封装的原生实例
 
 ### OH_JSVM_RemoveWrap
 

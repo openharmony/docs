@@ -174,7 +174,7 @@ class Menu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
-      return new this.controller(123);
+      return new this.controller('123');
     }
     return null;
   }
@@ -2193,7 +2193,7 @@ class Foo {
 
 ## arkts-limited-esobj
 
-使用具体类型（如number, string）或接口代替模糊的ESObject。
+使用具体类型（如number, string）或接口代替不明确的ESObject。
 
 **应用代码**
 

@@ -2362,7 +2362,7 @@ keyboardAvoidMode(mode: WebKeyboardAvoidMode)
 
 Web组件自定义软件键盘避让模式。
 
-当UIContext设置的键盘避让模式为[KeyboardAvoidMode.RESIZE](../apis-arkui/js-apis-arkui-UIContext.md#keyboardavoidmode11)模式时，该接口功能不生效。
+当UIContext设置的键盘避让模式为[KeyboardAvoidMode.RESIZE](../apis-arkui/arkts-apis-uicontext-e.md#keyboardavoidmode11)模式时，该接口功能不生效。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

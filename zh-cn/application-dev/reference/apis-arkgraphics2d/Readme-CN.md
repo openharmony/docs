@@ -181,6 +181,7 @@
     - [OH_Drawing_MaskFilter](capi-drawing-oh-drawing-maskfilter.md)
     - [OH_Drawing_ColorFilter](capi-drawing-oh-drawing-colorfilter.md)
     - [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)
+    - [OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)
     - [OH_Drawing_MemoryStream](capi-drawing-oh-drawing-memorystream.md)
     - [OH_Drawing_FontArguments](capi-drawing-oh-drawing-fontarguments.md)
     - [OH_Drawing_Typeface](capi-drawing-oh-drawing-typeface.md)

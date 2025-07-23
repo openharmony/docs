@@ -1,7 +1,6 @@
 # @ohos.bluetooth.hid (蓝牙hid模块)
 
-hid模块提供了访问蓝牙hid相关功能的方法。
-
+提供了基于人机接口协议（Human Interface Device Profile，HID）技术的蓝牙能力，支持获取连接状态等功能。传统蓝牙HID和低功耗蓝牙HOGP（HID over GATT Profile）设备均可使用此模块API，相关功能都集成在此HID模块中。
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。

@@ -12,6 +12,8 @@
 
 当事务并发量较高且写事务持续时间较长时，返回14800024错误码的次数可能会变多，开发者可以通过减少事务占用时长减少14800024出现的次数，也可以通过重试的方式处理14800024错误码。
 
+在使用以下API前，请先通过[createTransaction](./arkts-apis-data-relationalStore-RdbStore.md#createtransaction14)方法获取Transaction实例，再通过此实例调用对应方法。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **示例：**

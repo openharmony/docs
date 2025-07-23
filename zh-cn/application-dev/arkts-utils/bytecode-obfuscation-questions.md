@@ -112,7 +112,7 @@ export struct MainPage {
 this.__messageStr = new ObservedPropertySimplePU('Hello World', this, "messageStr");
 ```
 
-在中间文件转换过程中，message以字面量形式进行了绑定；此时，存在meaasgeStr这个属性被混淆了，但是这个方法的字符串参数没有混淆，导致UI失效。
+在中间文件转换过程中，message以字面量形式进行了绑定；此时，存在messageStr这个属性被混淆了，但是这个方法的字符串参数没有混淆，导致UI失效。
 
 **解决办法**：收集struct里所有成员，加入白名单，不参与混淆。目前由于字节码混淆不提供UI混淆能力，系统会自动识别添加到白名单，不需要开发者配置。
 
@@ -230,22 +230,30 @@ dialogController:CustomDialogController|null = null;
 #### 案例一：报错内容为 Cannot read property 'xxx' of undefined
 
 ```ts
+// 示例JSON文件结构（test.json）：
+/*
+{
+  "jsonObj": {
+    "jsonProperty": "value"
+  }
+}
+*/
+
 // 混淆前
-const jsonData = ('./1.json')
-let jsonStr = JSON.parse(jsonData)
-let jsonObj = jsonStr.jsonProperty
+import jsonData from "./testjson";
+let jsonProp = jsonData.jsonObj.jsonProperty;
+
 // 混淆后
-const jsonData = ('./1.json')
-let jsonStr = JSON.parse(jsonData)
-let jsonObj = jsonStr.i
+import jsonData from "./test.json";
+let jsonProp = jsonData.i.j;
 ```
 
-开启属性混淆后，"jsonProperty"被混淆成随机字符"i"，但json文件中为原始名称，从而导致值为undefined。
+开启属性混淆后，"jsonProperty"被混淆成随机字符"j"，但json文件中为原始名称，从而导致值为undefined。
 **解决方案**：使用-keep-property-name选项将json文件里的字段配置到白名单。
 
 #### 案例二：使用了数据库相关的字段，开启属性混淆后，出现报错
 
-报错内容为table Account has no column named a23 in 'INSET INTO Account(a23)'。
+报错内容为table Account has no column named a23 in 'INSERT INTO Account(a23)'。
 代码里使用了数据库字段，混淆时该SQL语句中字段名称被混淆，但数据库中字段为原始名称，从而导致报错。
 **解决方案**：使用-keep-property-name选项将使用到的数据库字段配置到白名单。
 
@@ -256,7 +264,7 @@ parameters的类型为Record<string, Object>，在开启属性混淆后，parame
 
 ```ts
 // 混淆前
-import { Want } from '@kit.AbilityKit';
+import { Want } from '@ohos:app.ability.Want';
 let petalMapWant: Want = {
   bundleName: 'com.example.myapplication',
   uri: 'maps://',

@@ -496,7 +496,7 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-/* 以导入AES128为例 */
+/* 以导入AES256为例 */
 let plainTextSize32 = makeRandomArr(32);
 function makeRandomArr(size: number) {
     let arr = new Uint8Array(size);
@@ -587,10 +587,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-let securityLevel = stringToUint8Array('sec_level');
-let challenge = stringToUint8Array('challenge_data');
-let versionInfo = stringToUint8Array('version_info');
-let keyAliasString = "key attest";
+
 function stringToUint8Array(str: string) {
     let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
@@ -600,7 +597,12 @@ function stringToUint8Array(str: string) {
     return tmpUint8Array;
 }
 
-async function generateKeyThenattestKey(alias: string) {
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key attest";
+
+async function generateKeyThenAttestKey() {
     let aliasString = keyAliasString;
     let aliasUint8 = stringToUint8Array(aliasString);
     let generateProperties: Array<huks.HuksParam> = [
@@ -658,7 +660,7 @@ async function generateKeyThenattestKey(alias: string) {
         properties: attestProperties
     };
     try {
-        huks.generateKeyItem(alias, generateOptions, (error, data) => {
+        huks.generateKeyItem(aliasString, generateOptions, (error, data) => {
             if (error) {
                 console.error(`callback: generateKeyItem failed`);
             } else {
@@ -729,10 +731,6 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 
-let securityLevel = stringToUint8Array('sec_level');
-let challenge = stringToUint8Array('challenge_data');
-let versionInfo = stringToUint8Array('version_info');
-let keyAliasString = "key attest";
 function stringToUint8Array(str: string) {
     let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
@@ -741,6 +739,12 @@ function stringToUint8Array(str: string) {
     let tmpUint8Array = new Uint8Array(arr);
     return tmpUint8Array;
 }
+
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key attest";
+
 async function generateKey(alias: string) {
     let properties: Array<huks.HuksParam> = [
         {
@@ -870,10 +874,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallbac
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-let securityLevel = stringToUint8Array('sec_level');
-let challenge = stringToUint8Array('challenge_data');
-let versionInfo = stringToUint8Array('version_info');
-let keyAliasString = "key anon attest";
+
 function stringToUint8Array(str: string): Uint8Array {
     let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
@@ -883,7 +884,12 @@ function stringToUint8Array(str: string): Uint8Array {
     return tmpUint8Array;
 }
 
-async function generateKeyThenAttestKey(alias: string): Promise<void> {
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key anon attest";
+
+async function generateKeyThenAttestKey(): Promise<void> {
     let aliasString = keyAliasString;
     let aliasUint8 = stringToUint8Array(aliasString);
     let generateProperties: Array<huks.HuksParam> = [
@@ -941,7 +947,7 @@ async function generateKeyThenAttestKey(alias: string): Promise<void> {
         properties: anonAttestProperties
     };
     try {
-        huks.generateKeyItem(alias, generateOptions, (error, data) => {
+        huks.generateKeyItem(aliasString, generateOptions, (error, data) => {
             if (error) {
                 console.error(`callback: generateKeyItem failed`);
             } else {
@@ -1015,10 +1021,6 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnR
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 
-let securityLevel = stringToUint8Array('sec_level');
-let challenge = stringToUint8Array('challenge_data');
-let versionInfo = stringToUint8Array('version_info');
-let keyAliasString = "key anon attest";
 function stringToUint8Array(str: string): Uint8Array {
     let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; ++i) {
@@ -1027,6 +1029,12 @@ function stringToUint8Array(str: string): Uint8Array {
     let tmpUint8Array = new Uint8Array(arr);
     return tmpUint8Array;
 }
+
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key anon attest";
+
 async function generateKey(alias: string): Promise<void> {
     let properties: Array<huks.HuksParam> = [
         {
@@ -1062,7 +1070,7 @@ async function generateKey(alias: string): Promise<void> {
         properties: properties
     };
     try {
-        let data = await huks.generateKeyItem(alias, options);
+        await huks.generateKeyItem(alias, options);
     } catch (error) {
         console.error(`promise: generateKeyItem failed`);
     }
@@ -1093,7 +1101,7 @@ async function anonAttestKey(): Promise<void> {
     };
     await generateKey(aliasString);
     try {
-        let data = await huks.anonAttestKeyItem(aliasString, options);
+        await huks.anonAttestKeyItem(aliasString, options);
     } catch (error) {
         console.error(`promise: anonAttestKeyItem fail`);
     }
@@ -1172,7 +1180,7 @@ function genKey(alias: string, options: huks.HuksOptions) {
                 }
             });
         } catch (error) {
-            throw (new Error(error));
+            throw (error as Error);
         }
     });
 }
@@ -1200,7 +1208,7 @@ function exportKey(alias: string, options: huks.HuksOptions) {
                 }
             });
         } catch (error) {
-            throw (new Error(error));
+            throw (error as Error);
         }
     });
 }
@@ -1228,7 +1236,7 @@ function importWrappedKey(alias: string, wrappingAlias: string, options: huks.Hu
                 }
             });
         } catch (error) {
-            throw (new Error(error));
+            throw (error as Error);
         }
     });
 }

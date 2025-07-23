@@ -26,7 +26,7 @@
 
 | 能力 | V2装饰器\@Provider和\@Consumer                                             |V1装饰器\@Provide和\@Consume|
 | ------------------ | ----------------------------------------------------- |----------------------------------------------------- |
-| \@Consume(r)         |允许本地初始化，当找不到\@Provider的时候使用本地默认值。| 禁止本地初始化，当找不到对应的\@Provide时候，会抛出异常。 |
+| \@Consume(r)         |必须本地初始化，当找不到\@Provider的时候使用本地默认值。| API version 20以前，@Consume禁止本地初始化，当找不到对应\@Provide的时候，会抛出异常；从API version 20开始，@Consume支持设置默认值，如果没有设置默认值，且找不到对应\@Provide的时候，会抛出异常。 |
 | 支持类型           | 支持function。 | 不支持function。 |
 | 观察能力           | 仅能观察自身赋值变化，如果要观察嵌套场景，配合[\@Trace](arkts-new-observedV2-and-trace.md)一起使用。 | 观察第一层变化，如果要观察嵌套场景，配合[\@Observed和\@ObjectLink](arkts-observed-and-objectlink.md)一起使用。 |
 | alias和属性名         | alias是唯一匹配的key，缺省时默认属性名为alias。 | alias和属性名都为key，优先匹配alias，匹配不到可以匹配属性名。|
@@ -44,7 +44,7 @@
 | 装饰器参数         | `aliasName?: string`，别名，缺省时默认为属性名。|
 | 支持类型           | 自定义组件中成员变量。属性的类型可以为number、string、boolean、class、Array、Date、Map、Set等类型。支持装饰[箭头函数](#provider和consumer装饰回调事件用于组件之间完成行为抽象)。 |
 | 从父组件初始化      | 禁止。 |
-| 本地初始化         | 需要本地初始化。 |
+| 本地初始化         | 必须本地初始化。 |
 | 观察能力         | 能力等同于\@Trace。变化会同步给对应的\@Consumer。 |
 
 \@Consumer语法：
@@ -210,7 +210,7 @@ struct Child {
 }
 ```
 
-### \@Provider和\@Consumer装饰回调事件，用于组件之间完成行为抽象
+### \@Provider和\@Consumer装饰回调事件用于组件之间完成行为抽象
 
 当需要在父组件中向子组件注册回调函数时，可以使用\@Provider和\@Consumer装饰回调方法来实现。
 在拖拽场景中，若需将子组件的拖拽起始位置信息同步给父组件，可参考以下示例。

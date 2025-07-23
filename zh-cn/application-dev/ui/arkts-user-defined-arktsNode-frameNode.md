@@ -744,9 +744,9 @@ FrameNode提供了查询接口用于返回实体节点的基础信息。具体�
 
 查找获得FrameNode的方式包括三种：
 
-1. 使用[getFrameNodeById](../reference/apis-arkui/js-apis-arkui-UIContext.md#getframenodebyid12)获取。
+1. 使用[getFrameNodeById](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getframenodebyid12)获取。
 
-2. 使用[getFrameNodeByUniqueId](../reference/apis-arkui/js-apis-arkui-UIContext.md#getframenodebyuniqueid12)获取。
+2. 使用[getFrameNodeByUniqueId](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getframenodebyuniqueid12)获取。
 
 3. 通过[无感监听](../reference/apis-arkui/js-apis-arkui-observer.md)获取。
 
