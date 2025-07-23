@@ -16,6 +16,6 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| uint8_t jumpNo | 跳数大小。 |
+| uint8_t jumpNo | 跳数。 |
 | char address[NETCONN_MAX_STR_LEN] | 主机名或地址。 |
-| uint32_t rtt[NETCONN_MAX_RTT_NUM] | 往返时间（单位：微秒）。 |
+| uint32_t rtt[NETCONN_MAX_RTT_NUM] | 往返时间（单位：毫秒）。 |
