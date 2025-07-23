@@ -5855,7 +5855,7 @@ export default class EntryAbility extends UIAbility {
   onCreate() {
     let store: relationalStore.RdbStore | undefined = undefined;
     const STORE_CONFIG1: relationalStore.StoreConfig = {
-      name: "rdbstore1.db",
+      name: 'rdbstore1.db',
       securityLevel: relationalStore.SecurityLevel.S3,
       encrypt: true
     };
@@ -5871,7 +5871,7 @@ export default class EntryAbility extends UIAbility {
       if (store != undefined) {
         try {
           (store as relationalStore.RdbStore).rekey(cryptoParam1);
-          console.info(`rekey is successful`);
+          console.info('rekey is successful');
         } catch (err) {
           console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
         }
@@ -5900,10 +5900,10 @@ export default class EntryAbility extends UIAbility {
     };
 
     const STORE_CONFIG2: relationalStore.StoreConfig = {
-      name: "rdbstore2.db",
+      name: 'rdbstore2.db',
       securityLevel: relationalStore.SecurityLevel.S3,
       encrypt: true,
-      cryptoParam: cryptoParam,
+      cryptoParam: cryptoParam
     };
 
     relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
@@ -5921,13 +5921,13 @@ export default class EntryAbility extends UIAbility {
       if (store != undefined) {
         try {
           (store as relationalStore.RdbStore).rekey(cryptoParam2);
-          console.info(`rekey is successful`);
+          console.info('rekey is successful');
         } catch (err) {
-          console.error(`rekey is failed, code is ${ err.code },message is ${ err.message } `);
+          console.error(`rekey is failed, code is ${err.code},message is ${err.message}`);
         }
       }
     }).catch((err: BusinessError) => {
-      console.error(`Get RdbStore failed, code is ${ err.code },message is ${ err.message }`);
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     });
   }
 }
