@@ -34,7 +34,7 @@
       - [创建应用静态快捷方式](quick-start/typical-scenario-configuration.md)
       - [创建应用分身](quick-start/app-clone.md)
       - [创建应用多实例](quick-start/multiInstance.md)
-      - [配置应用图标](quick-start/layered-image.md)
+      - [配置应用图标和名称](quick-start/layered-image.md)
     - [应用程序包常见问题](quick-start/common_problem_of_application.md)
     - [应用程序包术语](quick-start/application-package-glossary.md)
   - [资源分类与访问](quick-start/resource-categories-and-access.md)
@@ -506,6 +506,7 @@
             - [弹出框层级管理](ui/arkts-dialog-levelorder.md)
             - [弹出框控制器](ui/arkts-dialog-controller.md)
             - [弹出框焦点策略](ui/arkts-dialog-focusable.md)
+            - [弹出框蒙层控制](ui/arkts-dialog-mask.md)
            - 菜单<!--arkts-use-menu-->
              - [菜单概述](ui/arkts-menu-overview.md)
              - [菜单控制 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
@@ -3549,8 +3550,6 @@
           - [ArkWeb_WebMessageAPI](reference/apis-arkweb/capi-web-arkweb-webmessageapi.md)
           - [ArkWeb_CookieManagerAPI](reference/apis-arkweb/capi-web-arkweb-cookiemanagerapi.md)
           - [ArkWeb_JavaScriptValueAPI](reference/apis-arkweb/capi-web-arkweb-javascriptvalueapi.md)
-      - Longque JS API<!--longque-js-api-->
-        - [Longque-JS-API](reference/apis-arkweb/arkts-apis-longque.md)
       - 错误码<!--arkweb-arkts-errcode-->
         - [Webview错误码](reference/apis-arkweb/errorcode-webview.md)
     - Background Tasks Kit（后台任务开发服务）<!--background-tasks-api-->
@@ -5333,6 +5332,7 @@
           - [OH_Drawing_MaskFilter](reference/apis-arkgraphics2d/capi-drawing-oh-drawing-maskfilter.md)
           - [OH_Drawing_ColorFilter](reference/apis-arkgraphics2d/capi-drawing-oh-drawing-colorfilter.md)
           - [OH_Drawing_Font](reference/apis-arkgraphics2d/capi-drawing-oh-drawing-font.md)
+          - [OH_Drawing_FontFeatures](reference/apis-arkgraphics2d/capi-drawing-oh-drawing-fontfeatures.md)
           - [OH_Drawing_MemoryStream](reference/apis-arkgraphics2d/capi-drawing-oh-drawing-memorystream.md)
           - [OH_Drawing_FontArguments](reference/apis-arkgraphics2d/capi-drawing-oh-drawing-fontarguments.md)
           - [OH_Drawing_Typeface](reference/apis-arkgraphics2d/capi-drawing-oh-drawing-typeface.md)

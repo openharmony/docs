@@ -87,7 +87,7 @@ function GetEccGenerateProperties() {
     value: huks.HuksKeyAlg.HUKS_ALG_ECC
   }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
+    value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
   }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
@@ -105,7 +105,7 @@ function GetEccSignProperties() {
     value: huks.HuksKeyAlg.HUKS_ALG_ECC
   }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
+    value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
   }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN
@@ -122,7 +122,7 @@ function GetEccVerifyProperties() {
     value: huks.HuksKeyAlg.HUKS_ALG_ECC
   }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
+    value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256
   }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
@@ -250,7 +250,7 @@ function GetSm2GenerateProperties() {
     value: huks.HuksKeyAlg.HUKS_ALG_SM2
   }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
+    value: huks.HuksKeySize.HUKS_SM2_KEY_SIZE_256
   }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
@@ -268,7 +268,7 @@ function GetSm2SignProperties() {
     value: huks.HuksKeyAlg.HUKS_ALG_SM2
   }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
+    value: huks.HuksKeySize.HUKS_SM2_KEY_SIZE_256
   }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN
@@ -285,7 +285,7 @@ function GetSm2VerifyProperties() {
     value: huks.HuksKeyAlg.HUKS_ALG_SM2
   }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
+    value: huks.HuksKeySize.HUKS_SM2_KEY_SIZE_256
   }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY

@@ -1827,7 +1827,7 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
     <meta charset="UTF-8">
   </head>
   <body>
-  <video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+  <video id="video" width="500px" height="500px" autoplay></video>
   <canvas id="canvas" width="500px" height="500px"></canvas>
   <br>
   <input type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()"/>
@@ -1846,6 +1846,8 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
       promise.then(function (MediaStream) {
         video.srcObject = MediaStream;
         video.play();
+      }).catch(function(error) {
+        console.error("Error accessing media devices.", error);
       });
     }
   </script>
@@ -4366,6 +4368,80 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
               console.log('onUrlLoadIntercept ' + event.data.toString());
             }
             return true
+          })
+      }
+    }
+  }
+  ```
+
+## onPdfLoadEvent<sup>20+</sup>
+
+onPdfLoadEvent(callback: Callback\<OnPdfLoadEvent\>)
+
+通知用户PDF页面加载状态，包括成功或失败。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明      |
+| ------- | --------------------------------- | ---- | --------- |
+| callback | Callback\<[OnPdfLoadEvent](./arkts-basic-components-web-i.md#onpdfloadevent20)\> | 是    | 当PDF加载成功或失败时，会触发回调，通知用户PDF页面加载状态。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        // 使用时需将'https://www.example.com/xxx.pdf'替换为真实可访问的地址
+        Web({ src: 'https://www.example.com/xxx.pdf', controller: this.controller })
+          .onPdfLoadEvent((eventInfo: OnPdfLoadEvent) => {
+            console.info(`Load event callback called. url: ${eventInfo.url}, result: ${eventInfo.result}.`)
+          })
+      }
+    }
+  }
+  ```
+
+## onPdfScrollAtBottom<sup>20+</sup>
+
+onPdfScrollAtBottom(callback: Callback\<OnPdfScrollEvent\>)
+
+通知用户PDF页面已滚动到底。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明      |
+| ------- | --------------------------------- | ---- | --------- |
+| callback | Callback\<[OnPdfScrollEvent](./arkts-basic-components-web-i.md#onpdfscrollevent20)\> | 是    | 当PDF滚动到垂直方向底部时，会触发回调，通知用户PDF页面已滚动到底。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        // 使用时需将'https://www.example.com/xxx.pdf'替换为真实可访问的地址
+        Web({ src: 'https://www.example.com/xxx.pdf', controller: this.controller })
+          .onPdfScrollAtBottom((eventInfo: OnPdfScrollEvent) => {
+            console.info(`Scroll at bottom callback called. url: ${eventInfo.url}.`)
           })
       }
     }
