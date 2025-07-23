@@ -654,7 +654,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetStringByName(const NativeResourc
 
 | 类型 | 说明 |
 | -- | -- |
-| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_ID](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。<br>          [ERROR_CODE_OUT_OF_MEMORY](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001100 - 内存溢出。 |
+| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_NAME](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。<br>          [ERROR_CODE_OUT_OF_MEMORY](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001100 - 内存溢出。 |
 
 ### OH_ResourceManager_GetStringArray()
 
@@ -710,7 +710,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetStringArrayByName(const NativeRe
 
 | 类型 | 说明 |
 | -- | -- |
-| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_ID](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。<br>          [ERROR_CODE_OUT_OF_MEMORY](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001100 - 内存溢出。 |
+| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_NAME](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。<br>          [ERROR_CODE_OUT_OF_MEMORY](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001100 - 内存溢出。 |
 
 ### OH_ResourceManager_ReleaseStringArray()
 
@@ -800,7 +800,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetPluralStringByName(const NativeR
 
 | 类型 | 说明 |
 | -- | -- |
-| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_ID](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。<br>          [ERROR_CODE_OUT_OF_MEMORY](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001100 - 内存溢出。 |
+| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_NAME](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。<br>          [ERROR_CODE_OUT_OF_MEMORY](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001100 - 内存溢出。 |
 
 ### OH_ResourceManager_GetIntPluralString()
 
@@ -887,7 +887,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralStringByName(const Nati
 
 | 类型 | 说明 |
 | -- | -- |
-| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_ID](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。<br>          [ERROR_CODE_OUT_OF_MEMORY](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001100 - 内存溢出。 |
+| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_NAME](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。<br>          [ERROR_CODE_OUT_OF_MEMORY](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001100 - 内存溢出。 |
 
 ### OH_ResourceManager_GetDoublePluralStringByName()
 
@@ -916,7 +916,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralStringByName(const N
 
 | 类型 | 说明 |
 | -- | -- |
-| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_ID](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。<br>          [ERROR_CODE_OUT_OF_MEMORY](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001100 - 内存溢出。 |
+| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_NAME](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。<br>          [ERROR_CODE_OUT_OF_MEMORY](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001100 - 内存溢出。 |
 
 ### OH_ResourceManager_GetColor()
 
@@ -970,7 +970,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetColorByName(const NativeResource
 
 | 类型 | 说明 |
 | -- | -- |
-| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_ID](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。 |
+| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_NAME](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。 |
 
 ### OH_ResourceManager_GetInt()
 
@@ -1024,7 +1024,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetIntByName(const NativeResourceMa
 
 | 类型 | 说明 |
 | -- | -- |
-| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_ID](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。 |
+| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_NAME](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。 |
 
 ### OH_ResourceManager_GetFloat()
 
@@ -1078,7 +1078,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetFloatByName(const NativeResource
 
 | 类型 | 说明 |
 | -- | -- |
-| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_ID](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。 |
+| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_NAME](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。 |
 
 ### OH_ResourceManager_GetBool()
 
@@ -1132,7 +1132,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetBoolByName(const NativeResourceM
 
 | 类型 | 说明 |
 | -- | -- |
-| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_ID](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。 |
+| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - 成功。<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。<br>          [ERROR_CODE_RES_ID_NOT_FOUND](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001003 - 无效的资源名称。<br>          [ERROR_CODE_RES_NOT_FOUND_BY_NAME](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001004 - 没有根据资源名称找到匹配的资源。<br>          [ERROR_CODE_RES_REF_TOO_MUCH](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001006 - 资源被循环引用。 |
 
 ### OH_ResourceManager_AddResource()
 
