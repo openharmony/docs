@@ -26,7 +26,7 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束**：此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -133,7 +133,7 @@ subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): voi
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束**：此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -184,7 +184,7 @@ unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): v
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束**：此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -235,7 +235,7 @@ setDelegatedPolicies(admin: Want, bundleName: string, policies: Array&lt;string&
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束**：此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -290,7 +290,7 @@ getDelegatedPolicies(admin: Want, bundleName: string): Array&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束**：此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -348,7 +348,7 @@ getDelegatedBundleNames(admin: Want, policy: string): Array&lt;string&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束**：此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -406,7 +406,7 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-**模型约束**：此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
