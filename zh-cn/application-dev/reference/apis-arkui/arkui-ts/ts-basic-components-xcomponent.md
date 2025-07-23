@@ -195,10 +195,6 @@ onLoad(callback: OnNativeLoadCallback )
 | ----- | ------ | ---- | ---------------------------------------- |
 | callback | [OnNativeLoadCallback](#onnativeloadcallback18) | 是    | XComponent持有的Surface创建后回调事件。 |
 
-> **说明：**
-> 
-> 使用自定义组件节点创建XComponent组件时，因为onLoad回调触发时机早于[onSurfaceCreated](#onsurfacecreated12)，所以在onLoad回调中调用[getXComponentSurfaceId](#getxcomponentsurfaceid9)获取surfaceId会失败，建议在[onSurfaceCreated](#onsurfacecreated12)回调中获取。
-
 ### onDestroy
 
 onDestroy(event: VoidCallback )
@@ -257,7 +253,7 @@ xcomponentController: XComponentController = new XComponentController();
 
 getXComponentSurfaceId(): string
 
-获取XComponent对应Surface的ID，供@ohos接口使用，使用方式可参考[相机管理](../../apis-camera-kit/js-apis-camera.md)，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+获取XComponent对应Surface的ID，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -269,6 +265,33 @@ getXComponentSurfaceId(): string
 | ------ | ----------------------- |
 | string | XComponent持有Surface的ID。 |
 
+> **说明：**
+> 
+> 使用自定义组件节点创建XComponent组件时，因为onLoad回调触发时机早于[onSurfaceCreated](#onsurfacecreated12)，所以在onLoad回调中调用[getXComponentSurfaceId](#getxcomponentsurfaceid9)获取surfaceId会失败，建议在[onSurfaceCreated](#onsurfacecreated12)回调中获取。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct Index {
+    myXComponentController: XComponentController = new XComponentController();
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        XComponent({
+          type: XComponentType.SURFACE,
+          controller: this.myXComponentController
+        })
+          .onLoad(() => {
+            let surfaceId: string = this.myXComponentController.getXComponentSurfaceId();
+            console.log("XComponent SurfaceId: " + surfaceId);
+          })
+      }
+    }
+  }
+  ```
 
 ### setXComponentSurfaceSize<sup>(deprecated)</sup>
 
