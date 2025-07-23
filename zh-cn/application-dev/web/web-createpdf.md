@@ -1,6 +1,6 @@
 # 使用Web组件保存前端页面为PDF
 
-Web组件提供了保存前端页面为PDF的功能。应用通过Web组件的[createPdf](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#createpdf14)方法保存前端页面为PDF文件。
+从API version 14开始，支持使用Web组件的[createPdf](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#createpdf14)方法，为应用提供了保存前端页面为PDF的功能。
 
 若涉及网络文档获取，需在module.json5中配置网络访问权限。具体添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
 
