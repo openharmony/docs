@@ -1827,7 +1827,7 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
     <meta charset="UTF-8">
   </head>
   <body>
-  <video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+  <video id="video" width="500px" height="500px" autoplay></video>
   <canvas id="canvas" width="500px" height="500px"></canvas>
   <br>
   <input type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()"/>
@@ -1846,6 +1846,8 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
       promise.then(function (MediaStream) {
         video.srcObject = MediaStream;
         video.play();
+      }).catch(function(error) {
+        console.error("Error accessing media devices.", error);
       });
     }
   </script>
