@@ -5,6 +5,8 @@ The chip component is typically used in the search box history or email address 
 > **NOTE**
 >
 > This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This component is not supported on wearables.
 
 ## Modules to Import
 
@@ -40,8 +42,8 @@ Defines the type and style parameters of the chip.
 
 | Name           | Type                                                        | Mandatory| Description                                                        |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | No  | Size of the chip.<br>Default value: **ChipSize**: **ChipSize.NORMAL**<br>   If of the SizeOptions type, this parameter cannot be set in percentage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| enabled         | boolean                                                      | No  | Whether the chip can be selected.<br>Default value: **true**<br>**true**: The chip can be selected.<br>**false**: The chip cannot be selected.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | No  | Size of the chip.<br>Default value: **ChipSize.NORMAL**.<br>If of the SizeOptions type, this parameter cannot be set in percentage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| enabled         | boolean                                                      | No  | Whether the chip can be selected.<br>Default value: **true**.<br>**true**: The chip can be selected.<br>**false**: The chip cannot be selected.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | activated<sup>12+</sup>    | boolean                                        | No  | Whether the chip is activated.<br>Default value: **false**<br>**true**: The chip is activated.<br>**false**: The chip is not activated.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                     |
 | prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | No  | Prefix icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | prefixSymbol<sup>12+</sup>  | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | No  | Symbol-type prefix icon of the chip.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -52,7 +54,7 @@ Defines the type and style parameters of the chip.
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_button_normal')**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | activatedBackgroundColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)          | No  | Background color of the chip when it is activated.<br>Default value: **$r('sys.color.ohos_id_color_emphasize').**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | borderRadius    | [Dimension](ts-types.md#dimension10)                         | No  | Border radius of the chip. This parameter cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_corner_radius_button')**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| allowClose      | boolean                                                      | No  | Whether to show the close icon.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| allowClose      | boolean                                                      | No  | Whether to show the delete icon.<br>Default value: **true**.<br>The value **true** means to show the delete icon, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onClose         | ()=>void                                                     | No  | Event triggered when the close icon is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onClicked<sup>12+</sup>     | Callback\<void> | No  | Event triggered when the chip is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                      |
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | No| Layout direction.<br>Default value: **Direction.Auto**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -63,7 +65,7 @@ Defines the type and style parameters of the chip.
 
 > **NOTE**
 >
-> 1. When **suffixSymbol** is provided with an argument, **suffixIcon** and **allowClose** will not take effect. If **suffixSymbol** is not provided, but **suffixIcon** is, **allowClose** still will not take effect. When neither **suffixSymbol** nor **suffixIcon** is provided with arguments, **allowClose** determines whether the deletion icon is displayed.
+> 1. When **suffixSymbol** is specified, **suffixIcon** and **allowClose** will not take effect. If **suffixSymbol** is not specified, but **suffixIcon** is, **allowClose** still will not take effect. When neither **suffixSymbol** nor **suffixIcon** is specified, **allowClose** determines whether the delete icon is displayed.
 >
 > 2. If **undefined** is assigned to **backgroundColor** or **activatedBackgroundColor**, the default background color is used. If an invalid value is specified, the background color is transparent.
 >
@@ -111,7 +113,7 @@ Defines the common icon options of the chip.
 | Name     | Type                                      | Mandatory| Description                                                        |
 | --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | src       | [ResourceStr](ts-types.md#resourcestr)     | Yes  | Icon source, which can be a specific image path or an image reference.|
-| size      | [SizeOptions](ts-types.md#sizeoptions)     | No  | Icon size. This parameter cannot be set in percentage.<br>Default value: **{width: 16,height: 16}**|
+| size      | [SizeOptions](ts-types.md#sizeoptions)     | No  | Icon size. This parameter cannot be set in percentage.<br>Default value: **{width: 16, height: 16}**.|
 | fillColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Icon fill color.|
 | activatedFillColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | No  | Icon fill color when the chip is activated.                           |
 
@@ -124,7 +126,7 @@ Defines the common icon options of the chip.
 
 Defines the prefix icon options.
 
-Inherits [IconCommonOptions](#iconcommonoptions).
+Inherits from [IconCommonOptions](#iconcommonoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -134,7 +136,7 @@ Inherits [IconCommonOptions](#iconcommonoptions).
 
 Defines the suffix icon options.
 
-Inherits [IconCommonOptions](#iconcommonoptions).
+Inherits from [IconCommonOptions](#iconcommonoptions).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -183,8 +185,8 @@ Defines the prefix and suffix icon options.
 
 | Name  | Type      | Mandatory| Description              |
 | ------ | ---------- | ---- | ------------------ |
-| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Icon setup event.|
-| activated | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Icon setup event when the icon is activated.|
+| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Icon settings for the normal state.|
+| activated | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Icon settings for the activated state.|
 
 > **NOTE**
 >
@@ -207,13 +209,13 @@ Defines the label options of the chip.
 | activatedFontColor<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | No  | Font color when the chip is activated.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_contrary').**|
 | fontFamily  | string                                     | No  | Font family.<br>Default value: **"HarmonyOS Sans"**|
 | labelMargin | [LabelMarginOptions](#labelmarginoptions)  | No  | Spacing between the text and the left and right icons.|
-| localizedLabelMargin<sup>12+</sup> | [LocalizedLabelMarginOptions](#localizedlabelmarginoptions12) | No| Spacing between the localized text and the left and right icons.<br>Default value: {<br>start:  LengthMetrics.vp(6), end: LengthMetrics.vp(6)<br>} |
+| localizedLabelMargin<sup>12+</sup> | [LocalizedLabelMarginOptions](#localizedlabelmarginoptions12) | No| Spacing between the localized text and the left and right icons.<br>Default value: {<br>start: LengthMetrics.vp(6), end: LengthMetrics.vp(6)<br>} |
 
 ## CloseOptions<sup>14+</sup>
 
 Defines the accessibility settings of the close icon. The default value of **accessibilityText** is **Delete**.
 
-Inherits [AccessibilityOptions](#accessibilityoptions14).
+Inherits from [AccessibilityOptions](#accessibilityoptions14).
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -386,7 +388,7 @@ import { Chip, ChipSize } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  @State isActivated: boolean = false
+  @State isActivated: boolean = false;
 
   build() {
     Column({ space: 10 }) {
@@ -491,9 +493,9 @@ struct Index {
 
 ![](figures/chip5.gif)
 
-### Example 6: Implementing a Mirroring Effect
+### Example 6: Implementing a Mirror Effect
 
-This example shows how to achieve a mirroring effect for a chip by configuring **direction**.
+This example shows how to achieve a mirror effect for a chip by configuring **direction**.
 
 ```ts
 
@@ -838,7 +840,7 @@ struct ChipAccessibilityExample {
         onClicked: () => {
           this.selectedChipActivated = !this.selectedChipActivated;
           this.getUIContext().getPromptAction().showToast({
-            message: this.checkedChipActivated ? "Radio chip is selected" : "Radio chip is deselected"
+            message: this.selectedChipActivated ? "Radio chip is selected" : "Radio chip is deselected"
           });
         }
       })

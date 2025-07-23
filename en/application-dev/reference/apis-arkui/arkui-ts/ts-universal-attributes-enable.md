@@ -4,7 +4,7 @@ You can enable or disable a component to control whether it responds to user int
 
 - [Click event](ts-universal-events-click.md)
 - [Touch event](ts-universal-events-touch.md)
-- [Drag and drop event](ts-universal-events-drag-drop.md)
+- [Drag event](ts-universal-events-drag-drop.md)
 - [Key event](ts-universal-events-key.md)
 - [Focus event](ts-universal-focus-event.md)
 - [Mouse event](ts-universal-mouse-key.md)

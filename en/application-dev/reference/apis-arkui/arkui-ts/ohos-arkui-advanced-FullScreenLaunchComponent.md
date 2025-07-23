@@ -8,13 +8,15 @@
 >
 > This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> To implement an embeddable atomic service within this component, it must inherit from [EmbeddableUIAbility](../../apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md). If it does not inherit from **EmbeddableUIAbility**, the system cannot guarantee that the atomic service will function properly.
+> This component is not supported on wearables.
+>
+> To implement an embeddable atomic service within this component, it must inherit from [EmbeddableUIAbility](../../apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md). Otherwise, the system cannot guarantee that the atomic service will function properly.
 
 
 ## Modules to Import
 
 ```ts
-import { FullScreenLaunchComponent } from '@kit.ArkUI'
+import { FullScreenLaunchComponent } from '@kit.ArkUI';
 ```
 
 
@@ -42,7 +44,7 @@ FullScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: A
 | appId | string | Yes| - |  Application ID of the atomic service to be launched. It is the unique identifier for the atomic service.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<!--RP1--><!--RP1End-->|
 | options | [AtomicServiceOptions](../../apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md) | No| - | Parameters for launching the atomic service.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onError<sup>18+<sup> | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | No| - | Triggered when an exception occurs during the execution of an embedded atomic service. You can obtain the error information based on the **code**, **name**, and **message** parameters in the callback and rectify the exception accordingly.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
-| onTerminated<sup>18+<sup> | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](ts-container-embedded-component.md#terminationinfo)> | No| - | Triggered when an embedded atomic service exits properly by calling [terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult) or [terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself).<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| onTerminated<sup>18+<sup> | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](ts-container-embedded-component.md#terminationinfo)> | No| - | Triggered when an embedded atomic service exits properly by calling [terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult) or [terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself)<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 > **NOTE**
 >
