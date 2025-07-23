@@ -166,3 +166,109 @@ struct Example {
     }
 }
 ```
+
+## Toast组件（即时反馈）
+
+### showToast
+
+由@ohos.prompt、@system.prompt、@ohos.promptAction提供的showToast接口在ArkTS1.1中已标记为废弃，并在ArkTS1.2中不再支持。
+
+ArkTS1.1接口声明：
+
+[引用@ohos.prompt的showToast(options: ShowToastOptions): void](../reference/apis-arkui/js-apis-prompt.md#promptshowtoast)
+
+[引用@system.prompt的showToast(options: ShowToastOptions): void](../reference/apis-arkui/js-apis-system-prompt.md#promptshowtoast)
+
+[引用@ohos.promptAction的showToast(options: ShowToastOptions): void](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowtoastdeprecated)
+
+替代的ArkTS1.2接口声明：
+
+[引用@ohos.arkui.UIContext的showToast(options: promptAction.ShowToastOptions): void](../reference/apis-arkui/js-apis-arkui-UIContext.md#showtoast)
+
+适配方法如下：
+
+ArkTS1.1
+
+引用@ohos.prompt的showToast
+
+```
+import prompt from '@ohos.prompt'
+@Entry
+@Component
+struct Example {
+    build() {
+        Column() {
+           Button('show toast from ohos.prompt').onClick((e: ClickEvent) => {
+                prompt.showToast({
+                    message: 'test',
+                    duration: 2000
+                })
+           })
+        }
+    }
+}
+```
+
+引用@system.prompt的showToast
+
+```
+import prompt from '@system.prompt'
+@Entry
+@Component
+struct Example {
+    build() {
+        Column() {
+           Button('show toast from system.prompt').onClick((e: ClickEvent) => {
+                prompt.showToast({
+                    message: 'test',
+                    duration: 2000
+                })
+           })
+        }
+    }
+}
+```
+
+引用@ohos.promptAction的showToast
+
+```
+import promptAction from '@ohos.promptAction'
+@Entry
+@Component
+struct Example {
+    build() {
+        Column() {
+           Button('show toast from ohos.promptAction').onClick((e: ClickEvent) => {
+                promptAction.showToast({
+                    message: 'test',
+                    duration: 2000
+                })
+           })
+        }
+    }
+}
+```
+
+
+ArkTS1.2
+
+改用UIContext下的showToast方法
+
+```
+@Entry
+@Component
+struct Example {
+    uiContext: UIContext = this.getUIContext();
+
+    build() {
+        Column() {
+            Button('show toast from uicontext').onClick((e: ClickEvent) => {
+                this.uiContext.getPromptAction().showToast({
+                    message: 'test',
+                    duration: 2000
+                })
+           })
+        }
+    }
+}
+```
