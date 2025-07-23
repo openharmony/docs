@@ -80,6 +80,7 @@ static OH_Crypto_ErrCode doSm2Test() {
    OH_CryptoSign_Destroy(sign);
    OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
    OH_CryptoKeyPair_Destroy(keyPair);
+   OH_Crypto_FreeDataBlob(&signBlob);
    return CRYPTO_SUCCESS;
 }
 ```
