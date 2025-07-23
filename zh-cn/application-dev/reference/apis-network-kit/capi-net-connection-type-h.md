@@ -29,9 +29,9 @@
 | [NetConn_NetHandleList](capi-netconnection-netconn-nethandlelist.md) | NetConn_NetHandleList | 网络列表。 |
 | [NetConn_NetSpecifier](capi-netconnection-netconn-netspecifier.md) | NetConn_NetSpecifier | 网络的特征集。 |
 | [NetConn_NetConnCallback](capi-netconnection-netconn-netconncallback.md) | NetConn_NetConnCallback | 网络状态监听回调集合。 |
-| [NetConn_ProbeResultInfo](capi-netconnection-netconn-proberesultinfo.md) | NetConn_ProbeResultInfo | 探测结果。 |
-| [NetConn_TraceRouteOption](capi-netconnection-netconn-tracerouteinfo.md) | NetConn_TraceRouteOption | 路由参数选项。 |
-| [NetConn_TraceRouteInfo](capi-netconnection-netconn-tracerouteinfo.md) | NetConn_TraceRouteInfo | 路由结果。 |
+| [NetConn_ProbeResultInfo](capi-netconnection-netconn-proberesultinfo.md) | NetConn_ProbeResultInfo | 定义探测结果信息。 |
+| [NetConn_TraceRouteOption](capi-netconnection-netconn-tracerouteoption.md) | NetConn_TraceRouteOption | 定义网络跟踪路由选项。 |
+| [NetConn_TraceRouteInfo](capi-netconnection-netconn-tracerouteinfo.md) | NetConn_TraceRouteInfo | 定义跟踪路由信息。 |
 
 ### 枚举
 
@@ -40,7 +40,6 @@
 | [NetConn_NetCap](#netconn_netcap) | NetConn_NetCap | 网络能力集。 |
 | [NetConn_NetBearerType](#netconn_netbearertype) | NetConn_NetBearerType | 网络载体类型。 |
 | [NetConn_ErrorCode](#netconn_errorcode) | NetConn_ErrorCode | 网络连接返回值错误码。 |
-
 
 ### 函数
 
@@ -54,8 +53,6 @@
 | [typedef void (\*OH_NetConn_NetLost)(NetConn_NetHandle *netHandle)](#oh_netconn_netlost) | OH_NetConn_NetLost | 网络断开回调。 |
 | [typedef void (\*OH_NetConn_NetUnavailable)(void)](#oh_netconn_netunavailable) | OH_NetConn_NetUnavailable | 网络不可用回调，在指定的超时时间内网络未激活时触发该回调，如果未设置超时时间则不会触发该回调。 |
 | [typedef void (\*OH_NetConn_NetBlockStatusChange)(NetConn_NetHandle *netHandle, bool blocked)](#oh_netconn_netblockstatuschange) | OH_NetConn_NetBlockStatusChange | 网络阻塞状态变更回调。 |
-| [OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo)](#oh_netconn_queryproberesult)| OH_NetConn_QueryProbeResult \ 查询探测结果。 |
-| [OH_NetConn_QueryTraceRoute(char *destination, NetConn_TraceRouteOption *option, NetConn_TraceRouteInfo *traceRouteInfo)](#oh_netconn_querytraceroute)| OH_NetConn_QueryTraceRoute | 查询跟踪路由。 |
 
 ## 枚举类型说明
 
@@ -78,8 +75,8 @@ enum NetConn_NetCap
 | NETCONN_NET_CAPABILITY_INTERNET = 12 | Internet |
 | NETCONN_NET_CAPABILITY_NOT_VPN = 15 | 非VPN |
 | NETCONN_NET_CAPABILITY_VALIDATED = 16 | 已验证 |
-| NETCONN_NET_CAPABILITY_PORTAL = 17 | Portal<br>**起始版本：** 12 |
-| NETCONN_NET_CAPABILITY_CHECKING_CONNECTIVITY = 31 | 检测连通性中。<br>**起始版本：** 12 |
+| NETCONN_NET_CAPABILITY_PORTAL = 17 |  |
+| NETCONN_NET_CAPABILITY_CHECKING_CONNECTIVITY = 31 |  |
 
 ### NetConn_NetBearerType
 
@@ -97,9 +94,9 @@ enum NetConn_NetBearerType
 | -- | -- |
 | NETCONN_BEARER_CELLULAR = 0 | 蜂窝网络 |
 | NETCONN_BEARER_WIFI = 1 | WIFI |
-| NETCONN_BEARER_BLUETOOTH = 2 | 蓝牙<br>**起始版本：** 12 |
+| NETCONN_BEARER_BLUETOOTH = 2 |  |
 | NETCONN_BEARER_ETHERNET = 3 | Ethernet |
-| NETCONN_BEARER_VPN = 4 | VPN<br>**起始版本：** 12 |
+| NETCONN_BEARER_VPN = 4 |  |
 
 ### NetConn_ErrorCode
 
@@ -115,10 +112,10 @@ enum NetConn_ErrorCode
 
 | 枚举项 | 描述 |
 | -- | -- |
-| NETCONN_SUCCESS = 0 | 成功 |
-| NETCONN_PERMISSION_DENIED = 201 | 缺少权限 |
-| NETCONN_PARAMETER_ERROR = 401 | 参数错误 |
-| NETCONN_OPERATION_FAILED = 2100002 | 无法连接到服务 |
+| NETCONN_SUCCESS = 0 | @error 成功 |
+| NETCONN_PERMISSION_DENIED = 201 | @error 缺少权限 |
+| NETCONN_PARAMETER_ERROR = 401 | @error 参数错误 |
+| NETCONN_OPERATION_FAILED = 2100002 | @error 无法连接到服务 |
 | NETCONN_INTERNAL_ERROR = 2100003 | 内部错误。1. 内存异常, 比如内存不足或内存拷贝失败。2. 空指针, 比如访问已释放内存的指针。 |
 
 
@@ -161,9 +158,9 @@ typedef void (*OH_NetConn_AppHttpProxyChange)(NetConn_HttpProxy *proxy)
 
 **参数：**
 
-| 参数项                          | 描述 |
-|------------------------------| -- |
-| [NetConn_HttpProxy](capi-netconnection-netconn-httpproxy.md) *proxy | 变化的代理配置信息,可能是空指针。 |
+| 参数项 | 描述 |
+| -- | -- |
+| 变化的代理配置信息, | 可能是空指针。 |
 
 ### OH_NetConn_NetworkAvailable()
 
@@ -275,78 +272,4 @@ typedef void (*OH_NetConn_NetBlockStatusChange)(NetConn_NetHandle *netHandle, bo
 | [NetConn_NetHandle](capi-netconnection-netconn-nethandle.md) *netHandle | 网络句柄。 |
 |  bool blocked | 指示网络是否将被阻塞的标志。 |
 
-### OH_NetConn_QueryProbeResult()
-
-```
-int32_t OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo);
-```
-
-**描述**
-
-查询探测结果。
-
-**系统能力：** SystemCapability.Communication.NetManager.Core
-
-**起始版本：** 20
-
-**参数:**
-
-| 参数项 | 描述 | 
-| -------- | -------- |
-| destination  |  目的地址。 |
-| duration  |  时长。 |
-| NetConn_ProbeResultInfo  |  探测结果。 |
-
-**返回：**
-
-0 - 成功。
-
-201 - 缺少权限。
-
-401 - 参数错误。
-
-2100003 - 内部错误。
-
-**Permission：**
-
-ohos.permission.INTERNET
-
-
-### OH_NetConn_QueryTraceRoute()
-
-```
-int32_t OH_NetConn_QueryTraceRoute(char *destination, NetConn_TraceRouteOption *option, NetConn_TraceRouteInfo *traceRouteInfo);
-```
-
-**描述**
-
-查询跟踪路由。
-
-**系统能力：** SystemCapability.Communication.NetManager.Core
-
-**起始版本：** 20
-
-**参数:**
-
-| 参数项 | 描述 | 
-| -------- | -------- |
-| destination  |  目的地址。 |
-| NetConn_TraceRouteOption  |  路由参数选项。 |
-| NetConn_TraceRouteInfo  |  路由结果。 |
-
-**返回：**
-
-0 - 成功。
-
-201 - 缺少权限。
-
-401 - 参数错误。
-
-2100003 - 内部错误。
-
-**Permission：**
-
-ohos.permission.INTERNET 
-ohos.permission.LOCATION 
-ohos.permission.ACCESS_TRACE_ROUTE_INFO
 
