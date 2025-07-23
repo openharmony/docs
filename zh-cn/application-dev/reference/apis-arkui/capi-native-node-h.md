@@ -3274,7 +3274,7 @@ int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, v
 | -- | -- |
 | [ArkUI_ContextHandle](capi-arkui-nativemodule-arkui-context8h.md) uiContext | 表示目标UI上下文的指针。 |
 | void* userData | 开发者自定义数据指针，以便在回调函数中处理自定义数据，开发者需自行保证自定义函数被执行时的数据有效性。 |
-| void(*callback)(void* userData) | 开发者自定义回调函数。 |
+| void(\*callback)(void\* userData) | 开发者自定义回调函数。 |
 
 **返回：**
 
