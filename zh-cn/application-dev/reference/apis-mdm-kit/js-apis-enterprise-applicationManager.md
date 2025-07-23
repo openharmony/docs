@@ -635,7 +635,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, disallowModify: boolean): void
 
-添加保活应用，并设置是否禁止用户取消应用保活，当前仅支持PC/2in1设备。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
+添加保活应用，并设置是否禁止用户取消应用保活，当前仅支持PC/2in1设备。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。<span style="color:#e60000;">被保活应用需满足接入托盘服务的应用或者安装在u1用户下，entry包的mainElement是AppServiceExtension的应用。</span>
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -650,7 +650,7 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, di
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | bundleNames    | Array&lt;string&gt;                                     | 是   | 应用包名数组，指定需要添加保活的应用，最大支持5个。                                   |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
-| disallowModify | boolean | 是   | true表示禁止用户取消保活，false表示允许用户取消保活<br>配置后，用户可在企业定制设备中，通过设置-应用和元服务-应用常驻管理，管理应用常驻保活。 |
+| disallowModify | boolean | 是   | true表示禁止用户取消保活，false表示允许用户取消保活<br>配置后，ToB版本用户可在               修改 |
 
 **错误码**：
 
