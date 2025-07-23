@@ -12,7 +12,6 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 >
 > - Navigation未设置主副标题并且没有返回键时，不显示标题栏。
 
-
 ## 子组件
 
 可以包含子组件。
@@ -3701,7 +3700,7 @@ class DerivedNavPathStack extends NavPathStack {
   // other function of base class...
 }
 
-class param {
+class Param {
   info: string = "__default_param__";
 
   constructor(info: string) {
@@ -3728,7 +3727,7 @@ struct Index {
       Button('to Page One').margin(20).onClick(() => {
         this.derivedStack.pushPath({
           name: 'pageOne',
-          param: new param('push pageOne in homePage when stack size: ' + this.derivedStack.size())
+          param: new Param('push pageOne in homePage when stack size: ' + this.derivedStack.size())
         });
       })
     }.navDestination(this.pageMap)
@@ -3763,7 +3762,7 @@ struct PageOne {
       Button('to Page One').margin(20).onClick(() => {
         this.derivedStack.pushPath({
           name: 'pageOne',
-          param: new param('push pageOne in pageOne when stack size: ' + this.derivedStack.size())
+          param: new Param('push pageOne in pageOne when stack size: ' + this.derivedStack.size())
         });
       })
     }.title('Page One')
@@ -3912,7 +3911,7 @@ export struct NavigationMenu {
 import { LengthMetrics } from '@kit.ArkUI';
 import { TextModifier } from '@ohos.arkui.modifier';
 
-class MainTitleTextModfier extends TextModifier {
+class MainTitleTextModifier extends TextModifier {
   useStyle1: boolean = true;
 
   applyNormalAttribute(instance: TextModifier): void {
@@ -3935,7 +3934,7 @@ class MainTitleTextModfier extends TextModifier {
   }
 }
 
-class SubTitleTextModfier extends TextModifier {
+class SubTitleTextModifier extends TextModifier {
   useStyle1: boolean = true;
 
   applyNormalAttribute(instance: TextModifier): void {
@@ -3966,9 +3965,9 @@ struct NavigationExample {
   // 初始化标题栏结束端内间距
   @State paddingEnd: LengthMetrics = LengthMetrics.vp(0);
   // 主标题样式修改器
-  @State mainTitleModifier: MainTitleTextModfier = new MainTitleTextModfier();
+  @State mainTitleModifier: MainTitleTextModifier = new MainTitleTextModifier();
   // 副标题样式修改器
-  @State subTitleModifier: SubTitleTextModfier = new SubTitleTextModfier();
+  @State subTitleModifier: SubTitleTextModifier = new SubTitleTextModifier();
   @State applyModifier: boolean = false;
   @State useStyle1: boolean = true;
 
@@ -4058,9 +4057,9 @@ export struct NavDestinationExample {
   @State paddingStart: LengthMetrics = LengthMetrics.vp(0);
   @State paddingEnd: LengthMetrics = LengthMetrics.vp(0);
   // 主标题样式修改器
-  @State mainTitleModifier: MainTitleTextModfier = new MainTitleTextModfier();
+  @State mainTitleModifier: MainTitleTextModifier = new MainTitleTextModifier();
   // 副标题样式修改器
-  @State subTitleModifier: SubTitleTextModfier = new SubTitleTextModfier();
+  @State subTitleModifier: SubTitleTextModifier = new SubTitleTextModifier();
   @State applyModifier: boolean = false;
   @State useStyle1: boolean = true;
 
@@ -4301,7 +4300,7 @@ export struct PageContainer {
 }
 ```
 ```ts
-// src/main/pages/CustomNavigationUtils.ts 工具类，用来管理所有页面的自定义动画参数注册和获取等
+// src/main/pages/CustomTransitionUtils.ts 工具类，用来管理所有页面的自定义动画参数注册和获取等
 // 自定义接口，用来保存某个页面相关的转场动画回调和参数
 export interface AnimateCallback {
   start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
