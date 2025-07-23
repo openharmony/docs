@@ -33,7 +33,7 @@
 
 
 ```ts
-// Index.ets代码
+// Index.ets
 import { taskpool} from '@kit.ArkTS';
 
 // 步骤1: 定义并发函数，实现业务逻辑
@@ -86,7 +86,7 @@ struct Index {
 
     ```ts
     // Index.ets
-    import { worker } from '@kit.ArkTS';
+    import { MessageEvents, worker } from '@kit.ArkTS';
     
     @Entry
     @Component
@@ -101,19 +101,17 @@ struct Index {
               .fontWeight(FontWeight.Bold)
               .onClick(() => {
                 let w: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ets');
-                w.onmessage = (): void => {
-                  // 接收Worker子线程的结果
-                }
-                w.onAllErrors = (): void => {
-                  // 接收Worker子线程的错误信息
-                }
                 // 向Worker子线程发送Set消息
-                w.postMessage({'type': 0, 'data': 'data'})
+                w.postMessage({'type': 0, 'data': 10});
                 // 向Worker子线程发送Get消息
-                w.postMessage({'type': 1})
-                // ...
-                // 根据实际业务，选择时机以销毁线程
-                w.terminate()
+                w.postMessage({'type': 1});
+                // 接收Worker子线程的结果
+                w.onmessage = (e: MessageEvents): void => {
+                  // 接收Worker子线程的结果
+                  console.info('main thread onmessage, ' + e.data);
+                  // 销毁Worker
+                  w.terminate();
+                }
               })
           }
           .width('100%')
@@ -129,12 +127,15 @@ struct Index {
     ```ts
     // handle.ts代码
     export default class Handle {
-      syncGet() {
-        return;
+      id: number = 0;
+    
+      syncGet(): number {
+        return this.id;
       }
     
-      syncSet(num: number) {
-        return;
+      syncSet(num: number): boolean {
+        this.id = num;
+        return true;
       }
     }
     ```
@@ -148,19 +149,23 @@ struct Index {
     let workerPort : ThreadWorkerGlobalScope = worker.workerPort;
     
     // 无法传输的句柄，所有操作依赖此句柄
-    let handler: Handle = new Handle()
+    let handler: Handle = new Handle();
     
     // Worker线程的onmessage逻辑
     workerPort.onmessage = (e : MessageEvents): void => {
-     switch (e.data.type as number) {
-      case 0:
-       handler.syncSet(e.data.data);
-       workerPort.postMessage('success set');
-       break;
-      case 1:
-       handler.syncGet();
-       workerPort.postMessage('success get');
-       break;
-     }
+      switch (e.data.type as number) {
+        case 0:
+          let result: boolean = false;
+          result = handler.syncSet(e.data.data);
+          console.info("worker: result is " + result);
+          workerPort.postMessage('the result of syncSet() is ' + result);
+          break;
+        case 1:
+          let num: number = 0;
+          num = handler.syncGet();
+          console.info("worker: num is " + num);
+          workerPort.postMessage('the result of syncGet() is ' + num);
+          break;
+      }
     }
     ```

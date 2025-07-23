@@ -4,7 +4,8 @@
 
 > **说明：**
 >
-> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件首批接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## domStorageAccess
@@ -487,11 +488,30 @@ mediaPlayGestureAccess(access: boolean)
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .mediaPlayGestureAccess(this.access)
       }
     }
   }
+  ```
+
+加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>视频播放页面</title>
+  </head>
+  <body>
+  <h1>视频播放</h1>
+  <video id="testVideo" controls autoplay>
+      // 需要在video标签中配置autoplay属性，允许视频自动播放
+      // 在resources的rawfile目录放置任意一个mp4媒体文件，并将其命名为example.mp4
+      <source src="example.mp4" type="video/mp4">
+  </video>
+  </body>
+  </html>
   ```
 
 ## multiWindowAccess<sup>9+</sup>

@@ -1250,12 +1250,12 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, phot
 
   try {
     let outputText: string;
-    if (photoTypeNumber !== 1 && photoTypeNumber !== 2) {
+    if (photoTypeNumber !== photoAccessHelper.PhotoType.IMAGE && photoTypeNumber !== photoAccessHelper.PhotoType.VIDEO) {
       outputText = 'Does not support querying formats other than images or videos';
       return;
     }
     outputText = 'The supported types are:\n';
-    let imageFormat  = await phAccessHelper.getSupportedPhotoFormats(photoTypeNumber);
+    let imageFormat  = await phAccessHelper.getSupportedPhotoFormats(photoAccessHelper.PhotoType.IMAGE);
     let result = "";
     for (let i = 0; i < imageFormat.length; i++) {
       result += imageFormat[i];
@@ -1560,6 +1560,8 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getReadOnlyFdDemo');
   // 需要保证设备中存在可读取图片视频文件。
@@ -1621,6 +1623,8 @@ getReadOnlyFd(): Promise&lt;number&gt;
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getReadOnlyFdDemo');
   try {

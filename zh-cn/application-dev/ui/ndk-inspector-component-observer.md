@@ -21,7 +21,6 @@
 #include <arkui/native_node.h>
 #include "ArkUINode.h"
 #include <string>
-#include <string>
 
 namespace NativeModule {
 // 布局完成的回调方法

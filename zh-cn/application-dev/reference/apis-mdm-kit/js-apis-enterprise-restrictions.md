@@ -32,7 +32,7 @@ setDisallowedPolicy(admin: Want, feature: string, disallow: boolean): void
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| feature  | string                                                  | 是   | feature名称。<br/>- bluetooth：设备蓝牙能力。当已经通过[addDisallowedBluetoothDevices](js-apis-enterprise-bluetoothManager.md#bluetoothmanageradddisallowedbluetoothdevices20)接口或者[addAllowedBluetoothDevices](js-apis-enterprise-bluetoothManager.md#bluetoothmanageraddallowedbluetoothdevices)接口设置了蓝牙设备黑名单或者白名单，再通过本接口禁用设备蓝牙能力，会优先生效禁用设备蓝牙能力。直到设备蓝牙能力启用后，黑白名单才会生效。<br/>- modifyDateTime：设备修改系统时间能力，当前仅支持2in1设备使用。<br/>- printer：设备打印能力，当前仅支持2in1设备使用。<br/>- hdc：设备HDC能力。<br/>- microphone：设备麦克风能力。<br/>- fingerprint：设备指纹认证能力。当已经通过[setDisallowedPolicyForAccount](#restrictionssetdisallowedpolicyforaccount14)设置了某用户禁用设备指纹认证能力时，再通过本接口启用设备指纹认证能力，会报策略冲突。<br/>- usb：设备USB能力。禁用后外接的USB设备无法使用，即在当前设备为HOST模式时，无法外接其他DEVICE设备。<br/>  以下三种情况再通过本接口禁用设备USB能力，会报策略冲突。<br/>  1）通过[addAllowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanageraddallowedusbdevices)接口添加了USB设备可用白名单。<br/>  2）通过[setUsbStorageDeviceAccessPolicy](js-apis-enterprise-usbManager.md#usbmanagersetusbstoragedeviceaccesspolicy)接口设置了USB存储设备访问策略为只读/禁用。<br/>  3）通过[addDisallowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanageradddisallowedusbdevices14)接口添加了禁止使用的USB设备类型。<br/>- wifi：设备WIFI能力。<br/>- tethering<sup>14+</sup>：网络共享能力（设备已有网络共享给其他设备的能力，即共享热点能力）。<br/>- inactiveUserFreeze<sup>14+</sup>：非活跃用户运行能力，当前仅支持2in1设备使用。企业空间场景下，系统切换到企业空间用户，个人空间用户属于非活跃用户。<br/>- camera<sup>14+</sup>：设备相机能力。<br/>- mtpClient<sup>18+</sup>：MTP客户端能力(包含读取和写入)，当前仅支持2in1设备使用。MTP（MediaTransferProtocol，媒体传输协议），该协议允许用户在移动设备上线性访问媒体文件。当已经通过[setDisallowedPolicyForAccount](#restrictionssetdisallowedpolicyforaccount14)设置了某用户禁用MTP客户端写入能力时，再通过本接口禁用MTP客户端能力，会报策略冲突。<br/>- mtpServer<sup>18+</sup>：MTP服务端能力，当前仅支持手机、平板、2in1设备使用。<br/>- backupAndRestore<sup>20+</sup>：备份和恢复能力，禁用后设备的"设置--系统--备份和恢复"、"设置--云空间"置灰，当前仅支持手机、平板使用。如果要完全禁用设备的备份和恢复能力，建议同时调用[applicationManager.addDisallowedRunningBundlesSync](./js-apis-enterprise-applicationManager.md#applicationmanageradddisallowedrunningbundlessync)接口禁止具备备份和恢复能力的应用运行，如备份和恢复、手机助手、云空间应用。<br/>- maintenanceMode<sup>20+</sup>：设备维修模式能力，当前仅支持手机、平板、2in1设备使用。<br/>- mms<sup>20+</sup>：multimedia messaging service，设备接收、发送彩信的能力，当前仅支持手机、平板设备使用。<!--RP1--><!--RP1End--> <br/> **说明：** 从API version 15开始，应用申请权限ohos.permission.PERSONAL_MANAGE_RESTRICTIONS并[激活为自带设备管理应用](./js-apis-enterprise-adminManager.md#adminmanagerstartadminprovision15)，可以使用此接口设置以下特性：bluetooth、hdc、microphone、usb、wifi、tethering、camera<!--RP3--><!--RP3End-->。 |
+| feature  | string                                                  | 是   | feature名称。<br/>- bluetooth：设备蓝牙能力。当已经通过[addDisallowedBluetoothDevices](js-apis-enterprise-bluetoothManager.md#bluetoothmanageradddisallowedbluetoothdevices20)接口或者[addAllowedBluetoothDevices](js-apis-enterprise-bluetoothManager.md#bluetoothmanageraddallowedbluetoothdevices)接口设置了蓝牙设备禁用名单或者可用名单，再通过本接口禁用设备蓝牙能力，会优先生效禁用设备蓝牙能力。直到设备蓝牙能力启用后，禁用名单/可用名单才会生效。<br/>- modifyDateTime：设备修改系统时间能力，当前仅支持2in1设备使用。<br/>- printer：设备打印能力，当前仅支持2in1设备使用。<br/>- hdc：设备HDC能力。<br/>- microphone：设备麦克风能力。<br/>- fingerprint：设备指纹认证能力。当已经通过[setDisallowedPolicyForAccount](#restrictionssetdisallowedpolicyforaccount14)设置了某用户禁用设备指纹认证能力时，再通过本接口启用设备指纹认证能力，会报策略冲突。<br/>- usb：设备USB能力。禁用后外接的USB设备无法使用，即在当前设备为HOST模式时，无法外接其他DEVICE设备。<br/>  以下三种情况再通过本接口禁用设备USB能力，会报策略冲突。<br/>  1）通过[addAllowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanageraddallowedusbdevices)接口添加了USB设备可用名单。<br/>  2）通过[setUsbStorageDeviceAccessPolicy](js-apis-enterprise-usbManager.md#usbmanagersetusbstoragedeviceaccesspolicy)接口设置了USB存储设备访问策略为只读/禁用。<br/>  3）通过[addDisallowedUsbDevices](js-apis-enterprise-usbManager.md#usbmanageradddisallowedusbdevices14)接口添加了禁止使用的USB设备类型。<br/>- wifi：设备WIFI能力。<br/>- tethering<sup>14+</sup>：网络共享能力（设备已有网络共享给其他设备的能力，即共享热点能力）。<br/>- inactiveUserFreeze<sup>14+</sup>：非活跃用户运行能力，当前仅支持2in1设备使用。企业空间场景下，系统切换到企业空间用户，个人空间用户属于非活跃用户。<br/>- camera<sup>14+</sup>：设备相机能力。<br/>- mtpClient<sup>18+</sup>：MTP客户端能力(包含读取和写入)，当前仅支持2in1设备使用。MTP（MediaTransferProtocol，媒体传输协议），该协议允许用户在移动设备上线性访问媒体文件。当已经通过[setDisallowedPolicyForAccount](#restrictionssetdisallowedpolicyforaccount14)设置了某用户禁用MTP客户端写入能力时，再通过本接口禁用MTP客户端能力，会报策略冲突。<br/>- mtpServer<sup>18+</sup>：MTP服务端能力，当前仅支持手机、平板、2in1设备使用。<br/>- backupAndRestore<sup>20+</sup>：备份和恢复能力，禁用后设备的"设置--系统--备份和恢复"、"设置--云空间"置灰，当前仅支持手机、平板使用。如果要完全禁用设备的备份和恢复能力，建议同时调用[applicationManager.addDisallowedRunningBundlesSync](./js-apis-enterprise-applicationManager.md#applicationmanageradddisallowedrunningbundlessync)接口禁止具备备份和恢复能力的应用运行，如备份和恢复、手机助手、云空间应用。<br/>- maintenanceMode<sup>20+</sup>：设备维修模式能力，当前仅支持手机、平板、2in1设备使用。<br/>- mms<sup>20+</sup>：multimedia messaging service，设备接收、发送彩信的能力，当前仅支持手机、平板设备使用。<!--RP1--><!--RP1End--> <br/> **说明：** 从API version 15开始，应用申请权限ohos.permission.PERSONAL_MANAGE_RESTRICTIONS并[激活为自带设备管理应用](./js-apis-enterprise-adminManager.md#adminmanagerstartadminprovision15)，可以使用此接口设置以下特性：bluetooth、hdc、microphone、usb、wifi、tethering、camera<!--RP3--><!--RP3End-->。 |
 | disallow | boolean                                                 | 是   | true表示禁止使用，false表示允许使用。                        |
 
 **错误码**：
@@ -49,14 +49,17 @@ setDisallowedPolicy(admin: Want, feature: string, disallow: boolean): void
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   restrictions.setDisallowedPolicy(wantTemp, 'printer', true);
   console.info('Succeeded in setting printer disabled');
 } catch (err) {
@@ -101,14 +104,17 @@ getDisallowedPolicy(admin: Want, feature: string): boolean
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let result: boolean = restrictions.getDisallowedPolicy(wantTemp, 'printer');
   console.info(`Succeeded in querying is the printing function disabled : ${result}`);
 } catch (err) {
@@ -150,14 +156,17 @@ setDisallowedPolicyForAccount(admin: Want, feature: string, disallow: boolean, a
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   restrictions.setDisallowedPolicyForAccount(wantTemp, 'fingerprint', true, 100);
   console.info('Succeeded in setting fingerprint disabled');
 } catch (err) {
@@ -203,14 +212,17 @@ getDisallowedPolicyForAccount(admin: Want, feature: string, accountId: number): 
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let result: boolean = restrictions.getDisallowedPolicyForAccount(wantTemp, 'fingerprint', 100);
   console.info(`Succeeded in querying is the fingerprint function disabled : ${result}`);
 } catch (err) {
@@ -251,14 +263,18 @@ addDisallowedListForAccount(admin: Want, feature: string, list: Array\<string>, 
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let valueList:Array<string> = ["com.xx.aa.", "com.xx.bb"];
 try {
+  // 参数需根据实际情况进行替换
   restrictions.addDisallowedListForAccount(wantTemp, 'snapshotSkip', valueList, 100);
   console.info('Succeeded in adding disallowed snapshotSkip feature');
 } catch (err) {
@@ -299,14 +315,18 @@ removeDisallowedListForAccount(admin: Want, feature: string, list: Array\<string
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let valueList:Array<string> = ["com.xx.aa.", "com.xx.bb"];
 try {
+  // 参数需根据实际情况进行替换
   restrictions.removeDisallowedListForAccount(wantTemp, 'snapshotSkip', valueList, 100);
   console.info('Succeeded in removing disallowed snapshotSkip feature');
 } catch (err) {
@@ -352,14 +372,17 @@ getDisallowedListForAccount(admin: Want, feature: string, accountId: number): Ar
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
+  // 参数需根据实际情况进行替换
   let result: Array<string> = restrictions.getDisallowedListForAccount(wantTemp, 'snapshotSkip', 100);
   console.info('Succeeded in querying disallowed list for account');
 } catch (err) {

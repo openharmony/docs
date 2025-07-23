@@ -183,12 +183,13 @@ entries(): IterableIterator<[string, string]>
 **示例：**
 
 ```ts
-let searchParamsObject = new url.URLParams("keyName1=valueName1&keyName2=valueName2");
-let pair:Iterable<Object[]> = searchParamsObject.entries();
-let arrayValue = Array.from(pair);
-for (let pair of arrayValue) { // Show keyName/valueName pairs
-  console.info(pair[0]+ ', '+ pair[1]);
+let paramsObject = new url.URLParams("keyName1=valueName1&keyName2=valueName2");
+let pair = paramsObject.entries();
+for (let item of pair) {
+    console.info(item[0] + '=' + item[1]);
 }
+// keyName1=valueName1
+// keyName2=valueName2
 ```
 
 
@@ -368,9 +369,9 @@ sort(): void
 **示例：**
 
 ```ts
-let searchParamsObject = new url.URLParams("c=3&a=9&b=4&d=2"); // Create a test URLSearchParams object
-searchParamsObject.sort(); // Sort the key/value pairs
-console.info(searchParamsObject.toString()); // Display the sorted query string // Output a=9&b=4&c=3&d=2
+let paramsObject = new url.URLParams("c=3&a=9&b=4&d=2"); // Create a test URLParams object
+paramsObject.sort(); // Sort the key/value pairs
+console.info(paramsObject.toString()); // Display the sorted query string // Output a=9&b=4&c=3&d=2
 ```
 
 
@@ -393,11 +394,13 @@ keys(): IterableIterator&lt;string&gt;
 **示例：**
 
 ```ts
-let searchParamsObject = new url.URLParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
-let keys = Array.from(searchParamsObject.keys());
-for (let key of keys) { // Output key-value pairs
+let paramsObject = new url.URLParams("key1=value1&key2=value2");
+let keys = paramsObject.keys();
+for (let key of keys) {
   console.info(key);
 }
+// key1
+// key2
 ```
 
 
@@ -420,11 +423,13 @@ values(): IterableIterator&lt;string&gt;
 **示例：**
 
 ```ts
-let searchParams = new url.URLParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
-let values = Array.from(searchParams.values());
+let paramsObject = new url.URLParams("key1=value1&key2=value2");
+let values = paramsObject.values();
 for (let value of values) {
   console.info(value);
 }
+// value1
+// value2
 ```
 
 
@@ -448,11 +453,12 @@ for (let value of values) {
 
 ```ts
 const paramsObject = new url.URLParams('fod=bay&edg=bap');
-let iter: Iterable<Object[]> = paramsObject[Symbol.iterator]();
-let pairs = Array.from(iter);
-for (let pair of pairs) {
+let iter = paramsObject[Symbol.iterator]();
+for (let pair of iter) {
   console.info(pair[0] + ', ' + pair[1]);
 }
+// fod, bay
+// edg, bap
 ```
 
 
@@ -808,11 +814,12 @@ entries(): IterableIterator<[string, string]>
 
 ```ts
 let searchParamsObject = new url.URLSearchParams("keyName1=valueName1&keyName2=valueName2");
-let iter: Iterable<Object[]> = searchParamsObject.entries();
-let pairs = Array.from(iter);
-for (let pair of pairs) { // Show keyName/valueName pairs
+let iter = searchParamsObject.entries();
+for (let pair of iter) {
   console.info(pair[0]+ ', '+ pair[1]);
 }
+// keyName1, valueName1
+// keyName2, valueName2
 ```
 
 
@@ -992,11 +999,13 @@ keys(): IterableIterator&lt;string&gt;
 **示例：**
 
 ```ts
-let searchParamsObject = new url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
-let keys = Array.from(searchParamsObject.keys());
-for (let key of keys) { // Output key-value pairs
+let searchParamsObject = new url.URLSearchParams("key1=value1&key2=value2");
+let keys = searchParamsObject.keys();
+for (let key of keys) {
   console.info(key);
 }
+// key1
+// key2
 ```
 
 
@@ -1021,11 +1030,13 @@ values(): IterableIterator&lt;string&gt;
 **示例：**
 
 ```ts
-let searchParams = new url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
-let values = Array.from(searchParams.values());
+let searchParams = new url.URLSearchParams("key1=value1&key2=value2");
+let values = searchParams.values();
 for (let value of values) {
   console.info(value);
 }
+// value1
+// value2
 ```
 
 
@@ -1051,11 +1062,12 @@ for (let value of values) {
 
 ```ts
 const paramsObject = new url.URLSearchParams('fod=bay&edg=bap');
-let iter: Iterable<Object[]> = paramsObject[Symbol.iterator]();
-let pairs = Array.from(iter);
+let pairs = paramsObject[Symbol.iterator]();
 for (let pair of pairs) {
   console.info(pair[0] + ', ' + pair[1]);
 }
+// fod, bay
+// edg, bap
 ```
 
 ### toString<sup>(deprecated)</sup>

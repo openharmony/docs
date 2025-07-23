@@ -308,16 +308,13 @@ $ hitrace --trace_finish_nodump
 2024/11/14 12:03:07 end capture trace.
 ```
 
-### 查看和设置trace输出级别阈值
+### 设置trace输出级别阈值
 
 打点级别优先级从高到低分别为 `M`(commercial)、`C`（critical）、`I`（info）、`D`（debug），低于trace输出级别阈值的打点将不会生效。
 
 开发者可使用带trace级别的打点接口（参考[js-apis-hitracemeter](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)和[_hitrace](../reference/apis-performance-analysis-kit/_hitrace.md)中的API version 19的trace打点接口），测试不同阈值下的trace输出是否符合预期。
 
 ```shell
-// 查看trace输出级别阈值，打印的为数值，0表示Debug，1表示Info，2表示Critical，3表示Commercial
-param get persist.hitrace.level.threshold
-
 // 设置trace输出级别阈值
 hitrace --trace_level D/I/C/M
 hitrace --trace_level Debug/Info/Critical/Commercial
@@ -328,6 +325,4 @@ hitrace --trace_level Debug/Info/Critical/Commercial
 $ hitrace --trace_level Info
 2024/11/14 12:05:07 hitrace enter, running_state is SET_TRACE_LEVEL
 2024/11/14 12:05:07 success to set trace level.
-$ param get persist.hitrace.level.threshold
-1
 ```

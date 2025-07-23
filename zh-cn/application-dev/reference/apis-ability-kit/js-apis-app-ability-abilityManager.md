@@ -77,10 +77,22 @@ try {
 
 type AbilityRunningInfo = _AbilityRunningInfo
 
-Ability运行的相关信息和状态的定义。
+AbilityRunningInfo二级模块。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 类型 | 说明 |
-| --- | ---- |
-| [_AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md) | Ability运行的相关信息和状态的定义。 |
+| --- | --- |
+| [_AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md) | AbilityRunningInfo二级模块，提供对Ability运行的相关信息和状态的定义。 |
+
+## AbilityStateData<sup>14+</sup>
+
+type AbilityStateData = _AbilityStateData.default
+
+AbilityStateData二级模块。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AbilityStateData.default](js-apis-inner-application-abilityStateData.md) | AbilityStateData二级模块，提供Ability状态信息。 |

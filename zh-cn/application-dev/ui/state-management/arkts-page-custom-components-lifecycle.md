@@ -1,6 +1,6 @@
 # 自定义组件生命周期
 
-自定义组件生命周期，即用@Component或@ComponentV2装饰的自定义组件的生命周期，提供以下生命周期接口：
+自定义组件生命周期，即用[@Component](arkts-create-custom-components.md#component)或[@ComponentV2](arkts-new-componentV2.md)装饰的自定义组件的生命周期，提供以下生命周期接口：
 
 
 - [aboutToAppear](../../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)：组件即将出现时回调该接口，具体时机为在创建自定义组件的新实例后，在执行其build函数之前执行。

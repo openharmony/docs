@@ -80,6 +80,7 @@
            .fontSize(20)
            .padding(10)
            .fontWeight(FontWeight.Bold)
+           .position({ x: "50%" })
            .onClick(() => {
              this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
@@ -112,6 +113,7 @@
            .fontSize(20)
            .padding(10)
            .fontWeight(FontWeight.Bold)
+           .position({ x: "50%" })
            .onClick(() => {
              this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
@@ -144,6 +146,7 @@
            .fontSize(20)
            .padding(10)
            .fontWeight(FontWeight.Bold)
+           .position({ x: "50%" })
            .onClick(() => {
              this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
@@ -176,6 +179,7 @@
            .fontSize(20)
            .padding(10)
            .fontWeight(FontWeight.Bold)
+           .position({ x: "50%" })
            .onClick(() => {
              this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })

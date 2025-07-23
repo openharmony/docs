@@ -90,6 +90,8 @@
 | [OH_MPEG2Level](_codec_base.md#oh_mpeg2level-1) {<br/>MPEG2_LEVEL_LL = 0,<br/>MPEG2_LEVEL_ML = 1,<br/>MPEG2_LEVEL_H14 = 2,<br/>MPEG2_LEVEL_HL = 3<br/> } | MPEG2级别。 | 
 | [OH_MPEG4Level](_codec_base.md#oh_mpeg4level-1) {<br/>MPEG4_LEVEL_0 = 0,<br/>MPEG4_LEVEL_0B = 1,<br/>MPEG4_LEVEL_1 = 2,<br/>MPEG4_LEVEL_2 = 3,<br/>MPEG4_LEVEL_3 = 4,<br/>MPEG4_LEVEL_3B = 5,<br/>MPEG4_LEVEL_4 = 6,<br/>MPEG4_LEVEL_4A = 7,<br/>MPEG4_LEVEL_5 = 8,<br/>MPEG4_LEVEL_6 = 9<br/>} | MPEG4级别。 | 
 | [OH_TemporalGopReferenceMode](_codec_base.md#oh_temporalgopreferencemode-1) { <br/>ADJACENT_REFERENCE = 0, <br/>JUMP_REFERENCE = 1, <br/>UNIFORMLY_SCALED_REFERENCE = 2 <br/>} | 时域图片组参考模式。  | 
+| [OH_BitrateMode](_codec_base.md#oh_bitratemode-1) {<br/> BITRATE_MODE_CBR = 0, <br/>BITRATE_MODE_VBR = 1, <br/>BITRATE_MODE_CQ = 2, <br/>BITRATE_MODE_SQR = 3 <br/>} | 编码器的比特率模式。| 
+
 
 
 ### 变量
@@ -202,3 +204,6 @@
 | const char \* [OH_MD_KEY_VIDEO_SAR](_codec_base.md#oh_md_key_video_sar)            | 样本长宽比的键，值类型为double。 |
 | const char \* [OH_MD_KEY_CREATION_TIME](_codec_base.md#oh_md_key_creation_time) | 媒体文件创建时间的元数据，值类型为string。 |
 | const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR](_codec_base.md#oh_md_key_video_decoder_output_enable_vrr) | 解码器是否打开视频可变帧率功能的键，值类型为int32_t。 |
+| const char \* [OH_MD_KEY_SQR_FACTOR](_codec_base.md#oh_md_key_sqr_factor) | 描述SQR码控模式的质量参数，取值范围为[0, 51]（同编码量化参数QP），值越小，编码输出码率越大，质量越好，值类型为int32_t。 |
+| const char \* [OH_MD_KEY_MAX_BITRATE](_codec_base.md#oh_md_key_max_bitrate) | 描述SQR码控模式的最大码率，使用OH_AVCapability_GetEncoderBitrateRange方法获取取值范围（同OH_MD_KEY_BITRATE），单位bps，值类型为int64_t。 |
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS](_codec_base.md#oh_md_key_video_encoder_roi_params) | 描述ROI编码参数，包括ROI区域和deltaQp，值类型为string。 |

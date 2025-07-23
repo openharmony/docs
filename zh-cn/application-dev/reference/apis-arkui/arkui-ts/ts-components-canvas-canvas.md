@@ -134,7 +134,7 @@ struct CanvasExample {
       Canvas(this.context)
         .width('100%')
         .height('100%')
-        .backgroundColor('#ffff00')
+        .backgroundColor('rgb(213,213,213)')
         .onReady(() => {
           this.context.canvas.drawCircle(200, 200, 100)
           this.context.invalidate()
@@ -145,7 +145,7 @@ struct CanvasExample {
   }
 }
 ```
-  ![zh-cn_image_0000001194032666](figures/canvas_drawingRenderingContext.png)
+  ![zh-cn_image_0000001194032666](figures/CanvasDemo2.png)
 
 ### 示例3（使用attributeModifier动态设置Canvas组件的属性及方法）
 

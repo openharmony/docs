@@ -548,7 +548,7 @@ getQueryNames(): string[]
 ```ts
 const uriInstance = new uri.URI("https://www.test.com?param1=value1&param2=value2");
 const paramNames = uriInstance.getQueryNames();
-console.info(Array.from(paramNames).toString()); // param1,param2
+console.info(paramNames.toString()); // param1,param2
 ```
 
 ### getQueryValues<sup>12+</sup>

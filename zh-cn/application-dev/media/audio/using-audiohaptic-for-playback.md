@@ -52,12 +52,11 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
    let audioHapticPlayer: audioHaptic.AudioHapticPlayer | undefined = undefined;
 
    audioHapticManagerInstance.createPlayer(id, options).then((value: audioHaptic.AudioHapticPlayer) => {
-     console.info(`Promise returned to indicate that the audio haptic player instance.`);
+     console.info(`Create the audio haptic player successfully.`);
      audioHapticPlayer = value;
    }).catch ((err: BusinessError) => {
      console.error(`Failed to create player ${err}`);
    });
-   console.info(`Create the audio haptic player successfully.`);
    ```
 
 4. 调用start()方法，开启音频播放并同步开启振动。

@@ -52,13 +52,16 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { dateTimeManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 需根据实际情况进行替换
 dateTimeManager.setDateTime(wantTemp, 1526003846000, (err) => {
   if (err) {
     console.error(`Failed to set date time. Code is ${err.code}, message is ${err.message}`);
@@ -107,14 +110,17 @@ setDateTime(admin: Want, time: number): Promise\<void>
 **示例：**
 
 ```ts
+import { dateTimeManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
+// 需根据实际情况进行替换
 dateTimeManager.setDateTime(wantTemp, 1526003846000).then(() => {
   console.info('Succeeded in setting date time');
 }).catch((err: BusinessError) => {
@@ -156,11 +162,13 @@ disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<
 **示例：**
 
 ```ts
+import { dateTimeManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 dateTimeManager.disallowModifyDateTime(wantTemp, true, (err) => {
@@ -211,12 +219,14 @@ disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 **示例：**
 
 ```ts
+import { dateTimeManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 dateTimeManager.disallowModifyDateTime(wantTemp, true).then(() => {
@@ -259,11 +269,13 @@ isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```ts
+import { dateTimeManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 dateTimeManager.isModifyDateTimeDisallowed(wantTemp, (err, result) => {
@@ -313,12 +325,14 @@ isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 **示例：**
 
 ```ts
+import { dateTimeManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 dateTimeManager.isModifyDateTimeDisallowed(wantTemp).then((result) => {

@@ -56,11 +56,13 @@ getBluetoothInfo(admin: Want): BluetoothInfo
 **示例：**
 
 ```ts
+import { bluetoothManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -75,12 +77,12 @@ try {
 
 addAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
-添加蓝牙设备白名单。添加白名单后当前设备仅允许连接该名单下的蓝牙设备。
+添加蓝牙设备可用名单。添加蓝牙设备可用名单后当前设备仅允许连接该名单下的蓝牙设备。
 
-以下情况下，通过本接口添加蓝牙设备白名单，会报策略冲突：
+以下情况下，通过本接口添加蓝牙设备可用名单，会报策略冲突：
 
 1. 已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了蓝牙。通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口启用蓝牙后，可解除冲突。
-2. 已经通过[addDisallowedBluetoothDevices](#bluetoothmanageradddisallowedbluetoothdevices20)接口添加了蓝牙设备黑名单。通过[removeDisallowedBluetoothDevices](#bluetoothmanagerremovedisallowedbluetoothdevices20)移除蓝牙设备黑名单后，可解除冲突。
+2. 已经通过[addDisallowedBluetoothDevices](#bluetoothmanageradddisallowedbluetoothdevices20)接口添加了蓝牙设备禁用名单。通过[removeDisallowedBluetoothDevices](#bluetoothmanagerremovedisallowedbluetoothdevices20)移除蓝牙设备禁用名单后，可解除冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -110,12 +112,15 @@ addAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 **示例：**
 
 ```ts
+import { bluetoothManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
 try {
     bluetoothManager.addAllowedBluetoothDevices(wantTemp,deviceIds);
@@ -129,7 +134,7 @@ try {
 
 removeAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
-移除蓝牙设备可用白名单。
+移除蓝牙设备可用名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -158,12 +163,15 @@ removeAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 **示例：**
 
 ```ts
+import { bluetoothManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
+// 需根据实际情况进行替换
 let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
 try {
     bluetoothManager.removeAllowedBluetoothDevices(wantTemp,deviceIds);
@@ -177,7 +185,7 @@ try {
 
 getAllowedBluetoothDevices(admin: Want): Array\<string>
 
-获取蓝牙设备可用白名单。
+获取蓝牙设备可用名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -195,7 +203,7 @@ getAllowedBluetoothDevices(admin: Want): Array\<string>
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Array\<string> | 可用白名单中蓝牙设备MAC地址的数组。 |
+| Array\<string> | 可用名单中蓝牙设备MAC地址的数组。 |
 
 **错误码**：
 
@@ -211,11 +219,13 @@ getAllowedBluetoothDevices(admin: Want): Array\<string>
 **示例：**
 
 ```ts
+import { bluetoothManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
     let result: Array<string> = bluetoothManager.getAllowedBluetoothDevices(wantTemp);
@@ -229,12 +239,12 @@ try {
 
 addDisallowedBluetoothDevices(admin: Want, deviceIds: Array&lt;string&gt;): void
 
-添加蓝牙设备黑名单。添加黑名单后当前设备不允许连接该名单下的蓝牙设备。
+添加蓝牙设备禁用名单。添加禁用名单后当前设备不允许连接该名单下的蓝牙设备。
 
-以下情况下，通过本接口添加蓝牙设备黑名单，会报策略冲突：
+以下情况下，通过本接口添加蓝牙设备禁用名单，会报策略冲突：
 
 1. 已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了蓝牙。通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口启用蓝牙后，可解除冲突。
-2. 已经通过[addAllowedBluetoothDevices](#bluetoothmanageraddallowedbluetoothdevices)接口添加了蓝牙设备白名单。通过[removeAllowedBluetoothDevices](#bluetoothmanagerremoveallowedbluetoothdevices)移除蓝牙设备白名单后，可解除冲突。
+2. 已经通过[addAllowedBluetoothDevices](#bluetoothmanageraddallowedbluetoothdevices)接口添加了蓝牙设备可用名单。通过[removeAllowedBluetoothDevices](#bluetoothmanagerremoveallowedbluetoothdevices)移除蓝牙设备可用名单后，可解除冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -245,7 +255,7 @@ addDisallowedBluetoothDevices(admin: Want, deviceIds: Array&lt;string&gt;): void
 | 参数名    | 类型                                                    | 必填 | 说明                                                |
 | --------- | ------------------------------------------------------- | ---- | --------------------------------------------------- |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                      |
-| deviceIds | Array&lt;string&gt;                                          | 是   | 蓝牙设备MAC地址的数组。蓝牙设备黑名单数组长度上限为1000，若当前黑名单中已有300个蓝牙设备MAC地址，则只允许再添加700个。 |
+| deviceIds | Array&lt;string&gt;                                          | 是   | 蓝牙设备MAC地址的数组。蓝牙设备禁用名单数组长度上限为1000，若当前禁用名单中已有300个蓝牙设备MAC地址，则只允许再添加700个。 |
 
 **错误码**：
 
@@ -261,12 +271,13 @@ addDisallowedBluetoothDevices(admin: Want, deviceIds: Array&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { bluetoothManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   //需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 //需根据实际情况进行替换
 let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
@@ -282,7 +293,7 @@ try {
 
 removeDisallowedBluetoothDevices(admin: Want, deviceIds: Array&lt;string&gt;): void
 
-移除蓝牙设备黑名单。若移除黑名单中的部分蓝牙设备，则当前设备不允许连接黑名单内剩余的蓝牙设备。若移除黑名单中的所有蓝牙设备，则当前设备可以连接任意的蓝牙设备。
+移除蓝牙设备禁用名单。若移除禁用名单中的部分蓝牙设备，则当前设备不允许连接禁用名单内剩余的蓝牙设备。若移除禁用名单中的所有蓝牙设备，则当前设备可以连接任意的蓝牙设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -308,12 +319,13 @@ removeDisallowedBluetoothDevices(admin: Want, deviceIds: Array&lt;string&gt;): v
 **示例：**
 
 ```ts
+import { bluetoothManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   //需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 //需根据实际情况进行替换
 let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
@@ -329,7 +341,7 @@ try {
 
 getDisallowedBluetoothDevices(admin: Want): Array&lt;string&gt;
 
-获取蓝牙设备黑名单。
+获取蓝牙设备禁用名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -345,7 +357,7 @@ getDisallowedBluetoothDevices(admin: Want): Array&lt;string&gt;
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Array&lt;string&gt; | 黑名单中蓝牙设备MAC地址的数组。 |
+| Array&lt;string&gt; | 禁用名单中蓝牙设备MAC地址的数组。 |
 
 **错误码**：
 
@@ -360,12 +372,13 @@ getDisallowedBluetoothDevices(admin: Want): Array&lt;string&gt;
 **示例：**
 
 ```ts
+import { bluetoothManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   //需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
     let result: Array<string> = bluetoothManager.getDisallowedBluetoothDevices(wantTemp);
@@ -427,8 +440,9 @@ import { Want } from '@kit.AbilityKit';
 import { bluetoothManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
     bluetoothManager.turnOnBluetooth(wantTemp);
@@ -474,8 +488,9 @@ import { Want } from '@kit.AbilityKit';
 import { bluetoothManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 try {
     bluetoothManager.turnOffBluetooth(wantTemp);
