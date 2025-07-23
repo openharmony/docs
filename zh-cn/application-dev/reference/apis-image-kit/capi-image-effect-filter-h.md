@@ -86,7 +86,7 @@
 | -- | -- |
 | OH_EFFECT_BRIGHTNESS_FILTER "Brightness" | 亮度滤镜，对应的参数为OH_EFFECT_FILTER_INTENSITY_KEY，参数类型为EFFECT_DATA_TYPE_FLOAT。<br>**起始版本：** 12 |
 | OH_EFFECT_CONTRAST_FILTER "Contrast" | 对比度滤镜，对应的参数为OH_EFFECT_FILTER_INTENSITY_KEY，参数类型为EFFECT_DATA_TYPE_FLOAT。<br>**起始版本：** 12 |
-| OH_EFFECT_CROP_FILTER "Crop" | 裁剪滤镜，对应的参数为OH_EFFECT_FILTER_REGION_KEY，参数类型为EFFECT_DATA_TYPE_PTR，参数值为结构体[ImageEffect_Region](capi-imageeffect-imageeffect-region.md) 。<br>**起始版本：** 12 |
+| OH_EFFECT_CROP_FILTER "Crop" | 裁剪滤镜，对应的参数为OH_EFFECT_FILTER_REGION_KEY，参数类型为EFFECT_DATA_TYPE_PTR，参数值为结构体[ImageEffect_Region](capi-imageeffect-imageeffect-region.md)。<br>**起始版本：** 12 |
 | OH_EFFECT_FILTER_INTENSITY_KEY "FilterIntensity" | 强度参数。<br>**起始版本：** 12 |
 | OH_EFFECT_FILTER_REGION_KEY "FilterRegion" | 图像区域参数。<br>**起始版本：** 12 |
 
