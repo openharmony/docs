@@ -178,7 +178,7 @@
    ```ts
    .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer, others: Array<GestureRecognizer>) => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态        
      let target = current.getEventTargetInfo();
-     if (target.getId() == "outer" && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+     if (target && target.getId() == "outer" && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
        for (let i = 0; i < others.length; i++) {
          let target = others[i].getEventTargetInfo() as ScrollableTargetInfo;
          if (target instanceof ScrollableTargetInfo && target.getId() == "inner") { // 找到响应链上对应并行的识别器
@@ -255,7 +255,7 @@
      private childRecognizer: GestureRecognizer = new GestureRecognizer();
      private currentRecognizer: GestureRecognizer = new GestureRecognizer();
      private lastOffset: number = 0;
-   
+
      build() {
        Stack({ alignContent: Alignment.TopStart }) {
          Scroll(this.scroller) { // 外部滚动容器
@@ -307,7 +307,8 @@
          .shouldBuiltInRecognizerParallelWith((current: GestureRecognizer, others: Array<GestureRecognizer>) => {
            for (let i = 0; i < others.length; i++) {
              let target = others[i].getEventTargetInfo();
-             if (target.getId() == "inner" && others[i].isBuiltIn() && others[i].getType() == GestureControl.GestureType.PAN_GESTURE) { // 找到将要组成并行手势的识别器
+             if (target.getId() == "inner" && others[i].isBuiltIn() &&
+               others[i].getType() == GestureControl.GestureType.PAN_GESTURE) { // 找到将要组成并行手势的识别器
                this.currentRecognizer = current; // 保存当前组件的识别器
                this.childRecognizer = others[i]; // 保存将要组成并行手势的识别器
                return others[i]; // 返回和当前手势将要组成并行手势的识别器
@@ -315,9 +316,11 @@
            }
            return undefined;
          })
-         .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer, others: Array<GestureRecognizer>) => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态        
+         .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+           others: Array<GestureRecognizer>) => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
            let target = current.getEventTargetInfo();
-           if (target.getId() == "outer" && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+           if (target && target.getId() == "outer" && current.isBuiltIn() &&
+             current.getType() == GestureControl.GestureType.PAN_GESTURE) {
              for (let i = 0; i < others.length; i++) {
                let target = others[i].getEventTargetInfo() as ScrollableTargetInfo;
                if (target instanceof ScrollableTargetInfo && target.getId() == "inner") { // 找到响应链上对应并行的识别器
@@ -342,8 +345,9 @@
          })
          .parallelGesture( // 绑定一个Pan手势作为动态控制器
            PanGesture()
-             .onActionUpdate((event: GestureEvent)=>{
-               if (this.childRecognizer.getState() != GestureRecognizerState.SUCCESSFUL || this.currentRecognizer.getState() != GestureRecognizerState.SUCCESSFUL) { // 如果识别器状态不是SUCCESSFUL，则不做控制
+             .onActionUpdate((event: GestureEvent) => {
+               if (this.childRecognizer?.getState() != GestureRecognizerState.SUCCESSFUL ||
+                 this.currentRecognizer?.getState() != GestureRecognizerState.SUCCESSFUL) { // 如果识别器状态不是SUCCESSFUL，则不做控制
                  return;
                }
                let target = this.childRecognizer.getEventTargetInfo() as ScrollableTargetInfo;

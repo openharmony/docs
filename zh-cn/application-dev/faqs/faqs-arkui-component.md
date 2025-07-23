@@ -656,28 +656,30 @@ Scroll组件中的容器组件不设置尺寸，大小由内容撑开。
 
 ```
 class Model {
-  value: string
+  value: string = "";
 }
+
 @Entry
 @Component
 struct EntryComponent {
   test() {
     console.log('testTag test in my component');
   }
+
   build() {
     Column() {
-      MyComponent({ title: { value: 'Hello World 2' }, count: 7, onClick: this.test }) //初始化时传递定义的方法
+      MyComponent({ title: { value: 'Hello World 2' }, count: 7, click: this.test }) //初始化时传递定义的方法
     }
   }
 }
 
 @Component
 struct MyComponent {
-  @State title: Model = { value: 'Hello World' }
-  @State count: number = 0
-  onClick: any;
-  private toggle: string = 'Hello World'
-  private increaseBy: number = 1
+  @State title: Model = { value: 'Hello World' };
+  @State count: number = 0;
+  click: () => void = () => {
+  };
+  private increaseBy: number = 1;
 
   build() {
     Column() {
@@ -686,8 +688,8 @@ struct MyComponent {
         .margin(20)
         .onClick(() => {
           // 修改内部状态变量count
-          this.count += this.increaseBy
-          this.onClick.call();
+          this.count += this.increaseBy;
+          this.click();
         })
     }
   }

@@ -99,23 +99,26 @@ build() {
 **代码示例**
 
 ```
-build() {
-  Row() {
-    Button("点击我")
-      .width(100)
-      .width(100)
-      .backgroundColor('#f00')
-      .onClick(()=>{
-        console.log("Button onClick")
-      })
-      .onTouch((e) => {
-        console.log("Button onTouch")
-        e.stopPropagation()
-      })
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("点击我")
+        .width(100)
+        .backgroundColor('#f00')
+        .onClick(() => {
+          console.log("Button onClick");
+        })
+        .onTouch((e) => {
+          console.log("Button onTouch");
+          e.stopPropagation();
+        })
+    }
+    .onTouch(() => {
+      console.log("Row onTouch");
+    })
   }
-  .onTouch(() => {
-    console.log("Row onTouch")
-  })
 }
 ```
 
