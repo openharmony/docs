@@ -108,7 +108,7 @@ fillOpacity(value: number | string | Resource)
 
 stroke(value: ResourceColor)
 
-设置边框颜色，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法，不设置时，默认有黑色边框线条。异常值不会绘制边框线条。
+设置边框颜色，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法，不设置时，默认有不透明的黑色边框线条。异常值不会绘制边框线条。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
