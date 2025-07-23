@@ -7,12 +7,14 @@ The **TabTitleBar** component is a tab title bar used to switch between tabs pag
 > **NOTE**
 >
 > This component is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This component is not supported on wearables.
 
 
 ## Modules to Import
 
 ```
-import { TabTitleBar } from '@kit.ArkUI'
+import { TabTitleBar } from '@kit.ArkUI';
 ```
 
 
@@ -61,14 +63,12 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 
 ## TabTitleBarTabItem
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| title | [ResourceStr](ts-types.md#resourcestr) | Yes| Text of the tab.|
-| icon | [ResourceStr](ts-types.md#resourcestr) | No| Icon of the tab.|
+| title | [ResourceStr](ts-types.md#resourcestr) | Yes| Text of the tab.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| icon | [ResourceStr](ts-types.md#resourcestr) | No| Icon of the tab.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No| Symbol icon of the tab, which has higher priority than **icon**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 
@@ -80,7 +80,7 @@ The [universal events](ts-component-general-events.md) are not supported.
 ### Example 1: Implementing a Simple Tab Title Bar
 This example demonstrates a tab title bar with tabs on the left and a menu list on the right.
 ```ts
-import { TabTitleBar, promptAction, TabTitleBarTabItem, TabTitleBarMenuItem } from '@kit.ArkUI'
+import { TabTitleBar, Prompt, TabTitleBarTabItem, TabTitleBarMenuItem } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -139,17 +139,17 @@ struct Index {
     {
       value: $r('sys.media.ohos_save_button_filled'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 0" })
+      action: () => Prompt.showToast({ message: "on item click! index 0" })
     },
     {
       value: $r('sys.media.ohos_ic_public_copy'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 1" })
+      action: () => Prompt.showToast({ message: "on item click! index 1" })
     },
     {
       value: $r('sys.media.ohos_ic_public_edit'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 2" })
+      action: () => Prompt.showToast({ message: "on item click! index 2" })
     },
   ]
 
@@ -168,12 +168,12 @@ struct Index {
 }
 ```
 
-
+![en-us_image_tabtitlebar_example01](figures/en-us_image_tabtitlebar_example01.png)
 
 ### Example 2: Implementing Announcement for the Custom Button on the Right Side
-This example customizes the screen reader announcement text by setting the **accessibilityText**, **accessibilityDescription**, and **accessibilityLevel** properties of the custom button on the right side of the title bar.
+This example customizes the screen reader announcement text by setting the **accessibilityText**, **accessibilityDescription**, and **accessibilityLevel** properties of the custom button on the right side of the title bar. This functionality is supported since API version 18.
 ```ts
-import { TabTitleBar, promptAction, TabTitleBarTabItem, TabTitleBarMenuItem } from '@kit.ArkUI'
+import { TabTitleBar, Prompt, TabTitleBarTabItem, TabTitleBarMenuItem } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -232,7 +232,7 @@ struct Index {
     {
       value: $r('sys.media.ohos_save_button_filled'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 0" }),
+      action: () => Prompt.showToast({ message: "on item click! index 0" }),
       accessibilityText: 'Save',
       // The screen reader will not focus on this item.
       accessibilityLevel: 'no',
@@ -241,7 +241,7 @@ struct Index {
     {
       value: $r('sys.media.ohos_ic_public_copy'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 1" }),
+      action: () => Prompt.showToast({ message: "on item click! index 1" }),
       accessibilityText: 'Copy',
       accessibilityLevel: 'yes',
       accessibilityDescription: 'Tap to copy the icon'
@@ -249,7 +249,7 @@ struct Index {
     {
       value: $r('sys.media.ohos_ic_public_edit'),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 2" }),
+      action: () => Prompt.showToast({ message: "on item click! index 2" }),
       // The screen reader will prioritize this text over the label.
       accessibilityText: 'Edit',
       // The screen reader can focus on this item.
@@ -273,12 +273,12 @@ struct Index {
   }
 }
 ```
-
+![en-us_image_tabtitlebar_example02](figures/en-us_image_tabtitlebar_example02.png)
 
 ### Example 3: Setting the Symbol Icon
-This example demonstrates how to use **symbolStyle** in **TabTitleBarTabItem** and **TabTitleBarMenuItem** to set custom symbol icons.
+This example demonstrates how to use **symbolStyle** in **TabTitleBarTabItem** and **TabTitleBarMenuItem** to set custom symbol icons. This functionality is supported since API version 18.
 ```ts
-import { TabTitleBar, promptAction, TabTitleBarTabItem, TabTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI'
+import { TabTitleBar, Prompt, TabTitleBarTabItem, TabTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -342,7 +342,7 @@ struct Index {
       value: $r('sys.media.ohos_save_button_filled'),
       symbolStyle: new SymbolGlyphModifier($r('sys.symbol.save')),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 0" }),
+      action: () => Prompt.showToast({ message: "on item click! index 0" }),
       accessibilityText: 'Save',
       // The screen reader will not focus on this item.
       accessibilityLevel: 'no',
@@ -352,7 +352,7 @@ struct Index {
       value: $r('sys.media.ohos_ic_public_copy'),
       symbolStyle: new SymbolGlyphModifier($r('sys.symbol.car')),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 1" }),
+      action: () => Prompt.showToast({ message: "on item click! index 1" }),
       accessibilityText: 'Copy',
       accessibilityLevel: 'yes',
       accessibilityDescription: 'Tap to copy the icon'
@@ -361,7 +361,7 @@ struct Index {
       value: $r('sys.media.ohos_ic_public_edit'),
       symbolStyle: new SymbolGlyphModifier($r('sys.symbol.ai_edit')),
       isEnabled: true,
-      action: () => promptAction.showToast({ message: "on item click! index 2" }),
+      action: () => Prompt.showToast({ message: "on item click! index 2" }),
       // The screen reader will prioritize this text over the label.
       accessibilityText: 'Edit',
       // The screen reader can focus on this item.

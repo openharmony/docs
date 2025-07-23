@@ -9,7 +9,7 @@ On the initial launch, the atomic service only downloads and installs the main p
 ## Modules to Import
 
 ```ts
-import { NavPushPathHelper } from '@kit.ArkUI'
+import { NavPushPathHelper } from '@kit.ArkUI';
 ```
 
 ## Child Components
@@ -56,7 +56,7 @@ Checks for the target subpackgae and, if it is not present, initiates a download
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | Yes   | Module name of the package where the [NavDestination](ts-basic-components-navdestination.md) page is located.|
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | Yes   | Information about the [NavDestination](ts-basic-components-navdestination.md) page.|
-| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| animated | boolean | No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 **Return value**
 
@@ -121,7 +121,7 @@ Checks for the target subpackgae and, if it is not present, initiates a download
 | moduleName | string | Yes   | Module name of the package where the [NavDestination](ts-basic-components-navdestination.md) page is located.|
 | name  | string  | Yes   | Name of the [NavDestination](ts-basic-components-navdestination.md) page.  |
 | param | Object | Yes   | Settings of the [NavDestination](ts-basic-components-navdestination.md) page.|
-| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| animated | boolean | No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 **Return value**
 
@@ -155,7 +155,7 @@ Checks for the target subpackgae and, if it is not present, initiates a download
 | name  | string  | Yes   | Name of the [NavDestination](ts-basic-components-navdestination.md) page.  |
 | param | Object | Yes   | Settings of the [NavDestination](ts-basic-components-navdestination.md) page.|
 | onPop | Callback\<[PopInfo](ts-basic-components-navigation.md#popinfo11)> | Yes| Callback used to receive the result.|
-| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| animated | boolean | No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 **Return value**
 
@@ -187,7 +187,7 @@ Checks for the target subpackgae and, if it is not present, initiates a download
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | Yes   | Module name of the package where the [NavDestination](ts-basic-components-navdestination.md) page is located.|
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | Yes   | Information about the [NavDestination](ts-basic-components-navdestination.md) page.|
-| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| animated | boolean | No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 **Return value**
 
@@ -260,7 +260,7 @@ Checks for the target subpackgae and, if it is not present, initiates a download
 | moduleName | string | Yes   | Module name of the package where the [NavDestination](ts-basic-components-navdestination.md) page is located.|
 | name  | string  | Yes   | Name of the [NavDestination](ts-basic-components-navdestination.md) page.  |
 | param | Object | Yes   | Settings of the [NavDestination](ts-basic-components-navdestination.md) page.|
-| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| animated | boolean | No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 **Return value**
 
@@ -298,7 +298,7 @@ Checks for the target subpackgae and, if it is not present, initiates a download
 | name  | string  | Yes   | Name of the [NavDestination](ts-basic-components-navdestination.md) page.  |
 | param | Object | Yes   | Settings of the [NavDestination](ts-basic-components-navdestination.md) page.|
 | onPop | Callback\<[PopInfo](ts-basic-components-navigation.md#popinfo11)> | Yes   | Callback used to handle the result returned when the page is popped out of the stack.|
-| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| animated | boolean | No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 **Return value**
 
@@ -334,7 +334,7 @@ Checks for the target subpackgae and, if it is not present, initiates a download
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | Yes   | Module name of the package where the [NavDestination](ts-basic-components-navdestination.md) page is located.|
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | Yes   | Parameters of the page to replace the top of the navigation stack.|
-| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| animated | boolean | No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 **Return value**
 
@@ -399,7 +399,7 @@ Checks for the target subpackgae and, if it is not present, initiates a download
 | moduleName | string | Yes   | Module name of the package where the [NavDestination](ts-basic-components-navdestination.md) page is located.|
 | name  | string  | Yes   | Name of the [NavDestination](ts-basic-components-navdestination.md) page.  |
 | param | Object | Yes   | Settings of the [NavDestination](ts-basic-components-navdestination.md) page.|
-| animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
+| animated | boolean | No   | Whether to support the transition animation.<br>Default value: **true**.<br>**true**: The transition animation is supported.<br>**false**: The transition animation is not supported.|
 
 **Return value**
 
@@ -424,13 +424,13 @@ The [universal events](ts-component-general-events.md) are not supported.
 Main package:
 ```ts
 // Index.ets
-import { NavPushPathHelper } from '@kit.ArkUI'
+import { NavPushPathHelper } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct NavigationExample {
-  pageInfo: NavPathStack = new NavPathStack()
-  helper: NavPushPathHelper = new NavPushPathHelper(this.pageInfo)
+  pageInfo: NavPathStack = new NavPathStack();
+  helper: NavPushPathHelper = new NavPushPathHelper(this.pageInfo);
 
   build() {
     Navigation(this.pageInfo) {
@@ -444,7 +444,7 @@ struct NavigationExample {
               .catch((error: BusinessError) => {
               console.error(`[pushPath]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.error('[pushPath]success.');
+              console.error(`[pushPath]success.`);
             }); // Push the NavDestination page specified by name to the navigation stack.
           })
       }
@@ -455,28 +455,28 @@ struct NavigationExample {
 Subpackage **hsptest1**:
 ```ts
 // PageOne.ets
-import { NavPushPathHelper } from '@kit.ArkUI'
+import { NavPushPathHelper } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class TmpClass {
-  count: number = 10
+  count: number = 10;
 }
 
 class ParamWithOp {
-  operation: number = 1
-  count: number = 10
+  operation: number = 1;
+  count: number = 10;
 }
 
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
-  PageOne()
+  PageOne();
 }
 
 @Component
 export struct PageOne {
   pageInfo: NavPathStack = new NavPathStack();
-  helper: NavPushPathHelper = new NavPushPathHelper(this.pageInfo)
-  @State message: string = 'Hello World'
+  helper: NavPushPathHelper = new NavPushPathHelper(this.pageInfo);
+  @State message: string = 'Hello World';
 
   build() {
     NavDestination() {
@@ -496,7 +496,7 @@ export struct PageOne {
             }}).catch((error: BusinessError) => {
               console.error(`[pushPath]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[pushPath]success.');
+              console.log(`[pushPath]success.`);
             });
           })
 
@@ -510,7 +510,7 @@ export struct PageOne {
             }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
               console.error(`[pushPath with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[pushPath with NavigationOptions]success.');
+              console.log(`[pushPath with NavigationOptions]success.`);
             });
           })
 
@@ -519,13 +519,13 @@ export struct PageOne {
           .height(35)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             this.helper.pushPathByName('hsptest2', 'pageTwo', tmp, (popInfo) => {
               this.message = '[pushPathByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
             }).catch((error: BusinessError) => {
               console.error(`[pushPathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[pushPathByName]success.');
+              console.log(`[pushPathByName]success.`);
             });
           })
 
@@ -534,12 +534,12 @@ export struct PageOne {
           .height(35)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             this.helper.pushPathByName('hsptest2', 'pageTwo', tmp, true)
             .catch((error: BusinessError) => {
               console.error(`[pushPathByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[pushPathByNameWithoutOnPop]success.');
+              console.log(`[pushPathByNameWithoutOnPop]success.`);
             });
           })
 
@@ -554,7 +554,7 @@ export struct PageOne {
             }}).catch((error: BusinessError) => {
               console.error(`[pushDestination]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.error('[pushDestination]success.');
+              console.error(`[pushDestination]success.`);
             });
           })
 
@@ -563,13 +563,13 @@ export struct PageOne {
           .height(35)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             this.helper.pushDestination('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
               this.message = '[pushDestination with NavigationOptions]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
             }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
               console.error(`[pushDestination with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.error('[pushDestination with NavigationOptions]success.');
+              console.error(`[pushDestination with NavigationOptions]success.`);
             });
           })
 
@@ -584,7 +584,7 @@ export struct PageOne {
             }).catch((error: BusinessError) => {
               console.error(`[pushDestinationByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.error('[pushDestinationByName]success.');
+              console.error(`[pushDestinationByName]success.`);
             });
           })
 
@@ -598,7 +598,7 @@ export struct PageOne {
               .catch((error: BusinessError) => {
                 console.error(`[pushDestinationByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
               }).then(() => {
-              console.error('[pushDestinationByNameWithoutOnPop]success.');
+              console.error(`[pushDestinationByNameWithoutOnPop]success.`);
             });
           })
 
@@ -612,7 +612,7 @@ export struct PageOne {
             }}).catch((error: BusinessError) => {
               console.error(`[replacePath]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[replacePath]success.');
+              console.log(`[replacePath]success.`);
             });
           })
 
@@ -626,7 +626,7 @@ export struct PageOne {
             }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
               console.error(`[replacePath with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[replacePath with NavigationOptions]success.');
+              console.log(`[replacePath with NavigationOptions]success.`);
             });
           })
 
@@ -635,12 +635,12 @@ export struct PageOne {
           .height(35)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             this.helper.replacePathByName('hsptest2', 'pageTwo', tmp)
               .catch((error: BusinessError) => {
               console.error(`[replacePathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[replacePathByName]success.');
+              console.log(`[replacePathByName]success.`);
             });
           })
 
@@ -648,7 +648,7 @@ export struct PageOne {
     }.title('pageOne')
     .onBackPressed(() => {
       this.pageInfo.pop({ number: 1 }) // Pop the top element out of the navigation stack.
-      return true
+      return true;
     }).onReady((context: NavDestinationContext) => {
       this.pageInfo = context.pathStack;
       this.helper = new NavPushPathHelper(this.pageInfo);

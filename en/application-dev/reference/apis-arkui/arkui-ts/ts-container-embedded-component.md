@@ -101,7 +101,7 @@ Provides the result returned by the started **EmbeddedUIExtensionAbility**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Attributes
+### Properties
 
 | Name| Type                                                      | Mandatory| Description                                                |
 | ---- | ---------------------------------------------------------- | ---- | ---------------------------------------------------- |

@@ -55,6 +55,7 @@ When constructing **XComponent** components, be sure to select the appropriate n
 | OH_ArkUI_NodeContent_AddNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node) | Adds an ArkUI component node to the specified **NodeContent** object.          |
 | OH_ArkUI_NodeContent_RegisterCallback(ArkUI_NodeContentHandle content, ArkUI_NodeContentCallback callback) | Registers an event callback for the **NodeContent**.                                   |
 | OH_NativeXComponent_GetNativeXComponent(ArkUI_NodeHandle node) | Obtains a pointer of the **OH_NativeXComponent** type based on the specified component instance created by the native API.|
+| OH_NativeXComponent_GetHistoricalPoints(OH_NativeXComponent* component, const void* window, int32_t* size, OH_NativeXComponent_HistoricalPoint** historicalPoints ) | Obtains the historical touch point data for the touch event of an **OH_NativeXComponent** instance. Some input devices report touch points at very high frequencies (up to 1 ms intervals). However, since UI updates typically do not require such high-frequency updates, the system consolidates touch events and reports them once per frame. All touch points collected during the current frame are preserved as historical touch points for applications that need direct access to this raw data. For details about the specifications of historical touch points, see [Resampling and Historical Points](arkts-common-events-touch-screen-event.md#resampling-and-historical-points).|
 
 > **NOTE**
 >
@@ -935,7 +936,6 @@ Native side
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | int32_t OH_NativeWindow_CreateNativeWindowFromSurfaceId (uint64_t surfaceId, OHNativeWindow **window ) | Creates an **OHNativeWindow** instance based on a surface ID.                       |
 | void OH_NativeWindow_DestroyNativeWindow (OHNativeWindow* window) | Decreases the reference count of an **OHNativeWindow** instance by 1 and when the reference count reaches 0, destroys the instance.|
-| int32_t OH_NativeXComponent_GetHistoricalPoints (OH_NativeXComponent* component, const void* window, int32_t* size, OH_NativeXComponent_HistoricalPoint** historicalPoints ) | Obtains the historical touch point data for the touch event of an **OH_NativeXComponent** instance. Some input devices report touch points at very high frequencies (up to 1 ms intervals). However, since UI updates typically do not require such high-frequency updates, the system consolidates touch events and reports them once per frame. All touch points collected during the current frame are preserved as historical touch points for applications that need direct access to this raw data.|
 
 **How to Develop**
 

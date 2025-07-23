@@ -77,7 +77,7 @@ struct MyComponent {
 
 queryNavDestinationInfo(): NavDestinationInfo | undefined;
 
-Queries the **NavDestination** information of this custom component.
+Queries the **NavDestination** information of this custom component. This API has effect only when the component is contained within a **NavDestination** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -92,7 +92,7 @@ Queries the **NavDestination** information of this custom component.
 **Example**
 
 ```ts
-import { uiObserver } from '@kit.ArkUI'
+import { uiObserver } from '@kit.ArkUI';
 
 @Component
 export struct NavDestinationExample {
@@ -110,7 +110,7 @@ struct MyComponent {
   aboutToAppear() {
     // this refers to the custom node MyComponent and searches for the nearest parent node of the NavDestination type from this node upwards.
     this.navDesInfo = this.queryNavDestinationInfo();
-    console.log('get navDestinationInfo: ' + JSON.stringify(this.navDesInfo))
+    console.log('get navDestinationInfo: ' + JSON.stringify(this.navDesInfo));
   }
 
   build() {
@@ -168,11 +168,11 @@ struct NavigationExample {
 
 ```ts
 // PageOne.ets
-import { uiObserver } from '@kit.ArkUI'
+import { uiObserver } from '@kit.ArkUI';
 
 @Builder
 export function PageOneBuilder() {
-  PageOneComponent();
+  PageOneComponent()
 }
 
 @Component
@@ -188,7 +188,7 @@ export struct PageOneComponent {
           .margin(20)
           .onClick(() => {
             // Search inward for the NavDestination information for PageOne.
-            this.navDesInfo = this.queryNavDestinationInfo(true)
+            this.navDesInfo = this.queryNavDestinationInfo(true);
             this.text = JSON.stringify(this.navDesInfo?.name).toString();
           })
         Text('The NavDestination component found inward is:' + this.text)
@@ -205,7 +205,7 @@ export struct PageOneComponent {
 
 @Component
 struct MyComponent {
-  navDesInfo: uiObserver.NavDestinationInfo | undefined
+  navDesInfo: uiObserver.NavDestinationInfo | undefined;
   @State text: string = '';
 
   build() {
@@ -265,12 +265,12 @@ Queries the **Navigation** information of this custom component.
 
 ```ts
 // index.ets
-import { uiObserver } from '@kit.ArkUI'
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct MainPage {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
     Navigation(this.pathStack) {
@@ -282,14 +282,14 @@ struct MainPage {
 
 @Component
 export struct PageOne {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   aboutToAppear() {
     // this refers to the custom node PageOne and searches for the nearest parent node of the Navigation type from this node upwards.
-    let navigationInfo: uiObserver.NavigationInfo | undefined = this.queryNavigationInfo()
-    console.log('get navigationInfo: ' + JSON.stringify(navigationInfo))
+    let navigationInfo: uiObserver.NavigationInfo | undefined = this.queryNavigationInfo();
+    console.log('get navigationInfo: ' + JSON.stringify(navigationInfo));
     if (navigationInfo !== undefined) {
-      this.pathStack = navigationInfo.pathStack
+      this.pathStack = navigationInfo.pathStack;
     }
   }
 
@@ -320,7 +320,7 @@ Obtains a **RouterPageInfo** instance.
 **Example**
 
 ```ts
-import { uiObserver } from '@kit.ArkUI'
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -358,7 +358,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -393,7 +393,7 @@ function buildText(params: Params) {
 @Entry
 @ComponentV2
 struct Index {
-  @Local message: string = "hello"
+  @Local message: string = "hello";
 
   build() {
     Row() {
@@ -401,11 +401,11 @@ struct Index {
         Button('click me')
           .fontSize(20)
           .onClick(() => {
-            let ctx = this.getUIContext()
-            let promptAction = ctx.getPromptAction()
+            let ctx = this.getUIContext();
+            let promptAction = ctx.getPromptAction();
             promptAction.openCustomDialog(new ComponentContent(ctx, wrapBuilder(buildText), new Params(this.message)))
               .catch((err: BusinessError) => {
-                console.error("openCustomDialog error: " + err.code + " " + err.message)
+                console.error("openCustomDialog error: " + err.code + " " + err.message);
               })
           })
       }
