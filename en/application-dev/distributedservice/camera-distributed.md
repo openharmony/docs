@@ -14,9 +14,9 @@
 
   Before started, you are advised to read the following topics to have a basic understanding of related functions:
   - [UIAbility Connection Development](abilityconnectmanager-guidelines.md)
-  - [Camera Device Management (ArkTS)](media/camera/camera-device-management.md)
+  - [Camera Device Management (ArkTS)](../media/camera/camera-device-management.md)
   - [Camera Development Preparations](../media/camera/camera-preparation.md)
-  - [Camera Session Management (ArkTS)](media/camera/camera-session-management.md)
+  - [Camera Session Management (ArkTS)](../media/camera/camera-session-management.md)
   - [Photo Capture (ArkTS)](../media/camera/camera-shooting.md)
   - [Video Recording (ArkTS)](../media/camera/camera-recording.md)
 
