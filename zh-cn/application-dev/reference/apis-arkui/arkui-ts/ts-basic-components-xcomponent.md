@@ -182,7 +182,7 @@ hdrBrightness(brightness: number)
 
 | 参数名   | 类型    | 必填 | 说明                   |
 | -------- | ------- | ---- | ---------------------- |
-| brightness | number | 是   | 用于调整组件播放HDR视频的亮度; brightness的取值范围为0.0~1.0; 小于0的值等价于0，大于1的值等价于1; 0 表示SDR视频的亮度，1 表示HDR视频的亮度。|
+| brightness | number | 是   | 用于调整组件播放HDR视频的亮度; brightness的取值范围为0.0~1.0; 小于0.0的值等价于0.0，大于1.0的值等价于1.0，异常值按1.0处理; 0.0 表示SDR视频的亮度，1.0 表示HDR视频的亮度。<br/>默认值：1.0 |
 
   > **说明：**
   >
@@ -366,9 +366,9 @@ setXComponentSurfaceRect(rect: SurfaceRect): void
 
 > **说明：**
 >
-> rect参数中的offsetX/offsetY不设置时，Surface显示区域相对于XComponent左上角x/y轴的偏移效果默认按照居中显示。
+> rect参数中的offsetX/offsetY不设置或传入异常值时，Surface显示区域相对于XComponent左上角x/y轴的偏移效果默认按照居中显示。
 >
-> rect参数中的surfaceWidth和surfaceHeight存在0或负数时，调用该接口设置显示区域不生效。
+> rect参数中的surfaceWidth和surfaceHeight存在0、负数或其他异常值时，调用该接口设置显示区域不生效。未调用该接口主动设置Surface显示区域时，surfaceWidth默认与组件宽度一致，surfaceHeight默认与组件高度一致。
 >
 > 该方法优先级高于[border](ts-universal-attributes-border.md#border)、[padding](ts-universal-attributes-size.md#padding)等可以改变内容偏移和大小的属性。
 
