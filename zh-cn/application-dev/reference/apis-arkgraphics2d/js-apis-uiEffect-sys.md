@@ -757,7 +757,7 @@ struct Index {
 ```
 
 ### directionLight<sup>20+</sup>
-directionLight(direction: common2D.Point3d, color: Color, intensity: number, bumpMask?: Mask): Filter
+directionLight(direction: common2D.Point3d, color: Color, intensity: number, mask?: Mask, factor?: number): Filter
 
 为组件内容提供基于[Mask](#mask20)和平行光的光照效果。
 
@@ -771,7 +771,8 @@ directionLight(direction: common2D.Point3d, color: Color, intensity: number, bum
 | direction  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12)         | 是   | 方向光的入射方向。|
 | color  | [Color](#color20)         | 是   | 光照颜色。|
 | intensity  | number         | 是   | 光照强度，非负数。|
-| bumpMask  | [Mask](#mask20)         | 否   | 置换贴图，用于描述二维图像表面的三维细节，通过法线增强图像局部表面细节和光照反射效果。默认为空，表现为全局无细节平面光照效果。|
+| mask  | [Mask](#mask20)         | 否   | 置换贴图，用于描述二维图像表面的三维细节，通过法线或高度图增强局部细节和光照反射效果，若输入为高度图，须与factor参数配合使用。默认为空，表现为全局无细节的平面光照效果。|
+| factor  | number         | 否   | 采样缩放系数。默认值为null，mask作为法线图采样；非默认值时，mask作为高度图采样，实际高度值为mask的采样值与factor的乘积。|
 
 **返回值：**
 
