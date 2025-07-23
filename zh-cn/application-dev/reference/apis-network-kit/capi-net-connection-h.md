@@ -22,7 +22,7 @@
 | -- | -- |
 | [int32_t OH_NetConn_HasDefaultNet(int32_t *hasDefaultNet)](#oh_netconn_hasdefaultnet) | 查询是否有默认激活的数据网络。 |
 | [int32_t OH_NetConn_GetDefaultNet(NetConn_NetHandle *netHandle)](#oh_netconn_getdefaultnet) | 获取激活的默认的数据网络。 |
-| [int32_t OH_NetConn_IsDefaultNetMetered(int32_t *isMetered)](#oh_netconn_isdefaultnetmetered) | 查询默认数据网络是否记流量。 |
+| [int32_t OH_NetConn_IsDefaultNetMetered(int32_t *isMetered)](#oh_netconn_isdefaultnetmetered) | 查询默认网络是否按流量计费。 |
 | [int32_t OH_NetConn_GetConnectionProperties(NetConn_NetHandle *netHandle, NetConn_ConnectionProperties *prop)](#oh_netconn_getconnectionproperties) | 查询某个数据网络的链路信息。 |
 | [int32_t OH_NetConn_GetNetCapabilities(NetConn_NetHandle *netHandle, NetConn_NetCapabilities *netCapabilities)](#oh_netconn_getnetcapabilities) | 查询某个网络的能力集。 |
 | [int32_t OH_NetConn_GetDefaultHttpProxy(NetConn_HttpProxy *httpProxy)](#oh_netconn_getdefaulthttpproxy) | 查询默认的网络代理。 |
@@ -44,6 +44,7 @@
 | [NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl)](#oh_netconn_getpacurl) | 获取系统级代理自动配置（PAC）脚本地址。 |
 | [int32_t OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo)](#oh_netconn_queryproberesult) | 查询网络探测结果。 |
 | [int32_t OH_NetConn_QueryTraceRoute(char *destination, NetConn_TraceRouteOption *option,NetConn_TraceRouteInfo *traceRouteInfo)](#oh_netconn_querytraceroute) | 查询网络跟踪路由。 |
+
 
 ## 函数说明
 
@@ -155,7 +156,7 @@ int32_t OH_NetConn_GetConnectionProperties(NetConn_NetHandle *netHandle, NetConn
 
 | 参数项 | 描述 |
 | -- | -- |
-| nethandle | 存放网络ID。 |
+| [NetConn_NetHandle](capi-netconnection-netconn-nethandle.md) *netHandle | 存放网络ID。 |
 | [NetConn_ConnectionProperties](capi-netconnection-netconn-connectionproperties.md) *prop | 存放链路信息。 |
 
 **返回：**
@@ -183,10 +184,10 @@ int32_t OH_NetConn_GetNetCapabilities(NetConn_NetHandle *netHandle, NetConn_NetC
 
 **参数：**
 
-| 参数项 | 描述 |
-| -- | -- |
+| 参数项                                                                     | 描述 |
+|-------------------------------------------------------------------------| -- |
 | [NetConn_NetHandle](capi-netconnection-netconn-nethandle.md) *netHandle | 存放网络ID。 |
-| netCapacities | 存放能力集。 |
+| [NetConn_NetCapabilities](capi-netconnection-netconn-netcapabilities.md) *netCapabilities                            | 存放能力集。 |
 
 **返回：**
 
@@ -398,7 +399,7 @@ int32_t OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 返回结果码。<br>         {@link NETMANAGER_EXT_SUCCESS} 如果操作成功。<br>         {@link NETMANAGER_ERR_PERMISSION_DENIED} 缺少权限，请添加权限。<br>         {@link NETMANAGER_ERR_PARAMETER_ERROR} 参数错误。请输入正确的参数。 |
+| int32_t | 返回结果码。<br>         NETMANAGER_EXT_SUCCESS 如果操作成功。<br>         NETMANAGER_ERR_PERMISSION_DENIED 缺少权限，请添加权限。<br>         NETMANAGER_ERR_PARAMETER_ERROR 参数错误。请输入正确的参数。 |
 
 ### OH_NetConn_UnregisterDnsResolver()
 
@@ -726,5 +727,3 @@ int32_t OH_NetConn_QueryTraceRoute(char *destination, NetConn_TraceRouteOption *
 | 类型 | 说明 |
 | -- | -- |
 | int32_t | 0 - 成功。<br>         201 - 缺少权限。 |
-
-
