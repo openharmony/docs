@@ -35,7 +35,7 @@
         JSVM_NO_EXTERNAL_BUFFERS_ALLOWED,     /* 不允许外部缓冲区 */
         JSVM_CANNOT_RUN_JS,                   /* 不能执行JS */
         JSVM_INVALID_TYPE,                    /* 非法类型 */
-        JSVM_JIT_MODE_EXPECTD,                /* 期望在JIT模式下执行 */
+        JSVM_JIT_MODE_EXPECTED,                /* 期望在JIT模式下执行 */
     } JSVM_Status;
 ```
 
