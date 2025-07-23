@@ -1134,6 +1134,14 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 | -------- | ---------- | ---- | ---- |
 | value | [KeyboardAvoidMode](#keyboardavoidmode11)| 是    | 键盘避让时的页面避让模式。<br />默认值:KeyboardAvoidMode.OFFSET |
 
+>  **说明：**
+>
+>  KeyboardAvoidMode.RESIZE模式会压缩页面大小，页面中设置百分比宽高的组件会跟随页面压缩，而直接设置宽高的组件会按设置的固定大小布局。设置KeyboardAvoidMode的RESIZE模式时，expandSafeArea([SafeAreaType.KEYBOARD],[SafeAreaEdge.BOTTOM])不生效。
+>
+>  KeyboardAvoidMode.NONE模式配置页面不避让键盘，页面会被抬起的键盘遮盖。
+>
+>  setKeyboardAvoidMode针对页面生效，对于弹窗类组件不生效，比如Dialog、Popup、Menu、BindSheet、BindContentCover、Toast、OverlayManager。弹窗类组件的避让模式可以参考[CustomDialogControllerOptions对象说明](./arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions对象说明)。
+
 **示例：**
 
 完整示例请参考[示例4（设置键盘避让模式为压缩）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例4设置键盘避让模式为压缩)、[示例5（设置键盘避让模式为上抬）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例5设置键盘避让模式为上抬)以及[示例6（切换避让模式）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例6切换避让模式)。

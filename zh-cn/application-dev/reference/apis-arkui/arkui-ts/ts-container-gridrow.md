@@ -42,10 +42,10 @@ GridRow(option?: GridRowOptions)
 
 | 名称 |类型|必填|说明|
 |-----|-----|----|----|
-|columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  否  |设置布局列数。<br />取值为大于0的整数，默认值：12 |
-|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   否  |栅格布局间距。<br />默认值：0<br />单位：vp |
-|breakpoints|[BreakPoints](#breakpoints)|  否  |设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。<br />默认值：<br />{<br />value: ["320vp", "600vp", "840vp"],<br />reference: BreakpointsReference.WindowSize<br />}<br />单位：vp |
-|direction|[GridRowDirection](#gridrowdirection枚举说明)|   否  |栅格布局排列方向。<br />默认值：GridRowDirection.Row |
+|columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  否  |设置布局列数。<br />取值为大于0的整数，默认值：12 <br />非法值：按默认值处理。|
+|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   否  |栅格布局间距。<br />默认值：0<br />非法值：按默认值处理。<br />单位：vp |
+|breakpoints|[BreakPoints](#breakpoints)|  否  |设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。<br />默认值：<br />{<br />value: ["320vp", "600vp", "840vp"],<br />reference: BreakpointsReference.WindowSize<br />}<br />非法值：按默认值处理。<br />单位：vp |
+|direction|[GridRowDirection](#gridrowdirection枚举说明)|   否  |栅格布局排列方向。<br />默认值：GridRowDirection.Row <br />非法值：按默认值处理。 |
 
 ## GutterOption
 
@@ -126,8 +126,8 @@ GridRow(option?: GridRowOptions)
 
 | 名称   | 类型   | 必填   | 说明                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "600vp", "840vp"]<br />单位：vp    |
-| reference  | [BreakpointsReference](#breakpointsreference枚举说明) | 否    | 断点切换参照物。<br>默认值：BreakpointsReference.WindowSize |
+| value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "600vp", "840vp"] <br />非法值：按默认值处理。<br />单位：vp    |
+| reference  | [BreakpointsReference](#breakpointsreference枚举说明) | 否    | 断点切换参照物。<br>默认值：BreakpointsReference.WindowSize <br />非法值：按默认值处理。 |
 ```ts
   // 启用xs、sm、md共3个断点
   breakpoints: {value: ["100vp", "200vp"]}
@@ -200,7 +200,7 @@ alignItems(value: ItemAlign)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | 是   | GridRow中的GridCol垂直主轴方向对齐方式。<br/>默认值：ItemAlign.Start<br/>**说明**：<br/>ItemAlign支持的枚举：ItemAlign.Start、ItemAlign.Center、ItemAlign.End、ItemAlign.Stretch。 |
+| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | 是   | GridRow中的GridCol垂直主轴方向对齐方式。<br/>默认值：ItemAlign.Start <br />非法值：按默认值处理。<br/>**说明**：<br/>ItemAlign支持的枚举：ItemAlign.Start、ItemAlign.Center、ItemAlign.End、ItemAlign.Stretch。 |
 
 
 ## 事件
