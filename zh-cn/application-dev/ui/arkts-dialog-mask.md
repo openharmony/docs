@@ -9,18 +9,18 @@ ArkUI提供多种弹出框，不同类型的弹出框具备不同的蒙层定制
 |                   |autoCancel|maskRect|isModal|immersiveMode|maskColor|transition|maskTransition|
 | ----------------- | ------ |------ |------ |------ |------ |------ | ------ |
 |[openCustomDialog](arkts-uicontext-custom-dialog.md)|支持|支持|支持|支持|支持|支持|支持|
-|[openCustomDialogWithController](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialogwithcontroller18)|支持|支持|支持|支持|支持|支持|支持|
-|[presentCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#presentcustomdialog18)|支持|支持|支持|支持|支持|支持|支持|
-|[updateCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#updatecustomdialog12)|支持|不支持|不支持|不支持|支持|不支持|不支持|
+|[openCustomDialogWithController](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialogwithcontroller18)|支持|支持|支持|支持|支持|支持|支持|
+|[presentCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#presentcustomdialog18)|支持|支持|支持|支持|支持|支持|支持|
+|[updateCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#updatecustomdialog12)|支持|不支持|不支持|不支持|支持|不支持|不支持|
 |[CustomDialog](arkts-common-components-custom-dialog.md)|支持|支持|支持|支持|支持|不支持（可由openAnimation和closeAnimation替代）|不支持|
-|[showDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdialog)|不支持|支持|支持|支持|不支持|不支持|不支持|
-|[showAlertDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertdialog)|支持|支持|支持|支持|不支持|支持|不支持|
-|[showActionSheet](../reference/apis-arkui/js-apis-arkui-UIContext.md#showactionsheet)|支持|支持|支持|支持|不支持|支持|不支持|
-|[showActionMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#showactionmenu11)|不支持|不支持|支持|支持|不支持|不支持|不支持|
-|[showDatePickerDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdatepickerdialog)|不支持|支持|不支持|不支持|不支持|不支持|不支持|
+|[showDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#showdialog)|不支持|支持|支持|支持|不支持|不支持|不支持|
+|[showAlertDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showalertdialog)|支持|支持|支持|支持|不支持|支持|不支持|
+|[showActionSheet](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showactionsheet)|支持|支持|支持|支持|不支持|支持|不支持|
+|[showActionMenu](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#showactionmenu11)|不支持|不支持|支持|支持|不支持|不支持|不支持|
+|[showDatePickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showdatepickerdialog)|不支持|支持|不支持|不支持|不支持|不支持|不支持|
 |[CalendarPickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md)|不支持|不支持|不支持|不支持|不支持|不支持|不支持|
-|[showTimePickerDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showtimepickerdialog)|不支持|支持|不支持|不支持|不支持|不支持|不支持|
-|[showTextPickerDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showtextpickerdialog)|不支持|支持|不支持|不支持|不支持|不支持|不支持|
+|[showTimePickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showtimepickerdialog)|不支持|支持|不支持|不支持|不支持|不支持|不支持|
+|[showTextPickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showtextpickerdialog)|不支持|支持|不支持|不支持|不支持|不支持|不支持|
 
 > **说明：**
 > 
