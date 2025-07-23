@@ -458,7 +458,7 @@ struct Font08 {
 
 使用装饰线需要初始化装饰线样式对象，并添加到文本样式中，从而在文本绘制时生效。
 
-具体使用效果可参见下文[示例一](#示例一装饰线字体特征)
+具体使用效果可参见下文[示例一](#示例一装饰线字体特征)。
 
 ### 字体特征
 
@@ -466,7 +466,7 @@ struct Font08 {
 
 常见的**FontFeature**包含有liga、frac、case等，需要对应的ttf文件支持才能正常使能。
 
-具体使用效果可参见下文[示例一](#示例一装饰线字体特征)
+具体使用效果可参见下文[示例一](#示例一装饰线字体特征)。
 
 ### 可变字体
 
@@ -474,7 +474,7 @@ struct Font08 {
 
 与传统字体文件（每种变体需要一个独立的文件）不同，可变字体在一个字体文件中包含多个变体轴，可通过使用可变字体实现文本渲染绘制时的平滑过渡。
 
-具体使用效果可参见下文[示例二](#示例二可变字体文本阴影占位符)
+具体使用效果可参见下文[示例二](#示例二可变字体文本阴影占位符)。
 
 ### 文本阴影
 
@@ -484,7 +484,7 @@ struct Font08 {
 
 使用阴影效果需要在文本样式中设置对应的阴影效果数组，从而在文本绘制时生效。
 
-具体使用效果可参见下文[示例二](#示例二可变字体文本阴影占位符)
+具体使用效果可参见下文[示例二](#示例二可变字体文本阴影占位符)。
 
 ### 占位符
 
@@ -492,17 +492,17 @@ struct Font08 {
 
 占位符也是用来实现图文混排的关键，是指在实际图像或内容注册之前，用来预先提供货替代某个位置的视觉元素。
 
-具体使用效果可参见下文[示例二](#示例二可变字体文本阴影占位符)
+具体使用效果可参见下文[示例二](#示例二可变字体文本阴影占位符)。
 
 ### 自动间距
 
 使能自动间距，则会在文本排版时自动调整CJK（中文字符、日文字符、韩文字符）与西文（拉丁字母、西里尔字母、希腊字母）、CJK与数字、CJK与版权符号、版权符号与数字、版权符号与西文之间的间距。例如，在中英文混排场景中，使能自动间距即可在中英文切换的地方自动添加额外间距，提升阅读体验。
 关键示例如下：
 ```ts
-    let myParagraphStyle: text.ParagraphStyle = {
-      // ...
-      autospace: true
-    };
+let myParagraphStyle: text.ParagraphStyle = {
+  // ...
+  autospace: true
+};
 ```
 ### 示例一（装饰线、字体特征）
 这里以文本样式中的装饰线和字体特征为例，呈现多样式文本的绘制与显示。
@@ -705,11 +705,16 @@ class MyRenderNode extends RenderNode {
 
     // 初始化占位符对象
     let myPlaceholderSpan: text.PlaceholderSpan = {
-      width: 300,//宽度
-      height: 300,//高度
-      align: text.PlaceholderAlignment.BOTTOM_OF_ROW_BOX, //基线对齐策略
-      baseline: text.TextBaseline.ALPHABETIC,//使用的文本基线类型
-      baselineOffset: 100//相比基线的偏移量。只有对齐策略是OFFSET_AT_BASELINE时生效
+      // 宽度
+      width: 300,
+      // 高度
+      height: 300,
+      // 基线对齐策略
+      align: text.PlaceholderAlignment.BOTTOM_OF_ROW_BOX,
+      // 使用的文本基线类型
+      baseline: text.TextBaseline.ALPHABETIC,
+      // 相比基线的偏移量。只有对齐策略是OFFSET_AT_BASELINE时生效
+      baselineOffset: 100
     };
     // 添加占位符
     paragraphBuilder.addPlaceholder(myPlaceholderSpan)
@@ -726,16 +731,22 @@ class MyRenderNode extends RenderNode {
     // 绘制文本
     paragraph.paint(canvas, 0, 0);
 
-    let placeholderRects = paragraph.getRectsForPlaceholders();//获取全部占位符的数组
-    let left = placeholderRects[0].rect.left// 获取第一个占位符的左边界
-    let top = placeholderRects[0].rect.top// 获取第一个占位符的上边界
-    let right = placeholderRects[0].rect.right// 获取第一个占位符的右边界
-    let bottom = placeholderRects[0].rect.bottom// 获取第一个占位符的下边界
+    //获取全部占位符的数组
+    let placeholderRects = paragraph.getRectsForPlaceholders();
+    // 获取第一个占位符的左边界
+    let left = placeholderRects[0].rect.left
+    // 获取第一个占位符的上边界
+    let top = placeholderRects[0].rect.top
+    // 获取第一个占位符的有边界
+    let right = placeholderRects[0].rect.right
+    // 获取第一个占位符的下边界
+    let bottom = placeholderRects[0].rect.bottom
     let pen: drawing.Pen =  new drawing.Pen()
     let pen_color : common2D.Color = { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 }
     pen.setColor(pen_color)
     canvas.attachPen(pen)
-    canvas.drawRect(left,top,right,bottom)// 使用draw方法绘制占位符矩形框
+    // 使用draw方法绘制占位符矩形框
+    canvas.drawRect(left,top,right,bottom)
   }
 }
 
