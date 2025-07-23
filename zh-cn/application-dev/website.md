@@ -379,6 +379,7 @@
           - ArkTS1.2不再支持的UI接口<!--ui-deprecated-apis-->
             - [滚动与滑动](ui/arkts-v1.2-deprecated-scrollable-apis.md)
             - [绘制组件](ui/arkts-v1.2-deprecated-drawing-apis.md)
+            - [渲染控制](ui/arkts-v1.2-deprecated-rendering-control-apis.md)
             - [弹窗类组件](ui/arkts-v1.2-deprecated-dialog-apis.md)
             - [表单类组件](ui/arkts-v1.2-deprecated-form-apis.md)
             - [布局回调](ui/arkts-v1.2-deprecated-inspector.md)
