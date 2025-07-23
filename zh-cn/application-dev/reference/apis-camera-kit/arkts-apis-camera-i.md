@@ -298,8 +298,6 @@
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
 | 名称     | 类型        |   只读   |   可选   | 说明       |
 | -------- | ---------- | -------- | -------- | ---------- |
 | effectType | [ControlCenterEffectType](arkts-apis-camera-e.md#controlcentereffecttype20) |   是    |    否    | 相机控制器效果类型 |

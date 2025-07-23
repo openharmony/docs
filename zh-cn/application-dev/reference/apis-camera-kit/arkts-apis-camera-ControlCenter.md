@@ -29,7 +29,7 @@ enableControlCenter(enabled: boolean): void
 
 | 参数名     | 类型                   | 必填 | 说明                  |
 | -------- | -------------------- | ---- | -------------------- |
-| enabled | boolean | 是   | 是否开启相机控制器。true表示开启相机控制器，false表示关闭相机控制器。 |
+| enabled | boolean | 是 | 开启或关闭相机控制器。`true` 表示开启，`false` 表示关闭。 |
 
 **错误码：**
 
