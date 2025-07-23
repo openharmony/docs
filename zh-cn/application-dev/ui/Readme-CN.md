@@ -325,17 +325,17 @@
         - [动画帧](ui-js-animate-frame.md)
   - [自定义组件](ui-js-custom-components.md)
   - [WebGL](../webgl/Readme-CN.md)
-- UI开发调试调优<!--ui-debug-->
+- UI开发调试调优<!--ui-debug-optimize-->
   - UI稳定性故障调试<!--ui-stability-->
-    - [稳定性故障分析导读](arkts-stability-guide.md)
-    - [崩溃问题案例](arkts-stability-crash-issues.md)
-    - [无响应问题案例](arkts-stability-freeze-issues.md)
-  - UI显示异常<!--ui-display-exception-->
-    - [定位工具](arkts-layout-development-Tool.md)
-    - [问题案例](arkts-layout-development-FAQ.md)
-  - UI开发调优<!--ui-inspector-profiler-->
-    - [预览](ui-ide-previewer.md)
-    - [调试](ui-inspector-profiler.md)
+    - [UI稳定性故障分析概述](arkts-stability-guide.md)
+    - [UI相关应用崩溃常见问题](arkts-stability-crash-issues.md)
+    - [UI相关应用无响应常见问题](arkts-stability-freeze-issues.md)
+  - UI显示异常调试<!--ui-display-exception-->
+    - [定位UI显示异常问题](arkts-layout-development-Tool.md)
+    - [解决UI显示异常问题](arkts-layout-development-FAQ.md)
+  - UI调优<!--ui-inspector-profiler-->
+    - [UI调优能力介绍](ui-inspector-profiler.md)
+    - [UI预览](ui-ide-previewer.md)
   - UI高性能开发<!--ui-performance-->
     - [UI性能优化概览](ui-performance-overview.md)
 - [窗口管理](../windowmanager/Readme-CN.md)

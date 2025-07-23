@@ -603,11 +603,6 @@
           - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](ui/arkts-ui-extension-components.md)
           - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](ui/arkts-isolated-components.md)
           <!--DelEnd-->
-        - UI开发调优<!--ui-inspector-profiler-->
-          - [预览](ui/ui-ide-previewer.md)
-          - [调试](ui/ui-inspector-profiler.md)
-        - UI高性能开发<!--ui-performance-->
-          - [UI性能优化概览](ui/ui-performance-overview.md)
       - UI开发 (基于NDK构建UI)<!--arkts-use-ndk-->
         - [NDK接口概述](ui/ndk-build-ui-overview.md)
         - [接入ArkTS页面](ui/ndk-access-the-arkts-page.md)
@@ -705,6 +700,19 @@
         - [自定义组件](ui/ui-js-custom-components.md)
         - WebGL<!--ui-js-webgl-->
           - [使用WebGL绘制图形](webgl/webgl-2d-guidelines.md)
+      - UI开发调试调优<!--ui-debug-optimize-->
+        - UI稳定性故障调试<!--ui-stability-->
+          - [UI稳定性故障分析概述](ui/arkts-stability-guide.md)
+          - [UI相关应用崩溃常见问题](ui/arkts-stability-crash-issues.md)
+          - [UI相关应用无响应常见问题](ui/arkts-stability-freeze-issues.md)
+        - UI显示异常调试<!--ui-display-exception-->
+          - [定位UI显示异常问题](ui/arkts-layout-development-Tool.md)
+          - [解决UI显示异常问题](ui/arkts-layout-development-FAQ.md)
+        - UI调优<!--ui-inspector-profiler-->
+          - [UI调优能力介绍](ui/ui-inspector-profiler.md)
+          - [UI预览](ui/ui-ide-previewer.md)
+        - UI高性能开发<!--ui-performance-->
+          - [UI性能优化概览](ui/ui-performance-overview.md)
       - 窗口管理<!--window-manager-->
         - [窗口开发概述](windowmanager/window-overview.md)
         - [管理应用窗口（Stage模型）](windowmanager/application-window-stage.md)
