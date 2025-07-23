@@ -16,20 +16,20 @@
 ```typescript
 // harlibrary's src/main/ets/utils/Calc.ets
 export class Calc {
-  public static staticAdd(a:number, b:number):number {
+  public static staticAdd(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am harlibrary in staticAdd, %d + %d = %d', a, b, c);
     return c;
   }
 
-  public instanceAdd(a:number, b:number):number {
+  public instanceAdd(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am harlibrary in instanceAdd, %d + %d = %d', a, b, c);
     return c;
   }
 }
 
-export function addHarLibrary(a:number, b:number):number {
+export function addHarLibrary(a: number, b: number): number {
   let c = a + b;
   console.info('DynamicImport I am harlibrary in addHarLibrary, %d + %d = %d', a, b, c);
   return c;
@@ -104,7 +104,7 @@ import('harlibrary').then((ns:ESObject) => {
 
   ```typescript
   // HAR's Index.ets
-  export function add(a:number, b:number):number {
+  export function add(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
     return c;
@@ -135,7 +135,7 @@ import('harlibrary').then((ns:ESObject) => {
 
   ```typescript
   // HAR's Index.ets
-  export function add(a:number, b:number):number {
+  export function add(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
     return c;
@@ -160,7 +160,7 @@ import('harlibrary').then((ns:ESObject) => {
 
   ```typescript
   // HSP's Index.ets
-  export function add(a:number, b:number):number {
+  export function add(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
     return c;
@@ -185,7 +185,7 @@ import('harlibrary').then((ns:ESObject) => {
 
   ```typescript
   // HSP's Index.ets
-  export function add(a:number, b:number):number {
+  export function add(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
     return c;
@@ -242,7 +242,7 @@ import('harlibrary').then((ns:ESObject) => {
 
   ```typescript
   // HAP's src/main/ets/Calc.ets
-  export function add(a:number, b:number):number {
+  export function add(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am a HAP, %d + %d = %d', a, b, c);
     return c;
@@ -260,7 +260,7 @@ import('harlibrary').then((ns:ESObject) => {
 
   ```typescript
   // libnativeapi.so's index.d.ts
-  export const add: (a:number, b:number) => number;
+  export const add: (a: number, b: number) => number;
   ```
 
   ```typescript
@@ -333,7 +333,7 @@ import(filePath).then((obj: ESObject) => {
 
   ```typescript
   // HAR's Index.ets
-  export function add(a:number, b:number):number {
+  export function add(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
     return c;
@@ -369,7 +369,7 @@ import(filePath).then((obj: ESObject) => {
 
   ```typescript
   // HSP's Index.ets
-  export function add(a:number, b:number):number {
+  export function add(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
     return c;
@@ -461,7 +461,7 @@ import(filePath).then((obj: ESObject) => {
 
   ```typescript
   // HAP's src/main/ets/Calc.ets
-  export function add(a:number, b:number):number {
+  export function add(a: number, b: number): number {
     let c = a + b;
     console.info('DynamicImport I am a HAP, %d + %d = %d', a, b, c);
     return c;
@@ -491,7 +491,7 @@ import(filePath).then((obj: ESObject) => {
 
   ```typescript
   // libnativeapi.so's index.d.ts
-  export const add: (a:number, b:number) => number;
+  export const add: (a: number, b: number) => number;
   ```
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
@@ -546,148 +546,230 @@ HAR之间的依赖关系转移至HAP/HSP后：
 ![变量动态import HAR包依赖转移到HAP](figures/dynamicimport2.png)
 
 
-**1. 使用限制**
+**使用限制**
 - 仅限在本地源码HAR包之间存在循环依赖时，使用该规避方案。
 - 被转移依赖的HAR之间只能通过变量动态import，不能有静态import或常量动态import。
-- 转移依赖时，需同时转移dependencies和runtimeOnly依赖配置。
+- 转移依赖时，需同时转移**dependencies**和**runtimeOnly**依赖配置。
 - HSP不支持转移依赖。即：HAP->HSP1->HSP2->HSP3，这里的HSP2和HSP3不能转移到HAP上面。
 - 转移依赖的整个链路上只能有HAR包，不能跨越HSP转移。即：HAP->HAR1->HAR2->HSP->HAR3->HAR4。HAR1对HAR2的依赖可以转移到HAP上，HAR3对HAR4的依赖可以转移到HSP上。但是，不能将HAR3或HAR4转移到HAP上。
-- 如果引用了其他工程模块、远程包或集成HSP，需确保useNormalizedOHMUrl配置一致，同时设置为true或false，否则可能导致运行错误：Cannot find dynamic-import module library。
+- 如果引用了其他工程模块、远程包或集成HSP，需确保**useNormalizedOHMUrl**配置一致，同时设置为true或false，否则可能导致运行错误：**Cannot find dynamic-import module library**。
 
 
-**2. 使用实例**
+**使用实例**
 
-下面的实例中，HAP变量动态import HAR包har1，而har1变量动态import另一个HAR包har2。
+下面的实例通过在单向依赖HAP->HAR1->HAR2->HAR3之上增加依赖HAR2->HAR1、HAR3->HAR1，形成了循环依赖。
+
+![变量动态import HAR包形成循环依赖](figures/dynamicimport1.png)
+
+```typescript
+// HAP's src/main/ets/pages/Index.ets
+let harName = 'har1'
+import(harName).then((ns: ESObject) => {
+  console.info('[DynamicImport] hap -> har1, 0 + 1 = ' + ns.classHar1.add(0, 1));
+})
+
+// HAR1's src/main/ets/utils/Calc.ets
+export class classHar1 {
+  static isImportedHar2: boolean = false;
+
+  static add(a: number, b: number): number {
+    const c = a + b;
+    console.info('[DynamicImport] classHar1.add(), %d + %d = %d', a, b, c);
+
+    if (!classHar1.isImportedHar2) {
+      const harName = 'har2';
+      import(harName).then((ns: ESObject) => {
+        classHar1.isImportedHar2 = true;
+        console.info('[DynamicImport] har1 -> har2, 1 + 2 = ' + ns.classHar2.add(1, 2));
+      })
+    }
+
+    return c;
+  }
+}
+// HAR1's Index.ets
+export { classHar1 } from './src/main/ets/utils/Calc';
+
+// HAR2's src/main/ets/utils/Calc.ets
+export class classHar2 {
+  static isImportedHar1: boolean = false;
+  static isImportedHar3: boolean = false;
+
+  static add(a: number, b: number): number {
+    const c = a + b;
+    console.info('[DynamicImport] classHar2.add(), %d + %d = %d', a, b, c);
+
+    if (!classHar2.isImportedHar1) {
+      const harName = 'har1';
+      import(harName).then((ns: ESObject) => {
+        classHar2.isImportedHar1 = true;
+        console.info('[DynamicImport] har2 -> har1, 2 + 1 = ' + ns.classHar1.add(2, 1));
+      })
+    }
+
+    if (!classHar2.isImportedHar3) {
+      const harName = 'har3';
+      import(harName).then((ns: ESObject) => {
+        classHar2.isImportedHar3 = true;
+        console.info('[DynamicImport] har2 -> har3, 2 + 3 = ' + ns.classHar3.add(2, 3));
+      })
+    }
+
+    return c;
+  }
+}
+// HAR2's Index.ets
+export { classHar2 } from './src/main/ets/utils/Calc';
+
+// HAR3's src/main/ets/utils/Calc.ets
+export class classHar3 {
+  static isImportedHar1: boolean = false;
+
+  static add(a: number, b: number): number {
+    const c = a + b;
+    console.info('[DynamicImport] classHar3.add(), %d + %d = %d', a, b, c);
+
+    if (!classHar3.isImportedHar1) {
+      const harName = 'har1';
+      import(harName).then((ns: ESObject) => {
+        classHar3.isImportedHar1 = true;
+        console.info('[DynamicImport] har3 -> har1, 3 + 1 = ' + ns.classHar1.add(3, 1));
+      })
+    }
+
+    return c;
+  }
+}
+// HAR3's Index.ets
+export { classHar3 } from './src/main/ets/utils/Calc';
+```
+
+若未对HAR之间的**dependencies**和**runtimeOnly**配置进行依赖解耦，ohpm无法解决循环依赖，依赖安装失败。
 
 ```json5
 // HAP's oh-package.json5
 "dependencies": {
   "har1": "file:../har1"
 }
-```
-```json5
 // HAP's build-profile.json5
 "buildOption": {
   "arkOptions": {
     "runtimeOnly": {
-      "packages": [
-        "har1"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
+      "packages": [ // 仅用于变量动态加载的场景，静态加载或常量动态加载无需配置。
+        "har1"
       ]
     }
   }
 }
-```
-```typescript
-// HAP's src/main/ets/pages/Index.ets
-let harName = 'har1';
-import(harName).then((ns:ESObject) => {
-  console.info('DynamicImport addHar1 4 + 5 = ' + ns.addHar1(4, 5));
-});
-```
-```json5
-// har1's oh-package.json5
+
+// HAR1's oh-package.json5
 "dependencies": {
   "har2": "file:../har2"
 }
-```
-```json5
-// har1's build-profile.json5
+// HAR1's build-profile.json5
 "buildOption": {
   "arkOptions": {
     "runtimeOnly": {
-      "packages": [
-        "har2"  // 仅用于使用变量动态import其他模块名场景，静态import或常量动态import无需配置。
-      ]
-    }
-  }
-}
-```
-```typescript
-// har1's Index.ets
-export { addHar1 } from './src/main/ets/utils/Calc'
-```
-```typescript
-// har1's src/main/ets/utils/Calc.ets
-export function addHar1(a:number, b:number):number {
-  let c = a + b;
-  console.info('DynamicImport I am har1, %d + %d = %d', a, b, c);
-
-  let harName = 'har2';
-  import(harName).then((ns:ESObject) => {
-    console.info('DynamicImport addHar2 4 + 5 = ' + ns.addHar2(4, 5));
-  });
-  return c;
-}
-```
-```typescript
-// har2's Index.ets
-export { addHar2 } from './src/main/ets/utils/Calc'
-```
-```typescript
-// har2's src/main/ets/utils/Calc.ets
-export function addHar2(a:number, b:number):number {
-  let c = a + b;
-  console.info('DynamicImport I am har2, %d + %d = %d', a, b, c);
-  return c;
-}
-```
-
-将har1对har2的dependencies和runtimeOnly配置转移到HAP中，har1无需配置对har2的dependencies和runtimeOnly配置。
-
-```json5
-// HAP's oh-package.json5
-"dependencies": {
-  "har1": "file:../har1",
-  "har2": "file:../har2"
-}
-```
-```json5
-// HAP's build-profile.json5
-"buildOption": {
-  "arkOptions": {
-    "runtimeOnly": {
-      "packages": [
-        "har1",
+      "packages": [ // 仅用于变量动态加载的场景，静态加载或常量动态加载无需配置。
         "har2"
       ]
     }
   }
 }
-```
-```typescript
-// HAP's src/main/ets/pages/Index.ets
-let harName = 'har1';
-import(harName).then((ns:ESObject) => {
-  console.info('DynamicImport addHar1 4 + 5 = ' + ns.addHar1(4, 5));
-});
-```
-```typescript
-// har1's Index.ets
-export { addHar1 } from './src/main/ets/utils/Calc'
-```
-```typescript
-// har1's src/main/ets/utils/Calc.ets
-export function addHar1(a:number, b:number):number {
-  let c = a + b;
-  console.info('DynamicImport I am har1, %d + %d = %d', a, b, c);
 
-  let harName = 'har2';
-  import(harName).then((ns:ESObject) => {
-    console.info('DynamicImport addHar2 4 + 5 = ' + ns.addHar2(4, 5));
-  });
-  return c;
+// HAR2's oh-package.json5
+"dependencies": {
+  "har1": "file:../har1",
+  "har3": "file:../har3"
 }
-```
-```typescript
-// har2's Index.ets
-export { addHar2 } from './src/main/ets/utils/Calc'
-```
-```typescript
-// har2's src/main/ets/utils/Calc.ets
-export function addHar2(a:number, b:number):number {
-  let c = a + b;
-  console.info('DynamicImport I am har2, %d + %d = %d', a, b, c);
-  return c;
+// HAR2's build-profile.json5
+"buildOption": {
+  "arkOptions": {
+    "runtimeOnly": {
+      "packages": [ // 仅用于变量动态加载的场景，静态加载或常量动态加载无需配置。
+        "har1",
+        "har3"
+      ]
+    }
+  }
+}
+
+// HAR3's oh-package.json5
+"dependencies": {
+  "har1": "file:../har1",
+}
+// HAR3's build-profile.json5
+"buildOption": {
+  "arkOptions": {
+    "runtimeOnly": {
+      "packages": [ // 仅用于变量动态加载的场景，静态加载或常量动态加载无需配置。
+        "har1"
+      ]
+    }
+  }
 }
 ```
 
+**对应的报错信息如下：**
+
+```text
+ohpm ERROR: Run install command failed 
+Error: 00618005 Invalid Dependency
+Error Message: Invalid dependency har2@~\Coupled\har2 -> har2@1.0.0.
+
+Try the following:
+The name of an indirect dependency cannot be the same as the module name.
+```
+
+将HAR之间的**dependencies**和**runtimeOnly**配置转移到HAP中，解耦了包间循环依赖，程序能够正确运行。
+
+```json5
+// HAP's oh-package.json5
+"dependencies": {
+  "har1": "file:../har1",
+  "har2": "file:../har2",
+  "har3": "file:../har3"
+}
+// HAP's build-profiles.json5
+"buildOption": {
+  "arkOptions": {
+    "runtimeOnly": {
+      "packages" : [ // 仅用于变量动态加载的场景，静态加载或常量动态加载无需配置。
+        "har1",
+        "har2",
+        "har3"
+      ]
+    }
+  }
+}
+
+// HAR1's oh-package.json5
+"dependencies": {}
+// HAR1's build-profile.json5
+"buildOption": {}
+
+// HAR2's oh-package.json5
+"dependencies": {}
+// HAR2's build-profile.json5
+"buildOption": {}
+
+// HAR3's oh-package.json5
+"dependencies": {}
+// HAR3's build-profile.json5
+"buildOption": {}
+```
+
+**对应的运行日志如下：**
+
+```text
+[DynamicImport] classHar1.add(), 0 + 1 = 1
+[DynamicImport] hap -> har1, 0 + 1 = 1
+[DynamicImport] classHar2.add(), 1 + 2 = 3
+[DynamicImport] har1 -> har2, 1 + 2 = 3
+[DynamicImport] classHar1.add(), 2 + 1 = 3
+[DynamicImport] har2 -> har1, 2 + 1 = 3
+[DynamicImport] classHar3.add(), 2 + 3 = 5
+[DynamicImport] har2 -> har3, 2 + 3 = 5
+[DynamicImport] classHar1.add(), 3 + 1 = 4
+[DynamicImport] har3 -> har1, 3 + 1 = 4
+```
