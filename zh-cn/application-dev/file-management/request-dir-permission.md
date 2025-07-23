@@ -109,7 +109,7 @@ function writeUserDownloadDirExample() {
 
 ## 通过 C/C++ 接口获取并使用公共目录
 
-除了通过 ArkTS 访问公共目录的方式，也可通过 C/C++ 接口进行目录访问，具体可以参考 [Environment](../reference/apis-core-file-kit/_environment.md)。
+除了通过 ArkTS 访问公共目录的方式，也可通过 C/C++ 接口进行目录访问，具体可以参考 [Environment](../reference/apis-core-file-kit/capi-oh-environment-h.md)。
 
  **约束限制**
  - 使用此接口，需确认设备具有以下系统能力：SystemCapability.FileManagement.File.Environment.FolderObtain。
@@ -117,7 +117,7 @@ function writeUserDownloadDirExample() {
 
 ### 接口说明
 
-接口的详细说明，请参考[API参考](../reference/apis-core-file-kit/_environment.md)。
+接口的详细说明，请参考[API参考](../reference/apis-core-file-kit/capi-oh-environment-h.md)。
 
 | 接口名称                                                                 | 描述                           |
 | ------------------------------------------------------------------------ | ------------------------------ |
