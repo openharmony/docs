@@ -416,7 +416,7 @@ try {
 
 turnOnBluetooth(admin: Want): void
 
-开启蓝牙。蓝牙开启后用户可以手动关闭
+开启蓝牙。蓝牙开启后用户可以手动关闭。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -465,7 +465,7 @@ try {
 
 turnOffBluetooth(admin: Want): void
 
-关闭蓝牙。蓝牙关闭后用户可以手动打开
+关闭蓝牙。蓝牙关闭后用户可以手动打开。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 

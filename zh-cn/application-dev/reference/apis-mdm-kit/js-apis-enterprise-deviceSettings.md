@@ -20,7 +20,7 @@ import { deviceSettings } from '@kit.MDMKit';
 
 setValue(admin: Want, item: string, value: string): void
 
-设备设置策略。
+设置设备策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SETTINGS
 

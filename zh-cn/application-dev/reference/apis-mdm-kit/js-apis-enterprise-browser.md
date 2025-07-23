@@ -277,7 +277,7 @@ try {
 
 getSelfManagedBrowserPolicy(): ArrayBuffer
 
-获取本设备浏览器策略。
+获取当前设备浏览器策略。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
