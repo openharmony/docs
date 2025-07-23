@@ -71,7 +71,9 @@ import { relationalStore } from '@kit.ArkData';
 
 提供管理关系型数据库（RDB）的接口。
 
-在使用以下相关接口前，请使用[executeSql](arkts-apis-data-relationalStore-RdbStore.md#executesql)接口初始化数据库表结构和相关数据。
+在使用以下API前，请先通过[getRdbStore](arkts-apis-data-relationalStore-f.md#relationalstoregetrdbstore-1)方法获取RdbStore实例，并使用该实例调用对应接口方法。
+
+在此基础上，建议优先使用[execute](arkts-apis-data-relationalStore-RdbStore.md#execute12)方法完成数据库表结构和初始数据的初始化，以确保相关接口调用的前置条件已满足。
 
 ### update
 
@@ -1093,7 +1095,6 @@ restore(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let store: relationalStore.RdbStore | undefined = undefined;
 if (store != undefined) {
   let promiseRestore = (store as relationalStore.RdbStore).restore();
   promiseRestore.then(() => {

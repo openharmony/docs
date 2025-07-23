@@ -517,7 +517,7 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 |------------|------------|------------|------------|------------|
-| template | [FloatingBallTemplate](#floatingballtemplate) | 否 | 否 | 闪控球模板。静态布局时，传入content无效；普通文本布局和强调文本布局时，传入icon无效；纯文本布局时，传入content和icon均无效。 |
+| template | [FloatingBallTemplate](#floatingballtemplate) | 否 | 否 | 闪控球模板。静态布局时，icon必选，content无效；普通文本布局和强调文本布局时，icon无效；纯文本布局时，content和icon均无效。 |
 | title | string | 否 | 否 | 闪控球标题，不可为空字符串，大小不超过64字节。 |
 | content | string | 否 | 是 | 闪控球内容，可选字段，大小不超过64字节。不传入时默认为空字符串，不显示闪控球内容。 |
 | backgroundColor | string | 否 | 是 | 闪控球背景颜色，可选字段，为不带透明度的十六进制颜色格式（例如'#008EF5'或'#FF008EF5'），不传入时闪控球使用默认颜色（浅色模式'#FFFFFF'，深色模式'#000000'）。 |

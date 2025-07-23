@@ -34,7 +34,7 @@
       - [创建应用静态快捷方式](quick-start/typical-scenario-configuration.md)
       - [创建应用分身](quick-start/app-clone.md)
       - [创建应用多实例](quick-start/multiInstance.md)
-      - [配置应用图标](quick-start/layered-image.md)
+      - [配置应用图标和名称](quick-start/layered-image.md)
     - [应用程序包常见问题](quick-start/common_problem_of_application.md)
     - [应用程序包术语](quick-start/application-package-glossary.md)
   - [资源分类与访问](quick-start/resource-categories-and-access.md)
@@ -250,11 +250,11 @@
         - [E类加密数据库的使用 (ArkTS)](database/encrypted_estore_guidelines.md)
       - 跨应用数据共享<!--cross-app-data-share-->
         - [跨应用数据共享概述](database/data-share-overview.md)
-        <!--Del-->
         - 一对多跨应用数据共享<!--one-to-many-data-share-->
+          <!--Del-->
           - [通过DataShareExtensionAbility实现数据共享 (ArkTS)(仅对系统应用开放)](database/share-data-by-datashareextensionability.md)
           - [通过数据管理服务实现数据共享静默访问 (ArkTS)(仅对系统应用开放)](database/share-data-by-silent-access.md)
-        <!--DelEnd-->
+          <!--DelEnd-->
           - [应用间配置共享 (ArkTS)](database/share-config.md)
         - 多对多跨应用数据共享<!--many-to-many-data-share-->
           - [通过标准化数据通路实现数据共享 (ArkTS)](database/unified-data-channels.md)
@@ -506,6 +506,7 @@
             - [弹出框层级管理](ui/arkts-dialog-levelorder.md)
             - [弹出框控制器](ui/arkts-dialog-controller.md)
             - [弹出框焦点策略](ui/arkts-dialog-focusable.md)
+            - [弹出框蒙层控制](ui/arkts-dialog-mask.md)
            - 菜单<!--arkts-use-menu-->
              - [菜单概述](ui/arkts-menu-overview.md)
              - [菜单控制 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
@@ -893,7 +894,7 @@
       - [IME Kit简介](inputmethod/ime-kit-intro.md)
       - [实现一个输入法应用](inputmethod/inputmethod-application-guide.md)
       - [在自绘编辑框中使用输入法](inputmethod/use-inputmethod-in-custom-edit-box.md)
-      - [切换输入法应用](inputmethod/switch-inputmehod-guide.md)
+      - [切换输入法应用](inputmethod/switch-inputmethod-guide.md)
       - [输入法子类型开发指南](inputmethod/input-method-subtype-guide.md)
       - [在自绘编辑框中使用输入法(C/C++)](inputmethod/use-inputmethod-in-custom-edit-box-ndk.md)
       - [输入法应用沉浸模式](inputmethod/inputmethod-immersive-mode-guide.md)
@@ -3420,7 +3421,7 @@
           - [NativeDisplayManager_DisplayHdrFormat](reference/apis-arkui/capi-nativedisplaymanager-displayhdrformat.md)
           - [NativeDisplayManager_DisplayColorSpace](reference/apis-arkui/capi-nativedisplaymanager-displaycolorspace.md)
           - [NativeDisplayManager_DisplayInfo](reference/apis-arkui/capi-nativedisplaymanager-displayinfo.md)
-         - [NativeDisplayManager_DisplaysInfo](reference/apis-arkui/capi-nativedisplaymanager-displaysinfo.md)
+          - [NativeDisplayManager_DisplaysInfo](reference/apis-arkui/capi-nativedisplaymanager-displaysinfo.md)
       - 错误码<!--arkui-arkts-errcode-->
         - UI界面<!--arkui-ui-arkts-errcode-->
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
@@ -4292,29 +4293,32 @@
       - Function Flow Runtime Kit（任务并发调度服务）<!--function-flow-runtime-api-->
         - C API<!--function-flow-runtime-c-->
           - 模块<!--function-flow-runtime-module-->
-            - [FFRT](reference/apis-ffrt-kit/_f_f_r_t.md)
+            - [FFRT](reference/apis-ffrt-kit/capi-ffrt.md)
           - 头文件<!--function-flow-runtime-headerfile-->
-            - [condition_variable.h](reference/apis-ffrt-kit/condition__variable_8h.md)
-            - [loop.h](reference/apis-ffrt-kit/loop_8h.md)
-            - [mutex.h](reference/apis-ffrt-kit/mutex_8h.md)
-            - [queue.h](reference/apis-ffrt-kit/queue_8h.md)
-            - [shared_mutex.h](reference/apis-ffrt-kit/shared__mutex_8h.md)
-            - [sleep.h](reference/apis-ffrt-kit/sleep_8h.md)
-            - [task.h](reference/apis-ffrt-kit/task_8h.md)
-            - [timer.h](reference/apis-ffrt-kit/timer_8h.md)
-            - [type_def.h](reference/apis-ffrt-kit/type__def_8h.md)
+            - [condition_variable.h](reference/apis-ffrt-kit/capi-condition-variable-h.md)
+            - [loop.h](reference/apis-ffrt-kit/capi-loop-h.md)
+            - [mutex.h](reference/apis-ffrt-kit/capi-mutex-h.md)
+            - [queue.h](reference/apis-ffrt-kit/capi-queue-h.md)
+            - [shared_mutex.h](reference/apis-ffrt-kit/capi-shared-mutex-h.md)
+            - [sleep.h](reference/apis-ffrt-kit/capi-sleep-h.md)
+            - [task.h](reference/apis-ffrt-kit/capi-task-h.md)
+            - [timer.h](reference/apis-ffrt-kit/capi-timer-h.md)
+            - [type_def.h](reference/apis-ffrt-kit/capi-type-def-h.md)
           - 结构体<!--function-flow-runtime-struct-->
-            - [ffrt_cond_t](reference/apis-ffrt-kit/ffrt__cond__t.md)
-            - [ffrt_condattr_t](reference/apis-ffrt-kit/ffrt__condattr__t.md)
-            - [ffrt_dependence_t](reference/apis-ffrt-kit/ffrt__dependence__t.md)
-            - [ffrt_deps_t](reference/apis-ffrt-kit/ffrt__deps__t.md)
-            - [ffrt_function_header_t](reference/apis-ffrt-kit/ffrt__function__header__t.md)
-            - [ffrt_mutex_t](reference/apis-ffrt-kit/ffrt__mutex__t.md)
-            - [ffrt_mutexattr_t](reference/apis-ffrt-kit/ffrt__mutexattr__t.md)
-            - [ffrt_queue_attr_t](reference/apis-ffrt-kit/ffrt__queue__attr__t.md)
-            - [ffrt_rwlock_t](reference/apis-ffrt-kit/ffrt__rwlock__t.md)
-            - [ffrt_rwlockattr_t](reference/apis-ffrt-kit/ffrt__rwlockattr__t.md)
-            - [ffrt_task_attr_t](reference/apis-ffrt-kit/ffrt__task__attr__t.md)
+            - [ffrt_cond_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-cond-t.md)
+            - [ffrt_condattr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-condattr-t.md)
+            - [ffrt_dependence_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-dependence-t.md)
+            - [ffrt_deps_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-deps-t.md)
+            - [ffrt_function_header_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-function-header-t.md)
+            - [ffrt_mutex_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-mutex-t.md)
+            - [ffrt_mutexattr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-mutexattr-t.md)
+            - [ffrt_queue_attr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-queue-attr-t.md)
+            - [ffrt_rwlock_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-rwlock-t.md)
+            - [ffrt_rwlockattr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-rwlockattr-t.md)
+            - [ffrt_task_attr_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-task-attr-t.md)
+            - [ffrt_loop_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-loop-t.md)
+            - [ffrt_queue_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-queue-t.md)
+            - [ffrt_task_handle_t](reference/apis-ffrt-kit/capi-ffrt-ffrt-task-handle-t.md)
       - Input Kit（多模输入服务）<!--input-api-->
         - ArkTS API<!--input-arkts-->
           - [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis-input-kit/js-apis-inputdevice.md)

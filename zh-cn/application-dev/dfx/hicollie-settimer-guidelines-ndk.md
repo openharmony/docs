@@ -26,22 +26,22 @@
      src:
        main:
          cpp:
-           - types:
-               libentry:
-                 - index.d.ts
+           types:
+             libentry:
+               - index.d.ts
            - CMakeLists.txt
            - napi_init.cpp
          ets:
-           - entryability:
-               - EntryAbility.ts
-           - pages:
-               - Index.ets
+           entryability:
+             - EntryAbility.ts
+           pages:
+             - Index.ets
    ```
 
 2. 编辑“CMakeLists.txt”文件，添加源文件及动态库。
 
    ```cmake
-   # 依赖动态库libhilog_ndk.z.so(日志输出)，libohhicollie.so（HiCollie对外检测接口）
+   # 依赖动态库libhilog_ndk.z.so（日志输出），libohhicollie.so（HiCollie对外检测接口）
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libohhicollie.so)
    ```
 
@@ -60,7 +60,7 @@
    //定义回调函数
    void CallBack(void*)
    {
-     OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimerNdk callBack");  // 回调函数中打印日志
+     OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimerNdk CallBack");  // 回调函数中打印日志
    }
    
    static napi_value TestHiCollieTimerNdk(napi_env env, napi_callback_info info)
@@ -73,7 +73,7 @@
        sleep(2);  // 模拟执行耗时函数，在这里简单的将线程阻塞2s
        OH_HiCollie_CancelTimer(id);  // 根据id取消已注册任务
      }
-     return 0;
+     return nullptr;
    }
    
    EXTERN_C_START

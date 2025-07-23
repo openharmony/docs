@@ -108,8 +108,9 @@
     Button("appFreeze").onClick(()=>{
       // 在按钮点击函数中构造一个freeze场景，触发应用应用无响应事件
       setTimeout(() => {
-        while (true) {}
-      }, 1000)
+        let t = Date.now();
+        while (Date.now() - t <= 15000) {}
+      }, 5000);
     })
    ```
 

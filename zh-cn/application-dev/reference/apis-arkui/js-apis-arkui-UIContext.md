@@ -242,6 +242,8 @@ getMediaQuery(): MediaQuery
 
 **示例：**
 
+完整示例请参考[mediaquery示例](js-apis-mediaquery.md#示例)。
+
 <!--code_no_check-->
 ```ts
 uiContext.getMediaQuery();
@@ -1226,6 +1228,8 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 **示例：**
 
+完整示例请参考[示例4（设置键盘避让模式为压缩）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例4设置键盘避让模式为压缩)、[示例5（设置键盘避让模式为上抬）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例5设置键盘避让模式为上抬)以及[示例6（切换避让模式）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例6切换避让模式)。
+
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
@@ -1264,6 +1268,8 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 | [KeyboardAvoidMode](#keyboardavoidmode11)| 返回当前的页面避让模式。|
 
 **示例：**
+
+完整示例请参考[示例4（设置键盘避让模式为压缩）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例4设置键盘避让模式为压缩)、[示例5（设置键盘避让模式为上抬）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例5设置键盘避让模式为上抬)以及[示例6（切换避让模式）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例6切换避让模式)。
 
 ```ts
 // EntryAbility.ets
@@ -1958,9 +1964,8 @@ struct Index {
         }
         .onClick(() => {
           let uiContext: UIContext = this.getUIContext();
-          let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
           let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
+          console.info(`Window widthBp: ${widthBp}`);
         })
       }
       .width('100%')
@@ -2009,8 +2014,7 @@ struct Index {
         .onClick(() => {
           let uiContext: UIContext = this.getUIContext();
           let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
-          let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
+          console.info(`Window heightBP: ${heightBp}`);
         })
       }
       .width('100%')
@@ -3151,6 +3155,10 @@ type Context = common.Context
 getRectangleById(id: string): componentUtils.ComponentInfo
 
 获取组件大小、位置、平移、缩放、旋转及仿射矩阵属性信息。
+
+> **说明：**
+>
+> 该接口需要在目标组件布局、完成以后获取目标组件区域大小信息，建议在[onAppear](./arkui-ts/ts-universal-events-show-hide.md#onappear)中使用该接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -5359,6 +5367,8 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 | [mediaQuery.MediaQueryListener](js-apis-mediaquery.md#mediaquerylistener) | 媒体事件监听句柄，用于注册和去注册监听回调。 |
 
 **示例：**
+
+完整示例请参考[mediaquery示例](js-apis-mediaquery.md#示例)。
 
 <!--code_no_check-->
 ```ts

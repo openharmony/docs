@@ -209,7 +209,7 @@ addOutgoingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, numbers: 
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 9200010  | A conflict policy has been configured.                       |
-| 9200012  | Parameter validation failed.                       |
+| 9200012  | Parameter verification failed.                       |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 203      | This function is prohibited by enterprise management policies. |
 
@@ -272,7 +272,7 @@ removeOutgoingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, number
 | -------- | ------------------------------------------------------------ |
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
-| 9200012  | Parameter validation failed.                       |
+| 9200012  | Parameter verification failed.                       |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 203      | This function is prohibited by enterprise management policies. |
 
@@ -394,7 +394,7 @@ addIncomingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, numbers: 
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 9200010  | A conflict policy has been configured.                       |
-| 9200012  | Parameter validation failed.                       |
+| 9200012  | Parameter verification failed.                       |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 203      | This function is prohibited by enterprise management policies. |
 
@@ -457,7 +457,7 @@ removeIncomingCallPolicyNumbers(admin: Want, policy: adminManager.Policy, number
 | -------- | ------------------------------------------------------------ |
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
-| 9200012  | Parameter validation failed.                       |
+| 9200012  | Parameter verification failed.                       |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 203      | This function is prohibited by enterprise management policies. |
 

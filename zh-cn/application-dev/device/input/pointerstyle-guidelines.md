@@ -35,32 +35,43 @@ import { pointer } from '@kit.InputKit';
 ```js
 import { pointer } from '@kit.InputKit';
 
-// 1.应用切换到全屏播放
-// 2.调用鼠标光标隐藏接口隐藏光标
-try {
-  pointer.setPointerVisible(false, (error: Error) => {
-    if (error) {
-      console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
-    }
-    console.info(`Set pointer visible success.`);
-  });
-} catch (error) {
-  console.error(`The mouse pointer hide attributes is failed. ${JSON.stringify(error, [`code`, `message`])}`);
-}
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          // 1.应用切换到全屏播放
+          // 2.调用鼠标光标隐藏接口隐藏光标
+          try {
+            pointer.setPointerVisible(false, (error: Error) => {
+              if (error) {
+                console.error(`Set pointer visible failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+                return;
+              }
+              console.info(`Set pointer visible success.`);
+            });
+          } catch (error) {
+            console.error(`The mouse pointer hide attributes is failed. ${JSON.stringify(error, ["code", "message"])}`);
+          }
 
-// 3.应用退出全屏播放
-// 4.调用鼠标光标显示接口显示光标
-try {
-  pointer.setPointerVisible(true, (error: Error) => {
-    if (error) {
-      console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+          // 3.应用退出全屏播放
+          // 4.调用鼠标光标显示接口显示光标
+          try {
+            pointer.setPointerVisible(true, (error: Error) => {
+              if (error) {
+                console.error(`Set pointer visible failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+                return;
+              }
+              console.info(`Set pointer visible success.`);
+            });
+          } catch (error) {
+            console.error(`Set pointer visible failed, ${JSON.stringify(error, ["code", "message"])}`);
+          }
+        })
     }
-    console.info(`Set pointer visible success.`);
-  });
-} catch (error) {
-  console.error(`Set pointer visible failed, ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -81,45 +92,74 @@ import { pointer } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-// 1.开发者使能取色功能
-// 2.调用窗口实例获取对应的窗口id
-window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, windowClass: window.Window) => {
-  if (error.code) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
-    return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          // 1.开发者使能取色功能
+          // 2.调用窗口实例获取对应的窗口id
+          window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, windowClass: window.Window) => {
+            if (error.code) {
+              console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+              return;
+            }
+            let windowId = windowClass.getWindowProperties().id;
+            if (windowId < 0) {
+              console.info(`Invalid windowId`);
+              return;
+            }
+            try {
+              // 3.设置鼠标光标样式为取色器样式
+              pointer.setPointerStyle(windowId, pointer.PointerStyle.COLOR_SUCKER).then(() => {
+                console.info(`Successfully set mouse pointer style`);
+              });
+            } catch (error) {
+              console.error(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${error.message}`);
+            }
+          });
+        })
+    }
   }
-  let windowId = windowClass.getWindowProperties().id;
-  if (windowId < 0) {
-    console.info(`Invalid windowId`);
-    return;
+}
+```
+
+```js
+import { pointer } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          // 4.取色结束
+          window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, windowClass: window.Window) => {
+            if (error.code) {
+              console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+              return;
+            }
+            let windowId = windowClass.getWindowProperties().id;
+            if (windowId < 0) {
+              console.info(`Invalid windowId`);
+              return;
+            }
+            try {
+              // 5.设置鼠标光标样式为默认样式
+              pointer.setPointerStyle(windowId, pointer.PointerStyle.DEFAULT).then(() => {
+                console.info(`Successfully set mouse pointer style`);
+              });
+            } catch (error) {
+              console.error(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${error.message}`);
+            }
+          });
+        })
+    }
   }
-  try {
-    // 3.设置鼠标光标样式为取色器样式
-    pointer.setPointerStyle(windowId, pointer.PointerStyle.COLOR_SUCKER).then(() => {
-      console.info(`Successfully set mouse pointer style`);
-    });
-  } catch (error) {
-    console.error(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(`message`)}`);
-  }
-});
-// 4.取色结束
-window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, windowClass: window.Window) => {
-  if (error.code) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
-    return;
-  }
-  let windowId = windowClass.getWindowProperties().id;
-  if (windowId < 0) {
-    console.info(`Invalid windowId`);
-    return;
-  }
-  try {
-    // 5.设置鼠标光标样式为默认样式
-    pointer.setPointerStyle(windowId, pointer.PointerStyle.DEFAULT).then(() => {
-      console.info(`Successfully set mouse pointer style`);
-    });
-  } catch (error) {
-    console.error(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(`message`)}`);
-  }
-});
+}
 ```
