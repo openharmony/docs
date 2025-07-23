@@ -95,7 +95,7 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme, CustomDarkColor
 | 名称                           | 类型                                                 | 只读  | 可选  | 说明         |
 |-------------------------------|-----------------------------------------------------|-----|-----|------------|
 | colors | [CustomColors](#customcolors) | 否   | 是   | 自定义主题颜色资源。</br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| darkColors<sup>20+</sup> | [CustomDarkColors](#customdarkcolors) | 否   | 是   | 自定义深色主题颜色资源。</br>**说明：** 如果未设置darkColors，颜色值将与浅色模式下的colors配置相同，并且不会随着颜色模式的变化而变化，除非该颜色是通过dark目录下的资源进行设置的。</br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| darkColors<sup>20+</sup> | [CustomDarkColors](#customdarkcolors20) | 否   | 是   | 自定义深色主题颜色资源。</br>**说明：** 如果未设置darkColors，颜色值将与浅色模式下的colors配置相同，并且不会随着颜色模式的变化而变化，除非该颜色是通过dark目录下的资源进行设置的。</br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## CustomColors
 
