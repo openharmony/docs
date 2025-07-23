@@ -2,15 +2,15 @@
 
 ## 简介
 
-使用JSVM-API接口进行数组（array）相关开发时，在JSVM模块中可以调用相关接口直接操作和处理 JavaScript 中的数组。
+使用JSVM-API接口进行数组（array）相关开发时，在JSVM模块中可以调用相关接口直接操作和处理JavaScript中的数组。
 
 ## 基本概念
 
-使用 JSVM-API 接口进行数组（array）相关开发时，涉及的基本概念主要包括数组的创建、访问、修改、遍历以及与数组相关的操作。这些概念对于理解在 JSVM 模块中与 JavaScript 数组交互非常重要。以下是一些关键概念：
+使用 JSVM-API 接口进行数组（array）相关开发时，涉及的基本概念主要包括数组的创建、访问、修改、遍历以及与数组相关的操作。这些概念对于理解在 JSVM 模块中与 JavaScript 数组交互非常重要。以下是一些关键概念：	
 
 - **数组的创建**：若在 JSVM 模块中需要创建新的 JavaScript 数组时，可以使用提供的 OH_JSVM_CreateArray 接口创建数组，将传递给 JavaScript 层。
 - **数组相关操作**：在 JSVM 模块中通过对应的接口获取 JavaScript 数组的长度、检索指定索引处的元素、设置指定索引的元素值，从而实现 JSVM 模块与 JavaScript 数组的交互。
-- **TypedArray**：JavaScript 中的 TypedArray 是一种类数组数据视图，用于描述二进制数据。它可以视为指定元素类型的数组，TypedArray 没有直接构造器，但是可以通过其子类构造器构造创建。子类包括：Int8Array、Uint8Array、Uint8ClampedArray、Int16Array、Int32Array等。
+- **TypedArray**：JavaScript 中的 TypedArray 是一种类数组数据视图，用于描述二进制数据。它可以视为指定元素类型的类数组数据视图，TypedArray 没有直接构造器，但是可以通过其子类构造器构造创建。子类包括：Int8Array、Uint8Array、Uint8ClampedArray、Int16Array、Int32Array等。
 - **ArrayBuffer**：ArrayBuffer 是固定长度的二进制数据缓冲区。
 - **DataView**：DataView 是 JavaScript 中的一种视图，是可以从 ArrayBuffer 对象中读写多种数值类型的底层接口。
 
@@ -21,18 +21,18 @@
 | ---------------------------- | ------------------------------------------ |
 |OH_JSVM_CreateArray | 创建一个新的 JavaScript 数组对象 |
 |OH_JSVM_CreateArrayWithLength | 创建一个指定长度的 JavaScript 数组对象 |
-|OH_JSVM_CreateTypedarray | 在现有的 ArrayBuffer 上创建 JavaScript TypedArray 对象，TypedArray 对象在底层数据缓冲区上提供类似数组的视图，其中每个元素都具有相同的底层二进制标量数据类型。注意入参要求：(length * size_of_element) + byte_offset 不得超过传入数组的大小（以字节为单位），其中size_of_element 指数组中元素数据类型的大小，否则会引发 RangeError 异常。|
+|OH_JSVM_CreateTypedarray | 在现有的ArrayBuffer上创建JavaScript TypedArray对象，TypedArray对象提供类似类数组的视图，每个元素具有相同的二进制标量数据类型。注意(length * size_of_element) + byte_offset 不得超过传入数组的大小（以字节为单位），否则会引发RangeError异常。|
 |OH_JSVM_CreateDataview | 在现有的 ArrayBuffer 上创建一个 JavaScript DataView 对象，DataView 对象在底层数据缓冲区上提供类似数组的视图，该 ArrayBuffer 允许有不同大小和类型的元素。要求 byte_length + byte_offset 小于或等于传入数组的字节大小，否则会引发 RangeError 异常。|
 |OH_JSVM_GetArrayLength | 返回 Array 对象的长度 |
 |OH_JSVM_GetTypedarrayInfo | 获取 TypedArray（类型化数组）对象的信息 |
-|OH_JSVM_GetDataviewInfo | 获取 Dataview 对象的信息 |
+|OH_JSVM_GetDataviewInfo | 获取 DataView 对象的信息 |
 |OH_JSVM_IsArray | 判断一个 JavaScript 对象是否为 Array 类型对象|
 |OH_JSVM_SetElement | 在给定对象的指定索引处设置元素 |
 |OH_JSVM_GetElement | 获取给定对象指定索引处的元素 |
 |OH_JSVM_HasElement | 若给定对象的指定索引处拥有属性，获取该元素 |
 |OH_JSVM_DeleteElement | 尝试删除给定对象的指定索引处的元素 |
-|OH_JSVM_IsDataview | 判断一个 JavaScript 对象是否为 Dataview 类型对象 |
-|OH_JSVM_IsTypedarray | 判断一个 JavaScript 对象是否为 Typedarray 类型对象 |
+|OH_JSVM_IsDataview | 判断一个 JavaScript 对象是否为 DataView 类型对象 |
+|OH_JSVM_IsTypedarray | 判断一个 JavaScript 对象是否为 TypedArray 类型对象 |
 
 ## 使用示例
 
@@ -155,7 +155,7 @@ JSVM CreateArrayWithLength success
 ```
 ### OH_JSVM_CreateTypedarray
 
-在现有的 ArrayBuffer上 创建一个 JavaScript TypedArray 对象，TypedArray 对象在底层数据缓冲区上提供类似数组的视图，其中每个元素都具有相同的底层二进制标量数据类型。
+在现有的 ArrayBuffer上 创建一个 JavaScript TypedArray 对象,TypedArray 对象在底层数据缓冲区上提供类似数组的视图，其中每个元素都具有相同的底层二进制标量数据类型。
 
 cpp 部分代码：
 
@@ -806,7 +806,7 @@ JSVM GetElement success
 ```
 ### OH_JSVM_HasElement
 
-若给定对象的指定索引处拥有属性，获取该元素。
+若给定对象的指定索引处拥有属性，获取元素。
 
 cpp 部分代码：
 
@@ -916,7 +916,7 @@ JSVM DeleteElement: 1
 ```
 ### OH_JSVM_IsDataview
 
-判断一个 JavaScript 对象是否为 Dataview类型对象。
+判断一个 JavaScript 对象是否为 Dataview 类型对象。
 
 cpp 部分代码：
 
@@ -966,7 +966,7 @@ JSVM IsDataView: 1
 ```
 ### OH_JSVM_IsTypedarray
 
-判断一个 JavaScript 对象是否为 Typedarray 类型对象。
+判断一个 JavaScript 对象是否为 TypedArray 类型对象。
 
 cpp 部分代码：
 

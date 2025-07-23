@@ -2,11 +2,11 @@
 
 ## 简介
 
-使用JSVM-API接口操作JSON数据时，JSVM模块中相关接口可以直接操作和处理JSON格式的数据。
+使用JSVM-API接口操作JSON数据时，JSVM模块中的相关接口可以直接处理JSON格式的数据。
 
 ## 基本概念
 
-- **JSON（ JavaScript Object Notation）**：是一种常见的数据交换格式，可用于实现前后端之间的数据传递、存储和交流，并且可以与多种编程语言进行交互，在JavaScript中被广泛应用于数据处理。
+- **JSON（JavaScript Object Notation）**：是一种常见的数据交换格式，用于前后端数据的传递、存储和交流。可以与多种编程语言进行交互，在JavaScript中被广泛应用于数据处理。
 
 ## 接口说明
 

@@ -2,7 +2,7 @@
 
 ## 简介
 
-使用JSVM-API接口进行错误处理开发，使得在JSVM-API模块中能够更好地管理和响应错误情况。通过合理使用这些函数，可以提高模块的稳定性和可靠性。
+使用JSVM-API接口进行错误处理，可以更好地管理和响应错误情况。合理使用这些函数，可以提高模块的稳定性和可靠性。
 
 ## 基本概念
 
@@ -30,11 +30,11 @@
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
+JSVM-API接口开发流程可参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅展示接口对应的C++相关代码。
 
 ### OH_JSVM_Throw
 
-用于抛出JavaScript Error对象。当在本机代码中发生错误或检测到不符合预期的情况时，可以使用此接口来抛出一个Javascript Error，使其能够被捕获并处理。示例参考OH_JSVM_CreateError。
+用于抛出JavaScript Error对象。当在本机代码中发生错误或检测到不符合预期的情况时，可以使用此接口来抛出JavaScript Error，使其能够被捕获并处理。示例参考OH_JSVM_CreateError。
 
 ### OH_JSVM_CreateError
 
@@ -294,7 +294,7 @@ JSVM error message: throw syntax error, error code: JsVmThrowSyntaxError
 
 ### OH_JSVM_IsError
 
-用于判断给定的JSVM_Value是否表示一个error对象。
+用于判断给定的JSVM_Value是否表示一个Error对象。
 
 cpp部分代码：
 
