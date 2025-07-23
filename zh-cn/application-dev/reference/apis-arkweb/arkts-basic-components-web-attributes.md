@@ -2965,7 +2965,7 @@ nativeEmbedOptions(options?: EmbedOptions)
 
 enableDataDetector(enable: boolean)
 
-设置是否识别网页文本特殊实体。该接口依赖设备底层具备文本识别能力，否则设置无效。
+设置是否识别网页文本特殊实体，如邮件、电话、网址等。该接口依赖设备底层具备文本识别能力，否则设置无效。
 
 当enableDataDetector设置为true，同时不设置[dataDetectorConfig](#datadetectorconfig20)属性时，默认识别所有类型的实体，所识别实体的color和decoration会被更改为如下样式：
 <!--code_no_check-->
@@ -2978,17 +2978,11 @@ decoration:{
 }
 ```
 
-目前仅在页面加载完成后触发一次全文实体识别，实体识别的筛选规则为如下：
+当enableDataDetector设置为true且[copyOptions](#copyoptions11)设置为CopyOptions.LocalDevice时，AI菜单功能将被激活。此时，在网页中选中文本后，文本选择菜单能够展示对应的AI菜单项，包括[TextMenuItemId](../apis-arkui/arkui-ts/ts-text-common.md#textmenuitemid12)中的url（打开连接）、email（新建邮件）、phoneNumber（呼叫）、address（导航至该位置）、dateTime（新建日程提醒）。
 
-- 不处理输入框内、可编辑区域内的文本实体。
-- 不处理<a></a>标签内的文本实体。
-- 不处理跨域iframe内、两层及以上嵌套iframe内的文本实体。
-- 跨节点的实体不会被识别。如`<div>星</div><div>期六</div>`。
+AI菜单生效时，需在选中范围内，包括一个完整的AI实体，才能展示对应的选项。该菜单项与[TextMenuItemId](../apis-arkui/arkui-ts/ts-text-common.md#textmenuitemid12)中的askAI菜单项不同时出现。
 
-
-网页中文本实体处理后，会转变成超链接的形式，触摸点击或鼠标左键点击实体，会根据实体类型弹出对应的实体操作菜单。触摸长按、触摸拖拽、鼠标右键、鼠标拖拽会执行超链接的默认逻辑。
-
-页面文本元素的计算样式存在`user-select:none`时，或页面Javascript拦截了select事件时，实体菜单中“选择文本”的选项无效，但仍可以复制实体文本。
+示例使用场景详见[使用Web组件的智能分词能力](../../web/web-data-detector.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2997,6 +2991,10 @@ decoration:{
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
 | enable  | boolean | 是   | 是否启用Web文本识别，true表示启用，false表示不启用。<br/>默认值：false |
+
+> **说明：** 
+> 
+> 动态更新enableDataDetector的启用状态不会即时影响当前页面，需通过刷新页面来使新配置生效。
 
 **示例：**
 
@@ -3058,6 +3056,10 @@ dataDetectorConfig(config: TextDataDetectorConfig)
 > **说明：** 
 > 
 > TextDataDetectorConfig中的onDetectResultUpdate在Web组件中不支持，设置的回调不会调用。
+>
+> [copyOptions](#copyoptions11)设置为CopyOptions.None时，TextDataDetectorConfig中的enablePreviewMenu配置项无效。
+> 
+> 动态更新TextDataDetectorConfig的配置不会即时影响当前页面，需通过刷新页面来使新配置生效。
 
 **示例：**
 
