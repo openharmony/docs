@@ -741,8 +741,8 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-scroll.md	@rong
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md	@raulnaruto_admin	@jiangdayuan	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-stack.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-swiper.md	@huangxiaolinabc123	@jiangdayuan	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md	@zcdqs	@lihaoyn @yangfan229 @H-xinwei	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md	@zcdqs	@lihaoyn	@HelloCrease @yangfan229 @H-xinwei
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md	@lihaoyn @yangfan229 @H-xinwei	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md	@lihaoyn	@HelloCrease @yangfan229 @H-xinwei
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-waterflow.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-list-sys.md @rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
@@ -1951,8 +1951,8 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-scroll.md	@rong
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md	@raulnaruto_admin	@jiangdayuan	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-stack.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-swiper.md	@huangxiaolinabc123	@jiangdayuan	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md	@zcdqs	@lihaoyn @yangfan229 @H-xinwei	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md	@zcdqs	@lihaoyn	@HelloCrease @yangfan229 @H-xinwei
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabs.md	@lihaoyn @yangfan229 @H-xinwei	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md	@lihaoyn	@HelloCrease @yangfan229 @H-xinwei
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-waterflow.md	@rongshao-Z	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-list-sys.md @rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
