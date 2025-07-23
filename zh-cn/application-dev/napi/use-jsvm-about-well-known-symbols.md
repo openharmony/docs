@@ -1,4 +1,4 @@
-# 使用JSVM-API接口进行Wellknown symbols相关开发
+# 使用JSVM-API接口进行Well-known symbols相关开发
 
 ## 简介
 
