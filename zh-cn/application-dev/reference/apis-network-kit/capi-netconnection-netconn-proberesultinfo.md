@@ -42,5 +42,3 @@ rtt[0] - rttMin: 探测过程中的最小rtt值；<br>
 rtt[1] - rttMax: 探测过程中的最大rtt值；<br>
 rtt[2] - rttAvg: 探测过程中的平均rtt值；<br>
 rtt[3] - rttStd: 探测过程中的rtt标准差；
-
-
