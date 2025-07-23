@@ -5843,11 +5843,12 @@ struct Index {
 struct AutoSpacing {
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  @State enableAutoSpace:boolean = false;
+  @State enableAutoSpace: boolean = false;
+
   build() {
     Column() {
       Column() {
-        Row({space:2}) {
+        Row({ space: 2 }) {
           Button("插入中西文内容").onClick(() => {
             this.controller.addTextSpan("Add文本Span",
               {
@@ -5882,7 +5883,8 @@ struct AutoSpacing {
         .justifyContent(FlexAlign.Center)
         .width("100%")
         .height("10%")
-        Row({space:2}) {
+
+        Row({ space: 2 }) {
           Button("开启中西文自动间距").onClick(() => {
             this.enableAutoSpace = true;
           })
@@ -5896,9 +5898,10 @@ struct AutoSpacing {
         .width("100%")
         .height("10%")
       }
+
       Column() {
         RichEditor(this.options)
-          .onReady(()=>{
+          .onReady(() => {
             this.controller.addImageSpan($r("app.media.icon"),
               {
                 imageStyle:
