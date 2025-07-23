@@ -159,7 +159,7 @@ Json文件共包含3个属性。
 2. 振动器查询。
 
   **情形一** 查询所有马达信息：
-  
+
   ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -174,7 +174,7 @@ Json文件共包含3个属性。
   ```
 
   **情形二** 查询指定设备的一个或多个马达信息：
-  
+
   ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -388,7 +388,7 @@ Json文件共包含3个属性。
    ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-  
+    
    const vibratorInfoParam: vibrator.VibratorInfoParam = {
      deviceId: 1   // deviceid 需要是查询出来真实存在的设备
    }
