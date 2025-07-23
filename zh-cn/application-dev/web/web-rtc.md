@@ -41,7 +41,7 @@ Web组件可以通过W3C标准协议接口拉起摄像头和麦克风，通过[o
           "when":"inuse"
         }
       }
-    ],
+    ]
    ```
 
 通过在JavaScript中调用W3C标准协议接口navigator.mediaDevices.getUserMedia()，该接口用于拉起摄像头和麦克风。constraints参数是一个包含了video和audio两个成员的MediaStreamConstraints对象，用于说明请求的媒体类型。
@@ -118,7 +118,7 @@ Web组件可以通过W3C标准协议接口拉起摄像头和麦克风，通过[o
     <meta charset="UTF-8">
   </head>
   <body>
-  <video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+  <video id="video" width="500px" height="500px" autoplay></video>
   <canvas id="canvas" width="500px" height="500px"></canvas>
   <br>
   <input type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()"/>
@@ -134,9 +134,11 @@ Web组件可以通过W3C标准协议接口拉起摄像头和麦克风，通过[o
       // 返回的Promise对象
       let promise = navigator.mediaDevices.getUserMedia(constraints);
       // then()异步，调用MediaStream对象作为参数
-      promise.then(function (MediaStream) {
+      promise.then(function(MediaStream) {
         video.srcObject = MediaStream;
         video.play();
+      }).catch(function(err) {
+    	  console.log(err.name + ": " + err.message);
       });
     }
   </script>
