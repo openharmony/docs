@@ -19,7 +19,7 @@ ArkUI获取当前显示页面中所有控件的信息，包括控件树的父子
 
 @ohos.arkui.UIContext(UIContext)扩展能力，使用[getFilteredInspectorTree](../reference/apis-arkui/js-apis-arkui-UIContext.md#getfilteredinspectortree12)获取组件树及组件属性。支持设置过滤条件进行查询。
 
-@ohos.arkui.UIContext(UIContext)扩展能力，使用[getFilteredInspectorTreeById](../reference/apis-arkui/js-apis-arkui-UIContext.md#getfilteredinspectortree12)获取指定的组件及其子组件的属性。支持设置过滤条件进行查询。
+@ohos.arkui.UIContext(UIContext)扩展能力，使用[getFilteredInspectorTreeById](../reference/apis-arkui/js-apis-arkui-UIContext.md#getfilteredinspectortreebyid12)获取指定的组件及其子组件的属性。支持设置过滤条件进行查询。
 
 ## 布局回调
 
