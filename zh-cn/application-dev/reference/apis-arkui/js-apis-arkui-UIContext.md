@@ -200,6 +200,7 @@ getUIInspector(): UIInspector
 ```ts
 uiContext.getUIInspector();
 ```
+完整示例请参考[UIInspector](#uiinspector)中的示例。
 
 ### getUIObserver<sup>11+</sup>
 
@@ -3207,10 +3208,44 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 <!--code_no_check-->
 ```ts
-import { UIInspector } from '@kit.ArkUI';
+import { inspector, UIInspector } from '@kit.ArkUI'
 
-let inspector: UIInspector = uiContext.getUIInspector();
-let listener = inspector.createComponentObserver('COMPONENT_ID');
+@Entry
+@Component
+struct UIInspectorExample {
+  build() {
+    Column() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+        Row({ space: 5 }) {
+          Text("UIInspector")
+            .width(110)
+            .height(110)
+            .border({ width: 1 })
+            .id('TEXT_ID')
+        }.width(80).width(80)
+      }.width(80).width(80)
+    }.height(320).width(360).padding({ right: 10, top: 10 })
+  }
+
+  uiInspector: UIInspector = this.getUIContext().getUIInspector();
+  listener:inspector.ComponentObserver = this.uiInspector.createComponentObserver("TEXT_ID")
+
+  aboutToAppear() {
+    let onLayoutComplete:()=>void=():void=>{
+      console.info("TEXT_ID layout complete")
+    }
+    let onDrawComplete:()=>void=():void=>{
+      console.info("TEXT_ID draw complete")
+    }
+
+    this.listener.on('layout', onLayoutComplete)
+    this.listener.on('draw', onDrawComplete)
+
+    // 通过句柄向对应的查询条件取消注册回调，由开发者自行决定在何时调用。
+    // this.listener.off('layout', onLayoutComplete)
+    // this.listener.off('draw', onDrawComplete)
+  }
+}
 ```
 
 ## PageInfo<sup>12+</sup>
