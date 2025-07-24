@@ -34,8 +34,8 @@ export const add: (a: number, b: number) => number;
 ```
 ```ts
 // test.ets
-import * as add from 'libentry.so'
-add.add(2, 3);
+import * as entry from 'libentry.so'
+entry.add(2, 3);
 ```
 
 ## 间接导入
@@ -90,8 +90,8 @@ export const add: (a: number, b: number) => number;
 ```
 ```ts
 // test.ets
-import('libentry.so').then((ns:ESObject) => {
-    ns.default.add(2, 3);
+import('libentry.so').then((entry:ESObject) => {
+    entry.default.add(2, 3);
 })
 ```
 ### 间接导入
