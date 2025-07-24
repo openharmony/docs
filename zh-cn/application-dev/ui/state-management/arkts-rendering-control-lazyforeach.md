@@ -590,7 +590,7 @@ struct MyComponent {
 }
 ```
 
-onDatasetChange接口允许开发者一次性通知LazyForEach进行数据添加、删除、移动和交换等操作。在上述例子中，点击“change data”文本后,第二项数据被移动到第四项位置，第五项与第七项数据交换位置，并且从第九项开始添加了数据"Hello 1"和"Hello 2"，同时从第十一项开始删除了两项数据。  
+onDatasetChange接口允许开发者一次性通知LazyForEach进行数据添加、删除、移动和交换等操作。在上述例子中，点击“change data”文本后，第二项数据被移动到第四项位置，第五项与第七项数据交换位置，并且从第九项开始添加了数据"Hello 1"和"Hello 2"，同时从第十一项开始删除了两项数据。  
 
 **图9**  LazyForEach改变多个数据  
 ![LazyForEach-Change-MultiData](./figures/LazyForEach-Change-MultiData.gif)  
@@ -685,8 +685,8 @@ struct MyComponent {
 "Hello 1","Hello 2" 在 "Hello h" 之后插入，而 "Hello h" 在修改前的原数组中的 index=7，因此第三个 operation 为 `{ type: DataOperationType.ADD, index: 8, count: 2 }`。
 "Hello k","Hello l" 被删除了，而 "Hello k" 在原数组中的 index=10，因此第四个 operation 为 `{ type: DataOperationType.DELETE, index: 10, count: 2 }`。
 
-3. 调用一次`onDatasetChange`时，每个`index`对应的数据只能被操作一次。如果多次操作同一个`index`，`LazyForEach`仅生效第一次操作。
-4. 部分操作由开发者传入键值，LazyForEach不再重复调用keygenerator获取键值，开发者需保证传入键值的正确性。
+3. 在同一个`onDatasetChange`批量处理数据时，如果多个`DataOperation`操作同一个`index`，只有第一个`DataOperation`生效。
+4. 部分操作由开发者传入键值，LazyForEach不再重复调用`keygenerator`获取键值，开发者需保证传入键值的正确性。
 5. 若操作集合中包含RELOAD操作，则其他操作均不生效。
 
 ### 改变数据子属性
@@ -1068,7 +1068,7 @@ struct Parent {
 ```
 
 **图12**  LazyForEach拖拽排序效果图  
-![LazyForEach-Drag-Sort](./figures/ForEach-Drag-Sort.gif)
+![LazyForEach-Drag-Sort](./figures/LazyForEach-Drag-Sort.gif)
 
 ## 常见问题
 
