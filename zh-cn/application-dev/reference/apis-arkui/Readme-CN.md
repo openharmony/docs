@@ -13,7 +13,7 @@
     - [@ohos.arkui.prefetcher (Prefetching)](js-apis-arkui-Prefetcher.md)
     - [@ohos.arkui.shape(形状)](js-apis-arkui-shape.md)
     - [@ohos.arkui.theme(主题换肤)](js-apis-arkui-theme.md)
-    - @ohos.arkui.UIContext (UIContext)<!--js-apis-arkui-UIContext-->
+    - @ohos.arkui.UIContext (UIContext)<!--js-apis-arkui-uicontext-->
       - [模块描述](arkts-apis-uicontext.md)
       - [Class (ComponentSnapshot)](arkts-apis-uicontext-componentsnapshot.md)
       - [Class (ComponentUtils)](arkts-apis-uicontext-componentutils.md)

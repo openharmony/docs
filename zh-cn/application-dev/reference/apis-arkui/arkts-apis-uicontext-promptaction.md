@@ -892,7 +892,7 @@ presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: 
 
 | 参数名  | 类型                                                         | 必填 | 说明               |
 | ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [CustomBuilderWithId](#custombuilderwithid18) | 是   | 自定义弹窗的内容。 |
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [CustomBuilderWithId](arkts-apis-uicontext-t.md#custombuilderwithid18) | 是   | 自定义弹窗的内容。 |
 | controller | [promptAction.DialogController](js-apis-promptAction.md#dialogcontroller18) | 否 | 自定义弹窗的控制器。 |
 | options | [promptAction.DialogOptions](js-apis-promptAction.md#dialogoptions18) | 否 | 自定义弹窗的样式。 |
 
