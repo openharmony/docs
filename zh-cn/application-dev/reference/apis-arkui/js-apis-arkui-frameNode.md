@@ -1466,7 +1466,7 @@ get commonAttribute(): CommonAttribute
 
 | 类型                                                           | 说明                                                                                                             |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| CommonAttribute | 获取FrameNode中持有的CommonAttribute接口，用于设置通用属性。|
+| CommonAttribute | 获取FrameNode中持有的CommonAttribute接口，并设置[通用属性](./arkui-ts/ts-component-general-attributes.md)。|
 
 > **说明：**
 >
@@ -2172,16 +2172,42 @@ getNodePropertyValue(property: AnimationPropertyType): number[]
 
 TypedFrameNode继承自[FrameNode](#framenode)，用于声明具体类型的FrameNode。
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 ### 属性
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 | 名称       | 类型 | 只读 | 可选 | 说明                                                         |
 | ---------- | ---- | ---- | ---- | ------------------------------------------------------------ |
-| initialize | C    | 否   | 否   | 该接口用于创建对应组件的构造参数，用于设置/更新组件的初始值。 |
-| attribute  | T    | 否   | 否   | 该接口用于获取对应组件的属性设置对象，用于设置/更新组件的通用、私有属性。 |
+| initialize | C    | 否   | 否   | 该接口用于创建组件的构造参数，设置或更新组件的初始值。 |
+| attribute  | T    | 否   | 否   | 该接口用于获取组件的属性设置对象，用于设置和更新组件的通用及私有属性。 |
+
+> **说明：**
+>
+> [commonAttribute](#commonattribute12)仅在CustomFrameNode上生效，TypedFrameNode上commonAttribute行为未定义。建议使用[attribute](#属性-1)接口而非[commonAttribute](#commonattribute12)接口进行通用属性设置，如node.attribute.backgroundColor(Color.Pink)。
+
+## TypedFrameNode<sup>20+</sup>
+
+TypedFrameNode继承自[FrameNode](#framenode)，用于声明具体类型的FrameNode。
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+### 属性
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+| 名称       | 类型 | 只读 | 可选 | 说明                                                         |
+| ---------- | ---- | ---- | ---- | ------------------------------------------------------------ |
+| attribute  | T    | 否   | 否   | 该接口用于获取组件的属性设置对象，用于设置和更新组件的通用及私有属性。 |
 
 > **说明：**
 >
@@ -2976,9 +3002,56 @@ List类型的FrameNode节点类型。只允许添加ListItem、ListItemGroup类�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 | 类型                                               | 说明                                                         |
 | -------------------------------------------------- | ------------------------------------------------------------ |
 | TypedFrameNode&lt;ListInterface, ListAttribute&gt; | 提供List类型FrameNode节点。<br/>**说明：**<br/> ListInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为List组件的构造函数类型。 <br/> ListAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回List组件的属性设置对象。 |
+
+## ListFrameNode<sup>20+</sup>
+
+ListFrameNode继承自[TypedFrameNode](#typedframenode20)，用于声明List类型的FrameNode。
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+### initialize<sup>20+</sup>
+
+abstract initialize(options?: ListOptions): ListAttribute;
+
+该接口用于创建List类型组件的构造参数，用于设置或更新组件的初始值。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| options | [ListOptions](./arkui-ts/ts-container-list.md#listoptions18对象说明) | 否   | 设置List组件参数。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| ListAttribute | 返回List组件的属性设置对象。 |
+
+### List<sup>20+</sup>
+type List = ListFrameNode
+
+List类型的FrameNode节点类型。只允许添加ListItem、ListItemGroup类型子组件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+| 类型                                               | 说明                                                         |
+| -------------------------------------------------- | ------------------------------------------------------------ |
+| [ListFrameNode](#listframenode20) | 提供List类型FrameNode节点。 |
 
 ### createNode('List')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'List'): List
