@@ -88,7 +88,7 @@ The basic process of hit testing is as follows: Upon receiving the start event, 
 
 As shown in the figure, when the initial event is dispatched to a component, the component collects gestures and events bound to it, and then passes the collection result to the parent component until the root node is reached. If a component is transparent, has been removed from the component tree, or the event coordinates are outside the component's response region, the collection process is not triggered, and the parent component receives an empty response. Otherwise, all components will collect gestures and events and send the collection result to the parent component.
 
-### Hit test control
+### Hit Test Control
 
 When [hit test control](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md) is bound to a component, it may affect the hit testing of sibling nodes and parent and child nodes. The impact of a child component on its parent component's hit testing depends on the status of the last child component that is not blocked in hit testing.
 
@@ -110,11 +110,11 @@ You can configure hit test control to block the hit test of the component itself
 
   ![hitTestModeTransparent](figures/hitTestModeTransparent.png)
 
-### Custom event interception
+### Custom Event Interception
 
 When a user performs a press action, the callback for [custom event interception](../reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md) bound to the component is triggered. You can dynamically adjust the **hitTestBehavior** attribute of the component based on the application status to affect the hit test process.
 
-### Response region setting
+### Response Region Setting
 
 [Touch target settings](../reference/apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md) are another impact factor in the hit test. According to the [event interaction pipeline](#event-interaction-pipeline), the gestures and events bound to a component are collected and enter the event response chain only when the coordinates of an event hit the touch target of the component. As such, you can adjust the touch target of the component to control the hit test process. If the touch target is set to **0**, or defined as an untouchable area, the event is directly sent back to the parent node for subsequent hit tests.
 

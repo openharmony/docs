@@ -1168,7 +1168,7 @@ For V2, the observation capability of state variables is embedded in the data an
 **Common scenarios**
 
 V1:
-Use the windowStage.[loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9) and [getShared](../../reference/apis-arkui/arkui-ts/ts-state-management.md#getshared10) APIs to share state variables between pages.
+Use the windowStage.[loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9) and this.getUIContext().[getSharedLocalStorage](../../reference/apis-arkui/js-apis-arkui-UIContext.md#getsharedlocalstorage12) APIs to share state variables between pages.
 ```
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
