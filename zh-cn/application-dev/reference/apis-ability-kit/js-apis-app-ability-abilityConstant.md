@@ -113,20 +113,18 @@ export default class MyAbility extends UIAbility {
 
 记录Ability所在进程上次退出的详细信息。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | 否 | 否 | Ability上次退出所在进程的进程号。 |
-| processName | string | 否 | 否 | Ability上次退出所在进程的名称。 |
-| uid | number | 否 | 否 | Ability上次退出所在应用的UID。 |
-| exitSubReason | number | 否 | 否 | Ability上次退出的子原因。 |
-| exitMsg | string | 否 | 否 | Ability上次退出时所在进程被kill的描述信息。 |
-| rss | number | 否 | 否 | Ability上次退出时所在进程的rss值。 |
-| pss | number | 否 | 否 | Ability上次退出时所在进程的pss值。 |
-| timestamp | number | 否 | 否 | Ability上次退出时的时间戳。 |
+| pid | number | 否 | 否 | Ability上次退出所在进程的进程号。 <br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
+| processName | string | 否 | 否 | Ability上次退出所在进程的名称。 <br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
+| uid | number | 否 | 否 | Ability上次退出所在应用的UID。 <br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
+| exitSubReason | number | 否 | 否 | Ability上次退出的子原因。 <br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
+| exitMsg | string | 否 | 否 | Ability上次退出时所在进程被kill的描述信息。 <br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
+| rss | number | 否 | 否 | Ability上次退出时所在进程的rss值。 <br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
+| pss | number | 否 | 否 | Ability上次退出时所在进程的pss值。 <br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
+| timestamp | number | 否 | 否 | Ability上次退出时的时间戳。 <br/>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
 | processState<sup>20+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10) | 否 | 是 | Ability上次退出时的进程状态。<br/>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
 
 **示例**:
