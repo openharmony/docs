@@ -13,7 +13,7 @@
 ## 约束和限制
 
 - **支持的平台**：该能力与平台能力有关，可以通过[OH_AVCapability_IsFeatureSupported](../../reference/apis-avcodec-kit/_a_v_capability.md#oh_avcapability_isfeaturesupported)接口查询系统支持情况。
-- **支持的系统**：OpenHarmony6.0及以后。
+- **支持的系统**：API20及以后。
 - **支持的编码器**：该能力与编码器能力有关，可以通过[OH_AVCodec_GetCapabilityByCategory](../../reference/apis-avcodec-kit/_a_v_capability.md#oh_avcodec_getcapabilitybycategory)接口查询支持情况。
 - **支持的码控模式**：VBR、CBR、SQR、CQ。
 - 不支持与时域可分层视频编码共同使能。
