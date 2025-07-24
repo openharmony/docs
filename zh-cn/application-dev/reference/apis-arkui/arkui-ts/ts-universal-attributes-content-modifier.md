@@ -6,26 +6,6 @@
 >
 > 从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## contentModifier
-
-contentModifier(modifier: ContentModifier\<T>): T
-
-定制内容区的方法。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   | 类型               | 必填 | 说明                                                         |
-| -------- | ------------------ | ---- | ------------------------------------------------------------ |
-| modifier | ContentModifier\<T> | 是   | 在当前组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| --- | --- |
-| T | 返回当前组件。 |
-
 ## ContentModifier\<T>
 
 开发者需要自定义class实现ContentModifier接口。
@@ -40,11 +20,11 @@ applyContent(): WrappedBuilder<[T]>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数**：
+**返回值：** 
 
-| 参数 | 描述                                                         |
-| ---- | ------------------------------------------------------------ |
-| T    | 组件的属性类，用来区别不同组件自定义内容区后所需要的不同信息，比如Button组件的ButtonConfiguration，Checkbox组件的CheckBoxConfiguration等。 |
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [WrappedBuilder\<[T]>](../../../ui/state-management/arkts-wrapBuilder.md) | 组件的属性类，用来区别不同组件自定义内容区后所需要的不同信息，比如Button组件的ButtonConfiguration，Checkbox组件的CheckBoxConfiguration等。 |
 
 **T参数支持范围:**
 
@@ -53,7 +33,7 @@ ButtonConfiguration、CheckBoxConfiguration、DataPanelConfiguration、TextClock
 **属性支持范围:**
 
 支持通用属性enabled，contentModifier。
-## CommonConfiguration\<T><sup>12+</sup>对象说明
+## CommonConfiguration\<T>
 
 开发者需要自定义class实现ContentModifier接口。
 
@@ -61,10 +41,10 @@ ButtonConfiguration、CheckBoxConfiguration、DataPanelConfiguration、TextClock
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名  | 类型    | 说明              |
-| ------ | ------ | ---------------- |
-| enabled | boolean | 如果该值为true，则contentModifier可用，并且可以响应triggerChange等操作，如果设置为false，则不会响应triggerChange等操作。 |
-| contentModifier | ContentModifier\<T> | 用于将用户需要的组件信息发送到自定义内容区。 |
+| 名称 | 类型    | 只读  | 可选  | 说明              |
+| ------ | ------ | ---------------- | ---------------- | ---------------- |
+| enabled | boolean | 否 | 否 | 如果该值为true，则contentModifier可用，并且可以响应triggerChange等操作，如果设置为false，则不会响应triggerChange等操作。 |
+| contentModifier | [ContentModifier\<T>](#contentmodifiert) | 否 | 否 | 用于将用户需要的组件信息发送到自定义内容区。 |
 
 
 ## 示例
