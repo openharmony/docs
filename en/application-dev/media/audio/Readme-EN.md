@@ -16,7 +16,9 @@
   - [Using OHAudio for Audio Playback (C/C++)](using-ohaudio-for-playback.md)
   - [Using AudioHaptic for Audio-Haptic Playback](using-audiohaptic-for-playback.md)
   - [Volume Management](volume-management.md)
+  - [Enhancing Audio Performance Experience](audio-performance.md)
   - [Audio Latency Management](audio-latency.md)
+  - [Audio Workgroup Management](audio-workgroup.md)
   - [Audio Effect Management](audio-effect-management.md)
   - [Spatial Audio Management](public-audio-spatialization-management.md)
   <!--Del-->
@@ -36,6 +38,7 @@
   - [Global Audio Input Device Management](audio-input-device-management.md)
   - [Shared Audio Input](audio-recording-concurrency.md)
   - [Audio Monitoring](audio-ear-monitor.md)
+  - [Low-Latency Audio Monitoring](audio-ear-monitor-loopback.md)
 - Audio Call<!--audio-call-->
   - [Audio Call Overview](audio-call-overview.md)
   - [Developing Audio Call](audio-call-development.md)
