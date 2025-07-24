@@ -33,7 +33,7 @@
     ```
     <!-- @[query_database_return_main_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/Mock.ets) -->
 
-2. 封装一个瀑布流数据源，用于瀑布流组件加载数据。
+2. 封装一个瀑布流组件数据源，用于瀑布流组件加载数据。
 
     ```ts
     // WaterFlowDataSource.ets
