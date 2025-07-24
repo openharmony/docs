@@ -19,7 +19,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 发布后台代理提醒。使用callback异步回调。
 
-如果指定了[ReminderRequest.ringDuration](#reminderrequest)参数，且值大于0，则自定义铃声默认在闹钟通道上播放，否则不会播放铃声。
+如果[ReminderRequest.ringDuration](#reminderrequest)参数值大于0，则自定义铃声默认在闹钟通道上播放，如果值不大于0，则无响铃。
 
 > **说明：**
 >
@@ -72,7 +72,7 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 发布后台代理提醒。使用promise异步回调。
 
-如果指定了[ReminderRequest.ringDuration](#reminderrequest)参数，且值大于0，则自定义铃声默认在闹钟通道上播放，否则不会播放铃声。
+如果[ReminderRequest.ringDuration](#reminderrequest)参数值大于0，则自定义铃声默认在闹钟通道上播放，如果值不大于0，则无响铃。
 
 > **说明：**
 >
