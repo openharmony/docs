@@ -115,7 +115,7 @@ toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, opt
 
 hideToolBar(hide: boolean, animated?: boolean)
 
-设置是否隐藏工具栏。与[hideToolBar](ts-basic-components-navigation.md#hidetoolbar)相比，新增工具栏显隐时是否使用动画。
+设置是否隐藏工具栏。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
