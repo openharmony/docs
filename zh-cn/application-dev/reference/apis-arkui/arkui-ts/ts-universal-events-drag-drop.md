@@ -1502,15 +1502,27 @@ struct VideoExample {
           .onDragStart((event: DragEvent) => {
             const context: Context | undefined = this.uiContext.getHostContext();
             if (context) {
-              let loadHandler: unifiedDataChannel.DataLoadHandler = () => {
+              let loadHandler: unifiedDataChannel.DataLoadHandler = (acceptableInfo) => {
+                console.info('acceptableInfo recordCount', acceptableInfo?.recordCount);
+                if (acceptableInfo?.types) {
+                  console.info('acceptableInfo types', Array.from(acceptableInfo.types));
+                } else {
+                  console.error('acceptableInfo types is undefined');
+                }
                 let data = context.resourceManager.getRawFdSync('test1.mp4');
                 let filePath = context.filesDir + '/test1.mp4';
-                let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-                let bufferSize = data.length as number;
-                let buf = new ArrayBuffer(bufferSize);
-                fs.readSync(data.fd, buf, { offset: data.offset, length: bufferSize });
-                fs.writeSync(file.fd, buf, { offset: 0, length: bufferSize });
-                fs.closeSync(file.fd);
+                let file: fs.File = null!;
+                try {
+                  file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+                  let bufferSize = data.length as number;
+                  let buf = new ArrayBuffer(bufferSize);
+                  fs.readSync(data.fd, buf, { offset: data.offset, length: bufferSize });
+                  fs.writeSync(file.fd, buf, { offset: 0, length: bufferSize });
+                } catch (error) {
+                  console.error(`openSync errorCode: ${error.code}, errorMessage: ${error.message}`);
+                } finally {
+                  fs.closeSync(file.fd);
+                }
                 context.resourceManager.closeRawFdSync('test1.mp4')
                 this.uri = fileUri.getUriFromPath(filePath);
                 let videoMp: uniformDataStruct.FileUri = {
@@ -1572,11 +1584,14 @@ struct VideoExample {
                 }
                 console.info(`percentage: ${progress.progress}`);
               };
+            let info: unifiedDataChannel.DataLoadInfo =
+              { types: new Set([uniformTypeDescriptor.UniformDataType.VIDEO]), recordCount: 100 }
             let options: DataSyncOptions = {
               destUri: destUri,
               fileConflictOptions: unifiedDataChannel.FileConflictOptions.OVERWRITE,
               progressIndicator: unifiedDataChannel.ProgressIndicator.DEFAULT,
               dataProgressListener: progressListener,
+              acceptableInfo: info,
             }
             try {
               this.udKey = (event as DragEvent).startDataLoading(options);
@@ -1590,6 +1605,7 @@ struct VideoExample {
         .width("90%")
         .border({ width: 1 })
       }
+
       Button('取消数据传输')
         .onClick(() => {
           try {
