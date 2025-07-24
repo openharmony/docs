@@ -16,7 +16,7 @@ onClick(event: Callback\<ClickEvent>, distanceThreshold: number): T
 
 点击动作触发该回调。
 
-当触发点击事件的设备类型为键盘或手柄时，事件的SourceTool值为Unknown。
+当触发点击事件的设备类型为键盘或手柄时，事件的[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9)值为Unknown。
 
 新增distanceThreshold参数，设置点击手势移动阈值。手指移动超出阈值时，点击手势识别失败。
 对于无手指移动距离限制的点击场景，建议使用原有接口。若需限制点击时手指移动范围，建议使用该接口。
