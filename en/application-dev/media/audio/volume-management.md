@@ -4,9 +4,9 @@ You can use different APIs to manage the system volume and audio stream volume. 
 
 ## System Volume
 
-**AudioVolumeManager** is provided for system volume management. Before using this API, you must call [getVolumeManager()](../../reference/apis-audio-kit/js-apis-audio.md#getvolumemanager9) to obtain an **AudioVolumeManager** instance.
+The API for managing the system volume is provided by AudioVolumeManager. Before using this API, you must call [getVolumeManager()](../../reference/apis-audio-kit/js-apis-audio.md#getvolumemanager9) to obtain an AudioVolumeManager instance.
 
-Currently, **AudioVolumeManager** can be used to obtain volume information and listen for volume changes. It cannot be used to adjust the system volume. If you want to adjust the system volume, follow the instructions provided in [Adjusting the System Volume Using the Volume Panel](#adjusting-the-system-volume-using-the-volume-panel).
+Currently, AudioVolumeManager can be used to obtain volume information and listen for volume changes. It cannot be used to adjust the system volume. If you want to adjust the system volume, follow the instructions provided in [Adjusting the System Volume Using the Volume Panel](#adjusting-the-system-volume-using-the-volume-panel).
 
 ```ts
 import { audio } from '@kit.AudioKit';
