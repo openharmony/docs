@@ -1959,7 +1959,7 @@ setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;voi
 | 参数名              | 类型                                        | 必填 | 说明                   |
 | ------------------- | ------------------------------------------- | ---- | ---------------------- |
 | orientation         | [Orientation](arkts-apis-window-e.md#orientation9)                | 是   | 窗口显示方向的属性。         |
-| callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。该回调函数返回调用结果是否成功，非应用旋转动效结束。 |
+| callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。该回调函数返回结果表示是否调用成功，而非应用旋转动效结束。 |
 
 **错误码：**
 
@@ -4746,7 +4746,7 @@ on(type: 'rotationChange', callback: RotationChangeCallback&lt;RotationChangeInf
 
 开启窗口旋转变化的监听。[RotationChangeInfo](arkts-apis-window-i.md#rotationchangeinfo19)中窗口旋转事件类型为窗口即将旋转时，必须返回[RotationChangeResult](arkts-apis-window-i.md#rotationchangeresult19)。窗口旋转事件类型为窗口旋转结束时返回[RotationChangeResult](arkts-apis-window-i.md#rotationchangeresult19)不生效。
 
-同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数返回值。系统提供了超时保护机制，若20ms内窗口未返回[RotationChangeResult](arkts-apis-window-i.md#rotationchangeresult19)，系统不处理该返回值。
+该函数只允许在主线程注册。同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数返回值。系统提供了超时保护机制，若20ms内窗口未返回[RotationChangeResult](arkts-apis-window-i.md#rotationchangeresult19)，系统不处理该返回值。
 
 <!--RP10-->此接口在2in1设备上调用不生效。<!--RP10End-->
 
