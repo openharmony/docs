@@ -12,7 +12,6 @@ ArkTS1.1接口声明：[onSelected(callback: (index: number) => void)](../refere
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 AlphabetIndexer({ arrayValue: ['A', 'B'], selected: 0 })
     .onSelected((index: number) => {
@@ -21,7 +20,7 @@ AlphabetIndexer({ arrayValue: ['A', 'B'], selected: 0 })
 ```
 
 ArkTS1.2
-<!--code_no_check-->
+
 ```ts
 AlphabetIndexer({ arrayValue: ['A', 'B'], selected: 0 })
     .onSelect((index: number) => {
