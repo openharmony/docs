@@ -14,7 +14,7 @@
 
 当用户在执行应用启动、应用前后台切换、应用退出等操作时，系统会触发相关应用组件的生命周期回调。其中，UIAbility组件的核心生命周期回调包括onCreate、onForeground、onBackground、onDestroy。回调的详细说明参见[UIAbility组件生命周期](../../application-models/uiability-lifecycle.md#uiability组件生命周期)。
 
-UIAbility实例创建完成之后，在进入前台之前，系统会创建一个[WindowStage](../../application-dev/windowmanager/application-window-stage.md)。WindowStage创建完成后会进入[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)回调，开发者可以在该回调中设置UI界面加载、设置WindowStage的事件订阅。UIAbility的生命周期与[WindowStage](../../application-dev/windowmanager/application-window-stage.md)的生命周期存在关联关系，两者生命周期关系示意图如下图所示。
+UIAbility实例创建完成之后，在进入前台之前，系统会创建一个[WindowStage](../../windowmanager/application-window-stage.md)。WindowStage创建完成后会进入[onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)回调，开发者可以在该回调中设置UI界面加载、设置WindowStage的事件订阅。UIAbility的生命周期与[WindowStage](../../windowmanager/application-window-stage.md)的生命周期存在关联关系，两者生命周期关系示意图如下图所示。
 
 ![tabStop](figures/uiabilityLifecycleWindowStage.png)
 
