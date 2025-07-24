@@ -20,7 +20,7 @@ import { adminManager } from '@kit.MDMKit';
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callback: AsyncCallback\<void>): void
 
-激活指定的设备管理应用。超级设备管理应用仅在管理员用户下可激活。激活后，该应用将实现开机自启动、切换用户后自启动，并且不可卸载。使用callback异步回调。
+激活指定的设备管理应用。超级设备管理应用仅在管理员用户下可激活。激活后，应用不可卸载，其企业设备管理扩展能力将开机自启并在用户切换后自启。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
