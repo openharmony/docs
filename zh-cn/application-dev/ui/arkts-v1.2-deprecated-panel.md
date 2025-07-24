@@ -1,14 +1,13 @@
 # Panel
 
-以下接口在ArkTS1.1中已标记为废弃，并在ArkTS1.2中不再支持。
+该组件在ArkTS1.1中已标记为废弃，并在ArkTS1.2中不再支持。
 
-## Panel
+ArkTS1.1组件声明：[Panel](../reference/apis-arkui/arkui-ts/ts-container-panel.md)
 
-ArkTS1.1接口声明：[Panel(show: boolean)](../reference/apis-arkui/arkui-ts/ts-container-panel.md#panel)
-
-替代的ArkTS1.2接口声明：[bindSheet(isShow: Optional<boolean>, builder: CustomBuilder, options?: SheetOptions): T](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)
+替代的ArkTS1.2组件声明：[bindSheet(isShow: Optional<boolean>, builder: CustomBuilder, options?: SheetOptions): T](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)
 
 适配方法如下：
+
 ArkTS1.1
 
 <!--code_no_check-->

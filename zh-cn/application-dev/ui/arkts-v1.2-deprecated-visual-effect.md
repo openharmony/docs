@@ -1,4 +1,4 @@
-# VisualEffect
+# 视效类接口
 
 以下接口在ArkTS1.1中已标记为废弃，并在ArkTS1.2中不再支持。
 
