@@ -1,4 +1,4 @@
-# \@Extend装饰器：定义扩展组件样式
+# \@Extend装饰器：定义扩展组件样式（ArkTS-DT）
 
 
 在前文的示例中，可以使用[\@Styles](arkts-style.md)用于样式的重用，在\@Styles的基础上，我们提供了\@Extend，用于扩展组件样式。
@@ -9,6 +9,8 @@
 > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
 >
 > 从API version 11开始，该装饰器支持在原子化服务中使用。
+>
+> 本模块仅适用于ArkTS-DT。
 
 ## 装饰器使用说明
 
