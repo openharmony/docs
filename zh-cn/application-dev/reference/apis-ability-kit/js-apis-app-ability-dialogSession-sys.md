@@ -22,18 +22,18 @@ import { dialogSession } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 是 | 表示包名。 |
-| moduleName | string | 是 | 是 | 表示模块名。 |
-| abilityName | string | 是 | 是 | 表示组件名。 |
-| abilityIconId | number | 是 | 是 | 表示Ability图标ID。 |
-| abilityLabelId | number | 是 | 是 | 表示Ability标签ID。 |
-| bundleIconId | number | 是 | 是 | 表示Bundle图标ID。 |
-| bundleLabelId | number | 是 | 是 | 表示Bundle标签ID。 |
-| visible<sup>12+</sup> | boolean | 是 | 是 | 表示Ability是否可见。true表示Ability可见，false表示Ability不可见。 |
-| appIndex<sup>12+</sup> | number | 是 | 是 | 表示应用的分身索引。 |
-| multiAppMode<sup>12+</sup> | [MultiAppMode](./js-apis-bundleManager-applicationInfo.md#multiappmode12) | 是 | 是 | 表示应用的多开模式。|
+| bundleName | string | 否 | 否 | 表示包名。 |
+| moduleName | string | 否 | 否 | 表示模块名。 |
+| abilityName | string | 否 | 否 | 表示组件名。 |
+| abilityIconId | number | 否 | 否 | 表示Ability图标ID。 |
+| abilityLabelId | number | 否 | 否 | 表示Ability标签ID。 |
+| bundleIconId | number | 否 | 否 | 表示Bundle图标ID。 |
+| bundleLabelId | number | 否 | 否 | 表示Bundle标签ID。 |
+| visible<sup>12+</sup> | boolean | 否 | 否 | 表示Ability是否可见。true表示Ability可见，false表示Ability不可见。 |
+| appIndex<sup>12+</sup> | number | 否 | 否 | 表示应用的分身索引。 |
+| multiAppMode<sup>12+</sup> | [MultiAppMode](./js-apis-bundleManager-applicationInfo.md#multiappmode12) | 否 | 否 | 表示应用的多开模式。|
 
 ## DialogSessionInfo
 
