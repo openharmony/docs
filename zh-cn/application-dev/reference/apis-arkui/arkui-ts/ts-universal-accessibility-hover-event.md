@@ -56,13 +56,13 @@ type AccessibilityCallback = (isHover: boolean, event: AccessibilityHoverEvent) 
 
 | 名称              | 类型       | 必填 | 说明      |
 | --------------- | ---------- | ------- | ------- |
-| type             | [AccessibilityHoverType](#accessibilityhovertype) | 否 | 无障碍悬浮动作。                |
-| x                      | number                         | 否 | 手指位置相对于当前组件左上角的x轴坐标。<br/>单位：vp<br/> |
-| y                      | number                         | 否 | 手指位置相对于当前组件左上角的y轴坐标。<br/>单位：vp<br/> |
-| windowX                | number                         | 否 | 手指位置相对于应用窗口左上角的x轴坐标。<br/>单位：vp<br/> |
-| windowY                | number                         | 否 | 手指位置相对于应用窗口左上角的y轴坐标。<br/>单位：vp<br/> |
-| displayX               | number                         | 否 | 手指位置相对于应用屏幕左上角的x轴坐标。<br/>单位：vp<br/> |
-| displayY               | number                         | 否 | 手指位置相对于应用屏幕左上角的y轴坐标。<br/>单位：vp<br/> |
+| type             | [AccessibilityHoverType](#accessibilityhovertype) | 是 | 无障碍悬浮动作。                |
+| x                      | number                         | 是 | 手指位置相对于当前组件左上角的x轴坐标。<br/>单位：vp<br/> |
+| y                      | number                         | 是 | 手指位置相对于当前组件左上角的y轴坐标。<br/>单位：vp<br/> |
+| windowX                | number                         | 是 | 手指位置相对于应用窗口左上角的x轴坐标。<br/>单位：vp<br/> |
+| windowY                | number                         | 是 | 手指位置相对于应用窗口左上角的y轴坐标。<br/>单位：vp<br/> |
+| displayX               | number                         | 是 | 手指位置相对于应用屏幕左上角的x轴坐标。<br/>单位：vp<br/> |
+| displayY               | number                         | 是 | 手指位置相对于应用屏幕左上角的y轴坐标。<br/>单位：vp<br/> |
 
 ## AccessibilityHoverType
 
