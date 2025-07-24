@@ -146,9 +146,10 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 根据URL地址，发起HTTP网络请求，使用callback方式作为异步方法。
 
 > **说明：**
-> 此接口仅支持接收数据大小为5M以内的数据，如果接收超过5M的数据，需要在[HttpRequestOptions](#httprequestoptions)的maxLimit中进行设置。
 >
-> 若URL包含中文或其他语言，需先调用encodeURL(URL)编码，再发起请求。
+>(1) 此接口仅支持数据大小为5M以内的数据接收，如果有超过5M的数据接收，需要主动在[HttpRequestOptions](#httprequestoptions)的maxLimit中进行设置，或者使用[requestInStream](#requestinstream10)接口发起流式请求。
+><br>(2)如需传入cookies，请开发者自行在参数options中添加。
+> <br>(3)若URL包含中文或其他语言，需先调用encodeURL(URL)编码，再发起请求。
 
 **需要权限**：ohos.permission.INTERNET
 
