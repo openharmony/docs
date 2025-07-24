@@ -1266,7 +1266,7 @@
             - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)
             - [VPN管理（仅对系统应用开放）](network/net-vpn.md)
             <!--DelEnd-->
-        - [Network Kit术语](network/terminology.md)
+        - [Network Kit术语](network/network-terminology.md)
       - Telephony Kit（蜂窝通信服务）<!--telephony-kit-->
         - [Telephony Kit简介](telephony/telephony-overview.md)
         - [拨打电话](telephony/telephony-call.md)
