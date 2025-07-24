@@ -16,7 +16,7 @@ The system sends [AudioStreamDeviceChangeReason](../../reference/apis-audio-kit/
 
   **Trigger conditions**:
 
-  Typical Bluetooth devices (such as headsets, smart glasses, speakers, and telematics devices) are connected; Bluetooth devices that support wear detection (such as headsets and smart glasses) are put on; wired devices (such as 3.5mm headsets, Type-C headsets, USB headsets, and USB speakers) are plugged in; distributed devices are brought online.
+  Typical Bluetooth devices (such as headsets, smart glasses, speakers, and telematics devices) are connected; Bluetooth devices that support wear detection (such as headsets and smart glasses) are put on; wired devices (such as 3.5mm headsets, Type-C headsets, USB headsets, and speakers) are plugged in; distributed devices are brought online.
 
 - **REASON_OLD_DEVICE_UNAVAILABLE**: The old device is unavailable.
 
@@ -24,7 +24,7 @@ The system sends [AudioStreamDeviceChangeReason](../../reference/apis-audio-kit/
 
   **Trigger conditions**:
 
-  Typical Bluetooth devices (such as headsets, smart glasses, speakers, and telematics devices) are disconnected; Bluetooth devices that support wear detection (such as headsets and smart glasses) are taken off; wired devices (such as 3.5mm headsets, Type-C headsets, USB headsets, and speakers) are unplugged; distributed devices are brought offline.
+  Typical Bluetooth devices (such as headsets, smart glasses, speakers, and telematics devices) are disconnected; Bluetooth devices that support wear detection (such as headsets and smart glasses) are taken off; wired devices (such as 3.5mm headsets, Type-C headsets, USB headsets, and USB speakers) are unplugged; distributed devices are brought offline.
 
   The handling suggestions for typical service scenarios are as follows:
 

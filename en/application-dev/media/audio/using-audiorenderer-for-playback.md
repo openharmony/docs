@@ -4,11 +4,11 @@ The AudioRenderer is used to play Pulse Code Modulation (PCM) audio data. Unlike
 
 ## Development Guidelines
 
-The full rendering process involves creating an **AudioRenderer** instance, configuring audio rendering parameters, starting and stopping rendering, and releasing the instance. In this topic, you will learn how to use the AudioRenderer to render audio data. Before the development, you are advised to read [AudioRenderer](../../reference/apis-audio-kit/js-apis-audio.md#audiorenderer8) for the API reference.
+The full rendering process involves creating an AudioRenderer instance, configuring audio rendering parameters, starting and stopping rendering, and releasing the instance. In this topic, you will learn how to use the AudioRenderer to render audio data. Before the development, you are advised to read [AudioRenderer](../../reference/apis-audio-kit/js-apis-audio.md#audiorenderer8) for the API reference.
 
-The figure below shows the state changes of the AudioRenderer. After an **AudioRenderer** instance is created, different APIs can be called to switch the AudioRenderer to different states and trigger the required behavior. If an API is called when the AudioRenderer is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AudioRenderer state before triggering state transition.
+The figure below shows the state changes of the AudioRenderer. After an AudioRenderer instance is created, different APIs can be called to switch the AudioRenderer to different states and trigger the required behavior. If an API is called when the AudioRenderer is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AudioRenderer state before triggering state transition.
 
-To prevent the UI thread from being blocked, most **AudioRenderer** calls are asynchronous. Each API provides the callback and promise functions. The following examples use the callback functions.
+To prevent the UI thread from being blocked, most AudioRenderer calls are asynchronous. Each API provides the callback and promise functions. The following examples use the callback functions.
 
 **Figure 1** AudioRenderer state transition
 
@@ -28,7 +28,7 @@ During application development, you are advised to use [on('stateChange')](../..
 
 ### How to Develop
 
-1. Set audio rendering parameters and create an **AudioRenderer** instance. For details about the parameters, see [AudioRendererOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiorendereroptions8).
+1. Set audio rendering parameters and create an AudioRenderer instance. For details about the parameters, see [AudioRendererOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiorendereroptions8).
 
     ```ts
     import { audio } from '@kit.AudioKit';
@@ -89,7 +89,7 @@ During application development, you are advised to use [on('stateChange')](../..
      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
      let path = context.cacheDir;
      // Ensure that the resource exists in the path.
-     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+     let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 
      let writeDataCallback = (buffer: ArrayBuffer) => {
@@ -140,7 +140,7 @@ During application development, you are advised to use [on('stateChange')](../..
      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
      let path = context.cacheDir;
      // Ensure that the resource exists in the path.
-     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+     let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
      let writeDataCallback = (buffer: ArrayBuffer) => {
        // If you do not want to play a particular portion of the buffer, you can add a check and clear that specific section of the buffer.
@@ -216,7 +216,7 @@ Resampling involves upsampling (adding samples through interpolation) or downsam
 
 The AudioRenderer supports all sampling rates defined in the enum **AudioSamplingRate**.
 
-If the input audio sampling rate configured by **AudioRenderer** is different from the output sampling rate of the device, the system resamples the input audio to match the output sampling rate.
+If the input audio sampling rate configured by AudioRenderer is different from the output sampling rate of the device, the system resamples the input audio to match the output sampling rate.
 
 To minimize power consumption from resampling, it is best to use input audio with a sampling rate that matches the output sampling rate of the device. A sampling rate of 48 kHz is highly recommended.
 
@@ -257,7 +257,7 @@ let audioRendererOptions: audio.AudioRendererOptions = {
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let path = context.cacheDir;
 // Ensure that the resource exists in the path.
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
