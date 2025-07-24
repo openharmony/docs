@@ -93,8 +93,8 @@
       - [相对布局 (RelativeContainer)](arkts-layout-development-relative-layout.md)
       - [栅格布局 (GridRow/GridCol)](arkts-layout-development-grid-layout.md)
       - [选项卡 (Tabs)](arkts-navigation-tabs.md)
-  - 列表与宫格<!--arkts-list-and-grid-->
-    - [列表与宫格概述](arkts-list-grid-development-overview.md)
+  - 列表与网格<!--arkts-list-and-grid-->
+    - [列表与网格概述](arkts-list-grid-development-overview.md)
     - [创建列表 (List)](arkts-layout-development-create-list.md)
     - [创建弧形列表 (ArcList)](arkts-layout-development-create-arclist.md)（圆形屏幕推荐使用）
     - [创建网格 (Grid/GridItem)](arkts-layout-development-create-grid.md)
