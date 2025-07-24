@@ -97,7 +97,10 @@ cpp部分代码
 static napi_value GetInstanceData(napi_env env, napi_callback_info info) {
     InstanceData *resData = nullptr;
     // napi_get_instance_data获取之前想关联的数据项
-    napi_get_instance_data(env, (void **)&resData);
+    napi_status status = napi_get_instance_data(env, (void **)&resData);
+    if (status != napi_ok) {
+        return nullptr;
+    }
     napi_value result;
     napi_create_int32(env, resData->value, &result);
     return result;
@@ -109,7 +112,7 @@ static napi_value GetInstanceData(napi_env env, napi_callback_info info) {
 
 ```ts
 // index.d.ts
-export const getInstanceData: () => number;
+export const getInstanceData: () => number | undefined;
 ```
 <!-- @[napi_get_instance_data_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIEnvironmentalLifeCycle/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 

@@ -330,11 +330,9 @@ add(1, 2);
 cpp部分代码
 
 ```cpp
-#include <bits/alltypes.h>
 #include <hilog/log.h>
 #include <mutex>
 #include <unordered_set>
-#include <uv.h>
 #include "napi/native_api.h"
 
 class Object {
