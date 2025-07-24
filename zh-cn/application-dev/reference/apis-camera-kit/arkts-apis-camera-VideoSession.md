@@ -5,7 +5,7 @@
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本Interface首批接口从API version 11开始支持。
 
-VideoSession extends [Session](arkts-apis-camera-Session.md), [Flash](arkts-apis-camera-Flash.md), [AutoExposure](arkts-apis-camera-AutoExposure.md), [Focus](arkts-apis-camera-Focus.md), [Zoom](arkts-apis-camera-Zoom.md), [Stabilization](arkts-apis-camera-Stabilization.md), [ColorManagement](arkts-apis-camera-ColorManagement.md), [AutoDeviceSwitch](arkts-apis-camera-AutoDeviceSwitch.md), [Macro](arkts-apis-camera-Macro.md), [ControlCenter](arkts-apis-camera-ControlCenter.md)
+VideoSession extends [Session](arkts-apis-camera-Session.md)、[Flash](arkts-apis-camera-Flash.md)、[AutoExposure](arkts-apis-camera-AutoExposure.md)、[Focus](arkts-apis-camera-Focus.md)、[Zoom](arkts-apis-camera-Zoom.md)、[Stabilization](arkts-apis-camera-Stabilization.md)、[ColorManagement](arkts-apis-camera-ColorManagement.md)、[AutoDeviceSwitch](arkts-apis-camera-AutoDeviceSwitch.md)、[Macro](arkts-apis-camera-Macro.md)、[ControlCenter](arkts-apis-camera-ControlCenter.md)
 
 普通录像模式会话类，提供了对闪光灯、曝光、对焦、变焦、视频防抖、色彩空间及微距的操作。
 
@@ -446,7 +446,7 @@ off(type: 'systemPressureLevelChange', callback?: AsyncCallback\<SystemPressureL
 
 注销监听系统压力状态变化。
 
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -454,8 +454,8 @@ off(type: 'systemPressureLevelChange', callback?: AsyncCallback\<SystemPressureL
 
 | 参数名    | 类型                           | 必填    | 说明                                                             |
 |----------|--------------------------------|---------|------------------------------------------------------------------|
-| type     | string                         | 是      | 监听事件，固定为'systemPressureLevelChange'，session创建成功可监听。|
-| callback | AsyncCallback\<[SystemPressureLevel](arkts-apis-camera-e.md#systempressurelevel20)\> | 否 | 回调函数，如果指定参数则取消对应callback (callabck对象不可是匿名函数)，否则取消所有callback。 |
+| type     | string                         | 是      | 注销监听事件，固定为'systemPressureLevelChange'，session创建成功可监听。|
+| callback | AsyncCallback\<[SystemPressureLevel](arkts-apis-camera-e.md#systempressurelevel20)\> | 否 | 回调函数，如果指定参数则取消对应callback (callabck对象不可是匿名函数)，否则参数默认为空，取消所有callback。 |
 
 **示例：**
 
@@ -467,7 +467,7 @@ function unregisterSystemPressureLevelChangeCallback(videoSession: camera.VideoS
 
 ## on('controlCenterEffectStatusChange')<sup>20+</sup>
 
-on(type: 'controlCenterEffectStatusChange', callback: AsyncCallback\<ControlCenterEffectType\>): void
+on(type: 'controlCenterEffectStatusChange', callback: AsyncCallback\<ControlCenterStatusInfo\>): void
 
 监听相机控制器效果激活状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
@@ -483,19 +483,19 @@ on(type: 'controlCenterEffectStatusChange', callback: AsyncCallback\<ControlCent
 
 | 参数名    | 类型 | 必填 | 说明 |
 |----------|-------|----|------------------------------------------------------------------------|
-| type     | string | 是 | 监听事件，固定为'controlCenterEffectStatusChange',session创建成功可监听。 |
-| callback | AsyncCallback\<[ControlCenterStatusInfo](arkts-apis-camera-e.md#controlcentereffecttype20)\> | 是 | 回调函数，用于获取当前控制器激活状态。 |
+| type     | string | 是 | 监听事件，固定为'controlCenterEffectStatusChange'，session创建成功可监听。 |
+| callback | AsyncCallback\<[ControlCenterStatusInfo](arkts-apis-camera-i.md#controlcenterstatusinfo20)\> | 是 | 回调函数，用于获取当前控制器激活状态。 |
 
 **示例：**
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function callback(err: BusinessError, status: ): void {
+function callback(err: BusinessError, status: camera.ControlCenterStatusInfo): void {
   if (err !== undefined && err.code !== 0) {
     console.error(`Callback Error, errorCode: ${err.code}`);
     return;
   }
-  console.info(`controlCenterEffectStatusChange: ${systemPressureLevel}`);
+  console.info(`controlCenterEffectStatusChange: ${status}`);
 }
 
 function registerControlCenterEffectStatusChangeCallback(videoSession: camera.VideoSession): void {
@@ -505,11 +505,11 @@ function registerControlCenterEffectStatusChangeCallback(videoSession: camera.Vi
 
 ## off('controlCenterEffectStatusChange')<sup>20+</sup>
 
-off(type: 'controlCenterEffectStatusChange', callback?: AsyncCallback\<ControlCenterEffectType\>): void
+off(type: 'controlCenterEffectStatusChange', callback?: AsyncCallback\<ControlCenterStatusInfo\>): void
 
 注销监听相机控制器激活状态变化。
 
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -517,8 +517,8 @@ off(type: 'controlCenterEffectStatusChange', callback?: AsyncCallback\<ControlCe
 
 | 参数名    | 类型 | 必填 | 说明 |
 |----------|-------|----|------------------------------------------------------------------------|
-| type     | string | 是 | 监听事件，固定为'controlCenterEffectStatusChange',session创建成功可监听。 |
-| callback | AsyncCallback\<[ControlCenterStatusInfo](arkts-apis-camera-e.md#controlcentereffecttype20)\> | 是 | 回调函数，用于获取当前控制器激活状态。 |
+| type     | string | 是 | 注销监听事件，固定为'controlCenterEffectStatusChange'，session创建成功可监听。 |
+| callback | AsyncCallback\<[ControlCenterStatusInfo](arkts-apis-camera-i.md#controlcenterstatusinfo20)\> | 是 | 回调函数，如果指定参数则取消对应callback (callabck对象不可是匿名函数)，否则参数默认为空，取消所有callback。|
 
 **示例：**
 

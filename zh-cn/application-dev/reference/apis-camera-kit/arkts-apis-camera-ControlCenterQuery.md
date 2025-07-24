@@ -5,7 +5,7 @@
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本Interface首批接口从API version 20开始支持。
 
-控制中心类，用于查询是否支持相机控制器
+控制中心类，用于查询是否支持相机控制器。
 
 ## 导入模块
 
@@ -17,7 +17,7 @@ import { camera } from '@kit.CamerKit';
 
 isControlCenterSupported(): boolean
 
-查询是否支持相机控制器
+查询是否支持相机控制器。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -52,13 +52,13 @@ getSupportedEffectTypes(): Array\<ControlCenterEffectType\>
 
 | 类型 | 说明|
 |-----|-----|
-| Array<[ControlCenterEffectType](arkts-apis-camera-e.md#ControlCenterEffectType)> | 支持的效果类型 |
+| Array<[ControlCenterEffectType](arkts-apis-camera-e.md#controlcentereffecttype20)> | 支持的效果类型 |
 
 **示例：**
 
 ```ts
-function getSupportedEffectTypes(videoSession: camera.VideoSession) : Array<camera. ControlCenterEffectType>{
-    let effectTypes: Array<camera.VideoSession> = [];
+function getSupportedEffectTypes(videoSession: camera.VideoSession): Array<camera.ControlCenterEffectType> {
+    let effectTypes: Array<camera.ControlCenterEffectType> = [];
     effectTypes = videoSession.getSupportedEffectTypes();
     return effectTypes;
 }

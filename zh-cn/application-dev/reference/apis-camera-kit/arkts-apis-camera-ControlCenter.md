@@ -7,7 +7,7 @@
 
 ControlCenter extends [ControlCenterQuery](arkts-apis-camera-ControlCenterQuery.md)
 
-控制中心类，用于使能相机控制器
+控制中心类，用于使能相机控制器。
 
 ## 导入模块
 
@@ -15,13 +15,13 @@ ControlCenter extends [ControlCenterQuery](arkts-apis-camera-ControlCenterQuery.
 import { camera } from '@kit.CameraKit';
 ```
 
-## enableControlCenter
+## enableControlCenter<sup>20+</sup>
 
 enableControlCenter(enabled: boolean): void
 
-使能相机控制器
+使能相机控制器。
 
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -32,6 +32,8 @@ enableControlCenter(enabled: boolean): void
 | enabled | boolean | 是 | 开启或关闭相机控制器。`true` 表示开启，`false` 表示关闭。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
 | 错误码ID    | 错误信息                     |
 |----------|--------------------------|
