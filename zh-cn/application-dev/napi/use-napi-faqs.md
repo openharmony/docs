@@ -30,4 +30,3 @@
 16. [Node-API接口返回值不是napi_ok时，如何排查定位](napi-faq-about-common-basic.md#node-api接口返回值不是napi_ok时如何排查定位)  
 17. [napi_wrap如何保证被wrap的对象按期望顺序析构？](napi-faq-about-common-basic.md#napi_wrap如何保证被wrap的对象按期望顺序析构)  
 18. [napi_call_threadsafe_function回调任务不执行](napi-faq-about-common-basic.md#napi_call_threadsafe_function回调任务不执行)
-
