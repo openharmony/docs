@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-[Environment](../reference/apis-core-file-kit/_environment.md)提供了获取公共文件用户目录路径的能力，以支持三方应用在公共文件用户目录下进行文件访问操作。
+[Environment](../reference/apis-core-file-kit/capi-oh-environment-h.md)提供了获取公共文件用户目录路径的能力，以支持三方应用在公共文件用户目录下进行文件访问操作。
 
 ## 约束限制
 
@@ -11,7 +11,7 @@
 
 ## 接口说明
 
-接口的详细说明，请参考[API参考](../reference/apis-core-file-kit/_environment.md)。
+接口的详细说明，请参考[API参考](../reference/apis-core-file-kit/capi-oh-environment-h.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |

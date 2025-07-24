@@ -65,7 +65,7 @@ export const isArrayBuffer: <T>(arrayBuffer: T) => boolean | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   let value = new ArrayBuffer(1);
@@ -144,7 +144,7 @@ export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 const buffer = new ArrayBuffer(10);
@@ -210,7 +210,7 @@ export const isDetachedArrayBuffer: (arrayBuffer: ArrayBuffer) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   const bufferArray = new ArrayBuffer(8);
@@ -275,7 +275,7 @@ export const createArrayBuffer: (size: number) => ArrayBuffer;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_arraybuffer:%{public}s', testNapi.createArrayBuffer(10).toString());
