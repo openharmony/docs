@@ -743,9 +743,9 @@ import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyMessageAble implements rpc.Parcelable { // 自定义的Parcelable数据结构
-  name: string
-  str: string
-  num: number = 1
+  name: string;
+  str: string;
+  num: number = 1;
   constructor(name: string, str: string) {
     this.name = name;
     this.str = str;
@@ -762,9 +762,8 @@ class MyMessageAble implements rpc.Parcelable { // 自定义的Parcelable数据�
     console.info(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
     return true;
   }
-};
+}
 let method = 'call_Function'; // 约定的通知消息字符串
-let caller: Caller;
 
 export default class MainUIAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -773,7 +772,7 @@ export default class MainUIAbility extends UIAbility {
       abilityName: 'MainUIAbility',
       deviceId: ''
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       let msg = new MyMessageAble('msg', 'world'); // 参考Parcelable数据定义
       caller.call(method, msg)
         .then(() => {
@@ -959,8 +958,6 @@ import { UIAbility, Caller } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let caller: Caller;
-
 export default class MainUIAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     this.context.startAbilityByCall({
@@ -968,13 +965,13 @@ export default class MainUIAbility extends UIAbility {
       abilityName: 'MainUIAbility',
       deviceId: ''
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       try {
         caller.onRelease((str) => {
           console.info(`Caller OnRelease CallBack is called ${str}`);
         });
       } catch (error) {
-        console.error(`Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}`);
+        console.error(`Caller.onRelease catch error, error.code: ${error.code}, error.message: ${error.message}`);
       }
     }).catch((err: BusinessError) => {
       console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
@@ -1013,17 +1010,15 @@ import { UIAbility, Caller } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let caller: Caller;
-let dstDeviceId: string;
-
 export default class MainAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
+    let dstDeviceId: string = 'xxxxx';
     this.context.startAbilityByCall({
       bundleName: 'com.example.myservice',
       abilityName: 'MainUIAbility',
       deviceId: dstDeviceId
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       try {
         caller.onRemoteStateChange((str) => {
           console.info('Remote state changed ' + str);
@@ -1033,7 +1028,7 @@ export default class MainAbility extends UIAbility {
       }
     }).catch((err: BusinessError) => {
       console.error(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
-    })
+    });
   }
 }
 ```
@@ -1069,16 +1064,15 @@ import { UIAbility, Caller } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let caller: Caller;
-
 export default class MainUIAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
+    let dstDeviceId: string = 'xxxx';
     this.context.startAbilityByCall({
       bundleName: 'com.example.myservice',
       abilityName: 'MainUIAbility',
-      deviceId: ''
+      deviceId: dstDeviceId
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       try {
         caller.on('release', (str) => {
           console.info(`Caller OnRelease CallBack is called ${str}`);
@@ -1178,8 +1172,6 @@ import { UIAbility, Caller, OnReleaseCallback } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let caller: Caller;
-
 export default class MainUIAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     this.context.startAbilityByCall({
@@ -1187,7 +1179,7 @@ export default class MainUIAbility extends UIAbility {
       abilityName: 'MainUIAbility',
       deviceId: ''
     }).then((obj) => {
-      caller = obj;
+      let caller: Caller = obj;
       try {
         let onReleaseCallBack: OnReleaseCallback = (str) => {
           console.info(`Caller OnRelease CallBack is called ${str}`);
@@ -1263,7 +1255,6 @@ class MyMessageAble implements rpc.Parcelable {
 let method = 'call_Function';
 
 function funcCallBack(pdata: rpc.MessageSequence) {
-  console.info(`Callee funcCallBack is called ${pdata}`);
   let msg = new MyMessageAble('test', '');
   pdata.readParcelable(msg);
   return new MyMessageAble('test1', 'Callee test');

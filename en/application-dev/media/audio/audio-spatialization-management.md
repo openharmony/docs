@@ -7,11 +7,11 @@ Spatial audio management is available only for system applications. It enables a
 A system application that plays audio can query whether the system or a device supports spatial audio rendering or head tracking, whether spatial audio rendering or head tracking is enabled, and the spatial audio rendering scene type in use.
 
 A system application with spatial audio setting capabilities (for example, a setting screen where users can change the spatial audio status) can enable or disable spatial audio rendering or head tracking, set the spatial audio rendering scene type, and update the state information of a spatial device, in addition to the query operation.
-To use this feature, the application must request the **ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS** permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+To use this feature, the application must request the ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 ## Obtaining an AudioSpatializationManager Instance
 
-Before using **AudioSpatializationManager** APIs, you must use **getSpatializationManager()** to obtain an **AudioSpatializationManager** instance.
+Before using AudioSpatializationManager APIs, you must use **getSpatializationManager()** to obtain an AudioSpatializationManager instance.
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -122,7 +122,7 @@ Call [setSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys
 - **AudioDeviceDescriptor**: specifies an audio device. You are advised to use other audio APIs to obtain **AudioDeviceDescriptor** of a connected device or the current audio device. For details, see [AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor).
 - **enabled**: specifies the status of spatial audio rendering of the specified device. The value **true** means to enable spatial audio rendering, and **false** means to disable it.
 
-To use this feature, the application must request the **ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS** permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+To use this feature, the application must request the ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 Before enabling spatial audio rendering, ensure that both the system and the specified device support spatial audio rendering.
 
@@ -214,7 +214,7 @@ Call [setHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.m
 - **AudioDeviceDescriptor**: specifies an audio device. You are advised to use other audio APIs to obtain **AudioDeviceDescriptor** of a connected device or the current audio device. For details, see [AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor).
 - **enabled**: specifies the status of head tracking of the specified device. The value **true** means to enable head tracking, and **false** means to disable it.
 
-To use this feature, the application must request the **ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS** permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+To use this feature, the application must request the ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 Before enabling head tracking, ensure that both the system and the specified device support head tracking and when spatial audio rendering is enabled.
 
@@ -303,7 +303,7 @@ Call [off('headTrackingEnabledChangeForAnyDevice')](../../reference/apis-audio-k
 
 Call [updateSpatialDeviceState](../../reference/apis-audio-kit/js-apis-audio-sys.md#updatespatialdevicestate11) to update the state information of a spatial device. The state information includes the device address, support for spatial audio rendering and head tracking, and device form.
 
-To use this feature, the application must request the **ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS** permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+To use this feature, the application must request the ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 For details about the state information, see [AudioSpatialDeviceState](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatialdevicestate11).
 
@@ -331,7 +331,7 @@ For details about the state information, see [AudioSpatialDeviceState](../../ref
 
 Call [setSpatializationSceneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#setspatializationscenetype12) to set the spatial audio rendering scene type, which can be **DEFAULT** (default value), **MUSIC**, **MOVIE**, or **AUDIOBOOK**. The spatial audio rendering scene type takes effect only when spatial audio rendering is enabled.
 
-To use this feature, the application must request the **ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS** permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+To use this feature, the application must request the ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 For details about the spatial audio rendering scene type, see [AudioSpatializationSceneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatializationscenetype12).
 

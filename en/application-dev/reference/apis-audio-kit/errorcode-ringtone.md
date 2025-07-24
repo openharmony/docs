@@ -16,7 +16,7 @@ This error code is reported if the tone type passed in the API does not match th
 
 **Possible Causes**
 
-Invalid parameter, such as providing a tone path for an alarm instead of a notification tone.
+Incorrect input parameter, such as providing a tone path for an alarm instead of a notification tone.
 
 **Solution**
 
@@ -56,4 +56,4 @@ The device does not support the capability, such as lacking vibration support.
 
 **Solution**
 
-Refer to the device capability documentation.
+Call the API based on the device capability.

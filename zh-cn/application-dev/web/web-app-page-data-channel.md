@@ -38,26 +38,30 @@
             try {
               // 1、创建两个消息端口。
               this.ports = this.controller.createWebMessagePorts();
-              // 2、在应用侧的消息端口(如端口1)上注册回调事件。
-              this.ports[1].onMessageEvent((result: webview.WebMessage) => {
-                let msg = 'Got msg from HTML:';
-                if (typeof (result) === 'string') {
-                  console.info(`received string message from html5, string is: ${result}`);
-                  msg = msg + result;
-                } else if (typeof (result) === 'object') {
-                  if (result instanceof ArrayBuffer) {
-                    console.info(`received arraybuffer from html5, length is: ${result.byteLength}`);
-                    msg = msg + 'length is ' + result.byteLength;
+              if (this.ports && this.ports[0] && this.ports[1]) {
+                // 2、在应用侧的消息端口(如端口1)上注册回调事件。
+                this.ports[1].onMessageEvent((result: webview.WebMessage) => {
+                  let msg = 'Got msg from HTML:';
+                  if (typeof (result) === 'string') {
+                    console.info(`received string message from html5, string is: ${result}`);
+                    msg = msg + result;
+                  } else if (typeof (result) === 'object') {
+                    if (result instanceof ArrayBuffer) {
+                      console.info(`received arraybuffer from html5, length is: ${result.byteLength}`);
+                      msg = msg + 'length is ' + result.byteLength;
+                    } else {
+                      console.info('not support');
+                    }
                   } else {
                     console.info('not support');
                   }
-                } else {
-                  console.info('not support');
-                }
-                this.receivedFromHtml = msg;
-              })
-              // 3、将另一个消息端口(如端口0)发送到HTML侧，由HTML侧保存并使用。
-              this.controller.postMessage('__init_port__', [this.ports[0]], '*');
+                  this.receivedFromHtml = msg;
+                })
+                // 3、将另一个消息端口(如端口0)发送到HTML侧，由HTML侧保存并使用。
+                this.controller.postMessage('__init_port__', [this.ports[0]], '*');
+              } else {
+                console.error(`ports is null, Please initialize first`);
+              }
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }

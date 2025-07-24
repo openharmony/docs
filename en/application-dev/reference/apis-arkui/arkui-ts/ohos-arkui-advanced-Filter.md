@@ -7,12 +7,14 @@ The advanced filter component allows users to filter data with multiple criteria
 > **NOTE**
 >
 > This component is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This component is not supported on wearables.
 
 
 ## Modules to Import
 
 ```
-import { Filter } from '@kit.ArkUI'
+import { Filter } from '@kit.ArkUI';
 ```
 
 
@@ -25,7 +27,7 @@ The [universal attributes](ts-component-general-attributes.md) are not supported
 
 ## Filter
 
-Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParams, filterType?: FilterType, onFilterChanged: (Array&lt;FilterResult&gt;) =&gt; void, container: ()=&gt; void })
+Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParams, filterType?: FilterType, onFilterChanged: (filterResults: Array&lt;FilterResult&gt;) =&gt; void, container: ()=&gt; void })
 
 **Decorator**: @Component
 
@@ -52,7 +54,7 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParam
 
 | Name| Type| Mandatory| Description                                                             |
 | -------- | -------- | -------- |-----------------------------------------------------------------|
-| name | [ResourceStr](ts-types.md#resourcestr) | Yes| Name of the filter criterion.<br>The default value is an empty string.<br>**NOTE**<br>If the text is longer than the column width, it will be truncated.             |
+| name | [ResourceStr](ts-types.md#resourcestr) | Yes| Name of the filter criterion.<br>The default value is an empty string.<br>**NOTE**<br>If the text length exceeds the column width, it will be truncated.             |
 | options | Array&lt;[ResourceStr](ts-types.md#resourcestr)&gt; | Yes| Options of the filter criterion.<br>The default value is an empty string.<br>**NOTE**<br>The text is truncated with an ellipsis (...) if it is too long.|
 
 ## FilterType
@@ -74,9 +76,9 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParam
 
 | Name| Type| Mandatory| Description                                                                      |
 | -------- | -------- | -------- |--------------------------------------------------------------------------|
-| name | [ResourceStr](ts-types.md#resourcestr) | Yes| Name of the filter criterion.<br>The default value is an empty string.<br>**NOTE**<br>If the text is longer than the column width, it will be truncated.                      |
+| name | [ResourceStr](ts-types.md#resourcestr) | Yes| Name of the filter criterion.<br>The default value is an empty string.<br>**NOTE**<br>If the text length exceeds the column width, it will be truncated.                      |
 | index | number | Yes| Index of the selected option of the filter criterion.<br>Value range: an integer no less than -1<br>The default value is **-1**, indicating that there is no selected option. Values less than -1 are treated as no selected option.|
-| value | [ResourceStr](ts-types.md#resourcestr) | Yes| Value of the selected option of the filter criterion.<br>The default value is an empty string.<br>**NOTE**<br>If the text is longer than the column width, it will be truncated.                 |
+| value | [ResourceStr](ts-types.md#resourcestr) | Yes| Value of the selected option of the filter criterion.<br>The default value is an empty string.<br>**NOTE**<br>If the text length exceeds the column width, it will be truncated.                 |
 
 ## Events
 The [universal events](ts-component-general-events.md) are not supported.

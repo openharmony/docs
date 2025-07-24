@@ -28,7 +28,7 @@
 | ------------------ | ------------------------------------------------------------ |
 | 装饰器参数         | 无                                                           |
 | 同步类型           | 不与父组件中任何类型的变量同步。                             |
-| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型。<br/>支持undefined和null类型。<br/>支持ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型。 <br/>类型必须指定。<br/>支持类型的场景见[观察变化](#观察变化)。<br/>不支持any。<br/>API version 11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验。比如：支持`@State a : string \| undefined = undefined`；不支持`@State a: string = undefined`。|
+| 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>[支持Date类型](#装饰date类型变量)。<br/>支持undefined和null类型。<br/>支持ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型。 <br/>类型必须指定。<br/>支持类型的场景见[观察变化](#观察变化)。<br/>不支持any。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型以及上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验。比如：支持`@State a : string \| undefined = undefined`；不支持`@State a: string = undefined`。|
 | 被装饰变量的初始值 | 必须本地初始化。                                               |
 
 ## 变量的传递/访问规则说明
@@ -162,45 +162,7 @@
   this.title[0].value = 6;
   ```
 
-- 当装饰的对象是Date时，可以观察到Date的赋值，以及通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`更新Date的属性。
-
-  ```ts
-  @Entry
-  @Component
-  struct DatePickerExample {
-    @State selectedDate: Date = new Date('2021-08-08');
-  
-    build() {
-      Column() {
-        Button('set selectedDate to 2023-07-08')
-          .margin(10)
-          .onClick(() => {
-            this.selectedDate = new Date('2023-07-08');
-          })
-        Button('increase the year by 1')
-          .margin(10)
-          .onClick(() => {
-            this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
-          })
-        Button('increase the month by 1')
-          .margin(10)
-          .onClick(() => {
-            this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
-          })
-        Button('increase the day by 1')
-          .margin(10)
-          .onClick(() => {
-            this.selectedDate.setDate(this.selectedDate.getDate() + 1);
-          })
-        DatePicker({
-          start: new Date('1970-1-1'),
-          end: new Date('2100-1-1'),
-          selected: this.selectedDate
-        })
-      }.width('100%')
-    }
-  }
-  ```
+- 当装饰的对象是Date时，可以观察到Date的赋值，以及通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`更新Date的属性，详[装饰Date类型变量](#装饰date类型变量)。
 
 - 当装饰的变量是Map时，可以观察到Map整体的赋值，以及通过调用Map的接口`set`, `clear`, `delete`更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
 
@@ -417,6 +379,49 @@ struct SetSample {
   }
 }
 ```
+
+### 装饰Date类型变量
+
+在下面的示例中，selectedDate类型为Date，点击Button改变selectedDate的值，视图会随之刷新。
+
+```ts
+  @Entry
+  @Component
+  struct DatePickerExample {
+    @State selectedDate: Date = new Date('2021-08-08');
+  
+    build() {
+      Column() {
+        Button('set selectedDate to 2023-07-08')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate = new Date('2023-07-08');
+          })
+        Button('increase the year by 1')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
+          })
+        Button('increase the month by 1')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
+          })
+        Button('increase the day by 1')
+          .margin(10)
+          .onClick(() => {
+            this.selectedDate.setDate(this.selectedDate.getDate() + 1);
+          })
+        DatePicker({
+          start: new Date('1970-1-1'),
+          end: new Date('2100-1-1'),
+          selected: this.selectedDate
+        })
+      }.width('100%')
+    }
+  }
+  ```
+
 
 ## State支持联合类型实例
 

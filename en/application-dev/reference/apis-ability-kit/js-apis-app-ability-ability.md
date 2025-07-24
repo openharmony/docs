@@ -30,6 +30,10 @@ onConfigurationUpdate(newConfig: Configuration): void
 
 Called when the configuration of the environment where the ability is running is updated.
 
+> **NOTE**
+>
+> The callback has certain limitations when it is actually triggered. For example, if a developer manually sets the application language using [setLanguage](../apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextsetlanguage11), the system will no longer trigger the **onConfigurationUpdate** callback when the system language changes. For more details, see [Constraints](../../application-models/subscribe-system-environment-variable-changes.md#constraints).
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore

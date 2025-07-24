@@ -12,8 +12,8 @@
 
 ## Modules to Import
 
-```
-import { InnerFullScreenLaunchComponent, LauncherController } from '@kit.ArkUI'
+```ts
+import { InnerFullScreenLaunchComponent, LauncherController } from '@kit.ArkUI';
 ```
 
 
@@ -49,9 +49,9 @@ InnerFullScreenLaunchComponent({ content: Callback\<void>, controller: LaunchCon
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Description|
-| ---- | ---------- | ------ |
-|launchAtomicService | [LaunchAtomicServiceCallback](#launchatomicservicecallback) | Launches an atomic service.|
+| Name| Type| Mandatory| Description|
+| ---- | ---------- | ------ |------ |
+|launchAtomicService | [LaunchAtomicServiceCallback](#launchatomicservicecallback) | Yes| Launches an atomic service.|
 
 ## LaunchAtomicServiceCallback
 
@@ -82,15 +82,15 @@ struct Index {
   ColumChild() {
     Column() {
       Text('InnerFullScreenLaunchComponent').fontSize(16).margin({top: 100})
-      Button('Start Sunrise/Sunset'')
+      Button('Start Sunrise/Sunset')
         .onClick(()=>{
           let appId2: string = '5765880207854372375';
-          this.controller.launchAtomicService(appId2, {})
+          this.controller.launchAtomicService(appId2, {});
         }).height(30).width('50%').margin({top: 50})
       Button('Start Recharge')
         .onClick(()=>{
           let appId2: string = '5765880207853275489';
-          this.controller.launchAtomicService(appId2, {})
+          this.controller.launchAtomicService(appId2, {});
         }).height(30).width('50%').margin({top: 50})
     }.backgroundColor(Color.Pink).height('100%').width('100%')
   }

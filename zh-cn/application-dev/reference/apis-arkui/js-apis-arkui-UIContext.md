@@ -124,6 +124,7 @@ getUIInspector(): UIInspector
 ```ts
 uiContext.getUIInspector();
 ```
+完整示例请参考[UIInspector](#uiinspector)中的示例。
 
 ### getUIObserver<sup>11+</sup>
 
@@ -165,6 +166,8 @@ getMediaQuery(): MediaQuery
 | [MediaQuery](#mediaquery) | 返回MediaQuery实例对象。 |
 
 **示例：**
+
+完整示例请参考[mediaquery示例](js-apis-mediaquery.md#示例)。
 
 <!--code_no_check-->
 ```ts
@@ -1132,7 +1135,17 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 | -------- | ---------- | ---- | ---- |
 | value | [KeyboardAvoidMode](#keyboardavoidmode11)| 是    | 键盘避让时的页面避让模式。<br />默认值:KeyboardAvoidMode.OFFSET |
 
+>  **说明：**
+>
+>  KeyboardAvoidMode.RESIZE模式会压缩页面大小，页面中设置百分比宽高的组件会跟随页面压缩，而直接设置宽高的组件会按设置的固定大小布局。设置KeyboardAvoidMode的RESIZE模式时，expandSafeArea([SafeAreaType.KEYBOARD],[SafeAreaEdge.BOTTOM])不生效。
+>
+>  KeyboardAvoidMode.NONE模式配置页面不避让键盘，页面会被抬起的键盘遮盖。
+>
+>  setKeyboardAvoidMode针对页面生效，对于弹窗类组件不生效，比如Dialog、Popup、Menu、BindSheet、BindContentCover、Toast、OverlayManager。弹窗类组件的避让模式可以参考[CustomDialogControllerOptions对象说明](./arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions对象说明)。
+
 **示例：**
+
+完整示例请参考[示例4（设置键盘避让模式为压缩）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例4设置键盘避让模式为压缩)、[示例5（设置键盘避让模式为上抬）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例5设置键盘避让模式为上抬)以及[示例6（切换避让模式）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例6切换避让模式)。
 
 ```ts
 // EntryAbility.ets
@@ -1172,6 +1185,8 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 | [KeyboardAvoidMode](#keyboardavoidmode11)| 返回当前的页面避让模式。|
 
 **示例：**
+
+完整示例请参考[示例4（设置键盘避让模式为压缩）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例4设置键盘避让模式为压缩)、[示例5（设置键盘避让模式为上抬）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例5设置键盘避让模式为上抬)以及[示例6（切换避让模式）](./arkui-ts/ts-universal-attributes-expand-safe-area.md#示例6切换避让模式)。
 
 ```ts
 // EntryAbility.ets
@@ -1570,7 +1585,7 @@ vp2px(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./js-apis-window.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1607,7 +1622,7 @@ px2vp(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./js-apis-window.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1646,7 +1661,7 @@ fp2px(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./js-apis-window.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1685,7 +1700,7 @@ px2fp(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./js-apis-window.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1720,7 +1735,7 @@ lpx2px(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./js-apis-window.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1755,7 +1770,7 @@ px2lpx(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./js-apis-window.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./js-apis-window.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1866,9 +1881,8 @@ struct Index {
         }
         .onClick(() => {
           let uiContext: UIContext = this.getUIContext();
-          let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
           let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
+          console.info(`Window widthBp: ${widthBp}`);
         })
       }
       .width('100%')
@@ -1917,8 +1931,7 @@ struct Index {
         .onClick(() => {
           let uiContext: UIContext = this.getUIContext();
           let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
-          let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
+          console.info(`Window heightBP: ${heightBp}`);
         })
       }
       .width('100%')
@@ -3059,6 +3072,10 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 
 获取组件大小、位置、平移、缩放、旋转及仿射矩阵属性信息。
 
+> **说明：**
+>
+> 该接口需要在目标组件布局、完成以后获取目标组件区域大小信息，建议在[onAppear](./arkui-ts/ts-universal-events-show-hide.md#onappear)中使用该接口。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -3127,10 +3144,44 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 <!--code_no_check-->
 ```ts
-import { UIInspector } from '@kit.ArkUI';
+import { inspector, UIInspector } from '@kit.ArkUI'
 
-let inspector: UIInspector = uiContext.getUIInspector();
-let listener = inspector.createComponentObserver('COMPONENT_ID');
+@Entry
+@Component
+struct UIInspectorExample {
+  build() {
+    Column() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+        Row({ space: 5 }) {
+          Text("UIInspector")
+            .width(110)
+            .height(110)
+            .border({ width: 1 })
+            .id('TEXT_ID')
+        }.width(80).width(80)
+      }.width(80).width(80)
+    }.height(320).width(360).padding({ right: 10, top: 10 })
+  }
+
+  uiInspector: UIInspector = this.getUIContext().getUIInspector();
+  listener:inspector.ComponentObserver = this.uiInspector.createComponentObserver("TEXT_ID")
+
+  aboutToAppear() {
+    let onLayoutComplete:()=>void=():void=>{
+      console.info("TEXT_ID layout complete")
+    }
+    let onDrawComplete:()=>void=():void=>{
+      console.info("TEXT_ID draw complete")
+    }
+
+    this.listener.on('layout', onLayoutComplete)
+    this.listener.on('draw', onDrawComplete)
+
+    // 通过句柄向对应的查询条件取消注册回调，由开发者自行决定在何时调用。
+    // this.listener.off('layout', onLayoutComplete)
+    // this.listener.off('draw', onDrawComplete)
+  }
+}
 ```
 
 ## PageInfo<sup>12+</sup>
@@ -4755,6 +4806,8 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 | [mediaQuery.MediaQueryListener](js-apis-mediaquery.md#mediaquerylistener) | 媒体事件监听句柄，用于注册和去注册监听回调。 |
 
 **示例：**
+
+完整示例请参考[mediaquery示例](js-apis-mediaquery.md#示例)。
 
 <!--code_no_check-->
 ```ts

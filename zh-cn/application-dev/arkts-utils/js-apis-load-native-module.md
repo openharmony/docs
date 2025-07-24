@@ -1,6 +1,6 @@
 # 同步方式动态加载native模块
 
-loadNativeModule接口的功能是同步方式动态加载native模块。它的主要目的是在需要某个native模块时才进行加载，从而避免在应用启动时加载不必要的模块。但是使用该接口时会产生加载so耗时，需要开发者自行评估是否会对功能产生影响。
+loadNativeModule接口用于以同步方式动态加载native模块。其主要目的是在需要某个native模块时才进行加载，从而避免在应用启动时加载不必要的模块。但是使用该接口时会产生加载so耗时，需要开发者自行评估是否会对功能产生影响。
 
 ## 函数说明
 
@@ -13,11 +13,11 @@ loadNativeModule(moduleName: string): Object;
 | moduleName            | 加载的模块名。       |
 
 > **说明**
-> loadNativeModule加载的模块名指的是依赖方oh-package.json5文件的dependencies中的名字。
+> loadNativeModule加载的模块名是指依赖方oh-package.json5文件的dependencies中的名字。
 >
-> loadNativeModule只能在UI主线程中加载模块。
+> loadNativeModule必须在UI主线程中调用。
 >
-> 该接口功能在加载常量字符串或变量表达式作为参数时，都需要配置依赖。
+> 该接口在加载常量字符串或变量表达式作为参数时，需要配置依赖。
 
 ## loadNativeModule支持的场景
 
@@ -44,7 +44,7 @@ libentry.so的index.d.ts文件如下：
 export const add: (a: number, b: number) => number;
 ```
 
-1.在加载本地so库时，需在oh-package.json5文件中配置dependencies项。
+1.加载本地so库时，需要在oh-package.json5文件中配置dependencies项。
 
 ```json
 {
@@ -70,7 +70,7 @@ export const add: (a: number, b: number) => number;
 }
 ```
 
-3.使用loadNativeModule加载libentry.so，并调用函数add。
+3.使用loadNativeModule加载libentry.so，并调用add函数。
 
 ```js
 let module: ESObject = loadNativeModule("libentry.so");

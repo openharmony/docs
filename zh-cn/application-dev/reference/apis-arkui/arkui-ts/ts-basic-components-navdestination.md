@@ -433,8 +433,8 @@ enableStatusBar(enabled: Optional&lt;boolean&gt;, animated?: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| enabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | 进入该NavDestination后，系统状态栏的显示/隐藏状态。 |
-| animated  | boolean | 否   | 是否使用动画的方式显示/隐藏系统状态栏，默认值为：false。 |
+| enabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | 进入该NavDestination后，系统状态栏的显示/隐藏状态。<br/>true：&nbsp;显示状态栏。<br/>false：&nbsp;隐藏状态栏。 |
+| animated  | boolean | 否   | 是否使用动画的方式显示/隐藏系统状态栏，默认值为：false。 <br/>true：使用动画的方式显示/隐藏系统状态栏。<br/>false：不使用动画的方式显示/隐藏系统状态栏。|
 
 ### enableNavigationIndicator<sup>19+</sup>
 
@@ -460,7 +460,7 @@ enableNavigationIndicator(enabled: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| enabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | 进入该NavDestination后，系统导航条的显示/隐藏状态。 |
+| enabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | 进入该NavDestination后，系统导航条的显示/隐藏状态。<br/>true：&nbsp;显示导航条。<br/>false：&nbsp;隐藏导航条。 |
 
 ## NavDestinationMode枚举说明<sup>11+</sup>
 

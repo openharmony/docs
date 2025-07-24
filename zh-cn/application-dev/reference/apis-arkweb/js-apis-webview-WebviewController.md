@@ -6403,6 +6403,12 @@ struct WebComponent {
             document.getElementById("show_num").value = ++num;
         }, 1000);
     }
+
+    function resetTimer() {
+        clearInterval(timer);
+        document.getElementById("show_num").value = 0;
+        num = 0;
+    }
 </script>
 ```
 
@@ -6993,7 +6999,7 @@ struct WebComponent {
     <meta charset="UTF-8">
   </head>
   <body>
-    <video id="video" width="400px" height="400px" autoplay="autoplay">
+    <video id="video" width="400px" height="400px" autoplay>
     </video>
     <input type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()" />
     <script>
@@ -7007,8 +7013,8 @@ struct WebComponent {
         }
         let video = document.getElementById("video");
         let promise = navigator.mediaDevices.getUserMedia(constraints);
-        promise.then(function(MediaStream) {
-          video.srcObject = MediaStream;
+        promise.then(function(mediaStream) {
+          video.srcObject = mediaStream;
           video.play();
         })
       }

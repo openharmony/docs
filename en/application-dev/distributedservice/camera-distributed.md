@@ -31,7 +31,7 @@
 ### Environment Setup
 
   1. Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/) 5.0 or later.
-  2. Update the public SDK to API version 16 or later.
+  2. Update the public-SDK to API version 16 or later.
   3. Connect device A and device B to the PC using USB cables.
   4. Connect device A and device B to the same Wi-Fi, identify each other, and start networking. For details, see [UIAbility Connection Development](abilityconnectmanager-guidelines.md#how-to-develop).
 

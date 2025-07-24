@@ -1271,7 +1271,7 @@ export default class ShareExtAbility extends ShareExtensionAbility {
             console.error(`openLink callback failed, err code: ${err.code}, err msg: ${err.message}.`);
             return;
           }
-          console.info(`openLink success, resule code: ${result.resultCode} result data: ${result.want}.`);
+          console.info(`openLink success, result code: ${result.resultCode} result data: ${result.want}.`);
         }
       ).then(() => {
         console.info(`open link success.`);

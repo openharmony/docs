@@ -2,7 +2,7 @@
 
 ## Overview
 
-Starting from API version 14, applications can leverage the UI (such as preview UI) and background service capabilities provided by the [UIServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md). This component, classified as a floating window component of [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) of the UI Service type, encapsulates a [UIServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md). This context offers a wide range of APIs for external use.
+Starting from API version 14, the UIServiceExtensionAbility can be used to implement system floating windows. The UIServiceExtensionAbility is classified as a floating window component of [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) of the UI Service type. Third-party applications can use a UIServiceExtensionAbility but cannot implement a UIServiceExtensionAbility. (The implementation requires system permissions.)
 
 In this document, the component that starts or connects to a UIServiceExtensionAbility is called the client, and the UIServiceExtensionAbility is called the server.
 
@@ -13,8 +13,6 @@ An application can use a UIServiceExtensionAbility in two modes:
 ## Constraints
 
 - This API takes effect only for 2-in-1 devices.
-
-- Third-party applications can use a UIServiceExtensionAbility but cannot implement a UIServiceExtensionAbility. (The implementation requires system permissions.)
 
 - Third-party applications can connect to a UIServiceExtensionAbility provided by a system application only when they gain focus in the foreground.
 

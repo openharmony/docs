@@ -215,7 +215,7 @@ When **cachedCount** is set to the maximum number of nodes that may appear on th
 
 onTotalCount?(): number;
 
-It is supported since API version 18 and must be used in virtualScroll mode. You can customize a method to calculate the expected array length. The return value must be a natural number and may not be equal to the actual data source length **arr.length**. The processing rules of **onTotalCount** are as follows:
+It is supported since API version 19 and must be used in virtualScroll mode. You can customize a method to calculate the expected array length. The return value must be a natural number and may not be equal to the actual data source length **arr.length**. The processing rules of **onTotalCount** are as follows:
 
 - When the return value is a non-natural number, **arr.length** is used as the return value and the list scrolls normally.
 - When the return value of **onTotalCount** is greater that or equal to **0** and smaller than **arr.length**, only data within the range of [0, *return value* - 1] is rendered.
@@ -231,7 +231,7 @@ It is supported since API version 18 and must be used in virtualScroll mode. You
 
 onLazyLoading?(index: number): void;
 
-It is supported since API version 18 and must be used in virtualScroll mode. You can customize a method to write data to a specified index in the data source. The processing rules of **onLazyLoading** are as follows:
+It is supported since API version 19 and must be used in virtualScroll mode. You can customize a method to write data to a specified index in the data source. The processing rules of **onLazyLoading** are as follows:
 
 - Before reading the data corresponding to an index in the data source, **Repeat** checks whether the index contains data.
 - If no data exists and a custom method is defined, **Repeat** calls this method.

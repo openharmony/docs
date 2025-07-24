@@ -23,7 +23,7 @@ getRectangleById(id: string): ComponentInfo
 >
 > 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentUtils](js-apis-arkui-UIContext.md#getcomponentutils)获取[ComponentUtils](js-apis-arkui-UIContext.md#componentutils)实例，再通过此实例调用替代方法[getRectangleById](js-apis-arkui-UIContext.md#getrectanglebyid)。
 >
-> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentUtils](js-apis-arkui-UIContext.md#getcomponentutils)方法获取当前UI上下文关联的[ComponentUtils](js-apis-arkui-UIContext.md#componentutils)对象。该接口需要在目标组件布局、完成以后获取目标组件区域大小信息，建议在[@ohos.arkui.inspector(布局回调)](js-apis-arkui-inspector.md)接收到布局完成的通知以后使用该接口。
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentUtils](js-apis-arkui-UIContext.md#getcomponentutils)方法获取当前UI上下文关联的[ComponentUtils](js-apis-arkui-UIContext.md#componentutils)对象。该接口需要在目标组件布局、完成以后获取目标组件区域大小信息，建议在[onAppear](./arkui-ts/ts-universal-events-show-hide.md#onappear)中使用该接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
