@@ -295,12 +295,12 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称   | 类型   | 可读 | 可写 | 说明              |
+| 名称   | 类型   | 只读 | 可选 | 说明              |
 | ------ | ----- | ---- | ---- | ---------------- |
-| red   | number | 是   | 否   | 红色分量值，取值范围[0x0, 0xFF]。           |
-| green | number | 是   | 否   | 绿色分量值，取值范围[0x0, 0xFF]。           |
-| blue  | number | 是   | 否   | 蓝色分量值，取值范围[0x0, 0xFF]。           |
-| alpha | number | 是   | 否   | 透明通道分量值，取值范围[0x0, 0xFF]。       |
+| red   | number | 否   | 否   | 红色分量值，取值范围[0x0, 0xFF]。           |
+| green | number | 否   | 否   | 绿色分量值，取值范围[0x0, 0xFF]。           |
+| blue  | number | 否   | 否   | 蓝色分量值，取值范围[0x0, 0xFF]。           |
+| alpha | number | 否   | 否   | 透明通道分量值，取值范围[0x0, 0xFF]。       |
 
 ## TileMode<sup>14+</sup>
 
