@@ -2632,7 +2632,7 @@
           - [@ohos.arkui.prefetcher (Prefetching)](reference/apis-arkui/js-apis-arkui-Prefetcher.md)
           - [@ohos.arkui.shape(形状)](reference/apis-arkui/js-apis-arkui-shape.md)
           - [@ohos.arkui.theme(主题换肤)](reference/apis-arkui/js-apis-arkui-theme.md)
-          - @ohos.arkui.UIContext (UIContext)<!--js-apis-arkui-UIContext-->
+          - @ohos.arkui.UIContext (UIContext)<!--js-apis-arkui-uicontext-->
             - [模块描述](reference/apis-arkui/arkts-apis-uicontext.md)
             - [Class (ComponentSnapshot)](reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md)
             - [Class (ComponentUtils)](reference/apis-arkui/arkts-apis-uicontext-componentutils.md)
