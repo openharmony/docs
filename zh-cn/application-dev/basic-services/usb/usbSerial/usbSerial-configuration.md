@@ -72,15 +72,18 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
 
     ```ts
     // 此处对列表中的第一台USB设备判断是否拥有访问权限
-    let portId: number = portList[0].portId;
-    if (!serial.hasSerialRight(portId)) {
-      await serial.requestSerialRight(portId).then(result => {
-        if(!result) {
-          // 没有访问设备的权限且用户不授权则退出
-          console.error('The user does not have permission to perform this operation');
-          return;
-        }
-      });
+    // 函数名仅作为示例，实际需要与业务结合命名
+    async function serialDefault() {
+      let portId: number = portList[0].portId;
+      if (!serial.hasSerialRight(portId)) {
+        await serial.requestSerialRight(portId).then(result => {
+          if(!result) {
+            // 没有访问设备的权限且用户不授权则退出
+            console.error('The user does not have permission to perform this operation');
+            return;
+          }
+        });
+      }
     }
     ```
 
