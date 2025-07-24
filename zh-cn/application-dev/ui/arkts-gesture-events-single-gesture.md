@@ -127,51 +127,91 @@ PanGesture(value?:{ fingers?:number, direction?:PanDirection, distance?:number})
 - distance：用于声明触发拖动的最小拖动识别距离，单位为vp，默认值为5。
 
 
-以在Text组件上绑定拖动手势为例，可以通过在拖动手势的回调函数中修改组件的布局位置信息来实现组件的拖动：
-
+以下以实现一个简单的音量控制为例，可以通过拖动手势的回调函数处理多种不同的输入情况下的音量值增减的逻辑。
+支持以下五种操作方式：
+1、单指上下滑动；
+2、按住鼠标左键上下滑动；
+3、鼠标滚轮滚动；
+4、单指按住触控板上下滑动；
+5、使用触控板双指滑动。
 
 
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct Index {
-  @State offsetX: number = 0;
-  @State offsetY: number = 0;
-  @State positionX: number = 0;
-  @State positionY: number = 0;
+struct VolumeControlDemo {
+  @State currentVolume: number = 50;
+  private readonly MAX_VOLUME: number = 100;
+  private readonly MIN_VOLUME: number = 0;
+
+  private handlePanUpdate(event: GestureEvent) {
+    const volumeChange = -event.offsetY * 0.1;
+    this.handleVolumeChange(volumeChange);
+  }
+
+  private handleWheelEvent(event: GestureEvent) {
+    const volumeChange = event.offsetY * 0.1;
+    this.handleVolumeChange(volumeChange);
+  }
+
+  private handleTouchPadScroll(event: GestureEvent) {
+    const volumeChange = -event.offsetY * 0.02;
+    this.handleVolumeChange(volumeChange);
+  }
+
+  private handleVolumeChange(delta: number) {
+    this.currentVolume = Math.min(
+      this.MAX_VOLUME,
+      Math.max(this.MIN_VOLUME, this.currentVolume + delta)
+    )
+
+  }
 
   build() {
     Column() {
-      Text('PanGesture Offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
-        .fontSize(28)
-        .height(200)
-        .width(300)
-        .padding(20)
-        .border({ width: 3 })
-          // 在组件上绑定布局位置信息
-        .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
+      // 状态显示
+      Row() {
+        Text(`音量： ${this.currentVolume}`).fontSize(20)
+      }.margin(10)
+
+      // 手势识别区域
+      Column()
+        .width('100%')
+        .height(250)
+        .backgroundColor('#F5F5F5')
+        .borderRadius(12)
         .gesture(
-          // 绑定拖动手势
           PanGesture()
-           .onActionStart((event: GestureEvent|undefined) => {
-              console.info('Pan start');
+            .onActionStart(() => {
+              console.info("Pan start");
             })
-              // 当触发拖动手势时，根据回调函数修改组件的布局位置信息
-            .onActionUpdate((event: GestureEvent|undefined) => {
-              if(event){
-                this.offsetX = this.positionX + event.offsetX;
-                this.offsetY = this.positionY + event.offsetY;
+            .onActionUpdate((event: GestureEvent) => {
+              // 单指上下滑动
+              if (event.source === SourceType.TouchScreen) {
+                console.info("finger move triggered PanGesture");
+                this.handlePanUpdate(event);
               }
-            })
-            .onActionEnd(() => {
-              this.positionX = this.offsetX;
-              this.positionY = this.offsetY;
+              if (event.source === SourceType.Mouse && event.sourceTool === SourceTool.MOUSE) {
+                // 鼠标左键按住上下滑动或者触控板单指按住上下滑动
+                if (event.axisHorizontal === 0 && event.axisVertical === 0) {
+                  console.info("mouse move with left button pressed triggered PanGesture");
+                  this.handlePanUpdate(event);
+                } else { // 鼠标滚轮滚动
+                  console.info("mouse wheel triggered PanGesture");
+                  this.handleWheelEvent(event);
+                }
+              }
+              if (event.sourceTool === SourceTool.TOUCHPAD && (event.axisHorizontal !== 0 || event.axisVertical !== 0)) {
+                console.info("touchpad double finger move triggered PanGesture");
+                this.handleTouchPadScroll(event);
+              }
             })
         )
     }
-    .height(200)
-    .width(250)
+    .width('100%')
+    .height('100%')
+    .padding(20)
   }
 }
 ```
