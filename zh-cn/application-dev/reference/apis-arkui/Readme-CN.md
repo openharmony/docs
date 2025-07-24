@@ -150,7 +150,8 @@
       - [布局约束](arkui-ts/ts-universal-attributes-layout-constraints.md)
       - [Flex布局](arkui-ts/ts-universal-attributes-flex-layout.md)
       - [安全区域](arkui-ts/ts-universal-attributes-expand-safe-area.md)
-      - [组件级像素取整](arkui-ts/ts-universal-attributes-pixelRound.md)
+      - [组件级像素取整](arkui-ts/ts-universal-attributes-pixelRoundForComponent.md)
+      - [页面级像素取整](arkui-ts/ts-universal-attributes-pixelRoundForPage.md)
       - [边框设置](arkui-ts/ts-universal-attributes-border.md)
       - [图片边框设置](arkui-ts/ts-universal-attributes-border-image.md)
     - 视效与模糊<!--visual-effect-property-->
