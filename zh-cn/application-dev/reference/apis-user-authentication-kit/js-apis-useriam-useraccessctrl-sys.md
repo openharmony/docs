@@ -78,9 +78,9 @@ verifyAuthToken(authToken: Uint8Array, allowableDuration: number): Promise\<Auth
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 201      | Permission verification failed.         |
-| 202      | The caller is not a system application. |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.    |
+| 201      | Permission denied.        |
+| 202      | Permission denied. Called by non-system application. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.    |
 | 12500002 | General operation error.                |
 | 12500015 | AuthToken integrity check failed.     |
 | 12500016 | AuthToken has expired.                |

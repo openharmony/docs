@@ -107,8 +107,8 @@ getEnrolledState(authType : UserAuthType): EnrolledState
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
-| 201 | Permission verification failed. |
-| 401 | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500010 | The type of credential has not been enrolled. |
@@ -404,7 +404,7 @@ on(type: 'result', callback: IAuthCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **示例1：**
@@ -528,7 +528,7 @@ off(type: 'result', callback?: IAuthCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **示例：**
@@ -587,8 +587,8 @@ start(): void
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
-| 201      | Permission verification failed. Possible causes:1.No permission to access biometric. 2.No permission to start authentication from background.|
-| 401      | Incorrect parameters. Possible causes: 1.Incorrect parameter types. |
+| 201      | Permission denied. Possible causes:1.No permission to access biometric. 2.No permission to start authentication from background.|
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 12500001 | Authentication failed.                           |
 | 12500002 | General operation error.                         |
 | 12500003 | Authentication canceled.                         |
@@ -650,8 +650,8 @@ cancel(): void
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
-| 201      | Permission verification failed. |
-| 401      | Incorrect parameters. Possible causes: 1.Incorrect parameter types. |
+| 201      | Permission denied. |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 12500002 | General operation error.        |
 
 **示例：**
@@ -839,7 +839,7 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.   |
 | 12500002 | General operation error.                         |
 | 12500005 | The authentication type is not supported.        |
 | 12500006 | The authentication trust level is not supported. |
@@ -1041,7 +1041,7 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
-| 401 | Incorrect parameters. |
+| 401 | Parameter error. |
 | 12500002 | General operation error. |
 
 **示例：**
@@ -1106,7 +1106,7 @@ off : (name : AuthEventKey) => void
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
-| 401 | Incorrect parameters. |
+| 401 | Parameter error. |
 | 12500002 | General operation error. |
 
 **示例：**
@@ -1157,8 +1157,8 @@ start : () => void
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
-| 201 | Permission verification failed. |
-| 401 | Incorrect parameters. |
+| 201 | Permission denied. |
+| 401 | Parameter error. |
 | 12500001 | Authentication failed. |
 | 12500002 | General operation error. |
 | 12500003 | The operation is canceled. |
@@ -1208,8 +1208,8 @@ cancel : () => void
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
-| 201 | Permission verification failed. |
-| 401 | Incorrect parameters. |
+| 201 | Permission denied. |
+| 401 | Parameter error. |
 | 12500002 | General operation error. |
 
 **示例：**
@@ -1264,7 +1264,7 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
-| 401 | Incorrect parameters. |
+| 401 | Parameter error. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
@@ -1321,8 +1321,8 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
-| 201 | Permission verification failed. |
-| 401 | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |

@@ -66,8 +66,8 @@ setSurfaceId(surfaceId: string): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ------- |
-| 201 | Permission verification failed. |
-| 202 | The caller is not a system application. |
+| 201 | Permission denied. |
+| 202 | Permission denied. Called by non-system application. |
 | 12700001 | The service is unavailable. |
 
 **示例：**
