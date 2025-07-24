@@ -431,7 +431,7 @@ export default class EntryAbility extends UIAbility {
 
 开发步骤如下所示。
 
-1. 冷启动短信应用的UIAbility实例时，在[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)生命周期回调中，通过调用[getUIContext()](../reference/apis-arkui/arkts-apis-window-Window.md#getuicontext10)接口获取UI上下文实例[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md)对象。
+1. 冷启动短信应用的UIAbility实例时，在[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)生命周期回调中，通过调用[getUIContext()](../reference/apis-arkui/arkts-apis-window-Window.md#getuicontext10)接口获取UI上下文实例[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)对象。
 
     ```ts
     import { hilog } from '@kit.PerformanceAnalysisKit';

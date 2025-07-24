@@ -32,7 +32,7 @@ static napi_value ExportKey(napi_env env, napi_callback_info info)
     const char *alias = "test_key";
     struct OH_Huks_Blob aliasBlob = { .size = (uint32_t)strlen(alias), .data = (uint8_t *)alias };
     /* 构造参数：为待导出公钥申请内存 */
-    uint8_t *pubKey = (uint8_t *)malloc(512); // 请业务按实际密钥大小评估申请
+    uint8_t *pubKey = (uint8_t *)malloc(256); // 请业务按实际密钥大小评估申请
     if (pubKey == nullptr) {
         return nullptr;
     }

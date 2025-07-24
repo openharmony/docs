@@ -1299,7 +1299,11 @@ export default class EntryAbility extends UIAbility {
 
 setCustomDensity(density: number): void
 
-支持应用主窗口自定义其显示大小缩放系数，子窗和系统窗口会跟随主窗生效。当存在同时使用该接口和[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，以最后调用的设置效果为准。
+支持应用主窗口自定义其显示大小缩放系数。
+
+已创建的子窗和系统窗口不会立即跟随主窗的customDensity变化重新布局，而是在子窗或系统窗口下一次位置、大小、系统缩放大小等窗口布局信息变化时跟随主窗的customDensity变化重新布局。
+
+当存在同时使用该接口和[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)的情况时，以最后调用的设置效果为准。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -1337,6 +1341,57 @@ export default class EntryAbility extends UIAbility {
     console.info('onWindowStageCreate');
     try {
       windowStage.setCustomDensity(-1.0);
+    } catch (exception) {
+      console.error(`Failed to set custom density. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+};
+```
+
+## setCustomDensity<sup>20+</sup>
+
+setCustomDensity(density: number, applyToSubWindow?: boolean): void
+
+支持应用主窗口自定义显示大小缩放系数，并设置已创建的子窗和系统窗口跟随主窗重新布局的生效时机。
+
+当存在同时使用该接口和[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)的情况时，以最后调用的设置效果为准。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名           | 类型    | 必填 | 说明                         |
+| ---------------- | ------- | ---- | ---------------------------- |
+| density | number | 是   | 自定义显示大小缩放系数。该参数为浮点数，取值范围为[0.5, 4.0]或-1.0。4.0表示窗口可显示的最大显示大小缩放系数，-1.0表示窗口使用系统显示大小缩放系数。 |
+| applyToSubWindow | boolean | 否   | 设置当前已创建的子窗和系统窗口是否跟随立即跟随主窗口更新customDensity并重新布局。设置为true时，表示立即跟随主窗生效；设置为false时，表示不会立即跟随主窗生效，而是在子窗或系统窗口下一次位置、大小、系统缩放大小等窗口布局信息变化时跟随主窗的customDensity变化重新布局。默认值为false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300005 | This window stage is abnormal. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    try {
+      windowStage.setCustomDensity(2.0);
+      windowStage.setCustomDensity(3.0, true);
+      windowStage.setCustomDensity(-1.0, false);
     } catch (exception) {
       console.error(`Failed to set custom density. Cause code: ${exception.code}, message: ${exception.message}`);
     }

@@ -55,6 +55,7 @@ static OH_Crypto_ErrCode doTestEccDataCovert()
     }
     OH_CryptoAsymKeyGenerator_Destroy(generator);
     OH_CryptoKeyPair_Destroy(keyPair);
+    OH_Crypto_FreeDataBlob(&returnBlob);
     return ret;
 }
 ```

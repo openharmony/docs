@@ -66,7 +66,7 @@ void OnKeyEventCallback(const Input_KeyEvent* keyEvent)
     event.actionTime = OH_Input_GetKeyEventActionTime(keyEvent);
 }
 
-void TestMonitor()
+void TestKeyEventMonitor()
 {
     //添加按键事件监听
     Input_Result ret = OH_Input_AddKeyEventMonitor(OnKeyEventCallback);
@@ -104,7 +104,7 @@ void OnMouseEventCallback(const Input_MouseEvent* mouseEvent)
     event.actionTime = OH_Input_GetMouseEventActionTime(mouseEvent);
 }
 
-void TestMonitor()
+void TestMouseEventMonitor()
 {
     //添加鼠标事件监听
     Input_Result ret = OH_Input_AddMouseEventMonitor(OnMouseEventCallback);
@@ -138,7 +138,7 @@ void OnTouchEventCallback(const Input_TouchEvent* touchEvent)
     event.actionTime = OH_Input_GetTouchEventActionTime(touchEvent);
 }
 
-void TestMonitor()
+void TestTouchEventMonitor()
 {
     //添加触摸事件监听
     Input_Result ret = OH_Input_AddTouchEventMonitor(OnTouchEventCallback);
@@ -246,7 +246,7 @@ void OnScrollAxisEventCallback(const Input_AxisEvent* axisEvent)
     event.axisValues.insert(std::make_pair(AXIS_TYPE_SCROLL_HORIZONTAL, value));
 }
 
-void TestMonitor()
+void TestAxisEventMonitor()
 {
     //添加所有类型轴事件监听
     Input_Result ret = OH_Input_AddAxisEventMonitorForAll(OnAllAxisEventCallback);

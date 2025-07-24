@@ -37,13 +37,41 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | selectTextEnd       | string | 否   | 是|选定组件内文本时的结束坐标，如：'8'。      |
 | selectTextInForWard | bool   | 否    | 是|选定组件内文本时是否向前选择，如：true。      |
 | offset              | string | 否   | 是|设置光标的偏移量，如：'1'。    |
-| spanId              | string | 否   |是 |对SPAN文本进行点击操作时文本id。                |
-| scrollType          | string | 否   | 是|组件滚动类型，包括SCROLL_FORWARD（向前滚动）和SCROLL_BACKWARD（向后滚动）。 |
+| spanId              | string | 否   |是 |对超链接文本进行点击操作时文本编号。                |
+| scrollType          | string | 否   | 是|组件滚动类型，包括'fullScreen'（全屏）和'halfScreen'（半屏）。 |
 
 例如：选中文本输入框中index从0到7的字符时，executeAction(AccessibilityAction.SET_SELECTION, parameter)方法设置的参数如下:
 ```ts
 let p : Parameter = { selectTextBegin: '0', selectTextEnd: '8', selectTextInForWard: true }
 ```
+
+## AccessibilityGrid<sup>20+</sup>
+
+辅助功能网格信息。
+详见[AccessibilityElement.currentItem](#accessibilityelement12)。
+
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
+
+| 名称                  | 类型     | 只读  |可选| 说明                                |
+| ------------------- | ------ | ---- | ----|--------------------------------- |
+| rowIndex             | number | 是   |是 |网格行索引。                 |
+| columnIndex          | number | 是  | 是|网格列索引。        |
+
+
+## AccessibilitySpan<sup>20+</sup>
+
+辅助功能超链接文本信息。
+详见[AccessibilityElement.spans](#accessibilityelement12)。
+
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
+
+| 名称                  | 类型     | 只读  |可选| 说明                                |
+| ------------------- | ------ | ---- | ----|--------------------------------- |
+| spanId             | number | 是   |是 |超链接文本编号。                 |
+| spanText          | string | 是  | 是|超链接文本的文本内容。        |
+| accessibilityText          | string | 是  | 是|超链接文本的辅助功能文本。        |
+| accessibilityDescription          | string | 是  | 是|超链接文本的辅助功能描述。        |
+| accessibilityLevel          | string | 是  | 是|超链接文本的辅助功能级别。        |
 
 
 ## startAbility<sup>12+</sup>
@@ -479,12 +507,16 @@ getAccessibilityWindowsSync(displayId?: number): Array\<[AccessibilityElement](#
 import { AccessibilityElement } from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let displayId: number = 0;
-
-let windowList: AccessibilityElement[] = axContext.getAccessibilityWindowsSync(displayId);
-
-for (let window of windowList) {
-  console.log(`window id: ${window.windowId}`);
+try {
+  let displayId: number = 0;
+  let windowList = context?.getAccessibilityWindowsSync(displayId);
+  if (windowList) {
+    for (let window of windowList) {
+      console.log(`getAccessibilityWindowsSync: windowId: ${window.windowId}`);
+    }
+  }
+} catch (err) {
+  console.log(`[FAILED] getAccessibilityWindowsSync: ${err.code} ${err.message}`)
 }
 ```
 
@@ -553,13 +585,13 @@ for (let window of windowList) {
 | accessibilityScrollable<sup>20+</sup>             | boolean                 | 是  | 否  | 元素是否因无障碍目的而可滚动。此属性优先级高于 **scrollable**。<br>- **true**（默认值）：元素可滚动。<br>- **false**：元素不可滚动。|
 | supportedActionNames<sup>20+</sup> | Array&lt;string&gt;                                                | 是  | 否  | 支持的操作名称。|
 | accessibilityGroup<sup>20+</sup>  | boolean                                                            | 是  | 否  | 元素是否为无障碍组。值为 **true** 表示元素是无障碍组，**false** 表示相反情况。<br>默认值：**false**。|
-| accessibilityLevel<sup>20+</sup>             | string                                                             | 是  | 否  | 组件的无障碍级别。|
+| accessibilityLevel<sup>20+</sup>             | string                                                             | 是  | 否  | 组件的无障碍级别。<br> **'auto'**：当前组件由无障碍分组服务和ArkUI进行综合判断组件是否可被辅助功能识别。<br> **'yes'**：当前组件可被辅助功能识别。<br> **'no'**：当前组件不可被辅助功能识别。<br> **'no-hide-descendants'**：当前组件及其所有子组件不可被辅助功能识别。|
 | navDestinationId<sup>20+</sup>             | number                                                             | 是  | 否  | 组件的导航目标 ID。|
-| currentItem<sup>20+</sup>             | AccessibilityGrid                                                             | 是  | 否  | 组件网格中的当前项。|
-| spans<sup>20+</sup>             | AccessibilitySpan[]                                                             | 是  | 否  | 组件的跨度数组。|
-| accessibilityVisible<sup>20+</sup>  | boolean                                                            | 是  | 否  | 组件是否无障碍可见。|
+| currentItem<sup>20+</sup>             | [AccessibilityGrid](#accessibilitygrid20)                                                             | 是  | 否  | 组件网格中的当前项。|
+| spans<sup>20+</sup>             | [AccessibilitySpan](#accessibilityspan20)[]                                                             | 是  | 否  | 组件的跨度数组。|
+| accessibilityVisible<sup>20+</sup>  | boolean                                                            | 是  | 否  | 组件是否无障碍可见。值为 **true** 表示可见，**false** 表示不可见。|
 | mainWindowId<sup>20+</sup>             | number                                                             | 是  | 否 | 组件的主窗口 ID。|
-| clip<sup>20+</sup>  | boolean                                                            | 是  | 否  | 组件是否需要裁剪。|
+| clip<sup>20+</sup>  | boolean                                                            | 是  | 否  | 组件是否需要裁剪。值为 **true** 表示需要裁剪，**false** 表示不需要裁剪。|
 | parentId<sup>20+</sup>             | number                                                             | 是  | 否  | 组件的父元素 ID。|
 | childrenIds<sup>20+</sup>             | Array\<number>                                                             | 是  | 否  | 组件的子元素 ID 列表。|
 
@@ -807,20 +839,6 @@ executeAction(action: AccessibilityAction, parameters?: Parameter): Promise\<voi
 | 9300005 | This action is not supported.            |
 
 **示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { AccessibilityAction, Parameter } from '@kit.AccessibilityKit';
-
-// rootElement是AccessibilityElement的实例
-rootElement.executeAction(action).then(() => {
-  console.info(`Succeeded in perform action,actionName is ${actionName}`);
-}).catch((err: BusinessError) => {
-  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
-});
-```
-
-
 ```ts
 //无参数Action示例：
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -828,11 +846,12 @@ import { AccessibilityAction, Parameter } from '@kit.AccessibilityKit';
 
 // rootElement是AccessibilityElement的实例
 // Action描述中无明确要求的，均为无参数Action
-rootElement.executeAction(AccessibilityAction.CLICK).then(() => {
-  console.info(`Succeeded in perform action.`);
-}).catch((err: BusinessError) => {
-  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
-});
+try {
+  rootElement.executeAction(AccessibilityAction.CLICK);
+  console.info(`Succeeded in perform action CLICK`);
+}catch (error){
+  console.error(`failed to perform action CLICK, Code is ${error?.code}, message is ${error?.message}`);
+}
 ```
 
 
@@ -842,17 +861,18 @@ rootElement.executeAction(AccessibilityAction.CLICK).then(() => {
 import { BusinessError } from '@kit.BasicServicesKit'; 
 import { AccessibilityAction, Parameter } from '@kit.AccessibilityKit';
 
-// selectTextBegin: 表示选择起始位置
-// selectTextEnd: 表示选择结束位置
-// selectTextInForWard: true表示为前光标，false表示为后光标
-let p : Parameter = { selectTextBegin: '0', selectTextEnd: '8', selectTextInForWard: true }
-// rootElement是AccessibilityElement的实例
-// setSelection示例代码
-rootElement.executeAction(AccessibilityAction.SET_SELECTION, p).then(() => {
-  console.info(`Succeeded in perform action`);
-}).catch((err: BusinessError) => {
-  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
-});
+try {
+  // selectTextBegin: 表示选择起始位置
+  // selectTextEnd: 表示选择结束位置
+  // selectTextInForWard: true表示为前光标，false表示为后光标
+  let p : Parameter = { selectTextBegin: '0', selectTextEnd: '8', selectTextInForWard: true }
+  // rootElement是AccessibilityElement的实例
+  // setSelection示例代码
+  rootElement.executeAction(AccessibilityAction.SET_SELECTION, p);
+  console.info(`Succeeded in perform action SET_SELECTION`);
+}catch (error){
+  console.error(`failed to perform action SET_SELECTION, Code is ${error?.code}, message is ${error?.message}`);
+}
 ```
 
 ```ts
@@ -860,15 +880,16 @@ rootElement.executeAction(AccessibilityAction.SET_SELECTION, p).then(() => {
 import { BusinessError } from '@kit.BasicServicesKit';
 import { AccessibilityAction, Parameter } from '@kit.AccessibilityKit';
 
-// offset: 表示光标的设置位置
-let p : Parameter = { offset: '1' }
-// rootElement是AccessibilityElement的实例
-// setCursorPosition示例代码
-rootElement.executeAction(AccessibilityAction.SET_CURSOR_POSITION, p).then(() => {
-  console.info(`Succeeded in perform action`);
-}).catch((err: BusinessError) => {
-  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
-});
+try {
+  // offset: 表示光标的设置位置
+  let p : Parameter = { offset: '1' }
+  // rootElement是AccessibilityElement的实例
+  // setCursorPosition示例代码
+  rootElement.executeAction(AccessibilityAction.SET_CURSOR_POSITION, p);
+  console.info(`Succeeded in perform action SET_CURSOR_POSITION`);
+}catch (error){
+  console.error(`failed to perform action SET_CURSOR_POSITION, Code is ${error?.code}, message is ${error?.message}`);
+}
 ```
 
 ### getParent<sup>20+</sup>
@@ -1120,7 +1141,7 @@ axContext.getAccessibilityFocusedElement().then((focus: AccessibilityElement) =>
 })
 ```
 
-### findElementByAccessibilityHintText<sup>20+</sup>
+### findElementsByAccessibilityHintText<sup>20+</sup>
 
 findElementsByAccessibilityHintText(hintText: string): Promise\<Array\<AccessibilityElement>>;
 
@@ -1174,10 +1195,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let windowId: number = 10;
 
 axContext.getRootInActiveWindow(windowId).then((root: AccessibilityElement) => {
-    root.findElementByAccessibilityHintText('location').then((elements: AccessibilityElement[]) => {
-        console.log("findElementByAccessibilityHintText size=" + elements.length)
+    root.findElementsByAccessibilityHintText('location').then((elements: AccessibilityElement[]) => {
+        console.log("findElementsByAccessibilityHintText size=" + elements.length)
     }).catch((err) => {
-        console.log(`findElementByAccessibilityHintText failed, code: ${err.code}, message: ${err.message}`);
+        console.log(`findElementsByAccessibilityHintText failed, code: ${err.code}, message: ${err.message}`);
     })
 }).catch((err) => {
   console.log(`getRootInActiveWindow failed, code: ${err.code}, message: ${err.message}`);

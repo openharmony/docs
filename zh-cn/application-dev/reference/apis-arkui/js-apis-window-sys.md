@@ -2820,15 +2820,15 @@ export default class EntryAbility extends UIAbility {
 
 raiseMainWindowAboveTarget(windowId: number): Promise&lt;void&gt;
 
-将主窗口的Z序调整至同应用下的另一个主窗口之上，子窗口的Z序会跟随所属主窗口变动。使用Promise异步回调。
+将主窗口的层级调整至同应用下的另一个主窗口之上，子窗口的层级会跟随所属主窗口变动。使用Promise异步回调。
 
 仅支持2in1设备的系统应用主窗口调用。
 
-传入目标主窗口的id，调用窗口和目标窗口需满足：同应用进程、显示在同一屏幕、低于锁屏、非置顶主窗、非模态主窗且无模应用子窗。
+传入目标主窗口的id，调用窗口和目标窗口需满足：同应用进程、显示在同一物理屏、层级低于锁屏、非置顶主窗、非模态主窗且无模应用子窗。
 
-- 应用主窗口或者它的子窗口如果是焦点窗口，此主窗口调用该接口降低Z序后则自动失焦，由当前Z序最高的应用窗口获焦。
+- 应用主窗口或者它的子窗口如果是焦点窗口，此主窗口调用该接口降低层级后则自动失焦，由当前层级最高的应用窗口获焦。
 
-- 应用主窗口调用该接口调整Z序后超过当前焦点窗口，则被抬升主窗口及其子窗口中，Z序最高的窗口自动获焦；应用主窗口调用该接口调整Z序后未超过当前焦点窗口，则焦点不做转移。
+- 应用主窗口调用该接口调整层级后超过当前焦点窗口，则被抬升主窗口及其子窗口中，层级最高的窗口自动获焦；应用主窗口调用该接口调整层级后未超过当前焦点窗口，则焦点不做转移。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2864,7 +2864,6 @@ raiseMainWindowAboveTarget(windowId: number): Promise&lt;void&gt;
 ```ts
 // EntryAbility.ets
 import { UIAbility, Want, StartOptions, AbilityConstant } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -2903,7 +2902,6 @@ export default class EntryAbility extends UIAbility {
 ```ts
 // 新建文件src/main/ets/raisemainwindowability/RaiseMainWindowAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 
 export default class RaiseMainWindowAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
