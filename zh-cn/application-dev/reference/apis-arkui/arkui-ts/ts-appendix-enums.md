@@ -1249,9 +1249,6 @@ type Nullable\<T> = T | undefined
 | PIXEL_ROUND_ON_LAYOUT_FINISH | 0 | 在组件测量大小和位置后进行像素取整，默认值为0。 |
 | PIXEL_ROUND_AFTER_MEASURE |  1 | 在组件测量大小结束后进行像素取整。 |
 
->  **说明：**
-> 在PIXEL_ROUND_AFTER_MEASURE模式下，组件会在测量时进行一次取整，也即最终大小与PIXEL_ROUND_ON_LAYOUT_FINISH会有1px的区别。
-
 ## EventQueryType<sup>19+</sup>
 
 要查询的交互事件类型。
