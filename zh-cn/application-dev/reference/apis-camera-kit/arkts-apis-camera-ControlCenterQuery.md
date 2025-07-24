@@ -13,7 +13,7 @@
 import { camera } from '@kit.CamerKit';
 ```
 
-## isControlCenterSupported
+## isControlCenterSupported<sup>20+</sup>
 
 isControlCenterSupported(): boolean
 
@@ -38,7 +38,7 @@ function isControlCenterSupported(videoSession: camera.VideoSession): boolean {
 }
 ```
 
-## getSupportedEffectTypes
+## getSupportedEffectTypes<sup>20+</sup>
 
 getSupportedEffectTypes(): Array\<ControlCenterEffectType\>
 

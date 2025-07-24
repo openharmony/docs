@@ -15,7 +15,7 @@ ControlCenter extends [ControlCenterQuery](arkts-apis-camera-ControlCenterQuery.
 import { camera } from '@kit.CameraKit';
 ```
 
-## enableControlCenter
+## enableControlCenter<sup>20+</sup>
 
 enableControlCenter(enabled: boolean): void
 
