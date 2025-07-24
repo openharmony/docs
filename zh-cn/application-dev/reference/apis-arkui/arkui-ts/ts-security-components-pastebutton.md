@@ -62,17 +62,19 @@ PasteButton(options: PasteButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| icon | [PasteIconStyle](#pasteiconstyle枚举说明) | 否 | 设置粘贴控件的图标风格。<br/>不传入该参数表示没有图标。 |
-| text | [PasteDescription](#pastedescription枚举说明) | 否 | 设置粘贴控件的文本描述。<br/>不传入该参数表示没有文字描述。 |
-| buttonType | [ButtonType](ts-securitycomponent-attributes.md#buttontype枚举说明) | 否 | 设置粘贴控件的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| icon | [PasteIconStyle](#pasteiconstyle枚举说明) | 否 | 是 | 设置粘贴控件的图标风格。<br/>不传入该参数表示没有图标。 |
+| text | [PasteDescription](#pastedescription枚举说明) | 否 | 是 | 设置粘贴控件的文本描述。<br/>不传入该参数表示没有文字描述。 |
+| buttonType | [ButtonType](ts-securitycomponent-attributes.md#buttontype枚举说明) | 否 | 是 | 设置粘贴控件的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
 
 ## 属性
 
 不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md)。
 
 ## PasteIconStyle枚举说明
+
+粘贴控件的图标风格。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -84,6 +86,8 @@ PasteButton(options: PasteButtonOptions)
 
 ## PasteDescription枚举说明
 
+粘贴控件的文本描述。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -93,6 +97,8 @@ PasteButton(options: PasteButtonOptions)
 | PASTE | 0 | 粘贴控件的文字描述为“粘贴”。 |
 
 ## PasteButtonOnClickResult枚举说明
+
+粘贴控件点击后的授权结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
