@@ -2657,6 +2657,7 @@
             - [Interface (AtomicServiceBar)](reference/apis-arkui/arkts-apis-uicontext-atomicservicebar.md)
             - [Interfaces (其他)](reference/apis-arkui/arkts-apis-uicontext-i.md)
             - [Enums](reference/apis-arkui/arkts-apis-uicontext-e.md)
+            - [Types](reference/apis-arkui/arkts-apis-uicontext-t.md)
           - [@ohos.arkui.uiExtension (uiExtension)](reference/apis-arkui/js-apis-arkui-uiExtension.md)
           - [@ohos.arkui.StateManagement (状态管理)](reference/apis-arkui/js-apis-StateManagement.md)
           - [@ohos.curves (插值计算)](reference/apis-arkui/js-apis-curve.md)
