@@ -6,7 +6,7 @@ ASON.stringify方法还支持将Map和Set对象转换为字符串，可转换的
 
 > **说明：**
 >
-> ASON.parse默认生成的对象为Sendable对象，布局不可变，不支持增删属性。如果需要支持返回对象的布局可变，可以指定返回类型为MAP，此时会全部返回[collections.Map](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsmap)对象，支持增删属性。
+> ASON.parse默认生成的对象为Sendable对象，布局不可变，不支持增删属性。如果返回的对象需要支持增删属性，可以指定返回类型为[collections.Map](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsmap)对象。
 
 ## 使用示例
 

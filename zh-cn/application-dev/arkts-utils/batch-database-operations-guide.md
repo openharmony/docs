@@ -8,7 +8,7 @@
 
 1. 创建多个子任务，支持数据库的创建、插入、查询和清除等操作。
 
-2. UI主线程调用子任务，完成数据库的增删改查等操作。
+2. UI主线程发起数据库操作请求，在子线程中完成数据库的增删改查等操作。
 
 ```ts
 // Index.ets
@@ -173,7 +173,7 @@ struct Index {
    ```
    <!-- @[define_data_format](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/SharedValuesBucket.ets) -->
 
-2. UI主线程发起，在子线程进行数据的增删改查等操作。
+2. UI主线程发起数据库操作请求，在子线程完成数据的增删改查等操作。
 
    ```ts
    // Index.ets
@@ -320,7 +320,7 @@ struct Index {
 
 对于复杂的普通类实例对象，可以先将相应数据库数据字段封装为Sendable类实例对象，再由普通类实例对象持有，从而降低跨线程开销。
 
-1. 定义数据库中的数据格式，可采用Sendable，减少跨线程耗时。
+1. 定义数据库中的数据格式，采用Sendable，减少跨线程耗时。
 
    ```ts
    // SharedValuesBucket.ets
@@ -376,7 +376,7 @@ struct Index {
    }
    ```
 
-3. UI主线程发起，在子线程进行数据的增删改查等操作。
+3. UI主线程发起数据库操作请求，在子线程进行数据的增删改查等操作。
 
    ```ts
    // Index.ets
