@@ -1685,7 +1685,7 @@ taskpool.execute(task).then(() => {
 
 onExecutionFailed(callback: CallbackFunctionWithError): void
 
-注册一个回调函数，并在任务执行失败时调用它。需在任务执行前注册，否则会抛异常。
+注册一个回调函数，并在任务执行失败时调用它（周期任务不支持）。需在任务执行前注册，否则会抛异常。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1739,7 +1739,7 @@ taskpool.execute(task2).then(() => {
 
 onExecutionSucceeded(callback: CallbackFunction): void
 
-注册一个回调函数，并在任务执行成功时调用它。需在任务执行前注册，否则会抛异常。
+注册一个回调函数，并在任务执行成功时调用它（周期任务不支持）。需在任务执行前注册，否则会抛异常。
 
 **系统能力：** SystemCapability.Utils.Lang
 
