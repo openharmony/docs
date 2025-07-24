@@ -38,7 +38,7 @@ static napi_value CreateDate(napi_env env, napi_callback_info info)
 {
     // 获取传入的Unix Time Stamp时间
     double value = 1501924876711;
-    // 调用napi_create_date接口将double值转换成表示日期时间，并创建成一个ArkTS对象放入returnValue中
+    // 调用napi_create_date接口将double值转换成表示日期时间的ArkTS对象，并放入returnValue中
     napi_value returnValue = nullptr;
     napi_create_date(env, value, &returnValue);
     return returnValue;
