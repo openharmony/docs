@@ -33,7 +33,7 @@
   1. Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/) 5.0 or later.
   2. Update the public-SDK to API version 16 or later.
   3. Connect device A and device B to the PC using USB cables.
-  4. Connect device A and device B to the same Wi-Fi, identify each other, and start networking. For details, see [UIAbility Connection Development](abilityconnectmanager-guidelines.md#initiating-a-session-between-applications).
+  4. Connect device A and device B to the same Wi-Fi, identify each other, and start networking. For details, see [UIAbility Connection Development](abilityconnectmanager-guidelines.md#how-to-develop).
 
 
 ### Environment Verification
@@ -441,5 +441,3 @@
   hidumper -s 4700 -a "buscenter -l remote_device_info"
   ```
   If **remote device num = 0** is displayed in the command output, the networking fails. In this case, disable and then enable Wi-Fi, and connect devices to the same Wi-Fi again. If the networking is successful, run the shell command again and the number of networking devices is displayed, for example, **remote device num = 1**.
-
-<!--no_check-->

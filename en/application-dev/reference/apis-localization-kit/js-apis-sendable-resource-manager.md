@@ -43,6 +43,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.                 |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/string.json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```js
 import sendableResourceManager from '@ohos.sendableResourceManager';
 import { BusinessError } from '@ohos.base';
@@ -58,7 +69,7 @@ try {
 
 ## sendableResourceManager.sendableResourceToResource
 
-sendableResourceToResource(sendableResource: SendableResource): Resource
+sendableResourceToResource(resource: SendableResource): Resource
 
 Converts a **SendableResource** object to a **Resource** object.
 
@@ -68,7 +79,7 @@ Converts a **SendableResource** object to a **Resource** object.
 
 | Name     | Type                                      | Mandatory  | Description                           |
 | -------- | ---------------------------------------- | ---- | ----------------------------- |
-| sendableResource | [SendableResource](#sendableresource) | Yes   | **SendableResource** object.|
+| resource | [SendableResource](#sendableresource) | Yes   | **SendableResource** object.|
 
 **Return value**
 
@@ -85,6 +96,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.                 |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/string.json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```js
 import sendableResourceManager from '@ohos.sendableResourceManager';
 import { BusinessError } from '@ohos.base';
@@ -122,4 +144,4 @@ type SendableResource = _SendableResource
 
 | Type        | Description    |
 | ---------- | ------ | 
-| [_SendableResource](js-apis-sendableResource.md#sendableresource-1)|Defines a **SendableResource** object.|
+| [_SendableResource](js-apis-sendableResource.md#sendableresource-1)|**SendableResource** object.|
