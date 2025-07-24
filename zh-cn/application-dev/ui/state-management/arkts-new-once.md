@@ -30,7 +30,7 @@
 
 ## 限制条件
 
-- \@Once仅在\@ComponentV2装饰的自定义组件中与\@Param搭配使用。
+- \@Once仅在[\@ComponentV2](arkts-new-componentV2.md)装饰的自定义组件中与\@Param搭配使用。
 
   ```ts
   @ComponentV2
@@ -90,7 +90,7 @@ struct MyComponent {
 
 ### 本地修改\@Param变量
 
-当\@Once与\@Param结合使用时，可以解除\@Param无法在本地修改的限制，并能够触发UI刷新。此时，使用\@Param和\@Once的效果类似于\@Local，但\@Param和\@Once还能接收外部传入的初始值。
+当\@Once与\@Param结合使用时，可以解除\@Param无法在本地修改的限制，并能够触发UI刷新。此时，使用\@Param和\@Once的效果类似于[\@Local](arkts-new-local.md)，但\@Param和\@Once还能接收外部传入的初始值。
 
 ```ts
 @ObservedV2
