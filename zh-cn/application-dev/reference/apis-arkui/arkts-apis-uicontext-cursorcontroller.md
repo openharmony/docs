@@ -65,7 +65,7 @@ setCursor(value: PointerStyle): void
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| value | [PointerStyle](arkts-apis-uicontext-t.md#pointerstyle) | 是    | 光标样式。 |
+| value | [PointerStyle](arkts-apis-uicontext-t.md#pointerstyle12) | 是    | 光标样式。 |
 
 **示例：**
 
