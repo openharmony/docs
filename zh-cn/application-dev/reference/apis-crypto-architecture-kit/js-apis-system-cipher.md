@@ -126,7 +126,7 @@ export default {
            console.log(`handling success:${data.text}`);
          },
          fail: function(data, code) {
-           console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`);
+           console.log(`### cipher.rsa decrypt fail ### ${code}:${data}`);
          },
          complete: function() {
            console.log(`operation complete!`);
@@ -170,7 +170,7 @@ export default {
         console.log(`handling success:${data.text}`);
         },
       fail: function(data, code) {
-        console.log(`### cipher.rsa encrypt fail ### ${code}:${data}`);
+        console.log(`### cipher.aes encrypt fail ### ${code}:${data}`);
         },
       complete: function() {
         console.log(`operation complete!`);
@@ -190,7 +190,7 @@ export default {
          console.log(`handling success:${data.text}`);
         },
        fail: function(data, code) {
-         console.log(`### cipher.aes encrypt fail ### ${code}:${data}`);
+         console.log(`### cipher.aes decrypt fail ### ${code}:${data}`);
        },
        complete: function() {
          console.log(`operation complete!`);

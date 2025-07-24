@@ -442,7 +442,7 @@ struct customBuilderDemo {
 
 ### 多层\@Builder函数嵌套
 
-在\@Builder函数内调用自定义组件或者其他\@Builder函数，以实现多个\@Builder嵌套使用的场景，要想实现最里面的\@Builder动态UI刷新功能，必须要保证每层调用\@Builder的地方使用按引用传递的方式。这里的[\$$](./arkts-two-way-sync.md)不是必须的参数形式，[\$$](./arkts-two-way-sync.md)也可以换成其他名称。
+在\@Builder函数内调用自定义组件或者其他\@Builder函数，以实现多个\@Builder嵌套使用的场景，若要实现最内层的\@Builder动态UI刷新功能，必须要保证每层调用\@Builder的地方使用按引用传递的方式。这里的[`$$`](./arkts-two-way-sync.md)不是必须的参数形式，[`$$`](./arkts-two-way-sync.md)也可以换成其他名称。
 
 ```ts
 class Tmp {
@@ -952,7 +952,9 @@ struct Single {
         UIUtils.makeBinding<number>(() => this.number1),
         UIUtils.makeBinding<number>(
           () => this.number2,
-          (val: number) => this.number2 = val)
+          (val: number) => {
+            this.number2 = val;
+          })
       )
       Text(`classA.props === ${this.classA.props}`)
         .width(300)
@@ -1428,6 +1430,209 @@ struct ParentPage {
     }
     .height('100%')
     .width('100%')
+  }
+}
+```
+
+### 在UI语句外调用\@Builder函数或方法影响节点正常刷新
+
+当\@Builder方法赋值给变量或者数组后，在UI方法中无法使用，且可能会造成刷新时节点显示异常。
+
+【反例】
+```ts
+@Entry
+@Component
+struct BackGround {
+  @Builder
+  myImages() {
+    Column() {
+      Image($r('app.media.startIcon')).width('100%').height('100%')
+    }
+  };
+
+  @Builder
+  myImages2() {
+    Column() {
+      Image($r('app.media.startIcon')).width('100%').height('100%')
+    }
+  };
+
+  private Bg_list: Array<CustomBuilder> =[this.myImages(), this.myImages2()]; // 错误用法，应避免在UI方法外调用@Builder方法
+
+  @State bg_builder: CustomBuilder = this.myImages(); // 错误用法，应避免在UI方法外调用@Builder方法
+  @State bg_Color: ResourceColor = Color.Orange;
+  @State bg_Color2: ResourceColor = Color.Orange;
+  @State index: number = 0;
+
+  build() {
+    Column({space: 10}) {
+      Text('1').width(100).height(50)
+      Text('2').width(100).height(50)
+      Text('3').width(100).height(50)
+
+      Text('4-1').width(100).height(50).fontColor(this.bg_Color)
+      Text('5-1').width(100).height(50)
+      Text('4-2').width(100).height(50)
+      Text('5-2').width(100).height(50)
+      Stack() {
+        Column(){
+          Text('Vsync2')
+        }
+        .size({ width: '100%', height: '100%' })
+        .border({ width: 1, color: Color.Black })
+      }
+      .size({ width: 100, height: 80 })
+      .backgroundColor('#ffbbd4bb')
+
+      Button('change').onClick((event: ClickEvent) => {
+        this.index = 1;
+        this.bg_Color = Color.Red;
+        this.bg_Color2 = Color.Red;
+      })
+    }
+    .margin(10)
+  }
+}
+```
+\@Builder方法赋值给变量或数组后在UI方法中无法使用，开发者应避免将\@Builder赋值给变量或数组后再使用。
+
+【正例】
+```ts
+@Entry
+@Component
+struct BackGround {
+  @Builder
+  myImages() {
+    Column() {
+      Image($r('app.media.startIcon')).width('100%').height('100%')
+    }
+  }
+
+  @Builder
+  myImages2() {
+    Column() {
+      Image($r('app.media.startIcon')).width('100%').height('100%')
+    }
+  }
+
+  @State bg_Color: ResourceColor = Color.Orange;
+  @State bg_Color2: ResourceColor = Color.Orange;
+  @State index: number = 0;
+
+  build() {
+    Column({ space: 10 }) {
+      Text('1').width(100).height(50)
+      Text('2').width(100).height(50).background(this.myImages) // 直接传递@Builder方法
+      Text('3').width(100).height(50).background(this.myImages()) // 直接调用@Builder方法
+
+      Text('4-1').width(100).height(50).fontColor(this.bg_Color)
+      Text('5-1').width(100).height(50)
+      Text('4-2').width(100).height(50)
+      Text('5-2').width(100).height(50)
+      Stack() {
+        Column() {
+          Text('Vsync2')
+        }
+        .size({ width: '100%', height: '100%' })
+        .border({ width: 1, color: Color.Black })
+      }
+      .size({ width: 100, height: 80 })
+      .backgroundColor('#ffbbd4bb')
+
+      Button('change').onClick((event: ClickEvent) => {
+        this.index = 1;
+        this.bg_Color = Color.Red;
+        this.bg_Color2 = Color.Red;
+      })
+    }
+    .margin(10)
+  }
+}
+```
+
+### 在\@Builder方法中使用MutableBinding未传递set访问器
+
+\@Builder方法定义时使用MutableBinding，构造时没有给MutableBinding类型参数传递set访问器，触发set访问器会造成运行时错误。
+
+【反例】
+```ts
+import { UIUtils, Binding, MutableBinding } from '@kit.ArkUI';
+@ObservedV2
+class GlobalTmp {
+  @Trace str_value: string = 'Hello';
+}
+
+@Builder
+function builderWithTwoParams(param1: Binding<GlobalTmp>, param2: MutableBinding<number>) {
+  Column() {
+    Text(`str_value: ${param1.value.str_value}`)
+    Button(`num: ${param2.value}`)
+      .onClick(()=>{
+        param2.value += 1; // 点击Button触发set访问器会造成运行时错误
+      })
+  }.borderWidth(1)
+}
+
+@Entry
+@ComponentV2
+struct MakeBindingTest {
+  @Local globalTmp: GlobalTmp = new GlobalTmp();
+  @Local num: number = 0;
+
+  build() {
+    Column() {
+      Text(`${this.globalTmp.str_value}`)
+      builderWithTwoParams(UIUtils.makeBinding(() => this.globalTmp),
+        UIUtils.makeBinding<number>(() => this.num)) // 构造MutableBinding类型参数时没有传SetterCallback
+      Button('点击改变参数值').onClick(() => {
+        this.globalTmp.str_value = 'Hello World 2025';
+        this.num = 1;
+      })
+    }
+  }
+}
+```
+MutableBinding的使用规格详见[状态管理API文档](../../reference/apis-arkui/js-apis-StateManagement.md#mutablebinding20)。
+
+【正例】
+```ts
+import { UIUtils, Binding, MutableBinding } from '@kit.ArkUI';
+
+@ObservedV2
+class GlobalTmp {
+  @Trace str_value: string = 'Hello';
+}
+
+@Builder
+function builderWithTwoParams(param1: Binding<GlobalTmp>, param2: MutableBinding<number>) {
+  Column() {
+    Text(`str_value: ${param1.value.str_value}`)
+    Button(`num: ${param2.value}`)
+      .onClick(() => {
+        param2.value += 1; // 修改了MutableBinding类型参数的value属性
+      })
+  }.borderWidth(1)
+}
+
+@Entry
+@ComponentV2
+struct MakeBindingTest {
+  @Local globalTmp: GlobalTmp = new GlobalTmp();
+  @Local num: number = 0;
+
+  build() {
+    Column() {
+      Text(`${this.globalTmp.str_value}`)
+      builderWithTwoParams(UIUtils.makeBinding(() => this.globalTmp),
+        UIUtils.makeBinding<number>(() => this.num,
+          val => {
+            this.num = val;
+          }))
+      Button('点击改变参数值').onClick(() => {
+        this.globalTmp.str_value = 'Hello World 2025';
+        this.num = 1;
+      })
+    }
   }
 }
 ```

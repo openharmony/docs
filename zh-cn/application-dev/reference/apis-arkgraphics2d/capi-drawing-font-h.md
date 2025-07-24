@@ -72,6 +72,10 @@
 | [OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath(const OH_Drawing_Font* font, const void* text, size_t byteLength,OH_Drawing_TextEncoding encoding, float x, float y, OH_Drawing_Path* path)](#oh_drawing_fontgettextpath) | 获取文字轮廓路径。 |
 | [OH_Drawing_ErrorCode OH_Drawing_FontSetThemeFontFollowed(OH_Drawing_Font* font, bool followed)](#oh_drawing_fontsetthemefontfollowed) | 设置字型中的字体是否跟随主题字体。设置跟随主题字体后，若系统启用主题字体并且字型未被设置字体，字型会使用该主题字体。 |
 | [OH_Drawing_ErrorCode OH_Drawing_FontIsThemeFontFollowed(const OH_Drawing_Font* font, bool* followed)](#oh_drawing_fontisthemefontfollowed) | 获取字型中的字体是否跟随主题字体。默认不跟随主题字体。 |
+| [OH_Drawing_ErrorCode OH_Drawing_FontMeasureSingleCharacterWithFeatures(const OH_Drawing_Font* font, const char* str,const OH_Drawing_FontFeatures* fontFeatures, float* textWidth)](#oh_drawing_fontmeasuresinglecharacterwithfeatures) | 用于测量单个字符的宽度，字符带有字体特征。当前字型中的字体不支持待测量字符时，退化到使用系统字体测量字符宽度。 |
+| [OH_Drawing_FontFeatures* OH_Drawing_FontFeaturesCreate(void)](#oh_drawing_fontfeaturescreate) | 用于创建一个字体特征容器对象。 |
+| [OH_Drawing_ErrorCode OH_Drawing_FontFeaturesAddFeature(OH_Drawing_FontFeatures* fontFeatures,const char* name, float value)](#oh_drawing_fontfeaturesaddfeature) | 向字体特征容器对象中添加一个字体特征。 |
+| [OH_Drawing_ErrorCode OH_Drawing_FontFeaturesDestroy(OH_Drawing_FontFeatures* fontFeatures)](#oh_drawing_fontfeaturesdestroy) | 用于销毁字体特征容器对象并回收该对象占有的内存。 |
 
 ## 枚举类型说明
 
@@ -114,6 +118,112 @@ enum OH_Drawing_FontEdging
 
 
 ## 函数说明
+
+### OH_Drawing_FontMeasureSingleCharacterWithFeatures()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontMeasureSingleCharacterWithFeatures(const OH_Drawing_Font* font, const char* str, const OH_Drawing_FontFeatures* fontFeatures, float* textWidth)
+```
+
+**描述**
+
+用于测量单个字符的宽度，字符带有字体特征。当前字型中的字体不支持待测量字符时，退化到使用系统字体测量字符宽度。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [const OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
+| const char* str | 待测量的单个字符。可以传入字符串，但只会以UTF-8编码解析并测量字符串中的首个字符。 |
+| [const OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)* fontFeatures | 指向字体特征容器对象[OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)的指针。容器中未加入任何字体特征时使用TTF(TrueType Font)文件中预设的字体特征。 |
+| float* textWidth | 用于存储得到的字符宽度，作为出参使用。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行结果。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数font、str、fontFeatures或者textWidth任意一个为空指针或者str的长度为0。 |
+
+### OH_Drawing_FontFeaturesCreate()
+
+```
+OH_Drawing_FontFeatures* OH_Drawing_FontFeaturesCreate(void)
+```
+
+**描述**
+
+用于创建一个字体特征容器对象。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)* | 函数会返回一个指针，指向创建的字体特征容器对象[OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)。<br>如果返回的对象指针为空，则表示字体特征容器对象创建失败。失败的原因可能为：没有可用的内存。 |
+
+### OH_Drawing_FontFeaturesAddFeature()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontFeaturesAddFeature(OH_Drawing_FontFeatures* fontFeatures, const char* name, float value)
+```
+
+**描述**
+
+向字体特征容器对象中添加一个字体特征。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)* fontFeatures | 指向字体特征容器对象[OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)的指针。 |
+| const char* name | 字体特征的名称。常见的字体特征名称包含liga、frac、case等，需要对应的ttf文件支持才能生效。 |
+| float value | 字体特征的数值。建议通过字体查看工具或查阅字体文档，确定具体的有效取值范围。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行结果。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数fontFeatures或name为空指针。 |
+
+### OH_Drawing_FontFeaturesDestroy()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontFeaturesDestroy(OH_Drawing_FontFeatures* fontFeatures)
+```
+
+**描述**
+
+用于销毁字体特征容器对象并回收该对象占有的内存。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)* fontFeatures | 指向字体特征容器对象[OH_Drawing_FontFeatures](capi-drawing-oh-drawing-fontfeatures.md)的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行结果。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数fontFeatures为空指针。 |
 
 ### OH_Drawing_FontMeasureTextWithBrushOrPen()
 

@@ -52,7 +52,6 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 #include <string.h>
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
-#include <string.h>
 
 #define OH_CRYPTO_GCM_TAG_LEN 16
 #define OH_CRYPTO_MAX_TEST_DATA_LEN 128

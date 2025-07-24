@@ -53,6 +53,7 @@ static OH_Crypto_ErrCode doTestSm2DataChange()
         OH_CryptoEccSignatureSpec_Destroy(spec);
         return ret;
     }
+    OH_Crypto_FreeDataBlob(&sig);
     OH_CryptoEccSignatureSpec_Destroy(spec);
     spec = NULL;
     return CRYPTO_SUCCESS;
@@ -98,6 +99,8 @@ static OH_Crypto_ErrCode doSm2GetRS() {
         OH_CryptoEccSignatureSpec_Destroy(eccSignSpec);
         return ret;
     }
+    OH_Crypto_FreeDataBlob(&r);
+    OH_Crypto_FreeDataBlob(&s);
     OH_CryptoEccSignatureSpec_Destroy(eccSignSpec);
     return CRYPTO_SUCCESS;
 }

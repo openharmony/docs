@@ -86,6 +86,9 @@ static OH_Crypto_ErrCode doLoopMd()
     OH_Crypto_ErrCode ret;
     OH_CryptoDigest *ctx = nullptr;
     uint8_t *testData = (uint8_t *)malloc(OH_CRYPTO_DIGEST_DATA_MAX);
+    if (testData == nullptr) {
+        return CRYPTO_MEMORY_ERROR;
+    }
     Crypto_DataBlob out = {.data = nullptr, .len = 0};
     int mdLen = 0;
     int isBlockSize = 20;
@@ -113,6 +116,7 @@ static OH_Crypto_ErrCode doLoopMd()
     } while (0);
     OH_Crypto_FreeDataBlob(&out);
     OH_DigestCrypto_Destroy(ctx);
+    free(testData);
     return ret;
 }
 ```
