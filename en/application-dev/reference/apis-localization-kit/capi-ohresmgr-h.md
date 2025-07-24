@@ -35,8 +35,7 @@ Provides native APIs for obtaining resources.
 | [ResourceManager_ErrorCode OH_ResourceManager_GetLocales(const NativeResourceManager *mgr, char ***resultValue,uint32_t *resultLen, bool includeSystem = false)](#oh_resourcemanager_getlocales) | Obtains the language list. After using this API, you need to call [OH_ResourceManager_ReleaseStringArray()](#oh_resourcemanager_releasestringarray) to release the memory of **localinfo**.|
 | [ResourceManager_ErrorCode OH_ResourceManager_GetLocalesData(const NativeResourceManager *mgr, char ***resultValue,uint32_t *resultLen, bool includeSystem)](#oh_resourcemanager_getlocalesdata) | Obtains the language list. After using this API, you need to call [OH_ResourceManager_ReleaseStringArray()](#oh_resourcemanager_releasestringarray) to release the memory of **localinfo**.|
 | [ResourceManager_ErrorCode OH_ResourceManager_GetConfiguration(const NativeResourceManager *mgr,ResourceManager_Configuration *configuration)](#oh_resourcemanager_getconfiguration) | Obtains the device configuration. After using this API, you need to call [OH_ResourceManager_ReleaseConfiguration()](#oh_resourcemanager_releaseconfiguration) to release the memory. If the **ResourceManager_Configuration** object is created by using malloc, call **free()** to release the object.|
-| [ResourceManager_ErrorCode OH_ResourceManager_GetResourceConfiguration(const NativeResourceManager *mgr,ResourceManager_Configuration *configuration)](#oh_resourcemanager_getresourceconfiguration) | Obtains the device configuration. After using this API, you need to call [OH_ResourceManager_ReleaseConfiguration()](#oh_resourcemanager_releaseconfiguration) to release the memory. If the **ResourceManager_Configuration** object is created by using malloc, call **free()** to release the object.|
-| [ResourceManager_ErrorCode OH_ResourceManager_ReleaseConfiguration(ResourceManager_Configuration *configuration)](#oh_resourcemanager_releaseconfiguration) | Releases the memory requested by using [OH_ResourceManager_GetConfiguration()](#oh_resourcemanager_getconfiguration) or [OH_ResourceManager_GetResourceConfiguration()](#oh_resourcemanager_getresourceconfiguration).|
+| [ResourceManager_ErrorCode OH_ResourceManager_ReleaseConfiguration(ResourceManager_Configuration *configuration)](#oh_resourcemanager_releaseconfiguration) | Releases the memory requested by using [OH_ResourceManager_GetConfiguration()](#oh_resourcemanager_getconfiguration).|
 | [ResourceManager_ErrorCode OH_ResourceManager_GetString(const NativeResourceManager *mgr, uint32_t resId,char **resultValue, ...)](#oh_resourcemanager_getstring) | Obtains a **string** resource based on the specified resource ID. The obtain common string resources, use **OH_ResourceManager_GetString(mgr, resId, resultValue)**.   The obtain formatted string resources with the **%d**, **%s**, and **%f** placeholders, use **OH_ResourceManager_GetString(mgr, resId, resultValue, 10, "format", 10.10)**. After using this API, you need to call **free()** to release the memory of the strings.|
 | [ResourceManager_ErrorCode OH_ResourceManager_GetStringByName(const NativeResourceManager *mgr, const char *resName,char **resultValue, ...)](#oh_resourcemanager_getstringbyname) | Obtains a **string** resource based on the specified resource name. The obtain common string resources, use **OH_ResourceManager_GetString(mgr, resName, resultValue)**.   The obtain formatted string resources with the **%d**, **%s**, and **%f** placeholders, use **OH_ResourceManager_GetString(mgr, resName, resultValue, 10, "format", 10.10)**. After using this API, you need to call **free()** to release the memory of the strings.|
 | [ResourceManager_ErrorCode OH_ResourceManager_GetStringArray(const NativeResourceManager *mgr, uint32_t resId,char ***resultValue, uint32_t *resultLen)](#oh_resourcemanager_getstringarray) | Obtains a string array based on the specified resource ID. After using this API, you need to call [OH_ResourceManager_ReleaseStringArray()](#oh_resourcemanager_releasestringarray) to release the memory of the string array.|
@@ -314,7 +313,7 @@ Obtains the **DrawableDescriptor** object of the icon resource with the specifie
 | uint32_t resId                                                                                                      | Resource ID.|
 | uint32_t density = 0                                                                                                | Screen density. This parameter is optional. For details about the value range, see [ScreenDensity](capi-resmgr-common-h.md#screendensity). The default value is 0, indicating that the current system screen density (in DPI) is used.|
 | uint32_t type = 0                                                                                                   | Icon type. The value **0** indicates an application icon, and the value **1** indicates a theme icon.|
-| ArkUI_DrawableDescriptor **drawableDescriptor | Result of writing **drawableDescriptor**.|
+| [ArkUI_DrawableDescriptor](../apis-arkui/_ark_u_i___native_module.md#arkui_drawabledescriptor) **drawableDescriptor | Result of writing **drawableDescriptor**.|
 
 **Returns**
 
@@ -341,7 +340,7 @@ Obtains the **DrawableDescriptor** object of the icon resource with the specifie
 | -- | -- |
 | const [NativeResourceManager](capi-rawfile-nativeresourcemanager.md) *mgr | Pointer to [NativeResourceManager](capi-rawfile-nativeresourcemanager.md). It is obtained by using [OH_ResourceManager_InitNativeResourceManager](capi-raw-file-manager-h.md#oh_resourcemanager_initnativeresourcemanager).|
 | uint32_t resId | Resource ID.|
-| ArkUI_DrawableDescriptor **drawableDescriptor | Result of writing **drawableDescriptor**.|
+| [ArkUI_DrawableDescriptor](../apis-arkui/_ark_u_i___native_module.md#arkui_drawabledescriptor) **drawableDescriptor | Result of writing **drawableDescriptor**.|
 | uint32_t density | Screen density. This parameter is optional. For details about the value range, see [ScreenDensity](capi-resmgr-common-h.md#screendensity). The default value is **0**, indicating that the current system screen density (in DPI) is used. If this parameter is not required, set it to **0**.|
 | uint32_t type | Icon type. This parameter is optional. The value **0** indicates an application icon, and the value **1** indicates a theme icon. If this parameter is not required, set it to **0**.|
 
@@ -372,7 +371,7 @@ Obtains the **DrawableDescriptor** object of the icon resource with the specifie
 | const char *resName | Resource name.|
 | uint32_t density = 0 | Screen density. This parameter is optional. For details about the value range, see [ScreenDensity](capi-resmgr-common-h.md#screendensity). The default value is 0, indicating that the current system screen density (in DPI) is used.|
 | uint32_t type = 0 | Icon type. This parameter is optional. The value **0** indicates an application icon, the value **1** indicates a theme icon, and the value **2** indicates a dynamic icon.|
-| ArkUI_DrawableDescriptor **drawableDescriptor | Result of writing **drawableDescriptor**.|
+| [ArkUI_DrawableDescriptor](../apis-arkui/_ark_u_i___native_module.md#arkui_drawabledescriptor) **drawableDescriptor | Result of writing **drawableDescriptor**.|
 
 **Returns**
 
@@ -399,7 +398,7 @@ Obtains the **DrawableDescriptor** object of the icon resource with the specifie
 | -- | -- |
 | const [NativeResourceManager](capi-rawfile-nativeresourcemanager.md) *mgr | Pointer to [NativeResourceManager](capi-rawfile-nativeresourcemanager.md). It is obtained by using [OH_ResourceManager_InitNativeResourceManager](capi-raw-file-manager-h.md#oh_resourcemanager_initnativeresourcemanager).|
 | const char *resName | Resource name.|
-| ArkUI_DrawableDescriptor **drawableDescriptor | Result of writing **drawableDescriptor**.|
+| [ArkUI_DrawableDescriptor](../apis-arkui/_ark_u_i___native_module.md#arkui_drawabledescriptor) **drawableDescriptor | Result of writing **drawableDescriptor**.|
 | uint32_t density | Screen density. This parameter is optional. For details about the value range, see [ScreenDensity](capi-resmgr-common-h.md#screendensity). The default value is **0**, indicating that the current system screen density (in DPI) is used. If this parameter is not required, set it to **0**.|
 | uint32_t type | Icon type. This parameter is optional. The value **0** indicates an application icon, and the value **1** indicates a theme icon. If this parameter is not required, set it to **0**.|
 
@@ -531,10 +530,6 @@ Obtains the device configuration. After using this API, you need to call **OH_Re
 
 **Since**: 12
 
-**Deprecated from**: 20
-
-**Substitute**: [OH_ResourceManager_GetResourceConfiguration](#oh_resourcemanager_getresourceconfiguration)
-
 
 **Parameters**
 
@@ -548,32 +543,6 @@ Obtains the device configuration. After using this API, you need to call **OH_Re
 | Type| Description|
 | -- | -- |
 | [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - The operation is successful.<br>         [ERROR_CODE_INVALID_INPUT_PARAMETER](capi-resmgr-common-h.md#resourcemanager_errorcode) 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.<br>          [ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001009 - The attempt to access system resources fails.<br>          [ERROR_CODE_OUT_OF_MEMORY](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001100 - A memory overflow occurs.|
-
-### OH_ResourceManager_GetResourceConfiguration()
-
-```
-ResourceManager_ErrorCode OH_ResourceManager_GetResourceConfiguration(const NativeResourceManager *mgr,ResourceManager_Configuration *configuration)
-```
-
-**Description**
-
-Obtains the device configuration. After using this API, you need to call **OH_ResourceManager_ReleaseConfiguration()** to release the memory. If the **ResourceManager_Configuration** object is created by using malloc, call **free()** to release the object.
-
-**Since**: 20
-
-
-**Parameters**
-
-| Name| Description|
-| -- | -- |
-| const [NativeResourceManager](capi-rawfile-nativeresourcemanager.md) *mgr | Pointer to [NativeResourceManager](capi-rawfile-nativeresourcemanager.md). It is obtained by using [OH_ResourceManager_InitNativeResourceManager](capi-raw-file-manager-h.md#oh_resourcemanager_initnativeresourcemanager).|
-| [ResourceManager_Configuration](capi-resourcemanager-resourcemanager-configuration.md) *configuration | Device configuration. The return value of **configuration.screenDensity** is the device's DPI.|
-
-**Returns**
-
-| Type| Description|
-| -- | -- |
-| [ResourceManager_ErrorCode](capi-resmgr-common-h.md#resourcemanager_errorcode) | [SUCCESS](capi-resmgr-common-h.md#resourcemanager_errorcode) 0 - The operation is successful.<br>         [ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001009 - The attempt to access system resources fails.<br>          [ERROR_CODE_OUT_OF_MEMORY](capi-resmgr-common-h.md#resourcemanager_errorcode) 9001100 - A memory overflow occurs.|
 
 ### OH_ResourceManager_ReleaseConfiguration()
 

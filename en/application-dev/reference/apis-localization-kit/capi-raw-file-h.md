@@ -6,10 +6,6 @@ Provides functions related to rawfiles, including searching for, reading, and cl
 
 **File to include**: <rawfile/raw_file.h>
 
-**Library**: librawfile.z.so
-
-**System capability**: SystemCapability.Global.ResourceManager
-
 **Since**: 8
 
 **Related module**: [rawfile](capi-rawfile.md)
