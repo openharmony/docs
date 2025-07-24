@@ -32,7 +32,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptio
 
 > **说明：** 
 >
-> 从API version 18开始废弃，建议使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12)获取[ComponentSnapshot](arkts-apis-uicontext-componentsnapshot.md)实例，再通过此实例调用替代方法[get](arkts-apis-uicontext-componentsnapshot.md#get)。
+> 从API version 18开始废弃，建议使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12)获取[ComponentSnapshot](arkts-apis-uicontext-componentsnapshot.md)实例，再通过此实例调用替代方法[get](arkts-apis-uicontext-componentsnapshot.md#get12)。
 >
 > 从API version 12开始，可以通过使用[UIContext](arkts-apis-uicontext-uicontext.md)中的[getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12)方法获取当前UI上下文关联的[ComponentSnapshot](arkts-apis-uicontext-componentsnapshot.md)对象。
 > 
