@@ -47,7 +47,7 @@ viewPort(value: { x?: number | string, y?: number | string, width?: number | str
 
 形状视口viewport指定用户空间中的一个矩形，该矩形映射到为关联的SVG元素建立的视区边界。viewport属性的值包含x、y、width和height四个可选参数，x和y表示视区的左上角坐标，width和height表示其尺寸。
 
-以下三个示例讲解viewport具体用法：
+以下三个示例说明如何使用viewport：
 
 - 通过形状视口对图形进行放大与缩小。
 
@@ -104,7 +104,7 @@ viewPort(value: { x?: number | string, y?: number | string, width?: number | str
 
   ![2023032401632](figures/2023032401632.jpg)
 
-- 创建一个宽高都为300的shape组件，背景色为黄色，一个宽高都为300的viewport。用一个蓝色的矩形来填充viewport，在viewport中绘制一个半径为75的圆。
+- 创建一个宽高都为300的shape组件，背景色为黄色，创建一个宽高都为300的viewport。用一个蓝色的矩形来填充viewport，在viewport中绘制一个半径为75的圆。
 
   ```ts
   class tmp{
@@ -155,7 +155,7 @@ viewPort(value: { x?: number | string, y?: number | string, width?: number | str
 
 绘制组件支持通过各种属性更改组件样式。
 
-- 通过fill可以设置组件填充区域颜色。
+- 通过[fill](../reference/apis-arkui/arkui-ts/ts-drawing-components-path.md#fill)可以设置组件填充区域颜色。
 
   ```ts
   Path()
@@ -166,9 +166,9 @@ viewPort(value: { x?: number | string, y?: number | string, width?: number | str
     .strokeWidth(0)
   ```
 
-  ![2023022792216(1)](figures/2023022792216(1).jpg)
+  ![2023022792216](figures/2023022792216.jpg)
 
-- 通过stroke可以设置组件边框颜色。
+- 通过[stroke](../reference/apis-arkui/arkui-ts/ts-drawing-components-path.md#stroke)可以设置组件边框颜色。
 
   ```ts
   Path()
@@ -181,7 +181,7 @@ viewPort(value: { x?: number | string, y?: number | string, width?: number | str
 
   ![stroke](figures/stroke.jpg)
 
-- 通过strokeOpacity可以设置边框透明度。
+- 通过[strokeOpacity](../reference/apis-arkui/arkui-ts/ts-drawing-components-path.md#strokeopacity)可以设置边框透明度。
 
   ```ts
   Path()
@@ -196,7 +196,7 @@ viewPort(value: { x?: number | string, y?: number | string, width?: number | str
 
   ![strokeopacity](figures/strokeopacity.jpg)
 
-- 通过strokeLineJoin可以设置线条拐角绘制样式。拐角绘制样式分为Bevel(使用斜角连接路径段)、Miter(使用尖角连接路径段)、Round(使用圆角连接路径段)。
+- 通过[strokeLineJoin](../reference/apis-arkui/arkui-ts/ts-drawing-components-polyline.md#strokelinejoin)可以设置线条拐角绘制样式。拐角绘制样式分为Bevel(使用斜角连接路径段)、Miter(使用尖角连接路径段)、Round(使用圆角连接路径段)。
 
   ```ts
   Polyline()
@@ -212,8 +212,8 @@ viewPort(value: { x?: number | string, y?: number | string, width?: number | str
 
   ![strokeLineJoin](figures/strokeLineJoin.jpg)
 
-- 通过strokeMiterLimit设置斜接长度与边框宽度比值的极限值。
-  斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。strokeMiterLimit取值需大于等于1，且在strokeLineJoin属性取值LineJoinStyle.Miter时生效。
+- 通过[strokeMiterLimit](../reference/apis-arkui/arkui-ts/ts-drawing-components-polyline.md#strokemiterlimit)设置斜接长度与边框宽度比值的极限值。
+  斜接长度表示外边框外边交点到内边交点的距离，边框宽度即[strokeWidth](../reference/apis-arkui/arkui-ts/ts-drawing-components-polyline.md#strokewidth)属性的值。strokeMiterLimit取值需大于等于1，且在[strokeLineJoin](../reference/apis-arkui/arkui-ts/ts-drawing-components-polyline.md#strokelinejoin)属性取值LineJoinStyle.Miter时生效。
 
   ```ts
   Polyline()
@@ -240,7 +240,7 @@ viewPort(value: { x?: number | string, y?: number | string, width?: number | str
 
   ![2023032405917](figures/2023032405917.jpg)
 
-- 通过antiAlias设置是否开启抗锯齿，默认值为true（开启抗锯齿）。
+- 通过[antiAlias](../reference/apis-arkui/arkui-ts/ts-drawing-components-circle.md#antialias)设置是否开启抗锯齿，默认值为true（开启抗锯齿）。
 
   ```ts
   //开启抗锯齿
@@ -267,6 +267,160 @@ viewPort(value: { x?: number | string, y?: number | string, width?: number | str
 
   ![2023032411518](figures/2023032411518.jpg)
 
+- 通过[mesh](../reference/apis-arkui/arkui-ts/ts-drawing-components-shape.md#mesh8)设置网格效果，实现图像局部扭曲。
+
+```ts
+import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { drawing } from '@kit.ArkGraphics2D';
+
+let offCanvas: OffscreenCanvas = new OffscreenCanvas(150, 150);
+let ctx = offCanvas.getContext("2d")
+
+class DrawingRenderNode extends RenderNode {
+  verts_: Array<number> = [0, 0, 50, 0, 410, 0, 0, 180, 50, 180, 410, 180, 0, 360, 50, 360, 410, 360]
+
+  setVerts(verts: Array<number>): void {
+    this.verts_ = verts
+  }
+
+  async draw(context: DrawContext) {
+    console.log("Kee draw");
+    const canvas = context.canvas;
+    let pixelMap = ctx.getPixelMap(0, 0, 150, 150)
+    const brush = new drawing.Brush(); // 只支持brush，使用pen没有绘制效果。
+    canvas.attachBrush(brush);
+    let verts: Array<number> = [0, 0, 410, 0, 50, 0, 0, 180, 50, 180, 410, 180, 0, 360, 410, 360, 50, 360];
+    ; // 18
+    canvas.drawPixelMapMesh(pixelMap, 2, 2, verts, 0, null, 0);
+    canvas.detachBrush();
+  }
+}
+
+const renderNode = new DrawingRenderNode();
+renderNode.frame = {
+  x: 0,
+  y: 0,
+  width: 150,
+  height: 150
+};
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  @State showShape: boolean = false;
+  @State pixelMap: image.PixelMap | undefined = undefined
+  @State shapeWidth: number = 150
+  @State strokeWidth: number = 1
+  @State meshArray: Array<number> = [0, 0, 50, 0, 410, 0, 0, 180, 50, 180, 410, 180, 0, 360, 50, 360, 410, 360]
+
+  aboutToAppear(): void {
+    let img: ImageBitmap = new ImageBitmap("common/image/tree.png")
+    ctx.drawImage(img, 0, 0, 100, 100)
+    this.pixelMap = ctx.getPixelMap(0, 0, 150, 150)
+  }
+
+  build() {
+    Column() {
+      Image(this.pixelMap)
+        .backgroundColor(Color.Red)
+        .width(150)
+        .height(150)
+        .onClick(() => {
+          let img: ImageBitmap = new ImageBitmap("common/image/foreground.png")
+          ctx.drawImage(img, 0, 0, 100, 100)
+          this.pixelMap = ctx.getPixelMap(1, 1, 150, 150)
+          this.myNodeController.rebuild()
+          this.strokeWidth += 1
+        })
+
+      NodeContainer(this.myNodeController)
+        .width(150)
+        .height(150)
+        .backgroundColor(Color.Grey)
+        .onClick(() => {
+          this.meshArray = [0, 0, 50, 0, 410, 0, 0, 180, 50, 180, 410, 180, 0, 360, 50, 360, 410, 360, 0]
+        })
+      Button("change mesh")
+        .margin(5)
+        .onClick(() => {
+          this.meshArray = [0, 0, 410, 0, 50, 0, 0, 180, 50, 180, 410, 180, 0, 360, 410, 360, 50, 360];
+        })
+      Button("Show Shape")
+        .margin(5)
+        .onClick(() => {
+          this.showShape = !this.showShape
+        })
+
+      if (this.showShape) {
+        Shape(this.pixelMap) {
+          Path().width(150).height(60).commands('M0 0 L400 0 L400 150 Z')
+        }
+        .fillOpacity(0.2)
+        .backgroundColor(Color.Grey)
+        .width(this.shapeWidth)
+        .height(150)
+        .mesh(this.meshArray, 2, 2)
+        .fill(0x317AF7)
+        .stroke(0xEE8443)
+        .strokeWidth(this.strokeWidth)
+        .strokeLineJoin(LineJoinStyle.Miter)
+        .strokeMiterLimit(5)
+
+        Shape(this.pixelMap) {
+          Path().width(150).height(60).commands('M0 0 L400 0 L400 150 Z')
+        }
+        .fillOpacity(0.2)
+        .backgroundColor(Color.Grey)
+        .width(this.shapeWidth)
+        .height(150)
+        .fill(0x317AF7)
+        .stroke(0xEE8443)
+        .strokeWidth(this.strokeWidth)
+        .strokeLineJoin(LineJoinStyle.Miter)
+        .strokeMiterLimit(5)
+        .onDragStart(() => {
+        })
+
+        // mesh只对shape传入pixelMap时生效，此处不生效
+        Shape() {
+          Path().width(150).height(60).commands('M0 0 L400 0 L400 150 Z')
+        }
+        .fillOpacity(0.2)
+        .backgroundColor(Color.Grey)
+        .width(this.shapeWidth)
+        .height(150)
+        .mesh(this.meshArray, 2, 2)
+        .fill(0x317AF7)
+        .stroke(0xEE8443)
+        .strokeWidth(this.strokeWidth)
+        .strokeLineJoin(LineJoinStyle.Miter)
+        .strokeMiterLimit(5)
+        .onClick(() => {
+          this.pixelMap = undefined;
+        })
+      }
+    }
+  }
+}
+
+```
+![ShapeMeshDemo](figures/ShapeMeshDemo.png)
 
 ## 场景示例
 
