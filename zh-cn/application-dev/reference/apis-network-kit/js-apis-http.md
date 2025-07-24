@@ -42,7 +42,7 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
     expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型。
     usingCache: true, // 可选，默认为true。
     priority: 1, // 可选，默认为1。
-    // 开发者根据自身业务需要添加header字段。
+    // 开发者根据自身业务需要添加header字段，且header字段不支持传入map对象。
     header: { 'Accept' : 'application/json' },
     readTimeout: 60000, // 可选，默认为60000ms。
     connectTimeout: 60000, // 可选，默认为60000ms。
