@@ -1274,7 +1274,7 @@
             - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)
             - [VPN管理（仅对系统应用开放）](network/net-vpn.md)
             <!--DelEnd-->
-        - [Network Kit术语](network/terminology.md)
+        - [Network Kit术语](network/network-terminology.md)
       - Telephony Kit（蜂窝通信服务）<!--telephony-kit-->
         - [Telephony Kit简介](telephony/telephony-overview.md)
         - [拨打电话](telephony/telephony-call.md)
@@ -4092,6 +4092,9 @@
             - [NetConn_NetHandleList](reference/apis-network-kit/capi-netconnection-netconn-nethandlelist.md)
             - [NetConn_NetSpecifier](reference/apis-network-kit/capi-netconnection-netconn-netspecifier.md)
             - [NetConn_NetConnCallback](reference/apis-network-kit/capi-netconnection-netconn-netconncallback.md)
+            - [NetConn_ProbeResultInfo](reference/apis-network-kit/capi-netconnection-netconn-proberesultinfo.md)
+            - [NetConn_TraceRouteInfo](reference/apis-network-kit/capi-netconnection-netconn-tracerouteinfo.md)
+            - [NetConn_TraceRouteOption](reference/apis-network-kit/capi-netconnection-netconn-tracerouteoption.md)
             - [NetStack_CertBlob](reference/apis-network-kit/capi-netstack-netstack-certblob.md)
             - [NetStack_CertificatePinning](reference/apis-network-kit/capi-netstack-netstack-certificatepinning.md)
             - [NetStack_Certificates](reference/apis-network-kit/capi-netstack-netstack-certificates.md)
