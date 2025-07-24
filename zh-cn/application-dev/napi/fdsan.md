@@ -162,12 +162,18 @@ uint64_t fdsan_get_tag_value(uint64_t tag);
 如何使用fdsan？这是一个简单的double-close问题：
 
 ```
+#include <unistd.h>
+#include <fcntl.h>
+#include <hilog/log.h>
+#include <vector>
+#include <thread>
+
 void good_write()
 {
     sleep(1);
-    int fd = open(DEV_NULL_FILE, O_RDWR);
+    int fd = open("log", O_WRONLY | O_APPEND);
     sleep(3);
-    ssize_t ret = write(fd, "fdsan test\n", 11);
+    ssize_t ret = write(fd, "fdsan test", 11);
     if (ret == -1) {
         OH_LOG_ERROR(LOG_APP, "good write but failed?!");
     }
@@ -176,7 +182,7 @@ void good_write()
 
 void bad_close()
 {
-    int fd = open(DEV_NULL_FILE, O_RDWR);
+    int fd = open("/dev/null", O_RDONLY);
     close(fd);
     sleep(2);
     // This close expected to be detect by fdsan
