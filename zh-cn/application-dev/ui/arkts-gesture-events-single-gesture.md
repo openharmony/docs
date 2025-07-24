@@ -1,5 +1,62 @@
 # 单一手势
 
+## 点击事件（onClick）
+
+单击作为常用的手势，可以方便地使用[onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)接口实现。尽管被称为事件，它实际上是基本手势类型，等同于将count配置为1的TapGesture，即单击手势。
+
+onClick与其他手势类型相同，也会参与命中测试、响应链收集等过程。可以使用[干预手势处理](./arkts-interaction-development-guide-support-gesture.md#干预手势处理)机制对onClick的响应进行动态决策。
+
+
+```typescript
+@Entry
+@ComponentV2
+struct Index {
+  private judgeCount: number = 0
+
+  increaseJudgeGuard(): void {
+    this.judgeCount++
+  }
+
+  build() {
+    Column() {
+      Column() {
+        Column()
+          .width('60%')
+          .height('50%')
+          .backgroundColor(Color.Grey)
+          .onClick(() => { // 1. 子组件上注册了点击事件，正常情况下点击在子组件上时，优先得到响应
+            console.info('Clicked on child')
+            this.increaseJudgeGuard()
+          })
+          .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent) => {
+            // 3. 当数字增长为5的倍数时禁用子组件上的点击手势，这样父组件上的点击可以得到响应
+            if (this.judgeCount % 5 == 0 && gestureInfo.type == GestureControl.GestureType.CLICK) {
+              return GestureJudgeResult.REJECT
+            } else {
+              return GestureJudgeResult.CONTINUE
+            }
+          })
+      }
+      .width('80%')
+      .height('80%')
+      .justifyContent(FlexAlign.Center)
+      .backgroundColor(Color.Green)
+      .gesture(
+        TapGesture() // 2. 父组件上注册了点击手势，正常情况下点击在子组件区域时，父组件上的手势优先级低于子组件
+          .onAction(() => {
+            console.info('Clicked on parent')
+            this.increaseJudgeGuard()
+          }))
+    }
+    .height('100%')
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+示例中，每点击5次，子组件的点击事件将临时禁用1次，确保父组件点击优先响应。
+
 
 ## 点击手势（TapGesture）
 
