@@ -39,22 +39,33 @@ showToast(options: promptAction.ShowToastOptions): void
 
 该示例通过调用showToast接口，显示文本提示框。
 
-<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promptAction: PromptAction = uiContext.getPromptAction();
-try {
-  promptAction.showToast({            
-    message: 'Message Info',
-    duration: 2000 
-  });
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showToast args error code is ${code}, message is ${message}`);
-};
+@Entry
+@Component
+struct toastExample {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Column() {
+      Button('showToast')
+        .onClick(() => {
+          try {
+            this.promptAction.showToast({
+              message: 'Message Info',
+              duration: 2000
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`showToast args error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ## openToast<sup>18+</sup>
@@ -104,7 +115,7 @@ struct toastExample {
 
   build() {
     Column() {
-      Button('Open Toast')
+      Button('OpenToast')
         .height(100)
         .onClick(() => {
           this.promptAction.openToast({
@@ -192,41 +203,51 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 
 **示例：**
 
-<!--code_no_check-->
-
 该示例通过调用showDialog接口，展示了弹出对话框以及返回对话框响应结果的功能。
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promptAction: PromptAction = uiContext.getPromptAction();
-try {
-  promptAction.showDialog({
-    title: 'showDialog Title Info',
-    message: 'Message Info',
-    buttons: [
-      {
-        text: 'button1',
-        color: '#000000'
-      },
-      {
-        text: 'button2',
-        color: '#000000'
-      }
-    ]
-  }, (err, data) => {
-    if (err) {
-      console.error('showDialog err: ' + err);
-      return;
-    }
-    console.info('showDialog success callback, click button: ' + data.index);
-  });
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showDialog args error code is ${code}, message is ${message}`);
-};
+@Entry
+@Component
+struct toastExample {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Column() {
+      Button('showDialog')
+        .onClick(() => {
+          try {
+            this.promptAction.showDialog({
+              title: 'showDialog Title Info',
+              message: 'Message Info',
+              buttons: [
+                {
+                  text: 'button1',
+                  color: '#000000'
+                },
+                {
+                  text: 'button2',
+                  color: '#000000'
+                }
+              ]
+            }, (err, data) => {
+              if (err) {
+                console.error('showDialog err: ' + err);
+                return;
+              }
+              console.info('showDialog success callback, click button: ' + data.index);
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`showDialog args error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ## showDialog
@@ -264,31 +285,42 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 该示例通过调用showDialog接口，展示了弹出对话框以及通过Promise获取对话框响应结果的功能。
 
-<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 
-let promptAction: PromptAction = uiContext.getPromptAction();
-promptAction.showDialog({
-  title: 'Title Info',
-  message: 'Message Info',
-  buttons: [
-    {
-      text: 'button1',
-      color: '#000000'
-    },
-    {
-      text: 'button2',
-      color: '#000000'
-    }
-  ],
-})
-  .then(data => {
-    console.info('showDialog success, click button: ' + data.index);
-  })
-  .catch((err: Error) => {
-    console.error('showDialog error: ' + err);
-  })
+@Entry
+@Component
+struct toastExample {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Column() {
+      Button('showDialog')
+        .onClick(() => {
+          this.promptAction.showDialog({
+            title: 'Title Info',
+            message: 'Message Info',
+            buttons: [
+              {
+                text: 'button1',
+                color: '#000000'
+              },
+              {
+                text: 'button2',
+                color: '#000000'
+              }
+            ],
+          })
+            .then(data => {
+              console.info('showDialog success, click button: ' + data.index);
+            })
+            .catch((err: Error) => {
+              console.error('showDialog error: ' + err);
+            })
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ## showActionMenu<sup>11+</sup>
@@ -319,37 +351,48 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { PromptAction, promptAction  } from '@kit.ArkUI';
+import { PromptAction, promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promptActionF: PromptAction = uiContext.getPromptAction();
-try {
-  promptActionF.showActionMenu({
-    title: 'Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      }
-    ]
-  }, (err:BusinessError, data:promptAction.ActionMenuSuccessResponse) => {
-    if (err) {
-      console.error('showDialog err: ' + err);
-      return;
-    }
-    console.info('showDialog success callback, click button: ' + data.index);
-  });
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
-};
+@Entry
+@Component
+struct toastExample {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+
+  build() {
+    Column() {
+      Button('showActionMenu')
+        .onClick(() => {
+          try {
+            this.promptAction.showActionMenu({
+              title: 'Title Info',
+              buttons: [
+                {
+                  text: 'item1',
+                  color: '#666666'
+                },
+                {
+                  text: 'item2',
+                  color: '#000000'
+                }
+              ]
+            }, (err: BusinessError, data: promptAction.ActionMenuSuccessResponse) => {
+              if (err) {
+                console.error('showDialog err: ' + err);
+                return;
+              }
+              console.info('showDialog success callback, click button: ' + data.index);
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`showActionMenu args error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ## showActionMenu
@@ -387,30 +430,40 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 该示例通过调用showActionMenu接口，展示了弹出对话框以及通过Promise获取对话框响应结果的功能。
 
-<!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
+@Entry
+@Component
+struct toastExample {
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
 
-let promptAction: PromptAction = uiContext.getPromptAction();
-promptAction.showActionMenu({
-  title: 'showActionMenu Title Info',
-  buttons: [
-    {
-      text: 'item1',
-      color: '#666666'
-    },
-    {
-      text: 'item2',
-      color: '#000000'
-    },
-  ]
-})
-  .then(data => {
-    console.info('showActionMenu success, click button: ' + data.index);
-  })
-  .catch((err: Error) => {
-    console.error('showActionMenu error: ' + err);
-  })
+  build() {
+    Column() {
+      Button('showActionMenu')
+        .onClick(() => {
+          this.promptAction.showActionMenu({
+            title: 'showActionMenu Title Info',
+            buttons: [
+              {
+                text: 'item1',
+                color: '#666666'
+              },
+              {
+                text: 'item2',
+                color: '#000000'
+              },
+            ]
+          })
+            .then(data => {
+              console.info('showActionMenu success, click button: ' + data.index);
+            })
+            .catch((err: Error) => {
+              console.error('showActionMenu error: ' + err);
+            })
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
 ```
 
 ## openCustomDialog<sup>12+</sup>
