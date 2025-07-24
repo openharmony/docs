@@ -3296,7 +3296,11 @@ const char* OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES
 **描述**
 在视频编码中获取B帧编码支持最大B帧数量的键，值类型为int32_t。
 
-使用前可以通过[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_B_FRAME](_a_v_capability.md#oh_avcapabilityfeature-1)来查询平台是否支持B帧编码；通过[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_B_FRAME](_a_v_capability.md#oh_avcapabilityfeature-1)获取[OH_AVFormat](_core.md#oh_avformat)句柄；通过[OH_AVFormat_GetIntValue](_core.md#oh_avformat_getintvalue)接口查询支持的B帧数目。
+使用前可以通过[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_B_FRAME](_a_v_capability.md#oh_avcapabilityfeature-1)来查询平台是否支持B帧编码。
+
+通过[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_B_FRAME](_a_v_capability.md#oh_avcapabilityfeature-1)获取[OH_AVFormat](_core.md#oh_avformat)句柄。
+
+通过[OH_AVFormat_GetIntValue](_core.md#oh_avformat_getintvalue)接口查询支持的B帧数目。
 
 该键是可选的且只用于视频编码，在Configure阶段使用。
 
