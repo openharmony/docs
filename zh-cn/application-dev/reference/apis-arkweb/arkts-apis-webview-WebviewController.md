@@ -9572,7 +9572,6 @@ getBlanklessInfoWithKey(key: string): BlanklessInfo
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |  801     | Capability not supported. |
 
 **示例：**
@@ -9645,7 +9644,6 @@ setBlanklessLoadingWithKey(key: string, is_start: boolean): WebBlanklessErrorCod
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |  801     | Capability not supported. |
 
 **示例：**
@@ -9711,7 +9709,6 @@ static clearBlanklessLoadingCache(keys?: Array\<string\>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |  801     | Capability not supported. |
 
 **示例：**
@@ -9769,7 +9766,6 @@ static setBlanklessLoadingCacheCapacity(capacity: number): number
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |  801     | Capability not supported. |
 
 **示例：**
