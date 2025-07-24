@@ -2185,7 +2185,7 @@ struct TextAreaExample {
   }
 }
 ```
-
+<!--code_no_check-->
 ```json
 // AppScope/app.json5，修改如下代码。
 {
@@ -2200,6 +2200,7 @@ struct TextAreaExample {
   }
 }
 ```
+<!--code_no_check-->
 <!--RP1-->
 ```ts
 // xxx.ets

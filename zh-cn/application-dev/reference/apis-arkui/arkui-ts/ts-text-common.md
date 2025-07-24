@@ -1064,13 +1064,3 @@ TextArea组件在文本超长时显示效果。默认值为CLIP，按最大行�
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-## TextLayoutOptions对象说明<sup>20+</sup>
-
-文本布局选项。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| constraintWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 设置被计算文本布局宽度。若不设置则宽度为单行布局所占最大宽度值。 |
