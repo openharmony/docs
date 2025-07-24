@@ -282,9 +282,9 @@ static getSystemRegion(): string
 
 ### getSystemLocale<sup>(deprecated)</sup>
 
-从API version 9开始支持，从API version 20开始不再维护，建议使用[System.getSystemLocaleInstance](#getsystemlocaleinstance20)代替。
-
 static getSystemLocale(): string
+
+从API version 9开始支持，从API version 20开始不再维护，建议使用[System.getSystemLocaleInstance](#getsystemlocaleinstance20)代替。
 
 获取系统当前设置的区域。
 
