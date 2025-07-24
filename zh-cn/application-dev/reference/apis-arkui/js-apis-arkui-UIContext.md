@@ -1653,7 +1653,7 @@ vp2px(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1690,7 +1690,7 @@ px2vp(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1729,7 +1729,7 @@ fp2px(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1768,7 +1768,7 @@ px2fp(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1803,7 +1803,7 @@ lpx2px(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1838,7 +1838,7 @@ px2lpx(value : number) : number
 
 > **说明：**
 >
-> 本接口需要在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)后调用以确保UIContext初始化完成，否则可能无法返回准确的结果。
+> getUIContext需在[windowStage.loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)之后调用，确保UIContext初始化完成后调用此接口，否则无法返回准确结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
