@@ -82,7 +82,7 @@ struct Index {
 
 @ComponentV2
 struct Child {
-  @Param title: string = '';
+  @Param title: string = "";
   @Param fontColor: Color = Color.Black;
   @Event changeFactory: (x: number) => void = (x: number) => {};
 
