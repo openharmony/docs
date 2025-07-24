@@ -1,6 +1,28 @@
 # 主窗口生命周期状态说明与事件监听接口适配指导
 
-## 主窗口生命周期状态说明
+## 主窗口生命周期和UIAbility组件生命周期
+
+**主窗口生命周期概述**
+
+窗口在进入前台、前后台切换及退后台时，会触发窗口相应的生命周期状态。主窗口的生命周期状态包括切到前台（SHOWN）、可交互状态（RESUMED）、不可交互状态（PAUSED）和切到后台（HIDDEN）。
+
+**UIAbility组件生命周期概述**
+
+用户在打开、切换和返回到应用时，UIAbility实例会在其生命周期的不同状态之间转换。UIAbility的生命周期包括Create、Foreground、Background和Destroy四个状态，如下图所示。
+
+![tabStop](figures/UIablityLifecycle.png)
+
+当用户在执行应用启动、应用前后台切换、应用退出等操作时，系统会触发相关应用组件的生命周期回调。其中，UIAbility组件的核心生命周期回调包括onCreate、onForeground、onBackground、onDestroy。回调的详细说明参见[UIAbility组件生命周期](../../application-models/uiability-lifecycle.md#uiability组件生命周期)。
+
+UIAbility实例创建完成之后，在进入前台之前，系统会创建一个[WindowStage](../../application-dev/windowmanager/application-window-stage.md)。WindowStage创建完成后会进入[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)回调，开发者可以在该回调中设置UI界面加载、设置WindowStage的事件订阅。UIAbility的生命周期与[WindowStage](../../application-dev/windowmanager/application-window-stage.md)的生命周期存在关联关系，两者生命周期关系示意图如下图所示。
+
+![tabStop](figures/uiabilityLifecycleWindowStage.png)
+
+## 主窗口生命周期说明
+
+> **说明：**
+>
+> - 如果需要感知主窗口生命周期变化，开发者可以使用[on('windowStageLifecycleEvent')](arkts-apis-window-WindowStage.md#on('windowstagelifecycleevent')20)注册监听主窗口生命周期变化。
 
 **SHOWN**
 
@@ -29,6 +51,12 @@
 
 ![tabStop](figures/windowLifecycleEvent.png)
 
+### 主窗口生命周期RESUMED和PAUSED状态详细说明
+
+RESUMED和PAUSED状态分别在窗口切换至前台和切换至后台时触发。但是在一些场景下，RESUMED和PAUSED状态触发会有差异。
+- 如果前台窗口是全屏或悬浮窗时，可能存在PAUSED事件差异。
+- 在一些系统管控场景下会导致RESUMED和PAUSED事件差异，例如应用锁场景。
+
 ## 新接口与老接口差异
 
 **新接口**
@@ -42,7 +70,7 @@
 **新接口和老接口区别**
 
 - 老接口无法保证状态切换间的顺序，对于状态间的顺序有要求的情况下不推荐使用，推荐使用新接口；
-- 新接口不提供WindowStage的获焦失焦状态监听，对于windowStage获焦失焦状态有监听需求的情况下，推荐使用[on('windowEvent')](arkts-apis-window-Window.md#on('windowevent')10)；
+- 新接口不提供WindowStage的获焦失焦状态监听，对于windowStage获焦失焦状态有监听需求的情况下，推荐使用[on('windowEvent')](arkts-apis-window-Window.md#on('windowevent')10)。
 
 ## 新接口适配指导
 
