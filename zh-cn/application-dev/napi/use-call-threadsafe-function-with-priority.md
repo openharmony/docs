@@ -1,5 +1,5 @@
 # 使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务
-Node-API中的napi_call_threadsafe_function_with_priority接口的功能是从异步线程向ArkTS线程投递任务，底层队列会根据任务的优先级和入队方式来处理任务。
+Node-API中的napi_call_threadsafe_function_with_priority接口的功能是从异步线程向ArkTS线程投递指定优先级和入队方式的任务，底层队列会根据任务的优先级和入队方式来处理任务。
 
 ## 函数说明
 
@@ -12,11 +12,11 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
 | :------------- | :----------------------------- |
 | func           | 线程安全方法                   |
 | data           | 异步线程期望传递给主线程的数据  |
-| priority       | 指定任务的优先级[napi_task_priority](napi-data-types-interfaces.md#线程安全任务优先级) |
+| priority       | 指定任务的优先级。详情请参见[napi_task_priority](napi-data-types-interfaces.md#线程安全任务优先级)。 |
 | isTail         | 指定任务的入队方式，true代表任务从队列的尾部入队，false代表任务从队列的头部入队。 |
 
 ## 场景介绍
-异步线程向ArkTS主线程投递的任务需要根据任务指定的优先级和入队方式进行处理。
+异步线程向ArkTS主线程投递的任务应根据指定的优先级和入队方式进行处理。
 
 ## 调用异步的ArkTS接口示例
 
@@ -59,13 +59,11 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
     // 异步线程中调用该接口向ArkTS线程投递指定优先级和入队方式的任务
     static void ExecuteWork(napi_env env, void *data) {
         CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
-        // 执行任务为napi_priority_idle优先级，入队方式为队列尾部入队
-        napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_idle, true);
-        napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_low, true);
-        napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_high, true);
-        napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_immediate, true);
-        // 执行任务为napi_priority_high优先级，入队方式为队列头部入队
-        napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_high, false);
+        napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_idle, true); // 投递指定优先级为napi_priority_idle，入队方式为队列尾部入队的任务
+        napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_low, true); // 投递指定优先级为napi_priority_low，入队方式为队列尾部入队的任务
+        napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_high, true); // 投递指定优先级为napi_priority_high，入队方式为队列尾部入队的任务
+        napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_immediate, true); // 投递指定优先级为napi_priority_immediate，入队方式为队列尾部入队的任务
+        napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_high, false); // 投递指定优先级为napi_priority_high，入队方式为队列头部入队的任务
     }
 
     static void WorkComplete(napi_env env, napi_status status, void *data) {
