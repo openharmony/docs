@@ -7,11 +7,11 @@ Spatial audio management is available only for system applications. It enables a
 A system application that plays audio can query whether the system or a device supports spatial audio rendering or head tracking, whether spatial audio rendering or head tracking is enabled, and the spatial audio rendering scene type in use.
 
 A system application with spatial audio setting capabilities (for example, a setting screen where users can change the spatial audio status) can enable or disable spatial audio rendering or head tracking, set the spatial audio rendering scene type, and update the state information of a spatial device, in addition to the query operation.
-To use this feature, the application must request the **ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS** permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+To use this feature, the application must request the ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 ## Obtaining an AudioSpatializationManager Instance
 
-Before using **AudioSpatializationManager** APIs, you must use **getSpatializationManager()** to obtain an **AudioSpatializationManager** instance.
+Before using AudioSpatializationManager APIs, you must use **getSpatializationManager()** to obtain an AudioSpatializationManager instance.
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -38,7 +38,7 @@ Call [isSpatializationSupported](../../reference/apis-audio-kit/js-apis-audio-sy
 
 ## Checking Whether a Device Supports Spatial Audio Rendering
 
-Call [isSpatializationSupportedForDevice](../../reference/apis-audio-kit/js-apis-audio-sys.md#isspatializationsupportedfordevice11) to check whether a device (specified by **AudioDeviceDescriptor**) supports spatial audio rendering. You are advised to use other audio APIs to obtain **AudioDeviceDescriptor** of a connected device or the current audio device. For details, see [AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor).
+Call [isSpatializationSupportedForDevice](../../reference/apis-audio-kit/js-apis-audio-sys.md#isspatializationsupportedfordevice11) to check whether a device (specified by **AudioDeviceDescriptor**) supports spatial audio rendering. You are advised to use other audio APIs to obtain **AudioDeviceDescriptor** of a connected device or the current audio device. For details, see [AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor).
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -85,7 +85,7 @@ Call [isHeadTrackingSupported](../../reference/apis-audio-kit/js-apis-audio-sys.
 
 ## Checking Whether a Device Supports Head Tracking
 
-Call [isHeadTrackingSupportedForDevice](../../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingsupportedfordevice11) to check whether a device (specified by **AudioDeviceDescriptor**) supports head tracking. You are advised to use other audio APIs to obtain **AudioDeviceDescriptor** of a connected device or the current audio device. For details, see [AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor).
+Call [isHeadTrackingSupportedForDevice](../../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingsupportedfordevice11) to check whether a device (specified by **AudioDeviceDescriptor**) supports head tracking. You are advised to use other audio APIs to obtain **AudioDeviceDescriptor** of a connected device or the current audio device. For details, see [AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor).
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -119,10 +119,10 @@ Call [isHeadTrackingSupportedForDevice](../../reference/apis-audio-kit/js-apis-a
 
 Call [setSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#setspatializationenabled12) to enable or disable spatial audio rendering for a device. This API contains two parameters:
 
-- **AudioDeviceDescriptor**: specifies an audio device. You are advised to use other audio APIs to obtain **AudioDeviceDescriptor** of a connected device or the current audio device. For details, see [AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor).
+- **AudioDeviceDescriptor**: specifies an audio device. You are advised to use other audio APIs to obtain **AudioDeviceDescriptor** of a connected device or the current audio device. For details, see [AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor).
 - **enabled**: specifies the status of spatial audio rendering of the specified device. The value **true** means to enable spatial audio rendering, and **false** means to disable it.
 
-To use this feature, the application must request the **ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS** permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+To use this feature, the application must request the ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 Before enabling spatial audio rendering, ensure that both the system and the specified device support spatial audio rendering.
 
@@ -155,7 +155,7 @@ Before enabling spatial audio rendering, ensure that both the system and the spe
 
 ## Checking the Status of Spatial Audio Rendering of a Device
 
-Call [isSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isspatializationenabled12) to check whether spatial audio rendering is enabled for a device (specified by **AudioDeviceDescriptor**). You are advised to use other audio APIs to obtain **AudioDeviceDescriptor** of a connected device or the current audio device. For details, see [AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor). If **true** is returned, spatial audio rendering is enabled. If **false** is returned, it is disabled. This API returns the value passed in **setSpatializationEnabled**. The default value is **false**. Note that spatial audio rendering takes effect only when the system and the specified device support spatial audio rendering.
+Call [isSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isspatializationenabled12) to check whether spatial audio rendering is enabled for a device (specified by **AudioDeviceDescriptor**). You are advised to use other audio APIs to obtain **AudioDeviceDescriptor** of a connected device or the current audio device. For details, see [AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor). If **true** is returned, spatial audio rendering is enabled. If **false** is returned, it is disabled. This API returns the value passed in **setSpatializationEnabled**. The default value is **false**. Note that spatial audio rendering takes effect only when the system and the specified device support spatial audio rendering.
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -211,10 +211,10 @@ Call [off('spatializationEnabledChangeForAnyDevice')](../../reference/apis-audio
 
 Call [setHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#setheadtrackingenabled12) to enable or disable head tracking for a device. This API contains two parameters:
 
-- **AudioDeviceDescriptor**: specifies an audio device. You are advised to use other audio APIs to obtain **AudioDeviceDescriptor** of a connected device or the current audio device. For details, see [AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor).
+- **AudioDeviceDescriptor**: specifies an audio device. You are advised to use other audio APIs to obtain **AudioDeviceDescriptor** of a connected device or the current audio device. For details, see [AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor).
 - **enabled**: specifies the status of head tracking of the specified device. The value **true** means to enable head tracking, and **false** means to disable it.
 
-To use this feature, the application must request the **ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS** permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+To use this feature, the application must request the ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 Before enabling head tracking, ensure that both the system and the specified device support head tracking and when spatial audio rendering is enabled.
 
@@ -247,7 +247,7 @@ Before enabling head tracking, ensure that both the system and the specified dev
 
 ## Checking the Status of Head Tracking of a Device
 
-Call [isHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingenabled12) to check whether head tracking is enabled for a device (specified by **AudioDeviceDescriptor**). You are advised to use other audio APIs to obtain **AudioDeviceDescriptor** of a connected device or the current audio device. For details, see [AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor). If **true** is returned, head tracking is enabled. If **false** is returned, it is disabled. This API returns the value passed in **setHeadTrackingEnabled**. The default value is **false**. Note that head tracking takes effect only when the system and the specified device support head tracking and spatial audio rendering is enabled.
+Call [isHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingenabled12) to check whether head tracking is enabled for a device (specified by **AudioDeviceDescriptor**). You are advised to use other audio APIs to obtain **AudioDeviceDescriptor** of a connected device or the current audio device. For details, see [AudioDeviceDescriptor](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor). If **true** is returned, head tracking is enabled. If **false** is returned, it is disabled. This API returns the value passed in **setHeadTrackingEnabled**. The default value is **false**. Note that head tracking takes effect only when the system and the specified device support head tracking and spatial audio rendering is enabled.
 
   ```ts
   import { audio } from '@kit.AudioKit';
@@ -303,7 +303,7 @@ Call [off('headTrackingEnabledChangeForAnyDevice')](../../reference/apis-audio-k
 
 Call [updateSpatialDeviceState](../../reference/apis-audio-kit/js-apis-audio-sys.md#updatespatialdevicestate11) to update the state information of a spatial device. The state information includes the device address, support for spatial audio rendering and head tracking, and device form.
 
-To use this feature, the application must request the **ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS** permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+To use this feature, the application must request the ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 For details about the state information, see [AudioSpatialDeviceState](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatialdevicestate11).
 
@@ -331,7 +331,7 @@ For details about the state information, see [AudioSpatialDeviceState](../../ref
 
 Call [setSpatializationSceneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#setspatializationscenetype12) to set the spatial audio rendering scene type, which can be **DEFAULT** (default value), **MUSIC**, **MOVIE**, or **AUDIOBOOK**. The spatial audio rendering scene type takes effect only when spatial audio rendering is enabled.
 
-To use this feature, the application must request the **ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS** permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+To use this feature, the application must request the ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 For details about the spatial audio rendering scene type, see [AudioSpatializationSceneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatializationscenetype12).
 

@@ -6,7 +6,7 @@ This feature is commonly used in karaoke applications, where the recorded vocals
 
 ## Prerequisites
 
-- You can use the playback and recording capabilities provided by **OHAudio** to implement audio monitoring. The audio data captured during recording is used as the input for playback.
+- You can use the playback and recording capabilities provided by OHAudio to implement audio monitoring. The audio data captured during recording is used as the input for playback.
 
   For details, see [Using OHAudio for Audio Playback](using-ohaudio-for-playback.md) and [Using OHAudio for Audio Recording](using-ohaudio-for-recording.md).
 
@@ -16,7 +16,7 @@ This feature is commonly used in karaoke applications, where the recorded vocals
 
 ### Creating an Audio Recording Builder
 
-Use the **OH_AudioStreamBuilder** function provided by **OHAudio** to create an audio recording builder, following the builder design pattern. Set [OH_AudioStream_Type](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_type) to **AUDIOSTREAM_TYPE_CAPTURER**.
+Use the **OH_AudioStreamBuilder** function provided by OHAudio to create an audio recording builder, following the builder design pattern. Set [OH_AudioStream_Type](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_type) to **AUDIOSTREAM_TYPE_CAPTURER**.
 
 ```cpp
 OH_AudioStreamBuilder* builder;
@@ -25,7 +25,7 @@ OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_CAPTURER);
 
 ### Creating an Audio Playback Builder
 
-Use the **OH_AudioStreamBuilder** function provided by **OHAudio** to create an audio playback builder, following the builder design pattern. Set [OH_AudioStream_Type](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_type) to **AUDIOSTREAM_TYPE_RENDERER**.
+Use the **OH_AudioStreamBuilder** function provided by **OHAudio** to create an audio playback builder, following the builder design pattern. Set [OH_AudioStream_Type](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_type) to **AUDIOSTREAM_TYPE_RENDERER**.
 
 ```cpp
 OH_AudioStreamBuilder* builder;
@@ -36,7 +36,7 @@ OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_RENDERER);
 
 To achieve better audio monitoring, it is essential to maintain low latency from recording to playback. When the device supports low-latency channels, you should use the low latency mode for both recording and playback.
 
-When creating the audio recording builder, call [OH_AudioStreamBuilder_SetLatencyMode()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setlatencymode) to set the low latency mode, and apply it to both recording and playback as follows:
+When creating the audio recording builder, call [OH_AudioStreamBuilder_SetLatencyMode()](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setlatencymode) to set the low latency mode, and apply it to both recording and playback as follows:
 
 ```cpp
 OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
@@ -231,11 +231,11 @@ The following uses recording as an example. You can use the following APIs to co
 
 | API                                                    | Description        |
 | ------------------------------------------------------------ | ------------ |
-| OH_AudioStream_Result [OH_AudioRenderer_Start](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_start)(OH_AudioRenderer* renderer) | Starts the audio renderer.    |
-| OH_AudioStream_Result [OH_AudioRenderer_Pause](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_pause)(OH_AudioRenderer* renderer) | Pauses the audio renderer.    |
-| OH_AudioStream_Result [OH_AudioRenderer_Stop](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_stop)(OH_AudioRenderer* renderer) | Stops the audio renderer.    |
-| OH_AudioStream_Result [OH_AudioRenderer_Flush](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_flush)(OH_AudioRenderer* renderer) | Flushes obtained audio data.|
-| OH_AudioStream_Result [OH_AudioRenderer_Release](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_release)(OH_AudioRenderer* renderer) | Releases the audio renderer.|
+| OH_AudioStream_Result [OH_AudioRenderer_Start](../../reference/apis-audio-kit/capi-native-audiorenderer-h.md#oh_audiorenderer_start)(OH_AudioRenderer* renderer) | Starts the audio renderer.    |
+| OH_AudioStream_Result [OH_AudioRenderer_Pause](../../reference/apis-audio-kit/capi-native-audiorenderer-h.md#oh_audiorenderer_pause)(OH_AudioRenderer* renderer) | Pauses the audio renderer.    |
+| OH_AudioStream_Result [OH_AudioRenderer_Stop](../../reference/apis-audio-kit/capi-native-audiorenderer-h.md#oh_audiorenderer_stop)(OH_AudioRenderer* renderer) | Stops the audio renderer.    |
+| OH_AudioStream_Result [OH_AudioRenderer_Flush](../../reference/apis-audio-kit/capi-native-audiorenderer-h.md#oh_audiorenderer_flush)(OH_AudioRenderer* renderer) | Flushes obtained audio data.|
+| OH_AudioStream_Result [OH_AudioRenderer_Release](../../reference/apis-audio-kit/capi-native-audiorenderer-h.md#oh_audiorenderer_release)(OH_AudioRenderer* renderer) | Releases the audio renderer.|
 
 ### Releasing the Builder
 
