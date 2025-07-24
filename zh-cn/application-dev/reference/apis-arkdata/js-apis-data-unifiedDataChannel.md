@@ -1384,7 +1384,7 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 | 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
 |----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
 | types    | Set\<string\>       | 否 | 表示数据类型集合，默认为空集合。                                                                                                                         |
-| recordCount | number | 否 | 表示期望或可提供的最大数据记录数，默认值为0，取值范围为[0, 2<sup>32</sup>-1]。超过取值范围时会按默认值处理。设置为浮点数时，仅使用整数部分。                             |
+| recordCount | number | 否 | 表示期望或可提供的最大数据记录数，默认值为0，取值范围为[0, 2<sup>32</sup>-1]。超过取值范围时会按默认值处理。设置为浮点数时，仅使用整数部分。当用于拖拽时，会作为角标数量显示，最大支持2<sup>31</sup>-1，超过此数值时不显示角标。作为角标数量时，优先级低于[DragPreviewOptions](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)中的numberBadge方法。                            |
 
 ## DataLoadHandler<sup>20+</sup>
 
