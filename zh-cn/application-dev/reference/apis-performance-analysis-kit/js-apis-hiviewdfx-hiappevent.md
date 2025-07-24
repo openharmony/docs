@@ -200,7 +200,7 @@ hiAppEvent.removeWatcher(watcher);
 
 setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: string): Promise&lt;void&gt;
 
-事件自定义参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件领域和事件名称关联系统事件和应用事件，系统事件仅支持[崩溃事件](../../dfx/hiappevent-watcher-crash-events.md)和[卡死事件](../../dfx/hiappevent-watcher-freeze-events.md)。
+事件自定义参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件领域和事件名称关联系统事件和应用事件，系统事件仅支持[崩溃事件](../../dfx/hiappevent-watcher-crash-events.md)、[卡死事件](../../dfx/hiappevent-watcher-freeze-events.md)和[资源泄漏事件](../../dfx/hiappevent-watcher-resourceleak-events.md)下的js内存泄漏事件。
 
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
