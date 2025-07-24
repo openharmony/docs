@@ -186,6 +186,8 @@
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](_codec_base.md#oh_md_key_video_encoder_ltr_frame_count) | 描述长期参考帧个数的键，值类型为int32_t，必须在支持的值范围内使用。该键是可选的且只用于视频编码。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR](_codec_base.md#oh_md_key_video_encoder_per_frame_mark_ltr) | 标记当前帧为长期参考帧的键，值类型为int32_t，1表示被标记，0表示其它情况。该键是可选的且只用于视频编码。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](_codec_base.md#oh_md_key_video_encoder_per_frame_use_ltr) | 描述当前帧参考的长期参考帧帧的POC号的键，值类型为int32_t。该键是可选的且只用于视频编码。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME](_codec_base.md#oh_md_key_video_encoder_enable_b_frame)    | 使能B帧编码的键，值类型为int32_t，1表示使能，0表示其它情况。该键值是可选的且只用于视频编码，默认值为0，在Configure阶段使用。 |
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES](_codec_base.md#oh_md_key_video_encoder_max_b_frames)    | 在视频编码中获取B帧编码支持最大B帧数量的键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR](_codec_base.md#oh_md_key_video_per_frame_is_ltr) | 当前OH_AVBuffer中输出的码流对应的帧是否为长期参考帧的键，值类型为int32_t，1表示是LTR，0表示其它情况。该键是可选的且只用于视频编码。 | 
 | const char \* [OH_MD_KEY_VIDEO_PER_FRAME_POC](_codec_base.md#oh_md_key_video_per_frame_poc) | 描述帧的POC号的键，值类型为int32_t。该键是可选的且只用于视频编码。  | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_TOP](_codec_base.md#oh_md_key_video_crop_top) | 描述裁剪矩形顶部坐标(y)值的键，值类型为int32_t。 该键只用于视频解码。| 
