@@ -6844,8 +6844,10 @@ struct toastExample {
           }).then((toastId: number) => {
             this.toastId = toastId;
           })
-            .catch((error: BusinessError) => {
-              console.error(`openToast error code is ${error.code}, message is ${error.message}`);
+            .catch((error: Error) => {
+              let message = (error as BusinessError).message;
+              let code = (error as BusinessError).code;
+              console.error(`openToast error code is ${code}, message is ${message}`);
             })
         })
       Blank().height(50)

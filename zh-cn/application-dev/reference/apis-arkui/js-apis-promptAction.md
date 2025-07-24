@@ -76,8 +76,10 @@ struct toastExample {
           }).then((toastId: number) => {
             this.toastId = toastId;
           })
-            .catch((error: BusinessError) => {
-              console.error(`openToast error code is ${error.code}, message is ${error.message}`);
+            .catch((error: Error) => {
+              let message = (error as BusinessError).message;
+              let code = (error as BusinessError).code;
+              console.error(`openToast error code is ${code}, message is ${message}`);
             })
         })
       Blank().height(50)
@@ -669,6 +671,8 @@ showToast(options: ShowToastOptions): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名  | 类型                                  | 必填 | 说明           |
@@ -737,6 +741,8 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名  | 类型                                    | 必填 | 说明         |
@@ -802,6 +808,8 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -974,6 +982,8 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明               |
@@ -1116,6 +1126,8 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名  | 类型                                    | 必填 | 说明           |
@@ -1186,6 +1198,8 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -1470,6 +1484,8 @@ closeCustomDialog(dialogId: number): void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
