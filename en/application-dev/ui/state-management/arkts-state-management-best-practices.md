@@ -301,7 +301,7 @@ When a complex object is defined as a state variable, take care to control the n
 
 ## Querying the Number of Components Associated with a State Variable
 
-During application development, you can use HiDumper to view the number of components associated with a state variable for performance optimization. For details, see [State Variable Component Location Tool Practice](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/performance/state_variable_dfx_pratice.md).
+During application development, you can use HiDumper to view the number of components associated with a state variable for performance optimization.
 
 
 ## Avoid Frequent Reads of State Variables in a Loop
