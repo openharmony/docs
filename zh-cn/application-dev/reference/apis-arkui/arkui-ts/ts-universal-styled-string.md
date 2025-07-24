@@ -153,7 +153,7 @@ static fromHtml(html: string): Promise\<StyledString>
 
 将HTML格式字符串转换成属性字符串，当前支持转换的HTML标签范围：\<p>、\<span>、\<img>、\<br>、\<strong>、\<b>、\<a>、\<i>、\<em>、\<s>、\<u>、\<del>、\<sup>、\<sub>。支持将标签中的style属性样式转换成对应的属性字符串样式。
 
-使用方法参考[示例8（支持转换HTML格式字符串）](#示例8支持转换html格式字符串)。
+使用方法参考[示例12（fromHtml和toHtml互相转换）](#示例12fromhtml和tohtml互相转换)。
 
 | 标签名称 | 说明                   |
 |-------------|----------------------------|
@@ -203,7 +203,7 @@ static toHtml(styledString: StyledString): string
 
 将属性字符串转换成HTML格式字符串。支持转换的属性字符串[StyledStringKey](#styledstringkey枚举说明)包括：StyledStringKey.FONT、StyledStringKey.DECORATION、StyledStringKey.LETTER_SPACING、StyledStringKey.TEXT_SHADOW、StyledStringKey.LINE_HEIGHT、StyledStringKey.IMAGE。
 
-使用方法参考[示例8（支持转换HTML格式字符串）](#示例8支持转换html格式字符串)。
+使用方法参考[示例12（fromHtml和toHtml互相转换）](#示例12fromhtml和tohtml互相转换)。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -939,7 +939,7 @@ type ColorFilterType = ColorFilter | DrawingColorFilter
 | value | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) |  是  | 设置图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>size的默认值与objectFit的值有关，不同的objectFit的值对应size的默认值不同。比如当objectFit的值为Cover时，图片高度为组件高度减去组件上下的内边距，图片宽度为组件宽度减去组件左右的内边距。 |
 | verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 否   | 设置图片基于文本的对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageSpanAlignment.BOTTOM |
-| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageFit.Cover |
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型，当前枚举类型不支持ImageFit.MATRIX。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageFit.Cover |
 | layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) | 否   | 设置图片布局。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | colorFilter<sup>15+</sup>  | [ColorFilterType](#colorfiltertype15) |  否  | 设置属性字符串的图片颜色滤镜效果。**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
@@ -968,7 +968,7 @@ ResourceStr类型图片设置项。
 | resourceValue | Optional<[ResourceStr](ts-types.md#resourcestr)> |  是  | 设置图片数据源。 |
 | size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 |
 | verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 否   | 设置图片基于文本的对齐方式。<br/>默认值：ImageSpanAlignment.BOTTOM |
-| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover |
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型，当前枚举类型不支持ImageFit.MATRIX。<br/>默认值：ImageFit.Cover |
 | layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) | 否   | 设置图片布局。 |
 | colorFilter  | [ColorFilterType](#colorfiltertype15) |  否  | 设置属性字符串的图片颜色滤镜效果。 |
 | syncLoad  | boolean |  否  | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false |
@@ -1232,7 +1232,7 @@ constructor(url: string)
 // xxx.ets
 @Entry
 @Component
-struct styled_string_demo1 {
+struct styled_string_process_demo {
   @State height1: number = 450;
   @State fontSize1: number = 16;
   @State fontWeight1: number = 400;
@@ -1408,7 +1408,7 @@ struct styled_string_demo1 {
 // xxx.ets
 @Entry
 @Component
-struct styled_string_demo2 {
+struct styled_string_bind_events_demo {
   scroll: Scroller = new Scroller();
   fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
   private uiContext: UIContext = this.getUIContext();
@@ -1501,7 +1501,7 @@ import { LengthMetrics, LengthUnit } from '@kit.ArkUI';
 
 @Entry
 @Component
-struct styled_string_demo3 {
+struct styled_string_set_text_style_demo {
   fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
   fontStyleAttr2: TextStyle = new TextStyle({
     fontColor: Color.Orange,
@@ -1691,7 +1691,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
-struct styled_string_demo4 {
+struct styled_string_set_image_demo {
   @State message: string = 'Hello World';
   imagePixelMap: image.PixelMap | undefined = undefined;
   @State imagePixelMap3: image.PixelMap | undefined = undefined;
@@ -1848,7 +1848,7 @@ class LeadingMarginCreator {
 
 @Entry
 @Component
-struct Index {
+struct styled_string_set_lineheight_paragraphstyle_demo {
   private leadingMarkCreatorInstance = LeadingMarginCreator.instance;
   leadingMarginPlaceholder1: LeadingMarginPlaceholder = {
     pixelMap: this.leadingMarkCreatorInstance.genSquareMark(24),
@@ -2042,7 +2042,7 @@ class MyCustomSpan extends CustomSpan {
 
 @Entry
 @Component
-struct styled_string_demo6 {
+struct styled_string_set_customspan_demo {
   customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 80, 10);
   customSpan2: MyCustomSpan = new MyCustomSpan("World", 80, 40);
   style: MutableStyledString = new MutableStyledString(this.customSpan1);
@@ -2127,7 +2127,7 @@ class MyUserDataSpan extends UserDataSpan {
 
 @Entry
 @Component
-struct styled_string_demo7 {
+struct styled_string_set_userdataspan_demo {
   @State name: string = "world";
   @State age: number = 10;
   controller: TextController = new TextController();
@@ -2159,86 +2159,7 @@ struct styled_string_demo7 {
 
 ![](figures/styledstring_7.gif)
 
-
-### 示例8（支持转换HTML格式字符串）
-
-该示例通过toHtml、fromHtml接口实现属性字符串与HTML格式字符串的相关转换。
-
-```ts
-// xxx.ets
-import { image } from '@kit.ImageKit';
-import { LengthMetrics } from '@kit.ArkUI';
-
-@Entry
-@Component
-struct styled_string_demo8 {
-  imagePixelMap: image.PixelMap | undefined = undefined;
-  @State html: string | undefined = undefined;
-  @State styledString: StyledString | undefined = undefined;
-  controller1: TextController = new TextController();
-  controller2: TextController = new TextController();
-  private uiContext: UIContext = this.getUIContext();
-
-  async aboutToAppear() {
-    console.info("aboutToAppear initial imagePixelMap");
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'));
-  }
-
-  private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await this.uiContext.getHostContext()?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
-    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
-    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
-      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    });
-    await imageSource.release();
-    return createPixelMap;
-  }
-
-  build() {
-    Column() {
-      Text(undefined, { controller: this.controller1 }).height(100)
-      Row() {
-        Button("添加属性字符串").onClick(() => {
-          let mutableStyledString1: MutableStyledString = new MutableStyledString("属性字符串", [{
-            start: 0,
-            length: 6,
-            styledKey: StyledStringKey.FONT,
-            styledValue: new TextStyle({ fontColor: Color.Green, fontSize: LengthMetrics.px(50) })
-          }]);
-          if (this.imagePixelMap !== undefined) {
-            let mutableStyledString2: MutableStyledString = new MutableStyledString(new ImageAttachment({
-              value: this.imagePixelMap,
-              size: { width: 50, height: 50 },
-            }));
-            mutableStyledString1.appendStyledString(mutableStyledString2);
-          }
-          this.styledString = mutableStyledString1;
-          this.controller1.setStyledString(mutableStyledString1);
-        }).margin(5)
-        Button("toHtml").onClick(() => {
-          this.html = StyledString.toHtml(this.styledString);
-        }).margin(5)
-        Button("fromHtml").onClick(async () => {
-          let styledString = await StyledString.fromHtml(this.html);
-          this.controller2.setStyledString(styledString);
-        }).margin(5)
-      }
-
-      Text(undefined, { controller: this.controller2 }).height(100)
-      Text(this.html)
-    }.width("100%")
-  }
-}
-```
-
-![](figures/styledString_8.gif)
-
-
-### 示例9（设置超链接）
+### 示例8（设置超链接）
 
 该示例通过UrlStyle接口，实现了对属性字符串中超链接设置的支持。
 
@@ -2246,7 +2167,7 @@ struct styled_string_demo8 {
 // xxx.ets
 @Entry
 @Component
-struct styled_string_demo9 {
+struct styled_string_set_urlstyle_demo {
   urlString: UrlStyle = new UrlStyle("https://www.example.com");
   mutableStyledString: MutableStyledString = new MutableStyledString("Hello World", [{
     start: 0,
@@ -2273,7 +2194,7 @@ struct styled_string_demo9 {
 ![](figures/styledString_9.gif)
 
 
-### 示例10 (给图片设置colorFilter)
+### 示例9 (给图片设置colorFilter)
 
 该示例通过给imageAttachment设置colorFilter实现了给图像设置颜色滤镜效果。
 
@@ -2284,7 +2205,7 @@ import { drawing, common2D } from '@kit.ArkGraphics2D';
 
 @Entry
 @Component
-struct styled_string_demo10 {
+struct styled_string_set_image_colorfilter_demo {
   @State message: string = 'Hello World';
   mutableStr: MutableStyledString = new MutableStyledString('origin image:');
   mutableStr2: MutableStyledString = new MutableStyledString('with filter:');
@@ -2342,15 +2263,15 @@ struct styled_string_demo10 {
 
 ![](figures/styledString_10.gif)
 
-### 示例11（属性字符串的插入、删除、替换）
+### 示例10（属性字符串的插入、删除、替换）
 
-该示例通过getSubStyledString、removeString、removeStyle、clearStyles、replaceStyledString、insertStyledString接口实现属性字符串的插入、删除、替换。
+该示例通过subStyledString、removeString、removeStyle、clearStyles、replaceStyledString、insertStyledString接口实现属性字符串的插入、删除、替换。
 
 ``` ts
 // xxx.ets
 @Entry
 @Component
-struct styled_string_demo11 {
+struct styled_string_modify_demo {
   @State message: string = 'Hello World';
   mutableStr: MutableStyledString = new MutableStyledString('123456', [{
     start: 0,
@@ -2419,7 +2340,7 @@ struct styled_string_demo11 {
 
 ![](figures/styledString_11.gif)
 
-### 示例12（属性字符串的文本描边）
+### 示例11（属性字符串的文本描边）
 
 该示例通过设置strokeWidth和strokeColor接口实现属性字符串的文本描边。
 
@@ -2429,7 +2350,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
-struct styled_string_demo12 {
+struct styled_string_strokewidth_strokecolor_demo {
   @State string1: string = "Hello";
   spanStyle: SpanStyle = {
     start: 0,
@@ -2493,7 +2414,7 @@ struct styled_string_demo12 {
 
 ![](figures/styledString_12.png)
 
-### 示例13（fromHtml和toHtml互相转换）
+### 示例12（fromHtml和toHtml互相转换）
 
 该示例通过fromHtml、toHtml接口，将HTML中b、strong、em、i、u、del、s、a、sub、sup标签及其style属性中的background-color转换为属性字符串并转回HTML。
 
@@ -2501,7 +2422,7 @@ struct styled_string_demo12 {
 // xxx.ets
 @Entry
 @Component
-struct HtmlSpanStringDemo {
+struct styled_string_html_convert_demo {
   @State html: string = "<p>This is <b>b</b> <strong>strong</strong> <em>em</em> <i>i</i> <u>u</u> <del>del</del> <s>s</s> <span style = \"foreground-color:blue\"> <a href='https://www.example.com'>www.example</a> </span> <span style=\"background-color: red;\">red span</span> <sup>superscript</sup> and <sub>subscript</sub></p>";
   @State spanString: StyledString | undefined = undefined;
   @State resultText: string = ""; // 保存结果文本的状态
@@ -2560,7 +2481,7 @@ struct HtmlSpanStringDemo {
 
 ![](figures/styledString_13.gif)
 
-### 示例14（多装饰线与加粗装饰线）
+### 示例13（多装饰线与加粗装饰线）
 
 该示例通过enableMultiType、thicknessScale接口，实现多装饰线显示与加粗装饰线的效果。
 
@@ -2569,7 +2490,7 @@ struct HtmlSpanStringDemo {
 import { LengthMetrics } from '@kit.ArkUI'
 @Entry
 @Component
-struct Index {
+struct styled_string_set_decorationstyle_demo {
   @State styledString : StyledString | undefined = undefined
   controller : TextController = new TextController
   thickness: number = 2.0
