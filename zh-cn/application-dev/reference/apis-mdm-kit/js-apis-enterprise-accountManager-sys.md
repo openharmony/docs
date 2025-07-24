@@ -28,6 +28,7 @@ disallowAddLocalAccount(admin: Want, disallow: boolean, callback: AsyncCallback&
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -81,6 +82,7 @@ disallowAddLocalAccount(admin: Want, disallow: boolean): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -138,6 +140,7 @@ disallowAddOsAccountByUser(admin: Want, userId: number, disallow: boolean): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -191,6 +194,7 @@ isAddOsAccountByUserDisallowed(admin: Want, userId: number): boolean
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**
@@ -249,6 +253,7 @@ addOsAccount(admin: Want, name: string, type: osAccount.OsAccountType): osAccoun
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **参数：**

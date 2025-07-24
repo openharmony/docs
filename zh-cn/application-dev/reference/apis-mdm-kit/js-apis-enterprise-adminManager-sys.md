@@ -20,15 +20,13 @@ import { adminManager } from '@kit.MDMKit';
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callback: AsyncCallback\<void>): void
 
-激活当前用户下指定的设备管理应用，其中超级设备管理应用仅能在管理员用户下被激活。使用callback异步回调。
+激活指定的设备管理应用。超级设备管理应用仅在管理员用户下可激活。激活后，该应用将实现开机自启动、切换用户后自启动，并且不可卸载。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -88,9 +86,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -151,9 +147,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -217,9 +211,7 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -270,9 +262,7 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -324,9 +314,7 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -374,9 +362,7 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -424,9 +410,7 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -473,9 +457,7 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -524,9 +506,7 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -579,9 +559,7 @@ isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -625,9 +603,7 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -675,9 +651,7 @@ getSuperAdmin(): Promise\<Want>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **返回值：**
 
@@ -716,9 +690,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -775,9 +747,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -834,9 +804,7 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -884,9 +852,7 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -940,9 +906,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -996,9 +960,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1055,9 +1017,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1111,9 +1071,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1170,9 +1128,7 @@ authorizeAdmin(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1228,9 +1184,7 @@ authorizeAdmin(admin: Want, bundleName: string): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -1287,9 +1241,7 @@ getAdmins(): Promise&lt;Array&lt;Want&gt;&gt;
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 
 **返回值：**
@@ -1330,9 +1282,7 @@ replaceSuperAdmin(oldAdmin: Want, newAdmin: Want, isKeepPolicy: boolean): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
@@ -1391,9 +1341,7 @@ setAdminRunningMode(admin: Want, mode: RunningMode): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数**：
 
