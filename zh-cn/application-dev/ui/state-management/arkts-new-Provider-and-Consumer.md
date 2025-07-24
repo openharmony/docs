@@ -212,7 +212,7 @@ struct Child {
 
 ### 装饰Array类型变量
 
-当装饰的对象是Array时，可以观察到Array整体的赋值，同时可以通过调用Array的接口`push`, `pop`, `shift`, `unshift`, `splice`, `copyWithin`, `fill`, `reverse`、`sort`更新Array中的数据。
+当装饰的对象是Array时，可以观察到Array整体的赋值，同时可以通过调用Array的接口`push`, `pop`, `shift`, `unshift`, `splice`, `copyWithin`, `fill`, `reverse`, `sort`更新Array中的数据。
 
 ```ts
 @Entry
@@ -271,7 +271,7 @@ struct Child {
 
 ### 装饰Date类型变量
 
-当装饰Date类型变量时，可以观察到数据源对Date整体的赋值，以及调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 带来的变化。
+当装饰Date类型变量时，可以观察到数据源对Date整体的赋值，以及调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`带来的变化。
 
 ```ts
 @Entry
@@ -332,33 +332,33 @@ struct Child {
 
 ### 装饰Map类型变量
 
-当装饰Map类型变量时，可以观察到数据源对Map整体的赋值，以及调用Map的接口`set`、`clear`、`delete`带来的变化。
+当装饰Map类型变量时，可以观察到数据源对Map整体的赋值，以及调用Map的接口`set`, `clear`, `delete`带来的变化。
 
 ```ts
 @Entry
 @ComponentV2
 struct Parent {
-  @Provider() message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+  @Provider() message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
 
   build() {
     Column() {
-      Text("Parent").fontSize(30)
+      Text('Parent').fontSize(30)
       ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
         Text(`${item[0]}`).fontSize(30)
         Text(`${item[1]}`).fontSize(30)
         Divider()
       })
       Button('init map').onClick(() => {
-        this.message = new Map([[0, "aa"], [1, "bb"], [3, "cc"]]);
+        this.message = new Map([[0, 'aa'], [1, 'bb'], [3, 'cc']]);
       })
       Button('set new one').onClick(() => {
-        this.message.set(4, "d");
+        this.message.set(4, 'd');
       })
       Button('clear').onClick(() => {
         this.message.clear();
       })
       Button('replace the first one').onClick(() => {
-        this.message.set(0, "a~");
+        this.message.set(0, 'a~');
       })
       Button('delete the first one').onClick(() => {
         this.message.delete(0);
@@ -369,27 +369,27 @@ struct Parent {
 }
 @ComponentV2
 struct Child {
-  @Consumer() message: Map<number, string> = new Map([[0, "d"], [1, "e"], [3, "f"]]);
+  @Consumer() message: Map<number, string> = new Map([[0, 'd'], [1, 'e'], [3, 'f']]);
 
   build() {
     Column() {
-      Text("Child").fontSize(30)
+      Text('Child').fontSize(30)
       ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
         Text(`${item[0]}`).fontSize(30)
         Text(`${item[1]}`).fontSize(30)
         Divider()
       })
       Button('init map').onClick(() => {
-        this.message = new Map([[0, "dd"], [1, "ee"], [3, "ff"]]);
+        this.message = new Map([[0, 'dd'], [1, 'ee'], [3, 'ff']]);
       })
       Button('set new one').onClick(() => {
-        this.message.set(4, "g");
+        this.message.set(4, 'g');
       })
       Button('clear').onClick(() => {
         this.message.clear();
       })
       Button('replace the first one').onClick(() => {
-        this.message.set(0, "a*");
+        this.message.set(0, 'a*');
       })
       Button('delete the first one').onClick(() => {
         this.message.delete(0);
@@ -401,7 +401,7 @@ struct Child {
 
 ### 装饰Set类型变量
 
-当装饰Set类型变量时，可以观察到数据源对Set整体的赋值，以及调用Set的接口 `add`、`clear`、`delete` 带来的变化。
+当装饰Set类型变量时，可以观察到数据源对Set整体的赋值，以及调用Set的接口 `add`, `clear`, `delete`带来的变化。
 
 ```ts
 @Entry
@@ -411,7 +411,7 @@ struct Parent {
 
   build() {
     Column() {
-      Text("Parent").fontSize(30)
+      Text('Parent').fontSize(30)
       ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
         Text(`${item[0]}`).fontSize(30)
         Divider()
@@ -438,7 +438,7 @@ struct Child {
 
   build() {
     Column() {
-      Text("Child").fontSize(30)
+      Text('Child').fontSize(30)
       ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
         Text(`${item[0]}`).fontSize(30)
         Divider()

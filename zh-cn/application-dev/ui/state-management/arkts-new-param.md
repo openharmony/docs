@@ -349,7 +349,7 @@ struct Child {
 
   | 类型  | 可观测变化的API                                              |
   | ----- | ------------------------------------------------------------ |
-  | Array | push、pop、shift、unshift、splice、copyWithin、fill、reverse、sort |
+  | Array | push, pop, shift, unshift, splice, copyWithin, fill, reverse, sort |
   | Date  | setFullYear, setMonth, setDate, setHours, setMinutes, setSeconds, setMilliseconds, setTime, setUTCFullYear, setUTCMonth, setUTCDate, setUTCHours, setUTCMinutes, setUTCSeconds, setUTCMilliseconds |
   | Map   | set, clear, delete                                           |
   | Set   | add, clear, delete                                           |
@@ -572,7 +572,7 @@ struct Index {
 
 ### 装饰Date类型变量
 
-\@Param装饰Date类型变量，可以观察到数据源对Date整体的赋值，以及调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 带来的变化。
+\@Param装饰Date类型变量，可以观察到数据源对Date整体的赋值，以及调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`带来的变化。
 
 ```ts
 @ComponentV2
@@ -625,7 +625,7 @@ struct Index {
 
 ### 装饰Map类型变量
 
-\@Param装饰Map类型变量，可以观察到数据源对Map整体的赋值，以及调用Map的接口 set、clear、delete带来的变化。
+\@Param装饰Map类型变量，可以观察到数据源对Map整体的赋值，以及调用Map的接口`set`, `clear`, `delete`带来的变化。
 
 ```ts
 @ComponentV2
@@ -645,23 +645,23 @@ struct Child {
 @Entry
 @ComponentV2
 struct Index {
-  @Local message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+  @Local message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
 
   build() {
     Row() {
       Column() {
         Child({ value: this.message })
         Button('init map').onClick(() => {
-          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+          this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
         })
         Button('set new one').onClick(() => {
-          this.message.set(4, "d");
+          this.message.set(4, 'd');
         })
         Button('clear').onClick(() => {
           this.message.clear();
         })
         Button('replace the first one').onClick(() => {
-          this.message.set(0, "aa");
+          this.message.set(0, 'aa');
         })
         Button('delete the first one').onClick(() => {
           this.message.delete(0);
@@ -676,7 +676,7 @@ struct Index {
 
 ### 装饰Set类型变量
 
-\@Param装饰Set类型变量，可以观察到数据源对Set整体的赋值，以及调用Set的接口 add、clear、delete带来的变化。
+\@Param装饰Set类型变量，可以观察到数据源对Set整体的赋值，以及调用Set的接口`add`, `clear`, `delete`带来的变化。
 
 ```ts
 @ComponentV2
