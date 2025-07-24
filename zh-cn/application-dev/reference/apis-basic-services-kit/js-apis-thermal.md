@@ -37,6 +37,7 @@ registerThermalLevelCallback(callback: Callback&lt;ThermalLevel&gt;): void
 **示例：**
 
 ```js
+import thermal from '@ohos.thermal'
 try {
     thermal.registerThermalLevelCallback((level: thermal.ThermalLevel) => {
         console.info('thermal level is: ' + level);
@@ -72,6 +73,7 @@ unregisterThermalLevelCallback(callback?: Callback\<void>): void
 **示例：**
 
 ```js
+import thermal from '@ohos.thermal'
 try {
     thermal.unregisterThermalLevelCallback(() => {
         console.info('unsubscribe thermal level success.');
@@ -99,6 +101,8 @@ getLevel(): ThermalLevel
 **示例：**
 
 ```js
+import thermal from '@ohos.thermal'
+
 let level = thermal.getLevel();
 console.info('thermal level is: ' + level);
 ```

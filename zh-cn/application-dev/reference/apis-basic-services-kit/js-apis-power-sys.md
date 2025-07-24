@@ -47,6 +47,7 @@ shutdown(reason: string): void
 **示例：**
 
 ```js
+import power from '@ohos.power'
 try {
     power.shutdown('shutdown_test');
 } catch(err) {
@@ -86,6 +87,7 @@ reboot(reason: string): void
 **示例：**
 
 ```js
+import power from '@ohos.power'
 try {
     power.reboot('reboot_test');
 } catch(err) {
@@ -127,6 +129,7 @@ API version 9-18，使用该接口无需权限；从API version 19开始，需�
 **示例：**
 
 ```js
+import power from '@ohos.power'
 try {
     power.wakeup('wakeup_test');
 } catch(err) {
@@ -169,6 +172,7 @@ API version 9-18，使用该接口无需权限；从API version 19开始，需�
 **示例：**
 
 ```js
+import power from '@ohos.power'
 try {
     power.suspend();
 } catch(err) {
@@ -207,9 +211,22 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
+ArkTS1.1示例：
 ```js
+import power from '@ohos.power'
 power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE, (err: Error) => {
     if (typeof err === 'undefined') {
+        console.info('set power mode to MODE_PERFORMANCE');
+    } else {
+        console.error('set power mode failed, err: ' + err);
+    }
+});
+```
+ArkTS1.2示例：
+```js
+import power from '@ohos.power'
+power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE, (err: Error | null) => {
+    if (!err) {
         console.info('set power mode to MODE_PERFORMANCE');
     } else {
         console.error('set power mode failed, err: ' + err);
@@ -254,6 +271,7 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 **示例：**
 
 ```js
+import power from '@ohos.power'
 power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
 .then(() => {
     console.info('set power mode to MODE_PERFORMANCE');
@@ -265,7 +283,8 @@ power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
 
 ## power.setScreenOffTime<sup>12+</sup>
 
-setScreenOffTime(timeout: number): void
+ArkTS1.1: setScreenOffTime(timeout: number): void  
+ArkTS1.2: setScreenOffTime(timeout: long): void
 
 设置熄屏超时时间。
 
@@ -281,7 +300,7 @@ API version 12-18，使用该接口无需权限；从API version 19开始，需�
 
 | 参数名    | 类型     | 必填   | 说明    |
 | ------ | ------ | ---- | ----- |
-| timeout | number | 是    | 熄屏超时时间，单位是毫秒，大于0代表熄屏超时时间，-1代表恢复默认超时时间，其它是无效值。 |
+| timeout | ArkTS1.1: number<br>ArkTS1.2: long | 是    | 熄屏超时时间，单位是毫秒，大于0代表熄屏超时时间，-1代表恢复默认超时时间，其它是无效值。 |
 
 **错误码：**
 
@@ -297,6 +316,7 @@ API version 12-18，使用该接口无需权限；从API version 19开始，需�
 **示例：**
 
 ```js
+import power from '@ohos.power'
 try {
     power.setScreenOffTime(30000);
 } catch(err) {
@@ -338,6 +358,7 @@ API version 12-18，使用该接口无需权限；从API version 19开始，需�
 **示例：**
 
 ```js
+import power from '@ohos.power'
 try {
     power.hibernate(true);
 } catch(err) {

@@ -16,7 +16,8 @@ import brightness from '@ohos.brightness';
 
 ## brightness.setValue
 
-setValue(value: number): void
+ArkTS1.1: setValue(value: number): void  
+ArkTS1.2: setValue(value: int): void
 
 设置系统的屏幕亮度。
 
@@ -28,7 +29,7 @@ setValue(value: number): void
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| value  | number | 是   | 亮度的值。范围：0~255；该参数必须为数字类型。 |
+| value  | ArkTS1.1: number<br>ArkTS1.2: int | 是   | 亮度的值。范围：0~255；该参数必须为数字类型。 |
 
 **错误码：**
 
@@ -43,6 +44,7 @@ setValue(value: number): void
 **示例：**
 
 ```js
+import brightness from '@ohos.brightness'
 try {
     brightness.setValue(128);
 } catch(err) {
@@ -52,7 +54,8 @@ try {
 
 ## brightness.setValue<sup>11+</sup>
 
-setValue(value: number, continuous: boolean): void
+ArkTS1.1: setValue(value: number, continuous: boolean): void  
+ArkTS1.2: setValue(value: int, continuous: boolean): void
 
 设置系统的屏幕亮度。用于连续调节亮度的场景，在连续调节亮度过程中，设置continuous为true，结束时设置continuous为false，会有更好的性能。
 
@@ -64,7 +67,7 @@ setValue(value: number, continuous: boolean): void
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| value  | number | 是   | 亮度的值。范围：0~255。 |
+| value  | ArkTS1.1: number<br>ArkTS1.2: int | 是   | 亮度的值。范围：0~255；该参数必须为数字类型。 |
 | continuous  | boolean | 是   | 亮度调节是否连续。true表示亮度调节连续，false表示亮度调节不连续，默认为false。 |
 
 **错误码：**
@@ -80,6 +83,7 @@ setValue(value: number, continuous: boolean): void
 **示例：**
 
 ```js
+import brightness from '@ohos.brightness'
 try {
     brightness.setValue(128, true);
 } catch(err) {

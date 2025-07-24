@@ -42,6 +42,8 @@ getBatteryStats(): Promise<Array&lt;BatteryStatsInfo&gt;>
 **示例：**
 
 ```js
+import batteryStats from '@ohos.batteryStatistics'
+
 batteryStats.getBatteryStats()
 .then((data: batteryStats.BatteryStatsInfo[]) => {
     console.info('battery statistics info: ' + data);
@@ -79,9 +81,24 @@ getBatteryStats(callback: AsyncCallback<Array&lt;BatteryStatsInfo&gt;>): void
 
 **示例：**
 
+ArkTS1.1示例：
 ```js
+import batteryStats from '@ohos.batteryStatistics'
+
 batteryStats.getBatteryStats((err: Error, data : batteryStats.BatteryStatsInfo[]) => {
     if (typeof err === 'undefined') {
+        console.info('battery statistics info: ' + data);
+    } else {
+        console.error('get battery statistics failed, err: ' + err);
+    }
+});
+```
+ArkTS1.2示例：
+```js
+import batteryStats from '@ohos.batteryStatistics'
+
+batteryStats.getBatteryStats((err: Error | null, data : batteryStats.BatteryStatsInfo[] | undefined) => {
+    if (!err) {
         console.info('battery statistics info: ' + data);
     } else {
         console.error('get battery statistics failed, err: ' + err);
@@ -91,7 +108,8 @@ batteryStats.getBatteryStats((err: Error, data : batteryStats.BatteryStatsInfo[]
 
 ## batteryStats.getAppPowerValue
 
-getAppPowerValue(uid: number): number
+ArkTS1.1: getAppPowerValue(uid: number): number  
+ArkTS1.2: getAppPowerValue(uid: int): double
 
 获取应用的耗电量。
 
@@ -103,13 +121,13 @@ getAppPowerValue(uid: number): number
 
 | 参数名 | 类型   | 必填 | 说明        |
 | ------ | ------ | ---- | ----------- |
-| uid    | number | 是   | 应用的UID。 |
+| uid    | ArkTS1.1: number<br>ArkTS1.2: int | 是   | 应用的UID。 |
 
 **返回值：**
 
 | 类型   | 说明                              |
 | ------ | --------------------------------- |
-| number | UID对应应用的耗电量，单位毫安时。 |
+| ArkTS1.1: number<br>ArkTS1.2: double | UID对应应用的耗电量，单位毫安时。 |
 
 **错误码：**
 
@@ -124,6 +142,8 @@ getAppPowerValue(uid: number): number
 **示例：**
 
 ```js
+import batteryStats from '@ohos.batteryStatistics'
+
 try {
     let value = batteryStats.getAppPowerValue(10021);
     console.info('battery statistics value of app is: ' + value);
@@ -134,7 +154,8 @@ try {
 
 ## batteryStats.getAppPowerPercent
 
-getAppPowerPercent(uid: number): number
+ArkTS1.1: getAppPowerPercent(uid: number): number  
+ArkTS1.2: getAppPowerPercent(uid: int): double
 
 获取应用的耗电百分比。
 
@@ -146,13 +167,13 @@ getAppPowerPercent(uid: number): number
 
 | 参数名 | 类型   | 必填 | 说明        |
 | ------ | ------ | ---- | ----------- |
-| uid    | number | 是   | 应用的UID。 |
+| uid    | ArkTS1.1: number<br>ArkTS1.2: int | 是   | 应用的UID。 |
 
 **返回值：**
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| number | UID对应应用的耗电百分比。 |
+| ArkTS1.1: number<br>ArkTS1.2: double | UID对应应用的耗电百分比。 |
 
 **错误码：**
 
@@ -167,6 +188,8 @@ getAppPowerPercent(uid: number): number
 **示例：**
 
 ```js
+import batteryStats from '@ohos.batteryStatistics'
+
 try {
     let percent = batteryStats.getAppPowerPercent(10021);
     console.info('battery statistics percent of app is: ' + percent);
@@ -177,7 +200,8 @@ try {
 
 ## batteryStats.getHardwareUnitPowerValue
 
-getHardwareUnitPowerValue(type: ConsumptionType): number
+ArkTS1.1: getHardwareUnitPowerValue(type: ConsumptionType): number  
+ArkTS1.2: getHardwareUnitPowerValue(type: ConsumptionType): double
 
 根据耗电类型获取硬件单元的耗电量。
 
@@ -195,7 +219,7 @@ getHardwareUnitPowerValue(type: ConsumptionType): number
 
 | 类型   | 说明                                       |
 | ------ | ------------------------------------------ |
-| number | 电量消耗类型对应硬件的耗电量，单位毫安时。 |
+| ArkTS1.1: number<br>ArkTS1.2: double | 电量消耗类型对应硬件的耗电量，单位毫安时。 |
 
 **错误码：**
 
@@ -210,6 +234,8 @@ getHardwareUnitPowerValue(type: ConsumptionType): number
 **示例：**
 
 ```js
+import batteryStats from '@ohos.batteryStatistics'
+
 try {
     let value = batteryStats.getHardwareUnitPowerValue(batteryStats.ConsumptionType.CONSUMPTION_TYPE_SCREEN);
     console.info('battery statistics value of hardware is: ' + value);
@@ -220,7 +246,8 @@ try {
 
 ## batteryStats.getHardwareUnitPowerPercent
 
-getHardwareUnitPowerPercent(type: ConsumptionType): number
+ArkTS1.1: getHardwareUnitPowerPercent(type: ConsumptionType): number  
+ArkTS1.2: getHardwareUnitPowerPercent(type: ConsumptionType): double
 
 根据耗电类型获取硬件单元的耗电百分比。
 
@@ -238,7 +265,7 @@ getHardwareUnitPowerPercent(type: ConsumptionType): number
 
 | 类型   | 说明                               |
 | ------ | ---------------------------------- |
-| number | 电量消耗类型对应硬件的耗电百分比。 |
+| ArkTS1.1: number<br>ArkTS1.2: double | 电量消耗类型对应硬件的耗电百分比。 |
 
 **错误码：**
 
@@ -253,6 +280,8 @@ getHardwareUnitPowerPercent(type: ConsumptionType): number
 **示例：**
 
 ```js
+import batteryStats from '@ohos.batteryStatistics'
+
 try {
     let percent = batteryStats.getHardwareUnitPowerPercent(batteryStats.ConsumptionType.CONSUMPTION_TYPE_SCREEN);
     console.info('battery statistics percent of hardware is: ' + percent);
@@ -273,9 +302,9 @@ try {
 
 | 名称  | 类型                                | 只读 | 可选 | 说明                   |
 | ----- | ----------------------------------- | ---- | ---- | ---------------------- |
-| uid   | number                              | 是   | 否   | 耗电信息相关的UID。    |
-| type  | [ConsumptionType](#consumptiontype) | 是   | 否   | 耗电信息相关的类型。   |
-| power | number                              | 是   | 否   | 耗电的值，单位毫安时。 |
+| uid   | ArkTS1.1: number<br>ArkTS1.2: int   | 否   | 否   | 耗电信息相关的UID。    |
+| type  | [ConsumptionType](#consumptiontype) | 否   | 否   | 耗电信息相关的类型。   |
+| power | ArkTS1.1: number<br>ArkTS1.2: double| 否   | 否   | 耗电的值，单位毫安时。 |
 
 ## ConsumptionType
 

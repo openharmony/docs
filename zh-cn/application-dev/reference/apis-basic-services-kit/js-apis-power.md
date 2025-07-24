@@ -1,6 +1,7 @@
 # @ohos.power (系统电源管理)
 
 该模块主要提供重启、关机、查询屏幕状态等接口。开发者可以使用该模块的接口获取设备的活动状态、电源模式、亮灭屏状态等。
+
 > **说明：**
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -30,6 +31,8 @@ isActive(): boolean
 **示例：**
 
 ```js
+import power from '@ohos.power'
+
 let isActive = power.isActive();
 console.info('power is active: ' + isActive);
 ```
@@ -76,6 +79,8 @@ getPowerMode(): DevicePowerMode
 **示例：**
 
 ```js
+import power from '@ohos.power'
+
 let mode = power.getPowerMode();
 console.info('power mode: ' + mode);
 ```
@@ -105,6 +110,7 @@ isStandby(): boolean
 **示例：**
 
 ```js
+import power from '@ohos.power'
 try {
     let isStandby = power.isStandby();
     console.info('device is in standby: ' + isStandby);
