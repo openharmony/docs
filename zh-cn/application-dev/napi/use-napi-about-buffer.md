@@ -247,7 +247,8 @@ static napi_value IsBuffer(napi_env env, napi_callback_info info)
     // 创建一个Buffer对象
     std::string str = "buffer";
     napi_value buffer = nullptr;
-    napi_create_buffer(env, strlen(str.data()), (void **)(str.data()), &buffer);
+    void *bufferPtr = nullptr;
+    napi_create_buffer(env, str.size(), &bufferPtr, &buffer);
 
     // 调用napi_is_buffer接口判断创建的对象是否为buffer
     bool result = false;

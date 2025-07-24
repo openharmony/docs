@@ -69,3 +69,13 @@
 | 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |
 | num | number | thread总数量。 |
+
+## 资源泄漏事件自定义参数设置
+
+当前资源泄漏事件上报**js泄漏**事件信息，可能无法满足开发者的个性化需求，因此提供事件setEventParam方法，自定义事件上报信息。
+
+### 自定义参数设置接口
+
+| 接口名 | 描述 |
+| -------- | -------- |
+| setEventParam(params: Record&lt;string, ParamType>, domain: string, name?: string): Promise&lt;void> | 事件自定义参数设置方法。<br />**说明**：从API version 20开始，支持该接口。 |

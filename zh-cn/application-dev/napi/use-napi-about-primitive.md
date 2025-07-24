@@ -64,7 +64,7 @@ export const coerceToBool: <T>(data: T) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let value = testNapi.coerceToBool<number>(0);
@@ -117,7 +117,7 @@ export const coerceToNumber: <T>(data: T) => number;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let value = testNapi.coerceToNumber<string>('2556');
@@ -165,7 +165,7 @@ export const coerceToObject: <T>(data: T) => Object;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let value = testNapi.coerceToObject<string>('222222');
@@ -213,7 +213,7 @@ export const coerceToString: <T>(data: T) => string;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let value = testNapi.coerceToString<number>(212);
@@ -266,7 +266,7 @@ export const getBoolean: <T>(data: T, value: String) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let value = testNapi.getBoolean<number>(1, '1');
@@ -308,14 +308,14 @@ static napi_value GetValueBool(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getValueBool: (value: boolean | string) => boolean | void;
+export const getValueBool: (value: boolean | string) => boolean | undefined;
 ```
 <!-- @[napi_get_value_bool_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIPrimitive/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 // 分别传入布尔值和非布尔值检测接口,传入布尔值将返回原布尔值,传入其他类型返回undefined
@@ -355,7 +355,7 @@ export const getGlobal: () => Object;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let globalObj = testNapi.getGlobal();
@@ -393,7 +393,7 @@ export const getNull: () => null;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let value = testNapi.getNull();
@@ -442,7 +442,7 @@ export const getUndefined: (value: undefined) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let data: undefined = undefined;

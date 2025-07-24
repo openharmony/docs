@@ -1274,7 +1274,7 @@
             - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)
             - [VPN管理（仅对系统应用开放）](network/net-vpn.md)
             <!--DelEnd-->
-        - [Network Kit术语](network/terminology.md)
+        - [Network Kit术语](network/network-terminology.md)
       - Telephony Kit（蜂窝通信服务）<!--telephony-kit-->
         - [Telephony Kit简介](telephony/telephony-overview.md)
         - [拨打电话](telephony/telephony-call.md)
@@ -2632,7 +2632,7 @@
           - [@ohos.arkui.prefetcher (Prefetching)](reference/apis-arkui/js-apis-arkui-Prefetcher.md)
           - [@ohos.arkui.shape(形状)](reference/apis-arkui/js-apis-arkui-shape.md)
           - [@ohos.arkui.theme(主题换肤)](reference/apis-arkui/js-apis-arkui-theme.md)
-          - @ohos.arkui.UIContext (UIContext)<!--js-apis-arkui-UIContext-->
+          - @ohos.arkui.UIContext (UIContext)<!--js-apis-arkui-uicontext-->
             - [模块描述](reference/apis-arkui/arkts-apis-uicontext.md)
             - [Class (ComponentSnapshot)](reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md)
             - [Class (ComponentUtils)](reference/apis-arkui/arkts-apis-uicontext-componentutils.md)
@@ -3659,19 +3659,19 @@
           - [@system.file (文件存储)](reference/apis-core-file-kit/js-apis-system-file.md)
       - C API<!--core-file-c-->
         - 模块<!--core-file-module-->
-          - [Environment](reference/apis-core-file-kit/_environment.md)
-          - [FileIO](reference/apis-core-file-kit/_file_i_o.md)
-          - [FileShare](reference/apis-core-file-kit/file_share.md)
-          - [Fileuri](reference/apis-core-file-kit/fileuri.md)
+          - [Environment](reference/apis-core-file-kit/capi-environment.md)
+          - [FileIO](reference/apis-core-file-kit/capi-fileio.md)
+          - [fileShare](reference/apis-core-file-kit/capi-fileshare.md)
+          - [fileUri](reference/apis-core-file-kit/capi-fileuri.md)
         - 头文件<!--core-file-headerfile-->
-          - [error_code.h](reference/apis-core-file-kit/error__code_8h.md)
-          - [oh_environment.h](reference/apis-core-file-kit/oh__environment_8h.md)
-          - [oh_file_share.h](reference/apis-core-file-kit/oh__file__share_8h.md)
-          - [oh_file_uri.h](reference/apis-core-file-kit/oh__file__uri_8h.md)
-          - [oh_fileio.h](reference/apis-core-file-kit/oh__fileio_8h.md)
+          - [oh_environment.h](reference/apis-core-file-kit/capi-oh-environment-h.md)
+          - [error_code.h](reference/apis-core-file-kit/capi-error-code-h.md)
+          - [oh_fileio.h](reference/apis-core-file-kit/capi-oh-fileio-h.md)
+          - [oh_file_share.h](reference/apis-core-file-kit/capi-oh-file-share-h.md)
+          - [oh_file_uri.h](reference/apis-core-file-kit/capi-oh-file-uri-h.md)
         - 结构体<!--core-file-struct-->
-          - [FileShare_PolicyErrorResult](reference/apis-core-file-kit/_file_share___policy_error_result.md)
-          - [FileShare_PolicyInfo](reference/apis-core-file-kit/_file_share___policy_info.md)
+          - [FileShare_PolicyErrorResult](reference/apis-core-file-kit/capi-fileshare-fileshare-policyerrorresult.md)
+          - [FileShare_PolicyInfo](reference/apis-core-file-kit/capi-fileshare-fileshare-policyinfo.md)
       - 错误码<!--core-file-arkts-errcode-->
         - [文件管理错误码](reference/apis-core-file-kit/errorcode-filemanagement.md)
     - Form Kit（卡片开发服务）<!--form-api-->
@@ -4092,6 +4092,9 @@
             - [NetConn_NetHandleList](reference/apis-network-kit/capi-netconnection-netconn-nethandlelist.md)
             - [NetConn_NetSpecifier](reference/apis-network-kit/capi-netconnection-netconn-netspecifier.md)
             - [NetConn_NetConnCallback](reference/apis-network-kit/capi-netconnection-netconn-netconncallback.md)
+            - [NetConn_ProbeResultInfo](reference/apis-network-kit/capi-netconnection-netconn-proberesultinfo.md)
+            - [NetConn_TraceRouteInfo](reference/apis-network-kit/capi-netconnection-netconn-tracerouteinfo.md)
+            - [NetConn_TraceRouteOption](reference/apis-network-kit/capi-netconnection-netconn-tracerouteoption.md)
             - [NetStack_CertBlob](reference/apis-network-kit/capi-netstack-netstack-certblob.md)
             - [NetStack_CertificatePinning](reference/apis-network-kit/capi-netstack-netstack-certificatepinning.md)
             - [NetStack_Certificates](reference/apis-network-kit/capi-netstack-netstack-certificates.md)
