@@ -281,7 +281,7 @@ static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
        if (index < 0 || index >= MAX_FRAME_SIZE) {
            return;
        }
-       OH_HiDebug_SymbolicAddress(backtraceObject_, pcs_[index], this, [] (void* pc, void* arg, const HiDebug_StackFrame* frame) {
+       OH_HiDebug_SymbolicAddress(backtraceObject_, pcs_[index], this, [](void* pc, void* arg, const HiDebug_StackFrame* frame) {
            reinterpret_cast<BackTraceObject*>(arg)->PrintStackFrame(pc, *frame);
        }); // 调用OH_HiDebug_SymbolicAddress接口解析栈。
    }
