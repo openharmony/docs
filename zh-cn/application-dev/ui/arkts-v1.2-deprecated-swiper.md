@@ -13,14 +13,12 @@ ArkTS1.1接口声明：[indicatorStyle(value?: IndicatorStyle): SwiperAttribute]
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 Swiper().indicatorStyle()
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
  Swiper().indicator(true)
 ```
@@ -36,14 +34,12 @@ ArkTS1.1接口声明：[declare interface IndicatorStyle](../reference/apis-arku
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 let a: IndicatorStyle = {color: "#FFFF00FF"}
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 let a: DotIndicator = new DotIndicator().color("#FFFF00FF")
 ```
@@ -58,14 +54,12 @@ ArkTS1.1接口声明：[IndicatorStyle.color?: ResourceColor](../reference/apis-
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 Swiper().indicatorStyle({color: "#FFFF00FF"})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 Swiper().indicator(new DotIndicator().color("#FFFF00FF"))
 ```
@@ -80,14 +74,12 @@ ArkTS1.1接口声明：[IndicatorStyle.right?: Length](../reference/apis-arkui/a
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 Swiper().indicatorStyle({right: 0})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 Swiper().indicator(new DotIndicator().right(0))
 ```
@@ -102,14 +94,12 @@ ArkTS1.1接口声明：[IndicatorStyle.left?: Length](../reference/apis-arkui/ar
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 Swiper().indicatorStyle({left: 0})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 Swiper().indicator(new DotIndicator().left(0))
 ```
@@ -124,14 +114,12 @@ ArkTS1.1接口声明：[IndicatorStyle.top?: Length](../reference/apis-arkui/ark
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 Swiper().indicatorStyle({top: 0})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 Swiper().indicator(new DotIndicator().top(0))
 ```
@@ -146,14 +134,12 @@ ArkTS1.1接口声明：[IndicatorStyle.bottom?: Length](../reference/apis-arkui/
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 Swiper().indicatorStyle({bottom: 0})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 Swiper().indicator(new DotIndicator().bottom(0))
 ```
@@ -168,14 +154,12 @@ ArkTS1.1接口声明：[IndicatorStyle.selectedColor?: ResourceColor](../referen
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 Swiper().indicatorStyle({selectedColor: "#FFFF00FF"})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 Swiper().indicator(new DotIndicator().selectedColor("#FFFF00FF"))
 ```
@@ -190,14 +174,12 @@ ArkTS1.1接口声明：[IndicatorStyle.mask?: boolean](../reference/apis-arkui/a
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 Swiper().indicatorStyle({mask: true})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 Swiper().indicator(new DotIndicator().mask(true))
 ```
@@ -212,14 +194,12 @@ ArkTS1.1接口声明：[IndicatorStyle.size?: Length](../reference/apis-arkui/ar
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 Swiper().indicatorStyle({size: 100})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 Swiper().indicator(new DotIndicator().itemWidth(100).itemHeight(100).selectedItemWidth(100).selectedItemHeight(100))
 ```
@@ -236,14 +216,12 @@ ArkTS1.1接口声明：[SwiperDisplayMode.Stretch](../reference/apis-arkui/arkui
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 Swiper().displayMode(SwiperDisplayMode.Stretch)
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 Swiper().displayMode(SwiperDisplayMode.STRETCH)
 ```
@@ -255,7 +233,7 @@ ArkTS1.1接口声明：[SwiperDisplayMode.AutoLinear](../reference/apis-arkui/ar
 替代的ArkTS1.2接口声明：[scrollTo(options: ScrollOptions)](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrollto)
 
 
-适配方案详见[示例1](###示例1)。
+适配方案详见[示例](##示例)。
 
 
 ### AUTO_LINEAR
@@ -263,16 +241,13 @@ ArkTS1.1接口声明：[SwiperDisplayMode.AUTO_LINEAR](../reference/apis-arkui/a
 
 替代的ArkTS1.2接口声明：[scrollTo(options: ScrollOptions)](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrollto)
 
-适配方案详见[示例1](###示例1)。
+适配方案详见[示例](##示例)。
 
 
 ## 示例
 
-### 示例1
-
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 @Entry
 @Component
@@ -322,7 +297,6 @@ struct SwiperExample {
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 @Entry
 @Component

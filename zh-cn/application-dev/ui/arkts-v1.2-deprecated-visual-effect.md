@@ -13,14 +13,12 @@ ArkTS1.1接口声明：[clip(value: boolean | CircleAttribute | EllipseAttribute
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 Text().clip(new Rect({width: 100, height: 100}))
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 Text().clipShape(new Rect({width: 100, height: 100}))
 ```
@@ -35,14 +33,12 @@ ArkTS1.1接口声明：[mask(value: CircleAttribute | EllipseAttribute | PathAtt
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 Text().mask(new Rect({width: 100, height: 100}))
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 Text().maskShape(new Rect({width: 100, height: 100}))
 ```
@@ -52,7 +48,7 @@ Text().maskShape(new Rect({width: 100, height: 100}))
 
 ### invert
 
-ArkTS1.1接口声明：[function invert(): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#matrix4invertdeprecated)
+ArkTS1.1接口声明：[invert(): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#matrix4invertdeprecated)
 
 替代的ArkTS1.2接口声明：[invert(): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#invert)
 
@@ -60,14 +56,12 @@ ArkTS1.1接口声明：[function invert(): Matrix4Transit](../reference/apis-ark
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 let m = matrix4.invert()
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 let m = matrix4.identity().invert()
 ```
@@ -75,7 +69,7 @@ let m = matrix4.identity().invert()
 
 ### scale
 
-ArkTS1.1接口声明：[function scale(options: ScaleOption): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#matrix4scaledeprecated)
+ArkTS1.1接口声明：[scale(options: ScaleOption): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#matrix4scaledeprecated)
 
 替代的ArkTS1.2接口声明：[scale(options: ScaleOption): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#scale)
 
@@ -83,14 +77,12 @@ ArkTS1.1接口声明：[function scale(options: ScaleOption): Matrix4Transit](..
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 let m = matrix4.scale({x: 1, y: 1})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 let m = matrix4.identity().scale({x: 1, y: 1})
 ```
@@ -98,18 +90,20 @@ let m = matrix4.identity().scale({x: 1, y: 1})
 
 ### rotate
 
-ArkTS1.1接口声明：[function rotate(options: RotateOption): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#matrix4rotatedeprecated)
+ArkTS1.1接口声明：[rotate(options: RotateOption): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#matrix4rotatedeprecated)
 
 替代的ArkTS1.2接口声明：[rotate(options: RotateOption): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#scale)
 
 适配方法如下：
 
-<!--code_no_check-->
+ArkTS1.1
+
 ```ts
 let m = matrix4.rotate({x: 1, y: 1})
 ```
 
-<!--code_no_check-->
+ArkTS1.2
+
 ```ts
 let m = matrix4.identity().rotate({x: 1, y: 1})
 ```
@@ -117,18 +111,20 @@ let m = matrix4.identity().rotate({x: 1, y: 1})
 
 ### translate
 
-ArkTS1.1接口声明：[function translate(options: TranslateOption): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#matrix4translatedeprecated)
+ArkTS1.1接口声明：[translate(options: TranslateOption): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#matrix4translatedeprecated)
 
 替代的ArkTS1.2接口声明：[translate(options: TranslateOption): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#translate)
 
 适配方法如下：
 
-<!--code_no_check-->
+ArkTS1.1
+
 ```ts
 let m = matrix4.translate({x: 1, y: 1})
 ```
 
-<!--code_no_check-->
+ArkTS1.2
+
 ```ts
 let m = matrix4.identity().translate({x: 1, y: 1})
 ```
@@ -136,7 +132,7 @@ let m = matrix4.identity().translate({x: 1, y: 1})
 
 ### transformPoint
 
-ArkTS1.1接口声明：[function transformPoint(options: [number, number]): [number, number]](../reference/apis-arkui/js-apis-matrix4.md#matrix4transformpointdeprecated)
+ArkTS1.1接口声明：[transformPoint(options: [number, number]): [number, number]](../reference/apis-arkui/js-apis-matrix4.md#matrix4transformpointdeprecated)
 
 替代的ArkTS1.2接口声明：[transformPoint(options: [number, number]): [number, number]](../reference/apis-arkui/js-apis-matrix4.md#transformpoint)
 
@@ -144,14 +140,12 @@ ArkTS1.1接口声明：[function transformPoint(options: [number, number]): [num
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 let m = matrix4.transformPoint([1, 1])
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 let m = matrix4.identity().transformPoint([1, 1])
 ```
@@ -159,7 +153,7 @@ let m = matrix4.identity().transformPoint([1, 1])
 
 ### combine
 
-ArkTS1.1接口声明：[function combine(options: Matrix4Transit): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#matrix4combinedeprecated)
+ArkTS1.1接口声明：[combine(options: Matrix4Transit): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#matrix4combinedeprecated)
 
 替代的ArkTS1.2接口声明：[combine(options: Matrix4Transit): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#combine)
 
@@ -167,34 +161,32 @@ ArkTS1.1接口声明：[function combine(options: Matrix4Transit): Matrix4Transi
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 let m = matrix4.combine(matrix4.scale({x: 1, y: 1}))
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 let m = matrix4.identity().combine(matrix4.identity().scale({x: 1, y: 1}))
 ```
 
 
 ### copy
-ArkTS1.1接口声明：[function copy(): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#matrix4copydeprecated)
+ArkTS1.1接口声明：[copy(): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#matrix4copydeprecated)
 
 替代的ArkTS1.2接口声明：[copy(): Matrix4Transit](../reference/apis-arkui/js-apis-matrix4.md#copy)
 
 适配方法如下：
 
-<!--code_no_check-->
+ArkTS1.1
+
 ```ts
 let m = matrix4.copy()
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 let m = matrix4.identity().copy()
 ```

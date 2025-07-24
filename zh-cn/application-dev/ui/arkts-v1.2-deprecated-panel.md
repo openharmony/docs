@@ -10,7 +10,6 @@ ArkTS1.1组件声明：[Panel](../reference/apis-arkui/arkui-ts/ts-container-pan
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 @Entry
 @Component
@@ -45,7 +44,6 @@ struct Index {
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 @Entry
 @Component

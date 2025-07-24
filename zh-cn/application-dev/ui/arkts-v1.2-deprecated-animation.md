@@ -13,14 +13,12 @@ ArkTS1.1接口声明：[static create(options: AnimatorOptions): AnimatorResult]
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 Animator.create({duration: 1500, easing: "friction", delay: 0, fill: "forwards", direction: "normal", iterations: 3, begin: 200.0, end: 400.0})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 this.getUIContext().createAnimator({duration: 1500, easing: "friction", delay: 0, fill: "forwards", direction: "normal", iterations: 3, begin: 200.0, end: 400.0})
 ```
@@ -35,21 +33,19 @@ ArkTS1.1接口声明：[static createAnimator(options: AnimatorOptions): Animato
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 Animator.createAnimator({duration: 1500, easing: "friction", delay: 0, fill: "forwards", direction: "normal", iterations: 3, begin: 200.0, end: 400.0})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 this.getUIContext().createAnimator({duration: 1500, easing: "friction", delay: 0, fill: "forwards", direction: "normal", iterations: 3, begin: 200.0, end: 400.0})
 ```
 
 
 ### animateTo
-ArkTS1.1接口声明：[declare function animateTo(value: AnimateParam, event: () => void): void](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md#animatetodeprecated)
+ArkTS1.1接口声明：[animateTo(value: AnimateParam, event: () => void): void](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md#animatetodeprecated)
 
 替代的ArkTS1.2接口声明：[animateTo(value: AnimateParam, event: () => void): void](../reference/apis-arkui/js-apis-arkui-UIContext.md#animateto)
 
@@ -57,14 +53,12 @@ ArkTS1.1接口声明：[declare function animateTo(value: AnimateParam, event: (
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 animateTo({ duration: 0 }, ()=>{})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 this.getUIContext().animateTo({ duration: 0 }, ()=>{})
 ```
@@ -81,7 +75,6 @@ ArkTS1.1接口声明：[update(options: AnimatorOptions): void](../reference/api
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 let animatorResult: AnimatorResult = Animator.createAnimator({duration: 1500, easing: "friction", delay: 0, fill: "forwards", direction: "normal", iterations: 3, begin: 200.0, end: 400.0})
 animatorResult.update({duration: 500, easing: "friction", delay: 1, fill: "forwards", direction: "normal", iterations: 3, begin: 200.0, end: 400.0})
@@ -89,7 +82,6 @@ animatorResult.update({duration: 500, easing: "friction", delay: 1, fill: "forwa
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 let animatorResult: AnimatorResult = this.getUIContext().createAnimator({duration: 1500, easing: "friction", delay: 0, fill: "forwards", direction: "normal", iterations: 3, begin: 200.0, end: 400.0})
 animatorResult.reset({duration: 500, easing: "friction", delay: 1, fill: "forwards", direction: "normal", iterations: 3, begin: 200.0, end: 400.0})
@@ -105,7 +97,6 @@ ArkTS1.1接口声明：[onrepeat: () => void](../reference/apis-arkui/js-apis-an
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 let animatorResult: AnimatorResult = Animator.createAnimator({duration: 1500, easing: "friction", delay: 0, fill: "forwards", direction: "normal", iterations: 3, begin: 200.0, end: 400.0})
 animatorResult.onrepeat = ()=>{
@@ -115,7 +106,6 @@ animatorResult.onrepeat = ()=>{
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 let animatorResult: AnimatorResult = this.getUIContext().createAnimator({duration: 1500, easing: "friction", delay: 0, fill: "forwards", direction: "normal", iterations: 3, begin: 200.0, end: 400.0})
 animatorResult.onRepeat = ()=>{
@@ -133,7 +123,6 @@ ArkTS1.1接口声明：[oncancel: () => void](../reference/apis-arkui/js-apis-an
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 let animatorResult: AnimatorResult = Animator.createAnimator({duration: 1500, easing: "friction", delay: 0, fill: "forwards", direction: "normal", iterations: 3, begin: 200.0, end: 400.0})
 animatorResult.oncancel = ()=>{
@@ -143,7 +132,6 @@ animatorResult.oncancel = ()=>{
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 let animatorResult: AnimatorResult = this.getUIContext().createAnimator({duration: 1500, easing: "friction", delay: 0, fill: "forwards", direction: "normal", iterations: 3, begin: 200.0, end: 400.0})
 animatorResult.onCancel = ()=>{
@@ -161,7 +149,6 @@ ArkTS1.1接口声明：[onfinish: () => void](../reference/apis-arkui/js-apis-an
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 let animatorResult: AnimatorResult = Animator.createAnimator({duration: 1500, easing: "friction", delay: 0, fill: "forwards", direction: "normal", iterations: 3, begin: 200.0, end: 400.0})
 animatorResult.onfinish = ()=>{
@@ -171,7 +158,6 @@ animatorResult.onfinish = ()=>{
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 let animatorResult: AnimatorResult = this.getUIContext().createAnimator({duration: 1500, easing: "friction", delay: 0, fill: "forwards", direction: "normal", iterations: 3, begin: 200.0, end: 400.0})
 animatorResult.onFinish = ()=>{
@@ -189,7 +175,6 @@ ArkTS1.1接口声明：[onframe: (progress: number) => void](../reference/apis-a
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 let animatorResult: AnimatorResult = Animator.createAnimator({duration: 1500, easing: "friction", delay: 0, fill: "forwards", direction: "normal", iterations: 3, begin: 200.0, end: 400.0})
 animatorResult.onframe = (progress: number)=>{
@@ -199,7 +184,6 @@ animatorResult.onframe = (progress: number)=>{
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 let animatorResult: AnimatorResult = this.getUIContext().createAnimator({duration: 1500, easing: "friction", delay: 0, fill: "forwards", direction: "normal", iterations: 3, begin: 200.0, end: 400.0})
 animatorResult.onFrame = (progress: number)=>{
@@ -211,88 +195,80 @@ animatorResult.onFrame = (progress: number)=>{
 ## curves
 
 ### cubicBezier
-ArkTS1.1接口声明：[function cubicBezier(x1: number, y1: number, x2: number, y2: number): string](../reference/apis-arkui/js-apis-curve.md#curvescubicbezierdeprecated)
+ArkTS1.1接口声明：[cubicBezier(x1: number, y1: number, x2: number, y2: number): string](../reference/apis-arkui/js-apis-curve.md#curvescubicbezierdeprecated)
 
-替代的ArkTS1.2接口声明：[function cubicBezierCurve(x1: number, y1: number, x2: number, y2: number): ICurve](../reference/apis-arkui/js-apis-curve.md#curvescubicbeziercurve9)
+替代的ArkTS1.2接口声明：[cubicBezierCurve(x1: number, y1: number, x2: number, y2: number): ICurve](../reference/apis-arkui/js-apis-curve.md#curvescubicbeziercurve9)
 
 适配方法如下：
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 let a: string = curves.cubicBezier(0.42, 0.0, 0.58, 1.0)
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 let a: ICurve = curves.cubicBezierCurve(0.42, 0.0, 0.58, 1.0)
 ```
 
 
 ### steps
-ArkTS1.1接口声明：[function steps(count: number, end: boolean): string](../reference/apis-arkui/js-apis-curve.md#curvesstepsdeprecated)
+ArkTS1.1接口声明：[steps(count: number, end: boolean): string](../reference/apis-arkui/js-apis-curve.md#curvesstepsdeprecated)
 
-替代的ArkTS1.2接口声明：[function stepsCurve(count: number, end: boolean): ICurve](../reference/apis-arkui/js-apis-curve.md#curvesstepscurve9)
+替代的ArkTS1.2接口声明：[stepsCurve(count: number, end: boolean): ICurve](../reference/apis-arkui/js-apis-curve.md#curvesstepscurve9)
 
 适配方法如下：
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 let a: string = curves.steps(1, false)
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 let a: ICurve = curves.stepsCurve(1, false)
 ```
 
 
 ### spring
-ArkTS1.1接口声明：[function spring(velocity: number, mass: number, stiffness: number, damping: number): string](../reference/apis-arkui/js-apis-curve.md#curvesspringdeprecated)
+ArkTS1.1接口声明：[spring(velocity: number, mass: number, stiffness: number, damping: number): string](../reference/apis-arkui/js-apis-curve.md#curvesspringdeprecated)
 
-替代的ArkTS1.2接口声明：[function springCurve(velocity: number, mass: number, stiffness: number, damping: number): ICurve](../reference/apis-arkui/js-apis-curve.md#curvesspringcurve9)
+替代的ArkTS1.2接口声明：[springCurve(velocity: number, mass: number, stiffness: number, damping: number): ICurve](../reference/apis-arkui/js-apis-curve.md#curvesspringcurve9)
 
 适配方法如下：
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 let a: string = curves.spring(1, 1, 1, 1)
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 let a: ICurve = curves.springCurve(1, 1, 1, 1)
 ```
 
 
 ### init
-ArkTS1.1接口声明：[function init(curve?: Curve): string](../reference/apis-arkui/js-apis-curve.md#curvesinitdeprecated)
+ArkTS1.1接口声明：[init(curve?: Curve): string](../reference/apis-arkui/js-apis-curve.md#curvesinitdeprecated)
 
-替代的ArkTS1.2接口声明： [function initCurve(curve?: Curve): ICurve](../reference/apis-arkui/js-apis-curve.md#curvesinitcurve9)
+替代的ArkTS1.2接口声明： [initCurve(curve?: Curve): ICurve](../reference/apis-arkui/js-apis-curve.md#curvesinitcurve9)
 
 适配方法如下：
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 let a: string = curves.init(Curve.EaseIn)
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 let a: ICurve = curves.initCurve(Curve.EaseIn)
 ```
@@ -301,22 +277,20 @@ let a: ICurve = curves.initCurve(Curve.EaseIn)
 ## TransitionOptions
 
 ### TransitionOptions
-ArkTS1.1接口声明：[declare interface TransitionOptions](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitionoptionsdeprecated)
+ArkTS1.1接口声明：[interface TransitionOptions](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitionoptionsdeprecated)
 
-替代的ArkTS1.2接口声明：[declare class TransitionEffect<Type extends keyof TransitionEffects = keyof TransitionEffects, Effect extends TransitionEffects[Type] = TransitionEffects[Type]>](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitioneffect10对象说明)
+替代的ArkTS1.2接口声明：[class TransitionEffect<Type extends keyof TransitionEffects = keyof TransitionEffects, Effect extends TransitionEffects[Type] = TransitionEffects[Type]>](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitioneffect10对象说明)
 
 适配方法如下：
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 transition({opacity: 0})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 transition(TransitionEffect.opacity(0))
 ```
@@ -331,14 +305,12 @@ ArkTS1.1接口声明：[opacity?: number](../reference/apis-arkui/arkui-ts/ts-tr
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 transition({opacity: 0})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 transition(TransitionEffect.opacity(0))
 ```
@@ -353,14 +325,12 @@ ArkTS1.1接口声明：[rotate?: RotateOptions](../reference/apis-arkui/arkui-ts
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 transition({rotate: {x: 1, y: 1} as RotateOptions})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 transition(TransitionEffect.rotate({x: 1, y: 1} as RotateOptions))
 ```
@@ -375,14 +345,12 @@ ArkTS1.1接口声明：[scale?: ScaleOptions](../reference/apis-arkui/arkui-ts/t
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 transition({scale: {x: 1, y: 1} as ScaleOptions})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 transition(TransitionEffect.scale({x: 1, y: 1} as ScaleOptions))
 ```
@@ -397,14 +365,12 @@ ArkTS1.1接口声明：[translate?: TranslateOptions](../reference/apis-arkui/ar
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 transition({translate: {x: 1, y: 1} as TranslateOptions})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 transition(TransitionEffect.translate({x: 1, y: 1} as TranslateOptions))
 ```
@@ -419,14 +385,12 @@ ArkTS1.1接口声明：[type?: TransitionType](../reference/apis-arkui/arkui-ts/
 
 ArkTS1.1
 
-<!--code_no_check-->
 ```ts
 transition({type: TransitionType.Insert, opacity: 0})
 ```
 
 ArkTS1.2
 
-<!--code_no_check-->
 ```ts
 transition(TransitionEffect.asymmetric(TransitionEffect.opacity(0), TransitionEffect.IDENTITY))
 ```
