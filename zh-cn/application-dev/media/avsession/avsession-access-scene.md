@@ -35,6 +35,10 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
 
 使用代码示例：
 
+> **说明：**
+>
+> 以下示例代码仅展示创建AVSession对象的接口调用，应用在真正使用时，需要确保AVSession对象实例在应用后台播放业务活动期间一直存在，避免被系统回收、释放，导致后台发声时被系统管控。
+
 ```ts
 import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
