@@ -148,7 +148,7 @@ class User {
     // 正确用法，给a注册监听函数onChange1，没有设置options默认为异步监听回调
     UIUtils.addMonitor(this, 'age', this.onChange1);
     // 错误用法，不能改变this.onChange1的监听回调的方式
-    // 打印错误日志提示： FIX THIS APPLICATION ERROR:  addMonitor failed, current function onChange1 has already register as async, cannot change to sync anymore
+    // 打印错误日志提示： FIX THIS APPLICATION ERROR: addMonitor failed, current function onChange1 has already register as async, cannot change to sync anymore
     UIUtils.addMonitor(this, 'age', this.onChange1, { isSynchronous: true });
   }
 }
@@ -242,7 +242,7 @@ struct Page {
 ```
 
 ## 限制条件
-- addMonitor/clearMonitor仅支持对\@ComponentV2和\@ObservedV2装饰（至少有一个\@Trace装饰的变量）的实例添加/取消回调，否则会有运行时报错，错误码为130000。
+- addMonitor/clearMonitor仅支持对\@ComponentV2和\@ObservedV2装饰（至少有一个\@Trace、\@Monitor或[\@Computed](./arkts-new-Computed.md)装饰的属性）的实例添加/取消回调，否则会有运行时报错，错误码为130000。
 下面为addMonitor的例子，clearMonitor同理。
   ```ts
   import { UIUtils } from '@kit.ArkUI';

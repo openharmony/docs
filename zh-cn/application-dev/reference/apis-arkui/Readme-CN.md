@@ -674,6 +674,7 @@
     - [NodeAdapter错误码](errorcode-nodeadapter.md)
     - [XComponent组件错误码](errorcode-xcomponent.md)
     - [Video组件错误码](errorcode-video.md)
+    - [状态管理错误码](errorcode-stateManagement.md)
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)
