@@ -13,7 +13,7 @@
 import { camera } from '@kit.CamerKit';
 ```
 
-## isControlCenterSupported<sup>20+</sup>
+## isControlCenterSupported
 
 isControlCenterSupported(): boolean
 
@@ -38,7 +38,7 @@ function isControlCenterSupported(videoSession: camera.VideoSession): boolean {
 }
 ```
 
-## getSupportedEffectTypes<sup>20+</sup>
+## getSupportedEffectTypes
 
 getSupportedEffectTypes(): Array\<ControlCenterEffectType\>
 
@@ -52,7 +52,7 @@ getSupportedEffectTypes(): Array\<ControlCenterEffectType\>
 
 | 类型 | 说明|
 |-----|-----|
-| Array<[ControlCenterEffectType](arkts-apis-camera-e.md#controlcentereffecttype20)> | 支持的效果类型 |
+| Array<[ControlCenterEffectType](arkts-apis-camera-e.md#controlcentereffecttype20)> | 支持的效果类型。 |
 
 **示例：**
 
