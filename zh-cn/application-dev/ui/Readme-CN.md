@@ -13,6 +13,12 @@
       - [布局回调](arkts-v1.2-deprecated-inspector.md)
       - [UIExtensionComponent (系统接口)](arkts-v1.2-deprecated-uiextension.md)
       - [AbilityComponent (系统接口)](arkts-v1.2-deprecated-abilitycomponent.md)
+      - [路由和导航类接口](arkts-v1.2-deprecated-router-navigation.md)
+      - [动效类接口](arkts-v1.2-deprecated-animation.md)
+      - [视效类接口](arkts-v1.2-deprecated-visual-effect.md)
+      - [Swiper](arkts-v1.2-deprecated-swiper.md)
+      - [Panel](arkts-v1.2-deprecated-panel.md)
+      - [AlphabetIndexer](arkts-v1.2-deprecated-alphabet-indexer.md)
   - 学习UI范式基本语法<!--arkts-ui-paradigm-basic-syntax-->
     - [基本语法概述](../ui/state-management/arkts-basic-syntax-overview.md)
     - [声明式UI描述](../ui/state-management/arkts-declarative-ui-description.md)
