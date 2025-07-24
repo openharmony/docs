@@ -663,8 +663,8 @@ struct Font08 {
 
 | 样式设置（装饰线样式、字体特征） | 示意效果 | 
 | -------- | -------- |
-| 不开启装饰线和字体特征 | ![zh-cn_image_complexArkTsDemo1_1](figures/zh-cn_image_complexArkTsDemo1_1) | 
-| 开启装饰线和可字体特征 | ![zh-cn_image_complexArkTsDemo1_2](figures/zh-cn_image_complexArkTsDemo1_2) | 
+| 不开启装饰线和字体特征 | ![zh-cn_image_complexArkTsDemo1_1](figures/zh-cn_image_complexArkTsDemo1_1.png) | 
+| 开启装饰线和可字体特征 | ![zh-cn_image_complexArkTsDemo1_2](figures/zh-cn_image_complexArkTsDemo1_2.png) | 
 
 ### 示例二（可变字体、文本阴影、占位符）
 这里以可变字体、文本阴影、占位符三个特性为例，呈现多样式文本的绘制与显示。
