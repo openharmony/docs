@@ -140,8 +140,8 @@ uinput -M -c 0
 uinput -M -b <dx> <dy> <id> [press time] [click interval time]
 uinput --mouse --double_click <dx> <dy> <id> [press time] [click interval time]
 
-[press time]按压时间，参数可选，默认时间为：50ms，取值范围：1 ~ 300ms。
-[click interval time] 点击间隔时间，参数可选，默认时间为：300ms，取值范围：1 ~ 450ms。
+[press time]按压时间，可选参数，默认时间为：50ms，取值范围：1 ~ 300ms。
+[click interval time]点击间隔时间，可选参数，默认时间为：300ms，取值范围：1 ~ 450ms。
 设置间隔时间必须在取值范围内，否则操作结果可能产生错误或无效操作。
 ```
 
@@ -176,7 +176,7 @@ uinput -M -m 100 200 -s 45
 uinput -M -g <dx1> <dy1> <dx2> <dy2> [total time]
 uinput --mouse --drag <dx1> <dy1> <dx2> <dy2> [total time]
 
-[total time]可选参数，默认值为1000ms，取值范围：1 ~ 15000ms。
+[total time]拖拽总耗时，可选参数，默认值为1000ms，取值范围：1 ~ 15000ms。
 ```
 
 **使用示例**
@@ -250,7 +250,7 @@ uinput -K -d 2017 -u 2017
 uinput -K -l <key> [long press time]
 uinput --keyboard --long_press <key> [long press time]
 
-[long press time]可选参数，默认值为3000ms，取值范围：3000 ~ 15000ms。
+[long press time]长按时间，可选参数，默认值为3000ms，取值范围：3000 ~ 15000ms。
 ```
 
 **使用示例**
@@ -267,7 +267,7 @@ uinput -K -l 2017 6000
 uinput -K -r <key> [repeat output time]
 uinput --keyboard --repeat <key> [repeat output time]
 
-[repeat output time]可选参数，默认值为3000ms，取值范围：3000 ~ 15000ms。
+[repeat output time]重复输出时间，可选参数，默认值为3000ms，取值范围：3000 ~ 15000ms。
 ```
 
 **使用示例**
@@ -442,7 +442,7 @@ uinput -T -d 100 100 -u 100 100
 uinput -T -m <dx1> <dy1> <dx2> <dy2> [-k keep time] [smooth time]
 uinput --touch --move <dx1> <dy1> <dx2> <dy2> [-k keep time] [smooth time]
 
-[-k keep time]可选参数，默认值为0ms，取值范围：0 ~ 60000ms。
+[-k keep time]按下保持时间，可选参数，默认值为0ms，取值范围：0 ~ 60000ms。
 [smooth time]移动时间，可选参数，默认值为1000ms，取值范围：1 ~ 15000ms。
 ```
 
@@ -556,7 +556,7 @@ scalePercent：收缩百分比，取值范围：大于0小于等于500。小于1
 
 **使用示例**
 ```bash
-# 手指捏合图片。 （图片不动）
+# 手指捏合图片。
 uinput -P -p 100 300 89
 ```
 
