@@ -134,7 +134,7 @@ setCameraTrackingEnabled(isEnabled: boolean): void
 | -------- | ------- |
 | 33300001 | Service exception. |
 | 33300002 | Device not connected. |
-| 33300003 | Device not supported. |
+| 33300003 | Feature not supported. |
 
 **示例：**
 
