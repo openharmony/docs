@@ -18,7 +18,7 @@ Sendable对象提供了并发实例间高效的通信能力，即引用传递，
 
 ### Sendable协议
 
-Sendable协议定义了ArkTS的可共享对象体系及其规格约束。符合Sendable协议的数据（以下简称Sendable对象）可以在ArkTS并发实例间传递。
+Sendable协议定义了ArkTS的可共享对象体系及其规格约束。符合Sendable协议的数据（以下简称Sendable数据）可以在ArkTS并发实例间传递。
 
 默认情况下，Sendable数据在ArkTS并发实例间（包括UI主线程、TaskPool线程、Worker线程）传递时采用引用传递。ArkTS还支持在这些实例间对Sendable数据进行拷贝传递。
 
