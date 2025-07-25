@@ -69,7 +69,7 @@ onCollaborate(wantParam: Record <string, Object>) : AbilityConstant.CollaborateR
 
 | 类型 | 说明 |
 | ---------- | ---- |
-| [AbilityConstant.CollaborateResult](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#collaborateresult) | 协同方应用是否接受协同。 |
+| [AbilityConstant.CollaborateResult](../apis-ability-kit/js-apis-app-ability-abilityConstant.md#collaborateresult18) | 协同方应用是否接受协同。 |
 
 **示例**
 
