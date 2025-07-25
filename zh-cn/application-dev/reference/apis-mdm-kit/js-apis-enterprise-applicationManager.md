@@ -194,7 +194,7 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 | 参数名        | 类型                                                         | 必填 | 说明                                   |
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                         |
-| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。Want需要传入bundleName和abilityName。数组长度上限为10。 |
+| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。Want需要传入bundleName和abilityName。数组长度上限为10。例如：如果名单中已有5个应用，则最多再通过本接口设置5个。 |
 
 **错误码**：
 
