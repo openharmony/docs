@@ -309,14 +309,14 @@ libnative_rdb_ndk.z.so
 
    示例代码如下：
 
-   ```ts
+   ```c
    // content列配置了数据压缩，并且配置了数据老化。
    OH_Rdb_ExecuteV2(store_, "CREATE TABLE IF NOT EXISTS test3 (time integer not null, content text) with (time_col = 'time', interval = '5 minute', compress_col = 'content');", nullptr, nullptr);
    ```
 
 10. 删除数据库。示例代码如下：
 
-   ```c
-   OH_Rdb_CloseStore(store_);
-   OH_Rdb_DeleteStoreV2(config);
-   ```
+    ```c
+    OH_Rdb_CloseStore(store_);
+    OH_Rdb_DeleteStoreV2(config);
+    ```
