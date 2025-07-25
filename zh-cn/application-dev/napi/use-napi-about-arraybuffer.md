@@ -256,7 +256,11 @@ static napi_value CreateArrayBuffer(napi_env env, napi_callback_info info)
     // 创建一个新的ArrayBuffer
     napi_create_arraybuffer(env, length, &data, &result);
     if (data != nullptr) {
-        // 确保安全后才能使用data进行操作
+      // 确保安全后才能使用data进行操作
+    } else {
+      // 处理内存分配失败的情况
+      napi_throw_error(env, nullptr, "Failed to allocate memory for ArrayBuffer");
+      return nullptr;
     }
     // 返回ArrayBuffer
     return result;
