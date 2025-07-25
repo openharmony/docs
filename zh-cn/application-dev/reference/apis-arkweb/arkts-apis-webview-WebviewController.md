@@ -5766,7 +5766,7 @@ static setRenderProcessMode(mode: RenderProcessMode): void
 
 | 参数名       | 类型           | 必填  | 说明                      |
 | ----------- | ------------- | ---- | ------------------------ |
-| mode        | [RenderProcessMode](./arkts-apis-webview-e.md#renderprocessmode12)| 是   | 渲染子进程模式。<br>可以先调用[getRenderProcessMode()](#getrenderprocessmode12)查看当前设备的ArkWeb渲染子进程模式，枚举值0为单子进程模式，枚举值1为多子进程模式。<br>一般情况下，手机默认为单渲染子进程模式，平板和电脑默认为多渲染子进程模式。<br>如果传入RenderProcessMode枚举值之外的非法数字，则默认识别为多渲染子进程模式。 |
+| mode        | [RenderProcessMode](./arkts-apis-webview-e.md#renderprocessmode12)| 是   | 渲染子进程模式。<br>可以先调用[getRenderProcessMode()](#getrenderprocessmode12)查看当前设备的ArkWeb渲染子进程模式，枚举值0为单子进程模式，枚举值1为多子进程模式。<br>手机默认为单渲染子进程模式，平板和电脑默认为多渲染子进程模式。<br>如果传入RenderProcessMode枚举值之外的非法数字，则默认识别为多渲染子进程模式。 |
 
 **错误码：**
 
