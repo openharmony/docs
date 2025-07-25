@@ -13,6 +13,8 @@
     - [Interface (CameraOutput)](arkts-apis-camera-CameraOutput.md)
     - [Interface (ColorManagement)](arkts-apis-camera-ColorManagement.md)
     - [Interface (ColorManagementQuery)](arkts-apis-camera-ColorManagementQuery.md)
+    - [Interface (ControlCenter)](arkts-apis-camera-ControlCenter.md)
+    - [Interface (ControlCenterQuery)](arkts-apis-camera-ControlCenterQuery.md)
     - [Interface (Flash)](arkts-apis-camera-Flash.md)
     - [Interface (FlashQuery)](arkts-apis-camera-FlashQuery.md)
     - [Interface (Focus)](arkts-apis-camera-Focus.md)
