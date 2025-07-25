@@ -4,7 +4,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 ## 使用场景
 - 支持应用内共享，也可以作为二方库（SDK）、三方库（SDK）发布后供其他应用使用。
 - 作为二方库（SDK），发布到[OHPM私仓](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-ohpm-repo)，供公司内部其他应用使用。
-- 作为三方库（SDK），发布到[OHPM中心仓](https://ohpm.openharmony.cn/)，供其他应用使用。
+- 作为三方库（SDK），发布到[OHPM中心仓](https://ohpm.openharmony.cn/#/cn/home)，供其他应用使用。
 
 ## 约束限制
 
