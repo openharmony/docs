@@ -228,10 +228,6 @@ setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: st
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11100001 | Function disabled. Possible caused by the param disable in ConfigOption is true. |
-| 11101001 | Invalid event domain. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
-| 11101002 | Invalid event name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
-| 11101005 | Invalid event parameter name. Possible causes: 1. Contain invalid characters; 2. Length is invalid. |
 | 11101007 | The number of parameter keys exceeds the limit. |
 
 **示例：**
