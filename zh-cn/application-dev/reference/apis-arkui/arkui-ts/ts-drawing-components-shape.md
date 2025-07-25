@@ -285,7 +285,7 @@ mesh(value: Array&lt;any&gt;, column: number, row: number)
 
 > **说明：**
 >
-> mesh只对shape传入pixelMap时生效，且效果作用于传入的pixelMap。与[绘制模块](../../../reference/apis-arkgraphics2d/js-apis-graphics-drawing.md)的[drawPixelMapMesh<sup>12+</sup>](../../../reference/apis-arkgraphics2d/js-apis-graphics-drawing.md#drawpixelmapmesh12)效果一致，建议使用drawPixelMapMesh。
+> mesh只对shape传入pixelMap时生效，且效果作用于传入的pixelMap。与[绘制模块](../../../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing.md)的[drawPixelMapMesh<sup>12+</sup>](../../../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md#drawpixelmapmesh12)效果一致，建议使用drawPixelMapMesh。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
