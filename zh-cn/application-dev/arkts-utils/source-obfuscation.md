@@ -780,7 +780,7 @@ enum MyEnum {
 
 ### -keep-property-name
 
-指定想保留的属性名，支持使用名称类通配符。按如下方式进行配置，表示保留名称为`age`、`firstName`和`lastName`的属性：
+指定想保留的属性名，支持使用[名称类通配符](#保留选项支持的通配符)。按如下方式进行配置，表示保留名称为`age`、`firstName`和`lastName`的属性：
 
 ```
 -keep-property-name
@@ -901,7 +901,7 @@ class A {
 
 ### -keep-global-name
 
-指定要保留的顶层作用域或导入和导出元素的名称，支持使用名称类通配符。配置方式如下：
+指定要保留的顶层作用域或导入和导出元素的名称，支持使用[名称类通配符](#保留选项支持的通配符)。配置方式如下：
 
 ```
 -keep-global-name
@@ -953,7 +953,7 @@ import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testN
 
 ### -keep-file-name
 
-指定要保留的文件或文件夹名称（不需要写文件后缀），支持使用名称类通配符。例如：
+指定要保留的文件或文件夹名称（不需要写文件后缀），支持使用[名称类通配符](#保留选项支持的通配符)。例如：
 
 ```
 -keep-file-name
@@ -995,7 +995,7 @@ const module2 = import(moduleName)
 
 ### -keep-comments
 
-保留编译生成的声明文件中class、function、namespace、enum、struct、interface、module、type及属性上方的JsDoc注释，支持使用名称类通配符。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
+保留编译生成的声明文件中class、function、namespace、enum、struct、interface、module、type及属性上方的JsDoc注释，支持使用[名称类通配符](#保留选项支持的通配符)。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
 ```
 -keep-comments
 Human
@@ -1021,7 +1021,7 @@ export class exportClass {}
 ### -keep
 
 保留指定相对路径*filepath*中的所有名称（例如变量名、类名、属性名等）不被混淆。*filepath*可以是文件或文件夹，若是文件夹，则文件夹下的文件及子文件夹中文件都不混淆。  
-*filepath*仅支持相对路径，`./`和`../`为相对于混淆配置文件所在目录，支持使用路径类通配符。
+*filepath*仅支持相对路径，`./`和`../`为相对于混淆配置文件所在目录，支持使用[路径类通配符](#保留选项支持的通配符)。
 
 ```
 -keep
