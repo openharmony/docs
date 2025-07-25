@@ -531,7 +531,6 @@ getInstallLocalEnterpriseAppEnabled(admin: Want): boolean
 ```ts
 import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
 
 let wantTemp: Want = {
   // 需根据实际情况进行替换
