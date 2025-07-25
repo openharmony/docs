@@ -480,7 +480,7 @@ uinput -T -c 100 100
 uinput -T -g <dx1> <dy1> <dx2> <dy2> [press time] [total time] 
 uinput --touch --drag <dx1> <dy1> <dx2> <dy2> [press time] [total time] 
 
-[Press time]按压时间，可选参数，默认值为500ms，取值范围：500 ~ 14500ms。
+[press time]按压时间，可选参数，默认值为500ms，取值范围：500 ~ 14500ms。
 [total time]拖动时间，可选参数，默认值为1000ms，取值范围：1000 ~ 15000ms。[total time] - [Press time]不能少于500ms，否则操作结果可能产生错误或无效操作。
 ```
 
