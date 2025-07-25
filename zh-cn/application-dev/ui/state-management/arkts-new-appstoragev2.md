@@ -21,7 +21,7 @@ AppStorageV2支持应用的[主线程](../../application-models/thread-model-sta
 
 ## 使用说明
 
-### connect：创建或获取储存的数据
+### connect：创建或获取存储的数据
 
 ```JavaScript
 static connect<T extends object>(
@@ -48,7 +48,7 @@ static connect<T extends object>(
 >
 >5、关联[\@Observed](arkts-observed-and-objectlink.md)对象时，由于该类型的name属性未定义，需要指定key或者自定义name属性。
 
-### remove：删除指定key的储存数据
+### remove：删除指定key的存储数据
 
 ```JavaScript
 static remove<T>(keyOrType: string | TypeConstructorWithArgs<T>): void;
