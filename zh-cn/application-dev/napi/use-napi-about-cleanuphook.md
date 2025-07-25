@@ -69,12 +69,20 @@ static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
     // 分配内存并复制字符串数据到内存中
     std::string str("Hello from Node-API!");
     Memory *wrapper = (Memory *)malloc(sizeof(Memory));
-    wrapper->data = static_cast<char *>(malloc(str.size()));
+    wrapper->data = static_cast<char *>(malloc(str.size() + 1));
     strcpy(wrapper->data, str.c_str());
     wrapper->size = str.size();
     // 创建外部缓冲区对象，并指定清理回调函数
+    // 注意：wrapper->data 的内存释放依赖于 ExternalFinalize 回调，只有 buffer 被正确持有并最终被 GC 回收时，ExternalFinalize 才会被调用，否则会导致内存泄漏。
     napi_value buffer = nullptr;
-    napi_create_external_buffer(env, wrapper->size, (void *)wrapper->data, ExternalFinalize, wrapper, &buffer);
+    napi_status bufferStatus = napi_create_external_buffer(env, wrapper->size, (void *)wrapper->data, ExternalFinalize, wrapper, &buffer);
+    if (bufferStatus != napi_ok) {
+        // 创建失败时需主动释放内存，避免泄漏
+        free(wrapper->data);
+        free(wrapper);
+        napi_throw_error(env, nullptr, "napi_create_external_buffer failed");
+        return nullptr;
+    }
     // 静态变量作为钩子函数参数
     static int hookArg = 42;
     static int hookParameter = 1;
@@ -93,6 +101,7 @@ static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
     // 立即移除环境清理钩子函数，确保不会在后续环境清理时被调用
     // 通常，当为其添加此钩子的资源无论如何都被拆除时调用这个接口
     napi_remove_env_cleanup_hook(env, Cleanup, &hookArg);
+    napi_remove_env_cleanup_hook(env, Cleanup, &hookParameter);
     // 返回创建的外部缓冲区对象
     return buffer;
 }
@@ -151,7 +160,7 @@ worker相关开发配置和流程参考以下链接：
 cpp部分代码
 
 ```cpp
-#include <malloc.h>
+#include <cstdlib>
 #include <string.h>
 #include "napi/native_api.h"
 #include "uv.h"
@@ -180,7 +189,8 @@ static void AsyncWork(uv_async_s *async)
 {
     // 执行一些清理工作,比如释放动态分配的内存
     AsyncContent *asyncData = reinterpret_cast<AsyncContent *>(async->data);
-    if (asyncData->testData != nullptr) {
+    
+    if (asyncData != nullptr || asyncData->testData != nullptr) {
         free(asyncData->testData);
         asyncData->testData = nullptr;
     }
@@ -206,18 +216,27 @@ static napi_value NapiAsyncCleanUpHook(napi_env env, napi_callback_info info)
 {
     // 分配AsyncContent内存
     AsyncContent *data = reinterpret_cast<AsyncContent *>(malloc(sizeof(AsyncContent)));
+    if (data == nullptr) {
+        napi_throw_error(env, nullptr, "Test Node-API malloc AsyncContent failed");
+        return nullptr;
+    }
     data->env = env;
     data->cleanupHandle = nullptr;
     // 分配内存并复制字符串数据
     const char *testDataStr = "TestNapiAsyncCleanUpHook";
     data->testData = strdup(testDataStr);
     if (data->testData == nullptr) {
+        free(data);
         napi_throw_error(env, nullptr, "Test Node-API data->testData is nullptr");
+        return nullptr;
     }
     // 添加异步清理钩子函数
     napi_status status = napi_add_async_cleanup_hook(env, AsyncCleanup, data, &data->cleanupHandle);
     if (status != napi_ok) {
+        free(data->testData);
+        free(data);
         napi_throw_error(env, nullptr, "Test Node-API napi_add_async_cleanup_hook failed");
+        return nullptr;
     }
     napi_value result = nullptr;
     napi_get_boolean(env, true, &result);

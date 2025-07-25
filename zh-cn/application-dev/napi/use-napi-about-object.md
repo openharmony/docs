@@ -217,6 +217,9 @@ static napi_value ObjectSeal(napi_env env, napi_callback_info info)
     napi_status status = napi_object_seal(env, objSeal);
     if (status == napi_ok) {
         OH_LOG_INFO(LOG_APP, "Node-API napi_object_seal success");
+    } else {
+        napi_throw_error(env, nullptr, "Node-API napi_object_seal failed");
+        return nullptr;
     }
     // 将封闭后的object传回ArkTS侧
     return objSeal;
@@ -245,7 +248,7 @@ try {
     data: number = 0
     message: string = ""
     // 可选属性
-    address?: number = 0
+    address?: number
   }
   let obj: Obj = { data: 0, message: "hello world"};
   let objSeal = testNapi.objectSeal(obj);
@@ -355,7 +358,7 @@ try {
   }
   let varObject: Obj = {id: 1, name: "LiLei"};
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varObject));
-  const addNum = (a: number, b: number): number => a * b;
+  const mulNum = (a: number, b: number): number => a * b;
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(addNum));
   let varBigint = BigInt("1234567890123456789012345678901234567890");
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varBigint));
@@ -646,10 +649,18 @@ static napi_value CreateSymbol(napi_env env, napi_callback_info info)
     napi_value result = nullptr;
     const char *des = "only";
     // 使用napi_create_string_utf8创建描述字符串
-    napi_create_string_utf8(env, des, NAPI_AUTO_LENGTH, &result);
+    napi_status status = napi_create_string_utf8(env, des, NAPI_AUTO_LENGTH, &result);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Node-API napi_create_string_utf8 failed");
+        return nullptr;
+    }
     napi_value returnSymbol = nullptr;
     // 创建一个symbol类型，并返回
-    napi_create_symbol(env, result, &returnSymbol);
+    status = napi_create_symbol(env, result, &returnSymbol);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Node-API napi_create_symbol failed");
+        return nullptr;
+    }
     return returnSymbol;
 }
 ```

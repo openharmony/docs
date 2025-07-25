@@ -73,8 +73,8 @@ static napi_value AsynchronousWork(napi_env env, napi_callback_info info)
     }
     // 打开回调作用域
     napi_callback_scope scope = nullptr;
-    napi_open_callback_scope(env, resource, context, &scope);
-    if (status != napi_ok) {
+    napi_status status2 = napi_open_callback_scope(env, resource, context, &scope);
+    if (status2 != napi_ok) {
         napi_throw_error(env, nullptr, "napi_open_callback_scope fail");
         return nullptr;
     }
@@ -87,8 +87,8 @@ static napi_value AsynchronousWork(napi_env env, napi_callback_info info)
         return nullptr;
     }
     // 关闭回调作用域
-    napi_close_callback_scope(env, scope);
-    if (status != napi_ok) {
+    napi_status status3 = napi_close_callback_scope(env, scope);
+    if (status3 != napi_ok) {
         napi_throw_error(env, nullptr, "napi_close_callback_scope fail");
         return nullptr;
     }
