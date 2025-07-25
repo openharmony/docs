@@ -51,18 +51,26 @@ static napi_value GetValueStringUtf8(napi_env env, napi_callback_info info)
     napi_status status = napi_get_value_string_utf8(env, args[0], nullptr, 0, &length);
     // 传入一个非字符串 napi_get_value_string_utf8接口会返回napi_string_expected
     if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_get_value_string_utf8 failed");
         return nullptr;
     }
     char* buf = new char[length + 1];
     std::memset(buf, 0, length + 1);
     status = napi_get_value_string_utf8(env, args[0], buf, length + 1, &length);
     if (status != napi_ok) {
+        if (buf) {
+            delete[] buf;
+        }
+        napi_throw_error(env, nullptr, "napi_get_value_string_utf8 failed");
         return nullptr;
     }
     napi_value result = nullptr;
     status = napi_create_string_utf8(env, buf, length, &result);
-    delete[] buf;
+    if (buf) {
+        delete[] buf;
+    }
     if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_create_string_utf8 failed");
         return nullptr;
     }
     return result;
