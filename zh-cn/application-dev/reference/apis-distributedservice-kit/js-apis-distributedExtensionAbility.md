@@ -24,7 +24,7 @@ import { DistributedExtensionAbility} from '@kit.DistributedServiceKit';
 | ------- | ----------------------------- | ---- | ---- | ---------------------------------------------------------- |
 | context | DistributedExtensionContext | 是   | 否   | DistributedExtension的上下文环境，继承自ExtensionContext。 |
 
-### DistributedExtensionAbility.onCreate
+### onCreate
 
 onCreate(want: Want): void
 
@@ -53,7 +53,7 @@ export default class DistributedExtension extends DistributedExtensionAbility {
 }
 ```
 
-### DistributedExtensionAbility.onCollaborate
+### onCollaborate
 
 onCollaborate(wantParam: Record <string, Object>) : AbilityConstant.CollaborateResult
 
@@ -93,7 +93,7 @@ export default class DistributedExtension extends DistributedExtensionAbility {
 }
 ```
 
-### DistributedExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void
 
