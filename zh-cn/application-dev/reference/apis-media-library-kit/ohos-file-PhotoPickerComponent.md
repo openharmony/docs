@@ -1,7 +1,7 @@
 # @ohos.file.PhotoPickerComponent (PhotoPicker组件)
 
 应用可以在布局中嵌入PhotoPicker组件，通过此组件，应用无需申请权限，即可实现媒体文件选择功能。在用户选择媒体文件后，应用即可访问用户选中的图片或视频文件。仅包含读权限。
-需要注意的是PhotoPickerCompononent不能嵌套使用，且不建议在PhotoPickerCompononent上覆盖设置了overlay属性的组件，将导致PhotoPickerCompononent无法接受手势事件。
+需要注意的是PhotoPickerComponent不能嵌套使用，且不建议在PhotoPickerComponent上覆盖设置了overlay属性的组件，将导致PhotoPickerComponent无法接受手势事件。
 应用嵌入组件后，用户可直接在PhotoPicker组件中选择图片或视频文件。
 
 > **说明：**
