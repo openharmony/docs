@@ -47,6 +47,7 @@ static napi_value CreateBuffer(napi_env env, napi_callback_info info)
     napi_create_buffer(env, bufferSize, &bufferPtr, &buffer);
     // 将字符串str的值复制到buffer的内存中
     strcpy((char *)bufferPtr, str.data());
+    memcpy(bufferPtr, str.data(), bufferSize);
     return buffer;
 }
 ```

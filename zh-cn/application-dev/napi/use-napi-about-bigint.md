@@ -178,8 +178,13 @@ static napi_value GetValueBigintInt64t(napi_env env, napi_callback_info info)
     }
     // 如果接口调用成功正常调用则返回true给ArkTS侧
     napi_value returnValue = nullptr;
-    napi_get_boolean(env, status == napi_ok, &returnValue);
-    return returnValue;
+    if (status == napi_ok) {
+      napi_get_boolean(env, true, &returnValue);
+      return returnValue;
+    } else {
+      napi_throw_error(env, nullptr, "napi_get_value_bigint_int64 failed");
+      return nullptr;
+    }
 }
 ```
 <!-- @[napi_get_value_bigint_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBigint/entry/src/main/cpp/napi_init.cpp) -->
