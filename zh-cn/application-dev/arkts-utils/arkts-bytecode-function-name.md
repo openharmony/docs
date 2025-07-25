@@ -37,7 +37,7 @@
 例子：
 ```ts
 function longFuncName() {                  // longFuncName的函数名为"#*#longFuncName"，其中"longFuncName"是原函数名，不会转换为索引。
-    function A() { }                       // A的函数名"#*@0*#A"，其中"@0"表示在其对应LiteralArray中，索引为0的字符串，此时这个字符串是"longFuncName"。即这个函数原本的名称为"#*longFuncName*#A"
+    function A() { },                      // A的函数名"#*@0*#A"，其中"@0"表示在其对应LiteralArray中，索引为0的字符串，此时这个字符串是"longFuncName"。即这个函数原本的名称为"#*longFuncName*#A"
     function B() { }                       // B的函数名"#*@0*#B"
 }  
 ```
