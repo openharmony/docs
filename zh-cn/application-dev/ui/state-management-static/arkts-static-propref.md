@@ -1,39 +1,36 @@
 # @PropRef装饰器：父子单向同步
 
-\@PropRef装饰的变量可以和父组件建立单向同步。\@PropRef装饰的变量允许在本地修改，但修改后的变化不会同步回父组件中。
+\@PropRef装饰的变量可以与父组件传入变量建立单向同步。该变量允许在本地修改，但修改后的变化不会同步回父组件。
 
 > **说明：**
 >
-> 从API version 20开始，该装饰器仅支持在ArkTS 1.2上使用。
+> 从API version 20开始，开发者可以在静态语言上下文中使用\@PropRef装饰器。
 
 ## 概述
 
-\@PropRef提供了对标ArkTS 1.1上\@Prop的单向同步的能力。相比\@Prop，\@PropRef移除了自动深拷贝的功能，仅直接获得数据源的单向引用。该单向引用含义为：
+\@PropRef提供了对标动态语言上下文中[\@Prop](../state-management/arkts-prop.md)装饰器的单向同步的能力。与\@Prop相比，\@PropRef去除了自动深拷贝的功能，仅直接获得数据源的单向引用。该单向引用含义为：
 
 - \@PropRef装饰的变量允许本地修改，该修改不会同步回父组件。由于获得了数据源的引用，当数据源为对象类型时，修改\@PropRef装饰对象的属性仍会在父组件中体现。
-- 当数据源更改时，\@PropRef装饰的变量会被数据源更新，本地所做的修改会被覆盖为数据源的最新值。
+- 当数据源更改时，\@PropRef装饰的变量会更新为数据源的最新值，本地修改将被覆盖。
+
+在静态上下文中使用时，需导入装饰器：
+
+```ts
+import { PropRef } from '@ohos.arkui.stateManagement';
+```
 
 ## 装饰器说明
 
 | \@PropRef变量装饰器 | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ |
 | 装饰器参数          | 无。                                                         |
-| 能否本地修改        | 能，且本地修改不会同步回父组件。                             |
-| 同步类型            | 由父组件到子组件单向同步。                                   |
 | 允许装饰的变量类型  | Object、class、string、number、boolean、enum、interface等基本类型以及[Array](#装饰array类型)、[Date](#装饰date类型)、[Map](#装饰map类型)、[Set](#装饰Set类型)等内嵌类型。支持null、undefined以及联合类型。 |
-| 被装饰变量的初始值  | 允许本地初始化，也可以从外部传入。                           |
-
-## 变量传递
-
-| 传递规则       | 说明                                                         |
-| -------------- | ------------------------------------------------------------ |
-| 从父组件初始化 | \@PropRef装饰的变量允许本地初始化，若无本地初始化则必须从外部传入初始化。当同时存在本地初始值与外部传入值时，优先使用外部传入值进行初始化。 |
-| 初始化子组件   | \@PropRef装饰的变量可以初始化子组件中\@State/\@PropRef/\@Link/\@Provide装饰的变量。 |
-| 同步           | \@PropRef与父组件的状态变量数据源同步，数据源变化时会更新子组件的\@PropRef。 |
+| 初始化规则          | 定义本地默认值时：<br/>可以从父组件传入非undefined类型变量，此时使用该传入变量进行初始化。<br/>父组件未传入或传入undefined类型变量时，使用本地默认值进行初始化。<br>未定义本地默认值时：<br>必须从父组件传入变量进行初始化。 |
+| 同步规则            | **在子组件使用时：**<br/>与父组件中传入的变量单向同步。<br/>当父组件传入的变量改变时（非undefined类型）会更新\@PropRef，覆盖\@PropRef在子组件的修改<br/>**在父组件使用时：**<br/>可以初始化子组件的常规变量、\@State、\@Link、\@PropRef、\@Provide。<br/>\@PropRef变量的变化会同步给子组件的\@Link、\@PropRef变量。 |
 
 ## 观察变化
 
-使用\@PropRef装饰的变量具有被观测变化的能力。当这些变量发生变化时，会触发绑定到该变量的UI组件刷新。
+当\@PropRef装饰的变量发生变化时，会触发绑定到该变量的UI组件刷新。
 
 - 当装饰的变量为boolean、string、number等类型时，数据源的变化可以被同步观察到。
 
@@ -107,7 +104,7 @@
 
 ### 从父组件到子组件变量变化单向同步
 
-\@PropRef能够接收父组件传递的数据源，并与之单向同步变化。
+\@PropRef可以接收父组件传递的数据源，并与之单向同步。
 
 ```ts
 import { Entry, Component, Column, Text, Button, ClickEvent } from '@ohos.arkui.component';
@@ -116,43 +113,27 @@ import { State, PropRef } from '@ohos.arkui.stateManagement';
 @Component
 struct Index {
   @State count: number = 0;
-  @State message: string = 'Hello';
-  @State flag: boolean = false;
   build() {
     Column() {
       Text(`State ${this.count}`)
-      Text(`State ${this.message}`)
-      Text(`State ${this.flag}`)
       Button('change State')
         .onClick((e: ClickEvent) => {
           // 对数据源的更改会同步给子组件
           this.count++;
-          this.message += " World";
-          this.flag = !this.flag;
       })
-      Child({
-        count: this.count,
-        message: this.message,
-        flag: this.flag
-      })
+      Child({ count: this.count })
     }
   }
 }
 @Component
 struct Child {
   @PropRef count: number;
-  @PropRef message: string;
-  @PropRef flag: boolean;
   build() {
     Column() {
       Text(`PropRef ${this.count}`)
-      Text(`PropRef ${this.message}`)
-      Text(`PropRef ${this.flag}`)
       Button('change PropRef')
         .onClick((e: ClickEvent) => {
           this.count++;
-          this.message += '!';
-          this.flag = !this.flag;
         })
     }
   }
@@ -186,7 +167,7 @@ struct Child {
           this.arr[0]++;
       })
       Button(`push item: ${this.arr.length}`).onClick((e: ClickEvent) => {
-          this.arr.push(this.arr.length);
+          this.arr.push(this.arr.length as int);
       })
     }
   }
@@ -216,11 +197,11 @@ struct Child {
   build() {
     Column() {
       Text(`${this.map}`)
-      Button(`change map[0]: ${this.arr.get(0)}`).onClick((e: ClickEvent) => {
-          this.arr[0]++;
+      Button(`change map[0]: ${this.map.get(0)}`).onClick((e: ClickEvent) => {
+          this.map.set(0, this.map.get(0)! + 1);
       })
       Button(`add item: ${this.map.size}`).onClick((e: ClickEvent) => {
-          this.arr.set(this.map.size, this.map.size);
+          this.map.set(this.map.size, this.map.size);
       })
     }
   }
@@ -251,7 +232,7 @@ struct Child {
     Column() {
       Text(`${this.set}`)
       Button('init set').onClick((e: ClickEvent) => {
-        this.set = new Set([0, 1, 2, 3, 4]);
+        this.set = new Set<int>([0, 1, 2, 3, 4]);
       })
       Button('set new one').onClick((e: ClickEvent) => {
         this.set.add(5);
