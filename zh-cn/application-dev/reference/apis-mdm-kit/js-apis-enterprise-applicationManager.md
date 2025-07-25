@@ -722,7 +722,7 @@ try {
 
 setKioskFeatures(admin: Want, features: Array\<KioskFeature>): void
 
-设置Kiosk模式的特征。[进入Kiosk模式](../apis-ability-kit/js-apis-app-ability-kioskManager.md#enterkioskmode)后，系统会默认禁用通知中心、控制中心和最近任务栏等能力。可通过本接口解除对部分能力的禁用或恢复禁用。
+设置Kiosk模式的特征。[进入Kiosk模式](../apis-ability-kit/js-apis-app-ability-kioskManager.md#kioskmanagerenterkioskmode)后，系统会默认禁用通知中心、控制中心和最近任务栏等能力。可通过本接口解除对部分能力的禁用或恢复禁用。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_KIOSK
 
