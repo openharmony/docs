@@ -500,8 +500,7 @@ struct Font08 {
 关键示例如下：
 ```ts
 let myParagraphStyle: text.ParagraphStyle = {
-  // ...
-  autospace: true
+  autoSpace: true
 };
 ```
 ### 示例一（装饰线、字体特征）
@@ -518,7 +517,6 @@ import { common2D } from '@kit.ArkGraphics2D'
 // 创建一个MyRenderNode类，并绘制文本。
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
-    // 绘制代码逻辑写在这里
     let canvas = context.canvas;
 
     // 初始化装饰线对象
@@ -664,7 +662,7 @@ struct Font08 {
 | 样式设置（装饰线样式、字体特征） | 示意效果 | 
 | -------- | -------- |
 | 不开启装饰线和字体特征 | ![zh-cn_image_complexArkTsDemo1_1](figures/zh-cn_image_complexArkTsDemo1_1.png) | 
-| 开启装饰线和可字体特征 | ![zh-cn_image_complexArkTsDemo1_2](figures/zh-cn_image_complexArkTsDemo1_2.png) | 
+| 开启装饰线和字体特征 | ![zh-cn_image_complexArkTsDemo1_2](figures/zh-cn_image_complexArkTsDemo1_2.png) | 
 
 ### 示例二（可变字体、文本阴影、占位符）
 这里以可变字体、文本阴影、占位符三个特性为例，呈现多样式文本的绘制与显示。
@@ -679,7 +677,6 @@ import { common2D } from '@kit.ArkGraphics2D'
 // 创建一个MyRenderNode类，并绘制文本。
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
-    // 绘制代码逻辑写在这里
     let canvas = context.canvas;
 
     let myTextStyle: text.TextStyle = {
