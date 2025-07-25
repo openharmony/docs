@@ -96,12 +96,6 @@ constructor()
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**返回值：**
-
-| 类型                    | 说明               |
-| ----------------------- | ------------------ |
-| [AsyncLock](#asynclock) | 创建的异步锁实例。 |
-
 **示例：**
 
 ```ts
@@ -399,12 +393,6 @@ constructor()
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
-
-**返回值：**
-
-| 类型                                  | 说明                   |
-| ------------------------------------- | ---------------------- |
-| [AsyncLockOptions](#asynclockoptions) | 新的异步锁配置项实例。 |
 
 **示例：**
 
