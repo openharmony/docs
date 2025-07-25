@@ -5,9 +5,9 @@
 
 ### 场景介绍
 
-开放匿名设备标识符（Open Anonymous Device Identifier, OAID，以下简称OAID）：是一种非永久性设备标识符，基于开放匿名设备标识符，可在保护用户个人数据隐私安全的前提下，向用户提供个性化广告，同时三方监测平台也可以向广告主提供转化归因分析。
+开放匿名设备标识符（Open Anonymous Device Identifier, 以下简称OAID）是一种非永久性设备标识符。基于OAID，可以在保护用户个人数据隐私安全的前提下，向用户提供个性化广告，同时第三方监测平台也可以向广告主提供转化归因分析。
 
-媒体App、广告平台、三方监测平台等开发者，可获取设备上的OAID，您可基于OAID进行个性化广告推荐或广告转化归因分析。
+媒体应用、广告平台、第三方监测平台等开发者可以获取设备上的OAID，基于OAID进行个性化广告推荐或广告转化归因分析。
 
 OAID是基于华为自有算法生成的32位类UUID（Universally Unique Identifier）标识符，格式为xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx。
 
@@ -28,10 +28,10 @@ OAID会在下述场景中发生变化：
 | <!--Del-->[<!--DelEnd-->getOAID<!--Del-->](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid-1)<!--DelEnd-->(callback:&nbsp;AsyncCallback&lt;string&gt;):&nbsp; void | 获取OAID，通过Callback回调返回值。 |
 
 > **说明：**
-> 如调用getOAID接口需要申请ohos.permission.APP_TRACKING_CONSENT权限，并获取用户授权。存在如下三种情况：<br/>
-> 1.如应用已配置ohos.permission.APP_TRACKING_CONSENT权限，且跨应用关联访问权限为“允许”，并返回OAID。<br/>
-> 2.如应用已配置ohos.permission.APP_TRACKING_CONSENT权限，且跨应用关联访问权限为“禁止”，则返回00000000-0000-0000-0000-000000000000。<br/>
-> 3.如应用未配置ohos.permission.APP_TRACKING_CONSENT权限，则返回00000000-0000-0000-0000-000000000000。
+> 调用getOAID接口需要申请ohos.permission.APP_TRACKING_CONSENT权限并获取用户授权，存在以下三种情况：<br/>
+> 1.如果应用已配置ohos.permission.APP_TRACKING_CONSENT权限，且跨应用关联访问权限为“允许”，则返回OAID。<br/>
+> 2.如果应用已配置ohos.permission.APP_TRACKING_CONSENT权限，且跨应用关联访问权限为“禁止”，则返回00000000-0000-0000-0000-000000000000。<br/>
+> 3.如果应用未配置ohos.permission.APP_TRACKING_CONSENT权限，则返回00000000-0000-0000-0000-000000000000。
 
 
 ### 开发步骤

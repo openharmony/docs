@@ -2,9 +2,8 @@
 
 ## 场景介绍
 
-OAID会在下述场景中发生变化：
-- 系统应用将bundleName配置到设备侧系统目录中，文件路径：etc/advertising/oaid/oaid_service_config.json，配置方式：用英文逗号隔开，添加到数组末尾。即可主动调用resetOAID()接口重置OAID。
-下面为系统应用开发者给出重置OAID的开发指导。
+OAID会在以下场景中发生变化：
+- 系统应用将`bundleName`配置到设备侧系统目录中，文件路径为`etc/advertising/oaid/oaid_service_config.json`。配置方式为：用英文逗号隔开，添加到数组末尾。配置完成后，可主动调用`resetOAID()`接口重置OAID。
 
 ## 接口说明
 
@@ -15,7 +14,7 @@ OAID会在下述场景中发生变化：
 
 ## 开发步骤
 
-1. 在模块的module.json5文件中，申请跨应用关联权限[ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all-user.md#ohospermissionapp_tracking_consent)。示例代码如下所示：
+1. 在模块的module.json5文件中，申请跨应用关联权限[ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all-user.md#ohospermissionapp_tracking_consent)。示例如下：
     ```ts
     {
       "module": {
@@ -34,7 +33,7 @@ OAID会在下述场景中发生变化：
       }
     }
     ```
-    在应用启动时触发动态授权弹框，向用户请求授权。其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md)。示例代码如下所示：
+    应用启动时触发动态授权弹框，请求用户授权。获取context的方式参见[各类Context的获取方式](../../application-models/application-context-stage.md)。示例代码如下：
     ```ts
     import { abilityAccessCtrl, PermissionRequestResult } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -57,7 +56,7 @@ OAID会在下述场景中发生变化：
     }
     ```
 
-2. 调用resetOAID方法重置OAID信息，此接口为系统接口。示例代码如下所示：
+2. 调用resetOAID方法重置OAID信息。示例代码如下所示：
     ```ts
     import { identifier } from '@kit.AdsKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
