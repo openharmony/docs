@@ -28,8 +28,8 @@
 
 > **注意**
 >
-> 1. URI不建议自行拼接，避免因URI与PATH转换存在编解码而导致拼接的URI后续使用异常。
-> 2. 推荐使用系统提供的接口能力获取URI，如[getUriFromPath接口](../reference/apis-core-file-kit/js-apis-file-fileuri.md#fileuri.geturifrompath)。
+> 1. 因URI处理涉及编解码，系统无法保证应用自行拼接的URI地址的可用性。
+> 2. 推荐使用系统提供的接口获取URI，如[getUriFromPath接口](../reference/apis-core-file-kit/js-apis-file-fileuri.md#fileuri.geturifrompath)。
 
 ## 相关实例
 
