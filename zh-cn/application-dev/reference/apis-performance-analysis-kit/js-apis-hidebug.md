@@ -324,7 +324,7 @@ dumpJsHeapData(filename: string) : void
 
 > **注意：**
 >
-> 由于虚拟机堆导出极其耗时，建议不要在上架版本中调用该接口，以避免应用卡死、闪退，影响用户体验。
+> 由于虚拟机堆导出极其耗时，且该接口为同步接口，建议不要在上架版本中调用该接口，以避免应用卡死，影响用户体验。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -901,12 +901,12 @@ try {
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称      | 类型   | 必填 | 说明         |
-| --------- | ------ | ---- | ------------ |
-| rssLimit    | bigint |  是  | 应用进程的驻留集的限制，以KB为单位。     |
-| vssLimit  | bigint |  是  | 进程的虚拟内存限制，以KB为单位。       |
-| vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制，以KB为单位。 |
-| vmTotalHeapSize | bigint |  是  | 当前进程的 JS 堆内存大小限制，以KB为单位。  |
+| 名称      | 类型   | 只读 | 可选 | 说明         |
+| --------- | ------ | --|----| ------------ |
+| rssLimit    | bigint |  否  | 否  | 应用进程的驻留集的限制，以KB为单位。     |
+| vssLimit  | bigint |  否  | 否  | 进程的虚拟内存限制，以KB为单位。       |
+| vmHeapLimit | bigint |  否  | 否  | 当前线程的 JS VM 堆大小限制，以KB为单位。 |
+| vmTotalHeapSize | bigint |  否  | 否  | 当前进程的 JS 堆内存大小限制，以KB为单位。  |
 
 ## VMMemoryInfo<sup>12+</sup>
 
@@ -914,11 +914,11 @@ VM内存信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称               | 类型    | 可读 | 可写 | 说明                                |
-| -------------------| ------- | ---- | ---- | ---------------------------------- |
-| totalHeap          | bigint  | 是   | 否   | 表示当前虚拟机的堆总大小，以KB为单位。     |
-| heapUsed           | bigint  | 是   | 否   | 表示当前虚拟机使用的堆大小，以KB为单位。    |
-| allArraySize       | bigint  | 是   | 否   | 表示当前虚拟机的所有数组对象大小，以KB为单位。 |
+| 名称               | 类型    | 只读 | 可选 | 说明                                |
+| -------------------| ------- | ---|----| ---------------------------------- |
+| totalHeap          | bigint  | 否  | 否  | 表示当前虚拟机的堆总大小，以KB为单位。     |
+| heapUsed           | bigint  | 否  | 否  | 表示当前虚拟机使用的堆大小，以KB为单位。    |
+| allArraySize       | bigint  | 否  | 否  | 表示当前虚拟机的所有数组对象大小，以KB为单位。 |
 
 ## ThreadCpuUsage<sup>12+</sup>
 
@@ -926,10 +926,10 @@ VM内存信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称               | 类型    | 可读 | 可写 | 说明                                |
-| -------------------| ------- | ---- | ---- | ----------------------------------- |
-| threadId           | number  | 是   | 否   | 线程号。      |
-| cpuUsage           | number  | 是   | 否   | 线程CPU使用率。 |
+| 名称               | 类型    | 只读 | 可选 | 说明                                |
+| -------------------| ------- |----|----| ----------------------------------- |
+| threadId           | number  | 否  | 否  | 线程号。      |
+| cpuUsage           | number  | 否  | 否  | 线程CPU使用率。 |
 
 ## hidebug.tags<sup>12+</sup>
 
@@ -982,15 +982,15 @@ VM内存信息。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称      | 类型   | 必填 | 说明                                                                             |
-| --------- | ------ | ---- |--------------------------------------------------------------------------------|
-| pss  | bigint |  是  | 实际占用的物理内存大小(比例分配共享库占用的内存)，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Pss + SwapPss。 |
-| vss  | bigint |  是  | 占用的虚拟内存大小(包括共享库所占用的内存)，以KB为单位，计算方式：/proc/{pid}/statm: size * 4。                |
-| rss  | bigint |  是  | 实际占用的物理内存大小(包括共享库占用)，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Rss。                |
-| sharedDirty  | bigint |  是  | 共享脏内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Shared_Dirty。                    |
-| privateDirty  | bigint |  是  | 私有脏内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Private_Dirty。                   |
-| sharedClean  | bigint |  是  | 共享净内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Shared_Clean。                    |
-| privateClean  | bigint |  是  | 私有干净内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Private_Clean。                  |
+| 名称      | 类型   | 只读  | 可选 | 说明                                                                             |
+| --------- | ------ | --|----|--------------------------------------------------------------------------------|
+| pss  | bigint |  否  | 否  | 实际占用的物理内存大小(比例分配共享库占用的内存)，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Pss + SwapPss。 |
+| vss  | bigint |  否  | 否  | 占用的虚拟内存大小(包括共享库所占用的内存)，以KB为单位，计算方式：/proc/{pid}/statm: size * 4。                |
+| rss  | bigint |  否  | 否  | 实际占用的物理内存大小(包括共享库占用)，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Rss。                |
+| sharedDirty  | bigint |  否  | 否  | 共享脏内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Shared_Dirty。                    |
+| privateDirty  | bigint |  否  | 否  | 私有脏内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Private_Dirty。                   |
+| sharedClean  | bigint |  否  | 否  | 共享净内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Shared_Clean。                    |
+| privateClean  | bigint |  否  | 否  | 私有干净内存大小，以KB为单位，计算方式：/proc/{pid}/smaps_rollup: Private_Clean。                  |
 
 ## SystemMemInfo<sup>12+</sup>
 
@@ -998,11 +998,11 @@ VM内存信息。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称      | 类型   | 必填 | 说明                                              |
-| --------- | ------ | ---- |-------------------------------------------------|
-| totalMem  | bigint |  是  | 系统总的内存，以KB为单位，计算方式：/proc/meminfo: MemTotal      |
-| freeMem  | bigint |  是  | 系统空闲的内存，以KB为单位，计算方式：/proc/meminfo: MemFree      |
-| availableMem  | bigint |  是  | 系统可用的内存，以KB为单位，计算方式：/proc/meminfo: MemAvailable |
+| 名称      | 类型   | 只读  | 可选 | 说明                                              |
+| --------- | ------ | ---- |---- |-------------------------------------------------|
+| totalMem  | bigint |  否  |   否  |系统总的内存，以KB为单位，计算方式：/proc/meminfo: MemTotal      |
+| freeMem  | bigint |  否  |   否  |系统空闲的内存，以KB为单位，计算方式：/proc/meminfo: MemFree      |
+| availableMem  | bigint |  否  |   否  |系统可用的内存，以KB为单位，计算方式：/proc/meminfo: MemAvailable |
 
 ## TraceFlag<sup>12+</sup>
 

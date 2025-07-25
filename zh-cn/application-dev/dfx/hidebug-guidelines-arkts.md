@@ -1,24 +1,24 @@
 # HiDebug接口使用示例(ArkTS)
 
-HiDebug ArkTS接口功能相对比较独立，在需要获取调试信息时直接调用即可，具体接口的调用方式请参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)中的示例。
+HiDebug ArkTS接口功能独立，需要获取调试信息时直接调用。具体调用方式请参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)中的示例。
 
 ## 开发示例
 
-本文以获取系统CPU使用率为例展示如何在工程中调用HiDebug ArkTS接口。
+本文以获取系统CPU使用率为例，展示如何调用HiDebug ArkTS接口。
 
-1. 使用DevEco Studio新建一个工程，选择“Empty Ability”。
+1. 使用DevEco Studio新建工程，选择“Empty Ability”。
 
-2. 在Project窗口单击entry > src > main > ets > pages，打开工程中的Index.ets文件并编辑：
+2. 在Project窗口单击entry > src > main > ets > pages，打开并编辑Index.ets文件：
 
-   ```
-   import { JSON } from '@kit.ArkTS';
-   import { hidebug } from '@kit.PerformanceAnalysisKit'
+   ```typescript
+   import { hidebug } from '@kit.PerformanceAnalysisKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    function testHiDebugArk() {  // 按照需要调用的接口实现
      try {
        let ret = hidebug.getSystemCpuUsage();
        console.info(`TestTag getSystemCpuUsage: ${ret}`);
-     } catch (err) {
+     } catch (error) {
        console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
      } 
    }
@@ -47,10 +47,10 @@ HiDebug ArkTS接口功能相对比较独立，在需要获取调试信息时直�
    }
    ```
 
-3. 点击运行，在设备上点击“testHiDebugArk”按钮，触发接口调用。
+3. 点击运行，然后在设备上点击“testHiDebugArk”按钮，触发接口调用。
 
-4. 若接口调用存在日志输出，在DevEco Studio的底部，切换到“Log”窗口，即可查看接口调用的相关日志。
+4. 若接口调用存在日志输出，在DevEco Studio的底部，切换到“Log”窗口，即可查看相关日志。
 
-   ```
+   ```Text
    06-02 16:53:22.538   31077-31077   A03D00/com.exa...ication/JSAPP  com.examp...lication  I     TestTag getSystemCpuUsage: 0.09963547995139732
    ```
