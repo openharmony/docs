@@ -3231,18 +3231,22 @@
           - [SendableResource](reference/apis-localization-kit/js-apis-sendableResource.md)
       - C APIs<!--localization-c-->
         - Modules<!--localization-module-->
-          - [Rawfile](reference/apis-localization-kit/rawfile.md)
-          - [Resourcemanager](reference/apis-localization-kit/resourcemanager.md)
+          - [rawfile](reference/apis-localization-kit/capi-rawfile.md)
+          - [resourcemanager](reference/apis-localization-kit/capi-resourcemanager.md)
         - Header Files<!--localization-headerfile-->
-          - [raw_dir.h](reference/apis-localization-kit/raw__dir_8h.md)
-          - [raw_file_manager.h](reference/apis-localization-kit/raw__file__manager_8h.md)
-          - [raw_file.h](reference/apis-localization-kit/raw__file_8h.md)
-          - [ohresmgr.h](reference/apis-localization-kit/ohresmgr_8h.md)
-          - [resmgr_common.h](reference/apis-localization-kit/resmgr__common_8h.md)
+          - [ohresmgr.h](reference/apis-localization-kit/capi-ohresmgr-h.md)
+          - [raw_dir.h](reference/apis-localization-kit/capi-raw-dir-h.md)
+          - [raw_file.h](reference/apis-localization-kit/capi-raw-file-h.md)
+          - [raw_file_manager.h](reference/apis-localization-kit/capi-raw-file-manager-h.md)
+          - [resmgr_common.h](reference/apis-localization-kit/capi-resmgr-common-h.md)
         - Structs<!--localization-struct-->
-          - [RawFileDescriptor](reference/apis-localization-kit/_raw_file_descriptor.md)
-          - [RawFileDescriptor64](reference/apis-localization-kit/_raw_file_descriptor64.md)
-          - [ResourceManager_Configuration](reference/apis-localization-kit/_resource_manager___configuration.md)
+          - [RawDir](reference/apis-localization-kit/capi-rawfile-rawdir.md)
+          - [RawFileDescriptor](reference/apis-localization-kit/capi-rawfile-rawfiledescriptor.md)
+          - [RawFileDescriptor64](reference/apis-localization-kit/capi-rawfile-rawfiledescriptor64.md)
+          - [RawFile](reference/apis-localization-kit/capi-rawfile-rawfile.md)
+          - [RawFile64](reference/apis-localization-kit/capi-rawfile-rawfile64.md)
+          - [NativeResourceManager](reference/apis-localization-kit/capi-rawfile-nativeresourcemanager.md)
+          - [ResourceManager_Configuration](reference/apis-localization-kit/capi-resourcemanager-resourcemanager-configuration.md)
       - Error Codes<!--localization-arkts-errcode-->
         - [I18n Error Codes](reference/apis-localization-kit/errorcode-i18n.md)
         - [Resource Manager Error Codes](reference/apis-localization-kit/errorcode-resource-manager.md)
