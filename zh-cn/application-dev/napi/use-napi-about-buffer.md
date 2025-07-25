@@ -46,8 +46,13 @@ static napi_value CreateBuffer(napi_env env, napi_callback_info info)
     // 调用napi_create_buffer接口创建并获取一个指定大小的ArkTS Buffer
     napi_create_buffer(env, bufferSize, &bufferPtr, &buffer);
     // 将字符串str的值复制到buffer的内存中
-    strcpy((char *)bufferPtr, str.data());
-    memcpy(bufferPtr, str.data(), bufferSize);
+    if (bufferSize >= str.size() + 1) {
+      strcpy((char*)bufferPtr, str.data());
+    } else {
+      // 处理错误：缓冲区不足
+      napi_throw_error(env, nullptr, "Buffer size is not enough");
+      return nullptr;
+    }
     return buffer;
 }
 ```
