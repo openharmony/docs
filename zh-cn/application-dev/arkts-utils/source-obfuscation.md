@@ -49,7 +49,7 @@ class A2 {
 }
 
 function test(input: A1) {
-  console.log(input.prop1);
+  console.info(input.prop1);
 }
 
 let a2 = new A2();
@@ -68,7 +68,7 @@ class A2 {
 }
 
 function test(input: A1) {
-  console.log(input.prop1);
+  console.info(input.prop1);
 }
 
 let a2 = new A2();
@@ -361,7 +361,7 @@ let params = obj['ohos.want.action.home'];
   ```
   // 混淆前：
   if (flag) {
-    console.log("hello");
+    console.info("hello");
   }
   ```
 
@@ -376,20 +376,20 @@ let params = obj['ohos.want.action.home'];
 1. 文件顶层的调用。  
    例如：
    ```js
-   console.log("in tolevel");
+   console.info("in tolevel");
    ```
 2. 代码块中的调用。  
    例如：
    ```
    function foo() {
-    console.log('in block');
+    console.info('in block');
    }
    ```
 3. module或namespace中的调用。  
    例如：
    ```
    namespace ns {
-    console.log('in ns');
+    console.info('in ns');
    }
    ```
 4. switch语句中的调用。  
@@ -397,7 +397,7 @@ let params = obj['ohos.want.action.home'];
    ```js
    switch (value) {
      case 1:
-       console.log("in switch case");
+       console.info("in switch case");
        break;
      default:
        console.warn("default");
