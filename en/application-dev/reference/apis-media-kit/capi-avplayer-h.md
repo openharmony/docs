@@ -575,7 +575,7 @@ Sets the audio stream type for an AVPlayer.
 | Parameter| Description|
 | -- | -- |
 | [OH_AVPlayer](capi-oh-avplayer.md) *player | Pointer to the **OH_AVPlayer** instance.|
-| [OH_AudioStream_Usage](../apis-audio-kit/_o_h_audio.md#oh_audiostream_usage) streamUsage | Audio stream type.|
+| [OH_AudioStream_Usage](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage) streamUsage | Audio stream type.|
 
 **Returns**
 
@@ -603,7 +603,7 @@ Sets the audio volume mode for an AVPlayer.
 | Parameter| Description|
 | -- | -- |
 | [OH_AVPlayer](capi-oh-avplayer.md) *player | Pointer to the **OH_AVPlayer** instance.|
-| [OH_AudioStream_VolumeMode](../apis-audio-kit/native__audiostream__base_8h.md) volumeMode | Volume mode of the audio stream.|
+| [OH_AudioStream_VolumeMode](../apis-audio-kit/capi-native-audiostream-base-h.md) volumeMode | Volume mode of the audio stream.|
 
 **Returns**
 
@@ -631,7 +631,7 @@ Sets the audio interruption mode for an AVPlayer.
 | Parameter| Description|
 | -- | -- |
 | [OH_AVPlayer](capi-oh-avplayer.md) *player | Pointer to the **OH_AVPlayer** instance.|
-| [OH_AudioInterrupt_Mode](../apis-audio-kit/_o_h_audio.md#oh_audiointerrupt_mode) interruptMode | Audio interruption mode.|
+| [OH_AudioInterrupt_Mode](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiointerrupt_mode) interruptMode | Audio interruption mode.|
 
 **Returns**
 
@@ -659,7 +659,7 @@ Sets the audio effect mode for an AVPlayer.
 | Parameter| Description|
 | -- | -- |
 | [OH_AVPlayer](capi-oh-avplayer.md) *player | Pointer to the **OH_AVPlayer** instance.|
-| [OH_AudioStream_AudioEffectMode](../apis-audio-kit/_o_h_audio.md#oh_audiostream_audioeffectmode) effectMode | Audio effect mode.|
+| [OH_AudioStream_AudioEffectMode](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_audioeffectmode) effectMode | Audio effect mode.|
 
 **Returns**
 
