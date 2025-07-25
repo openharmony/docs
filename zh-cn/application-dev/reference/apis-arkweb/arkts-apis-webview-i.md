@@ -170,7 +170,7 @@ WebViewController与Web组件的绑定状态。
 | ----------- | ------ | -----|------|------------------- |
 | errCode | WebBlanklessErrorCode | 否   | 否   | 无白屏加载的异常错误码，见[WebBlanklessErrorCode](./arkts-apis-webview-e.md#webblanklesserrorcode20)定义。 |
 | similarity | number | 否   | 否   | 首屏相似度，根据历史加载首屏内容计算相似度，范围为0~1.0，1.0表示完全一致，数值越接近1，相似度越高。该值存在滞后性，本地加载的相似性将在下次加载时才可反映。建议当相似度较低时，应用不启用无白屏加载插帧方案。 |
-| loadingTime | int | 否   | 否   | 根据历史加载首屏耗时预测本次加载耗时，单位ms，取值范围需大于0。 |
+| loadingTime | number | 否   | 否   | 根据历史加载首屏耗时预测本次加载耗时，单位ms，取值范围需大于0。 |
 
 ## HistoryItem
 
