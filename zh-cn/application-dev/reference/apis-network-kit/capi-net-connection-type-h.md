@@ -41,6 +41,17 @@
 | [NetConn_NetBearerType](#netconn_netbearertype) | NetConn_NetBearerType | 网络载体类型。 |
 | [NetConn_ErrorCode](#netconn_errorcode) | NetConn_ErrorCode | 网络连接返回值错误码。 |
 
+### 宏定义
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| **NETCONN_MAX_NET_SIZE** | 32 | 
+| **NETCONN_MAX_BEARER_TYPE_SIZE** | 32 | 
+| **NETCONN_MAX_CAP_SIZE** | 32 | 
+| **NETCONN_MAX_ADDR_SIZE** | 32 | 
+| **NETCONN_MAX_ROUTE_SIZE** | 64 | 
+| **NETCONN_MAX_EXCLUSION_SIZE** | 256 | 
+| **NETCONN_MAX_STR_LEN** | 256 | 
 
 ### 函数
 
