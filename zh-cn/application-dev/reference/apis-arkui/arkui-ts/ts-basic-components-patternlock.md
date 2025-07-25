@@ -315,7 +315,7 @@ setChallengeResult(result: PatternLockChallengeResult): void
 @Entry
 @Component
 struct PatternLockExample {
-  @State passwords: Number[] = [];
+  @State passwords: number[] = [];
   @State message: string = 'please input password!';
   private patternLockController: PatternLockController = new PatternLockController();
 
@@ -356,7 +356,7 @@ import { LengthUnit } from '@kit.ArkUI';
 @Entry
 @Component
 struct PatternLockExample {
-  @State passwords: Number[] = [];
+  @State passwords: number[] = [];
   @State message: string = 'please input password!';
   private patternLockController: PatternLockController = new PatternLockController();
 
