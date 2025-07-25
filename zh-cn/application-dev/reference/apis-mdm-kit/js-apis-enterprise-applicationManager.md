@@ -183,7 +183,7 @@ try {
 
 addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-为当前用户添加开机自启动应用名单。通过本接口添加至自启动名单的应用，禁止用户取消应用自启动。可通过[removeAutoStartApps](js-apis-enterprise-applicationManager.md#applicationManager.removeautostartapps)，[removeAutoStartApps（API20）](js-apis-enterprise-applicationManager.md#applicationManager.removeautostartapps20)接口将应用从自启动名单中移除。该能力当前仅支持PC/2in1设备。
+为当前用户添加开机自启动应用名单。通过本接口添加至自启动名单的应用，禁止用户取消应用自启动。可通过[removeAutoStartApps](js-apis-enterprise-applicationManager.md#applicationManager.removeautostartapps)，[removeAutoStartApps（API20）](js-apis-enterprise-applicationManager.md#applicationManager.removeautostartapps20)接口将应用从自启动名单中移除。该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -293,7 +293,7 @@ try {
 
 getAutoStartApps(admin: Want): Array\<Want>
 
-查询当前用户开机自启动应用名单。该能力当前仅支持PC/2in1设备。
+查询当前用户开机自启动应用名单。该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -346,7 +346,7 @@ try {
 
 addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, disallowModify: boolean): void
 
-为指定用户添加开机自启动应用名单，并设置是否禁止该用户取消应用自启动。该接口当前仅支持PC/2in1设备。<br>通过本接口、[addAutoStartApps（API12）](js-apis-enterprise-applicationManager.md#applicationManager.addautostartapps)接口均可添加开机自启动应用名单，两个接口设置的应用自启动名单可同时生效。同一用户下，开机自启动应用名单最多支持包含10个应用。例如：若当前已通过[addAutoStartApps（API12）](js-apis-enterprise-applicationManager.md#applicationManager.addautostartapps)接口添加3个应用，则最多还能通过本接口为当前用户添加7个应用。
+为指定用户添加开机自启动应用名单，并设置是否禁止该用户取消应用自启动。该接口仅在PC/2in1设备上生效。<br>通过本接口、[addAutoStartApps（API12）](js-apis-enterprise-applicationManager.md#applicationManager.addautostartapps)接口均可添加开机自启动应用名单，两个接口设置的应用自启动名单可同时生效。同一用户下，开机自启动应用名单最多支持包含10个应用。例如：若当前已通过[addAutoStartApps（API12）](js-apis-enterprise-applicationManager.md#applicationManager.addautostartapps)接口添加3个应用，则最多还能通过本接口为当前用户添加7个应用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -361,7 +361,7 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, di
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                         |
 | autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用名单。Want需要传入bundleName和abilityName，同一用户下数组总长度不能超过10。例如：如果名单中已有5个应用，则最多再通过本接口设置5个。 |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
-| disallowModify | boolean | 是   | true禁止用户取消自启动，false允许用户取消自启动。<br>配置后，用户可通过设置-应用和元服务-应用启动管理，管理应用的自启。 |
+| disallowModify | boolean | 是   | true禁止用户取消自启动，false允许用户取消自启动。<br>配置后，用户可通过设置-应用和元服务-应用启动管理，管理应用的自启动。 |
 
 **错误码**：
 
@@ -405,7 +405,7 @@ try {
 
 removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number): void
 
-删除指定用户的开机自启动应用名单。该能力当前仅支持PC/2in1设备。
+删除指定用户的开机自启动应用名单中的指定应用。该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -463,7 +463,7 @@ try {
 
 getAutoStartApps(admin: Want, accountId: number): Array\<Want>
 
-查询指定用户的开机自启动应用名单。该能力当前仅支持PC/2in1设备。
+查询指定用户下的开机自启动应用名单。该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -518,7 +518,7 @@ try {
 
 isModifyAutoStartAppsDisallowed(admin: Want, autoStartApp: Want, accountId: number): boolean
 
-查询指定用户是否禁止取消应用自启动。该能力当前仅支持PC/2in1设备。
+查询指定用户是否禁止取消应用自启动。该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -580,7 +580,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): void
 
-添加保活应用，通过本接口添加后，禁止用户取消保活，当前仅支持PC/2in1设备。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
+添加保活应用，通过本接口添加后，禁止用户取消保活，该接口仅在PC/2in1设备上生效。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -650,7 +650,7 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, di
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | bundleNames    | Array&lt;string&gt;                                     | 是   | 应用包名数组，指定需要添加保活的应用，最大支持5个。                                   |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
-| disallowModify | boolean | 是   | true表示禁止用户取消保活，false表示允许用户取消保活。<br>配置后，ToB版本用户可在设置-应用和元服务-应用常驻管理中查看和修改 |
+| disallowModify | boolean | 是   | true表示禁止用户取消保活，false表示允许用户取消保活。<br>配置后，ToB版本用户可在设置-应用和元服务-应用常驻管理中查看和修改。 |
 
 **错误码**：
 
@@ -691,7 +691,7 @@ try {
 
 removeKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): void
 
-移除保活应用，当前仅支持PC/2in1设备。
+移除保活应用，该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -744,7 +744,7 @@ try {
 
 getKeepAliveApps(admin: Want, accountId: number): Array&lt;string>
 
-获取保活应用包名，当前仅支持PC/2in1设备。
+获取保活应用包名，该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
