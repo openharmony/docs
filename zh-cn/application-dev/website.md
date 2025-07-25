@@ -4796,6 +4796,8 @@
           - [Interface (CameraOutput)](reference/apis-camera-kit/arkts-apis-camera-CameraOutput.md)
           - [Interface (ColorManagement)](reference/apis-camera-kit/arkts-apis-camera-ColorManagement.md)
           - [Interface (ColorManagementQuery)](reference/apis-camera-kit/arkts-apis-camera-ColorManagementQuery.md)
+          - [Interface (ControlCenter)](reference/apis-camera-kit/arkts-apis-camera-ControlCenter.md)
+          - [Interface (ControlCenterQuery)](reference/apis-camera-kit/arkts-apis-camera-ControlCenterQuery.md)
           - [Interface (Flash)](reference/apis-camera-kit/arkts-apis-camera-Flash.md)
           - [Interface (FlashQuery)](reference/apis-camera-kit/arkts-apis-camera-FlashQuery.md)
           - [Interface (Focus)](reference/apis-camera-kit/arkts-apis-camera-Focus.md)
