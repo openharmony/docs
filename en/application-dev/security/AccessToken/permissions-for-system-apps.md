@@ -5075,4 +5075,4 @@ Allows an application to access the sandbox directories of other extended applic
 
 **Supported devices**：General
 
-**Valid since**: 20
+**Valid since**: 19
