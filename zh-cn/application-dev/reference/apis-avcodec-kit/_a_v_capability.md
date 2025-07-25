@@ -60,6 +60,7 @@ AVCapability模块提供用于编解码能力查询的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderQualityRange](#oh_avcapability_getencoderqualityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*qualityRange) | 获取编码器支持的质量范围。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderComplexityRange](#oh_avcapability_getencodercomplexityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*complexityRange) | 获取编码器支持的编码器复杂性范围。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetAudioSupportedSampleRates](#oh_avcapability_getaudiosupportedsamplerates) (OH_AVCapability \*capability, const int32_t \*\*sampleRates, uint32_t \*sampleRateNum) | 获取音频编解码器支持的采样率。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetAudioSupportedSampleRateRanges](#oh_avcapability_getaudiosupportedsamplerateranges) (OH_AVCapability \*capability, OH_AVRange \*\*sampleRateRanges, uint32_t \*rangesNum) | 获取音频编解码器支持的采样率范围。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetAudioChannelCountRange](#oh_avcapability_getaudiochannelcountrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*channelCountRange) | 获取音频编解码器支持的音频通道计数范围。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoWidthAlignment](#oh_avcapability_getvideowidthalignment) (OH_AVCapability \*capability, int32_t \*widthAlignment) | 获取视频编解码器支持的视频宽度对齐。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoHeightAlignment](#oh_avcapability_getvideoheightalignment) (OH_AVCapability \*capability, int32_t \*heightAlignment) | 获取视频编解码器支持的视频高度对齐。  | 
@@ -265,6 +266,37 @@ OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates (OH_AVCapability *capa
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
 当能力实例无效，或者指向采样率数组的指针为空指针，或者指向采样率数组的元素数目的指针为空指针，返回AV_ERR_INVALID_VAL。 当遇到未知错误，返回AV_ERR_UNKNOWN。 当内部使用内存分配失败，返回AV_ERR_NO_MEMORY。
+
+
+### OH_AVCapability_GetAudioSupportedSampleRateRanges()
+
+```
+OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRateRanges (OH_AVCapability *capability, OH_AVRange **sampleRateRanges, uint32_t *rangesNum)
+```
+**描述**
+获取音频编解码器支持的采样率范围。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| capability | 音频编解码能力指针。不能填入视频编解码器能力指针。  | 
+| sampleRateRanges | 输出参数。指向采样率范围数组的指针。  | 
+| rangesNum | 输出参数。采样率范围数组的元素数目。  | 
+
+**返回：**
+
+如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+当能力实例无效，或者指向采样率范围数组的指针为空指针，或者指向采样率范围数组的元素数目的指针为空指针，返回AV_ERR_INVALID_VAL。
+
+当遇到未知错误，返回AV_ERR_UNKNOWN。
+
+当内部使用内存分配失败，返回AV_ERR_NO_MEMORY。
 
 
 ### OH_AVCapability_GetEncoderBitrateRange()
