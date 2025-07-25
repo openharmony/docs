@@ -16,6 +16,7 @@
 * 当属性字符串和[Text](./ts-basic-components-text.md)子组件冲突时，属性字符串优先级高，即当Text组件中绑定了属性字符串，忽略Text组件下包含[Span](./ts-basic-components-span.md)等子组件的情况。
 * 不支持@State修饰。
 * 建议将StyledString定义为成员变量，从而避免应用退后台后被销毁。
+* 不支持在[loadContent()](../js-apis-window.md#loadcontent9)之前创建。
 
 ## StyledString
 
