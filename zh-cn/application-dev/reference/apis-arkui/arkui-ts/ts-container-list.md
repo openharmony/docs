@@ -298,7 +298,7 @@ sticky(value: StickyStyle)
 
 > **说明：** 
 >
-> 由于浮点数计算精度，设置sticky后，在List滑动过程中小概率产生缝隙，可以通过[pixelRound](ts-universal-attributes-pixelRound.md#pixelround)指定当前组件向下像素取整解决该问题。
+> 由于浮点数计算精度，设置sticky后，在List滑动过程中小概率产生缝隙，可以通过[pixelRound](ts-universal-attributes-pixelRoundForComponent.md#pixelround)指定当前组件向下像素取整解决该问题。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
