@@ -2,8 +2,7 @@
 
 ## 概述
 
-定义所有预定义事件的事件名称。除了与特定应用关联的自定义事件之外，开发者还可以使用预定义事件进行打点。示例代码:<br>\<pre>ParamList list = OH_HiAppEvent_CreateParamList();<br>OH_HiAppEvent_AddInt32Param(list, PARAM_USER_ID, 123);<br>int res = OH_HiAppEvent_Write("user_domain", EVENT_USER_LOGIN, BEHAVIOR, list);<br>OH_HiAppEvent_DestroyParamList(list);\</pre>
-
+定义所有预定义事件的事件名称。除了与特定应用关联的自定义事件之外，开发者还可以使用预定义事件进行打点。
 **引用文件：** &lt;hiappevent/hiappevent_event.h&gt;
 
 **库：** libhiappevent_ndk.z.so

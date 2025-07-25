@@ -2,7 +2,7 @@
 
 ## 概述
 
-定义事件打点配置函数的所有配置项名称。如果开发者想要对应用事件打点功能进行配置，开发者可以直接使用配置项常量。示例代码:\<pre>bool res = OH_HiAppEvent_Configure(MAX_STORAGE, "100M");\</pre>
+定义事件打点配置函数的所有配置项名称。如果开发者想要对应用事件打点功能进行配置，开发者可以直接使用配置项常量。
 
 **引用文件：** &lt;hiappevent/hiappevent_cfg.h&gt;
 
