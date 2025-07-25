@@ -70,7 +70,7 @@ function destroy() : void {
 ```
 
 ## Shader
-着色器，继承自[SceneResource](#sceneresource)。
+着色器，继承自[SceneResource](#sceneresource-1)。
 
 ### 属性
 
@@ -125,7 +125,7 @@ function destroy() : void {
 | renderSortLayerOrder | number | 否 | 是 | 同一渲染图层内，不同物体的渲染顺序，数值越小，越先渲染。取值范围[0, 255]，默认值为0。|
 
 ## Material
-材质类型，继承自[SceneResource](#sceneresource)。
+材质类型，继承自[SceneResource](#sceneresource-1)。
 
 ### 属性
 
@@ -243,7 +243,7 @@ function destroy() : void {
 | targets | Record<string, number> | 是 | 否 | 用于存储所有形变目标的名称和对应的权重。权重值通常在[0.0, 1.0]范围内。 |
 
 ## Mesh
-网格类型，继承自[SceneResource](#sceneresource)。
+网格类型，继承自[SceneResource](#sceneresource-1)。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -255,12 +255,12 @@ function destroy() : void {
 | materialOverride | [Material](#material) | 否 | 是 | 材质，默认为空。 |
 
 ## MeshResource<sup>18+</sup>
-网格资源，继承自[SceneResource](#sceneresource)。
+网格资源，继承自[SceneResource](#sceneresource-1)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 ## Animation
-动画类型，继承自[SceneResource](#sceneresource)。
+动画类型，继承自[SceneResource](#sceneresource-1)。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -276,7 +276,7 @@ function destroy() : void {
 ### onFinished
 onFinished(callback: Callback\<void>): void
 
-动画播放结束时执行的的回调函数，动画播放完成或者finish操作会触发这个回调。
+动画播放结束时执行的回调函数，动画播放完成或者finish操作会触发这个回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -498,7 +498,7 @@ function finish() : void {
 | BACKGROUND_EQUIRECTANGULAR | 3 | 等距矩形背景。 |
 
 ## Environment
-环境类型，继承自[SceneResource](#sceneresource)。
+环境类型，继承自[SceneResource](#sceneresource-1)。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -514,7 +514,7 @@ function finish() : void {
 | irradianceCoefficients | [Vec3](js-apis-inner-scene-types.md#vec3)[] | 否 | 是 | 辐射系数，默认为undefined。 |
 
 ## Image
-图片类型，继承自[SceneResource](#sceneresource)。
+图片类型，继承自[SceneResource](#sceneresource-1)。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D

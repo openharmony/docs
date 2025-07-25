@@ -1,21 +1,30 @@
 # @ohos.app.ability.PhotoEditorExtensionAbility (Image Editing)
-The PhotoEditorExtensionAbility, which inherits from the [ExtensionAbility](js-apis-app-ability-extensionAbility.md), enables your application to provide an image editing page for applications that do not have the image editing capability. After an application uses [startAbilityByType](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start a vertical domain panel with available image editing applications that have implemented the PhotoEditorExtensionAbility, the user can select one of the applications on the panel to display an image editing page.
+The PhotoEditorExtensionAbility enables your application to provide an image editing page for applications that do not have the image editing capability. It inherits from the [ExtensionAbility](js-apis-app-ability-extensionAbility.md). After an application uses [startAbilityByType](js-apis-inner-application-uiAbilityContext.md#startability) to start a vertical domain panel with available image editing applications that have implemented the PhotoEditorExtensionAbility, the user can select one of the applications on the panel to display an image editing page.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > 
 > The APIs of this module can be used only in the stage model.
+
 ## Modules to Import
+
 ```ts
 import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 ```
-## Properties
+
+## PhotoEditorExtensionAbility
+
+### Properties
+
 **System capability**: SystemCapability.Ability.AppExtension.PhotoEditorExtension
+
 |  Name|Type  |Read Only  |Optional  |Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  context | [PhotoEditorExtensionContext](./js-apis-app-ability-photoEditorExtensionContext.md)  | No | Yes | Context. |
 
-## PhotoEditorExtensionAbility.onCreate
+### onCreate
+
 onCreate(): void
 
 Called to initialize the service logic when a PhotoEditorExtensionAbility is created.
@@ -38,10 +47,12 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 }
 
 ```
-## PhotoEditorExtensionAbility.onStartContentEditing
+
+### onStartContentEditing
+
 onStartContentEditing(uri: string, want: Want, session: UIExtensionContentSession): void
 
-Called when a **UIExtensionContentSession** instance is created for this PhotoEditorExtensionAbility. The instance can be used to read the original image and load a page.
+Called when a UIExtensionContentSession instance is created for this PhotoEditorExtensionAbility. The instance can be used to read the original image and load a page.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -69,7 +80,9 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 }
 
 ```
-## PhotoEditorExtensionAbility.onForeground
+
+### onForeground
+
 onForeground(): void
 
 Called when this PhotoEditorExtensionAbility is switched from the background to the foreground.
@@ -92,7 +105,9 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 }
 
 ```
-## PhotoEditorExtensionAbility.onBackground
+
+### onBackground
+
 onBackground(): void
 
 Called when this PhotoEditorExtensionAbility is switched from the foreground to the background.
@@ -115,7 +130,9 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 }
 
 ```
-## PhotoEditorExtensionAbility.onDestroy
+
+### onDestroy
+
 onDestroy(): void | Promise\<void>
 
 Called to clear resources when this PhotoEditorExtensionAbility is destroyed.

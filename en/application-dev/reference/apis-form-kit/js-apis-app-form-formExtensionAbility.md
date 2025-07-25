@@ -322,6 +322,12 @@ Called to notify the widget provider that the widget host is requesting the widg
 | -------- | -------- | -------- | -------- |
 | want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes| Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension.|
 
+**Return value**
+
+| Type                                                        | Description                                                       |
+| ------------------------------------------------------------ | ----------------------------------------------------------- |
+| [formInfo.FormState](js-apis-app-form-formInfo.md#formstate) | Enumerated values of the current widget status.|
+
 **Example**
 
 ```ts
@@ -356,6 +362,42 @@ import { FormExtensionAbility } from '@kit.FormKit';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onStop() {
     console.log(`FormExtensionAbility onStop`);
+  }
+}
+```
+
+### FormExtensionAbility.onFormLocationChanged<sup>20+</sup>
+
+onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation): void
+
+Called when the widget location changes.
+
+**Model restriction**: This API can be used only in the stage model.
+  
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| formId | string | Yes| Widget ID.|
+| newFormLocation | [formInfo.FormLocation](js-apis-app-form-formInfo.md#formlocation20) | Yes| Enumerated value of the latest widget location.|
+
+**Example**
+
+```ts
+import { formBindingData, FormExtensionAbility, formInfo } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+
+export default class EntryFormAbility extends FormExtensionAbility {
+  onAddForm(want: Want) {
+    let formData: Record<string, string | Object> = {
+      'data': 'addForm'
+    };
+    return formBindingData.createFormBindingData(formData);
+  }
+  onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation) {
+    console.info("EntryFormAbility onFormLocationChanged current location: " + newFormLocation);
   }
 }
 ```

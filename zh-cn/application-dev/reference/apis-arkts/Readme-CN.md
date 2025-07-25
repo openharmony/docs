@@ -4,7 +4,12 @@
   - [@arkts.collections (ArkTS容器集)](js-apis-arkts-collections.md)
   - [@arkts.lang (ArkTS语言基础能力)](js-apis-arkts-lang.md)
   - [@arkts.math.Decimal (高精度数学库Decimal)](js-apis-arkts-decimal.md)
-  - [@arkts.utils (ArkTS工具库)](js-apis-arkts-utils.md)
+  - @arkts.utils (ArkTS工具库)<!--js-apis-arkts-utils-->
+    - [模块描述](arkts-apis-arkts-utils.md)
+    - [Functions](arkts-apis-arkts-utils-f.md)
+    - [ArkTSUtils.locks](arkts-apis-arkts-utils-locks.md)
+    - [ArkTSUtils.ASON](arkts-apis-arkts-utils-ASON.md)
+    - [SendableLruCache<K, V>](arkts-apis-arkts-utils-SendableLruCache.md)
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (xml转换JavaScript)](js-apis-convertxml.md)
   - [@ohos.fastbuffer (线性容器FastBuffer)](js-apis-fastbuffer.md)

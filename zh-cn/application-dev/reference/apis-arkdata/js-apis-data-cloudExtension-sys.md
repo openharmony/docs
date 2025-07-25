@@ -1563,7 +1563,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 
 changeConfirmation(userId: number, bundleName: string, sharingResource: string, state: cloudData.sharing.State): Promise&lt;Result&lt;void&gt;&gt;
 
-更改端云共享邀请。更改共享邀请时，会指定当前更改共享邀请的应用、共享数据的的共享资源标识以及更改的状态,使用Promise异步回调。
+更改端云共享邀请。更改共享邀请时，会指定当前更改共享邀请的应用、共享数据的共享资源标识以及更改的状态，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 

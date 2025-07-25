@@ -33,7 +33,7 @@
 | [const char* OH_Utd_GetReferenceUrl(OH_Utd* pThis)](#oh_utd_getreferenceurl) | 获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)中的URL信息。        |
 | [const char* OH_Utd_GetIconFile(OH_Utd* pThis)](#oh_utd_geticonfile) | 获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)中的默认图标文件路径。 |
 | [const char** OH_Utd_GetBelongingToTypes(OH_Utd* pThis, unsigned int* count)](#oh_utd_getbelongingtotypes) | 获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)中的归属关系结果集。 |
-| [const char** OH_Utd_GetFilenameExtensions(OH_Utd* pThis, unsigned int* count)](#oh_utd_getfilenameextensions) | 获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)所关联的的文件名后缀结果集。 |
+| [const char** OH_Utd_GetFilenameExtensions(OH_Utd* pThis, unsigned int* count)](#oh_utd_getfilenameextensions) | 获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)所关联的文件名后缀结果集。 |
 | [const char** OH_Utd_GetMimeTypes(OH_Utd* pThis, unsigned int* count)](#oh_utd_getmimetypes) | 获取[OH_Utd](capi-udmf-oh-utd.md)所关联的MIME类型结果集。         |
 | [const char** OH_Utd_GetTypesByFilenameExtension(const char* extension, unsigned int* count)](#oh_utd_gettypesbyfilenameextension) | 通过文件名后缀获取关联的统一标准数据描述类型结果集。         |
 | [const char** OH_Utd_GetTypesByMimeType(const char* mimeType, unsigned int* count)](#oh_utd_gettypesbymimetype) | 通过MIME类型获取所关联的标准数据类型结果集。                 |
@@ -223,7 +223,7 @@ const char** OH_Utd_GetFilenameExtensions(OH_Utd* pThis, unsigned int* count)
 
 **描述**
 
-获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)所关联的的文件名后缀结果集。
+获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)所关联的文件名后缀结果集。
 
 **起始版本：** 12
 

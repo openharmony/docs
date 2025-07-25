@@ -8,9 +8,7 @@ Public API
 
 **Reason for Change**
 
-There are variations in the alignment of electronic components across different devices such as mobile phones and tablets, and the natural orientation of the sensor does not align with the physical orientation of the screen. As a result, the return values of the **rotation** and **orientation** attributes in the Display object on tablets are different from those on mobile phones.
-
-When both devices are rotated by the same angle, the values obtained from the **rotation** and **orientation** attributes of the Display object are different. Special processing is required based on the device type.
+The orientation of electronic components on different devices such as smartphones and tablets varies. This variation causes a discrepancy between the natural direction of sensors and the physical orientation of the screen. As a result, the rotation and orientation changes in the Display object on tablets do not align with those on smartphones. This inconsistency can be confusing for users and necessitates special handling based on the device type, which can impact usability.
 
 **Change Impact**
 

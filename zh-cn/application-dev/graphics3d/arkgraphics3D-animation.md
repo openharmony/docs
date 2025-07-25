@@ -58,7 +58,7 @@ function animationControl() : void {
 ## 动画回调的使用
 动画回调指的是在动画执行到某些状态时执行的函数，用于帮助开发者以动画状态为基础做触发式的逻辑控制工作。ArkGraphics 3D提供给开发者如下回调：
 - onStarted()：当动画开始播放时执行的回调函数，start操作以及restart操作也会触发这个回调。
-- onFinished()：动画播放结束时执行的的回调函数，动画播放完成或者finish操作会触发这个回调。
+- onFinished()：动画播放结束时执行的回调函数，动画播放完成或者finish操作会触发这个回调。
 
 示例代码如下：
 ```ts

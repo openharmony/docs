@@ -872,7 +872,7 @@ static cloudSync(bundleName: string, storeId: string, mode: relationalStore.Sync
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 202      | Permission verification failed, application which is not a system application uses system API.|
 | 801      | Capability not supported.|
-| 14800001 | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause.|
+| 14800001 | Invalid arguments. Possible causes: 1. Parameter is out of valid range. |
 
 **示例：**
 
@@ -1110,7 +1110,7 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | storeId      | string                        | 是   | 数据库名称。 |
-| predicates   | [relationalStore.RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 表示查找共享资源标识的数据的谓词条件。 |
+| predicates   | [relationalStore.RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | 表示查找共享资源标识的数据的谓词条件。 |
 | participants | Array&lt;[Participant](#participant11)&gt; | 是   | 端云共享的参与者。 |
 | columns      | Array&lt;string&gt;           | 否   | 表示要查找的列字段名。默认为undefined，不返回列字段。 |
 
@@ -1118,7 +1118,7 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[relationalStore.ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt; | Promise对象，返回查询并共享的共享资源标识结果集。 |
+| Promise&lt;[relationalStore.ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt; | Promise对象，返回查询并共享的共享资源标识结果集。 |
 
 **错误码：**
 
@@ -1180,10 +1180,10 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | storeId      | string                        | 是   | 数据库名称。 |
-| predicates   | [relationalStore.RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 表示查找共享资源标识的数据的谓词条件。 |
+| predicates   | [relationalStore.RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | 表示查找共享资源标识的数据的谓词条件。 |
 | participants | Array&lt;[Participant](#participant11)&gt; | 是   | 端云共享的参与者。 |
 | columns      | Array&lt;string&gt;           | 是   | 表示要查找的列字段名。 |
-| callback     | AsyncCallback&lt;[relationalStore.ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt;  | 是  | 回调函数。 返回查询并共享的共享资源标识结果集。 |
+| callback     | AsyncCallback&lt;[relationalStore.ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt;  | 是  | 回调函数。 返回查询并共享的共享资源标识结果集。 |
 
 **错误码：**
 
@@ -1247,9 +1247,9 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | storeId      | string                        | 是   | 数据库名称。 |
-| predicates   | [relationalStore.RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md#rdbpredicates) | 是   | 表示查找共享资源标识的数据的谓词条件。 |
+| predicates   | [relationalStore.RdbPredicates](arkts-apis-data-relationalStore-RdbPredicates.md) | 是   | 表示查找共享资源标识的数据的谓词条件。 |
 | participants | Array&lt;[Participant](#participant11)&gt; | 是   | 端云共享的参与者。 |
-| callback     | AsyncCallback&lt;[relationalStore.ResultSet](arkts-apis-data-relationalStore-ResultSet.md#resultset)&gt;  | 是   | 回调函数。返回查询并共享的共享资源标识结果集。 |
+| callback     | AsyncCallback&lt;[relationalStore.ResultSet](arkts-apis-data-relationalStore-ResultSet.md)&gt;  | 是   | 回调函数。返回查询并共享的共享资源标识结果集。 |
 
 **错误码：**
 

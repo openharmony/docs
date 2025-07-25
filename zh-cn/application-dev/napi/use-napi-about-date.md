@@ -38,7 +38,7 @@ static napi_value CreateDate(napi_env env, napi_callback_info info)
 {
     // 获取传入的Unix Time Stamp时间
     double value = 1501924876711;
-    // 调用napi_create_date接口将double值转换成表示日期时间，并创建成一个ArkTS对象放入returnValue中
+    // 调用napi_create_date接口将double值转换成表示日期时间的ArkTS对象，并放入returnValue中
     napi_value returnValue = nullptr;
     napi_create_date(env, value, &returnValue);
     return returnValue;
@@ -57,7 +57,7 @@ export const createDate: () => Date;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_date: %{public}s', testNapi.createDate().toString());
@@ -110,7 +110,7 @@ export const getDateValue: (date: Date) => number | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   const date = new Date();
@@ -165,7 +165,7 @@ export const isDate: <T>(date: T) => boolean | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   let now: Date = new Date();

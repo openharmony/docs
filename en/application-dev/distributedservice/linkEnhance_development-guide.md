@@ -33,7 +33,7 @@ Bluetooth is enabled on the client and server devices.
 ### Environment Setup
 
 1. Install DevEco Studio 4.1 or later on the PC.
-2. Update public-SDK to API version 20 or later.
+2. Update the public-SDK to API version 20 or later.
 3. Connect device A and device B to the PC using USB cables.
 4. Enable Bluetooth on device A and device B.
 
@@ -52,16 +52,16 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
 | on(type: 'disconnected')                   | Subscribes to disconnection events.                                                                                 |
 | on(type: 'dataReceived')                   | Subscribes to data receiving events.                                                                                   |
 | createConnection(deviceId: string,name:string)| Creates a **Connection** object.                                                                             |
-| start()                                    | Starts the service on the server.                                                                                        |   
-| stop()                                     | Stops the service on the server.                                                                                          |
-| close()                                    | Destroys a **Server** object to unregister the registered service and cancel all subscribed event callbacks. The **Server** object cannot be used after this API is called.                   |
-| on(type: 'acceptConnected')                | Subscribes to the connection receiving events on the server.                                                                          |
-| on(type: 'serverStopped')                  | Subscribes to the service stopping events on the server.                                                                          |
+| start()                                    | Starts the server.                                                                                        |   
+| stop()                                     | Stops the server.                                                                                          |
+| close()                                    | Destroys a **Server** object and cancels all subscribed event callbacks. The **Server** object cannot be used after this API is called.                   |
+| on(type: 'acceptConnected')                | Subscribes to **acceptConnected** events.                                                                          |
+| on(type: 'serverStopped')                  | Subscribes to **serverStopped** events.                                                                          |
 | createServer(name: string)                 | Creates a **Server** object.                                                                                     |
 
 ## How to Develop
 
-- After Bluetooth is enabled on the server, create a **Server** object and call **start()** to start the service so that the server is in the connectable state. Then, listen for status change events through the registered event listener.
+- After Bluetooth is enabled on the server, create a **Server** object and call **start()** to start the server so that it is in the connectable state. Then, listen for status change events through the registered event listener.
 - After Bluetooth is enabled on the client, create a **Connection** object and call **connect()** to initiate a connection. Then, listen for status change events through the registered event listener.
 - After the connection is successful, call **sendData** to send data.
 
@@ -91,24 +91,24 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
      }
    }
    ```
-3. Create a **Server** object, start the service, and register an event listener.
+3. Create a **Server** object, start the server, and register an event listener.
     ```ts
     const TAG = 'TEST';
-    // Register the service on the server.
+    // Register the server.
     linkEnhanceStart(name: string) {
       console.info(TAG + 'start server deviceId = ' + name);
       try {
-      // Construct a Server object using the service name.
+      // Construct a Server object using the specified name.
       let server: linkEnhance.Server = linkEnhance.createServer(name);
 
-        // Subscribe to connection receiving events and service stopping events.
+        // Subscribe to connectionAccepted events and serverStopped events.
         server.on('connectionAccepted', (connection: linkEnhance.Connection): void => {
           console.info(TAG + 'serverOnCallback');
         });
         server.on('serverStopped', (reason: number): void => {
           console.info(TAG, 'serverStopped, reason= ' + reason);
         });
-        # Start the service.
+        # Start the server.
         server.start();
       } catch (err) {
         console.error(TAG + 'start server errCode: ' + (err as BusinessError).code + ', errMessage: ' +
@@ -155,9 +155,9 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
       }
     }
     ```
-7. Stop the service and destroy the **Server** object.
+7. Stop the server and destroy the **Server** object.
     ```ts
-    // Stop the service on the server.
+    // Stop the server.
     linkEnhanceStop(server: linkEnhance.Server) {
       console.info(TAG + 'stop server');
       try {
@@ -167,7 +167,7 @@ The following table describes the commonly used APIs. For details, see [@ohos.di
         (err as BusinessError).message);
       }
     }
-    // Stop the service on the server and cancel all subscribed event callbacks.
+    // Stop the server and cancel all subscribed event callbacks.
     linkEnhanceClose(server: linkEnhance.Server) {
       console.info(TAG + 'close serever' );
       try {

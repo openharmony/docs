@@ -278,7 +278,7 @@ function count() : void {
 ```
 
 ## Node
-3D场景由树状层次结构的结点组成，其中每个结点都实现了Node接口。继承自[SceneResource](js-apis-inner-scene-resources.md#sceneresource)。
+3D场景由树状层次结构的结点组成，其中每个结点都实现了Node接口。继承自[SceneResource](js-apis-inner-scene-resources.md#sceneresource-1)。
 
 ### 属性
 
@@ -414,22 +414,107 @@ raycast(viewPosition: Vec2, params: RaycastParameters): Promise<RaycastResult[]>
 **示例：**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Vec2, Vec3, RaycastParameters,
-  RaycastResult } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Vec2, Vec3,
+  Quaternion } from '@kit.ArkGraphics3D';
+import { RaycastParameters } from '@ohos.graphics.scene';
 
-function Raycast() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: Scene) => {
-    if (result) {
+function Raycast(): void {
+  Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
+    .then(async (result: Scene) => {
+      if (!result.root) {
+        return;
+      }
+      let node: Node | null | undefined = result.root.getNodeByPath("rootNode_/Unnamed Node 1/AnimatedCube");
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
       let sceneCameraParameter: SceneNodeParameters = { name: "camera1" };
       // 创建相机
-      let camera: Promise<Camera> = sceneFactory.createCamera(sceneCameraParameter);
+      let camera: Camera = await sceneFactory.createCamera(sceneCameraParameter);
       camera.enabled = true;
-      lookAt(this.cam, { x: 15, y: 10, z: 20 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 });
-      let viewPos: scene3d.Vec2 = { x: 0.5, y: 0.5 };
-      return camera?.raycast(viewPos, result.root);
+      // 设置相机视角
+      lookAt(camera, { x: 0, y: 0, z: -3 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 });
+
+      let viewPos: Vec2 = { x: 0.5, y: 0.5 };
+      let raycastParams: RaycastParameters = {};
+      if (node) {
+        raycastParams.rootNode = node;
+      }
+      return camera.raycast(viewPos, raycastParams);
+    });
+}
+
+function Sub(l: Vec3, r: Vec3): Vec3 {
+  return { x: l.x - r.x, y: l.y - r.y, z: l.z - r.z };
+}
+function Dot(l: Vec3, r: Vec3): number {
+  return l.x * r.x + l.y * r.y + r.z * l.z;
+}
+function Normalize(l: Vec3): Vec3 {
+  let d = Math.sqrt(Dot(l, l));
+  return { x: l.x / d, y: l.y / d, z: l.z / d };
+}
+function Cross(l: Vec3, r: Vec3): Vec3 {
+  return { x: (l.y * r.z - l.z * r.y), y: (l.z * r.x - l.x * r.z), z: (l.x * r.y - l.y * r.x) };
+}
+function Mul(l: Quaternion, d: number): Quaternion {
+  return {
+    x: l.x * d,
+    y: l.y * d,
+    z: l.z * d,
+    w: l.w * d
+  };
+}
+function lookAt(node: Node, eye: Vec3, center: Vec3, up: Vec3) {
+
+  let t: number;
+
+  let q: Quaternion = {
+    x: 0.0,
+    y: 0.0,
+    z: 0.0,
+    w: 0.0
+  };
+  let f = Normalize(Sub(center, eye));
+  let m0 = Normalize(Cross(f, up));
+  let m1 = Cross(m0, f);
+  let m2: Vec3 = { x: -f.x, y: -f.y, z: -f.z };
+  if (m2.z < 0) {
+    if (m0.x > m1.y) {
+      t = 1.0 + m0.x - m1.y - m2.z;
+      q = {
+        x: t,
+        y: m0.y + m1.x,
+        z: m2.x + m0.z,
+        w: m1.z - m2.y
+      };
+    } else {
+      t = 1.0 - m0.x + m1.y - m2.z;
+      q = {
+        x: m0.y + m1.x,
+        y: t,
+        z: m1.z + m2.y,
+        w: m2.x - m0.z
+      };
     }
-  });
+  } else {
+    if (m0.x < -m1.y) {
+      t = 1.0 - m0.x - m1.y + m2.z;
+      q = {
+        x: m2.x + m0.z,
+        y: m1.z + m2.y,
+        z: t,
+        w: m0.y - m1.x
+      };
+    } else {
+      t = 1.0 + m0.x + m1.y + m2.z;
+      q = {
+        x: m1.z - m2.y,
+        y: m2.x - m0.z,
+        z: m0.y - m1.x,
+        w: t
+      }
+    }
+  }
+  node.position = eye;
+  node.rotation = Mul(q, 0.5 / Math.sqrt(t));
 }
 ```

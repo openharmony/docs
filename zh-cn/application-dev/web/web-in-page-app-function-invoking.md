@@ -305,8 +305,8 @@
     }
 
     // 传递的基础类型name:"jeck", age:"12"。
-    test(): student {
-      let st: student = { name: "jeck", age: "12" };
+    test(): Student {
+      let st: Student = { name: "jeck", age: "12" };
       return st;
     }
 

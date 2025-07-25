@@ -52,7 +52,7 @@ napi_status napi_load_module_with_info(napi_env env, const char* path, const cha
 //./src/main/ets/Test.ets
 let value = 123;
 function test() {
-  console.log("Hello OpenHarmony");
+  console.info("Hello OpenHarmony");
 }
 export {value, test};
 ```
@@ -116,7 +116,7 @@ HAR包Index.ets文件如下：
 //library Index.ets
 let value = 123;
 function test() {
-    console.log("Hello OpenHarmony");
+    console.info("Hello OpenHarmony");
 }
 export {value, test};
 ```
@@ -182,7 +182,7 @@ HSP包Index.ets文件如下：
 //hsp Index.ets
 let value = 123;
 function test() {
-    console.log("Hello World");
+    console.info("Hello World");
 }
 export {value, test};
 ```
@@ -456,7 +456,7 @@ export const add: (a: number, b: number) => number;
 //har2 Index.ets
 let value = 123;
 function test() {
-  console.log("Hello OpenHarmony");
+  console.info("Hello OpenHarmony");
 }
 export {value, test};
 ```

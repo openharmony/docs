@@ -1,217 +1,99 @@
-# IPC and RPC Development
+# IPC and RPC Development (ArkTS)
 
 ## When to Use
 
-IPC/RPC enables a proxy and a stub that run on different processes to communicate with each other, regardless of whether they run on the same or different devices.
-
-<!--Del-->
-## Available APIs
-
-**Table 1** Native IPC APIs
-
-| Class/Interface| API                              | Description                                                            |
-|----------|  ------------------------------------ | ---------------------------------------------------------------- |
-| IRemoteBroker | sptr&lt;IRemoteObject&gt; AsObject() | Obtains the holder of a remote proxy object. If you call this API on the stub, the **RemoteObject** is returned; if you call this API on the proxy, the proxy object is returned.|
-| IRemoteStub | virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | Called to process a request from the proxy and return the result. Derived classes need to override this API.|
-| IRemoteProxy | Remote()->SendRequest(code, data, reply, option)  | Sends a request to the peer end. Service proxy classes are derived from the **IRemoteProxy** class.|
-<!--DelEnd-->
+IPC/RPC is used to implement object communication across processes (one-to-one mapping between the client proxy and the server stub).
 
 ## How to Develop
 
-<!--Del-->
-### **Using Native APIs**
-
-1. Add dependencies.
-
-   SDK dependency:
-
-   ```
-   #IPC scenario
-   external_deps = [
-     "ipc:ipc_single",
-   ]
-
-   #RPC scenario
-   external_deps = [
-     "ipc:ipc_core",
-   ]
-   ```
-
-   The refbase implementation on which IPC/RPC depends is in **//utils**. Add the dependency on Utils.
-
-   ```
-   external_deps = [
-     "c_utils:utils",
-   ]
-   ```
-
-2. Define the IPC interface **ITestAbility**.
-
-   **ITestAbility** inherits from the IPC base class **IRemoteBroker** and defines descriptors, functions, and message code. The functions need to be implemented on both the proxy and stub.
-
-   ```c++
-   #include "iremote_broker.h"
-
-   // Define message codes.
-   const int TRANS_ID_PING_ABILITY = 5;
-
-   const std::string DESCRIPTOR = "test.ITestAbility";
-
-   class ITestAbility : public IRemoteBroker {
-   public:
-       // DECLARE_INTERFACE_DESCRIPTOR is mandatory, and the input parameter is std::u16string.
-       DECLARE_INTERFACE_DESCRIPTOR(to_utf16(DESCRIPTOR));
-       virtual int TestPingAbility(const std::u16string &dummy) = 0; // Define functions.
-   };
-   ```
-
-3. Define and implement the service provider **TestAbilityStub**.
-
-   This class is related to the IPC framework and inherits from **IRemoteStub&lt;ITestAbility&gt;**. You need to override **OnRemoteRequest** on the stub to receive requests from the proxy.
-
-   ```c++
-   #include "iability_test.h"
-   #include "iremote_stub.h"
-
-   class TestAbilityStub : public IRemoteStub<ITestAbility> {
-   public:
-       virtual int OnRemoteRequest(uint32_t code, MessageParcel &data, MessageParcel &reply, MessageOption &option) override;
-       int TestPingAbility(const std::u16string &dummy) override;
-    };
-
-   int TestAbilityStub::OnRemoteRequest(uint32_t code,
-       MessageParcel &data, MessageParcel &reply, MessageOption &option)
-   {
-       switch (code) {
-           case TRANS_ID_PING_ABILITY: {
-               std::u16string dummy = data.ReadString16();
-               int result = TestPingAbility(dummy);
-               reply.WriteInt32(result);
-               return 0;
-           }
-           default:
-               return IPCObjectStub::OnRemoteRequest(code, data, reply, option);
-       }
-   }
-   ```
-
-4. Define the **TestAbility** class that implements functions for the stub.
-
-   ```c++
-   #include "iability_server_test.h"
-
-   class TestAbility : public TestAbilityStub {
-   public:
-       int TestPingAbility(const std::u16string &dummy);
-   }
-
-   int TestAbility::TestPingAbility(const std::u16string &dummy) {
-       return 0;
-   }
-   ```
-
-5. Define and implement **TestAbilityProxy**.
-
-   This class is implemented on the proxy and inherits from **IRemoteProxy&lt;ITestAbility&gt;**. You can call **SendRequest** to send a request to the stub and expose the capabilities provided by the stub.
-
-   ```c++
-   #include "iability_test.h"
-   #include "iremote_proxy.h"
-   #include "iremote_object.h"
-
-   class TestAbilityProxy : public IRemoteProxy<ITestAbility> {
-   public:
-       explicit TestAbilityProxy(const sptr<IRemoteObject> &impl);
-       int TestPingAbility(const std::u16string &dummy) override;
-   private:
-       static inline BrokerDelegator<TestAbilityProxy> delegator_; // For use of the iface_cast macro at a later time
-   }
-
-   TestAbilityProxy::TestAbilityProxy(const sptr<IRemoteObject> &impl)
-       : IRemoteProxy<ITestAbility>(impl)
-   {
-   }
-
-   int TestAbilityProxy::TestPingAbility(const std::u16string &dummy){
-       MessageOption option;
-       MessageParcel dataParcel, replyParcel;
-       dataParcel.WriteString16(dummy);
-       int error = Remote()->SendRequest(TRANS_ID_PING_ABILITY, dataParcel, replyParcel, option);
-       int result = (error == ERR_NONE) ? replyParcel.ReadInt32() : -1;
-       return result;
-   }
-   ```
-
-6. Register and start an SA.
-
-   Call **AddSystemAbility** to register the **TestAbilityStub** instance of an SA with **SystemAbilityManager**. The registration parameters vary depending on whether the **SystemAbilityManager** resides on the same device as the SA.
-
-   ```c++
-   // Register the TestAbilityStub instance with the SystemAbilityManager on the same device as the SA.
-   auto samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
-   samgr->AddSystemAbility(saId, new TestAbility());
-
-   // Register the TestAbilityStub instance with the SystemAbilityManager on a different device.
-   auto samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
-   ISystemAbilityManager::SAExtraProp saExtra;
-   saExtra.isDistributed = true; // Set a distributed SA.
-   int result = samgr->AddSystemAbility(saId, new TestAbility(), saExtra);
-   ```
-
-7. Obtain the SA.
-
-   Call the **GetSystemAbility** function of the **SystemAbilityManager** class to obtain the **IRemoteObject** for the SA, and create a **TestAbilityProxy** instance.
-
-   ```c++
-   // Obtain the proxy of the SA registered on the local device.
-   sptr<ISystemAbilityManager> samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
-   sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId);
-   sptr<ITestAbility> testAbility = iface_cast<ITestAbility>(remoteObject); // Use the iface_cast macro to convert the proxy to a specific type.
-
-   // Obtain the proxy of the SA registered with any other devices.
-   sptr<ISystemAbilityManager> samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
-
-   // networkId is the device identifier and can be obtained through GetLocalNodeDeviceInfo.
-   sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId, networkId);
-   sptr<TestAbilityProxy> proxy(new TestAbilityProxy(remoteObject)); // Construct a proxy.
-   ```
-<!--DelEnd-->
-### **Using ArkTS APIs**
-
 > **NOTE**
 >
-> - The sample code in this topic implements communication between system applications across processes.
+> - Currently, third-party applications cannot implement ServiceExtensionAbility. The UIAbility component of a third-party application can connect to the ServiceExtensionAbility provided by the system through [Context](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 >
-> - Currently, third-party applications cannot implement ServiceExtensionAbility. The UIAbility components of a third-party application can connect to the ServiceExtensionAbility provided by the system via **Context**.
->
-> - The development applies only to the scenario, in which the client is a third-party application and the server is a system application.
+> - Application scenario constraints: The client is a third-party or system application, and the server is a system application or service.
 
-1. Add dependencies.
+### Creating ServiceExtensionAbility to Implement the Server
 
-   ```ts
-    // If the FA model is used, import featureAbility from @kit.AbilityKit.
-    // import { featureAbility } from '@kit.AbilityKit';
-    import { rpc } from '@kit.IPCKit';
+Create a ServiceExtensionAbility as follows:
+
+1. In the **ets** directory of a module in the project, right-click and choose **New > Directory** to create a directory named **ServiceExtAbility**.
+
+2. In the **ServiceExtAbility** directory, right-click and choose **New > ArkTS File** to create a file named **ServiceExtAbility.ets**.
+
+    ```
+      ├── ets
+      │ ├── ServiceExtAbility
+      │ │   ├── ServiceExtAbility.ets
+      └
     ```
 
-2. Bind the desired ability.
-
-   Construct the **want** variable, and specify the bundle name and component name of the application where the ability is located. If cross-device communication is involved, also specify the network ID of the target device, which can be obtained through **distributedDeviceManager**. <br>Then, construct the **connect** variable, and specify the callback to be invoked when the binding is successful, the binding fails, or the ability is disconnected. If you use the FA model, call the API provided by **featureAbility** to bind an ability. If you use the stage model, obtain a service instance through **Context**, and then call the API provided by **featureAbility** to bind an ability.
+3. In the **ServiceExtAbility.ets** file, import the dependency package of the ServiceExtensionAbility. The custom class inherits the ServiceExtensionAbility and implements lifecycle callbacks. Define a stub class that inherits from [rpc.RemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#remoteobject) and implement the [onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest9) method to process requests from the client. In the **onConnect** lifecycle callback, create the defined stub object and return it.
 
    ```ts
-    // If the FA model is used, import featureAbility from @kit.AbilityKit.
-    // import { featureAbility } from "@kit.AbilityKit";
+    import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+    import { rpc } from '@kit.IPCKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+
+    // Define the server.
+    class Stub extends rpc.RemoteObject {
+      constructor(descriptor: string) {
+        super(descriptor);
+      }
+      // The service overrides the onRemoteMessageRequest method to process the client request.
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+        // Process requests sent from the client based on the code.
+        switch (code) {
+          case 1:
+            {
+              // Read data based on the client write sequence. For details, see the service logic.
+            }
+        }
+        return true;
+      }
+    }
+
+    // Define the background service.
+    export default class ServiceAbility extends ServiceExtensionAbility {
+      onCreate(want: Want): void {
+        hilog.info(0x0000, 'testTag', 'onCreate');
+      }
+
+      onRequest(want: Want, startId: number): void {
+        hilog.info(0x0000, 'testTag', 'onCreate');
+      }
+
+      onConnect(want: Want): rpc.RemoteObject {
+        hilog.info(0x0000, 'testTag', 'onConnect');
+        // Return a stub object, through which the client can communicate with the ServiceExtensionAbility.
+        return new Stub('rpcTestAbility');
+      }
+
+      onDisconnect(want: Want): void {
+        hilog.info(0x0000, 'testTag', 'onConnect');
+      }
+
+      onDestroy(): void {
+        hilog.info(0x0000, 'testTag', 'onDestroy');
+      }
+    }
+   ```
+
+### Connecting to the Service and Obtaining the Service Proxy
+
+**Creating want and connect**
+
+1. Create a **want** variable, and specify the bundle name and component name of the application where the ability is located. If cross-device communication is involved, also specify the network ID of the target device, which can be obtained through distributedDeviceManager.
+
+2. Create a **connect** variable, and specify the callback that is called when the binding is successful, the binding fails, or the ability is disconnected.
+
+  In IPC, create the variables **want** and **connect**.
+  ```ts
     import { Want, common } from '@kit.AbilityKit';
     import { rpc } from '@kit.IPCKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-    import { BusinessError } from '@kit.BasicServicesKit';
 
-    let dmInstance: distributedDeviceManager.DeviceManager | undefined;
     let proxy: rpc.IRemoteObject | undefined;
-    let connectId: number;
 
-    // Bind an ability on a single device.
     let want: Want = {
       // Enter the bundle name and ability name.
       bundleName: "ohos.rpc.test.server",
@@ -229,14 +111,19 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
         hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
       }
     };
-    // Use this method to connect to the ability in the FA model.
-    // connectId = featureAbility.connectAbility(want, connect);
+  ```
 
-    let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-    // Save the connection ID, which will be used when the ability is disconnected.
-    connectId = context.connectServiceExtensionAbility(want,connect);
+  In RPC, create the variables **want** and **connect**.
+  ```ts 
+    import { Want, common } from '@kit.AbilityKit';
+    import { rpc } from '@kit.IPCKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-    // Bind an ability across devices.
+    let dmInstance: distributedDeviceManager.DeviceManager | undefined;
+    let proxy: rpc.IRemoteObject | undefined;
+
     try{
       dmInstance = distributedDeviceManager.createDeviceManager("ohos.rpc.test");
     } catch(error) {
@@ -252,54 +139,64 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
         bundleName: "ohos.rpc.test.server",
         abilityName: "ohos.rpc.test.service.ServiceAbility",
         deviceId: networkId,
-        flags: 256
       };
-      // Save the connection ID, which will be used when the ability is disconnected.
-      // Use this method to connect to the ability in the FA model.
-      // connectId = featureAbility.connectAbility(want, connect);
 
-      // The first parameter specifies the bundle name of the application, and the second parameter specifies the callback used to return the network ID obtained by using distributedDeviceManager.
-      connectId = context.connectServiceExtensionAbility(want,connect);
+      let connect: common.ConnectOptions = {
+        onConnect: (elementName, remoteProxy) => {
+          hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+          proxy = remoteProxy;
+        },
+        onDisconnect: (elementName) => {
+          hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+        },
+        onFailed: () => {
+          hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+        }
+      };
     }
+  ```
+
+**Connection Service**
+
+  In the FA model, the [connectAbility](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilityconnectability7) API is used to connect to an ability.
+
+  <!--code_no_check_fa-->
+  ```ts
+    import { featureAbility } from '@kit.AbilityKit';
+
+    // Save the connection ID, which will be used when the ability is disconnected.
+    let connectId = featureAbility.connectAbility(want, connect);
+  ```
+
+  In the stage model, the [connectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability) API of **common.UIAbilityContext** is used to connect to an ability.
+  In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
+  ```ts
+
+    let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
+    // Save the connection ID, which will be used when the ability is disconnected.
+    let connectId = context.connectServiceExtensionAbility(want,connect);
    ```
 
-3. Process requests sent from the client.
+### Sending Information from Client to Server
 
-   Call **onConnect()** to return a proxy object inherited from [rpc.RemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#remoteobject) after the ability is successfully connected. Implement [onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest9) for the proxy object to process requests sent from the client.
-
-   ```ts
-    import { rpc } from '@kit.IPCKit';
-    import { Want } from '@kit.AbilityKit';
-    class Stub extends rpc.RemoteObject {
-      constructor(descriptor: string) {
-        super(descriptor);
-      }
-      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
-        // Process requests sent from the client based on the code.
-        return true;
-      }
-
-      onConnect(want: Want) {
-        const robj: rpc.RemoteObject = new Stub("rpcTestAbility");
-        return robj;
-      }
-    }
-   ```
-
-4. Process responses sent from the server.
-
-   Receive the proxy object in the **onConnect** callback, call [sendMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#sendmessagerequest9-2) to send a request, and receive the response using a callback or a promise (an object representing the eventual completion or failure of an asynchronous operation and its result value).
+   After the service is successfully connected, you can use the **onConnect** callback to obtain the proxy object of the server. Then, use the proxy to call the [sendMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#sendmessagerequest9-2) method to initiate a request. When the server processes the request and returns data, you can receive the result returned by a promise contract (used to indicate the success or failure result value of an asynchronous operation).
 
    ```ts
     import { rpc } from '@kit.IPCKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
 
-    // Use a promise.
+    // The proxy in this code snippet is obtained from the onConnect callback after the service is successfully connected.
+    let proxy: rpc.IRemoteObject | undefined;
+
+    // Use the promise contract.
     let option = new rpc.MessageOption();
     let data = rpc.MessageSequence.create();
     let reply = rpc.MessageSequence.create();
-    // Write parameters to data.
-    let proxy: rpc.IRemoteObject | undefined;
+    // Write parameters in data. The following uses the string as an example.
+    data.writeString("hello world");
+
     if (proxy != undefined) {
       proxy.sendMessageRequest(1, data, reply, option)
         .then((result: rpc.RequestResult) => {
@@ -308,6 +205,7 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
             return;
           }
           // Read the result from result.reply.
+          result.reply.readString();
         })
         .catch((e: Error) => {
           hilog.error(0x0000, 'testTag', 'sendMessageRequest got exception: ' + e);
@@ -317,75 +215,67 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
           reply.reclaim();
         })
     }
+   ```
 
-    // Use a callback.
-    function sendRequestCallback(err: Error, result: rpc.RequestResult) {
-      try {
-        if (result.errCode != 0) {
-          hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, errCode: ' + result.errCode);
-          return;
-        }
-        // Read the result from result.reply.
-      } finally {
-          result.data.reclaim();
-          result.reply.reclaim();
+### Process requests sent from the client.
+
+   Call **onConnect()** to return a stub object inherited from [rpc.RemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#remoteobject), and implement [onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest9) for the object to process requests sent from the client.
+
+   ```ts
+    import { rpc } from '@kit.IPCKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+
+    class Stub extends rpc.RemoteObject {
+      constructor(descriptor: string) {
+        super(descriptor);
       }
-    }
-    let options = new rpc.MessageOption();
-    let datas = rpc.MessageSequence.create();
-    let replys = rpc.MessageSequence.create();
-    // Write parameters to data.
-    if (proxy != undefined) {
-      proxy.sendMessageRequest(1, datas, replys, options, sendRequestCallback);
+      onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
+        // The server stub executes the corresponding processing based on the request code.
+        if (code == 1) {
+          let str = data.readString();
+          hilog.info(0x0000, 'testTag', 'stub receive str : ' + str);
+          // The server sends the request processing result to the client.
+          reply.writeString("hello rpc");
+          return true;
+        } else {
+            hilog.info(0x0000, 'testTag', 'stub unknown code: ' + code);
+            return false;
+        }
+      }
     }
    ```
 
-5. Tear down the connection.
+### Tear down the connection.
 
-   If you use the FA model, call the API provided by **featureAbility** to tear down the connection when the communication is over. If you use the stage model, obtain a service instance through **Context**, and then call the API provided by **featureAbility** to tear down the connection.
+   After IPC is complete, the FA model calls [disconnectAbility](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitydisconnectability7) to disable the connection. The **connectId** is saved when the service is connected.
 
-   ```ts
-    // If the FA model is used, import featureAbility from @kit.AbilityKit.
-    // import { featureAbility } from "@kit.AbilityKit";
-    import { Want, common } from '@kit.AbilityKit';
-    import { rpc } from '@kit.IPCKit';
+  <!--code_no_check_fa-->
+  ```ts
+    import { featureAbility } from "@kit.AbilityKit";
     import { hilog } from '@kit.PerformanceAnalysisKit';
 
     function disconnectCallback() {
       hilog.info(0x0000, 'testTag', 'disconnect ability done');
     }
-    // Use this method to disconnect from the ability in the FA model.
-    // featureAbility.disconnectAbility(connectId, disconnectCallback);
+    // Use the connectId saved when the service is successfully connected to disable the connection.
+    featureAbility.disconnectAbility(connectId, disconnectCallback);
+   ```
 
-    let proxy: rpc.IRemoteObject | undefined;
-    let connectId: number;
+   The **common.UIAbilityContext** provides the [disconnectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectserviceextensionability-1) API to disconnect from the service. The **connectId** is saved when the service is connected.
+   In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
-    // Bind an ability on a single device.
-    let want: Want = {
-      // Enter the bundle name and ability name.
-      bundleName: "ohos.rpc.test.server",
-      abilityName: "ohos.rpc.test.server.ServiceAbility",
-    };
-    let connect: common.ConnectOptions = {
-      onConnect: (elementName, remote) => {
-        proxy = remote;
-      },
-      onDisconnect: (elementName) => {
-      },
-      onFailed: () => {
-        proxy;
-      }
-    };
-    // Use this method to connect to the ability in the FA model.
-    // connectId = featureAbility.connectAbility(want, connect);
-
-    connectId = this.context.connectServiceExtensionAbility(want,connect);
-
-    this.context.disconnectServiceExtensionAbility(connectId);
+  <!--code_no_check-->
+  ```ts
+    let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
+    
+    // Use the connectId saved when the service is successfully connected to disable the connection.
+    context.disconnectServiceExtensionAbility(connectId);
    ```
 
 ##  
 
  
+
+-  
 
 -  

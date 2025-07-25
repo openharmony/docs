@@ -39,12 +39,12 @@ import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-### 属性
+### 常量
 
-  | 名称 | 类型   | 只读 | 可选 | 说明     |
-  | ------ | ------ | ---- | ---- | -------- |
-  | SUPPORTS_READ   | number | 否   | 否   | 此设备支持读。 |
-  | SUPPORTS_WRITE   | number | 否   | 否   | 此设备支持写。 |
+  | 名称 |   类型   | 值 | 说明     |
+  | ------ | ---- | ---- | -------- |
+  | SUPPORTS_READ   | number | 0b1   | 此设备支持读。 |
+  | SUPPORTS_WRITE   | number | 0b10   |  此设备支持写。 |
 
 ## fileExtensionInfo.DocumentFlag
 
@@ -54,12 +54,12 @@ import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-### 属性
+### 常量
 
-  | 名称 | 类型   | 只读 | 可选 | 说明     |
-  | ------ | ------ | ---- | ---- | -------- |
-  | REPRESENTS_FILE   | number | 否   | 否   | 代表文件。 |
-  | REPRESENTS_DIR   | number | 否   | 否   | 代表目录。 |
-  | SUPPORTS_READ   | number | 否   | 否   | 此文件支持读。 |
-  | SUPPORTS_WRITE   | number | 否   | 否   | 此文件支持写。 |
+  | 名称 |   类型   | 值 | 说明     |
+  | ------ | ---- | ---- | -------- |
+  | REPRESENTS_FILE   | number | 0b1   | 代表文件。 |
+  | REPRESENTS_DIR   | number | 0b10  | 代表目录。 |
+  | SUPPORTS_READ   | number | 0b100   | 此文件支持读。 |
+  | SUPPORTS_WRITE   | number | 0b1000  | 此文件支持写。 |
   

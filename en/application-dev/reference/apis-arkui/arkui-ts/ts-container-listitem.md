@@ -104,7 +104,7 @@ Sets whether the list item is selectable for multiselect. This attribute takes e
 
 selected(value: boolean)
 
-Sets whether the list item is selected. This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md). This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md) is set. Otherwise, the style settings will not take effect.
+Sets whether the list item is selected. This attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md). This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md) is set. Otherwise, the style settings will not take effect.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 10.
 

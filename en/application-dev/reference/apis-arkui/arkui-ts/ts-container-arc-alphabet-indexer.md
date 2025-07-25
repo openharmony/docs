@@ -214,7 +214,7 @@ Sets the index of the selected item.
 
 | Name| Type  | Mandatory| Description                        |
 | ------ | ------ | ---- | ---------------------------- |
-| index  | Optional&lt;number&gt; | Yes  | Index of the selected item.<br>Default value: **0**<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| index  | Optional&lt;number&gt; | Yes  | Index of the selected item.<br>Default value: **0**<br>This parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).|
 
 ### autoCollapse
 
@@ -282,7 +282,7 @@ Defines the initialization parameters for the **ArcAlphabetIndexer** component.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | arrayValue | string[] | Yes| Array of alphabet index strings. It cannot be set to empty.|
-| selected   | number              | Yes| Index of the initial selected item. If the value is out of range, the default value **0** is used.<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| selected   | number              | Yes| Index of the initial selected item. If the value is out of range, the default value **0** is used.<br>This parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).|
 
 ## OnSelectCallback
 

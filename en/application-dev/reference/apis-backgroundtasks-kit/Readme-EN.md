@@ -27,17 +27,20 @@
     <!--DelEnd-->
 - C API<!--background-tasks-c-->
   - Modules<!--background-tasks-module-->
-    - [TransientTask](_transient_task.md)
-    - [BackgroundProcessManager](_background_process_manager.md)
+    - [BackgroundProcessManager](capi-backgroundprocessmanager.md)
+    - [TransientTask](capi-transienttask.md)
   - Header Files<!--background-tasks-headerfile-->
-    - [transient_task_api.h](transient__task__api_8h.md)
-    - [transient_task_type.h](transient__task__type_8h.md)
-    - [background_process_manager.h](background__process__manager_8h.md)
+    - [background_process_manager.h](capi-background-process-manager-h.md)
+    - [transient_task_api.h](capi-transient-task-api-h.md)
+    - [transient_task_type.h](capi-transient-task-type-h.md)
   - Structs<!--background-tasks-struct-->
-    - [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md)
+    - [TransientTask_DelaySuspendInfo](capi-transienttask-transienttask-delaysuspendinfo.md)
+    - [TransientTask_TransientTaskInfo](capi-transienttask-transienttask-transienttaskinfo.md)
 - Error Codes<!--background-tasks-arkts-errcode-->
   - [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md)
+  - [BackgroundProcessManager Error Codes](errorcode-backgroundProcessManager.md)
+  <!--Del-->
   - [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md)
+  <!--DelEnd-->
   - [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md)
   - [workScheduler Error Codes](errorcode-workScheduler.md)
-  - [BackgroundProcessManager Error Codes](errorcode-backgroundProcessManager.md)

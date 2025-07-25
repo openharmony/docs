@@ -35,12 +35,12 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_Drawing_TextDirection](#oh_drawing_textdirection) | - | 文字方向。/ |
-| [OH_Drawing_TextAlign](#oh_drawing_textalign) | - | 文字对齐方式/ |
-| [OH_Drawing_FontWeight](#oh_drawing_fontweight) | - | 字重。/ |
-| [OH_Drawing_TextBaseline](#oh_drawing_textbaseline) | - | 基线位置。/ |
-| [OH_Drawing_TextDecoration](#oh_drawing_textdecoration) | - | 文本装饰。/ |
-| [OH_Drawing_FontStyle](#oh_drawing_fontstyle) | - | 区分字体是否为斜体。/ |
+| [OH_Drawing_TextDirection](#oh_drawing_textdirection) | - | 文字方向。 |
+| [OH_Drawing_TextAlign](#oh_drawing_textalign) | - | 文字对齐方式。|
+| [OH_Drawing_FontWeight](#oh_drawing_fontweight) | - | 字重。 |
+| [OH_Drawing_TextBaseline](#oh_drawing_textbaseline) | - | 基线位置。 |
+| [OH_Drawing_TextDecoration](#oh_drawing_textdecoration) | - | 文本装饰。 |
+| [OH_Drawing_FontStyle](#oh_drawing_fontstyle) | - | 区分字体是否为斜体。 |
 | [OH_Drawing_PlaceholderVerticalAlignment](#oh_drawing_placeholderverticalalignment) | OH_Drawing_PlaceholderVerticalAlignment | 占位符垂直对齐枚举。 |
 | [OH_Drawing_TextDecorationStyle](#oh_drawing_textdecorationstyle) | OH_Drawing_TextDecorationStyle | 文本装饰样式枚举。 |
 | [OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal) | OH_Drawing_EllipsisModal | 省略号样式枚举。 |
@@ -182,7 +182,7 @@
 | [OH_Drawing_Range* OH_Drawing_TypographyGetLineTextRange(OH_Drawing_Typography* typography,int lineNumber, bool includeSpaces)](#oh_drawing_typographygetlinetextrange) | 获取排版对象中行的边界，该接口需要在[OH_Drawing_TypographyLayout](capi-drawing-text-typography-h.md#oh_drawing_typographylayout)接口调用之后调用。该接口只能获取已有行的边界，即输入行索引从0开始，最大行索引为[OH_Drawing_TypographyGetLineCount](capi-drawing-text-typography-h.md#oh_drawing_typographygetlinecount) - 1。 |
 | [void OH_Drawing_DestroyTextShadows(OH_Drawing_TextShadow* shadow)](#oh_drawing_destroytextshadows) | 释放由被字体阴影对象OH_Drawing_TextShadow构成的vector占据的内存。 |
 | [OH_Drawing_FontConfigInfo* OH_Drawing_GetSystemFontConfigInfo(OH_Drawing_FontConfigInfoErrorCode* errorCode)](#oh_drawing_getsystemfontconfiginfo) | 获取系统字体配置信息。 |
-| [void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo* drawFontCfgInfo)](#oh_drawing_destroysystemfontconfiginfo) | 释放系统字体配置信息占用的的内存。 |
+| [void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo* drawFontCfgInfo)](#oh_drawing_destroysystemfontconfiginfo) | 释放系统字体配置信息占用的内存。 |
 | [void OH_Drawing_SetTextStyleFontStyleStruct(OH_Drawing_TextStyle* drawingTextStyle,OH_Drawing_FontStyleStruct fontStyle)](#oh_drawing_settextstylefontstylestruct) | 设置文本样式中的字体样式，包括字体字重、字体宽度和字体斜度。 |
 | [void OH_Drawing_SetTextStyleBadgeType(OH_Drawing_TextStyle* style, OH_Drawing_TextBadgeType textBadgeType)](#oh_drawing_settextstylebadgetype) | 设置文本排版时是否使能上标或下标。未调用此接口时，默认不使能。 |
 | [OH_Drawing_FontStyleStruct OH_Drawing_TextStyleGetFontStyleStruct(OH_Drawing_TextStyle* drawingTextStyle)](#oh_drawing_textstylegetfontstylestruct) | 获取文本样式中的字体样式，包括字体字重、字体宽度和字体斜度。 |
@@ -3597,7 +3597,7 @@ void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo* drawFontC
 
 **描述**
 
-释放系统字体配置信息占用的的内存。
+释放系统字体配置信息占用的内存。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 

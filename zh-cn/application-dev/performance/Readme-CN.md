@@ -70,3 +70,5 @@
   - 功耗
     - [高效利用HWC的低功耗设计](utilize_hwc_effiently.md)
     - [主动关闭CPU访问窗口缓冲区数据降低功耗](close_CPU_access_window_buffer_data.md)
+    - [使用属性动画替换帧动画](using-animation-insteadof-animator.md)
+    - [冗余刷新类问题解决方案](invisible-refresh-performance.md)

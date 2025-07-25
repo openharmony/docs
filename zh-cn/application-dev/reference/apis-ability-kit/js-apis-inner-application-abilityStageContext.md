@@ -15,20 +15,6 @@ AbilityStageContext提供允许访问特定于abilityStage的资源的能力，�
 import { common } from '@kit.AbilityKit';
 ```
 
-## 使用说明
-
-通过AbilityStage实例来获取。
-
-```ts
-import { AbilityStage } from '@kit.AbilityKit';
-
-class MyAbilityStage extends AbilityStage {
-  onCreate() {
-    let abilityStageContext = this.context;
-  }
-}
-```
-
 ## 属性
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
@@ -39,3 +25,19 @@ class MyAbilityStage extends AbilityStage {
 | -------- | -------- | -------- | -------- | -------- |
 | currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 否 | 否 | AbilityStage对应的ModuleInfo对象。 |
 | config | [Configuration](js-apis-app-ability-configuration.md) | 否 | 否 | 环境变化对象。 |
+
+**示例：**
+
+```ts
+import { AbilityStage } from '@kit.AbilityKit';
+
+class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    let abilityStageContext = this.context;
+    // 获取当前模块名
+    let name = abilityStageContext.currentHapModuleInfo.name;
+    // 获取当前模块语言
+    let language = abilityStageContext.config.language;
+  }
+}
+```

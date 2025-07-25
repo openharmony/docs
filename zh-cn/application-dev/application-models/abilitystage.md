@@ -15,9 +15,9 @@ AbilityStage拥有[onCreate()](../reference/apis-ability-kit/js-apis-app-ability
 
 - onMemoryLevel()事件回调：当系统调整内存时触发的事件回调。应用被切换到后台时，系统会将在后台的应用保留在缓存中。即使应用处于缓存中，也会影响系统整体性能。当系统资源不足时，系统会通过多种方式从应用中回收内存，必要时会完全停止应用，从而释放内存用于执行关键任务。为了进一步保持系统内存的平衡，避免系统停止用户的应用进程，可以在AbilityStage中的onMemoryLevel()生命周期回调中订阅系统内存的变化情况，释放不必要的资源。
 
-- onNewProcessRequest()事件回调：UIAbility启动时触发的事件回调。通过该回调，开发者可以指定每个UIAbility启动时是否在独立的进程中创建。该回调返回一个开发者自定义字符串标识，如果返回的字符串标识为开发者曾创建的，则复用该标识所对应的进程，否则创建新的进程。需要注意该回调需要配合在module.json5中声明[isolationProcess](../quick-start/module-configuration-file.md#abilities标签)字段为true。当前仅在2in1设备上生效。
+- onNewProcessRequest()事件回调：UIAbility启动时触发的事件回调。通过该回调，开发者可以指定每个UIAbility启动时是否在独立的进程中创建。该回调返回一个开发者自定义字符串标识，如果返回的字符串标识为开发者曾创建的，则复用该标识所对应的进程，否则创建新的进程。需要注意该回调需要配合在module.json5中声明[isolationProcess](../quick-start/module-configuration-file.md#abilities标签)字段为true。
 
-- onPrepareTermination()事件回调：当应用被用户关闭时调用，可用于询问用户选择立即执行操作还是取消操作。开发者通过在回调中返回[AbilityConstant.PrepareTermination](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#preparetermination15)中定义的枚举类型通知系统是否继续执行关闭动作。当前仅在2in1设备上生效。
+- onPrepareTermination()事件回调：当应用被用户关闭时调用，可用于询问用户选择立即执行操作还是取消操作。开发者通过在回调中返回[AbilityConstant.PrepareTermination](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#preparetermination15)中定义的枚举类型通知系统是否继续执行关闭动作。
 
 - onDestroy()生命周期回调：当对应Module的最后一个Ability实例退出后触发。此方法仅在应用正常销毁时触发。当应用程序异常退出或被终止时，将不会调用此方法。
 

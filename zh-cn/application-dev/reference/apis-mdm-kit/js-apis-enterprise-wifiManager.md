@@ -56,7 +56,9 @@ isWifiActiveSync(admin: Want): boolean
 **示例：**
 
 ```ts
+import { wifiManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -103,14 +105,17 @@ setWifiProfileSync(admin: Want, profile: WifiProfile): void
 **示例：**
 
 ```ts
+import { wifiManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  //需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 let profile: wifiManager.WifiProfile = {
+  //需根据实际情况进行替换
   'ssid': 'name',
   'preSharedKey': 'passwd',
   'securityType': wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
@@ -128,12 +133,12 @@ try {
 
 addAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 
-添加Wi-Fi白名单。添加白名单后当前设备仅允许连接该名单下的Wi-Fi。
+添加Wi-Fi允许名单。添加允许名单后当前设备仅允许连接该名单下的Wi-Fi。
 
 以下情况下，调用本接口会报策略冲突：
 
 1. 已经通过[setDiallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了设备Wi-Fi能力。通过[setDiallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)解除Wi-Fi禁用后，可解除冲突。
-2. 已经通过[addDisallowedWifiList](#wifimanageradddisallowedwifilist19)接口添加了Wi-Fi黑名单。通过[removeDisallowedWifiList](#wifimanagerremovedisallowedwifilist19)移除Wi-Fi黑名单后，可解除冲突。
+2. 已经通过[addDisallowedWifiList](#wifimanageradddisallowedwifilist19)接口添加了Wi-Fi禁用名单。通过[removeDisallowedWifiList](#wifimanagerremovedisallowedwifilist19)移除Wi-Fi禁用名单后，可解除冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -146,7 +151,7 @@ addAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 | 参数名       | 类型                                                       | 必填 | 说明                                                         |
 | ------------ | -------------------------------------------------------    | ---- | ------------------------------------------------------------ |
 | admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)    | 是   | 企业设备管理扩展组件。                                       |
-| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                   | 是   | Wi-Fi白名单数组。数组总长度不能超过200。例如，若当前白名单数组中已有100个Wi-Fi，则最多支持通过该接口再添加100个。 |
+| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                   | 是   | Wi-Fi允许名单数组。数组总长度不能超过200。例如，若当前允许名单数组中已有100个Wi-Fi，则最多支持通过该接口再添加100个。 |
 
 **错误码**：
 
@@ -162,6 +167,7 @@ addAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 **示例：**
 
 ```ts
+import { wifiManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -186,7 +192,7 @@ try {
 
 removeAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 
-移除Wi-Fi白名单。若移除白名单中的部分Wi-Fi，则当前设备仅允许连接剩下未移除的Wi-Fi。若移除白名单中的所有Wi-Fi，则当前设备可以连接任意Wi-Fi。
+移除Wi-Fi允许名单。若移除允许名单中的部分Wi-Fi，则当前设备仅允许连接剩下未移除的Wi-Fi。若移除允许名单中的所有Wi-Fi，则当前设备可以连接任意Wi-Fi。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -199,7 +205,7 @@ removeAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 | 参数名       | 类型                                                    | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | 待移除的Wi-Fi白名单数组。数组总长度不能超过200。                                            |
+| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | 待移除的Wi-Fi允许名单数组。数组总长度不能超过200。                                            |
 
 **错误码**：
 
@@ -214,6 +220,7 @@ removeAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 **示例：**
 
 ```ts
+import { wifiManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -238,7 +245,7 @@ try {
 
 getAllowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
 
-获取Wi-Fi白名单。
+获取Wi-Fi允许名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -256,7 +263,7 @@ getAllowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
 
 | 类型                               | 说明                      |
 | ---------------------------------- | ------------------------- |
-| Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt; | Wi-Fi白名单数组。 |
+| Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt; | Wi-Fi允许名单数组。 |
 
 **错误码**：
 
@@ -271,6 +278,7 @@ getAllowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
 **示例：**
 
 ```ts
+import { wifiManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -290,12 +298,12 @@ try {
 
 addDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 
-添加Wi-Fi黑名单。添加黑名单后当前设备不允许连接该名单下的Wi-Fi。
+添加Wi-Fi禁用名单。添加禁用名单后当前设备不允许连接该名单下的Wi-Fi。
 
 以下情况下，调用本接口会报策略冲突：
 
 1. 已经通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了设备Wi-Fi能力。通过[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)解除Wi-Fi禁用后，可解除冲突。
-2. 已经通过[addAllowedWifiList](#wifimanageraddallowedwifilist19)接口添加了Wi-Fi白名单。通过[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)移除Wi-Fi白名单后，可解除冲突。
+2. 已经通过[addAllowedWifiList](#wifimanageraddallowedwifilist19)接口添加了Wi-Fi允许名单。通过[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)移除Wi-Fi允许名单后，可解除冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -308,7 +316,7 @@ addDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 | 参数名       | 类型                                                    | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | Wi-Fi黑名单数组。数组总长度不能超过200。例如，若当前黑名单数组中已有100个Wi-Fi，则最多支持通过该接口再添加100个。 |
+| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | Wi-Fi禁用名单数组。数组总长度不能超过200。例如，若当前禁用名单数组中已有100个Wi-Fi，则最多支持通过该接口再添加100个。 |
 
 **错误码**：
 
@@ -324,6 +332,7 @@ addDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 **示例：**
 
 ```ts
+import { wifiManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -348,7 +357,7 @@ try {
 
 removeDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 
-移除Wi-Fi黑名单。若移除黑名单中的部分Wi-Fi，则当前设备不允许连接黑名单内剩余的Wi-Fi。若移除黑名单中的所有Wi-Fi，则当前设备可以连接任意的Wi-Fi。
+移除Wi-Fi禁用名单。若移除禁用名单中的部分Wi-Fi，则当前设备不允许连接禁用名单内剩余的Wi-Fi。若移除禁用名单中的所有Wi-Fi，则当前设备可以连接任意的Wi-Fi。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -361,7 +370,7 @@ removeDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 | 参数名       | 类型                                                    | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
-| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | 待移除的Wi-Fi黑名单数组。数组总长度不能超过200。                      |
+| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | 待移除的Wi-Fi禁用名单数组。数组总长度不能超过200。                      |
 
 **错误码**：
 
@@ -376,6 +385,7 @@ removeDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 **示例：**
 
 ```ts
+import { wifiManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -400,7 +410,7 @@ try {
 
 getDisallowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
 
-获取Wi-Fi黑名单。
+获取Wi-Fi禁用名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -418,7 +428,7 @@ getDisallowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
 
 | 类型                               | 说明                      |
 | ---------------------------------- | ------------------------- |
-| Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt; | Wi-Fi黑名单数组。 |
+| Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt; | Wi-Fi禁用名单数组。 |
 
 **错误码**：
 
@@ -433,6 +443,7 @@ getDisallowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
 **示例：**
 
 ```ts
+import { wifiManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
@@ -456,10 +467,10 @@ Wi-Fi的SSID和BSSID信息。
 
 
 
-| 名称          | 类型                                  | 必填 | 说明                                                        |
-| ------------- | ------------------------------------- | ---- | ----------------------------------------------------------- |
-| ssid          | string                                | 是   | Wi-Fi热点名称，编码格式为UTF-8，最大长度为32字节（中文字符占3位，英文字符占1位）。           |
-| bssid         | string                                | 否   | Wi-Fi热点的mac地址，例如：00:11:22:33:44:55。<br/>调用[addAllowedWifiList](#wifimanageraddallowedwifilist19)和[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)时为必填。<br/>调用[addDisallowedWifiList](#wifimanageradddisallowedwifilist19)和[removeDisallowedWifiList](#wifimanagerremovedisallowedwifilist19)时为选填（默认值为空字符串）。            |
+| 名称          | 类型                             | 只读 | 可选 | 说明                                                        |
+| ------------- | --------------------------------| ---- | -----| ------------------------------------------------------ |
+| ssid          | string                           | 否   | 否 | Wi-Fi热点名称，编码格式为UTF-8，最大长度为32字节（中文字符占3位，英文字符占1位）。           |
+| bssid         | string                           | 否   | 是 | Wi-Fi热点的mac地址，例如：00:11:22:33:44:55。<br/>调用[addAllowedWifiList](#wifimanageraddallowedwifilist19)和[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)时为必填。<br/>调用[addDisallowedWifiList](#wifimanageradddisallowedwifilist19)和[removeDisallowedWifiList](#wifimanagerremovedisallowedwifilist19)时为选填（默认值为空字符串）。            |
 
 ## WifiProfile
 
@@ -469,21 +480,21 @@ Wi-Fi配置信息。
 
 
 
-| 名称          | 类型                                  | 必填 | 说明                                                        |
-| ------------- | ------------------------------------- | ---- | ----------------------------------------------------------- |
-| ssid          | string                                | 是   | 热点的SSID，编码格式为UTF-8。                               |
-| bssid         | string                                | 否   | 热点的BSSID。                                               |
-| preSharedKey  | string                                | 是   | 热点的密钥。                                                |
-| isHiddenSsid  | boolean                               | 否   | 是否是隐藏网络。true表示是隐藏网络，false表示不是隐藏网络。 |
-| securityType  | [WifiSecurityType](#wifisecuritytype) | 是   | 加密类型。                                                  |
-| creatorUid    | number                                | 否   | 创建用户的ID。                                              |
-| disableReason | number                                | 否   | 禁用原因。                                                  |
-| netId         | number                                | 否   | 分配的网络ID。                                              |
-| randomMacType | number                                | 否   | 随机MAC类型。                                               |
-| randomMacAddr | string                                | 否   | 随机MAC地址。                                               |
-| ipType        | [IpType](#iptype)                     | 否   | IP地址类型。                                                |
-| staticIp      | [IpProfile](#ipprofile)               | 否   | 静态IP配置信息。                                            |
-| eapProfile    | [WifiEapProfile](#wifieapprofile)     | 否   | 可扩展身份验证协议配置。                                    |
+| 名称          | 类型                              | 只读 | 可选 | 说明                                                        |
+| ------------- | ----------------------------------| ---- | ----| ------------------------------------------------------- |
+| ssid          | string                                | 否   | 否 | 热点的SSID，编码格式为UTF-8。                               |
+| bssid         | string                                | 否   | 是 | 热点的BSSID。                                               |
+| preSharedKey  | string                                | 否   | 否 | 热点的密钥。                                                |
+| isHiddenSsid  | boolean                               | 否   | 是 | 是否是隐藏网络。true表示是隐藏网络，false表示不是隐藏网络。 |
+| securityType  | [WifiSecurityType](#wifisecuritytype) | 否   | 否 | 加密类型。                                                  |
+| creatorUid    | number                                | 否   | 是 | 创建用户的ID。                                              |
+| disableReason | number                                | 否   | 是 | 禁用原因。                                                  |
+| netId         | number                                | 否   | 是 | 分配的网络ID。                                              |
+| randomMacType | number                                | 否   | 是 | 随机MAC类型。                                               |
+| randomMacAddr | string                                | 否   | 是 | 随机MAC地址。                                               |
+| ipType        | [IpType](#iptype)                     | 否   | 是 | IP地址类型。                                                |
+| staticIp      | [IpProfile](#ipprofile)               | 否   | 是 | 静态IP配置信息。                                            |
+| eapProfile    | [WifiEapProfile](#wifieapprofile)     | 否   | 是 | 可扩展身份验证协议配置。                                    |
 
 ## WifiSecurityType
 
@@ -544,23 +555,23 @@ IP配置信息。
 
 
 
-| 名称              | 类型                          | 必填 | 说明                             |
-| ----------------- | ----------------------------- | ---- | -------------------------------- |
-| eapMethod         | [EapMethod](#eapmethod)       | 是   | AP认证方式。                     |
-| phase2Method      | [Phase2Method](#phase2method) | 是   | 第二阶段认证方式。               |
-| identity          | string                        | 是   | 身份信息。                       |
-| anonymousIdentity | string                        | 是   | 匿名身份。                       |
-| password          | string                        | 是   | 密码。                           |
-| caCertAliases     | string                        | 是   | CA 证书别名。                    |
-| caPath            | string                        | 是   | CA 证书路径。                    |
-| clientCertAliases | string                        | 是   | 客户端证书别名。                 |
-| certEntry         | Uint8Array                    | 是   | CA 证书内容。                    |
-| certPassword      | string                        | 是   | CA证书密码。                     |
-| altSubjectMatch   | string                        | 是   | 替代主题匹配。                   |
-| domainSuffixMatch | string                        | 是   | 域后缀匹配。                     |
-| realm             | string                        | 是   | 通行证凭证的领域。               |
-| plmn              | string                        | 是   | 公共陆地移动网的直通凭证提供商。 |
-| eapSubId          | number                        | 是   | SIM卡的子ID。                    |
+| 名称              | 类型                          | 只读 | 可选 | 说明                             |
+| ----------------- | ----------------------------- | ---- |----| -------------------------------- |
+| eapMethod         | [EapMethod](#eapmethod)       | 否   | 否 | AP认证方式。                     |
+| phase2Method      | [Phase2Method](#phase2method) | 否   | 否 | 第二阶段认证方式。               |
+| identity          | string                        | 否   | 否 | 身份信息。                       |
+| anonymousIdentity | string                        | 否   | 否 | 匿名身份。                       |
+| password          | string                        | 否   | 否 | 密码。                           |
+| caCertAliases     | string                        | 否   | 否 | CA 证书别名。                    |
+| caPath            | string                        | 否   | 否 | CA 证书路径。                    |
+| clientCertAliases | string                        | 否   | 否 | 客户端证书别名。                 |
+| certEntry         | Uint8Array                    | 否   | 否 | CA 证书内容。                    |
+| certPassword      | string                        | 否   | 否 | CA证书密码。                     |
+| altSubjectMatch   | string                        | 否   | 否 | 替代主题匹配。                   |
+| domainSuffixMatch | string                        | 否   | 否 | 域后缀匹配。                     |
+| realm             | string                        | 否   | 否 | 通行证凭证的领域。               |
+| plmn              | string                        | 否   | 否 | 公共陆地移动网的直通凭证提供商。 |
+| eapSubId          | number                        | 否   | 否 | SIM卡的子ID。                    |
 
 ## EapMethod
 
@@ -642,8 +653,9 @@ import { Want } from '@kit.AbilityKit';
 import { wifiManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -694,8 +706,9 @@ import { Want } from '@kit.AbilityKit';
 import { wifiManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {

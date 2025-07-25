@@ -64,10 +64,10 @@ IsolatedComponent(options: IsolatedOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称               | 类型                                 | 必填 | 说明                                                                                                      |
-| ----                 | ---------------------------------------- | ---- | ---------------                                                                                               |
-| want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)                                  | 是   | 要加载的Abc信息。 |
-| worker | [RestrictedWorker](../../apis-arkts/js-apis-worker-sys.md#restrictedworker11)       | 是   | 运行Abc的受限worker。 |
+| 名称  | 类型       | 只读 | 可选 | 说明 |
+| ---- | ------------ | ---- | ---- | --------------- |
+| want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 否 | 要加载的Abc信息。 |
+| worker | [RestrictedWorker](../../apis-arkts/js-apis-worker-sys.md#restrictedworker11) | 否 | 否 | 运行Abc的受限worker。 |
 
 ## 属性
 仅支持[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)通用属性。
@@ -189,7 +189,7 @@ onError(callback:ErrorCallback)
               .width(300)
               .height(300)
               .onError((err) => {
-                console.info("onError : " + JSON.stringify(err));
+                console.error("onError : " + JSON.stringify(err));
               })
           }
         }

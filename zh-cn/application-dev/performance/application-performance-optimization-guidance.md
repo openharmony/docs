@@ -31,28 +31,71 @@
 使用TaskPool进行耗时操作的示例代码如下：
 
 ```typescript
-import taskpool from '@ohos.taskpool';
+import { IconItemSource } from '../utils/IconItemSource';
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+import { loadPicture } from '../utils/IndependentTask';
+import { taskpool } from '@kit.ArkTS';
 
-aboutToAppear() {
-  // 在生命周期中，使用TaskPool加载和解析网络数据
-  this.requestByTaskPool();
-}
+@Component
+export struct PageOnePositive {
+  @State private text: string = "";
+  pathStack: NavPathStack = new NavPathStack();
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  @State currentIndex: number = 0;
+  @State selectedIndex: number = 0;
+  private controller: TabsController = new TabsController();
 
-@Concurrent
-getInfoFromHttp(): string[] {
-  // 从网络加载数据
-  return http.request();
-}
+  loadPicture(count: number): IconItemSource[] {
+    let iconItemSourceList: IconItemSource[] = [];
+    // 遍历添加6*count个IconItem的数据
+    for (let index = 0; index < count; index++) {
+      const numStart: number = index * 6;
+      // 此处循环使用6张图片资源
+      iconItemSourceList.push(new IconItemSource($r('app.media.bigphoto'), `item${numStart + 1}`));
+      iconItemSourceList.push(new IconItemSource($r('app.media.bigphoto'), `item${numStart + 2}`));
+      iconItemSourceList.push(new IconItemSource($r('app.media.bigphoto'), `item${numStart + 3}`));
+      iconItemSourceList.push(new IconItemSource($r('app.media.bigphoto'), `item${numStart + 4}`));
+      iconItemSourceList.push(new IconItemSource($r('app.media.bigphoto'), `item${numStart + 5}`));
+      iconItemSourceList.push(new IconItemSource($r('app.media.bigphoto'), `item${numStart + 6}`));
+    }
+    return iconItemSourceList;
+  }
 
-requestByTaskPool(): void {
-  // 创建任务项
-  let task: taskpool.Task = new taskpool.Task(this.getInfoFromHttp);
-  try {
-    // 执行网络加载函数
-    taskpool.execute(task, taskpool.Priority.HIGH).then((res: string[]) => {
-  });
-  } catch (err) {
-    logger.error(TAG, "failed, " + (err as BusinessError).toString());
+  requestByTaskPool(): void {
+    hiTraceMeter.startTrace("responseTime", 1002);
+    // 耗时任务,TaskPool执行
+    let iconItemSourceList: IconItemSource[] = [];
+    // 创建Task
+    let lodePictureTask: taskpool.Task = new taskpool.Task(loadPicture, 100000);
+    // 执行Task，并返回结果
+    taskpool.execute(lodePictureTask).then((res: object) => {
+      iconItemSourceList = res as IconItemSource[];
+      iconItemSourceList = [];
+      // loadPicture方法的执行结果
+    })
+    hiTraceMeter.finishTrace("responseTime", 1002);
+  }
+
+  build() {
+    // ...
+      Column() {
+
+        Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
+          // TabContent
+          // ...
+        }
+        // ...
+        .onContentWillChange((currentIndex, comingIndex) => {
+          if (comingIndex == 1) {
+            this.requestByTaskPool();
+            let context = getContext(this) as Context;
+            this.text = context.resourceManager.getStringSync($r('app.string.startup_text2'));
+          }
+          return true
+        })
+        // ...
+      }
   }
 }
 ```
@@ -69,20 +112,48 @@ requestByTaskPool(): void {
 可以把耗时操作的执行从同步执行改为异步或者延后执行，[提升应用冷启动速度](improve-application-cold-start-speed.md)，比如使用setTimeOut执行耗时操作，示例如下：
 
 ```typescript
-aboutToAppear() {
-  // 在生命周期中，使用异步处理数据，延时大小视情况确定
-  setTimeout(() => {
-    this.workoutResult();
-  }, 1000)
-}
+import { hilog, hiTraceMeter } from '@kit.PerformanceAnalysisKit';
 
-workoutResult(): string[] {
-  // 处理需要展示的业务数据
-  let data: Data[] = [];
-  for(let i = 1; i < 100; i++) {
-    result += data[i];
+const DELAYED_TIME: number = 100;
+const LARGE_NUMBER: number = 200000;
+
+@Component
+export struct PageTwoPositive {
+  @State message: string = 'Hello World';
+  @State private text: string = "";
+  pathStack: NavPathStack = new NavPathStack();
+  private count: number = 0;
+
+  aboutToAppear(): void {
+    // 在aboutToAppear接口中对耗时间的计算任务进行了异步处理。
+    // 耗时操作
+    this.computeTaskAsync(); // 异步任务
+    let context = getContext(this) as Context;
+    this.text = context.resourceManager.getStringSync($r('app.string.startup_text4'));
   }
-  return result;
+
+  computeTask(): void {
+    hiTraceMeter.startTrace("responseTime", 1002);
+    this.count = 0;
+    while (this.count < LARGE_NUMBER) {
+      this.count++;
+      hilog.info(0x0000, 'count', '%{public}s', JSON.stringify(this.count));
+    }
+    hiTraceMeter.finishTrace("responseTime", 1002);
+  }
+
+  // 运算任务异步处理
+  private computeTaskAsync(): void {
+    setTimeout(() => {
+      // 这里使用setTimeout来实现异步延迟运行
+      this.computeTask();
+    }, DELAYED_TIME)
+  }
+
+  build() {
+    // 页面布局 
+    // ...
+  }
 }
 ```
 
@@ -236,9 +307,13 @@ import { IconItem } from './IconItem';
 
 // IconItem相关数据
 class IconItemSource {
-  image: string | Resource = '';
-  text: string | Resource = '';
-  // ...
+  image: string | Resource = ''
+  text: string | Resource = ''
+
+  constructor(image: string | Resource = '', text: string | Resource = '') {
+    this.image = image;
+    this.text = text;
+  }
 }
 
 @Entry
@@ -277,10 +352,19 @@ struct Index {
 // IconItem.ets
 @Component
 export struct IconItem {
-  build()  {
-    Flex()  {
+  renderGroupFlag: boolean = false;
+  image: string | Resource = '';
+  text: string | Resource = '';
+    
+  build() {
+    Flex({
+      direction: FlexDirection.Column,
+      justifyContent: FlexAlign.Center,
+      alignContent: FlexAlign.Center
+    }) {
       Image(this.image)
       Text(this.text)
+      // ...     
     }
     // 在IconItem内开启renderGroup
     .renderGroup(true)
@@ -445,12 +529,12 @@ struct MyComponent {
 @Entry
 @Component
 struct AspectRatioExample12 {
-    @State children: Number[] = Array.from(Array<number>(900), (v, k) => k);
+    @State children: number[] = Array.from(Array<number>(900), (v, k) => k);
 
     build() {
       Scroll() {
         Grid() {
-          ForEach(this.children, (item: Number[]) => {
+          ForEach(this.children, (item: number) => {
             GridItem() {
               Stack() {  
                 Stack() {  
@@ -460,7 +544,7 @@ struct AspectRatioExample12 {
                 }.backgroundColor(Color.Yellow)  
               }.backgroundColor(Color.Pink)  
             }  
-          }, (item: string) => item)  
+          }, (item: number) => item.toString())  
         }  
         .columnsTemplate('1fr 1fr 1fr 1fr')  
         .columnsGap(0)  
@@ -477,16 +561,16 @@ struct AspectRatioExample12 {
 @Entry  
 @Component  
 struct AspectRatioExample11 {  
-  @State children: Number[] = Array.from(Array<number>(900), (v, k) => k);  
+  @State children: number[] = Array.from(Array<number>(900), (v, k) => k);  
 
   build() {  
     Scroll() {  
       Grid() {  
-        ForEach(this.children, (item: Number[]) => {  
+        ForEach(this.children, (item: number) => {  
           GridItem() {  
             Text(item.toString())  
           }.backgroundColor(Color.Yellow)  
-        }, (item: string) => item)  
+        }, (item: number) => item.toString())  
       }  
       .columnsTemplate('1fr 1fr 1fr 1fr')  
       .columnsGap(0)  

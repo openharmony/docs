@@ -2,7 +2,8 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本Class首批接口从API version 11开始支持。
 
 媒体资产管理类，管理媒体资源读取。
 
@@ -32,7 +33,7 @@ static requestImage(context: Context, asset: PhotoAsset, requestOptions: Request
 | 参数名            | 类型                                                                                                        | 必填 | 说明                      |
 |----------------|-----------------------------------------------------------------------------------------------------------| ---- | ------------------------- |
 | context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的上下文。 |
-| asset         | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)                                                                                | 是   | 待请求的的媒体文件对象。 |
+| asset         | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)                                                                                | 是   | 待请求的媒体文件对象。 |
 | requestOptions | [RequestOptions](arkts-apis-photoAccessHelper-i.md#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。|
 | dataHandler    | [MediaAssetDataHandler](arkts-apis-photoAccessHelper-MediaAssetDataHandler.md)&lt;[image.ImageSource](../apis-image-kit/arkts-apis-image-ImageSource.md)&gt; | 是   | 媒体资源处理器，请求完成时触发回调。|
 
@@ -50,7 +51,7 @@ static requestImage(context: Context, asset: PhotoAsset, requestOptions: Request
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011       | System inner fail.         |
+| 14000011       | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.        |
 
 **示例：**
 
@@ -109,7 +110,7 @@ static requestImageData(context: Context, asset: PhotoAsset, requestOptions: Req
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的上下文。 |
-| asset | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)                                            | 是   | 待请求的的媒体文件对象。 |
+| asset | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)                                            | 是   | 待请求的媒体文件对象。 |
 | requestOptions  | [RequestOptions](arkts-apis-photoAccessHelper-i.md#requestoptions11)                                  | 是   | 图片请求策略模式配置项。 |      
 | dataHandler  | [MediaAssetDataHandler](arkts-apis-photoAccessHelper-MediaAssetDataHandler.md)&lt;ArrayBuffer&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
 
@@ -127,7 +128,7 @@ static requestImageData(context: Context, asset: PhotoAsset, requestOptions: Req
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011       | System inner fail.         |
+| 14000011       | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.        |
 
 **示例：**
 
@@ -185,7 +186,7 @@ static requestMovingPhoto(context: Context, asset: PhotoAsset, requestOptions: R
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的上下文。 |
-| asset | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)                                            | 是   | 待请求的的媒体文件对象。 |
+| asset | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)                                            | 是   | 待请求的媒体文件对象。 |
 | requestOptions  | [RequestOptions](arkts-apis-photoAccessHelper-i.md#requestoptions11)                                  | 是   | 图片请求策略模式配置项。|       
 | dataHandler  | [MediaAssetDataHandler](arkts-apis-photoAccessHelper-MediaAssetDataHandler.md)&lt;[MovingPhoto](arkts-apis-photoAccessHelper-MovingPhoto.md)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
 
@@ -265,7 +266,7 @@ static requestVideoFile(context: Context, asset: PhotoAsset, requestOptions: Req
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的上下文。|
-| asset | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)                                            | 是   | 待请求的的媒体文件对象。 |
+| asset | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)                                            | 是   | 待请求的媒体文件对象。 |
 | requestOptions  | [RequestOptions](arkts-apis-photoAccessHelper-i.md#requestoptions11)                                  | 是   | 视频请求策略模式配置项。|
 | fileUri| string                                                              | 是 | 目标写入沙箱路径uri。示例fileUri：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'。 |
 | dataHandler  | [MediaAssetDataHandler](arkts-apis-photoAccessHelper-MediaAssetDataHandler.md)&lt;boolean&gt; | 是   | 媒体资源处理器，当所请求的视频资源写入完成时会触发回调。|
@@ -285,7 +286,7 @@ static requestVideoFile(context: Context, asset: PhotoAsset, requestOptions: Req
 | 201      |  Permission denied         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 801<sup>15+</sup>   | Capability not supported.       |
-| 14000011       | System inner fail.         |
+| 14000011       | System inner fail. Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out; 4. Permission denied.        |
 
 **示例：**
 
@@ -436,7 +437,7 @@ static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: Re
 | 参数名            | 类型                                                                                                        | 必填 | 说明                      |
 |----------------|-----------------------------------------------------------------------------------------------------------| ---- | ------------------------- |
 | context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的上下文。 |
-| asset         | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)                                                                                | 是   | 待请求的的媒体文件对象。 |
+| asset         | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)                                                                                | 是   | 待请求的媒体文件对象。 |
 | requestOptions | [RequestOptions](arkts-apis-photoAccessHelper-i.md#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。|
 | dataHandler    | [QuickImageDataHandler](arkts-apis-photoAccessHelper-QuickImageDataHandler.md)&lt;[image.Picture](../apis-image-kit/arkts-apis-image-Picture.md)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
 

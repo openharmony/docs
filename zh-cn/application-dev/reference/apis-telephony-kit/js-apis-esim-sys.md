@@ -2,7 +2,7 @@
 
 穿戴设备支持eSIM，电话服务提供API给eSIM卡管理和eSIM卡服务使用。
 
-> **说明：** 
+> **说明：**
 >
 > 本模块首批接口从API version 18开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.telephony.esim (eSIM卡管理)](js-apis-esim.md)。
@@ -161,8 +161,7 @@ eSIM.startOsu(0).then(() => {
 
 ## eSIM.getDownloadableProfileMetadata<sup>18+</sup>
 
-getDownloadableProfileMetadata\(slotId: number, portIndex: number,
-    profile: DownloadableProfile, forceDisableProfile: boolean\): Promise\<GetDownloadableProfileMetadataResult\>
+getDownloadableProfileMetadata\(slotId: number, portIndex: number, profile: DownloadableProfile, forceDisableProfile: boolean\): Promise\<GetDownloadableProfileMetadataResult\>
 
 填充可下载配置文件的元数据。使用Promise异步回调。
 
@@ -174,12 +173,12 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ------ | ----- | ----- |
-| slotId              | number                                        | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
-| portIndex           | number                                        | 是 | 插槽的端口索引。     |
-| profile             | [DownloadableProfile](./js-apis-esim.md#downloadableprofile18) | 是 | 可下载的配置文件信息。|
-| forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。如果值为false，则提示用户首先同意此操作。|
+| 参数名 | 类型 | 必填 | 说明                                                                                                   |
+| ------ | ------ | ----- |------------------------------------------------------------------------------------------------------|
+| slotId              | number                                        | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。                                                                      |
+| portIndex           | number                                        | 是 | 插槽的端口索引。                                                                                             |
+| profile             | [DownloadableProfile](./js-apis-esim.md#downloadableprofile18) | 是 | 可下载的配置文件信息。                                                                                          |
+| forceDisableProfile | boolean | 是 | 是否可直接去激活配置文件。true表示切换配置文件时，如果需要去激活当前的配置文件，则可以直接操作。false表示如果需要去激活当前的配置文件，则会返回错误，并得到用户授权后再继续调用该接口，执行切换配置文件操作。 |
 
 **返回值：**
 
@@ -206,7 +205,7 @@ getDownloadableProfileMetadata\(slotId: number, portIndex: number,
 import { BusinessError } from '@kit.BasicServicesKit';
 import { eSIM } from '@kit.TelephonyKit';
 
-let profile: eSIM.DownloadableProfile={
+let profile: eSIM.DownloadableProfile = {
   activationCode:'1',
   confirmationCode:'1',
   carrierName:'test',
@@ -227,7 +226,7 @@ eSIM.getDownloadableProfileMetadata(0, 0, profile, true).then((data: eSIM.GetDow
 ## eSIM.getDownloadableProfiles<sup>18+</sup>
 
 getDownloadableProfiles\(slotId: number, portIndex: number,
-    forceDisableProfile: boolean\): Promise\<GetDownloadableProfilesResult\>
+forceDisableProfile: boolean\): Promise\<GetDownloadableProfilesResult\>
 
 获取可用的可下载配置文件列表。使用Promise异步回调。
 
@@ -243,7 +242,7 @@ getDownloadableProfiles\(slotId: number, portIndex: number,
 | ------ | ------ | ----- | ----- |
 | slotId              | number  | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number  | 是 | 插槽的端口索引。 |
-| forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。如果值为false，则提示用户首先同意此操作。|
+| forceDisableProfile | boolean | 是 | 是否可直接去激活配置文件。true表示切换配置文件时，如果需要去激活当前的配置文件，则可以直接操作。false表示如果需要去激活当前的配置文件，则会返回错误，并得到用户授权后再继续调用该接口，执行切换配置文件操作。|
 
 **返回值：**
 
@@ -280,7 +279,7 @@ eSIM.getDownloadableProfiles(0, 0, true).then((data: eSIM.GetDownloadableProfile
 ## eSIM.downloadProfile<sup>18+</sup>
 
 downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile,
-      configuration: DownloadConfiguration\): Promise\<DownloadProfileResult\>
+configuration: DownloadConfiguration\): Promise\<DownloadProfileResult\>
 
 下载配置文件。使用Promise异步回调。
 
@@ -324,7 +323,7 @@ downloadProfile\(slotId: number, portIndex: number, profile: DownloadableProfile
 import { BusinessError } from '@kit.BasicServicesKit';
 import { eSIM } from '@kit.TelephonyKit';
 
-let profile: eSIM.DownloadableProfile={
+let profile: eSIM.DownloadableProfile = {
   activationCode:'1',
   confirmationCode:'1',
   carrierName:'test',
@@ -338,7 +337,7 @@ let profile: eSIM.DownloadableProfile={
 let configuration: eSIM.DownloadConfiguration = {
   switchAfterDownload: true,
   forceDisableProfile: true,
-  isAlowPpr: true,
+  isPprAllowed: true,
 };
 
 eSIM.downloadProfile(0, 0, profile, configuration).then((data: eSIM.DownloadProfileResult) => {
@@ -502,7 +501,7 @@ eSIM.deleteProfile(0, testId).then(() => {
 ## eSIM.switchToProfile<sup>18+</sup>
 
 switchToProfile\(slotId: number, portIndex: number, iccid: string,
-    forceDisableProfile: boolean\): Promise\<ResultCode\>
+forceDisableProfile: boolean\): Promise\<ResultCode\>
 
 切换到(启用)给定的配置文件。使用Promise异步回调。
 
@@ -519,7 +518,7 @@ switchToProfile\(slotId: number, portIndex: number, iccid: string,
 | slotId              | number  | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number  | 是 | 插槽的端口索引。 |
 | iccid               | string  | 是 | 配置文件的Id。   |
-| forceDisableProfile | boolean | 是 | 如果值为true，则必须停用活动SIM才能执行操作。如果值为false，则提示用户首先同意此操作。|
+| forceDisableProfile | boolean | 是 | 是否可直接去激活配置文件。true表示切换配置文件时，如果需要去激活当前的配置文件，则可以直接操作。false表示如果需要去激活当前的配置文件，则会返回错误，并得到用户授权后再继续调用该接口，执行切换配置文件操作。|
 
 **返回值：**
 
@@ -885,7 +884,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | ----- | ----- | ----- | -----|
 | downloadableProfile | DownloadableProfile  |  是  | 可下载的配置文件信息。   |
 | pprType             | number               |  是  | 配置文件策略规则类型。 |
-| pprFlag             | boolean              |  是  | 配置文件策略规则标记。 |
+| pprFlag             | boolean              |  是  | 配置文件是否有策略规则。true表示有策略规则，false表示无策略规则。|
 | iccid               | string               |  是  | 配置文件的iccId。     |
 | serviceProviderName | string               |  是  | 配置文件的服务提供商名称。 |
 | profileName         | string               |  是  | 配置文件名称。 |
@@ -932,7 +931,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | ----- | ----- | ----- | -----|
 | responseResult  |ResultCode            |  是  | 返回操作结果码。    |
 | profiles        | Array\<EuiccProfile> |  是  | 配置文件数组。      |
-| isRemovable     | boolean              |  是  | 获取eUICC是否可移除。|
+| isRemovable     | boolean              |  是  | eUICC是否可移除。true表示可移除，false表示不可移除。|
 
 ## OperatorId<sup>18+</sup>
 
@@ -1140,6 +1139,7 @@ euicc信息。
 
 | 名称 | 类型 | 必填 | 说明 |
 | ----- | ----- | ----- | -----|
-|switchAfterDownload | boolean | 是 | 下载成功后是否启用配置文件。|
-|forceDisableProfile | boolean | 是 | 是否强制禁用模板。         |
-|isPprAllowed        | boolean | 是 | 指定用户是否允许服务提供商在被告知其限制后实施此配置文件策略规则。|
+|switchAfterDownload | boolean | 是 | 下载成功后是否启用配置文件。true表示启用，false表示不启用。|
+|forceDisableProfile | boolean | 是 | 是否可直接去激活配置文件。true表示切换配置文件时，如果需要去激活当前的配置文件，则可以直接操作。false表示如果需要去激活当前的配置文件，则会返回错误，并得到用户授权后再继续调用该接口，执行切换配置文件操作。|
+|isPprAllowed        | boolean | 是 | 是否得到用户授权。true表示得到用户授权，服务提供商可实施配置文件策略规则；false表示未得到用户授权，不允许实施配置文件策略规则。|
+

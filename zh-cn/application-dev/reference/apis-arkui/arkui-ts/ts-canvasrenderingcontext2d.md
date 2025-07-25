@@ -99,13 +99,13 @@ struct LengthMetricsUnitDemo {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | --------- | ------------------------------- | ------------------ | ---------------------- | ---------------------------------------- |
-| [fillStyle](#fillstyle) | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 否 | 否 | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中string类型说明。<br/>默认值：'#000000'<br/>- 类型为number时，表示设置填充区域的颜色，不支持设置全透明色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中number类型说明。<br/>默认值：0x000000<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| [fillStyle](#fillstyle) | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md) | 否 | 否 | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中string类型说明。<br/>默认值：'#000000'<br/>- 类型为number时，表示设置填充区域的颜色，不支持设置全透明色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中number类型说明。<br/>默认值：0x000000<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [lineWidth](#linewidth) | number | 否 | 否 | 设置绘制线条的宽度。<br/>默认值：1(px)<br/>默认单位：vp <br/> linewidth取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| [strokeStyle](#strokestyle)              | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern)  | 否 | 否 | 设置线条的颜色。<br/>-&nbsp;类型为string时，表示设置线条使用的颜色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中string类型说明。<br/>默认值：'#000000'<br/>- 类型为number时，表示设置线条使用的颜色，不支持设置全透明色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中number类型说明。<br/>默认值：0x000000<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| [strokeStyle](#strokestyle)              | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md)  | 否 | 否 | 设置线条的颜色。<br/>-&nbsp;类型为string时，表示设置线条使用的颜色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中string类型说明。<br/>默认值：'#000000'<br/>- 类型为number时，表示设置线条使用的颜色，不支持设置全透明色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中number类型说明。<br/>默认值：0x000000<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [lineCap](#linecap)                      | [CanvasLineCap](#canvaslinecap类型说明) | 否 | 否 | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [lineJoin](#linejoin)                    | [CanvasLineJoin](#canvaslinejoin类型说明) | 否 | 否 | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [miterLimit](#miterlimit)                | number | 否 | 否 | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>默认值：10px<br/>单位：px<br/>miterLimit取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| [font](#font)                            | string | 否 | 否 | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'，不支持自定义字体。<br/>默认值：'normal normal 14px sans-serif'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| [font](#font)                            | string | 否 | 否 | 设置文本绘制中的字体样式。<br/>语法：ctx.font&nbsp;=&nbsp;'font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。API version 20及以后支持注册过的自定义字体（DevEco Studio的预览器不支持显示自定义字体），具体使用方法参考自定义字体[font](#font)示例。<br/>默认值：'normal normal 14px sans-serif'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | [textAlign](#textalign)                  | [CanvasTextAlign](#canvastextalign类型说明) | 否 | 否 | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致。<br/>默认值：'left'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [textBaseline](#textbaseline)            | [CanvasTextBaseline](#canvastextbaseline类型说明) | 否 | 否 | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>默认值：'alphabetic'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [globalAlpha](#globalalpha)              | number | 否 | 否 | 设置透明度，范围为[0.0, 1.0]，0.0为完全透明，1.0为完全不透明。若给定值小于0.0，则取值0.0；若给定值大于1.0，则取值1.0.<br/>默认值：1.0<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -329,11 +329,13 @@ struct MiterLimit {
 
 ```ts
 // xxx.ets
+import { text } from '@kit.ArkGraphics2D';
+
 @Entry
 @Component
 struct FontDemo {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -348,6 +350,12 @@ struct FontDemo {
           // 斜体样式，加粗，字体大小为30vp，字体系列为monospace
           this.context.font = 'italic bold 30vp monospace'
           this.context.fillText("Hello vp", 20, 100)
+          // 加载rawfile目录下的自定义字体文件HarmonyOS_Sans_Thin_Italic.ttf
+          let fontCollection = text.FontCollection.getGlobalInstance();
+          fontCollection.loadFontSync('HarmonyOS_Sans_Thin_Italic', $rawfile("HarmonyOS_Sans_Thin_Italic.ttf"))
+          // 加粗，字体大小为30vp，字体系列为HarmonyOS_Sans_Thin_Italic
+          this.context.font = "bold 30vp HarmonyOS_Sans_Thin_Italic"
+          this.context.fillText("Hello customFont", 20, 140)
         })
     }
     .width('100%')
@@ -1617,7 +1625,7 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 
 | 类型                                       | 说明                      |
 | ---------------------------------------- | ----------------------- |
-| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) \| null | 通过指定图像和重复方式创建图片填充的模板对象。 |
+| [CanvasPattern](ts-components-canvas-canvaspattern.md) \| null | 通过指定图像和重复方式创建图片填充的模板对象。 |
 
 **示例：**
 
@@ -2696,7 +2704,7 @@ setTransform(transform?: Matrix2D): void
 
 | 参数名  | 类型 | 必填 | 说明  |
 | --------- | ---------------------------------------- | ---- | ----- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#matrix2d) | 否 | 变换矩阵。<br>默认值：null |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md) | 否 | 变换矩阵。<br>默认值：null |
 
 **示例：**
 
@@ -2706,7 +2714,7 @@ setTransform(transform?: Matrix2D): void
   @Component
   struct TransFormDemo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
-    private context1: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.  settings);
+    private context1: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     private context2: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
@@ -2757,7 +2765,7 @@ getTransform(): Matrix2D
 
 | 类型                                       | 说明    |
 | ---------------------------------------- | ----- |
-| [Matrix2D](ts-components-canvas-matrix2d.md#matrix2d) | 矩阵对象。 |
+| [Matrix2D](ts-components-canvas-matrix2d.md) | 矩阵对象。 |
 
 **示例：**
 
@@ -3122,8 +3130,8 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.drawImage(this.img,0,0,130,130)
-            let imagedata = this.context.getImageData(50,50,130,130)
-            this.context.putImageData(imagedata,150,150)
+            let imageData = this.context.getImageData(50,50,130,130)
+            this.context.putImageData(imageData,150,150)
           })
       }
       .width('100%')

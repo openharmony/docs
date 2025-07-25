@@ -44,7 +44,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 ## SourceType 
 
-触屏来源的设备类型。
+触屏来源的设备类型，当前仅支持触摸屏、触控板类型上报。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -80,6 +80,8 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 | rawX        | number | 否    | 否    | 输入设备上的x坐标。                          |
 | rawY        | number | 否    | 否    | 输入设备上的y坐标。                           |
 | toolType    | [ToolType](#tooltype) | 否    | 否    | 工具类型。                                |
+| globalX<sup>20+</sup> | number | 否    | 是    | 触屏位置相对于主屏幕左上角的X坐标。默认值为int类型的最大值，即2147483647。        |
+| globalY<sup>20+</sup> | number | 否    | 是    | 触屏位置相对于主屏幕左上角的Y坐标。默认值为int类型的最大值，即2147483647。        |
 
 ## TouchEvent
 

@@ -137,4 +137,69 @@ export default class EntryAbility extends UIAbility {
     }
   }
 }
+
+```
+## application.createPluginModuleContextForHostBundle<sup>20+</sup>
+
+createPluginModuleContextForHostBundle(context: Context, pluginBundleName: string, pluginModuleName: string, hostBundleName: string): Promise\<Context>
+
+根据入参Context、插件包名和插件模块名和应用包名，创建对应插件的Context，用于获取插件的基本信息。使用Promise异步回调。
+
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口：** 此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型                                       | 必填   | 说明             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是 | 表示应用上下文。 |
+| pluginBundleName | string | 是 | 表示应用的插件包名。 |
+| pluginModuleName | string | 是 | 表示应用的插件模块名。 |
+| hostBundleName | string | 是 | 表示安装插件的应用包名。 |
+
+**返回值：**
+
+| 类型               | 说明                |
+| ------------------ | ------------------- |
+| Promise\<[Context](js-apis-inner-application-context.md)> | Promise对象。返回创建的Context，返回的Context中的属性processName和config与入参Context中的属性processName和config的值相同。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201      | Permission denied. |
+| 202      | Permission denied, non-system app called system api. |
+
+**示例：**
+
+```ts
+import { AbilityConstant, UIAbility, application, common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let moduleContext: common.Context;
+    try {
+      application.createPluginModuleContextForHostBundle(this.context, 'com.example.pluginBundleName', 'pluginModuleName', 'com.example.hostBundleName')
+        .then((data: Context) => {
+          moduleContext = data;
+          console.info('createPluginModuleContextForHostBundle success!');
+        })
+        .catch((error: BusinessError) => {
+          let code: number = (error as BusinessError).code;
+          let message: string = (error as BusinessError).message;
+          console.error(`createPluginModuleContextForHostBundle failed, error.code: ${code}, error.message: ${message}`);
+        });
+    } catch (error) {
+      let code: number = (error as BusinessError).code;
+      let message: string = (error as BusinessError).message;
+      console.error(`createPluginModuleContextForHostBundle failed, error.code: ${code}, error.message: ${message}`);
+    }
+  }
+}
 ```

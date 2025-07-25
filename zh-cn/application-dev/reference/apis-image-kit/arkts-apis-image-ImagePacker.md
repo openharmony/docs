@@ -44,7 +44,7 @@ packToData(source: ImageSource, options: PackingOption): Promise\<ArrayBuffer>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401 | If the parameter is invalid. |
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -114,7 +114,7 @@ packToData(source: PixelMap, options: PackingOption): Promise\<ArrayBuffer>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401 | If the parameter is invalid. |
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -235,7 +235,6 @@ packToDataFromPixelmapSequence(pixelmapSequence: Array\<PixelMap>, options: Pack
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 7800201  | Unsupported packing options.                                 |
 | 7800301  | Failed to encode image.                                      |
 
 **示例：**
@@ -352,7 +351,7 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -416,7 +415,7 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -476,7 +475,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -544,7 +543,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
+| 62980096| The operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
@@ -677,7 +676,6 @@ packToFileFromPixelmapSequence(pixelmapSequence: Array\<PixelMap>, fd: number, o
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 7800201  | Unsupported packing options.                                 |
 | 7800301  | Failed to encode image.                                      |
 
 **示例：**

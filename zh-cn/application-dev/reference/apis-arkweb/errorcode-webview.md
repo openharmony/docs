@@ -361,3 +361,21 @@ The port number is not within the allowed range.
 **处理步骤**
 
 检查使用的端口号是否在允许的取值范围内。
+
+## 17100101 使用了错误的网络错误码
+
+**错误信息**
+
+The errorCode is either ARKWEB_NET_OK or outside the range of error codes in WebNetErrorList.
+
+**错误描述**
+
+网络错误码为ARKWEB_NET_OK或者超出了WebNetErrorList中的错误码范围。
+
+**可能原因**
+
+使用的错误码不在[WebNetErrorList](arkts-apis-netErrorList.md#webneterrorlist)范围内，或者调用didFail接口时使用了NET_OK错误码。
+
+**处理步骤**
+
+检查使用的错误码是否在[WebNetErrorList](arkts-apis-netErrorList.md#webneterrorlist)范围内，或者调用difFail时是否使用了NET_OK错误码。

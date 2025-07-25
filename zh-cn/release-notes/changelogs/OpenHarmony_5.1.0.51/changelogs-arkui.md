@@ -22,6 +22,12 @@
 
 12
 
+**变更的接口/组件**
+
+涉及组件：Text组件。
+
+涉及接口：setStyledString(value: StyledString): void
+
 **变更发生版本**
 
 从OpenHarmony SDK 5.1.0.51开始，API version 15及以上生效。

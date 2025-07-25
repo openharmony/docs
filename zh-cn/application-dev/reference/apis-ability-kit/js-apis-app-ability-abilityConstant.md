@@ -57,6 +57,7 @@ import { AbilityConstant } from '@kit.AbilityKit';
 | AUTO_STARTUP<sup>11+</sup>           | 8    | 通过设置开机自启动来启动Ability。 |
 | INSIGHT_INTENT<sup>11+</sup>           | 9    | 通过洞察意图来启动Ability。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | PREPARE_CONTINUATION<sup>12+</sup>           | 10    | 跨端迁移提前启动Ability。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。|
+| PRELOAD<sup>20+</sup>           | 11    | 表明该UIAbility是通过预加载机制启动的。<br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。|
 
 **示例：**
 
@@ -180,7 +181,7 @@ export default class MyAbility extends UIAbility {
 
 ## MemoryLevel
 
-内存级别，该类型为枚举，可配合UIAbility的[onMemoryLevel()](js-apis-app-ability-ability.md#abilityonmemorylevel)方法根据level执行不同内存级别的相应操作。
+整机可用内存级别，该类型为枚举，可配合UIAbility的[onMemoryLevel()](js-apis-app-ability-ability.md#abilityonmemorylevel)方法根据level执行不同内存级别的相应操作。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -188,16 +189,16 @@ export default class MyAbility extends UIAbility {
 
 | 名称                         | 值 | 说明                |
 | ---                         | --- | ---           |
-| MEMORY_LEVEL_MODERATE       | 0   | 内存占用适中。 |
-| MEMORY_LEVEL_LOW            | 1   | 内存占用低。   |
-| MEMORY_LEVEL_CRITICAL       | 2   | 内存占用高。   |
+| MEMORY_LEVEL_MODERATE       | 0   | 整机可用内存适中。 |
+| MEMORY_LEVEL_LOW            | 1   | 整机可用内存低。   |
+| MEMORY_LEVEL_CRITICAL       | 2   | 整机可用内存极低。   |
 
 > **说明：**
 > 
 > 不同产品的触发条件可能存在差异。以12G内存的标准设备为例：
-> - 当可用内存下降至1700M~1800M时，会触发取值为0的onMemoryLevel回调。
-> - 当可用内存下降至1600M~1700M时，会触发取值为1的onMemoryLevel回调。
-> - 当可用内存下降至1600M以下时，会触发取值为2的onMemoryLevel回调。
+> - 当整机可用内存下降至1700M~1800M时，会触发取值为0的onMemoryLevel回调。
+> - 当整机可用内存下降至1600M~1700M时，会触发取值为1的onMemoryLevel回调。
+> - 当整机可用内存下降至1600M以下时，会触发取值为2的onMemoryLevel回调。
 
 **示例：**
 

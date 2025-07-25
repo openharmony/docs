@@ -546,7 +546,7 @@ struct CustomLayout {
 ![custom_layout_demo2.png](figures/custom_layout_demo2.png)
 
 ### 示例3（获取子组件FrameNode并设置相关属性）
-通过uniqueId获取子组件的[FrameNode](../js-apis-arkui-frameNode.md#framenode)，并调用FrameNode的API接口修改尺寸、背景颜色。
+通过uniqueId获取子组件的[FrameNode](../js-apis-arkui-frameNode.md)，并调用FrameNode的API接口修改尺寸、背景颜色。
 ```ts
 import { FrameNode, NodeController } from '@kit.ArkUI';
 @Entry

@@ -148,10 +148,8 @@ class TestWritable extends stream.Writable {
     console.info("Writable chunk is", chunk);
     callback();
   }
-/**
- * Writable chunk is test
- * Writable chunk is finish
- * */
+  // Writable chunk is test
+  // Writable chunk is finish
 }
 
 let writableStream = new TestWritable();
@@ -504,10 +502,8 @@ class TestWritable extends stream.Writable {
     console.info("Writable chunk", chunks);
     callback();
   }
-/**
- * Writable chunk data1
- * Writable chunk data2
-* */
+  // Writable chunk data1
+  // Writable chunk data2
 }
 
 let writableStream = new TestWritable();

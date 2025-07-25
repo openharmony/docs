@@ -1,6 +1,6 @@
 # !!语法：双向绑定
-在状态管理V1中使用[$$](./arkts-two-way-sync.md)用于系统组件双向绑定。
-在状态管理V2中，提供`!!`语法糖统一处理双向绑定。
+在状态管理V1中，使用[$$](./arkts-two-way-sync.md)实现系统组件的双向绑定。
+在状态管理V2中，使用`!!`语法糖统一处理双向绑定。
 
 >**说明：**
 >
@@ -9,7 +9,7 @@
 
 ## 概述
 
-`!!`双向绑定语法，是一个语法糖方便开发者实现数据双向绑定，用于初始化子组件的\@Param和\@Event。其中\@Event方法名需要声明为“$”+ \@Param属性名，详见[使用场景](#使用场景)。
+`!!`双向绑定语法，是一个语法糖方便开发者实现数据双向绑定，用于初始化子组件的[\@Param](arkts-new-param.md)和[\@Event](arkts-new-event.md)。其中\@Event方法名需要声明为“$”+ \@Param属性名，详见[使用场景](#使用场景)。
 
 - 如果使用了`!!`双向绑定语法，表明父组件的变化会同步给子组件，子组件的变化也会同步给父组件。
 - 父组件未使用`!!`时，变化是单向的。
@@ -17,13 +17,13 @@
 ## 使用场景
 
 ### 自定义组件间双向绑定
-1. Index中构造Star子组件，双向绑定父子组件中的value，初始化子组件的`@Param value`和`@Event $value`。
+1. 在Index中构造Star子组件，双向绑定父子组件中的value，并初始化子组件的`@Param value`和`@Event $value`。
 - 双向绑定语法糖：
 
     ```
-    Star({ value: this.value, $value: (val: number) => { this.value = val }})
+    Star({ value: this.value, $value: (val: number) => { this.value = val; }})
     ```
-2. 点击Index中的Button以改变value值，父组件Index和子组件Star中的Text将同步更新。
+2. 点击Index中的Button改变value值，父组件Index和子组件Star中的Text将同步更新。
 3. 点击子组件Star中的Button，调用`this.$value(10)`方法，父组件Index和子组件Star中的Text将同步更新。
 
 ```ts
@@ -52,7 +52,7 @@ struct Star {
   build() {
     Column() {
       Text(`${this.value}`)
-      Button(`change value `).onClick(() => {
+      Button(`change value`).onClick(() => {
         this.$value(10);
       })
     }
@@ -64,7 +64,7 @@ struct Star {
 ## 使用限制
 - `!!`双向绑定语法不支持多层父子组件传递。
 - 不支持与@Event混用。从API version 18开始，当使用`!!`双向绑定语法给子组件传递参数时，给对应的@Event方法传参会编译报错。
-- 当使用大于等于3个感叹号（!!!、!!!!、!!!!!等）时，不支持双向绑定功能。
+- 当使用3个或更多感叹号（!!!、!!!!、!!!!!等）时，不支持双向绑定功能。
 
 
 ### 系统组件参数双向绑定
@@ -103,7 +103,7 @@ struct Star {
 
 #### 使用示例
 
-bindMenu接口isShow参数双向绑定功能。
+bindMenu接口isShow参数的双向绑定功能。
 
 ```ts
 @Entry
@@ -131,9 +131,9 @@ struct BindMenuInterface {
               },
             ])
       }.height('50%')
-      Text("当前isShow: " + this.isShow).fontSize(18).fontColor(Color.Red)
+      Text('isShow: ' + this.isShow).fontSize(18).fontColor(Color.Red)
       Row() {
-        Button("Click")
+        Button('Click')
           .onClick(() => {
             this.isShow = true;
           })

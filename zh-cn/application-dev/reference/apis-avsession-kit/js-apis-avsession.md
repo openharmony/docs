@@ -8501,7 +8501,7 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 
 constructor(context: Context)
 
-创建AVCastPickerHelper对象，获取context参考[getContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)。
+创建AVCastPickerHelper对象，获取context参考[getContext](../apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12)。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 

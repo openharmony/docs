@@ -28,17 +28,27 @@ import { AtomicServiceOptions } from '@kit.AbilityKit';
 **示例：**
 
 ```ts
-import { UIAbility, AtomicServiceOptions, common, wantConstant } from '@kit.AbilityKit';
+import { UIAbility, AtomicServiceOptions, common, wantConstant, bundleManager, CompletionHandler } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
     let appId: string = '6918661953712445909';
+    let completionHandler: CompletionHandler = {
+      onRequestSuccess: (elementName: bundleManager.ElementName, message: string): void => {
+        console.info(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start succeeded: ${message}`);
+      },
+      onRequestFailure: (elementName: bundleManager.ElementName, message: string): void => {
+        console.info(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start failed: ${message}`);
+      }
+    };
+
     let options: AtomicServiceOptions = {
       flags: wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
       parameters: {
-        "demo.result": 123456
-      }
+        'demo.result': 123456
+      },
+      completionHandler: completionHandler
     };
 
     try {

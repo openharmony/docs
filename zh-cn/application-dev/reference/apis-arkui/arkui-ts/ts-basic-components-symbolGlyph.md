@@ -70,7 +70,7 @@ fontSize(value: number | string | Resource)
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------ | ---- | ---- | ----- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | SymbolGlyph组件大小。<br/>默认值：16fp<br/>单位：[fp](ts-pixel-units.md#像素单位)<br/>不支持设置百分比字符串。|
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | SymbolGlyph组件大小。<br/>默认值：16fp<br/>单位：[fp](ts-pixel-units.md)<br/>不支持设置百分比字符串。|
 
 ### fontWeight
 
@@ -212,7 +212,7 @@ shaderStyle(shaders: Array\<ShaderStyle\>)
 
 设置SymbolGlyph组件的渐变色效果。
 
-可以显示为径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[linearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)的效果，shaderStyle的优先级高于[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)和AI识别，纯色建议使用[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)。
+可以显示为径向渐变[RadialGradientStyle](../arkui-ts/ts-text-common.md#radialgradientstyle20)或线性渐变[LinearGradientStyle](../arkui-ts/ts-text-common.md#lineargradientstyle20)或纯色[ColorShaderStyle](../arkui-ts/ts-text-common.md#colorshaderstyle20)的效果，shaderStyle的优先级高于[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)和AI识别，纯色建议使用[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -222,7 +222,7 @@ shaderStyle(shaders: Array\<ShaderStyle\>)
 
 | 参数名     | 类型                                         | 必填                             | 说明                               |
 | -------------- | -------------------------------------------- | ----------------------------------- | ----------------------------------- |
-| shaders | Array[\<ShaderStyle\>](../arkui-ts/ts-text-common.md#shaderstyle20) | 是 | 径向或线性渐变。<br/>根据传入的参数区分处理径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[linearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)，最终设置到SymbolGlyph组件上显示为渐变色效果。 |
+| shaders | Array[\<ShaderStyle\>](../arkui-ts/ts-text-common.md#shaderstyle20) | 是 | 径向渐变或线性渐变或纯色。<br/>根据传入的参数区分处理径向渐变[RadialGradientStyle](../arkui-ts/ts-text-common.md#radialgradientstyle20)或线性渐变[LinearGradientStyle](../arkui-ts/ts-text-common.md#lineargradientstyle20)或纯色[ColorShaderStyle](../arkui-ts/ts-text-common.md#colorshaderstyle20)，最终设置到SymbolGlyph组件上显示为渐变色效果。<br>**说明：** <br/>单位：[vp](ts-pixel-units.md)<br>中心点请按百分比使用。如果使用的是非百分比（例如10PX），效果等同于设置1000%。<br>半径建议使用百分比。<br>百分比是基于图标大小的百分比，建议取值范围[0, 1)。 |
 
 ### symbolShadow<sup>20+</sup>
 
@@ -232,15 +232,15 @@ symbolShadow(shadow: Optional\<ShadowOptions\>)
 
 **卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：**: 从API version 20开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
-**系统能力：**: SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------ | ---- | ---- | ----- |
-| shadow  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)\>  | 是  | SymbolGlyph组件的阴影效果。<br>默认值：<br>{<br>radius：0,<br>color：Color.Black,<br>offsetX：0,<br>offsetY：0<br>}|
+| shadow  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)\>  | 是  | SymbolGlyph组件的阴影效果。<br>单位：[vp](ts-pixel-units.md)<br>默认值：{<br>radius：0,<br>color：Color.Black,<br>offsetX：0,<br>offsetY：0<br>} <br>不支持fill、type属性和color中的ColoringStrategy枚举值。|
 
 ## ScaleSymbolEffect<sup>12+</sup>
 
@@ -529,7 +529,7 @@ DisableSymbolEffect继承自父类[SymbolEffect](#symboleffect12)。
 
 | 名称 | 类型 | 必填 | 说明  |
 | ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER<br/>**说明：** <br/>EffectScope.WHOLE模式不生效。 |
 
 ### constructor<sup>20+</sup>
 
@@ -547,7 +547,7 @@ DisableSymbolEffect的构造函数，禁用动效。
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ---- | ---- | ---- | ---- |
-| scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER<br/>**说明：** <br/>EffectScope.WHOLE模式不生效。 |
 
 ## QuickReplaceSymbolEffect<sup>20+</sup>
 
@@ -687,14 +687,14 @@ struct Index {
           Text("整体缩放动效")
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
-            .effectStrategy(1)
+            .effectStrategy(SymbolEffectStrategy.SCALE)
         }
 
         Column() {
           Text("层级动效")
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
-            .effectStrategy(2)
+            .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
         }
       }
     }
@@ -723,10 +723,10 @@ struct Index {
   replaceFlag2: boolean = true;
 
   options: ShadowOptions = {
-    radius: 30.0,
+    radius: 10.0,
     color: Color.Blue,
-    offsetX: 20,
-    offsetY: 20,
+    offsetX: 10,
+    offsetY: 10,
   };
 
   build() {
@@ -763,7 +763,7 @@ struct Index {
           SymbolGlyph(this.replaceFlag1 ? $r('sys.symbol.eye_slash') : $r('sys.symbol.eye'))
             .fontSize(96)
             .renderingStrategy(this.renderMode)
-            .symbolEffect(new DisableSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace1)
+            .symbolEffect(new DisableSymbolEffect(EffectScope.LAYER), this.triggerValueReplace1)
           Button('trigger')
             .onClick(() => {
               this.replaceFlag1 = !this.replaceFlag1;
@@ -787,9 +787,9 @@ struct Index {
           Text("阴影能力")
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
-            .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), !this.isActive)
+            .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), this.isActive)
             .symbolShadow(this.options)
-          Button(!this.isActive ? '关闭' : '播放')
+          Button(this.isActive ? '关闭' : '播放')
             .onClick(() => {
               this.isActive = !this.isActive;
             })
@@ -798,7 +798,7 @@ struct Index {
       }
     }
     .margin({
-      left: 90,
+      left: 45,
       top: 50
     })
   }
@@ -828,8 +828,8 @@ struct Index {
   };
 
   radialGradientOptions: RadialGradientOptions = {
-    center: [50, 50],
-    radius: 20,
+    center: ["50%", "50%"],
+    radius: "20%",
     colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
     repeating: true,
   };
@@ -898,7 +898,7 @@ struct Index {
       }
     }
     .margin({
-      left: 60,
+      left: 20,
       top: 50
     })
   }

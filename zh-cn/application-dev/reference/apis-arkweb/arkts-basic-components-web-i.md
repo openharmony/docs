@@ -2,7 +2,7 @@
 
 > **说明：**
 >
-> - 本模块接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
@@ -30,7 +30,7 @@ Web媒体策略的配置。
 | -------------- | ------- | ---- | ---------------------------------------- |
 | resumeInterval | number  | 否    | 被其他应用暂停的Web音视频能够自动续播的有效期，单位：秒。取值范围：[-2147483648, 2147483647]。resumeInterval值为0时，不自动续播；大于0时，将在该时间内尝试续播；小于0时，将在无限时间内尝试续播。由于近似值原因，该有效期可能存在一秒内的误差。 <br>**说明：** <br>HLS视频被打断后，回到前台将自动续播，不受该时间控制。|
 | audioExclusive | boolean | 否    | 应用内多个Web实例的音频是否独占。<br>true表示应用内多个Web实例的音频独占，false表示应用内多个Web实例的音频不独占。                       |
-| audioSessionType<sup>20+</sup> | [AudioSessionType](./arkts-basic-components-web-e.md#audiosessiontype20) | 否    | 应用中Web音频类型。|
+| audioSessionType<sup>20+</sup> | [AudioSessionType](./arkts-basic-components-web-e.md#audiosessiontype20) | 否    | 应用中Web音频类型。默认值对应[系统音频流类型](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)STREAM_USAGE_MUSIC。设置该参数会改变组件音频类型与系统音频类型映射关系，进而影响ArkWeb音频焦点策略。|
 
 ## ScriptItem<sup>11+</sup>
 
@@ -148,6 +148,7 @@ Web同层渲染的配置。
 | url | string | 是 | 当前显示弹窗所在网页的URL。                       |
 | message | string | 是 | 弹窗中显示的信息。                       |
 | result | [JsResult](./arkts-basic-components-web-JsResult.md) | 是 | 通知Web组件用户操作行为。                       |
+| isReload<sup>20+</sup> | boolean | 否 | 页面是否刷新。<br>当页面因刷新即将离开时，isReload参数被设置为true；当页面因关闭即将离开时，isReload参数被设置为false。<br>默认值：false。|
 
 ## OnConfirmEvent<sup>12+</sup>
 
@@ -160,7 +161,6 @@ Web同层渲染的配置。
 | url | string | 是 | 当前显示弹窗所在网页的URL。                       |
 | message | string | 是 | 弹窗中显示的信息。                       |
 | result | [JsResult](./arkts-basic-components-web-JsResult.md) | 是 | 通知Web组件用户操作行为。                       |
-| isReload<sup>20+</sup> | boolean | 否 | 页面是否刷新。<br>当页面因刷新即将离开时，isReload参数被设置为true；当页面因关闭即将离开时，isReload参数被设置为false。<br>默认值：false。|
 
 ## OnPromptEvent<sup>12+</sup>
 
@@ -377,6 +377,7 @@ Web同层渲染的配置。
 | referrer   | string                            | 是    | referrer url地址。           |
 | isFatalError   | boolean                       | 是    | 是否是致命错误。<br>true表示致命错误，false表示非致命错误。           |
 | isMainFrame   | boolean                        | 是    | 是否是主资源。<br>true表示主资源，false表示非主资源。           |
+| certChainData<sup>20+</sup>   | Array<Uint8Array\>           | 否 | 证书链数据。           |
 
 ## OnClientAuthenticationEvent<sup>12+</sup>
 
@@ -542,6 +543,7 @@ Web同层渲染的配置。
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | title | string | 是 | document标题内容。                       |
+| isRealTitle<sup>20+</sup> | boolean | 否 | document标题来源，true表示来自网页的title标签，false表示该title是根据url自动生成。                       |
 
 ## OnGeolocationShowEvent<sup>12+</sup>
 
@@ -618,7 +620,7 @@ Web组件进入全屏回调事件的详情。
 | height            | number                              | 否    | 同层标签的高，单位为px。          |
 | url               | string                              | 否    | 同层标签的url信息。            |
 | tag<sup>12+</sup> | string              | 否    | 标签名，统一为大写字符。              |
-| params<sup>12+</sup>            | Map<string, string> | 否    | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象，即embed.info?.param?.["name"]。  |
+| params<sup>12+</sup>            | Map<string, string> | 否    | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象，即`embed.info?.param?.["name"]`。  |
 | position<sup>12+</sup>          | Position            | 否    | 同层标签在屏幕坐标系中相对于Web组件的位置信息，此处区别于标准Position，单位为px。 |
 
 ## IntelligentTrackingPreventionDetails<sup>12+</sup>
@@ -738,6 +740,27 @@ Web组件进入全屏回调事件的详情。
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url | string | 是 | 页面的URL地址。                       |
+
+## OnPdfLoadEvent<sup>20+</sup>
+
+定义PDF加载成功或失败时触发的函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| url | string | 否 | 否 | 页面的URL地址。  |
+| result | [PdfLoadResult](./arkts-basic-components-web-e.md#pdfloadresult20) | 否 | 否 | PDF页面加载结果。  |
+
+## OnPdfScrollEvent<sup>20+</sup>
+
+定义PDF页面滚动到底时触发的函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称             | 类型      | 只读 | 可选   | 说明                                       |
+| -------------- | ---- | ---- | ---- | ---------------------------------------- |
+| url | string | 否 | 否 | 页面的URL地址。    |
 
 ## Header
 

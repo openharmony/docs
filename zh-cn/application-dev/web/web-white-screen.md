@@ -70,7 +70,7 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
         .onControllerAttached(() => {
           console.log("onControllerAttached");
           try {
-            let userAgent = this.controller.getUserAgent() + this.  customUserAgent;
+            let userAgent = this.controller.getUserAgent() + this.customUserAgent;
             this.controller.setCustomUserAgent(userAgent);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -283,7 +283,7 @@ Web页面出现白屏的原因众多，本文列举了若干常见白屏问题�
     body.appendChild(element);
     ```
 
-3. 查看onErrorReceive、onHttpErrorReceive、onSslErrorEvent、onHttpAuthRequest、onClientAuthenticationRequest等错误上报接口是否有被调用。请根据返回的错误码，对照p[网络协议栈错误列表](../reference/apis-arkweb/arkts-apis-netErrorList.md)进行排查。
+3. 查看onErrorReceive、onHttpErrorReceive、onSslErrorEvent、onHttpAuthRequest、onClientAuthenticationRequest等错误上报接口是否有被调用。请根据返回的错误码，对照[网络协议栈错误列表](../reference/apis-arkweb/arkts-apis-netErrorList.md)进行排查。
 
     | 名称   | 说明  |                       
     | ----   | -------------------------------- |
@@ -341,7 +341,7 @@ Web组件提供了自适应页面布局的能力，详情见[ Web组件大小自
 * 若H5页面调用tel:、mailto:等协议导致白屏，需通过onInterceptRequest拦截并调用系统拨号能力：
    ```c
    .onInterceptRequest((event) => {
-       if (event.request.url.startWith('tel:')) {
+       if (event.request.url.startsWith('tel:')) {
            // 调用系统拨号能力
            call.makeCall({ phoneNumber: '123456' });
            return { responseCode: 404 }; // 阻止默认行为

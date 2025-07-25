@@ -43,7 +43,7 @@ static napi_value GetArgvDemo1(napi_env env, napi_callback_info info) {
     // 业务代码
     // ... ...
     // argv 为 new 创建的对象，在使用完成后手动释放
-    delete argv;
+    delete[] argv;
     return nullptr;
 }
 

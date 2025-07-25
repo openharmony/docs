@@ -98,7 +98,7 @@ requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | [UIContext](../apis-arkui/js-apis-arkui-UIContext.md) | 是 | 将在其中执行保存操作的UI上下文。 |
+| context | [UIContext](../apis-arkui/arkts-apis-uicontext-uicontext.md) | 是 | 将在其中执行保存操作的UI上下文。 |
 | callback | [AutoSaveCallback](#autosavecallback)  | 否 | 保存请求的回调函数。 |
 
 **错误码：**

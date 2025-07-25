@@ -3549,7 +3549,7 @@ function cipherByCallback() {
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
   let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
   symKeyGenerator.generateSymKey((err, symKey) => {
-    cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams, (err,) => {
+    cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams, (err) => {
       let message = "This is a test";
       let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
       cipher.update(plainText, (err, encryptUpdate) => {
@@ -4934,6 +4934,7 @@ recover(signatureData: DataBlob): Promise\<DataBlob | null>
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
   let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
@@ -5498,7 +5499,7 @@ import { buffer } from '@kit.ArkTS';
 
 function mdByCallback() {
   let md = cryptoFramework.createMd('SHA256');
-  md.update({ data: new Uint8Array(buffer.from("mdTestMessage", 'utf-8').buffer) }, (err,) => {
+  md.update({ data: new Uint8Array(buffer.from("mdTestMessage", 'utf-8').buffer) }, (err) => {
     md.digest((err, digestOutput) => {
       console.info('[Callback]: MD result: ' + digestOutput.data);
       console.info('[Callback]: MD len: ' + md.getMdLength());
@@ -5635,7 +5636,7 @@ createMac(algName: string): Mac
 
 生成Mac实例，用于消息认证码的计算与操作。
 
-支持的规格详见[HMAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#消息认证码计算介绍及算法规格)。
+支持的规格详见[HMAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5647,7 +5648,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定摘要算法，支持算法请参考[HMAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#消息认证码计算介绍及算法规格)。 |
+| algName | string | 是   | 指定摘要算法，支持算法请参考[HMAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md)。 |
 
 **返回值**：
 
@@ -5684,7 +5685,7 @@ createMac(macSpec: MacSpec): Mac
 
 生成Mac实例，用于进行消息认证码的计算与操作。
 
-支持的规格详见[MAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#消息认证码计算介绍及算法规格)。
+支持的规格详见[MAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md)。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -5694,7 +5695,7 @@ createMac(macSpec: MacSpec): Mac
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| macSpec | [MacSpec](#macspec18) | 是   | 根据消息验证码的不同算法，指定入参结构体，支持算法请参考[MAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#消息认证码计算介绍及算法规格)。 |
+| macSpec | [MacSpec](#macspec18) | 是   | 根据消息验证码的不同算法，指定入参结构体，支持算法请参考[MAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md)。 |
 
 **返回值**：
 
@@ -5981,8 +5982,8 @@ function hmacByCallback() {
   let keyBlob: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer) };
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
   symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
-    mac.init(symKey, (err,) => {
-      mac.update({ data: new Uint8Array(buffer.from("hmacTestMessage", 'utf-8').buffer) }, (err,) => {
+    mac.init(symKey, (err) => {
+      mac.update({ data: new Uint8Array(buffer.from("hmacTestMessage", 'utf-8').buffer) }, (err) => {
         mac.doFinal((err, output) => {
           console.info('[Callback]: HMAC result: ' + output.data);
           console.info('[Callback]: MAC len: ' + mac.getMacLength());

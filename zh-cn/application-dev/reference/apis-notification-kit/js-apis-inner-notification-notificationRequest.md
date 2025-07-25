@@ -23,7 +23,7 @@
 | tapDismissed                  | boolean                                                  |   否  | 是  | 通知是否自动清除。当通知携带wantAgent或actionButtons时该字段生效。默认值为true。<br> - true：点击通知或按钮后，自动删除当前通知。<br> - false：点击通知或按钮后，保留当前通知。 |
 | autoDeletedTime               | number                                                   |   否  | 是  | 自动清除的时间。<br>数据格式：时间戳。<br>单位：ms。<br>例如，希望某通知存留3秒（3000ms）后对其进行清除，则对应的清除时间为：new Date().getTime() + 3000。                                                              |
 | wantAgent                     | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md)            |   否  | 是  | WantAgent封装了应用的行为意图，点击通知时触发该行为。                                       |
-| extraInfo                     | {[key: string]: any}                                     |   否  | 是  | 扩展参数。                                                                 |
+| extraInfo                     | {[key: string]: any}                                     |   否  | 是  | 扩展参数。为应用提供定制服务。                                                                 |
 | color                         | number                                                   |   否  | 是  | 通知背景颜色。预留能力，暂未支持。                                                     |
 | colorEnabled                  | boolean                                                  |   否  | 是  | 通知背景颜色是否使能。预留能力，暂未支持。                                                 |
 | isAlertOnce                   | boolean                                                  |   否  | 是  | 发布或更新该通知时，是否只进行一次通知提醒，默认为false。<br/> - true：仅首次发布通知时进行提醒，后续更新该通知时，提醒方式变更为[LEVEL_MIN](js-apis-notificationManager.md#slotlevel)。<br/> - false：每次均按照配置的通知提醒方式进行提醒。                                                        |

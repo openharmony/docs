@@ -55,7 +55,7 @@
  // 创建mediaSource实例对象，设置媒体来源，定制HTTP请求，如需要，可以键值对的形式设置User-Agent、Cookie、Referer等字段。
  let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(url,
    {"User-Agent" : "User-Agent-Value", "Cookie" : "Cookie-Value", "Referer" : "Referer-Value"});
- // 设置播放策略，设置缓冲区数据量为20s。
+ // 设置播放策略，设置缓冲区数据量为3s。
  let playbackStrategy : media.PlaybackStrategy =
    {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
  // 为avPlayer设置媒体来源和播放策略。
@@ -97,7 +97,7 @@
 
 **情况五：通过应用沙箱中的m3u8文件播放在线流媒体资源**
 
-当应用需要通过解析应用沙箱中的的m3u8文件，播放在线流媒体资源时，可以通过[fs.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)获取文件句柄，将其拼接成fdUrl，并通过[setMimeType](../../reference/apis-media-kit/arkts-apis-media-MediaSource.md#setmimetype12)设置MIME类型为APPLICATION_M3U8。
+当应用需要通过解析应用沙箱中的m3u8文件，播放在线流媒体资源时，可以通过[fs.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)获取文件句柄，将其拼接成fdUrl，并通过[setMimeType](../../reference/apis-media-kit/arkts-apis-media-MediaSource.md#setmimetype12)设置MIME类型为APPLICATION_M3U8。
 ```ts
  import media from '@ohos.multimedia.media';
  import { fileIo as fs } from '@kit.CoreFileKit';
@@ -179,7 +179,7 @@
 ```
 
 ## 运行完整示例
-1. 新建工程，下载[示例工程](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerArkTSURL)，并将示例工程的以下资源复制到对应目录。
+1. 新建工程，下载[示例工程](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerArkTSURL)，并将示例工程的以下资源复制到对应目录。
     ```
     AVPlayerArkTSURL
     entry/src/main/ets/

@@ -132,7 +132,7 @@ The following lists the character encoding formats and aliases supported by musl
 
 [Native API Symbols Not Exported](musl-peculiar-symbol.md)
 
-[Restricted musl libc APIs](guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
+[NDK-Related musl libc Interface Usage Restrictions](guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
 
-
+[NDK musl-libc Supplementary APIs](https://gitee.com/openharmony/third_party_musl/tree/master/docs)
 <!--no_check-->

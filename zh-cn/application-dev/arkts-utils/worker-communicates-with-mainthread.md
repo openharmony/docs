@@ -7,7 +7,7 @@
 下面以Worker响应"hello world"请求为例说明。
 
 
-1. 首先，创建一个执行任务的Worker。
+1. 首先，创建一个执行任务的Worker。创建方法可参考[创建worker的注意事项](worker-introduction.md#创建worker的注意事项)。
 
    ```ts
    // Worker.ets
@@ -33,7 +33,7 @@
    function promiseCase() {
      let p: Promise<void> = new Promise<void>((resolve: Function, reject: Function) => {
        setTimeout(() => {
-         resolve(1);
+         resolve();
        }, 100)
      }).then(undefined, (error: BusinessError) => {
      })

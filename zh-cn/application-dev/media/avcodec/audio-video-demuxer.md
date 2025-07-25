@@ -154,7 +154,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       return;
    }
    ```
-4. 注册[DRM信息监听函数](../../reference/apis-avcodec-kit/_a_v_demuxer.md#demuxer_mediakeysysteminfocallback)（可选，若非DRM码流或已获得[DRM信息](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo)，可跳过此步）。
+4. 注册[DRM信息监听函数](../../reference/apis-avcodec-kit/_a_v_demuxer.md#demuxer_mediakeysysteminfocallback)（可选，若非DRM码流或已获得[DRM信息](../../reference/apis-drm-kit/capi-drm-drm-mediakeysysteminfo.md)，可跳过此步）。
 
    设置DRM信息监听的接口，回调函数支持返回解封装器实例，适用于多个解封装器场景。
 
@@ -238,6 +238,18 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       if (!OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_TRACK_TYPE, &trackType)) {
          printf("get track type from track format failed");
          return;
+      }
+      if (trackType == OH_MediaType::MEDIA_TYPE_AUXILIARY) {
+         const char *referenceType;
+         if (!OH_AVFormat_GetStringValue(trackFormat, OH_MD_KEY_TRACK_REFERENCE_TYPE, &referenceType)) {
+            printf("get reference type from auxiliary track failed");
+         }
+         int32_t* referenceIds;
+         size_t referenceIdsCount;
+         if (!OH_AVFormat_GetIntBuffer(trackFormat, OH_MD_KEY_TRACK_REFERENCE_TYPE, &referenceIds, &referenceIdsCount)) {
+            printf("get reference track ids from auxiliary track failed");
+         }
+         // 根据辅助轨类型处理轨道参考关系。
       }
       static_cast<OH_MediaType>(trackType) == OH_MediaType::MEDIA_TYPE_AUD ? audioTrackIndex = index : videoTrackIndex = index;
       // 获取视频轨宽高。
@@ -414,32 +426,36 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 > **说明：**
 > 正常解析时才可以获取对应属性数据；如果文件信息错误或缺失，将导致解析异常，无法获取数据。
+> 辅助轨属性范围与实际媒体类型（音频、视频）保持一致。
 > 
 > 数据类型及详细取值范围参考[媒体数据键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
 **表2** 轨道级别属性支持范围
-| 名称 | 描述 | 视频轨支持 | 音频轨支持 | 字幕轨支持 |
-| -- | -- | -- | -- | -- |
-|OH_MD_KEY_CODEC_MIME|码流编解码器类型的键|√|√|√|
-|OH_MD_KEY_TRACK_TYPE|码流媒体类型的键|√|√|√|
-|OH_MD_KEY_TRACK_START_TIME|码流起始时间的键|√|√|√|
-|OH_MD_KEY_BITRATE|码流比特率的键|√|√|-|
-|OH_MD_KEY_LANGUAGE|码流语言类型的键|√|√|-|
-|OH_MD_KEY_CODEC_CONFIG|编解码器特定数据的键，视频中表示传递参数集，音频中表示传递解码器的参数配置信息|√|√|-|
-|OH_MD_KEY_WIDTH|视频流宽度的键|√|-|-|
-|OH_MD_KEY_HEIGHT|视频流高度的键|√|-|-|
-|OH_MD_KEY_FRAME_RATE|视频流帧率的键|√|-|-|
-|OH_MD_KEY_ROTATION|视频流旋转角度的键|√|-|-|
-|OH_MD_KEY_VIDEO_SAR|视频流样本长宽比的键|√|-|-|
-|OH_MD_KEY_PROFILE|视频流编码档次，只针对 h265 码流使用|√|-|-|
-|OH_MD_KEY_RANGE_FLAG|视频流视频YUV值域标志的键，只针对 h265 码流使用|√|-|-|
-|OH_MD_KEY_COLOR_PRIMARIES|视频流视频色域的键，只针对 h265 码流使用|√|-|-|
-|OH_MD_KEY_TRANSFER_CHARACTERISTICS|视频流视频传递函数的键，只针对 h265 码流使用|√|-|-|
-|OH_MD_KEY_MATRIX_COEFFICIENTS|视频矩阵系数的键，只针对 h265 码流使用|√|-|-|
-|OH_MD_KEY_VIDEO_IS_HDR_VIVID|视频流标记是否为 HDRVivid 的键，只针对 HDRVivid 码流使用|√|-|-|
-|OH_MD_KEY_AUD_SAMPLE_RATE|音频流采样率的键|-|√|-|
-|OH_MD_KEY_AUD_CHANNEL_COUNT|音频流通道数的键|-|√|-|
-|OH_MD_KEY_CHANNEL_LAYOUT|音频流所需编码通道布局的键|-|√|-|
-|OH_MD_KEY_AUDIO_SAMPLE_FORMAT|音频流样本格式的键|-|√|-|
-|OH_MD_KEY_AAC_IS_ADTS|aac格式的键，只针对 aac 码流使用|-|√|-|
-|OH_MD_KEY_BITS_PER_CODED_SAMPLE|音频流每个编码样本位数的键|-|√|-|
+| 名称 | 描述 | 视频轨支持 | 音频轨支持 | 字幕轨支持 | 辅助轨支持 |
+| -- | -- | -- | -- | -- | -- |
+|OH_MD_KEY_CODEC_MIME|码流编解码器类型的键。|√|√|√|√|
+|OH_MD_KEY_TRACK_TYPE|码流媒体类型的键。|√|√|√|√|
+|OH_MD_KEY_TRACK_START_TIME|码流起始时间的键。|√|√|√|√|
+|OH_MD_KEY_BITRATE|码流比特率的键。|√|√|-|√|
+|OH_MD_KEY_LANGUAGE|码流语言类型的键。|√|√|-|√|
+|OH_MD_KEY_CODEC_CONFIG|编解码器特定数据的键，视频中表示传递参数集，音频中表示传递解码器的参数配置信息。|√|√|-|√|
+|OH_MD_KEY_WIDTH|视频流宽度的键。|√|-|-|√|
+|OH_MD_KEY_HEIGHT|视频流高度的键。|√|-|-|√|
+|OH_MD_KEY_FRAME_RATE|视频流帧率的键。|√|-|-|√|
+|OH_MD_KEY_ROTATION|视频流旋转角度的键。|√|-|-|√|
+|OH_MD_KEY_VIDEO_SAR|视频流样本长宽比的键。|√|-|-|√|
+|OH_MD_KEY_PROFILE|视频流编码档次，只针对h265码流使用。|√|-|-|√|
+|OH_MD_KEY_RANGE_FLAG|视频流视频YUV值域标志的键，只针对h265码流使用。|√|-|-|√|
+|OH_MD_KEY_COLOR_PRIMARIES|视频流视频色域的键，只针对h265码流使用。|√|-|-|√|
+|OH_MD_KEY_TRANSFER_CHARACTERISTICS|视频流视频传递函数的键，只针对h265码流使用。|√|-|-|√|
+|OH_MD_KEY_MATRIX_COEFFICIENTS|视频矩阵系数的键，只针对h265码流使用。|√|-|-|√|
+|OH_MD_KEY_VIDEO_IS_HDR_VIVID|视频流标记是否为HDRVivid的键，只针对HDRVivid码流使用。|√|-|-|√|
+|OH_MD_KEY_AUD_SAMPLE_RATE|音频流采样率的键。|-|√|-|√|
+|OH_MD_KEY_AUD_CHANNEL_COUNT|音频流通道数的键。|-|√|-|√|
+|OH_MD_KEY_CHANNEL_LAYOUT|音频流所需编码通道布局的键。|-|√|-|√|
+|OH_MD_KEY_AUDIO_SAMPLE_FORMAT|音频流样本格式的键。|-|√|-|√|
+|OH_MD_KEY_AAC_IS_ADTS|aac格式的键，只针对aac码流使用。|-|√|-|√|
+|OH_MD_KEY_BITS_PER_CODED_SAMPLE|音频流每个编码样本位数的键。|-|√|-|√|
+|OH_MD_KEY_REFERENCE_TRACK_IDS|媒体文件轨道间参考、被参考关系。|√|√|√|√|
+|OH_MD_KEY_TRACK_REFERENCE_TYPE|媒体文件辅助轨类型。|-|-|-|√|
+|OH_MD_KEY_TRACK_DESCRIPTION|媒体文件辅助轨描述信息。|-|-|-|√|

@@ -11,10 +11,10 @@ The EmbeddableUIAbility module provides the UIAbility that can be started in emb
 ## Modules to Import
 
 ```ts
-import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
+import { EmbeddableUIAbility } from '@kit.AbilityKit';
 ```
 
-## Properties
+## EmbeddableUIAbility
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

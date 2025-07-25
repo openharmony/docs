@@ -79,7 +79,7 @@ if (lang.get() === 'zh') {
 
 ## 限制条件
 
-Environment和UIContext相关联，需要在[UIContext](../../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)明确的时候才可以调用。可以通过在[runScopedTask](../../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask)里明确上下文。如果没有在UIContext明确的地方调用，将导致无法查询到设备环境数据。
+Environment和UIContext相关联，需要在[UIContext](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)明确的时候才可以调用。可以通过在[runScopedTask](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#runscopedtask)里明确上下文。如果没有在UIContext明确的地方调用，将导致无法查询到设备环境数据。
 
 ```ts
 // EntryAbility.ets
@@ -89,13 +89,13 @@ import { window } from '@kit.ArkUI';
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index');
-    let window = windowStage.getMainWindow()
+    let window = windowStage.getMainWindow();
     window.then(window => {
-      let uicontext = window.getUIContext()
-      uicontext.runScopedTask(() => {
+      let uiContext = window.getUIContext();
+      uiContext.runScopedTask(() => {
         Environment.envProp('languageCode', 'en');
-      })
-    })
+      });
+    });
   }
 }
 ```

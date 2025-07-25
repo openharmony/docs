@@ -51,11 +51,13 @@ setPrinterDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 restrictions.setPrinterDisabled(wantTemp, true, (err) => {
@@ -105,12 +107,14 @@ setPrinterDisabled(admin: Want, disabled: boolean): Promise\<void>
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 restrictions.setPrinterDisabled(wantTemp, true).then(() => {
@@ -152,11 +156,13 @@ isPrinterDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 restrictions.isPrinterDisabled(wantTemp, (err, result) => {
@@ -205,12 +211,14 @@ isPrinterDisabled(admin: Want): Promise\<boolean>
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 restrictions.isPrinterDisabled(wantTemp).then((result) => {
@@ -253,11 +261,13 @@ setHdcDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void>): 
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 restrictions.setHdcDisabled(wantTemp, true, (err) => {
@@ -307,12 +317,14 @@ setHdcDisabled(admin: Want, disabled: boolean): Promise\<void>
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 restrictions.setHdcDisabled(wantTemp, true).then(() => {
@@ -354,11 +366,13 @@ isHdcDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 restrictions.isHdcDisabled(wantTemp, (err, result) => {
@@ -407,12 +421,14 @@ isHdcDisabled(admin: Want): Promise\<boolean>
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 restrictions.isHdcDisabled(wantTemp).then((result) => {
@@ -459,11 +475,13 @@ isMicrophoneDisabled(admin: Want): boolean
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -506,12 +524,14 @@ disableMicrophone(admin: Want, disable: boolean): void
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -554,11 +574,13 @@ setFingerprintAuthDisabled(admin: Want, disabled: boolean): void
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -607,11 +629,13 @@ isFingerprintAuthDisabled(admin: Want): boolean
 **示例：**
 
 ```ts
+import { restrictions } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {

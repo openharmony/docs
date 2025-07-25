@@ -12,9 +12,9 @@ The **InputMethodSubtype** module provides APIs for managing the attributes of i
 import { InputMethodSubtype } from '@kit.IMEKit';
 ```
 
-## Attributes
+## InputMethodSubtype
 
- 
+Defines the attributes of input method subtypes.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 

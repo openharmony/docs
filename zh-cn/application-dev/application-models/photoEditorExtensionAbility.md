@@ -15,7 +15,7 @@
 | **接口名**  | **描述** |
 | -------- | -------- |
 | onStartContentEditing(uri: string, want:Want, session: UIExtensionContentSession):void       | 可以执行读取原始图片、加载页面等操作。|
-| saveEditedContentWithImage(pixelMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>  | 传入编辑过的图片的PixelMap对象并保存。   |
+| saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>  | 传入编辑过的图片的PixelMap对象并保存。   |
 
 ## 图片编辑类应用实现图片编辑页面
 
@@ -73,7 +73,6 @@
     import { fileIo } from '@kit.CoreFileKit';
     import { image } from '@kit.ImageKit';
 
-    const storage = LocalStorage.getShared();
     const TAG = '[ExamplePhotoEditorAbility]';
 
     @Entry
@@ -83,9 +82,10 @@
       @State originalImage: PixelMap | null = null;
       @State editedImage: PixelMap | null = null;
       private newWant ?: Want;
+      private storage = this.getUIContext().getSharedLocalStorage();
 
       aboutToAppear(): void {
-        let originalImageUri = storage?.get<string>("uri") ?? "";
+        let originalImageUri = this.storage?.get<string>("uri") ?? "";
         hilog.info(0x0000, TAG, `OriginalImageUri: ${originalImageUri}.`);
 
         this.readImageByUri(originalImageUri).then(imagePixMap => {
@@ -135,7 +135,7 @@
                 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
                 try {
                   // 调用saveEditedContentWithImage保存图片
-                  (getContext(this) as common.PhotoEditorExtensionContext).saveEditedContentWithImage(this.originalImage as image.PixelMap,
+                  (this.getUIContext().getHostContext() as common.PhotoEditorExtensionContext).saveEditedContentWithImage(this.originalImage as image.PixelMap,
                     packOpts).then(data => {
                     if (data.resultCode == 0) {
                       hilog.info(0x0000, TAG, `Save succeed.`);
@@ -158,9 +158,9 @@
             Button("terminateSelfWithResult").onClick((event => {
               hilog.info(0x0000, TAG, `Finish the current editing.`);
 
-              let session = storage.get('session') as UIExtensionContentSession;
+              let session = this.storage?.get('session') as UIExtensionContentSession;
               // 关闭并回传修改结果给调用方
-              session.terminateSelfWithResult({ resultCode: 0, want: this.newWant });
+              session?.terminateSelfWithResult({ resultCode: 0, want: this.newWant });
 
             })).margin({ top: 10 })
 
@@ -225,7 +225,7 @@
     ```
 3. 将图片拷贝到本地沙箱路径。
    ```ts
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     let file: fileIo.File | undefined;
     try {
       file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY);
@@ -245,7 +245,7 @@
    ```
 4. 在startAbilityByType回调函数中，通过want.uri获取编辑后的图片uri，并做对应的处理。
     ```ts
-      let context = getContext(this) as common.UIAbilityContext;
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       let abilityStartCallback: common.AbilityStartCallback = {
         onError: (code, name, message) => {
           const tip: string = `code:` + code + ` name:` + name + ` message:` + message;
@@ -288,6 +288,7 @@ import { fileIo } from '@kit.CoreFileKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { JSON } from '@kit.ArkTS';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 const TAG = 'PhotoEditorCaller';
 
@@ -363,7 +364,7 @@ struct Index {
           this.photoPickerGetUri().then(uri => {
             hilog.info(0x0000, TAG, "uri: " + uri);
 
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let file: fileIo.File | undefined;
             try {
               file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY);
@@ -385,7 +386,7 @@ struct Index {
         }).width('200').margin({ top: 20 })
 
         Button("editImg").onClick(event => {
-          let context = getContext(this) as common.UIAbilityContext;
+          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
           let abilityStartCallback: common.AbilityStartCallback = {
             onError: (code, name, message) => {
               const tip: string = `code:` + code + ` name:` + name + ` message:` + message;

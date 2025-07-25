@@ -30,6 +30,8 @@ TextTimer(options?: TextTimerOptions)
 
 ## TextTimerOptions对象说明
 
+用于构建TextTimer组件的选项。
+
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -275,6 +277,8 @@ reset()
 
 ## TextTimerConfiguration<sup>12+</sup>对象说明
 
+ContentModifier接口使用的TextTimer配置。
+
 开发者需要自定义class实现ContentModifier接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -291,7 +295,7 @@ reset()
 ## 示例
 ### 示例1（支持手动启停的文本计时器）
 
-该示例展示了TextTimer组件的基本使用方法，通过format属性设置计时器的文本显示格式。
+该示例展示了TextTimer组件的基本使用方法，通过[format](#format)属性设置计时器的文本显示格式。
 
 用户可以通过点击"start"、"pause"、"reset"按钮，开启、暂停、重置计时器。
 
@@ -333,7 +337,7 @@ struct TextTimerExample {
 
 ### 示例2（设定文本阴影样式）
 
-该示例通过textShadow属性设置计时器的文本阴影样式。
+该示例通过[textShadow](#textshadow11)属性设置计时器的文本阴影样式。
 
 ``` ts
 // xxx.ets

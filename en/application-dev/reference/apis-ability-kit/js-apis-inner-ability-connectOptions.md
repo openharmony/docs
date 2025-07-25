@@ -1,6 +1,6 @@
 # ConnectOptions
 
-**ConnectOptions** can be used as an input parameter to receive status changes during the connection to a background service. For example, it is used as an input parameter of [connectServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) to connect to a ServiceExtensionAbility.
+**ConnectOptions** can be used as an input parameter to receive status changes during the connection to a background service. For example, it is used as an input parameter of [connectServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability) to connect to a ServiceExtensionAbility.
 
 > **NOTE**
 > 
@@ -27,7 +27,7 @@ Callback invoked when a connection is set up.
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes   | Element name of the ability.|
-| remote | [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject) | Yes   | **IRemoteObject** instance.|
+| remote | [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject) | Yes   | IRemoteObject instance.|
 
 **Example**
 

@@ -273,7 +273,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 ## 从用户相册中移除图片和视频
 
-先[获取用户相册](#获取用户相册)对象，然后调用[Album.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets-3)接口获取用户相册中的资源。
+先[获取用户相册](#获取用户相册)对象，然后调用[Album.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-AbsAlbum.md#getassets-1)接口获取用户相册中的资源。
 
 选择其中要移除的资源，然后调用[MediaAlbumChangeRequest.removeAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAlbumChangeRequest.md#removeassets11)和[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11)接口移除。
 

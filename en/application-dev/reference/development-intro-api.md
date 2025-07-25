@@ -1,4 +1,4 @@
-# API Reference Document Description
+# Document Description
 
 API references provide the description of APIs used for application development. This topic describes common fields in the API references to help you better use the reference document.
 
@@ -37,6 +37,22 @@ To call APIs to access these resources, you must apply for the corresponding per
 
 - If an application can call an API only after it has obtained a specific permission, the following description is provided for the API: "**Required permissions**: ohos.permission.xxxx"
 - If an application can call an API without any permission, no special description is provided.
+
+## Error Code Description
+
+You may encounter errors when using ArkTS APIs.
+
+For each API where errors might occur, you can refer to the error code section in the documentation to understand the possible error code IDs and messages for that API and handle them as needed.
+
+ArkTS API includes both asynchronous and synchronous APIs, with the following error handling methods:
+
+- For synchronous APIs, errors are uniformly thrown as exceptions, and you need to handle potential exceptions using try-catch.
+
+- For asynchronous APIs, errors may include exceptions and rejections. If you use the await/async approach, you need to handle potential exceptions and rejections using try-catch.
+
+- For asynchronous APIs using the Promise approach, errors may include exceptions and rejections. You need to handle synchronous exceptions (usually 401 exceptions) using try-catch and handle rejections using the Promise's **catch()** method or the **onrejected** callback function in the **then()** method.
+
+- For asynchronous APIs using the callback approach (not recommended), errors may include exceptions and errors returned by the callback. If you use the callback approach, you need to handle synchronous exceptions (usually 401 exceptions) using try-catch and handle errors presented through callback parameters (for example, BusinessError objects).
 
 ## Application Model Description
 

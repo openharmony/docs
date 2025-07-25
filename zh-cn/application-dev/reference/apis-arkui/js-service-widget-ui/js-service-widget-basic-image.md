@@ -30,7 +30,7 @@
 | -------- | -------- | -------- | -------- | -------- |
 | object-fit | string | cover | 否 | 设置图片的缩放类型，可选值类型说明请见object-fit 类型说明，svg格式不支持。 |
 | match-text-direction | boolean | false | 否 | 图片是否跟随文字方向，svg格式不支持。<br/>默认值：false，表示图片不跟随文字方向。 |
-| fit-original-size | boolean | false | 否 | [image](js-service-widget-basic-image.md#image)组件在未设置宽高的情况下是否适应图源尺寸，该属性为true时object-fit属性不生效，svg类型图源不支持该属性。<br/>默认值：false，表示[image](js-service-widget-basic-image.md#image)组件在未设置宽高的情况下不适应图源尺寸。 |
+| fit-original-size | boolean | false | 否 | [image](js-service-widget-basic-image.md)组件在未设置宽高的情况下是否适应图源尺寸，该属性为true时object-fit属性不生效，svg类型图源不支持该属性。<br/>默认值：false，表示[image](js-service-widget-basic-image.md)组件在未设置宽高的情况下不适应图源尺寸。 |
 
   **表1** object-fit 类型说明
 

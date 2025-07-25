@@ -4,7 +4,7 @@
 
 **适用场景**
 
-为避免对文件系统恶意破环，OpenHarmony将部分镜像挂载为只读，如system.img、vendor.img，这些镜像内的文件在编译阶段就会被赋予SELinux标签。
+为避免对文件系统恶意破坏，OpenHarmony将部分镜像挂载为只读，如system.img、vendor.img，这些镜像内的文件在编译阶段就会被赋予SELinux标签。
 
 **配置指导**
 1. 在file_contexts中，建立文件绝对路径与文件标签的映射关系，可以使用正则表达式。
@@ -32,7 +32,7 @@
     ```text
     type data_service_el0_file, file_attr, data_file_attr;
     ```
-  3. 使标签生效，file_contexts只是映射了文件路径和标签的对应关系，标签不会自动更新到文件上，需要进程主动触发标签更新操作。按文件创建的时机，可以分为以下场景：
+3. 使标签生效，file_contexts只是映射了文件路径和标签的对应关系，标签不会自动更新到文件上，需要进程主动触发标签更新操作。按文件创建的时机，可以分为以下场景：
       | 适用场景 | 更新标签位置 |
       | -------- | -------- |
       | 通过init从cfg拉起的进程，在cfg内使用mkdir创建目录或文件 | 由于init在解析cfg中的mkdir命令时，已经集成了SELinux更新标签函数Restorecon，所以mkdir会更新标签 |

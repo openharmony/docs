@@ -70,20 +70,25 @@ comparator的参数说明：
 
 ```ts
 //默认构造
-let treeSet : TreeSet<string | number | boolean | Object> = new TreeSet();
+let treeSet = new TreeSet<string | number | boolean | Object>();
 ```
 
 ```ts
 //使用comparator firstValue < secondValue，表示期望结果为升序排序。反之firstValue > secondValue，表示为降序排序。
-let treeSet : TreeSet<string> = new TreeSet<string>((firstValue: string, secondValue: string) : boolean => {return firstValue < secondValue});
+let treeSet: TreeSet<string> = new TreeSet<string>((firstValue: string, secondValue: string): boolean => {
+  return firstValue < secondValue;
+});
 treeSet.add("a");
 treeSet.add("c");
 treeSet.add("d");
 treeSet.add("b");
-let numbers = Array.from(treeSet.values());
-for (let item of numbers) {
-  console.log("TreeSet:" + item);
+for (let value of treeSet) {
+  console.info("value:", value);
 }
+// value: a
+// value: b
+// value: c
+// value: d
 ```
 
 ```ts
@@ -100,7 +105,7 @@ let entry2: TestEntry = {
 }
 ts1.add(entry1);
 ts1.add(entry2);
-console.log("treeSet: ", ts1.length);
+console.info("treeSet: ", ts1.length);
 ```
 
 
@@ -131,8 +136,9 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-const treeSet : TreeSet<string | number | boolean | Object>  = new TreeSet();
+let treeSet = new TreeSet<string>();
 let result = treeSet.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 
@@ -169,9 +175,10 @@ has(value: T): boolean
 **示例：**
 
 ```ts
-let treeSet : TreeSet<number> = new TreeSet();
+let treeSet  = new TreeSet<number>();
 treeSet.add(123);
 let result = treeSet.has(123);
+console.info("result:", result); // result: true
 ```
 
 ### getFirstValue
@@ -201,10 +208,11 @@ getFirstValue(): T
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet = new TreeSet<string>();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.getFirstValue();
+console.info("result:", result); // result: sparrow
 ```
 
 
@@ -235,10 +243,11 @@ getLastValue(): T
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet = new TreeSet<string>();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.getLastValue();
+console.info("result:", result); // result: squirrel
 ```
 
 
@@ -276,8 +285,9 @@ add(value: T): boolean
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet = new TreeSet<string>();
 let result = treeSet.add("squirrel");
+console.info("result:", result); // result: true
 ```
 
 
@@ -314,10 +324,11 @@ remove(value: T): boolean
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet = new TreeSet<string>();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.remove("sparrow");
+console.info("result:", result); // result: true
 ```
 
 
@@ -355,11 +366,12 @@ getLowerValue(key: T): T
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet = new TreeSet<string>();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.add("gander");
 let result = treeSet.getLowerValue("sparrow");
+console.info("result:", result); // result: gander
 ```
 
 
@@ -397,11 +409,12 @@ getHigherValue(key: T): T
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet = new TreeSet<string>();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.add("gander");
 let result = treeSet.getHigherValue("sparrow");
+console.info("result:", result); // result: squirrel
 ```
 
 
@@ -432,10 +445,11 @@ popFirst(): T
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet = new TreeSet<string>();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.popFirst();
+console.info("result:", result); // result: sparrow
 ```
 
 
@@ -466,10 +480,11 @@ popLast(): T
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet = new TreeSet<string>();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.popLast();
+console.info("result:", result); // result: squirrel
 ```
 
 
@@ -494,10 +509,12 @@ clear(): void
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet = new TreeSet<string>();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.clear();
+let result = treeSet.isEmpty();
+console.info("result:", result); // result: true
 ```
 
 
@@ -528,15 +545,15 @@ values(): IterableIterator&lt;T&gt;
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet = new TreeSet<string>();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
-let it = treeSet.values();
-let t: IteratorResult<string> = it.next();
-while(!t.done) {
-  console.log("TreeSet: " + t.value);
-  t = it.next()
+let values = treeSet.values();
+for (let value of values) {
+  console.info("value:", value)
 }
+// value: sparrow
+// value: squirrel
 ```
 
 
@@ -576,16 +593,18 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet = new TreeSet<string>();
 treeSet.add("sparrow");
 treeSet.add("gull");
-treeSet.forEach((value ?: string, key ?: string) :void => {
-  console.log("value:" + value, "key:" + key);
+treeSet.forEach((value: string, key: string): void => {
+  console.info("value:" + value);
 });
+// value:gull
+// value:sparrow
 ```
 ```ts
 // 不建议在forEach中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet = new TreeSet<string>();
 for(let i = 0; i < 10; i++) {
   treeSet.add("sparrow" + i);
 }
@@ -621,19 +640,22 @@ entries(): IterableIterator<[T, T]>
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet = new TreeSet<string>();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let it = treeSet.entries();
 let t: IteratorResult<Object[]> = it.next();
 while(!t.done) {
-  console.log("TreeSet: " + t.value);
+  console.info("TreeSet: " + t.value[1]);
   t = it.next()
 }
+// TreeSet: sparrow
+// TreeSet: squirrel
 ```
+
 ```ts
 // 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet = new TreeSet<string>();
 for(let i = 0; i < 10; i++) {
   treeSet.add("sparrow" + i);
 }
@@ -669,25 +691,30 @@ for(let i = 0; i < 10; i++) {
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet = new TreeSet<string>();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
-let numbers = Array.from(treeSet.values());
 // 使用方法一：
-for (let item of numbers) {
-  console.log("value:" + item);
+for (let item of treeSet) {
+  console.info("value:" + item);
 }
+// value:sparrow
+// value:squirrel
+
 // 使用方法二：
 let iter = treeSet[Symbol.iterator]();
 let temp: IteratorResult<string> = iter.next().value;
 while(temp != undefined) {
-  console.log("value:" + temp);
+  console.info("value:" + temp);
   temp = iter.next().value;
 }
+// value:sparrow
+// value:squirrel
 ```
+
 ```ts
 // 不建议在Symbol.iterator中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet = new TreeSet<string>();
 for(let i = 0; i < 10; i++) {
   treeSet.add("sparrow" + i);
 }

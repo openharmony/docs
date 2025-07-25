@@ -43,11 +43,11 @@ When the scheduling conditions are met or the task scheduling ends, the system c
 
   [@ohos.backgroundTaskManager (Background Task Management)](../reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)
 
-  [@ohos.multimedia.camera (Camera Management)](../reference/apis-camera-kit/js-apis-camera.md)
+  [@ohos.multimedia.camera (Camera Management)](../reference/apis-camera-kit/arkts-apis-camera.md)
 
-  [@ohos.multimedia.audio (Audio Management)](../reference/apis-audio-kit/js-apis-audio.md)
+  [@ohos.multimedia.audio (Audio Management)](../reference/apis-audio-kit/arkts-apis-audio.md)
 
-  [@ohos.multimedia.media (Media)](../reference/apis-media-kit/js-apis-media.md)
+  [@ohos.multimedia.media (Media)](../reference/apis-media-kit/arkts-apis-media.md)
 
 
 ## Available APIs
@@ -212,3 +212,17 @@ The development of deferred task scheduling consists of two steps: implementing 
    }
    ```
 
+### Verifying Deferred Task Scheduling
+Check whether the **onWorkStart** and **onWorkStop** methods of WorkSchedulerExtensionAbility are correctly implemented and can be successfully called.
+
+   After the deferred task is requested, its callback can be triggered only when the required conditions are met. To quickly perform the verification, trigger the callback manually with the following [hidumper](../dfx/hidumper.md) command.
+
+   ```ts
+   $ hidumper -s 1904 -a '-t com.example.application MyWorkSchedulerExtensionAbility'
+
+   -------------------------------[ability]-------------------------------
+
+
+   ----------------------------------WorkSchedule----------------------------------
+   ```
+<!--no_check-->

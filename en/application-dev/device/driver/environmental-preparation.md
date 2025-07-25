@@ -8,9 +8,9 @@ DevEco Studio, as the driver development tool, allows you to develop, debug, and
 
 ## SDK Version Configuration
 
-The ArkTs APIs for peripheral management can be used only when the SDK is of API version 10 or later. For details about how to update the SDK, see [OpenHarmony SDK Upgrade Assistant](../../tools/openharmony_sdk_upgrade_assistant.md).
+The ArkTs APIs for peripheral management are applicable only when the SDK is of API version 10 or later.
 
-The SDK version must meet the following requirements when you develop dedicated peripheral drivers or enhanced peripheral drivers based on the DDK.
+The following table lists the SDK versions required to develop dedicated peripheral drivers or enhanced peripheral drivers based on the DDK.
 
 | NDK API         | SDK Version   |
 |----------------|----------|
@@ -36,5 +36,3 @@ HarmonyOS Device Connector (hdc) is a command-line tool for debugging. It can be
 - Currently, RK3568 is used as the device for development, debugging, and verification. For details about how to compile and burn the RK3568, see [Quick Start](../../../device-dev/quick-start/quickstart-pkg-3568-burn.md).<!--RP1End-->
 - During peripheral client and driver development, you need to connect an external USB device for debugging. Currently, **only an external USB device is supported**.
 - The product ID and vendor ID of the USB device are required for defining drivers and implementing IPC.
-
-<!--no_check-->

@@ -125,7 +125,7 @@ listFile(): Array\<FileInfo>
 
 | 名称 | 类型   | 只读 | 可选 | 说明     |
 | ------ | ------ | -------- | ------ | -------- |
-| uri | string | 是 | 否 | 文件uri。 |
+| uri | string | 是 | 否 | 文件URI。 |
 | srcPath | string | 是 | 否 | 文件路径。 |
 | fileName | string | 是 | 否 | 文件名。 |
 | mode | number | 是 | 否 | [文件权限信息](js-apis-file-fs.md#stat)。 |

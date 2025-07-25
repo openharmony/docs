@@ -449,7 +449,7 @@ async function cipherFunction(keyAlias: string, HuksOptions: huks.HuksOptions) {
 
 async function agreeFunction(keyAlias: string, HuksOptions: huks.HuksOptions, huksPublicKey: Uint8Array) {
   let handle = await publicInitFunc(keyAlias, HuksOptions);
-  let outSharedKey: Uint8Array = new Uint8Array;
+  let outSharedKey: Uint8Array = new Uint8Array();
   HuksOptions.inData = huksPublicKey;
   console.info(`enter promise doUpdate`);
   try {

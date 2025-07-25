@@ -36,7 +36,7 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 | 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
-| key       | number  | 否      | 否      | 按键键值。<br>当前仅支持[KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode)键和[KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode)键。 |
+| key       | number  | 否      | 否      | 按键键值。该属性仅在手机和平板设备上生效。<br>当前仅支持[KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode)键和[KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode)键。 |
 | action    | number  | 否      | 否      | 按键事件类型。当前仅支持取值为1，表示按键按下。 |
 | isRepeat  | boolean  | 否      | 否      | 是否上报重复的按键事件。true表示上报，false表示不上报，默认值为true。 |
 

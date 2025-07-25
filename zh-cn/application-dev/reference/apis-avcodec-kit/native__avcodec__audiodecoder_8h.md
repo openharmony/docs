@@ -7,6 +7,8 @@
 
 **库：** libnative_media_adec.so
 
+**引用文件：** <multimedia/player_framework/native_avcodec_audiodecoder.h>
+
 **起始版本：** 9
 
 **相关模块：**[AudioDecoder](_audio_decoder.md)

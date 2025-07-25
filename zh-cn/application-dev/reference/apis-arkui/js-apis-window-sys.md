@@ -104,6 +104,16 @@ import { window } from '@kit.ArkUI';
 | REGULAR | 2    | 表示适中的模糊类型。 |
 | THICK   | 3    | 表示较厚的模糊类型。 |
 
+## AnimationType<sup>20+</sup>
+
+窗口动画类型枚举。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称    | 值   | 说明                       |
+| ------- | ---- | -------------------------- |
+| FADE_IN | 1    | 表示窗口动画类型为淡入。淡入动画在窗口显示过程中生效。 |
+
 ## SystemBarRegionTint<sup>8+</sup>
 
 单个导航栏或状态栏回调信息。
@@ -179,11 +189,11 @@ import { window } from '@kit.ArkUI';
 | z    | number   | 否   | 是  | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 
 
-## StartAnimationSystemOptions<sup>20+</sup>
+## StartAnimationSystemParams<sup>20+</sup>
 
 启动动画配置。
 
-仅对同应用的不同ability间跳转生效。
+不同应用间跳转场景不生效，仍保持系统默认动效。
 
 仅在手机设备或平板设备的非自由多窗模式下生效。
 
@@ -195,8 +205,17 @@ import { window } from '@kit.ArkUI';
 
 | 名称             | 类型                                                                     | 只读 | 可选 | 说明                                                         |
 | ---------------- | ----------------------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type             | [AnimationType](arkts-apis-window-e.md#animationtype20)                 | 否   | 否   | 窗口动画类型。淡入动画在应用启动时生效，淡出动画仅在应用启动被侧滑、上滑等手势打断时生效，非打断场景依然走默认系统动效。|
-| animationConifg  | [WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20) | 否   | 是   | 窗口动画参数配置。默认动画曲线为WindowAnimationCurve.LINEAR，duration为0。          |
+| type             | [AnimationType](#animationtype20)                 | 否   | 否   | 窗口动画类型。|
+| animationConfig  | [WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20) | 否   | 是   | 窗口动画参数配置。默认动画曲线为WindowAnimationCurve.LINEAR，duration为0。          |
+
+## WindowCreateParams<sup>20+</sup>
+
+应用启动时的窗口参数配置。
+
+**系统能力：** SystemCapability.Window.SessionManager
+| 名称             | 类型                                                                     | 只读 | 可选 | 说明                                                         |
+| ---------------- | ----------------------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| systemAnimationsParams             | [StartAnimationSystemParams](#startanimationsystemparams20)                 | 否   | 是   | 启动动画参数配置。默认值为undefined，若不配置将保持系统默认动效。|
 
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
@@ -662,6 +681,7 @@ on(type: 'waterMarkFlagChange', callback: Callback&lt;boolean&gt;): void
 | ------- | -------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.               |
+| 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -700,7 +720,8 @@ off(type: 'waterMarkFlagChange', callback?: Callback&lt;boolean&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
-| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed.               |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -2791,6 +2812,169 @@ export default class EntryAbility extends UIAbility {
     } catch (exception) {
       console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
     }
+  }
+}
+```
+
+### raiseMainWindowAboveTarget<sup>20+</sup>
+
+raiseMainWindowAboveTarget(windowId: number): Promise&lt;void&gt;
+
+将主窗口的层级调整至同应用下的另一个主窗口之上，子窗口的层级会跟随所属主窗口变动。使用Promise异步回调。
+
+仅支持2in1设备的系统应用主窗口调用。
+
+传入目标主窗口的id，调用窗口和目标窗口需满足：同应用进程、显示在同一物理屏、层级低于锁屏、非置顶主窗、非模态主窗且无模应用子窗。
+
+- 应用主窗口或者它的子窗口如果是焦点窗口，此主窗口调用该接口降低层级后则自动失焦，由当前层级最高的应用窗口获焦。
+
+- 应用主窗口调用该接口调整层级后超过当前焦点窗口，则被抬升主窗口及其子窗口中，层级最高的窗口自动获焦；应用主窗口调用该接口调整层级后未超过当前焦点窗口，则焦点不做转移。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| windowId | number                    | 是   | 目标主窗口的id，该参数为整数，通过[getWindowProperties](arkts-apis-window-Window.md#getwindowproperties9)接口获取到[properties](arkts-apis-window-i.md#windowproperties)后，再通过properties.id获取。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300016 | Parameter error. Possible cause: 1. Invalid Parameter range. 2. Invalid parameter length. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility, Want, StartOptions, AbilityConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}.`);
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      try {
+        let want: Want = {
+          abilityName: "RaiseMainWindowAbility",
+          bundleName: "com.example.myapplication"
+        };
+        let options: StartOptions = {
+          windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING
+        };
+        this.context.startAbility(want, options);
+      } catch (err) {
+        console.error(`Failed to start the ability. Cause code: ${err.code}, message: ${err.message}.`);
+      }
+      setTimeout(async () => {
+        let mainWindow: window.Window | null | undefined = windowStage.getMainWindowSync();
+        let targetId: number | null | undefined = AppStorage.get('higher_window_id');
+        mainWindow.raiseMainWindowAboveTarget(targetId).then(() => {
+          console.info('Succeeded in raising main window above target.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to raise main window above target. Cause code: ${err.code}, message: ${err.message}.`)
+        });
+      }, 3000)
+    });
+  }
+}
+```
+```ts
+// 新建文件src/main/ets/raisemainwindowability/RaiseMainWindowAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class RaiseMainWindowAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    AppStorage.setOrCreate('higher_window_id', windowStage.getMainWindowSync().getWindowProperties().id);
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}.`);
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+    });
+  }
+}
+```
+```json5
+//module.json5
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "2in1"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "RaiseMainWindowAbility",
+        "launchType": "multiton",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ]
   }
 }
 ```

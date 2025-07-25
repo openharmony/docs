@@ -1,7 +1,9 @@
 # Interface (AVPlayer)
 
 > **说明：**
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本Interface首批接口从API version 9开始支持。
 
 播放管理类，用于管理和播放媒体资源。在调用AVPlayer的方法前，需要先通过[createAVPlayer()](arkts-apis-media-f.md#mediacreateavplayer9)构建一个AVPlayer实例。
 
@@ -429,7 +431,11 @@ avPlayer.prepare().then(() => {
 
 setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise\<void>
 
-设置音频静音/取消音频静音。只能在prepared/playing/paused/completed状态下调用。仅支持设置mediaType为音频格式。
+设置音频静音/取消音频静音。
+
+从API 20开始，支持设置关闭视频画面/取消关闭视频画面。
+
+只能在prepared/playing/paused/completed状态下调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -440,7 +446,7 @@ setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise\<void>
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | mediaType | [MediaType](arkts-apis-media-e.md#mediatype8) | 是   | 播放策略。 |
-| muted | boolean | 是   | 是否静音播放。true表示是静音播放，false表示不是静音播放。|
+| muted | boolean | 是   | API 12-19，仅支持设置音频格式，表示音频是否静音播放。true表示是静音播放，false表示不是静音播放。<br>API20增加支持设置视频格式，表示视频画面是否关闭，true表示关闭画面，false表示恢复画面。|
 
 **返回值：**
 
@@ -1372,6 +1378,8 @@ off(type: 'speedDone', callback?: Callback\<number>): void
 
 取消监听setSpeed生效的事件。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1523,6 +1531,8 @@ avPlayer.on('bitrateDone', (bitrate:number) => {
 off(type: 'bitrateDone', callback?: Callback\<number>): void
 
 取消监听setBitrate生效的事件。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1695,6 +1705,8 @@ off(type: 'volumeChange', callback?: Callback\<number>): void
 
 取消监听setVolume生效的事件。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1740,6 +1752,8 @@ avPlayer.on('endOfStream', () => {
 off(type: 'endOfStream', callback?: Callback\<void>): void
 
 取消监听资源播放至结尾的事件。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1839,6 +1853,8 @@ off(type: 'durationUpdate', callback?: Callback\<number>): void
 
 取消监听资源播放资源的时长。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1932,6 +1948,8 @@ avPlayer.on('startRenderFrame', () => {
 off(type: 'startRenderFrame', callback?: Callback\<void>): void
 
 取消监听视频播放开始首帧渲染的更新事件。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 

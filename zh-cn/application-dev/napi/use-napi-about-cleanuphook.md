@@ -97,7 +97,7 @@ static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
     return buffer;
 }
 ```
-<!-- @[napi_remove_add_env_cleanup_hook](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPICleanuphook/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_remove_add_env_cleanup_hook](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPICleanuphook/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -105,13 +105,13 @@ static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
 // index.d.ts
 export const napiEnvCleanUpHook: () => Object | void;
 ```
-<!-- @[napi_remove_add_env_cleanup_hook_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPICleanuphook/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_remove_add_env_cleanup_hook_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPICleanuphook/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
 // index.ets
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import worker from '@ohos.worker';
 
 let wk = new worker.ThreadWorker("entry/ets/workers/worker.ts");
@@ -123,11 +123,11 @@ wk.onmessage = (message) => {
   wk.terminate();
 };
 ```
-<!-- @[connect_with_worker](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPICleanuphook/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[connect_with_worker](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPICleanuphook/entry/src/main/ets/pages/Index.ets) -->
 
 ```ts
 // worker.ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import worker from '@ohos.worker';
 import testNapi from 'libentry.so';
 
@@ -139,7 +139,7 @@ parent.onmessage = (message) => {
   parent.postMessage('Test Node-API worker:' + testNapi.napiEnvCleanUpHook());
 }
 ```
-<!-- @[connect_with_main_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPICleanuphook/entry/src/main/ets/workers/worker.ts) -->
+<!-- @[connect_with_main_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPICleanuphook/entry/src/main/ets/workers/worker.ts) -->
 
 worker相关开发配置和流程参考以下链接：
 [使用Worker进行线程间通信](../arkts-utils/worker-introduction.md)
@@ -228,7 +228,7 @@ static napi_value NapiAsyncCleanUpHook(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_add_remove_async_cleanup_hook](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPICleanuphook/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_add_remove_async_cleanup_hook](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPICleanuphook/entry/src/main/cpp/napi_init.cpp) -->
 
 由于需要包含“uv.h”库，所以需要在CMakeLists文件中添加配置：
 ```text
@@ -242,12 +242,12 @@ target_link_libraries(entry PUBLIC libuv.so)
 // index.d.ts
 export const napiAsyncCleanUpHook: () => boolean | void;
 ```
-<!-- @[napi_remove_add_env_cleanup_hook_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPICleanuphook/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_remove_add_env_cleanup_hook_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPICleanuphook/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_add_async_cleanup_hook: %{public}s', testNapi.napiAsyncCleanUpHook());
@@ -255,7 +255,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_add_async_cleanup_hook error.message: %{public}s', error.message);
 }
 ```
-<!-- @[ark_napi_remove_add_env_cleanup_hook](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPICleanuphook/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_remove_add_env_cleanup_hook](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPICleanuphook/entry/src/main/ets/pages/Index.ets) -->
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 

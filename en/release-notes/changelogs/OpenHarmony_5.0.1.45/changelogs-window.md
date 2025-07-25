@@ -50,8 +50,8 @@ To distinguish whether the window is maximized or in full-screen mode on 2-in-1 
 
 The following example uses the **on('windowStatusChange')** API as an example to describe how to distinguish the maximized state and full-screen mode on 2-in-1 devices.
 
+Example for API version 13 and earlier versions:
 ```ts
-// API version 13 and earlier versions
 // EntryAbility.ets
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -76,8 +76,8 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+Example for API version 14:
 ```ts
-// API version 14 or later
 // EntryAbility.ets
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -104,8 +104,8 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+Example for API version 14 without distinguishing maximized state:
 ```ts
-// API version 14 or later
 // EntryAbility.ets
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -130,3 +130,43 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
+## cl.window.2 Changed the Return Values of hasImmersiveWindow on 2-in-1 Devices When the Window Is Maximized
+
+**Access Level**
+
+System API
+
+**Reason for Change**
+
+When the **hasImmersiveWindow** API is called on a 2-in-1 device, the return value is **true** if the window is maximized, which is inconsistent with the actual situation.
+
+This API cannot be used to determine whether any window is maximized or in full screen mode on 2-in-1 devices, which does not comply with the API functionality design.
+
+**Change Impact**
+
+This change is a non-compatible change.
+
+Before change: On 2-in-1 devices, calling **hasImmersiveWindow** when the window is in a maximized state returns true.
+
+After change: On 2-in-1 devices, calling **hasImmersiveWindow** when the window is in a maximized state returns false.
+
+**Start API Level**
+
+API version 11 for **hasImmersiveWindow**
+
+**Change Since**
+
+OpenHarmony SDK 5.0.1.45
+
+**Key API/Component Changes**
+
+@ohos.display.d.ts
+
+System capability: SystemCapability.Window.SessionManager
+
+API: **hasImmersiveWindow**
+
+**Adaptation Guide**
+
+Review your application implementation to see if there are any calls to **hasImmersiveWindow** to determine whether the current screen contains a full-screen window. If so, you need to adjust the code based on the change in return value.

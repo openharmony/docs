@@ -43,11 +43,11 @@
     - [tagSession (标准NFC-Tag TagSession)](js-apis-tagSession.md)
 - C API<!--connectivity-c-->
   - 模块<!--connectivity-module-->
-    - [Bluetooth](_bluetooth.md)
-    - [Wifi](_wifi.md)
+    - [Bluetooth](capi-bluetooth.md)
+    - [Wifi](capi-wifi.md)
   - 头文件<!--connectivity-headerfile-->
-    - [oh_bluetooth.h](oh__bluetooth_8h.md)
-    - [oh_wifi.h](oh__wifi_8h.md)
+    - [oh_bluetooth.h](capi-oh-bluetooth-h.md)
+    - [oh_wifi.h](capi-oh-wifi-h.md)
 - 错误码<!--connectivity-arkts-errcode-->
   - [Bluetooth错误码](errorcode-bluetoothManager.md)
   - [WIFI错误码](errorcode-wifi.md)

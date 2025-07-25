@@ -590,6 +590,8 @@ optionWidth(value: Dimension | OptionWidthMode )
 
 当设置为异常值或小于最小宽度56vp时，属性无效，菜单项宽度设为默认值，即2栅格。
 
+Select组件距屏幕边缘的左右间距为16vp，建议将组件本身及菜单项的宽度设置为小于等于`calc(100% - 32vp)`的值，以避免下拉菜单弹出时发生偏移。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -607,6 +609,8 @@ optionWidth(width: Optional\<Dimension | OptionWidthMode> )
 设置下拉菜单项的宽度，不支持设置百分比。OptionWidthMode类型为枚举类型，OptionWidthMode决定下拉菜单是否继承下拉按钮宽度。与[optionWidth](#optionwidth11)<sup>11+</sup>相比，width参数新增了对undefined类型的支持。
 
 当设置为异常值或小于最小宽度56vp时，属性无效，菜单项宽度设为默认值，即2栅格。
+
+Select组件距屏幕边缘的左右间距为16vp，建议将组件本身及菜单项的宽度设置为小于等于`calc(100% - 32vp)`的值，以避免下拉菜单弹出时发生偏移。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1402,3 +1406,53 @@ struct Index {
 ```
 
 ![dividerStyleMode](figures/SelectdividerStyleMode.png)
+
+## 示例9（设置Select下拉菜单外描边样式）
+
+该示例通过配置menuOutline的width和color属性设置下拉菜单外描边样式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SelectExample {
+  @State text: string = "TTTTT";
+  @State index: number = -1;
+  @State arrowPosition: ArrowPosition = ArrowPosition.END;
+
+  build() {
+    Column() {
+      Select([{ value: 'aaa' },
+        { value: 'bbb' },
+        { value: 'ccc' },
+        { value: 'ddd' }])
+        .selected(this.index)
+        .value(this.text)
+        .font({ size: 16, weight: 500 })
+        .fontColor('#182431')
+        .selectedOptionFont({ size: 16, weight: 400 })
+        .optionFont({ size: 16, weight: 400 })
+        .arrowPosition(this.arrowPosition)
+        .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
+        .optionWidth(200)
+        .optionHeight(300)
+        .menuOutline({
+          width: '5vp',
+          color: Color.Blue
+        })
+        .onSelect((index: number, text?: string | undefined) => {
+          console.info('Select:' + index);
+          this.index = index;
+          if (text) {
+            this.text = text;
+          }
+        })
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F0F2F5')
+  }
+}
+```
+
+![select-menu-outline](figures/selectMenuOutline.png)

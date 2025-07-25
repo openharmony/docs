@@ -52,8 +52,33 @@
       console.info(`initImageReceiver imageReceiverSurfaceId:${imageReceiverSurfaceId}`);
     }
     ```
+3. ImageReceiver接收预览流图像数据获取图像格式请参考[Image](../../reference/apis-image-kit/arkts-apis-image-Image.md)中的format参数，[PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md)格式请参考[PixelMapFormat](../../reference/apis-image-kit/arkts-apis-image-e.md#pixelmapformat7)。
+    
+    ```ts
+    // Image格式与PixelMap格式映射关系。
+    let formatToPixelMapFormatMap = new Map<number, image.PixelMapFormat>([
+      [12, image.PixelMapFormat.RGBA_8888],
+      [25, image.PixelMapFormat.NV21],
+      [35, image.PixelMapFormat.YCBCR_P010],
+      [36, image.PixelMapFormat.YCRCB_P010]
+    ]);
+    // PixelMapFormat格式的单个像素点大小映射关系。
+    let pixelMapFormatToSizeMap = new Map<image.PixelMapFormat, number>([
+      [image.PixelMapFormat.RGBA_8888, 4],
+      [image.PixelMapFormat.NV21, 1.5],
+      [image.PixelMapFormat.YCBCR_P010, 3],
+      [image.PixelMapFormat.YCRCB_P010, 3]
+    ]);
+    ```
 
-3. 注册监听处理预览流每帧图像数据：通过ImageReceiver组件中imageArrival事件监听获取底层返回的图像数据，详细的API说明请参考[Image API参考](../../reference/apis-image-kit/arkts-apis-image-ImageReceiver.md)。
+4. 注册监听处理预览流每帧图像数据：通过ImageReceiver组件中imageArrival事件监听获取底层返回的图像数据，详细的API说明请参考[Image API参考](../../reference/apis-image-kit/arkts-apis-image-ImageReceiver.md)。
+
+    > **说明：**
+    >
+    > - 在通过[CreatePixelMap](../../reference/apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmap8)接口创建[PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md)实例时，设置的Size、srcPixelFormat等属性必须和相机预览输出流previewProfile中配置的Size、Format属性保持一致，ImageRecevier图片像素格式请参考[PixelMapFormat](../../reference/apis-image-kit/arkts-apis-image-e.md#pixelmapformat7)，相机预览输出流previewProfile输出格式请参考[CameraFormat](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraformat)。
+    > - 由于一多设备产品差异性，应用开发者在创建相机预览输出流前，必须先通过[getSupportedOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedoutputcapability11)方法获取当前设备支持的预览输出流previewProfile，再根据实际业务需求选择[CameraFormat](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraformat)和[Size](../../reference/apis-camera-kit/arkts-apis-camera-i.md#size)适合的预览输出流previewProfile。
+    > - ImageReceiver接收预览流图像数据实际format格式由应用开发者在创建预览输出流相机预览输出流时，根据实际业务需求选择的previewProfile中format格式参数影响，详细步骤请参考[创建预览流获取数据](camera-dual-channel-preview.md#创建预览流获取数据)。
+
 
     ```ts
     function onImageArrival(receiver: image.ImageReceiver): void {
@@ -75,24 +100,28 @@
               let width = nextImage.size.width; // 获取图片的宽。
               let height = nextImage.size.height; // 获取图片的高。
               let stride = imgComponent.rowStride; // 获取图片的stride。
+              let imageFormat = nextImage.format; // 获取图片的format。
+              let pixelMapFormat = formatToPixelMapFormatMap.get(imageFormat) ?? image.PixelMapFormat.NV21;
+              let mSize = pixelMapFormatToSizeMap.get(pixelMapFormat) ?? 1.5;
               console.debug(`getComponent with width:${width} height:${height} stride:${stride}`);
+              // pixelMap创建时使用的size、srcPixelFormat需要与相机预览输出流previewProfile中的size、format保持一致。
               // stride与width一致。
               if (stride == width) {
                 let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
                   size: { height: height, width: width },
-                  srcPixelFormat: 8,
+                  srcPixelFormat: pixelMapFormat,
                 })
               } else {
                 // stride与width不一致。
-                const dstBufferSize = width * height * 1.5
+                const dstBufferSize = width * height * mSize
                 const dstArr = new Uint8Array(dstBufferSize)
-                for (let j = 0; j < height * 1.5; j++) {
+                for (let j = 0; j < height * mSize; j++) {
                   const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width)
                   dstArr.set(srcBuf, j * width)
                 }
                 let pixelMap = await image.createPixelMap(dstArr.buffer, {
                   size: { height: height, width: width },
-                  srcPixelFormat: 8,
+                  srcPixelFormat: pixelMapFormat,
                 })
               }
             } else {
@@ -115,17 +144,18 @@
     方式一：去除imgComponent.byteBuffer中stride数据，拷贝得到新的buffer，调用不支持stride的接口处理buffer。
 
     ```ts
-    // 以NV21为例（YUV_420_SP格式的图片）YUV_420_SP内存计算公式：长x宽+(长x宽)/2。
-    const dstBufferSize = width * height * 1.5;
+    // pixelMap创建时使用的size、srcPixelFormat需要与相机预览输出流previewProfile中的size、format保持一致.
+    const dstBufferSize = width * height * mSize;
     const dstArr = new Uint8Array(dstBufferSize);
     // 逐行读取buffer数据。
-    for (let j = 0; j < height * 1.5; j++) {
+    for (let j = 0; j < height * mSize; j++) {
       // imgComponent.byteBuffer的每行数据拷贝前width个字节到dstArr中。
       const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width);
       dstArr.set(srcBuf, j * width);
     }
     let pixelMap = await image.createPixelMap(dstArr.buffer, {
-      size: { height: height, width: width }, srcPixelFormat: 8
+      size: { height: height, width: width }, srcPixelFormat: pixelMapFormat
+
     });
     ```
 
@@ -134,7 +164,7 @@
     ```ts
     // 创建pixelMap，width宽传行距stride的值。
     let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
-      size:{height: height, width: stride}, srcPixelFormat: 8});
+      size:{height: height, width: stride}, srcPixelFormat: pixelMapFormat});
     // 裁剪多余的像素。
     pixelMap.cropSync({size:{width:width, height:height}, x:0, y:0});
     ```
@@ -277,6 +307,21 @@ struct Index {
     }
   }
 
+  // Image格式与PixelMap格式映射关系。
+  private formatToPixelMapFormatMap = new Map<number, image.PixelMapFormat>([
+    [12, image.PixelMapFormat.RGBA_8888],
+    [25, image.PixelMapFormat.NV21],
+    [35, image.PixelMapFormat.YCBCR_P010],
+    [36, image.PixelMapFormat.YCRCB_P010]
+  ]);
+  // PixelMapFormat格式的单个像素点大小映射关系。
+  private pixelMapFormatToSizeMap = new Map<image.PixelMapFormat, number>([
+    [image.PixelMapFormat.RGBA_8888, 4],
+    [image.PixelMapFormat.NV21, 1.5],
+    [image.PixelMapFormat.YCBCR_P010, 3],
+    [image.PixelMapFormat.YCRCB_P010, 3]
+  ]);
+
   /**
    * 注册ImageReceiver图像监听
    * @param receiver
@@ -301,24 +346,28 @@ struct Index {
             let width = nextImage.size.width; // 获取图片的宽。
             let height = nextImage.size.height; // 获取图片的高。
             let stride = imgComponent.rowStride; // 获取图片的stride。
+            let imageFormat = nextImage.format; // 获取图片的format。
+            let pixelMapFormat = this.formatToPixelMapFormatMap.get(imageFormat) ?? image.PixelMapFormat.NV21;
+            let mSize =  this.pixelMapFormatToSizeMap.get(pixelMapFormat) ?? 1.5;
             console.debug(`getComponent with width:${width} height:${height} stride:${stride}`);
+            // pixelMap创建时使用的size、srcPixelFormat需要与相机预览输出流previewProfile中的size、format保持一致。此处format以NV21格式为例。
             // stride与width一致。
             if (stride == width) {
               let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
                 size: { height: height, width: width },
-                srcPixelFormat: 8,
+                srcPixelFormat: pixelMapFormat,
               })
             } else {
               // stride与width不一致。
-              const dstBufferSize = width * height * 1.5 // 以NV21为例（YUV_420_SP格式的图片）YUV_420_SP内存计算公式：长x宽+(长x宽)/2。
+              const dstBufferSize = width * height * mSize // 以NV21为例（YUV_420_SP格式的图片）YUV_420_SP内存计算公式：长x宽+(长x宽)/2。
               const dstArr = new Uint8Array(dstBufferSize)
-              for (let j = 0; j < height * 1.5; j++) {
+              for (let j = 0; j < height * mSize; j++) {
                 const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width)
                 dstArr.set(srcBuf, j * width)
               }
               let pixelMap = await image.createPixelMap(dstArr.buffer, {
                 size: { height: height, width: width },
-                srcPixelFormat: 8,
+                srcPixelFormat: pixelMapFormat,
               })
             }
           } else {
@@ -385,8 +434,21 @@ struct Index {
       if (!capability) {
         console.error('initCamera getSupportedOutputCapability');
       }
-      // 根据业务需求选择一个支持的预览流profile。
+      let minRatioDiff : number = 0.1;
+      let surfaceRatio : number = this.imageWidth / this.imageHeight; // 最接近16:9宽高比。
       let previewProfile: camera.Profile = capability.previewProfiles[0];
+      // 应用开发者根据实际业务需求选择一个支持的预览流previewProfile。
+      // 此处以选择CAMERA_FORMAT_YUV_420_SP（NV21）格式、满足限定条件分辨率的预览流previewProfile为例。
+      for (let index = 0; index < capability.previewProfiles.length; index++) {
+        const tempProfile = capability.previewProfiles[index];
+        let tempRatio = tempProfile.size.width >= tempProfile.size.height ?
+          tempProfile.size.width / tempProfile.size.height : tempProfile.size.height / tempProfile.size.width;
+        let currentRatio = Math.abs(tempRatio - surfaceRatio);
+        if (currentRatio <= minRatioDiff && tempProfile.format == camera.CameraFormat.CAMERA_FORMAT_YUV_420_SP) {
+          previewProfile = tempProfile;
+          break;
+        }
+      }
       this.imageWidth = previewProfile.size.width; // 更新xComponent组件的宽。
       this.imageHeight = previewProfile.size.height; // 更新xComponent组件的高。
       console.info(`initCamera imageWidth:${this.imageWidth} imageHeight:${this.imageHeight}`);

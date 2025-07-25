@@ -169,7 +169,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 4. 全局变量。
 
-    仅做参考，可以根据实际情况将其封装到对象中。
+    仅作参考，可以根据实际情况将其封装到对象中。
 
     ```c++
     // 视频帧宽度。
@@ -194,8 +194,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 ### Surface模式
 
-参考以下示例代码，开发者可以完成Surface模式下视频解码的全流程。此处以H.264码流文件输入，解码送显输出为例。
-本模块目前仅支持异步模式的数据轮转。
+参考以下示例代码，可以完成Surface模式下视频解码的全流程，实现异步模式的数据轮转。此处以输入H.264码流文件，解码送显输出为例。
 
 1. 添加头文件。
 
@@ -241,7 +240,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     - OH_AVCodecOnError 解码器运行错误，返回的错误码详情请参见：[OH_AVCodecOnError](../../reference/apis-avcodec-kit/_codec_base.md#oh_avcodeconerror)；
     - OH_AVCodecOnStreamChanged 码流信息变化，如码流宽、高变化；
     - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据；
-    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成（注：Surface模式buffer参数为空）。
+    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成。
 
     开发者可以通过处理该回调报告的信息，确保解码器正常运转。
 
@@ -300,7 +299,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > 3. 视频解码的Surface模式下，内部数据默认是走HEBC（High Efficiency Bandwidth Compression，高效带宽压缩），无法获取到widthStride和heightStride的值。
     >
 
-4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。在获取到DRM信息（参考[音视频解封装](audio-video-demuxer.md)开发步骤第4步），完成DRM许可证申请后，通过此接口进行解密配置。此接口需在Prepare前调用。在Surface模式下，DRM解密能力既支持安全视频通路，也支持非安全视频通路。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
+4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。在获取到DRM信息（参考[音视频解封装](audio-video-demuxer.md)开发步骤第4步），完成DRM许可证申请后，通过此接口进行解密配置。此接口需在Prepare前调用。在Surface模式下，DRM解密能力既支持安全视频通路，也支持非安全视频通路。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/capi-drm.md)。
 
     添加头文件。
 
@@ -763,8 +762,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 ### Buffer模式
 
-参考以下示例代码，开发者可以完成Buffer模式下视频解码的全流程。此处以H.264文件输入，解码成YUV文件为例。
-本模块目前仅支持异步模式的数据轮转。
+参考以下示例代码，可以完成Buffer模式下视频解码的全流程，实现异步模式的数据轮转。此处以输入H.264码流文件，解码成YUV文件为例。
+
 
 1. 添加头文件。
 
@@ -890,7 +889,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
     >
 
-4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。在获取到DRM信息（参考[音视频解封装](audio-video-demuxer.md)开发步骤第4步），完成DRM许可证申请后，通过此接口进行解密配置。此接口需在Prepare前调用。在Buffer模式下，DRM解密能力仅支持非安全视频通路。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
+4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。在获取到DRM信息（参考[音视频解封装](audio-video-demuxer.md)开发步骤第4步），完成DRM许可证申请后，通过此接口进行解密配置。此接口需在Prepare前调用。在Buffer模式下，DRM解密能力仅支持非安全视频通路。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/capi-drm.md)。
 
     添加头文件。
 
@@ -1149,12 +1148,12 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         int32_t height;
     };
 
-    struct DstRect // 目标内存区域的宽、高跨距，由开发者自行设置。
+    struct DstRect // 目标内存区域的宽跨距、高跨距，由开发者自行设置。
     {
         int32_t wStride;
         int32_t hStride;
     };
-    // 源内存区域的宽、高跨距，通过回调函数OnStreamChanged或接口OH_VideoDecoder_GetOutputDescription获取。
+    // 源内存区域的宽跨距、高跨距，通过回调函数OnStreamChanged或接口OH_VideoDecoder_GetOutputDescription获取。
     struct SrcRect
     {
         int32_t wStride;
@@ -1200,7 +1199,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数来获取数据的宽、高、跨距、像素格式。
 
-后续流程（包括刷新解码器、重置解码器、停止解码器、销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤13-16。
+后续流程（包括刷新、重置、停止和销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤13-16。
 
 <!--RP5-->
 <!--RP5End-->

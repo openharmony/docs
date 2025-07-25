@@ -6,7 +6,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 
 - 只读：能读取文件内容但不能修改。
 - 编辑：能够读写文件内容，但不能修改文件权限配置。
-- 文件拥有者：可读写文件、修改权限配置、恢复原始原始文件等。
+- 文件拥有者：可读写文件、修改权限配置、恢复原始文件等。
 
 应用需要访问DLP文件时，系统会自动安装应用的DLP沙箱分身应用，相当于完全独立的应用，数据和配置会继承原应用，但相互之间并不共享。分身应用在运行时会处于DLP沙箱环境中，访问外部的权限会被限制，以防止数据的泄漏。每当打开一个新的DLP文件会生成一个应用沙箱分身，沙箱应用之间也是相互隔离的，当应用关闭后应用分身会自动卸载，沙箱期间产生的临时数据也会丢弃。
 
@@ -46,6 +46,8 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 | startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&lt;DLPManagerResult&gt; <br> | 在当前UIAbility界面以无边框形式打开DLP权限管理应用（只支持Stage模式）。 |
 
 ## 开发步骤
+
+本文档提供接口示例代码，如需要了解工程项目创建方式，可参考[工程创建](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-project)。
 
 1. 引入[dlpPermission](../../reference/apis-data-protection-kit/js-apis-dlppermission.md)模块。
 

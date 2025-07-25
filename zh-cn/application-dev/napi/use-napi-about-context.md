@@ -240,10 +240,10 @@ node_api_get_module_file_name | 否 |
     
         // 在新上下文环境中执行ArkTS侧的方法getLocation, 入参为模块plugin2中的方法GetLocation
         napi_value result = nullptr;
-        napi_value argss[1] = {};
-        argss[0] = getLocation2;
+        napi_value args2[1] = {};
+        args2[0] = getLocation2;
 
-        status = napi_call_function(newEnv2, nullptr, args[0], 1, argss, &result);
+        status = napi_call_function(newEnv2, nullptr, args[0], 1, args2, &result);
         if (status != napi_ok) {
             OH_LOG_INFO(LOG_APP, "call function of env failed");
         }
@@ -260,8 +260,8 @@ node_api_get_module_file_name | 否 |
         if (status != napi_ok) {
             OH_LOG_INFO(LOG_APP, "switch to env failed");
         }
-        argss[0] = getLocation1;
-        status = napi_call_function(env, nullptr, args[0], 1, argss, &result);
+        args2[0] = getLocation1;
+        status = napi_call_function(env, nullptr, args[0], 1, args2, &result);
         if (status != napi_ok) {
             return nullptr;
         }
@@ -333,7 +333,7 @@ node_api_get_module_file_name | 否 |
     add_definitions( "-DLOG_TAG=\"testTag\"")
 
     include_directories(${NATIVERENDER_ROOT_PATH}
-                        ${NATIVERENDER_ROOT_PATH}/include
+                        ${NATIVERENDER_ROOT_PATH}/include)
 
     add_library(entry SHARED napi_init.cpp)
     target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)

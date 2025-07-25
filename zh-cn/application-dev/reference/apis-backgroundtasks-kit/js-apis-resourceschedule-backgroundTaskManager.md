@@ -1103,10 +1103,10 @@ export default class EntryAbility extends UIAbility {
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
-| 名称             | 类型     | 必填   | 说明                                       |
-| --------------- | ------ | ---- | ---------------------------------------- |
-| requestId       | number | 是    | 短时任务的请求ID。                               |
-| actualDelayTime | number | 是    | 应用实际申请的短时任务时间，单位：ms。<br/> **说明** ：申请时间最长为3分钟，[低电量](../apis-basic-services-kit/js-apis-battery-info.md)时最长为1分钟。 |
+| 名称             | 类型     | 只读   | 可选   | 说明                                       |
+| --------------- | ------ | ---- | ---- | ---------------------------------------- |
+| requestId       | number | 否    | 否    | 短时任务的请求ID。                               |
+| actualDelayTime | number | 否    | 否    | 应用实际申请的短时任务时间，单位：ms。<br/> **说明** ：申请时间最长为3分钟，[低电量](../apis-basic-services-kit/js-apis-battery-info.md)时最长为1分钟。 |
 
 ## TransientTaskInfo<sup>20+</sup>
 
@@ -1155,10 +1155,10 @@ export default class EntryAbility extends UIAbility {
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| 名称             | 类型     | 必填   | 说明                                       |
-| --------------- | ------ | ---- | ---------------------------------------- |
-| reason | [ContinuousTaskCancelReason](#continuoustaskcancelreason15) | 是    | 长时任务取消原因。|
-| id | number | 是    | 被取消的长时任务 Id。|
+| 名称             | 类型     | 只读   | 可选   | 说明                                       |
+| --------------- | ------ | ---- | ---- | ---------------------------------------- |
+| reason | [ContinuousTaskCancelReason](#continuoustaskcancelreason15) | 否    | 否    | 长时任务取消原因。|
+| id | number | 否    | 否    | 被取消的长时任务 Id。|
 
 ## ContinuousTaskCancelReason<sup>15+</sup>
 
@@ -1206,11 +1206,11 @@ export default class EntryAbility extends UIAbility {
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| 名称             | 类型     | 必填   | 说明                                       |
-| --------------- | ------ | ---- | ---------------------------------------- |
-| continuousTaskId | number | 是    | 被暂停的长时任务 Id。|
-| suspendState | boolean | 是    | 长时任务状态，false表示激活，true表示暂停。|
-| suspendReason | [ContinuousTaskSuspendReason](#continuoustasksuspendreason20) | 是    | 长时任务暂停原因。|
+| 名称             | 类型     | 只读   | 可选   | 说明                                       |
+| --------------- | ------ | ---- | ---- | ---------------------------------------- |
+| continuousTaskId | number | 否    | 否    | 被暂停的长时任务 Id。|
+| suspendState | boolean | 否    | 否    | 长时任务状态，false表示激活，true表示暂停。|
+| suspendReason | [ContinuousTaskSuspendReason](#continuoustasksuspendreason20) | 否    | 否    | 长时任务暂停原因。|
 
 ## ContinuousTaskSuspendReason<sup>20+</sup>
 
@@ -1236,9 +1236,9 @@ export default class EntryAbility extends UIAbility {
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| 名称             | 类型     | 必填   | 说明                                       |
-| --------------- | ------ | ---- | ---------------------------------------- |
-| id | number | 是    | 被激活的长时任务 Id。|
+| 名称             | 类型     | 只读   | 可选   | 说明                                       |
+| --------------- | ------ | ---- | ---- | ---------------------------------------- |
+| id | number | 否    | 否    | 被激活的长时任务 Id。|
 
 ## ContinuousTaskInfo<sup>20+</sup>
 

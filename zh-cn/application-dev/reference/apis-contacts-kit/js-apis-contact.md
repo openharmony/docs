@@ -752,7 +752,7 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
       console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in isLocalContact.`);
+    console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -787,7 +787,7 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
       console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in isLocalContact.`);
+    console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2486,7 +2486,7 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码查询联系人，使用callback异步回调。
+根据电话号码查询联系人，使用callback异步回调。该接口仅返回联系人信息中的id、key、phoneNumbers属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2535,7 +2535,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
 
 queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码查询联系人，使用callback异步回调。
+根据电话号码查询联系人，使用callback异步回调。该接口仅返回联系人信息中的id、key、phoneNumbers属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 > **说明**
 >
@@ -2570,7 +2570,7 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码和holder查询联系人，使用callback异步回调。
+根据电话号码和holder查询联系人，使用callback异步回调。该接口仅返回联系人信息中的id、key、phoneNumbers属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2624,7 +2624,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码和holder查询联系人，使用callback异步回调。
+根据电话号码和holder查询联系人，使用callback异步回调。该接口仅返回联系人信息中的id、key、phoneNumbers属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 > **说明**
 >
@@ -2664,7 +2664,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码和attrs查询联系人，使用callback异步回调。
+根据电话号码和attrs查询联系人，使用callback异步回调。该接口仅返回联系人信息中的id、key、phoneNumbers属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2716,7 +2716,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
 
 queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码和attrs查询联系人，使用callback异步回调。
+根据电话号码和attrs查询联系人，使用callback异步回调。该接口仅返回联系人信息中的id、key、phoneNumbers属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 > **说明**
 >
@@ -2754,7 +2754,7 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码、holder和attrs查询联系人，使用callback异步回调。
+根据电话号码、holder和attrs查询联系人，使用callback异步回调。该接口仅返回联系人信息中的id、key、phoneNumbers属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2811,7 +2811,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据电话号码、holder和attrs查询联系人，使用callback异步回调。
+根据电话号码、holder和attrs查询联系人，使用callback异步回调。该接口仅返回联系人信息中的id、key、phoneNumbers属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 > **说明**
 >
@@ -2854,7 +2854,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-根据电话号码、holder和attrs查询联系人，使用Promise异步回调。
+根据电话号码、holder和attrs查询联系人，使用Promise异步回调。该接口仅返回联系人信息中的id、key、phoneNumbers属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2915,7 +2915,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 
 queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-根据电话号码、holder和attrs查询联系人，使用Promise异步回调。
+根据电话号码、holder和attrs查询联系人，使用Promise异步回调。该接口仅返回联系人信息中的id、key、phoneNumbers属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 > **说明**
 >
@@ -2962,7 +2962,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 
 queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email查询联系人，使用callback异步回调。
+根据email查询联系人，使用callback异步回调。该接口仅返回联系人信息中的id、key、Emails属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3011,7 +3011,7 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
 
 queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email查询联系人，使用callback异步回调。
+根据email查询联系人，使用callback异步回调。该接口仅返回联系人信息中的id、key、Emails属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 > **说明**
 >
@@ -3046,7 +3046,7 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 
 queryContactsByEmail(context: Context,  email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email和holder查询联系人，使用callback异步回调。
+根据email和holder查询联系人，使用callback异步回调。该接口仅返回联系人信息中的id、key、Emails属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3100,7 +3100,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
 
 queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email和holder查询联系人，使用callback异步回调。
+根据email和holder查询联系人，使用callback异步回调。该接口仅返回联系人信息中的id、key、Emails属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 > **说明**
 >
@@ -3140,7 +3140,7 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 
 queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email和attrs查询联系人，使用callback异步回调。
+根据email和attrs查询联系人，使用callback异步回调。该接口仅返回联系人信息中的id、key、Emails属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3192,7 +3192,7 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
 
 queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email和attrs查询联系人，使用callback异步回调。
+根据email和attrs查询联系人，使用callback异步回调。该接口仅返回联系人信息中的id、key、Emails属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 > **说明**
 >
@@ -3230,7 +3230,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 
 queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email、holder和attrs查询联系人，使用callback异步回调。
+根据email、holder和attrs查询联系人，使用callback异步回调。该接口仅返回联系人信息中的id、key、Emails属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3287,7 +3287,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
 
 queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-根据email、holder和attrs查询联系人，使用callback异步回调。
+根据email、holder和attrs查询联系人，使用callback异步回调。该接口仅返回联系人信息中的id、key、Emails属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 > **说明**
 >
@@ -3330,7 +3330,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 
 queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-根据email、holder和attrs查询联系人，使用Promise异步回调。
+根据email、holder和attrs查询联系人，使用Promise异步回调。该接口仅返回联系人信息中的id、key、Emails属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3391,7 +3391,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 
 queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-根据email、holder和attrs查询联系人，使用Promise异步回调。
+根据email、holder和attrs查询联系人，使用Promise异步回调。该接口仅返回联系人信息中的id、key、Emails属性。如果要查询联系人的所有信息，建议使用[queryContact](#contactquerycontact10-3)接口，根据该接口返回的属性key查询。
 
 > **说明**
 >
@@ -4321,9 +4321,9 @@ promise.then((data) => {
 
 | 名称                  | 值 | 说明                               |
 | --------------------- | ---- | ---------------------------------- |
-| SHOW_FILTER    | 0 | 仅展示符合过滤条件的联系人。 |
-| DEFAULT_SELECT            | 1 | 默认勾选符合过滤条件的联系人。                 |
-| SHOW_FILTER_AND_DEFAULT_SELECT | 2 | 默认勾选仅展示符合过滤条件的联系人。                     |
+| SHOW_FILTER    | 0 | 仅展示符合过滤条件的联系人。<br/>**系统能力**：SystemCapability.Applications.Contacts |
+| DEFAULT_SELECT            | 1 | 默认勾选符合过滤条件的联系人。<br/>**系统能力**：SystemCapability.Applications.Contacts                 |
+| SHOW_FILTER_AND_DEFAULT_SELECT | 2 | 默认勾选仅展示符合过滤条件的联系人。<br/>**系统能力**：SystemCapability.Applications.Contacts                     |
 
 ## FilterClause<sup>15+</sup>
 
@@ -4363,12 +4363,12 @@ promise.then((data) => {
 
 | 名称                  | 值 | 说明                               |
 | --------------------- | ---- | ---------------------------------- |
-| IS_NOT_NULL    | 0 | 对应字段不为空。 |
-| EQUAL_TO            | 1 | 对应字段等于某值。                 |
-| NOT_EQUAL_TO | 2 | 对应字段不等于某值。                     |
-| IN | 3 | 对应字段值在某数组中。                     |
-| NOT_IN | 4 | 对应字段值不在某数组中。                     |
-| CONTAINS | 5 | 对应字段值包含某值。                     |
+| IS_NOT_NULL    | 0 | 对应字段不为空。<br/>**系统能力**：SystemCapability.Applications.Contacts |
+| EQUAL_TO            | 1 | 对应字段等于某值。<br/>**系统能力**：SystemCapability.Applications.Contacts |
+| NOT_EQUAL_TO | 2 | 对应字段不等于某值。<br/>**系统能力**：SystemCapability.Applications.Contacts |
+| IN | 3 | 对应字段值在某数组中。<br/>**系统能力**：SystemCapability.Applications.Contacts |
+| NOT_IN | 4 | 对应字段值不在某数组中。<br/>**系统能力**：SystemCapability.Applications.Contacts  |
+| CONTAINS | 5 | 对应字段值包含某值<br/>**系统能力**：SystemCapability.Applications.Contacts。 |
 
 ## DataFilter<sup>15+</sup>
 
@@ -4393,9 +4393,9 @@ promise.then((data) => {
 
 | 名称                  | 值 | 说明                               |
 | --------------------- | --- | ---------------------------------- |
-| EMAIL    | 0 | 联系人邮箱。 |
-| PHONE            | 1 | 联系人电话。                 |
-| ORGANIZATION | 2 | 联系人单位。                     |
+| EMAIL    | 0 | 联系人邮箱。<br/>**系统能力**：SystemCapability.Applications.Contacts。 |
+| PHONE            | 1 | 联系人电话。<br/>**系统能力**：SystemCapability.Applications.Contacts。 |
+| ORGANIZATION | 2 | 联系人单位。<br/>**系统能力**：SystemCapability.Applications.Contacts。 |
 
 ## Contact
 

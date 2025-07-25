@@ -23,7 +23,7 @@ import  { picker } from '@kit.CoreFileKit';
 
 constructor(context: Context)
 
-创建DocumentViewPicker对象，推荐使用该构造函数，获取context参考[getHostContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)。
+创建DocumentViewPicker对象，推荐使用该构造函数，获取context参考[getHostContext](../apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12)。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -90,7 +90,7 @@ constructor(context: Context, window: window.Window)
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | context | Context| 是   | 应用上下文（仅支持UIAbilityContext）。Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| window  | [window.Window](../apis-arkui/arkts-apis-window-Window.md#window)  | 是   | 应用创建的窗口实例。 |
+| window  | [window.Window](../apis-arkui/arkts-apis-window-Window.md)  | 是   | 应用创建的窗口实例。 |
 
 > **说明：**
 >
@@ -450,7 +450,7 @@ async function exampleIndex(context: common.UIAbilityContext) { // 需确保 con
 
 constructor(context: Context)
 
-创建AudioViewPicker对象，推荐使用该构造函数，获取context参考[getHostContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)。
+创建AudioViewPicker对象，推荐使用该构造函数，获取context参考[getHostContext](../apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12)。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -786,7 +786,7 @@ async function example18(context: common.UIAbilityContext) { // 需确保 contex
 
 | 名称                    | 类型                                          | 只读 | 可选 | 说明                                       |
 | :---------------------- |---------------------------------------------| ---- | ---- | ------------------------------------------|
-| maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 是 | 选择文件最大个数，上限为500个，有效值范围1-500（选择目录仅对具有该系统能力的设备开放。且目录选择的最大个数为1）。默认值是1。<br>**系统能力**：SystemCapability.FileManagement.UserFileService  |
+| maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 是 | 选择文件最大个数，上限为500个，有效值范围1-500（选择目录仅对具有该系统能力的设备开放。且目录选择的最大个数为1）。默认值是500。<br>**系统能力**：SystemCapability.FileManagement.UserFileService  |
 | defaultFilePathUri<sup>10+</sup>    | string                                      | 否   |  是 | 指定选择的文件或者目录路径。默认为空（效果为拉起最近打开页）。           |
 | fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | 否   |  是 | 选择文件的后缀类型。传入字符串数组，每一项代表一个后缀选项，每一项内部用"\|\"分为两部分，第一部分为描述，第二部分为过滤后缀。没有"\|\"则没有描述，该项整体是一个过滤后缀。每项过滤后缀可以存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔，传入数组长度不能超过100，例如：['图片(.png, .jpg)\|\.png,.jpg', '文档\|\.txt', '视频\|\.mp4', '.pdf']。<br>默认不过滤，即显示所有文件。此外2in1设备支持通配符方式['所有文件(\*.\*)\|\.*']（说明：从API version 17开始，手机支持该配置），表示为显示所有文件。<br>仅对具有该系统能力的设备开放。**系统能力**：SystemCapability.FileManagement.UserFileService   |
 | selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   |  是 | 仅支持2in1设备。默认值是FILE(文件类型)。<br>**系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection  |
@@ -880,7 +880,7 @@ constructor(context: Context)
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-创建PhotoViewPicker对象，推荐使用该构造函数，获取context参考[getHostContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)。
+创建PhotoViewPicker对象，推荐使用该构造函数，获取context参考[getHostContext](../apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12)。
 
 > **说明：**
 >
@@ -1088,7 +1088,7 @@ save(option?: PhotoSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 > **说明：**
 >
-> 从API version 9开始支持，从API version 12开始废弃。建议使用[SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md#savebutton)替代。
+> 从API version 9开始支持，从API version 12开始废弃。建议使用[SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md)替代。
 
 **注意**：此接口会将文件保存在文件管理器，而不是图库。返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
@@ -1137,7 +1137,7 @@ save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 
 > **说明：**
 >
-> 从API version 9开始支持，从API version 12开始废弃。建议使用[SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md#savebutton)替代。
+> 从API version 9开始支持，从API version 12开始废弃。建议使用[SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md)替代。
 
 **注意**：此接口会将文件保存在文件管理器，而不是图库。返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
@@ -1183,7 +1183,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 > **说明：**
 >
-> 从API version 9开始支持，从API version 12开始废弃。建议使用[SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md#savebutton)替代。
+> 从API version 9开始支持，从API version 12开始废弃。建议使用[SaveButton](../apis-arkui/arkui-ts/ts-security-components-savebutton.md)替代。
 
 **注意**：此接口会将文件保存在文件管理器，而不是图库。返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 

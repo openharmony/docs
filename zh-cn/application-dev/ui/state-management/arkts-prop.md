@@ -28,7 +28,7 @@
 | ----------- | ---------------------------------------- |
 | 装饰器参数       | 无。                                        |
 | 同步类型        | 单向同步。对父组件状态变量值的修改，将同步给子组件\@Prop装饰的变量，子组件\@Prop装饰的变量的修改不会同步到父组件的状态变量上。<br>嵌套类型的场景请参考[观察变化](#观察变化)。 |
-| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，支持undefined和null。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)。<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Prop支持联合类型实例](#prop支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Prop a : string \| undefined = undefined`是支持的，不支持`@Prop a: string = undefined`。 |
+| 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，支持undefined和null。<br/>[支持Date类型](#装饰date类型变量)。<br/>支持ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型。<br/>必须指定类型。<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)。<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型，以及联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Prop支持联合类型实例](#prop支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Prop a : string \| undefined = undefined`是支持的，不支持`@Prop a: string = undefined`。 |
 | 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。 |
 | 被装饰变量的初始值   | 允许本地初始化。如果在API 11中和[\@Require](arkts-require.md)结合使用，则必须父组件构造传参。 |
 
@@ -112,61 +112,7 @@ this.title.push('3');
 - 除了\@State，数据源也可以用\@Link或\@Prop装饰，对\@Prop的同步机制是相同的。
 - 数据源和\@Prop变量的类型需要相同，\@Prop允许简单类型和class类型。
 
-- 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
-
-```ts
-@Component
-struct DateComponent {
-  @Prop selectedDate: Date = new Date('');
-
-  build() {
-    Column() {
-      Button('child update the new date')
-        .margin(10)
-        .onClick(() => {
-          this.selectedDate = new Date('2023-09-09');
-        })
-      Button(`child increase the year by 1`).onClick(() => {
-        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
-      })
-      DatePicker({
-        start: new Date('1970-1-1'),
-        end: new Date('2100-1-1'),
-        selected: this.selectedDate
-      })
-    }
-  }
-}
-
-@Entry
-@Component
-struct ParentComponent {
-  @State parentSelectedDate: Date = new Date('2021-08-08');
-
-  build() {
-    Column() {
-      Button('parent update the new date')
-        .margin(10)
-        .onClick(() => {
-          this.parentSelectedDate = new Date('2023-07-07');
-        })
-      Button('parent increase the day by 1')
-        .margin(10)
-        .onClick(() => {
-          this.parentSelectedDate.setDate(this.parentSelectedDate.getDate() + 1);
-        })
-      DatePicker({
-        start: new Date('1970-1-1'),
-        end: new Date('2100-1-1'),
-        selected: this.parentSelectedDate
-      })
-
-      DateComponent({ selectedDate: this.parentSelectedDate })
-    }
-
-  }
-}
-```
+- 当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性，详见[装饰Date类型变量](#装饰date类型变量)。
 
 - 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
 
@@ -839,7 +785,65 @@ struct SetSample {
 }
 ```
 
-## Prop支持联合类型实例
+### 装饰Date类型变量
+
+在下面的示例中，selectedDate类型为Date，点击Button改变Date的值，视图会随之刷新。
+
+```ts
+@Component
+struct DateComponent {
+  @Prop selectedDate: Date = new Date('');
+
+  build() {
+    Column() {
+      Button('child update the new date')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate = new Date('2023-09-09');
+        })
+      Button(`child increase the year by 1`).onClick(() => {
+        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
+      })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.selectedDate
+      })
+    }
+  }
+}
+
+@Entry
+@Component
+struct ParentComponent {
+  @State parentSelectedDate: Date = new Date('2021-08-08');
+
+  build() {
+    Column() {
+      Button('parent update the new date')
+        .margin(10)
+        .onClick(() => {
+          this.parentSelectedDate = new Date('2023-07-07');
+        })
+      Button('parent increase the day by 1')
+        .margin(10)
+        .onClick(() => {
+          this.parentSelectedDate.setDate(this.parentSelectedDate.getDate() + 1);
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.parentSelectedDate
+      })
+
+      DateComponent({ selectedDate: this.parentSelectedDate })
+    }
+
+  }
+}
+```
+
+### Prop支持联合类型实例
 
 @Prop支持联合类型和undefined和null，在下面的示例中，animal类型为Animals | undefined，点击父组件Zoo中的Button改变animal的属性或者类型，Child中也会对应刷新。
 
@@ -906,7 +910,6 @@ struct Zoo {
   }
 }
 ```
-
 
 ## 常见问题
 

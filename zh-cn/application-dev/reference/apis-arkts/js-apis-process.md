@@ -434,7 +434,7 @@ let pro = new process.ProcessManager();
 // uid通过process.uid获取
 let pres = process.uid;
 let result = pro.isAppUid(pres);
-console.log("result: " + result); // result: true
+console.info("result: " + result); // result: true
 ```
 
 

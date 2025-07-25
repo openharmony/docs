@@ -2,7 +2,7 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 8开始支持，后续版本的新增接口，则采用上角标单独标记接口的起始版本。
+> 该组件首批接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## MessageLevel
 
@@ -337,7 +337,7 @@ Web布局模式的配置。
 
 | 名称            | 值 | 说明                |
 | -------------- | -- | ------------------  |
-| AMBIENT     | 3 | 适用于网页游戏场景，支持Web游戏声音与系统音乐同时播放。 |
+| AMBIENT     | 3 | 适用于网页游戏场景，支持Web游戏声音与系统音乐同时播放。对应系统音频流类型STREAM_USAGE_GAME。|
 
 ## GestureFocusMode<sup>20+</sup>
 
@@ -360,3 +360,17 @@ Web布局模式的配置。
 | ----------- | -- | ------------------ |
 | NONE        | 0 | 默认值，按vsync调度流程绘制。         |
 | SCROLLBY_FROM_ZERO_OFFSET | 1 | 在使用scrollby（只支持带滚动偏移量）且Web页面滚动偏移量为0，渲染流程跳过vsync调度直接绘制。 |
+
+## PdfLoadResult<sup>20+</sup>
+
+定义PDF页面的加载结果。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称             | 值    | 说明                                       |
+| -------------- | ---- | ---------------------------------------- |
+| LOAD_SUCCESS | 0 | PDF页面加载成功。    |
+| PARSE_ERROR_FILE | 1 | PDF文件加载失败的错误码。 |
+| PARSE_ERROR_FORMAT | 2 | PDF文件格式不支持的错误码。 |
+| PARSE_ERROR_PASSWORD | 3 | PDF文件密码不正确的错误码。 |
+| PARSE_ERROR_HANDLER | 4 | PDF文件处理失败的错误码。 |

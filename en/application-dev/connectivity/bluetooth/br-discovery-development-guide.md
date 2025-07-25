@@ -1,4 +1,4 @@
-# Device Discovery
+# Bluetooth Discovery Development
 
 ## Introduction
 This document describes how to implement the Bluetooth device discovery capabilities, such as scanning for nearby devices, setting the Bluetooth scan mode, and retrieving information about paired devices.
@@ -19,7 +19,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 This function allows your application to scan for nearby Bluetooth devices and obtain partial information about them. This process can also be referred to as search, discovery, or find. Only nearby Bluetooth devices that are in a discoverable state can be scanned by the local Bluetooth device.
 
 #### Subscribing to Scan Result Reporting Events
-- You are advised to use the scan result reporting mode in API version 18 or later. This allows you to obtain more device information, including the device address, signal strength, name, and type. For details, see [connection.on('discoveryResult')](../../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectionondiscoveryresult18).
+- You are advised to use the scan result reporting mode supported since API version 18. This allows you to obtain more device information, including the device address, signal strength, name, and type. For details, see [connection.on('discoveryResult')](../../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectionondiscoveryresult18).
 ```ts
 // Define the callback for scan result reporting events.
 function onReceiveEvent(data: Array<connection.DiscoveryResult>) {
@@ -49,7 +49,7 @@ try {
 ```
 
 #### Initiating Device Scanning
-A scan process takes about 12 seconds after being initiated. The application can initiate pairing, connection, and data transmission with the discovered Bluetooth device. For details, see [Device Pairing](br-pair-device-development-guide.md) and [SPP-based Data Transmission](spp-development-guide.md).
+A scan process takes about 12 seconds after being initiated. The application can initiate pairing, connection, and data transmission with the discovered Bluetooth device. For details, see [Device Pairing](br-pair-device-development-guide.md) and [SPP-based Connection and Data Transmission](spp-development-guide.md).
 ```ts
 try {
   // Check whether scanning is in progress on the local device.
@@ -129,9 +129,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export class DiscoveryDeviceManager {
   // Define the callback for scan result reporting events.
-  onReceiveEvent(data: Array<string>) {
+  onReceiveEvent = (data: Array<string>) => {
     console.info('bluetooth device: '+ JSON.stringify(data));
-  }
+  };
 
   public startDiscovery() {
     try {

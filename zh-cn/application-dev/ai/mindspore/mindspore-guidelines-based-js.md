@@ -275,7 +275,6 @@ struct Index {
         .onClick(() => {
           let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
           resMgr?.getRawFileContent(this.modelName).then(modelBuffer => {
-            let float32View = new Float32Array(this.modelInputHeight * this.modelInputWidth * 3);
             // 图像输入和预处理。
             // 完成图像输入和预处理后的buffer数据保存在float32View，具体可见上文图像输入和预处理中float32View的定义和处理。
             let inputs: ArrayBuffer[] = [float32View.buffer];

@@ -77,6 +77,8 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 获取图片和视频资源，使用Promise方式返回结果。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
@@ -103,7 +105,6 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -143,6 +144,8 @@ getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&
 
 获取连拍照片资源，使用Promise方式返回结果。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
@@ -167,7 +170,6 @@ getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | Internal system error.         |
 
 **示例：**
@@ -222,7 +224,7 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件名后缀参数，例如：'jpg'。              |
-| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | 是   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。              |
+| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | 是   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。<br>**注意：** 传入其他选项，配置不生效。      |
 | callback |  AsyncCallback&lt;string&gt; | 是   | callback返回创建的图片和视频的uri。 |
 
 **错误码：**
@@ -336,7 +338,7 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件名后缀参数，例如：'jpg'。              |
-| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | 否   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。              |
+| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | 否   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。<br>**注意：** 传入其他选项，配置不生效。      |
 
 **返回值：**
 
@@ -1056,12 +1058,12 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, phot
 
   try {
     let outputText: string;
-    if (photoTypeNumber !== 1 && photoTypeNumber !== 2) {
+    if (photoTypeNumber !== photoAccessHelper.PhotoType.IMAGE && photoTypeNumber !== photoAccessHelper.PhotoType.VIDEO) {
       outputText = 'Does not support querying formats other than images or videos';
       return;
     }
     outputText = 'The supported types are:\n';
-    let imageFormat  = await phAccessHelper.getSupportedPhotoFormats(photoTypeNumber);
+    let imageFormat  = await phAccessHelper.getSupportedPhotoFormats(photoAccessHelper.PhotoType.IMAGE);
     let result = "";
     for (let i = 0; i < imageFormat.length; i++) {
       result += imageFormat[i];
@@ -1096,13 +1098,13 @@ on(type: 'photoChange', callback: Callback&lt;PhotoAssetChangeInfos&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'photoChange'; 2. The same callback is registered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -1153,13 +1155,13 @@ off(type: 'photoChange', callback?: Callback&lt;PhotoAssetChangeInfos&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'photoChange'; 2. The same callback is unregistered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -1213,13 +1215,13 @@ on(type: 'photoAlbumChange', callback: Callback&lt;AlbumChangeInfos&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'photoAlbumChange'; 2. The same callback is registered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -1270,13 +1272,13 @@ off(type: 'photoAlbumChange', callback?: Callback&lt;AlbumChangeInfos&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'photoAlbumChange'; 2. The same callback is unregistered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 

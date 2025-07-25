@@ -338,4 +338,4 @@ Test JSVM RunVMSnapshot read file blobSize = : 300032
 Test JSVM RunVMSnapshot read file blobSize = : 300176
 Test JSVM RunVMSnapshot read file blobSize = : 300048
 ```
-这是因为，在读取快照文件时，blobSize 是通过 file.tellg() 获取的文件大小。因此，快照文件的大小直接决定了blobSize的值，所以会输出不同的值。
+上述执行结果是因为在读取快照文件时，blobSize 的值来源于快照文件的大小（通过 file.tellg() 获取）。快照文件的大小直接决定了 blobSize 的值，所以会输出不同的值。

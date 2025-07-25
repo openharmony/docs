@@ -218,7 +218,7 @@ try {
     connection.cancelPairedDevice('11:22:33:44:55:66').then(() => {
         console.info('cancelPairedDevice');
     }, (error: BusinessError) => {
-        console.info('cancelPairedDevice: errCode:' + error.code + ',errMessage' + error.message);
+        console.error('cancelPairedDevice: errCode:' + error.code + ',errMessage' + error.message);
     })
 
 } catch (err) {

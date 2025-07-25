@@ -146,6 +146,7 @@
 | ------------------- | ---- | ------------------------------------------------------------ |
 | LINEAR              | 0    | 表示动画从头到尾的速度都是相同的。<br/>使用该曲线类型时[WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20)中duration必填。<br/>使用该曲线类型时[WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20)中param选填，且不生效。 |
 | INTERPOLATION_SPRING | 1    | 表示插值器弹簧曲线，一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受[WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20)中的duration参数控制。<br/>使用该曲线类型时[WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20)中duration选填，且不生效。<br/>使用该曲线类型时[WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20)中param必填。 |
+| CUBIC_BEZIER | 2 | 表示贝塞尔曲线。<br/>使用该曲线类型时[WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20)中的param和duration为必填项。 |
 
 ## WindowTransitionType<sup>20+</sup>
 
@@ -167,13 +168,11 @@
 
 | 名称    | 值   | 说明                       |
 | ------- | ---- | -------------------------- |
-| FADE_IN_OUT | 0    | 表示窗口动画类型为淡入淡出。 |
+| FADE_IN_OUT | 0    | 表示窗口动画类型为淡入淡出。淡入动画在窗口显示过程中生效，淡出动画在窗口隐藏过程中生效。 |
 
 ## WindowAnchor<sup>20+</sup>
 
 窗口锚点枚举。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
@@ -225,10 +224,10 @@
 
 | 名称   | 值 | 说明                    |
 | ------ | --- | ------------------------ |
-| FULLSCREEN | 1 | 全屏窗口。 |
-| SPLIT  | 1 << 1 | 分屏窗口。 |
-| FLOAT   | 1 << 2  | 悬浮窗。 |
-| PIP   | 1 << 3  | 画中画。 |
+| FULLSCREEN | 1 | 全屏窗口，二进制从右往左，第一个二进制位为1。  |
+| SPLIT  | 1 << 1 | 分屏窗口，二进制从右往左，第二个二进制位为1。 |
+| FLOAT   | 1 << 2  | 悬浮窗，二进制从右往左，第三个二进制位为1。 |
+| PIP   | 1 << 3  | 画中画，二进制从右往左，第四个二进制位为1。 |
 
 ## WindowStageEventType<sup>9+</sup>
 

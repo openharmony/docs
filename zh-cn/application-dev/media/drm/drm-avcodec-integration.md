@@ -22,7 +22,7 @@
 
 ## 开发指导
 
-详细的API说明请参考[DRM API](../../reference/apis-drm-kit/_drm.md)。
+详细的API说明请参考[DRM API](../../reference/apis-drm-kit/capi-drm.md)。
 
 参考以下示例代码，完成DRM的全流程，包括：获取设备支持的DRM解决方案的名称和唯一标识的列表、创建MediaKeySystem、创建MediaKeySession、生成媒体密钥请求、处理媒体密钥响应、获取是否需要安全视频解码以及销毁资源。
 

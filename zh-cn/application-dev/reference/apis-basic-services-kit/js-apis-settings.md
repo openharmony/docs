@@ -51,7 +51,7 @@ import { settings } from '@kit.BasicServicesKit';
 
 | 名称                          | 类型   | 可读 | 可写 | 说明                                                                                                                   |
 | ----------------------------- | ------ | ---- | ---- |----------------------------------------------------------------------------------------------------------------------|
-| FONT_SCALE                    | string | 是   | 是   | 字体的比例因子，值为浮点数。（当前版本参数仅支持固定值查询。）                                                                                      |
+| FONT_SCALE                    | string | 是   | 是   | 字体的比例因子，值为浮点数。                                                                                      |
 | SCREEN_BRIGHTNESS_STATUS      | string | 是   | 是   | 屏幕亮度。取值范围:0到255。                                                                                                     |
 | AUTO_SCREEN_BRIGHTNESS        | string | 是   | 是   | 是否启用屏幕亮度自动调整。<br/>- 值为AUTO_SCREEN_BRIGHTNESS_MODE，表示启用自动调整。<br/>- 值为MANUAL_SCREEN_BRIGHTNESS_MODE，表示不启用自动调整。         |
 | AUTO_SCREEN_BRIGHTNESS_MODE   | number | 是   | 是   | 使用屏幕亮度自动调整时AUTO_SCREEN_BRIGHTNESS的值。                                                                                 |
@@ -650,12 +650,7 @@ import { common } from '@kit.AbilityKit';
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, (err, val) => {
-  if (err) {
-    console.error(`Failed to get the setting. ${err.message} `);
-    return;
-  }
-  console.log(`callback:value -> ${JSON.stringify(val)}`)
+settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, () => {
   let value:string = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
   console.log(`Promise:value -> ${value}`);
 });

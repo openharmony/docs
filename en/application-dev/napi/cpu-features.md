@@ -31,7 +31,7 @@ Currently, OpenHarmony does not provide APIs for obtaining CPU features. You can
 
 2. Add the statement for determining the support for the CPU features to the code. The following uses the ARM and AArch64 architectures as an example:
    ```c++
-   ...
+   // ...
    // Include the header file for CPU architecture target detection.
    #include "cpu_features_macros.h"
    // In the ARM architecture, this macro is automatically defined in the preceding header file based on the target.

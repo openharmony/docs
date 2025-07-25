@@ -10,7 +10,7 @@
 
 setOnClick(callback: Callback\<ClickEvent> | undefined): void
 
-设置[点击事件](./ts-universal-events-click.md#点击事件)的回调。
+设置[点击事件](./ts-universal-events-click.md)的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -26,7 +26,7 @@ setOnClick(callback: Callback\<ClickEvent> | undefined): void
 
 setOnTouch(callback: Callback\<TouchEvent> | undefined): void
 
-设置[触摸事件](./ts-universal-events-touch.md#触摸事件)的回调。
+设置[触摸事件](./ts-universal-events-touch.md)的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -76,7 +76,7 @@ setOnDisappear(callback: Callback\<void> | undefined): void
 
 setOnKeyEvent(callback: Callback\<KeyEvent> | undefined): void
 
-设置[按键事件](./ts-universal-events-key.md#按键事件)的回调。
+设置[按键事件](./ts-universal-events-key.md)的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -187,8 +187,6 @@ setOnVisibleAreaApproximateChange(options: VisibleAreaEventOptions, event: Visib
 
 >**说明：**
 >
-> 非实时回调，实际回调与预期间隔可能存在差别。
->
-> 两次可见区域回调的时间间隔不小于预期更新间隔。当开发者设置的预期间隔过小时，由系统负载决定实际回调间隔时间。
+> 此接口与[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)接口存在如下差异，onVisibleAreaChange在每一帧都会进行可见区域比例的计算，如果注册节点太多，系统功耗存在劣化。此接口降低了可见区域比例计算的频度，计算间隔由[VisibleAreaEventOptions](./ts-types.md#visibleareaeventoptions12)的expectedUpdateInterval参数决定。
 >
 > 当前接口的可见区域回调阈值默认包含0。例如，开发者设置回调阈值为[0.5]，实际生效的阈值为[0.0, 0.5]。

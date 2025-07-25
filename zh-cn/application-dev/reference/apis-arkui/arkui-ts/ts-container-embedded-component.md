@@ -103,10 +103,10 @@ onError(callback: ErrorCallback)
 
 ### 属性
 
-| 名称 | 类型                                                       | 必填 | 说明                                                 |
-| ---- | ---------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| code | number                                                     | 是   | 被拉起EmbeddedUIExtensionAbility退出时返回的结果码。 |
-| want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 被拉起EmbeddedUIExtensionAbility退出时返回的数据。   |
+| 名称 | 类型                      | 只读 | 可选 | 说明                                                 |
+| ---- | -------------------------| ---- | ---- | ---------------------------------------------------- |
+| code | number                                                     | 否 | 否 | 被拉起EmbeddedUIExtensionAbility退出时返回的结果码。 |
+| want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 是 | 被拉起EmbeddedUIExtensionAbility退出时返回的数据。   |
 
 ## 示例（加载EmbeddedComponent）
 

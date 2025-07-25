@@ -1,61 +1,74 @@
 # 使用HiTraceMeter跟踪性能（C/C++）
 
+
 ## 简介
 
-HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位置调用HiTraceMeter接口提供的API接口，能够有效跟踪进程轨迹、查看系统性能。
+HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位置调用HiTraceMeter接口提供的API接口，能够有效跟踪进程轨迹、查看系统、应用性能。
 
-## 基本概念
-
-**HiTraceMeter Tag**：跟踪数据使用类别，称作HiTraceMeter Tag，一般每个软件子系统对应一个tag。[hitrace](hitrace.md)命令行工具采集跟踪数据时，只采集给定的tag类别选项指定的跟踪数据。应用中的HiTraceMeter打点的tag是HITRACE_TAG_APP，对应[hitrace](hitrace.md)命令`hitrace -l`列出的tag列表中的app。
-
-## 实现原理
-
-1. 应用程序通过HiTraceMeter函数接口进行打点，HiTraceMeter函数将跟踪数据通过内核sysfs文件接口输入到内核的ftrace数据缓冲区。
-2. [hitrace](hitrace.md)命令行工具读取内核ftrace缓冲区中的跟踪数据，将文本格式的跟踪数据输出到设备侧的文件中。
 
 ## 接口说明
 
-性能打点跟踪接口由HiTraceMeter模块提供，详细API请参考[性能打点跟踪API参考](../reference/apis-performance-analysis-kit/_hitrace.md)。
+性能打点跟踪接口由HiTraceMeter模块提供，详细API请参考[Hitrace C API参考](../reference/apis-performance-analysis-kit/capi-trace-h.md)。
 
-| 方法                                                         | 接口描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| void OH_HiTrace_StartTraceEx(HiTrace_Output_Level level, const char* name, const char* customArgs) | 开启一个同步时间片跟踪事件，分级控制跟踪输出。<br/>**说明**：从API version 19开始，支持该接口。 |
-| void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level)    | 结束一个同步时间片跟踪事件，分级控制跟踪输出。level必须与流程开始的OH_HiTrace_StartTraceEx对应参数值保持一致。<br/>**说明**：从API version 19开始，支持该接口。 |
-| void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId, const char* customCategory, const char* customArgs) | 开启一个异步时间片跟踪事件，分级控制跟踪输出。taskId是trace中用来表示关联的ID，如果有多个name相同的任务并行执行，则开发者每次调用OH_HiTrace_StartAsyncTraceEx时传入的taskId需不同；如果具有相同name的任务是串行执行的，则taskId可以相同。<br/>**说明**：从API version 19开始，支持该接口。 |
-| void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId) | 结束一个异步时间片跟踪事件，分级控制跟踪输出。level、name和taskId必须与流程开始的OH_HiTrace_StartAsyncTraceEx对应参数值保持一致。<br/>**说明**：从API version 19开始，支持该接口。 |
-| void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char* name, int64_t count) | 整数跟踪事件，分级控制跟踪输出。用来标记一个预跟踪的整数变量，该变量的数值会不断变化。<br/>**说明**：从API version 19开始，支持该接口。 |
-| bool OH_HiTrace_IsTraceEnabled(void)                         | 判断当前是否开启应用trace捕获。应用trace捕获未开启时，HiTraceMeter性能跟踪打点无效。<br/>**说明**：从API version 19开始，支持该接口。 |
+| 方法 | 接口描述 | 
+| -------- | -------- |
+| void OH_HiTrace_StartTraceEx(HiTrace_Output_Level level, const char\* name, const char\* customArgs) | 开启一个同步时间片跟踪事件，分级控制跟踪输出。<br/>**说明**：从API version 19开始，支持该接口。 | 
+| void OH_HiTrace_FinishTraceEx(HiTrace_Output_Level level) | 结束一个同步时间片跟踪事件，分级控制跟踪输出。<br/>level必须与流程开始的OH_HiTrace_StartTraceEx对应参数值保持一致。<br/>**说明**：从API version 19开始，支持该接口。 | 
+| void OH_HiTrace_StartAsyncTraceEx(HiTrace_Output_Level level, const char\* name, int32_t taskId, const char\* customCategory, const char\* customArgs) | 开启一个异步时间片跟踪事件，分级控制跟踪输出。<br/>taskId是trace中用来表示关联的ID，如果有多个name相同的任务并行执行，则开发者每次调用OH_HiTrace_StartAsyncTraceEx时传入的taskId需不同；如果具有相同name的任务是串行执行的，则taskId可以相同。<br/>**说明**：从API version 19开始，支持该接口。 | 
+| void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char\* name, int32_t taskId) | 结束一个异步时间片跟踪事件，分级控制跟踪输出。<br/>level、name和taskId必须与流程开始的OH_HiTrace_StartAsyncTraceEx对应参数值保持一致。<br/>**说明**：从API version 19开始，支持该接口。 | 
+| void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char\* name, int64_t count) | 整数跟踪事件，分级控制跟踪输出。<br/>name、count两个参数分别用来标记一个跟踪的整数变量名及整数值。<br/>**说明**：从API version 19开始，支持该接口。 | 
+| bool OH_HiTrace_IsTraceEnabled(void) | 判断当前是否开启应用trace捕获。<br/>使用hitrace命令行工具等方式开启采集时返回true，未开启采集或停止采集后返回false（此时调用HiTraceMeter性能跟踪打点接口无效）。<br/>**说明**：从API version 19开始，支持该接口。 | 
 
 > **注意：**
 >
-> [用户态trace格式](./hitracemeter-view.md#用户态trace格式说明)使用竖线 `|` 作为分隔符，所以通过HiTraceMeter接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
+> [用户态trace格式](hitracemeter-view.md#用户态trace格式说明)使用竖线 | 作为分隔符，所以通过HiTraceMeter接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
 
-HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间片跟踪接口、异步时间片跟踪接口和整数跟踪接口。无论同步时间片跟踪接口还是异步时间片跟踪接口，接口本身都是同步接口，不是异步接口。HiTraceMeter打点接口可与[HiTraceChain](./hitracechain-guidelines-ndk.md)一起使用，进行跨设备/跨进程/跨线程的打点关联与分析。
 
-- 同步时间片跟踪接口用于顺序执行的打点场景。
-- 异步时间片跟踪接口用于在异步操作执行前进行开始打点，在异步操作完成后进行结束打点。异步跟踪的开始和结束由于不是顺序发生的，解析trace时需要通过name与taskId参数进行识别，name与taskId参数相同的异步跟踪开始与结束打点相匹配。
-- 整数跟踪接口用于跟踪整数变量。
+### 接口分类
 
-**参数解析**
+HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间片跟踪接口、异步时间片跟踪接口和整数跟踪接口。同步时间片跟踪接口和异步时间片跟踪接口的实现都是同步的，同步和异步是针对需要被跟踪的业务而言的，同步业务流程中使用同步时间片跟踪接口，异步流程中使用异步时间片跟踪接口。HiTraceMeter打点接口可与[HiTraceChain](hitracechain-guidelines-ndk.md)一起使用，进行跨设备/跨进程/跨线程的打点关联与分析。
 
-| 参数名         | 类型        | 说明                                                         |
-| -------------- | ----------- | ------------------------------------------------------------ |
-| level          | enum        | 跟踪输出级别，低于系统阈值的跟踪将不会被输出。<br>log版本阈值为HITRACE_LEVEL_INFO，nolog版本阈值为HITRACE_LEVEL_COMMERCIAL。 |
-| name           | const char* | 要跟踪的任务名称或整数变量名称。                             |
-| taskId         | int32_t     | 用来表示关联的ID，如果有多个name相同的任务是并行执行的，则开发者每次调用OH_HiTrace_StartAsyncTraceEx时传入的taskId需不同。 |
-| count          | int64_t     | 整数变量的值。                                               |
-| customCategory | const char* | 自定义聚类名称，用于聚合同一类异步跟踪打点。<br>若不需要聚类，可传入一个空字符串。 |
-| customArgs     | const char* | 自定义键值对，若有多组键值对，使用逗号进行分隔，例"key1=value1,key2=value2"。<br>若不需要该参数，可传入一个空字符串。 |
+
+### 接口使用场景
+
+
+- 同步时间片跟踪接口
+  用于顺序执行的打点场景，使用时需要注意OH_HiTrace_StartTraceEx接口和OH_HiTrace_FinishTraceEx接口按序成对使用，未按序成对使用会导致采集到的trace文件在smartperf等可视化工具上显示时出现泳道异常问题。
+
+- 异步时间片跟踪接口
+  用于在异步操作执行前进行开始打点，在异步操作完成后进行结束打点。异步跟踪的开始和结束不是顺序发生的，解析trace时需要通过name与taskId参数进行识别，使用时OH_HiTrace_StartAsyncTraceEx接口和OH_HiTrace_FinishAsyncTraceEx接口按序成对使用且传入同样的name和taskId，不同的异步流程里要使用不同的name和taskId（在异步跟踪流程不会同时发生的情况下可以复用name和taskId），调用错误会导致采集到的trace文件在smartperf等可视化工具上显示时出现泳道异常问题。
+
+- 整数跟踪接口
+  用于跟踪整数变量。在被跟踪的整数值变动时调用traceByValue接口后，可以在trace中观测该数值变动情况（由于从开始采集到第一次打点存在时间差，所以在smartperf上查看trace文件时，这段时间无法查看到数值）。
+
+
+### 参数解析
+
+
+| 参数名 | 类型 | 说明 | 
+| -------- | -------- | -------- |
+| level | enum | 跟踪输出级别，低于系统阈值的跟踪将不会被输出。<br/>log版本阈值为HITRACE_LEVEL_INFO，nolog版本阈值为HITRACE_LEVEL_COMMERCIAL。 | 
+| name | const char\* | 要跟踪的任务名称或整数变量名称。 | 
+| taskId | int32_t | 用来表示关联的ID，如果有多个name相同的任务是并行执行的，则开发者每次调用OH_HiTrace_StartAsyncTraceEx时传入的taskId需不同。 | 
+| count | int64_t | 整数变量的值。 | 
+| customCategory | const char\* | 自定义聚类名称，用于聚合同一类异步跟踪打点。<br/>若不需要聚类，可传入一个空字符串。 | 
+| customArgs | const char\* | 自定义键值对，若有多组键值对，使用逗号进行分隔，例"key1=value1,key2=value2"。<br/>若不需要该参数，可传入一个空字符串。 | 
+
 
 > **说明：**
 >
-> [用户态trace](./hitracemeter-view.md#用户态trace格式说明)总长度限制512字符，超过的部分将会被截断，因此建议name、customCategory和customArgs三个字段的总长度不超过420字符，避免输出的用户态trace被截断。
+> [用户态trace](hitracemeter-view.md#用户态trace格式说明)总长度限制512字符，超过的部分将会被截断，因此建议name、customCategory和customArgs三个字段的总长度不超过420字符，避免输出的用户态trace被截断。
 
-## 开发示例
 
-在DevEco Studio中创建Native C++工程，使用HiTraceMeter NDK_C打点接口，以下为一个Native C++工程示例。
+## 开发步骤
 
-1. 新建一个Native C++工程，工程目录结构如下：
+以下为一个使用HiTraceMeter打点接口的Native C++应用示例。
+
+
+### 步骤一：创建项目
+
+
+1. 在DevEco Studio中新建工程，选择“Native C++”，工程的目录结构如下。
 
    ```text
    ├── entry
@@ -77,13 +90,27 @@ HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间�
    │       │   │       └── Index.ets
    ```
 
-2. 在"CMakeLists.txt"文件末尾新增如下内容，添加libhitrace_ndk.z.so和libhilog_ndk.z.so动态链接库。
+2. 在“entry &gt; src &gt; main &gt; cpp &gt; CMakeLists.txt”文件中新增libhitrace_ndk.z.so和libhilog_ndk.z.so动态链接库，完整的文件内容如下。
 
-   ```cmake
-   target_link_libraries(entry PUBLIC libhitrace_ndk.z.so libhilog_ndk.z.so)
+   ```txt
+   # the minimum version of CMake.
+   cmake_minimum_required(VERSION 3.5.0)
+   project(HiTraceChainTest03)
+   
+   set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+   
+   if(DEFINED PACKAGE_FIND_FILE)
+       include(${PACKAGE_FIND_FILE})
+   endif()
+   
+   include_directories(${NATIVERENDER_ROOT_PATH}
+                       ${NATIVERENDER_ROOT_PATH}/include)
+   
+   add_library(entry SHARED napi_init.cpp)
+   target_link_libraries(entry PUBLIC libace_napi.z.so libhitrace_ndk.z.so libhilog_ndk.z.so)
    ```
 
-3. 编辑"napi_init.cpp"文件，在Add函数中调用HiTraceMeter NDK_C的接口，进行性能打点跟踪， 示例代码如下：
+3. 编辑“entry &gt; src &gt; main &gt; cpp &gt; napi_init.cpp”文件，在Add函数中调用HiTraceMeter NDK_C的接口，进行性能打点跟踪， 完整的示例代码如下。
 
    ```c++
    #include <cstdio>
@@ -194,21 +221,23 @@ HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间�
    }
    ```
 
-4. 在DevEco Studio Terminal窗口中执行如下命令，开启应用trace捕获：
+
+### 步骤二：采集trace信息并查看
+
+1. 在DevEco Studio Terminal窗口中执行如下命令，开启应用trace捕获。
 
    ```shell
    PS D:\xxx\xxx> hdc shell
    $ hitrace --trace_begin app
    ```
 
-
-5. 单击DevEco Studio界面上的运行按钮，启动应用，点击屏幕中间的字符串，执行包含HiTraceMeter打点的业务逻辑，然后执行如下命令抓取trace数据：
+2. 单击DevEco Studio界面上的运行按钮，启动应用，点击应用界面的“Hello World”文本，执行包含HiTraceMeter打点的业务逻辑，然后执行如下命令抓取trace数据，并使用“myTest”关键字过滤trace数据（示例打点接口传递的name字段前缀均为“myTest”）。
 
    ```shell
    $ hitrace --trace_dump | grep myTest
    ```
 
-   成功抓取的trace数据如下所示：
+   成功抓取的trace数据如下所示。
 
    ```text
    <...>-49837   (-------) [002] .... 349137.708093: tracing_mark_write: S|49837|H:myTestAsyncTrace|1001|M62|categoryTest|key=value
@@ -222,19 +251,21 @@ HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间�
    <...>-49837   (-------) [002] .... 349137.708323: tracing_mark_write: F|49837|H:myTestAsyncTrace|1003|M62
    ```
 
-7. 执行如下命令，结束应用trace捕获：
+
+### 步骤三：停止采集trace
+
+1. 执行如下命令，结束应用trace捕获。
 
    ```shell
    $ hitrace --trace_finish
    ```
 
-8. 再次点击屏幕中间的字符串，此时应用trace捕获已关闭，OH_HiTrace_IsTraceEnabled返回false，DevEco Studio Log窗口使用关键字"enable"进行过滤，出现如下打印：
+2. 再次点击应用界面的“Hello World”文本，此时应用trace捕获已关闭，OH_HiTrace_IsTraceEnabled接口返回false，在DevEco Studio Log窗口使用关键字“not enable”进行过滤，会打印如下日志。
 
    ```text
    myTraceTest running, trace is not enabled
    ```
 
-   
-
-
-
+   > **说明：**
+>
+   > log版本在使用hitrace --trace_finish命令停止采集后会自动拉起快照模式，打开应用trace捕获，此时isTraceEnabled接口返回true，不会打印上述日志

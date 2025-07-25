@@ -48,9 +48,9 @@ AppServiceExtensionAbility模块提供后台服务相关扩展能力，包括后
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [AppServiceExtensionContext](js-apis-inner-application-appServiceExtensionContext.md)  | 是 | 否 | AppServiceExtensionAbility的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。 |
+| context | [AppServiceExtensionContext](js-apis-inner-application-appServiceExtensionContext.md)  | 否 | 否 | AppServiceExtensionAbility的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。 |
 
 
 ### onCreate

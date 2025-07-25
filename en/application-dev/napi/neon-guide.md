@@ -71,9 +71,9 @@ The following example describes how to use Neon intrinsics in an armeabi-v7a Ope
                int16x4_t  input_vec = vld1_s16(input + (nn+offset+mm*4));
                sum_vec = vmlal_s16(sum_vec, kernel_vec, input_vec);
            }
-           ...
+           // ...
       }
-      ...
+      // ...
    }
    ```
 
@@ -101,3 +101,4 @@ The following example describes how to use Neon intrinsics in an armeabi-v7a Ope
 
 Now you can use Neon intrinsics in your project.
 
+<!--no_check-->

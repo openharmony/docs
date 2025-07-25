@@ -31,7 +31,7 @@ ComponentContent的构造函数。
 
 | 参数名    | 类型                                      | 必填 | 说明                               |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需要的UI上下文。 |
+| uiContext | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需要的UI上下文。 |
 | builder  | [WrappedBuilder\<[]>](../../ui/state-management/arkts-wrapBuilder.md) | 是   |   封装不带参builder函数的WrappedBuilder对象。 |
 
 ### constructor
@@ -48,7 +48,7 @@ ComponentContent的构造函数。
 
 | 参数名    | 类型                                      | 必填 | 说明                               |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| uiContext | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
 | builder  | [WrappedBuilder\<[T]>](../../ui/state-management/arkts-wrapBuilder.md) | 是   |   封装带参builder函数的WrappedBuilder对象。 |
 | args     |     T     |   是   |   WrappedBuilder对象封装的builder函数的参数。 |
 
@@ -66,7 +66,7 @@ ComponentContent的构造函数。
 
 | 参数名    | 类型                                      | 必填 | 说明                               |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| uiContext | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
 | builder  | [WrappedBuilder\<[T]>](../../ui/state-management/arkts-wrapBuilder.md) | 是   |   封装带参builder函数的WrappedBuilder对象。 |
 | args     |     T     |   是   |   WrappedBuilder对象封装的builder函数的参数。 |
 | options | [BuildOptions](./js-apis-arkui-builderNode.md#buildoptions12)                                                    | 是   |  build的配置参数，判断是否支持@Builder中嵌套@Builder的行为。                                         |
@@ -219,7 +219,7 @@ reuse(param?: Object): void
 recycle(): void
 
 - 触发ComponentContent中自定义组件的回收。自定义组件的回收是组件复用机制中的环节，具体信息请参见[@Reusable装饰器：组件复用](../../ui/state-management/arkts-reusable.md)。
-- ComponentContent通过reuse和recycle完成其内外自定义组件之间的复用事件传递，具体使用场景请参见[节点复用能力](../../ui/arkts-user-defined-arktsNode-builderNode.md#节点复用能力)。
+- ComponentContent通过reuse和recycle完成其内外自定义组件之间的复用事件传递，具体使用场景请参见[BuilderNode调用reuse和recycle接口实现节点复用能力](../../ui/arkts-user-defined-arktsNode-builderNode.md#buildernode调用reuse和recycle接口实现节点复用能力)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -706,7 +706,7 @@ class Params {
   }
 }
 
-@Builder
+@Builder // builder组件
 function buildText(params: Params) {
 
   Column() {
@@ -721,10 +721,10 @@ class TextNodeController extends NodeController {
 
   makeNode(context: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(context);
-    this.contentNode = new ComponentContent(context, wrapBuilder(buildText), new Params(this.count)); //通过buildText创建ComponentContent
-    this.contentNode.inheritFreezeOptions(true); //设置ComponentContent的冻结继承状态为True
+    this.contentNode = new ComponentContent(context, wrapBuilder(buildText), new Params(this.count)); // 通过buildText创建ComponentContent
+    this.contentNode.inheritFreezeOptions(true); // 设置ComponentContent的冻结继承状态为True
     if (this.rootNode !== null) {
-      this.rootNode.addComponentContent(this.contentNode); //将ComponentContent上树
+      this.rootNode.addComponentContent(this.contentNode); // 将ComponentContent上树
     }
     return this.rootNode;
   }
@@ -732,7 +732,7 @@ class TextNodeController extends NodeController {
   update(): void {
     if (this.contentNode !== null) {
       this.count += 1;
-      this.contentNode.update(new Params(this.count)); //更新ComponentContent中的数据，可以触发Log
+      this.contentNode.update(new Params(this.count)); // 更新ComponentContent中的数据，可以触发Log
     }
   }
 }
@@ -757,7 +757,7 @@ struct MyNavigationTestStack {
 
   build() {
     Column() {
-      Button('update ComponentContent') //点击更新ComponentContent
+      Button('update ComponentContent') // 点击更新ComponentContent
         .onClick(() => {
           textNodeController.update();
         })
@@ -768,7 +768,7 @@ struct MyNavigationTestStack {
             .height(40)
             .margin(20)
             .onClick(() => {
-              this.pageInfo.pushPath({ name: 'pageOne' }); //将name指定的NavDestination页面信息入栈
+              this.pageInfo.pushPath({ name: 'pageOne' }); // 将name指定的NavDestination页面信息入栈
             })
         }
       }.title('NavIndex')
@@ -779,7 +779,7 @@ struct MyNavigationTestStack {
 }
 
 @Component
-struct pageOneStack {
+struct pageOneStack { // 页面一
   @Consume('pageInfo') pageInfo: NavPathStack;
   @State index: number = 1;
   @Link message: number;
@@ -789,14 +789,14 @@ struct pageOneStack {
     NavDestination() {
       Column() {
         NavigationContentMsgStack({ message: this.message, index: this.index, logNumber: this.logNumber })
-        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule }) // 切换至页面二
           .width('80%')
           .height(40)
           .margin(20)
           .onClick(() => {
             this.pageInfo.pushPathByName('pageTwo', null);
           })
-        Button('Back Page', { stateEffect: true, type: ButtonType.Capsule })
+        Button('Back Page', { stateEffect: true, type: ButtonType.Capsule }) // 返回主页面
           .width('80%')
           .height(40)
           .margin(20)
@@ -813,7 +813,7 @@ struct pageOneStack {
 }
 
 @Component
-struct pageTwoStack {
+struct pageTwoStack { // 页面二
   @Consume('pageInfo') pageInfo: NavPathStack;
   @State index: number = 2;
   @Link message: number;
@@ -826,7 +826,7 @@ struct pageTwoStack {
         Text('BuilderNode处于冻结')
           .fontWeight(FontWeight.Bold)
           .margin({ top: 48, bottom: 48 })
-        Button('Back Page', { stateEffect: true, type: ButtonType.Capsule })
+        Button('Back Page', { stateEffect: true, type: ButtonType.Capsule }) // 返回至页面一
           .width('80%')
           .height(40)
           .margin(20)
@@ -862,7 +862,7 @@ struct TextBuilder {
   @Prop @Watch("info") message: number = 0;
 
   info() {
-    console.info(`freeze-test TextBuilder message callback ${this.message}`); //根据message内容变化来打印日志来判断是否冻结
+    console.info(`freeze-test TextBuilder message callback ${this.message}`); // 根据message内容变化来打印日志来判断是否冻结
   }
 
   build() {

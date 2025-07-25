@@ -1,7 +1,9 @@
 # Interface (AudioCapturer)
 
 > **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本Interface首批接口从API version 8开始支持。
 
 提供音频采集的相关接口。
 
@@ -297,7 +299,7 @@ try {
 
 start(callback: AsyncCallback<void\>): void
 
-启动音频采集器。使用callback异步回调。
+启动音频采集器，开始获取音频数据。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -326,7 +328,7 @@ audioCapturer.start((err: BusinessError) => {
 
 start(): Promise<void\>
 
-启动音频采集器。使用Promise异步回调。
+启动音频采集器，开始获取音频数据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -358,7 +360,7 @@ audioCapturer.start().then(() => {
 
 stop(callback: AsyncCallback<void\>): void
 
-停止音频采集。使用callback异步回调。
+停止音频采集器，停止输入音频流。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -387,7 +389,7 @@ audioCapturer.stop((err: BusinessError) => {
 
 stop(): Promise<void\>
 
-停止音频采集。使用Promise异步回调。
+停止音频采集器，停止输入音频流。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -553,7 +555,9 @@ try {
 
 getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
 
-获取音频流时间戳和当前数据帧位置信息。使用Promise异步回调。
+获取输入音频流时间戳和当前数据帧位置信息。
+
+该接口可以获取到音频通道实际录制位置（framePosition）以及录制到该位置时候的时间戳（timestamp），时间戳单位为纳秒。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -1388,7 +1392,7 @@ try {
 
 setWillMuteWhenInterrupted(muteWhenInterrupted: boolean): Promise&lt;void&gt;
 
-设置当前录制音频流是否启用静音打断模式。使用Promise异步回调。
+设置当前录制音频流是否启用[静音打断模式](../../media/audio/using-audiocapturer-for-recording.md#设置静音打断模式)。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 

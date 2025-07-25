@@ -305,7 +305,7 @@ struct Index {
 
 ## 注入触摸事件
 
-BuilderNode中提供了[postTouchEvent](../reference/apis-arkui/js-apis-arkui-builderNode.md#posttouchevent)，可以通过该接口向BuilderNode中绑定的组件注入[触摸事件](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md#触摸事件)，实现事件的模拟转发。
+BuilderNode中提供了[postTouchEvent](../reference/apis-arkui/js-apis-arkui-builderNode.md#posttouchevent)，可以通过该接口向BuilderNode中绑定的组件注入[触摸事件](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md)，实现事件的模拟转发。
 
 通过postTouchEvent向BuilderNode对应的节点树中注入触摸事件。
 
@@ -381,11 +381,12 @@ struct MyComponent {
 }
 ```
 
-## 节点复用能力
+## BuilderNode调用reuse和recycle接口实现节点复用能力
 
 调用[reuse](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12)接口和[recycle](../reference/apis-arkui/js-apis-arkui-builderNode.md#recycle12)接口，将复用和回收事件传递至BuilderNode中的自定义组件，以实现BuilderNode节点内部的自定义组件的复用。
 
-以下面的Demo为例，被复用的自定义组件ReusableChildComponent可以传递复用和回收事件到其下的自定义组件ReusableChildComponent3，但无法传递给自定义组件ReusableChildComponent2，因为被BuilderNode所隔断。因此需要主动调用BuilderNode的reuse和recycle接口，将复用和回收事件传递给自定义组件ReusableChildComponent2，以达成复用效果。
+以下面的Demo为例，被复用的自定义组件ReusableChildComponent可以传递复用和回收事件到其下的自定义组件ChildComponent3，但无法传递给自定义组件ChildComponent2，因为被BuilderNode所隔断。因此需要主动调用BuilderNode的reuse和recycle接口，将复用和回收事件传递给自定义组件ChildComponent2，以达成复用效果。
+
 ![zh-cn_image_reuse-recycle](figures/reuse-recycle.png)
 
 
@@ -435,7 +436,7 @@ class Params {
 function buildNode(param: Params = new Params("hello")) {
   Row() {
     Text(`C${param.item} -- `)
-    ReusableChildComponent2({ item: param.item }) //该自定义组件在BuilderNode中无法被正确复用
+    ChildComponent2({ item: param.item }) //该自定义组件在BuilderNode中无法被正确复用
   }
 }
 
@@ -452,7 +453,7 @@ class MyNodeController extends NodeController {
   }
 }
 
-// 被回收复用的自定义组件，其状态变量会更新，而子自定义组件ReusableChildComponent3中的状态变量也会更新，但BuilderNode会阻断这一传递过程
+// 被回收复用的自定义组件，其状态变量会更新，而子自定义组件ChildComponent3中的状态变量也会更新，但BuilderNode会阻断这一传递过程
 @Reusable
 @Component
 struct ReusableChildComponent {
@@ -467,7 +468,7 @@ struct ReusableChildComponent {
   aboutToRecycle(): void {
     console.log(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
 
-    // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
+    // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ChildComponent2，完成复用
     if (this.switch === 'open') {
       this.controller?.builderNode?.recycle();
     }
@@ -476,7 +477,7 @@ struct ReusableChildComponent {
   aboutToReuse(params: object): void {
     console.log(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
 
-    // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
+    // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ChildComponent2，完成复用
     if (this.switch === 'open') {
       this.controller?.builderNode?.reuse(params);
     }
@@ -485,22 +486,22 @@ struct ReusableChildComponent {
   build() {
     Row() {
       Text(`A${this.item}--`)
-      ReusableChildComponent3({ item: this.item })
+      ChildComponent3({ item: this.item })
       NodeContainer(this.controller);
     }
   }
 }
 
 @Component
-struct ReusableChildComponent2 {
+struct ChildComponent2 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
+    console.log(`${TEST_TAG} ChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToRecycle ${this.item}`);
+    console.log(`${TEST_TAG} ChildComponent2 aboutToRecycle ${this.item}`);
   }
 
   build() {
@@ -514,15 +515,15 @@ struct ReusableChildComponent2 {
 }
 
 @Component
-struct ReusableChildComponent3 {
+struct ChildComponent3 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
+    console.log(`${TEST_TAG} ChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToRecycle ${this.item}`);
+    console.log(`${TEST_TAG} ChildComponent3 aboutToRecycle ${this.item}`);
   }
 
   build() {
@@ -566,6 +567,105 @@ struct Index {
 }
 ```
 
+
+## BuilderNode在子自定义组件中使用@Reusable装饰器
+
+BuilderNode节点的复用机制与使用[@Reusable](./state-management/arkts-reusable.md)装饰器的自定义组件的复用机制会相互冲突。因此，当BuilderNode的子节点为自定义组件时，不支持该自定义组件使用@Reusable装饰器标记，否则将导致应用程序触发JSCrash。若需要使用@Reusable装饰器，应使用一个普通自定义组件包裹该自定义组件。
+
+在下面的示例中，ReusableChildComponent作为BuilderNode的子自定义组件，无法标记为@Reusable。通过ChildComponent2对其包裹，ReusableChildComponent可以使用@Reusable装饰器标记。
+
+![BuilderNode-Reusable](figures/BuilderNode-Reusable.png)
+
+```ts
+import { FrameNode, NodeController, BuilderNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "Reusable";
+
+class Params {
+  item: string = '';
+
+  constructor(item: string) {
+    this.item = item;
+  }
+}
+
+@Builder
+function buildNode(param: Params = new Params("Hello")) {
+  ChildComponent2({ item: param.item })
+  // 如果直接使用ReusableChildComponent，则会编译报错
+  // ReusableChildComponent({ item: param.item })
+}
+
+class MyNodeController extends NodeController {
+  public builderNode: BuilderNode<[Params]> | null = null;
+  public item: string = "";
+
+  constructor(item: string) {
+    super();
+    this.item = item;
+  }
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    if (this.builderNode == null) {
+      this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 300, height: 200 } });
+      this.builderNode.build(wrapBuilder<[Params]>(buildNode), new Params(this.item));
+    }
+    return this.builderNode.getFrameNode();
+  }
+}
+
+// 标记了@Reusable的自定义组件，无法直接被BuilderNode挂载为子节点
+@Reusable
+@Component
+struct ReusableChildComponent {
+  @Prop item: string = '';
+
+  aboutToReuse(params: object): void {
+    console.log(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
+  }
+
+  aboutToRecycle(): void {
+    console.log(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
+  }
+
+  build() {
+    Text(`A--${this.item}`)
+  }
+}
+
+// 未标记@Reusable的自定义组件
+@Component
+struct ChildComponent2 {
+  @Prop item: string = "";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.log(`${TEST_TAG} ChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
+  }
+
+  aboutToRecycle(): void {
+    console.log(`${TEST_TAG} ChildComponent2 aboutToRecycle ${this.item}`);
+  }
+
+  build() {
+    ReusableChildComponent({ item: this.item })
+  }
+}
+
+
+@Entry
+@Component
+struct Index {
+  @State controller: MyNodeController = new MyNodeController("Child");
+
+  build() {
+    Column() {
+      NodeContainer(this.controller)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
 
 ## 通过系统环境变化更新节点
 
@@ -713,7 +813,7 @@ struct Index {
 
 ## 跨页面复用注意事项
 
-在使用[路由](../reference/apis-arkui/js-apis-arkui-UIContext.md#router)接口[router.replaceUrl](../reference/apis-arkui/js-apis-arkui-UIContext.md#replaceurl)、[router.back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)、[router.clear](../reference/apis-arkui/js-apis-arkui-UIContext.md#clear)、[router.replaceNamedRoute](../reference/apis-arkui/js-apis-arkui-UIContext.md#replacenamedroute)操作页面时，若某个被缓存的BuilderNode位于即将销毁的页面内，那么在新页面中复用该BuilderNode时，可能会存在数据无法更新或新创建节点无法显示的问题。以[router.replaceNamedRoute](../reference/apis-arkui/js-apis-arkui-UIContext.md#replacenamedroute)为例，在以下示例代码中，当点击“router replace”按钮后，页面将切换至PageTwo，同时标志位isShowText会被设定为false。
+在使用[路由](../reference/apis-arkui/arkts-apis-uicontext-router.md)接口[router.replaceUrl](../reference/apis-arkui/arkts-apis-uicontext-router.md#replaceurl)、[router.back](../reference/apis-arkui/arkts-apis-uicontext-router.md#back)、[router.clear](../reference/apis-arkui/arkts-apis-uicontext-router.md#clear)、[router.replaceNamedRoute](../reference/apis-arkui/arkts-apis-uicontext-router.md#replacenamedroute)操作页面时，若某个被缓存的BuilderNode位于即将销毁的页面内，那么在新页面中复用该BuilderNode时，可能会存在数据无法更新或新创建节点无法显示的问题。以[router.replaceNamedRoute](../reference/apis-arkui/arkts-apis-uicontext-router.md#replacenamedroute)为例，在以下示例代码中，当点击“router replace”按钮后，页面将切换至PageTwo，同时标志位isShowText会被设定为false。
 
 ```ts
 // ets/pages/Index.ets
@@ -1088,6 +1188,22 @@ ArkUI支持[自定义组件冻结](./state-management/arkts-custom-components-fr
 
 从API version 20开始，BuilderNode节点可以通过[inheritFreezeOptions](../reference/apis-arkui/js-apis-arkui-builderNode.md#inheritfreezeoptions20)接口继承父自定义组件（即从该BuilderNode节点向上查找的第一个自定义组件）的冻结策略。当BuilderNode节点继承父自定义组件的冻结策略时，若父自定义组件的冻结策略设置为开启组件冻结（即[freezeWhenInactive](./state-management/arkts-create-custom-components.md#freezewheninactive11)选项设为true），则BuilderNode节点在不活跃时将会冻结，当切换至活跃状态时解冻，并使用缓存的数据更新节点。
 
+BuilderNode节点只有通过以下方式上下树时，才会根据该节点是否继承父自定义组件的冻结策略，来更新自己的冻结策略：
+
+| 类 | 接口 |
+| -------- | -------- |
+| [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md) | [appendChild](../reference/apis-arkui/js-apis-arkui-frameNode.md#appendchild12)、[insertChildAfter](../reference/apis-arkui/js-apis-arkui-frameNode.md#insertchildafter12)、[removeChild](../reference/apis-arkui/js-apis-arkui-frameNode.md#removechild12)、[clearChildren](../reference/apis-arkui/js-apis-arkui-frameNode.md#clearchildren12)、[addComponentContent](../reference/apis-arkui/js-apis-arkui-frameNode.md#addcomponentcontent12) |
+| [NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md) | [addFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#addframenode12)、[removeFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#removeframenode12) |
+| [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md) | [makeNode](../reference/apis-arkui/js-apis-arkui-nodeController.md#makenode) |
+| [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md) | [appendChild](../reference/apis-arkui/js-apis-arkui-renderNode.md#appendchild)、[insertChildAfter](../reference/apis-arkui/js-apis-arkui-renderNode.md#insertchildafter)、[removeChild](../reference/apis-arkui/js-apis-arkui-renderNode.md#removechild)、[clearChildren](../reference/apis-arkui/js-apis-arkui-renderNode.md#clearchildren) |
+| [NodeAdaper](../reference/apis-arkui/js-apis-arkui-frameNode.md#nodeadapter12) | 节点通过[懒加载](../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)方式上下树时 |
+
+> **说明：**
+>
+> 当BuilderNode节点设置为继承父自定义组件的冻结策略时，BuilderNode节点的冻结策略将与其上层最近的自定义组件或BuilderNode节点的冻结策略保持一致。
+>
+> 当BuilderNode节点被冻结时，调用[update](../reference/apis-arkui/js-apis-arkui-builderNode.md#update)接口不会触发节点的更新，等其被解冻时再更新节点。
+
 ```ts
 
 import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
@@ -1117,9 +1233,9 @@ class TextNodeController extends NodeController {
     this.rootNode = new FrameNode(context);
     this.textNode = new BuilderNode(context, { selfIdealSize: { width: 150, height: 150 } });
     this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.count));
-    this.textNode.inheritFreezeOptions(true); //设置BuilderNode的冻结继承状态为true
+    this.textNode.inheritFreezeOptions(true); // 设置BuilderNode的冻结继承状态为true
     if (this.rootNode !== null) {
-      this.rootNode.appendChild(this.textNode.getFrameNode()); //将BuilderNode上树
+      this.rootNode.appendChild(this.textNode.getFrameNode()); // 将BuilderNode上树
     }
     return this.rootNode;
   }
@@ -1127,7 +1243,7 @@ class TextNodeController extends NodeController {
   update(): void {
     if (this.textNode !== null) {
       this.count += 1;
-      this.textNode.update(new Params(this.count)); //更新BuilderNode中的数据，可以触发Log
+      this.textNode.update(new Params(this.count)); // 更新BuilderNode中的数据，可以触发Log
     }
 
   }
@@ -1153,7 +1269,7 @@ struct MyNavigationTestStack {
 
   build() {
     Column() {
-      Button('update builderNode') //点击更新BuildrNode
+      Button('update builderNode') // 点击更新BuildrNode
         .onClick(() => {
           textNodeController.update();
         })
@@ -1164,7 +1280,7 @@ struct MyNavigationTestStack {
             .height(40)
             .margin(20)
             .onClick(() => {
-              this.pageInfo.pushPath({ name: 'pageOne' }); //将name指定的NavDestination页面信息入栈
+              this.pageInfo.pushPath({ name: 'pageOne' }); // 将name指定的NavDestination页面信息入栈
             })
         }
       }.title('NavIndex')
@@ -1258,7 +1374,7 @@ struct TextBuilder {
   @Prop @Watch("info") message: number = 0;
 
   info() {
-    console.info(`freeze-test TextBuilder message callback ${this.message}`); //根据message内容变化来打印日志来判断是否冻结
+    console.info(`freeze-test TextBuilder message callback ${this.message}`); // 根据message内容变化来打印日志来判断是否冻结
   }
 
   build() {
@@ -1274,3 +1390,159 @@ struct TextBuilder {
 ```
 
 ![inheritFreezeOptions](figures/builderNode_inheritFreezeOptions.gif)
+
+## 设置BuilderNode支持内部@Consume接收外部的@Provide数据
+
+从API version 20开始，通过配置BuildOptions参数，BuilderNode内部自定义组件的[@Consume](./state-management/arkts-provide-and-consume.md)支持接收所在页面的[@Provide](./state-management/arkts-provide-and-consume.md)数据。
+
+参见[示例代码](../reference/apis-arkui/js-apis-arkui-builderNode.md#示例7buildernode支持内部consume接收外部的provide数据)。
+
+## BuilderNode结合ArkWeb组件实现预渲染页面
+
+预渲染适用于Web页面启动与跳转等场景。通过结合BuilderNode，可以将ArkWeb组件提前进行离线预渲染，组件不会即时挂载至页面，而是在需要时通过NodeController动态挂载与显示。此举能够提高页面切换的流畅度及用户体验。
+
+> **说明**
+>
+> 访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。
+
+1. 创建载体Ability，并创建Web组件。
+   ```ts
+   // 载体Ability
+   // EntryAbility.ets
+   import { createNWeb } from "../pages/common";
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
+   
+   export default class EntryAbility extends UIAbility {
+     onWindowStageCreate(windowStage: window.WindowStage): void {
+       windowStage.loadContent('pages/Index', (err, data) => {
+         // 创建ArkWeb动态组件（需传入UIContext），loadContent之后的任意时机均可创建。
+         createNWeb("https://www.example.com", windowStage.getMainWindowSync().getUIContext());
+         if (err.code) {
+           return;
+         }
+       });
+     }
+   }
+   ```
+2. 创建NodeContainer和对应的NodeController，渲染后台Web组件。
+
+    ```ts
+    // 创建NodeController。
+    // common.ets
+    import { UIContext } from '@kit.ArkUI';
+    import { webview } from '@kit.ArkWeb';
+    import { NodeController, BuilderNode, Size, FrameNode }  from '@kit.ArkUI';
+    // @Builder中为动态组件的具体组件内容。
+    // Data为入参封装类。
+    class Data{
+      url: string = 'https://www.example.com';
+      controller: WebviewController = new webview.WebviewController();
+    }
+    // 通过布尔变量shouldInactive控制网页在后台完成预渲染后停止渲染。
+    let shouldInactive: boolean = true;
+    @Builder
+    function WebBuilder(data:Data) {
+      Column() {
+        Web({ src: data.url, controller: data.controller })
+          .onPageBegin(() => {
+            // 调用onActive，开启渲染。
+            data.controller.onActive();
+          })
+          .onFirstMeaningfulPaint(() =>{
+            if (!shouldInactive) {
+              return;
+            }
+            // 在预渲染完成时触发，停止渲染。
+            data.controller.onInactive();
+            shouldInactive = false;
+          })
+          .width("100%")
+          .height("100%")
+      }
+    }
+    let wrap = wrapBuilder<Data[]>(WebBuilder);
+    // 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用。
+    export class myNodeController extends NodeController {
+      private rootnode: BuilderNode<Data[]> | null = null;
+      // 必须要重写的方法，用于构建节点数、返回节点挂载在对应NodeContainer中。
+      // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新。
+      makeNode(uiContext: UIContext): FrameNode | null {
+        console.info(" uicontext is undifined : "+ (uiContext === undefined));
+        if (this.rootnode != null) {
+          // 返回FrameNode节点。
+          return this.rootnode.getFrameNode();
+        }
+        // 返回null控制动态组件脱离绑定节点。
+        return null;
+      }
+      // 当布局大小发生变化时进行回调。
+      aboutToResize(size: Size) {
+        console.info("aboutToResize width : " + size.width  +  " height : " + size.height );
+      }
+      // 当controller对应的NodeContainer在Appear的时候进行回调。
+      aboutToAppear() {
+        console.info("aboutToAppear");
+        // 切换到前台后，不需要停止渲染。
+        shouldInactive = false;
+      }
+      // 当controller对应的NodeContainer在Disappear的时候进行回调。
+      aboutToDisappear() {
+        console.info("aboutToDisappear");
+      }
+      // 此函数为自定义函数，可作为初始化函数使用。
+      // 通过UIContext初始化BuilderNode，再通过BuilderNode中的build接口初始化@Builder中的内容。
+      initWeb(url:string, uiContext:UIContext, control:WebviewController) {
+        if(this.rootnode != null){
+          return;
+        }
+        // 创建节点，需要uiContext。
+        this.rootnode = new BuilderNode(uiContext);
+        // 创建动态Web组件。
+        this.rootnode.build(wrap, { url:url, controller:control });
+      }
+    }
+    // 创建Map保存所需要的NodeController。
+    let NodeMap:Map<string, myNodeController | undefined> = new Map();
+    // 创建Map保存所需要的WebViewController。
+    let controllerMap:Map<string, WebviewController | undefined> = new Map();
+    // 初始化需要UIContext 需在Ability获取。
+    export const createNWeb = (url: string, uiContext: UIContext) => {
+      // 创建NodeController。
+      let baseNode = new myNodeController();
+      let controller = new webview.WebviewController() ;
+      // 初始化自定义Web组件。
+      baseNode.initWeb(url, uiContext, controller);
+      controllerMap.set(url, controller);
+      NodeMap.set(url, baseNode);
+    }
+    // 自定义获取NodeController接口。
+    export const getNWeb = (url : string) : myNodeController | undefined => {
+      return NodeMap.get(url);
+    }
+    ```
+3. 通过NodeContainer使用已经预渲染的页面。
+
+    ```ts
+    // 使用NodeController的Page页。
+    // Index.ets
+    import { createNWeb, getNWeb } from "./common";
+      
+    @Entry
+    @Component
+    struct Index {
+      build() {
+        Row() {
+          Column() {
+            // NodeContainer用于与NodeController节点绑定，rebuild会触发makeNode。
+            // Page页通过NodeContainer接口绑定NodeController，实现动态组件页面显示。
+            NodeContainer(getNWeb("https://www.example.com"))
+              .height("90%")
+              .width("100%")
+          }
+          .width('100%')
+        }
+        .height('100%')
+      }
+    }
+    ```

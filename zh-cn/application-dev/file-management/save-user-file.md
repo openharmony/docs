@@ -4,14 +4,14 @@
 
 **权限说明**
 
-- 通过Picker获取的uri默认只具备**临时读写权限**，临时授权在应用退出后台自动失效。
-- 获取持久化权限需要通过[FilePicker设置永久授权](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)方式获取。（仅限2in1设备）。
+- 通过Picker获取的URI默认只具备**临时读写权限**，临时授权在应用退出后台自动失效。
+- 获取持久化权限需要通过[FilePicker设置永久授权](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)方式获取。
 - 使用Picker对音频、图片、视频、文档类文件的保存操作**无需申请权限**。
 
 **系统隔离说明**
 
 - 通过Picker保存的文件存储在用户指定的目录。此类文件与图库管理的资源隔离，无法在图库中看到。
-- 若开发者需要保存图片、视频资源到图库，可使用用户无感的[安全控件进行保存](../media/medialibrary/photoAccessHelper-savebutton.md)。
+- 若开发者需要保存图片、视频资源到图库，可使用用户无感的[安全控件进行保存](../media/medialibrary/photoAccessHelper-savebutton.md#使用安全控件保存媒体库资源)。
 
 ## 保存图片或视频类文件
 

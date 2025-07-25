@@ -1,6 +1,6 @@
 # JSVM-API调试&定位
 
-JSVM，即标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执行引擎。详情参考：[JSVM](../reference/common/_j_s_v_m.md)。
+JSVM，即标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执行引擎。详情参考：[JSVM](../reference/common/capi-jsvm.md)。
 基于JSVM的JS代码调试调优能力包括：Debugger、CPU Profiler、Heap Snapshot、Heap Statistics。涉及以下接口：
 | 接口名  |  接口功能 |
 |---|---|
@@ -36,9 +36,9 @@ JSVM，即标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执
 }]
 ```
 
-2. 为避免debugger过程中的暂停被误报为无响应异常，可以[开启DevEco Studio的Debug模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5)（无需设置断点），或者可以在非主线程的其他线程中运行JSVM。
+2. 为避免debugger过程中的暂停被误报为无响应异常，可以开启DevEco Studio的Debug模式，参考[debug启动调试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5)（无需设置断点），或者可以在非主线程的其它线程中运行JSVM。
 ```cpp
-// 在非主线程的其他线程中运行JSVM示例代码
+// 在非主线程的其它线程中运行JSVM示例代码
 static napi_value RunTest(napi_env env, napi_callback_info info)
 {
     std::thread testJSVMThread(TestJSVM);
@@ -60,6 +60,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 #include "ark_runtime/jsvm.h"
 
 #include <string>
+#include <thread>
 
 using namespace std;
 
@@ -128,7 +129,6 @@ void TestJSVM() {
 }
 
 ```
-<!-- @[oh_jsvm_open_inspector](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmDebug/openinspector/src/main/cpp/hello.cpp) -->
 
 ### 使用 OH_JSVM_OpenInspectorWithName
 
@@ -147,8 +147,8 @@ void TestJSVM() {
 }]
 ```
 
-2. 为避免debugger过程中的暂停被误报为无响应异常，可以[开启DevEco Studio的Debug模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5)（无需设置断点），或者可以在非主线程的其他线程中运行JSVM。
-3. 打开 inspector 端口，链接 devtools 用于调试，其流程如下:  在执行JS代码之前，调用OH_JSVM_OpenInspector在指定的主机和端口上激活inspector，创建socket。例如OH_JSVM_OpenInspectorWithName(env, 123, “test”)，创建 tcp socket 及其对应的 unixdomain 端口。
+2. 为避免debugger过程中的暂停被误报为无响应异常，可以开启DevEco Studio的Debug模式，参考[debug启动调试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5)（无需设置断点），或者可以在非主线程的其它线程中运行JSVM。
+3. 打开 inspector 端口，连接 devtools 用于调试，其流程如下:  在执行JS代码之前，调用OH_JSVM_OpenInspector在指定的主机和端口上激活inspector，创建socket。例如OH_JSVM_OpenInspectorWithName(env, 123, "test")，创建 tcp socket 及其对应的 unixdomain 端口。
 4. 调用OH_JSVM_WaitForDebugger，等待建立socket连接。
 5. 检查端侧端口是否打开成功。hdc shell "cat /proc/net/unix | grep jsvm"。结果出现可用的 unix 端口即可，如: jsvm_devtools_remote_9229_123，其中 9229 为 tcp 端口号，123 为对应的 pid。
 6. 转发端口。hdc fport tcp:9229 tcp:9229。转发开发者个人计算机侧端口9229到端侧端口9229。结果为"Forwardport result:OK"即可。
@@ -185,7 +185,7 @@ static void EnableInspector(JSVM_Env env) {
 ### 使用 websocket 端口进行调试
 除了使用上述打开 "devtoolsFrontendUrl" 字段url的方法通过网页端 chrome devtools 调试代码之外，如果读者了解如何使用 CDP 协议代替网页端 devtools 功能，也可以通过连接 inspector 提供的 websocket 端口进行调试。
 
-其中连接 websocket 的方法为，根据前面提供的网页端调试步骤，在做完端口映射之后（如映射到 9229 端口），在 chrome 浏览器地址栏输入 "localhost:9229/json"，回车，获取"webSocketDebuggerUrl" 字段所对应的 url，然后使用标准的 websocket 客户端连接这个 url 即可发送 CDP 调试协议进行调试。需要注意的是，当前版本 inspector 提供的websocket 端口仅支持接收 Text Frame, Ping Frame 和 Connection Close Frame，所有其他类型的帧都会被视为错误帧而导致 websocket 连接中断。
+其中连接 websocket 的方法为，根据前面提供的网页端调试步骤，在做完端口映射之后（如映射到 9229 端口），在 chrome 浏览器地址栏输入 "localhost:9229/json"，回车，获取"webSocketDebuggerUrl" 字段所对应的 url，然后使用标准的 websocket 客户端连接这个 url 即可发送 CDP 调试协议进行调试。需要注意的是，当前版本 inspector 提供的websocket 端口仅支持接收 Text Frame, Ping Frame 和 Connection Close Frame，所有其它类型的帧都会被视为错误帧而导致 websocket 连接中断。
 
 CDP 协议可以参考 chrome 的[官方文档](https://chromedevtools.github.io/devtools-protocol/)
 
@@ -316,7 +316,6 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```cpp
 const char *srcCallNative = R"JS(runScriptWithStatistics();)JS";
 ```
-<!-- @[heap_snapshot](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmDebug/snapshot/src/main/cpp/hello.cpp) -->
 预计的输出结果：
 ```
 在对应鸿蒙设备内生成两个文件用于后续调优：

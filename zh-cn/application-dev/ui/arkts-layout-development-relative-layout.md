@@ -404,7 +404,7 @@ struct Index {
 
 ## 组件尺寸
 
-当同时存在前端页面设置的子组件尺寸和相对布局规则时，子组件的绘制尺寸依据约束规则确定。从API Version 11开始，此规则有所变化，子组件自身设置的尺寸优先级高于相对布局规则中的对齐锚点尺寸。因此，若要使子组件与锚点严格对齐，应仅使用alignRules，避免使用[尺寸设置](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#尺寸设置)。
+当同时存在前端页面设置的子组件尺寸和相对布局规则时，子组件的绘制尺寸依据约束规则确定。从API Version 11开始，此规则有所变化，子组件自身设置的尺寸优先级高于相对布局规则中的对齐锚点尺寸。因此，若要使子组件与锚点严格对齐，应仅使用alignRules，避免使用[尺寸设置](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)。
 
 > **说明：**
 >

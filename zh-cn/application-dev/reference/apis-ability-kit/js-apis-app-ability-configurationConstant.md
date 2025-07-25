@@ -44,7 +44,7 @@ import { ConfigurationConstant } from '@kit.AbilityKit';
 
 ## ScreenDensity
 
-表示屏幕像素密度的枚举，用于[Configuration.screenDensity](../apis-ability-kit/js-apis-app-ability-configuration.md#configuration)字段。开发者可以使用这些预置枚举设置或获取屏幕的像素密度。
+表示屏幕像素密度的枚举，用于[Configuration.screenDensity](../apis-ability-kit/js-apis-app-ability-configuration.md#configuration)字段。开发者可以使用这些预置枚举设置或获取屏幕的像素密度。<br>字体显示大小与屏幕像素密度呈正相关关系。通过监听屏幕像素密度变化，可以感知字体显示大小的调整。通常情况下，对于相同的物理尺寸，屏幕像素密度越高，字体显示效果越大。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 

@@ -344,7 +344,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
   promise.then((value: boolean) => {
     console.info("send success")
   }).catch((err:string) => {
-    console.error(`send fail, error:" + JSON.stringify(err))
+    console.error("send fail, error:" + JSON.stringify(err))
   });
 });
 ```
@@ -494,7 +494,7 @@ let promise = ws.close();
 promise.then((value: boolean) => {
     console.info("close success")
 }).catch((err:string) => {
-    console.error(`close fail, error:" + JSON.stringify(err))
+    console.error("close fail, error:" + JSON.stringify(err))
 });
 ```
 
@@ -1444,6 +1444,7 @@ localServer.off('error');
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) |   否  |  是   | 支持传输客户端证书。 |
 | proxy<sup>12+</sup> | ProxyConfiguration |  否  | 是 | 通信过程中的代理信息，默认使用系统网络代理。 |
 | protocol<sup>12+</sup> | string |  否  | 是 | 自定义Sec-WebSocket-Protocol字段，默认为""。              |
+| skipServerCertVerification<sup>20+</sup> | boolean | 否 | 是 | 是否跳过服务器证书验证。true表示跳过服务器证书验证，false表示不跳过服务器证书验证。默认为false。 |
 
 ## ClientCert<sup>11+</sup>
 
@@ -1584,6 +1585,8 @@ type HttpProxy = connection.HttpProxy
 | clientPort | number | 否   | 否   | 客户端的端口号port。 |
 
 ## ClientConnectionCloseCallback<sup>19+</sup>
+
+type ClientConnectionCloseCallback = (clientConnection: WebSocketConnection, closeReason: CloseResult) => void
 
 关闭WebSocketServer连接时，订阅close事件得到的指定客户端的关闭结果。
 

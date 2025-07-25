@@ -257,10 +257,10 @@ static OH_Crypto_ErrCode doTestEccGenKeyPairBySpec()
     size_t bLen = ConvertHex(b, bStr.size() / 2, bStr.c_str());
     size_t nLen = ConvertHex(n, nStr.size() / 2, nStr.c_str());
     Crypto_DataBlob pData = {.data = p, .len = pLen};
-    Crypto_DataBlob aData = {.data = a, .len = gxLen};
-    Crypto_DataBlob bData = {.data = b, .len = gyLen};
-    Crypto_DataBlob gxData = {.data = gx, .len = aLen};
-    Crypto_DataBlob gyData = {.data = gy, .len = bLen};
+    Crypto_DataBlob aData = {.data = a, .len = aLen};
+    Crypto_DataBlob bData = {.data = b, .len = bLen};
+    Crypto_DataBlob gxData = {.data = gx, .len = gxLen};
+    Crypto_DataBlob gyData = {.data = gy, .len = gyLen};
     Crypto_DataBlob nData = {.data = n, .len = nLen};
     Crypto_DataBlob hData = {.data = h, .len = sizeof(h)};
 
@@ -366,7 +366,7 @@ static OH_Crypto_ErrCode doTestEccGenKeyPairBySpec()
 
 4. 指定uint8_t类型的SM2密钥对数据（pkx、pky、sk），分别封装成[Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/capi-cryptocommonapi-crypto-datablob.md)。
 
-5. 调用[OH_CryptoAsymKeySpec_SetParam](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-key-h.md#oh_cryptoasymkeyspec_setparam)CRYPTO_ECC_PK_X_DATABLOB（pkx）、CRYPTO_ECC_PK_Y_DATABLOB（pky）、CRYPTO_ECC_SK_DATABLOB（sk）, 依次传入封装后的[Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/capi-cryptocommonapi-crypto-datablob.md)，设置到参数对象（keySpec）。
+5. 调用[OH_CryptoAsymKeySpec_SetParam](../../reference/apis-crypto-architecture-kit/capi-crypto-asym-key-h.md#oh_cryptoasymkeyspec_setparam)，指定参数类型分别为CRYPTO_ECC_PK_X_DATABLOB（pkx）、CRYPTO_ECC_PK_Y_DATABLOB（pky）、CRYPTO_ECC_SK_DATABLOB（sk）, 依次传入封装后的[Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/capi-cryptocommonapi-crypto-datablob.md)，设置到参数对象（keySpec）。
 
    > **注意：**
    > pkx、pky、sk均要以大端模式输入，且必须为正数。

@@ -51,11 +51,13 @@ resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 deviceControl.resetFactory(wantTemp, (err) => {
@@ -70,6 +72,7 @@ deviceControl.resetFactory(wantTemp, (err) => {
 ## deviceControl.resetFactory
 
 resetFactory(admin: Want): Promise\<void>
+
 使设备恢复出厂设置。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_RESET_DEVICE
@@ -104,12 +107,14 @@ resetFactory(admin: Want): Promise\<void>
 **示例：**
 
 ```ts
+import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 deviceControl.resetFactory(wantTemp).then(() => {
@@ -150,11 +155,13 @@ shutdown(admin: Want): void
 **示例：**
 
 ```ts
+import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -196,11 +203,13 @@ reboot(admin: Want): void
 **示例：**
 
 ```ts
+import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {
@@ -242,11 +251,13 @@ lockScreen(admin: Want): void
 **示例：**
 
 ```ts
+import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
+  // 需根据实际情况进行替换
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 
 try {

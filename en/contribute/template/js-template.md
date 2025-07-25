@@ -25,13 +25,14 @@ For a property or interface table, if a tag has the same value for all the items
 
 | d.ts Tag| Description| Document Field|
 | ---------- | ---- | ------- |
-| @since | Version description| 1. Use the greater-than sign (>) followed by a space to indent the description about the initial version of the module. Unless otherwise marked, all APIs in the module have the same initial version.<br>2. When introducing an API to an existing module, use the `<sup>` tag to mark its earliest version. The format is `<sup>versionNumber+</sup>`, for example, `<sup>7+</sup>`.  <br>  <br> When introducing a property to an existing module, suffix the `<sup>` tag to the new property name, for example, `newProperty<sup>7+</sup>`.<br>When introducing a method to an existing module, suffix the `<sup>` tag to the method name, for example, `sim.getSimIccId<sup>7+</sup>`. The same rule applies to new interfaces, classes, and enums.|
+| @since | Version description| 1. Use the greater-than sign (>) followed by a space to indent the description about the initial version of the module. Unless otherwise marked, all APIs in the module have the same initial version.<br>2. When introducing an API to an existing module, use the `<sup>` tag to mark its earliest version. The format is `<sup>versionNumber+</sup>`, for example, `<sup>7+</sup>`.  <br>  <br> When introducing a property to an existing module, suffix the `<sup>` tag to the new property name, for example, `newProperty<sup>7+</sup>`.<br>When introducing a method to an existing module, suffix the `<sup>` tag to the method name, for example, `sim.getSimIccId<sup>7+</sup>`. The same rule applies to new interfaces, classes, and enums.<br>Due to the rectification of anonymous objects, the version number of the outer element of some APIs is later than that of the inner element. To avoid any confusion for developers, a uniform explanation should be added in the **Interface Description** section: To standardize the definition of anonymous objects, the element definitions have been modified in API version *XX*. The initial version information of the historical anonymous objects has been retained, which may result in the outer element's @since version number being later than the inner element's version number. However, this does not affect the use of the API.|
 | @deprecated | Deprecated description| Do not delete the deprecated content from the document. Instead, suffix `deprecated` as a superscript to the content, and use the greater-than sign (>) to introduce the initial version and deprecated version.<br>Example: abandonmentMethod<sup>(deprecated)</sup><br>> This API is supported since API version 4 and deprecated since API version 7. You are advised to use [newMethod]\(#newmethod) instead.|
 | @FAModelOnly / @StageModelOnly | Model restriction description| **Model restriction**: This API can be used only in the FA model. **Model restriction**: This API can be used only in the stage model.|
 | @form | Widget capability description| **Widget capability**: Since API version *x*, this feature is supported in ArkTS widgets.|
+| @atomicservice | Atomic service description| **Atomic service API**: This API can be used in atomic services since API version *x*.|
 | @systemapi | System API description| **System API**: This is a system API.|
-| @syscap | System capability description| **System capability**: SystemCapability.*A.B*|
-| @permission | Permission description| 1. If only one permission is required for using the API, use the following format:<br>**Required permissions**: ohos.permission.examplePermission<br>2. If multiple permissions are required for using the API, provide the permissions with **and** or **or** in the following format:<br>**Required permissions**: ohos.permission.examplePermissionA and ohos.permission.examplePermissionB<br>**Required permissions**: ohos.permission.examplePermissionA or ohos.permission.examplePermissionB|
+| @syscap | System capability description| **System capability**: SystemCapability.*A.B*|  1. If only one permission is required for using the API, use the following format:<br>    **Required permissions**: ohos.permission.examplePermission<br>2. If multiple permissions are required for using the API, provide the permissions with **and** or **or** in the following format:<br>    **Required permissions**: ohos.permission.examplePermissionA and ohos.permission.examplePermissionB<br>    **Required permissions**: ohos.permission.examplePermissionA or ohos.permission.examplePermissionB|
+| @permission | Permission description|  1. If only one permission is required for using the API, use the following format:<br>    **Required permissions**: ohos.permission.examplePermission<br>2. If multiple permissions are required for using the API, provide the permissions with **and** or **or** in the following format:<br>    **Required permissions**: ohos.permission.examplePermissionA and ohos.permission.examplePermissionB<br>    **Required permissions**: ohos.permission.examplePermissionA or ohos.permission.examplePermissionB<br>3. When there is a version change involved, follow the current version's permission requirement after **Required permissions**, and describe the historical version's permission requirement in a new line as a list. Example:<br>**Required permissions**: ohos.permission.A<br>- ohos.permission.A and ohos.permission.B for API x-(y-1)<br>- ohos.permission.A from API y<br>4. When permissions are required only in certain fixed scenarios, follow the @permission in the .d.ts file consistently after **Required permissions**, and then supplement with a situation description. There are two types of situations. When the situation is relatively simple, use parentheses to add a description. When the situation is more complex, use a new line for the description.<br>Example 1:<br> **Required permissions**: ohos.permission.A (required only when the window type is **AA**.)<br>Example 2:<br> **Required permissions**: ohos.permission.A<br>- When the application is in situation xx, ohos.permission.B is also required.<br>- When the application is in situation yy, no permission is required.|
 | @extends | Inheritance|  If the tag is carried or the extends relationship exists but the tag is not carried, clearly state the following information: *ExampleA* inherits from *ExampleB* (provide the link of *ExampleB*).|
 
 The following describes the instructions for writing a specific API reference document.
@@ -124,7 +125,7 @@ import { call } from '@kit.TelephonyKit';
 > *Writing Instructions*
 >
 > - This section is optional. Delete it if there is no constant. It corresponds to `const` in the .d.ts file.
->
+> - Some constants are used to define read-only variables and have no values. In this case, the table contains four columns: Name, Type, Read Only, and Description.
 > - If a property is of a custom type, create a link to the corresponding interface or enum.
 
 **System capability**: SystemCapability.*A.B* (This part is mandatory.)
@@ -203,9 +204,10 @@ For details about the error codes, see [moduleName Error Codes]\(link to the err
 ```js
 // This part is mandatory.
 
-// Check all sample code provided in the example.
+// All example code must be self-checked to ensure that the execution results meet expectations.
 // Minor errors such as missing symbols and variable inconsistency are unacceptable.
 // Declare all variables that are used.
+// When the interface parameters are abnormal, it is necessary to verify whether the code can catch the error and throw the corresponding error code.
 
 // Write an actual case that can be easily used, rather than the parameter names themselves. Use comments to describe the content that are not user-defined.
 // Example: let result = xxx.createExample(parameterOne); // parameterOne is automatically obtained by scanning.
@@ -244,7 +246,7 @@ Describe the method. For details, see the fourth and fifth points in "Writing In
 
 | Name  | Type                                | Mandatory| Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                               | Yes  | Describe the event and when or how it will be triggered. If a method involves multiple events, describe them separately.<br>**Example 1 (single event):**<br>Type of the event. The **'play'** event is triggered when the **play()** API is called and audio playback starts.<br>Example 2 (multiple events):<br>Type of the event. The following events are supported:<br>- **'play'**: triggered when the **play()** API is called and audio playback starts.<br>- **'dataLoad'**: triggered when the audio data is loaded, that is, when the **src** property is configured.<br>- **'finish'**: triggered when the audio playback is finished.|
+| type     | string                               | Yes  | Describe the event and when or how it will be triggered. If a method involves multiple events, describe them separately.<br>**Example 1 (single event):**<br>Type of the event. The **'play'** event is triggered when the **play()** API is called and audio playback starts.<br>Example 2 (multiple events):<br>Type of the event. The following events are supported:|  | <br>- **'play'**: triggered when the **play()** API is called and audio playback starts.<br>- **'dataLoad'**: triggered when the audio data is loaded, that is, when the **src** property is configured.<br>- **'finish'**: triggered when the audio playback is finished.|
 | callback | Callback\<[CustomType](#classinterface)> | No  | Describe the parameter. The instructions are the same as those provided under [Methods](#methods).                         |
 
 **Return value** (This part is optional. Delete it if there is no return value.)
@@ -287,7 +289,7 @@ Describe the class or interface. If there are usage restrictions, describe them 
 
 > *Writing Instructions*
 >
-> Except that level-3 headings are used, other requirements are the same as those in [Properties](#properties). Write the interface name in the form of level-2 headings.
+> Except that level-3 headings are used, other requirements are the same as those in [Properties](#properties). Write the interface name in the form of level-2 heading.
 
 ### Methods in Classes/Interfaces
 
@@ -348,7 +350,7 @@ Provide the logic for obtaining the actual value of this type. Example: The valu
 
 ### Type Template 2
 
-(The function alias is used as an example. If the type is an interface alias, refer to the interface template.)
+*(The function alias is used as an example.)*
 
 (Provide the definition of the type here.) type Xxx\<Aaa, Bbb> = (param1: number, param2: string) => Interface1
 
@@ -367,9 +369,30 @@ Provide the logic for obtaining the actual value of this type. Example: The valu
 | ------ | ------------------------------------- |
 | [Interface1](#interface1) | Describe the return value. The instructions are the same as those provided under [Methods](#methods).|
 
+### Type Template 3
+
+*(Here, an Interface alias containing multiple property fields is used as an example)*
+
+*Provide the specific definition form of type here: type Xxx = { aaa: string; bbb?: number; }*
+
+**System capability**: SystemCapability.*A.B* (This part is mandatory.)
+
+
+| Name  | Type                                | Mandatory| Description                                                        |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| aaa | string | Yes| Describes the property.| 
+| bbb | number | No| Describes the property.| 
+
 ## Change History
+
 | Change Description                                                                | Date        |
 | ----------------------------------------------------------------------- | ------------ |
+| Streamlined the standard wording for Promise\<void>. New content should use the new wording. There is no need to actively revise existing content if it already conveys the intended meaning.	| 2025/06/10 |
+| Added a standard wording for "Explanation of the @since version number for anonymous object rectification."| 2025/06/03 |
+| Optimized the writing standards for permissions to cover various types of permission descriptions and meet the requirements of scanning tools.| 2025/03/12 |
+| Added Type template 3, which includes an interface alias with multiple property fields.| 2025/03/04 |
+| Added a requirement for example code to capture parameter exceptions.|  2025/03/03 |
+| Added a template for read-only variables defined by constants.|   2024/12/31  |
 | 1. Updated the method template by adding the description of methods carrying the declaration of keywords such as `static`.|  2024/05/16  |
 | 1. Updated the type template. In addition to the union type, the intersection type and the type used as the alias of a function or interface were added.<br>2. Updated the property template to specify the rules for determining optional properties in the interfaces and interface definitions.|  2024/05/10  |
 | 1. Changed the template for **Properties** from **Read**, **Write**, and **Mandatory** to **Read Only** and **Mandatory**.<br>2. Changed the template for **Types** by using **Value Range** and **Description**, and provided the related description.<br>3. Deleted the custom type, and incorporated the related description under **Classes/Interfaces**.|  2023/02/01  |

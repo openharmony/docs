@@ -18,6 +18,23 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 | ----------- | ---- | ---------- |
 | MAX_ALLOWABLE_REUSE_DURATION<sup>12+</sup>    | 300000   | 复用解锁认证结果最大有效时长，值为300000毫秒。<br/> **系统能力：** SystemCapability.UserIAM.UserAuth.Core <br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
+## UserAuthTipCode<sup>20+</sup>
+
+表示身份认证中间状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称                | 值   | 说明       |
+| -----------        | ---- | ---------- |
+| COMPARE_FAILURE    | 1    | 认证失败。 |
+| TIMEOUT            | 2    | 认证超时。 |
+| TEMPORARILY_LOCKED | 3    | 临时冻结。 |
+| PERMANENTLY_LOCKED | 4    | 永久冻结。 |
+| WIDGET_LOADED      | 5    | 身份认证控件已拉起。 |
+| WIDGET_RELEASED    | 6    | 身份认证控件已退出。 |
+
 ## EnrolledState<sup>12+</sup>
 
 用户注册凭据的状态。
@@ -113,16 +130,15 @@ try {
 
 用户认证相关参数。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称           | 类型                               | 必填 | 说明                                                         |
 | -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| challenge      | Uint8Array                         | 是   | 随机挑战值，可用于防重放攻击。最大长度为32字节，可传Uint8Array([])。 |
-| authType       | [UserAuthType](#userauthtype8)[]   | 是   | 认证类型列表，用来指定用户认证界面提供的认证方法。           |
-| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 期望达到的认证可信等级。典型操作需要的身份认证可写等级，以及身份认证可信等级的划分请参见[认证可信等级划分原则](../../security/UserAuthenticationKit/user-authentication-overview.md)。|
-| reuseUnlockResult<sup>12+</sup> | [ReuseUnlockResult](#reuseunlockresult12) | 否   |表示可以复用解锁认证的结果。|
+| challenge      | Uint8Array                         | 是   | 随机挑战值，可用于防重放攻击。最大长度为32字节，可传Uint8Array([])。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| authType       | [UserAuthType](#userauthtype8)[]   | 是   | 认证类型列表，用来指定用户认证界面提供的认证方法。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 期望达到的认证可信等级。典型操作需要的身份认证可写等级，以及身份认证可信等级的划分请参见[认证可信等级划分原则](../../security/UserAuthenticationKit/user-authentication-overview.md)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| reuseUnlockResult<sup>12+</sup> | [ReuseUnlockResult](#reuseunlockresult12) | 否   |表示可以复用解锁认证的结果。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| skipLockedBiometricAuth<sup>20+</sup> | boolean | 否   | 是否跳过已禁用的认证方式自动切换至其它方式的认证，true表示已跳过，false表示未跳过，若无可切换的认证方式则关闭控件，返回认证冻结错误码。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## WidgetParam<sup>10+</sup>
 
@@ -286,6 +302,70 @@ try {
     onResult (result) {
       console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
     }
+  });
+  console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+
+## AuthTipInfo<sup>20+</sup>
+
+用户认证中间状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称     | 类型                                  | 只读 | 可选 | 说明                              |
+| -------- | ------------------------------------ | ---- | ---- | ------------------------------------ |
+| tipType | [UserAuthType](#userauthtype8)        |  否  |  否  | 中间状态对应的认证类型。 |
+| tipCode | [UserAuthTipCode](#userauthtipcode20) |  否  |  否  | 中间状态值。|
+
+## AuthTipCallback<sup>20+</sup>
+
+type AuthTipCallback = (authTipInfo: AuthTipInfo) => void
+
+回调函数，返回认证中间状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**参数：**
+
+| 参数名 | 类型                                | 必填 | 说明       |
+| ------ | -----------------------------------| ---- | ---------- |
+| authTipInfo | [AuthTipInfo](#authtipinfo20)   | 是   | 认证中间状态。 |
+
+**示例1：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请输入密码',
+  };
+
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
+  // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onAuthTip获取到认证中间状态。
+  userAuthInstance.on('authTip', (authTipInfo: userAuth.AuthTipInfo) => {
+    console.info(`userAuthInstance callback authTipInfo = ${JSON.stringify(authTipInfo)}`);
   });
   console.info('auth on success');
   userAuthInstance.start();
@@ -606,6 +686,127 @@ try {
 }
 ```
 
+### on<sup>20+</sup>
+
+on(type: 'authTip', callback: AuthTipCallback): void
+
+订阅用户身份认证的结果。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**参数：**
+
+| 参数名   | 类型           | 必填 | 说明                                       |
+| -------- | ------------- | ---- | ------------------------------------------ |
+| type     | string        | 是   | 订阅事件类型，支持的事件为'authTip'，当[start()](#start10)调用完成，发起身份认证，触发该事件。 |
+| callback | [AuthTipCallback](#authtipcallback20) | 是   | 认证接口的回调函数，用于返回认证中间状态。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 12500002 | General operation error. |
+| 12500008 | The parameter is out of range. |
+
+**示例1：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请输入密码',
+  };
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
+  // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onAuthTip获取到认证中间状态。
+  userAuthInstance.on('authTip', (authTipInfo: userAuth.AuthTipInfo) => {
+    console.info(`userAuthInstance callback authTipInfo = ${JSON.stringify(authTipInfo)}`);
+  });
+  console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+
+### off<sup>20+</sup>
+
+off(type: 'authTip', callback?: AuthTipCallback): void
+
+取消订阅用户身份认证中间状态。
+
+> **说明**：
+> 
+> 需要使用已经成功订阅事件的[UserAuthInstance](#userauthinstance10)对象调用该接口进行取消订阅。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**参数：**
+
+| 参数名   | 类型           | 必填 | 说明                                       |
+| -------- | ------------- | ---- | ------------------------------------------ |
+| type     | string        | 是   | 取消订阅的事件类型，支持的事件为'authTip'，当[start()](#start10)调用完成，发起身份认证并调用[on()](#on20)订阅该事件后，调用该方法可取消订阅，不会再触发该事件。 |
+| callback | [AuthTipCallback](#authtipcallback20) | 否   | 认证接口的回调函数，用于返回认证中间状态。 当不传该参数时默认值为调用[on()](#on20)接口时传递的参数值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 12500002 | General operation error. |
+| 12500008 | The parameter is out of range. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请输入密码',
+  };
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
+  userAuthInstance.off('authTip', (authTipInfo: userAuth.AuthTipInfo) => {
+    console.info(`userAuthInstance callback authTipInfo = ${JSON.stringify(authTipInfo)}`);
+  });
+  console.info('auth off success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+
 ## userAuth.getUserAuthInstance<sup>10+</sup>
 
 getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthInstance
@@ -722,7 +923,7 @@ type EventInfo = AuthResultInfo | TipInfo
 
 type AuthEventKey = 'result' | 'tip'
 
-表示认证事件类型的关键字，作为[on](#ondeprecated)接口的的参数。
+表示认证事件类型的关键字，作为[on](#ondeprecated)接口的参数。
 
 该类型为下表类型取值中的联合类型。
 

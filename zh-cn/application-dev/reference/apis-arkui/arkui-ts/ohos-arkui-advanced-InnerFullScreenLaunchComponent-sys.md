@@ -42,6 +42,7 @@ InnerFullScreenLaunchComponent({ content: Callback\<void>, controller: LaunchCon
 | -------- | -------- | -------- | -------- | -------- |
 | content | Callback\<void> | 是 | \@BuilderParam | 组件显示内容。 |
 | controller | [LaunchController](#launchcontroller) | 是 | - | 拉起原子化服务控制器。 |
+| onReceive<sup>20+<sup> | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<Record<string, Object>> | 否 | - | 被拉起的嵌入式运行原子化服务通过[Window](../../../windowmanager/application-window-stage.md)调用API时，触发本回调。 |
 
 ## LaunchController
 
@@ -50,7 +51,7 @@ InnerFullScreenLaunchComponent({ content: Callback\<void>, controller: LaunchCon
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
+| ---- | ---------- | ------ |------ |
 |launchAtomicService | [LaunchAtomicServiceCallback](#launchatomicservicecallback) | 是 | 拉起原子化服务。 |
 
 ## LaunchAtomicServiceCallback
@@ -75,8 +76,6 @@ import { InnerFullScreenLaunchComponent, LaunchController } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  appId1: string = '5765880207853275505';
-  appId2: string = '5765880207854372375';
 
   @Builder
   ColumChild() {
@@ -84,8 +83,8 @@ struct Index {
       Text('InnerFullScreenLaunchComponent').fontSize(16).margin({top: 100})
       Button('start 日出日落')
         .onClick(()=>{
-          let appId2: string = '5765880207854372375';
-          this.controller.launchAtomicService(appId2, {});
+          let appId1: string = '5765880207854372375';
+          this.controller.launchAtomicService(appId1, {});
         }).height(30).width('50%').margin({top: 50})
       Button('start 充值')
         .onClick(()=>{
@@ -101,6 +100,9 @@ struct Index {
       InnerFullScreenLaunchComponent({
           content: this.ColumChild,
           controller: this.controller,
+          onReceive: (data) => {
+            console.info("onReceive, data: " + data['ohos.atomicService.window']);
+          }
         })
     }
     .width('100%').height('100%')

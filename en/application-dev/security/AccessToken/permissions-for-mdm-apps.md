@@ -582,3 +582,20 @@ Allows a device administrator application to set wallpapers.
 **Supported devices**: Phone | PC/2in1 | Tablet
 
 **Valid since**: 20
+
+## ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION
+
+Allows a mobile device management (MDM) application to configure user_grant permission policies.
+
+With this permission, the MDM application can configure user_grant permission policies for managed applications. Specifically, permissions can be silently granted, denied, or retained (without interfering with application requests).
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20

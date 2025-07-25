@@ -12,16 +12,16 @@
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 类型 | 必填 | 说明                                                                          |
-| ---------- | -------------------------- | -- |-----------------------------------------------------------------------------|
-| name       | string                     | 是 | 窗口名字。                                                                       |
-| windowType | [WindowType](arkts-apis-window-e.md#windowtype7) | 是 | 窗口类型。                                                                       |
-| ctx        | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 否 | 当前应用上下文信息。不设置，则默认为空。<br>FA模型下不需要使用该参数，即可创建子窗口，使用该参数时会报错。<br>Stage模型必须使用该参数，用于创建悬浮窗、模态窗或系统窗口。 |
-| displayId  | number                     | 否 | 当前物理屏幕id。不设置，则默认为-1，该参数应为整数。                                             |
-| parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1，该参数应为整数。                                                           |
-| decorEnabled<sup>12+</sup> | boolean | 否 | 是否显示窗口装饰，仅在windowType为TYPE_DIALOG时生效。true表示显示，false表示不显示。此参数默认值为false。<br>**系统能力：** SystemCapability.Window.SessionManager |
-| title<sup>12+</sup> | string| 否 | `decorEnabled`属性设置为true时，窗口的标题内容。标题显示区域最右端不超过系统三键区域最左端，超过部分以省略号表示。不设置，则默认为空字符串。 <br>**系统能力：** SystemCapability.Window.SessionManager |
-| defaultDensityEnabled<sup>20+</sup> | boolean| 否 | 是否使用系统默认Density，使用系统默认Density之后，窗口不会跟随系统显示大小变化重新布局。<br>当创建的系统窗口设置此参数为true时，表示当前窗口使用系统默认Density，且不受[setDefaultDensityEnabled()](arkts-apis-window-WindowStage.md#setdefaultdensityenabled12)和[setCustomDensity()](arkts-apis-window-WindowStage.md#setcustomdensity15)设置的主窗口的相关影响。<br>当创建的系统窗口设置此参数为false时，表示当前窗口不使用系统默认Density，且会受到[setDefaultDensityEnabled()](arkts-apis-window-WindowStage.md#setdefaultdensityenabled12)和[setCustomDensity()](arkts-apis-window-WindowStage.md#setcustomdensity15)设置的主窗口的相关影响。<br>默认为false。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| 名称 | 类型 | 只读 | 可选 | 说明                                                                          |
+| ---------- | -------------------------- | -- | -- |-----------------------------------------------------------------------------|
+| name       | string                     | 否 | 否 | 窗口名字。                                                                       |
+| windowType | [WindowType](arkts-apis-window-e.md#windowtype7) | 否 | 否 | 窗口类型。                                                                       |
+| ctx        | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 否 | 是 | 当前应用上下文信息。不设置，则默认为空。<br>FA模型下不需要使用该参数，即可创建子窗口，使用该参数时会报错。<br>Stage模型必须使用该参数，用于创建悬浮窗、模态窗或系统窗口。 |
+| displayId  | number                     | 否 | 是 | 当前物理屏幕id。不设置，则默认为-1，该参数应为整数。                                             |
+| parentId   | number                     | 否 | 是 | 父窗口id。不设置，则默认为-1，该参数应为整数。                                                           |
+| decorEnabled<sup>12+</sup> | boolean | 否 | 是 | 是否显示窗口装饰，仅在windowType为TYPE_DIALOG时生效。true表示显示，false表示不显示。此参数默认值为false。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| title<sup>12+</sup> | string| 否 | 是 | `decorEnabled`属性设置为true时，窗口的标题内容。标题显示区域最右端不超过系统三键区域最左端，超过部分以省略号表示。不设置，则默认为空字符串。 <br>**系统能力：** SystemCapability.Window.SessionManager |
+| defaultDensityEnabled<sup>20+</sup> | boolean| 否 | 是 | 是否使用系统默认Density，使用系统默认Density之后，窗口不会跟随系统显示大小变化重新布局。<br>当创建的系统窗口设置此参数为true时，表示当前窗口使用系统默认Density，且不受[setDefaultDensityEnabled()](arkts-apis-window-WindowStage.md#setdefaultdensityenabled12)和[setCustomDensity()](arkts-apis-window-WindowStage.md#setcustomdensity15)设置的主窗口的相关影响。<br>当创建的系统窗口设置此参数为false时，表示当前窗口不使用系统默认Density，且会受到[setDefaultDensityEnabled()](arkts-apis-window-WindowStage.md#setdefaultdensityenabled12)和[setCustomDensity()](arkts-apis-window-WindowStage.md#setcustomdensity15)设置的主窗口的相关影响。<br>默认为false。<br>**系统能力：** SystemCapability.Window.SessionManager |
 
 ## SystemBarProperties
 
@@ -113,6 +113,17 @@
 | ------ | -------- | ---- | ---- | ---------- |
 | width  | number   | 是   | 是   | 窗口宽度，单位为px，该参数应为整数。 |
 | height | number   | 是   | 是   | 窗口高度，单位为px，该参数应为整数。 |
+
+## Position<sup>20+</sup>
+
+窗口或组件的位置。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称   | 类型 | 只读 | 可选 | 说明       |
+| ------ | -------- | ---- | ---- | ---------- |
+| x      | number   | 否   | 否   | x坐标，单位为px，该参数应为整数。 |
+| y      | number   | 否   | 否   | y坐标，单位为px，该参数应为整数。 |
 
 ## RectChangeOptions<sup>12+</sup>
 
@@ -235,7 +246,7 @@
 | ------ | -------- | ---- | ---- | ---------- |
 | systemDensity  | number   | 是   | 否   | 窗口所在屏幕的系统显示大小缩放系数，跟随用户设置变化，该参数变化范围为0.5-4.0。 |
 | defaultDensity | number   | 是   | 否   | 窗口所在屏幕的系统默认显示大小缩放系数，跟随窗口所在屏幕变化，该参数变化范围为0.5-4.0。 |
-| customDensity | number   | 是   | 否   | 窗口自定义设置的显示大小缩放系数，该参数取值范围为0.5-4.0。未设置该参数时，将跟随系统显示大小缩放系数变化。 |
+| customDensity | number   | 是   | 否   | 窗口自定义设置的显示大小缩放系数，该参数取值范围为0.5-4.0。未设置该参数时，将跟随系统显示大小缩放系数变化。该参数仅主窗口生效，在子窗或系统窗口上等于系统显示大小缩放系数(systemDensity)。 |
 
 ## WindowLayoutInfo<sup>15+</sup>
 
@@ -317,7 +328,7 @@
 | config  | [WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20) | 是   | 本次转场动画配置。                                           |
 | opacity | number                                            | 否   | 不透明度，转场动画作用的窗口属性，值为0时窗口完全透明。当动画类型为WindowTransitionType.DESTROY时，代表动画终点的不透明度。取值范围0~1，在动画结束时恢复为1。 |
 
-## StartAnimationOptions<sup>20+</sup>
+## StartAnimationParams<sup>20+</sup>
 
 启动动画配置。
 
@@ -330,7 +341,16 @@
 **系统能力：** SystemCapability.Window.SessionManager
 | 名称             | 类型                                                                     | 只读 | 可选 | 说明                                                         |
 | ---------------- | ----------------------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type             | [AnimationType](arkts-apis-window-e.md#animationtype20)                 | 否   | 否   | 窗口动画类型。淡入动画在应用启动时生效，淡出动画仅在应用启动被侧滑、上滑等手势打断时生效，非打断场景依然走默认系统动效。|
+| type             | [AnimationType](arkts-apis-window-e.md#animationtype20)                 | 否   | 否   | 窗口动画类型。|
+
+## WindowCreateParams<sup>20+</sup>
+
+应用启动时的窗口参数配置。
+
+**系统能力：** SystemCapability.Window.SessionManager
+| 名称             | 类型                                                                     | 只读 | 可选 | 说明                                                         |
+| ---------------- | ----------------------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| animationsParams             | [StartAnimationParams](arkts-apis-window-i.md#startanimationparams20)                 | 否   | 是   | 启动动画参数配置。默认值为undefined，若不配置将保持系统默认动效。 |
 
 ## Callback<sup>15+</sup>
 

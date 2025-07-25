@@ -60,7 +60,7 @@ static napi_value GetValueUint32(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_get_value_uint32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_value_uint32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -68,12 +68,12 @@ static napi_value GetValueUint32(napi_env env, napi_callback_info info)
 // index.d.ts
 export const getValueUint32: <T>(data: T) => number | void;
 ```
-<!-- @[napi_get_value_uint32_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_value_uint32_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let value = testNapi.getValueUint32<number>(111111111111);
@@ -84,7 +84,7 @@ hilog.info(0x0000, 'Node-API', 'get_value_uint32_number %{public}s', data);
 // 传入uint32范围内的数字100时函数返回原数字
 hilog.info(0x0000, 'Node-API', 'get_value_uint32_number %{public}d', testNapi.getValueUint32<number>(100));
 ```
-<!-- @[ark_napi_get_value_uint32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_value_uint32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_value_int32
 
@@ -114,7 +114,7 @@ static napi_value GetValueInt32(napi_env env, napi_callback_info info)
     return napiResult32;
 }
 ```
-<!-- @[napi_get_value_int32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_value_int32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -122,12 +122,12 @@ static napi_value GetValueInt32(napi_env env, napi_callback_info info)
 // index.d.ts
 export const getValueInt32: (value: number | string) => number | void;
 ```
-<!-- @[napi_get_value_int32_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_value_int32_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 // 传入非数字“ss”时函数返回undefined
@@ -143,7 +143,7 @@ hilog.info(0x0000, 'Node-API', 'get_value_int32_number_NAN %{public}d', testNapi
 hilog.info(0x0000, 'Node-API', 'get_value_int32_number_+Infinity %{public}d', testNapi.getValueInt32(+Infinity));
 hilog.info(0x0000, 'Node-API', 'get_value_int32_number_-Infinity %{public}d', testNapi.getValueInt32(-Infinity));
 ```
-<!-- @[ark_napi_get_value_int32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_value_int32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_value_int64
 
@@ -173,7 +173,7 @@ static napi_value GetValueInt64(napi_env env, napi_callback_info info)
     return napiResult64;
 }
 ```
-<!-- @[napi_get_value_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_value_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -181,12 +181,12 @@ static napi_value GetValueInt64(napi_env env, napi_callback_info info)
 // index.d.ts
 export const getValueInt64: (value: number | string) => number | void;
 ```
-<!-- @[napi_get_value_int64_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_value_int64_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 // 输入不超过int64表示范围的数字，会返回该数字
@@ -200,7 +200,7 @@ hilog.info(0x0000, 'Node-API', 'get_value_int64_number_NAN %{public}d', testNapi
 hilog.info(0x0000, 'Node-API', 'get_value_int64_number_+Infinity %{public}d', testNapi.getValueInt64(+Infinity));
 hilog.info(0x0000, 'Node-API', 'get_value_int64_number_-Infinity %{public}d', testNapi.getValueInt64(-Infinity));
 ```
-<!-- @[ark_napi_get_value_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_value_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_value_double
 
@@ -227,7 +227,7 @@ static napi_value GetDouble(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_get_value_double](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_get_value_double](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -235,19 +235,19 @@ static napi_value GetDouble(napi_env env, napi_callback_info info)
 // index.d.ts
 export const getDouble: (value: number | string) => number | void;
 ```
-<!-- @[napi_get_value_double_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_get_value_double_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 // 输入数字，返回该数字
 hilog.info(0x0000, 'Node-API', 'get_value_double_number %{public}d', testNapi.getDouble(80.885));
 // 传入非数字，获得函数返回的值应为undefined
 hilog.info(0x0000, 'Node-API', 'get_value_double_not_number %{public}s', testNapi.getDouble('sAs'));
 ```
-<!-- @[ark_napi_get_value_double](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_get_value_double](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_int32
 
@@ -274,7 +274,7 @@ static napi_value CreateInt32(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_create_int32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_int32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -282,17 +282,17 @@ static napi_value CreateInt32(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createInt32: () => number;
 ```
-<!-- @[napi_create_int32_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_int32_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag','Test Node-API napi_create_int32：' + testNapi.createInt32());
 ```
-<!-- @[ark_napi_create_int32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_int32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_uint32
 
@@ -320,7 +320,7 @@ static napi_value CreateUInt32(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_create_uint32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_uint32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -328,17 +328,17 @@ static napi_value CreateUInt32(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createUInt32: () => number;
 ```
-<!-- @[napi_create_uint32_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_uint32_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag','Test Node-API napi_create_uint32: ' + testNapi.createUInt32());
 ```
-<!-- @[ark_napi_create_uint32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_uint32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_int64
 
@@ -364,7 +364,7 @@ static napi_value CreateInt64(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_create_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -372,17 +372,17 @@ static napi_value CreateInt64(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createInt64: () => number;
 ```
-<!-- @[napi_create_int64_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_int64_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag','Test Node-API napi_create_int64: ' + testNapi.createInt64());
 ```
-<!-- @[ark_napi_create_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_double
 
@@ -406,7 +406,7 @@ static napi_value CreateDouble(napi_env env, napi_callback_info info)
     return result;
 }
 ```
-<!-- @[napi_create_double](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[napi_create_double](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/napi_init.cpp) -->
 
 接口声明
 
@@ -414,17 +414,17 @@ static napi_value CreateDouble(napi_env env, napi_callback_info info)
 // index.d.ts
 export const createDouble: () => number;
 ```
-<!-- @[napi_create_double_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[napi_create_double_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag','Test Node-API napi_create_double: ' + testNapi.createDouble());
 ```
-<!-- @[ark_napi_create_double](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIBasicDataTypes/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[ark_napi_create_double](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIBasicDataTypes/entry/src/main/ets/pages/Index.ets) -->
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 

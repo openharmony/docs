@@ -4,9 +4,9 @@
 
 定义通用API接口。
 
-**库：** libohcrypto.so
-
 **引用文件：** <CryptoArchitectureKit/crypto_common.h>
+
+**库：** libohcrypto.so
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -55,6 +55,7 @@ enum OH_Crypto_ErrCode
 | CRYPTO_INVALID_PARAMS = 401 | 输入参数不合法。 |
 | CRYPTO_NOT_SUPPORTED = 801 | 不支持的函数或算法。 |
 | CRYPTO_MEMORY_ERROR = 17620001 | 内存错误。 |
+| CRYPTO_PARAMETER_CHECK_FAILED = 17620003 | 参数检查失败。<br>**起始版本：** 20  |
 | CRYPTO_OPERTION_ERROR = 17630001 | 表示加解密操作错误。 |
 
 ### Crypto_CipherMode
@@ -94,6 +95,6 @@ void OH_Crypto_FreeDataBlob(Crypto_DataBlob *dataBlob)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *dataBlob | dataBlob 需要释放的dataBlob数据。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *dataBlob | 需要释放的dataBlob数据。 |
 
 

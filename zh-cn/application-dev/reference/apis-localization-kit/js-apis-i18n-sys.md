@@ -453,7 +453,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
 
 try {
-  let systemCollations : Map<string, string> = i18n.System.getSystemCollations();
+  let systemCollations: Map<string, string> = i18n.System.getSystemCollations();
 } catch(error) {
   let err: BusinessError = error as BusinessError;
   console.error(`call System.getSystemCollations failed, error code: ${err.code}, message: ${err.message}.`);
@@ -490,7 +490,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
 
 try {
-  let usingCollation : string = i18n.System.getUsingCollation();
+  let usingCollation: string = i18n.System.getUsingCollation();
 } catch(error) {
   let err: BusinessError = error as BusinessError;
   console.error(`call System.getUsingCollation failed, error code: ${err.code}, message: ${err.message}.`);
@@ -523,7 +523,7 @@ static setSystemCollation(identifier: string): void
 | ------ | ---------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -568,7 +568,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
 
 try {
-  let systemNumberingSystems : Map<string, string> = i18n.System.getSystemNumberingSystems();
+  let systemNumberingSystems: Map<string, string> = i18n.System.getSystemNumberingSystems();
 } catch(error) {
   let err: BusinessError = error as BusinessError;
   console.error(`call System.getSystemNumberingSystems failed, error code: ${err.code}, message: ${err.message}.`);
@@ -601,7 +601,7 @@ static setSystemNumberingSystem(identifier: string):void
 | ------ | ---------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -646,7 +646,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
 
 try {
-  let systemNumberPatterns : Map<string, string> = i18n.System.getSystemNumberPatterns();
+  let systemNumberPatterns: Map<string, string> = i18n.System.getSystemNumberPatterns();
 } catch(error) {
   let err: BusinessError = error as BusinessError;
   console.error(`call System.getSystemNumberPatterns failed, error code: ${err.code}, message: ${err.message}.`);
@@ -683,7 +683,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n } from '@kit.LocalizationKit';
 
 try {
-  let usingNumberPattern : string = i18n.System.getUsingNumberPattern();
+  let usingNumberPattern: string = i18n.System.getUsingNumberPattern();
 } catch(error) {
   let err: BusinessError = error as BusinessError;
   console.error(`call System.getUsingNumberPattern failed, error code: ${err.code}, message: ${err.message}.`);
@@ -716,7 +716,7 @@ static setSystemNumberPattern(pattern: string): void
 | ------ | ---------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -728,6 +728,121 @@ try {
 } catch(error) {
   let err: BusinessError = error as BusinessError;
   console.error(`call System.setSystemNumberPattern failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getSystemMeasurements<sup>20+</sup>
+
+static getSystemMeasurements(): Map&lt;string, string&gt;
+
+获取系统支持的度量衡及其名称。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| Map&lt;string, string&gt; | 系统支持的度量衡及其名称。其中Map的key表示度量衡的标识，value表示度量衡的名称。支持的度量衡如下：<br>- metric：公制。<br>- uksystem：英制。<br>- ussystem：美制。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let systemMeasurements: Map<string, string> = i18n.System.getSystemMeasurements();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getSystemMeasurements failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getUsingMeasurement<sup>20+</sup>
+
+static getUsingMeasurement(): string
+
+获取系统当前使用的度量衡。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| string | 系统当前使用的度量衡，取值及对应含义如下：<br>- metric：公制。<br>- uksystem：英制。<br>- ussystem：美制。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let usingMeasurement: string = i18n.System.getUsingMeasurement();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getUsingMeasurement failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### setSystemMeasurement<sup>20+</sup>
+
+static setSystemMeasurement(identifier: string): void
+
+设置系统的度量衡。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型      | 必填   | 说明                              |
+| ---- | ------- | ---- | ------------------------------- |
+| identifier | string | 是 | 系统支持的度量衡。支持的范围可以通过[getSystemMeasurements](#getsystemmeasurements20)获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  i18n.System.setSystemMeasurement("uksystem"); // 如果设置当前系统不支持的度量衡会抛8900001错误码
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.setSystemMeasurement failed, error code: ${err.code}, message: ${err.message}.`);
 }
 ```
 
@@ -898,12 +1013,12 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称            | 类型            |  必填   |  说明                                   |
-| --------------- | --------------- | ------ | --------------------------------------- |
-| id              | string          |   是   | 语言代码或国家地区代码，如"zh"、"CN"。    |
-| suggestionType  | [SuggestionType](#suggestiontype10)  |   是  | 语言或国家地区推荐类型。                  |
-| displayName     | string          |  是   | id在SystemLocaleManager的指定区域下的表示。|
-| localName       | string          |  否   | id的本地名称。                           |
+| 名称            | 类型            | 只读 | 可选   |  说明                                   |
+| --------------- | --------------- | ------ | ------ | --------------------------------------- |
+| id              | string          |   否   |   否   | 语言代码或国家地区代码，如"zh"、"CN"。    |
+| suggestionType  | [SuggestionType](#suggestiontype10)  |   否   |   否  | 语言或国家地区推荐类型。                  |
+| displayName     | string          |   否   |  否   | id在SystemLocaleManager的指定区域下的表示。|
+| localName       | string          |   否   |  是   | id的本地名称。只有在表示语言相关信息时才存在该选项。      |
 
 ## TimeZoneCityItem<sup>10+</sup>
 
@@ -913,14 +1028,14 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称            | 类型             |  必填   |  说明                                   |
-| --------------- | --------------- | ------  | --------------------------------------- |
-| zoneId          | string          |   是    | 时区ID，例如Asia/Shanghai。              |
-| cityId          | string          |   是    | 城市ID，例如Shanghai。                   |
-| cityDisplayName | string          |   是    | 城市ID在系统区域下显示的名称。          |
-| offset          | int             |   是    | 时区ID的偏移量。                         |
-| zoneDisplayName | string          |   是    | 时区ID在系统区域下显示的名称。          |
-| rawOffset       | int             |   否    | 时区ID的固定偏移量。                       |
+| 名称            | 类型             |  只读   |  可选   |  说明                                   |
+| --------------- | --------------- | ------  | ------  | --------------------------------------- |
+| zoneId          | string          |   否    |   否    | 时区ID，例如Asia/Shanghai。              |
+| cityId          | string          |   否    |   否    | 城市ID，例如Shanghai。                   |
+| cityDisplayName | string          |   否    |   否    | 城市ID在系统区域下显示的名称。          |
+| offset          | number             |   否    |   否    | 时区ID的偏移量。                         |
+| zoneDisplayName | string          |   否    |   否    | 时区ID在系统区域下显示的名称。          |
+| rawOffset       | number             |   否    |   是    | 时区ID的固定偏移量。                       |
 
 
 ## SuggestionType<sup>10+</sup>
@@ -946,8 +1061,8 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称            | 类型            |  必填 |   说明                                 |
-| --------------- | --------------- | ---- | --------------------------------------- |
-| locale          | string          |  否  | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如"zh-Hans-CN"。<br>默认值：系统当前区域ID。    |
-| isUseLocalName  | boolean         |  否  | true表示使用本地名称进行排序，false表示不使用本地名称进行排序。<br>若调用方法为getLanguageInfoArray，isUseLocalName属性默认值为true。<br>若调用方法为getRegionInfoArray，isUseLocalName属性默认值为false。                |
-| isSuggestedFirst | boolean        |  否  | true表示将推荐语言或国家地区在排序结果中置顶，false表示不将推荐语言或国家地区在排序结果中置顶。<br>默认值：true。  |
+| 名称            | 类型            |  只读 |  可选 |   说明                                 |
+| --------------- | --------------- | ---- | ---- | --------------------------------------- |
+| locale          | string          |  否  |  是  | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如"zh-Hans-CN"。<br>默认值：系统当前区域ID。    |
+| isUseLocalName  | boolean         |  否  |  是  | true表示使用本地名称进行排序，false表示不使用本地名称进行排序。<br>若调用方法为getLanguageInfoArray，isUseLocalName属性默认值为true。<br>若调用方法为getRegionInfoArray，isUseLocalName属性默认值为false。                |
+| isSuggestedFirst | boolean        |  否  |  是  | true表示将推荐语言或国家地区在排序结果中置顶，false表示不将推荐语言或国家地区在排序结果中置顶。<br>默认值：true。  |

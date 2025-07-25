@@ -160,7 +160,7 @@ getAll(name: string): string[]
 let urlObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new url.URLParams(urlObject.search.slice(1));
 params.append('fod', '3'); // Add a second value for the fod parameter.
-console.log(params.getAll('fod').toString()) // Output ["1","3"].
+console.info(params.getAll('fod').toString()) // Output ["1","3"].
 ```
 
 
@@ -183,12 +183,13 @@ entries(): IterableIterator<[string, string]>
 **示例：**
 
 ```ts
-let searchParamsObject = new url.URLParams("keyName1=valueName1&keyName2=valueName2");
-let pair:Iterable<Object[]> = searchParamsObject.entries();
-let arrayValue = Array.from(pair);
-for (let pair of arrayValue) { // Show keyName/valueName pairs
-  console.log(pair[0]+ ', '+ pair[1]);
+let paramsObject = new url.URLParams("keyName1=valueName1&keyName2=valueName2");
+let pair = paramsObject.entries();
+for (let item of pair) {
+    console.info(item[0] + '=' + item[1]);
 }
+// keyName1=valueName1
+// keyName2=valueName2
 ```
 
 
@@ -230,7 +231,7 @@ forEach(callbackFn: (value: string, key: string, searchParams: URLParams) => voi
 ```ts
 const myURLObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 myURLObject.params.forEach((value, name, searchParams) => {
-    console.log(name, value, myURLObject.params === searchParams);
+    console.info(name, value, myURLObject.params === searchParams);
 });
 ```
 
@@ -366,9 +367,9 @@ sort(): void
 **示例：**
 
 ```ts
-let searchParamsObject = new url.URLParams("c=3&a=9&b=4&d=2"); // Create a test URLSearchParams object
-searchParamsObject.sort(); // Sort the key/value pairs
-console.log(searchParamsObject.toString()); // Display the sorted query string // Output a=9&b=4&c=3&d=2
+let paramsObject = new url.URLParams("c=3&a=9&b=4&d=2"); // Create a test URLParams object
+paramsObject.sort(); // Sort the key/value pairs
+console.info(paramsObject.toString()); // Display the sorted query string // Output a=9&b=4&c=3&d=2
 ```
 
 
@@ -391,11 +392,13 @@ keys(): IterableIterator&lt;string&gt;
 **示例：**
 
 ```ts
-let searchParamsObject = new url.URLParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
-let keys = Array.from(searchParamsObject.keys());
-for (let key of keys) { // Output key-value pairs
-  console.log(key);
+let paramsObject = new url.URLParams("key1=value1&key2=value2");
+let keys = paramsObject.keys();
+for (let key of keys) {
+  console.info(key);
 }
+// key1
+// key2
 ```
 
 
@@ -418,11 +421,13 @@ values(): IterableIterator&lt;string&gt;
 **示例：**
 
 ```ts
-let searchParams = new url.URLParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
-let values = Array.from(searchParams.values());
+let paramsObject = new url.URLParams("key1=value1&key2=value2");
+let values = paramsObject.values();
 for (let value of values) {
-  console.log(value);
+  console.info(value);
 }
+// value1
+// value2
 ```
 
 
@@ -446,11 +451,12 @@ for (let value of values) {
 
 ```ts
 const paramsObject = new url.URLParams('fod=bay&edg=bap');
-let iter: Iterable<Object[]> = paramsObject[Symbol.iterator]();
-let pairs = Array.from(iter);
-for (let pair of pairs) {
-  console.log(pair[0] + ', ' + pair[1]);
+let iter = paramsObject[Symbol.iterator]();
+for (let pair of iter) {
+  console.info(pair[0] + ', ' + pair[1]);
 }
+// fod, bay
+// edg, bap
 ```
 
 
@@ -476,7 +482,7 @@ toString(): string
 let urlObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new url.URLParams(urlObject.search.slice(1));
 params.append('fod', '3');
-console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
+console.info(params.toString()); // Output 'fod=1&bard=2&fod=3'
 ```
 
 ## URL
@@ -507,19 +513,19 @@ console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
 
 ```ts
 let that = url.URL.parseURL('http://username:password@host:8080/directory/file?foo=1&bar=2#fragment');
-console.log("hash " + that.hash); // hash #fragment
-console.log("host " + that.host); // host host:8080
-console.log("hostname " + that.hostname); // hostname host
-console.log("href " + that.href); // href http://username:password@host:8080/directory/file?foo=1&bar=2#fragment
-console.log("origin " + that.origin); // origin http://host:8080
-console.log("password " + that.password); // password password
-console.log("pathname " + that.pathname); // pathname /directory/file
-console.log("port " + that.port); // port 8080
-console.log("protocol " + that.protocol); // protocol http:
-console.log("search " + that.search); // search ?foo=1&bar=2
-console.log("username " + that.username); // username username
+console.info("hash " + that.hash); // hash #fragment
+console.info("host " + that.host); // host host:8080
+console.info("hostname " + that.hostname); // hostname host
+console.info("href " + that.href); // href http://username:password@host:8080/directory/file?foo=1&bar=2#fragment
+console.info("origin " + that.origin); // origin http://host:8080
+console.info("password " + that.password); // password password
+console.info("pathname " + that.pathname); // pathname /directory/file
+console.info("port " + that.port); // port 8080
+console.info("protocol " + that.protocol); // protocol http:
+console.info("search " + that.search); // search ?foo=1&bar=2
+console.info("username " + that.username); // username username
 // that.params 返回值为URLParams对象
-console.log("params: foo " + that.params.get("foo")); // params: foo 1
+console.info("params: foo " + that.params.get("foo")); // params: foo 1
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -781,7 +787,7 @@ getAll(name: string): string[]
 let urlObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new url.URLSearchParams(urlObject.search.slice(1));
 params.append('fod', '3'); // Add a second value for the fod parameter.
-console.log(params.getAll('fod').toString()) // Output ["1","3"].
+console.info(params.getAll('fod').toString()) // Output ["1","3"].
 ```
 
 ### entries<sup>(deprecated)</sup>
@@ -806,11 +812,12 @@ entries(): IterableIterator<[string, string]>
 
 ```ts
 let searchParamsObject = new url.URLSearchParams("keyName1=valueName1&keyName2=valueName2");
-let iter: Iterable<Object[]> = searchParamsObject.entries();
-let pairs = Array.from(iter);
-for (let pair of pairs) { // Show keyName/valueName pairs
-  console.log(pair[0]+ ', '+ pair[1]);
+let iter = searchParamsObject.entries();
+for (let pair of iter) {
+  console.info(pair[0]+ ', '+ pair[1]);
 }
+// keyName1, valueName1
+// keyName2, valueName2
 ```
 
 
@@ -846,7 +853,7 @@ forEach(callbackFn: (value: string, key: string, searchParams: URLSearchParams) 
 ```ts
 const myURLObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 myURLObject.searchParams.forEach((value, name, searchParams) => {
-    console.log(name, value, myURLObject.searchParams === searchParams);
+    console.info(name, value, myURLObject.searchParams === searchParams);
 });
 ```
 
@@ -965,7 +972,7 @@ sort(): void
 ```ts
 let searchParamsObject = new url.URLSearchParams("c=3&a=9&b=4&d=2"); // Create a test URLSearchParams object
 searchParamsObject.sort(); // Sort the key/value pairs
-console.log(searchParamsObject.toString()); // Display the sorted query string // Output a=9&b=4&c=3&d=2
+console.info(searchParamsObject.toString()); // Display the sorted query string // Output a=9&b=4&c=3&d=2
 ```
 
 
@@ -990,11 +997,13 @@ keys(): IterableIterator&lt;string&gt;
 **示例：**
 
 ```ts
-let searchParamsObject = new url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
-let keys = Array.from(searchParamsObject.keys());
-for (let key of keys) { // Output key-value pairs
-  console.log(key);
+let searchParamsObject = new url.URLSearchParams("key1=value1&key2=value2");
+let keys = searchParamsObject.keys();
+for (let key of keys) {
+  console.info(key);
 }
+// key1
+// key2
 ```
 
 
@@ -1019,11 +1028,13 @@ values(): IterableIterator&lt;string&gt;
 **示例：**
 
 ```ts
-let searchParams = new url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
-let values = Array.from(searchParams.values());
+let searchParams = new url.URLSearchParams("key1=value1&key2=value2");
+let values = searchParams.values();
 for (let value of values) {
-  console.log(value);
+  console.info(value);
 }
+// value1
+// value2
 ```
 
 
@@ -1049,11 +1060,12 @@ for (let value of values) {
 
 ```ts
 const paramsObject = new url.URLSearchParams('fod=bay&edg=bap');
-let iter: Iterable<Object[]> = paramsObject[Symbol.iterator]();
-let pairs = Array.from(iter);
+let pairs = paramsObject[Symbol.iterator]();
 for (let pair of pairs) {
-  console.log(pair[0] + ', ' + pair[1]);
+  console.info(pair[0] + ', ' + pair[1]);
 }
+// fod, bay
+// edg, bap
 ```
 
 ### toString<sup>(deprecated)</sup>
@@ -1080,6 +1092,6 @@ toString(): string
 let urlObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new url.URLSearchParams(urlObject.search.slice(1));
 params.append('fod', '3');
-console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
+console.info(params.toString()); // Output 'fod=1&bard=2&fod=3'
 ```
 <!--no_check-->

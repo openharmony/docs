@@ -663,3 +663,47 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **起始版本**：18
 
 **变更信息**：在API18-19，该权限面向系统应用开放；从API20开始，面向普通应用开放。
+
+## ohos.permission.READ_LOCAL_DEVICE_NAME
+
+允许应用获取本机的设备显示名。
+
+获取此权限后，应用可获取设置中“关于本机”页面的设备名称，否则只能获取设备出厂时的默认名称。
+
+<!--RP47--><!--RP47End-->
+
+**权限级别**: system_basic
+
+**授权方式**: 系统授权（system_grant）
+
+**支持设备**:  Phone | PC/2in1 | Tablet
+
+**起始版本**: 20
+
+<!--Del-->
+## ohos.permission.atomicService.MANAGE_STORAGE
+
+允许原子化服务申请差异化的存储空间大小。
+
+**权限级别**: system_basic
+
+**授权方式**: 系统授权（system_grant）
+
+**支持设备**: Phone | PC/2in1 | Tablet
+
+**起始版本**: 20
+<!--DelEnd-->
+
+## ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM
+
+允许应用申请特殊类型长时任务，如在手机上申请计算任务类型的长时任务。
+
+<!--RP48--><!--RP48End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：General
+
+**起始版本**：20

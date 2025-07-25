@@ -27,7 +27,7 @@ import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, Cu
 ## TipsDialog
 
 
-TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: SizeOptions, title?: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, ischecked?: boolean, checkAction?: (isChecked: boolean) => void, onCheckedChange?: Callback\<boolean>, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions, theme?: Theme | CustomTheme, themeColorMode?: ThemeColorMode})
+TipsDialog({controller: CustomDialogController, imageRes: ResourceStr | PixelMap, imageSize?: SizeOptions, title?: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, ischecked?: boolean, checkAction?: (isChecked: boolean) => void, onCheckedChange?: Callback\<boolean>, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions, theme?: Theme | CustomTheme, themeColorMode?: ThemeColorMode})
 
 
 提示弹出框，即为带图形确认框，必要时可通过图形化方式展现确认框。
@@ -659,7 +659,7 @@ struct Index {
 ![custom_content_dialog](figures/advanced_dialog_custom_content_dialog.png)
 
 ### 示例9（跟手弹窗）
-跟手弹窗（警告弹窗为例），包含visible、popover、targetBuilder等内容。
+从API version 14开始，该示例展示了设置跟手弹窗（警告弹窗为例），包含visible、popover、targetBuilder等内容。
 
 ```ts
 import { AlertDialog, PopoverDialog, PopoverOptions } from '@kit.ArkUI';
@@ -719,7 +719,7 @@ struct Index {
 ![popover_dialog](figures/advanced_dialog_popover_dialog.png)
 
 ### 示例10（弹出框按钮设置默认获焦）
-设置默认获焦按钮弹出框（以AlertDialog为例），包含defaultFocus等内容。
+从API version 18开始，该示例展示了设置默认获焦按钮弹出框（以AlertDialog为例），包含defaultFocus等内容。
 
 ```ts
 import { AlertDialog } from '@kit.ArkUI';

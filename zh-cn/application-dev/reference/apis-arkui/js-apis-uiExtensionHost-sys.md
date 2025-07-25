@@ -327,7 +327,7 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 
 | 类型                             | 说明                                             |
 | -------------------------------- | ------------------------------------------------ |
-| Promise&lt;[window.Window](arkts-apis-window-Window.md#window)&gt; | Promise对象。返回当前UIExtensionHostWindowProxy下创建的子窗口对象。 |
+| Promise&lt;[window.Window](arkts-apis-window-Window.md)&gt; | Promise对象。返回当前UIExtensionHostWindowProxy下创建的子窗口对象。 |
 
 **错误码：**
 
@@ -338,7 +338,6 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 | 401 | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
 | 801 | Capability not supported on this device. |
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window proxy is abnormal. |
 
 **示例：**
 
@@ -455,7 +454,7 @@ hidePrivacyContentForHost(shouldHide: boolean): Promise&lt;void&gt;
 设置UIExtension组件在非系统截图时的隐私内容保护开关，使用Promise异步回调。
 > **说明：**
 >
-> 开启截图隐私内容保护后，使用窗口截图[window.snapshot](arkts-apis-window-Window.md#snapshot9)或者组件截图[UIContext.getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)
+> 开启截图隐私内容保护后，使用窗口截图[window.snapshot](arkts-apis-window-Window.md#snapshot9)或者组件截图[UIContext.getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12)
 将无法截取到当前组件的内容（不包括该组件下创建的子窗）。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full

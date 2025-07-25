@@ -10,10 +10,10 @@
 
 - 音频录制
 
-  通过录制传入PCM，然后编码出对应格式的码流，最后[封装](audio-video-muxer.md#媒体数据封装)成想要的格式。
+  通过录制传入PCM，然后编码出对应格式的码流，最后[封装](audio-video-muxer.md)成想要的格式。
 - 音频编辑
 
-  编辑PCM后导出音频文件的场景，需要编码成对应音频格式后再[封装](audio-video-muxer.md#媒体数据封装)成文件。
+  编辑PCM后导出音频文件的场景，需要编码成对应音频格式后再[封装](audio-video-muxer.md)成文件。
 > **说明：**
 >
 > AAC编码器默认采用的VBR可变码率模式，与配置的预期参数可能存在偏差。
@@ -167,7 +167,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 4. 调用OH_AudioCodec_Configure设置编码器。
 
-   设置必选项：采样率，码率，以及声道数，声道类型、位深。
+   设置必选项：采样率，码率，以及声道数，声道布局、位深。
 
    可选项：最大输入长度。
 
@@ -192,14 +192,11 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     constexpr uint64_t DEFAULT_BITRATE = 32000;
     // 配置音频声道数（必须）。
     constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
-    // 配置音频声道类型（必须）。
+    // 配置音频声道布局（必须）。
     constexpr OH_AudioChannelLayout CHANNEL_LAYOUT = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
     // 配置音频位深（必须）。
     constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S16LE;
-    // 每20ms一帧音频数据。
-    constexpr float TIME_PER_FRAME = 0.02;
-    // 配置最大输入长度, 每帧音频数据的大小（可选）。
-    constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = DEFAULT_SAMPLERATE * TIME_PER_FRAME * DEFAULT_CHANNEL_COUNT * sizeof(short); // aac
+
     OH_AVFormat *format = OH_AVFormat_Create();
     // 写入format。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, DEFAULT_CHANNEL_COUNT);
@@ -207,7 +204,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_FORMAT);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_CHANNEL_LAYOUT, CHANNEL_LAYOUT);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_MAX_INPUT_SIZE, DEFAULT_MAX_INPUT_SIZE);
+
     // 配置编码器。
     ret = OH_AudioCodec_Configure(audioEnc_, format);
     if (ret != AV_ERR_OK) {
@@ -225,20 +222,22 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     constexpr uint64_t DEFAULT_BITRATE = 261000;
     // 配置音频声道数（必须）。
     constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
-    // 配置音频声道类型（必须）。
+    // 配置音频声道布局（必须）。
+    // 值为CH_LAYOUT_MONO、CH_LAYOUT_STEREO、CH_LAYOUT_SURROUND、CH_LAYOUT_QUAD、CH_LAYOUT_5POINT0、CH_LAYOUT_5POINT1、CH_LAYOUT_6POINT1或CH_LAYOUT_7POINT1其中一项。
     constexpr OH_AudioChannelLayout CHANNEL_LAYOUT = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
     // 配置音频位深（必须） flac只有SAMPLE_S16LE和SAMPLE_S32LE。
     constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S32LE;
     // 配置音频compliance level (默认值0，取值范围-2~2)。
     constexpr int32_t COMPLIANCE_LEVEL = 0;
-    // 配置音频精度（必须） SAMPLE_S16LE和SAMPLE_S24LE和SAMPLE_S32LE。
-    constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
+    
     OH_AVFormat *format = OH_AVFormat_Create();
     // 写入format。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, DEFAULT_CHANNEL_COUNT);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, DEFAULT_SAMPLERATE);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_BITS_PER_CODED_SAMPLE, BITS_PER_CODED_SAMPLE); 
+    // 配置音频精度。API 20前，FLAC编码必须设置此参数，设置为1即可；未设置此参数配置FLAC编码器时，调用OH_AudioCodec_Configure会返回错误码AV_ERR_INVALID_VAL。该值无实际作用，不会影响编码结果。从API 20开始，无需设置此参数。
+    // constexpr int32_t BITS_PER_CODED_SAMPLE = 1;
+    // OH_AVFormat_SetIntValue(format, OH_MD_KEY_BITS_PER_CODED_SAMPLE, BITS_PER_CODED_SAMPLE);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_FORMAT); 
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_CHANNEL_LAYOUT, CHANNEL_LAYOUT);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_COMPLIANCE_LEVEL, COMPLIANCE_LEVEL); 
@@ -288,9 +287,11 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 7. 调用OH_AudioCodec_PushInputBuffer()，写入待编码器的数据。需开发者填充完整的输入数据后调用。
 
-   每帧样点数(SAMPLES_PER_FRAME)取值：
+   每次输入的采样点数（SAMPLES_PER_FRAME）取值方法如下：
 
-   aac建议使用20ms的PCM样点数，即采样率*0.02。
+   AAC-LC编码每帧包含1024个PCM样点，建议单次输入1024个样点的数据量。
+
+   <!--RP5--><!--RP5End-->
 
    flac比较特殊，需要根据如下表格进行设置。
 
@@ -307,16 +308,19 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    | 96000 |  8192  |
 
    > **说明：**
-   > aac编码的每帧样点数建议使用20ms的PCM样点数，即采样率*0.02。flac编码的样点数建议根据采样率按照表格传入，大于这个值也会返回错误码，如果小于有可能出现编码文件损坏问题。
+   >
+   > 单次编码输入的数据量（单位：字节）为：采样点数（SAMPLES_PER_FRAME） * 声道数 * 单个采样点的占用字节。
+   >
+   > flac编码的样点数建议参考表格根据采样率对应的样点数进行设置，否则可能出现编码文件损坏问题。
 
    ```c++
-    // 每帧样点数。
-    constexpr int32_t SAMPLES_PER_FRAME = DEFAULT_SAMPLERATE * TIME_PER_FRAME;
     // 声道数，对于amr编码声道数只支持单声道的音频输入。
     constexpr int32_t DEFAULT_CHANNEL_COUNT = 2;
-    // 每帧输入数据的长度，声道数 * 每帧样点数 * 每个样点的字节数（以采样格式SAMPLE_S16LE为例）。
+    // 采样点数，这里以AAC-LC为例，采样点数为1024。
+    constexpr int32_t SAMPLES_PER_FRAME = 1024;
+    // 单次编码输入的数据量（单位：字节）为：采样点数 * 声道数 * 单个采样点的占用字节（以采样格式SAMPLE_S16LE为例）。
     // 如果最后一帧数据不满足长度，建议进行丢弃或填充处理。
-    constexpr int32_t INPUT_FRAME_BYTES = DEFAULT_CHANNEL_COUNT * SAMPLES_PER_FRAME * sizeof(short);
+    constexpr int32_t INPUT_FRAME_BYTES = SAMPLES_PER_FRAME * DEFAULT_CHANNEL_COUNT * sizeof(short);
     uint32_t index = signal_->inQueue_.front();
     auto buffer = signal_->inBufferQueue_.front();
     OH_AVCodecBufferAttr attr = {0};

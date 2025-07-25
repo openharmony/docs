@@ -67,8 +67,8 @@ checked(value: boolean)
 
 Sets whether the radio button is selected.
 
-Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
-Since API version 18, this attribute supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
+Since API version 10, this attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).
+Since API version 18, this attribute supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -86,10 +86,10 @@ Since API version 18, this attribute supports two-way binding through [!!](../..
 
 checked(isChecked: Optional\<boolean>)
 
-Sets whether the radio button is selected. Compared to [checked](#checked), this API supports the **undefined** type for the **isChecked** parameter.
+Sets whether the radio button is selected. Compared with [checked](#checked), this API supports the **undefined** type for the **isChecked** parameter.
 
-This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
-Since API version 18, this attribute supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
+This attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).
+Since API version 18, this attribute supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -141,7 +141,7 @@ Creates a content modifier.
 
 contentModifier(modifier: Optional<ContentModifier\<RadioConfiguration>>)
 
-Creates a content modifier. Compared to [contentModifier](#contentmodifier12)<sup>12+</sup>, this API supports the **undefined** type for the **modifier** parameter.
+Creates a content modifier. Compared with [contentModifier](#contentmodifier12)<sup>12+</sup>, this API supports the **undefined** type for the **modifier** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -179,7 +179,7 @@ Triggered when the selected state of the radio button changes.
 
 onChange(callback: Optional\<OnRadioChangeCallback>)
 
-Triggered when the selected state of the radio button changes. Compared to [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
+Triggered when the selected state of the radio button changes. Compared with [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 

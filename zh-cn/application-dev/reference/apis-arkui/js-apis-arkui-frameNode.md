@@ -1,6 +1,6 @@
 # FrameNode
 
-FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeController.md#nodecontroller)可通过[BuilderNode](./js-apis-arkui-builderNode.md#buildernode)持有的FrameNode将其挂载到[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)上，也可通过FrameNode获取[RenderNode](./js-apis-arkui-renderNode.md#rendernode)，挂载到其他FrameNode上。最佳实践请参考[组件动态创建-组件动态添加、更新和删除](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-ui-dynamic-operations#section153921947151012)。
+FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeController.md)可通过[BuilderNode](./js-apis-arkui-builderNode.md)持有的FrameNode将其挂载到[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)上，也可通过FrameNode获取[RenderNode](./js-apis-arkui-renderNode.md)，挂载到其他FrameNode上。最佳实践请参考[组件动态创建-组件动态添加、更新和删除](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-ui-dynamic-operations#section153921947151012)。
 
 > **说明：**
 >
@@ -54,7 +54,7 @@ import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "
 | ------ | ------ | ---- | ---- | ---------------------- |
 | baseEventRegistered  | boolean |  否   | 否   | 是否以声明方式绑定事件。<br/>true表示以声明方式绑定事件，false表示没有以声明方式绑定事件。 |
 | nodeEventRegistered  | boolean | 否   | 否   | 是否以自定义组件节点的方式绑定事件，请参考[基础事件示例](#基础事件示例)<br/>true表示以自定义组件节点的方式绑定事件，false表示没有以自定义组件节点的方式绑定事件。 |
-| nativeEventRegistered  | boolean | 否   | 否   | 是否以注册节点事件（[registerNodeEvent](_ark_u_i___native_node_a_p_i__1.md#registernodeevent)）的方式绑定事件。<br/>true表示以注册节点事件的方式绑定事件，false表示没有以注册节点事件的方式绑定事件。|
+| nativeEventRegistered  | boolean | 否   | 否   | 是否以注册节点事件（[registerNodeEvent](capi-arkui-nativemodule-arkui-nativenodeapi-1.md#registernodeevent)）的方式绑定事件。<br/>true表示以注册节点事件的方式绑定事件，false表示没有以注册节点事件的方式绑定事件。|
 | builtInEventRegistered  | boolean | 否   | 否   | 组件是否绑定内置事件(组件内部定义的事件, 无需开发者手动绑定)。<br/>true表示组件绑定内置事件，false表示组件没有绑定内置事件。 |
 
 ## UIState<sup>20+</sup>
@@ -105,7 +105,7 @@ FrameNode的构造函数。
 
 | 参数名    | 类型                                      | 必填 | 说明                               |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| uiContext | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 
 ### getRenderNode
 
@@ -121,7 +121,7 @@ getRenderNode(): RenderNode | null
 
 | 类型                                                           | 说明                                                                                                             |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [RenderNode](./js-apis-arkui-renderNode.md#rendernode) \| null | 一个RenderNode对象。若该FrameNode不包含RenderNode，则返回空对象null。如果当前FrameNode为声明式组件创建的节点，则返回null。 |
+| [RenderNode](./js-apis-arkui-renderNode.md) \| null | 一个RenderNode对象。若该FrameNode不包含RenderNode，则返回空对象null。如果当前FrameNode为声明式组件创建的节点，则返回null。 |
 
 **示例：**
 
@@ -520,6 +520,67 @@ getPositionToWindow(): Position
 
 **示例：**
 
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToWindow() {
+    let positionToWindow = this.rootNode?.getPositionToWindow();
+    console.info(TEST_TAG + JSON.stringify(positionToWindow));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("getPositionToWindow")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToWindow();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+  }
+}
+
+```
+
 请参考[节点操作示例](#节点操作示例)。
 
 
@@ -541,6 +602,68 @@ getPositionToParent(): Position
 
 **示例：**
 
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToParent() {
+    let positionToParent = this.rootNode?.getPositionToParent();
+    console.info(TEST_TAG + JSON.stringify(positionToParent));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("getPositionToParent")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToParent();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+  }
+}
+
+```
+
 请参考[节点操作示例](#节点操作示例)。
 
 ### getPositionToScreen<sup>12+</sup> 
@@ -558,6 +681,89 @@ getPositionToScreen(): Position
 | 类型     | 说明                            |
 | -------- | ------------------------------- |
 | [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移，单位为VP。 |
+
+**示例：**
+
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToScreen() {
+    let positionToScreen = this.rootNode?.getPositionToScreen();
+    console.info(TEST_TAG + JSON.stringify(positionToScreen));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("getPositionToScreen")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToScreen();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+  }
+}
+
+```
+
+请参考[节点操作示例](#节点操作示例)。
+
+
+### getGlobalPositionOnDisplay<sup>20+</sup> 
+
+getGlobalPositionOnDisplay(): Position
+
+获取FrameNode相对于全局屏幕的位置偏移，单位为VP。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明                            |
+| -------- | ------------------------------- |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于全局屏幕的位置偏移，单位为VP。 |
 
 **示例：**
 
@@ -582,6 +788,67 @@ getPositionToParentWithTransform(): Position
 
 **示例：**
 
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToParentWithTransform() {
+    let positionToParentWithTransform = this.rootNode?.getPositionToParentWithTransform();
+    console.info(TEST_TAG + JSON.stringify(positionToParentWithTransform));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("getPositionToParentWithTransform")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToParentWithTransform();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+  }
+}
+```
+
 请参考[节点操作示例](#节点操作示例)。
 
 ### getPositionToWindowWithTransform<sup>12+</sup>
@@ -602,6 +869,66 @@ getPositionToWindowWithTransform(): Position
 
 **示例：**
 
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToWindowWithTransform() {
+    let positionToWindowWithTransform = this.rootNode?.getPositionToWindowWithTransform();
+    console.info(TEST_TAG + JSON.stringify(positionToWindowWithTransform));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+        Button("getPositionToWindowWithTransform")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToWindowWithTransform();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+  }
+}
+```
+
 请参考[节点操作示例](#节点操作示例)。
 
 ### getPositionToScreenWithTransform<sup>12+</sup>
@@ -621,6 +948,67 @@ getPositionToScreenWithTransform(): Position
 | [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移，单位为VP。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
 
 **示例：**
+
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG: string = "FrameNode ";
+
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+
+  getPositionToScreenWithTransform() {
+    let positionToScreenWithTransform = this.rootNode?.getPositionToScreenWithTransform();
+    console.info(TEST_TAG + JSON.stringify(positionToScreenWithTransform));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
+  build() {
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("getPositionToScreenWithTransform")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToScreenWithTransform();
+          })
+      }
+      .width("100%")
+    }
+    .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+  }
+}
+```
 
 请参考[节点操作示例](#节点操作示例)。
 
@@ -929,11 +1317,11 @@ getInspectorInfo(): Object
 以查询Button组件节点为例获取到的Object结果部分值如下所示
 ```json
 {
-    "$type": "Button",
-    "$ID": 44,
-    "type": "build-in",
-    "$rect": "[498.00, 468.00],[718.00,598.00]",
-    "$debugLine": "",
+    "$type": "Button", // 组件类型
+    "$ID": 44, // 组件id
+    "type": "build-in", // build-in为系统组件，custom为自定义组件
+    "$rect": "[498.00, 468.00],[718.00,598.00]", // 组件框左上角坐标和右下角坐标
+    "$debugLine": "", // 组件对应源码的调试信息，包括源码路径和组件所在的行号。
     "$attrs": {
         "borderStyle": "BorderStyle.Solid",
         "borderColor": "#FF000000",
@@ -950,7 +1338,7 @@ getInspectorInfo(): Object
     }
 }
 ```
-以上返回结果的\$attrs字段会根据不同的组件类型具有不同的属性，具体可以参考<!--RP2-->[getInspectorInfo返回结果$attrs映射表.xlsx](./figures/getInspectorInfo%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%24attrs%E6%98%A0%E5%B0%84%E8%A1%A8.xlsx)<!--RP2End-->
+以上返回结果的\$attrs字段会根据不同的组件类型具有不同的属性，具体可以参考<!--RP2-->[getInspectorInfo返回结果$attrs映射表.xlsx](./figures/getInspectorInfo返回结果%24attrs映射表.xlsx)<!--RP2End-->
 
 **示例：**
 
@@ -1087,7 +1475,7 @@ struct Index {
 
 get commonAttribute(): CommonAttribute
 
-获取FrameNode中持有的CommonAttribute接口，用于设置通用属性。
+获取FrameNode中持有的CommonAttribute接口，用于设置[通用属性](./arkui-ts/ts-component-general-attributes.md)。
 
 仅可以修改自定义节点的属性。
 
@@ -1127,7 +1515,7 @@ LazyForEach场景下，由于存在节点的销毁重建，对于重建的节点
 
 | 类型                                                           | 说明                                                                                                             |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [UICommonEvent](./arkui-ts/ts-uicommonevent.md#设置事件回调) | UICommonEvent对象，用于设置基础事件。 |
+| [UICommonEvent](./arkui-ts/ts-uicommonevent.md#uicommonevent) | UICommonEvent对象，用于设置基础事件。 |
 
 **示例：**
 
@@ -1147,7 +1535,7 @@ get gestureEvent(): UIGestureEvent
 
 | 类型                                                           | 说明                                                                                                             |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [UIGestureEvent](./arkui-ts/ts-uigestureevent.md#设置组件绑定的手势) | UIGestureEvent对象，用于设置组件绑定的手势。 |
+| [UIGestureEvent](./arkui-ts/ts-uigestureevent.md#uigestureevent) | UIGestureEvent对象，用于设置组件绑定的手势。 |
 
 **示例：**
 
@@ -1345,7 +1733,7 @@ addComponentContent\<T>(content: ComponentContent\<T>): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| content | [ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent)\<T> | 是   | FrameNode节点中显示的组件内容。 |
+| content | [ComponentContent](./js-apis-arkui-ComponentContent.md)\<T> | 是   | FrameNode节点中显示的组件内容。 |
 
 **错误码：**
 
@@ -1594,7 +1982,7 @@ setCrossLanguageOptions(options: CrossLanguageOptions): void
 
 > **说明：**
 >
-> 当前仅支持[Scroll](#scroll12)类型的[TypedFrameNode](#typedframenode12)设置跨ArkTS语言访问选项。
+> 当前仅支持[Scroll](#scroll12), [Swiper](#swiper12)，[List](#list12)，[ListItem](#listitem12),[ListImteGroup](#listitemgroup12)，[WatterFlow](#waterflow12)，[FlowItem](#flowitem12)，[Grid](#grid14)，[GridTime](#griditem14)，[TextInput](#textinput12)，[TextArea](#textarea14)，[Column](#column12)，[Row](#row12)，[Stack](#stack12)，[Flex](#flex12)，[RelativeContainer](#relativecontainer12)，[Progress](#progress12)，[LoadingProgress](#loadingprogress12)，[Image](#image12)，[Button](#button12)，[CheckBox](#checkbox18)，[Radio](#radio18)，[Slider](#slider18)，[Toggle](#toggle18)，[XComponent](#xcomponent12)类型的[TypedFrameNode](#typedframenode12)设置跨ArkTS语言访问选项。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -1824,7 +2212,7 @@ TypedFrameNode继承自[FrameNode](#framenode)，用于声明具体类型的Fram
 
 typeNode提供创建具体类型的FrameNode能力，可通过FrameNode的基础接口进行自定义的挂载，使用占位容器进行显示。
 
-使用typeNode创建Text、Image、Select、Toggle节点时，当传入的[UIContext](./js-apis-arkui-UIContext.md)对应的UI实例销毁后，调用该接口会返回一个无效的FrameNode节点，无法正常挂载和显示。
+使用typeNode创建Text、Image、Select、Toggle节点时，当传入的[UIContext](./arkts-apis-uicontext-uicontext.md)对应的UI实例销毁后，调用该接口会返回一个无效的FrameNode节点，无法正常挂载和显示。
 
 **示例：**
 
@@ -1856,7 +2244,7 @@ createNode(context: UIContext, nodeType: 'Text'): Text
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Text' | 是 | 创建Text类型的FrameNode节点。 |
 
 **返回值：**
@@ -1962,7 +2350,7 @@ createNode(context: UIContext, nodeType: 'Column'): Column
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Column' | 是 | 创建Column类型的FrameNode节点。 |
 
 **返回值：**
@@ -2035,7 +2423,7 @@ createNode(context: UIContext, nodeType: 'Row'): Row
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Row' | 是 | 创建Row类型的FrameNode节点。 |
 
 **返回值：**
@@ -2108,7 +2496,7 @@ createNode(context: UIContext, nodeType: 'Stack'): Stack
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Stack' | 是 | 创建Stack类型的FrameNode节点。 |
 
 **返回值：**
@@ -2181,7 +2569,7 @@ createNode(context: UIContext, nodeType: 'GridRow'): GridRow
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'GridRow' | 是 | 创建GridRow类型的FrameNode节点。 |
 
 **返回值：**
@@ -2223,7 +2611,7 @@ createNode(context: UIContext, nodeType: 'GridCol'): GridCol
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'GridCol' | 是 | 创建GridCol类型的FrameNode节点。 |
 
 **返回值：**
@@ -2265,7 +2653,7 @@ createNode(context: UIContext, nodeType: 'Flex'): Flex
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Flex' | 是 | 创建Flex类型的FrameNode节点。 |
 
 **返回值：**
@@ -2338,7 +2726,7 @@ createNode(context: UIContext, nodeType: 'Swiper'): Swiper
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Swiper' | 是 | 创建Swiper类型的FrameNode节点。 |
 
 **返回值：**
@@ -2445,7 +2833,7 @@ createNode(context: UIContext, nodeType: 'Progress'): Progress
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Progress' | 是 | 创建Progress类型的FrameNode节点。 |
 
 **返回值：**
@@ -2460,6 +2848,35 @@ createNode(context: UIContext, nodeType: 'Progress'): Progress
 
 ```ts
 typeNode.createNode(uiContext, 'Progress');
+```
+### getAttribute('Progress')<sup>20+</sup>
+getAttribute(node: FrameNode, nodeType: 'Progress'): ProgressAttribute | undefined
+
+获取Progress节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
+| nodeType | 'Progress' | 是 | 获取Progress节点类型的属性。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| ProgressAttribute&nbsp;\|&nbsp;undefined | Progress节点类型的属性，若获取失败，则返回undefined。 |
+
+**示例：** 
+
+<!--code_no_check-->
+
+```ts
+typeNode.getAttribute(node, 'Progress');
 ```
 ### Scroll<sup>12+</sup>
 type Scroll = TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt;
@@ -2487,7 +2904,7 @@ createNode(context: UIContext, nodeType: 'Scroll'): Scroll
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Scroll' | 是 | 创建Scroll类型的FrameNode节点。 |
 
 **返回值：**
@@ -2621,7 +3038,7 @@ createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContainer
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'RelativeContainer' | 是 | 创建RelativeContainer类型的FrameNode节点。 |
 
 **返回值：**
@@ -2694,7 +3111,7 @@ createNode(context: UIContext, nodeType: 'Divider'): Divider
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Divider' | 是 | 创建Divider类型的FrameNode节点。 |
 
 **返回值：**
@@ -2736,7 +3153,7 @@ createNode(context: UIContext, nodeType: 'LoadingProgress'): LoadingProgress
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'LoadingProgress' | 是 | 创建LoadingProgress类型的FrameNode节点。 |
 
 **返回值：**
@@ -2751,6 +3168,35 @@ createNode(context: UIContext, nodeType: 'LoadingProgress'): LoadingProgress
 
 ```ts
 typeNode.createNode(uiContext, 'LoadingProgress');
+```
+### getAttribute('LoadingProgress')<sup>20+</sup>
+getAttribute(node: FrameNode, nodeType: 'LoadingProgress'): LoadingProgressAttribute | undefined
+
+获取LoadingProgress节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
+| nodeType | 'LoadingProgress' | 是 | 获取LoadingProgress节点类型的属性。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| LoadingProgressAttribute&nbsp;\|&nbsp;undefined | LoadingProgress节点类型的属性，若获取失败，则返回undefined。 |
+
+**示例：** 
+
+<!--code_no_check-->
+
+```ts
+typeNode.getAttribute(node, 'LoadingProgress');
 ```
 ### Search<sup>12+</sup>
 type Search = TypedFrameNode&lt;SearchInterface, SearchAttribute&gt;
@@ -2778,7 +3224,7 @@ createNode(context: UIContext, nodeType: 'Search'): Search
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Search' | 是 | 创建Search类型的FrameNode节点。 |
 
 **返回值：**
@@ -2820,7 +3266,7 @@ createNode(context: UIContext, nodeType: 'Blank'): Blank
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Blank' | 是 | 创建Blank类型的FrameNode节点。 |
 
 **返回值：**
@@ -2862,7 +3308,7 @@ createNode(context: UIContext, nodeType: 'Image'): Image
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Image' | 是 | 创建Image类型的节点。 |
 
 **返回值：**
@@ -2877,6 +3323,35 @@ createNode(context: UIContext, nodeType: 'Image'): Image
 
 ```ts
 typeNode.createNode(uiContext, 'Image');
+```
+### getAttribute('Image')<sup>20+</sup>
+getAttribute(node: FrameNode, nodeType: 'Image'): ImageAttribute | undefined
+
+获取Image节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
+| nodeType | 'Image' | 是 | 获取Image节点类型的属性。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| ImageAttribute&nbsp;\|&nbsp;undefined | Image节点类型的属性，若获取失败，则返回undefined。 |
+
+**示例：** 
+
+<!--code_no_check-->
+
+```ts
+typeNode.getAttribute(node, 'Image');
 ```
 ### List<sup>12+</sup>
 type List = TypedFrameNode&lt;ListInterface, ListAttribute&gt;
@@ -2904,7 +3379,7 @@ createNode(context: UIContext, nodeType: 'List'): List
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'List' | 是 | 创建List类型的节点。 |
 
 **返回值：**
@@ -3041,7 +3516,7 @@ createNode(context: UIContext, nodeType: 'ListItem'): ListItem
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'ListItem' | 是 | 创建ListItem类型的节点。 |
 
 **返回值：**
@@ -3114,7 +3589,7 @@ createNode(context: UIContext, nodeType: 'TextInput'): TextInput
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'TextInput' | 是 | 创建TextInput类型的节点。 |
 
 **返回值：**
@@ -3220,7 +3695,7 @@ createNode(context: UIContext, nodeType: 'Button'): Button
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Button' | 是 | 创建Button类型的节点。 |
 
 **返回值：**
@@ -3293,7 +3768,7 @@ createNode(context: UIContext, nodeType: 'ListItemGroup'): ListItemGroup
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'ListItemGroup' | 是 | 创建ListItemGroup类型的节点。 |
 
 **返回值：**
@@ -3366,7 +3841,7 @@ createNode(context: UIContext, nodeType: 'WaterFlow'): WaterFlow
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'WaterFlow' | 是 | 创建WaterFlow类型的节点。 |
 
 **返回值：**
@@ -3503,7 +3978,7 @@ createNode(context: UIContext, nodeType: 'FlowItem'): FlowItem
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'FlowItem' | 是 | 创建FlowItem类型的节点。 |
 
 **返回值：**
@@ -3576,7 +4051,7 @@ createNode(context: UIContext, nodeType: 'XComponent'): XComponent
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'XComponent' | 是 | 创建XComponent类型的节点。 |
 
 **返回值：**
@@ -3606,7 +4081,7 @@ createNode(context: UIContext, nodeType: 'XComponent', options: XComponentOption
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'XComponent' | 是 | 创建XComponent类型的节点。 |
 | options | [XComponentOptions](./arkui-ts/ts-basic-components-xcomponent.md#xcomponentoptions12) | 是 | 定义XComponent的具体配置参数。 |
 
@@ -3642,7 +4117,7 @@ createNode(context: UIContext, nodeType: 'XComponent', parameters: NativeXCompon
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'XComponent' | 是 | 创建XComponent类型的节点。 |
 | parameters | [NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19) | 是 | 定义XComponent的具体配置参数。 |
 
@@ -3719,7 +4194,7 @@ createNode(context: UIContext, nodeType: 'QRCode'): QRCode
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'QRCode' | 是 | 创建QRCode类型的节点。 |
 
 **返回值：**
@@ -3762,7 +4237,7 @@ createNode(context: UIContext, nodeType: 'Badge'): Badge
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Badge' | 是 | 创建Badge类型的节点。 |
 
 **返回值：**
@@ -3805,7 +4280,7 @@ createNode(context: UIContext, nodeType: 'Grid'): Grid
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Grid' | 是 | 创建Grid类型的节点。 |
 
 **返回值：**
@@ -3942,7 +4417,7 @@ createNode(context: UIContext, nodeType: 'GridItem'): GridItem
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'GridItem' | 是 | 创建GridItem类型的节点。 |
 
 **返回值：**
@@ -4015,7 +4490,7 @@ createNode(context: UIContext, nodeType: 'TextClock'): TextClock
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'TextClock' | 是 | 创建TextClock类型的节点。 |
 
 **返回值：**
@@ -4058,7 +4533,7 @@ createNode(context: UIContext, nodeType: 'TextTimer'): TextTimer
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'TextTimer' | 是 | 创建TextTimer类型的节点。 |
 
 **返回值：**
@@ -4101,7 +4576,7 @@ createNode(context: UIContext, nodeType: 'Marquee'): Marquee
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Marquee' | 是 | 创建Marquee类型的节点。 |
 
 **返回值：**
@@ -4144,7 +4619,7 @@ createNode(context: UIContext, nodeType: 'TextArea'): TextArea
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'TextArea' | 是 | 创建TextArea类型的节点。 |
 
 **返回值：**
@@ -4251,7 +4726,7 @@ createNode(context: UIContext, nodeType: 'SymbolGlyph'): SymbolGlyph
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'SymbolGlyph' | 是 | 创建SymbolGlyph类型的节点。 |
 
 **返回值：**
@@ -4294,7 +4769,7 @@ createNode(context: UIContext, nodeType: 'Checkbox'): Checkbox
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Checkbox' | 是 | 创建Checkbox类型的节点。 |
 
 **返回值：**
@@ -4367,7 +4842,7 @@ createNode(context: UIContext, nodeType: 'CheckboxGroup'): CheckboxGroup
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'CheckboxGroup' | 是 | 创建CheckboxGroup类型的节点。 |
 
 **返回值：**
@@ -4410,7 +4885,7 @@ createNode(context: UIContext, nodeType: 'Rating'): Rating
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Rating' | 是 | 创建Rating类型的节点。 |
 
 **返回值：**
@@ -4453,7 +4928,7 @@ createNode(context: UIContext, nodeType: 'Radio'): Radio
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Radio' | 是 | 创建Radio类型的节点。 |
 
 **返回值：**
@@ -4526,7 +5001,7 @@ createNode(context: UIContext, nodeType: 'Slider'): Slider
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Slider' | 是 | 创建Slider类型的节点。 |
 
 **返回值：**
@@ -4599,7 +5074,7 @@ createNode(context: UIContext, nodeType: 'Select'): Select
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Select' | 是 | 创建Select类型的节点。 |
 
 **返回值：**
@@ -4642,7 +5117,7 @@ createNode(context: UIContext, nodeType: 'Toggle', options?: ToggleOptions): Tog
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Toggle' | 是 | 创建Toggle类型的节点。 |
 | options | [ToggleOptions](./arkui-ts/ts-basic-components-toggle.md#toggleoptions18对象说明) | 否 | 创建Toggle节点的接口参数，仅可通过ToggleOptions中的type属性设置开关样式。 |
 
@@ -5201,6 +5676,11 @@ class MyNodeController extends NodeController {
     console.log(TEST_TAG + JSON.stringify(positionToScreen));
   }
 
+  getGlobalPositionOnDisplay() {
+    let positionOnGlobalDisplay = this.rootNode?.getGlobalPositionOnDisplay();
+    console.log(TEST_TAG + JSON.stringify(positionOnGlobalDisplay));
+  }
+
   getPositionToWindowWithTransform() {
     let positionToWindowWithTransform = this.rootNode?.getPositionToWindowWithTransform();
     console.log(TEST_TAG + JSON.stringify(positionToWindowWithTransform));
@@ -5420,6 +5900,11 @@ struct Index {
           .width(300)
           .onClick(() => {
             this.myNodeController.getPositionToScreen();
+          })
+        Button("getGlobalPositionOnDisplay")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getGlobalPositionOnDisplay();
           })
         Button("getPositionToParentWithTransform")
           .width(300)

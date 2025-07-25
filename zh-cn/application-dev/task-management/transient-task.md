@@ -56,13 +56,21 @@
    // 申请短时任务
    function requestSuspendDelay() {
      let myReason = 'test requestSuspendDelay';   // 申请原因
-     let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+     try {
+       let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
        // 回调函数。应用申请的短时任务即将超时，通过此函数回调应用，执行一些清理和标注工作，并取消短时任务
-       console.info('suspend delay task will timeout');
-       backgroundTaskManager.cancelSuspendDelay(id);
-     })
-     id = delayInfo.requestId;
-     delayTime = delayInfo.actualDelayTime;
+         console.info('suspend delay task will timeout');
+         try {
+           backgroundTaskManager.cancelSuspendDelay(id);
+         } catch (error) {
+           console.error(`Operation cancelSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+         }
+       })
+       id = delayInfo.requestId;
+       delayTime = delayInfo.actualDelayTime;
+     } catch (error) {
+       console.error(`Operation requestSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+     } 
    }
 
    // 执行应用本身业务
@@ -88,7 +96,11 @@
    let id: number; // 申请短时任务ID
   
    function cancelSuspendDelay() {
-     backgroundTaskManager.cancelSuspendDelay(id);
+     try {
+       backgroundTaskManager.cancelSuspendDelay(id);
+     } catch (error) {
+       console.error(`Operation cancelSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+     }
    }
    ```
 

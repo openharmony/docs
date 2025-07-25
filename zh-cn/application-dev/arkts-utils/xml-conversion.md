@@ -1,32 +1,32 @@
 # XML转换
 
 
-将XML文本转换为JavaScript对象便于处理和操作数据，适合在JavaScript应用程序中使用。
+将XML文本转换为JavaScript对象，便于处理和操作数据，适用于JavaScript应用程序。
 
 
-语言基础类库提供ConvertXML类将XML文本转换为JavaScript对象，输入为待转换的XML字符串及转换选项，输出为转换后的JavaScript对象。具体转换选项可见[API参考@ohos.convertxml](../reference/apis-arkts/js-apis-convertxml.md)。
+语言基础类库提供ConvertXML类，将XML文本转换为JavaScript对象，输入为待转换的XML字符串及转换选项，输出为转换后的JavaScript对象。具体转换选项可见[API参考@ohos.convertxml](../reference/apis-arkts/js-apis-convertxml.md)。
 
 
 ## 注意事项
 
-XML解析及转换需要确保传入的XML数据符合标准格式。
+XML解析及转换需要确保传入的XML数据符合XML标准格式。
 
 
 ## 开发步骤
 
-以XML转为JavaScript对象后获取其标签值为例，说明转换效果。
+以XML转换为JavaScript对象为例，说明如何获取标签值。
 
-1. 引入模块。
+1. 引入所需的模块。
 
    ```ts
    import { convertxml } from '@kit.ArkTS';
    ```
 
-2. 输入待转换的XML，设置转换选项，支持的转换选项及含义具体可见[ConvertOptions](../reference/apis-arkts/js-apis-convertxml.md#convertoptions)。
+2. 输入待转换的XML，设置转换选项。支持的转换选项及含义，请参见[ConvertOptions](../reference/apis-arkts/js-apis-convertxml.md#convertoptions)。
 
    > **说明：**
    >
-   > 传入的XML文本中若包含“&”字符，请使用实体引用“\&amp;”替换。
+   > 请确保传入的XML文本符合标准格式，若包含“&”字符，请使用实体引用“\&amp;”替换。
 
    ```ts
    let xml: string =
@@ -64,7 +64,7 @@ XML解析及转换需要确保传入的XML数据符合标准格式。
    }
    ```
 
-3. 调用转换函数并打印结果。
+3. 调用fastConvertToJSObject函数并打印结果。
 
    ```ts
    let conv: convertxml.ConvertXML = new convertxml.ConvertXML();

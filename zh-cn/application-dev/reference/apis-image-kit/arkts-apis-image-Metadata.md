@@ -2,7 +2,8 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 13开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本Interface首批接口从API version 13开始支持。
 
 图像元数据类，用于存储图像的元数据。目前支持的元数据类型可参考[MetadataType](arkts-apis-image-e.md#metadatatype13)。
 
@@ -190,15 +191,6 @@ clone(): Promise\<Metadata>
 | 类型                              | 说明                              |
 | --------------------------------- | --------------------------------- |
 | Promise\<[Metadata](arkts-apis-image-Metadata.md)> | Promise对象，成功返回元数据实例。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
-
-| 错误码ID | 错误信息             |
-| -------- | -------------------- |
-| 7600301  | Memory alloc failed. |
-| 7600302  | Memory copy failed.  |
 
 **示例：**
 

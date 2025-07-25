@@ -180,14 +180,14 @@ try {
 let clientNumber = 1; // 注意：该值需要的是服务端监听连接时，异步callback获取到的客户端socket id，此处是伪代码id
 
 // 定义接收数据的回调函数
-read(dataBuffer: ArrayBuffer) {
+function read(dataBuffer: ArrayBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.info('client data: ' + JSON.stringify(data));
 }
 
 try {
   // 发起订阅
-  socket.on('sppRead', clientNumber, this.read);
+  socket.on('sppRead', clientNumber, read);
 } catch (err) {
   console.error('readData errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -213,7 +213,7 @@ try {
 }
 try {
   // 从server断开连接
-  socket.sppCloseClientSocket(this.clientNumber);
+  socket.sppCloseClientSocket(clientNumber);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -224,6 +224,7 @@ try {
 
 - 应用也可以通过删除套接字时，实现断开连接。在此之前，需要先取消读取数据的订阅。
 ```ts
+let clientNumber = 1; // 注意：该值需要的是服务端监听连接时，异步callback获取到的客户端socket id，此处是伪代码id
 let serverNumber = 1; // 注意：该值需要的是创建服务端套接字时，异步callback获取到的服务端socket id，此处是伪代码id
 
 // 定义接收数据的回调函数

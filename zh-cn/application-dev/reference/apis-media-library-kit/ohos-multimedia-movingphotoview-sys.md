@@ -94,3 +94,140 @@ struct Index {
   }
 }
 ```
+
+## MovingPhotoViewController<sup>12+</sup>
+
+一个MovingPhotoViewController对象可以控制一个MovingPhotoView，可用视频播放实例请参考[媒体业务模块](../apis-media-kit/arkts-apis-media.md)。
+
+### pausePlayback<sup>20+</sup>
+
+pausePlayback()
+
+停止播放时显示当前帧，再次播放时从当前帧开始播放。
+
+**系统接口：** 该接口为系统接口。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202 | Non-system applications are not allowed to use system APIs. |
+
+### reset<sup>20+</sup>
+
+reset()
+
+重置播放时显示封面帧，再次播放时从头开始播放。
+
+**系统接口：** 该接口为系统接口。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202 | Non-system applications are not allowed to use system APIs. |
+
+### restart<sup>20+</sup>
+
+restart()
+
+重启播放视频，继承当前播放区间和播放模式参数。
+
+**系统接口：** 该接口为系统接口。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202 | Non-system applications are not allowed to use system APIs. |
+
+### setPlaybackPeriod<sup>20+</sup>
+
+setPlaybackPeriod(startTime: double, endTime: double)
+
+设置播放区间，再次播放时生效。
+
+**系统接口：** 该接口为系统接口。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 参数名  | 类型    | 必填 | 说明                         |
+| ------- | ------- | ---- | ---------------------------- |
+| startTime| double| 是   | 区间播放开始时间，单位：ms。取值范围：大于等于0。|
+| endTime| double| 是   | 区间播放结束时间，单位：ms。取值范围：大于startTime。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202 | Non-system applications are not allowed to use system APIs. |
+
+### enableTransition<sup>20+</sup>
+
+enableTransition(enabled: boolean)
+
+关闭视频启动播放时的放大效果，再次播放时生效。
+
+**系统接口：** 该接口为系统接口。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 参数名  | 类型    | 必填 | 说明                         |
+| ------- | ------- | ---- | ---------------------------- |
+| enabled| boolean| 是   | 是否开启放大过渡效果。true表示开启，false表示不开启。<br></div>默认值：true。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202 | Non-system applications are not allowed to use system APIs. |
+
+### enableAutoPlay<sup>20+</sup>
+
+enableAutoPlay(enabled: boolean)
+
+控制动态照片数据中视频是否能够自动播放并自动播放一次。
+
+**系统接口：** 该接口为系统接口。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 参数名  | 类型    | 必填 | 说明                         |
+| ------- | ------- | ---- | ---------------------------- |
+| enabled| boolean| 是   | 是否能够自动播放。true表示能自动播放，false表示不能自动播放。<br></div>默认值：false。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202 | Non-system applications are not allowed to use system APIs. |

@@ -841,6 +841,7 @@ Bad source.
 
 1. The device does not support the image type.
 2. Image decoding is not performed as instructed.
+3. The image source data is incomplete. Starting from API version 17, the system has been optimized at the underlying level. When encountering incomplete data, the system will attempt partial decoding to output as much valid pixel data as possible. However, if the file header information (such as image dimensions or color configuration) of the image source data is incomplete, or if there is a severe lack of image pixel data blocks, the system may still fail to decode the image properly, resulting in a decoding failure. Currently, only JPEG, PNG, and BMP image formats support partial decoding for incomplete data.
 
 **Solution**
 

@@ -83,25 +83,23 @@ let want: Want = {
 
 class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
   onReceiveEvent(event: commonEventManager.CommonEventData) {
-    console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
+    console.info(`onReceiveEvent, event: ${JSON.stringify(event)}`);
 
     try {
       this.context.startAbility(want, (error: BusinessError) => {
         if (error) {
           // 处理业务逻辑错误
-          console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-            ' error.message: ' + JSON.stringify(error.message));
+          console.error(`startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}.`);
           return;
         }
         // 执行正常业务
-        console.log('startAbility succeed');
+        console.info('startAbility succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
       let code = (paramError as BusinessError).code;
       let message = (paramError as BusinessError).message;
-      console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
-        ' error.message: ' + JSON.stringify(message));
+      console.error(`startAbility failed, error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}.`);
     }
   }
 }
@@ -169,24 +167,22 @@ let want: Want = {
 
 class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
   onReceiveEvent(event: commonEventManager.CommonEventData) {
-    console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
+    console.info(`onReceiveEvent, event: ${JSON.stringify(event)}`);
     try {
       this.context.startAbility(want)
         .then(() => {
           // 执行正常业务
-          console.log('startAbility succeed');
+          console.info('startAbility succeed');
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
-          console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-            ' error.message: ' + JSON.stringify(error.message));
+          console.error(`startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}.`);
         });
     } catch (paramError) {
       // 处理入参错误异常
       let code = (paramError as BusinessError).code;
       let message = (paramError as BusinessError).message;
-      console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
-        ' error.message: ' + JSON.stringify(message));
+      console.error(`startAbility failed, error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}.`);
     }
   }
 }

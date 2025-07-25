@@ -41,6 +41,8 @@
 >
 > 在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+完整示例代码见：[Http_case](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case)
+
 1. 导入HTTP一般数据请求所需模块
 
     ```ts
@@ -53,7 +55,6 @@
 
     调用createHttp()方法，创建HttpRequest对象。
 
-    <!--code_no_check-->
     ```ts
     let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // 每一个httpRequest对应一个HTTP请求任务，不可复用。
@@ -176,6 +177,8 @@
 ## 发起HTTP流式传输请求
 
 HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容的一小部分，而不是一次性将整个响应加载到内存，这对于处理大文件、实时数据流等场景非常有用。
+
+完整示例代码见：[Http_case](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/HTTP_case)
 
 1. 导入HTTP流式传输所需模块
 

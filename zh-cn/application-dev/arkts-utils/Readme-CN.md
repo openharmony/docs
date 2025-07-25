@@ -47,7 +47,7 @@
             - [Worker和宿主线程的即时消息通信](worker-communicates-with-mainthread.md)
             - [Worker同步调用宿主线程的接口](worker-invoke-mainthread-interface.md)
             - [多级Worker间高性能消息通信](worker-postMessage-sendable.md)
-    - 应用多线程开发<!--multithread-develop-guide-->
+    - 应用多线程开发实践<!--multithread-develop-guide-->
         - [应用多线程开发概述](multithread-develop-overview.md)
         - 耗时任务并发场景<!--time-consuming-task-->
             - [耗时任务并发场景简介](time-consuming-task-overview.md)
@@ -86,6 +86,7 @@
         - [静态方式加载native模块](arkts-import-native-module.md)
         - [基于Node-API加载模块](load-module-base-nodeapi.md)
         - [模块加载副作用及优化](arkts-module-side-effects.md)
+    - [ArkTS运行时常见问题](arkts-runtime-faq.md)
 - ArkTS编译工具链<!--arkts-compilation-tool-chain-->
     - [ArkTS编译工具链概述](compilation-tool-chain-overview.md)
     - 方舟字节码<!--arkts-bytecode-->

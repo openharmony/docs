@@ -15,7 +15,7 @@
 
 | 接口                | 功能说明                           |
 | ------------------- | ---------------------------------- |
-| OH_JSVM_NewInstance   | 通过给定的构造函数，构建一个实例。|
+| OH_JSVM_NewInstance   | 通过给定的构造函数，创建一个实例。|
 | OH_JSVM_GetNewTarget  | 获取函数的元属性new.target。|
 | OH_JSVM_DefineClass   | 用于在JavaScript中定义一个类，并与对应的C类进行封装和交互。它提供了创建类的构造函数、定义属性和方法的能力，支持C和JavaScript之间的数据交互。|
 | OH_JSVM_Wrap           | 在JavaScript对象中封装原生实例。稍后可以使用OH_JSVM_Unwrap()解包原生实例。|
@@ -82,19 +82,20 @@ static JSVM_PropertyDescriptor descriptor[] = {
 <!-- @[oh_jsvm_newinstance](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/newinstance/src/main/cpp/hello.cpp) -->
 
 #### 样例JS
-
+```cpp
 const char *srcCallNative = R"JS( 
    function Fruit(name) {
        this.name = name;
    }
    newInstance(Fruit, "apple");
 )JS";
-
+```
 #### 执行结果
 
 在LOG中输出下面的结果：
+```cpp
 NewInstance:{"name":"apple"}
-
+```
 ### OH_JSVM_GetNewTarget
 
 用于获取函数的元属性new.target值。在JavaScript中，new.target是一个特殊的元属性，用于检测函数或构造函数是否是通过 'new' 运算符被调用的。
@@ -182,15 +183,15 @@ static JSVM_PropertyDescriptor descriptor[] = {
 <!-- @[oh_jsvm_defineclass](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/defineclass/src/main/cpp/hello.cpp) -->
 
 #### 样例JS
-
+```cpp
 const char *srcCallNative = R"JS( 
     defineClass();
 )JS";
-
+```
 #### 执行结果
 
 在LOG中输出下面的结果：
-
+```cpp
 Create Instance
 
 NAPI MyObject::New newTarget != nullptr
@@ -202,14 +203,14 @@ Create Instance
 NAPI MyObject::New newTarget == nullptr
 
 NewInstance:{"name":"lilei"}
-
+```
 ### OH_JSVM_Wrap
 
 在JavaScript对象中封装原生实例。稍后可以使用OH_JSVM_Unwrap()解包原生实例
 
 ### OH_JSVM_Unwrap
 
-解包先前封装在JavaScript对象中的原生实例
+解包JavaScript对象中先前封装的原生实例
 
 ### OH_JSVM_RemoveWrap
 
@@ -295,17 +296,17 @@ static JSVM_PropertyDescriptor descriptor[] = {
 <!-- @[oh_jsvm_removewrap](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/removewrap/src/main/cpp/hello.cpp) -->
 
 #### 样例JS
-
+```cpp
 const char *srcCallNative = R"JS( 
     class Obj {};
     wrapObject(new Obj());
     removeWrap(new Obj());
 )JS";
-
+```
 #### 执行结果
 
 在LOG中输出下面的结果：
-
+```cpp
 JSVM wrap
 
 JSVM name: lilei
@@ -317,7 +318,7 @@ JSVM removeWrap
 JSVM OH_JSVM_RemoveWrap success
 
 JSVM deref_item
-
+```
 ### OH_JSVM_DefineClassWithOptions
 **Note:** 传入的父类class必须是通过OH_JSVM_DefineClass系列接口创建出来的，否则被视为无效参数，返回JSVM_INVALID_ARG错误码。
 目前支持以下的DefineClassOptions:
@@ -494,9 +495,12 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 ```
 #### 样例JS
-
+```cpp
 const char *srcCallNative = R"JS(testDefineClassWithOptions();)JS";
+```
 #### 执行结果
 
 在LOG中输出下面的结果：
+```cpp
 Run OH_JSVM_DefineClassWithOptions: Success
+```

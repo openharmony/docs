@@ -5,7 +5,7 @@ To make your ArkTS widgets more engaging, you can apply animations to it, includ
 
 **Table 1** Restrictions on animation parameters
 
-| Name| Description| Description|
+| Name| Description| Restriction|
 | -------- | -------- | -------- |
 | duration | Animation playback duration| The maximum value is 1 second. If a larger value is set, the animation is still played for 1 second.|
 | tempo | Animation playback speed.| Do not set this parameter in the widget. Use the default value 1.|

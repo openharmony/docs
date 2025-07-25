@@ -441,10 +441,10 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 说明     |
-| ---------- | ------ |
-| Vertical   | 方向为纵向。 |
-| Horizontal | 方向为横向。 |
+| 名称         | 值 | 说明     |
+| ---------- | -- | ------ |
+| Vertical   | 0 | 方向为纵向。 |
+| Horizontal | 1 | 方向为横向。 |
 
 ## HorizontalAlign
 
@@ -737,16 +737,16 @@
 
 ## HitTestMode<sup>9+</sup>
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 说明                                       |
 | ----------- | ---------------------------------------- |
-| Default     | 自身节点和子节点都响应触摸事件的命中测试，但会阻止被该节点屏蔽的其他节点的命中测试。 |
-| Block       | 自身节点响应触摸事件的命中测试，但阻止被该节点屏蔽的子节点和其他节点的命中测试。 |
-| Transparent | 自身节点和子节点响应触摸事件的命中测试，并允许对被该节点屏蔽的其他节点进行命中测试。 |
-| None        | 自身节点不会响应触摸事件的命中测试，但子节点会对触摸事件进行命中测试。      |
+| Default     | 默认触摸测试效果。自身及子节点响应触摸测试，但阻塞兄弟节点的触摸测试，不影响祖先节点的触摸测试。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Block       | 自身响应触摸测试，阻塞子节点、兄弟节点和祖先节点的触摸测试。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Transparent | 自身和子节点都响应触摸测试，不会阻塞兄弟节点和祖先节点的触摸测试。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| None        | 自身不响应触摸测试，不会阻塞子节点、兄弟节点和祖先节点的触摸测试。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
+| BLOCK_HIERARCHY<sup>20+</sup>   | 自身和子节点响应触摸测试，阻止所有优先级较低的兄弟节点和父节点参与触摸测试。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| BLOCK_DESCENDANTS<sup>20+</sup> | 自身不响应触摸测试，并且所有的后代（孩子，孙子等）也不响应触摸测试，不会影响祖先节点的触摸测试。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## DialogButtonStyle<sup>10+</sup>
 
@@ -1062,7 +1062,7 @@ type Nullable\<T> = T | undefined
 | SURFACE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容单独展示到屏幕上。背景色设置为黑色时会走显示子系统（DSS）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | COMPONENT<sup>(deprecated)</sup> | XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。<br/>**说明：**<br/>从API version 12开始，该接口废弃，建议使用其他容器组件替代。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | TEXTURE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容会和XComponent组件的内容合成后展示到屏幕上。1、保持帧同步，保持在同一帧将图形处理器（GPU）纹理和ArkUI其他的绘制指令统一发给渲染服务(RenderService)。2、动效和系统组件统一。3、走图形处理器（GPU）合成，相比surface可能走显示子系统（DSS）功耗更高。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| NODE<sup>12+</sup>            | 用于Native UI节点的占位容器，开发者通过Native API 开发的页面组件可展示在此容器区域内。<br/>**说明：**<br/>该类型不再演进，推荐使用[ContentSlot](../../../ui/state-management/arkts-rendering-control-contentslot.md)占位组件管理Native API创建的组件，ContentSlot在内存和性能方面都优于NODE类型的XComponent。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NODE<sup>(deprecated)</sup>      | 用于Native UI节点的占位容器，开发者通过Native接口开发的页面组件可展示在此容器区域内。<br/>**说明：**<br/>从API version 20开始，该接口废弃，推荐使用[ContentSlot](../../../ui/state-management/arkts-rendering-control-contentslot.md)组件替代。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## HoverModeAreaType<sup>14+</sup>
 
@@ -1079,11 +1079,13 @@ type Nullable\<T> = T | undefined
 
 ## WidthBreakpoint<sup>13+</sup>
 
-表示窗口不同宽度阈值下对应的宽度断点枚举值。通过[getWindowWidthBreakpoint](../js-apis-arkui-UIContext.md#getwindowwidthbreakpoint13)返回。
+表示窗口不同宽度阈值下对应的宽度断点枚举值。通过[getWindowWidthBreakpoint](../arkts-apis-uicontext-uicontext.md#getwindowwidthbreakpoint13)返回。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+下表列出了典型设备默认宽度断点的阈值划分，用于在基于窗口宽度断点布局设计时作为参考。个别设备可根据需求通过产品化配置调整断点阈值。
 
 | 名称     | 值   | 说明                   |
 | -------- | ---- | ---------------------- |
@@ -1093,13 +1095,19 @@ type Nullable\<T> = T | undefined
 | WIDTH_LG | 3   | 窗口宽度大于等于840vp，且小于1440vp。 |
 | WIDTH_XL | 4   | 窗口宽度大于等于1440vp。 |
 
+> **说明：**
+>
+> 大多数应用在构建自适应布局时，可以只考虑窗口宽度断点。
+
 ## HeightBreakpoint<sup>13+</sup>
 
-表示窗口不同高宽比阈值下对应的高度断点枚举值。通过[getWindowHeightBreakpoint](../js-apis-arkui-UIContext.md#getwindowheightbreakpoint13)返回。
+表示窗口不同高宽比阈值下对应的高度断点枚举值。通过[getWindowHeightBreakpoint](../arkts-apis-uicontext-uicontext.md#getwindowheightbreakpoint13)返回。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+下表列出了典型设备默认高宽比断点的阈值划分，用于在基于窗口高宽比布局设计时作为参考。个别设备可根据需求通过产品化配置调整断点阈值。
 
 | 名称     | 值   | 说明                   |
 | -------- | ---- | ---------------------- |
@@ -1275,10 +1283,6 @@ type Nullable\<T> = T | undefined
 | ------  |---- | -------------------- |
 | PIXEL_ROUND_ON_LAYOUT_FINISH | 0 | 在组件测量大小和位置后进行像素取整，默认值为0。 |
 | PIXEL_ROUND_AFTER_MEASURE |  1 | 在组件测量大小结束后进行像素取整。 |
-
->  **说明：**
-> - 建议在出现[像素取整常见问题](./ts-universal-attributes-pixelRound.md#常见问题)时，尝试采用PIXEL_ROUND_AFTER_MEASURE模式解决。
-> - 在PIXEL_ROUND_AFTER_MEASURE模式下，组件会在测量大小结束时进行一次取整，即最终大小相比于PIXEL_ROUND_ON_LAYOUT_FINISH模式可能扩大1px。
 
 ## TipsAnchorType<sup>20+</sup>
 

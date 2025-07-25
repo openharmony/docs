@@ -1,9 +1,10 @@
 # native_interface_bundle.h
 
-
 ## 概述
 
 提供查询应用信息等相关功能。
+
+**库：** libbundle.z.so
 
 **起始版本：**
 

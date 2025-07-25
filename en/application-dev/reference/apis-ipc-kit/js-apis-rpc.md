@@ -2,7 +2,7 @@
 
 The **RPC** module implements communication between processes, including inter-process communication (IPC) on a single device and remote procedure call (RPC) between processes on difference devices. IPC is implemented based on the Binder driver, and RPC is based on the DSoftBus driver.
 
-> **NOTE**
+> **NOTE**<br/>
 >
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
@@ -40,7 +40,7 @@ The APIs of this module return exceptions since API version 9. The following tab
 
 ## TypeCode<sup>12+</sup>
 
-Since API version 12, [writeArrayBuffer](#writearraybuffer12) and [readArrayBuffer](#readarraybuffer12) are added to pass ArrayBuffer data. The specific TypedArray type is determined by **TypeCode** defined as follows:
+Since API version 12, [writeArrayBuffer](#writearraybuffer12) and [readArrayBuffer](#readarraybuffer12) are added to pass ArrayBuffer data. The specific TypedArray type is determined by the **TypeCode** defined as follows:
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -347,6 +347,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   | ID| Error Message|
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -386,7 +387,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   | ID| Error Message|
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
-  | 1900011  | Memory allocation failed |
+  | 1900009  | Failed to write data to the message sequence. |
+  | 1900011  | Memory allocation failed. |
 
 **Example**
 
@@ -530,6 +532,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   | ID| Error Message|
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900010 | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -574,6 +577,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   | ID| Error Message|
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -939,7 +943,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 writeFloat(val: number): void
 
-Writes a floating-point number to this **MessageSequence** object.
+Writes a float value to this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -947,7 +951,7 @@ Writes a floating-point number to this **MessageSequence** object.
 
   | Name| Type  | Mandatory| Description |
   | ------ | ------ | ---- | ----- |
-  | val    | number | Yes  | Floating-point number to write.|
+  | val    | number | Yes  | Float value to write.|
 
 **Error codes**
 
@@ -978,7 +982,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readFloat(): number
 
-Reads the floating-point number from this **MessageSequence** object.
+Reads the float value from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -986,7 +990,7 @@ Reads the floating-point number from this **MessageSequence** object.
 
   | Type  | Description        |
   | ------ | ------------ |
-  | number | Floating-point number read.|
+  | number | Float value read.|
 
 **Error codes**
 
@@ -1024,7 +1028,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 writeDouble(val: number): void
 
-Writes a double-precision floating-point number to this **MessageSequence** object.
+Writes a double value to this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -1032,7 +1036,7 @@ Writes a double-precision floating-point number to this **MessageSequence** obje
 
   | Name| Type  | Mandatory| Description                  |
   | ------ | ------ | ---- | ---------------------- |
-  | val    | number | Yes  | Double-precision floating-point number to write.|
+  | val    | number | Yes  | Double value to write.|
 
 **Error codes**
 
@@ -1063,7 +1067,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readDouble(): number
 
-Reads the double-precision floating-point number from this **MessageSequence** object.
+Reads the double value from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -1071,7 +1075,7 @@ Reads the double-precision floating-point number from this **MessageSequence** o
 
   | Type  | Description              |
   | ------ | ------------------ |
-  | number | Double-precision floating-point number read.|
+  | number | Double value read.|
 
 **Error codes**
 
@@ -1202,7 +1206,7 @@ Writes a character to this **MessageSequence** object.
 
   | Name| Type  | Mandatory| Description                |
   | ------ | ------ | ---- | -------------------- |
-  | val    | number | Yes  | Single character to write.|
+  | val    | number | Yes  | **Char** value to write.|
 
 **Error codes**
 
@@ -1241,7 +1245,7 @@ Reads the character from this **MessageSequence** object.
 
   | Type  | Description|
   | ------ | ---- |
-  | number | Character read.|
+  | number | **Char** value read.|
 
 **Error codes**
 
@@ -1422,7 +1426,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readParcelable(dataIn: Parcelable): void
 
-Reads a **Parcelable** object from this **MessageSequence** object to the specified object (**dataIn**).
+Reads the **Parcelable** object from this **MessageSequence** object to the specified object (**dataIn**).
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -1523,7 +1527,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readByteArray(dataIn: number[]): void
 
-Reads a byte array from this **MessageSequence** object.
+Reads the byte array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -1587,7 +1591,6 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401      | check param failed |
   | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
@@ -1658,7 +1661,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readShortArray(dataIn: number[]): void
 
-Reads a short array from this **MessageSequence** object.
+Reads the short array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -1790,7 +1793,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readIntArray(dataIn: number[]): void
 
-Reads an integer array from this **MessageSequence** object.
+Reads the integer array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -1922,7 +1925,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readLongArray(dataIn: number[]): void
 
-Reads a long array from this **MessageSequence** object.
+Reads the long array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2015,7 +2018,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 writeFloatArray(floatArray: number[]): void
 
-Writes a floating-point array to this **MessageSequence** object.
+Writes a float array to this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2023,7 +2026,7 @@ Writes a floating-point array to this **MessageSequence** object.
 
   | Name    | Type    | Mandatory| Description                                                                                                                   |
   | ---------- | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-  | floatArray | number[] | Yes  | Floating-point array to write. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
+  | floatArray | number[] | Yes  | Float array to write. The system processes float data as that of the double type. Therefore, the total number of bytes occupied by a float array must be calculated as the double type.|
 
 **Error codes**
 
@@ -2054,7 +2057,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readFloatArray(dataIn: number[]): void
 
-Reads a floating-point array from this **MessageSequence** object.
+Reads the float array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2062,7 +2065,7 @@ Reads a floating-point array from this **MessageSequence** object.
 
   | Name| Type    | Mandatory| Description                                                                                                                   |
   | ------ | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-  | dataIn | number[] | Yes  | Floating-point array to read. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
+  | dataIn | number[] | Yes  | Float array to read. The system processes float data as that of the double type. Therefore, the total number of bytes occupied by a float array must be calculated as the double type.|
 
 **Error codes**
 
@@ -2101,7 +2104,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readFloatArray(): number[]
 
-Reads the floating-point array from this **MessageSequence** object.
+Reads the float array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2109,7 +2112,7 @@ Reads the floating-point array from this **MessageSequence** object.
 
   | Type    | Description          |
   | -------- | -------------- |
-  | number[] | Floating-point array read.|
+  | number[] | Float array read.|
 
 **Error codes**
 
@@ -2147,7 +2150,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 writeDoubleArray(doubleArray: number[]): void
 
-Writes a double-precision floating-point array to this **MessageSequence** object.
+Writes a double array to this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2155,7 +2158,7 @@ Writes a double-precision floating-point array to this **MessageSequence** objec
 
   | Name     | Type    | Mandatory| Description                    |
   | ----------- | -------- | ---- | ------------------------ |
-  | doubleArray | number[] | Yes  | Double-precision floating-point array to write.|
+  | doubleArray | number[] | Yes  | Double array to write.|
 
 **Error codes**
 
@@ -2186,7 +2189,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readDoubleArray(dataIn: number[]): void
 
-Reads a double-precision floating-point array from this **MessageSequence** object.
+Reads the double array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2194,7 +2197,7 @@ Reads a double-precision floating-point array from this **MessageSequence** obje
 
   | Name| Type    | Mandatory| Description                    |
   | ------ | -------- | ---- | ------------------------ |
-  | dataIn | number[] | Yes  | Double-precision floating-point array to read.|
+  | dataIn | number[] | Yes  | Double array to read.|
 
 **Error codes**
 
@@ -2233,7 +2236,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readDoubleArray(): number[]
 
-Reads the double-precision floating-point array from this **MessageSequence** object.
+Reads the double array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2241,7 +2244,7 @@ Reads the double-precision floating-point array from this **MessageSequence** ob
 
   | Type    | Description                |
   | -------- | -------------------- |
-  | number[] | Double-precision floating-point array read.|
+  | number[] | Double array read.|
 
 **Error codes**
 
@@ -2318,7 +2321,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readBooleanArray(dataIn: boolean[]): void
 
-Reads a Boolean array from this **MessageSequence** object.
+Reads the Boolean array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2450,7 +2453,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readCharArray(dataIn: number[]): void
 
-Reads a character array from this **MessageSequence** object.
+Reads the character array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2582,7 +2585,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readStringArray(dataIn: string[]): void
 
-Reads a string array from this **MessageSequence** object.
+Reads the string array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2734,6 +2737,11 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 **Example**
 
+>**NOTE**<br/>
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```ts
   // If the FA model is used, import featureAbility from @kit.AbilityKit.
   // import { featureAbility } from '@kit.AbilityKit';
@@ -2762,7 +2770,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   // FA.connectAbility(want,connect);
 
   // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -2870,7 +2878,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readParcelableArray(parcelableArray: Parcelable[]): void
 
-Reads a **Parcelable** array from this **MessageSequence** object.
+Reads the **Parcelable** array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -2942,7 +2950,7 @@ Writes an array of **IRemoteObject** objects to this **MessageSequence** object.
 
 | Name     | Type           | Mandatory| Description                                          |
 | ----------- | --------------- | ---- | ---------------------------------------------- |
-| objectArray | [IRemoteObject](#iremoteobject)[] | Yes  | Array of **IRemoteObject** objects to write.|
+| objectArray | [IRemoteObject](#iremoteobject)[] | Yes  | **IRemoteObject** array to write.|
 
 **Error codes**
 
@@ -2984,7 +2992,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readRemoteObjectArray(objects: IRemoteObject[]): void
 
-Reads an array of **IRemoteObject** objects from this **MessageSequence** object.
+Reads the **IRemoteObject** array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -3036,7 +3044,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 readRemoteObjectArray(): IRemoteObject[]
 
-Reads the **IRemoteObject** object array from this **MessageSequence** object.
+Reads the **IRemoteObject** array from this **MessageSequence** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -3323,7 +3331,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   | ID| Error Message|
   | -------- | ------- |
   | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter is not an instance of the Ashmem object. |
-  | 1900003  | Failed to write data to the shared memory. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **Example**
 
@@ -3369,8 +3377,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900004  | Failed to read data from the shared memory. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **Example**
 
@@ -3688,8 +3695,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
     data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3741,8 +3748,8 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
     data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorMessage ' + e.message);
   }
   try {
     let result = data.readArrayBuffer(rpc.TypeCode.INT16_ARRAY);
@@ -4297,7 +4304,7 @@ Reads the Byte value from this **MessageParcel** object.
 
 writeShort(val: number): boolean
 
-Writes a Short int value to this **MessageParcel** object.
+Writes a short int value to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4305,7 +4312,7 @@ Writes a Short int value to this **MessageParcel** object.
 
   | Name| Type  | Mandatory| Description              |
   | ------ | ------ | ---- | ------------------ |
-  | val    | number | Yes  | Short int value to write.|
+  | val    | number | Yes  | Short integer to write.|
 
 **Return value**
 
@@ -4327,7 +4334,7 @@ Writes a Short int value to this **MessageParcel** object.
 
 readShort(): number
 
-Reads the Short int value from this **MessageParcel** object.
+Reads the short int value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4335,7 +4342,7 @@ Reads the Short int value from this **MessageParcel** object.
 
   | Type  | Description          |
   | ------ | -------------- |
-  | number | Short int value read.|
+  | number | Short integer read.|
 
 **Example**
 
@@ -4353,7 +4360,7 @@ Reads the Short int value from this **MessageParcel** object.
 
 writeInt(val: number): boolean
 
-Writes an Int value to this **MessageParcel** object.
+Writes an int value to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4361,7 +4368,7 @@ Writes an Int value to this **MessageParcel** object.
 
   | Name| Type  | Mandatory| Description            |
   | ------ | ------ | ---- | ---------------- |
-  | val    | number | Yes  | Int value to write.|
+  | val    | number | Yes  | Integer to write.|
 
 **Return value**
 
@@ -4383,7 +4390,7 @@ Writes an Int value to this **MessageParcel** object.
 
 readInt(): number
 
-Reads the Int value from this **MessageParcel** object.
+Reads the int value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4391,7 +4398,7 @@ Reads the Int value from this **MessageParcel** object.
 
   | Type  | Description        |
   | ------ | ------------ |
-  | number | Int value read.|
+  | number | Integer read.|
 
 **Example**
 
@@ -4409,7 +4416,7 @@ Reads the Int value from this **MessageParcel** object.
 
 writeLong(val: number): boolean
 
-Writes a Long int value to this **MessageParcel** object.
+Writes a long int value to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4439,7 +4446,7 @@ Writes a Long int value to this **MessageParcel** object.
 
 readLong(): number
 
-Reads the Long int value from this **MessageParcel** object.
+Reads the long int value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4465,7 +4472,7 @@ Reads the Long int value from this **MessageParcel** object.
 
 writeFloat(val: number): boolean
 
-Writes a Float value to this **MessageParcel** object.
+Writes a float value to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4495,7 +4502,7 @@ Writes a Float value to this **MessageParcel** object.
 
 readFloat(): number
 
-Reads the Float value from this **MessageParcel** object.
+Reads the float value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4521,7 +4528,7 @@ Reads the Float value from this **MessageParcel** object.
 
 writeDouble(val: number): boolean
 
-Writes a Double value to this **MessageParcel** object.
+Writes a double value to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4551,7 +4558,7 @@ Writes a Double value to this **MessageParcel** object.
 
 readDouble(): number
 
-Reads the Double value from this **MessageParcel** object.
+Reads the double value from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4633,7 +4640,7 @@ Reads the Boolean value from this **MessageParcel** object.
 
 writeChar(val: number): boolean
 
-Writes a Char value to this **MessageParcel** object.
+Writes a single character value to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4641,7 +4648,7 @@ Writes a Char value to this **MessageParcel** object.
 
   | Name| Type  | Mandatory| Description                |
   | ------ | ------ | ---- | -------------------- |
-  | val    | number | Yes  | Char value to write.|
+  | val    | number | Yes  | **Char** value to write.|
 
 **Return value**
 
@@ -4671,7 +4678,7 @@ Reads the single character value from this **MessageParcel** object.
 
   | Type  | Description            |
   | ------ | ---------------- |
-  | number | Char value read.|
+  | number | **Char** value read.|
 
 **Example**
 
@@ -4745,7 +4752,7 @@ Reads the string from this **MessageParcel** object.
 
 writeSequenceable(val: Sequenceable): boolean
 
-Writes a sequenceable object to this **MessageParcel** object.
+Writes a **Sequenceable** object to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4753,7 +4760,7 @@ Writes a sequenceable object to this **MessageParcel** object.
 
   | Name| Type                         | Mandatory| Description                |
   | ------ | ----------------------------- | ---- | -------------------- |
-  | val    | [Sequenceable](#sequenceabledeprecated) | Yes  | Sequenceable object to write.|
+  | val    | [Sequenceable](#sequenceabledeprecated) | Yes  | **Sequenceable** object to write.|
 
 **Return value**
 
@@ -4877,7 +4884,7 @@ Writes a byte array to this **MessageParcel** object.
 
 readByteArray(dataIn: number[]): void
 
-Reads a byte array from this **MessageParcel** object.
+Reads the byte array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -4961,7 +4968,7 @@ Writes a short array to this **MessageParcel** object.
 
 readShortArray(dataIn: number[]): void
 
-Reads a short array from this **MessageParcel** object.
+Reads the short array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5043,7 +5050,7 @@ Writes an integer array to this **MessageParcel** object.
 
 readIntArray(dataIn: number[]): void
 
-Reads an integer array from this **MessageParcel** object.
+Reads the integer array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5125,7 +5132,7 @@ Writes a long array to this **MessageParcel** object.
 
 readLongArray(dataIn: number[]): void
 
-Reads a long array from this **MessageParcel** object.
+Reads the long array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5177,7 +5184,7 @@ Reads the long array from this **MessageParcel** object.
 
 writeFloatArray(floatArray: number[]): boolean
 
-Writes a FloatArray to this **MessageParcel** object.
+Writes a float array to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5185,7 +5192,7 @@ Writes a FloatArray to this **MessageParcel** object.
 
   | Name| Type| Mandatory| Description |
   | ---------- | -------- | ---- | --- |
-  | floatArray | number[] | Yes  | Floating-point array to write. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
+  | floatArray | number[] | Yes  | Float array to write. The system processes float data as that of the double type. Therefore, the total number of bytes occupied by a float array must be calculated as the double type.|
 
 **Return value**
 
@@ -5207,7 +5214,7 @@ Writes a FloatArray to this **MessageParcel** object.
 
 readFloatArray(dataIn: number[]): void
 
-Reads a FloatArray from this **MessageParcel** object.
+Reads the float array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5215,7 +5222,7 @@ Reads a FloatArray from this **MessageParcel** object.
 
   | Name| Type    | Mandatory| Description  |
   | ------ | -------- | ---- | ------ |
-  | dataIn | number[] | Yes  | Floating-point array to read. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
+  | dataIn | number[] | Yes  | Float array to read. The system processes float data as that of the double type. Therefore, the total number of bytes occupied by a float array must be calculated as the double type.|
 
 **Example**
 
@@ -5233,7 +5240,7 @@ Reads a FloatArray from this **MessageParcel** object.
 
 readFloatArray(): number[]
 
-Reads the FloatArray from this **MessageParcel** object.
+Reads the float array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5241,7 +5248,7 @@ Reads the FloatArray from this **MessageParcel** object.
 
   | Type    | Description          |
   | -------- | -------------- |
-  | number[] | FloatArray read.|
+  | number[] | Float array read.|
 
 **Example**
 
@@ -5259,7 +5266,7 @@ Reads the FloatArray from this **MessageParcel** object.
 
 writeDoubleArray(doubleArray: number[]): boolean
 
-Writes a DoubleArray to this **MessageParcel** object.
+Writes a double array to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5267,7 +5274,7 @@ Writes a DoubleArray to this **MessageParcel** object.
 
   | Name     | Type    | Mandatory| Description                    |
   | ----------- | -------- | ---- | ------------------------ |
-  | doubleArray | number[] | Yes  | DoubleArray to write.|
+  | doubleArray | number[] | Yes  | Double array to write.|
 
 **Return value**
 
@@ -5289,7 +5296,7 @@ Writes a DoubleArray to this **MessageParcel** object.
 
 readDoubleArray(dataIn: number[]): void
 
-Reads a DoubleArray from this **MessageParcel** object.
+Reads the double array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5297,7 +5304,7 @@ Reads a DoubleArray from this **MessageParcel** object.
 
   | Name| Type    | Mandatory| Description                    |
   | ------ | -------- | ---- | ------------------------ |
-  | dataIn | number[] | Yes  | DoubleArray to read.|
+  | dataIn | number[] | Yes  | Double array to read.|
 
 **Example**
 
@@ -5315,7 +5322,7 @@ Reads a DoubleArray from this **MessageParcel** object.
 
 readDoubleArray(): number[]
 
-Reads the DoubleArray from this **MessageParcel** object.
+Reads the double array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5323,7 +5330,7 @@ Reads the DoubleArray from this **MessageParcel** object.
 
   | Type    | Description                |
   | -------- | -------------------- |
-  | number[] | DoubleArray read.|
+  | number[] | Double array read.|
 
 **Example**
 
@@ -5371,7 +5378,7 @@ Writes a Boolean array to this **MessageParcel** object.
 
 readBooleanArray(dataIn: boolean[]): void
 
-Reads a Boolean array from this **MessageParcel** object.
+Reads the Boolean array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5423,7 +5430,7 @@ Reads the Boolean array from this **MessageParcel** object.
 
 writeCharArray(charArray: number[]): boolean
 
-Writes a character array to this **MessageParcel** object.
+Writes a single character array to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5453,7 +5460,7 @@ Writes a character array to this **MessageParcel** object.
 
 readCharArray(dataIn: number[]): void
 
-Reads a character array from this **MessageParcel** object.
+Reads the single character array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5535,7 +5542,7 @@ Writes a string array to this **MessageParcel** object.
 
 readStringArray(dataIn: string[]): void
 
-Reads a string array from this **MessageParcel** object.
+Reads the string array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5637,6 +5644,11 @@ Reads the exception information from this **MessageParcel** object.
 
 **Example**
 
+>**NOTE**<br/>
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```ts
   // If the FA model is used, import featureAbility from @kit.AbilityKit.
   // import { featureAbility } from '@kit.AbilityKit';
@@ -5665,7 +5677,7 @@ Reads the exception information from this **MessageParcel** object.
   // FA.connectAbility(want,connect);
 
   // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -5714,7 +5726,7 @@ Writes a sequenceable array to this **MessageParcel** object.
 
 | Name           | Type                                     | Mandatory| Description                      |
 | ----------------- | ----------------------------------------- | ---- | -------------------------- |
-| sequenceableArray | [Sequenceable](#sequenceabledeprecated)[] | Yes  | Sequenceable array to write.|
+| sequenceableArray | [Sequenceable](#sequenceabledeprecated)[] | Yes  | **SequenceableArray** to write.|
 
 **Return value**
 
@@ -5758,7 +5770,7 @@ Writes a sequenceable array to this **MessageParcel** object.
 
 readSequenceableArray(sequenceableArray: Sequenceable[]): void
 
-Reads a sequenceable array from this **MessageParcel** object.
+Reads the sequenceable array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5766,7 +5778,7 @@ Reads a sequenceable array from this **MessageParcel** object.
 
 | Name           | Type                                     | Mandatory| Description                      |
 | ----------------- | ----------------------------------------- | ---- | -------------------------- |
-| sequenceableArray | [Sequenceable](#sequenceabledeprecated)[] | Yes  | Sequenceable array to read.|
+| sequenceableArray | [Sequenceable](#sequenceabledeprecated)[] | Yes  | **SequenceableArray** to read.|
 
 **Example**
 
@@ -5860,7 +5872,7 @@ Writes an array of **IRemoteObject** objects to this **MessageParcel** object.
 
 readRemoteObjectArray(objects: IRemoteObject[]): void
 
-Reads an **IRemoteObject** array from this **MessageParcel** object.
+Reads the **IRemoteObject** array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6495,6 +6507,11 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
 
 **Example**
 
+>**NOTE**<br/>
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```ts
   // If the FA model is used, import featureAbility from @kit.AbilityKit.
   // import { featureAbility } from '@kit.AbilityKit';
@@ -6523,7 +6540,7 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
   // FA.connectAbility(want,connect);
 
   // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6810,6 +6827,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   | ID| Error Message|
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
+  | 1900005  | Operation allowed only for the proxy object. |
   | 1900008  | The proxy or remote object is invalid. |
 
 ### addDeathRecipient<sup>(deprecated)</sup>
@@ -6859,6 +6877,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   | ID| Error Message|
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.The callback used to receive remote object death notifications is empty. |
+  | 1900005  | Operation allowed only for the proxy object. |
   | 1900008  | The proxy or remote object is invalid. |
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
@@ -6986,6 +7005,11 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Example**
 
+>**NOTE**<br/>
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```ts
   // If the FA model is used, import featureAbility from @kit.AbilityKit.
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7014,7 +7038,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   // FA.connectAbility(want,connect);
 
   // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7078,6 +7102,11 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 **Example**
 
+>**NOTE**<br/>
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```ts
   // If the FA model is used, import featureAbility from @kit.AbilityKit.
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7106,7 +7135,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   // FA.connectAbility(want,connect);
 
   // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7172,6 +7201,11 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Example**
 
+>**NOTE**<br/>
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```ts
   // If the FA model is used, import featureAbility from @kit.AbilityKit.
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7200,7 +7234,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   // FA.connectAbility(want,connect);
 
   // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7265,78 +7299,6 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
-**Example**
-
-  ```ts
-  // If the FA model is used, import featureAbility from @kit.AbilityKit.
-  // import { featureAbility } from '@kit.AbilityKit';
-  import { Want, common } from '@kit.AbilityKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  let proxy: rpc.IRemoteObject | undefined;
-  let connect: common.ConnectOptions = {
-    onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
-      proxy = remoteProxy;
-    },
-    onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
-    },
-    onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
-    }
-  };
-  let want: Want = {
-    bundleName: "com.ohos.server",
-    abilityName: "com.ohos.server.EntryAbility",
-  };
-  function sendMessageRequestCallback(err: BusinessError, result: rpc.RequestResult) {
-    if (result.errCode === 0) {
-      hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
-      let num = result.reply.readInt();
-      let msg = result.reply.readString();
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-    } else {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
-    }
-    hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
-    result.data.reclaim();
-    result.reply.reclaim();
-}
-
-  // Use this method to connect to the ability for the FA model.
-  // FA.connectAbility(want,connect);
-
-  // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-  // Save the connection ID, which will be used for the subsequent service disconnection.
-  let connectionId = context.connectServiceExtensionAbility(want, connect);
-  ```
-
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
-
-  ```ts
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageSequence.create();
-  let reply = rpc.MessageSequence.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  if (proxy != undefined) {
-    try {
-      proxy.sendMessageRequest(1, data, reply, option, sendMessageRequestCallback);
-    } catch (error) {
-      let e: BusinessError = error as BusinessError;
-      hilog.error(0x0000, 'testTag', 'rpc sendMessageRequest fail, errorCode ' + e.code);
-      hilog.error(0x0000, 'testTag', 'rpc sendMessageRequest fail, errorMessage ' + e.message);
-    }
-  }
-  ```
-
 ### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
@@ -7358,69 +7320,6 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 | reply    | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object that receives the response.                           |
 | options  | [MessageOption](#messageoption)                              | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                        |
 | callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
-
-**Example**
-
-  ```ts
-  // If the FA model is used, import featureAbility from @kit.AbilityKit.
-  // import { featureAbility } from '@kit.AbilityKit';
-  import { Want, common } from '@kit.AbilityKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  let proxy: rpc.IRemoteObject | undefined;
-  let connect: common.ConnectOptions = {
-    onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
-      proxy = remoteProxy;
-    },
-    onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
-    },
-    onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
-    }
-  };
-  let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
-  };
-  function sendRequestCallback(err: BusinessError, result: rpc.SendRequestResult) {
-    if (result.errCode === 0) {
-      hilog.info(0x0000, 'testTag', 'sendRequest got result');
-      let num = result.reply.readInt();
-      let msg = result.reply.readString();
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-    } else {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
-    }
-    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-    result.data.reclaim();
-    result.reply.reclaim();
-}
-
-  // Use this method to connect to the ability for the FA model.
-  // FA.connectAbility(want,connect);
-
-  // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-  // Save the connection ID, which will be used for the subsequent service disconnection.
-  let connectionId = context.connectServiceExtensionAbility(want, connect);
-  ```
-
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendRequest()** of the proxy object is called to send a message.
-
-  ```ts
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageParcel.create();
-  let reply = rpc.MessageParcel.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  if (proxy != undefined) {
-    proxy.sendRequest(1, data, reply, option, sendRequestCallback);
-  }
-  ```
 
 ### getLocalInterface<sup>9+</sup>
 
@@ -7453,6 +7352,11 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 **Example**
 
+>**NOTE**<br/>
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```ts
   // If the FA model is used, import featureAbility from @kit.AbilityKit.
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7481,7 +7385,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   // FA.connectAbility(want,connect);
 
   // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7530,6 +7434,11 @@ Obtains the **LocalInterface** object of an interface token.
 
 **Example**
 
+>**NOTE**<br/>
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```ts
   // If the FA model is used, import featureAbility from @kit.AbilityKit.
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7558,7 +7467,7 @@ Obtains the **LocalInterface** object of an interface token.
   // FA.connectAbility(want,connect);
 
   // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7600,6 +7509,11 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 **Example**
 
+>**NOTE**<br/>
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```ts
   // If the FA model is used, import featureAbility from @kit.AbilityKit.
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7628,7 +7542,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   // FA.connectAbility(want,connect);
 
   // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7683,6 +7597,11 @@ Adds a callback for receiving the death notifications of the remote object, incl
 
 **Example**
 
+>**NOTE**<br/>
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```ts
   // If the FA model is used, import featureAbility from @kit.AbilityKit.
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7711,7 +7630,7 @@ Adds a callback for receiving the death notifications of the remote object, incl
   // FA.connectAbility(want,connect);
 
   // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7758,6 +7677,11 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 **Example**
 
+>**NOTE**<br/>
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```ts
   // If the FA model is used, import featureAbility from @kit.AbilityKit.
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7786,7 +7710,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   // FA.connectAbility(want,connect);
 
   // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7842,6 +7766,11 @@ Removes the callback used to receive death notifications of the remote object.
 
 **Example**
 
+>**NOTE**<br/>
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```ts
   // If the FA model is used, import featureAbility from @kit.AbilityKit.
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7870,7 +7799,7 @@ Removes the callback used to receive death notifications of the remote object.
   // FA.connectAbility(want,connect);
 
   // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7917,6 +7846,11 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
 **Example**
 
+>**NOTE**<br/>
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```ts
   // If the FA model is used, import featureAbility from @kit.AbilityKit.
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7945,7 +7879,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   // FA.connectAbility(want,connect);
 
   // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7987,6 +7921,11 @@ Obtains the interface descriptor of this proxy object.
 
 **Example**
 
+>**NOTE**<br/>
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```ts
   // If the FA model is used, import featureAbility from @kit.AbilityKit.
   // import { featureAbility } from '@kit.AbilityKit';
@@ -8015,7 +7954,7 @@ Obtains the interface descriptor of this proxy object.
   // FA.connectAbility(want,connect);
 
   // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -8047,6 +7986,11 @@ Checks whether the **RemoteObject** is dead.
 
 **Example**
 
+>**NOTE**<br/>
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```ts
   // If the FA model is used, import featureAbility from @kit.AbilityKit.
   // import { featureAbility } from '@kit.AbilityKit';
@@ -8075,7 +8019,7 @@ Checks whether the **RemoteObject** is dead.
   // FA.connectAbility(want,connect);
 
   // Save the connection ID, which will be used for the subsequent service disconnection.
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // Save the connection ID, which will be used for the subsequent service disconnection.
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -8223,7 +8167,7 @@ Obtains the call flag, which can be synchronous or asynchronous.
     hilog.info(0x0000, 'testTag', 'create object successfully');
     let flog = option.getFlags();
     hilog.info(0x0000, 'testTag', 'run getFlags success, flog is ' + flog);
-    option.setFlags(1)
+    option.setFlags(rpc.MessageOption.TF_ASYNC);
     hilog.info(0x0000, 'testTag', 'run setFlags success');
     let flog2 = option.getFlags();
     hilog.info(0x0000, 'testTag', 'run getFlags success, flog2 is ' + flog2);
@@ -8253,7 +8197,7 @@ Sets the call flag, which can be synchronous or asynchronous.
 
   try {
     let option = new rpc.MessageOption();
-    option.setFlags(1)
+    option.setFlags(rpc.MessageOption.TF_ASYNC);
     hilog.info(0x0000, 'testTag', 'run setFlags success');
     let flog = option.getFlags();
     hilog.info(0x0000, 'testTag', 'run getFlags success, flog is ' + flog);
@@ -8988,40 +8932,6 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br> 1.The number of parameters is incorrect; <br> 2.The parameter type does not match; <br> 3.Failed to obtain the passed object instance. |
 
-**Example**
-
-  ```ts
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  class TestRemoteObject extends rpc.RemoteObject {
-    constructor(descriptor: string) {
-      super(descriptor);
-    }
-  }
-  function sendRequestCallback(err: BusinessError, result: rpc.RequestResult) {
-    if (result.errCode === 0) {
-      hilog.info(0x0000, 'testTag', 'sendRequest got result');
-      let num = result.reply.readInt();
-      let msg = result.reply.readString();
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-    } else {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
-    }
-    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-    result.data.reclaim();
-    result.reply.reclaim();
-  }
-  let testRemoteObject = new TestRemoteObject("testObject");
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageSequence.create();
-  let reply = rpc.MessageSequence.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  testRemoteObject.sendMessageRequest(1, data, reply, option, sendRequestCallback);
-  ```
-
 ### sendRequest<sup>(deprecated)</sup> 
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
@@ -9043,54 +8953,6 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 | reply         | [MessageParcel](#messageparceldeprecated)                    | Yes  | **MessageParcel** object that receives the response.                           |
 | options       | [MessageOption](#messageoption)                              | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                        |
 | callback      | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | Yes  | Callback for receiving the sending result.                                        |
-
-**Example**
-
-  ```ts
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server died');
-    }
-  }
-  class TestRemoteObject extends rpc.RemoteObject {
-    constructor(descriptor: string) {
-      super(descriptor);
-    }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    isObjectDead(): boolean {
-      return false;
-    }
-  }
-  function sendRequestCallback(err: BusinessError, result: rpc.SendRequestResult) {
-    if (result.errCode === 0) {
-      hilog.info(0x0000, 'testTag', 'sendRequest got result');
-      let num = result.reply.readInt();
-      let msg = result.reply.readString();
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-    } else {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
-    }
-    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-    result.data.reclaim();
-    result.reply.reclaim();
-  }
-  let testRemoteObject = new TestRemoteObject("testObject");
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageParcel.create();
-  let reply = rpc.MessageParcel.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  testRemoteObject.sendRequest(1, data, reply, option, sendRequestCallback);
-  ```
 
 ### onRemoteMessageRequest<sup>9+</sup>
 
@@ -9958,7 +9820,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
-    ashmem.mapTypedAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
+    ashmem.mapTypedAshmem(rpc.Ashmem.PROT_READ | rpc.Ashmem.PROT_WRITE);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc map ashmem fail, errorCode ' + e.code);
@@ -9996,7 +9858,7 @@ Creates the shared file mapping on the virtual address space of this process. Th
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  let mapReadAndWrite = ashmem.mapAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
+  let mapReadAndWrite = ashmem.mapAshmem(rpc.Ashmem.PROT_READ | rpc.Ashmem.PROT_WRITE);
   hilog.info(0x0000, 'testTag', 'RpcTest: map ashmem result is ' + mapReadAndWrite);
   ```
 
@@ -10151,7 +10013,7 @@ For details about the error codes, see [RPC Error Codes](errorcode-rpc.md).
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
-    ashmem.setProtectionType(ashmem.PROT_READ);
+    ashmem.setProtectionType(rpc.Ashmem.PROT_READ);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc set protection type fail, errorCode ' + e.code);
@@ -10189,7 +10051,7 @@ Sets the protection level of the memory region to which the shared file is mappe
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  let result = ashmem.setProtection(ashmem.PROT_READ);
+  let result = ashmem.setProtection(rpc.Ashmem.PROT_READ);
   hilog.info(0x0000, 'testTag', 'RpcTest: Ashmem setProtection result is ' + result);
   ```
 

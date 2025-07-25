@@ -6,7 +6,7 @@
 >
 > - Since API version 12, the APIs of this module are supported in ArkTS widgets.
 
-The Image module provides capabilities for image decoding, encoding, editing, metadata processing, and image receiving.
+The module provides capabilities for image decoding, encoding, editing, metadata processing, and image receiving.
 
 This module contains the following classes:
 
@@ -14,7 +14,7 @@ This module contains the following classes:
 
 - [ImagePacker](#imagepacker): provides the capability of encoding images into compressed data streams or files. Encoding requires the ImageSource, PixelMap, or Picture of an image as the input. [Supported image formats for encoding](#properties-3) include jpeg, webp, png, heic<sup>12+</sup>, and gif<sup>18+</sup>.
 
-- [PixelMap](#pixelmap7): a bitmap object containing pixel data and [image information](#imageinfo). It can be used for reading/writing pixel data and performing operations such as cropping, scaling, translating, rotating, and mirroring. It can also be directly passed to the [Image component](../apis-arkui/arkui-ts/ts-basic-components-image.md) for display. Additionally, it provides APIs for obtaining and setting the color gamut and HDR metadata of images.
+- [PixelMap](#pixelmap7): an object containing pixel data and [image information](#imageinfo). It can be used for reading/writing pixel data and performing operations such as cropping, scaling, translating, rotating, and mirroring. It can also be directly passed to the [Image component](../apis-arkui/arkui-ts/ts-basic-components-image.md) for display. Additionally, it provides APIs for obtaining and setting the color gamut and HDR metadata of images.
 
 - [Picture](#picture13): a multi-picture object composed of a main picture, auxiliary pictures, and metadata. The main picture contains the primary image information; auxiliary pictures store additional information related to the main picture; metadata stores other information related to the image. Picture provides methods for obtaining the main picture, compositing HDR images, obtaining and setting auxiliary pictures, and obtaining and setting metadata.
 
@@ -38,7 +38,7 @@ import { image } from '@kit.ImageKit';
 
 createPicture(mainPixelmap : PixelMap): Picture
 
-Creates a **Picture** object based on a main PixelMap.
+Creates a Picture object based on a main PixelMap.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -52,7 +52,7 @@ Creates a **Picture** object based on a main PixelMap.
 
 | Type              | Description             |
 | ------------------ | ----------------- |
-| [Picture](#picture13) | **Picture** object.|
+| [Picture](#picture13) | Picture object.|
 
 **Error codes**
 
@@ -79,7 +79,7 @@ async function CreatePicture(context: Context) {
   if (pictureObj != null) {
     console.info('Create picture succeeded');
   } else {
-    console.info('Create picture failed');
+    console.error('Create picture failed');
   }
 }
 ```
@@ -88,7 +88,7 @@ async function CreatePicture(context: Context) {
 
 createPictureFromParcel(sequence: rpc.MessageSequence): Picture
 
-Creates a **Picture** object from a **MessageSequence** object.
+Creates a Picture object from a MessageSequence object.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -96,13 +96,13 @@ Creates a **Picture** object from a **MessageSequence** object.
 
 | Name  | Type                                                               | Mandatory| Description                                |
 | -------- | ------------------------------------------------------------------- | ---- | ------------------------------------ |
-| sequence | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | Yes  | **MessageSequence** object that stores the **Picture** information.|
+| sequence | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | Yes  | MessageSequence object that stores the Picture information.|
 
 **Return value**
 
 | Type              | Description             |
 | ------------------ | ----------------- |
-| [Picture](#picture13) | **Picture** object.|
+| [Picture](#picture13) | Picture object.|
 
 **Error codes**
 
@@ -131,7 +131,7 @@ class MySequence implements rpc.Parcelable {
       console.info('Marshalling success !');
       return true;
     } else {
-      console.info('Marshalling failed !');
+      console.error('Marshalling failed !');
       return false;
     }
   }
@@ -164,7 +164,7 @@ async function Marshalling_UnMarshalling(context: Context) {
     // unmarshalling.
     data.readParcelable(ret);
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -173,7 +173,7 @@ async function Marshalling_UnMarshalling(context: Context) {
 
 createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<PixelMap>
 
-Creates a **PixelMap** object with the default BGRA_8888 format and specified pixel properties. This API uses a promise to return the result.
+Creates a PixelMap object with the default BGRA_8888 format and specified pixel properties. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -188,7 +188,7 @@ Creates a **PixelMap** object with the default BGRA_8888 format and specified pi
 
 | Type                            | Description                                                                   |
 | -------------------------------- | ----------------------------------------------------------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.<br>If the size of the created PixelMap exceeds that of the original image, the PixelMap size of the original image is returned.|
+| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the PixelMap object.<br>If the size of the created PixelMap exceeds that of the original image, the PixelMap size of the original image is returned.|
 
 **Example**
 
@@ -210,7 +210,7 @@ async function CreatePixelMap() {
 
 createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: AsyncCallback\<PixelMap>): void
 
-Creates a **PixelMap** object with the default BGRA_8888 format and specified pixel properties. This API uses an asynchronous callback to return the result.
+Creates a PixelMap object with the default BGRA_8888 format and specified pixel properties. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -220,7 +220,7 @@ Creates a **PixelMap** object with the default BGRA_8888 format and specified pi
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | colors   | ArrayBuffer                                      | Yes  | Buffer for storing the pixel data. It is used to initialize the pixels of the PixelMap. Before initialization, the pixel format in the buffer must be specified by [InitializationOptions](#initializationoptions8).srcPixelFormat.<br>**NOTE**: The length of the buffer required for storing the pixel data is determined by multiplying the width, height, and the number of bytes per pixel.|
 | options  | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
-| callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the **PixelMap** object obtained; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the PixelMap object obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -241,11 +241,59 @@ async function CreatePixelMap() {
 }
 ```
 
+## image.createPixelMapUsingAllocator<sup>20+</sup>
+
+createPixelMapUsingAllocator(colors: ArrayBuffer, options: InitializationOptions, allocatorType?: AllocatorType): Promise\<PixelMap>
+
+Creates a PixelMap object with the specified properties and memory type. By default, the BGRA_8888 format is used to process data. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type                                            | Mandatory| Description                      |
+| -------- | ------------------------------------------------ | ---- | -------------------------- |
+| colors   | ArrayBuffer                                      | Yes  | Buffer for storing the pixel data. It is used to initialize the pixels of the PixelMap. Before initialization, the pixel format in the buffer must be specified by [InitializationOptions](#initializationoptions8).srcPixelFormat.<br>**NOTE**: The length of the buffer required for storing the pixel data is determined by multiplying the width, height, and the number of bytes per pixel.|
+| options  | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
+| allocatorType  | [AllocatorType](#allocatortype15)          | No  | Memory type of the PixelMap. The default memory type is **AllocatorType.AUTO**.<br> 1. **image.AllocatorType.AUTO**: The following formats are not supported this memory type: **UNKNOWN**, **YCBCR_P010**, **YCRCB_P010**, and **ASTC_4x4**. For RGBA_1010102, DMA memory is allocated by default. For other formats (RGB_565, RGBA_8888, BGRA_8888, and RGBAF_16), DMA memory is allocated if the dimensions exceed 512*512; otherwise, shared memory is allocated.<br>2. **image.AllocatorType.DMA**: The formats RGBA_1010102, RGB_565, RGBA_8888, BGRA_8888, and RGBAF_16 support DMA memory types. Other formats do not.<br>3. **image.AllocatorType.SHARED**: The formats UNKNOWN, RGBA_1010102, YCBCR_P010, YCRCB_P010, and ASTC_4x4 do not support shared memory. Other formats support shared memory.|
+
+**Return value**
+
+| Type                            | Description                                                                   |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the PixelMap object.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  7600201    | Unsupported operation. e.g.,1. The picture does not has a gainmap. 2. MainPixelMap's allocator type is not DMA. |
+|  7600301    | Memory alloc failed. |
+|  7600302    | Memory copy failed. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function CreatePixelMapUseAllocator() {
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+  image.createPixelMapUsingAllocator(color, opts, image.AllocatorType.AUTO).then((pixelMap: image.PixelMap) => {
+    console.info('Succeeded in creating pixelmap.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
+  })
+}
+```
+
 ## image.createPixelMapFromParcel<sup>11+</sup>
 
 createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 
-Creates a **PixelMap** object from a **MessageSequence** object.
+Creates a PixelMap object from a MessageSequence object.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -253,13 +301,13 @@ Creates a **PixelMap** object from a **MessageSequence** object.
 
 | Name                | Type                                                 | Mandatory| Description                                    |
 | ---------------------- | ----------------------------------------------------- | ---- | ---------------------------------------- |
-| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | Yes  | **MessageSequence** object that stores the **PixelMap** information.     |
+| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | Yes  | MessageSequence object that stores the PixelMap information.     |
 
 **Return value**
 
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| [PixelMap](#pixelmap7) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+| [PixelMap](#pixelmap7) | PixelMap object. If the operation fails, an error is thrown.|
 
 **Error codes**
 
@@ -340,7 +388,7 @@ async function CreatePixelMapFromParcel() {
 
 createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 
-Creates a **PixelMap** object based on the surface ID and region information. The size of the region is specified by [Region](#region8).size. This API uses a promise to return the result.
+Creates a PixelMap object based on the surface ID and region information. The size of the region is specified by [Region](#region8).size. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -358,7 +406,7 @@ Creates a **PixelMap** object based on the surface ID and region information. Th
 **Return value**
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.|
+| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the PixelMap object.|
 
 **Error codes**
 
@@ -389,7 +437,7 @@ async function CreatePixelMapFromSurface(surfaceId: string) {
 
 createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 
-Creates a **PixelMap** object based on the surface ID and region information. This API returns the result synchronously. The size of the region is specified by [Region](#region8).size.
+Creates a PixelMap object based on the surface ID and region information. This API returns the result synchronously. The size of the region is specified by [Region](#region8).size.
 
 > **NOTE**
 >
@@ -407,7 +455,7 @@ Creates a **PixelMap** object based on the surface ID and region information. Th
 **Return value**
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| [PixelMap](#pixelmap7) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+| [PixelMap](#pixelmap7) | PixelMap object. If the operation fails, an error is thrown.|
 
 **Error codes**
 
@@ -435,7 +483,7 @@ async function Demo(surfaceId: string) {
 
 createPixelMapFromSurface(surfaceId: string): Promise\<PixelMap>
 
-Creates a **PixelMap** object from a surface ID. This API uses a promise to return the result.
+Creates a PixelMap object from a surface ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -448,7 +496,7 @@ Creates a **PixelMap** object from a surface ID. This API uses a promise to retu
 **Return value**
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.|
+| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the PixelMap object.|
 
 **Error codes**
 
@@ -478,7 +526,7 @@ async function Demo(surfaceId: string) {
 
 createPixelMapFromSurfaceSync(surfaceId: string): PixelMap
 
-Creates a **PixelMap** object from a surface ID. This API returns the result synchronously.
+Creates a PixelMap object from a surface ID. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -491,7 +539,7 @@ Creates a **PixelMap** object from a surface ID. This API returns the result syn
 **Return value**
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| [PixelMap](#pixelmap7) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+| [PixelMap](#pixelmap7) | PixelMap object. If the operation fails, an error is thrown.|
 
 **Error codes**
 
@@ -517,7 +565,7 @@ async function Demo(surfaceId: string) {
 
 createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMap
 
-Creates a **PixelMap** object with the default BGRA_8888 format and specified pixel properties. This API returns the result synchronously.
+Creates a PixelMap object with the default BGRA_8888 format and specified pixel properties. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -531,7 +579,7 @@ Creates a **PixelMap** object with the default BGRA_8888 format and specified pi
 **Return value**
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| [PixelMap](#pixelmap7) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+| [PixelMap](#pixelmap7) | PixelMap object. If the operation fails, an error is thrown.|
 
 **Error codes**
 
@@ -558,7 +606,7 @@ async function CreatePixelMapSync() {
 
 createPixelMapSync(options: InitializationOptions): PixelMap
 
-Creates a **PixelMap** object with the specified pixel properties. This API returns the result synchronously.
+Creates a PixelMap object with the specified pixel properties. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -571,7 +619,7 @@ Creates a **PixelMap** object with the specified pixel properties. This API retu
 **Return value**
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| [PixelMap](#pixelmap7) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+| [PixelMap](#pixelmap7) | PixelMap object. If the operation fails, an error is thrown.|
 
 **Error codes**
 
@@ -593,6 +641,91 @@ async function CreatePixelMapSync() {
 }
 ```
 
+## image.createPixelMapUsingAllocatorSync<sup>20+</sup>
+
+createPixelMapUsingAllocatorSync(colors: ArrayBuffer, options: InitializationOptions, allocatorType?: AllocatorType): PixelMap
+
+Creates a PixelMap object with the specified properties and memory type. By default, the BGRA_8888 format is used to process data. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name | Type                                            | Mandatory| Description                                                            |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| colors  | ArrayBuffer                                      | Yes  | Buffer for storing the pixel data. It is used to initialize the pixels of the PixelMap. Before initialization, the pixel format in the buffer must be specified by [InitializationOptions](#initializationoptions8).srcPixelFormat.<br>**NOTE**: The length of the buffer required for storing the pixel data is determined by multiplying the width, height, and the number of bytes per pixel.|
+| options | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
+| allocatorType  | [AllocatorType](#allocatortype15)          | No  | Memory type of the PixelMap. The default memory type is **AllocatorType.AUTO**.<br> 1. **image.AllocatorType.AUTO**: The following formats are not supported this memory type: **UNKNOWN**, **YCBCR_P010**, **YCRCB_P010**, and **ASTC_4x4**. For RGBA_1010102, DMA memory is allocated by default. For other formats (RGB_565, RGBA_8888, BGRA_8888, and RGBAF_16), DMA memory is allocated if the dimensions exceed 512*512; otherwise, shared memory is allocated.<br>2. **image.AllocatorType.DMA**: The formats RGBA_1010102, RGB_565, RGBA_8888, BGRA_8888, and RGBAF_16 support DMA memory types. Other formats do not.<br>3. **image.AllocatorType.SHARED**: The formats UNKNOWN, RGBA_1010102, YCBCR_P010, YCRCB_P010, and ASTC_4x4 do not support shared memory. Other formats support shared memory.|
+
+**Return value**
+| Type                            | Description                 |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | PixelMap object. If the operation fails, an error is thrown.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  7600201    | Unsupported operation. e.g.,1. The picture does not has a gainmap. 2. MainPixelMap's allocator type is not DMA. |
+|  7600301    | Memory alloc failed. |
+|  7600302    | Memory copy failed. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function CreatePixelMapSync() {
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+  let pixelMap : image.PixelMap = image.createPixelMapUsingAllocatorSync(color, opts, image.AllocatorType.AUTO);
+  return pixelMap;
+}
+```
+
+## image.createPixelMapUsingAllocatorSync<sup>20+</sup>
+
+createPixelMapUsingAllocatorSync(options: InitializationOptions, allocatorType?: AllocatorType): PixelMap
+
+Creates a PixelMap object with the specified pixel properties. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name | Type                                            | Mandatory| Description                                                            |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| options | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
+| allocatorType  | [AllocatorType](#allocatortype15)          | No  | Memory type of the PixelMap. The default memory type is **AllocatorType.AUTO**.<br> 1. **image.AllocatorType.AUTO**: The following formats are not supported for this memory type: UNKNOWN and ASTC_4x4. For RGBA_1010102, YCBCR_P010, and YCRCB_P010, DMA memory is allocated by default. For other formats (RGB_565, RGBA_8888, BGRA_8888, and RGBAF_16), DMA memory is allocated if the dimensions exceed 512*512; otherwise, shared memory is allocated.<br>2. **image.AllocatorType.DMA**: The formats RGB_565, RGBA_8888, BGRA_8888, RGBAF_16, RGBA_1010102, YCBCR_P010, and YCRCB_P010 support DMA memory type. Other formats do not support DMA memory type.<br>3. **image.AllocatorType.SHARED**: The formats UNKNOWN, RGBA_1010102, YCBCR_P010, YCRCB_P010, and ASTC_4x4 do not support shared memory. Other formats support shared memory.|
+
+**Return value**
+| Type                            | Description                 |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | PixelMap object. If the operation fails, an error is thrown.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  7600201    | Unsupported operation. e.g.,1. The picture does not has a gainmap. 2. MainPixelMap's allocator type is not DMA. |
+|  7600301    | Memory alloc failed. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function CreatePixelMapSync() {
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+  let pixelMap : image.PixelMap = image.createPixelMapUsingAllocatorSync(opts, image.AllocatorType.AUTO);
+  return pixelMap;
+}
+```
+
 ## image.createPremultipliedPixelMap<sup>12+</sup>
 
 createPremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallback\<void>): void
@@ -605,8 +738,8 @@ Converts a non-premultiplied alpha of a PixelMap to a premultiplied one and stor
 
 | Name  | Type                                            | Mandatory| Description                      |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
-| src | [PixelMap](#pixelmap7) | Yes  | Source **PixelMap** object.|
-| dst | [PixelMap](#pixelmap7) | Yes  | Target **PixelMap** object.|
+| src | [PixelMap](#pixelmap7) | Yes  | Source PixelMap object.|
+| dst | [PixelMap](#pixelmap7) | Yes  | Target PixelMap object.|
 |callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -661,8 +794,8 @@ Converts a non-premultiplied alpha of a PixelMap to a premultiplied one and stor
 
 | Name  | Type                                            | Mandatory| Description                      |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
-| src | [PixelMap](#pixelmap7) | Yes  | Source **PixelMap** object.|
-| dst | [PixelMap](#pixelmap7) | Yes  | Target **PixelMap** object.|
+| src | [PixelMap](#pixelmap7) | Yes  | Source PixelMap object.|
+| dst | [PixelMap](#pixelmap7) | Yes  | Target PixelMap object.|
 
 **Return value**
 
@@ -719,8 +852,8 @@ Converts a premultiplied alpha of a PixelMap to a non-premultiplied one and stor
 
 | Name  | Type                                            | Mandatory| Description                      |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
-| src | [PixelMap](#pixelmap7) | Yes  | Source **PixelMap** object.|
-| dst | [PixelMap](#pixelmap7) | Yes  | Target **PixelMap** object.|
+| src | [PixelMap](#pixelmap7) | Yes  | Source PixelMap object.|
+| dst | [PixelMap](#pixelmap7) | Yes  | Target PixelMap object.|
 |callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -775,8 +908,8 @@ Converts a premultiplied alpha of a PixelMap to a non-premultiplied one and stor
 
 | Name | Type                                            | Mandatory| Description                                                            |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| src | [PixelMap](#pixelmap7) | Yes  | Source **PixelMap** object.|
-| dst | [PixelMap](#pixelmap7) | Yes  | Target **PixelMap** object.|
+| src | [PixelMap](#pixelmap7) | Yes  | Source PixelMap object.|
+| dst | [PixelMap](#pixelmap7) | Yes  | Target PixelMap object.|
 
 **Return value**
 
@@ -824,7 +957,7 @@ async function CreateUnpremultipliedPixelMap() {
 
 ## Picture<sup>13+</sup>
 
-An image that contains special information can be decoded into a picture object, which generally contains the main picture, auxiliary picture, and metadata. The main picture contains most information about the image and is mainly used to render the image. The auxiliary picture is used to store data related to but different from the main picture, revealing more comprehensive details. The metadata is generally used to store information about the image file. The picture object class is used to read or write picture objects. Before calling any API in **Picture**, you must use [createPicture](#imagecreatepicture13) to create a **Picture** object.
+An image that contains special information can be decoded into a picture object, which generally contains the main picture, auxiliary picture, and metadata. The main picture contains most information about the image and is mainly used to render the image. The auxiliary picture is used to store data related to but different from the main picture, revealing more comprehensive details. The metadata is generally used to store information about the image file. The picture object class is used to read or write picture objects. Before calling any API in Picture, you must use [createPicture](#imagecreatepicture13) to create a Picture object.
 
 ### Properties
 
@@ -834,7 +967,7 @@ An image that contains special information can be decoded into a picture object,
 
 getMainPixelmap(): PixelMap
 
-Obtains the **PixelMap** object of the main picture. This API returns the result synchronously.
+Obtains the PixelMap object of the main picture. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -842,7 +975,7 @@ Obtains the **PixelMap** object of the main picture. This API returns the result
 
 | Type               | Description                  |
 | ------------------- | ---------------------- |
-| [PixelMap](#pixelmap7) | **PixelMap** object.|
+| [PixelMap](#pixelmap7) | PixelMap object.|
 
 **Example**
 
@@ -864,7 +997,7 @@ async function GetMainPixelmap() {
       });
     }
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -873,7 +1006,7 @@ async function GetMainPixelmap() {
 
 getHdrComposedPixelmap(): Promise\<PixelMap>
 
-Generates a High Dynamic Range (HDR) image and obtains its **PixelMap** object. This API uses a promise to return the result.
+Generates a High Dynamic Range (HDR) image and obtains its PixelMap object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -881,7 +1014,7 @@ Generates a High Dynamic Range (HDR) image and obtains its **PixelMap** object. 
 
 | Type                         | Description                       |
 | ----------------------------- | --------------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.|
+| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the PixelMap object.|
 
 **Error codes**
 
@@ -889,8 +1022,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 7600901  | Unknown error.         |
-| 7600201  | Unsupported operation. |
+| 7600901  | Inner unknown error. Please check the logs for detailed information. |
+| 7600201  | Unsupported operation. e.g.,1. The picture does not has a gainmap. 2. MainPixelMap's allocator type is not DMA. |
 
 **Example**
 
@@ -912,7 +1045,7 @@ async function GetHdrComposedPixelmap() {
       });
     }
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -921,7 +1054,7 @@ async function GetHdrComposedPixelmap() {
 
 getGainmapPixelmap(): PixelMap | null
 
-Obtains the **PixelMap** object of the gain map.
+Obtains the PixelMap object of the gain map.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -929,7 +1062,7 @@ Obtains the **PixelMap** object of the gain map.
 
 | Type                     | Description                                  |
 | ------------------------- | -------------------------------------- |
-| [PixelMap](#pixelmap7) \| null | **PixelMap** object obtained. If there is no **PixelMap** object, null is returned.|
+| [PixelMap](#pixelmap7) \| null | PixelMap object obtained. If there is no PixelMap object, null is returned.|
 
 **Example**
 
@@ -946,7 +1079,7 @@ async function GetGainmapPixelmap() {
         if (imageInfo != null) {
           console.info('GetGainmapPixelmap information height:' + imageInfo.size.height + ' width:' + imageInfo.size.width);
         } else {
-          console.info('GainPixelmap is null');
+          console.error('GainPixelmap is null');
         }
       }).catch((error: BusinessError) => {
         console.error(funcName, 'Failed error.code: ${error.code} ,error.message: ${error.message}');
@@ -955,7 +1088,7 @@ async function GetGainmapPixelmap() {
       console.info('GainPixelmap is null');
     }
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -973,7 +1106,7 @@ Sets an auxiliary picture.
 | Name          | Type                | Mandatory| Description        |
 | ---------------- | -------------------- | ---- | ------------ |
 | type             | [AuxiliaryPictureType](#auxiliarypicturetype13) | Yes  | Type of the auxiliary picture.|
-| auxiliaryPicture | [AuxiliaryPicture](#auxiliarypicture13)     | Yes  | **AuxiliaryPicture** object.|
+| auxiliaryPicture | [AuxiliaryPicture](#auxiliarypicture13)     | Yes  | AuxiliaryPicture object.|
 
 **Error codes**
 
@@ -1000,7 +1133,7 @@ async function SetAuxiliaryPicture(context: Context) {
   if (auxPicture != null) {
     console.info('Create picture succeeded');
   } else {
-    console.info('Create picture failed');
+    console.error('Create picture failed');
   }
 
   if (pictureObj != null) {
@@ -1031,7 +1164,7 @@ Obtains an auxiliary picture by type.
 
 | Type                  | Description                                          |
 | ---------------------- | ---------------------------------------------- |
-| [AuxiliaryPicture](#auxiliarypicture13) \| null | **AuxiliaryPicture** object. If there is no **AuxiliaryPicture** object, null is returned.|
+| [AuxiliaryPicture](#auxiliarypicture13) \| null | AuxiliaryPicture object. If there is no AuxiliaryPicture object, null is returned.|
 
 **Error codes**
 
@@ -1058,7 +1191,7 @@ async function GetAuxiliaryPicture() {
 
 setMetadata(metadataType: MetadataType, metadata: Metadata): Promise\<void>
 
-Sets the metadata for this **Picture** object.
+Sets the metadata for this Picture object.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -1067,7 +1200,7 @@ Sets the metadata for this **Picture** object.
 | Name      | Type        | Mandatory| Description        |
 | ------------ | ------------ | ---- | ------------ |
 | metadataType | [MetadataType](#metadatatype13) | Yes  | Metadata type.|
-| metadata     | [Metadata](#metadata13)     | Yes  | **Metadata** object.|
+| metadata     | [Metadata](#metadata13)     | Yes  | Metadata object.|
 
 **Return value**
 
@@ -1082,7 +1215,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 7600202  | Unsupported metadata. Possible causes: Unsupported metadata type. |
+| 7600202  | Unsupported metadata. Possible causes: 1. Unsupported metadata type. 2. The metadata type does not match the auxiliary picture type. |
 
 **Example**
 
@@ -1090,7 +1223,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-async function SetPictureObjMetadata(context: Context) {
+async function SetPictureObjMetadata(exifContext: Context) {
   const exifResourceMgr = exifContext.resourceManager;
   const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg"); // The image contains EXIF metadata.
   let exifOps: image.SourceOptions = {
@@ -1102,7 +1235,7 @@ async function SetPictureObjMetadata(context: Context) {
   if (exifPictureObj != null) {
     console.info('Create picture succeeded');
   } else {
-    console.info('Create picture failed');
+    console.error('Create picture failed');
   }
 
   if (pictureObj != null) {
@@ -1114,7 +1247,7 @@ async function SetPictureObjMetadata(context: Context) {
       console.error('Failed to set metadata. error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
     });
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -1123,7 +1256,7 @@ async function SetPictureObjMetadata(context: Context) {
 
 getMetadata(metadataType: MetadataType): Promise\<Metadata>
 
-Obtains the metadata of this **Picture** object.
+Obtains the metadata of this Picture object.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -1146,7 +1279,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 7600202  | Unsupported metadata. Possible causes: Unsupported metadata type. |
+| 7600202  | Unsupported metadata. Possible causes: 1. Unsupported metadata type. 2. The metadata type does not match the auxiliary picture type. |
 
 **Example**
 
@@ -1160,10 +1293,10 @@ async function GetPictureObjMetadataProperties() {
     if (pictureObjMetaData != null) {
       console.info('get picture metadata success');
     } else {
-      console.info('get picture metadata is failed');
+      console.error('get picture metadata is failed');
     }
   } else {
-    console.info(" pictureObj is null");
+    console.error(" pictureObj is null");
   }
 }
 ```
@@ -1172,7 +1305,7 @@ async function GetPictureObjMetadataProperties() {
 
 marshalling(sequence: rpc.MessageSequence): void
 
-Marshals this **Picture** object and writes it to a **MessageSequence** object.
+Marshals this Picture object and writes it to a MessageSequence object.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -1180,7 +1313,7 @@ Marshals this **Picture** object and writes it to a **MessageSequence** object.
 
 | Name  | Type                                                               | Mandatory| Description                     |
 | -------- | ------------------------------------------------------------------- | ---- | ------------------------- |
-| sequence | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | Yes  | **MessageSequence** object.|
+| sequence | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | Yes  | MessageSequence object.|
 
 **Error codes**
 
@@ -1209,7 +1342,7 @@ class MySequence implements rpc.Parcelable {
       console.info('Marshalling success !');
       return true;
     } else {
-      console.info('Marshalling failed !');
+      console.error('Marshalling failed !');
       return false;
     }
   }
@@ -1234,7 +1367,7 @@ async function Marshalling_UnMarshalling() {
     // unmarshalling.
     data.readParcelable(ret);
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -1243,7 +1376,7 @@ async function Marshalling_UnMarshalling() {
 
 release(): void
 
-Releases this **Picture** object.
+Releases this Picture object.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -1259,29 +1392,29 @@ async function Release() {
     if (pictureObj.getMainPixelmap() == null) {
       console.info(funcName, 'Success !');
     } else {
-      console.info(funcName, 'Failed !');
+      console.error(funcName, 'Failed !');
     }
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
 
 ## PixelMap<sup>7+</sup>
 
-Provides APIs to read or write image data and obtain image information. Before calling any API in **PixelMap**, you must use [createPixelMap](#imagecreatepixelmap8) to create a **PixelMap** object. Currently, the maximum size of a serialized PixelMap is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
+Provides APIs to read or write image data and obtain image information. Before calling any API in PixelMap, you must use [createPixelMap](#imagecreatepixelmap8) to create a PixelMap object. Currently, the maximum size of a serialized PixelMap is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
 
-Since API version 11, **PixelMap** supports cross-thread calls through workers. If a **PixelMap** object is invoked by another thread through [Worker](../apis-arkts/js-apis-worker.md), all APIs of the **PixelMap** object cannot be called in the original thread. Otherwise, error 501 is reported, indicating that the server cannot complete the request. 
+Since API version 11, PixelMap supports cross-thread calls through workers. If a PixelMap object is invoked by another thread through [Worker](../apis-arkts/js-apis-worker.md), all APIs of the PixelMap object cannot be called in the original thread. Otherwise, error 501 is reported, indicating that the server cannot complete the request. 
 
-Before calling any API in **PixelMap**, you must use [image.createPixelMap](#imagecreatepixelmap8) to create a **PixelMap** object.
+Before calling any API in PixelMap, you must use [image.createPixelMap](#imagecreatepixelmap8) to create a PixelMap object.
 
-To develop an atomic service, use [ImageSoure](#imagesource) to create a **PixelMap** object.
+To develop an atomic service, use [ImageSoure](#imagesource) to create a PixelMap object.
 
 ### Properties
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name             | Type   | Readable| Writable| Description                      |
+| Name             | Type   | Read Only| Optional| Description                      |
 | -----------------| ------- | ---- | ---- | -------------------------- |
 | isEditable        | boolean | Yes  | No  | Whether the PixelMap is editable. The value **true** means that the PixelMap is editable, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
 | isStrideAlignment<sup>11+</sup> | boolean | Yes  | No  | Whether the PixelMap uses DMA memory. The value** true** means that the PixelMap uses DMA memory, and **false** means the opposite.|
@@ -1290,7 +1423,7 @@ To develop an atomic service, use [ImageSoure](#imagesource) to create a **Pixel
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-Reads the pixels of this **PixelMap** object based on the PixelMap's pixel format and writes the data to the buffer. This API uses a promise to return the result.
+Reads the pixels of this PixelMap object based on the PixelMap's pixel format and writes the data to the buffer. This API uses a promise to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1332,7 +1465,7 @@ async function ReadPixelsToBuffer(pixelMap : image.PixelMap) {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-Reads the pixels of this **PixelMap** object based on the PixelMap's pixel format and writes the data to the buffer. This API uses an asynchronous callback to return the result.
+Reads the pixels of this PixelMap object based on the PixelMap's pixel format and writes the data to the buffer. This API uses an asynchronous callback to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1372,7 +1505,7 @@ async function ReadPixelsToBuffer(pixelMap : image.PixelMap) {
 
 readPixelsToBufferSync(dst: ArrayBuffer): void
 
-Reads the pixels of this **PixelMap** object based on the PixelMap's pixel format and writes the data to the buffer. This API returns the result synchronously.
+Reads the pixels of this PixelMap object based on the PixelMap's pixel format and writes the data to the buffer. This API returns the result synchronously.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1413,7 +1546,7 @@ async function ReadPixelsToBufferSync(pixelMap : image.PixelMap) {
 
 readPixels(area: PositionArea): Promise\<void>
 
-Reads the pixels in the area specified by [PositionArea](#positionarea7).region of this **PixelMap** object in the BGRA_8888 format and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API uses a promise to return the result.
+Reads the pixels in the area specified by [PositionArea](#positionarea7).region of this PixelMap object in the BGRA_8888 format and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API uses a promise to return the result.
 
 You can use a formula to calculate the size of the memory to be applied for based on **PositionArea**.
 
@@ -1482,7 +1615,7 @@ async function ReadPixelsYUV(pixelMap : image.PixelMap) {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Reads the pixels in the area specified by [PositionArea](#positionarea7).region of this **PixelMap** object in the BGRA_8888 format and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API uses an asynchronous callback to return the result.
+Reads the pixels in the area specified by [PositionArea](#positionarea7).region of this PixelMap object in the BGRA_8888 format and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API uses an asynchronous callback to return the result.
 
 You can use a formula to calculate the size of the memory to be applied for based on **PositionArea**.
 
@@ -1552,7 +1685,7 @@ async function ReadPixelsYUV(pixelMap : image.PixelMap) {
 
 readPixelsSync(area: PositionArea): void
 
-Reads the pixels in the area specified by [PositionArea](#positionarea7).region of this **PixelMap** object in the BGRA_8888 format and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API returns the result synchronously.
+Reads the pixels in the area specified by [PositionArea](#positionarea7).region of this PixelMap object in the BGRA_8888 format and writes the data to the [PositionArea](#positionarea7).pixels buffer. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1595,7 +1728,7 @@ async function ReadPixelsSync(pixelMap : image.PixelMap) {
 
 writePixels(area: PositionArea): Promise\<void>
 
-Reads the pixels in the [PositionArea](#positionarea7).pixels buffer in the BGRA_8888 format and writes the data to the area specified by [PositionArea](#positionarea7).region in this **PixelMap** object. This API uses a promise to return the result.
+Reads the pixels in the [PositionArea](#positionarea7).pixels buffer in the BGRA_8888 format and writes the data to the area specified by [PositionArea](#positionarea7).region in this PixelMap object. This API uses a promise to return the result.
 
 You can use a formula to calculate the size of the memory to be applied for based on **PositionArea**.
 
@@ -1671,7 +1804,7 @@ async function WritePixelsYUV() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Reads the pixels in the [PositionArea](#positionarea7).pixels buffer in the BGRA_8888 format and writes the data to the area specified by [PositionArea](#positionarea7).region in this **PixelMap** object. This API uses an asynchronous callback to return the result.
+Reads the pixels in the [PositionArea](#positionarea7).pixels buffer in the BGRA_8888 format and writes the data to the area specified by [PositionArea](#positionarea7).region in this PixelMap object. This API uses an asynchronous callback to return the result.
 
 You can use a formula to calculate the size of the memory to be applied for based on **PositionArea**.
 
@@ -1746,7 +1879,7 @@ async function WritePixelsYUV() {
 
 writePixelsSync(area: PositionArea): void
 
-Reads the pixels in the [PositionArea](#positionarea7).pixels buffer in the BGRA_8888 format and writes the data to the area specified by [PositionArea](#positionarea7).region in this **PixelMap** object. This API returns the result synchronously.
+Reads the pixels in the [PositionArea](#positionarea7).pixels buffer in the BGRA_8888 format and writes the data to the area specified by [PositionArea](#positionarea7).region in this PixelMap object. This API returns the result synchronously.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1795,7 +1928,7 @@ async function WritePixelsSync() {
 
 writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
-Reads the pixels in the buffer based on the PixelMap's pixel format and writes the data to this **PixelMap** object. This API uses a promise to return the result.
+Reads the pixels in the buffer based on the PixelMap's pixel format and writes the data to this PixelMap object. This API uses a promise to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1840,7 +1973,7 @@ async function WriteBufferToPixels() {
 
 writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-Reads the pixels in the buffer based on the PixelMap's pixel format and writes the data to this **PixelMap** object. This API uses an asynchronous callback to return the result.
+Reads the pixels in the buffer based on the PixelMap's pixel format and writes the data to this PixelMap object. This API uses an asynchronous callback to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1883,7 +2016,7 @@ async function WriteBufferToPixels() {
 
 writeBufferToPixelsSync(src: ArrayBuffer): void
 
-Reads the pixels in the buffer based on the PixelMap's pixel format and writes the data to this **PixelMap** object. This API returns the result synchronously.
+Reads the pixels in the buffer based on the PixelMap's pixel format and writes the data to this PixelMap object. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2229,7 +2362,7 @@ async function OpacitySync() {
 
 createAlphaPixelmap(): Promise\<PixelMap>
 
-Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API uses a promise to return the result. It is invalid for YUV images.
+Creates a PixelMap object that contains only the alpha channel information. This object can be used for the shadow effect. This API uses a promise to return the result. It is invalid for YUV images.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -2241,7 +2374,7 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 
 | Type                            | Description                       |
 | -------------------------------- | --------------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.|
+| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the PixelMap object.|
 
 **Example**
 
@@ -2263,7 +2396,7 @@ async function CreateAlphaPixelmap() {
 
 createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
-Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API uses an asynchronous callback to return the result. It is invalid for YUV images.
+Creates a PixelMap object that contains only the alpha channel information. This object can be used for the shadow effect. This API uses an asynchronous callback to return the result. It is invalid for YUV images.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -2275,7 +2408,7 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 
 | Name  | Type                    | Mandatory| Description                    |
 | -------- | ------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback\<[PixelMap](#pixelmap7)> | Yes  |  Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the **PixelMap** object obtained; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<[PixelMap](#pixelmap7)> | Yes  |  Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the PixelMap object obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -2300,7 +2433,7 @@ async function CreateAlphaPixelmap() {
 
 createAlphaPixelmapSync(): PixelMap
 
-Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API returns the result synchronously. It is invalid for YUV images.
+Creates a PixelMap object that contains only the alpha channel information. This object can be used for the shadow effect. This API returns the result synchronously. It is invalid for YUV images.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2310,7 +2443,7 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| [PixelMap](#pixelmap7) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+| [PixelMap](#pixelmap7) | PixelMap object. If the operation fails, an error is thrown.|
 
 **Error codes**
 
@@ -2605,7 +2738,7 @@ Creates an image that has been resized based on the specified anti-aliasing leve
 
 | Type          | Description                       |
 | -------------- | --------------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.|
+| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the PixelMap object.|
 
 **Error codes**
 
@@ -2654,7 +2787,7 @@ Creates an image that has been resized based on the specified anti-aliasing leve
 
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| [PixelMap](#pixelmap7) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+| [PixelMap](#pixelmap7) | PixelMap object. If the operation fails, an error is thrown.|
 
 **Error codes**
 
@@ -2683,7 +2816,7 @@ async function CreateScaledPixelMapSync() {
 
 clone(): Promise\<PixelMap>
 
-Copies this **PixelMap** object. This API uses a promise to return the result.
+Copies this PixelMap object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -2691,7 +2824,7 @@ Copies this **PixelMap** object. This API uses a promise to return the result.
 
 | Type                            | Description                 |
 | -------------------------------- | --------------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.|
+| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the PixelMap object.|
 
 **Error codes**
 
@@ -2700,10 +2833,10 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 501 | Resource unavailable. |
-| 62980102 | Image malloc abnormal. |
-| 62980103 | Image types are not supported. |
-| 62980104 | Image initialization abnormal. |
-| 62980106 | The image data is to large. |
+| 62980102 | Image malloc abnormal. This status code is thrown when an error occurs during the process of copying data. |
+| 62980103 | Image YUV And ASTC types are not supported. |
+| 62980104 | Image initialization abnormal. This status code is thrown when an error occurs during the process of createing empty pixelmap. |
+| 62980106 | The image data is to large. This status code is thrown when an error occurs during the process of checking size. |
 
 **Example**
 
@@ -2725,7 +2858,7 @@ async function Demo() {
 
 cloneSync(): PixelMap
 
-Copies this **PixelMap** object. This API returns the result synchronously.
+Copies this PixelMap object. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -2733,7 +2866,7 @@ Copies this **PixelMap** object. This API returns the result synchronously.
 
 | Type                            | Description                 |
 | -------------------------------- | --------------------------- |
-| [PixelMap](#pixelmap7) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+| [PixelMap](#pixelmap7) | PixelMap object. If the operation fails, an error is thrown.|
 
 **Error codes**
 
@@ -2742,10 +2875,10 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 501 | Resource unavailable. |
-| 62980102 | Image malloc abnormal. |
-| 62980103 | Image types are not supported. |
-| 62980104 | Image initialization abnormal. |
-| 62980106 | The image data is to large. |
+| 62980102 | Image malloc abnormal. This status code is thrown when an error occurs during the process of copying data. |
+| 62980103 | Image YUV And ASTC types are not supported. |
+| 62980104 | Image initialization abnormal. This status code is thrown when an error occurs during the process of createing empty pixelmap. |
+| 62980106 | The image data is to large. This status code is thrown when an error occurs during the process of checking size. |
 
 **Example**
 
@@ -3465,10 +3598,12 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -3488,7 +3623,7 @@ if (pixelmap != undefined) {
     console.error(`Failed to set sdr. code is ${err.code}, message is ${err.message}`);
   });
 } else {
-  console.info('Failed to create pixelMap.');
+  console.error('Failed to create pixelMap.');
 }
 ```
 
@@ -3525,8 +3660,10 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 import image from '@ohos.multimedia.image';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
@@ -3544,10 +3681,10 @@ if (pixelmap != undefined) {
     let staticMetadata = pixelmap.getMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA);
     console.info("getmetadata:" + JSON.stringify(staticMetadata));
   } catch (e) {
-    console.info('pixelmap create failed' + e);
+    console.error('pixelmap create failed' + e);
   }
 } else {
-  console.info('Failed to create pixelMap.');
+  console.error('Failed to create pixelMap.');
 }
 ```
 
@@ -3639,6 +3776,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 import image from '@ohos.multimedia.image';
 import taskpool from '@ohos.taskpool';
 
@@ -3657,11 +3795,13 @@ async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap> {
   return pixelMap;
 }
 
+@Component
 struct Demo {
   @State pixelMap: PixelMap | undefined = undefined;
   // Main thread method.
   private loadImageFromThread(): void {
-    const resourceMgr = this.getUIContext().getHostContext()?.resourceManager;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    const resourceMgr = context.resourceManager;
     // 'example.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
     resourceMgr.getRawFd('example.jpg').then(rawFileDescriptor => {
       taskpool.execute(loadPixelMap, rawFileDescriptor).then(pixelMap => {
@@ -3676,6 +3816,9 @@ struct Demo {
       });
     });
   }
+  build() {
+    // ...
+  }
 }
 ```
 
@@ -3683,7 +3826,7 @@ struct Demo {
 
 marshalling(sequence: rpc.MessageSequence): void
 
-Marshals this **PixelMap** object and writes it to a **MessageSequence** object.
+Marshals this PixelMap object and writes it to a MessageSequence object.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -3691,7 +3834,7 @@ Marshals this **PixelMap** object and writes it to a **MessageSequence** object.
 
 | Name                | Type                                                 | Mandatory| Description                                    |
 | ---------------------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)  | Yes  | **MessageSequence** object.                |
+| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)  | Yes  | MessageSequence object.                |
 
 **Error codes**
 
@@ -3763,8 +3906,8 @@ async function Marshalling() {
 
 unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
-Unmarshals a **MessageSequence** object to obtain a **PixelMap** object.
-To create a **PixelMap** object in synchronous mode, use [createPixelMapFromParcel](#imagecreatepixelmapfromparcel11).
+Unmarshals a MessageSequence object to obtain a PixelMap object.
+To create a PixelMap object in synchronous mode, use [createPixelMapFromParcel](#imagecreatepixelmapfromparcel11).
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -3772,13 +3915,13 @@ To create a **PixelMap** object in synchronous mode, use [createPixelMapFromParc
 
 | Name                | Type                                                 | Mandatory| Description                                    |
 | ---------------------- | ----------------------------------------------------- | ---- | ---------------------------------------- |
-| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | Yes  | **MessageSequence** object that stores the **PixelMap** information.     |
+| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | Yes  | MessageSequence object that stores the PixelMap information.     |
 
 **Return value**
 
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| Promise\<[PixelMap](#pixelmap7)> |Promise used to return the **PixelMap** object.|
+| Promise\<[PixelMap](#pixelmap7)> |Promise used to return the PixelMap object.|
 
 **Error codes**
 
@@ -3851,9 +3994,9 @@ async function Unmarshalling() {
 
 release():Promise\<void>
 
-Releases this **PixelMap** object. This API uses a promise to return the result.
+Releases this PixelMap object. This API uses a promise to return the result.
 
-ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the **PixelMap** object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
+ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the PixelMap object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -3887,9 +4030,9 @@ async function Release() {
 
 release(callback: AsyncCallback\<void>): void
 
-Releases this **PixelMap** object. This API uses an asynchronous callback to return the result.
+Releases this PixelMap object. This API uses an asynchronous callback to return the result.
 
-ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the **PixelMap** object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
+ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the PixelMap object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -4023,7 +4166,7 @@ async function SetMemoryNameSync() {
 
 createImageSource(uri: string): ImageSource
 
-Creates an **ImageSource** instance based on a given URI.
+Creates an ImageSource instance based on a given URI.
 
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -4040,11 +4183,14 @@ Creates an **ImageSource** instance based on a given URI.
 
 | Type                       | Description                                        |
 | --------------------------- | -------------------------------------------- |
-| [ImageSource](#imagesource) | Returns the **ImageSource** instance if the operation is successful; returns **undefined** otherwise.|
+| [ImageSource](#imagesource) | ImageSource instance. If the operation fails, undefined is returned.|
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
+
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
@@ -4056,7 +4202,7 @@ const imageSourceApi: image.ImageSource = image.createImageSource(path);
 
 createImageSource(uri: string, options: SourceOptions): ImageSource
 
-Creates an **ImageSource** instance based on a given URI.
+Creates an ImageSource instance based on a given URI.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -4075,11 +4221,14 @@ Creates an **ImageSource** instance based on a given URI.
 
 | Type                       | Description                                        |
 | --------------------------- | -------------------------------------------- |
-| [ImageSource](#imagesource) | Returns the **ImageSource** instance if the operation is successful; returns **undefined** otherwise.|
+| [ImageSource](#imagesource) | ImageSource instance. If the operation fails, undefined is returned.|
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
+
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -4092,7 +4241,7 @@ let imageSourceApi: image.ImageSource = image.createImageSource(path, sourceOpti
 
 createImageSource(fd: number): ImageSource
 
-Creates an **ImageSource** instance based on a given file descriptor.
+Creates an ImageSource instance based on a given file descriptor.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4108,12 +4257,14 @@ Creates an **ImageSource** instance based on a given file descriptor.
 
 | Type                       | Description                                        |
 | --------------------------- | -------------------------------------------- |
-| [ImageSource](#imagesource) | Returns the **ImageSource** instance if the operation is successful; returns **undefined** otherwise.|
+| [ImageSource](#imagesource) | ImageSource instance. If the operation fails, undefined is returned.|
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -4127,7 +4278,7 @@ const imageSourceApi: image.ImageSource = image.createImageSource(file.fd);
 
 createImageSource(fd: number, options: SourceOptions): ImageSource
 
-Creates an **ImageSource** instance based on a given file descriptor.
+Creates an ImageSource instance based on a given file descriptor.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -4146,12 +4297,14 @@ Creates an **ImageSource** instance based on a given file descriptor.
 
 | Type                       | Description                                        |
 | --------------------------- | -------------------------------------------- |
-| [ImageSource](#imagesource) | Returns the **ImageSource** instance if the operation is successful; returns **undefined** otherwise.|
+| [ImageSource](#imagesource) | ImageSource instance. If the operation fails, undefined is returned.|
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
@@ -4166,7 +4319,7 @@ const imageSourceApi: image.ImageSource = image.createImageSource(file.fd, sourc
 
 createImageSource(buf: ArrayBuffer): ImageSource
 
-Creates an **ImageSource** instance based on buffers. The data passed by **buf** must be undecoded. Do not pass the pixel buffer data such as RBGA and YUV. If you want to create a PixelMap based on the pixel buffer data, call [image.createPixelMapSync](#createpixelmapsync12).
+Creates an ImageSource instance based on buffers. The data passed by **buf** must be undecoded. Do not pass the pixel buffer data such as RBGA and YUV. If you want to create a PixelMap based on the pixel buffer data, call [image.createPixelMapSync](#createpixelmapsync12).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -4184,7 +4337,7 @@ Creates an **ImageSource** instance based on buffers. The data passed by **buf**
 
 | Type                       | Description                                        |
 | --------------------------- | -------------------------------------------- |
-| [ImageSource](#imagesource) | Returns the **ImageSource** instance if the operation is successful; returns **undefined** otherwise.|
+| [ImageSource](#imagesource) | ImageSource instance. If the operation fails, undefined is returned.|
 
 
 **Example**
@@ -4198,7 +4351,7 @@ const imageSourceApi: image.ImageSource = image.createImageSource(buf);
 
 createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 
-Creates an **ImageSource** instance based on buffers. The data passed by **buf** must be undecoded. Do not pass the pixel buffer data such as RBGA and YUV. If you want to create a PixelMap based on the pixel buffer data, call [image.createPixelMapSync](#createpixelmapsync12).
+Creates an ImageSource instance based on buffers. The data passed by **buf** must be undecoded. Do not pass the pixel buffer data such as RBGA and YUV. If you want to create a PixelMap based on the pixel buffer data, call [image.createPixelMapSync](#createpixelmapsync12).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -4217,7 +4370,7 @@ Creates an **ImageSource** instance based on buffers. The data passed by **buf**
 
 | Type                       | Description                                        |
 | --------------------------- | -------------------------------------------- |
-| [ImageSource](#imagesource) | Returns the **ImageSource** instance if the operation is successful; returns **undefined** otherwise.|
+| [ImageSource](#imagesource) | ImageSource instance. If the operation fails, undefined is returned.|
 
 **Example**
 
@@ -4231,7 +4384,7 @@ const imageSourceApi: image.ImageSource = image.createImageSource(data, sourceOp
 
 createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOptions): ImageSource
 
-Creates an **ImageSource** instance based on the raw file descriptor of an image resource file.
+Creates an ImageSource instance based on the raw file descriptor of an image resource file.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4248,12 +4401,14 @@ Creates an **ImageSource** instance based on the raw file descriptor of an image
 
 | Type                       | Description                                        |
 | --------------------------- | -------------------------------------------- |
-| [ImageSource](#imagesource) | Returns the **ImageSource** instance if the operation is successful; returns **undefined** otherwise.|
+| [ImageSource](#imagesource) | ImageSource instance. If the operation fails, undefined is returned.|
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -4271,15 +4426,15 @@ resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor: resourceManager.RawFil
 
 CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
-Creates an **ImageSource** instance in incremental mode based on buffers. Such an instance does not support reading or writing of EXIF information.
+Creates an ImageSource instance in incremental mode based on buffers. Such an instance does not support reading or writing of EXIF information.
 
-The **ImageSource** instance created in incremental mode supports the following capabilities (applicable to synchronous, callback, and promise modes):
+The ImageSource instance created in incremental mode supports the following capabilities (applicable to synchronous, callback, and promise modes):
 - Obtaining image information: Call [getImageInfo](#getimageinfo) to obtain image information by index, or call [getImageInfo](#getimageinfo-1) to directly obtain image information.
 - Obtaining an image property: Call [getImageProperty](#getimageproperty11) to obtain the value of a property with the specified index in an image.
 - Obtaining image properties: Call [getImageProperties](#getimageproperties12) to obtain the values of properties with the given names in an image.
 - Updating incremental data: Call [updateData](#updatedata9) to update data.
-- Creating a **PixelMap** object: Call [createPixelMap](#createpixelmap7) or [createPixelMap](#createpixelmap7-2) to create a PixelMap based on decoding options, or call [createPixelMap](#createpixelmap7-1) to create a PixelMap based on default parameters.
-- Releasing an **ImageSource** instance: Call [release](#release) to release an image source.
+- Creating a PixelMap object: Call [createPixelMap](#createpixelmap7) or [createPixelMap](#createpixelmap7-2) to create a PixelMap based on decoding options, or call [createPixelMap](#createpixelmap7-1) to create a PixelMap based on default parameters.
+- Releasing an ImageSource instance: Call [release](#release) to release an image source.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -4293,11 +4448,14 @@ The **ImageSource** instance created in incremental mode supports the following 
 
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
-| [ImageSource](#imagesource) | Returns the **ImageSource** instance if the operation is successful; returns **undefined** otherwise.|
+| [ImageSource](#imagesource) | ImageSource instance. If the operation fails, undefined is returned.|
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
+
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')); // Obtain the image resource.
@@ -4322,9 +4480,9 @@ imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLengt
 
 CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
-Creates an **ImageSource** instance in incremental mode based on buffers. Such an instance does not support reading or writing of EXIF information.
+Creates an ImageSource instance in incremental mode based on buffers. Such an instance does not support reading or writing of EXIF information.
 
-The capabilities supported by the **ImageSource** instance created by this API are the same as those supported by the instance created by [CreateIncrementalSource(buf: ArrayBuffer): ImageSource](#imagecreateincrementalsource9).
+The capabilities supported by the ImageSource instance created by this API are the same as those supported by the instance created by [CreateIncrementalSource(buf: ArrayBuffer): ImageSource](#imagecreateincrementalsource9).
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -4339,11 +4497,14 @@ The capabilities supported by the **ImageSource** instance created by this API a
 
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
-| [ImageSource](#imagesource) | Returns the **ImageSource** instance if the operation is successful; returns **undefined** otherwise.|
+| [ImageSource](#imagesource) | ImageSource instance. If the operation fails, undefined is returned.|
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
+
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')) // Obtain the image resource.
@@ -4368,13 +4529,13 @@ imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLengt
 
 ## ImageSource
 
-Provides APIs to obtain image information. Before calling any API in **ImageSource**, you must use [createImageSource](#imagecreateimagesource) to create an **ImageSource** instance.
+Provides APIs to obtain image information. Before calling any API in ImageSource, you must use [createImageSource](#imagecreateimagesource) to create an ImageSource instance.
 
 ### Properties
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
-| Name            | Type          | Readable| Writable| Description                                                        |
+| Name            | Type          | Read Only| Optional| Description                                                        |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
 | supportedFormats | Array\<string> | Yes  | No  | Supported formats, including .png, .jpeg, .bmp, .gif, .webp, .dng., and .heic<sup>12+</sup> (depending on the hardware).|
 
@@ -4502,7 +4663,9 @@ Obtains information about an image with the specified index. This API returns th
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
 import { image } from '@kit.ImageKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
@@ -4553,12 +4716,12 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.       |
-| 62980113 | Unknown image format.        |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116| Failed to decode the image.            |
 | 62980118 | Failed to create the image plugin.   |
 | 62980122 | Failed to decode the image header.   |
-| 62980123| Images in EXIF format are not supported.             |
+| 62980123| The image does not support EXIF decoding. |
 | 62980135| The EXIF value is invalid.             |
 
 **Example**
@@ -4685,7 +4848,7 @@ imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError
 
 getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey, string|null>>
 
-Obtains the values of properties with the given names in this image. This API uses a promise to return the result. This API applies only to images that are in JPEG, PNG, or HEIF<sup>12+</sup> (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
+Obtains the values of properties with the given names in this image. This API uses a promise to return the result. This API applies only to images that are in JPEG, PNG, or HEIF (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -4710,7 +4873,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;     |
 | 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.             |
 | 62980110| The image source data is incorrect.            |
-| 62980113| Unknown image format.            |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980116| Failed to decode the image.            |
 
 **Example**
@@ -4727,6 +4890,63 @@ imageSourceApi.getImageProperties(key).then((data) => {
 });
 ```
 
+### getImagePropertySync<sup>20+</sup>
+
+getImagePropertySync(key:PropertyKey): string
+
+Obtains the value of a specified EXIF property. This API returns the property value in a string.
+
+>**NOTE**
+>
+> This API applies only to images that are in JPEG, PNG, or HEIF (depending on the hardware) format and contain the EXIF information.
+>
+> EXIF information is metadata of the image, including shooting time, camera model, aperture, focal length, and ISO.
+
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name | Type                                                | Mandatory| Description                                |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
+| key     | [PropertyKey](#propertykey7)                                               | Yes  | Name of the property.                        |
+
+**Return value**
+
+| Type            | Description                                                             |
+| ---------------- | ----------------------------------------------------------------- |
+| string | Value of the specified EXIF property. If retrieval fails, the default value of the property is returned. For details about the meaning of each data value, see [PropertyKey](#propertykey7).|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 7700101  | Bad source. e.g.,1. Image has invalid width or height. 2. Image source incomplete. 3. Read image data failed. 4. Codec create failed.|
+| 7700102 | Unsupported MIME type.|
+| 7700202 | Unsupported metadata. For example, key is not supported.|
+
+**Example**
+
+<!--code_no_check-->
+```ts
+import { image } from '@kit.ImageKit';
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let resourceMgr = context.resourceManager;
+if (resourceMgr == null) {
+  return;
+}
+let fd = resourceMgr.getRawFdSync("example.jpg");
+
+const imageSourceApi = image.createImageSource(fd);
+console.info("getImagePropertySync");
+let bits_per_sample = imageSourceApi.getImagePropertySync(image.PropertyKey.BITS_PER_SAMPLE);
+console.info("bits_per_sample : " + bits_per_sample);
+```
+
 ### modifyImageProperty<sup>11+</sup>
 
 modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
@@ -4735,7 +4955,7 @@ Modifies the value of a property in this image. This API uses a promise to retur
 
 > **NOTE**
 >
-> The property byte length is changed when the **modifyImageProperty** API is called to modify the value of a property. Currently, you can call the API in an **ImageSource** instance created based on a file descriptor or path, but not an **ImageSource** instance created based on buffers.
+> The property byte length is changed when the **modifyImageProperty** API is called to modify the value of a property. Currently, you can call the API in an ImageSource instance created based on a file descriptor or path, but not an ImageSource instance created based on buffers.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -4788,7 +5008,7 @@ Modifies the value of a property in this image. This API uses a promise to retur
 
 > **NOTE**
 >
-> The property byte length is changed when the **modifyImageProperty** API is called to modify the value of a property. Currently, you can call the API in an **ImageSource** instance created based on a file descriptor or path, but not an **ImageSource** instance created based on buffers.
+> The property byte length is changed when the **modifyImageProperty** API is called to modify the value of a property. Currently, you can call the API in an ImageSource instance created based on a file descriptor or path, but not an ImageSource instance created based on buffers.
 >
 > This API is deprecated since API version 11. You are advised to use [modifyImageProperty](#modifyimageproperty11).
 
@@ -4831,7 +5051,7 @@ Modifies the value of a property in this image. This API uses an asynchronous ca
 
 > **NOTE**
 >
-> The property byte length is changed when the **modifyImageProperty** API is called to modify the value of a property. Currently, you can call the API in an **ImageSource** instance created based on a file descriptor or path, but not an **ImageSource** instance created based on buffers.
+> The property byte length is changed when the **modifyImageProperty** API is called to modify the value of a property. Currently, you can call the API in an ImageSource instance created based on a file descriptor or path, but not an ImageSource instance created based on buffers.
 > 
 >This API is deprecated since API version 11. You are advised to use [modifyImageProperty](#modifyimageproperty11).
 
@@ -4863,11 +5083,11 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => 
 
 modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 
-Modifies the values of properties in this image. This API uses a promise to return the result. This API applies only to images that are in JPEG, PNG, or HEIF<sup>12+</sup> (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
+Modifies the values of properties in this image. This API uses a promise to return the result. This API applies only to images that are in JPEG, PNG, or HEIF (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
 
 > **NOTE**
 >
-> The property byte length is changed when the **modifyImageProperties** API is called to modify the values of properties. Currently, you can call the API in an **ImageSource** instance created based on a file descriptor or path, but not an **ImageSource** instance created based on buffers.
+> The property byte length is changed when the **modifyImageProperties** API is called to modify the values of properties. Currently, you can call the API in an ImageSource instance created based on a file descriptor or path, but not an ImageSource instance created based on buffers.
 >
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
@@ -4992,7 +5212,7 @@ imageSourceApi.updateData(array, false, 0, 10, (err: BusinessError) => {
 
 createPicture(options?: DecodingOptionsForPicture): Promise\<Picture>
 
-Creates a **Picture** object based on decoding options. This API uses a promise to return the result.
+Creates a Picture object based on decoding options. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -5006,7 +5226,7 @@ Creates a **Picture** object based on decoding options. This API uses a promise 
 
 | Type                        | Description                      |
 | ---------------------------- | -------------------------- |
-| Promise\<[Picture](#picture13)> | Promise used to return the **Picture** object.|
+| Promise\<[Picture](#picture13)> | Promise used to return the Picture object.|
 
 **Error codes**
 
@@ -5015,7 +5235,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified.2.Incorrect parameter types; 3.Parameter verification failed. |
-| 7700301  | Decode failed.                                               |
+| 7700301  | Failed to decode image.                                      |
 
 **Example**
 
@@ -5030,7 +5250,7 @@ async function CreatePicture() {
   if (pictureObj != null) {
     console.info('Create picture succeeded');
   } else {
-    console.info('Create picture failed');
+    console.error('Create picture failed');
   }
 }
 ```
@@ -5039,7 +5259,9 @@ async function CreatePicture() {
 
 createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
-Creates a **PixelMap** object based on decoding options. This API uses a promise to return the result.
+Creates a PixelMap object based on decoding options. This API uses a promise to return the result.
+
+Starting from API version 15, you are advised to use [createPixelMapUsingAllocator](#createpixelmapusingallocator15). This API can be used to specify the memory type [AllocatorType](#allocatortype15) of the output PixelMap. For details, see [Allocating Memory for Image Decoding (ArkTS)](../../media/image/image-allocator-type.md).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -5057,7 +5279,7 @@ Creates a **PixelMap** object based on decoding options. This API uses a promise
 
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.|
+| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the PixelMap object.|
 
 **Example**
 
@@ -5075,7 +5297,9 @@ imageSourceApi.createPixelMap().then((pixelMap: image.PixelMap) => {
 
 createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
-Creates a **PixelMap** object based on the default parameters. This API uses an asynchronous callback to return the result.
+Creates a PixelMap object based on the default parameters. This API uses an asynchronous callback to return the result.
+
+Starting from API version 15, you are advised to use [createPixelMapUsingAllocator](#createpixelmapusingallocator15). This API can be used to specify the memory type [AllocatorType](#allocatortype15) of the output PixelMap. For details, see [Allocating Memory for Image Decoding (ArkTS)](../../media/image/image-allocator-type.md).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -5087,7 +5311,7 @@ Creates a **PixelMap** object based on the default parameters. This API uses an 
 
 | Name    | Type                                 | Mandatory| Description                      |
 | -------- | ------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<[PixelMap](#pixelmap7)> | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the **PixelMap** object obtained; otherwise, **err** is an error object.|
+| callback | AsyncCallback<[PixelMap](#pixelmap7)> | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the PixelMap object obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -5107,7 +5331,9 @@ imageSourceApi.createPixelMap((err: BusinessError, pixelMap: image.PixelMap) => 
 
 createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): void
 
-Creates a **PixelMap** object based on decoding options. This API uses an asynchronous callback to return the result.
+Creates a PixelMap object based on decoding options. This API uses an asynchronous callback to return the result.
+
+Starting from API version 15, you are advised to use [createPixelMapUsingAllocator](#createpixelmapusingallocator15). This API can be used to specify the memory type [AllocatorType](#allocatortype15) of the output PixelMap. For details, see [Allocating Memory for Image Decoding (ArkTS)](../../media/image/image-allocator-type.md).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -5120,7 +5346,7 @@ Creates a **PixelMap** object based on decoding options. This API uses an asynch
 | Name  | Type                                 | Mandatory| Description                      |
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | options  | [DecodingOptions](#decodingoptions7)  | Yes  | Decoding options.                |
-| callback | AsyncCallback<[PixelMap](#pixelmap7)> | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the **PixelMap** object obtained; otherwise, **err** is an error object.|
+| callback | AsyncCallback<[PixelMap](#pixelmap7)> | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the PixelMap object obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -5150,7 +5376,9 @@ imageSourceApi.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: im
 
 createPixelMapSync(options?: DecodingOptions): PixelMap
 
-Creates a **PixelMap** object based on decoding options. This API returns the result synchronously.
+Creates a PixelMap object based on decoding options. This API returns the result synchronously.
+
+Starting from API version 15, you are advised to use [createPixelMapUsingAllocatorSync](#createpixelmapusingallocatorsync15). This API can be used to specify the memory type [AllocatorType](#allocatortype15) of the output PixelMap. For details, see [Allocating Memory for Image Decoding (ArkTS)](../../media/image/image-allocator-type.md).
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -5164,11 +5392,13 @@ Creates a **PixelMap** object based on decoding options. This API returns the re
 
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| [PixelMap](#pixelmap7) | **PixelMap** object.|
+| [PixelMap](#pixelmap7) | PixelMap object.|
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
 import { image } from '@kit.ImageKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
@@ -5190,7 +5420,7 @@ let pixelmap = imageSource.createPixelMapSync(decodingOptions);
 if (pixelmap != undefined) {
   console.info('Succeeded in creating pixelMap object.');
 } else {
-  console.info('Failed to create pixelMap.');
+  console.error('Failed to create pixelMap.');
 }
 ```
 
@@ -5198,7 +5428,7 @@ if (pixelmap != undefined) {
 
 createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 
-Creates an array of **PixelMap** objects based on decoding options. This API uses a promise to return the result. For dynamic images such as GIF and WebP images, this API returns the data of each frame of the image. For static images, this API returns the data of the unique frame of the image.
+Creates an array of PixelMap objects based on decoding options. This API uses a promise to return the result. For dynamic images such as GIF and WebP images, this API returns the data of each frame of the image. For static images, this API returns the data of the unique frame of the image.
 
 > **NOTE**
 >
@@ -5216,7 +5446,7 @@ Creates an array of **PixelMap** objects based on decoding options. This API use
 
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| Promise<Array<[PixelMap](#pixelmap7)>> | Promise used to return an array of **PixelMap** objects.|
+| Promise<Array<[PixelMap](#pixelmap7)>> | Promise used to return an array of PixelMap objects.|
 
 **Error codes**
 
@@ -5228,12 +5458,12 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | 62980099 | The shared memory data is abnormal. |
 | 62980101 | The image data is abnormal. |
 | 62980103| The image data is not supported.             |
-| 62980106 | The image is too large. |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980109 | Failed to crop the image. |
 | 62980110| The image source data is incorrect.             |
 | 62980111| The image source data is incomplete.           |
 | 62980112 | The image format does not match. |
-| 62980113 | Unknown image format. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter. |
 | 62980116 | Failed to decode the image. |
 | 62980118| Failed to create the image plugin.             |
@@ -5266,7 +5496,7 @@ imageSourceApi.createPixelMapList(decodeOpts).then((pixelMapList: Array<image.Pi
 
 createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
-Creates an array of **PixelMap** objects based on the default parameters. This API uses an asynchronous callback to return the result. For dynamic images such as GIF and WebP images, this API returns the data of each frame of the image. For static images, this API returns the data of the unique frame of the image.
+Creates an array of PixelMap objects based on the default parameters. This API uses an asynchronous callback to return the result. For dynamic images such as GIF and WebP images, this API returns the data of each frame of the image. For static images, this API returns the data of the unique frame of the image.
 
 > **NOTE**
 >
@@ -5278,7 +5508,7 @@ Creates an array of **PixelMap** objects based on the default parameters. This A
 
 | Name    | Type                                 | Mandatory| Description                      |
 | -------- | ------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the array of **PixelMap** objects obtained; otherwise, **err** is an error object. |
+| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the array of PixelMap objects obtained; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -5290,12 +5520,12 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.          |
 | 62980103 | The image data is not supported.         |
-| 62980106 | The image is too large.              |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980109 | Failed to crop the image.            |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.       |
-| 62980113 | Unknown image format.        |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.         |
 | 62980118 | Failed to create the image plugin.   |
@@ -5322,7 +5552,7 @@ imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image
 
 createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<PixelMap>>): void
 
-Creates an array of **PixelMap** objects based on decoding options. This API uses an asynchronous callback to return the result. For dynamic images such as GIF and WebP images, this API returns the data of each frame of the image. For static images, this API returns the data of the unique frame of the image.
+Creates an array of PixelMap objects based on decoding options. This API uses an asynchronous callback to return the result. For dynamic images such as GIF and WebP images, this API returns the data of each frame of the image. For static images, this API returns the data of the unique frame of the image.
 
 > **NOTE**
 >
@@ -5335,7 +5565,7 @@ Creates an array of **PixelMap** objects based on decoding options. This API use
 | Name  | Type                | Mandatory| Description                              |
 | -------- | -------------------- | ---- | ---------------------------------- |
 | options | [DecodingOptions](#decodingoptions7) | Yes| Decoding options.|
-| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the array of **PixelMap** objects obtained; otherwise, **err** is an error object. |
+| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the array of PixelMap objects obtained; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -5347,12 +5577,12 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.         |
 | 62980103 | The image data is not supported.        |
-| 62980106 | The image is too large.              |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980109 | Failed to crop the image.           |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.        |
-| 62980113 | Unknown image format.         |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.         |
 | 62980118 | Failed to create the image plugin.  |
@@ -5387,7 +5617,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
 
 createPixelMapUsingAllocator(options?: DecodingOptions, allocatorType?: AllocatorType): Promise\<PixelMap>
 
-Creates a **PixelMap** object based on decoding options and memory type. This API uses a promise to return the result.
+Creates a PixelMap object based on decoding options and memory type. This API uses a promise to return the result. For details about how to use the API, see [Allocating Memory for Image Decoding (ArkTS)](../../media/image/image-allocator-type.md).
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -5402,7 +5632,7 @@ Creates a **PixelMap** object based on decoding options and memory type. This AP
 
 | Type                            | Description                       |
 | -------------------------------- | --------------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.|
+| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the PixelMap object.|
 
 **Error codes**
 
@@ -5411,17 +5641,19 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;3.Parameter verification failed. |
-| 7700101  | Bad source.                                                  |
+| 7700101  | Bad source. e.g.,1. Image has invalid width or height. 2. Image source incomplete. 3. Read image data failed. 4. Codec create failed. |
 | 7700102  | Unsupported mimetype.                                        |
-| 7700103  | Image too large.                                             |
+| 7700103  | Image too large.  This status code is thrown when an error occurs during the process of checking size. |
 | 7700201  | Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata. |
 | 7700203  | Unsupported options, e.g., cannot convert image into desired pixel format. |
-| 7700301  | Decode failed.                                               |
-| 7700302  | Memory allocation failed.                                    |
+| 7700301  | Failed to decode image.                                      |
+| 7700302  | Failed to allocate memory.                                   |
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
 import image from '@ohos.multimedia.image';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
@@ -5442,7 +5674,7 @@ let pixelmap = imageSource.createPixelMapUsingAllocator(decodingOptions, image.A
 if (pixelmap != undefined) {
   console.info('Succeeded in creating pixelMap object.');
 } else {
-  console.info('Failed to create pixelMap.');
+  console.error('Failed to create pixelMap.');
 }
 ```
 
@@ -5450,7 +5682,7 @@ if (pixelmap != undefined) {
 
 createPixelMapUsingAllocatorSync(options?: DecodingOptions, allocatorType?: AllocatorType): PixelMap
 
-Creates a **PixelMap** object based on decoding options and memory type. This API returns the result synchronously.
+Creates a PixelMap object based on decoding options and memory type. This API returns the result synchronously. For details about how to use the API, see [Allocating Memory for Image Decoding (ArkTS)](../../media/image/image-allocator-type.md).
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -5465,7 +5697,7 @@ Creates a **PixelMap** object based on decoding options and memory type. This AP
 
 | Type                  | Description                  |
 | ---------------------- | ---------------------- |
-| [PixelMap](#pixelmap7) | **PixelMap** object.|
+| [PixelMap](#pixelmap7) | PixelMap object.|
 
 **Error codes**
 
@@ -5474,17 +5706,19 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;3.Parameter verification failed. |
-| 7700101  | Bad source.                                                  |
+| 7700101  | Bad source. e.g.,1. Image has invalid width or height. 2. Image source incomplete. 3. Read image data failed. 4. Codec create failed. |
 | 7700102  | Unsupported mimetype.                                        |
-| 7700103  | Image too large.                                             |
+| 7700103  | Image too large.  This status code is thrown when an error occurs during the process of checking size. |
 | 7700201  | Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata. |
 | 7700203  | Unsupported options, e.g., cannot convert image into desired pixel format. |
-| 7700301  | Decode failed.                                               |
-| 7700302  | Memory allocation failed.                                    |
+| 7700301  | Failed to decode image.                                      |
+| 7700302  | Failed to allocate memory.                                   |
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
 import image from '@ohos.multimedia.image';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
@@ -5505,7 +5739,7 @@ let pixelmap = imageSource.createPixelMapUsingAllocatorSync(decodingOptions, ima
 if (pixelmap != undefined) {
   console.info('Succeeded in creating pixelMap object.');
 } else {
-  console.info('Failed to create pixelMap.');
+  console.error('Failed to create pixelMap.');
 }
 ```
 
@@ -5533,7 +5767,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | 62980110| The image source data is incorrect.             |
 | 62980111| The image source data is incomplete.            |
 | 62980112 | The image format does not match. |
-| 62980113| Unknown image format. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter. |
 | 62980116| Failed to decode the image. |
 | 62980118| Failed to create the image plugin. |
@@ -5579,7 +5813,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.        |
-| 62980113 | Unknown image format.         |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.          |
 | 62980118 | Failed to create the image plugin.  |
@@ -5623,7 +5857,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | 62980110| The image source data is incorrect. |
 | 62980111| The image source data is incomplete. |
 | 62980112| The image format does not match. |
-| 62980113| Unknown image format. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115| Invalid image parameter. |
 | 62980116| Failed to decode the image. |
 | 62980118| Failed to create the image plugin. |
@@ -5668,7 +5902,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.        |
-| 62980113 | Unknown image format.         |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.          |
 | 62980118 | Failed to create the image plugin.   |
@@ -5727,9 +5961,9 @@ imageSourceApi.getDisposalTypeList().then((disposalTypes: Array<number>) => {
 
 release(callback: AsyncCallback\<void>): void
 
-Releases this **ImageSource** instance. This API uses an asynchronous callback to return the result.
+Releases this ImageSource instance. This API uses an asynchronous callback to return the result.
 
-ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the **ImageSource** object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
+ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the ImageSource object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -5757,9 +5991,9 @@ imageSourceApi.release((err: BusinessError) => {
 
 release(): Promise\<void>
 
-Releases this **ImageSource** instance. This API uses a promise to return the result.
+Releases this ImageSource instance. This API uses a promise to return the result.
 
-ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the **ImageSource** object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
+ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the ImageSource object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -5781,11 +6015,35 @@ imageSourceApi.release().then(() => {
 })
 ```
 
+## image.getImageSourceSupportedFormats<sup>20+</sup>
+
+getImageSourceSupportedFormats(): string[]
+
+Obtains the supported decoding formats, represented by MIME types.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Return value**
+
+| Type    | Description                                      |
+| -------- | ------------------------------------------ |
+| string[] | List of supported encoding formats (MIME types).|
+
+**Example**
+
+```ts
+import { image } from '@kit.ImageKit';
+function GetImageSourceSupportedFormats() {
+    let formats = image.getImageSourceSupportedFormats();
+    console.info('formats:', formats);
+}
+```
+
 ## image.createImagePacker
 
 createImagePacker(): ImagePacker
 
-Creates an **ImagePacker** instance.
+Creates an ImagePacker instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -5795,7 +6053,7 @@ Creates an **ImagePacker** instance.
 
 | Type                       | Description                 |
 | --------------------------- | --------------------- |
-| [ImagePacker](#imagepacker) | **ImagePacker** instance created.|
+| [ImagePacker](#imagepacker) | ImagePacker instance created.|
 
 **Example**
 
@@ -5805,13 +6063,13 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 
 ## ImagePacker
 
-Provides APIs to compress and encode images. Before calling any API in **ImagePacker**, you must use [createImagePacker](#imagecreateimagepacker) to create an **ImagePacker** object. Currently, this class applies only to images in .jpeg, .webp, .png, or heif<sup>12+</sup> (depending on the hardware).
+Provides APIs to compress and encode images. Before calling any API in ImagePacker, you must use [createImagePacker](#imagecreateimagepacker) to create an ImagePacker object. Currently, this class applies only to images in .jpeg, .webp, .png, or heif<sup>12+</sup> (depending on the hardware).
 
 ### Properties
 
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
-| Name            | Type          | Readable| Writable| Description                      |
+| Name            | Type          | Read Only| Optional| Description                      |
 | ---------------- | -------------- | ---- | ---- | -------------------------- |
 | supportedFormats | Array\<string> | Yes  | No  | Supported formats, including .jpeg, .webp, .png, and heic<sup>12+</sup> (depending on the hardware).|
 
@@ -5841,9 +6099,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | 401 | If the parameter is invalid. |
 | 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
@@ -5856,7 +6114,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
@@ -5882,7 +6142,7 @@ Compresses or re-encodes an image. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> If error code 401 is returned, the parameters are abnormal. The possible cause is that the **PixelMap** object is released in advance. You need to check the code and ensure that the **PixelMap** object is released after this API is called.
+> If error code 401 is returned, the parameters are abnormal. The possible cause is that the PixelMap object is released in advance. You need to check the code and ensure that the PixelMap object is released after this API is called.
 
 **Atomic service API**: This API can be used in atomic services since API version 13.
 
@@ -5910,9 +6170,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | 401 | If the parameter is invalid. |
 | 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
@@ -6029,12 +6289,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 7800201  | Unsupported options.                                         |
-| 7800301  | Encoding failed.                                               |
+| 7800201  | Unsupported packing options.                                 |
+| 7800301  | Failed to encode image.                                      |
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import image from "@ohos.multimedia.image";
 
@@ -6085,7 +6347,9 @@ Compresses or re-encodes an image. This API uses an asynchronous callback to ret
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
@@ -6108,7 +6372,7 @@ imagePackerApi.packing(imageSourceApi, packOpts, (err: BusinessError, data: Arra
 
 packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
-Compress or re-encode an image. This API uses a promise to return the result.
+Compresses or re-encodes an image. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -6133,7 +6397,9 @@ Compress or re-encode an image. This API uses a promise to return the result.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
@@ -6162,7 +6428,7 @@ Compresses or re-encodes an image. This API uses an asynchronous callback to ret
 > This API is supported since API version 8 and deprecated since API version 13. Use [packToData](#packtodata13) instead.
 
 > **NOTE**
-> If the message "PixelMap mismatch" is returned, the parameters are abnormal. The possible cause is that the **PixelMap** object is released in advance. You need to check the code and ensure that the **PixelMap** object is released after this API is called.
+> If the message "PixelMap mismatch" is returned, the parameters are abnormal. The possible cause is that the PixelMap object is released in advance. You need to check the code and ensure that the PixelMap object is released after this API is called.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -6202,13 +6468,13 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
 
 packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
-Compress or re-encode an image. This API uses a promise to return the result.
+Compresses or re-encodes an image. This API uses a promise to return the result.
 
 > **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 13. Use [packToData](#packtodata13) instead.
 >
-> If the message "PixelMap mismatch" is returned, the parameters are abnormal. The possible cause is that the **PixelMap** object is released in advance. You need to check the code and ensure that the **PixelMap** object is released after this API is called.
+> If the message "PixelMap mismatch" is returned, the parameters are abnormal. The possible cause is that the PixelMap object is released in advance. You need to check the code and ensure that the PixelMap object is released after this API is called.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -6252,9 +6518,9 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
 
 release(callback: AsyncCallback\<void>): void
 
-Releases this **ImagePacker** instance. This API uses an asynchronous callback to return the result.
+Releases this ImagePacker instance. This API uses an asynchronous callback to return the result.
 
-ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the **ImagePacker** object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
+ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the ImagePacker object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
 
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
@@ -6283,9 +6549,9 @@ imagePackerApi.release((err: BusinessError)=>{
 
 release(): Promise\<void>
 
-Releases this **ImagePacker** instance. This API uses a promise to return the result.
+Releases this ImagePacker instance. This API uses a promise to return the result.
 
-ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the **ImagePacker** object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
+ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the ImagePacker object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
 
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
@@ -6333,17 +6599,19 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ------- | --------------------------------------------|
 | 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980115 | If the parameter is invalid. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980115 | Invalid input parameter. |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
@@ -6395,17 +6663,19 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ------- | --------------------------------------------|
 | 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980115 | If the parameter is invalid. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980115 | Invalid input parameter. |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
@@ -6432,7 +6702,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 Encodes the PixelMap into a file based on the specified encoding parameters. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> If error code 62980115 is returned, the parameters are abnormal. The possible cause is that the **PixelMap** object is released in advance. You need to check the code and ensure that the **PixelMap** object is released after this API is called.
+> If error code 62980115 is returned, the parameters are abnormal. The possible cause is that the PixelMap object is released in advance. You need to check the code and ensure that the PixelMap object is released after this API is called.
 
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
@@ -6453,17 +6723,19 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ------- | --------------------------------------------|
 | 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980115 | If the parameter is invalid. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980115 | Invalid input parameter. |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
@@ -6493,7 +6765,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 Encodes the PixelMap into a file based on the specified encoding parameters. This API uses a promise to return the result.
 
 > **NOTE**
-> If error code 62980115 is returned, the parameters are abnormal. The possible cause is that the **PixelMap** object is released in advance. You need to check the code and ensure that the **PixelMap** object is released after this API is called.
+> If error code 62980115 is returned, the parameters are abnormal. The possible cause is that the PixelMap object is released in advance. You need to check the code and ensure that the PixelMap object is released after this API is called.
 
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
@@ -6519,17 +6791,19 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ------- | --------------------------------------------|
 | 62980096| Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980115 | If the parameter is invalid. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980115 | Invalid input parameter. |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
@@ -6648,12 +6922,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 7800201  | Unsupported options.                                         |
-| 7800301  | Encoding failed.                                               |
+| 7800201  | Unsupported packing options.                                 |
+| 7800301  | Failed to encode image.                                      |
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs';
 import image from "@ohos.multimedia.image";
@@ -6683,11 +6959,35 @@ Packer.packToFileFromPixelmapSequence(pixelMapList, file.fd, ops)
   })
 ```
 
+## image.getImagePackerSupportedFormats<sup>20+</sup>
+
+getImagePackerSupportedFormats(): string[]
+
+Obtains the supported encoding formats, represented by MIME types.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Return value**
+
+| Type    | Description                                      |
+| -------- | ------------------------------------------ |
+| string[] | List of supported encoding formats (MIME types).|
+
+**Example**
+
+```ts
+import { image } from '@kit.ImageKit';
+function GetImagePackerSupportedFormats() {
+    let formats = image.getImagePackerSupportedFormats();
+    console.info('formats:', formats);
+}
+```
+
 ## image.createAuxiliaryPicture<sup>13+</sup>
 
 createAuxiliaryPicture(buffer: ArrayBuffer, size: Size, type: AuxiliaryPictureType): AuxiliaryPicture
 
-Creates an **AuxiliaryPicture** instance based on the ArrayBuffer image data, auxiliary picture size, and auxiliary picture type.
+Creates an AuxiliaryPicture instance based on the ArrayBuffer image data, auxiliary picture size, and auxiliary picture type.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -6703,7 +7003,7 @@ Creates an **AuxiliaryPicture** instance based on the ArrayBuffer image data, au
 
 | Type                                   | Description                                      |
 | --------------------------------------- | ------------------------------------------ |
-| [AuxiliaryPicture](#auxiliarypicture13) | **AuxiliaryPicture** instance if the operation is successful.|
+| [AuxiliaryPicture](#auxiliarypicture13) | AuxiliaryPicture instance.|
 
 **Error codes**
 
@@ -6740,7 +7040,7 @@ async function CreateAuxiliaryPicture(context: Context) {
 
 ## AuxiliaryPicture<sup>13+</sup>
 
-The auxiliary picture is generally used to assist the main picture in displaying special information, so that the image includes richer information. The **AuxiliaryPicture** class is used to read or write auxiliary picture data of an image and obtain auxiliary picture information of an image. Before calling any API in **AuxiliaryPicture**, you must use [createAuxiliaryPicture](#imagecreateauxiliarypicture13) to create an **AuxiliaryPicture** object.
+The auxiliary picture is generally used to assist the main picture in displaying special information, so that the image includes richer information. The **AuxiliaryPicture** class is used to read or write auxiliary picture data of an image and obtain auxiliary picture information of an image. Before calling any API in AuxiliaryPicture, you must use [createAuxiliaryPicture](#imagecreateauxiliarypicture13) to create an AuxiliaryPicture object.
 
 ### Properties
 
@@ -6750,7 +7050,7 @@ The auxiliary picture is generally used to assist the main picture in displaying
 
 writePixelsFromBuffer(data: ArrayBuffer): Promise\<void>
 
-Reads pixels from an ArrayBuffer and writes the data to this **AuxiliaryPicture** object. This API uses a promise to return the result.
+Reads pixels from an ArrayBuffer and writes the data to this AuxiliaryPicture object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -6876,7 +7176,7 @@ async function GetAuxiliaryPictureType() {
     let type: image.AuxiliaryPictureType = auxPictureObj.getType();
     console.info('Success get auxiliary picture type ' +  JSON.stringify(type));
   } else {
-    console.info('Failed get auxiliary picture type ');
+    console.error('Failed get auxiliary picture type ');
   }
 }
 ```
@@ -6894,7 +7194,7 @@ Sets the metadata for this auxiliary picture.
 | Name      | Type                           | Mandatory| Description                                |
 | ------------ | ------------------------------- | ---- | ------------------------------------ |
 | metadataType | [MetadataType](#metadatatype13) | Yes  | Metadata type, which is used to set the corresponding metadata.|
-| metadata     | [Metadata](#metadata13)         | Yes  | **Metadata** object.                        |
+| metadata     | [Metadata](#metadata13)         | Yes  | Metadata object.                        |
 
 **Return value**
 
@@ -6929,7 +7229,7 @@ async function SetAuxPictureObjMetadata(exifContext: Context) {
   if (exifPictureObj != null) {
     console.info('Create picture succeeded');
   } else {
-    console.info('Create picture failed');
+    console.error('Create picture failed');
   }
 
   if (auxPictureObj != null) {
@@ -6941,7 +7241,7 @@ async function SetAuxPictureObjMetadata(exifContext: Context) {
       console.error('Set metadata failed.error.code: ${error.code}, error.message: ${error.message}');
     });
   } else {
-    console.info('AuxPictureObjMetaData is null');
+    console.error('AuxPictureObjMetaData is null');
   }
 }
 ```
@@ -6987,10 +7287,10 @@ async function GetAuxPictureObjMetadata() {
     if (auxPictureObjMetaData != null) {
       console.info('Get auxpictureobj Metadata success' );
     } else {
-      console.info('Get auxpictureobj Metadata failed');
+      console.error('Get auxpictureobj Metadata failed');
     }
   } else {
-    console.info('Get auxpictureobj is null.');
+    console.error('Get auxpictureobj is null.');
   }
 }
 ```
@@ -7022,7 +7322,7 @@ async function GetAuxiliaryPictureInfo() {
       ' rowStride: ' +  auxinfo.rowStride +  ' pixelFormat: ' + auxinfo.pixelFormat +
       ' colorSpace: ' +  auxinfo.colorSpace);
   } else {
-    console.info('Get auxiliary picture information failed');
+    console.error('Get auxiliary picture information failed');
   }
 }
 ```
@@ -7090,10 +7390,10 @@ async function Release() {
     if (auxPictureObj.getType() == null) {
       console.info(funcName, 'Success !');
     } else {
-      console.info(funcName, 'Failed !');
+      console.error(funcName, 'Failed !');
     }
   } else {
-    console.info('PictureObj is null');
+    console.error('PictureObj is null');
   }
 }
 ```
@@ -7156,10 +7456,10 @@ async function GetProperties(context: Context) {
     await metaData.getProperties(["ImageWidth", "ImageLength"]).then((data2) => {
       console.info('Get properties ',JSON.stringify(data2));
     }).catch((error: BusinessError) => {
-      console.info('Get properties failed error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
+      console.error('Get properties failed error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
     });
   } else {
-    console.info('Metadata is null.');
+    console.error('Metadata is null.');
   }
 }
 ```
@@ -7221,7 +7521,7 @@ async function SetProperties(context: Context) {
       console.error('Failed to set metadata Properties. code is ${error.code}, message is ${error.message}');
     })
   } else {
-    console.info('AuxPictureObj metadata is null. ');
+    console.error('AuxPictureObj metadata is null. ');
   }
 }
 ```
@@ -7266,7 +7566,7 @@ async function GetAllProperties(context: Context) {
       console.error('Get metadata all properties failed error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
     });
   } else {
-    console.info('Metadata is null.');
+    console.error('Metadata is null.');
   }
 }
 ```
@@ -7319,7 +7619,7 @@ async function clone(context: Context) {
       console.error('Clone new_metadata failed.', JSON.stringify(err));
     });
   } else {
-    console.info('Metadata is null.');
+    console.error('Metadata is null.');
   }
 }
 ```
@@ -7328,7 +7628,7 @@ async function clone(context: Context) {
 
 createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageReceiver
 
-Creates an **ImageReceiver** instance by specifying the image size, format, and capacity.
+Creates an ImageReceiver instance by specifying the image size, format, and capacity. The ImageReceiver acts as the receiver and consumer of images. Its parameter properties do not actually affect the received images. The configuration of image properties should be done on the sending side (the producer), such as when creating a camera preview stream with [createPreviewOutput](../apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput).
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -7336,7 +7636,7 @@ Creates an **ImageReceiver** instance by specifying the image size, format, and 
 
 | Name  | Type  | Mandatory| Description                  |
 | -------- | ------ | ---- | ---------------------- |
-| size    | [Size](#size)  | Yes  | Default size of the image.      |
+| size    | [Size](#size)  | Yes  | Default size of the image. This parameter does not affect the size of the received image. The actual returned size is determined by the producer, for example, the camera.      |
 | format   | [ImageFormat](#imageformat9) | Yes  | Image format, which is a constant of [ImageFormat](#imageformat9). (Currently, only **ImageFormat:JPEG** is supported. The format actually returned is determined by the producer, for example, camera.)            |
 | capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
 
@@ -7344,7 +7644,7 @@ Creates an **ImageReceiver** instance by specifying the image size, format, and 
 
 | Type                            | Description                                   |
 | -------------------------------- | --------------------------------------- |
-| [ImageReceiver](#imagereceiver9) | Returns an **ImageReceiver** instance if the operation is successful.|
+| [ImageReceiver](#imagereceiver9) | ImageReceiver instance.|
 
 **Error codes**
 
@@ -7368,7 +7668,7 @@ let receiver: image.ImageReceiver = image.createImageReceiver(size, image.ImageF
 
 createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
 
-Creates an **ImageReceiver** instance by specifying the image width, height, format, and capacity.
+Creates an ImageReceiver instance by specifying the image width, height, format, and capacity. The ImageReceiver acts as the receiver and consumer of images. Its parameter properties do not actually affect the received images. The configuration of image properties should be done on the sending side (the producer), such as when creating a camera preview stream with [createPreviewOutput](../apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput).
 
 > **NOTE**
 >
@@ -7380,8 +7680,8 @@ Creates an **ImageReceiver** instance by specifying the image width, height, for
 
 | Name  | Type  | Mandatory| Description                  |
 | -------- | ------ | ---- | ---------------------- |
-| width    | number | Yes  | Default image width, in px.      |
-| height   | number | Yes  | Default image height, in px.      |
+| width    | number | Yes  | Default image width, in px. This parameter does not affect the width of the received image. The actual width is determined by the producer, for example, the camera.      |
+| height   | number | Yes  | Default image height, in px. This parameter does not affect the height of the received image. The actual height is determined by the producer, for example, the camera.      |
 | format   | number | Yes  | Image format, which is a constant of [ImageFormat](#imageformat9). (Currently, only **ImageFormat:JPEG** is supported. The format actually returned is determined by the producer, for example, camera.) |
 | capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
 
@@ -7389,7 +7689,7 @@ Creates an **ImageReceiver** instance by specifying the image width, height, for
 
 | Type                            | Description                                   |
 | -------------------------------- | --------------------------------------- |
-| [ImageReceiver](#imagereceiver9) | Returns an **ImageReceiver** instance if the operation is successful.|
+| [ImageReceiver](#imagereceiver9) | ImageReceiver instance.|
 
 **Example**
 
@@ -7399,19 +7699,19 @@ let receiver: image.ImageReceiver = image.createImageReceiver(8192, 8, image.Ima
 
 ## ImageReceiver<sup>9+</sup>
 
-Provides APIs to obtain the surface ID of a component, read the latest image, read the next image, and release the **ImageReceiver** instance.
+Provides APIs to obtain the surface ID of a component, read the latest image, read the next image, and release the ImageReceiver instance. The ImageReceiver acts as the receiver and consumer of images. Its parameter properties do not actually affect the received images. The configuration of image properties should be done on the sending side (the producer), such as when creating a camera preview stream with [createPreviewOutput](../apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput).
 
-Before calling any APIs in **ImageReceiver**, you must create an **ImageReceiver** instance.
+Before calling any APIs in ImageReceiver, you must create an ImageReceiver instance.
 
 ### Properties
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
-| Name    | Type                        | Readable| Writable| Description              |
+| Name    | Type                        | Read Only| Optional| Description              |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
-| size     | [Size](#size)                | Yes  | No  | Image size.        |
+| size     | [Size](#size)                | Yes  | No  | Image size. This parameter does not affect the size of the received image. The actual returned size is determined by the producer, for example, the camera.        |
 | capacity | number                       | Yes  | No  | Maximum number of images that can be accessed at the same time.|
-| format   | [ImageFormat](#imageformat9) | Yes  | No  | Image format.        |
+| format   | [ImageFormat](#imageformat9) | Yes  | No  | Image format, which is a constant of [ImageFormat](#imageformat9). (Currently, only **ImageFormat:JPEG** is supported. The format actually returned is determined by the producer, for example, camera.)       |
 
 ### getReceivingSurfaceId<sup>9+</sup>
 
@@ -7471,7 +7771,7 @@ receiver.getReceivingSurfaceId().then((id: string) => {
 
 readLatestImage(callback: AsyncCallback\<Image>): void
 
-Reads the latest image from the **ImageReceiver** instance. This API uses an asynchronous callback to return the result.
+Reads the latest image from the ImageReceiver instance. This API uses an asynchronous callback to return the result.
 
 **NOTE**: This API can be called to receive data only after the [on](#on9) callback is triggered. When the [Image](#image9) object returned by this API is no longer needed, call [release](#release9-4) to release the object. New data can be received only after the release.
 
@@ -7501,7 +7801,7 @@ receiver.readLatestImage((err: BusinessError, img: image.Image) => {
 
 readLatestImage(): Promise\<Image>
 
-Reads the latest image from the **ImageReceiver** instance. This API uses a promise to return the result.
+Reads the latest image from the ImageReceiver instance. This API uses a promise to return the result.
 
 **NOTE**: This API can be called to receive data only after the [on](#on9) callback is triggered. When the [Image](#image9) object returned by this API is no longer needed, call [release](#release9-4) to release the object. New data can be received only after the release.
 
@@ -7529,7 +7829,7 @@ receiver.readLatestImage().then((img: image.Image) => {
 
 readNextImage(callback: AsyncCallback\<Image>): void
 
-Reads the next image from the **ImageReceiver** instance. This API uses an asynchronous callback to return the result.
+Reads the next image from the ImageReceiver instance. This API uses an asynchronous callback to return the result.
 
 **NOTE**: This API can be called to receive data only after the [on](#on9) callback is triggered. When the [Image](#image9) object returned by this API is no longer needed, call [release](#release9-4) to release the object. New data can be received only after the release.
 
@@ -7559,7 +7859,7 @@ receiver.readNextImage((err: BusinessError, img: image.Image) => {
 
 readNextImage(): Promise\<Image>
 
-Reads the next image from the **ImageReceiver** instance. This API uses a promise to return the result.
+Reads the next image from the ImageReceiver instance. This API uses a promise to return the result.
 
 **NOTE**: This API can be called to receive data only after the [on](#on9) callback is triggered. When the [Image](#image9) object returned by this API is no longer needed, call [release](#release9-4) to release the object. New data can be received only after the release.
 
@@ -7635,9 +7935,9 @@ receiver.off('imageArrival', callbackFunc)
 
 release(callback: AsyncCallback\<void>): void
 
-Releases this **ImageReceiver** instance. This API uses an asynchronous callback to return the result.
+Releases this ImageReceiver instance. This API uses an asynchronous callback to return the result.
 
-ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the **ImageReceiver** object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
+ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the ImageReceiver object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -7665,9 +7965,9 @@ receiver.release((err: BusinessError) => {
 
 release(): Promise\<void>
 
-Releases this **ImageReceiver** instance. This API uses a promise to return the result.
+Releases this ImageReceiver instance. This API uses a promise to return the result.
 
-ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the **ImageReceiver** object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
+ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the ImageReceiver object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -7693,7 +7993,7 @@ receiver.release().then(() => {
 
 createImageCreator(size: Size, format: ImageFormat, capacity: number): ImageCreator
 
-Creates an **ImageCreator** instance by specifying the image size, format, and capacity.
+Creates an ImageCreator instance by specifying the image size, format, and capacity.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageCreator
 
@@ -7709,7 +8009,7 @@ Creates an **ImageCreator** instance by specifying the image size, format, and c
 
 | Type                          | Description                                   |
 | ------------------------------ | --------------------------------------- |
-| [ImageCreator](#imagecreator9) | Returns an **ImageCreator** instance if the operation is successful.|
+| [ImageCreator](#imagecreator9) | ImageCreator instance.|
 
 
 **Error codes**
@@ -7734,7 +8034,7 @@ let creator: image.ImageCreator = image.createImageCreator(size, image.ImageForm
 
 createImageCreator(width: number, height: number, format: number, capacity: number): ImageCreator
 
-Creates an **ImageCreator** instance by specifying the image width, height, format, and capacity.
+Creates an ImageCreator instance by specifying the image width, height, format, and capacity.
 
 > **NOTE**
 >
@@ -7755,7 +8055,7 @@ Creates an **ImageCreator** instance by specifying the image width, height, form
 
 | Type                          | Description                                   |
 | ------------------------------ | --------------------------------------- |
-| [ImageCreator](#imagecreator9) | Returns an **ImageCreator** instance if the operation is successful.|
+| [ImageCreator](#imagecreator9) | ImageCreator instance.|
 
 **Example**
 
@@ -7766,13 +8066,13 @@ let creator: image.ImageCreator = image.createImageCreator(8192, 8, image.ImageF
 ## ImageCreator<sup>9+</sup>
 
 Provides APIs for applications to request an image native data area and compile native image data.
-Before calling any APIs in **ImageCreator**, you must create an [ImageCreator](#imagecreator9) instance. **ImageCreator** does not support multiple threads.
+Before calling any APIs in ImageCreator, you must create an [ImageCreator](#imagecreator9) instance. ImageCreator does not support multiple threads.
 
 ### Properties
 
 **System capability**: SystemCapability.Multimedia.Image.ImageCreator
 
-| Name    | Type                        | Readable| Writable| Description              |
+| Name    | Type                        | Read Only| Optional| Description              |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
 | capacity | number                       | Yes  | No  | Maximum number of images that can be accessed at the same time.|
 | format   | [ImageFormat](#imageformat9) | Yes  | No  | Image format.        |
@@ -7976,9 +8276,9 @@ creator.off('imageRelease', callbackFunc)
 
 release(callback: AsyncCallback\<void>): void
 
-Releases this **ImageCreator** instance. This API uses an asynchronous callback to return the result.
+Releases this ImageCreator instance. This API uses an asynchronous callback to return the result.
 
-ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the **ImageCreator** object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
+ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the ImageCreator object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageCreator
 
@@ -8005,9 +8305,9 @@ creator.release((err: BusinessError) => {
 
 release(): Promise\<void>
 
-Releases this **ImageCreator** instance. This API uses a promise to return the result.
+Releases this ImageCreator instance. This API uses a promise to return the result.
 
-ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the **ImageCreator** object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
+ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the ImageCreator object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageCreator
 
@@ -8031,24 +8331,24 @@ creator.release().then(() => {
 
 ## Image<sup>9+</sup>
 
-Provides APIs for basic image operations, including obtaining image information and reading and writing image data. An **Image** instance is returned when [readNextImage](#readnextimage9) and [readLatestImage](#readlatestimage9) are called.
+Provides APIs for basic image operations, including obtaining image information and reading and writing image data. An Image instance is returned when [readNextImage](#readnextimage9) and [readLatestImage](#readlatestimage9) are called.
 
 ### Properties
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name    | Type              | Readable| Writable| Description                                              |
+| Name    | Type              | Read Only| Optional| Description                                              |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
 | clipRect | [Region](#region8) | Yes  | Yes  | Image area to be cropped.                                |
-| size     | [Size](#size)      | Yes  | No  | Image size. If the **image** object stores the camera preview stream data (YUV image data), the width and height in **size** obtained correspond to those of the YUV image. If the **image** object stores the camera photo stream data (JPEG image data, which is already encoded), the width in **size** obtained is the JPEG data size, and the height is 1. The type of data stored in the **image** object depends on whether the application passes the surface ID in the receiver to a **previewOutput** or **captureOutput** object of the camera. For details about the best practices of camera preview and photo capture, see [Dual-Channel Preview (ArkTS)](../../media/camera/camera-dual-channel-preview.md) and [Photo Capture Sample (ArkTS)](../../media/camera/camera-shooting-case.md).                               |
-| format   | number             | Yes  | No  | Image format. For details, see [OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format).|
+| size     | [Size](#size)      | Yes  | No  | Image size. If the image object stores the camera preview stream data (YUV image data), the width and height in **size** obtained correspond to those of the YUV image. If the image object stores the camera photo stream data (JPEG image data, which is already encoded), the width in **size** obtained is the JPEG data size, and the height is 1. The type of data stored in the image object depends on whether the application passes the surface ID in the receiver to a previewOutput or captureOutput object of the camera. For details about the best practices of camera preview and photo capture, see [Dual-Channel Preview (ArkTS)](../../media/camera/camera-dual-channel-preview.md) and [Photo Capture Sample (ArkTS)](../../media/camera/camera-shooting-case.md).                               |
+| format   | number             | Yes  | No  | Image format. For details, see [OH_NativeBuffer_Format](../apis-arkgraphics2d/capi-native-buffer-h.md#oh_nativebuffer_format).|
 | timestamp<sup>12+</sup> | number         | Yes     | No  | Image timestamp. Timestamps, measured in nanoseconds, are usually monotonically increasing. The specific meaning and baseline of these timestamps are determined by the image producer, which is the camera in the camera preview and photo scenarios. As a result, images from different producers may carry timestamps with distinct meanings and baselines, making direct comparison between them infeasible. To obtain the generation time of a photo, you can use [getImageProperty](#getimageproperty11) to read the related EXIF information.|
 
 ### getComponent<sup>9+</sup>
 
 getComponent(componentType: ComponentType, callback: AsyncCallback\<Component>): void
 
-Obtains the component buffer from the **Image** instance based on the color component type. This API uses an asynchronous callback to return the result.
+Obtains the component buffer from the Image instance based on the color component type. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -8077,7 +8377,7 @@ img.getComponent(4, (err: BusinessError, component: image.Component) => {
 
 getComponent(componentType: ComponentType): Promise\<Component>
 
-Obtains the component buffer from the **Image** instance based on the color component type. This API uses a promise to return the result.
+Obtains the component buffer from the Image instance based on the color component type. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -8109,11 +8409,11 @@ img.getComponent(4).then((component: image.Component) => {
 
 release(callback: AsyncCallback\<void>): void
 
-Releases this **Image** instance. This API uses an asynchronous callback to return the result.
+Releases this Image instance. This API uses an asynchronous callback to return the result.
 
 The corresponding resources must be released before another image arrives.
 
-ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the **Image** object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
+ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the Image object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -8141,11 +8441,11 @@ img.release((err: BusinessError) => {
 
 release(): Promise\<void>
 
-Releases this **Image** instance. This API uses a promise to return the result.
+Releases this Image instance. This API uses a promise to return the result.
 
 The corresponding resources must be released before another image arrives.
 
-ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the **Image** object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
+ArkTS supports memory reclamation. Even if the application does not call **release()**, the memory of the Image object will be released by the system. However, images usually occupy a large amount of memory. Therefore, it is recommended that the application proactively call the API to release the memory when the object is no longer required.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -8231,8 +8531,8 @@ Enumerates the pixel formats of images.
 | RGB_888<sup>9+</sup>   | 5      | The color information consists of three components: R (Red), G (Green), and B (Blue). Each component occupies 8 bits, and the total length is 24 bits.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.  |
 | ALPHA_8<sup>9+</sup>   | 6      | The color information consists of only the alpha component, which occupies eight bits.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.  |
 | RGBA_F16<sup>9+</sup>  | 7      | The color information consists of four components: R (Red), G (Green), B (Blue), and alpha. Each component occupies 16 bits, and the total length is 64 bits.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12. |
-| NV21<sup>9+</sup>      | 8      | The color information consists of the luminance component Y and the interleaved chrominance components V and U. The Y component occupies 8 bits, and the UV components occupy 4 bits on average due to 4:2:0 sampling. The total length is 12 bits on average.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.     |
-| NV12<sup>9+</sup>      | 9      | The color information consists of the luminance component Y and the interleaved chrominance components U and V. The Y component occupies 8 bits, and the UV components occupy 4 bits on average due to 4:2:0 sampling. The total length is 12 bits on average.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.     |
+| NV21<sup>9+</sup>      | 8      | YVU pixel arrangement, where the V component precedes the U component. The color information consists of the luminance component Y and the interleaved chrominance components V and U. The Y component occupies 8 bits, and the UV components occupy 4 bits on average due to 4:2:0 sampling. The total length is 12 bits on average.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.     |
+| NV12<sup>9+</sup>      | 9      | YUV pixel arrangement, where the U component precedes the V component. The color information consists of the luminance component Y and the interleaved chrominance components U and V. The Y component occupies 8 bits, and the UV components occupy 4 bits on average due to 4:2:0 sampling. The total length is 12 bits on average.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.     |
 | RGBA_1010102<sup>12+</sup> | 10 | The color information consists of four components: R (Red), G (Green), B (Blue), and alpha. R, G, and B each occupy 10 bits, and alpha occupies 2 bits. The total length is 32 bits.|
 | YCBCR_P010<sup>12+</sup> | 11 | The color information consists of the luminance component Y and the chrominance components Cb and Cr. Each component has effective 10 bits. In storage, the Y plane uses 16 bits per pixel (10 of which are effective). The UV plane is interleaved, with every four pixels taking up 32 bits of data (each chrominance component having 10 effective bits), resulting in an average of 15 effective bits overall.
 | YCRCB_P010<sup>12+</sup> | 12 | The color information consists of the luminance component Y and the chrominance components Cr and Cb. Each component has effective 10 bits. In storage, the Y plane uses 16 bits per pixel (10 of which are effective). The UV plane is interleaved, with every four pixels taking up 32 bits of data (each chrominance component having 10 effective bits), resulting in an average of 15 effective bits overall. |
@@ -8321,7 +8621,7 @@ Defines image source initialization options.
 
 | Name             | Type                              | Read Only| Optional| Description              |
 | ----------------- | ---------------------------------- | ---- | ---- | ------------------ |
-| sourceDensity     | number                             | No  | No  | Pixel density of the image resource, in ppi.<br>If **desiredSize** is not set in [DecodingOptions](# decodingoptions7) and **SourceOptions.sourceDensity** and **DecodingOptions.fitDensity** are not 0, the PixelMap output after decoding will be scaled.<br>The formula for calculating the width after scaling is as follows (the same applies to the height): (width * fitDensity + (sourceDensity >> 1)) / sourceDensity.|
+| sourceDensity     | number                             | No  | No  | Pixel density of the image resource, in ppi.<br>If **desiredSize** is not set in [DecodingOptions](#decodingoptions7) and **SourceOptions.sourceDensity** and **DecodingOptions.fitDensity** are not 0, the PixelMap output after decoding will be scaled.<br>The formula for calculating the width after scaling is as follows (the same applies to the height): (width * fitDensity + (sourceDensity >> 1)) / sourceDensity.|
 | sourcePixelFormat | [PixelMapFormat](#pixelmapformat7) | No  | Yes  | Image pixel format. The default value is **UNKNOWN**.    |
 | sourceSize        | [Size](#size)                      | No  | Yes  | Image pixel size. The default value is null.    |
 
@@ -8395,7 +8695,7 @@ Describes the options for image encoding.
 
 | Name   | Type  | Read Only| Optional| Description                                               |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | No  | No  | Format of the packed image.<br>Currently, only the following formats are supported: image/jpeg, image/webp, image/png, image/heic (or image/heif)<sup>12+</sup>, image/sdr_astc4x4<sup>18+</sup>, and image/sdr_sut_superfast_4x4<sup>18+</sup> (depending on the hardware).<br>**NOTE**: The JPEG format does not support the alpha channel. If the JPEG format with the alpha channel is used for data encoding, the transparent color turns black.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| format  | string | No  | No  | Format of the packed image.<br>Currently, only the following formats are supported: image/jpeg, image/webp, image/png, image/heic (or image/heif)<sup>12+</sup>, image/sdr_astc_4x4<sup>18+</sup>, and image/sdr_sut_superfast_4x4<sup>18+</sup> (depending on the hardware).<br>**NOTE**: The JPEG format does not support the alpha channel. If the JPEG format with the alpha channel is used for data encoding, the transparent color turns black.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | quality | number | No  | No  | Quality of the output image set. This parameter takes effect only for JPEG and HEIF images. The value ranges from 0 to 100. The value **0** means the lowest quality, and **100** means the highest quality. The higher the quality, the larger the space occupied by the generated image. WebP and PNG images are lossless.<br>In the case of sdr_astc_4x4 encoding, the parameter can be set to **92** and **85**.<br>In the case of sut encoding, the parameter can be set to **92**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | bufferSize<sup>9+</sup> | number | No  | Yes  | Size of the buffer for receiving the encoded data, in bytes. If this parameter is not set, the default value 25 MB is used. If the size of an image exceeds 25 MB, you must specify the size. The value of **bufferSize** must be greater than the size of the encoded image. The use of [packToFile](#packtofile11) is not restricted by this parameter.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | No  | Yes  | Desired dynamic range. The default value is **SDR**.|
@@ -8422,8 +8722,8 @@ Describes the image properties.
 
 | Name        | Type  | Read Only| Optional| Description        |
 | ------------ | ------ | ---- | ---- | ------------ |
-| index        | number | Yes  | Yes  | Index of the image. The default value is **0**.  |
-| defaultValue | string | Yes  | Yes  | Default property value. The default value is null.|
+| index        | number | No  | Yes  | Index of the image. The default value is **0**.  |
+| defaultValue | string | No  | Yes  | Default property value. The default value is null.|
 
 ## GetImagePropertyOptions<sup>(deprecated)</sup>
 
@@ -8474,8 +8774,8 @@ Describes the exchangeable image file format (EXIF) data of an image.
 | WHITE_POINT <sup>12+</sup>                | "WhitePoint"                | **Read/Write capability**: readable and writable<br> Chromaticity of the white point of the image.|
 | PRIMARY_CHROMATICITIES <sup>12+</sup>     | "PrimaryChromaticities"     | **Read/Write capability**: readable and writable<br> Chromaticities of the primaries of the image.|
 | PHOTO_MODE<sup>10+</sup>                  | "PhotoMode"                 | **Read/Write capability**: readable and writable<br> Photographing mode.|
-| JPEG_INTERCHANGE_FORMAT <sup>12+</sup>    | "JPEGInterchangeFormat"     | **Read/Write capability**: readable and writable<br> Offset of the SOI marker of a JPEG interchange format bitstream.|
-| JPEG_INTERCHANGE_FORMAT_LENGTH <sup>12+</sup> | "JPEGInterchangeFormatLength" | **Read/Write capability**: readable and writable<br> Number of bytes of the JPEG stream.|
+| JPEG_INTERCHANGE_FORMAT <sup>12+</sup>    | "JPEGInterchangeFormat"     | **Read/Write capability**: read-only<br> Offset of the SOI marker of a JPEG interchange format bitstream.|
+| JPEG_INTERCHANGE_FORMAT_LENGTH <sup>12+</sup> | "JPEGInterchangeFormatLength" | **Read/Write capability**: read-only<br> Number of bytes of the JPEG stream.|
 | YCBCR_COEFFICIENTS <sup>12+</sup>         | "YCbCrCoefficients"         | **Read/Write capability**: readable and writable<br> Transformation from RGB to YCbCr image data.|
 | YCBCR_SUB_SAMPLING <sup>12+</sup>         | "YCbCrSubSampling"          | **Read/Write capability**: readable and writable<br> Subsampling factors used for the chrominance components of a YCbCr image.|
 | YCBCR_POSITIONING <sup>12+</sup>          | "YCbCrPositioning"          | **Read/Write capability**: readable and writable<br> Positioning of subsampled chrominance components relative to luminance samples.|
@@ -8545,7 +8845,7 @@ Describes the exchangeable image file format (EXIF) data of an image.
 | FLASH <sup>10+</sup>                      | "Flash"                     | **Read/Write capability**: readable and writable<br> Flash status.|
 | FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"               | **Read/Write capability**: readable and writable<br> Focal length of the lens.|
 | SUBJECT_AREA <sup>12+</sup>               | "SubjectArea"               | **Read/Write capability**: readable and writable<br> Location and area of the main subject in the entire scene.|
-| MAKER_NOTE <sup>12+</sup>                 | "MakerNote"                 | **Read/Write capability**: read-only<br> Marker used by EXIF/DCF manufacturers to record any required information.|
+| MAKER_NOTE <sup>12+</sup>                 | "MakerNote"                 | **Read/Write capability**: readable and writable<br> Marker used by EXIF/DCF manufacturers to record any required information.<br>This field is read-only in API versions 12 to 19 and is readable and writable in API version 20 and later.|
 | SCENE_POINTER <sup>12+</sup>              | "HwMnoteScenePointer"       | **Read/Write capability**: read-only<br> Pointer to the scene.|
 | SCENE_VERSION <sup>12+</sup>              | "HwMnoteSceneVersion"       | **Read/Write capability**: read-only<br> Scene algorithm version.|
 | SCENE_FOOD_CONF<sup>11+</sup>             | "HwMnoteSceneFoodConf"      | **Read/Write capability**: read-only<br> Photographing scene: food.|
@@ -8675,13 +8975,13 @@ Describes the color components of an image.
 | Name         | Type                            | Read Only| Optional| Description        |
 | ------------- | -------------------------------- | ---- | ---- | ------------ |
 | componentType | [ComponentType](#componenttype9) | Yes  | No  | Color component type.  |
-| rowStride     | number                           | Yes  | No  | Row stride. The camera preview stream data needs to be read by stride. For details, see [Dual-Channel Preview (ArkTS)](../../media/camera/camera-dual-channel-preview.md).      |
+| rowStride     | number                           | Yes  | No  | Row stride. The camera preview stream data needs to be read by stride. For details, see [Solution to Screen Artifacts During Camera Preview](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-deal-stride-solution).      |
 | pixelStride   | number                           | Yes  | No  | Pixel stride.  |
 | byteBuffer    | ArrayBuffer                      | Yes  | No  | Component buffer.|
 
 ## DecodingDynamicRange<sup>12+</sup>
 
-Describes the desired dynamic range of an image during decoding.
+Enumerates the desired dynamic range of an image during decoding.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -8693,7 +8993,7 @@ Describes the desired dynamic range of an image during decoding.
 
 ## PackingDynamicRange<sup>12+</sup>
 
-Describes the desired dynamic range of an image during encoding.
+Enumerates the desired dynamic range of an image during encoding.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -8705,6 +9005,16 @@ Describes the desired dynamic range of an image during encoding.
 ## CropAndScaleStrategy<sup>18+</sup>
 
 Enumerates the order of cropping and scaling.
+
+If the **cropAndScaleStrategy** parameter is not specified in [DecodingOptions](#decodingoptions7) and both **desiredRegion** and **desiredSize** are set, the final decoding result may vary slightly due to differences in decoding algorithms used for different image formats.
+
+For example, if the original image size is 200x200, and you specify **desiredSize:{width: 150, height: 150}, desiredRegion:{x: 0, y: 0, width: 100, height: 100}**, the expectation is to decode the top-left 1/4 region of the original image and then scale the pixelMap size to 150x150.
+
+For JPEG and WebP images (as well as some DNG images that decode a JPEG preview within the file and therefore are treated as JPEG format), the system first performs downsampling. For instance, it might downsample by 7/8 and then crop the region based on a 175x175 image size. As a result, the final cropped region will be slightly larger than the top-left 1/4 of the original image.
+
+For SVG images, which are vector-based and can be scaled without losing clarity, the system scales the image based on the ratio of **desiredSize** to the original image size and then crops the region. This results in a decoded region that may differ from the exact 1/4 region of the original image.
+
+To ensure consistent results when both **desiredRegion** and **desiredSize** are set, set the **cropAndScaleStrategy** parameter to **CROP_FIRST**.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -8750,7 +9060,7 @@ Describes the static metadata keys, that is, the values available for **HDR_STAT
 | displayPrimariesX     | Array\<number>  | No| No| X coordinate of the three primary colors of the display device after normalization. The array length is 3. The unit is 0.00002. The value range is [0.0, 1.0]. |
 | displayPrimariesY     | Array\<number>  | No| No| Y coordinate of the three primary colors of the display device after normalization. The array length is 3. The unit is 0.00002. The value range is [0.0, 1.0]. |
 | whitePointX  | number  | No| No| X coordinate of the white point after normalization. The unit is 0.00002. The value range is [0.0, 1.0].  |
-| whitePointY  | number   | No| No| X coordinate of the white point after normalization. The unit is 0.00002. The value range is [0.0, 1.0].  |
+| whitePointY  | number   | No| No| Y coordinate of the white point after normalization. The unit is 0.00002. The value range is [0.0, 1.0].  |
 | maxLuminance  | number  | No| No| Maximum luminance of the main monitor. The unit is 1, and the maximum value is 65535.  |
 | minLuminance  | number   | No| No| Minimum luminance of the main monitor. The unit is 0.0001, and the maximum value is 6.55535.  |
 | maxContentLightLevel  | number  | No| No| Maximum luminance of the displayed content. The unit is 1, and the maximum value is 65535.  |
@@ -8871,3 +9181,4 @@ The SVG tags are supported since API version 10. The used version is (SVG) 1.1, 
 - textPath
 - tspan
 - use
+<!--no_check-->

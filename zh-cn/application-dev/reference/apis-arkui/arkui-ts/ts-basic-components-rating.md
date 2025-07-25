@@ -4,7 +4,9 @@
 
 >  **说明：**
 >
->  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 当Rating的父节点有指定宽高时，需为Rating组件指定宽高，或为父节点设置值为true的[clip](ts-universal-attributes-sharp-clipping.md#clip18)属性。
 
 
 ## 子组件
@@ -269,6 +271,10 @@ type OnRatingChangeCallback = (rating: number) => void
 
 评分组件的信息。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -283,6 +289,10 @@ type OnRatingChangeCallback = (rating: number) => void
 ## StarStyleOptions<sup>18+</sup>对象说明
 
 评分组件选中、未选中以及部分选中的星级样式。
+
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 

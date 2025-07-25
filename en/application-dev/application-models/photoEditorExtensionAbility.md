@@ -15,7 +15,7 @@ For details about the APIs, see [PhotoEditorExtensionAbility](../reference/apis-
 | **API** | **Description**|
 | -------- | -------- |
 | onStartContentEditing(uri: string, want:Want, session: UIExtensionContentSession):void       | Called when content editing starts. Operations such as reading original images and loading pages can be performed in the callback.|
-| saveEditedContentWithImage(pixelMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>  | Saves the passed-in **PixelMap** object, which is an edited image.  |
+| saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>  | Saves the passed-in PixelMap object, which is an edited image.  |
 
 ## Target Application (Image Editing Application): Implementing an Image Editing Page
 
@@ -73,7 +73,6 @@ For details about the APIs, see [PhotoEditorExtensionAbility](../reference/apis-
     import { fileIo } from '@kit.CoreFileKit';
     import { image } from '@kit.ImageKit';
 
-    const storage = LocalStorage.getShared()
     const TAG = '[ExamplePhotoEditorAbility]';
 
     @Entry
@@ -83,9 +82,10 @@ For details about the APIs, see [PhotoEditorExtensionAbility](../reference/apis-
       @State originalImage: PixelMap | null = null;
       @State editedImage: PixelMap | null = null;
       private newWant ?: Want;
+      private storage = this.getUIContext().getSharedLocalStorage();
 
       aboutToAppear(): void {
-        let originalImageUri = storage?.get<string>("uri") ?? "";
+        let originalImageUri = this.storage?.get<string>("uri") ?? "";
         hilog.info(0x0000, TAG, `OriginalImageUri: ${originalImageUri}.`);
 
         this.readImageByUri(originalImageUri).then(imagePixMap => {
@@ -114,7 +114,7 @@ For details about the APIs, see [PhotoEditorExtensionAbility](../reference/apis-
           this.originalImage = pixmap;
           return pixmap;
         } catch(e) {
-          hilog.info(0x0000, TAG, `ReadImage failed:${e}`);
+          hilog.error(0x0000, TAG, `ReadImage failed:${e}`);
         } finally {
           fileIo.close(file);
         }
@@ -135,7 +135,7 @@ For details about the APIs, see [PhotoEditorExtensionAbility](../reference/apis-
                 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
                 try {
                   // Call saveEditedContentWithImage to save the image.
-                  (getContext(this) as common.PhotoEditorExtensionContext).saveEditedContentWithImage(this.originalImage as image.PixelMap,
+                  (this.getUIContext().getHostContext() as common.PhotoEditorExtensionContext).saveEditedContentWithImage(this.originalImage as image.PixelMap,
                     packOpts).then(data => {
                     if (data.resultCode == 0) {
                       hilog.info(0x0000, TAG, `Save succeed.`);
@@ -158,9 +158,9 @@ For details about the APIs, see [PhotoEditorExtensionAbility](../reference/apis-
             Button("terminateSelfWithResult").onClick((event => {
               hilog.info(0x0000, TAG, `Finish the current editing.`);
 
-              let session = storage.get('session') as UIExtensionContentSession;
+              let session = this.storage?.get('session') as UIExtensionContentSession;
               // Terminate the ability and return the modification result to the caller.
-              session.terminateSelfWithResult({ resultCode: 0, want: this.newWant });
+              session?.terminateSelfWithResult({ resultCode: 0, want: this.newWant });
 
             })).margin({ top: 10 })
 
@@ -218,14 +218,14 @@ On the UIAbility or UIExtensionAbility page, you can use **startAbilityByType** 
         return photoSelectResult.photoUris[0];
       } catch(error) {
         let err: BusinessError = error as BusinessError;
-        hilog.info(0x0000, TAG, 'PhotoViewPicker failed with err: ' + JSON.stringify(err));
+        hilog.error(0x0000, TAG, 'PhotoViewPicker failed with err: ' + JSON.stringify(err));
       }
       return "";
     }
     ```
 3. Copy the image to the local sandbox path.
    ```ts
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     let file: fileIo.File | undefined;
     try {
       file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY);
@@ -238,14 +238,14 @@ On the UIAbility or UIExtensionAbility page, you can use **startAbilityByType** 
       this.filePath = context.filesDir + `/original-${timeStamp}.jpg`;
       this.originalImage = fileUri.getUriFromPath(this.filePath);
     } catch (e) {
-      hilog.info(0x0000, TAG, `readImage failed:${e}`);
+      hilog.error(0x0000, TAG, `readImage failed:${e}`);
     } finally {
       fileIo.close(file);
     }
    ```
 4. In the callback function of **startAbilityByType**, use **want.uri** to obtain the URI of the edited image and perform corresponding processing.
     ```ts
-      let context = getContext(this) as common.UIAbilityContext;
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       let abilityStartCallback: common.AbilityStartCallback = {
         onError: (code, name, message) => {
           const tip: string = `code:` + code + ` name:` + name + ` message:` + message;
@@ -288,6 +288,7 @@ import { fileIo } from '@kit.CoreFileKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { JSON } from '@kit.ArkTS';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 const TAG = 'PhotoEditorCaller';
 
@@ -320,7 +321,7 @@ struct Index {
       this.editedImage = pixmap;
       return pixmap;
     } catch(e) {
-      hilog.info(0x0000, TAG, `readImage failed:${e}`);
+      hilog.error(0x0000, TAG, `readImage failed:${e}`);
     } finally {
       fileIo.close(file);
     }
@@ -328,21 +329,27 @@ struct Index {
   }
 
   // Select an image from Gallery.
-  async photoPickerGetUri(): Promise < string > {
-    try {
-      let PhotoSelectOptions = new picker.PhotoSelectOptions();
-      PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
-      PhotoSelectOptions.maxSelectNumber = 1;
-      let photoPicker = new picker.PhotoViewPicker();
-      let photoSelectResult: picker.PhotoSelectResult = await photoPicker.select(PhotoSelectOptions);
-      hilog.info(0x0000, TAG,
-        'PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(photoSelectResult));
-      return photoSelectResult.photoUris[0];
-    } catch(error) {
-      let err: BusinessError = error as BusinessError;
-      hilog.info(0x0000, TAG, 'PhotoViewPicker failed with err: ' + JSON.stringify(err));
-    }
-    return "";
+  async photoPickerGetUri(): Promise<string> {
+	try {
+		let textInfo: photoAccessHelper.TextContextInfo = {
+			text: 'photo'
+		}
+		let recommendOptions: photoAccessHelper.RecommendationOptions = {
+			textContextInfo: textInfo
+		}
+		let options: photoAccessHelper.PhotoSelectOptions = {
+			MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE,
+			maxSelectNumber: 1,
+			recommendationOptions: recommendOptions
+		}
+		let photoPicker = new photoAccessHelper.PhotoViewPicker();
+		let photoSelectResult: photoAccessHelper.PhotoSelectResult = await photoPicker.select(options);
+		return photoSelectResult.photoUris[0];
+	} catch (error) {
+		let err: BusinessError = error as BusinessError;
+		hilog.error(0x0000, TAG, 'PhotoViewPicker failed with err: ' + JSON.stringify(err));
+	}
+	return "";
   }
 
   build() {
@@ -357,7 +364,7 @@ struct Index {
           this.photoPickerGetUri().then(uri => {
             hilog.info(0x0000, TAG, "uri: " + uri);
 
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let file: fileIo.File | undefined;
             try {
               file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY);
@@ -379,7 +386,7 @@ struct Index {
         }).width('200').margin({ top: 20 })
 
         Button("editImg").onClick(event => {
-          let context = getContext(this) as common.UIAbilityContext;
+          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
           let abilityStartCallback: common.AbilityStartCallback = {
             onError: (code, name, message) => {
               const tip: string = `code:` + code + ` name:` + name + ` message:` + message;

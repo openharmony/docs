@@ -27,15 +27,15 @@
     <!--DelEnd-->
 - C API<!--background-tasks-c-->
   - 模块<!--background-tasks-module-->
-    - [TransientTask](_transient_task.md)
-    - [BackgroundProcessManager](_background_process_manager.md)
+    - [BackgroundProcessManager](capi-backgroundprocessmanager.md)
+    - [TransientTask](capi-transienttask.md)
   - 头文件<!--background-tasks-headerfile-->
-    - [transient_task_api.h](transient__task__api_8h.md)
-    - [transient_task_type.h](transient__task__type_8h.md)
-    - [background_process_manager.h](background__process__manager_8h.md)
+    - [background_process_manager.h](capi-background-process-manager-h.md)
+    - [transient_task_api.h](capi-transient-task-api-h.md)
+    - [transient_task_type.h](capi-transient-task-type-h.md)
   - 结构体<!--background-tasks-struct-->
-    - [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md)
-    - [TransientTask_TransientTaskInfo](_transient_task___transient_task_info.md)
+    - [TransientTask_DelaySuspendInfo](capi-transienttask-transienttask-delaysuspendinfo.md)
+    - [TransientTask_TransientTaskInfo](capi-transienttask-transienttask-transienttaskinfo.md)
 - 错误码<!--background-tasks-arkts-errcode-->
   - [backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)
   - [backgroundProcessManager错误码](errorcode-backgroundProcessManager.md)

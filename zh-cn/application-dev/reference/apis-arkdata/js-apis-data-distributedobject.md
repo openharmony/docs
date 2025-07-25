@@ -180,6 +180,19 @@ type StatusObserver = (sessionId: string, networkId: string, status: string) => 
 | networkId | string | 是 | 对端设备的网络标识。要求字符串非空且长度不超过255字节。 |
 | status    | string | 是 | 标识分布式对象的状态，可能的取值有'online'（上线）、'offline'（下线）和'restore'（恢复）。 |
 
+## ProgressObserver<sup>20+</sup>
+
+type ProgressObserver = (sessionId: string, progress: number) => void
+
+定义传输进度的监听回调函数。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| sessionId | string | 是 | 标识变更对象的sessionId。长度不大于128字节，且只能包含字母、数字或下划线_。 |
+| progress    | number | 是 | 标识资产传输进度。取值范围为[-1, 100]，取值为整数，-1表示获取进度失败，100表示传输完成。 |
+
 ## DataObject
 
 表示一个分布式数据对象。在使用以下接口前，需调用[create()](#distributeddataobjectcreate9)获取DataObject对象。
@@ -487,8 +500,8 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
 g_object.setSessionId("123456");
 g_object.save("local", (err: BusinessError, result:distributedDataObject.SaveSuccessResponse) => {
     if (err) {
-        console.info("save failed, error code = " + err.code);
-        console.info("save failed, error message: " + err.message);
+        console.error("save failed, error code = " + err.code);
+        console.error("save failed, error message: " + err.message);
         return;
     }
     console.info("save callback");
@@ -545,8 +558,8 @@ g_object.save("local").then((callbackInfo: distributedDataObject.SaveSuccessResp
     console.info("save version " + callbackInfo.version);
     console.info("save deviceId " + callbackInfo.deviceId);
 }).catch((err: BusinessError) => {
-    console.info("save failed, error code = " + err.code);
-    console.info("save failed, error message: " + err.message);
+    console.error("save failed, error code = " + err.code);
+    console.error("save failed, error message: " + err.message);
 });
 ```
 
@@ -583,8 +596,8 @@ g_object.setSessionId("123456");
 // 持久化数据
 g_object.save("local", (err: BusinessError, result: distributedDataObject.SaveSuccessResponse) => {
     if (err) {
-        console.info("save failed, error code = " + err.code);
-        console.info("save failed, error message: " + err.message);
+        console.error("save failed, error code = " + err.code);
+        console.error("save failed, error message: " + err.message);
         return;
     }
     console.info("save callback");
@@ -595,8 +608,8 @@ g_object.save("local", (err: BusinessError, result: distributedDataObject.SaveSu
 // 删除持久化保存的数据
 g_object.revokeSave((err: BusinessError, result: distributedDataObject.RevokeSaveSuccessResponse) => {
     if (err) {
-      console.info("revokeSave failed, error code = " + err.code);
-      console.info("revokeSave failed, error message: " + err.message);
+      console.error("revokeSave failed, error code = " + err.code);
+      console.error("revokeSave failed, error message: " + err.message);
       return;
     }
     console.info("revokeSave callback");
@@ -640,16 +653,16 @@ g_object.save("local").then((result: distributedDataObject.SaveSuccessResponse) 
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
 }).catch((err: BusinessError) => {
-    console.info("save failed, error code = " + err.code);
-    console.info("save failed, error message: " + err.message);
+    console.error("save failed, error code = " + err.code);
+    console.error("save failed, error message: " + err.message);
 });
 // 删除持久化保存的数据
 g_object.revokeSave().then((result: distributedDataObject.RevokeSaveSuccessResponse) => {
     console.info("revokeSave callback");
     console.info("sessionId" + result.sessionId);
 }).catch((err: BusinessError)=> {
-    console.info("revokeSave failed, error code = " + err.code);
-    console.info("revokeSave failed, error message = " + err.message);
+    console.error("revokeSave failed, error code = " + err.code);
+    console.error("revokeSave failed, error message = " + err.message);
 });
 ```
 
@@ -971,6 +984,75 @@ try {
 }
 ```
 
+### on('progressChanged')<sup>20+</sup>
+
+on(type: 'progressChanged', callback: ProgressObserver): void
+
+监听资产传输进度。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 事件类型，固定为'progressChanged'，表示资产传输进度变化事件。 |
+| callback | [ProgressObserver](#progressobserver20) | 是 | 表示资产传输进度变化的回调实例。 |
+
+**示例：**
+
+```ts
+const progressChangedCallback: distributedDataObject.ProgressObserver = (sessionId: string, progress: number) => {
+  console.info("progressChanged callback" + sessionId);
+  console.info("progressChanged callback" + progress);
+}
+try {
+  g_object.on("progressChanged", progressChangedCallback);
+} catch (error) {
+  console.error("Execute failed, error code =  " + error.code);
+}
+```
+
+### off('progressChanged')<sup>20+</sup>
+
+off(type: 'progressChanged', callback?: ProgressObserver): void
+
+当不再进行资产传输进度监听时，使用此接口取消监听。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 事件类型，固定为'progressChanged'，表示资产传输进度变化事件。 |
+| callback | [ProgressObserver](#progressobserver20) | 否 | 需要取消监听的事件回调，若不设置，则取消对该事件的所有监听。 |
+
+**示例：**
+
+```ts
+const progressChangedCallback1: distributedDataObject.ProgressObserver = (sessionId: string, progress: number) => {
+  console.info("progressChanged callback1" + sessionId);
+  console.info("progressChanged callback1" + progress);
+}
+
+const progressChangedCallback2: distributedDataObject.ProgressObserver = (sessionId: string, progress: number) => {
+  console.info("progressChanged callback2" + sessionId);
+  console.info("progressChanged callback2" + progress);
+}
+try {
+  g_object.on("progressChanged", progressChangedCallback1);
+  // 取消对资产传输进度的监听
+  g_object.off("progressChanged", progressChangedCallback1);
+
+  g_object.on("progressChanged", progressChangedCallback1);
+  g_object.on("progressChanged", progressChangedCallback2);
+  //取消对资产传输进度的所有监听
+  g_object.off("progressChanged");
+} catch (error) {
+  console.error("Execute failed, error code =  " + error.code);
+}
+```
 ### setAsset<sup>20+</sup>
 
 setAsset(assetKey: string, uri: string): Promise&lt;void&gt;

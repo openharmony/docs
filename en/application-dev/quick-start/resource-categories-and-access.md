@@ -4,7 +4,7 @@ During application development, you may need to use different resources, such as
 
 - Application resources: configure device- or configuration-specific resources in the resource files.
 
-- System resources: Obtain the ID and configuration-specific values of colors, fonts, or other resources in [Resources](https://gitee.com/openharmony/docs/blob/master/en/design/ux-design/design-resources.md); obtain system icons in [HarmonyOS Symbol](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/).
+- System resources: Obtain the ID and configuration-specific values of colors, fonts, or other resources in [Resources](https://gitee.com/openharmony/docs/blob/master/en/design/ux-design/design-resources.md); obtain system icons in [HarmonyOS Symbol](https://developer.huawei.com/consumer/en/design/harmonyos-symbol/).
 
 
 ## Resource Categories
@@ -65,9 +65,9 @@ Table 2 Requirements for qualifier values
 | Text         | Indicates the script type used by the device. The value starts with one uppercase letter followed by three lowercase letters. For example, **Hans** indicates simplified Chinese, and **Hant** indicates traditional Chinese.<br>For details about the value range, see [ISO 15924](https://www.iso.org/standard/81905.html) (codes for the representation of names of scripts).|
 | Country/Region      | Indicates the country or region where the user is located. The value consists of two or three uppercase letters or three digits. For example, **CN** indicates China, and **GB** indicates the United Kingdom.<br>For details about the value range, see [ISO 3166-1](https://www.iso.org/iso-3166-country-codes.html) (codes for the representation of names of countries and their subdivisions).|
 | Screen orientation        | Indicates the screen orientation of the device. The value can be:<br>- **vertical**: portrait orientation<br>- **horizontal**: landscape orientation|
-| Device type       | <!--RP1-->Indicates the device type. The value can be:<br>- **car**: a telematics device<br>- **tablet**: tablet<br>- **tv**: smart TV<br>- **wearable**: smart wearable<!--RP1End--> |
 | Color mode       | Indicates the color mode of the device. The value can be:<br>- **dark**: dark mode<br>- **light**: light mode|
 | Screen density       | Indicates the screen density of the device, in dpi. The value can be:<br>- **sdpi**: small-scale DPI. This value is applicable to devices with a DPI range of (0, 120].<br>- **mdpi**: medium-scale DPI. This value is applicable to devices with a DPI range of (120, 160].<br>- **ldpi**: large-scale DPI. This value is applicable to devices with a DPI range of (160, 240].<br>- **xldpi**: extra-large-scale DPI. This value is applicable to devices with a DPI range of (240, 320].<br>- **xxldpi**: extra-extra-large-scale DPI. This value is applicable to devices with a DPI range of (320, 480].<br>- **xxxldpi**: extra-extra-extra-large-scale DPI. This value is applicable to devices with a DPI range of (480, 640].|
+| Device type       | <!--RP1-->Indicates the device type. The value can be:<br>- **car**: a telematics device<br>- **tablet**: tablet<br>- **tv**: smart TV<br>- **wearable**: smart wearable<!--RP1End--> |
 
 #### rawfile Directory
 
@@ -323,38 +323,38 @@ The following shows the **attr** attribute configured in **string**. The **strin
   ![Alt text](figures/add_dependencies.png)
 
   2. Use *[hsp].type.name*, where **hsp** indicates the HSP module name, **type** indicates the resource type, and **name** indicates the resource name. The following is an example:
-  
-    ```ts
+      ```ts
       Text($r('[hsp].string.test_string'))
         .fontSize($r('[hsp].float.font_size'))
         .fontColor($r('[hsp].color.font_color'))  
       Image($rawfile('[hsp].icon.png'))
-    ```
-  3. Use variables. The following is an example:
+      ```
 
-   ```ts
-    @Entry
-    @Component
-    struct Index {
-      text: string = '[hsp].string.test_string';
-      fontSize: string = '[hsp].float.font_size';
-      fontColor: string = '[hsp].color.font_color';
-      image: string = '[hsp].media.string';
-      rawfile: string = '[hsp].icon.png';
-  
-      build() {
-        Row() {
-          Text($r(this.text))
-            .fontSize($r(this.fontSize))
-            .fontColor($r(this.fontColor))
-  
-          Image($r(this.image))
-  
-          Image($rawfile(this.rawfile))
+  3. Use variables. The following is an example:
+      ```ts
+      @Entry
+      @Component
+      struct Index {
+        text: string = '[hsp].string.test_string';
+        fontSize: string = '[hsp].float.font_size';
+        fontColor: string = '[hsp].color.font_color';
+        image: string = '[hsp].media.string';
+        rawfile: string = '[hsp].icon.png';
+      
+        build() {
+          Row() {
+            Text($r(this.text))
+              .fontSize($r(this.fontSize))
+              .fontColor($r(this.fontColor))
+      
+            Image($r(this.image))
+      
+            Image($rawfile(this.rawfile))
+          }
         }
       }
-    }
-   ```
+      ```
+      
   > **NOTE**
   >
   > The HSP module name must be placed in the brackets ([]). If the **rawfile** directory contains multiple levels of folders, the path must start from the first level, for example, **$rawfile('[hsp].oneFile/twoFile/icon.png')**. When **$r** or **$rawfile** is used for cross-HSP resource access, resource verification is not available at compile time, and you need to manually check that the target resources exist in the corresponding location.
@@ -362,7 +362,7 @@ The following shows the **attr** attribute configured in **string**. The **strin
 
 ### System Resources
 
-You can obtain the ID and configuration-specific values of colors, fonts, or other resources in [Resources](https://gitee.com/openharmony/docs/blob/master/en/design/ux-design/design-resources.md), obtain system icons in [HarmonyOS Symbol](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/), and further set the icon colors through [SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md).
+You can obtain the ID and configuration-specific values of colors, fonts, or other resources in [Resources](https://gitee.com/openharmony/docs/blob/master/en/design/ux-design/design-resources.md), obtain system icons in [HarmonyOS Symbol](https://developer.huawei.com/consumer/en/design/harmonyos-symbol/), and further set the icon colors through [SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md).
 
 To access system resources, use the "$r('sys.type.resource_name')" format, where **sys** indicates the system resource, **type** indicates the resource type, such as color, float, string, media, or symbol, and **resource_name** indicates the resource name.
 
@@ -372,7 +372,7 @@ To access system resources, use the "$r('sys.type.resource_name')" format, where
 >
 > - For preset applications, you are advised to use system resources. For third-party applications, you can choose to use system resources or custom application resources as required.
 >
-> - Currently, when the system font loaded on the UI is displayed (you can view the font in the **system/etc/fontconfig.json** file), the default font is HarmonyOS Sans and follows the standards [Chinese coded character set GB18030-2022](https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=A1931A578FE14957104988029B0833D3).
+> - Currently, when the system font loaded on the UI is displayed (you can view the font in the **system/etc/fontconfig.json** file), the default font is HarmonyOS Sans.
 
 ```ts
 Text('Hello')

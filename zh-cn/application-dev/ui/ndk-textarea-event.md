@@ -2,17 +2,17 @@
 
 输入框包含多种交互行为，开发者可注册事件监听并获取状态。
 
-要实现实时搜索功能，可注册[NODE_TEXT_AREA_ON_CHANGE](../../application-dev/reference/apis-arkui/_ark_u_i___native_module.md)事件，输入框文本发生变化时会收到通知，并能获取当前文本内容。
+要实现实时搜索功能，可注册[NODE_TEXT_AREA_ON_CHANGE](../../application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype)事件，输入框文本发生变化时会收到通知，并能获取当前文本内容。
 
-要实现文字过滤功能，可注册[NODE_TEXT_AREA_ON_WILL_INSERT](../../application-dev/reference/apis-arkui/_ark_u_i___native_module.md)事件，在文字即将插入前会收到通知，通过返回值控制文字是否插入。
+要实现文字过滤功能，可注册[NODE_TEXT_AREA_ON_WILL_INSERT](../../application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype)事件，在文字即将插入前会收到通知，通过返回值控制文字是否插入。
 
-要实现用户编辑文字前后页面布局的不同，可注册[NODE_TEXT_AREA_ON_EDIT_CHANGE](../../application-dev/reference/apis-arkui/_ark_u_i___native_module.md)事件，输入框编辑状态切换时会收到通知。
+要实现用户编辑文字前后页面布局的不同，可注册[NODE_TEXT_AREA_ON_EDIT_CHANGE](../../application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype)事件，输入框编辑状态切换时会收到通知。
 
 以下示例基于[接入ArkTS页面章节](../ui/ndk-access-the-arkts-page.md)，说明如何监听输入框的事件及数据解析。
 
 - 注册事件
     
-    事件注册有统一接口，详情请参见[registerNodeEvent](../../application-dev/reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#registernodeevent)。输入框支持的事件类型，请参见[NativeNode组件支持的事件类型定义](../../application-dev/reference/apis-arkui/_ark_u_i___native_module.md)，搜索前缀NODE_TEXT_AREA_。
+    事件注册有统一接口，详情请参见[registerNodeEvent](../../application-dev/reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#registernodeevent)。输入框支持的事件类型，请参见[NativeNode组件支持的事件类型定义](../../application-dev/reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype)，搜索前缀NODE_TEXT_AREA_。
 
     ```c++
     // 创建两个文本组件，展示事件内收到的信息。
@@ -39,7 +39,7 @@
 
 - 注册事件回调
 
-    事件回调注册有统一接口，详情请参见[registerNodeEventReceiver](../../application-dev/reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#registernodeeventreceiver)。
+    事件回调注册有统一接口，详情请参见[registerNodeEventReceiver](../../application-dev/reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#registernodeeventreceiver)。
 
     ```c++
     nodeApi->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {

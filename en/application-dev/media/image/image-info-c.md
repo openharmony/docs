@@ -14,7 +14,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libohimage.so libimage_rece
 
 ### Calling the Native APIs
 
-For details about the APIs, see [Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md).
+For details about the APIs, see [Image_NativeModule](../../reference/apis-image-kit/capi-image-nativemodule.md).
 
 Create a native C++ application in DevEco Studio. The project created by default contains the **index.ets** file, and a **hello.cpp** or **napi_init.cpp** file is generated in the **entry\src\main\cpp** directory. In this example, the generated file is **hello.cpp**. Implement the C APIs in **hello.cpp**. Refer to the sample code below.
 
@@ -47,7 +47,7 @@ static void ImageNativeCTest()
     imgSize.width = IMAGE_WIDTH;
     imgSize.height = IMAGE_HEIGHT;
 
-    // Set the size attribute of OH_ImageReceiverOptions.
+    // Set the size property in OH_ImageReceiverOptions. This property is a mandatory input parameter and does not actually take effect. Image properties are determined by the producer, for example, the camera.
     errCode = OH_ImageReceiverOptions_SetSize(options, imgSize);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest set image receiver options size failed, errCode: %{public}d.", errCode);
@@ -55,7 +55,7 @@ static void ImageNativeCTest()
         return;
     }
 
-    // Set the capacity attribute of OH_ImageReceiverOptions.
+    // Set the capacity property of OH_ImageReceiverOptions.
     errCode = OH_ImageReceiverOptions_SetCapacity(options, IMAGE_CAPACITY);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest set image receiver options capacity failed, errCode: %{public}d.", errCode);
@@ -81,7 +81,8 @@ static void ImageNativeCTest()
         return;
     }
 
-    // Read the size attribute of OH_ImageNative.
+    // Read the size property in OH_ImageNative. This property does not actually take effect. Image properties are determined by the producer, for example, the camera.
+    Image_Size imgSizeRead;
     errCode = OH_ImageNative_GetImageSize(image, &imgSizeRead);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image size failed, errCode: %{public}d.", errCode);

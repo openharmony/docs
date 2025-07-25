@@ -6,13 +6,13 @@
 >
 >  从API version 20开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  该toolbar为组件通用属性，请注意与[Navigtion](ts-basic-components-navigation.md#navigation)组件自身的toolbar属性进行区分。
+>  该toolbar为组件通用属性，请注意与[Navigtion](ts-basic-components-navigation.md)组件自身的toolbar属性进行区分。
 
 ## toolbar
 
 toolbar(value: CustomBuilder)
 
-为绑定该属性的组件，在窗口顶部标题栏相应分栏创建与该组件绑定的由[ToolBarItem](ts-basic-components-toolbaritem.md#toolbaritem)构成的工具栏，分栏位置依据绑定该属性的组件所在分栏位置确定。[CustomBuilder](ts-types.md#custombuilder8)必须由[ToolBarItem](ts-basic-components-toolbaritem.md#toolbaritem)构成，该工具栏才能生效。
+为绑定该属性的组件，在窗口顶部标题栏相应分栏创建与该组件绑定的由[ToolBarItem](ts-basic-components-toolbaritem.md)构成的工具栏，分栏位置依据绑定该属性的组件所在分栏位置确定。[CustomBuilder](ts-types.md#custombuilder8)必须由[ToolBarItem](ts-basic-components-toolbaritem.md)构成，该工具栏才能生效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -31,15 +31,15 @@ toolbar(value: CustomBuilder)
 >
 >  4. toolbar仅支持在[NavigationMode](ts-basic-components-navigation.md#navigationmode9枚举说明)为Split的场景中使用。当[NavigationMode](ts-basic-components-navigation.md#navigationmode9枚举说明)设置为Stack或Auto时，无法应用toolbar。
 >
->  5. 标题栏高度会根据toolbar内的[ToolBarItem](ts-basic-components-toolbaritem.md#toolbaritem)组件在有限范围内浮动：
->     * [ToolBarItem](ts-basic-components-toolbaritem.md#toolbaritem)组件的会与标题栏默认存在4VP的margin（外边距）。
->     * 当[ToolBarItem](ts-basic-components-toolbaritem.md#toolbaritem)组件的最大高度小于等于48VP时，标题栏高度会调整为56VP，此设置适用于标题栏、工具栏、搜索栏等通用组件。
->     * 当[ToolBarItem](ts-basic-components-toolbaritem.md#toolbaritem)组件的最大高度介于48VP到56VP之间时，标题栏高度会调整为64VP，此设置适用于图标与文字同时呈现的工具栏。
->     * 当[ToolBarItem](ts-basic-components-toolbaritem.md#toolbaritem)组件的最大高度超过56VP时，标题栏高度会调整为72VP。如果[ToolBarItem](ts-basic-components-toolbaritem.md#toolbaritem)组件的最大高度超过64VP，则标题栏的高度保持为72VP，超出的区域会发生裁剪。
+>  5. 标题栏高度会根据toolbar内的[ToolBarItem](ts-basic-components-toolbaritem.md)组件在有限范围内浮动：
+>     * [ToolBarItem](ts-basic-components-toolbaritem.md)组件的会与标题栏默认存在4VP的margin（外边距）。
+>     * 当[ToolBarItem](ts-basic-components-toolbaritem.md)组件的最大高度小于等于48VP时，标题栏高度会调整为56VP，此设置适用于标题栏、工具栏、搜索栏等通用组件。
+>     * 当[ToolBarItem](ts-basic-components-toolbaritem.md)组件的最大高度介于48VP到56VP之间时，标题栏高度会调整为64VP，此设置适用于图标与文字同时呈现的工具栏。
+>     * 当[ToolBarItem](ts-basic-components-toolbaritem.md)组件的最大高度超过56VP时，标题栏高度会调整为72VP。如果[ToolBarItem](ts-basic-components-toolbaritem.md)组件的最大高度超过64VP，则标题栏的高度保持为72VP，超出的区域会发生裁剪。
 
 ## 示例
 
-该示例通过为[Navigtion](ts-basic-components-navigation.md#navigation)下的[Button](ts-basic-components-button.md#button)组件绑定toolbar通用属性，为标题栏Navbar分栏开头位置添加包含两个[Button](ts-basic-components-button.md#button)组件工具栏项。为[NavDestination](ts-basic-components-navdestination.md#navdestination)下的[Text](ts-basic-components-text.md#text)组件绑定toolbar通用属性，为标题栏NavDestination分栏末尾位置添加包含一个滑动条组件和一个搜索栏组件工具栏项。
+该示例通过为[Navigtion](ts-basic-components-navigation.md)下的[Button](ts-basic-components-button.md)组件绑定toolbar通用属性，为标题栏Navbar分栏开头位置添加包含两个[Button](ts-basic-components-button.md)组件工具栏项。为[NavDestination](ts-basic-components-navdestination.md)下的[Text](ts-basic-components-text.md)组件绑定toolbar通用属性，为标题栏NavDestination分栏末尾位置添加包含一个滑动条组件和一个搜索栏组件工具栏项。
 
 ```ts
 // xxx.ets

@@ -15,7 +15,7 @@ For example, you can use logging functions to output logs of the specified log t
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |

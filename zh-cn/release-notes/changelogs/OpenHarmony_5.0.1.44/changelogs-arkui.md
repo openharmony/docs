@@ -101,7 +101,7 @@ API 12
 
 **变更的接口/组件**
 
-富文本组件RichEditor
+preventDefault
 
 **适配指导**
 

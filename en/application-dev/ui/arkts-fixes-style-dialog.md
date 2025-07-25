@@ -1,18 +1,31 @@
-# Fixed Style Dialog Box
+# Fixed-Style Dialog Box
 
-The fixed-style dialog box uses a fixed layout format, so that you do not need to care about specific display layout details, and only need to enter text content that needs to be displayed, thereby simplifying a use process and improving convenience.
+The fixed-style dialog box uses a predefined layout format, allowing you to focus on providing the required text content without worrying about specific display layout details. This simplifies usage and improves convenience.
 
 ## Constraints
 
-- The dialog box APIs are dependent on the UI execution context and should not be used in an unclear UI context. For details, see [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext).
-
-- You can call **UIContext** or **getUIContext** to use the APIs described in this document, except **CalendarPickerDialog**, on non-UI pages or in some asynchronous callbacks. Operation not supported.
+- You can use the APIs in this document in non-UI pages or certain asynchronous callbacks by calling **UIContext** or **getUIContext**. This operation is not supported by **CalendarPickerDialog**.
 
 - For **showActionMenu** and **showDialog** APIs, you must first call [getPromptAction()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction) in **UIContext** to obtain the **PromptAction** object, and then use the object to call the corresponding API.
 
-- For **ActionSheet**, **AlertDialog**, and **PickerDialog** APIs, except **CalendarPickerDialog**, you must first call [getUIContext()](../reference/apis-arkui/js-apis-window.md#getuicontext10) in **ohos.window** to obtain the **UIContext** instance, and then use the instance to call the corresponding API. Alternatively, you can obtain a **UIContext** instance through the built-in method [getUIContext()](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext) of the custom component.
+- For **ActionSheet**, **AlertDialog**, and **PickerDialog** APIs, except **CalendarPickerDialog**, you must first call [getUIContext()](../reference/apis-arkui/arkts-apis-window-Window.md#getuicontext10) in **ohos.window** to obtain the **UIContext** instance, and then use the instance to call the corresponding API. Alternatively, you can obtain a **UIContext** instance through the built-in method [getUIContext()](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext) of the custom component.
 
 The dialog boxes created using **showActionMenu**, **showDialog**, **ActionSheet**, or **AlertDialog** can be changed to a non-modal dialog box by setting its **isModal** attribute to **false**.
+
+The dialog boxes created using **showActionMenu**, **showDialog**, **ActionSheet**, or **AlertDialog** do not support setting the font style of the content area, such as font color, size and line breaks. For custom styles, you are advised to use [global custom dialog boxes independent of UI components](arkts-uicontext-custom-dialog.md) or [basic custom dialog boxes](./arkts-common-components-custom-dialog.md).
+
+## Lifecycle
+
+The dialog box provides lifecycle functions to notify users of its lifecycle events. The order in which these lifecycle events are triggered is as follows: **onWillAppear** -> **onDidAppear** -> **onWillDisappear** -> **onDidDisappear**. You can also refer to the API documentation for each component.
+
+Since API version 19, the dialog boxes created using **showDialog**, **ActionSheet**, or **AlertDialog** support the following lifecycle events.
+
+| Name           |Type| Description                      |
+| ----------------- | ------ | ---------------------------- |
+| onWillAppear    | Callback&lt;void&gt; | Triggered before the dialog box display animation.|
+| onDidAppear    | Callback&lt;void&gt;  | Triggered after the dialog box appears.   |
+| onWillDisappear | Callback&lt;void&gt; | Triggered before the dialog box exit animation.|
+| onDidDisappear | Callback&lt;void&gt;  | Triggered after the dialog box disappears.   |
 
 ## Action Menu (showActionMenu)
 
@@ -94,21 +107,11 @@ try {
 
 The picker dialog box is typically used to display specific information or options when a user performs certain actions, such as touching a button.
 
-### Lifecycle
-
-The picker dialog box offers lifecycle functions to notify users about the dialog box's lifecycle events.
-For details about the sequence in which the lifecycle events are triggered, see the API reference for each component.
-
-| Name           |Type| Description                      |
-| ----------------- | ------ | ---------------------------- |
-| onDidAppear    | () => void  | Event callback when the dialog box appears. |
-| onDidDisappear |() => void  | Event callback when the dialog box disappears. |
-| onWillAppear    | () => void | Event callback when the dialog box is about to appear.|
-| onWillDisappear | () => void | Event callback when the dialog box is about to disappear.|
-
 ### Calendar Picker Dialog Box (CalendarPickerDialog)
 
 The calendar picker dialog box provides a calendar view that includes year, month, and weekday information, implemented through the [CalendarPickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md) API. You can call the **show** API to define and display the calendar picker dialog box.
+
+The display of the calendar picker dialog box depends on the UI execution context and cannot be used in places where the [UI context is ambiguous](./arkts-global-interface.md). For specific constraints, see the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext) documentation.
 
 You can also define custom button styles by configuring **acceptButtonStyle** and **cancelButtonStyle**.
 
@@ -117,7 +120,7 @@ You can also define custom button styles by configuring **acceptButtonStyle** an
 @Entry
 @Component
 struct CalendarPickerDialogExample {
-  private selectedDate: Date = new Date('2024-04-23')
+  private selectedDate: Date = new Date('2024-04-23');
 
   build() {
     Column() {
@@ -141,7 +144,7 @@ struct CalendarPickerDialogExample {
             },
             onAccept: (date: Date)=>{
               // Display the last selected date when the dialog box is shown again.
-              this.selectedDate = date
+              this.selectedDate = date;
             }
           })
         })
@@ -178,10 +181,10 @@ struct DatePickerDialogExample {
             lunarSwitch: true,
             showTime: true,
             onDateAccept: (value: Date) => {
-              this.selectTime = value
-              console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
+              this.selectTime = value;
+              console.info("DatePickerDialog:onAccept()" + JSON.stringify(value));
             },
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -268,7 +271,7 @@ struct TimePickerDialogExample {
               backgroundColor: '#f7f7f7',
               borderRadius: 10
             }
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -284,7 +287,7 @@ The text picker dialog box allows users to select text from the given range, pre
 
 You use the [showTextPickerDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showtextpickerdialog) API in **UIContext** to implement a date picker dialog box.
 
-This example demonstrates how to implement a three-column text picker dialog box by setting the **range** parameter type to TextCascadePickerRangeContent[]. When the confirm button is touched, the dialog box returns the currently selected text and index value through the **onAccept** callback. To display the last confirmed text when the dialog box is shown again, reassign the value to **select** in the callback.
+This example demonstrates how to implement a three-column text picker dialog box by setting the **range** parameter type to **TextCascadePickerRangeContent[]**. When the confirm button is touched, the dialog box returns the currently selected text and index value through the **onAccept** callback. To display the last confirmed text when the dialog box is shown again, reassign the value to **select** in the callback.
 
 ```ts
 @Entry
@@ -304,9 +307,9 @@ struct TextPickerDialogExample {
     {
       text: 'Heilongjiang Province',
       children: [{ text: 'Harbin', children: [{ text: 'Daoli District' }, { text: 'Daowai District' }, { text: 'Nangang District' }] },
-      { text: 'Mudanjiang', children: [{ text: `Dong'an District` }, { text: `Xi'an District` }, { text: 'Aimin District' }] }]
+        { text: 'Mudanjiang', children: [{ text: `Dong'an District` }, { text: `Xi'an District` }, { text: 'Aimin District' }] }]
     }
-  ]
+  ];
   private select : number  = 0;
   build() {
     Column() {
@@ -319,7 +322,7 @@ struct TextPickerDialogExample {
             onAccept: (value: TextPickerResult) => {
               this.select = value.index as number
             }
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -364,7 +367,7 @@ struct showActionSheetExample {
             confirm: {
               value: 'OK',
               action: () => {
-                console.info('Get Alert Dialog handled')
+                console.info('Get Alert Dialog handled');
               }
             },
             alignment: DialogAlignment.Center,
@@ -382,11 +385,11 @@ struct showActionSheetExample {
               {
                 title: 'Pears',
                 action: () => {
-                  console.log('Pears')
+                  console.info('Pears');
                 }
               }
             ]
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -432,7 +435,7 @@ struct showAlertDialogExample {
               buttons: [{
                 value: 'Cancel',
                 action: () => {
-                  console.info('Callback when the first button is clicked')
+                  console.info('Callback when the first button is clicked');
                 }
               },
                 {
@@ -441,11 +444,11 @@ struct showAlertDialogExample {
                   style: DialogButtonStyle.HIGHLIGHT,
                   value: 'OK',
                   action: () => {
-                    console.info('Callback when the second button is clicked')
+                    console.info('Callback when the second button is clicked');
                   }
                 }],
             }
-          )
+          );
         })
     }.width('100%').margin({ top: 5 })
   }

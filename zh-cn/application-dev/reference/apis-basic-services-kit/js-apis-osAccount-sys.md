@@ -539,7 +539,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
   let localId: number = 100;
   try {
     accountManager.setOsAccountConstraints(localId, ['constraint.location.set'], false).then(() => {
-      console.log('setOsAccountConstraints succsuccessfully');
+      console.info('setOsAccountConstraints successfully');
     }).catch((err: BusinessError) => {
       console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
     });
@@ -617,7 +617,7 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 | 参数名    | 类型   | 必填 | 说明                                |
 | --------- | ------ | ---- | --------------------------------- |
 | localId   | number | 是   | 系统账号ID。 |
-| localName | string | 是   | 账号名，最大长度为1024。            |
+| localName | string | 是   | 账号名，最大长度为1024个字符。            |
 
 **返回值：**
 
@@ -779,7 +779,7 @@ queryMaxLoggedInOsAccountNumber(): Promise&lt;number&gt;
 
 getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-获取指定系统账号已使能的的全部约束。使用Promise异步回调。
+获取指定系统账号已使能的全部约束。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -797,7 +797,7 @@ getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&
 
 | 类型                               | 说明                                                       |
 | ---------------------------------- | ---------------------------------------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回指定系统账号已使能的的全部[约束](js-apis-osAccount.md#系统账号约束列表)。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回指定系统账号已使能的全部[约束](js-apis-osAccount.md#系统账号约束列表)。 |
 
 **错误码：**
 
@@ -2213,7 +2213,7 @@ constructor()
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 **错误码：**
 
@@ -2381,7 +2381,7 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 
 | 类型                                                              | 说明                                                 |
 | :---------------------------------------------------------------- | :-------------------------------------------------- |
-| Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise对象，返回执行者属性信息。 |
+| Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise对象，返回执行器属性信息。 |
 
 **错误码：**
 
@@ -2938,7 +2938,7 @@ constructor()
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 **错误码：**
 
@@ -3708,7 +3708,7 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo or credential. |
@@ -4078,7 +4078,7 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
 
 getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
 
-查询指定的域账号信息，callback方式。
+查询指定的域账号信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4134,7 +4134,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 
 getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountInfo&gt;
 
-查询指定的域账号信息，promise方式。
+查询指定的域账号信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4365,7 +4365,7 @@ constructor()
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 **错误码：**
 
@@ -5296,8 +5296,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | ------------ | ---------------------------- | ----- | -----|----------------- |
 | result       | number                       | 否    | 否   | 指示结果。         |
 | authSubType  | [AuthSubType](#authsubtype8) | 否    | 否   | 指示认证凭据子类型。|
-| remainTimes  | number                       | 否    | 是   | 指示剩余次数。     |
-| freezingTime | number                       | 否    | 是   | 指示冻结时间。     |
+| remainTimes  | number                       | 否    | 是   | 指示剩余次数，默认为-1。     |
+| freezingTime | number                       | 否    | 是   | 指示冻结时间，默认为-1。     |
 | enrollmentProgress<sup>10+</sup> | string   | 否    | 是   | 指示录入进度，默认为空。 |
 | sensorInfo<sup>10+</sup> | string           | 否    | 是   | 指示传感器信息，默认为空。 |
 | nextPhaseFreezingTime<sup>12+</sup> | number | 否    | 是   | 指示下次冻结时间，默认为undefined。 |
@@ -5500,10 +5500,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | FACE_AUTH_TIP_TOO_FAR         | 4     | 表示面部离设备太远。                       |
 | FACE_AUTH_TIP_TOO_HIGH        | 5     | 表示设备太高，仅捕捉面部上部。              |
 | FACE_AUTH_TIP_TOO_LOW         | 6     | 表示设备太低，仅捕捉面部下部。              |
-| FACE_AUTH_TIP_TOO_RIGHT       | 7     | 指示设备向右偏移，并且仅捕捉面部的右侧部分。 |
-| FACE_AUTH_TIP_TOO_LEFT        | 8     | 指示设备向左偏移，并且仅捕捉面部的左侧部分。 |
+| FACE_AUTH_TIP_TOO_RIGHT       | 7     | 表示设备向右偏移，并且仅捕捉面部的右侧部分。 |
+| FACE_AUTH_TIP_TOO_LEFT        | 8     | 表示设备向左偏移，并且仅捕捉面部的左侧部分。 |
 | FACE_AUTH_TIP_TOO_MUCH_MOTION | 9     | 表示面部信息收集过程中面部移动过快。         |
-| FACE_AUTH_TIP_POOR_GAZE       | 10    | 表示面未朝向设备。                         |
+| FACE_AUTH_TIP_POOR_GAZE       | 10    | 表示面部未朝向设备。                         |
 | FACE_AUTH_TIP_NOT_DETECTED    | 11    | 表示未检测到人脸。                         |
 
 ## FingerprintTips<sup>8+</sup>
@@ -5663,8 +5663,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | shortName | string | 是   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符。|
-| disallowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否   | 表示预置应用禁止名单，名单中的应用不可被安装在设备上。|
-| allowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否   | 表示预置应用允许名单，仅名单中的应用可以被安装在设备上。|
+| disallowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否   | 表示预置应用禁止名单，名单中的应用不可被安装在设备上，默认为空列表。|
+| allowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否   | 表示预置应用允许名单，仅名单中的应用可以被安装在设备上，默认为std::nullopt。|
 
 ## CreateOsAccountForDomainOptions<sup>12+</sup>
 

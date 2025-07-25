@@ -4,7 +4,7 @@
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
-## 29210001 未知错误
+## 29200001 未知错误
 
 **错误信息**
 
@@ -24,7 +24,7 @@ Some unknown error occurred, such as GPU calculation failure or memcpy failure.
 1. 检查资源是否已经初始化。
 2. 检查内存是否有效。
 
-## 29210002 初始化失败
+## 29200002 初始化失败
 
 **错误信息**
 
@@ -42,7 +42,7 @@ GPU初始化失败。
 
 查看log是否有GPU异常上报。
 
-## 29210003 创建失败
+## 29200003 创建失败
 
 **错误信息**
 
@@ -60,7 +60,7 @@ Failed to create video processing instance. For example, the number of instances
 
 减少创建实例的数目。
 
-## 29210004 处理失败
+## 29200004 处理失败
 
 **错误信息**
 
@@ -78,7 +78,7 @@ Failed to process video buffer. For example, the processing times out.
 
 减小负载。
 
-## 29210005 不支持的处理
+## 29200005 不支持的处理
 
 **错误信息**
 
@@ -96,7 +96,7 @@ The processing is not supported. You may call OH_VideoProcessing_IsXXXSupported 
 
 检查log打印。
 
-## 29210006 不被允许的操作
+## 29200006 不被允许的操作
 
 **错误信息**
 
@@ -114,7 +114,7 @@ The operation is not permitted. This may be caused by incorrect status.
 
 检查log打印。
 
-## 29210007 内存不足
+## 29200007 内存不足
 
 **错误信息**
 
@@ -132,7 +132,7 @@ Out of memory.
 
 减少内存申请。
 
-## 29210008 实例无效
+## 29200008 实例无效
 
 **错误信息**
 
@@ -150,7 +150,7 @@ The video processing instance is invalid. This may be caused by null instance.
 
 检查实例的创建。
 
-## 29210009 值无效
+## 29200009 值无效
 
 **错误信息**
 

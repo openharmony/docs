@@ -32,6 +32,7 @@
     - [使用Image_NativeModule处理图像信息](image-info-c.md)
 - Image Kit常见问题<!--image-faqs-->
   - [如何处理HEIF图片](image-faqs/heif-adapter-faq.md)
+  - [如何获取图片的旋转角度信息](image-faqs/image-rotate-faq.md)
 - 不再推荐使用<!--imagekit-not-recommended-->
   - 图片开发指导(依赖JS对象)(C/C++)<!--image-native-js-objects-->
     - [图片解码](image-decoding-native.md)

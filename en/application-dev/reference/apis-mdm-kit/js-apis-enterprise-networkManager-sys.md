@@ -4,13 +4,13 @@ The **networkManager** module provides APIs for network management of enterprise
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 >
-> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
+> - The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2).
 > 
-> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.networkManager](js-apis-enterprise-networkManager.md).
+> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.networkManager](js-apis-enterprise-networkManager.md).
 
 ## Modules to Import
 
@@ -52,6 +52,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -106,6 +107,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -153,6 +155,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -208,6 +211,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -255,6 +259,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -310,6 +315,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -357,6 +363,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -412,6 +419,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -460,6 +468,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -516,6 +525,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -564,6 +574,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -627,6 +638,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { connection } from '@kit.NetworkKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -680,6 +692,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -734,6 +747,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -750,7 +764,7 @@ networkManager.getGlobalProxy(wantTemp).then(() => {
 
 addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCallback\<void>): void
 
-Adds a network packet filtering rule for the device. This API uses an asynchronous callback to return the result.
+Adds a network packet filtering rule for the device. Only IPv4 is supported. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -781,6 +795,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -811,7 +826,7 @@ networkManager.addIptablesFilterRule(wantTemp, filterRule, (err) => {
 
 addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 
-Adds a network packet filtering rule for the device. This API uses a promise to return the result.
+Adds a network packet filtering rule for the device. Only IPv4 is supported. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -848,6 +863,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -876,7 +892,7 @@ networkManager.addIptablesFilterRule(wantTemp, filterRule).then(() => {
 
 removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: AsyncCallback\<void>): void
 
-Network packet filtering rule to remove. This API uses an asynchronous callback to return the result.
+Removes the network packet filtering rule. Only IPv4 is supported. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -907,6 +923,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -935,7 +952,7 @@ networkManager.removeIptablesFilterRule(wantTemp, filterRule, (err) => {
 
 removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<void>
 
-Network packet filtering rule to remove. This API uses a promise to return the result.
+Removes the network packet filtering rule. Only IPv4 is supported. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -972,6 +989,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -998,7 +1016,7 @@ networkManager.removeIptablesFilterRule(wantTemp, filterRule).then(() => {
 
 listIptablesFilterRules(admin: Want, callback: AsyncCallback\<string>): void
 
-Obtains network packet filtering rules. This API uses an asynchronous callback to return the result.
+Obtains the network packet filtering rule. Only IPv4 is supported. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1028,6 +1046,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1046,7 +1065,7 @@ networkManager.listIptablesFilterRules(wantTemp, (err, result) => {
 
 listIptablesFilterRules(admin: Want): Promise\<string>
 
-Obtains network packet filtering rules. This API uses a promise to return the result.
+Obtains the network packet filtering rule. Only IPv4 is supported. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1082,6 +1101,7 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1101,18 +1121,18 @@ Network packet filtering rule to add.
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 
-| Name        | Type    | Mandatory| Description                           |
-| ----------- | --------| ---- | ------------------------------- |
-| ruleNo        | number    | No  | Sequence number of the rule.|
-| srcAddr | string   | No  | Source IP address.|
-| destAddr        | string    | No  | Destination IP address.|
-| srcPort | string   | No  | Port of the source IP address.|
-| destPort        | string    | No  | Port of the destination IP address.|
-| uid | string   | No  | UID of the application.|
-| method        | [AddMethod](#addmethod)    | Yes  | Method used to add the data packets.|
-| direction | [Direction](js-apis-enterprise-networkManager.md#direction) | Yes  | Direction chains to which the rule applies.|
-| action        | [Action](js-apis-enterprise-networkManager.md#action) | Yes  | Action to take, that is, receive or discard the data packets.|
-| protocol | [Protocol](js-apis-enterprise-networkManager.md#protocol) | No  | Network protocol.|
+| Name        | Type    | Read-Only| Optional| Description                           |
+| ----------- | --------| ---- | ---- | ------------------------------- |
+| ruleNo        | number    | No  | Yes| Sequence number of the rule.|
+| srcAddr | string   | No  | Yes| Source IP address.|
+| destAddr        | string    | No  | Yes| Destination IP address.|
+| srcPort | string   | No  | Yes| Port of the source IP address.|
+| destPort        | string    | No  | Yes| Port of the destination IP address.|
+| uid | string   | No  | Yes| UID of the application.|
+| method        | [AddMethod](#addmethod)    | No  | No| Method used to add the data packets.|
+| direction | [Direction](js-apis-enterprise-networkManager.md#direction) | No  | No| Direction chains to which the rule applies.|
+| action        | [Action](js-apis-enterprise-networkManager.md#action) | No  | No| Action to take, that is, receive or discard the data packets.|
+| protocol | [Protocol](js-apis-enterprise-networkManager.md#protocol) | No  | Yes|Network protocol.|
 
 ## RemoveFilterRule
 
@@ -1121,16 +1141,16 @@ Network packet filtering rule to remove.
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 
-| Name        | Type    | Mandatory| Description                           |
-| ----------- | --------| ---- | ------------------------------- |
-| srcAddr | string   | No  | Source IP address.|
-| destAddr        | string    | No  | Destination IP address.|
-| srcPort | string   | No  | Port of the source IP address.|
-| destPort        | string    | No   | Port of the destination IP address.|
-| uid | string   | No   | UID of the application.|
-| direction | [Direction](js-apis-enterprise-networkManager.md#direction) | Yes   | Direction chains to which the rule applies.|
-| action        | [Action](js-apis-enterprise-networkManager.md#action) | No   | Action to take, that is, receive or discard the data packets.|
-| protocol | [Protocol](js-apis-enterprise-networkManager.md#protocol) | No   | Network protocol.|
+| Name        | Type    | Read-Only| Optional| Description                           |
+| ----------- | --------| ---- | ---- | ------------------------------ |
+| srcAddr | string   | No  | Yes| Source IP address.|
+| destAddr        | string    | No  | Yes| Destination IP address.|
+| srcPort | string   | No  | Yes| Port of the source IP address.|
+| destPort        | string    | No   | Yes| Port of the destination IP address.|
+| uid | string   | No   | Yes| UID of the application.|
+| direction | [Direction](js-apis-enterprise-networkManager.md#direction) | No   | No| Direction chains to which the rule applies.|
+| action        | [Action](js-apis-enterprise-networkManager.md#action) | No   | Yes| Action to take, that is, receive or discard the data packets.|
+| protocol | [Protocol](js-apis-enterprise-networkManager.md#protocol) | No   | Yes| Network protocol.|
 
 ## AddMethod
 

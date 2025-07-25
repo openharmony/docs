@@ -31,6 +31,8 @@ Progress(options: ProgressOptions)
 
 ## ProgressOptions\<Type>对象说明
 
+进度条选项。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -44,37 +46,43 @@ Progress(options: ProgressOptions)
 
 ## ProgressType<sup>8+</sup>枚举说明
 
+进度条类型。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                     | 说明                                     |
-| ---------------------- | ---------------------------------------- |
-| Linear                 | 线性样式。从API version 9开始，高度大于宽度时，自适应垂直显示。   |
-| Ring      | 环形无刻度样式，环形圆环逐渐显示至完全填充效果。                 |
-| Eclipse  | 圆形样式，显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。         |
-| ScaleRing | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。从API version 9开始，刻度外圈出现重叠的时候自动转换为环形无刻度进度条。 |
-| Capsule   | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同，中段处的进度展示效果与Linear相同。高度大于宽度时，自适应垂直显示。 |
+| 名称                     | 值 | 说明                                     |
+| ---------------------- | - | ---------------------------------------- |
+| Linear                 | 0 | 线性样式。从API version 9开始，当高度大于宽度时，自适应垂直显示。   |
+| Ring      | 1 | 环形无刻度样式，环形圆环逐渐显示直至完全填充。                 |
+| Eclipse  | 2 | 圆形样式，显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。         |
+| ScaleRing | 3 | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。从API version 9开始，刻度外圈出现重叠时自动转换为环形无刻度进度条。 |
+| Capsule   | 4 | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同，中段的进度展示效果与Linear相同。当高度大于宽度时，自适应垂直显示。 |
 
 ##  ProgressStyle枚举说明 
 
+进度条样式。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 说明                                     |
-| --------- | ---------------------------------------- |
-| Linear    | 线性样式。                                    |
-| Ring<sup>8+</sup>      | 环形无刻度样式，环形圆环逐渐显示至完全填充效果。                 |
-| Eclipse   | 圆形样式，显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。         |
-| ScaleRing<sup>8+</sup> | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。               |
-| Capsule<sup>8+</sup>   | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同，中段处的进度展示效果与Linear相同。高度大于宽度时，自适应垂直显示。 |
+| 名称        | 值 | 说明                                     |
+| --------- | - | ---------------------------------------- |
+| Linear    | 0 | 线性样式。                                    |
+| Ring<sup>8+</sup>      | 1 | 环形圆环逐渐显示直至完全填充。                 |
+| Eclipse   | 2 | 圆形样式，显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。         |
+| ScaleRing<sup>8+</sup> | 3 | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。               |
+| Capsule<sup>8+</sup>   | 4 | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同，中段的进度展示效果与Linear相同。当高度大于宽度时，自适应垂直显示。 |
 
 ##  ProgressStyleMap对象说明 
+
+进度条类型和样式的映射表。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -182,6 +190,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## ProgressConfiguration<sup>12+</sup>
 
+进度条配置。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -193,6 +203,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## CommonProgressStyleOptions<sup>10+</sup>
 
+进度条通用样式选项。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -203,6 +215,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## ScanEffectOptions<sup>10+</sup>
 
+扫光效果选项。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -212,6 +226,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | enableScanEffect | boolean | 否 | 扫光效果的开关。<br/>默认值：false，false表示关闭扫光效果，true表示开启扫光效果。仅支持Linear、Ring、Capsule类型的进度条。 |
 
 ## ProgressStyleOptions<sup>8+</sup>
+
+进度条样式选项。
 
 继承自[CommonProgressStyleOptions](#commonprogressstyleoptions10)。
 
@@ -228,6 +244,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | scaleWidth   | [Length](ts-types.md#length) | 否   | 设置环形进度条刻度粗细（不支持百分比设置）。刻度粗细大于进度条宽度时，为系统默认粗细。<br/>默认值：2.0vp |
 
 ## CapsuleStyleOptions<sup>10+</sup>
+
+胶囊样式选项。
 
 继承自[ScanEffectOptions](#scaneffectoptions10)和[CommonProgressStyleOptions](#commonprogressstyleoptions10)。
 
@@ -247,6 +265,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## RingStyleOptions<sup>10+</sup>
 
+环形无刻度样式选项。
+
 继承自[ScanEffectOptions](#scaneffectoptions10)和[CommonProgressStyleOptions](#commonprogressstyleoptions10)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -261,6 +281,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## LinearStyleOptions<sup>10+</sup>
 
+线性样式选项。
+
 继承自[ScanEffectOptions](#scaneffectoptions10)和[CommonProgressStyleOptions](#commonprogressstyleoptions10)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -273,6 +295,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | strokeRadius   | [PX](ts-types.md#px10)    \| [VP](ts-types.md#vp10)    \| [LPX](ts-types.md#lpx10)    \| [Resource](ts-types.md#resource)| 否   | 设置线性进度条的圆角半径。<br/>取值范围[0, strokeWidth / 2]。默认值：strokeWidth / 2。 |
 
 ## ScaleRingStyleOptions<sup>10+</sup>
+
+环形有刻度样式选项。
 
 继承自[CommonProgressStyleOptions](#commonprogressstyleoptions10)。
 
@@ -288,6 +312,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## EclipseStyleOptions<sup>10+</sup>
 
+圆形样式选项。圆形样式的显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。
+
 继承自[CommonProgressStyleOptions](#commonprogressstyleoptions10)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -295,6 +321,8 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## ProgressStatus<sup>10+</sup>枚举说明
+
+进度条的当前状态。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -377,7 +405,7 @@ struct ProgressExample {
 
 ### 示例2（设置环形进度条属性）
 
-该示例通过style接口的strokeWidth和shadow属性，实现了环形进度条视觉属性设置功能。
+该示例通过[style](#style8)接口的strokeWidth和shadow属性，实现了环形进度条视觉属性设置功能。
 
 ```ts
 // xxx.ets
@@ -406,7 +434,7 @@ struct ProgressExample {
 
 ### 示例3（设置环形进度条动画）
 
-该示例通过style接口的status和enableScanEffect属性，实现了环形进度条动效的开关功能。
+该示例通过[style](#style8)接口的status和enableScanEffect属性，实现了环形进度条动效的开关功能。
 
 ```ts
 // xxx.ets
@@ -432,7 +460,7 @@ struct ProgressExample {
 
 ### 示例4（设置胶囊形进度条属性）
 
-该示例通过style接口的borderColor、borderWidth、content、font、fontColor、enableScanEffect、showDefaultPercentage属性，实现胶囊形进度条的视觉属性设置。
+该示例通过[style](#style8)接口的borderColor、borderWidth、content、font、fontColor、enableScanEffect、showDefaultPercentage属性，实现胶囊形进度条的视觉属性设置。
 
 ```ts
 // xxx.ets
@@ -461,7 +489,7 @@ struct ProgressExample {
 
 ### 示例5（设置进度平滑动效）
 
-该示例通过style接口的enableSmoothEffect属性，实现了进度平滑动效开关的功能。
+该示例通过[style](#style8)接口的enableSmoothEffect属性，实现了进度平滑动效开关的功能。
 
 ```ts
 // xxx.ets
@@ -503,7 +531,7 @@ struct Index {
 
 ### 示例6（设置定制内容区）
 
-该示例通过contentModifier接口，实现了自定义进度条的功能，自定义实现星形，其中总进度为3，且当前值可通过按钮进行增减，达到的进度使用自定义颜色填充。
+该示例通过[contentModifier](#contentmodifier12)接口，实现了自定义进度条的功能，自定义实现星形，其中总进度为3，且当前值可通过按钮进行增减，达到的进度使用自定义颜色填充。
 
 ```ts
 // xxx.ets
@@ -584,7 +612,7 @@ struct Index {
 
 ### 示例7（设置隐私隐藏）
 
-该示例通过privacySensitive属性，实现了隐私隐藏效果。效果展示需要卡片框架支持。
+该示例通过[privacySensitive](#privacysensitive12)属性，实现了隐私隐藏效果。效果展示需要卡片框架支持。
 
 ```ts
 @Entry

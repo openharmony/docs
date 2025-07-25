@@ -1,6 +1,6 @@
 # Image Encoding
 
-You can call the native APIs provided by the **ImagePacker** module to encode images, that is, to compress a **PixelMap** object into an image in the desired format.
+You can call the native APIs provided by the ImagePacker module to encode images, that is, to compress a PixelMap object into an image in the desired format.
 
 Currently, images can be encoded only into the JPEG, WebP, PNG, or HEIF format (depending on the hardware).
 
@@ -11,11 +11,11 @@ Currently, images can be encoded only into the JPEG, WebP, PNG, or HEIF format (
   Import an image source, and encapsulate it into the desired format.
 - Image editing
 
-  Edit a **PixelMap** object, and export an image in the desired format.
+  Edit a PixelMap object, and export an image in the desired format.
 
 ## How to Develop
 
-Read [ImagePacker](../../reference/apis-image-kit/image__packer__mdk_8h.md) for the API reference.
+Read the [API reference](../../reference/apis-image-kit/capi-image-packer-mdk-h.md) for APIs related to image encoding.
 
 Refer to the code snippet below to complete the entire image encoding process, including creating an encoder, initializing resources, performing encoding, and destroying the encoder.
 
@@ -64,9 +64,9 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
 
    The following input parameters are provided for the encoding APIs:
 
-   - **ImagePacker_Native** instance obtained
+   - ImagePacker_Native instance obtained
 
-   - Image source (napi_value), **PixelMap** object, or **ImageSource** object (when **CreatePixelMap** is not called yet) to be encoded
+   - Image source (napi_value), PixelMap object, or ImageSource object (when **CreatePixelMap** is not called yet) to be encoded
 
    - Encoding parameters, including the encoding format and encoding quality
 

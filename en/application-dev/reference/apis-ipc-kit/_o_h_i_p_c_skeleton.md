@@ -24,7 +24,7 @@ Provides C interfaces for managing the token IDs, credentials, process IDs (PIDs
 
 | Name| Description| 
 | -------- | -------- |
-| void [OH_IPCSkeleton_JoinWorkThread](#oh_ipcskeleton_joinworkthread) (void) | Joins this thread to the IPC worker thread pool.| 
+| void [OH_IPCSkeleton_JoinWorkThread](#oh_ipcskeleton_joinworkthread) (void) | Joints this thread to the IPC worker thread pool.| 
 | void [OH_IPCSkeleton_StopWorkThread](#oh_ipcskeleton_stopworkthread) (void) | Stops this thread.| 
 | uint64_t [OH_IPCSkeleton_GetCallingTokenId](#oh_ipcskeleton_getcallingtokenid) (void) | Obtains the caller token ID. This API must be called in the IPC context. Otherwise, the token ID is returned.| 
 | uint64_t [OH_IPCSkeleton_GetFirstTokenId](#oh_ipcskeleton_getfirsttokenid) (void) | Obtains the token ID of the first caller.| 
@@ -182,7 +182,7 @@ void OH_IPCSkeleton_JoinWorkThread (void)
 
 **Description**
 
-Joins this thread to the IPC worker thread pool.
+Joints this thread to the IPC worker thread pool.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -207,7 +207,7 @@ Resets the caller identity credential (including the token ID, UID, and PID) to 
 
 | Name| Description| 
 | -------- | -------- |
-| identity | Pointer to the address of the memory for holding the caller identity information. The memory is allocated by the allocator provided by the user and needs to be released. This pointer cannot be empty.| 
+| identity | Pointer to the address of the memory for holding the caller identity information. The memory is allocated by the allocator provided by the user and needs to be released. This pointer cannot be NULL.| 
 | len | Pointer to the length of the data written to the identity. The value cannot be empty.| 
 | allocator | Memory allocator specified by the user for allocating memory. This parameter cannot be empty.| 
 

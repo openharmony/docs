@@ -66,4 +66,4 @@ In addition, ArkTS widgets do not support the following features:
 The following samples are provided to help you better understand how to develop an ArkTS widget:
 
 
-- [Communication Between JS and C++ for Stage Model Widgets (ArkTS, API version 10)] (https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormGame)
+- [Communication Between JS and C++ for Stage Model Widgets (ArkTS, API version 10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormGame)

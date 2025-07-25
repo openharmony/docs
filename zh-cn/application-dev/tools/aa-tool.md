@@ -30,6 +30,7 @@ hdc shell "aa process -b com.example.myapplication -a EntryAbility -p perf-cmd"
 | detach | 退出调试模式命令。通过bundleName使指定应用退出调试模式。|
 | appdebug | 等待调试命令。用于设置、取消设置应用等待调试状态，以及获取处于等待调试状态的应用包名和持久化信息。等待调试状态只对debug类型应用生效。appdebug的设置命令只对单个应用生效，当重复设置时，应用包名与持久化状态会替换成最新设置内容。|
 | process | 应用调试/调优命令。对应用进行调试或调优，IDE用该命令集成调试和调优工具。|
+| send-memory-level | onMemoryLevel回调命令。指定进程的pid和内存使用级别来触发该进程的onMemoryLevel生命周期回调。|
 
 ## 帮助命令（help）
 
@@ -515,7 +516,7 @@ aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-p <perf-cmd>] [-
 
 ## onMemoryLevel回调命令（send-memory-level）
 
-从API version 20开始，开发者可以通过该命令来调试应用的[onMemoryLevel](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onmemorylevel)生命周期。通过在参数中指定进程的pid和内存使用级别来触发该进程的onMemoryLevel生命周期回调。
+从API version 13开始，开发者可以通过该命令来调试应用的[onMemoryLevel](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onmemorylevel)生命周期。通过在参数中指定进程的pid和内存使用级别来触发该进程的onMemoryLevel生命周期回调。
 
 ```bash
 # 触发onMemoryLevel回调
@@ -532,7 +533,7 @@ aa send-memory-level -p <processId> -l <memoryLevel>
 
 **返回值**：
 
-当执行成功时，返回"send memory level successfully."；当执行失败时，返回"error: failed to send memory level."；当给定参数值缺失时，返回"fail: unknow option."并打印帮助信息。
+当执行成功时，返回"send memory level successfully."；当执行失败时，返回"error: failed to send memory level."；当给定参数值缺失时，返回"fail: unknown option."并打印帮助信息。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -837,7 +838,7 @@ The device screen is locked during the application launch.
 
 **处理步骤**
 
-解释屏幕后重新尝试即可。
+解锁屏幕后重新尝试即可。
 
 ### 10106103 目标应用为到期众测应用
 
@@ -963,7 +964,7 @@ aa stop命令停止ServiceAbility时，-a的参数abilityName对应的Ability不
 
 **处理步骤**
 
-检查aa -a的参数abilityName对应的Abiility是否为ServiceAbility类型。
+检查aa -a的参数abilityName对应的Ability是否为ServiceAbility类型。
 
 ### 10104002 获取指定包信息失败
 

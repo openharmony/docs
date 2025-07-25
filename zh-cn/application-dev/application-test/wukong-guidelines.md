@@ -82,8 +82,7 @@ wukong部件架构图以及部件内子模块职责如下所述。
 
   ```bash
   C:\Users>hdc shell
-  $ wukong --help        #wukong帮助菜单
-  wukong: '--help' is not a valid wukong command. See 'wukong help'.
+  $ wukong help        #wukong帮助菜单
   usage: wukong <command> [<arguments>]
   These are common wukong command list:
     help                       wukong help information

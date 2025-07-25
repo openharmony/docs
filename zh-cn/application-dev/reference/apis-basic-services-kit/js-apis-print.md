@@ -783,7 +783,7 @@ struct Index {
 | -------- | -------- | -------- | -------- |
 | copyNumber | number | 否 | 表示文件打印份数。默认值为1。 |
 | pageRange | [PrintPageRange](#printpagerange11) | 否 | 表示待打印文件的页面范围。 |
-| pageSize | [PrintPageSize](#printpagesize11) \| [PrintPageType](#printpagetype11) | 否 | 表示代打印文件的纸张类型。 |
+| pageSize | [PrintPageSize](#printpagesize11) \| [PrintPageType](#printpagetype11) | 否 | 表示待打印文件的纸张类型。 |
 | directionMode | [PrintDirectionMode](#printdirectionmode11) | 否 | 表示待打印文件的方向。 |
 | colorMode | [PrintColorMode](#printcolormode11) | 否 | 表示待打印文件的色彩模式。 |
 | duplexMode | [PrintDuplexMode](#printduplexmode11) | 否 | 表示待打印文件的单双面模式。 |

@@ -63,23 +63,21 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    let startParams = ["StartupTask_001", "libentry_001"];
+    let startParams = ['StartupTask_001', 'libentry_001'];
     try {
       // 手动调用run方法
       startupManager.run(startParams).then(() => {
-        console.log('StartupTest startupManager run then, startParams = ');
+        console.log(`StartupTest startupManager run then, startParams = ${startParams}.`);
       }).catch((error: BusinessError) => {
-        console.info("StartupTest promise catch error, error = " + JSON.stringify(error));
-        console.info("StartupTest promise catch error, startParams = "
-          + JSON.stringify(startParams));
-      })
+        console.error(`StartupTest promise catch failed, error code: ${error.code}, error msg: ${error.message}.`);
+      });
     } catch (error) {
-      let errMsg = JSON.stringify(error);
-      let errCode: number = error.code;
-      console.log('Startup catch error , errCode= ' + errCode);
-      console.log('Startup catch error ,error= ' + errMsg);
+      let errMsg = (error as BusinessError).message;
+      let errCode = (error as BusinessError).code;
+      console.error(`Startup.run failed, err code: ${errCode}, err msg: ${errMsg}.`);
     }
   }
+
   // ...
 }
 ```

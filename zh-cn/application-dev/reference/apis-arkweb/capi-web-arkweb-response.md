@@ -1,8 +1,8 @@
-# ArkWeb_ResourceHandler_
+# ArkWeb_Response_
 
 ## 概述
 
-用于被拦截的URL请求。可以通过ArkWeb_ResourceHandler发送自定义请求头以及自定义请求体。<br>
+为被拦截的请求构造一个ArkWeb_Response。
 
 **起始版本：** 12
 

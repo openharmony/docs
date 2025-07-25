@@ -38,7 +38,7 @@
    let fontCollection = text.FontCollection.getGlobalInstance();
    ```
 
-4. 创建段落样式，并使用字体管理器实例构造段落生成器PargraphBuilder实例，用于生成段落。
+4. 创建段落样式，并使用字体管理器实例构造段落生成器ParagraphBuilder实例，用于生成段落。
    > **说明：**
    >
    > 在生成段落对象设置段落样式入参时，不能指定fontFamilies属性，否则会变为优先使用指定字体而非主题字体。

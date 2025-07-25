@@ -52,7 +52,7 @@ typedef struct {
 
 ### napi_value
 
-napi_value是一个C的结构体指针，表示一个ArkTS/JS对象的引用。napi_value持有了ArkTS/JS对象，同时，napi_value受[napi_handle_scope](#napi_handle_scope)管理，scope中napi_value持有的JS对象不会被释放；出scope后，napi_value将失效，不再持有对应的ArkTS/JS对象。
+napi_value是一个C的结构体指针，表示一个ArkTS/JS对象的引用。napi_value持有了ArkTS/JS对象，同时，napi_value受[napi_handle_scope](#内存管理类型)管理，scope中napi_value持有的JS对象不会被释放；出scope后，napi_value将失效，不再持有对应的ArkTS/JS对象。
 
 ### napi_env
 
@@ -112,7 +112,7 @@ Node-API包含以下内存管理类型：
 
 #### napi_handle_scope
 
-napi_handle_scope数据类型是用来管理ArkTS/JS对象的生命周期的。它允许ArkTS/JS对象在一定范围内保持活动状态，以便在ArkTS/JS代码中使用。在创建napi_handle_scope时，所有在该范围内创建的ArkTS/JS对象都会保持活动状态，直到scope被关闭。这样可以做到ArkTS/JS对象生命周期最小化，[避免发生内存泄漏问题](napi-guidelines.md#生命周期管理)。同时，napi_handle_scope也可参考[生命周期类问题注意事项](../dfx/cppcrash-guidelines.md#案例4生命周期类问题)。
+napi_handle_scope数据类型是用来管理ArkTS/JS对象的生命周期的。它允许ArkTS/JS对象在一定范围内保持活动状态，以便在ArkTS/JS代码中使用。在创建napi_handle_scope时，所有在该范围内创建的ArkTS/JS对象都会保持活动状态，直到scope被关闭。这样可以做到ArkTS/JS对象生命周期最小化，[避免发生内存泄漏问题](napi-guidelines.md#生命周期管理)。同时，napi_handle_scope也可参考<!--RP1-->生命周期类问题注意事项。<!--RP1End-->
 
 #### napi_escapable_handle_scope
 
@@ -139,13 +139,13 @@ typedef struct {
 
 - 存储了两个无符号64位整数的128位值，用它来标记ArkTS/JS对象，确保它们属于某种类型。
 
-- 比napi_instanceof更强的类型检查，如果对象的原型被操纵，napi_instanceof可能会存在语病。
+- 比napi_instanceof更强的类型检查，如果对象的原型被操纵，napi_instanceof可能会存在误报。
 
 - type_tag与napi_wrap结合非常有用，因为它确保从包装对象检索的指针可以安全地转换为与先前应用于JavaScript对象的类型标记相对应的Native类型。
 
 #### napi_async_cleanup_hook_handle
 
-napi_async_cleanup_hook_handle是Node-API中用于管理异步资源生命周期的一种机制。它允许注册一个清理钩子（cleanup hook），该钩子仅在当前napi_env环境生命周期结束时被调用。通过使用 napi_async_cleanup_hook_handle，可以确保某些异步资源在环境销毁前得到妥善释放，从而避免资源泄漏。此外，在Node-API实现中，只要该结构未被释放，会延迟整个 napi_env 环境的销毁。在OpenHarmony中，该接口的行为基本等同于env生命周期相关的清理钩子，除了支持重复注册相同的上下文数据（data）外，其余行为与标准的env清理钩子一致。。
+napi_async_cleanup_hook_handle是Node-API中用于管理异步资源生命周期的一种机制。它允许注册一个清理钩子（cleanup hook），该钩子仅在当前napi_env环境生命周期结束时被调用。通过使用 napi_async_cleanup_hook_handle，可以确保某些异步资源在环境销毁前得到妥善释放，从而避免资源泄漏。此外，在Node-API实现中，只要该结构未被释放，会延迟整个 napi_env 环境的销毁。在OpenHarmony中，该接口的行为基本等同于env生命周期相关的清理钩子，除了支持重复注册相同的上下文数据（data）外，其余行为与标准的env清理钩子一致。
 
 ### 回调类型
 
@@ -157,7 +157,7 @@ Native侧获取JS侧参数信息，传递给napi_get_cb_info，用于获取JS侧
 
 ##### napi_callback
 
-表示用户定义的Native函数，暴露给ArkTS/JS，即ArkTS/JS侧调用的接口；一般不需要callback中创建handle或者callback scope。
+表示用户定义的Native函数，暴露给ArkTS/JS，即ArkTS/JS侧调用的接口；一般不需要在callback中创建handle或者callback scope。
 
 基本用法如下：
 
@@ -167,7 +167,7 @@ typedef napi_value (*napi_callback)(napi_env, napi_callback_info);
 
 ##### napi_finalize
 
-函数指针，用于传入napi_create_threadsafe_function、napi_set_instance_data、napi_wrap、 napi_add_finalizer等接口。napi_finalize在对象被回收时会被调用。
+函数指针，用于传入napi_create_threadsafe_function、napi_set_instance_data、napi_wrap、napi_add_finalizer等接口。napi_finalize在对象被回收时会被调用。
 
 ##### napi_async_execute_callback
 

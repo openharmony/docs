@@ -12,7 +12,9 @@
 
 > **说明**
 >
-> stage模型多工程情况下，共有的资源文件放到AppScope下的resources目录。 
+> - 资源目录和资源组目录下的文件均被视为资源文件，在应用打包时不会进行混淆。
+>
+> - stage模型多工程情况下，共有的资源文件放到AppScope下的resources目录。
 
 资源目录和资源组目录示例：
 ```
@@ -83,7 +85,7 @@ base目录默认存在。二级子目录element用于存放字符串、颜色、
 
 | 目录类型    | 说明                                     | 资源文件                                     |
 | --------- | ---------------------------------------- | ---------------------------------------- |
-| element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征（目录下仅支持文件类型）。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型，范围是`-2^128~2^128`<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型，范围是`-2^31~2^31-1`<!--Del--><br/>-&nbsp;pattern，样式（仅支持系统应用使用）<!--DelEnd--><br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串，[格式化字符串请参考API文档](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringsync10)<!--Del--><br/>-&nbsp;theme，主题（仅支持系统应用使用）<!--DelEnd-->| element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<!--Del--><br/>-&nbsp;pattern.json<!--DelEnd--><br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
+| element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征（目录下仅支持文件类型）。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型，范围是`-2^128到2^128`<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型，范围是`-2^31到2^31-1`<!--Del--><br/>-&nbsp;pattern，样式（仅支持系统应用使用）<!--DelEnd--><br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串，[格式化字符串请参考API文档](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringsync10)<!--Del--><br/>-&nbsp;theme，主题（仅支持系统应用使用）<!--DelEnd-->| element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<!--Del--><br/>-&nbsp;pattern.json<!--DelEnd--><br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
 | media   | 表示媒体资源，包括图片、音频、视频等非文本格式的文件（目录下只支持文件类型）。<br/>图片和音视频的类型说明见表3和表4。              | 文件名可自定义，例如：icon.png。                     |
 | profile  | 表示自定义配置文件，其文件内容可[通过包管理接口](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetprofilebyability)获取（目录下只支持json文件类型）。       | 文件名可自定义，例如：test_profile.json。           |
 
@@ -107,7 +109,7 @@ base目录默认存在。二级子目录element用于存放字符串、颜色、
 | H.264 AVC |.3gp |
 | Baseline Profile (BP) | .mp4   |
 
-**资源文件示例**
+### 资源文件示例
 
 color.json文件的内容如下：
 
@@ -199,7 +201,7 @@ plural.json文件的内容如下：
 
 在resources目录右键菜单选择“New > Resource File”，可同时创建资源目录和资源文件，文件默认创建在base目录的对应资源组中。如果选择了限定词，则会按照命名规范自动生成限定词和资源组目录，并将文件创建在限定词目录中。
 
-不同类型的限定词可以组合，如同时选择Locale为zh_CN，ColorMode为Dark，将创建zh_CN-dark目录，具体组合规则参考[限定词目录](#限定词目录)。
+不同类型的限定词可以组合，如同时选择Locale为zh_CN，ColorMode为Dark，将创建zh_CN-dark目录，具体组合规则参考[限定词目录](#资源目录)。
 
 图中File name为需要创建的文件名。Resource type为资源组类型，默认是element。Root Element为资源类型。Available qualifiers为供选择的限定词目录，通过右边的小箭头可添加或者删除。<br/>创建的目录名自动生成，格式固定为“限定词.资源组”，例如：创建一个限定词为dark的element目录，自动生成的目录名称为“dark/element”。
 
@@ -226,7 +228,7 @@ plural.json文件的内容如下：
 
 2. 同理，语言选择en，地区选择US，创建en_US/element/string_sample.json文件。
 
-最终创建的资源文件如下。资源文件创建完成后，如何访问资源文件请参见[资源访问](#资源访问)与[相关实例](#相关实例)。
+最终创建的资源文件如下。资源文件创建完成后，如何访问资源文件请参见[资源访问](#资源访问)<!--Del-->与[相关实例](#相关实例)<!--DelEnd-->。
 
 ![create-resource-file-5](figures/create-resource-file-5.png)
 
@@ -324,16 +326,16 @@ string资源配置attr属性示例如下，其中string1字符串被标记为不
 <!--Del-->
 #### bundle不同，跨bundle访问（仅支持系统应用使用）
 
-- 通过[createBundleContext(context, bundleName)](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
+- 通过[createBundleContext(context, bundleName)](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)通过资源ID值或资源名称访问各类资源。
 <!--DelEnd-->
 
 #### bundle相同，跨module访问
 
-- 通过[createModuleContext(context, moduleName)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
+- 通过[createModuleContext(context, moduleName)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)通过资源ID值或资源名称访问各类资源。
 
 - 通过`$r`或`$rawfile`访问资源。具体操作如下：
 
-  1.在entry的oh-package.json5文件中添加依赖。如`"dependencies": {"library":"file":../library}`。
+  1.在entry的oh-package.json5文件中添加依赖。如`"dependencies": {"library": "file":../library}`。
 
   ![Alt text](figures/add_dependencies.png)
 
@@ -628,8 +630,10 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 
 该功能默认使能，使能及去使能请参考[包管理接口](../reference/apis-ability-kit/js-apis-overlay.md)。
 
+<!--Del-->
 ## 相关实例
 
 针对访问应用资源，有以下相关实例可供参考：
 
 - [资源管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Resource/ResourceManager)
+<!--DelEnd-->

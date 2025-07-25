@@ -156,7 +156,7 @@
 
 查看[非对称密钥生成和转换规格：SM2](crypto-asym-key-generation-conversion-spec.md#sm2)。
 
-1. 获获取SM2公钥或私钥的二进制数据，封装成DataBlob对象。
+1. 获取SM2公钥或私钥的二进制数据，封装成DataBlob对象。
 
    公钥和私钥可只传入其中一个，示例以传入公钥、私钥为例。
 

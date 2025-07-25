@@ -1,7 +1,9 @@
 # Interface (AudioRenderer)
 
 > **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本Interface首批接口从API version 8开始支持。
 
 提供音频渲染的相关接口。
 
@@ -801,7 +803,13 @@ try {
 
 getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
 
-获取音频流时间戳和当前数据帧位置信息。使用Promise异步回调。
+获取输出音频流时间戳和位置信息，适配倍速接口。使用Promise异步回调。
+
+获取输出音频流时间戳和位置信息，通常用于进行音画同步对齐。
+
+注意，当实际播放位置（framePosition）为0时，时间戳（timestamp）是固定值，直到流真正跑起来时才会更新。当调用Flush接口时实际播放位置也会被重置。
+
+当音频流路由（route）变化时，例如设备变化或者输出类型变化时，播放位置也会被重置，但此时时间戳仍会持续增长。推荐当实际播放位置和时间戳的变化稳定后再使用该接口获取的值。该接口适配倍速接口，例如当播放速度设置为2倍时，播放位置的增长速度也会返回为正常的2倍。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -969,7 +977,7 @@ setSpeed(speed: number): void
 
 | 参数名 | 类型                                     | 必填 | 说明                   |
 | ------ | ---------------------------------------- | ---- |----------------------|
-| speed | number | 是   | 设置播放的倍速值（倍速范围：0.125-4.0）。 |
+| speed | number | 是   | 设置播放的倍速值（倍速范围：0.25-4.0）。 |
 
 **错误码：**
 
@@ -1579,7 +1587,7 @@ console.info(`BlendMode: ${mode}`);
 
 setVolumeWithRamp(volume: number, duration: number): void
 
-设置音量渐变模式。同步返回结果。
+在指定时间范围内设置音量渐变模式。同步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -1623,7 +1631,7 @@ setSilentModeAndMixWithOthers(on: boolean): void
 
 | 参数名 | 类型                                     | 必填 | 说明                   |
 | ------ | ---------------------------------------- | ---- |----------------------|
-| on | boolean | 是   | 打开/关闭静音并发播放模式。true表示打开，false表示关闭。 |
+| on | boolean | 是   | 打开/关闭静音并发播放模式。true表示设置当前播放的音频流静音播放，并且不会打断其它音频流播放。false表示取消当前播放的音频流静音播放，音频流可根据系统焦点策略抢占焦点。 |
 
 **示例：**
 
@@ -2619,4 +2627,66 @@ try {
   let error = err as BusinessError;
   console.error(`ERROR: ${error}`);
 }
+```
+
+## setLoudnessGain<sup>20+</sup>
+
+setLoudnessGain(loudnessGain: number): Promise\<void>
+
+设置播放响度。使用Promise异步回调。
+
+> **说明：**
+>
+> - 该接口仅支持类型为[STREAM_USAGE_MUSIC](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)、[STREAM_USAGE_MOVIE](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)或[STREAM_USAGE_AUDIOBOOK](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)的音频流。
+> - 该接口不支持高清通路的响度设置。
+> - 由于音频框架与硬件之间存在缓冲区，响度调节实际生效存在延迟，时长取决于缓冲区长度。
+> - 建议在不同音频开始播放前预先设置响度，以实现最佳均衡效果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名       | 类型    | 必填 | 说明                                      |
+| ------------ | -------| ---- |------------------------------------------ |
+| loudnessGain | number | 是   | 设置播放的响度值，单位为dB，响度范围为[-90.0, 24.0]。默认值为0.0dB。|
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise对象，无返回结果。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation is not supported on this renderer, e.g. the stream usage of this renderer is not one of [STREAM_USAGE_MUSIC](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage), <br>[STREAM_USAGE_MOVIE](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage), or [STREAM_USAGE_AUDIOBOOK](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage), or this renderer is routed through the high-resolution playback path. |
+
+**示例：**
+
+```ts
+audioRenderer.setLoudnessGain(1.0);
+```
+
+## getLoudnessGain<sup>20+</sup>
+
+getLoudnessGain(): number
+
+获取播放响度。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型    | 说明             |
+|------- |-----------------  |
+| number | 返回播放的响度值。 |
+
+**示例：**
+
+```ts
+let loudnessGain = audioRenderer.getLoudnessGain();
 ```

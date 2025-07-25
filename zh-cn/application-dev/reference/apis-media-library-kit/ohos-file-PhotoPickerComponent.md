@@ -77,27 +77,26 @@ PhotoPickerComponent({
 
 Picker配置选项。
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称                              | 类型                                      | 必填  | 说明                                                                       |
 |---------------------------------|-----------------------------------------|-----|--------------------------------------------------------------------------|
-| checkBoxColor                   | string                                  | 否   | 勾选框的背景色。格式为8位十六进制颜色代码。                                                   |
-| backgroundColor                 | string                                  | 否   | picker宫格页面背景色。格式为8位十六进制颜色代码。                                             |
-| isRepeatSelectSupported         | boolean                                 | 否   | 是否支持单张图片重复选择。true表示支持。默认不支持。                                                   |
-| checkboxTextColor               | string                                  | 否   | 勾选框内文本颜色。格式为8位十六进制颜色代码。 （该能力暂不支持）                                        |
-| photoBrowserBackgroundColorMode | [PickerColorMode](#pickercolormode)     | 否   | 大图背景颜色。包括跟随系统、浅色模式以及深色模式，默认为跟随系统。                                        |
-| maxSelectedReminderMode         | [ReminderMode](#remindermode)           | 否   | 选择数量达到最大时的提示方式。包括弹toast提示、不提示以及蒙层提示，默认为弹toast提示。                         |
-| orientation                     | [PickerOrientation](#pickerorientation) | 否   | 宫格页面滑动预览方向，包括水平和竖直两个方向，默认为竖直方向。                                 |
-| selectMode                      | [SelectMode](#selectmode)               | 否   | 选择模式。包括多选和单选，默认为多选。                                                      |
-| maxPhotoSelectNumber            | number                                  | 否   | 图片最大的选择数量。最大值为500，受到最大选择总数的限制。默认为500。                                           |
-| maxVideoSelectNumber            | number                                  | 否   | 视频最大的选择数量。最大值为500，受到最大选择总数的限制。默认为500。                                           |
-| isSlidingSelectionSupported<sup>13+</sup>     | boolean                                 | 否   | 是否支持滑动多选，true表示支持。默认不支持。重复选择场景不支持滑动多选。                                            |
-| photoBrowserCheckboxPosition<sup>13+</sup>    | [number, number]                        | 否   | 设置大图页checkbox的位置。第一个参数为X方向偏移量，第二个参数为Y方向偏移量。传参范围0-1，代表距离组件左上角0%-100%的偏移量。默认值为[0, 0]。 |
-| gridMargin<sup>14+</sup>        | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | 否   | 设置组件宫格页margin。 |
-| photoBrowserMargin<sup>14+</sup>    | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | 否   | 设置组件大图页margin |
-| singleLineConfig<sup>20+</sup>             | [SingleLineConfig](#singlelineconfig)                                                | 否   | 设置组件宫格页单行显示模式，单行模式下，组件不提供打开大图浏览相关功能。组件不支持大图相关回调，PickerController不支持大图相关的接口，接口调用将无效。     
+| checkBoxColor                   | string                                  | 否   | 勾选框的背景色。格式为8位十六进制颜色代码。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                   |
+| backgroundColor                 | string                                  | 否   | picker宫格页面背景色。格式为8位十六进制颜色代码。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                             |
+| isRepeatSelectSupported         | boolean                                 | 否   | 是否支持单张图片重复选择。true表示支持。默认不支持。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                   |
+| checkboxTextColor               | string                                  | 否   | 勾选框内文本颜色。格式为8位十六进制颜色代码。 （该能力暂不支持）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                        |
+| photoBrowserBackgroundColorMode | [PickerColorMode](#pickercolormode)     | 否   | 大图背景颜色。包括跟随系统、浅色模式以及深色模式，默认为跟随系统。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                        |
+| maxSelectedReminderMode         | [ReminderMode](#remindermode)           | 否   | 选择数量达到最大时的提示方式。包括弹toast提示、不提示以及蒙层提示，默认为弹toast提示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                         |
+| orientation                     | [PickerOrientation](#pickerorientation) | 否   | 宫格页面滑动预览方向，包括水平和竖直两个方向，默认为竖直方向。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                 |
+| selectMode                      | [SelectMode](#selectmode)               | 否   | 选择模式。包括多选和单选，默认为多选。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                      |
+| maxPhotoSelectNumber            | number                                  | 否   | 图片最大的选择数量。最大值为500，受到最大选择总数的限制。默认为500。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                           |
+| maxVideoSelectNumber            | number                                  | 否   | 视频最大的选择数量。最大值为500，受到最大选择总数的限制。默认为500。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                           |
+| isSlidingSelectionSupported<sup>13+</sup>     | boolean                                 | 否   | 是否支持滑动多选，true表示支持。默认不支持。重复选择场景不支持滑动多选。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                                            |
+| photoBrowserCheckboxPosition<sup>13+</sup>    | [number, number]                        | 否   | 设置大图页checkbox的位置。第一个参数为X方向偏移量，第二个参数为Y方向偏移量。传参范围0-1，代表距离组件左上角0%-100%的偏移量。默认值为[0, 0]。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| gridMargin<sup>14+</sup>        | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | 否   | 设置组件宫格页margin。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| photoBrowserMargin<sup>14+</sup>    | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | 否   | 设置组件大图页margin。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| singleLineConfig<sup>20+</sup>             | [SingleLineConfig](#singlelineconfig)                                                | 否   | 设置组件宫格页单行显示模式。单行模式下，组件不提供打开大图浏览相关功能。组件不支持大图相关回调，PickerController不支持大图相关的接口，接口调用将无效。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。      |  
+| uiComponentColorMode<sup>20+</sup>             | [PickerColorMode](#pickercolormode)                                                | 否   | Picker的颜色模式。Picker宫格界面除背景色之外其他组件的深浅色风格，包括搜索框、相机入口、安全使用图库提示组件、推荐气泡等组件，一般与backgroundColor配合使用。默认为PickerColorMode.AUTO，跟随系统深浅色切换。<br>该属性一般设置PickerColorMode.LIGHT时不与深颜色的backgroundColor搭配；设置PickerColorMode.DARK时不与浅颜色的backgroundColor搭配，否则会出现组件背景或文字无法看清楚的问题。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。  |
 
 ## ItemsDeletedCallback<sup>13+</sup>
 

@@ -26,7 +26,7 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
 
 ![AudioLoopback status change](figures/audioloopback-status-change.png)
 
-使用[on('statusChange')](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#onstatuschange)方法可以监听AudioLoopback的状态变化，每个状态对应值与说明见[AudioLoopbackStatus](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audioloopbackstatus20)。
+使用[on('statusChange')](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#onstatuschange20)方法可以监听AudioLoopback的状态变化，每个状态对应值与说明见[AudioLoopbackStatus](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audioloopbackstatus20)。
 
 ### 开发步骤及注意事项
 
@@ -52,7 +52,7 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
     }
    ```
 
-2. 调用[getStatus](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#getstatus)方法，查询当前返听状态。
+2. 调用[getStatus](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#getstatus20)方法，查询当前返听状态。
 
     > **注意：**
     > 音频返听状态受音频焦点、低时延管控、采集与播放设备等因素影响。
@@ -67,7 +67,7 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
     })
    ```
 
-3. 调用[setVolume](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#setvolume)方法，设置音频返听音量。
+3. 调用[setVolume](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#setvolume20)方法，设置音频返听音量。
 
     > **注意：**
     > - 在启用返听前设置音量，音量将在启用返听成功后生效。
@@ -84,7 +84,7 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
     });
    ```
 
-4. 调用[enable](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#enable)方法，启用或禁用音频返听功能。
+4. 调用[enable](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#enable20)方法，启用或禁用音频返听功能。
 
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';

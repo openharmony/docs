@@ -17,7 +17,7 @@ This function allows your application to record fault events, statistics events,
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description|
 | -------- | -------- |

@@ -124,9 +124,10 @@ class ConsumerTest {
 
 function Main(): void {
   let consumer: ConsumerTest = new ConsumerTest();
-  let producer1: Producer = new Producer();
-  for (let i = 0; i < 0; i++) {
-    // Simulate the startup of multiple threads to execute a production task.
+  let producer: Producer = new Producer();
+  let threadNum: number = 10;
+  for (let i = 0; i < threadNum; i++) {
+    // The following pseudocode simulates the startup of multiple threads to execute production tasks.
     // let thread = new Thread();
     // thread.run(producer.run());
     // consumer.run();
@@ -195,7 +196,7 @@ struct Index {
   }
 }
 ```
-<!-- @[actor_model](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[actor_model](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
 You can also wait until all the producer's tasks are complete, and then pass the results to the UI thread through serialization. After the UI thread receives the results, the consumer can handle them all together.
 
@@ -256,5 +257,3 @@ struct Index {
 ## TaskPool and Worker
 
 ArkTS provides two concurrency capabilities for you to choose from: TaskPool and Worker. For details about their operation mechanisms and precautions, see [TaskPool](taskpool-introduction.md) and [Worker](worker-introduction.md). For details about their differences in the implementation features and use cases, see [Comparison Between TaskPool and Worker](taskpool-vs-worker.md).
-
-<!--no_check-->

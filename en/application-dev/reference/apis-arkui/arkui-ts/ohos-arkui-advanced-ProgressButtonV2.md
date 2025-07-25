@@ -3,7 +3,7 @@
 
 The **ProgressButtonV2** component is a download button with a progress indicator that shows the download progress.
 
-This component is implemented based on [state management V2](../../../quick-start/arkts-state-management-overview.md#state-management-v2). Compared with [state management V1](../../../quick-start/arkts-state-management-overview.md#state-management-v1), V2 offers a higher level of observation and management over data objects beyond the component level. You can now more easily manage download button data and states with greater flexibility, leading to faster UI updates.
+This component is implemented based on [state management V2](../../../ui/state-management/arkts-state-management-overview.md#state-management-v2). Compared with [state management V1](../../../ui/state-management/arkts-state-management-overview.md#state-management-v1), V2 offers a higher level of observation and management over data objects beyond the component level. You can now more easily manage download button data and states with greater flexibility, leading to faster UI updates.
 
 
 > **NOTE**

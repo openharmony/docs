@@ -10,7 +10,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 ## 签名开发步骤
 1. 调用[OH_CryptoSign_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptosign_create)，指定字符串参数'SM2_256|SM3'，创建非对称密钥类型为SM2_256、摘要算法为SM3的Sign实例，用于完成签名操作。
 
-2. 调用[OH_CryptoSign_Init](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptosign_init)，使用私钥[OH_CryptoPrivKey](../../reference/apis-crypto-architecture-kit/capi-cryptoasymkeyapi-oh-cryptoprivkey.md#oh_cryptoprivkey)初始化Sign实例。
+2. 调用[OH_CryptoSign_Init](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptosign_init)，使用私钥[OH_CryptoPrivKey](../../reference/apis-crypto-architecture-kit/capi-cryptoasymkeyapi-oh-cryptoprivkey.md)初始化Sign实例。
 
 3. 调用[OH_CryptoSign_Update](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptosign_update)，传入待签名的数据。当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。如果数据量较小，可以直接调用OH_CryptoSign_Final接口一次性传入。
 
@@ -46,8 +46,8 @@ static OH_Crypto_ErrCode doSm2Test() {
       return ret;
    }
 
-   OH_CryptoPrivKey *privKey = OH_CryptoKeyPair_GetPriKey(keyPair);
-   ret = OH_CryptoSign_Create((const char *)"SM2|SM3", &sign);
+   OH_CryptoPrivKey *privKey = OH_CryptoKeyPair_GetPrivKey(keyPair);
+   ret = OH_CryptoSign_Create((const char *)"SM2_256|SM3", &sign);
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
       OH_CryptoKeyPair_Destroy(keyPair);
@@ -80,6 +80,7 @@ static OH_Crypto_ErrCode doSm2Test() {
    OH_CryptoSign_Destroy(sign);
    OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
    OH_CryptoKeyPair_Destroy(keyPair);
+   OH_Crypto_FreeDataBlob(&signBlob);
    return CRYPTO_SUCCESS;
 }
 ```

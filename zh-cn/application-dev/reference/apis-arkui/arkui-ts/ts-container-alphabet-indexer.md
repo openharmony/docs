@@ -32,6 +32,10 @@ AlphabetIndexer(options: AlphabetIndexerOptions)
 
 用于设置索引条参数。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -145,7 +149,7 @@ usingPopup(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                   |
 | ------ | ------- | ---- | -------------------------------------- |
-| value  | boolean | 是   | 是否显示提示弹窗。<br/>默认值：false，不显示提示弹窗。 |
+| value  | boolean | 是   | 是否显示提示弹窗。<br/>默认值：false <br/>true：显示提示弹窗。<br/>false：不显示提示弹窗。 |
 
 ### selectedFont
 
@@ -344,7 +348,7 @@ autoCollapse(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | 是   | 是否使用自适应折叠模式。<br/>默认值：<br />API version 12之前：false，不使用自适应折叠模式。<br />API version 12及之后：true，使用自适应折叠模式。 |
+| value  | boolean | 是   | 是否使用自适应折叠模式。<br/>默认值：<br />API version 12之前：false <br />API version 12及之后：true  <br/>true：使用自适应折叠模式。<br/>false：不使用自适应折叠模式。|
 
 ### popupItemBorderRadius<sup>12+</sup>   
 

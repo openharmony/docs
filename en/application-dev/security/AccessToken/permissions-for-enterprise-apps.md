@@ -40,6 +40,23 @@ Allows an application to scan media and sandbox and set file extended properties
 
 **Changelog**: For API versions 10 to 14, this permission is of the system_core level and available only to MDM applications. Starting from API version 14, the permission level is changed to system_basic and this permission is accessible to normal enterprise applications.
 
+## ohos.permission.FILE_GUARD_FILE_WRITE
+
+Allows an enterprise application to modify files.
+
+With this permission, the application can obtain the write permission on user files and modify them.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported Devices**：PC/2in1
+
+**Valid since**：20
+
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 Allows an application to interact across local accounts.
@@ -408,6 +425,21 @@ With this permission, the application can query basic workspace information and 
 Allows an application to set network-specific extended attributes.
 
 With this permission, the application can specify whether a network is identified as internal or external.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.CALL_TPM_CMD
+
+Allows an application to call Trusted Platform Module(TPM) commands.
 
 **Permission level**：system_basic
 

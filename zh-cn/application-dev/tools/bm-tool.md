@@ -1080,11 +1080,11 @@ error: install failed due to singleton not same.
 
 **错误描述**
 
-应用更新时，应用已安装的HAP包和更新包app.json5配置文件中singleton配置（从API verison 9开始废弃）不一致。
+应用更新时，应用已安装的HAP包和更新包app.json5配置文件中singleton配置（从API version 9开始废弃）不一致。
 
 **可能原因**
 
-应用已安装的HAP包和更新包app.json5配置文件中singleton配置（从API verison 9开始废弃）不一致。
+应用已安装的HAP包和更新包app.json5配置文件中singleton配置（从API version 9开始废弃）不一致。
 
 **处理步骤**
 
@@ -2666,7 +2666,7 @@ error: install parse native so failed.
 
 **处理步骤**
 
-1. 将设备或模拟器与DevEco Studio进行连接，具体指导及要求可查看[运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-running-app)。
+1. 将设备或模拟器与DevEco Studio进行连接，具体指导及要求可查看[运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-run-device)。
 
 2. 在命令行执行如下[hdc命令](#环境要求hdc工具)，查询设备支持的Abi列表。
 

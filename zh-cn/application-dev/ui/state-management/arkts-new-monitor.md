@@ -454,31 +454,34 @@ struct Index {
 
 ```ts
 @ObservedV2
-class Frequence {
+class Frequency {
   @Trace count: number = 0;
+
   @Monitor("count")
   onCountChange(monitor: IMonitor) {
     console.info(`count change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 }
+
 @Entry
 @ComponentV2
 struct Index {
-  frequence: Frequence = new Frequence();
+  frequency: Frequency = new Frequency();
+
   build() {
     Column() {
       Button("change count to 1000")
         .onClick(() => {
           for (let i = 1; i <= 1000; i++) {
-            this.frequence.count = i;
+            this.frequency.count = i;
           }
         })
       Button("change count to 0 then to 1000")
         .onClick(() => {
           for (let i = 999; i >= 0; i--) {
-            this.frequence.count = i;
+            this.frequency.count = i;
           }
-          this.frequence.count = 1000; // 最终不触发onCountChange方法
+          this.frequency.count = 1000; // 最终不触发onCountChange方法
         })
     }
   }
@@ -515,6 +518,49 @@ struct Index {
       Button("change name")
         .onClick(() => {
           this.info.name = "Jack"; // 仅会触发onNameChangeDuplicate方法
+        })
+    }
+  }
+}
+```
+
+- 当@Monitor传入多个路径参数时，以参数的全拼接结果判断是否重复监听。以下示例中，`Monitor 1`、`Monitor 2`与`Monitor 3`都监听了name属性的变化。由于`Monitor 2`与`Monitor 3`的入参全拼接相等，因此`Monitor 2`不生效，仅`Monitor 3`生效。当name属性变化时，将同时触发onNameAgeChange与onNamePositionChangeDuplicate方法。但请注意，`Monitor 2`与`Monitor 3`的写法仍然被视作在一个类中对同一个属性进行多次@Monitor的监听，这是不建议的。
+
+```ts
+@ObservedV2
+class Info {
+  @Trace name: string = "Tom";
+  @Trace age: number = 25;
+  @Trace position: string = "North";
+  @Monitor("name", "age") // Monitor 1
+  onNameAgeChange(monitor: IMonitor) {
+    monitor.dirty.forEach((path: string) => {
+      console.info(`onNameAgeChange path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+    });
+  }
+  @Monitor("name", "position") // Monitor 2
+  onNamePositionChange(monitor: IMonitor) {
+    monitor.dirty.forEach((path: string) => {
+      console.info(`onNamePositionChange path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+    });
+  }
+  // 重复监听name、position，仅最后定义的生效
+  @Monitor("name", "position") // Monitor3
+  onNamePositionChangeDuplicate(monitor: IMonitor) {
+    monitor.dirty.forEach((path: string) => {
+      console.info(`onNamePositionChangeDuplicate path: ${path} change from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`);
+    });
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  info: Info = new Info();
+  build() {
+    Column() {
+      Button("change name")
+        .onClick(() => {
+          this.info.name = "Jack"; // 同时触发onNameAgeChange与onNamePositionChangeDuplicate方法
         })
     }
   }
@@ -757,7 +803,7 @@ struct Index {
 
 ### 类中\@Monitor对变量监听的生效及失效时间
 
-当\@Monitor定义在\@ObservedV2装饰的类中时，\@Monitor会在类创建完成后生效，在类销毁时失效。
+当\@Monitor定义在\@ObservedV2装饰的类中时，\@Monitor会在类的实例创建完成后生效，在类的实例销毁时失效。
 
 ```ts
 @ObservedV2
@@ -1178,6 +1224,47 @@ struct Index {
         .onClick(() => {
           this.info.age = 25; // 状态变量age改变
         })
+    }
+  }
+}
+```
+### 无法监听变量从可访问变为不可访问和从不可访问变为可访问
+\@Monitor仅会保存变量可访问时的值，当状态变量变为不可访问的状态时，并不会记录其值的变化。在下面的例子中，点击三个Button，均不会触发`onChange`的回调。
+如果需要监听可访问到不可访问和不可访问到可访问的状态变化，可以使用[addMonitor](./arkts-new-addMonitor-clearMonitor.md#监听变量从可访问到不访问和从不可访问到可访问)。
+
+```ts
+@ObservedV2
+class User {
+  @Trace age: number = 10;
+}
+
+@Entry
+@ComponentV2
+struct Page {
+  @Local user: User | undefined | null = new User();
+
+  @Monitor('user.age')
+  onChange(mon: IMonitor) {
+    mon.dirty.forEach((path: string) => {
+      console.info(`onChange: User property ${path} change from ${mon.value(path)?.before} to ${mon.value(path)?.now}`);
+    });
+  }
+
+  build() {
+    Column() {
+      Text(`User age ${this.user?.age}`).fontSize(20)
+      Button('set user to undefined').onClick(() => {
+        // age：可访问 -> 不可访问
+        this.user = undefined;
+      })
+      Button('set user to User').onClick(() => {
+        // age：不可访问 ->可访问
+        this.user = new User();
+      })
+      Button('set user to null').onClick(() => {
+        // age：可访问->不可访问
+        this.user = null;
+      })
     }
   }
 }

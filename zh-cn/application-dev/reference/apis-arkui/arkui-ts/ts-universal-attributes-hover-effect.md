@@ -10,7 +10,7 @@
 
 hoverEffect(value: HoverEffect): T
 
-设置组件的鼠标悬浮态显示效果。
+设置组件的鼠标悬浮态显示效果。当未设置hoverEffect时，组件默认鼠标悬浮态效果为HoverEffect.Auto。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -20,7 +20,7 @@ hoverEffect(value: HoverEffect): T
 
 | 参数名 | 类型                                             | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [HoverEffect](ts-appendix-enums.md#hovereffect8) | 是   | 设置当前组件悬浮态下的悬浮效果。<br/>默认值：HoverEffect.Auto |
+| value  | [HoverEffect](ts-appendix-enums.md#hovereffect8) | 是   | 设置当前组件悬浮态下的悬浮效果。|
 
 **返回值：**
 

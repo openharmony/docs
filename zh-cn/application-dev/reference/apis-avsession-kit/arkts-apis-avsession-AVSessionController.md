@@ -2,7 +2,8 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本Interface首批接口从API version 10开始支持。
 
 AVSessionController控制器可查看会话ID，并可完成对会话发送命令及事件，获取会话元数据，播放状态信息等操作。
 
@@ -20,7 +21,7 @@ import { avSession } from '@kit.AVSessionKit';
 
 | 名称      | 类型   | 只读 | 可选 | 说明                                    |
 | :-------- | :----- | :--- | :--- | :-------------------------------------- |
-| sessionId | string | 是   | 否   | AVSessionController对象唯一的会话标识。 |
+| sessionId<sup>10+</sup> | string | 是   | 否   | AVSessionController对象唯一的会话标识。 |
 
 
 **示例：**
@@ -1342,6 +1343,8 @@ on(type: 'metadataChange', filter: Array\<keyof AVMetadata> | 'all', callback: (
 
 设置元数据变化的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -1381,7 +1384,7 @@ avsessionController.on('metadataChange', ['assetId', 'title', 'description'], (m
 
 off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 
-媒体控制器取消监听元数据变化的事件。
+取消元数据变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1415,6 +1418,8 @@ avsessionController.off('metadataChange');
 on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', callback: (state: AVPlaybackState) => void)
 
 设置播放状态变化的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1454,7 +1459,7 @@ avsessionController.on('playbackStateChange', ['state', 'speed', 'loopMode'], (p
 
 off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 
-媒体控制器取消监听播放状态变化的事件。
+取消播放状态变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1488,6 +1493,8 @@ avsessionController.off('playbackStateChange');
 on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callback: Callback\<CallMetadata>): void
 
 设置通话元数据变化的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1527,7 +1534,7 @@ avsessionController.on('callMetadataChange', ['name'], (callmetadata: avSession.
 
 off(type: 'callMetadataChange', callback?: Callback\<CallMetadata>): void
 
-取消设置通话元数据变化的监听事件。
+取消设置通话元数据变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1561,6 +1568,8 @@ avsessionController.off('callMetadataChange');
 on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback: Callback\<AVCallState>): void
 
 设置通话状态变化的监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1600,7 +1609,7 @@ avsessionController.on('callStateChange', ['state'], (callstate: avSession.AVCal
 
 off(type: 'callStateChange', callback?: Callback\<AVCallState>): void
 
-取消设置通话状态变化的监听事件。
+取消设置通话状态变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1635,6 +1644,8 @@ on(type: 'sessionDestroy', callback: () => void)
 
 会话销毁的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -1668,7 +1679,7 @@ avsessionController.on('sessionDestroy', () => {
 
 off(type: 'sessionDestroy', callback?: () => void)
 
-媒体控制器取消监听会话的销毁事件。
+取消监听会话的销毁事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1703,6 +1714,8 @@ on(type: 'activeStateChange', callback: (isActive: boolean) => void)
 
 会话的激活状态的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -1736,7 +1749,7 @@ avsessionController.on('activeStateChange', (isActive: boolean) => {
 
 off(type: 'activeStateChange', callback?: (isActive: boolean) => void)
 
-媒体控制器取消监听会话激活状态变化的事件。
+取消监听会话激活状态变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1770,6 +1783,8 @@ avsessionController.off('activeStateChange');
 on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>) => void)
 
 会话支持的有效命令变化监听事件。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1805,7 +1820,7 @@ avsessionController.on('validCommandChange', (validCommands: avSession.AVControl
 
 off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandType>) => void)
 
-媒体控制器取消监听会话有效命令变化的事件。
+取消监听会话有效命令变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1840,6 +1855,8 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 
 设置播放设备变化的监听事件。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -1873,7 +1890,7 @@ avsessionController.on('outputDeviceChange', (state: avSession.ConnectionState, 
 
 off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: OutputDeviceInfo) => void): void
 
-媒体控制器取消监听分布式设备变化的事件。
+取消监听分布式设备变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1907,6 +1924,8 @@ avsessionController.off('outputDeviceChange');
 on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key: string]: Object}) => void): void
 
 媒体控制器设置会话自定义事件变化的监听器。
+
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1957,7 +1976,7 @@ if (controller !== undefined) {
 
 off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key: string]: Object}) => void): void
 
-媒体控制器取消监听会话事件的变化通知。
+取消会话事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1992,6 +2011,8 @@ on(type: 'queueItemsChange', callback: (items: Array<[AVQueueItem](arkts-apis-av
 
 媒体控制器设置会话自定义播放列表变化的监听器。
 
+每个指令支持注册多个回调，如果需要只执行最新监听，需要先注销旧的监听，否则新旧监听都会触发回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
@@ -2025,7 +2046,7 @@ avsessionController.on('queueItemsChange', (items: avSession.AVQueueItem[]) => {
 
 off(type: 'queueItemsChange', callback?: (items: Array<[AVQueueItem](arkts-apis-avsession-i.md#avqueueitem10)\>) => void): void
 
-媒体控制器取消监听播放列表变化的事件。
+取消播放列表变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2093,7 +2114,7 @@ avsessionController.on('queueTitleChange', (title: string) => {
 
 off(type: 'queueTitleChange', callback?: (title: string) => void): void
 
-媒体控制器取消监听播放列表名称变化的事件。
+取消播放列表名称变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2177,7 +2198,7 @@ if (controller !== undefined) {
 
 off(type: 'extrasChange', callback?: (extras: {[key: string]: Object}) => void): void
 
-媒体控制器取消监听自定义媒体数据包变化事件。
+取消自定义媒体数据包变化事件监听。指定callback，可取消对应监听；未指定callback，取消所有事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

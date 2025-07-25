@@ -1,6 +1,6 @@
-# 拖拽事件
+# 支持统一拖拽
 
-拖拽事件提供了一种通过鼠标或手势触屏传递数据的机制，即从一个组件位置拖出（drag）数据并将其拖入（drop）到另一个组件位置，以触发响应。在这一过程中，拖出方提供数据，而拖入方负责接收和处理数据。这一操作使用户能够便捷地移动、复制或删除指定内容。
+统一拖拽提供了一种通过鼠标或手势触屏传递数据的机制，即从一个组件位置拖出（drag）数据并将其拖入（drop）到另一个组件位置，以触发响应。在这一过程中，拖出方提供数据，而拖入方负责接收和处理数据。这一操作使用户能够便捷地移动、复制或删除指定内容。
 
 ## 基本概念
 
@@ -17,7 +17,7 @@
 
 ### ​手势拖拽流程
 
-对于手势长按触发拖拽的场景，ArkUI在发起拖拽前会校验当前组件是否具备拖拽功能。对于具备默认可拖出能力的组件（[Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md)、[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)、[TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)、[RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md)、[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)、[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)、<!--Del-->[FormComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)、<!--DelEnd-->[Hyperlink](../reference/apis-arkui/arkui-ts/ts-container-hyperlink.md)）需要判断是否设置了[draggable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#draggable)为true（系统通过[系统资源](../quick-start/resource-categories-and-access.md#系统资源)初始化默认可拖出组件的[draggable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#draggable)属性默认值）。其他组件则需额外确认是否已设置onDragStart回调函数。在满足上述条件后，长按时间达到或超过500ms即可触发拖拽，而长按800ms时，系统开始执行预览图的浮起动效。若与Menu功能结合使用，并通过isShow控制其显示与隐藏，建议避免在用户操作800ms后才控制菜单显示，此举可能引发非预期的行为。
+对于手势长按触发拖拽的场景，ArkUI在发起拖拽前会校验当前组件是否具备拖拽功能。对于具备默认可拖出能力的组件（[Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md)、[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)、[TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)、[RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md)、[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)、[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)、[Hyperlink](../reference/apis-arkui/arkui-ts/ts-container-hyperlink.md)）需要判断是否设置了[draggable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#draggable)为true（系统通过[系统资源](../quick-start/resource-categories-and-access.md#系统资源)初始化默认可拖出组件的[draggable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#draggable)属性默认值）。其他组件则需额外确认是否已设置onDragStart回调函数。在满足上述条件后，长按时间达到或超过500ms即可触发拖拽，而长按800ms时，系统开始执行预览图的浮起动效。若与Menu功能结合使用，并通过isShow控制其显示与隐藏，建议避免在用户操作800ms后才控制菜单显示，此举可能引发非预期的行为。
 
 手势拖拽（手指/手写笔）触发拖拽流程：
 
@@ -34,7 +34,7 @@
 | [onDragStart](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart) | 拖出的组件产生拖出动作时，该回调触发。<br>该回调可以感知拖拽行为的发起，开发者可以在onDragStart方法中设置拖拽过程中传递的数据，并自定义拖拽的背板图像。建议开发者采用pixelmap的方式来返回背板图像，避免使用customBuilder，因为后者可能会带来额外的性能开销。|
 | [onDragEnter](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter) | 当拖拽操作的拖拽点进入组件的范围时，如果该组件监听了[onDrop](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)事件，此回调将会被触发。|
 | [onDragMove](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove) | 当拖拽点在组件范围内移动时，如果该组件监听了onDrop事件，此回调将会被触发。<br>在这一过程中，可以通过调用[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7)中的setResult方法来影响系统在部分场景下的外观表现：<br>1. 设置DragResult.DROP\_ENABLED。<br>2. 设置DragResult.DROP\_DISABLED。|
-| [onDragLeave](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave) | 当拖拽点移出组件范围时，如果该组件监听了onDrop事件，此回调将会被触发。<br>在以下两种情况下，系统默认不会触发onDragLeave事件：<br>1. 父组件移动到子组件。<br>2. 目标组件与当前组件布局有重叠。<br>API version 12开始可通过[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md)中的[setDragEventStrictReportingEnabled](../reference/apis-arkui/js-apis-arkui-UIContext.md#setdrageventstrictreportingenabled12)方法严格触发onDragLeave事件。|
+| [onDragLeave](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave) | 当拖拽点移出组件范围时，如果该组件监听了onDrop事件，此回调将会被触发。<br>在以下两种情况下，系统默认不会触发onDragLeave事件：<br>1. 父组件移动到子组件。<br>2. 目标组件与当前组件布局有重叠。<br>API version 12开始可通过[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)中的[setDragEventStrictReportingEnabled](../reference/apis-arkui/arkts-apis-uicontext-dragcontroller.md#setdrageventstrictreportingenabled12)方法严格触发onDragLeave事件。|
 | [onDrop](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop) | 当用户在组件范围内释放拖拽操作时，此回调会被触发。开发者需在此回调中通过DragEvent的setResult方法来设置拖拽结果，否则在拖出方组件的onDragEnd方法中，通过getResult方法获取的将只是默认的处理结果DragResult.DRAG\_FAILED。<br>此回调是开发者干预系统默认拖入处理行为的关键点，系统会优先执行开发者定义的onDrop回调。通过在onDrop回调中调用setResult方法，开发者可以告知系统如何处理被拖拽的数据。<br>1. 设置 DragResult.DRAG\_SUCCESSFUL，数据完全由开发者自己处理，系统不进行处理。<br>2. 设置DragResult.DRAG\_FAILED，数据不再由系统继续处理。<br>3. 设置DragResult.DRAG\_CANCELED，系统也不需要进行数据处理。<br>4. 设置DragResult.DROP\_ENABLED或DragResult.DROP\_DISABLED会被忽略，等同于设置DragResult.DRAG\_SUCCESSFUL。|
 | [onDragEnd](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend10) | 当用户释放拖拽时，拖拽活动终止，发起拖出动作的组件将触发该回调函数。|
 | [onPreDrag](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#onpredrag12) | 当触发拖拽事件的不同阶段时，绑定此事件的组件会触发该回调函数。<br>开发者可利用此方法，在拖拽开始前的不同阶段，根据[PreDragStatus](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#predragstatus12枚举说明)枚举准备相应数据。<br>1. ACTION\_DETECTING\_STATUS：拖拽手势启动阶段。按下50ms时触发。<br>2. READY\_TO\_TRIGGER\_DRAG\_ACTION：拖拽准备完成，可发起拖拽阶段。按下500ms时触发。<br>3. PREVIEW\_LIFT\_STARTED：拖拽浮起动效发起阶段。按下800ms时触发。<br>4. PREVIEW\_LIFT\_FINISHED：拖拽浮起动效结束阶段。浮起动效完全结束时触发。<br>5. PREVIEW\_LANDING\_STARTED：拖拽落回动效发起阶段。落回动效发起时触发。<br>6. PREVIEW\_LANDING\_FINISHED：拖拽落回动效结束阶段。落回动效结束时触发。<br>7. ACTION\_CANCELED\_BEFORE\_DRAG：拖拽浮起落位动效中断。已满足READY_TO_TRIGGER_DRAG_ACTION状态后，未达到动效阶段，手指抬起时触发。|
@@ -141,7 +141,7 @@
         this.getUIContext().getComponentSnapshot().createFromBuilder(()=>{this.pixelMapBuilder()},
         (error: Error, pixmap: image.PixelMap) => {
             if(error){
-              console.log("error: " + JSON.stringify(error))
+              console.error("error: " + JSON.stringify(error))
               return;
             }
             this.pixmap = pixmap;
@@ -149,7 +149,7 @@
       }
       ```
 
-3. 若开发者需确保触发[onDragLeave](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)事件，应通过调用[setDragEventStrictReportingEnabled](../reference/apis-arkui/js-apis-arkui-UIContext.md#setdrageventstrictreportingenabled12)方法进行设置。
+3. 若开发者需确保触发[onDragLeave](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)事件，应通过调用[setDragEventStrictReportingEnabled](../reference/apis-arkui/arkts-apis-uicontext-dragcontroller.md#setdrageventstrictreportingenabled12)方法进行设置。
 
     ```ts
     import { UIAbility } from '@kit.AbilityKit';
@@ -226,7 +226,7 @@
          callback(event);
          return true;
        } catch (e) {
-         console.log("getData failed, code: " + (e as BusinessError).code + ", message: " + (e as BusinessError).message);
+         console.error("getData failed, code: " + (e as BusinessError).code + ", message: " + (e as BusinessError).message);
          return false;
        }
     }
@@ -296,7 +296,7 @@ struct Index {
       callback(event);
       return true;
     } catch (e) {
-      console.log("getData failed, code: " + (e as BusinessError).code + ", message: " + (e as BusinessError).message);
+      console.error("getData failed, code: " + (e as BusinessError).code + ", message: " + (e as BusinessError).message);
       return false;
     }
   }
@@ -314,7 +314,7 @@ struct Index {
     this.getUIContext().getComponentSnapshot().createFromBuilder(()=>{this.pixelMapBuilder()},
       (error: Error, pixmap: image.PixelMap) => {
         if(error){
-          console.log("error: " + JSON.stringify(error))
+          console.error("error: " + JSON.stringify(error))
           return;
         }
         this.pixmap = pixmap;
@@ -640,7 +640,7 @@ struct GridEts {
     ```
 2. 设置自定义动效。
 
-   自定义落位动效通过[animateTo](../reference/apis-arkui/js-apis-arkui-UIContext.md#animateto)接口设置动画相关的参数来实现。例如，可以改变组件的大小。
+   自定义落位动效通过[animateTo](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#animateto)接口设置动画相关的参数来实现。例如，可以改变组件的大小。
 
     ```ts
       customDropAnimation = () => {
@@ -714,9 +714,9 @@ struct DropAnimationExample {
           })
           .onDragEnd((event) => {
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              console.log('Drag Success');
+              console.info('Drag Success');
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              console.log('Drag failed');
+              console.info('Drag failed');
             }
           })
       }.width('45%')
@@ -1046,6 +1046,8 @@ struct GridEts {
 ## 支持悬停检测
 Spring Loading，即拖拽悬停检测（又叫弹簧加载）是拖拽操作的一项增强功能，允许用户在拖动过程中通过悬停在目标上自动触发视图跳转，提供了使用的便利性。建议在所有支持页面切换的区域均实现该功能。
 
+> 该能力从API version 20开始支持。
+
 以下为常见的适合支持该功能的场景：
 
 - 在文件管理器中，拖动文件并悬停在文件夹上时，文件夹可以自动打开。
@@ -1282,7 +1284,7 @@ Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -
     }
   
     // 处理BEGIN状态
-    handleBeginState(context: dragController.SpringLoadingContext): boolean {
+    handleBeginState(context: SpringLoadingContext): boolean {
       // 检查用户所拖拽的数据类型是否自己能够处理的
       if (this.checkDataType(context?.dragInfos?.dataSummary)) {
         return true;
@@ -1293,16 +1295,16 @@ Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -
     }
   
     // Spring Loading处理入口
-    handleSpringLoading(context: dragController.SpringLoadingContext) {
+    handleSpringLoading(context: SpringLoadingContext) {
       // BEGIN 状态时检查拖拽数据类型
-      if (context.state == dragController?.DragSpringLoadingState.BEGIN) {
+      if (context.state == dragController.DragSpringLoadingState.BEGIN) {
         if (this.handleBeginState(context)) {
           // 我们已经在onDragEnter时刷新了提醒色，进入Spring Loading状态时，恢复UI，提醒用户继续保持不动
           this.buttonBackgroundColor = this.normalColor;
         }
         return;
       }
-      if (context.state == dragController?.DragSpringLoadingState.UPDATE) {
+      if (context.state == dragController.DragSpringLoadingState.UPDATE) {
         // 奇数次UPDATE通知刷新提醒UI，偶数次复原UI
         if (context.currentNotifySequence % 2 != 0) {
           this.buttonBackgroundColor = this.reminderColor;
@@ -1312,12 +1314,12 @@ Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -
         return;
       }
       // 处理Spring Loading结束，触发视图切换
-      if (context.state == dragController?.DragSpringLoadingState.END) {
+      if (context.state == dragController.DragSpringLoadingState.END) {
         this.isShowSheet = true;
         return;
       }
       // 处理CANCEL状态，复原UI
-      if (context.state == dragController?.DragSpringLoadingState.CANCEL) {
+      if (context.state == dragController.DragSpringLoadingState.CANCEL) {
         this.buttonBackgroundColor = this.normalColor;
         return;
       }
@@ -1347,7 +1349,7 @@ Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -
             // 当用户拖拽离开按钮范围，恢复UI
             this.buttonBackgroundColor = this.normalColor
           })
-          .onDragSpringLoading((context: dragController.SpringLoadingContext)=>{
+          .onDragSpringLoading((context: SpringLoadingContext)=>{
             this.handleSpringLoading(context);
           })
       }.width('100%').height('100%')

@@ -30,7 +30,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 edgeAntialiasing(value: number)
 
-设置SVG图源抗锯齿效果，仅对svg图源生效。取值范围为$[0.333, 1.333]$，有效数字保留小数点后3位。
+设置SVG图源抗锯齿效果，仅对SVG图源生效。取值范围为$(0.333, 1.333]$，有效数字保留小数点后3位。
 
 适用于超低分辨率设备（PPI低于200的设备）的SVG图源的锯齿优化，存在一定的性能影响，请谨慎使用。
 
@@ -42,7 +42,7 @@ edgeAntialiasing(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                |
 | ------ | ------ | ---- | ----------------------------------- |
-| value  | number | 是   | SVG图源抗锯齿效果。<br/>默认值：0 |
+| value  | number | 是   | SVG图源抗锯齿效果。<br/>默认值：0.0 |
 
 ### pointLight<sup>11+</sup>
 

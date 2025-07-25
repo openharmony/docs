@@ -2,7 +2,7 @@
 
 ## 场景说明
 
-开发者可以使用[MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md)，在UI代码中直接集成MindSpore Lite能力，快速部署AI算法，进行AI模型推理，实现图像分类的应用。
+开发者可以使用[MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md)，在UI代码中直接集成MindSpore Lite能力，快速部署AI算法，进行AI模型推理，实现图像分类的应用。
 
 图像分类可实现对图像中物体的识别，在医学影像分析、自动驾驶、电子商务、人脸识别等有广泛的应用。
 
@@ -163,7 +163,7 @@
 
 #### 编写推理代码
 
-调用[MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md)实现端侧推理，推理代码流程如下。
+调用[MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md)实现端侧推理，推理代码流程如下。
 
 1. 引用对应的头文件
 

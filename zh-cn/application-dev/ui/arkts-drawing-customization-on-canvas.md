@@ -89,7 +89,7 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
   import lottie from '@ohos/lottie';
   ```
 
-  具体接口请参考[Lottie](https://gitee.com/openharmony-tpc/lottieETS)。
+  具体接口请参考[lottie](https://gitcode.com/openharmony-tpc/lottieArkTS)。
 
 
 ## 初始化画布组件
@@ -245,6 +245,42 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
   ![measureTextAndRect](figures/measureTextAndRect.png)
 
+- 使用自定义字体绘制文本。
+
+  从API version 20开始，可以通过[getGlobalInstance](../reference/apis-arkgraphics2d/js-apis-graphics-text.md#getglobalinstance)获取应用全局字体管理器的实例，然后使用[loadfontsync](../reference/apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)接口从设置的路径中加载自定义字体并通过[font](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#font)（设置文本绘制中的字体样式）接口设置文本绘制中的字体样式，接着通过[fillText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#filltext)（绘制填充类文本）、[strokeText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext)（绘制描边类文本）等接口进行文本绘制。
+
+  ```ts
+  import { text } from '@kit.ArkGraphics2D';
+
+  @Entry
+  @Component
+  struct CustomFont {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#F5DC62')
+          .onReady(() => {
+            //加载自定义字体
+            let fontCollection = text.FontCollection.getGlobalInstance();
+            fontCollection.loadFontSync('customFont', $rawfile("customFont.ttf"))
+            this.context.font = '30vp customFont'
+            this.context.fillText("Hello World!", 20, 50)
+            this.context.strokeText("Hello World!", 20, 100)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![customFont](figures/customFont.jpeg)
+
 - 绘制图片和图像像素信息处理。
 
   可以通过[drawImage](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#drawimage)（图像绘制）、[putImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#putimagedata)（使用[ImageData](../reference/apis-arkui/arkui-ts/ts-components-canvas-imagedata.md)数据填充新的矩形区域）等接口绘制图片，通过[createImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#createimagedata)（创建新的ImageData 对象）、[getPixelMap](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#getpixelmap)（以当前canvas指定区域内的像素创建[PixelMap](../reference/apis-image-kit/arkts-apis-image-PixelMap.md)对象）、[getImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#getimagedata)（以当前canvas指定区域内的像素创建ImageData对象）等接口进行图像像素信息处理。
@@ -269,9 +305,9 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
             // 使用drawImage接口将图片画在（0，0）为起点，宽高130的区域
             offContext.drawImage(this.img, 0, 0, 130, 130);
             // 使用getImageData接口，获得canvas组件区域中，（50，50）为起点，宽高130范围内的绘制内容
-            let imagedata = offContext.getImageData(50, 50, 130, 130);
+            let imageData = offContext.getImageData(50, 50, 130, 130);
             // 使用putImageData接口将得到的ImageData画在起点为（150， 150）的区域中
-            offContext.putImageData(imagedata, 150, 150);
+            offContext.putImageData(imageData, 150, 150);
             // 将离屏绘制的内容画到canvas组件上
             let image = this.offCanvas.transferToImageBitmap();
             this.context.transferFromImageBitmap(image);
@@ -446,7 +482,7 @@ struct CanvasContentUpdate {
     private sh: number = 270; // Canvas固定高度
     private cursorWH: number = 50; // 光标区域宽高
     private dashedLineW: number = 7; // 光标宽高
-    private arcRdius: number = 6; // 光标宽高
+    private arcRadius: number = 6; // 光标中心圆半径
     private isReadyMove: boolean = false
     private touchPosition: Position = {
       x: 0,
@@ -568,7 +604,7 @@ struct CanvasContentUpdate {
       this.canvasContext.strokeStyle = this.isTouchDown ? '#ff1a5cae' : '#ff9ba59b'
       this.canvasContext.fillStyle = this.isTouchDown ? '#ff1a5cae' : '#ff9ba59b'
       this.canvasContext.arc(this.cursorPosition.x + this.cursorPosition.width / 2,
-        this.cursorPosition.y + this.cursorPosition.width / 2, this.arcRdius, 0, 2 * Math.PI)
+        this.cursorPosition.y + this.cursorPosition.width / 2, this.arcRadius, 0, 2 * Math.PI)
       this.canvasContext.fill()
       this.canvasContext.stroke()
 

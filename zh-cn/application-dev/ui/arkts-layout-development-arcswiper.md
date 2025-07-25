@@ -81,7 +81,7 @@ ArcSwiper支持滑动手指、点击导航点、旋转表冠和控制控制器�
     ArcButtonStyleMode,
     ArcButtonPosition,
     ArcSwiper,
-    ArcSwiperAttribute,
+    ArcSwiperAttribute, // ArcSwiper的属性依赖ArcSwiperAttribute对象导入，不建议删除该对象的引入。
     ArcDotIndicator,
     ArcDirection,
     ArcSwiperController
@@ -194,7 +194,7 @@ ArcSwiper支持通过[customContentTransition](../reference/apis-arkui/arkui-ts/
 import { Decimal } from '@kit.ArkTS';
 import {
   ArcSwiper,
-  ArcSwiperAttribute,
+  ArcSwiperAttribute, // ArcSwiper的属性依赖ArcSwiperAttribute对象导入，不建议删除该对象的引入。
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController
@@ -258,7 +258,7 @@ ArcSwiper的滑动事件会与侧滑返回冲突，可以通过[手势拦截](..
 ```ts
 import {
   ArcSwiper,
-  ArcSwiperAttribute,
+  ArcSwiperAttribute, // ArcSwiper的属性依赖ArcSwiperAttribute对象导入，不建议删除该对象的引入。
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController

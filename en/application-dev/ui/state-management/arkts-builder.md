@@ -480,10 +480,10 @@ class Info {
 @Builder
 function overBuilder(param: Info) {
   Column() {
-    Text('Global @Builder name :${param.name}`)
+    Text(`Global @Builder name :${param.name}`)
       .fontSize(30)
       .fontWeight(FontWeight.Bold)
-    Text('Global @Builder age :${param.age}`)
+    Text(`Global @Builder age :${param.age}`)
       .fontSize(30)
       .fontWeight(FontWeight.Bold)
   }
@@ -506,10 +506,10 @@ struct ParentPage {
   @Builder
   privateBuilder() {
     Column() {
-      Text('Local @Builder name :${this.info1.name}`)
+      Text(`Local @Builder name :${this.info1.name}`)
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
-      Text('Local @Builder age :${this.info1.age}`)
+      Text(`Local @Builder age :${this.info1.age}`)
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
     }
