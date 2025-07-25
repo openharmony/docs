@@ -6,6 +6,10 @@
 
 **引用文件：** <rawfile/raw_file_manager.h>
 
+**库：** librawfile.z.so
+
+**系统能力：** SystemCapability.Global.ResourceManager
+
 **起始版本：** 8
 
 **相关模块：** [rawfile](capi-rawfile.md)
@@ -48,7 +52,7 @@ NativeResourceManager *OH_ResourceManager_InitNativeResourceManager(napi_env env
 
 | 参数项 | 描述 |
 | -- | -- |
-| napi_env env | 表示JavaScript Native Interface (napi)环境指针。 |
+| napi_env env | 表示JavaScript Native Interface（napi）环境指针。 |
 | napi_value jsResMgr | 表示JavaScipt resource manager。 |
 
 **返回：**
@@ -189,7 +193,7 @@ bool OH_ResourceManager_IsRawDir(const NativeResourceManager *mgr, const char *p
 | 参数项 | 描述 |
 | -- | -- |
 | const [NativeResourceManager](capi-rawfile-nativeresourcemanager.md) *mgr | 表示指向[NativeResourceManager](capi-rawfile-nativeresourcemanager.md)的指针，此指针通过调用[OH_ResourceManager_InitNativeResourceManager](capi-raw-file-manager-h.md#oh_resourcemanager_initnativeresourcemanager)方法获取。 |
-| const char *path | rawfile路径 |
+| const char *path | rawfile路径。 |
 
 **返回：**
 

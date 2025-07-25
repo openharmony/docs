@@ -497,11 +497,14 @@ audioStreamManager.on('audioCapturerChange', audioCapturerChangeCallback);
 audioStreamManager.off('audioCapturerChange', audioCapturerChangeCallback);
 ```
 
-## isActive<sup>9+</sup>
+## isActive<sup>(deprecated)</sup>
 
 isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
 获取指定音频流活跃状态。使用callback异步回调。
+
+> **说明：**
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[isStreamActive](arkts-apis-audio-AudioStreamManager.md#isstreamactive20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -526,11 +529,14 @@ if (err) {
 });
 ```
 
-## isActive<sup>9+</sup>
+## isActive<sup>(deprecated)</sup>
 
 isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 获取指定音频流是否为活跃状态。使用Promise异步回调。
+
+> **说明：**
+> 从API version 9开始支持，从API version 20开始废弃，建议使用[isStreamActive](arkts-apis-audio-AudioStreamManager.md#isstreamactive20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -554,11 +560,14 @@ audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value: boolean) =
 });
 ```
 
-## isActiveSync<sup>10+</sup>
+## isActiveSync<sup>(deprecated)</sup>
 
 isActiveSync(volumeType: AudioVolumeType): boolean
 
 获取指定音频流是否为活跃状态。同步返回结果。
+
+> **说明：**
+> 从API version 10开始支持，从API version 20开始废弃，建议使用[isStreamActive](arkts-apis-audio-AudioStreamManager.md#isstreamactive20)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -590,6 +599,48 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: boolean = audioStreamManager.isActiveSync(audio.AudioVolumeType.MEDIA);
+  console.info(`Indicate that the active status of the stream is obtained ${value}.`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the active status of the stream ${error}.`);
+}
+```
+
+## isStreamActive<sup>20+</sup>
+
+isStreamActive(streamUsage: StreamUsage): boolean
+
+获取指定音频流是否为活跃状态。同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| streamUsage | [StreamUsage](arkts-apis-audio-e.md#streamusage) | 是   | 音频流使用类型。 |
+
+**返回值：**
+
+| 类型                   | 说明                                                     |
+| ---------------------- | -------------------------------------------------------- |
+| boolean | 流是否处于活跃状态。返回true表示活跃，返回false表示不活跃。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let value: boolean = audioStreamManager.isStreamActive(audio.StreamUsage.STREAM_USAGE_MUSIC);
   console.info(`Indicate that the active status of the stream is obtained ${value}.`);
 } catch (err) {
   let error = err as BusinessError;

@@ -76,8 +76,20 @@ ArkUI_NodeContentHandle nodeContentHandle_ = nullptr;
 ArkUI_NativeNodeAPI_1 *nodeAPI;
 const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
 
-// Manager为应用定义的NativeNode管理类
-napi_value Manager::CreateNativeNode(napi_env env, napi_callback_info info) {
+// 在Native侧创建一个宽高为480vp*480vp、背景色为0xFFFF0000（红色）的Column组件。对于更详细的节点树创建方法，请参考ArkUI API文档的C API章节。
+ArkUI_NodeHandle CreateNodeHandle() {
+    ArkUI_NodeHandle column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+    ArkUI_NumberValue value[] = {480};
+    ArkUI_AttributeItem item{value, 1};
+    nodeAPI->setAttribute(column, NODE_WIDTH, &item);
+    nodeAPI->setAttribute(column, NODE_HEIGHT, &item);
+    value[0].u32 = 0xFFFF0000;
+    nodeAPI->setAttribute(column, NODE_BACKGROUND_COLOR, &item);
+    return column;
+}
+
+// ArkTS侧createNativeNode方法在Native侧的具体实现
+napi_value CreateNativeNode(napi_env env, napi_callback_info info) {
     // napi相关处理空指针&数据越界等问题
     if ((env == nullptr) || (info == nullptr)) {
         return nullptr;
@@ -94,7 +106,7 @@ napi_value Manager::CreateNativeNode(napi_env env, napi_callback_info info) {
     }
 
     nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
-        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNode_API_1"));
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
 
     // 将nodeContentHandle_指向ArkTS侧传入的nodeContent
     OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &nodeContentHandle_);
@@ -102,14 +114,17 @@ napi_value Manager::CreateNativeNode(napi_env env, napi_callback_info info) {
     if (nodeAPI != nullptr) {
         if (nodeAPI->createNode != nullptr && nodeAPI->addChild != nullptr) {
             ArkUI_NodeHandle component;
-            // 创建C侧组件，具体请查看ArkUI api文档的Capi章节
+            // 创建C侧组件
             component = CreateNodeHandle();
             // 将组件添加到nodeContent管理器中
             OH_ArkUI_NodeContent_AddNode(nodeContentHandle_, component);
         }
     }
+    return nullptr;
 }
 ```
+
+### Native侧主要接口使用说明
 
 #### 注册上下树事件，并通过事件获取对应的Content对象
 

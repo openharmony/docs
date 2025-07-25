@@ -60,9 +60,9 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@kit.ArkUI";
 
 | 名称          | 类型                                   | 必填 | 说明                                                         |
 | ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| selfIdealSize | [Size](js-apis-arkui-graphics.md#size) | 否   | 节点的理想大小。                                             |
-| type          | [NodeRenderType](#noderendertype)      | 否   | 节点的渲染类型。                                             |
-| surfaceId     | string                                 | 否   | 纹理接收方的surfaceId。纹理接收方一般为[OH_NativeImage](../apis-arkgraphics2d/capi-oh-nativeimage-oh-nativeimage.md)。 |
+| selfIdealSize | [Size](js-apis-arkui-graphics.md#size) | 否   | 节点的理想大小。<br/>默认值：{ width: 0, height: 0 } |
+| type          | [NodeRenderType](#noderendertype)      | 否   | 节点的渲染类型。<br/>默认值：NodeRenderType.RENDER_TYPE_DISPLAY |
+| surfaceId     | string                                 | 否   | 纹理接收方的surfaceId。纹理接收方一般为[OH_NativeImage](../apis-arkgraphics2d/capi-oh-nativeimage-oh-nativeimage.md)。<br/>surfaceId仅当type为NodeRenderType.RENDER_TYPE_TEXTURE时生效。<br/>默认值："" |
 
 ## BuilderNode
 
@@ -86,7 +86,7 @@ constructor(uiContext: UIContext, options?: RenderOptions)
 
 | 参数名    | 类型                                    | 必填 | 说明                                                              |
 | --------- | --------------------------------------- | ---- | ----------------------------------------------------------------- |
-| uiContext | [UIContext](js-apis-arkui-UIContext.md) | 是   | UI上下文，获取方式可参考[UIContext获取方法](./js-apis-arkui-node.md#uicontext获取方法)。 |
+| uiContext | [UIContext](arkts-apis-uicontext-uicontext.md) | 是   | UI上下文，获取方式可参考[UIContext获取方法](./js-apis-arkui-node.md#uicontext获取方法)。 |
 | options   | [RenderOptions](#renderoptions)         | 否   | BuilderNode的构造可选参数。默认值:undefined。   |
 
 > **说明**
@@ -104,8 +104,12 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 > @Builder嵌套使用的时候需要保证内外的@Builder方法的入参对象一致。
 >
 > 最外层的@Builder只支持一个入参。
+>
+> build的参数是值传递，需要使用[update](#update)接口进行更新。
 > 
 > 需要操作BuilderNode中的对象时，需要保证其引用不被回收。当BuilderNode对象被虚拟机回收之后，它的FrameNode、RenderNode对象也会与后端节点解引用。即从BuilderNode中获取的FrameNode对象不对应任何一个节点。
+>
+> BuilderNode对象会持有实体节点的引用。如果不需要使用BuilderNode前端对象管理后端节点，可以调用[dispose](#dispose12)接口，实现前后端对象的解绑。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -116,7 +120,7 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 | 参数名  | 类型                                                            | 必填 | 说明                                                                                   |
 | ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
 | builder | [WrappedBuilder\<Args>](../../ui/state-management/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../ui/state-management/arkts-builder.md)。 |
-| arg     | Object                                                          | 否   | builder的入参。当前仅支持一个入参，且入参对象类型与@Builder定义的入参类型保持一致。                                          |
+| arg     | Object                                                          | 否   | builder的入参。当前仅支持一个入参，且入参对象类型与@Builder定义的入参类型保持一致。<br/>默认值：undefined |
 
 ### build<sup>12+</sup>
 
@@ -141,7 +145,7 @@ build(builder: WrappedBuilder\<Args>, arg: Object, options: [BuildOptions](#buil
 | ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
 | builder | [WrappedBuilder\<Args>](../../ui/state-management/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../ui/state-management/arkts-builder.md)。   |
 | arg     | Object                                                          | 是   | builder的入参。当前仅支持一个入参，且入参对象类型与@Builder定义的入参类型保持一致。                                                            |
-| options | BuildOptions                                                    | 是   | build的配置参数，判断是否支持@Builder中嵌套@Builder的行为。                                         |
+| options | [BuildOptions](#buildoptions12)                                           | 是   | build的配置参数，判断是否支持@Builder中嵌套@Builder的行为。                                         |
 
 **示例：**
 ```ts
@@ -618,7 +622,7 @@ function ButtonBuilder(params: Params) {
       .gesture(
         TapGesture()
           .onAction((event: GestureEvent) => {
-            console.log("TapGesture");
+            console.info("TapGesture");
           })
       )
   }
@@ -654,7 +658,7 @@ class MyNodeController extends NodeController {
       }
     }
     let result = this.rootNode.postTouchEvent(event);
-    console.log("result " + result);
+    console.info("result " + result);
     return result;
   }
 }
@@ -714,11 +718,11 @@ struct TestComponent {
   }
 
   aboutToAppear() {
-    console.error('aboutToAppear');
+    console.info('aboutToAppear');
   }
 
   aboutToDisappear() {
-    console.error('aboutToDisappear');
+    console.info('aboutToDisappear');
   }
 }
 
@@ -882,7 +886,7 @@ struct ReusableChildComponent {
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
+    console.info(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
 
     // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
     if (this.switch === 'open') {
@@ -891,7 +895,7 @@ struct ReusableChildComponent {
   }
 
   aboutToReuse(params: object): void {
-    console.log(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
+    console.info(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
 
     // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ReusableChildComponent2，完成复用
     if (this.switch === 'open') {
@@ -913,11 +917,11 @@ struct ReusableChildComponent2 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
+    console.info(`${TEST_TAG} ReusableChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ReusableChildComponent2 aboutToRecycle ${this.item}`);
+    console.info(`${TEST_TAG} ReusableChildComponent2 aboutToRecycle ${this.item}`);
   }
 
   build() {
@@ -935,11 +939,11 @@ struct ReusableChildComponent3 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
+    console.info(`${TEST_TAG} ReusableChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ReusableChildComponent3 aboutToRecycle ${this.item}`);
+    console.info(`${TEST_TAG} ReusableChildComponent3 aboutToRecycle ${this.item}`);
   }
 
   build() {
@@ -1097,10 +1101,10 @@ struct Index {
   aboutToAppear(): void {
     let environmentCallback: EnvironmentCallback = {
       onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
-        console.log('onMemoryLevel');
+        console.info('onMemoryLevel');
       },
       onConfigurationUpdated: (config: Configuration): void => {
-        console.log('onConfigurationUpdated ' + JSON.stringify(config));
+        console.info('onConfigurationUpdated ' + JSON.stringify(config));
         this.getUIContext()?.postFrameCallback(new MyFrameCallback());
       }
     };
@@ -1180,7 +1184,7 @@ offsetA为builderNode相对于父组件的偏移，offsetB为命中位置相对�
 >
 > 传入的坐标值需要转换为px，坐标转换示例可以参考下面示例代码。
 >
-> 鼠标左键点击事件会转换成触摸事件，转发时需注意不要在外层同时绑定触摸事件和鼠标事件，规格可查看[onTouch](arkui-ts/ts-universal-events-touch.md#ontouch)。
+> 鼠标左键点击事件将转换为触摸事件，转发时应注意不在外层同时绑定触摸事件与鼠标事件，否则可能导致坐标偏移。这是由于在事件转换过程中，SourceType不会发生变化，规格可查看[onTouch](arkui-ts/ts-universal-events-touch.md#ontouch)。
 >
 > 注入事件为[轴事件](arkui-ts/ts-universal-events-axis.md#axisevent)时，由于轴事件中缺少旋转轴信息与捏合轴信息，因此注入的事件无法触发[pinch捏合手势](arkui-ts/ts-basic-gestures-pinchgesture.md)与[rotate旋转手势](arkui-ts/ts-basic-gestures-rotationgesture.md)。
 >
@@ -1208,7 +1212,7 @@ offsetA为builderNode相对于父组件的偏移，offsetB为命中位置相对�
 
 | 类型    | 说明               |
 | ------- | ------------------ |
-| boolean | 事件是否被消费。true表示事件已被消费，false表示事件未被消费。 |
+| boolean | 事件是否被成功派发。如果事件被成功派发则返回true，否则返回false。 |
 
 ### inheritFreezeOptions<sup>20+</sup>
 
@@ -1233,12 +1237,13 @@ inheritFreezeOptions(enabled: boolean): void
 该示例演示了在自定义组件中截获鼠标事件并进行坐标转换的完整流程。组件通过onMouse回调读取本地x/y，再结合FrameNode.getPositionToParent()得到的偏移量，调用vp2px将相对坐标转换为像素坐标，更新MouseEvent的windowX/windowY、displayX/displayY。最后通过rootNode.postInputEvent(event)将转换后的鼠标事件分发给子节点进行处理。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext, PromptAction, InputEventType } from '@kit.ArkUI';
+import { NodeController, BuilderNode, FrameNode, UIContext, InputEventType } from '@kit.ArkUI';
 
 class Params {
   text: string = "this is a text"
   uiContext: UIContext | null = null
 }
+
 @Builder
 function ButtonBuilder(params: Params) {
   Column() {
@@ -1249,30 +1254,30 @@ function ButtonBuilder(params: Params) {
       .fontSize(20)
       .width("45%")
       .height("30%")
-      .offset({x: 100, y: 100})
-      .onMouse((event) => {
-        let promptAction: PromptAction = params.uiContext!.getPromptAction();
-        promptAction.showToast({
-          message: 'onMouse',
-          duration: 3000
-        });
-        console.log('onMouse')
+      .offset({ x: 100, y: 100 })
+      .onMouse(() => {
+        console.info('onMouse')
+      })
+      .onTouch(() => {
+        console.info('onTouch')
       })
   }
   .width(500)
   .height(300)
   .backgroundColor(Color.Gray)
 }
+
 class MyNodeController extends NodeController {
   private rootNode: BuilderNode<[Params]> | null = null;
   private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(ButtonBuilder);
+
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
     this.rootNode.build(this.wrapBuilder, { text: "This is a string", uiContext })
     return this.rootNode.getFrameNode();
   }
 
-  postInputEvent(event: InputEventType, uiContext: UIContext): boolean {
+  postMouseEvent(event: InputEventType, uiContext: UIContext): boolean {
     if (this.rootNode == null) {
       return false;
     }
@@ -1280,15 +1285,45 @@ class MyNodeController extends NodeController {
     let offsetX: number | null | undefined = node?.getPositionToParent().x;
     let offsetY: number | null | undefined = node?.getPositionToParent().y;
 
-    if (event.source == SourceType.Mouse) {
-      let mouseEvent = event as MouseEvent;
+    let mouseEvent = event as MouseEvent;
+    if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
+      mouseEvent.windowX = uiContext.vp2px(offsetX + mouseEvent.x)
+      mouseEvent.windowY = uiContext.vp2px(offsetY + mouseEvent.y)
+      mouseEvent.displayX = uiContext.vp2px(offsetX + mouseEvent.x)
+      mouseEvent.displayY = uiContext.vp2px(offsetY + mouseEvent.y)
+      mouseEvent.x = uiContext.vp2px(mouseEvent.x)
+      mouseEvent.y = uiContext.vp2px(mouseEvent.y)
+    }
+
+    let result = this.rootNode.postInputEvent(event);
+    return result;
+  }
+
+  postTouchEvent(event: InputEventType, uiContext: UIContext): boolean {
+    if (this.rootNode == null) {
+      return false;
+    }
+    let node: FrameNode | null = this.rootNode.getFrameNode();
+    let offsetX: number | null | undefined = node?.getPositionToParent().x;
+    let offsetY: number | null | undefined = node?.getPositionToParent().y;
+
+    let touchevent = event as TouchEvent;
+    let changedTouchLen = touchevent.changedTouches.length;
+    for (let i = 0; i < changedTouchLen; i++) {
       if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
-        mouseEvent.windowX = uiContext.vp2px(offsetX + mouseEvent.x)
-        mouseEvent.windowY = uiContext.vp2px(offsetY + mouseEvent.y)
-        mouseEvent.displayX = uiContext.vp2px(offsetX + mouseEvent.x)
-        mouseEvent.displayY = uiContext.vp2px(offsetY + mouseEvent.y)
-        mouseEvent.x = uiContext.vp2px(mouseEvent.x)
-        mouseEvent.y = uiContext.vp2px(mouseEvent.y)
+        touchevent.changedTouches[i].windowX = uiContext.vp2px(offsetX + touchevent.changedTouches[i].x);
+        touchevent.changedTouches[i].windowY = uiContext.vp2px(offsetY + touchevent.changedTouches[i].y);
+        touchevent.changedTouches[i].displayX = uiContext.vp2px(offsetX + touchevent.changedTouches[i].x);
+        touchevent.changedTouches[i].displayY = uiContext.vp2px(offsetY + touchevent.changedTouches[i].y);
+      }
+    }
+    let touchesLen = touchevent.touches.length;
+    for (let i = 0; i < touchesLen; i++) {
+      if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
+        touchevent.touches[i].windowX = uiContext.vp2px(offsetX + touchevent.touches[i].x);
+        touchevent.touches[i].windowY = uiContext.vp2px(offsetY + touchevent.touches[i].y);
+        touchevent.touches[i].displayX = uiContext.vp2px(offsetX + touchevent.touches[i].x);
+        touchevent.touches[i].displayY = uiContext.vp2px(offsetY + touchevent.touches[i].y);
       }
     }
 
@@ -1296,10 +1331,12 @@ class MyNodeController extends NodeController {
     return result;
   }
 }
+
 @Entry
 @Component
 struct MyComponent {
   private nodeController: MyNodeController = new MyNodeController();
+
   build() {
     Stack() {
       NodeContainer(this.nodeController)
@@ -1311,10 +1348,15 @@ struct MyComponent {
         .backgroundColor(Color.Transparent)
         .onMouse((event) => {
           if (event != undefined) {
-            this.nodeController.postInputEvent(event, this.getUIContext());
+            this.nodeController.postMouseEvent(event, this.getUIContext());
           }
         })
-    }.offset({top: 100})
+        .onTouch((event) => {
+          if (event != undefined) {
+            this.nodeController.postTouchEvent(event, this.getUIContext());
+          }
+        })
+    }.offset({ top: 100 })
   }
 }
 ```
@@ -1349,7 +1391,7 @@ function ButtonBuilder(params: Params) {
           message: 'onTouch',
           duration: 3000
         });
-        console.log('onTouch')
+        console.info('onTouch')
       })
   }
   .width(500)
@@ -1453,7 +1495,7 @@ function ButtonBuilder(params: Params) {
           message: 'onAxisEvent',
           duration: 3000
         });
-        console.log('onAxisEvent')
+        console.info('onAxisEvent')
       })
   }
   .width(500)
@@ -1605,11 +1647,11 @@ struct TestComponent {
   }
 
   aboutToAppear() {
-    console.error('aboutToAppear');
+    console.info('aboutToAppear');
   }
 
   aboutToDisappear() {
-    console.error('aboutToDisappear');
+    console.info('aboutToDisappear');
   }
 }
 
@@ -1900,7 +1942,7 @@ struct ConsumeChild {
   @Consume @Watch("ChangeData") message: string = ""
 
   ChangeData() {
-    console.log(`ChangeData ${this.message}`);
+    console.info(`ChangeData ${this.message}`);
   }
 
   build() {
@@ -1911,6 +1953,7 @@ struct ConsumeChild {
       Button("Click to change message to append C")
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
+          // 修改Consume的变量
           this.message = this.message + "C"
         })
     }
@@ -1935,6 +1978,7 @@ struct Index {
   private builderNode: BuilderNode<[string]> = new BuilderNode<[string]>(this.getUIContext());
 
   aboutToAppear(): void {
+    // 设置enableProvideConsumeCrossing为true，支持BuilderNode内部自定义组件ConsumeChild的@Consume与其所在页面中的@Provide数据互通
     this.builderNode.build(wrapBuilder(CreateText), "Test Consume", { enableProvideConsumeCrossing: true })
     this.content.addFrameNode(this.builderNode.getFrameNode())
   }
@@ -1959,4 +2003,4 @@ struct Index {
 }
 ```
 
-![enableProvideConsumeCrossing](figures/builderNode_consume.png)
+![enableProvideConsumeCrossing](figures/BuilderNode_Consume.gif)

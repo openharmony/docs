@@ -27,7 +27,7 @@ ArkUI的弹出框节点都是直接挂载在根节点上，会根据层级从小
 }
 ```
 
-2.初始化另一个弹出框内容区，内部包含一个点击打开普通弹出框的按钮，点击事件中通过调用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中[getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction)方法获取[PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction)对象，在通过该对象调用[openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12)接口，并且设置层级为0的[levelOrder](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)参数来创建普通层级弹出框。
+2.初始化另一个弹出框内容区，内部包含一个点击打开普通弹出框的按钮，点击事件中通过调用[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)中[getPromptAction](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getpromptaction)方法获取[PromptAction](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md)对象，在通过该对象调用[openCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialog12)接口，并且设置层级为0的[levelOrder](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)参数来创建普通层级弹出框。
 
 ```ts
 @Builder topCustomDialog() {
@@ -52,7 +52,7 @@ ArkUI的弹出框节点都是直接挂载在根节点上，会根据层级从小
 }
 ```
 
-3.通过调用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中[getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction)方法获取[PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction)对象，在通过该对象调用[openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12)接口，并且设置层级为100000的[levelOrder](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)参数来创建最高层级弹出框。
+3.通过调用[UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md)中[getPromptAction](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getpromptaction)方法获取[PromptAction](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md)对象，在通过该对象调用[openCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialog12)接口，并且设置层级为100000的[levelOrder](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11)参数来创建最高层级弹出框。
 
 ```ts
 this.getUIContext().getPromptAction().openCustomDialog({

@@ -91,8 +91,8 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
       function OpenNewWindow()
       {
           var txt = '打开的窗口';
-          let openedWindow = window.open("about:blank", "", "location=no,status=no,scrollvars=no");
-          openedWindow.document.write("<p>" + "<br><br>" + txt.fontsize(10) + "</p>");
+          let openedWindow = window.open("about:blank", "", "location=no,status=no,scrollbars=no");
+          openedWindow.document.write("<p>" + "<br><br>" + txt + "</p>");
           openedWindow.focus();
       }
   </script>

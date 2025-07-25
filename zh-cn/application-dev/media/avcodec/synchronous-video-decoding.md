@@ -617,7 +617,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
   
     ```c++
     bool result = true;
-    int64_t timeoutUs = 0; // 单位：微秒（us），负值：无限等待；0：立即退出；正值：指定时间结束后退出。
+    int64_t timeoutUs = 0; // 单位：微秒（us），负值：无限等待；0：立即退出；正值：等待指定时长后退出。
 
     while (!outputDone && result) {
         if (!inputDone) {

@@ -736,7 +736,8 @@ addInstallationAllowedAppDistributionTypes(admin: Want, appDistributionTypes: Ar
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 9200001  | The application is not an administrator application of the device. |
-| 9200002  | The administrator application does not have permission to manage the device. |                     |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 9200012  | Parameter verification failed.                               |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**
@@ -785,7 +786,8 @@ removeInstallationAllowedAppDistributionTypes(admin: Want, appDistributionTypes:
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 9200001  | The application is not an administrator application of the device. |
-| 9200002  | The administrator application does not have permission to manage the device. |                     |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 9200012  | Parameter verification failed.                               |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**

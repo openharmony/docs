@@ -191,7 +191,7 @@ mainHandler dump is:
 
 ```
 Tid:13680, Name:les.freezedebug
-#00 pc 000000000000186c [shmm] (__kernel_gettimeofday+72)
+#00 pc 000000000000186c [shmm](__kernel_gettimeofday+72)
 #01 pc 00000000001d887c /system/lib/ld-musl-aarch64.so.1(gettimeofday+40)(f1a940981720250b920ee26d2d76af5b)
 #02 pc 000000000058fb5c /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::builtins::BuiltinsDate::Now(panda::ecmascript::EcmaRuntimeCallInfo*)+48)(0f1928b77d36d27edb5512bd89806a6f)
 #03 pc 0000000000cff5dc /system/lib64/module/arkcompiler/stub.an(RTStub_PushCallArgsAndDispatchNative+40)
@@ -340,7 +340,7 @@ ReclaimAvailBuffer:                    4676608 kB
 
 ```
 DOMAIN:AAFWK
-STRINGID:LIFECYCLE
+STRINGID:LIFECYCLE_TIMEOUT
 TIMEOUT TIMESTAMP:2025/02/10-21:40:59:113
 PID:1561
 UID:20010039

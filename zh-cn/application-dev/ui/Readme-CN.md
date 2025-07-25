@@ -132,6 +132,7 @@
        - [弹出框层级管理](arkts-dialog-levelorder.md)
        - [弹出框控制器](arkts-dialog-controller.md)
        - [弹出框焦点策略](arkts-dialog-focusable.md)
+       - [弹出框蒙层控制](arkts-dialog-mask.md)
      - 菜单<!--arkts-use-menu-->
        - [菜单概述](arkts-menu-overview.md)
        - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
@@ -220,6 +221,7 @@
   - UI系统场景化能力<!--arkts-ui-system-scenarization-capability-->
     - [使用UI上下文接口操作界面（UIContext）](arkts-global-interface.md)
     - [使用组件截图（ComponentSnapshot）](arkts-uicontext-component-snapshot.md)
+    - [检查页面布局](arkts-inspector-overview.md)
     - [媒体查询 (@ohos.mediaquery)](arkts-layout-development-media-query.md)
     - 嵌入式组件<!--arkts-ui-cross-process-->
       - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)

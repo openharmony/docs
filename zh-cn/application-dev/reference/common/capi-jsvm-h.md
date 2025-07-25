@@ -275,7 +275,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_Init(const JSVM_InitOptions* options)
 
 | 类型                                                          | 说明 |
 |-------------------------------------------------------------| -- |
-| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) | 返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_GENERIC_FAILURE](capi-jsvm-types-h.md#jsvm_status) 表示有未知的原因导致执行失败。 |
+| JSVM_EXTERN [JSVM_Status](capi-jsvm-types-h.md#jsvm_status) | 返回执行状态码 JSVM_Status。<br>         [JSVM_OK](capi-jsvm-types-h.md#jsvm_status) 表示执行成功。<br>         [JSVM_GENERIC_FAILURE](capi-jsvm-types-h.md#jsvm_status) 表示执行失败，说明当前进程已完成JSVM初始化，无需重复执行。 |
 
 ### OH_JSVM_CreateVM()
 

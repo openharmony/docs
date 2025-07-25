@@ -182,7 +182,7 @@ hdrBrightness(brightness: number)
 
 | 参数名   | 类型    | 必填 | 说明                   |
 | -------- | ------- | ---- | ---------------------- |
-| brightness | number | 是   | 用于调整组件播放HDR视频的亮度; brightness的取值范围为0.0~1.0; 小于0的值等价于0，大于1的值等价于1; 0 表示SDR视频的亮度，1 表示HDR视频的亮度。|
+| brightness | number | 是   | 用于调整组件播放HDR视频的亮度; brightness的取值范围为0.0~1.0; 小于0.0的值等价于0.0，大于1.0的值等价于1.0，异常值按1.0处理; 0.0 表示SDR视频的亮度，1.0 表示HDR视频的亮度。<br/>默认值：1.0 |
 
   > **说明：**
   >
@@ -215,10 +215,6 @@ onLoad(callback: OnNativeLoadCallback )
 | 参数名   | 类型   | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
 | callback | [OnNativeLoadCallback](#onnativeloadcallback18) | 是    | XComponent持有的Surface创建后回调事件。 |
-
-> **说明：**
-> 
-> 使用自定义组件节点创建XComponent组件时，因为onLoad回调触发时机早于[onSurfaceCreated](#onsurfacecreated12)，所以在onLoad回调中调用[getXComponentSurfaceId](#getxcomponentsurfaceid9)获取surfaceId会失败，建议在[onSurfaceCreated](#onsurfacecreated12)回调中获取。
 
 ### onDestroy
 
@@ -278,7 +274,7 @@ xcomponentController: XComponentController = new XComponentController();
 
 getXComponentSurfaceId(): string
 
-获取XComponent对应Surface的ID，供@ohos接口使用，使用方式可参考[相机管理](../../apis-camera-kit/arkts-apis-camera.md)，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+获取XComponent对应Surface的ID，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -290,6 +286,33 @@ getXComponentSurfaceId(): string
 | ------ | ----------------------- |
 | string | XComponent持有Surface的ID。 |
 
+> **说明：**
+> 
+> 使用自定义组件节点创建XComponent组件时，因为onLoad回调触发时机早于[onSurfaceCreated](#onsurfacecreated12)，所以在onLoad回调中调用[getXComponentSurfaceId](#getxcomponentsurfaceid9)获取surfaceId会失败，建议在[onSurfaceCreated](#onsurfacecreated12)回调中获取。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct Index {
+    myXComponentController: XComponentController = new XComponentController();
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        XComponent({
+          type: XComponentType.SURFACE,
+          controller: this.myXComponentController
+        })
+          .onLoad(() => {
+            let surfaceId: string = this.myXComponentController.getXComponentSurfaceId();
+            console.log("XComponent SurfaceId: " + surfaceId);
+          })
+      }
+    }
+  }
+  ```
 
 ### setXComponentSurfaceSize<sup>(deprecated)</sup>
 
@@ -343,9 +366,9 @@ setXComponentSurfaceRect(rect: SurfaceRect): void
 
 > **说明：**
 >
-> rect参数中的offsetX/offsetY不设置时，Surface显示区域相对于XComponent左上角x/y轴的偏移效果默认按照居中显示。
+> rect参数中的offsetX/offsetY不设置或传入异常值时，Surface显示区域相对于XComponent左上角x/y轴的偏移效果默认按照居中显示。
 >
-> rect参数中的surfaceWidth和surfaceHeight存在0或负数时，调用该接口设置显示区域不生效。
+> rect参数中的surfaceWidth和surfaceHeight存在0、负数或其他异常值时，调用该接口设置显示区域不生效。未调用该接口主动设置Surface显示区域时，surfaceWidth默认与组件宽度一致，surfaceHeight默认与组件高度一致。
 >
 > 该方法优先级高于[border](ts-universal-attributes-border.md#border)、[padding](ts-universal-attributes-size.md#padding)等可以改变内容偏移和大小的属性。
 

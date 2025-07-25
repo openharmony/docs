@@ -26,6 +26,8 @@ NetConnection常用接口如下表所示，详细的接口说明请参考[net_co
 | OH_NetConn_UnregisterDnsResolver(void) | 去注册自定义dns解析器。|
 | OH_NetConn_SetPacUrl(const char \*pacUrl) | 设置系统级代理自动配置(PAC)脚本地址。 |
 | OH_NetConn_GetPacUrl(char \*pacUrl) | 获取系统级代理自动配置(PAC)脚本地址。 |
+| OH_NetConn_QueryProbeResult(char *destination, int32_t duration, NetConn_ProbeResultInfo *probeResultInfo)| 查询探测结果。 |
+| OH_NetConn_QueryTraceRoute(char *destination, NetConn_TraceRouteOption *option, NetConn_TraceRouteInfo *traceRouteInfo)| 查询跟踪路由。 |
 
 ## 网络管理接口开发示例
 

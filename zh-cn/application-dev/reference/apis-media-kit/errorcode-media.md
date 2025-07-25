@@ -153,6 +153,26 @@ The parameter check failed, parameter value out of range.
 
 调整参数值，使其在取值范围内。
 
+<!--Del-->
+## 5400109 会话ID不存在
+
+**错误信息**
+
+Sessions not exist. Return by promise.
+
+**错误描述**
+
+当会话ID不存在时，返回错误。
+
+**可能原因**
+
+会话ID不存在。
+
+**处理步骤**
+
+检查传入的会话ID，确保其正确。
+<!--DelEnd-->
+
 ## 5411001 解析或链接服务端地址错误
 
 **错误信息**

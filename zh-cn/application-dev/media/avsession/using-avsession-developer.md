@@ -36,7 +36,11 @@
 音视频应用作为媒体会话提供方接入媒体会话的基本步骤如下所示：
 
 1. 通过AVSessionManager的方法创建并激活媒体会话。
-     
+
+   > **说明：**
+   >
+   > 以下示例代码仅展示创建AVSession对象的接口调用，应用在真正使用时，需要确保AVSession对象实例在应用后台播放业务活动期间一直存在，避免被系统回收、释放，导致后台发声时被系统管控。
+
       ```ts
       import { avSession as AVSessionManager } from '@kit.AVSessionKit';  
       @Entry

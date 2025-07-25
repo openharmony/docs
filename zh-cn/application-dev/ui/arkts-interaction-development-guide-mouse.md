@@ -324,9 +324,10 @@ struct ListExample {
 - 上报的数值单位为角度，为单次变化量，非总量。
 - 上报数值大小受系统设置中对滚轮放大倍数设置的影响。
 - 系统设置中的放大倍数通过AxisEvent中的scrollStep告知。
-- 向前滚动，上报数值为正，向后滚动，上报数值为负。
+- 向前滚动，上报数值为负，向后滚动，上报数值为正。
 
-如果你使用的是原生滚动类组件，对于滚轮的响应，系统内部已实现，不需要额外处理。
+如果使用滚动类组件，对于滚轮的响应，系统内部已实现，不需要额外处理。
+如果使用[PanGesture](../reference/apis-arkui/arkui-ts/ts-basic-gestures-pangesture.md#pangesture)，对于滚轮的响应，此时向前滚动，offsetY的上报数值为正，向后滚动，offsetY的上报数值为负。
 
 > **说明：**
 >

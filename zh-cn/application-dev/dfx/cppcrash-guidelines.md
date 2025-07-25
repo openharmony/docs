@@ -29,7 +29,7 @@
 
 2. 进程接收到崩溃信号后，保存当前进程上下文，fork出子进程执行ProcessDump二进制抓取崩溃信息。
 
-3. ProcesDump进程将崩溃日志数据写入到临时目录下进行存储。
+3. ProcessDump进程将崩溃日志数据写入到临时目录下进行存储。
 
 4. ProcessDump进程收集完崩溃日志后，上报给Hiview进程，Hiview将崩溃日志存储到 /data/log/faultlog/faultlogger目录下并生成故障事件。
 
@@ -123,9 +123,9 @@ SIGSEGV是一种信号，它表示进程试图访问一个不属于它的内存�
 | 0x80 | SI_KERNEL | 内核信号。 | 由内核发送给进程的，通常是由内核检测到某些错误或异常情况时发出的。例如，当进程访问无效的内存地址或者执行非法指令时，内核会发送一个SIGSEGV信号给进程。 |
 | -1 | SI_QUEUE | sigqueue()函数信号。 | 由sigqueue()系统调用发送的，可以携带一个附加的整数值和一个指针。通常用于进程间高级通信，例如传递数据或者通知进程某个事件已经发生。 |
 | -2 | SI_TIMER | 定时器信号。 | 由定时器发送的，通常用于定时任务或者周期性任务的执行。例如，当一个定时器到期时，内核会向进程发送一个SIGALRM信号。 |
-| -3 | SI_MESGQ | 消息队列信号。 | 由消息队列发送的，通常用于进程间通信。例如，当一个进程向一个消息队列发送消息时，内核会向接收进程发送一个SIGIO信号。 |
-| -4 | SI_ASYNCIO | 异步I/O信号。 | 由异步I/O操作发送的，通常用于非阻塞I/O操作。例如，当一个文件描述符上的I/O操作完成时，内核会向进程发送一个SIGIO信号。 |
-| -5 | SI_SIGIO | 同步I/O信号。 | 由异步I/O操作发送的，通常用于非阻塞I/O操作。例如，当一个文件描述符上的I/O操作完成时，内核会向进程发送一个SIGIO信号。 |
+| -3 | SI_MESGQ | 消息队列信号。 | 由消息队列发送的，通常用于进程间通信。例如，当一个进程向一个消息队列发送消息时，内核会向接收进程发送一个MESGQ信号。 |
+| -4 | SI_ASYNCIO | 异步I/O信号。 | 由异步I/O操作发送的，通常用于非阻塞I/O操作。例如，当一个文件描述符上的I/O操作完成时，内核会向进程发送一个ASYNCIO信号。 |
+| -5 | SI_SIGIO | 同步I/O信号。 | 由同步I/O操作发送的，通常用于阻塞I/O操作。例如，当一个文件描述符上的I/O操作完成时，内核会向进程发送一个SIGIO信号。 |
 | -6 | SI_TKILL | tkill()函数信号。 | 由tkill()系统调用发送的，与kill()系统调用类似，但是可以指定发送信号的线程ID。通常用于多线程程序中，向指定线程发送信号。 |
 
 ## 约束与限制
@@ -144,7 +144,7 @@ SIGSEGV是一种信号，它表示进程试图访问一个不属于它的内存�
 
 **方式一：通过DevEco Studio获取日志**
 
-DevEco Studio会收集设备/data/log/faultlog/faultlogger/路径下的进程崩溃故障日志到FaultLog下，根据进程名和故障和时间分类显示。获取日志的方法参见：[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-fault-log)。
+DevEco Studio会收集设备/data/log/faultlog/faultlogger/路径下的进程崩溃故障日志到FaultLog下，根据进程名和故障类型分类显示。获取日志的方法参见：[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-fault-log)。
 
 **方式二：通过HiAppEvent接口订阅**
 
@@ -424,11 +424,9 @@ cpsr:20870010           <-  状态寄存器值（arm32架构为cpsr，aarch64架
 以递归调用时未设置递归终止条件导致栈内存耗尽为例，示例代码如下：
 
 ```c++
-static void *DoStackOverflow(void * inputArg)
+static void *DoStackOverflow(void * inputArg) __attribute__((optnone))
 {
     int b[10] = {1};
-    int *c = nullptr;
-    (void)memcpy_s(c, sizeof(int), b, sizeof(int));
     if (b[0] == 0) {
         return static_cast<void*>(b + 9); // 9: last element of array
     }

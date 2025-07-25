@@ -375,7 +375,7 @@ RichEditor(this.options)
   })
 ```
 
-![RichEditor_select_menu](figures/RichEditor_select_menu.jpg)
+![RichEditor_select_menu](figures/RichEditor_select_menu.gif)
 
 更多属性使用请参考[RichEditor属性](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#属性)。
 
@@ -477,7 +477,7 @@ RichEditor(this.options)
   })
   .onDidChange((rangeBefore: TextRange, rangeAfter: TextRange) => {
     this.infoShowController.addTextSpan('\n图文变化后，触发回调：\nrangeBefore:' + JSON.stringify(rangeBefore) +
-      '\nrangeAfter：' + JSON.stringify(rangeBefore), {
+      '\nrangeAfter：' + JSON.stringify(rangeAfter), {
       style: {
         fontColor: Color.Gray,
         fontSize: 10
@@ -562,13 +562,13 @@ struct on_cut_copy_paste {
   infoShowController: RichEditorController = new RichEditorController();
   infoShowOptions: RichEditorOptions = { controller: this.infoShowController }
 
-  PopDataFromPasteboard() {
+  popDataFromPasteboard() {
     let selection = this.controller.getSelection();
     let start = selection.selection[0];
     let end = selection.selection[1];
     if (start == end) {
       start = this.controller.getCaretOffset();
-      end = this.controller.getCaretOffset();
+      end = start;
     }
     let moveOffset = 0;
     let sysBoard = pasteboard.getSystemPasteboard();
@@ -610,7 +610,7 @@ struct on_cut_copy_paste {
               event.preventDefault();
             }
             console.info('RichEditor onPaste')
-            this.PopDataFromPasteboard()
+            this.popDataFromPasteboard()
           })
           .width(300)
           .height(70)
@@ -713,7 +713,7 @@ RichEditor(this.infoShowOptions)
 
 ### 屏蔽系统服务类菜单
 
-- 通过[disableSystemServiceMenuItems](../reference/apis-arkui/js-apis-arkui-UIContext.md#disablesystemservicemenuitems20)屏蔽富文本选择菜单内所有系统服务菜单项。
+- 通过[disableSystemServiceMenuItems](../reference/apis-arkui/arkts-apis-uicontext-textmenucontroller.md#disablesystemservicemenuitems20)屏蔽富文本选择菜单内所有系统服务菜单项。
 
   ```ts
   import { TextMenuController } from '@kit.ArkUI';
@@ -766,7 +766,7 @@ RichEditor(this.infoShowOptions)
 
   ![RichEditor_disable_system_service_menuItems](figures/RichEditor_disable_system_service_menuItems.gif)
 
-- 通过[disableMenuItems](../reference/apis-arkui/js-apis-arkui-UIContext.md#disablemenuitems20)屏蔽富文本选择菜单内指定的系统服务菜单项。
+- 通过[disableMenuItems](../reference/apis-arkui/arkts-apis-uicontext-textmenucontroller.md#disablemenuitems20)屏蔽富文本选择菜单内指定的系统服务菜单项。
 
   ```ts
   import { TextMenuController } from '@kit.ArkUI';

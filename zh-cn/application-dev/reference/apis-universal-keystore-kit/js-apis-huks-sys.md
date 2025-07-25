@@ -694,7 +694,7 @@ const nonce = "hahahahahaha";
 const tagSize = 16;
 const unsignedInt32Bytes = 4;
 const importedAes192PlainKey = "The aes192 key to import";
-const callerAes256Kek = "The is kek to encrypt aes192 key";
+const callerAes256Kek = "This is kek to encrypt aes192 key";
 const callerKeyAlias = "test_caller_key_ecdh_aes192";
 const callerKekAliasAes256 = "test_caller_kek_ecdh_aes256";
 const callerAgreeKeyAliasAes256 = "test_caller_agree_key_ecdh_aes256";
@@ -1623,7 +1623,7 @@ async function HasKey(keyAlias: string) {
   await huks.hasKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("别名为: " + keyAlias + "的密钥查询存在结果" + JSON.stringify(data))
   }).catch((err: BusinessError) => {
-    console.error("密钥删除失败，错误码是： " + err.code + " 错误码信息： " + err.message)
+    console.error("密钥查询失败，错误码是： " + err.code + " 错误码信息： " + err.message)
   })
 }
 
@@ -1768,7 +1768,7 @@ function GetAesDecryptProperties(): Array<huks.HuksParam> {
     value: huks.HuksKeyAlg.HUKS_ALG_AES
   }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
   }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT

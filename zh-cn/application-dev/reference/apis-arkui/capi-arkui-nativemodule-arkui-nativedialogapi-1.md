@@ -373,7 +373,7 @@ int32_t (*registerOnWillDismiss)(ArkUI_NativeDialogHandle handle, ArkUI_OnWillDi
 | 参数项                                                                                       | 描述 |
 |-------------------------------------------------------------------------------------------| -- |
 | [ArkUI_NativeDialogHandle](capi-arkui-nativemodule-arkui-nativedialog8h.md) handle        | 指向自定义弹窗控制器的指针。 |
-| [ArkUI_OnWillDismissEvent](capi-native-dialog-h.md#arkui_onwilldismissevent) eventHandler | 弹窗关闭的回调函数 参数类型{@Link OnWillDismissEvent}。 |
+| [ArkUI_OnWillDismissEvent](capi-native-dialog-h.md#arkui_onwilldismissevent) eventHandler | 弹窗关闭的回调函数。 |
 
 **返回：**
 
