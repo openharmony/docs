@@ -798,7 +798,7 @@ Span类型信息。
 | IMAGE | 1 | Span类型为图像。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | MIXED | 2 | Span类型为图文混合。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | BUILDER<sup>12+</sup> | 3 | Span类型为BuilderSpan。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| DEFAULT<sup>15+</sup> | 4 | 默认类型，不指定Span类型时生效。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| DEFAULT<sup>15+</sup> | 4 | 注册此类型菜单，但未注册TEXT、IMAGE、MIXED、BUILDER菜单时，文字类型、图像类型、图文混合类型、BuilderSpan类型都会触发并显示此类型对应的菜单。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 
 ## RichEditorResponseType<sup>11+</sup>
 
@@ -811,7 +811,7 @@ Span类型信息。
 | RIGHT_CLICK  | 0 | 通过鼠标右键触发菜单弹出。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | LONG_PRESS | 1 | 通过长按触发菜单弹出。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | SELECT | 2 | 通过鼠标选中触发菜单弹出。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| DEFAULT<sup>15+</sup> | 3 | 默认类型，不指定响应类型时生效。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。  |
+| DEFAULT<sup>15+</sup> | 3 | 注册此响应类型的菜单，但未注册RIGHT_CLICK、LONG_PRESS、SELECT响应类型的菜单时，通过鼠标右键、长按、鼠标选中都会触发菜单弹出。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。  |
 
 ## UndoStyle<sup>20+</sup>
 
@@ -1378,7 +1378,7 @@ deleteSpans(value?: RichEditorRange): void
 
 getParagraphs(value?: RichEditorRange): Array\<RichEditorParagraphResult>
 
-获取指定范围的段落。
+获取指定范围的段落信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
