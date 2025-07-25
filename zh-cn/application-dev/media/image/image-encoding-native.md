@@ -53,10 +53,10 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
 
 3. 初始化资源。
 
-   通过OH_ImagePacker_InitNative来初始化编码器原生实例对象。
+   通过OH_ImagePacker_InitNative来初始化编码器实例对象。
 
    ```cpp
-   // 通过 napi_env 及上述创建的编码器对象初始化原生实例对象。
+   // 通过 napi_env 及上述创建的编码器对象初始化实例对象。
    ImagePacker_Native* nativePacker = OH_ImagePacker_InitNative(env, packer);
    ```
 
