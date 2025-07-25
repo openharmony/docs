@@ -83,7 +83,7 @@ static enableV2Compatibility\<T extends object\>(source: T): T
 基于[enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility19)和[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)接口，V1V2混用范式如下：
 
 ### V1->V2
-- V1的状态变量传递给V2的\@Param，调用`UIUtils.enableV2Compatibility`使V1的状态变量可在\@ComponentV2中有观察能力。完整例子见[常见场景](#v1-v2-1)。
+- V1的状态变量传递给V2的\@Param，调用`UIUtils.enableV2Compatibility`使V1的状态变量可在\@ComponentV2中有观察能力。完整例子见[常见场景](#常见场景)。
 ```ts
 import { UIUtils } from '@kit.ArkUI';
 
@@ -128,7 +128,7 @@ struct CompV2 {
 
 ### V2->V1
 
-在V2->V1时，推荐联合使用`UIUtils.enableV2Compatibility(UIUtils.makeV1Observed())`。如果当前对象已经是V1的可观察数据了，则仅调用`UIUtils.enableV2Compatibility`即可，完整例子见[常见场景](#v2-v1-1)。
+在V2->V1时，推荐联合使用`UIUtils.enableV2Compatibility(UIUtils.makeV1Observed())`。如果当前对象已经是V1的可观察数据了，则仅调用`UIUtils.enableV2Compatibility`即可，完整例子见[常见场景](#常见场景)。
 
 ```ts
 import { UIUtils } from '@kit.ArkUI';

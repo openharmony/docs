@@ -1172,7 +1172,7 @@ struct RepeatTemplateSingle {
 ![repeat-case1-wrong](./figures/repeat-case1-wrong.gif)
 
 以下为修正后的示例：
-在一些场景中，我们不希望屏幕外的数据源变化影响屏幕中List列表Scroller停留的位置，可以通过List组件的[onScrollIndex](../../ui/arkts-layout-development-create-list.md#响应滚动位置)事件对列表滚动动作进行监听，当列表发生滚动时，获取列表滚动位置。使用Scroller组件的[scrollToIndex](../../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrolltoindex)特性，滑动到指定index位置，实现屏幕外的数据源增加/删除数据时，Scroller停留的位置不变的效果。
+在一些场景中，我们不希望屏幕外的数据源变化影响屏幕中List列表Scroller停留的位置，可以通过List组件的[onScrollIndex](../arkts-layout-development-create-list.md#响应滚动位置)事件对列表滚动动作进行监听，当列表发生滚动时，获取列表滚动位置。使用Scroller组件的[scrollToIndex](../../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrolltoindex)特性，滑动到指定index位置，实现屏幕外的数据源增加/删除数据时，Scroller停留的位置不变的效果。
 
 示例代码仅对增加数据的情况进行展示。
 
@@ -1241,7 +1241,7 @@ struct RepeatTemplateSingle {
 
 totalCount > array.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
 
-上述规范可以通过实现父组件List/Grid的[onScrollIndex](../../ui/arkts-layout-development-create-list.md#响应滚动位置)属性的回调函数完成。示例代码如下：
+上述规范可以通过实现父组件List/Grid的[onScrollIndex](../arkts-layout-development-create-list.md#响应滚动位置)属性的回调函数完成。示例代码如下：
 
 ```ts
 @ObservedV2
