@@ -292,7 +292,7 @@ n();
 
 **问题原因**
 
-当同时开启`-enable-toplevel-export`和`-enable-export-obfuscation`选项时，主模块与被调用模块的混淆情况如下：
+当同时开启`-enable-toplevel-obfuscation`和`-enable-export-obfuscation`选项时，主模块与被调用模块的混淆情况如下：
 
 | 主模块 | 依赖模块 | 导入与导出的名称混淆情况 |
 | ------- | ------- | ----------------------------|
