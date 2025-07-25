@@ -112,5 +112,5 @@ import { Action, Button, Axis, AxisValue, MouseEvent } from '@kit.InputKit';
 | numLock        | boolean     | 否    | 否    | 当前numLock是否处于激活状态。 <br>true表示激活状态，false表示处于未激活状态。                        |
 | scrollLock     | boolean     | 否    | 否    | 当前scrollLock是否处于激活状态。 <br>true表示激活状态，false表示处于未激活状态。                     |
 | toolType<sup>11+</sup> | [ToolType](#tooltype11) | 否    | 否    | 工具类型。                     |
-| globalX<sup>20+</sup> | number | 否    | 是    | 鼠标光标位置相对于主屏幕左上角的X坐标。默认值为int类型的最大值，即2147483647。       |
-| globalY<sup>20+</sup> | number | 否    | 是    | 鼠标光标位置相对于主屏幕左上角的Y坐标。默认值为int类型的最大值，即2147483647。       |
+| globalX<sup>20+</sup> | number | 否    | 是    | 鼠标光标位置相对于主屏幕左上角的X坐标。<!--Del-->作为入参时，若接口参数中的[MouseEventData.useGlobalCoordinate](./js-apis-inputeventclient-sys.md#mouseeventdata11)为true，该值必填，当前仅支持整数。若为false，该值无需填写，使用当前屏幕坐标计算注入事件。<!--DelEnd-->作为出参时，由系统上报。 |
+| globalY<sup>20+</sup> | number | 否    | 是    | 鼠标光标位置相对于主屏幕左上角的Y坐标。<!--Del-->作为入参时，若接口参数中的[MouseEventData.useGlobalCoordinate](./js-apis-inputeventclient-sys.md#mouseeventdata11)为true，该值必填，当前仅支持整数。若为false，该值无需填写，使用当前屏幕坐标计算注入事件。<!--DelEnd-->作为出参时，由系统上报。 |
