@@ -79,6 +79,7 @@
     - [Camera_FoldStatusInfo](capi-oh-camera-camera-foldstatusinfo.md)
     - [Camera_AutoDeviceSwitchStatusInfo](capi-oh-camera-camera-autodeviceswitchstatusinfo.md)
     - [Camera_ConcurrentInfo](capi-oh-camera-camera-concurrentinfo.md)
+    - [Camera_ControlCenterStatusInfo](capi-oh-camera-camera-controlcenterstatusinfo.md)
     - [Camera_Manager](capi-oh-camera-camera-manager.md)
     - [CameraInput_Callbacks](capi-oh-camera-camerainput-callbacks.md)
     - [Camera_Input](capi-oh-camera-camera-input.md)
