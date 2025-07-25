@@ -100,7 +100,7 @@ OH_Drawing_PathEffectDestroy(pathEffect);
 
 ## 着色器效果
 
-着色器效果基于画刷或画笔实现，可使用OH_Drawing_BrushSetShaderEffect()接口设置画刷的着色器效果，或者使用 OH_Drawing_PenSetShaderEffect接口设置画笔的着色器效果。当前支持不同的着色器效果，如线性渐变着色器效果、径向渐变着色器效果、扇形渐变着色器效果。
+着色器效果基于画刷或画笔实现，可使用OH_Drawing_BrushSetShaderEffect()接口设置画刷的着色器效果，或者使用 OH_Drawing_PenSetShaderEffect()接口设置画笔的着色器效果。当前支持不同的着色器效果，如线性渐变着色器效果、径向渐变着色器效果、扇形渐变着色器效果。
 
 着色器相关接口和具体参数的说明请见[drawing_shader_effect](../reference/apis-arkgraphics2d/capi-drawing-shader-effect-h.md)。
 
