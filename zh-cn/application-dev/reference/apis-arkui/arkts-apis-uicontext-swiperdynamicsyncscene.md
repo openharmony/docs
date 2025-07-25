@@ -18,7 +18,7 @@
 
 | 名称       | 类型                                                      | 只读 | 可选 | 说明                                |
 | --------- | --------------------------------------------------------- | ---- | ---- | ---------------------------------- |
-| type      | [SwiperDynamicSyncSceneType](./arkts-apis-uicontext-e.md#swiperdynamicsyncscenetype12) | 是   | 否   | Swiper的动态帧率场景。             |
+| type<sup>12+</sup>      | [SwiperDynamicSyncSceneType](./arkts-apis-uicontext-e.md#swiperdynamicsyncscenetype12) | 是   | 否   | Swiper的动态帧率场景。             |
 
 **示例：**
 
