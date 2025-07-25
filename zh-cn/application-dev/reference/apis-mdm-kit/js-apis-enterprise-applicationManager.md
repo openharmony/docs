@@ -635,7 +635,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, disallowModify: boolean): void
 
-添加保活应用，并设置是否禁止用户取消应用保活，当前仅支持PC/2in1设备。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。被保活应用需满足接入托盘服务的应用或者安装在系统用户（u1用户）下，entry包的[mainElement](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/module-configuration-file)是AppServiceExtension的应用。addKeepAliveApps（API14）接口均可添加保活应用，两个接口设置的保活应用同时生效，相同用户下，可设置的保活应用数量总数最大为5个。例如：若当前已通过API14接口添加3个应用保活，则最多还能通过本接口添加2个应用。
+添加保活应用，并设置是否禁止用户取消应用保活，当前仅支持PC/2in1设备。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。被保活应用需满足接入托盘服务的应用或者安装在系统用户（u1用户）下，entry包的[mainElement](../../quick-start/module-configuration-file.md)是AppServiceExtension的应用。addKeepAliveApps（API14）接口均可添加保活应用，两个接口设置的保活应用同时生效，相同用户下，可设置的保活应用数量总数最大为5个。例如：若当前已通过API14接口添加3个应用保活，则最多还能通过本接口添加2个应用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
