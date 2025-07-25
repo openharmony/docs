@@ -12,7 +12,7 @@
 
 ## bindContentCover
 
-bindContentCover(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: ContentCoverOptions)
+bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCoverOptions)
 
 给组件绑定全屏模态页面，点击后显示模态页面。模态页面内容自定义，显示方式可设置无动画过渡，上下切换过渡以及透明渐变过渡。
 
@@ -24,17 +24,17 @@ bindContentCover(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: 
 
 | 参数名  | 类型                                        | 必填 | 说明                                                         |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isShow  | Optional\<boolean\>                         | 是   | 是否显示全屏模态页面。<br/>-true：显示全屏模态页面。<br/>-false：隐藏全屏模态页面。<br/>从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。|
+| isShow  | boolean                        | 是   | 是否显示全屏模态页面。<br/>-true：显示全屏模态页面。<br/>-false：隐藏全屏模态页面。<br/>从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。|
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置全屏模态页面内容。                                       |
 | options | [ContentCoverOptions](#contentcoveroptions) | 否   | 配置全屏模态页面的可选属性。                                 |
 
 ## ContentCoverOptions
 继承自[BindOptions](ts-universal-attributes-sheet-transition.md#bindoptions)。
-| 名称              | 类型                                       | 必填   | 描述            |
-| --------------- | ---------------------------------------- | ---- | ------------- |
-| modalTransition | [ModalTransition](ts-types.md#modaltransition10) | 否    | 全屏模态页面的系统转场方式。<br/> 默认值：ModalTransition.DEFAULT。<br/>**说明：**<br /> 同transition同时设置时，此属性不生效。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| onWillDismiss<sup>12+</sup> | Callback&lt;[DismissContentCoverAction](#dismisscontentcoveraction12类型说明)&gt; | 否    | 全屏模态页面交互式关闭回调函数。<br/>**说明：**<br />当用户执行back事件关闭交互操作时，如果注册该回调函数，则不会立刻关闭。在回调函数中可以通过reason得到阻拦关闭页面的操作类型，从而根据原因选择是否关闭全屏模态页面。在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否    | 全屏模态页面的自定义转场方式。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| 名称              | 类型                                       | 只读 |  可选   | 说明            |
+| --------------- | ---------------------------------------- | ---- | ---- | ------------- |
+| modalTransition | [ModalTransition](ts-types.md#modaltransition10) | 否 | 是    | 全屏模态页面的系统转场方式。<br/> 默认值：ModalTransition.DEFAULT。<br/>**说明：**<br /> 同transition同时设置时，此属性不生效。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| onWillDismiss<sup>12+</sup> | Callback&lt;[DismissContentCoverAction](#dismisscontentcoveraction12类型说明)&gt; | 否 | 是   | 全屏模态页面交互式关闭回调函数。<br/>**说明：**<br />当用户执行back事件关闭交互操作时，如果注册该回调函数，则不会立刻关闭。在回调函数中可以通过reason得到阻拦关闭页面的操作类型，从而根据原因选择是否关闭全屏模态页面。在onWillDismiss回调中，不能再做onWillDismiss拦截。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否 | 是   | 全屏模态页面的自定义转场方式。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## DismissContentCoverAction<sup>12+</sup>类型说明
 
