@@ -57,7 +57,7 @@ static napi_value SetInstanceData(napi_env env, napi_callback_info info)
     // 调用napi_set_instance_data将实例数据关联到Node-API环境，并指定FinalizeCallback函数
     napi_status status = napi_set_instance_data(env, instanceData, FinalizeCallback, nullptr);
     bool success = true;
-    napi_value result;
+    napi_value result = nullptr;
     if (status == napi_ok) {
         napi_get_boolean(env, success, &result);
     }
