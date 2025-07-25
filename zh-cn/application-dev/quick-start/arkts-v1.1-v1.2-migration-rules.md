@@ -87,27 +87,40 @@ identity(42 as number);
 
 **级别：** error
 
-在ArkTS1.2中，void仅作为类型使用。void类型没有实体。
+ArkTS1.1中，void可以在多个场景中使用。
+
+ArkTS1.2中，void只能使用在返回类型的场景，且void类型没有实体。
 
 **ArkTS1.1**
 ```typescript
+// 示例1：void类型变量声明
 let s: void = foo();
+
+// 示例2：void联合类型
 let t: void | number = foo();
 
+// 示例3：泛型参数中使用void
 function process<T>(input: T): T {
   return input;
 }
-let result = process<void>(foo()); 
+let result = process<void>(foo());
 
-type VoidAlias = void; 
+// 示例4：类型别名
+type VoidAlias = void;
 
+// 示例5：对象属性
 let { x }: { x: void } = { x: foo() };
 
+// 示例6：void类型参数
 function execute(callback: void) {
   callback();
 }
 
+// 示例7：类型断言
 let x = fun() as void;
+
+// 示例8：函数返回类型
+function foo(): void{};
 ```
 
 **ArkTS1.2**
@@ -115,12 +128,10 @@ let x = fun() as void;
 function foo(): void {}
 foo();
 
-function bar(): void {}
-
 function execute(callback: () => void) {
   callback();
 }
-fun();
+execute(foo);
 ```
 
 ## 不支持void操作符
