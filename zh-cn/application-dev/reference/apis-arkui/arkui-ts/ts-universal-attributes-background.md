@@ -883,7 +883,7 @@ struct BlurEffectsExample {
 ### 示例6（设置文字异形模糊效果）
 
 该示例通过blendMode和backgroundEffect实现文字异形模糊效果。<br/>
-如果出现漏线问题，开发者应首先确保两个blendMode所在组件大小严格相同。如果确认相同，可能是组件边界落在浮点数坐标上导致，可尝试设置[pixelRound](ts-universal-attributes-pixelRound.md#pixelround)通用属性，使产生的白线、暗线两侧的组件边界对齐到整数像素坐标上。
+如果出现漏线问题，开发者应首先确保两个blendMode所在组件大小严格相同。如果确认相同，可能是组件边界落在浮点数坐标上导致，可尝试设置[pixelRound](ts-universal-attributes-pixelRoundForComponent.md#pixelround)通用属性，使产生的白线、暗线两侧的组件边界对齐到整数像素坐标上。
 
 ```ts
 // xxx.ets
