@@ -1748,18 +1748,24 @@ class ClassA {
 
 **级别：error**
 
-ArkTS1.2中实例方法被当作lambda对象传递时，会捕获上下文的this，避免类型不安全的行为。
+在ArkTS1.1中，`this`的指向取决于函数的调用方式。示例中，当`a.foo1`被赋值给变量后变成了一个独立函数，调用时不再与`a`实例关联，导致方法中的`this`指向`undefined`。<br>可用`a.foo2`的箭头函数来解决这个问题。箭头函数在类中作为方法定义时，会捕获类实例的上下文，确保`this`始终指向实例。
+
+ArkTS1.2中则不存在这个问题，实例方法和箭头函数都会捕获上下文中的`this`。
 
 **ArkTS1.1**
 
 ```typescript
 class A {
   n: string = 'a'
-  foo() { console.log (this.n) }
+  foo1() { console.log (this) }
+  foo2 = () => { console.log(this.n) }
 }
-let a = new A()
-const method = a.foo
-method()   // 无法读取未定义的属性'n'.
+
+let a = new A();
+const foo1 = a.foo1;
+const foo2 = a.foo2;
+foo1() // 输出: 'undefined'
+foo2() // 输出: 'a'
 ```
 
 **ArkTS1.2**
@@ -1771,7 +1777,7 @@ class A {
 }
 let a = new A()
 const method = a.foo
-method()   // 输出a
+method()   // 输出: 'a'
 ```
 
 ## namespace内方法不能重名
