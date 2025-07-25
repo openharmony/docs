@@ -141,9 +141,9 @@ int main()
 
 | 名称                                                               | 描述                 |
 | ------------------------------------------------------------------ | -------------------- |
-| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_create)     | 创建队列。           |
-| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_destroy)   | 销毁队列。           |
-| [ffrt_queue_submit_f](ffrt-api-guideline-c.md#ffrt_queue_submit_f) | 向队列提交一个任务。 |
+| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_t)     | 创建队列。           |
+| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_t)   | 销毁队列。           |
+| [ffrt_queue_submit_f](ffrt-api-guideline-c.md#ffrt_queue_t) | 向队列提交一个任务。 |
 
 > **说明：**
 >
