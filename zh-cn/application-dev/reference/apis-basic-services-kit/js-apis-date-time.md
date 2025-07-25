@@ -555,7 +555,7 @@ try {
       console.error(`Failed to get date. message: ${error.message}, code: ${error.code}`);
       return;
     }
-    console.info(`Succeeded in getting date : ${date}`);;
+    console.info(`Succeeded in getting date : ${date}`);
   });
 } catch(e) {
   let error = e as BusinessError;
@@ -631,7 +631,7 @@ try {
       console.error(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
       return;
     }
-    console.info(`Succeeded in get timezone : ${data}`);;
+    console.info(`Succeeded in get timezone : ${data}`);
   });
 } catch(e) {
   let error = e as BusinessError;
