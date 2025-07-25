@@ -2817,7 +2817,7 @@ struct TextInputExample {
   }
 }
 ```
-
+<!--code_no_check-->
 ```json
 // AppScope/app.json5，修改如下代码。
 {
@@ -2832,6 +2832,7 @@ struct TextInputExample {
   }
 }
 ```
+<!--code_no_check-->
 <!--RP3-->
 ```ts
 // xxx.ets
