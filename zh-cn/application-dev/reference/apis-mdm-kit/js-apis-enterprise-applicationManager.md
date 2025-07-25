@@ -346,8 +346,7 @@ try {
 
 addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, disallowModify: boolean): void
 
-为指定用户添加开机自启动应用名单，并设置是否禁止用户取消应用自启动。该接口当前仅支持PC/2in1设备。
-通过本接口、[addAutoStartApps（API12）](js-apis-enterprise-applicationManager.md#applicationManager.addautostartapps)接口均可添加开机自启动应用名单，两个接口设置的应用自启动名单同时生效。同一用户下，开机自启动应用名单最多支持包含10个应用。例如：若当前已通过[addAutoStartApps（API12）](js-apis-enterprise-applicationManager.md#applicationManager.addautostartapps)接口添加3个应用，则最多还能通过本接口为当前用户添加7个应用。
+为指定用户添加开机自启动应用名单，并设置是否禁止该用户取消应用自启动。该接口当前仅支持PC/2in1设备。<br>通过本接口、[addAutoStartApps（API12）](js-apis-enterprise-applicationManager.md#applicationManager.addautostartapps)接口均可添加开机自启动应用名单，两个接口设置的应用自启动名单可同时生效。同一用户下，开机自启动应用名单最多支持包含10个应用。例如：若当前已通过[addAutoStartApps（API12）](js-apis-enterprise-applicationManager.md#applicationManager.addautostartapps)接口添加3个应用，则最多还能通过本接口为当前用户添加7个应用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -636,10 +635,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, disallowModify: boolean): void
 
-添加保活应用，并设置是否禁止用户取消应用保活，该接口仅在PC/2in1设备上生效。
-如果通过[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)接口将应用添加至应用禁止运行名单，就不能将应用添加至保活，否则会冲突。
-被保活应用需满足接入托盘服务的应用或者安装在系统用户（u1用户）下，entry包的[mainElement](../../quick-start/module-configuration-file.md)是AppServiceExtension的应用。
-通过本接口、[addKeepAliveApps（API14）](js-apis-enterprise-applicationManager.md#applicationManager.addkeepaliveapps14)接口均可添加保活应用，两个接口设置的保活应用同时生效。同一用户下，可设置的保活应用数量总数不超过5个。例如：若当有3个应用保活，则最多还能通过接口添加2个应用。
+添加保活应用，并设置是否禁止用户取消应用保活，该接口仅在PC/2in1设备上生效。<br>如果通过[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)接口将应用添加至应用禁止运行名单，就不能将应用添加至保活，否则会冲突。<br>被保活应用需满足接入托盘服务的应用或者安装在系统用户（u1用户）下，entry包的[mainElement](../../quick-start/module-configuration-file.md)是AppServiceExtension的应用。<br>通过本接口、[addKeepAliveApps（API14）](js-apis-enterprise-applicationManager.md#applicationManager.addkeepaliveapps14)接口均可添加保活应用，两个接口设置的保活应用同时生效。同一用户下，可设置的保活应用数量总数不超过5个。例如：若当有3个应用保活，则最多还能通过接口添加2个应用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
