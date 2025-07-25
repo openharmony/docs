@@ -1430,6 +1430,7 @@
           - [AddrSanitizer（地址越界）检测](dfx/address-sanitizer-guidelines.md)
           - [AppFreeze（应用冻屏）检测](dfx/appfreeze-guidelines.md)
           - [任务超时检测](dfx/apptask-timeout-guidelines.md)
+          - [应用查杀检测](dfx/appkilled-guidelines.md)
         - 日志打印<!--hilog-dev-->
           - [使用HiLog打印日志（ArkTS）](dfx/hilog-guidelines-arkts.md)
           - [使用HiLog打印日志（C/C++）](dfx/hilog-guidelines-ndk.md)
