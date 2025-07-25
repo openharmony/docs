@@ -302,13 +302,13 @@ DevEco Studio中模块间的依赖关系通过oh-package.json5中的dependencies
 let harName = 'myhar';
 import(harName).then((obj: ESObject) => {
     console.info('DynamicImport I am a har');
-}
+})
 
 // 变量动态import本模块自己的单文件src/main/ets/index.ets
 let filePath = './utils/Calc';
 import(filePath).then((obj: ESObject) => {
     console.info('DynamicImport I am a file');
-}
+})
 ```
 
 对应的runtimeOnly配置：
