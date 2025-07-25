@@ -7445,6 +7445,8 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
+**参数：** 
+
 | 参数名 | 类型                                                         | 必填 | 说明                         |
 | ---- | ------------------------------------------------------------ | ---- | ---------------------------- |
 | err  | Error | 是   | 接口调用失败的错误信息。 |
