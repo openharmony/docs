@@ -37,10 +37,11 @@ getPixelMap(): image.PixelMap
 **示例：**
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
-let resManager = this.getUIContext().getHostContext()?.resourceManager
+import { image } from '@kit.ImageKit'
+let resManager = this.getUIContext().getHostContext()?.resourceManager;
 let pixmap: DrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.icon')
     .id)) as DrawableDescriptor;
-let pixmapNew: object = pixmap.getPixelMap()
+let pixmapNew: image.PixelMap | undefined = pixmap?.getPixelMap();
   ```
 
 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。
