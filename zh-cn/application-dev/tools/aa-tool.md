@@ -838,7 +838,7 @@ The device screen is locked during the application launch.
 
 **处理步骤**
 
-解释屏幕后重新尝试即可。
+解锁屏幕后重新尝试即可。
 
 ### 10106103 目标应用为到期众测应用
 
