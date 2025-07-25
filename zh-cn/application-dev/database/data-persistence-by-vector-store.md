@@ -447,26 +447,26 @@ SQL语句中的函数，如下所示：
 
 10. 配置数据压缩功能。该功能在建表时配置，可以压缩数据类型为text的列数据。
 
-   从API version 20开始，支持数据压缩功能。
+    从API version 20开始，支持数据压缩功能。
 
-   语法如下所示：
+    语法如下所示：
 
-   ```sql
-   CREATE TABLE table_name(content text [, ...]) [WITH(compress_col = 'content')];
-   ```
+    ```sql
+    CREATE TABLE table_name(content text [, ...]) [WITH(compress_col = 'content')];
+    ```
 
-   其中，compress_col为必填参数，value是类型为text的数据列名，可以与数据老化功能同时配置。
+    其中，compress_col为必填参数，value是类型为text的数据列名，可以与数据老化功能同时配置。
 
-   示例代码如下：
+    示例代码如下：
 
-   ```ts
-   try {
-     // content列配置了数据压缩，并且配置了数据老化。
-     await store!.execute("CREATE TABLE IF NOT EXISTS test3 (time integer not null, content text) with (time_col = 'time', interval = '5 minute', compress_col = 'content');");
-   } catch (err) {
-     console.error(`configure data compress failed, code is ${err.code}, message is ${err.message}`);
-   }
-   ```
+    ```ts
+    try {
+      // content列配置了数据压缩，并且配置了数据老化。
+      await store!.execute("CREATE TABLE IF NOT EXISTS test3 (time integer not null, content text) with (time_col = 'time', interval = '5 minute', compress_col = 'content');");
+    } catch (err) {
+       console.error(`configure data compress failed, code is ${err.code}, message is ${err.message}`);
+    }
+    ```
 
 11. 删除数据库。
 
