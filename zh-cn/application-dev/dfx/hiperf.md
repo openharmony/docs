@@ -1,25 +1,25 @@
 # hiperf
 
 
-hiperf是一款集成多种性能分析功能的命令行工具，支持在Windows和Linux系统上运行，可用于分析系统性能瓶颈、定位软件热点及优化代码效率，提供对程序运行时性能数据的采集与统计功能。
+hiperf是一款集成多种性能分析功能的命令行工具，支持Windows和Linux系统，可用于分析系统性能瓶颈、定位软件热点及优化代码效率，支持采集和统计程序运行时的性能数据。
 
 
-开发者可优先使用[Deveco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)或[SmartPerf](https://gitee.com/openharmony/developtools_smartperf_host/releases)等图形前端工具直接采集函数调用栈和进行性能分析。若开发者需要指定采集的事件、采样周期、采集时长、CPU核数等选项，可以使用 hiperf 命令行工具进行单独设置。采样数据 perf.data 文件可以使用 SmartPerf 工具打开并以可视化的界面进行展示，SmartPerf的操作可参考[使用说明](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_hiperf.md)；也可以通过[火焰图脚本](https://gitee.com/openharmony/developtools_hiperf/tree/master/script)对文件进行解析并转换为直观的图形，展示程序运行时的函数调用关系和资源消耗情况，火焰图脚本的使用可参考[使用说明](https://gitee.com/openharmony/developtools_hiperf/blob/master/README_zh.md#%E8%84%9A%E6%9C%AC)。
+开发者可优先使用[Deveco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)或[SmartPerf](https://gitee.com/openharmony/developtools_smartperf_host/releases)等图形前端工具直接采集函数调用栈和进行性能分析。若需要指定采集的事件、采样周期、采集时长、CPU核数等选项，可以使用 hiperf 命令行工具进行单独设置。采样数据 perf.data 文件可以使用 SmartPerf 工具打开并以可视化的界面进行展示，SmartPerf的操作可参考[使用说明](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_hiperf.md)；也可以通过[火焰图脚本](https://gitee.com/openharmony/developtools_hiperf/tree/master/script)对文件进行解析并转换为直观的图形，展示程序运行时的函数调用关系和资源消耗情况，火焰图脚本的使用可参考[使用说明](https://gitee.com/openharmony/developtools_hiperf/blob/master/README_zh.md#%E8%84%9A%E6%9C%AC)。
 
 
-本文档主要对hiperf命令行工具的使用方法进行了描述，以帮助开发者使用hiperf命令行工具进行专业性能分析。
+本文档详细说明了hiperf命令行工具的使用方法，帮助开发者借助该工具进行详细的性能分析。
 
 
 ## 环境要求
 
 - 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)。
 
-- 确保设备已正常连接，并执行hdc shell。
+- 确保设备已连接，并执行hdc shell。
 
 
 ## 命令行说明
 
-使用hiperf --help可以列出hiperf所有的命令，主要包括dump、list、record、report、stat等。
+使用hiperf --help可以列出hiperf所有的命令，包括dump、list、record、report、stat等。
 
 ```shell
 $ hiperf --help
@@ -81,7 +81,7 @@ See 'hiperf help [command]' for more information on a specific command.
 ### 性能数据采样记录
 
 
-1. 对进程id为1234的进程进行采样，采样时长为10秒，设置回栈方式为fp（栈指针），采样频率为1000次/秒，事件类型为hw-cpu-cycles和hw-instructions，采样文件保存至/data/local/tmp/perf.data。
+1. 对进程ID为1234的进程采样10秒，设置回栈方式为fp（栈指针），采样频率1000次/秒，事件类型为hw-cpu-cycles和hw-instructions，采样文件保存至/data/local/tmp/perf.data。
 
 
 ```shell
@@ -97,10 +97,10 @@ Hiperf is not running as root mode. Do not need load kernel syms
 ```
 
 
-采集的数据会被保存至二进制格式的perf.data文件中，该文件包含了性能分析所需的采样数据、进程信息和符号表、函数调用等信息。通过火焰图脚本可将采样数据转换为可视化的火焰图，从而帮助分析系统性能瓶颈、定位软件热点并优化代码效率。
+采集的数据将保存为二进制格式的perf.data文件，包含性能分析所需的采样数据、进程信息、符号表及函数调用等内容。利用火焰图脚本可将采样数据转换为可视化火焰图，以此分析系统性能瓶颈、定位软件热点并优化代码效率。
 
 
-2. 对应用名为com.example.insight_test_stage的APP进行采样，采集时长为10s，设置回栈方式为dwarf（调试信息表），采样周期为1000，事件类型为hw-cpu-cycles和hw-instructions，使用默认保存路径。
+2. 对应用com.example.insight_test_stage进行采样，采样时长为10s，回栈方式设置为dwarf（调试信息表），采样周期为1000，事件类型为hw-cpu-cycles和hw-instructions，使用默认保存路径。
 
 
 ```shell
@@ -122,7 +122,7 @@ Hiperf is not running as root mode. Do not need load kernel syms
 ### 性能数据统计
 
 
-1. 对进程id为1745，1910的进程进行计数，计数时长为10s。
+1. 对进程ID为1745，1910的进程进行计数，计数时长为10s。
 
 
 ```
@@ -141,7 +141,7 @@ Timeout exit (total 10000 ms)
 ```
 
 
-2. 对进程id为1745，1910的进程进行计数，计数时长为10秒，事件类型为hw-cpu-cycles，hw-instructions，sw-task-clock，且指定打印信息时间间隔为3000ms。
+2. 对进程ID为1745和1910的进程进行计数，计数时长为10秒，事件类型为hw-cpu-cycles、hw-instructions、sw-task-clock，指定打印信息的时间间隔为3000ms。
 
 
 ```
@@ -167,7 +167,7 @@ Timeout exit (total 10000 ms)
 ```
 
 
-2.3 对进程id为1910的进程进行计数，计数时长为3s，事件类型为hw-cpu-cycles，hw-instructions，且设定打印输出详细的信息。
+2.3 对进程ID为1910的进程进行计数，计数时长为3s，事件类型为hw-cpu-cycles，hw-instructions，并打印详细的信息。
 
 
 ```
@@ -206,7 +206,7 @@ hw-instructions id:1378(c-1:p1990) timeEnabled:187833 timeRunning:187833 value:4
 > hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
 > ```
 > 
-> 如包名对应的应用是可调试应用，预期返回信息：
+> 如包名对应的应用是可调试应用，预期返回信息如下：
 > 
 > ```shell
 > "appProvisionType": "debug",
@@ -258,7 +258,7 @@ Supported events for hardware:
 
 ## record命令
 
-采集指定进程或指定应用的性能数据，如cpu周期、指令数、函数调用等信息，并且将采样数据保存到指定的文件中（默认为/data/local/tmp/perf.data）。
+采集指定进程或指定应用的性能数据，包括CPU周期、指令数、函数调用等信息，并且将采样数据保存到指定的文件中（默认为/data/local/tmp/perf.data）。
 
 **record命令参数说明**
 
@@ -266,7 +266,7 @@ Supported events for hardware:
 | 参数 | 参数说明 | 
 | -------- | -------- |
 | -h/--help | 帮助命令。 | 
-| -c | 设置采集的CPU id，只采集对应的CPU数据。 | 
+| -c | 设置采集的CPU ID，只采集对应的CPU数据。 | 
 | --cpu-limit | 设置采集时CPU最大占比，取值范围：1 - 100，默认25。 | 
 | -d | 采集时长，单位为s。该参数不能和--control一起使用。 | 
 | -f | 采集频率，默认4000次/s。该参数不能和--period一起使用。 | 
@@ -274,9 +274,9 @@ Supported events for hardware:
 | -e | 采集事件，支持对多种事件进行采集，多个事件之间以逗号隔开。可通过list命令获取当前支持的事件类型。 | 
 | -g | 采集事件群组，以逗号隔开。 | 
 | --no-inherit | 不采集子进程数据。 | 
-| -p | 采集进程id，支持对多个进程进行采样，多个进程号之间以逗号隔开。该参数不能和-a一起使用。 | 
-| -t | 采集线程id，支持对多个线程进行采样，多个线程号之间以逗号隔开。该参数不能和-a一起使用。 | 
-| --exclude-tid | 不采集线程id，通过线程id排除特定线程的采样。多个线程号之间以逗号隔开。该参数不能和-a一起使用。 | 
+| -p | 采集进程ID，支持对多个进程进行采样，多个进程号之间以逗号隔开。该参数不能和-a一起使用。 | 
+| -t | 采集线程ID，支持对多个线程进行采样，多个线程号之间以逗号隔开。该参数不能和-a一起使用。 | 
+| --exclude-tid | 不采集线程ID，通过线程ID排除特定线程的采样。多个线程号之间以逗号隔开。该参数不能和-a一起使用。 | 
 | --exclude-thread | 不采集线程名，通过线程名排除特定线程的采样。多个线程名之间以逗号隔开。该参数不能和-a一起使用。 | 
 | --offcpu | 跟踪线程何时脱离CPU调度。 | 
 | -j | 分支堆栈采样，过滤器支持any、any_call、any_ret、ind_call、ind_jmp、cond、call。 | 
@@ -324,7 +324,7 @@ $ hiperf record -p 267 -d 10 -s dwarf
 
 ## stat命令
 
-监听指定目标程序，周期性打印性能计数器的值。
+监听用户指定的目标程序，周期性打印性能计数器的值。
 
 **stat命令参数说明**
 
@@ -332,14 +332,14 @@ $ hiperf record -p 267 -d 10 -s dwarf
 | 参数 | 参数说明 | 
 | -------- | -------- |
 | -h/--help | 帮助命令。 | 
-| -c | 设置采集的CPU id，只采集对应的CPU数据。 | 
+| -c | 设置采集的CPU ID，只采集对应的CPU数据。 | 
 | -d | 采集时长，单位为s。该参数不能和--control一起使用。 | 
 | -i | 设置打印stat信息的间隔时长，单位ms。 | 
 | -e | 采集事件，支持采集多种事件，多个事件之间以逗号隔开。 | 
 | -g | 采集事件群组，以逗号隔开。可通过list命令获取当前支持的事件类型。 | 
 | --no-inherit | 不采集子进程数据。 | 
-| -p | 采集进程id，支持对多个进程进行采样，多个进程号之间以逗号隔开。该参数不能和-a一起使用。 | 
-| -t | 采集线程id，支持对多个线程进行采样，多个线程号之间以逗号隔开。该参数不能和-a一起使用。 | 
+| -p | 采集进程ID，支持对多个进程进行采样，多个进程号之间以逗号隔开。该参数不能和-a一起使用。 | 
+| -t | 采集线程ID，支持对多个线程进行采样，多个线程号之间以逗号隔开。该参数不能和-a一起使用。 | 
 | --app | 采集的应用程序名，以逗号隔开。应用程序必须是启动状态，应用程序未启动时会等待20s，20s内应用程序未启动，命令会自动结束。该参数不能和-a一起使用。 | 
 | --chkms | 设置查询的间隔时间，单位为毫秒，取值范围：1 - 200，默认10。 | 
 | --per-core | 每个CPU核的打印计数。 | 
@@ -389,7 +389,7 @@ $ hiperf stat -p 1745 -d 3 -c 0
 Usage: hiperf dump [option] \<filename\>
 ```
 
-使用dump命令将/data/local/tmp/perf.data文件读取出来，输出到/data/local/tmp/perf.dump文件中。
+使用dump命令将/data/local/tmp/perf.data文件读取出来，并输出到/data/local/tmp/perf.dump文件中。
 
 ```
 $ hiperf dump -i /data/local/tmp/perf.data -o /data/local/tmp/perf.dump
@@ -398,7 +398,7 @@ $ hiperf dump -i /data/local/tmp/perf.data -o /data/local/tmp/perf.dump
 
 ## report命令
 
-此命令主要用于将采样数据（perf.data）转换为用户指定的格式（比如Json或者ProtoBuf)，并可以将属于相同进程、线程、函数的样本分组到同一样本条目中，根据样本条目的事件计数对样本条目进行排序，并以报告的形式进行展示。
+此命令主要用于将采样数据（perf.data）转换为用户指定的格式（例如Json或者ProtoBuf)，并可以将属于相同进程、线程、函数的样本分组到同一样本条目中，根据样本条目的事件计数对样本条目进行排序，并以报告的形式进行展示。
 
 **report命令参数说明**
 
@@ -406,7 +406,7 @@ $ hiperf dump -i /data/local/tmp/perf.data -o /data/local/tmp/perf.dump
 | -------- | -------- |
 | -h/--help | 帮助命令。 | 
 | --symbol-dir | 符号表文件路径。 | 
-| --limit-percent | 展示指定比例的数据内容，取值范围：1 - 100。 | 
+| --limit-percent | 筛选性能占比不低于指定百分比（取值范围 1 - 100）的性能数据，仅在报告中保留并展示符合该阈值条件的数据条目。 | 
 | -s | 显示回栈模式。 | 
 | --call-stack-limit-percent | 展示指定比例的堆栈内容，取值范围：1 - 100。 | 
 | -i | 资源文件路径，默认perf.data。 | 
@@ -426,7 +426,7 @@ $ hiperf dump -i /data/local/tmp/perf.data -o /data/local/tmp/perf.dump
 Usage: hiperf report [option] \<filename\>
 ```
 
-范例输出普通报告的命令，限制为占比不超过1%。
+从采样文件（perf.data）中提取对性能影响较大（占比≥1%）的关键数据，并以报告的形式进行展示。
 ```
-$ hiperf report --limit-percent 1
+$ hiperf report -i /data/local/tmp/perf.data --limit-percent 1
 ```
