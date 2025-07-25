@@ -1,6 +1,6 @@
 # Selecting the Appropriate Audio Stream Types
 
-[Audio stream](audio-kit-intro.md#introduction-to-audio-streams) types are crucial for determining the mode of audio playback and recording. For audio playback streams, the stream type is determined by [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage). For audio recording streams, the stream type is determined by [SourceType](../../reference/apis-audio-kit/js-apis-audio.md#sourcetype8). These types pose a significant impact on volume control, audio focus management, and input/output device selection.
+[Audio stream](audio-kit-intro.md#introduction-to-audio-streams) types are crucial for determining the mode of audio playback and recording. For audio playback streams, the stream type is determined by [StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage). For audio recording streams, the stream type is determined by [SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8). These types pose a significant impact on volume control, audio focus management, and input/output device selection.
 
 To ensure that the audio behavior meets expectations and delivers a superior user experience, you need to select an appropriate audio stream type based on the use cases and requirements.
 
@@ -10,7 +10,7 @@ This topic describes [typical audio stream types and their use cases](#typical-a
 
 ### Stream Types for Audio Playback
 
-The following table describes the typical stream types used for audio playback. The type is specified by [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage).
+The following table describes the typical stream types used for audio playback. The type is specified by [StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage).
 
 | Stream Type| Use Case|
 | ---------- | ---------- |
@@ -27,17 +27,18 @@ The following table describes the typical stream types used for audio playback. 
 
 ### Stream Types for Audio Recording
 
-The following table describes the typical stream types used for audio recording. The type is specified by [SourceType](../../reference/apis-audio-kit/js-apis-audio.md#sourcetype8).
+The following table describes the typical stream types used for audio recording. The type is specified by [SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8).
 
 | Stream Type| Use Case|
 | ---------- | ---------- |
 | SOURCE_TYPE_MIC | Common audio recording.|
 | SOURCE_TYPE_RECOGNITION<sup>9+</sup> | Voice recognition.|
-| SOURCE_TYPE_PLAYBACK_CAPTURE | (Deprecated in API version 12) Recording raw audio data sent by other applications to the system for playback.<br>Audio Kit does not provide APIs for internal recording. You can use [AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md) to perform internal recording.|
+| SOURCE_TYPE_PLAYBACK_CAPTURE | (Deprecated in API version 12) Recording raw audio data sent by other applications to the system for playback.<br>Audio Kit does not provide APIs for internal recording. You can use [AVScreenCapture](../../reference/apis-media-kit/capi-avscreencapture.md) to perform internal recording.|
 | SOURCE_TYPE_VOICE_COMMUNICATION | VoIP voice calls.|
 | SOURCE_TYPE_VOICE_MESSAGE | Recording voice short messages.|
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup> | Camera recording.|
 | SOURCE_TYPE_UNPROCESSD<sup>14+</sup> | Obtaining pure audio data captured by the microphone (without any system processing).|
+| SOURCE_TYPE_LIVE<sup>20+</sup> | Live streaming. This source type provides system echo cancellation capabilities on supported platforms.|
 
 ## Effects of Audio Stream Types on Audio Services
 
@@ -45,7 +46,7 @@ Different stream types affect user experience in volume control and system perfo
 
 ### Volume Control
 
-The audio playback stream type (specified by [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)) determines the volume type (specified by [AudioVolumeType](../../reference/apis-audio-kit/js-apis-audio.md#audiovolumetype)) to which the audio stream belongs. Each volume type (such as **MEDIA**, **RINGTONE**, **ALARM**, and **VOICE_CALL**) has an independent volume value, which can be adjusted independently on the UI.
+The audio playback stream type (specified by [StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage)) determines the volume type (specified by [AudioVolumeType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audiovolumetype)) to which the audio stream belongs. Each volume type (such as **MEDIA**, **RINGTONE**, **ALARM**, and **VOICE_CALL**) has an independent volume value, which can be adjusted independently on the UI.
 
 The table below lists the mappings between the typical audio playback stream types and volume types.
 
@@ -86,7 +87,7 @@ The following lists the input/output devices selected for the typical audio stre
 
 - For an Alarm stream, the default output device is a speaker. If a Bluetooth headset is connected before an ALARM stream is played, the audio is output from both the speaker and Bluetooth headset.
 
-If the default input/output devices do not meet service requirements, you can call related APIs to change the devices. When [using AudioRenderer to develop audio playback](using-audiorenderer-for-playback.md), you can call [setDefaultOutputDevice](../../reference/apis-audio-kit/js-apis-audio.md#setdefaultoutputdevice12) to set the default sound device.
+If the default input/output devices do not meet service requirements, you can call related APIs to change the devices. When [using AudioRenderer to develop audio playback](using-audiorenderer-for-playback.md), you can call [setDefaultOutputDevice](../../reference/apis-audio-kit/arkts-apis-audio-AudioRenderer.md#setdefaultoutputdevice12) to set the default sound device.
 
 ## Setting the Audio Stream Type
 
@@ -96,17 +97,17 @@ Common methods for setting the audio playback stream type are as follows:
 
 - **[Using AudioRenderer for Audio Playback](using-audiorenderer-for-playback.md)**
 
-   Pass [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage) in [createAudioRenderer](../../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiorenderer8) to specify the stream type.
+   Pass [StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage) in [createAudioRenderer](../../reference/apis-audio-kit/arkts-apis-audio-f.md#audiocreateaudiorenderer8) to specify the stream type.
 
    The **options** parameter in **createAudioRenderer** is of the **AudioRendererOptions** type and contains the **AudioRendererInfo** struct, in which **AudioRendererInfo.usage** specifies the stream type.
 
 - **[Using OHAudio for Audio Playback](using-ohaudio-for-playback.md)**
   
-  Pass [OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage) in [OH_AudioStreamBuilder_SetRendererInfo](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setrendererinfo) to specify the stream type.
+  Pass [OH_AudioStream_Usage](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage) in [OH_AudioStreamBuilder_SetRendererInfo](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setrendererinfo) to specify the stream type.
 
 - **[Using AVPlayer for Audio Playback (ArkTS)](../media/using-avplayer-for-playback.md)**
   
-  Set the **audioRendererInfo** [property](../../reference/apis-media-kit/js-apis-media.md#properties) of the AVPlayer. **AVPlayer.audioRendererInfo** is of the **audio.AudioRendererInfo** type. You can use **AudioRendererInfo.usage** to specify [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage).
+  Set the **audioRendererInfo** [property](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md#properties) of the AVPlayer. **AVPlayer.audioRendererInfo** is of the **audio.AudioRendererInfo** type. You can use **AudioRendererInfo.usage** to specify [StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage).
 
   > **NOTE**
   > The **audioRendererInfo** property of the AVPlayer can be set only in the initialized state.
@@ -115,26 +116,28 @@ Common methods for setting the audio playback stream type are as follows:
 
 - **[Using AVPlayer for Audio Playback (C/C++)](../media/using-ndk-avplayer-for-playback.md)**
   
-  Pass [OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage) in [OH_AVPlayer_SetAudioRendererInfo](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudiorendererinfo) to specify the stream type.
+  Pass [OH_AudioStream_Usage](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage) in [OH_AVPlayer_SetAudioRendererInfo](../../reference/apis-media-kit/capi-avplayer-h.md#oh_avplayer_setaudiorendererinfo) to specify the stream type.
 
 - **[Using SoundPool for Audio Playback](../media/using-soundpool-for-playback.md)**
   
-  Pass [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage) in [createSoundPool](../../reference/apis-media-kit/js-apis-media.md#mediacreatesoundpool10) to specify the stream type.
+  Pass [StreamUsage](../../reference/apis-audio-kit/arkts-apis-audio-e.md#streamusage) in [createSoundPool](../../reference/apis-media-kit/arkts-apis-media-f.md#mediacreatesoundpool10) to specify the stream type.
 
 Common methods for setting the audio recording stream type are as follows:
 
 - **[Using AudioCapturer for Audio Recording](using-audiocapturer-for-recording.md)**
   
-  Pass [SourceType](../../reference/apis-audio-kit/js-apis-audio.md#sourcetype8) in [createAudioCapturer](../../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiocapturer8) to specify the stream type.
+  Pass [SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8) in [createAudioCapturer](../../reference/apis-audio-kit/arkts-apis-audio-f.md#audiocreateaudiocapturer8) to specify the stream type.
 
    The **options** parameter in **createAudioCapturer** is of the **AudioCapturerOptions** type and contains **AudioCapturerInfo**, in which **AudioCapturerInfo.source** specifies the source type.
 
 - **[Using OHAudio for Audio Recording](using-ohaudio-for-recording.md)**
   
-  Pass [OH_AudioStream_SourceType](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_sourcetype) in [OH_AudioStreamBuilder_SetCapturerInfo](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setcapturerinfo) to specify the stream type.
+  Pass [OH_AudioStream_SourceType](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_sourcetype) in [OH_AudioStreamBuilder_SetCapturerInfo](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setcapturerinfo) to specify the stream type.
 
 - **[Using AVRecorder for Audio Recording](../media/using-avrecorder-for-recording.md)**
   
-  Pass [AudioSourceType](../../reference/apis-media-kit/js-apis-media.md#audiosourcetype9) [AVRecorder.prepare](../../reference/apis-media-kit/js-apis-media.md#prepare9-3) to specify the stream type.
+  Pass [AudioSourceType](../../reference/apis-media-kit/arkts-apis-media-e.md#audiosourcetype9) in [AVRecorder.prepare](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md#prepare9-1) to specify the stream type.
 
   The **config** parameter in **AVRecorder.prepare** is of the **AVRecorderConfig** type, in which **AVRecorderConfig.audioSourceType** specifies the audio source type.
+
+<!--no_check-->

@@ -459,6 +459,181 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
     console.error(`Get update auth data failed. Code is ${error.code},message is ${error.message}`);
   });
 ```
+
+
+## systemManager.addDisallowedNearLinkProtocols<sup>20+</sup>
+
+addDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol&gt;, accountId: number): void
+
+为指定用户添加禁用的星闪协议名单。NearLink Kit（星闪服务）提供一种低功耗、高速率的短距离通信服务，支持星闪设备之间的连接、数据交互。本接口对键盘、手写笔等系统服务和系统应用不生效。当前仅支持PC/2in1设备使用。<!--RP3--><!--RP3End-->
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
+| protocols  | Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;               | 是   | 星闪协议列表。 |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 9200012  | Parameter verification failed. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { systemManager } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  // 需根据实际情况进行替换
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+// 需根据实际情况进行替换
+let protocols: systemManager.NearLinkProtocol[] = [systemManager.NearLinkProtocol.SSAP,
+  systemManager.NearLinkProtocol.DATA_TRANSFER];
+
+// 需根据实际情况进行替换
+let accountId: number = 100;
+
+try {
+  systemManager.addDisallowedNearLinkProtocols(wantTemp, protocols, accountId);
+  console.info('Succeeded in adding the disabled Starlink protocol list for the specified user.');
+} catch (err) {
+  console.error(`Failed to add the disabled Starlink protocol list for the specified user. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## systemManager.removeDisallowedNearLinkProtocols<sup>20+</sup>
+
+removeDisallowedNearLinkProtocols(admin: Want, protocols: Array&lt;NearLinkProtocol&gt;, accountId: number): void
+
+为指定用户移除禁用的星闪协议名单。当前仅支持PC/2in1设备使用。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
+| protocols  | Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;               | 是   | 星闪协议列表。 |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. | 
+| 9200012  | Parameter verification failed. |                
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { systemManager } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  // 需根据实际情况进行替换
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+// 需根据实际情况进行替换
+let protocols: systemManager.NearLinkProtocol[] = [systemManager.NearLinkProtocol.SSAP,
+  systemManager.NearLinkProtocol.DATA_TRANSFER];
+
+// 需根据实际情况进行替换
+let accountId: number = 100;
+try {
+  systemManager.removeDisallowedNearLinkProtocols(wantTemp, protocols, accountId);
+  console.info('Succeeded in removing the disabled Starlink protocol list for the specified user.');
+} catch (err) {
+  console.error(`Failed to remove the disabled Starlink protocol list for the specified user. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## systemManager.getDisallowedNearLinkProtocols<sup>20+</sup>
+
+getDisallowedNearLinkProtocols(admin: Want, accountId: number): Array&lt;NearLinkProtocol&gt;
+
+获取指定用户下禁用的星闪协议名单。当前仅支持PC/2in1设备使用。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名  | 类型                                                    | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。<br/>accountId可以通过[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)等接口来获取。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| Array&lt;[NearLinkProtocol](#nearlinkprotocol20)&gt;          | 指定用户下禁用的星闪协议名单。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { systemManager } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  // 需根据实际情况进行替换
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+// 需根据实际情况进行替换
+let accountId: number = 100;
+
+try {
+  let result: systemManager.NearLinkProtocol[] = systemManager.getDisallowedNearLinkProtocols(wantTemp, accountId);
+  console.info(`Succeeded in querying the disabled Starlink protocol list for the specified user: ${result}`);
+} catch (err) {
+  console.error(`Failed to query the disabled Starlink protocol list for the specified user. Code is ${err.code}, message is ${err.message}`);
+}
+```
+  
 ## SystemUpdateInfo
 
 待更新的系统版本信息。
@@ -593,3 +768,16 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 | UPDATING           | -2 | 正在更新。 |
 | UPDATE_FAILURE     | -1 | 更新失败。 |
 | UPDATE_SUCCESS     | 0 | 更新成功。 |
+
+## NearLinkProtocol<sup>20+</sup>
+
+星闪协议枚举。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+| 名称               | 值  | 说明    |
+| -----------------  | ---- | ----- |
+| SSAP   | 0 |  SSAP（SparkLink Service Access Protocol）协议。<!--RP1--><!--RP1End--> |
+| DATA_TRANSFER      | 1 | 数据传输协议。<!--RP2--><!--RP2End--> |

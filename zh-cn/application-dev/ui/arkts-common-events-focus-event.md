@@ -42,13 +42,13 @@ struct FocusActiveExample {
 ![Active_Focus_1](figures/Active_Focus_1.gif)
 
 
-调用[activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14)接口进入和退出焦点激活态。
+调用[activate](../reference/apis-arkui/arkts-apis-uicontext-focuscontroller.md#activate14)接口进入和退出焦点激活态。
 
 ![Active_Focus_2](figures/Active_Focus_2.gif)
 
 示例操作步骤：
-1. 点击Set Active按钮，调用[activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14)接口进入焦点激活态。
-2. Tab走焦至Set Not Active按钮，Enter键触发按键事件，调用[activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14)接口退出焦点激活态。
+1. 点击Set Active按钮，调用[activate](../reference/apis-arkui/arkts-apis-uicontext-focuscontroller.md#activate14)接口进入焦点激活态。
+2. Tab走焦至Set Not Active按钮，Enter键触发按键事件，调用[activate](../reference/apis-arkui/arkts-apis-uicontext-focuscontroller.md#activate14)接口退出焦点激活态。
 
 **层级页面**
 
@@ -99,7 +99,7 @@ Shift+Tab键：与Tab键具有相反的焦点转移效果。
 不可跨窗口，不可跨ArkUI实例申请焦点，可以跨层级页面申请焦点。
 
 - clearFocus
-详见[clearFocus](../reference/apis-arkui/js-apis-arkui-UIContext.md#clearfocus12)，会清除当前层级页面中的焦点，最终焦点停留在根容器上。
+详见[clearFocus](../reference/apis-arkui/arkts-apis-uicontext-focuscontroller.md#clearfocus12)，会清除当前层级页面中的焦点，最终焦点停留在根容器上。
 
 - focusOnTouch
 详见[focusOnTouch](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9)，使绑定组件具备点击后获得焦点的能力。若组件本身不可获焦，则此功能无效。若绑定的是容器组件，点击后优先将焦点转移给上一次获焦的子组件，否则转移给第一个可获焦的子组件。
@@ -819,7 +819,7 @@ struct RequestFocusExample {
   - 有异常值返回，便于排查主动获取焦点失败的原因。
   - 避免多实例场景中取到错误实例。
 
-  需先使用UIContext中的[getFocusController()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
+  需先使用UIContext中的[getFocusController()](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
 
   ```ts
   requestFocus(key: string): void

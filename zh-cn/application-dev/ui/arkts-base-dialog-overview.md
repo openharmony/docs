@@ -25,7 +25,7 @@
 ## 规格约束
 
 * 建议<!--Del-->在除[ServiceExtensionAbility](../../application-dev/application-models/serviceextensionability.md)等无UI界面的场景外，均<!--DelEnd-->使用UIContext中的弹出框方法。
-* 可以通过使用UIContext中的[getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction)对象。
+* 可以通过使用UIContext中的[getPromptAction](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md)对象。
 * 由于系统安全管控原因，当弹出系统权限弹窗等场景时，弹出框在此状态下无法显示。
 
 

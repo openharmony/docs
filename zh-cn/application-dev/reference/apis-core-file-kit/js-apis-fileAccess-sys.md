@@ -726,7 +726,7 @@ createFile(uri: string, displayName: string) : Promise&lt;string&gt;
           console.error("createFile return undefined object");
           return;
         }
-        console.log("createFile sucess, fileUri: " + JSON.stringify(fileUri));       
+        console.log("createFile success, fileUri: " + JSON.stringify(fileUri));       
       }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -774,7 +774,7 @@ createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&g
         if (err) {
           console.error("Failed to createFile in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("createFile sucess, fileUri: " + JSON.stringify(fileUri));
+        console.log("createFile success, fileUri: " + JSON.stringify(fileUri));
       });
     }
   } catch (err) {
@@ -878,7 +878,7 @@ mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&
         if (err) {
           console.error("Failed to mkDir in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("mkDir sucess, dirUri: " + JSON.stringify(dirUri));
+        console.log("mkDir success, dirUri: " + JSON.stringify(dirUri));
       });
     }
   } catch (err) {
@@ -974,7 +974,7 @@ openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) :
         if (err) {
           console.error("Failed to openFile in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("openFile sucess, fd: " + fd);
+        console.log("openFile success, fd: " + fd);
       });
     }
   } catch (err) {
@@ -1070,7 +1070,7 @@ delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void
         if (err) {
           console.error("Failed to delete in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("delete sucess, code: " + code);
+        console.log("delete success, code: " + code);
       });
     }
   } catch (err) {
@@ -1121,7 +1121,7 @@ move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
     try {
       if (fileAccessHelper != undefined) {
         let fileUri = await fileAccessHelper.move(sourceFile, destFile);
-        console.log("move sucess, fileUri: " + JSON.stringify(fileUri));
+        console.log("move success, fileUri: " + JSON.stringify(fileUri));
       }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -1169,7 +1169,7 @@ move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;
         if (err) {
           console.error("Failed to move in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("move sucess, fileUri: " + JSON.stringify(fileUri));
+        console.log("move success, fileUri: " + JSON.stringify(fileUri));
       });
     }
   } catch (err) {
@@ -1219,7 +1219,7 @@ rename(uri: string, displayName: string) : Promise&lt;string&gt;
     try {
       if (fileAccessHelper != undefined) {
         let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
-        console.log("rename sucess, DestDir: " + JSON.stringify(DestDir));
+        console.log("rename success, DestDir: " + JSON.stringify(DestDir));
       }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -1266,7 +1266,7 @@ rename(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) 
         if (err) {
           console.error("Failed to rename in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("rename sucess, DestDir: " + JSON.stringify(DestDir));
+        console.log("rename success, DestDir: " + JSON.stringify(DestDir));
       });
     }
   } catch (err) {
@@ -2520,13 +2520,13 @@ moveFile(sourceUri: string, destUri: string, fileName: string) : Promise&lt;stri
     // 开发者应根据自己实际获取的uri进行开发
     let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
     let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
-    let fileName: string;
+    let fileName: string = "2.txt";
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
     if (fileAccessHelper != undefined) {
         let fileUri = await fileAccessHelper.moveFile(sourceUri, destUri, fileName);
-        console.log("moveFile sucess, fileUri: " + JSON.stringify(fileUri));
+        console.log("moveFile success, fileUri: " + JSON.stringify(fileUri));
     }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -2573,7 +2573,7 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
   // 开发者应根据自己实际获取的uri进行开发
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
-  let fileName: string;
+  let fileName: string = "2.txt";
   // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
   let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
@@ -2582,7 +2582,7 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
         if (err) {
           console.error("Failed to moveFile in async, errCode:" + err.code + ", errMessage:" + err.message);
         }
-        console.log("moveFile sucess, fileUri: " + JSON.stringify(fileUri));
+        console.log("moveFile success, fileUri: " + JSON.stringify(fileUri));
       });
     }
   } catch (err) {

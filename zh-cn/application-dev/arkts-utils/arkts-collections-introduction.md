@@ -2,9 +2,9 @@
 
 ## ArkTS容器集
 
-ArkTS共享容器（[@arkts.collections (ArkTS容器集)](../reference/apis-arkts/js-apis-arkts-collections.md)）是一种在并发实例间共享传输的容器类，可以用于并发场景下的高性能数据传递。功能与Ecmascript262规范定义的容器类似，但仍然有部分差异，具体可见[共享容器与原生API方法的行为差异对比](#共享容器与原生api方法的行为差异对比)。
+ArkTS共享容器（[@arkts.collections (ArkTS容器集)](../reference/apis-arkts/js-apis-arkts-collections.md)）是一种在并发实例间共享传输的容器类，用于并发场景下的高性能数据传递。它的功能与Ecmascript 262规范定义的容器类似，但存在部分差异，具体可见[共享容器与原生API方法的行为差异对比](#共享容器与原生api方法的行为差异对比)。
 
-ArkTS共享容器在多个并发实例间传递时，默认采用引用传递，允许多个并发实例操作同一个容器实例。此外，还支持拷贝传递，即每个并发实例拥有一个独立的ArkTS容器实例。
+ArkTS共享容器在多个并发实例间传递时，默认采用引用传递，允许多个并发实例操作同一容器实例。此外，还支持拷贝传递，即每个并发实例拥有独立的ArkTS容器实例。
 
 ArkTS共享容器不是线程安全的，内部使用了fail-fast（快速失败）机制，即当检测到多个并发实例同时对容器进行结构性修改时，会触发异常。因此，在多线程场景下修改容器内属性时，开发者需要使用ArkTS提供的[异步锁](arkts-async-lock-introduction.md)机制保证ArkTS容器的安全访问。
 
@@ -61,17 +61,17 @@ struct Index {
 
 ## 共享容器与原生API方法的行为差异对比
 
-ArkTS提供了Sendable数据相关的共享容器集，接口行为与原生API存在部分差异，具体可见下文对比。
+ArkTS提供了Sendable数据相关的共享容器集，接口行为与原生API存在部分差异，具体见下文对比。
 
 > **说明：**
 >
-> ArkTS共享容器的类型与Ecmascript262规范定义的原生容器的类型不同，因此使用原生容器Array的isArray()方法判断collections.Array实例对象会返回false。
+> ArkTS共享容器的类型与Ecmascript 262规范定义的原生容器类型不同，因此使用原生容器Array的isArray()方法判断collections.Array实例对象会返回false。
 >
-> ArkTS共享容器跨线程传递采用引用传递方式，与原生容器相比效率更高，如果开发者需要跨线程传输的数据量很大，建议使用ArkTS共享容器。
+> ArkTS共享容器采用引用传递方式跨线程传递，与原生容器相比效率更高。如果需要跨线程传输大量数据，建议使用ArkTS共享容器。
 
 ### Array
 
-支持原生容器Array通过[collections.Array.from](../reference/apis-arkts/js-apis-arkts-collections.md#from)方法转换为ArkTS Array容器；支持通过原生容器Array的from方法将ArkTS Array容器转换为原生容器Array。
+支持通过[collections.Array.from](../reference/apis-arkts/js-apis-arkts-collections.md#from)方法将原生容器Array转换为ArkTS Array容器；支持通过原生容器Array的from方法将 ArkTS Array容器转换为原生容器Array。
 
 | 原生API方法 | ArkTS容器集方法 | 是否有行为差异 | 在ArkTS容器中的差异表现 |
 | -------- | -------- | -------- | -------- |
@@ -128,7 +128,7 @@ ArkTS提供了Sendable数据相关的共享容器集，接口行为与原生API�
 
 ### TypedArray（以Int8Array为例）
 
-支持原生容器TypedArray通过[collections.TypedArray.from](../reference/apis-arkts/js-apis-arkts-collections.md#from-1)方法转换为ArkTS TypedArray容器；支持通过原生容器TypedArray的from方法将ArkTS TypedArray容器转换为原生容器TypedArray。
+支持通过[collections.TypedArray.from](../reference/apis-arkts/js-apis-arkts-collections.md#from-1)方法将原生容器TypedArray转换为ArkTS TypedArray容器；也支持通过原生容器 TypedArray的from方法将ArkTS TypedArray容器转换为原生容器TypedArray。
 
 | 原生API方法 | ArkTS容器集方法 | 是否有行为差异 | 在ArkTS容器中的差异表现 |
 | -------- | -------- | -------- | -------- |
@@ -137,16 +137,16 @@ ArkTS提供了Sendable数据相关的共享容器集，接口行为与原生API�
 | readonly byteOffset: number | readonly byteOffset: number | 否 | / |
 | readonly length: number | readonly length: number | 否 | / |
 | readonly BYTES_PER_ELEMENT: number | static readonly BYTES_PER_ELEMENT: number | 否 | / |
-| copyWithin(target: number, start: number, end?: number): this | copyWithin(target: number, start: number, end?: number): Int8Array | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
-| every(predicate: (value: number, index: number, array: Int8Array) =&gt; unknown, thisArg?: any): boolean | every(predicate: TypedArrayPredicateFn&lt;number, Int8Array&gt;): boolean | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。<br/>2. ArkTS不支持this，因此不支持thisArg参数。 |
-| fill(value: number, start?: number, end?: number): this | fill(value: number, start?: number, end?: number): Int8Array | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
-| filter(predicate: (value: number, index: number, array: Int8Array) =&gt; any, thisArg?: any): Int8Array | filter(predicate: TypedArrayPredicateFn&lt;number, Int8Array&gt;): Int8Array | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。<br/>2. ArkTS不支持this，因此不支持thisArg参数。 |
-| find(predicate: (value: number, index: number, obj: Int8Array) =&gt; boolean, thisArg?: any): number \| undefined | find(predicate: TypedArrayPredicateFn&lt;number, Int8Array&gt;): number \| undefined | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。<br/>2. ArkTS不支持this，因此不支持thisArg参数。 |
+| copyWithin(target: number, start: number, end?: number): this| copyWithin(target: number, start: number, end?: number): Int8Array | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
+| every(predicate: (value: number, index: number, array: Int8Array) =&gt; unknown, thisArg?: any): boolean | every(predicate: TypedArrayPredicateFn&lt;number, Int8Array&gt;): boolean | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。<br/>2. ArkTS不支持this，因此不支持thisArg参数。 |
+| fill(value: number, start?: number, end?: number): this | fill(value: number, start?: number, end?: number): Int8Array | 是 |  不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
+| filter(predicate: (value: number, index: number, array: Int8Array) =&gt; any, thisArg?: any): Int8Array | filter(predicate: TypedArrayPredicateFn&lt;number, Int8Array&gt;): Int8Array | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。<br/>2. ArkTS不支持this，因此不支持thisArg参数。 |
+| find(predicate: (value: number, index: number, obj: Int8Array) =&gt; boolean, thisArg?: any): number \| undefined | find(predicate: TypedArrayPredicateFn&lt;number, Int8Array&gt;): number \| undefined | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。<br/>2. ArkTS不支持this，因此不支持thisArg参数。 |
 | findIndex(predicate: (value: number, index: number, obj: Int8Array) =&gt; boolean, thisArg?: any): number | findIndex(predicate: TypedArrayPredicateFn&lt;number, Int8Array&gt;): number | 是 | ArkTS不支持this，因此不支持thisArg参数。 |
-| forEach(callbackfn: (value: number, index: number, array: Int8Array) =&gt; void, thisArg?: any): void | forEach(callbackFn: (value: number, index: number, array: Int8Array) =&gt; void): void | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。<br/>2. ArkTS不支持this，因此不支持thisArg参数。 |
+| forEach(callbackfn: (value: number, index: number, array: Int8Array) =&gt; void, thisArg?: any): void | forEach(callbackFn: (value: number, index: number, array: Int8Array) =&gt; void): void | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。<br/>2. ArkTS不支持this，因此不支持thisArg参数。 |
 | indexOf(searchElement: number, fromIndex?: number): number | indexOf(searchElement: number, fromIndex?: number): number | 否 | / |
 | join(separator?: string): string | join(separator?: string): string | 否 | / |
-| map(callbackfn: (value: number, index: number, array: Int8Array) =&gt; number, thisArg?: any): Int8Array | map(callbackFn: TypedArrayForEachCallback&lt;number, Int8Array&gt;): Int8Array | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。<br/>2. ArkTS不支持this，因此不支持thisArg参数。 |
+| map(callbackfn: (value: number, index: number, array: Int8Array) =&gt; number, thisArg?: any): Int8Array | map(callbackFn: TypedArrayForEachCallback&lt;number, Int8Array&gt;): Int8Array | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。<br/>2. ArkTS不支持this，因此不支持thisArg参数。 |
 | reduce(callbackfn: (previousValue: number, currentValue: number, currentIndex: number, array: Int8Array) =&gt; number): number | reduce(callbackFn: TypedArrayReduceCallback&lt;number, number, Int8Array&gt;): number | 否 | / |
 | reduce(callbackfn: (previousValue: number, currentValue: number, currentIndex: number, array: Int8Array) =&gt; number, initialValue: number): number | reduce(callbackFn: TypedArrayReduceCallback&lt;number, number, Int8Array&gt;, initialValue: number): number | 否 | / |
 | reduce&lt;U&gt;(callbackfn: (previousValue: U, currentValue: number, currentIndex: number, array: Int8Array) =&gt; U, initialValue: U): U | reduce&lt;U&gt;(callbackFn: TypedArrayReduceCallback&lt;U, number, Int8Array&gt;, initialValue: U): U | 否 | / |
@@ -154,9 +154,9 @@ ArkTS提供了Sendable数据相关的共享容器集，接口行为与原生API�
 | set(array: ArrayLike&lt;number&gt;, offset?: number): void | set(array: ArrayLike&lt;number&gt;, offset?: number): void | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
 | slice(start?: number, end?: number): Int8Array | slice(start?: number, end?: number): Int8Array | 否 | / |
 | some(predicate: (value: number, index: number, array: Int8Array) =&gt; unknown, thisArg?: any): boolean | some(predicate: TypedArrayPredicateFn&lt;number, Int8Array&gt;): boolean | 是 | ArkTS不支持this，因此不支持thisArg参数。 |
-| sort(compareFn?: (a: number, b: number) =&gt; number): this | sort(compareFn?: TypedArrayCompareFn&lt;number&gt;): Int8Array | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。<br/>2. 继承场景下，无法获得实际类型的返回值。 |
-| subarray(begin?: number, end?: number): Int8Array | subarray(begin?: number, end?: number): Int8Array | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
-| [index: number]: number | [index: number]: number | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
+| sort(compareFn?: (a: number, b: number) =&gt; number): this | sort(compareFn?: TypedArrayCompareFn&lt;number&gt;): Int8Array | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。<br/>2. 继承场景下，无法获得实际类型的返回值。 |
+| subarray(begin?: number, end?: number): Int8Array | subarray(begin?: number, end?: number): Int8Array | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
+| [index: number]: number | [index: number]: number | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
 | entries(): IterableIterator&lt;[number, number]&gt; | entries(): IterableIterator&lt;[number, number]&gt; | 否 | / |
 | keys(): IterableIterator&lt;number&gt; | keys(): IterableIterator&lt;number&gt; | 否 | / |
 | values(): IterableIterator&lt;number&gt; | values(): IterableIterator&lt;number&gt; | 否 | / |
@@ -169,23 +169,23 @@ ArkTS提供了Sendable数据相关的共享容器集，接口行为与原生API�
 | from&lt;T&gt;(arrayLike: ArrayLike&lt;T&gt;, mapfn: (v: T, k: number) =&gt; number, thisArg?: any): Int8Array | static from&lt;T&gt;(arrayLike: ArrayLike&lt;T&gt;, mapFn: TypedArrayFromMapFn&lt;T, number&gt;): Int8Array | 是 | ArkTS不支持this，因此不支持thisArg参数。 |
 | from(arrayLike: Iterable&lt;number&gt;, mapfn?: (v: number, k: number) =&gt; number, thisArg?: any): Int8Array | static from(arrayLike: Iterable&lt;number&gt;, mapFn?: TypedArrayFromMapFn&lt;number, number&gt;): Int8Array | 是 | ArkTS不支持this，因此不支持thisArg参数。 |
 | of(...items: number[]): Int8Array | static of(...items: number[]): Int8Array | 否 | / |
-| toString(): string | toString(): string | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
-| toLocaleString(): string | toLocaleString(): string  | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
-| lastIndexOf(searchElement: number, fromIndex?: number): number | lastIndexOf(searchElement: number, fromIndex?: number): number | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
-| reduceRight(callbackfn: (previousValue: number, currentValue: number, currentIndex: number, array: Int8Array) =&gt; number): number | reduceRight(callbackFn: TypedArrayReduceCallback&lt;number, number, Int8Array&gt;): number | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
-| reduceRight&lt;U&gt;(callbackfn: (previousValue: U, currentValue: number, currentIndex: number, array: Int8Array) =&gt; U, initialValue: U): U | reduceRight&lt;U = number&gt;(callbackFn: TypedArrayReduceCallback&lt;U, number, Int8Array&gt;, initialValue: U): U | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
+| toString(): string | toString(): string | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
+| toLocaleString(): string | toLocaleString(): string  | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
+| lastIndexOf(searchElement: number, fromIndex?: number): number | lastIndexOf(searchElement: number, fromIndex?: number): number | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
+| reduceRight(callbackfn: (previousValue: number, currentValue: number, currentIndex: number, array: Int8Array) =&gt; number): number | reduceRight(callbackFn: TypedArrayReduceCallback&lt;number, number, Int8Array&gt;): number | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
+| reduceRight&lt;U&gt;(callbackfn: (previousValue: U, currentValue: number, currentIndex: number, array: Int8Array) =&gt; U, initialValue: U): U | reduceRight&lt;U = number&gt;(callbackFn: TypedArrayReduceCallback&lt;U, number, Int8Array&gt;, initialValue: U): U | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
 
 ### Map
 
 | 原生API方法 | ArkTS容器集方法 | 是否有行为差异 | 在ArkTS容器中的差异表现 |
 | -------- | -------- | -------- | -------- |
-| readonly size: number | readonly size: number | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
-| clear(): void | clear(): void | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
-| delete(key: K): boolean | delete(key: K): boolean | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
-| forEach(callbackfn: (value: V, key: K, map: Map&lt;K, V&gt;) =&gt; void, thisArg?: any): void | forEach(callbackFn: (value: V, key: K, map: Map&lt;K, V&gt;) =&gt; void): void | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。<br/>2. ArkTS不支持this，因此不支持thisArg参数。 |
-| get(key: K): V \| undefined | get(key: K): V \| undefined | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
-| has(key: K): boolean | has(key: K): boolean | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
-| set(key: K, value: V): this | set(key: K, value: V): Map&lt;K, V&gt; | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
+| readonly size: number | readonly size: number | 是 | 不允许在遍历或访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
+| clear(): void | clear(): void | 是 | 不允许在遍历或访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
+| delete(key: K): boolean | delete(key: K): boolean | 是 | 不允许在遍历或访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
+| forEach(callbackfn: (value: V, key: K, map: Map&lt;K, V&gt;) =&gt; void, thisArg?: any): void | forEach(callbackFn: (value: V, key: K, map: Map&lt;K, V&gt;) =&gt; void): void | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。<br/>2. ArkTS不支持this，因此不支持thisArg参数。 |
+| get(key: K): V \| undefined | get(key: K): V \| undefined | 是 | 不允许在遍历或访问过程中对元素进行增、删、改操作，否则将抛出异常。 |
+| has(key: K): boolean | has(key: K): boolean | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
+| set(key: K, value: V): this | set(key: K, value: V): Map&lt;K, V&gt; | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
 | entries(): IterableIterator&lt;[K, V]&gt; | entries(): IterableIterator&lt;[K, V]&gt; | 否 | / |
 | keys(): IterableIterator&lt;K&gt; | keys(): IterableIterator&lt;K&gt; | 否 | / |
 | values(): IterableIterator&lt;V&gt; | values(): IterableIterator&lt;V&gt; | 否 | / |
@@ -196,12 +196,12 @@ ArkTS提供了Sendable数据相关的共享容器集，接口行为与原生API�
 | 原生API方法 | ArkTS容器集方法 | 是否有行为差异 | 在ArkTS容器中的差异表现 |
 | -------- | -------- | -------- | -------- |
 | readonly size: number | readonly size: number | 是 | Sendable类和接口中不允许使用计算属性名称(arkts-sendable-compated-prop-name)。 |
-| add(value: T): this | add(value: T): Set&lt;T&gt; | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
-| clear(): void | clear(): void | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
-| delete(value: T): boolean | delete(value: T): boolean | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
-| forEach(callbackfn: (value: T, value2: T, set: Set&lt;T&gt;) =&gt; void, thisArg?: any): void | forEach(callbackFn: (value: T, value2: T, set: Set&lt;T&gt;) =&gt; void): void | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。<br/>2. ArkTS不支持this，因此不支持thisArg参数。 |
-| has(value: T): boolean | has(value: T): boolean | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作否则会抛出异常。 |
+| add(value: T): this | add(value: T): Set&lt;T&gt; | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
+| clear(): void | clear(): void | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
+| delete(value: T): boolean | delete(value: T): boolean | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
+| forEach(callbackfn: (value: T, value2: T, set: Set&lt;T&gt;) =&gt; void, thisArg?: any): void | forEach(callbackFn: (value: T, value2: T, set: Set&lt;T&gt;) =&gt; void): void | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。<br/>2. ArkTS不支持this，因此不支持thisArg参数。 |
+| has(value: T): boolean | has(value: T): boolean | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
 | entries(): IterableIterator&lt;[T, T]&gt; | entries(): IterableIterator&lt;[T, T]&gt; | 否 | / |
 | keys(): IterableIterator&lt;T&gt; | keys(): IterableIterator&lt;T&gt; | 否 | / |
 | values(): IterableIterator&lt;T&gt; | values(): IterableIterator&lt;T&gt; | 是 | Sendable类和接口中不允许使用计算属性名称(arkts-sendable-compated-prop-name)。 |
-| new &lt;T = any&gt;(values?: readonly T[] \| null): Set&lt;T&gt; | constructor(values?: readonly T[] \| null) | 是 | 构造时传入的数据必须是Sendable类型，否则编译会报错。 |
+| new &lt;T = any&gt;(values?: readonly T[] \| null): Set&lt;T&gt; | constructor(values?: readonly T[] \| null) | 是 | 构造时传入的数据必须为Sendable类型，否则将导致编译错误。 |

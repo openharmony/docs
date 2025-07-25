@@ -800,6 +800,8 @@ enabled(respond: boolean): T
 
 ## SecurityComponentLayoutDirection枚举说明
 
+安全控件上图标和文字的排列方向。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -827,12 +829,12 @@ enabled(respond: boolean): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 说明               |
-| ------- | ------------------ |
-| Capsule | 胶囊型按钮（圆角默认为高度的一半）。 |
-| Circle  | 圆形按钮。              |
-| Normal  | 普通按钮（默认不带圆角）。      |
-| ROUNDED_RECTANGLE<sup>16+</sup> | 圆角矩形按钮（默认值：圆角半径大小20vp）。 |
+| 名称      | 值 | 说明               |
+| ------- | -------- | ------------------ |
+| Normal  | 0 | 普通按钮（默认不带圆角）。      |
+| Capsule | 1 | 胶囊型按钮（圆角默认为高度的一半）。 |
+| Circle  | 2 | 圆形按钮。              |
+| ROUNDED_RECTANGLE<sup>16+</sup> | 8 | 圆角矩形按钮（默认值：圆角半径大小20vp）。 |
 
 ## 示例
 

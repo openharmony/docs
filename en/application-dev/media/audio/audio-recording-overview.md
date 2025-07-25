@@ -16,7 +16,7 @@ In addition to the preceding classes, you can also use **AVRecorder** in Media K
 
 ## Precautions for Developing Audio Recording Applications
 
-The application must request the **ohos.permission.MICROPHONE** permission from the user before invoking the microphone to record audio. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
+The application must request the ohos.permission.MICROPHONE permission from the user before invoking the microphone to record audio. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
   
 For details about how to use and manage microphones, see [Microphone Management](mic-management.md).
 

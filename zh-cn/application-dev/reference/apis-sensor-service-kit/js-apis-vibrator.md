@@ -1561,7 +1561,7 @@ build(): VibratorPattern;
 | 名称                     | 类型             | 必填 | 说明                                                        |
 |------------------------| ---------------- | ---- |-----------------------------------------------------------|
 | id                     | number           | 否   | 马达ID， 默认值为0。                                              |
-| deviceId<sup>19+</sup> | number           | 否   | 设备ID。 <br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。 | 
+| deviceId<sup>19+</sup> | number           | 否   | 设备ID。默认值为-1，控制的为本地设备，其它设备Id需使用[getEffectInfoSync](#vibratorgeteffectinfosync19)查询。 <br/>**原子化服务API**：从API Version 19开始，该接口支持在原子化服务中使用。 | 
 | usage                  | [Usage](#usage9) | 是   | 马达振动的使用场景。默认值为'unknown'，取值范围只允许在[Usage](#usage9)提供的类型中选取。 |
 
 ## Usage<sup>9+</sup>

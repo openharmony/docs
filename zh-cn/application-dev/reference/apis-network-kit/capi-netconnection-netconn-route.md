@@ -14,10 +14,12 @@
 
 ### 成员变量
 
-| 名称                              | 描述 |
-|---------------------------------| -- |
-| char iface[NETCONN_MAX_STR_LEN] | 网络接口。 |
-| [NetConn_NetAddr](capi-netconnection-netconn-netaddr.md) destination | 目标地址。 |
-| [NetConn_NetAddr](capi-netconnection-netconn-netaddr.md) gateway         | 网关地址。 |
-| int32_t hasGateway              | 是否存在网关。 |
-| int32_t isDefaultRoute          | 是否是默认路由。 |
+| 名称 | 描述 |
+| -- | -- |
+| char iface[NETCONN_MAX_STR_LEN] | 网络接口 |
+| [NetConn_NetAddr](capi-netconnection-netconn-netaddr.md) destination | 目标地址 |
+| [NetConn_NetAddr](capi-netconnection-netconn-netaddr.md) gateway | 网关地址 |
+| int32_t hasGateway | 是否存在网关 |
+| int32_t isDefaultRoute | 是否是默认路由 |
+
+

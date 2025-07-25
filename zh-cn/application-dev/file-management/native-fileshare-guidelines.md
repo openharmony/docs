@@ -6,7 +6,7 @@
 
 ## 接口说明
 
-接口的详细介绍请参见[API参考](../reference/apis-core-file-kit/file_share.md)。
+接口的详细介绍请参见[API参考](../reference/apis-core-file-kit/capi-oh-file-share-h.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |

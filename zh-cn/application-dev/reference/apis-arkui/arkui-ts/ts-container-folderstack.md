@@ -64,7 +64,7 @@ alignContent(value: Alignment)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                    |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------- |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 子组件在容器内的对齐方式。<br/>默认值：Alignment.Center |
+| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 子组件在容器内的对齐方式。<br/>默认值：Alignment.Center <br />非法值：按默认值处理。 |
 
 ### enableAnimation
 
@@ -80,7 +80,7 @@ enableAnimation(value: boolean)
 
 | 参数名 | 类型                                        | 必填 | 说明                                |
 | ------ | ------------------------------------------- | ---- | ----------------------------------- |
-| value  | boolean | 是   | 是否使用默认动效。<br/>默认值：true，设置true表示使用默认动效，设置false表示不使用默认动效。 |
+| value  | boolean | 是   | 是否使用默认动效。<br/>默认值：true，设置true表示使用默认动效，设置false表示不使用默认动效。<br />非法值：按默认值处理。 |
 
 ### autoHalfFold
 
@@ -96,7 +96,7 @@ autoHalfFold(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                |
 | ------ | ------- | ---- | ----------------------------------- |
-| value  | boolean | 是   | 是否开启自动旋转。<br/>默认值：true，设置true表示开启自动旋转，设置false表示关闭自动旋转。 |
+| value  | boolean | 是   | 是否开启自动旋转。<br/>默认值：true，设置true表示开启自动旋转，设置false表示关闭自动旋转。<br />非法值：按默认值处理。 |
 
 ## 事件
 

@@ -271,7 +271,7 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 设置系统默认菜单的扩展项，允许配置扩展项的文本内容、图标和回调方法。
 
-调用[disableMenuItems](../js-apis-arkui-UIContext.md#disablemenuitems20)或[disableSystemServiceMenuItems](../js-apis-arkui-UIContext.md#disablesystemservicemenuitems20)接口屏蔽文本选择菜单内的系统服务菜单项时，editMenuOptions接口内回调方法[onCreateMenu](./ts-text-common.md#oncreatemenu12)的入参列表中不包含被屏蔽的菜单选项。
+调用[disableMenuItems](../arkts-apis-uicontext-textmenucontroller.md#disablemenuitems20)或[disableSystemServiceMenuItems](../arkts-apis-uicontext-textmenucontroller.md#disablesystemservicemenuitems20)接口屏蔽文本选择菜单内的系统服务菜单项时，editMenuOptions接口内回调方法[onCreateMenu](./ts-text-common.md#oncreatemenu12)的入参列表中不包含被屏蔽的菜单选项。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5843,11 +5843,12 @@ struct Index {
 struct AutoSpacing {
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-  @State enableAutoSpace:boolean = false;
+  @State enableAutoSpace: boolean = false;
+
   build() {
     Column() {
       Column() {
-        Row({space:2}) {
+        Row({ space: 2 }) {
           Button("插入中西文内容").onClick(() => {
             this.controller.addTextSpan("Add文本Span",
               {
@@ -5882,7 +5883,8 @@ struct AutoSpacing {
         .justifyContent(FlexAlign.Center)
         .width("100%")
         .height("10%")
-        Row({space:2}) {
+
+        Row({ space: 2 }) {
           Button("开启中西文自动间距").onClick(() => {
             this.enableAutoSpace = true;
           })
@@ -5896,9 +5898,10 @@ struct AutoSpacing {
         .width("100%")
         .height("10%")
       }
+
       Column() {
         RichEditor(this.options)
-          .onReady(()=>{
+          .onReady(() => {
             this.controller.addImageSpan($r("app.media.icon"),
               {
                 imageStyle:

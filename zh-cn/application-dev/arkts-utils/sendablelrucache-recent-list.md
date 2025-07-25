@@ -5,10 +5,10 @@
 > **说明：**
 >
 > 使用SendableLruCache实例对象时需加锁，避免多线程同时操作导致数据不一致。
-> 存放到SendableLruCache实例中的对象应为Sendable对象。
+> 存放到SendableLruCache实例中的对象必须是Sendable对象。
 
 1. 创建SendableLruCache实例对象，并根据业务需求预设最大容量。<br/>
-   此例设置SendableLruCache实例的最大容量为4，用SendableClass类来管理，并导出SendableClass类实例对象。
+   此例设置SendableLruCache实例的最大容量为4，用SendableClass类管理，并导出SendableClass类实例对象。
 
    ```ts
    // LruCache.ets
