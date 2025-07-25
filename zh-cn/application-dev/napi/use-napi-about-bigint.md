@@ -268,21 +268,36 @@ static napi_value GetValueBigintWords(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     int signBit = 0;
     size_t wordCount = 0;
-    uint64_t words = 0;
     // 调用napi_get_value_bigint_words接口获取wordCount
     napi_status status = napi_get_value_bigint_words(env, args[0], nullptr, &wordCount, nullptr);
     OH_LOG_INFO(LOG_APP, "Node-API , wordCount:%{public}d.", wordCount);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "Node-API , get wordCount fail, status:%{public}d.", status);
+        napi_throw_error(env, nullptr, "napi_get_value_bigint_words call failed");
+        return nullptr;
+    }
+    if (wordCount == 0) {
+        OH_LOG_ERROR(LOG_APP, "Node-API , wordCount is 0, invalid BigInt or empty value.");
+        napi_throw_error(env, nullptr, "napi_get_value_bigint_words returned wordCount 0");
+        return nullptr;
+    }
+    // 分配足够空间存储所有word
+    uint64_t* words = new uint64_t[wordCount];
     // 调用napi_get_value_bigint_words接口获取传入bigInt相关信息，如：signBit传入bigInt正负信息
-    status = napi_get_value_bigint_words(env, args[0], &signBit, &wordCount, &words);
+    status = napi_get_value_bigint_words(env, args[0], &signBit, &wordCount, words);
     OH_LOG_INFO(LOG_APP, "Node-API , signBit: %{public}d.", signBit);
     if (status != napi_ok) {
         OH_LOG_ERROR(LOG_APP, "Node-API , reason:%{public}d.", status);
-        napi_throw_error(env, nullptr, "napi_get_date_value fail");
+        delete[] words;
+        napi_throw_error(env, nullptr, "napi_get_value_bigint_words fail");
         return nullptr;
     }
-    // 将符号位转化为int类型传出去
+    // 可在此处处理words数组内容，如日志输出等
+    // ...
+     // 将符号位转化为int类型传出去
     napi_value returnValue = nullptr;
     napi_create_int32(env, signBit, &returnValue);
+    delete[] words;
     return returnValue;
 }
 ```
