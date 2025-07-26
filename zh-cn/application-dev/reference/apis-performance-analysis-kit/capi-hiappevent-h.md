@@ -2,7 +2,7 @@
 
 ## 概述
 
-HiAppEvent模块的应用事件打点函数定义。在执行应用事件打点之前，开发者必须先构造一个参数列表对象来存储输入的事件参数，并指定事件领域、事件名称和事件类型。<p>事件领域：用于标识事件打点的领域的字符串。<p>事件名称：用于标识事件打点的名称的字符串。<p>事件类型：故障、统计、安全、行为。<p>参数列表：用于存储事件参数的链表，每个参数由参数名和参数值组成。示例代码:00 引入头文件:\<pre>#include "hiappevent/hiappevent.h"\</pre>01 创建一个参数列表指针。\<pre>ParamList list = OH_HiAppEvent_CreateParamList();\</pre>02 添加参数到参数列表中。\<pre>bool boolean = true;OH_HiAppEvent_AddBoolParam(list, "bool_key", boolean);int32_t nums[] = {1, 2, 3};OH_HiAppEvent_AddInt32ArrayParam(list, "int32_arr_key", nums, sizeof(nums) / sizeof(nums[0]));\</pre>03 执行事件打点。\<pre>int res = OH_HiAppEvent_Write("test_domain", "test_event", BEHAVIOR, list);\</pre>04 销毁参数列表指针，释放其分配内存。\<pre>OH_HiAppEvent_DestroyParamList(list);\</pre>
+HiAppEvent模块的应用事件打点函数定义。在执行应用事件打点之前，开发者必须先构造一个参数列表对象来存储输入的事件参数，并指定事件领域、事件名称和事件类型。<p>事件领域：用于标识事件打点的领域的字符串。<p>事件名称：用于标识事件打点的名称的字符串。<p>事件类型：故障、统计、安全、行为。<p>参数列表：用于存储事件参数的链表，每个参数由参数名和参数值组成。
 
 **引用文件：** &lt;hiappevent/hiappevent.h&gt;
 
@@ -77,6 +77,7 @@ HiAppEvent模块的应用事件打点函数定义。在执行应用事件打点�
 | [int OH_HiAppEvent_SetReportEvent(HiAppEvent_Processor* processor, const char* domain, const char* name,bool isRealTime)](#oh_hiappevent_setreportevent) | - | 设置处理者上报事件的接口。 |
 | [int OH_HiAppEvent_SetCustomConfig(HiAppEvent_Processor* processor, const char* key, const char* value)](#oh_hiappevent_setcustomconfig) | - | 设置处理者自定义扩展参数的接口。 |
 | [int OH_HiAppEvent_SetConfigId(HiAppEvent_Processor* processor, int configId)](#oh_hiappevent_setconfigid) | - | 设置处理者配置id的接口。 |
+| [int OH_HiAppEvent_SetConfigName(HiAppEvent_Processor* processor, const char* configName)](#oh_hiappevent_setconfigname) | - | 设置处理者的配置名称的接口。 |
 | [int OH_HiAppEvent_SetReportUserId(HiAppEvent_Processor* processor, const char* const * userIdNames, int size)](#oh_hiappevent_setreportuserid) | - | 设置处理者用户ID的接口。 |
 | [int OH_HiAppEvent_SetReportUserProperty(HiAppEvent_Processor* processor, const char* const * userPropertyNames,int size)](#oh_hiappevent_setreportuserproperty) | - | 设置处理者用户属性的接口。 |
 | [int64_t OH_HiAppEvent_AddProcessor(HiAppEvent_Processor* processor)](#oh_hiappevent_addprocessor) | - | 添加数据处理者的接口。开发者可添加数据处理者，用于提供事件上云功能。数据处理者的实现可预置在设备中，开发者可根据数据处理者的约束设置属性。注意：Processor的配置信息需要由数据处理者提供，目前设备内暂未预置可供交互的数据处理者，因此当前事件上云功能不可用。 |
@@ -1129,6 +1130,32 @@ int OH_HiAppEvent_SetConfigId(HiAppEvent_Processor* processor, int configId)
 | 类型 | 说明 |
 | -- | -- |
 | int | [HIAPPEVENT_SUCCESS](capi-hiappevent-h.md#hiappevent_errorcode)：接口调用成功；<br>         [HIAPPEVENT_PROCESSOR_IS_NULL](capi-hiappevent-h.md#hiappevent_errorcode)：processor入参为空；<br>         [HIAPPEVENT_INVALID_PARAM_VALUE](capi-hiappevent-h.md#hiappevent_errorcode)：参数值无效；<br>         [HIAPPEVENT_INVALID_UID](capi-hiappevent-h.md#hiappevent_errorcode)：用户标识无效。<br>         具体可参考[HiAppEvent_ErrorCode](capi-hiappevent-h.md#hiappevent_errorcode)。 |
+
+### OH_HiAppEvent_SetConfigName()
+
+```
+int OH_HiAppEvent_SetConfigName(HiAppEvent_Processor* processor, const char* configName)
+```
+
+**描述**
+
+设置处理者的配置名称的接口。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [HiAppEvent_Processor](capi-hiappevent-hiappevent-processor.md)* processor | 指向处理者的指针（即OH_HiAppEvent_CreateProcessor接口返回的指针）。 |
+| const char* configName |  数据处理者的配置名称。只能包含大小写字母、数字、下划线和$，不能以数字开头，长度非空且不超过256个字符。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int | [HIAPPEVENT_SUCCESS](capi-hiappevent-h.md#hiappevent_errorcode)：接口调用成功；<br>         [HIAPPEVENT_PROCESSOR_IS_NULL](capi-hiappevent-h.md#hiappevent_errorcode)：processor入参为空；<br>         [HIAPPEVENT_INVALID_PARAM_VALUE](capi-hiappevent-h.md#hiappevent_errorcode)：参数值无效；<br>         [HIAPPEVENT_INVALID_UID](capi-hiappevent-h.md#hiappevent_errorcode)：用户标识无效。<br>         [HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH](capi-hiappevent-h.md#hiappevent_errorcode)：参数值长度无效。<br>         具体可参考[HiAppEvent_ErrorCode](capi-hiappevent-h.md#hiappevent_errorcode)。 |
 
 ### OH_HiAppEvent_SetReportUserId()
 
