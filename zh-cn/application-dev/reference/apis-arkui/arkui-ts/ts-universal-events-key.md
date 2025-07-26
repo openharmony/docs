@@ -300,7 +300,7 @@ struct KeyEventExample {
           this.columnType = 'Up';
         }
         this.columnText = 'Column: \n' +
-          'KeyType:' + this.buttonType + '\n' +
+          'KeyType:' + this.columnType + '\n' +
           'KeyCode:' + event.keyCode + '\n' +
           'KeyText:' + event.keyText;
       }

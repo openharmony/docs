@@ -204,7 +204,7 @@
         this.imageWidth = Number(rect.width);
         this.imageHeight = Number(rect.height);
         this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
-        this.imgState = Visibility.None；
+        this.imgState = Visibility.None;
         // 显式设置result为successful，则将该值传递给拖出方的onDragEnd
         event.setResult(DragResult.DRAG_SUCCESSFUL);
     })
@@ -832,7 +832,6 @@ struct DropAnimationExample {
         this.numberBadge--;
         for (let i=0; i<this.isSelectedGrid.length; i++) {
           if (this.isSelectedGrid[i] === true) {
-            this.isSelectedGrid[i] = true;
             let data: UDC.Image = new UDC.Image();
             data.uri = '/resource/image.jpeg';
             if (!this.unifiedData) {
@@ -996,7 +995,6 @@ struct GridEts {
               this.numberBadge--;
               for (let i=0; i<this.isSelectedGrid.length; i++) {
                 if (this.isSelectedGrid[i] === true) {
-                  this.isSelectedGrid[i] = true;
                   let data: UDC.Image = new UDC.Image();
                   data.uri = '/resource/image.jpeg';
                   if (!this.unifiedData) {
