@@ -399,7 +399,7 @@ struct SetSample {
 }
 ```
 
-### Provide和Consume支持联合类型实例
+### \@Provide和\@Consume支持联合类型
 
 @Provide和@Consume支持联合类型（包括undefined和null）。以下示例中，count类型为`string | undefined`，当点击Ancestors组件中的Button改变count的属性或类型时，Child组件也会对应刷新。
 

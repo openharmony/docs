@@ -291,7 +291,7 @@ struct SetSample {
 }
 ```
 
-## State支持联合类型实例
+### \@State支持联合类型
 
 \@State支持联合类型（包括undefined和null）。在下面的示例中，count类型为number | undefined，点击Button改变count的值或类型，视图会随之刷新。
 
