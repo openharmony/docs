@@ -302,7 +302,7 @@ struct Index {
               if(event){
                 this.angle = this.rotateValue + event.angle;
               }
-              console.info('RotationGesture is onActionEnd');
+              console.info('RotationGesture is onActionUpdate');
             })
               // 当旋转结束抬手时，固定组件在旋转结束时的角度
             .onActionEnd(() => {
