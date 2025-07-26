@@ -183,7 +183,7 @@ try {
 
 addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-为当前用户添加开机自启动应用名单。通过本接口添加至自启动名单的应用，禁止用户取消应用自启动。可通过[removeAutoStartApps](#applicationmanagerremoveautostartapps)，[removeAutoStartApps（API20）](#applicationmanagerremoveautostartapps20)接口将应用从自启动名单中移除。该接口仅在PC/2in1设备上生效。
+为当前用户添加开机自启动应用名单。通过本接口添加至自启动名单的应用，禁止用户在设备上手动取消应用自启动，但可通过[removeAutoStartApps](#applicationmanagerremoveautostartapps)，[removeAutoStartApps](#applicationmanagerremoveautostartapps20)接口将应用从自启动名单中移除。该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -194,7 +194,7 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 | 参数名        | 类型                                                         | 必填 | 说明                                   |
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                         |
-| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。Want需要传入bundleName和abilityName。数组长度上限为10。例如：如果名单中已有5个应用，则最多再通过本接口设置5个。 |
+| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用数组。数组长度上限为10。例如：如果名单中已有5个应用，则最多再通过本接口设置5个。Want中必须包含bundleName和abilityName。 |
 
 **错误码**：
 
@@ -238,7 +238,7 @@ try {
 
 removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-为当前用户删除开机自启动应用名单。该能力当前仅支持PC/2in1设备。
+为当前用户删除开机自启动应用名单。该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -249,7 +249,7 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 | 参数名        | 类型                                                         | 必填 | 说明             |
 | ------------- | ------------------------------------------------------------ | ---- | ---------------- |
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。   |
-| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。Want需要传入bundleName和abilityName。 |
+| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用数组。Want中必须包含bundleName和abilityName。 |
 
 **错误码**：
 
@@ -346,7 +346,7 @@ try {
 
 addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, disallowModify: boolean): void
 
-为指定用户添加开机自启动应用名单，并设置是否禁止该用户取消应用自启动。该接口仅在PC/2in1设备上生效。<br>通过本接口、[addAutoStartApps（API12）](#applicationmanageraddautostartapps)接口均可添加开机自启动应用名单，两个接口设置的应用自启动名单可同时生效。同一用户下，开机自启动应用名单最多支持包含10个应用。例如：若当前已通过[addAutoStartApps（API12）](#applicationmanageraddautostartapps)接口添加3个应用，则最多还能通过本接口为当前用户添加7个应用。
+为指定用户添加开机自启动应用名单，并设置是否禁止该用户手动取消应用自启动。<br>通过本接口、[addAutoStartApps](#applicationmanageraddautostartapps)接口均可添加开机自启动应用名单，两个接口的设置可同时生效。同一用户下，开机自启动应用名单最多支持包含10个应用。例如：若当前名单中已有3个应用，则最多还能通过本接口为当前用户添加7个应用。该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -359,9 +359,9 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, di
 | 参数名        | 类型                                                         | 必填 | 说明                                   |
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                         |
-| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用名单。Want需要传入bundleName和abilityName，同一用户下数组总长度不能超过10。例如：如果名单中已有5个应用，则最多再通过本接口设置5个。 |
+| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用名单数组，数组总长度不超过10。Want中必须包含bundleName和abilityName。 |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
-| disallowModify | boolean | 是   | true禁止用户取消自启动，false允许用户取消自启动。<br>配置后，用户可通过设置-应用和元服务-应用启动管理，管理应用的自启动。 |
+| disallowModify | boolean | 是   | 是否禁止用户手动取消应用自启动，true禁止，false允许。<!--RP1-->设置为允许后，用户可通过设备上设置->应用和元服务->应用启动管理，取消应用自启动。<!--RP1END-->
 
 **错误码**：
 
@@ -418,7 +418,7 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number)
 | 参数名        | 类型                                                         | 必填 | 说明             |
 | ------------- | ------------------------------------------------------------ | ---- | ---------------- |
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。   |
-| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用名单。Want需要传入bundleName和abilityName。 |
+| autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用名单数组。Want中必须包含bundleName和abilityName。 |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
 
 **错误码**：
@@ -482,7 +482,7 @@ getAutoStartApps(admin: Want, accountId: number): Array\<Want>
 
 | 类型                                                         | 说明                 |
 | ------------------------------------------------------------ | -------------------- |
-| Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 应用自启动名单。 |
+| Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 应用自启动名单数组。|
 
 **错误码**：
 
@@ -531,14 +531,14 @@ isModifyAutoStartAppsDisallowed(admin: Want, autoStartApp: Want, accountId: numb
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| autoStartApp | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 开机自启动应用。Want需要传入bundleName和abilityName。 |
+| autoStartApp | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 开机自启动应用。Want中必须包含bundleName和abilityName。 |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
 
 **返回值：**
 
 | 类型                                                         | 说明                 |
 | ------------------------------------------------------------ | -------------------- |
-| boolean | 是否禁止取消应用自启动。true禁止取消自启动，false允许取消自启动。|
+| boolean | 是否禁止用户取消应用自启动，true表示禁止，false表示允许。|
 
 **错误码**：
 
