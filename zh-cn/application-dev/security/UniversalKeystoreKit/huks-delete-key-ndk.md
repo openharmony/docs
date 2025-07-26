@@ -83,7 +83,6 @@ static napi_value DeleteKey(napi_env env, napi_callback_info info)
         return ret;
     }
 
-
     /* 2.调用OH_Huks_DeleteKeyItem删除密钥  */
     struct OH_Huks_Result ohResult = OH_Huks_DeleteKeyItem(&keyAlias, nullptr);
 
