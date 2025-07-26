@@ -1118,7 +1118,7 @@ resources/base/profile路径下的menu.json资源文件示例如下：
 
 ## startWindow标签
 
-该标签指向一个profile文件资源，用于指定UIAbility组件启动页面的配置文件，在开发视图的resources/base/profile下面定义配置文件start_window.json，如果配置了该字段，startWindowIcon和startWindowBackground字段将不生效。从API version 18开始，支持该字段。
+该标签指向一个profile文件资源，用于指定UIAbility组件启动页面的配置文件，在开发视图的resources/base/profile下面定义配置文件start_window.json，如果配置了该字段，startWindowIcon和startWindowBackground字段将不生效。<!--RP4--><br/>**说明：** <br/>从API version 20开始，支持使用该字段配置增强启动页。<!--RP4End-->
 
 **表28** startWindow标签配置说明
 
