@@ -361,7 +361,7 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>, accountId: number, di
 | admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                         |
 | autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用名单数组，数组总长度不超过10。Want中必须包含bundleName和abilityName。 |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
-| disallowModify | boolean | 是   | 是否禁止用户手动取消应用自启动，true禁止，false允许。<!--RP1-->设置为允许后，用户可通过设备上设置->应用和元服务->应用启动管理，取消应用自启动。<!--RP1END-->
+| disallowModify | boolean | 是   | 是否禁止用户手动取消应用自启动，true禁止，false允许。<!--RP1--><!--RP1End-->
 
 **错误码**：
 
@@ -580,7 +580,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): void
 
-添加保活应用，通过本接口添加后，禁止用户取消保活，该接口仅在PC/2in1设备上生效。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
+添加保活应用名单。通过本接口添加至保活名单的应用，禁止用户在设备上手动取消保活，但可通过[removeKeepAliveApps](#applicationmanagerremovekeepaliveapps14)接口将应用从保活名单中移除。如果将应用添加至应用禁止运行名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -635,7 +635,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, disallowModify: boolean): void
 
-添加保活应用，并设置是否禁止用户取消应用保活，该接口仅在PC/2in1设备上生效。<br>如果通过[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)接口将应用添加至应用禁止运行名单，就不能将应用添加至保活，否则会冲突。<br>通过本接口、[addKeepAliveApps（API14）](#applicationmanageraddkeepaliveapps14)接口均可添加保活应用，两个接口设置的保活应用同时生效。同一用户下，可设置的保活应用数量总数不超过5个。例如：若当有3个应用保活，则最多还能通过接口添加2个应用。
+添加保活应用名单，并设置是否禁止用户手动取消保活。<br>通过本接口、[addKeepAliveApps](#applicationmanageraddkeepaliveapps14)接口均可添加保活应用名单，两个接口的设置可同时生效。同一用户下，保活应用名单最多支持包含5个应用。例如：若当前名单中已有3个应用，则最多还能通过本接口为当前用户添加2个应用。<br>如果通过[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)接口将应用添加至应用禁止运行名单，就不能将应用添加至保活，否则会冲突。<br>添加至保活名单中的应用，需要安装在普通用户下且应用接入[托盘服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/statusbar-extension-guide)；或安装在系统1用户下（1用户是支持三方应用单例运行的用户），且应用接入[后台服务](../apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)（应用entry包的module.json5配置文件中，EntensionAbility组件被配置为[mainElement](../../quick-start/module-configuration-file.md)、ExtensionAbility的type为appService）。<br>该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -648,9 +648,9 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number, di
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
-| bundleNames    | Array&lt;string&gt;                                     | 是   | 应用包名数组，指定需要添加保活的应用，最大支持5个。                                   |
+| bundleNames    | Array&lt;string&gt;                                     | 是   | 应用包名数组，指定需要添加至保活名单的应用，最大支持5个。                                   |
 | accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
-| disallowModify | boolean | 是   | true表示禁止用户取消保活，false表示允许用户取消保活。<br>配置后，用户可在设置-应用和元服务-应用常驻管理中查看和修改（仅在部分PC产品上支持，具体以产品规格为准）。 |
+| disallowModify | boolean | 是   | 是否禁止用户手动取消应用保活，true表示禁止，false表示允许。<!--RP2--><!--RP2End--> |
 
 **错误码**：
 
@@ -691,7 +691,7 @@ try {
 
 removeKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): void
 
-移除保活应用，该接口仅在PC/2in1设备上生效。
+移除保活应用名单中的指定应用，该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -820,7 +820,7 @@ isModifyKeepAliveAppsDisallowed(admin: Want, accountId: number, bundleName: stri
 
 | 类型                                                         | 说明                 |
 | ------------------------------------------------------------ | -------------------- |
-| boolean | 是否禁止取消应用保活。true表示禁止用户取消保活，false表示允许用户取消保活。|
+| boolean | 是否禁止用户手动取消应用保活，true表示禁止，false表示允许。|
 
 **错误码**：
 
