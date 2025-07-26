@@ -119,8 +119,8 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 @Entry
 @Component
 struct TouchExample {
-  @State text: string = ''
-  @State eventType: string = ''
+  @State text: string = '';
+  @State eventType: string = '';
 
   build() {
     Column() {
@@ -128,52 +128,56 @@ struct TouchExample {
         .onTouch((event?: TouchEvent) => {
           if (event && event.sourceTool === SourceTool.Finger) {
             if (event.type === TouchType.Down) {
-              this.eventType = 'Down'
+              this.eventType = 'Down';
             }
             if (event.type === TouchType.Up) {
-              this.eventType = 'Up'
+              this.eventType = 'Up';
             }
             if (event.type === TouchType.Move) {
-              this.eventType = 'Move'
+              this.eventType = 'Move';
             }
             // 1.手指按住屏幕同时点击Home键返回桌面，此时会触发Cancel
             // 2.折叠屏手机，应用在按住屏幕的情况下折叠手机切换到外屏，此时会触发Cancel
             if (event.type === TouchType.Cancel) {
               this.eventType = 'Cancel';
             }
-            this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
-              + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
-              + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-              + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
-            event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
-            event.touches[0].pressure +
-              '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height
+            if (event.touches) {
+              this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
+                + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
+                + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
+                + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
+              event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
+              event.touches[0].pressure +
+                '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height;
+            }
           }
         })
       Button('Touch').height(50).width(200).margin(20)
         .onTouch((event?: TouchEvent) => {
           if (event) {
             if (event.type === TouchType.Down) {
-              this.eventType = 'Down'
+              this.eventType = 'Down';
             }
             if (event.type === TouchType.Up) {
-              this.eventType = 'Up'
+              this.eventType = 'Up';
             }
             if (event.type === TouchType.Move) {
-              this.eventType = 'Move'
+              this.eventType = 'Move';
             }
             // 1.手指按住屏幕同时点击Home键返回桌面，此时会触发Cancel
             // 2.折叠屏手机，应用在按住屏幕的情况下折叠手机切换到外屏，此时会触发Cancel
             if (event.type === TouchType.Cancel) {
               this.eventType = 'Cancel';
             }
-            this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
-              + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
-              + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-              + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
-            event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
-            event.touches[0].pressure +
-              '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height
+            if (event.touches) {
+              this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
+                + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
+                + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
+                + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
+              event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
+              event.touches[0].pressure +
+                '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height;
+            }
           }
         })
       Text(this.text)

@@ -137,12 +137,12 @@ onClick(event: (event: ClickEvent) => void): T
 @Entry
 @Component
 struct ClickExample {
-  @State text: string = ''
+  @State text: string = '';
 
   build() {
     Column() {
       Row({ space: 20 }) {
-        Button('Click').width(100).height(40).id('click')
+        Button('Click').width(100).height(40).id('click1')
           .onClick((event?: ClickEvent) => {
             if(event){
               this.text = 'Click Point:' + '\n  windowX:' + event.windowX + '\n  windowY:' + event.windowY
@@ -152,7 +152,7 @@ struct ClickExample {
                 + '\n id:'+ event.target.id + '\ntargetDisplayId:' + event.targetDisplayId;
             }
           }, 20)
-        Button('Click').width(200).height(50).id('click')
+        Button('Click').width(200).height(50).id('click2')
           .onClick((event?: ClickEvent) => {
             if(event){
               this.text = 'Click Point:' + '\n  windowX:' + event.windowX + '\n  windowY:' + event.windowY
