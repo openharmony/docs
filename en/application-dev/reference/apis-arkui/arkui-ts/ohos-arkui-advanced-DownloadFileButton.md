@@ -6,11 +6,13 @@
 > **NOTE**
 >
 > This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This component is not supported on wearables.
 
 ##  Modules to Import
 
-```
-import { DownloadFileButton } from '@kit.ArkUI'
+```ts
+import { DownloadFileButton } from '@kit.ArkUI';
 ```
 
 ## Child Components

@@ -7,6 +7,8 @@
 > **NOTE**
 >
 > This component is supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This component is not supported on wearables.
 
 
 ## Modules to Import
@@ -75,19 +77,19 @@ struct Index {
 ```
 
 
-Layout less than 600 vp:
+Layout less than or equal to 600 vp
 
 
 ![en-us_image_0000001665553957](figures/en-us_image_0000001665553957.png)
 
 
-Layout between 600 vp and 840 vp:
+Layout greater than 600 vp and less than or equal to 840 vp
 
 
 ![en-us_image_0000001616957408](figures/en-us_image_0000001616957408.png)
 
 
-Layout greater than 840 vp:
+Layout greater than 840 vp
 
 
 ![en-us_image_0000001617116972](figures/en-us_image_0000001617116972.png)

@@ -7,6 +7,8 @@
 > **NOTE**
 >
 > This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This component is not supported on wearables.
 
 ## Modules to Import
 
@@ -41,9 +43,9 @@ Creates a **FoldSplitContainer** component to manage regions for two-panel and t
 
 | Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| primary | ()=>void | Yes| @BuilderParam | Callback function for the primary region.|
-| secondary | ()=>void | Yes| @BuilderParam | Callback function for the secondary region.|
-| extra | ()=>void | No| @BuilderParam | Callback function for the extra region. If this parameter is not provided, there is no corresponding region.|
+| primary | Callback\<void> | Yes| @BuilderParam | Callback function for the primary region.|
+| secondary | Callback\<void> | Yes| @BuilderParam | Callback function for the secondary region.|
+| extra | Callback\<void> | No| @BuilderParam | Callback function for the extra region. If this parameter is not provided, there is no corresponding region.|
 | expandedLayoutOptions | [ExpandedRegionLayoutOptions](#expandedregionlayoutoptions) | Yes| @Prop | Layout information for the expanded state.|
 | hoverModeLayoutOptions | [HoverModeRegionLayoutOptions](#hovermoderegionlayoutoptions) | Yes| @Prop | Layout information for the hover state.|
 | foldedLayoutOptions | [FoldedRegionLayoutOptions](#foldedregionlayoutoptions) | Yes| @Prop | Layout information for the folded state.|
@@ -60,10 +62,10 @@ Defines the layout information for the expanded state.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| isExtraRegionPerpendicular | boolean | No| Whether the extra region extends perpendicularly through the entire component from top to bottom. This setting takes effect only when **extra** is effective. Default value: **true**|
-| verticalSplitRatio | number | No| Height ratio between the primary and secondary regions. Default value: **PresetSplitRatio.LAYOUT_1V1**|
-| horizontalSplitRatio | number | No| Width ratio between the primary and extra regions. This setting takes effect only when **extra** is effective. Default value: **PresetSplitRatio.LAYOUT_3V2**|
-| extraRegionPosition | [ExtraRegionPosition](#extraregionposition) | No| Position information of the extra region. This setting takes effect only when **isExtraRegionPerpendicular** is **false**. Default value: **ExtraRegionPosition.top**|
+| isExtraRegionPerpendicular | boolean | No| Whether the extra region extends perpendicularly through the entire component from top to bottom. This setting takes effect only when **extra** is effective. The value **true** means that the extra region extends perpendicularly through the entire component from top to bottom, and **false** means the opposite.<br>Default value: **true**.|
+| verticalSplitRatio | number | No| Height ratio between the primary and secondary regions.<br>Default value: **PresetSplitRatio.LAYOUT_1V1**.|
+| horizontalSplitRatio | number | No| Width ratio between the primary and extra regions. This setting takes effect only when **extra** is effective.<br>Default value: **PresetSplitRatio.LAYOUT_3V2**.|
+| extraRegionPosition | [ExtraRegionPosition](#extraregionposition) | No| Position information of the extra region. This setting takes effect only when **isExtraRegionPerpendicular** is **false**.<br>Default value: **ExtraRegionPosition.top**.|
 
 ## HoverModeRegionLayoutOptions
 
@@ -75,9 +77,9 @@ Defines the layout information for the hover state.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| showExtraRegion | boolean | No| Whether to display the extra region in the half-folded state. Default value: **false**|
-| horizontalSplitRatio | number | No| Width ratio between the primary and extra regions. This setting takes effect only when **extra** is effective. Default value: **PresetSplitRatio.LAYOUT_3V2**|
-| extraRegionPosition | [ExtraRegionPosition](#extraregionposition) | No| Position information of the extra region. This setting takes effect only when **showExtraRegion** is set. Default value: **ExtraRegionPosition.top**|
+| showExtraRegion | boolean | No| Whether to display the extra region in the half-folded state. The value **true** means to display the extra region in the half-folded state, and **false** means the opposite.<br>Default value: **false**.|
+| horizontalSplitRatio | number | No| Width ratio between the primary and extra regions. This setting takes effect only when **extra** is effective.<br>Default value: **PresetSplitRatio.LAYOUT_3V2**.|
+| extraRegionPosition | [ExtraRegionPosition](#extraregionposition) | No| Position information of the extra region. This setting takes effect only when **showExtraRegion** is set.<br>Default value: **ExtraRegionPosition.top**.|
 
 > **NOTE**
 >
@@ -94,7 +96,7 @@ Defines the layout information for the folded state.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| verticalSplitRatio | number | No| Height ratio between the primary and secondary regions. Default value: **PresetSplitRatio.LAYOUT_1V1**|
+| verticalSplitRatio | number | No| Height ratio between the primary and secondary regions. Default value: **PresetSplitRatio.LAYOUT_1V1**.|
 
 ## OnHoverStatusChangeHandler
 
@@ -123,9 +125,9 @@ Provides information about the device or application's folding, rotation, and wi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | foldStatus | [display.FoldStatus](../js-apis-display.md#foldstatus10) | Yes| Fold status of the device.|
-| isHoverMode | boolean | Yes| Whether the application is in the hover state.|
+| isHoverMode | boolean | Yes| Whether the application is in the hover state. The value **true** means that the application is in the hover state, and **false** means the opposite.|
 | appRotation | number | Yes| Rotation angle of the application.|
-| windowStatusType | [window.WindowStatusType](../js-apis-window.md#windowstatustype11) | Yes| Window mode.|
+| windowStatusType | [window.WindowStatusType](../arkts-apis-window-e.md#windowstatustype11) | Yes| Window mode.|
 
 ## ExtraRegionPosition
 
@@ -494,11 +496,11 @@ struct Index {
 
         if (this.foldingRegionLayoutOptions.showExtraRegion) {
           RadioOption({
-            label: "Extra region location,"
+            label: "Extra region location",
             value: this.foldingRegionLayoutOptions.extraRegionPosition,
             options: [
               {
-                label: "Top,"
+                label: "Top",
                 value: ExtraRegionPosition.TOP,
                 onChecked: () => {
                   this.foldingRegionLayoutOptions.extraRegionPosition = ExtraRegionPosition.TOP
