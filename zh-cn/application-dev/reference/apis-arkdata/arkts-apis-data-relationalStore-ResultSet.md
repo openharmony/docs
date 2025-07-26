@@ -760,7 +760,7 @@ getLong(columnIndex: number): number
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 以Long形式返回指定列的值。<br>该接口支持的数据范围是：Number.MIN_SAFE_INTEGER ~ Number.MAX_SAFE_INTEGER，若超出该范围，建议对于DOUBLE类型的值使用[getDouble](#getdouble)，对于INTEGER类型的值使用[getString](#getString)。 |
+| number | 以Long形式返回指定列的值。<br>该接口支持的数据范围是：Number.MIN_SAFE_INTEGER ~ Number.MAX_SAFE_INTEGER，若超出该范围，建议对于DOUBLE类型的值使用[getDouble](#getdouble)，对于INTEGER类型的值使用[getString](#getstring)。 |
 
 **错误码：**
 
