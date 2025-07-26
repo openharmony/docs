@@ -167,7 +167,7 @@ struct Child {
           this.arr[0]++;
       })
       Button(`push item: ${this.arr.length}`).onClick((e: ClickEvent) => {
-          this.arr.push(this.arr.length as int);
+          this.arr.push(Double.toInt(this.arr.length));
       })
     }
   }
