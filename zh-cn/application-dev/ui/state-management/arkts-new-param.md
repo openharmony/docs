@@ -20,14 +20,14 @@
 - 被\@Param装饰的变量能够在初始化自定义组件时从外部传入，当数据源也是状态变量时，数据源的修改会同步给\@Param。
 - \@Param可以接受任意类型的数据源，包括普通变量、状态变量、常量、函数返回值等。
 - \@Param装饰的变量变化时，会刷新该变量关联的组件。
-- \@Param支持观测number、boolean、string、Object、class等基本类型以及Array、Set、Map、Date等内嵌类型。
+- \@Param支持观测number、boolean、string、Object、class等基本类型以及[Array](#装饰array类型变量)、[Set](#装饰set类型变量)、[Map](#装饰map类型变量)、[Date](#装饰date类型变量)等内嵌类型。
 - 对于复杂类型如类对象，\@Param会接受数据源的引用。在组件内可以修改类对象中的属性，该修改会同步到数据源。
 - \@Param的观测能力仅限于被装饰的变量本身。当装饰简单类型时，可以观测变量的整体改变。当装饰对象类型时，仅能观测对象整体的改变。当装饰数组类型时，可以观测数组整体和元素项的改变。当装饰Array、Set、Map、Date等内嵌类型时，可以观测到通过API调用带来的变化。详见[观察变化](#观察变化)。
-- \@Param支持null、undefined以及联合类型。
+- \@Param支持null、undefined以及[联合类型](#联合类型)。
 
 
 ## 状态管理V1版本接受外部传入的装饰器的局限性
-状态管理V1存在多种可接受外部传入的装饰器，常用的有\@State、\@Prop、\@Link、\@ObjectLink。这些装饰器使用有限制且不易区分，不当使用会导致性能问题。
+状态管理V1存在多种可接受外部传入的装饰器，常用的有[\@State](arkts-state.md)、[\@Prop](arkts-prop.md)、[\@Link](arkts-link.md)、[\@ObjectLink](arkts-observed-and-objectlink.md)。这些装饰器使用有限制且不易区分，不当使用会导致性能问题。
 
 ```ts
 @Observed
@@ -151,7 +151,7 @@ struct Child {
   }
   ```
 
-- 当装饰的变量类型为类对象时，仅可以观察到对类对象整体赋值的变化，无法直接观察到对类成员属性赋值的变化，对类成员属性的观察依赖\@ObservedV2和\@Trace装饰器。
+- 当装饰的变量类型为类对象时，仅可以观察到对类对象整体赋值的变化，无法直接观察到对类成员属性赋值的变化，对类成员属性的观察依赖[\@ObservedV2](arkts-new-observedV2-and-trace.md)和[\@Trace](arkts-new-observedV2-and-trace.md)装饰器。
 
   ```ts
   class RawObject {
@@ -349,7 +349,7 @@ struct Child {
 
   | 类型  | 可观测变化的API                                              |
   | ----- | ------------------------------------------------------------ |
-  | Array | push、pop、shift、unshift、splice、copyWithin、fill、reverse、sort |
+  | Array | push, pop, shift, unshift, splice, copyWithin, fill, reverse, sort |
   | Date  | setFullYear, setMonth, setDate, setHours, setMinutes, setSeconds, setMilliseconds, setTime, setUTCFullYear, setUTCMonth, setUTCDate, setUTCHours, setUTCMinutes, setUTCSeconds, setUTCMilliseconds |
   | Map   | set, clear, delete                                           |
   | Set   | add, clear, delete                                           |
@@ -358,7 +358,7 @@ struct Child {
 
 \@Param装饰器存在以下使用限制：
 
-- \@Param装饰器只能在\@ComponentV2装饰器的自定义组件中使用。
+- \@Param装饰器只能在[\@ComponentV2](arkts-new-componentV2.md)装饰器的自定义组件中使用。
 
   ```ts
   @ComponentV2
@@ -521,9 +521,58 @@ struct SubComponent {
 }
 ```
 
+### 装饰Array类型变量
+使用\@Param装饰Array类型变量时，可以观察到数据源对Array整体的赋值，以及调用Array的接口`push`, `pop`, `shift`, `unshift`, `splice`, `copyWithin`, `fill`, `reverse`, `sort`带来的变化。
+
+```ts
+@ComponentV2
+struct Child {
+  @Require @Param count: number[];
+
+  build() {
+    Column() {
+      ForEach(this.count, (item: number) => {
+        Text(`${item}`).fontSize(30)
+        Divider()
+      })
+    }
+    .width('100%')
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  @Local count: number[] = [1,2,3];
+
+  build() {
+    Row() {
+      Column() {
+        Child({ count: this.count })
+        Button('init array').onClick(() => {
+          this.count = [9,8,7];
+        })
+        Button('push').onClick(() => {
+          this.count.push(0);
+        })
+        Button('reverse').onClick(() => {
+          this.count.reverse();
+        })
+        Button('fill').onClick(() => {
+          this.count.fill(6);
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
+
 ### 装饰Date类型变量
 
-\@Param装饰Date类型变量，可以观察到数据源对Date整体的赋值，以及调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 带来的变化。
+\@Param装饰Date类型变量，可以观察到数据源对Date整体的赋值，以及调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`带来的变化。
 
 ```ts
 @ComponentV2
@@ -543,7 +592,7 @@ struct DateComponent {
 
 @Entry
 @ComponentV2
-struct ParentComponent {
+struct Index {
   @Local parentSelectedDate: Date = new Date('2021-08-08');
 
   build() {
@@ -551,22 +600,22 @@ struct ParentComponent {
       Button('parent update the new date')
         .margin(10)
         .onClick(() => {
-          this.parentSelectedDate = new Date('2023-07-07')
+          this.parentSelectedDate = new Date('2023-07-07');
         })
       Button('increase the year by 1')
         .margin(10)
         .onClick(() => {
-        this.parentSelectedDate.setFullYear(this.parentSelectedDate.getFullYear() + 1)
+          this.parentSelectedDate.setFullYear(this.parentSelectedDate.getFullYear() + 1);
         })
       Button('increase the month by 1')
         .margin(10)
         .onClick(() => {
-        this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1)
+          this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1);
         })
       Button('parent increase the day by 1')
         .margin(10)
         .onClick(() => {
-   this.parentSelectedDate.setDate(this.parentSelectedDate.getDate() + 1)
+          this.parentSelectedDate.setDate(this.parentSelectedDate.getDate() + 1);
         })
       DateComponent({ selectedDate: this.parentSelectedDate })
     }
@@ -576,12 +625,12 @@ struct ParentComponent {
 
 ### 装饰Map类型变量
 
-\@Param装饰Map类型变量，可以观察到数据源对Map整体的赋值，以及调用Map的接口 set、clear、delete带来的变化。
+\@Param装饰Map类型变量，可以观察到数据源对Map整体的赋值，以及调用Map的接口`set`, `clear`, `delete`带来的变化。
 
 ```ts
 @ComponentV2
 struct Child {
-  @Param value: Map<number, string> = new Map()
+  @Param value: Map<number, string> = new Map();
 
   build() {
     Column() {
@@ -595,27 +644,27 @@ struct Child {
 }
 @Entry
 @ComponentV2
-struct MapSample2 {
-  @Local message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+struct Index {
+  @Local message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
 
   build() {
     Row() {
       Column() {
         Child({ value: this.message })
         Button('init map').onClick(() => {
-          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]])
+          this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
         })
         Button('set new one').onClick(() => {
-          this.message.set(4, "d")
+          this.message.set(4, 'd');
         })
         Button('clear').onClick(() => {
-          this.message.clear()
+          this.message.clear();
         })
         Button('replace the first one').onClick(() => {
-          this.message.set(0, "aa")
+          this.message.set(0, 'aa');
         })
         Button('delete the first one').onClick(() => {
-          this.message.delete(0)
+          this.message.delete(0);
         })
       }
       .width('100%')
@@ -627,12 +676,12 @@ struct MapSample2 {
 
 ### 装饰Set类型变量
 
-\@Param装饰Set类型变量，可以观察到数据源对Set整体的赋值，以及调用Set的接口 add、clear、delete带来的变化。
+\@Param装饰Set类型变量，可以观察到数据源对Set整体的赋值，以及调用Set的接口`add`, `clear`, `delete`带来的变化。
 
 ```ts
 @ComponentV2
 struct Child {
-  @Param message: Set<number> = new Set()
+  @Param message: Set<number> = new Set();
 
   build() {
     Column() {
@@ -646,24 +695,24 @@ struct Child {
 }
 @Entry
 @ComponentV2
-struct SetSample11 {
-  @Local message: Set<number> = new Set([0, 1, 2, 3, 4])
+struct Index {
+  @Local message: Set<number> = new Set([0, 1, 2, 3, 4]);
 
   build() {
     Row() {
       Column() {
         Child({ message: this.message })
         Button('init set').onClick(() => {
-          this.message = new Set([0, 1, 2, 3, 4])
+          this.message = new Set([0, 1, 2, 3, 4]);
         })
         Button('set new one').onClick(() => {
-          this.message.add(5)
+          this.message.add(5);
         })
         Button('clear').onClick(() => {
-          this.message.clear()
+          this.message.clear();
         })
         Button('delete the first one').onClick(() => {
-          this.message.delete(0)
+          this.message.delete(0);
         })
       }
       .width('100%')

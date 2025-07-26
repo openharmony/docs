@@ -25,11 +25,11 @@
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅展示接口对应的C++代码。
 
 ### OH_JSVM_GetVM
 
-将检索给定环境的虚拟机实例。
+检索给定环境中的虚拟机实例。
 
 cpp部分代码
 
@@ -172,19 +172,15 @@ JSVM API heap usedGlobalHandlesSize: 32
 
 ### OH_JSVM_StopCpuProfiler
 
-停止CPU profiler并将结果输出到流。
+停止CPU profiler并将结果输出到流中。
 
 ### OH_JSVM_TakeHeapSnapshot
 
-获取当前堆快照并将其输出到流。
+获取当前堆快照并输出到流中。
 
 ### OH_JSVM_OpenInspector
 
-在指定的主机和端口上激活inspector，将用来调试JS代码。
-
-### OH_JSVM_OpenInspectorWithName
-
-基于传入的 pid 和 name 激活 inspector。
+在指定的主机和端口上激活inspector，用于调试JS码。
 
 ### OH_JSVM_CloseInspector
 
@@ -192,4 +188,4 @@ JSVM API heap usedGlobalHandlesSize: 32
 
 ### OH_JSVM_WaitForDebugger
 
-等待主机与inspector建立socket连接，连接建立后程序将继续运行。发送Runtime.runIfWaitingForDebugger命令。
+等待主机与inspector建立socket连接。连接建立后，程序将继续运行并发送Runtime.runIfWaitingForDebugger命令。

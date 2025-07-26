@@ -17,15 +17,15 @@
 
 - 当被\@Local装饰的变量变化时，会刷新使用该变量的组件。
 
-- \@Local支持观测number、boolean、string、Object、class等基本类型以及Array、Set、Map、Date等内嵌类型。
+- \@Local支持观测number、boolean、string、Object、class等基本类型以及[Array](#装饰array类型变量)、[Set](#装饰set类型变量)、[Map](#装饰map类型变量)、[Date](#装饰date类型变量)等内嵌类型。
 
 - \@Local的观测能力仅限于被装饰的变量本身。当装饰简单类型时，能够观测到对变量的赋值；当装饰对象类型时，仅能观测到对对象整体的赋值；当装饰数组类型时，能观测到数组整体以及数组元素项的变化；当装饰Array、Set、Map、Date等内嵌类型时，可以观测到通过API调用带来的变化。详见[观察变化](#观察变化)。
 
-- \@Local支持null、undefined以及联合类型。
+- \@Local支持null、undefined以及[联合类型](#联合类型)。
 
 ## 状态管理V1版本\@State装饰器的局限性
 
-状态管理V1使用[\@State装饰器](arkts-state.md)定义类中的状态变量。但由于\@State装饰器能够从外部初始化，因此无法确保\@State装饰的变量一定为组件内部的状态。
+状态管理V1使用[\@State装饰器](arkts-state.md)定义组件中的基础状态变量，该状态变量常用来作为组件内部状态，在组件内使用。但由于\@State装饰器又能够从外部初始化，因此无法确保\@State装饰变量的初始值一定为组件内部定义的值。
 
 ```ts
 class ComponentInfo {
@@ -40,7 +40,7 @@ class ComponentInfo {
 }
 @Component
 struct Child {
-  @State componentInfo: ComponentInfo = new ComponentInfo("Child", 1, "Hello World");
+  @State componentInfo: ComponentInfo = new ComponentInfo("Child", 1, "Hello World"); // 父组件传递的componentInfo会覆盖初始值
 
   build() {
     Column() {
@@ -71,10 +71,10 @@ struct Index {
 
 ## 变量传递
 
-| 传递规则       | 说明                                                      |
-| -------------- | --------------------------------------------------------- |
-| 从父组件初始化 | \@Local装饰的变量仅允许本地初始化，无法从外部传入初始化。 |
-| 初始化子组件   | \@Local装饰的变量可以初始化子组件中\@Param装饰的变量。    |
+| 传递规则       | 说明                                                         |
+| -------------- | ------------------------------------------------------------ |
+| 从父组件初始化 | \@Local装饰的变量仅允许本地初始化，无法从外部传入初始化。    |
+| 初始化子组件   | \@Local装饰的变量可以初始化子组件中[\@Param](arkts-new-param.md)装饰的变量。 |
 
 ## 观察变化
 
@@ -106,7 +106,7 @@ struct Index {
   }
   ```
 
-- 当装饰的变量类型为类对象时，仅可以观察到对类对象整体赋值的变化，无法直接观察到对类成员属性赋值的变化，对类成员属性的观察依赖\@ObservedV2和\@Trace装饰器。注意，\@Local无法和\@Observed装饰的类实例对象混用。
+- 当装饰的变量类型为类对象时，仅可以观察到对类对象整体赋值的变化，无法直接观察到对类成员属性赋值的变化，对类成员属性的观察依赖[\@ObservedV2](arkts-new-observedV2-and-trace.md)和[\@Trace](arkts-new-observedV2-and-trace.md)装饰器。注意，API version 19之前，\@Local无法和\@Observed装饰的类实例对象混用。API version 19及以后，支持部分状态管理V1V2混用能力，允许\@Local和\@Observed同时使用，详情见[状态管理V1V2混用文档](../state-management/arkts-v1-v2-mixusage.md)。
 
     ```ts
     class RawObject {
@@ -155,8 +155,8 @@ struct Index {
     @Entry
     @ComponentV2
     struct Index {
-      @Local numArr: number[] = [1,2,3,4,5];
-      @Local dimensionTwo: number[][] = [[1,2,3],[4,5,6]];
+      @Local numArr: number[] = [1,2,3,4,5];  // 使用@Local装饰一维数组变量
+      @Local dimensionTwo: number[][] = [[1,2,3],[4,5,6]]; // 使用@Local装饰二维数组变量
     
       build() {
         Column() {
@@ -165,14 +165,14 @@ struct Index {
           Text(`${this.numArr[2]}`)
           Text(`${this.dimensionTwo[0][0]}`)
           Text(`${this.dimensionTwo[1][1]}`)
-          Button("change array item")
+          Button("change array item") // 按钮1：修改数组中的特定元素
             .onClick(() => {
               this.numArr[0]++;
               this.numArr[1] += 2;
               this.dimensionTwo[0][0] = 0;
               this.dimensionTwo[1][1] = 0;
             })
-          Button("change whole array")
+          Button("change whole array") // 按钮2：替换整个数组
             .onClick(() => {
               this.numArr = [5,4,3,2,1];
               this.dimensionTwo = [[7,8,9],[0,1,2]];
@@ -245,7 +245,7 @@ struct Index {
 
   | 类型  | 可观测变化的API                                              |
   | ----- | ------------------------------------------------------------ |
-  | Array | push、pop、shift、unshift、splice、copyWithin、fill、reverse、sort |
+  | Array | push, pop, shift, unshift, splice, copyWithin, fill, reverse, sort |
   | Date  | setFullYear, setMonth, setDate, setHours, setMinutes, setSeconds, setMilliseconds, setTime, setUTCFullYear, setUTCMonth, setUTCDate, setUTCHours, setUTCMinutes, setUTCSeconds, setUTCMilliseconds |
   | Map   | set, clear, delete                                           |
   | Set   | add, clear, delete                                           |
@@ -254,7 +254,7 @@ struct Index {
 
 \@Local装饰器存在以下使用限制：
 
-- \@Local装饰器只能在\@ComponentV2装饰的自定义组件中使用。
+- \@Local装饰器只能在[\@ComponentV2](arkts-new-componentV2.md)装饰的自定义组件中使用。
 
   ```ts
   @ComponentV2
@@ -334,34 +334,72 @@ struct Index {
 }
 ```
 
+### 装饰Array类型变量
+
+当装饰的对象是Array时，可以观察到Array整体的赋值，同时可以通过调用Array的接口`push`, `pop`, `shift`, `unshift`, `splice`, `copyWithin`, `fill`, `reverse`, `sort`更新Array中的数据。
+
+```ts
+@Entry
+@ComponentV2
+struct Index {
+  @Local count: number[] = [1,2,3];
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(this.count, (item: number) => {
+          Text(`${item}`).fontSize(30)
+          Divider()
+        })
+        Button('init array').onClick(() => {
+          this.count = [9,8,7];
+        })
+        Button('push').onClick(() => {
+          this.count.push(0);
+        })
+        Button('reverse').onClick(() => {
+          this.count.reverse();
+        })
+        Button('fill').onClick(() => {
+          this.count.fill(6);
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
+
 ### 装饰Date类型变量
 
-当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
+当装饰的对象是Date时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`更新Date的属性。
 
 ```ts
 @Entry
 @ComponentV2
 struct DatePickerExample {
-  @Local selectedDate: Date = new Date('2021-08-08');
+  @Local selectedDate: Date = new Date('2021-08-08'); // 使用@Local装饰Date类型变量
 
   build() {
     Column() {
-      Button('set selectedDate to 2023-07-08')
+      Button('set selectedDate to 2023-07-08') // 按钮1：通过创建对象更新日期
         .margin(10)
         .onClick(() => {
           this.selectedDate = new Date('2023-07-08');
         })
-      Button('increase the year by 1')
+      Button('increase the year by 1') // 按钮2：直接修改Date年份加1
         .margin(10)
         .onClick(() => {
           this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
         })
-      Button('increase the month by 1')
-        .margin(10)
+      Button('increase the month by 1') // 按钮3：直接修改Date月份加1
         .onClick(() => {
           this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
         })
-      Button('increase the day by 1')
+      Button('increase the day by 1') // 按钮4：直接修改Date天数加1
         .margin(10)
         .onClick(() => {
           this.selectedDate.setDate(this.selectedDate.getDate() + 1);
@@ -378,35 +416,35 @@ struct DatePickerExample {
 
 ### 装饰Map类型变量
 
-当装饰的对象是Map时，可以观察到对Map整体的赋值，同时可以通过调用Map的接口 set、clear、delete更新Map中的数据。
+当装饰的对象是Map时，可以观察到对Map整体的赋值，同时可以通过调用Map的接口`set`, `clear`, `delete`更新Map中的数据。
 
 ```ts
 @Entry
 @ComponentV2
 struct MapSample {
-  @Local message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+  @Local message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]); // 使用@Local装饰Map类型变量
 
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        ForEach(Array.from(this.message.entries()), (item: [number, string]) => { // 遍历Map的键值对并渲染UI
           Text(`${item[0]}`).fontSize(30)
           Text(`${item[1]}`).fontSize(30)
           Divider()
         })
-        Button('init map').onClick(() => {
-          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+        Button('init map').onClick(() => { // 按钮1：重置Map为初始状态
+          this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
         })
-        Button('set new one').onClick(() => {
-          this.message.set(4, "d");
+        Button('set new one').onClick(() => { // 按钮2：添加新键值对(4, "d")
+          this.message.set(4, 'd');
         })
-        Button('clear').onClick(() => {
+        Button('clear').onClick(() => { // 按钮3：清空Map
           this.message.clear();
         })
-        Button('replace the first one').onClick(() => {
-          this.message.set(0, "aa");
+        Button('replace the first one').onClick(() => { // 按钮4：更新/添加键值为0的元素
+          this.message.set(0, 'aa');
         })
-        Button('delete the first one').onClick(() => {
+        Button('delete the first one').onClick(() => { // 按钮5：删除元素0
           this.message.delete(0);
         })
       }
@@ -419,7 +457,7 @@ struct MapSample {
 
 ### 装饰Set类型变量
 
-当装饰的对象是Set时，可以观察到对Set整体的赋值，同时可以通过调用Set的接口add、clear、delete更新Set中的数据。
+当装饰的对象是Set时，可以观察到对Set整体的赋值，同时可以通过调用Set的接口`add`, `clear`, `delete`更新Set中的数据。
 
 ```ts
 @Entry
@@ -430,20 +468,20 @@ struct SetSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        ForEach(Array.from(this.message.entries()), (item: [number, string]) => { // 遍历Set的元素并渲染UI
           Text(`${item[0]}`).fontSize(30)
           Divider()
         })
-        Button('init set').onClick(() => {
+        Button('init set').onClick(() => { // 按钮1：更新Set为初始状态
           this.message = new Set([0, 1, 2, 3, 4]);
         })
-        Button('set new one').onClick(() => {
+        Button('set new one').onClick(() => { // 按钮2：添加新元素5
           this.message.add(5);
         })
-        Button('clear').onClick(() => {
+        Button('clear').onClick(() => { // 按钮3：清空Set
           this.message.clear();
         })
-        Button('delete the first one').onClick(() => {
+        Button('delete the first one').onClick(() => { // 按钮4：删除元素0
           this.message.delete(0);
         })
       }
@@ -462,16 +500,16 @@ struct SetSample {
 @Entry
 @ComponentV2
 struct Index {
-  @Local count: number | undefined = 10;
+  @Local count: number | undefined = 10; // 使用@Local装饰联合类型变量
 
   build() {
     Column() {
       Text(`count(${this.count})`)
-      Button("change to undefined")
+      Button("change to undefined") // 按钮1：将count设置为undefined
         .onClick(() => {
           this.count = undefined;
         })
-      Button("change to number")
+      Button("change to number") // 按钮2：将count更新为数字10
         .onClick(() => {
           this.count = 10;
       })
@@ -491,9 +529,9 @@ struct Index {
   list: string[][] = [['a'], ['b'], ['c']];
   @Local dataObjFromList: string[] = this.list[0];
 
-  @Monitor("dataObjFromList")
+  @Monitor('dataObjFromList')
   onStrChange(monitor: IMonitor) {
-    console.log("dataObjFromList has changed");
+    console.log('dataObjFromList has changed');
   }
 
   build() {
@@ -522,9 +560,9 @@ struct Index {
   list: string[][] = [['a'], ['b'], ['c']];
   @Local dataObjFromList: string[] = this.list[0];
 
-  @Monitor("dataObjFromList")
+  @Monitor('dataObjFromList')
   onStrChange(monitor: IMonitor) {
-    console.log("dataObjFromList has changed");
+    console.log('dataObjFromList has changed');
   }
 
   build() {

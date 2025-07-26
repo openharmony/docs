@@ -40,12 +40,12 @@ GridRow(option?: GridRowOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 |类型|必填|说明|
-|-----|-----|----|----|
-|columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  否  |设置布局列数。<br />取值为大于0的整数。<br/>- API version 20之前：默认值为12。<br/>- API version 20及之后：默认值为{ xs: 2, sm: 4, md: 8, lg: 12, xl: 12, xxl: 12 }。|
-|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   否  |栅格布局间距。<br />默认值：0<br />单位：vp |
-|breakpoints|[BreakPoints](#breakpoints)|  否  |设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。<br />默认值：<br />{<br />value: ["320vp", "600vp", "840vp"],<br />reference: BreakpointsReference.WindowSize<br />}<br />单位：vp |
-|direction|[GridRowDirection](#gridrowdirection枚举说明)|   否  |栅格布局排列方向。<br />默认值：GridRowDirection.Row |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+|columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  否 | 是  |设置布局列数。<br />取值为大于0的整数。<br/>- API version 20之前：默认值为12。<br/>- API version 20及之后：默认值为{ xs: 2, sm: 4, md: 8, lg: 12, xl: 12, xxl: 12 } <br />非法值：按默认值处理。|
+|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|  否 | 是  |栅格布局间距。<br />默认值：0 <br />非法值：按默认值处理。<br />单位：vp |
+|breakpoints|[BreakPoints](#breakpoints)|  否 | 是  |设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。<br />默认值：<br />{<br />value: ["320vp", "600vp", "840vp"],<br />reference: BreakpointsReference.WindowSize<br />} <br />非法值：按默认值处理。<br />单位：vp |
+|direction|[GridRowDirection](#gridrowdirection枚举说明)|  否 | 是  |栅格布局排列方向。<br />默认值：GridRowDirection.Row <br />非法值：按默认值处理。 |
 
 ## GutterOption
 
@@ -57,10 +57,10 @@ GridRow(option?: GridRowOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 必填   | 说明                                     |
-| ----- | ------ | ---- | ---------------------------------------- |
-| x  | [Length](ts-types.md#length) \| [GridRowSizeOption](#gridrowsizeoption) | 否   | 栅格子组件水平方向间距。    |
-| y  | [Length](ts-types.md#length) \| [GridRowSizeOption](#gridrowsizeoption) | 否   | 栅格子组件竖直方向间距。    |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| x  | [Length](ts-types.md#length) \| [GridRowSizeOption](#gridrowsizeoption) | 否  | 是  | 栅格子组件水平方向间距。    |
+| y  | [Length](ts-types.md#length) \| [GridRowSizeOption](#gridrowsizeoption) | 否  | 是   | 栅格子组件竖直方向间距。    |
 
 ## GridRowColumnOption
 
@@ -72,14 +72,14 @@ GridRow(option?: GridRowOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 必填   | 说明                                     |
-| ----- | ------ | ---- | ---------------------------------------- |
-| xs  | number | 否    | 在栅格大小为xs的设备上，栅格容器组件的栅格列数。    |
-| sm  | number | 否    | 在栅格大小为sm的设备上，栅格容器组件的栅格列数。      |
-| md  | number | 否    | 在栅格大小为md的设备上，栅格容器组件的栅格列数。    |
-| lg  | number | 否    | 在栅格大小为lg的设备上，栅格容器组件的栅格列数。      |
-| xl  | number | 否    | 在栅格大小为xl的设备上，栅格容器组件的栅格列数。    |
-| xxl | number | 否    | 在栅格大小为xxl的设备上，栅格容器组件的栅格列数。    |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| xs  | number | 否   | 是   | 在栅格大小为xs的设备上，栅格容器组件的栅格列数。    |
+| sm  | number | 否    | 是  | 在栅格大小为sm的设备上，栅格容器组件的栅格列数。      |
+| md  | number | 否    | 是  | 在栅格大小为md的设备上，栅格容器组件的栅格列数。    |
+| lg  | number | 否   | 是   | 在栅格大小为lg的设备上，栅格容器组件的栅格列数。      |
+| xl  | number | 否    | 是  | 在栅格大小为xl的设备上，栅格容器组件的栅格列数。    |
+| xxl | number | 否    | 是  | 在栅格大小为xxl的设备上，栅格容器组件的栅格列数。    |
 
 **说明：**
 - API version 20之前，仅配置部分断点下GridRow组件的栅格列数，取已配置的更小断点的栅格列数补全未配置的栅格列数。若未配置更小断点的栅格列数，以默认栅格列数12补全未配置的栅格列数。
@@ -105,14 +105,14 @@ GridRow(option?: GridRowOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 必填   | 说明                                     |
-| ----- | ------ | ---- | ---------------------------------------- |
-| xs  | [Length](ts-types.md#length) | 否    | 在最小宽度类型设备上，栅格子组件的间距。    |
-| sm  | [Length](ts-types.md#length) | 否    | 在小宽度类型设备上，栅格子组件的间距。      |
-| md  | [Length](ts-types.md#length) | 否    | 在中等宽度类型设备上，栅格子组件的间距。    |
-| lg  | [Length](ts-types.md#length) | 否    | 在大宽度类型设备上，栅格子组件的间距。      |
-| xl  | [Length](ts-types.md#length) | 否    | 在特大宽度类型设备上，栅格子组件的间距。    |
-| xxl | [Length](ts-types.md#length) | 否    | 在超大宽度类型设备上，栅格子组件的间距。    |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| xs  | [Length](ts-types.md#length) | 否  | 是   | 在最小宽度类型设备上，栅格子组件的间距。    |
+| sm  | [Length](ts-types.md#length) | 否  | 是   | 在小宽度类型设备上，栅格子组件的间距。      |
+| md  | [Length](ts-types.md#length) | 否  | 是   | 在中等宽度类型设备上，栅格子组件的间距。    |
+| lg  | [Length](ts-types.md#length) | 否  | 是   | 在大宽度类型设备上，栅格子组件的间距。      |
+| xl  | [Length](ts-types.md#length) | 否  | 是   | 在特大宽度类型设备上，栅格子组件的间距。    |
+| xxl | [Length](ts-types.md#length) | 否  | 是   | 在超大宽度类型设备上，栅格子组件的间距。    |
 
 ## BreakPoints
 
@@ -126,8 +126,8 @@ GridRow(option?: GridRowOptions)
 
 | 名称   | 类型   | 必填   | 说明                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "600vp", "840vp"]<br />单位：vp    |
-| reference  | [BreakpointsReference](#breakpointsreference枚举说明) | 否    | 断点切换参照物。<br>默认值：BreakpointsReference.WindowSize |
+| value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "600vp", "840vp"] <br />非法值：按默认值处理。<br />单位：vp    |
+| reference  | [BreakpointsReference](#breakpointsreference枚举说明) | 否    | 断点切换参照物。<br>默认值：BreakpointsReference.WindowSize <br />非法值：按默认值处理。 |
 ```ts
   // 启用xs、sm、md共3个断点
   breakpoints: {value: ["100vp", "200vp"]}
@@ -200,7 +200,7 @@ alignItems(value: ItemAlign)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | 是   | GridRow中的GridCol垂直主轴方向对齐方式。<br/>默认值：ItemAlign.Start<br/>**说明**：<br/>ItemAlign支持的枚举：ItemAlign.Start、ItemAlign.Center、ItemAlign.End、ItemAlign.Stretch。 |
+| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | 是   | GridRow中的GridCol垂直主轴方向对齐方式。<br/>默认值：ItemAlign.Start <br />非法值：按默认值处理。<br/>**说明**：<br/>ItemAlign支持的枚举：ItemAlign.Start、ItemAlign.Center、ItemAlign.End、ItemAlign.Stretch。 |
 
 
 ## 事件

@@ -118,11 +118,11 @@ int main()
 
 | 名称                                                                                               | 描述                   |
 | -------------------------------------------------------------------------------------------------- | ---------------------- |
-| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_create)                                     | 创建队列。             |
-| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_destroy)                                   | 销毁队列。             |
-| [ffrt_task_attr_set_queue_priority](ffrt-api-guideline-c.md#ffrt_task_attr_set_queue_priority)     | 设置队列任务优先级。   |
-| [ffrt_queue_attr_set_max_concurrency](ffrt-api-guideline-c.md#ffrt_queue_attr_set_max_concurrency) | 设置并发队列的并发度。 |
-| [ffrt_queue_submit_h_f](ffrt-api-guideline-c.md#ffrt_queue_submit_h_f)                             | 向队列提交一个任务。   |
+| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_t)                                     | 创建队列。             |
+| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_t)                                   | 销毁队列。             |
+| [ffrt_task_attr_set_queue_priority](ffrt-api-guideline-c.md#ffrt_task_attr_t)     | 设置队列任务优先级。   |
+| [ffrt_queue_attr_set_max_concurrency](ffrt-api-guideline-c.md#ffrt_queue_attr_t) | 设置并发队列的并发度。 |
+| [ffrt_queue_submit_h_f](ffrt-api-guideline-c.md#ffrt_queue_t)                             | 向队列提交一个任务。   |
 
 > **说明：**
 >

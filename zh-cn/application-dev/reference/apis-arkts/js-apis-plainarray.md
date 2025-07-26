@@ -88,9 +88,9 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-const plainArra = new PlainArray<string>();
+const plainArray = new PlainArray<string>();
 let result = plainArray.isEmpty();
-console.info("result = ", result); // result = true
+console.info("result = ", result); // result =  true
 ```
 
 

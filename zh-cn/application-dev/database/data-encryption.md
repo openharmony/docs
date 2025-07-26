@@ -144,7 +144,7 @@ export default class EntryAbility extends UIAbility {
       cryptoParam: CRYPTO_PARAM
     }
     try {
-      let store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+      store = await relationalStore.getRdbStore(context, STORE_CONFIG);
       if (store == null) {
         console.error('Failed to get RdbStore.');
       } else {

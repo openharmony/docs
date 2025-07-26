@@ -89,7 +89,7 @@ export struct PageOnePositive {
         .onContentWillChange((currentIndex, comingIndex) => {
           if (comingIndex == 1) {
             this.requestByTaskPool();
-            let context = getContext(this) as Context;
+            let context: Context = this.getUIContext().getHostContext() as Context;
             this.text = context.resourceManager.getStringSync($r('app.string.startup_text2'));
           }
           return true
@@ -128,7 +128,7 @@ export struct PageTwoPositive {
     // 在aboutToAppear接口中对耗时间的计算任务进行了异步处理。
     // 耗时操作
     this.computeTaskAsync(); // 异步任务
-    let context = getContext(this) as Context;
+    let context: Context = this.getUIContext().getHostContext() as Context;
     this.text = context.resourceManager.getStringSync($r('app.string.startup_text4'));
   }
 

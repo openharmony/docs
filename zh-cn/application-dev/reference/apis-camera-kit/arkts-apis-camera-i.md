@@ -45,8 +45,8 @@
 
 | 名称   | 类型                           |    只读   |     可选     | 说明       |
 | ------ | ----------------------------- | --------- |------------ | ---------- |
-| supportedCameras | [Array<CameraDevice\>](arkts-apis-camera-i.md#cameradevice) |     否    |       否     | 当前折叠状态所支持的相机信息列表。 |
-| foldStatus | [FoldStatus](arkts-apis-camera-e.md#foldstatus12) |     否    |       否     | 折叠屏折叠状态。 |
+| supportedCameras | [Array<CameraDevice\>](arkts-apis-camera-i.md#cameradevice) |     是    |       否     | 当前折叠状态所支持的相机信息列表。 |
+| foldStatus | [FoldStatus](arkts-apis-camera-e.md#foldstatus12) |     是    |       否     | 折叠屏折叠状态。 |
 
 ## Profile
 
@@ -246,8 +246,8 @@
 
 | 名称       | 类型      | 只读 | 可选 | 说明                      |
 | ---------- |---------| ---- | ---- |-------------------------|
-| isDeviceSwitched  | boolean | 否   | 否   | 自动切换镜头是否成功。true表示成功，false表示失败。       |
-| isDeviceCapabilityChanged | boolean  | 否   | 否   | 自动切换镜头成功后，其镜头能力值是否发生改变。true表示发生变化，false表示未发生变化。 |
+| isDeviceSwitched  | boolean | 是   | 否   | 自动切换镜头是否成功。true表示成功，false表示失败。       |
+| isDeviceCapabilityChanged | boolean  | 是   | 否   | 自动切换镜头成功后，其镜头能力值是否发生改变。true表示发生变化，false表示未发生变化。 |
 
 ## Rect
 

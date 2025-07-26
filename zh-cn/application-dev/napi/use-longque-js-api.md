@@ -21,9 +21,9 @@ Longque JS API 由 Longque JS Engine 提供，适用于在 OpenHarmony 平台构
 > 接口引入版本 : 1
 
 ### 接口描述
-| 接口                      | 名称         | 说明                                                                                                                                                     |
-| ------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| createDelegate             | 创建委托       | 创建 `underlyingObject` 的委托对象，对委托对象的属性读写操作将映射至 `underlyingObject`。通过 `initObject` 指定初始委托对象，通过 `propertyFilterFlags` 指定属性过滤器。默认情况下，将映射 `underlyingObject` 及其原型链上所有可枚举的字符串键属性。
+| 接口  | 名称  | 说明 |
+| -- | -- | -- |
+| createDelegate | 创建委托 | 创建 `underlyingObject` 的委托对象，对委托对象的属性读写操作将映射至 `underlyingObject`。通过 `initObject` 指定初始委托对象，通过 `propertyFilterFlags` 指定属性过滤器。默认情况下，将映射 `underlyingObject` 及其原型链上所有可枚举的字符串键属性。
 
 ### 参数
 (1) `underlyingObject`： 必选参数。表示被委托的底层对象。参数要求：
@@ -157,7 +157,7 @@ static int32_t TestJSVM() {
 }
 ```
 
-### 预期的输出
+预期的输出:
 ```
 JSVM API TEST: {"42":0,"x":1,"_y":2,"$z":3,"foo":"foo"}
 JSVM API TEST: {"42":0,"x":1,"foo":"foo"}

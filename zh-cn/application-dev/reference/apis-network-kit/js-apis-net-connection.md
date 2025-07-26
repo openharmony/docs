@@ -1329,8 +1329,6 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 **需要权限**：ohos.permission.INTERNET
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -1374,8 +1372,6 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress\>\>
 使用对应网络解析主机名以获取所有IP地址，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -2497,6 +2493,8 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>\>\)
 
 使用当前NetHandle对应的网络解析主机名获取到的所有IP地址，使用callback方式作为异步方法。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
@@ -2547,6 +2545,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 使用当前NetHandle对应的网络解析主机名获取到的所有IP地址，使用Promise方式作为异步方法。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.INTERNET
 

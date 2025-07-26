@@ -116,34 +116,34 @@
 
 4. 构造崩溃场景
 
-- 构造NativeCrash类型崩溃
+    - 构造NativeCrash类型崩溃
 
-  编辑工程中的“entry > src > main > cpp > napi_init.cpp”文件，Add方法中增加如下代码：
+      编辑工程中的“entry > src > main > cpp > napi_init.cpp”文件，Add方法中增加如下代码：
 
-  ```cpp
-  int *p = nullptr;
-  int a = *p; // 空指针解引用，程序会在此处崩溃
-  ```
+      ```cpp
+      int *p = nullptr;
+      int a = *p; // 空指针解引用，程序会在此处崩溃
+      ```
 
-  编辑工程中的“entry > src > main > ets > pages > Index.ets”文件，添加按钮并在其onClick函数中构造崩溃场景，以触发崩溃事件。示例代码如下：
+       编辑工程中的“entry > src > main > ets > pages > Index.ets”文件，添加按钮并在其onClick函数中构造崩溃场景，以触发崩溃事件。示例代码如下：
 
-  ```ts
-  Button("appCrash").onClick(()=>{
-    // 在按钮点击函数中调用napi_init.cpp中Add方法触发NativeCrash类型崩溃事件
-    testNapi.add(2, 3);
-  })
-  ```
+      ```ts
+      Button("appCrash").onClick(()=>{
+        // 在按钮点击函数中调用napi_init.cpp中Add方法触发NativeCrash类型崩溃事件
+        testNapi.add(2, 3);
+      })
+      ```
 
-- 构造JsError类型崩溃
+    - 构造JsError类型崩溃
 
-  编辑工程中的“entry > src > main > ets > pages > Index.ets”文件，添加按钮并在其onClick函数中构造崩溃场景，以触发崩溃事件。示例代码如下：
+      编辑工程中的“entry > src > main > ets > pages > Index.ets”文件，添加按钮并在其onClick函数中构造崩溃场景，以触发崩溃事件。示例代码如下：
 
-  ```ts
-  Button("appCrash").onClick(()=>{
-    // 在按钮点击函数中构造一个JsError类型崩溃，触发应用崩溃事件
-    let result: object = JSON.parse("");
-  })
-  ```
+      ```ts
+      Button("appCrash").onClick(()=>{
+        // 在按钮点击函数中构造一个JsError类型崩溃，触发应用崩溃事件
+        let result: object = JSON.parse("");
+      })
+      ```
 
 5. 点击DevEco Studio界面的运行按钮，启动应用工程。在应用界面中点击“appCrash”按钮，触发崩溃事件。系统根据崩溃类型（JsError或NativeCrash）生成相应的崩溃日志并进行回调。
 

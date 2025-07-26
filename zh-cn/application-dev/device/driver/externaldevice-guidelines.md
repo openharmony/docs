@@ -107,7 +107,7 @@
     try {
       let remoteDeviceDriver: deviceManager.RemoteDeviceDriver = await deviceManager.bindDriverWithDeviceId(deviceId,
         (err: BusinessError, id: number) => {
-        hilog.info(0, 'testTag', `device[${id}] id disconnect, err: ${JSON.stringify(err)}}`);
+        hilog.info(0, 'testTag', `device[${id}] id disconnect, err: ${JSON.stringify(err)}`);
       });
       return remoteDeviceDriver.remote;
     } catch (error) {
@@ -143,14 +143,14 @@
         await this.remote.sendMessageRequest(REQUEST_CODE, data, reply, option);
         // 获取驱动返回信息"Hello world"
         this.message = reply.readString();
-        hilog.info(0, 'testTag', `sendMessageRequest, message: ${this.message}}`);
+        hilog.info(0, 'testTag', `sendMessageRequest, message: ${this.message}`);
       } catch (error) {
         hilog.error(0, 'testTag', `sendMessageRequest failed, err: ${JSON.stringify(error)}`);
       }
     }
     ```
 
-7. 渲染UI界面，更多UI界面开发请参考[UI开发](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-ui-development-V5)。
+7. 渲染UI界面，更多UI界面开发请参考[UI开发](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-ui-development)。
 
     ```ts
     build() {
@@ -236,5 +236,5 @@
       }
       ```
 
-自动签名方法： 请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。
+自动签名方法： 请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。
 <!--RP1End-->

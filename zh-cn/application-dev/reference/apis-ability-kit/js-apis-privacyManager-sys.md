@@ -891,16 +891,16 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称       | 类型             | 必填   | 说明                                       |
-| -------- | -------------- | ---- | ---------------------------------------- |
-| tokenId  | number         | 否    | 目标应用的身份标识。<br/> 默认值为0，查询所有应用。         |
-| isRemote | boolean         | 否    | 指定是否查询远端设备。<br/> 默认值false，表示查询本端设备，true表示查询远端设备。 |
-| deviceId  | string         | 否    | 目标应用所在设备的ID。<br/> 默认设备ID为本端设备ID。   |
-| bundleName | string         | 否    | 目标应用的包名。<br/> 默认查询所有应用。 |
-| permissionNames  | Array&lt;Permissions&gt;         | 否    | 需要查询的权限集合。<br/> 默认查询所有权限的使用记录。               |
-| beginTime | number         | 否    | 查询的起始时间，单位：ms。<br/>默认值0，不设定起始时间。 |
-| endTime | number         | 否    | 查询的终止时间，单位：ms。<br/>默认值0，不设定终止时间。 |
-| flag | [PermissionUsageFlag](#permissionusageflag)         | 是    | 指定查询方式。 |
+| 名称       | 类型             | 只读 | 可选 | 说明                                       |
+| -------- | -------------- | ---- | ---- | ---------------------------------------- |
+| tokenId  | number         | 否    | 是    | 目标应用的身份标识。<br/> 默认值为0，查询所有应用。         |
+| isRemote | boolean         | 否    | 是    | 指定是否查询远端设备。<br/> 默认值false，表示查询本端设备，true表示查询远端设备。 |
+| deviceId  | string         | 否    | 是    | 目标应用所在设备的ID。<br/> 默认设备ID为本端设备ID。   |
+| bundleName | string         | 否    | 是    | 目标应用的包名。<br/> 默认查询所有应用。 |
+| permissionNames  | Array&lt;Permissions&gt;         | 否    | 是    | 需要查询的权限集合。<br/> 默认查询所有权限的使用记录。               |
+| beginTime | number         | 否    | 是    | 查询的起始时间，单位：ms。<br/>默认值0，不设定起始时间。 |
+| endTime | number         | 否    | 是    | 查询的终止时间，单位：ms。<br/>默认值0，不设定终止时间。 |
+| flag | [PermissionUsageFlag](#permissionusageflag)         | 否    | 否    | 指定查询方式。 |
 
 ## PermissionUsedResponse
 

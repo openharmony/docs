@@ -1,12 +1,12 @@
 # 使用Node-API接口产生的异常日志/崩溃分析
 
-以下维测手段多依赖于ArkTS运行时的多线程检测能力，因此建议在调试前启用此功能。启用方法参考文档[分析CppCrash（进程崩溃）](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-multi-thread-check)。
+以下维测手段依赖于ArkTS运行时的多线程检测能力，因此建议在调试前启用此功能。启用方法请参考文档[分析CppCrash（进程崩溃）](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-multi-thread-check)。
 
-若无特殊说明，本章节所描述的维测手段，在启用ArkTS运行时多线程检测开关的前提下，会在第一现场中断进程。
+若无特殊说明，本章节描述的维测手段会在启用ArkTS运行时多线程检测开关的情况下，立即中断进程。
 
 ## 数据在使用时，与创建该数据时所使用的env不一致
 
-### 各问题场景关键日志
+### 各问题场景的关键日志
 
 该维测手段主要包含以下两种场景：
 
@@ -16,7 +16,7 @@
    > param env not equal to its owner.
    >
 
-2. 调用napi方法使用已创建的napi数据结构时，入参napi_env与创建时地址一致，但原始napi_env已释放。
+2. 调用napi方法使用已创建的napi数据结构时，入参的napi_env地址与创建时一致，但原始的napi_env已释放。
 
    > **关键日志**
    >
@@ -28,7 +28,7 @@
    >
    >    current tsfn was created by dead env, owner id: &lt;owner id&gt;, current env id: &lt;current id&gt;
 
-该维测手段目前覆盖范围如下：
+该维测手段当前的覆盖范围如下：
 
 1. napi_get_reference_value
 2. napi_delete_reference*
@@ -38,11 +38,11 @@
 6. napi_call_threadsafe_function*
 7. napi_release_threadsafe_function*
 
-> \*：具有该标志的接口，仅能触发第二种场景的维测信息。
+> \*：具有此标志的接口，仅触发第二种场景的维测信息。
 
 ### 案例及示例代码
 
-> **注意：** 如下代码仅用于构造异常场景，触发异常分支的DFX日志。在您充分理解其意图前，请勿将其应用到业务场景中。
+> **注意：** 下面的代码仅用于构造异常场景，触发异常分支的DFX日志。在充分理解其意图前，请勿将其应用到业务场景中。
 
 #### 基础工具类
 
@@ -183,7 +183,7 @@ private:
 
 #### napi_ref相关接口
 
-napi_get_reference_value、napi_delete_reference示例代码
+napi_get_reference_value 和 napi_delete_reference 的示例代码
 
 ```cpp
 /*
@@ -233,7 +233,7 @@ napi_value TriggerDFXDelRef(napi_env, napi_callback_info)
 
 #### napi_async_work相关接口
 
-napi_queue_async_work、napi_queue_async_work_with_qos、napi_cancel_async_work示例代码
+napi_queue_async_work、napi_queue_async_work_with_qos 和 napi_cancel_async_work 的示例代码
 
 ```cpp
 /*
@@ -284,7 +284,7 @@ EXPAND_ASYNC_WORK_CASE(TriggerDFXCancelWork,
 
 #### napi_threadsafe_function相关接口
 
-napi_call_threadsafe_function、napi_release_threadsafe_function示例代码
+napi_call_threadsafe_function 和 napi_release_threadsafe_function 的示例代码
 
 ```cpp
 /*
@@ -332,7 +332,7 @@ EXPAND_THREADSAFE_FUNCTION_CASE(TriggerDFXTsfnRelease,
 
 大多数napi接口都不是多线程安全的，因此为这些错误用法额外增加了定位手段。
 
-若无特殊说明，本章节所描述的维测手段，在启用ArkTS运行时多线程检测开关的前提下，会在第一现场中断进程。
+若无特殊说明，本章节描述的维测手段会在启用ArkTS运行时多线程检测开关后，立即中断进程。
 
 > **关键日志**
 >
@@ -350,11 +350,11 @@ EXPAND_THREADSAFE_FUNCTION_CASE(TriggerDFXTsfnRelease,
 
 ### 案例及示例代码
 
-> **注意：** 如下代码仅用于构造异常场景，触发异常分支的DFX日志。在您充分理解其意图前，请勿将其应用到业务场景中。
+> **注意：** 下面的代码仅用于构造异常场景，触发异常分支的DFX日志。在充分理解其意图前，请勿将其应用到业务场景中。
 
 #### env_cleanup_hook相关接口
 
-napi_add_env_cleanup_hook、napi_remove_env_cleanup_hook示例代码
+napi_add_env_cleanup_hook 和 napi_remove_env_cleanup_hook 的示例代码
 
 ```cpp
 static void EnvCLeanUpCallback(void *arg) {

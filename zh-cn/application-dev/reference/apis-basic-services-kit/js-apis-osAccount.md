@@ -2020,7 +2020,7 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 | 参数名  | 类型   | 必填 | 说明                                                              |
 | ------- | ------ | ---- | ---------------------------------------------------------------- |
-| localId | number | 否   | 系统账号ID。不填则检查当前系统账号是否已验证。 |
+| localId | number | 否   | 系统账号ID。不填则检查当前系统账号是否已验证，默认为-1。 |
 
 **返回值：**
 
@@ -2978,13 +2978,13 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 | localName                      | string                                                       | 是   | 系统账号名称。                    |
 | type                           | [OsAccountType](#osaccounttype)                              | 是   | 系统账号类型。                      |
 | constraints                    | Array&lt;string&gt;                                          | 是   | 系统账号[约束](#系统账号约束列表)，默认为空。|
-| isVerified<sup>(deprecated)</sup> | boolean                                                   | 是   | 账号是否验证。true表示指定账号已验证；false表示指定账号未验证。<br>**说明**：从API version 7开始支持，从API version 11开始废弃。           |
+| isVerified<sup>(deprecated)</sup> | boolean                                                   | 是   | 账号是否验证。true表示指定账号已验证；false表示指定账号未验证。<br>**说明**：从API version 7开始支持，从API version 11开始废弃，建议使用isUnlocked。           |
 | isUnlocked<sup>11+</sup>      | boolean                                                       | 是   | 账号是否已解锁（EL2级别目录是否解密）。true表示指定账号已解锁；false表示指定账号未解锁。                      |
 | photo<sup>8+</sup>             | string                                                       | 是   | 系统账号头像，默认为空。                      |
 | createTime<sup>8+</sup>        | number                                                       | 是   | 系统账号创建时间。                  |
 | lastLoginTime<sup>8+</sup>     | number                                                       | 是   | 系统账号最后一次登录时间，默认为空。          |
 | serialNumber<sup>8+</sup>      | number                                                       | 是   | 系统账号SN码。                      |
-| isActived<sup>(deprecated)</sup>         | boolean                                            | 是   | 系统账号激活状态。true表示指定账号处于激活状态；false表示指定账号处于未激活状态。<br>**说明**：从API version 7开始支持，从API version 11开始废弃。                  |
+| isActived<sup>(deprecated)</sup>         | boolean                                            | 是   | 系统账号激活状态。true表示指定账号处于激活状态；false表示指定账号处于未激活状态。<br>**说明**：从API version 7开始支持，从API version 11开始废弃，建议使用isActivated。                  |
 | isActivated<sup>11+</sup>         | boolean                                                   | 是   | 系统账号是否激活。true表示指定账号已激活；false表示指定账号未激活。                  |
 | isCreateCompleted<sup>8+</sup> | boolean                                                      | 是   | 系统账号创建是否完整。true表示指定账号已创建完整；false表示指定账号未创建完整。              |
 | distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md#distributedinfo) | 是   | 分布式账号信息，默认为空。                    |
@@ -3000,7 +3000,7 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | 是   | 域名。     |
 | accountName | string | 是   | 域账号名。 |
-| serverConfigId<sup>18+</sup> | string | 否   | 域账号配置ID。 |
+| serverConfigId<sup>18+</sup> | string | 否   | 域账号配置ID，默认为空字符串。 |
 
 ## DomainServerConfig<sup>18+</sup>
 

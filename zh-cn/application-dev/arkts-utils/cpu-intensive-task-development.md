@@ -7,7 +7,7 @@ CPU密集型任务是指需要占用系统资源进行大量计算的任务，�
 基于多线程并发机制处理CPU密集型任务可以提高CPU利用率，提升应用程序响应速度。
 
 
-当任务不需要长时间（3分钟）占据后台线程，而是一个个独立的任务时，推荐使用TaskPool，反之推荐使用Worker。
+当任务不需要长时间（3分钟）占用后台线程，而是一个个独立的任务时，推荐使用TaskPool，反之推荐使用Worker。
 
 接下来将分别以图像直方图处理和后台长时间模型预测任务为例进行说明。
 
@@ -16,10 +16,10 @@ CPU密集型任务是指需要占用系统资源进行大量计算的任务，�
 
 1. 实现图像处理的业务逻辑。
 
-2. 数据分段，通过任务组发起关联任务调度。
+2. 对数据进行分段，并通过任务组发起关联任务调度。
    创建[TaskGroup](../reference/apis-arkts/js-apis-taskpool.md#taskgroup10)，通过[addTask()](../reference/apis-arkts/js-apis-taskpool.md#addtask10)添加对应的任务，然后通过[execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute10)执行任务组，并指定为[高优先级](../reference/apis-arkts/js-apis-taskpool.md#priority)。在当前任务组所有任务结束后，会将直方图处理结果同时返回。
 
-3. 结果数组汇总处理。
+3. 汇总处理结果数组。
 
 ```ts
 // Index.ets
@@ -78,7 +78,7 @@ struct Index {
 
 本文通过某地区提供的房价数据训练一个简易的房价预测模型，该模型支持通过输入房屋面积和房间数量去预测该区域的房价，模型需要长时间运行，房价预测需要使用前面的模型运行结果，因此需要使用Worker。
 
-1. DevEco Studio提供了Worker创建的模板，新建一个Worker线程，例如命名为“MyWorker”。
+1. DevEco Studio提供了Worker创建的模板，创建一个Worker线程，例如命名为“MyWorker”。
 
    ![newWorker](figures/newWorker.png)
 
@@ -164,7 +164,7 @@ struct Index {
     ```
     <!-- @[interact_main_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker1.ts) -->
 
-6. 在Worker线程中完成任务之后，执行Worker线程销毁操作。销毁线程的方式主要有两种：根据需要可以在宿主线程中对Worker线程进行销毁；也可以在Worker线程中主动销毁Worker线程。
+6. 在Worker线程中完成任务后，可以执行销毁操作。销毁方式有两种：一是在宿主线程中销毁Worker线程；二是在Worker线程中主动销毁。
 
     在宿主线程中通过调用[onexit()](../reference/apis-arkts/js-apis-worker.md#onexit9)方法定义Worker线程销毁后的处理逻辑。
 
