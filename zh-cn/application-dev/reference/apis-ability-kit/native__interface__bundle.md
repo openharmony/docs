@@ -6,9 +6,9 @@
 
 **库：** libbundle.z.so
 
-**起始版本：**
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
-9
+**起始版本：** 9
 
 **相关模块：**
 
