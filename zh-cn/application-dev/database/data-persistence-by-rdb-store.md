@@ -240,32 +240,17 @@
    let value3 = 100.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
    let value5 = BigInt('15822401018187971961171');
-   // 以下三种方式可用
-   const valueBucket1: relationalStore.ValuesBucket = {
-     'NAME': value1,
-     'AGE': value2,
-     'SALARY': value3,
-     'CODES': value4,
-     'IDENTITY': value5,
-   };
-   const valueBucket2: relationalStore.ValuesBucket = {
+   const valueBucket: relationalStore.ValuesBucket = {
      NAME: value1,
      AGE: value2,
      SALARY: value3,
      CODES: value4,
      IDENTITY: value5,
    };
-   const valueBucket3: relationalStore.ValuesBucket = {
-     "NAME": value1,
-     "AGE": value2,
-     "SALARY": value3,
-     "CODES": value4,
-     "IDENTITY": value5,
-   };
 
    if (store !== undefined) {
      try {
-       const rowId = await store.insert('EMPLOYEE', valueBucket1);
+       const rowId = await store.insert('EMPLOYEE', valueBucket);
        console.info(`Succeeded in inserting data. rowId:${rowId}`);
      } catch (error) {
        const err = error as BusinessError;
@@ -288,34 +273,19 @@
    let value8 = 200.5;
    let value9 = new Uint8Array([1, 2, 3, 4, 5]);
    let value10 = BigInt('15822401018187971967863');
-   // 以下三种方式可用
-   const valueBucket4: relationalStore.ValuesBucket = {
-     'NAME': value6,
-     'AGE': value7,
-     'SALARY': value8,
-     'CODES': value9,
-     'IDENTITY': value10,
-   };
-   const valueBucket5: relationalStore.ValuesBucket = {
+   const valueBucket2: relationalStore.ValuesBucket = {
      NAME: value6,
      AGE: value7,
      SALARY: value8,
      CODES: value9,
      IDENTITY: value10,
    };
-   const valueBucket6: relationalStore.ValuesBucket = {
-     "NAME": value6,
-     "AGE": value7,
-     "SALARY": value8,
-     "CODES": value9,
-     "IDENTITY": value10,
-   };
 
    // 修改数据
    let predicates1 = new relationalStore.RdbPredicates('EMPLOYEE'); // 创建表'EMPLOYEE'的predicates
    predicates1.equalTo('NAME', 'Lisa'); // 匹配表'EMPLOYEE'中'NAME'为'Lisa'的字段
    if (store !== undefined) {
-     (store as relationalStore.RdbStore).update(valueBucket4, predicates1, (err: BusinessError, rows: number) => {
+     (store as relationalStore.RdbStore).update(valueBucket2, predicates1, (err: BusinessError, rows: number) => {
        if (err) {
          console.error(`Failed to update data. Code:${err.code}, message:${err.message}`);
         return;
@@ -387,7 +357,7 @@
        console.error(`Failed to creating fts table. code: ${err.code}, message: ${err.message}.`);
      }
    }
-   if (store != undefined) {
+   if (store !== undefined) {
      try {
        const resultSet = await store.querySql('SELECT name FROM example WHERE example MATCH ?', ['测试']);
        while (resultSet.goToNextRow()) {
@@ -410,17 +380,17 @@
    具体信息请参见[关系型数据库](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#createtransaction14)。
 
    ```ts
-   if (store != undefined) {
-     const valueBucket: relationalStore.ValuesBucket = {
-       'NAME': "Lisa",
-       'AGE': 18,
-       'SALARY': 100.5,
-       'CODES': new Uint8Array([1, 2, 3, 4, 5])
+   if (store !== undefined) {
+     const valueBucket3: relationalStore.ValuesBucket = {
+       NAME: "Lisa",
+       AGE: 18,
+       SALARY: 100.5,
+       CODES: new Uint8Array([1, 2, 3, 4, 5])
      };
      // 创建事务对象
      (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
        // 使用事务对象插入数据
-       transaction.insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE)
+       transaction.insert("EMPLOYEE", valueBucket3, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE)
          .then((rowId: number) => {
            // 插入成功提交事务
            transaction.commit();
@@ -438,19 +408,19 @@
    ```
 
    ```ts
-   if (store != undefined) {
-     const valueBucket: relationalStore.ValuesBucket = {
-       'NAME': "Rose",
-       'AGE': 22,
-       'SALARY': 200.5,
-       'CODES': new Uint8Array([1, 2, 3, 4, 5]),
+   if (store !== undefined) {
+     const valueBucket4: relationalStore.ValuesBucket = {
+       NAME: "Rose",
+       AGE: 22,
+       SALARY: 200.5,
+       CODES: new Uint8Array([1, 2, 3, 4, 5]),
      };
      let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
      predicates.equalTo("NAME", "Lisa");
      // 创建事务对象
      (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
        // 使用事务对象更新数据
-       transaction.update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE)
+       transaction.update(valueBucket4, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE)
          .then(async (rows: Number) => {
            // 更新成功提交事务
            transaction.commit();
@@ -467,7 +437,7 @@
    ```
 
    ```ts
-   if (store != undefined) {
+   if (store !== undefined) {
      // 创建事务
      (store as relationalStore.RdbStore).createTransaction()
        .then((transaction: relationalStore.Transaction) => {
