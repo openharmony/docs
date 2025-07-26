@@ -1804,7 +1804,7 @@ isDone(): boolean
 ```ts
 @Concurrent
 function inspectStatus(arg: number): number {
-  // 2s sleep
+  // 1s sleep
   let t: number = Date.now();
   while (Date.now() - t < 1000) {
     continue;
@@ -2755,7 +2755,7 @@ function inspectStatus(arg: number): number {
   if (taskpool.Task.isCanceled()) {
     return arg + 2;
   }
-  // 延时2s
+  // 延时0.5s
   let t: number = Date.now();
   while (Date.now() - t < 500) {
     continue;
