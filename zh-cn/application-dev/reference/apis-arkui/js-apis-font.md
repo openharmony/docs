@@ -20,6 +20,8 @@ registerFont(options: FontOptions): void
 
 在字体管理中注册自定义字体。
 
+该接口为异步接口，不支持并发调用。
+
 > **说明：**
 >
 > 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getFont](js-apis-arkui-UIContext.md#getfont)获取[Font](js-apis-arkui-UIContext.md#font)实例，再通过此实例调用替代方法[registerFont](js-apis-arkui-UIContext.md#registerfont)。
