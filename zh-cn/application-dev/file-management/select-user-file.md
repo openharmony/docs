@@ -31,7 +31,7 @@
    const documentSelectOptions = new picker.DocumentSelectOptions();
    // 选择文档的最大数目（可选）。
    documentSelectOptions.maxSelectNumber = 5;
-   // 指定选择的文件或者目录URI（可选）。
+   // 指定选择的文件或者目录的URI（可选）。
    documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test";
    // 选择文件的后缀类型['后缀类型描述|后缀类型']（可选，不传该参数，默认不过滤，即显示所有文件），若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔（可选），后缀类型名不能超过100。此外2in1设备支持通配符方式['所有文件(*.*)|.*']（说明：从API version 17开始，手机支持该配置），表示为显示所有文件。
     documentSelectOptions.fileSuffixFilters = ['图片(.png, .jpg)|.png,.jpg', '文档|.txt', '视频|.mp4', '.pdf']; 
