@@ -25,7 +25,7 @@
 > 文本内容变更后，需等待布局完成才可获取到最新的布局信息。
 
 ### 导入对象
-以Text组件为例
+以Text组件为例，完整示例请参考Text组件的[示例10获取文本信息](./ts-basic-components-text.md#示例10获取文本信息)。
 ```ts
 controller: TextController = new TextController();
 let layoutManager: LayoutManager = this.controller.getLayoutManager();
@@ -1083,7 +1083,7 @@ NumericTextTransition继承自[ContentTransition](#contenttransition20)。
 
 | 名称                                       | 类型                                                         | 必填 | 说明                                                         |
 | ------------------------------------------ | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| flipDireciton                              | [FlipDirection](#flipdirection20)    | 否   | 翻牌方向。<br>默认值：FlipDirection.DOWN |
+| flipDirection                             | [FlipDirection](#flipdirection20)    | 否   | 翻牌方向。<br>默认值：FlipDirection.DOWN |
 | enableBlur                                 | boolean                              | 否   | 是否开启翻牌模糊效果。<br>默认值：false<br>true：开启翻牌模糊效果。<br>false：不开启翻牌模糊效果。|
 
 ### constructor<sup>20+</sup>
@@ -1098,7 +1098,7 @@ constructor(options?: NumericTextTransitionOptions)
 
 **参数：**
 
-| 名称  | 类型   | 必填   | 说明  |
+| 参数名  | 类型   | 必填   | 说明  |
 | ------- | ------ | ---- | ----- |
 | options | [NumericTextTransitionOptions](#numerictexttransitionoptions20对象说明) | 否    | 设置数字翻牌动效。 |
 
@@ -1112,7 +1112,7 @@ constructor(options?: NumericTextTransitionOptions)
 
 | 名称                                       | 类型                                                         | 必填 | 说明                                                         |
 | ------------------------------------------ | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| flipDireciton                              | [FlipDirection](#flipdirection20)    | 否   | 翻牌方向。<br>默认值：FlipDirection.DOWN |
+| flipDirection                              | [FlipDirection](#flipdirection20)    | 否   | 翻牌方向。<br>默认值：FlipDirection.DOWN |
 | enableBlur                                 | boolean                              | 否   | 是否开启翻牌模糊效果。<br>默认值：false<br>true：开启翻牌模糊效果。<br>false：不开启翻牌模糊效果。|
 
 ## FlipDirection<sup>20+</sup>
