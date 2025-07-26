@@ -1183,7 +1183,7 @@ struct Index {
   @State startDisplayId: number = -1;
   @State enterDisplayId: number = -1;
   @State moveDisplayId: number = -1;
-  @State LeaveDisplayId: number = -1;
+  @State leaveDisplayId: number = -1;
   @State dropDisplayId: number = -1;
 
   @Builder
@@ -1275,7 +1275,7 @@ struct Index {
           .height(50)
           .draggable(true)
           .margin({ left: 15 })
-        Text('displayID in onDragLeave: ' + this.LeaveDisplayId.toString())
+        Text('displayID in onDragLeave: ' + this.leaveDisplayId.toString())
           .width('100%')
           .height(50)
           .draggable(true)
@@ -1315,7 +1315,7 @@ struct Index {
           })
           .onDragLeave((event) => {
             let id = event.getDisplayId();
-            this.LeaveDisplayId = id;
+            this.leaveDisplayId = id;
           })
           .onDrop((dragEvent: DragEvent) => {
             let id = dragEvent.getDisplayId();
