@@ -1,15 +1,20 @@
-# \@BuilderParam装饰器：引用\@Builder函数（ArkTS1.1）
+# \@BuilderParam装饰器：引用\@Builder函数（ArkTS1.2）
 
 当开发者创建自定义组件并需要为其添加特定功能（例如：点击跳转操作）时，如果直接在组件内嵌入事件方法，会导致所有该自定义组件的实例都增加此功能。为了解决组件功能定制化的问题，ArkUI引入了@BuilderParam装饰器。@BuilderParam用于装饰指向@Builder方法的变量，开发者可以在初始化自定义组件时，使用不同的方式（例如：参数修改、尾随闭包、借用箭头函数等）对@BuilderParam装饰的自定义构建函数进行传参赋值。在自定义组件内部，通过调用@BuilderParam为组件增加特定功能。该装饰器用于声明任意UI描述的元素，类似于slot占位符。
 
-在阅读本文档前，建议提前阅读：[\@Builder](./arkts-builder.md)。
+在阅读本文档前，建议提前阅读：[\@Builder](./arkts-v1.2-builder.md)。
 
 > **说明：**
 >
-> 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
+> 从API version 20开始使用。
 >
-> 从API version 11开始，该装饰器支持在原子化服务中使用。
+> 本模块仅适用于ArkTS1.2。
 
+## 导入模块
+
+```ts
+import { BuilderParam } from '@ohos.arkui.component';
+```
 
 ## 装饰器使用说明
 
@@ -44,6 +49,8 @@
 - 用父组件自定义构建函数初始化子组件\@BuilderParam装饰的方法。
 
   ```ts
+  import { Entry, Component, Column, Builder, BuilderParam, Text } from "@ohos.arkui.component";
+
   @Component
   struct Child {
     @Builder
@@ -84,6 +91,8 @@
   this指向示例如下：
 
     ```ts
+    import { Entry, Component, Column, Builder, BuilderParam, Text } from "@ohos.arkui.component";
+
     @Component
     struct Child {
       label: string = 'Child';
@@ -122,10 +131,10 @@
           // 调用this.componentBuilder()时，this指向当前@Entry所装饰的Parent组件，即label变量的值为"Parent"。
           this.componentBuilder()
           Child({
-            // 把this.componentBuilder传给子组件Child的@BuilderParam customBuilderParam，this指向的是子组件Child，即label变量的值为"Child"。
+            // 把this.componentBuilder传给子组件Child的@BuilderParam customBuilderParam，this始终指向定义处上下文Parent，即label变量的值为"Parent"。
             customBuilderParam: this.componentBuilder,
             // 把():void=>{this.componentBuilder()}传给子组件Child的@BuilderParam customChangeThisBuilderParam，
-            // 因为箭头函数的this指向的是宿主对象，所以label变量的值为"Parent"。
+            // this始终指向定义处上下文Parent，即label变量的值为"Parent"。
             customChangeThisBuilderParam: (): void => {
               this.componentBuilder()
             }
@@ -136,7 +145,7 @@
     ```
   **图2** 示例效果图
 
-  ![builderparam-demo2](figures/builderparam-demo2.png)
+  ![builderparam-demo2](figures/builderparam-demo2-2.png)
 
 
 ## 限制条件
@@ -154,6 +163,8 @@
 `@BuilderParam`装饰的方法为有参数或无参数两种形式，需与指向的`@Builder`方法类型匹配。
 
 ```ts
+import { Entry, Component, Column, Builder, BuilderParam, Text, Color } from "@ohos.arkui.component";
+
 class Tmp {
   label: string = '';
 }
@@ -225,6 +236,9 @@ struct Parent {
 示例1：
 
 ```ts
+import { Entry, Component, Column, Builder, BuilderParam, Text, Color, ClickEvent } from "@ohos.arkui.component";
+import { State, Prop } from "@ohos.arkui.stateManagement";
+
 @Component
 struct CustomContainer {
   @Prop header: string = '';
@@ -268,7 +282,7 @@ struct CustomContainerUser {
         Column() {
           specificParam('testA', 'testB')
         }.backgroundColor(Color.Yellow)
-        .onClick(() => {
+        .onClick((e: ClickEvent) => {
           this.text = 'changeHeader';
         })
       }
@@ -280,78 +294,6 @@ struct CustomContainerUser {
 
 ![builderparam-demo4](figures/builderparam-demo4.png)
 
-使用全局`@Builder`和局部`@Builder`通过尾随闭包的形式对`@ComponentV2`装饰的自定义组件中的`@BuilderParam`进行初始化。
-
-示例2：
-
-```ts
-@ComponentV2
-struct ChildPage {
-  @Require @Param message: string = "";
-
-  @Builder
-  customBuilder() {
-  }
-
-  @BuilderParam customBuilderParam: () => void = this.customBuilder;
-
-  build() {
-    Column() {
-      Text(this.message)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-      this.customBuilderParam()
-    }
-  }
-}
-
-const builder_value: string = 'Hello World';
-
-@Builder
-function overBuilder() {
-  Row() {
-    Text(`全局 Builder: ${builder_value}`)
-      .fontSize(20)
-      .fontWeight(FontWeight.Bold)
-  }
-}
-
-@Entry
-@ComponentV2
-struct ParentPage {
-  @Local label: string = 'Parent Page';
-
-  @Builder
-  componentBuilder() {
-    Row() {
-      Text(`局部 Builder :${this.label}`)
-        .fontSize(20)
-        .fontWeight(FontWeight.Bold)
-    }
-  }
-
-  build() {
-    Column() {
-      ChildPage({ message: this.label }) {
-        Column() { // 使用局部@Builder，通过组件后紧跟一个大括号“{}”形成尾随闭包去初始化自定义组件@BuilderParam
-          this.componentBuilder();
-        }
-      }
-
-      Line()
-        .width('100%')
-        .height(10)
-        .backgroundColor('#000000').margin(10)
-      ChildPage({ message: this.label }) { // 使用全局@Builder，通过组件后紧跟一个大括号“{}”形成尾随闭包去初始化自定义组件@BuilderParam
-        Column() {
-          overBuilder();
-        }
-      }
-    }
-  }
-}
-```
-
 ### 使用\@BuilderParam隔离多组件对\@Builder跳转逻辑的调用
 
 当@Builder封装的系统组件包含跳转逻辑时，所有调用该@Builder的自定义组件将具备该跳转功能。对于需要禁用跳转的特定组件，可使用@BuilderParam来隔离跳转逻辑。
@@ -362,6 +304,7 @@ struct ParentPage {
 
 ```ts
 import { HelloWorldPageBuilder } from './helloworld';
+import { Entry, Component, Column, Builder, BuilderParam, Text, Color, ClickEvent, Navigation, Button } from "@ohos.arkui.component";
 
 class navigationParams {
   pathStack: NavPathStack = new NavPathStack();
@@ -379,7 +322,7 @@ function navigationAction(params: navigationParams) {
         .onClick(() => {
           // 通过修改@BuilderParam参数决定是否跳转。
           if (params.boo) {
-            params.pathStack.pushPath({ name: "HelloWorldPage" });
+            params.pathStack.pushPath({ name: 'HelloWorldPage' });
           } else {
             console.info('@BuilderParam setting does not jump');
           }
@@ -440,6 +383,8 @@ struct ChildPage_BuilderParam {
 
 ```ts
 // helloworld.ets
+import { Entry, Component, Column, Builder, Text, Color, ClickEvent, NavDestination, FontWeight, NavPathStack } from "@ohos.arkui.component";
+
 @Builder
 export function HelloWorldPageBuilder() {
   HelloWorldPage()
@@ -496,6 +441,8 @@ struct HelloWorldPage {
 在自定义组件中，使用\@BuilderParam装饰的变量接收父组件通过\@Builder传递的内容进行初始化，由于父组件的\@Builder可以使用箭头函数改变当前的this指向，因此使用\@BuilderParam装饰的变量会展示不同的内容。
 
 ```ts
+import { Entry, Component, Column, Builder, BuilderParam, Text, FontWeight, Line } from "@ohos.arkui.component";
+
 @Component
 struct ChildPage {
   label: string = 'Child Page';
@@ -545,7 +492,7 @@ struct ParentPage {
       // 调用this.componentBuilder()时，this指向当前@Entry所装饰的ParentPage组件，所以label变量的值为"Parent Page"。
       this.componentBuilder()
       ChildPage({
-        // 把this.componentBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向的是子组件ChildPage，所以label变量的值为"Child Page"。
+        // 把this.componentBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向的仍是父组件ParentPage，所以label变量的值为"Parent Page"。
         customBuilderParam: this.componentBuilder,
         // 把():void=>{this.componentBuilder()}传给子组件ChildPage的@BuilderParam customChangeThisBuilderParam，
         // 因为箭头函数的this指向的是宿主对象，所以label变量的值为"Parent Page"。
@@ -571,197 +518,9 @@ struct ParentPage {
 ```
 **图6** 示例效果图
 
-![builderparam-demo5](figures/builderparam-demo5.png)
-
-### 在@ComponentV2装饰的自定义组件中使用@BuilderParam
-
-使用全局@Builder和局部@Builder初始化@ComponentV2装饰的自定义组件中的@BuilderParam属性。
-
-```ts
-@ComponentV2
-struct ChildPage {
-  @Param label: string = 'Child Page';
-
-  @Builder
-  customBuilder() {
-  }
-
-  @BuilderParam customBuilderParam: () => void = this.customBuilder;
-  @BuilderParam customChangeThisBuilderParam: () => void = this.customBuilder;
-
-  build() {
-    Column() {
-      this.customBuilderParam()
-      this.customChangeThisBuilderParam()
-    }
-  }
-}
-
-const builder_value: string = 'Hello World';
-
-@Builder
-function overBuilder() {
-  Row() {
-    Text(`全局 Builder: ${builder_value}`)
-      .fontSize(20)
-      .fontWeight(FontWeight.Bold)
-  }
-}
-
-@Entry
-@ComponentV2
-struct ParentPage {
-  @Local label: string = 'Parent Page';
-
-  @Builder
-  componentBuilder() {
-    Row() {
-      Text(`局部 Builder :${this.label}`)
-        .fontSize(20)
-        .fontWeight(FontWeight.Bold)
-    }
-  }
-
-  build() {
-    Column() {
-      // 调用this.componentBuilder()时，this指向当前@Entry所装饰的ParentPage组件，所以label变量的值为"Parent Page"。
-      this.componentBuilder()
-      ChildPage({
-        // 把this.componentBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向的是子组件ChildPage，所以label变量的值为"Child Page"。
-        customBuilderParam: this.componentBuilder,
-        // 把():void=>{this.componentBuilder()}传给子组件ChildPage的@BuilderParam customChangeThisBuilderPara
-        // 因为箭头函数的this指向的是宿主对象，所以label变量的值为"Parent Page"。
-        customChangeThisBuilderParam: (): void => {
-          this.componentBuilder()
-        }
-      })
-      Line()
-        .width('100%')
-        .height(5)
-        .backgroundColor('#000000').margin(10)
-      // 调用全局overBuilder()时，this指向当前整个活动页，所以展示的内容为"Hello World"。
-      overBuilder()
-      ChildPage({
-        // 把全局overBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向当前整个活动页，所以展示的内容为"Hello World"。
-        customBuilderParam: overBuilder,
-        // 把全局overBuilder传给子组件ChildPage的@BuilderParam customChangeThisBuilderParam，this指向当前整个活动页，所以展示的内容为"Hello World"。
-        customChangeThisBuilderParam: overBuilder
-      })
-    }
-  }
-}
-```
-**图7** 示例效果图
-
-![builderparam-demo6](figures/builderparam-demo6.png)
-
+![builderparam-demo5](figures/builderparam-demo5-2.png)
 
 ## 常见问题
-
-### 改变内容UI不刷新
-
-调用自定义组件ChildPage时，通过`this.componentBuilder`形式传递`@Builder`参数。由于`this`指向自定义组件内部，因此在父组件中改变`label`的值时，自定义组件ChildPage无法感知到这一变化。
-
-【反例】
-
-```ts
-@Component
-struct ChildPage {
-  @State label: string = 'Child Page';
-
-  @Builder
-  customBuilder() {
-  }
-
-  @BuilderParam customChangeThisBuilderParam: () => void = this.customBuilder;
-
-  build() {
-    Column() {
-      this.customChangeThisBuilderParam()
-    }
-  }
-}
-
-@Entry
-@Component
-struct ParentPage {
-  @State label: string = 'Parent Page';
-
-  @Builder
-  componentBuilder() {
-    Row() {
-      Text(`Builder :${this.label}`)
-        .fontSize(20)
-        .fontWeight(FontWeight.Bold)
-    }
-  }
-
-  build() {
-    Column() {
-      ChildPage({
-        // 当前写法this指向ChildPage组件内
-        customChangeThisBuilderParam: this.componentBuilder
-      })
-      Button('点击改变label内容')
-        .onClick(() => {
-          this.label = 'Hello World';
-        })
-    }
-  }
-}
-```
-
-使用箭头函数将`@Builder`传递到自定义组件`ChildPage`中，这样`this`指向会停留在父组件`ParentPage`里。因此，在父组件中改变`label`的值时，`ChildPage`会感知到并重新渲染UI。
-
-【正例】
-
-```ts
-@Component
-struct ChildPage {
-  @State label: string = 'Child Page';
-
-  @Builder
-  customBuilder() {
-  }
-
-  @BuilderParam customChangeThisBuilderParam: () => void = this.customBuilder;
-
-  build() {
-    Column() {
-      this.customChangeThisBuilderParam()
-    }
-  }
-}
-
-@Entry
-@Component
-struct ParentPage {
-  @State label: string = 'Parent Page';
-
-  @Builder
-  componentBuilder() {
-    Row() {
-      Text(`Builder :${this.label}`)
-        .fontSize(20)
-        .fontWeight(FontWeight.Bold)
-    }
-  }
-
-  build() {
-    Column() {
-      ChildPage({
-        customChangeThisBuilderParam: () => {
-          this.componentBuilder()
-        }
-      })
-      Button('点击改变label内容')
-        .onClick(() => {
-          this.label = 'Hello World';
-        })
-    }
-  }
-}
-```
 
 ### @Require装饰器和@BuilderParam装饰器联合使用
 
@@ -837,6 +596,8 @@ struct ChildPage {
 【反例】
 
 ```ts
+import { Entry, Component, Column, Builder, BuilderParam } from "@ohos.arkui.component";
+
 @Builder
 function globalBuilder() {
   Text('Hello World')
@@ -845,7 +606,7 @@ function globalBuilder() {
 @Entry
 @Component
 struct customBuilderDemo {
-  @State message: string = "";
+  @State message: string = '';
 
   build() {
     Column() {
@@ -872,6 +633,8 @@ struct ChildPage {
 【正例】
 
 ```ts
+import { Entry, Component, Column, Builder, BuilderParam } from "@ohos.arkui.component";
+
 @Builder function globalBuilder() {
   Text('Hello World')
 }
