@@ -642,7 +642,7 @@ try {
 
 setInstallLocalEnterpriseAppEnabled(admin: Want, isEnable: boolean): void
 
-设置是否支持本地安装企业应用。设置为支持安装后，针对具备本地安装企业应用能力的PC/2in1设备，可以在本地安装签名证书分发类型为enterprise_normal的企业应用。
+设置是否支持本地安装企业应用。设置为支持后，具备本地安装能力的PC/2in1设备可安装签名证书分发类型为enterprise_normal的企业应用。
 该接口仅在PC/2in1设备上生效。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
