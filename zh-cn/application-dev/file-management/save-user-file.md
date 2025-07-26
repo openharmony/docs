@@ -37,6 +37,8 @@
    const documentSaveOptions = new picker.DocumentSaveOptions();
    // 保存文件名（可选）。 默认为空。
    documentSaveOptions.newFileNames = ["DocumentViewPicker01.txt"];
+   //指定保存的文件或者目录URI（可选）。
+   documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test";
    // 保存文件类型['后缀类型描述|后缀类型'],选择所有文件：'所有文件(*.*)|.*'（可选） ，如果选择项存在多个后缀（做大限制100个过滤后缀），默认选择第一个。如果不传该参数，默认无过滤后缀。
    documentSaveOptions.fileSuffixChoices = ['文档|.txt', '.pdf']; 
    ```
