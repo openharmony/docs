@@ -1,4 +1,9 @@
 # dlp_permission_api.h
+<!--Kit: Data Protection Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @winnieHuYu-->
+<!--SE: @lucky-jinduo-->
+<!--TSE: @nacyli-->
 
 ## 概述
 
