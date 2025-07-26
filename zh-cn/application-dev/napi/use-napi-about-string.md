@@ -55,13 +55,16 @@ static napi_value GetValueStringUtf8(napi_env env, napi_callback_info info)
     }
     char* buf = new char[length + 1];
     std::memset(buf, 0, length + 1);
-    napi_get_value_string_utf8(env, args[0], buf, length + 1, &length);
+    status = napi_get_value_string_utf8(env, args[0], buf, length + 1, &length);
+    if (status != napi_ok) {
+        return nullptr;
+    }
     napi_value result = nullptr;
     status = napi_create_string_utf8(env, buf, length, &result);
     delete[] buf;
     if (status != napi_ok) {
         return nullptr;
-    };
+    }
     return result;
 }
 ```
@@ -78,7 +81,7 @@ export const getValueStringUtf8: (param: string | number) => string | undefined;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 // 分别传入字符和非字符检测接口，传入字符串类型的数据将返回原字符串，传入其他类型返回undefined
 hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_utf8_string %{public}s', testNapi.getValueStringUtf8('aaBC+-$%^你好123'));
@@ -122,7 +125,7 @@ export const createStringUtf8: () => string | undefined;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_string_utf8:%{public}s', testNapi.createStringUtf8());
@@ -174,7 +177,7 @@ export const getValueStringUtf16: (data: string) => string;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let result = testNapi.getValueStringUtf16('hello,');
@@ -217,7 +220,7 @@ export const createStringUtf16: () => string | undefined;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_string_utf16:%{public}s ', testNapi.createStringUtf16());
@@ -245,7 +248,7 @@ static napi_value GetValueStringLatin1(napi_env env, napi_callback_info info)
     napi_value napi_Res = nullptr;
     napi_status status = napi_get_value_string_latin1(env, args[0], buf, MAX_BUFFER_SIZE, &length);
     // 当输入的值不是字符串时，接口会返回napi_string_expected
-    if (status == napi_string_expected) {
+    if (status != napi_ok) {
         return nullptr;
     }
     napi_create_string_latin1(env, buf, length, &napi_Res);
@@ -265,7 +268,7 @@ export const getValueStringLatin1: (param: number | string) => string | undefine
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 // 传入非字符型数据，函数返回undefined
 hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_latin1_not_string %{public}s', testNapi.getValueStringLatin1(10));
@@ -312,7 +315,7 @@ export const createStringLatin1: () => string | undefined;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API  napi_create_string_latin1:%{public}s', testNapi.createStringLatin1());

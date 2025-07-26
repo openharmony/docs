@@ -1,6 +1,6 @@
 # @ohos.distributedsched.proxyChannelManager (代理通道管理)
 
-软总线具备常驻运行能力，可为跨设备通信提供稳定可靠的底层通道。本模块基于软总线进程开发，支持手机与穿戴设备间高效的数据互通，可为用户提供无缝的设备互联体验。模块核心功能包括：代理通道管理、数据路由管理、 应用状态感知和唤醒、链路状态监听。
+软总线具备常驻运行能力，可为跨设备通信提供稳定可靠的底层通道。本模块基于软总线进程开发，支持手机与穿戴设备间高效的数据互通，可为用户提供无缝的设备互联体验。使用场景：手机侧APP与手表侧APP协同时，当手机APP不在前台被使用，手机应用的下行消息经由通知服务器，通过代理模块发送给手表侧。模块核心功能包括：代理通道管理、数据路由管理、 应用状态感知和唤醒、链路状态监听。
 
 - 代理通道管理：通过蓝牙 BR 协议建立手机与穿戴设备的双向数据通道，支持的数据通道 ID 范围是[1，2147483647] 。
 
@@ -13,8 +13,6 @@
 > **说明：**
 >
 > 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> 该套接口目前为Beta阶段，暂未开放申请。
 
 ## 导入模块
 
@@ -304,7 +302,7 @@ off(type:&nbsp;'receiveData', channelId:&nbsp;number, callback?:&nbsp;Callback&l
 | --------- | ---------------------------------------- | ---- | -------- |
 | type      | string | 是 | 设置订阅类型，固定取值为'receiveData'。|
 | channelId | number | 是    | 打开代理通道时获取的channelId。 |
-| callback  | Callback&lt;[DataInfo](#datainfo)&gt; | 否 | 注册的回调函数。 |
+| callback  | Callback&lt;[DataInfo](#datainfo)&gt; | 否 | 注册的回调函数。如果为空、undefined、null，则取消订阅所有的数据接收事件。如果不为空，传入最后一次注册的回调函数。 |
 
 **错误码：**
 
@@ -418,7 +416,7 @@ off(type:&nbsp;'channelStateChange', channelId:&nbsp;number, callback?:&nbsp;Cal
 | --------- | ---------------------------------------- | ---- | -------- |
 | type      | string | 是 | 设置订阅类型为'channelStateChange'。|
 | channelId | number | 是    | 打开代理通道时获取的channelId。 |
-| callback  | Callback&lt;[ChannelStateInfo](#channelstateinfo)&gt; | 否 | 注册的回调函数。 |
+| callback  | Callback&lt;[ChannelStateInfo](#channelstateinfo)&gt; | 否 | 注册的回调函数。如果为空、undefined、null，则取消订阅所有的数据接收事件。如果不为空，传入最后一次注册的回调函数。 |
 
 **错误码：**
 

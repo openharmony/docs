@@ -29,6 +29,9 @@
 | [NetConn_NetHandleList](capi-netconnection-netconn-nethandlelist.md) | NetConn_NetHandleList | 网络列表。 |
 | [NetConn_NetSpecifier](capi-netconnection-netconn-netspecifier.md) | NetConn_NetSpecifier | 网络的特征集。 |
 | [NetConn_NetConnCallback](capi-netconnection-netconn-netconncallback.md) | NetConn_NetConnCallback | 网络状态监听回调集合。 |
+| [NetConn_ProbeResultInfo](capi-netconnection-netconn-proberesultinfo.md) | NetConn_ProbeResultInfo | 定义探测结果信息。 |
+| [NetConn_TraceRouteOption](capi-netconnection-netconn-tracerouteoption.md) | NetConn_TraceRouteOption | 定义网络跟踪路由选项。 |
+| [NetConn_TraceRouteInfo](capi-netconnection-netconn-tracerouteinfo.md) | NetConn_TraceRouteInfo | 定义跟踪路由信息。 |
 
 ### 枚举
 
@@ -38,6 +41,17 @@
 | [NetConn_NetBearerType](#netconn_netbearertype) | NetConn_NetBearerType | 网络载体类型。 |
 | [NetConn_ErrorCode](#netconn_errorcode) | NetConn_ErrorCode | 网络连接返回值错误码。 |
 
+### 宏定义
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| **NETCONN_MAX_NET_SIZE** | 32 | 
+| **NETCONN_MAX_BEARER_TYPE_SIZE** | 32 | 
+| **NETCONN_MAX_CAP_SIZE** | 32 | 
+| **NETCONN_MAX_ADDR_SIZE** | 32 | 
+| **NETCONN_MAX_ROUTE_SIZE** | 64 | 
+| **NETCONN_MAX_EXCLUSION_SIZE** | 256 | 
+| **NETCONN_MAX_STR_LEN** | 256 | 
 
 ### 函数
 

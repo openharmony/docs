@@ -18,9 +18,11 @@ import { adminManager } from '@kit.MDMKit';
 
 disableAdmin(admin: Want, userId?: number): Promise\<void>
 
-将当前设备指定用户的设备管理应用解除激活。使用promise异步回调。
+解除激活指定用户的设备管理应用。使用Promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN（该权限仅系统应用可申请）
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN（仅系统应用支持申请） 或 ohos.permission.START_PROVISIONING_MESSAGE
+<br/>- 从API version 20 开始，支持申请ohos.permission.START_PROVISIONING_MESSAGE权限。仅当解除激活BYOD设备管理应用时，可以申请该权限。
+<br/>- API 19及之前的版本，需要申请ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN（仅系统应用支持申请）。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -32,7 +34,7 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 | 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。解除激活BYOD设备管理应用时，仅支持传入当前应用的企业设备管理扩展组件。    |
 | userId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
@@ -49,7 +51,6 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 | -------- | ------------------------------------------------------------ |
 | 9200005  | Failed to deactivate the administrator application of the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -67,6 +68,61 @@ let wantTemp: Want = {
 adminManager.disableAdmin(wantTemp, 100).catch((err: BusinessError) => {
   console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
 });
+```
+
+## adminManager.isByodAdmin<sup>20+</sup>
+
+isByodAdmin(admin: Want): boolean
+
+根据企业设备管理扩展组件查询当前应用是否被激活为BYOD设备管理应用。
+
+**需要权限：** ohos.permission.START_PROVISIONING_MESSAGE
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**模型约束**: 此接口仅可在Stage模型下使用。
+
+**参数**：
+
+| 参数名        | 类型     | 必填   | 说明        |
+| ---------- | ------ | ---- | --------- |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。仅支持传入当前应用的企业设备管理扩展组件。 |
+
+**返回值：**
+
+| 类型         | 说明                 |
+| ----------------- | ------------------- |
+| boolean | 返回true表示被激活为BYOD设备管理应用，返回false表示没有被激活为BYOD设备管理应用。 |
+
+**错误码**:
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 9200012      | Parameter verification failed.|
+
+**示例**：
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { adminManager } from '@kit.MDMKit';
+
+let wantTemp: Want = {
+  // 请根据实际情况替换
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+try {
+  let result: boolean = adminManager.isByodAdmin(wantTemp);
+  console.info(`Succeeded in querying admin is byod admin or not : ${result}`);
+} catch (error) {
+  console.error(`Failed to query admin is byod admin or not. Code is ${error.code}, message is ${error.message}`);
+}
 ```
 
 ## adminManager.subscribeManagedEventSync
@@ -440,6 +496,19 @@ try {
 | 名称                | 值  | 说明    |
 | ----------------- | ---- | ----- |
 | ADMIN_TYPE_BYOD  | 0x02 | BYOD设备管理应用。 |
+
+## Policy<sup>20+</sup>
+
+允许或禁用名单的策略类型。 
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 名称                | 值  | 说明    |
+| ----------------- | ---- | ----- |
+| BLOCK_LIST  | 0 | 禁用名单。 |
+| TRUST_LIST  | 1 | 允许名单。 |
 
 ## 附录
 ### 可委托策略列表

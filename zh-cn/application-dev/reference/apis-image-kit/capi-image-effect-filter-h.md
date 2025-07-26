@@ -80,6 +80,16 @@
 | [ImageEffect_ErrorCode OH_EffectFilter_RenderWithTextureId(OH_EffectFilter *filter, int32_t inputTextureId,int32_t outputTextureId, int32_t colorSpace)](#oh_effectfilter_renderwithtextureid) | - | 使用纹理标识渲染滤镜效果。该函数不支持相同的输入和输出图像。 |
 | [ImageEffect_ErrorCode OH_EffectFilter_Release(OH_EffectFilter *filter)](#oh_effectfilter_release) | - | 销毁OH_EffectFilter实例。 |
 
+### 宏定义
+
+| 名称 | 描述 |
+| -- | -- |
+| OH_EFFECT_BRIGHTNESS_FILTER "Brightness" | 亮度滤镜，对应的参数为OH_EFFECT_FILTER_INTENSITY_KEY，参数类型为EFFECT_DATA_TYPE_FLOAT。<br>**起始版本：** 12 |
+| OH_EFFECT_CONTRAST_FILTER "Contrast" | 对比度滤镜，对应的参数为OH_EFFECT_FILTER_INTENSITY_KEY，参数类型为EFFECT_DATA_TYPE_FLOAT。<br>**起始版本：** 12 |
+| OH_EFFECT_CROP_FILTER "Crop" | 裁剪滤镜，对应的参数为OH_EFFECT_FILTER_REGION_KEY，参数类型为EFFECT_DATA_TYPE_PTR，参数值为结构体[ImageEffect_Region](capi-imageeffect-imageeffect-region.md)。<br>**起始版本：** 12 |
+| OH_EFFECT_FILTER_INTENSITY_KEY "FilterIntensity" | 强度参数。<br>**起始版本：** 12 |
+| OH_EFFECT_FILTER_REGION_KEY "FilterRegion" | 图像区域参数。<br>**起始版本：** 12 |
+
 ## 枚举类型说明
 
 ### ImageEffect_DataType

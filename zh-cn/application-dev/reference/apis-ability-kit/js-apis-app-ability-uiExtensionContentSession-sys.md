@@ -312,11 +312,11 @@ export default class UIExtAbility extends UIExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
-    let starOptions: StartOptions = {
+    let startOptions: StartOptions = {
       displayId: 0
     };
 
-    session.startAbility(want, starOptions, (err: BusinessError) => {
+    session.startAbility(want, startOptions, (err: BusinessError) => {
       if (err) {
         console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
         return;
@@ -392,11 +392,11 @@ export default class UIExtAbility extends UIExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
-    let starOptions: StartOptions = {
+    let startOptions: StartOptions = {
       displayId: 0
     };
 
-    session.startAbility(want, starOptions)
+    session.startAbility(want, startOptions)
       .then(() => {
         console.info(`Succeeded in startAbility`);
       })
@@ -545,11 +545,11 @@ export default class UIExtAbility extends UIExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
-    let starOptions: StartOptions = {
+    let startOptions: StartOptions = {
       displayId: 0
     };
 
-    session.startAbilityForResult(want, starOptions, (err: BusinessError, data: common.AbilityResult) => {
+    session.startAbilityForResult(want, startOptions, (err: BusinessError, data: common.AbilityResult) => {
       if (err) {
         console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
         return;
@@ -631,11 +631,11 @@ export default class UIExtAbility extends UIExtensionAbility {
   // ...
 
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
-    let starOptions: StartOptions = {
+    let startOptions: StartOptions = {
       displayId: 0
     };
 
-    session.startAbilityForResult(want, starOptions)
+    session.startAbilityForResult(want, startOptions)
       .then((data: common.AbilityResult) => {
         console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
       })

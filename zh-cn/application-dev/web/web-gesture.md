@@ -56,7 +56,7 @@ struct Index {
           .onActionUpdate((event: GestureEvent|undefined) => {
             if(event){
               this.scaleValue = this.pinchValue * event.scale;
-              console.info('Pinch start');
+              console.info('Pinch update');
             }
           })
           .onActionEnd(() => {
@@ -102,7 +102,7 @@ struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
-      Web({ src: 'http://www.example.com', controller: this.controller })//需要手动替换为真实网站
+      Web({ src: 'https://www.example.com', controller: this.controller })//需要手动替换为真实网站
     }
   }
   onBackPress() {
@@ -116,5 +116,31 @@ struct Index {
       return false
     }
   }
+}
+```
+
+### 为什么Web加载后网页无法交互？
+
+网页可能基于其他平台的User-Agent进行判断。为解决此问题，可以在Web组件中设置自定义User-Agent，例如：
+
+```ts
+import { webview } from '@kit.ArkWeb'
+
+@Entry
+@Component
+struct Index {
+    private webController: webview.WebviewController = new webview.WebviewController()
+    build(){
+      Column() {
+        Web({
+          src: 'https://www.example.com',
+          controller: this.webController,
+        }).onControllerAttached(() => {
+          // 自定义User-Agent
+          let customUA = 'Mozilla/5.0 (Phone; Android; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Mobile Safari/537.36'
+          this.webController.setCustomUserAgent(customUA)
+        })
+      }
+    }
 }
 ```

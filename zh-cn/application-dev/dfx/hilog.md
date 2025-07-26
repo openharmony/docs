@@ -6,7 +6,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ## 环境要求
 
-- 根据hdc命令行工具指导，完成[hdc](hdc.md#环境准备)。
+- 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)。
 
 - 确保设备已正常连接，并执行hdc shell。
 
@@ -15,7 +15,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### hilog日志生成
 
-业务代码中，如果调用了hilog接口，那么业务运行时就会生成对应的hilog日志。
+业务代码中，如果调用了HiLog接口，那么业务运行时就会生成对应的hilog日志。
 
 ### hilog日志查看
 
@@ -31,13 +31,10 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### hilog日志格式说明
 
-```text
-日期  时间          进程号 线程号 日志级别 domainID/日志tag: 日志内容
-
-04-19 17:02:14.735  5394  5394 I A03200/testTag: this is a info level hilog
-```
-
-如上，这是一条domainID为0x3200、日志tag是"testTag"的INFO级别的日志：
+| 第一列 | 第二列 | 第三列 | 第四列 |  第五列 | 第六列 | 第七列 |
+| -------- | -------- | -------- | -------- | -------- | -------- | -------- |
+| 日期 | 时间戳 | 进程号 | 线程号 | 日志级别 | domainID/日志tag: | 日志内容 |
+| 04-19 | 17:02:14.735 | 5394 | 5394 | I | A03200/testTag: | this is a info level hilog |
 
 > **说明：**
 >
@@ -68,16 +65,18 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 | -T | --tag | &lt;tag&gt; | 指定tag。 | 
 | -P | --pid | &lt;pid&gt; | 标识不同的pid。 | 
 | -e | --regex | &lt;expr&gt; | 只打印日志消息与&lt;expr&gt;匹配的行，其中&lt;expr&gt;是一个正则表达式。 |
-| -v | --format | &lt;format&gt; | 显示格式控制。 | 
+| -v | --format | &lt;format&gt; | 显示格式控制。 |
+|  |  | color/colour | 不同级别显示不同颜色，缺省时按照黑白颜色模式处理。 |  
 |  |  | time | 显示本地时间。 | 
-|  |  | color/colour | 不同级别显示不同颜色，缺省时按照黑白颜色模式处理。 | 
 |  |  | epoch | 显示相对1970时间。 | 
 |  |  | monotonic | 显示相对启动时间。 | 
+|  |  | msec | 显示毫秒精度时间。 |
 |  |  | usec | 显示微秒精度时间。 | 
 |  |  | nsec | 显示纳秒精度时间。 | 
 |  |  | year | 显示将年份添加到显示的时间。 | 
 |  |  | zone | 显示将本地时区添加到显示的时间。 | 
 |  |  | wrap | 日志换行显示时，新行不增加时间戳等前缀。 |
+|  |  | long | 显示所有数据字段，用空格分隔信息。 |
 | -r | - | - | 清除buffer日志，配合-t指定某一类型使用，默认app和core。 | 
 | -g | - | - | 查询buffer的大小，配合-t指定某一类型使用，默认app和core。 | 
 | -G | --buffer-size | &lt;size&gt; | 设置指定&lt;type&gt;日志类型缓冲区的大小，配合-t指定某一类型使用，默认app和core， 可使用B/K/M为单位，范围为64K-16M。 | 
@@ -108,20 +107,17 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 |  |  | domainon | 打开domain超限管控开关。 | 
 |  |  | domainoff | 关闭domain超限管控开关。 | 
 | -b | --baselevel | &lt;loglevel&gt; | 设置可打印日志的最低等级：D(DEBUG)/I(INFO)/W(WARN)/E(ERROR)/F(FATAL)。可以和-D、-T结合使用，设置指定日志可打印的最低等级。 | 
-| | --persist| - |配置日志级别设置命令持久化（重启设置不会丢失）。|
+| - | --persist| - |配置日志级别设置命令持久化（重启设置不会丢失）。|
 <!--RP18End-->
 
 
 ## 查看帮助命令
 
-
 ```shell
 hilog -h
 ```
 
-
 **使用样例**：
-
 
 ```shell
  $ hilog -h
@@ -140,14 +136,11 @@ hilog -h
      Show n lines logs on tail of buffer.
 ```
 
-
 ## **非阻塞读日志**
-
 
 ```shell
 hilog -x
 ```
-
 
 **使用样例**：
 
@@ -163,14 +156,11 @@ hilog -x
    ```
 <!--RP1End-->
 
-
 ## **查看指定级别日志**
-
 
 ```shell
 hilog -L D/I/W/E/F
 ```
-
 
 **使用样例**：
 
@@ -187,14 +177,11 @@ hilog -L D/I/W/E/F
    ```
 <!--RP2End-->
 
-
 ## **查看指定类型日志**
-
 
 ```shell
 hilog -t app
 ```
-
 
 **使用样例**：
 
@@ -209,14 +196,11 @@ hilog -t app
    ```
 <!--RP3End-->
 
-
 ## **查看指定domain日志**
-
 
 ```shell
 hilog -D 01B06
 ```
-
 
 **使用样例**：
 
@@ -231,14 +215,11 @@ hilog -D 01B06
    ```
 <!--RP4End-->
 
-
 ## **查看指定TAG日志**
-
 
 ```shell
 hilog -T tag
 ```
-
 
 **使用样例**：
 
@@ -256,14 +237,11 @@ hilog -T tag
    ```
 <!--RP5End-->
 
-
 ## **查看缓冲区前n行日志**
-
 
 ```shell
 hilog -a 8
 ```
-
 
 **使用样例**：
 
@@ -281,14 +259,11 @@ hilog -a 8
    ```
 <!--RP6End-->
 
-
 ## **查看缓冲区后n行日志**
-
 
 ```shell
 hilog -z 8
 ```
-
 
 **使用样例**：
 
@@ -306,14 +281,11 @@ hilog -z 8
    ```
 <!--RP7End-->
 
-
 ## **查看指定进程日志**
-
 
 ```shell
 hilog -P pid
 ```
-
 
 **使用样例**：
 
@@ -330,14 +302,11 @@ hilog -P pid
    ```
 <!--RP8End-->
 
-
 ## **查看符合正则匹配关键字的日志**
-
 
 ```shell
 hilog -e start
 ```
-
 
 **使用样例**：
 
@@ -355,17 +324,13 @@ hilog -e start
    ```
 <!--RP9End-->
 
-
 ## **查看不同显示格式的日志**
-
 
 ```shell
 hilog -v time/color/epoch/monotonic/usec/nsec/year/zone/wrap
 ```
 
-
 **使用样例**：
-
 
 显示本地时间，以纳秒为单位显示时间。
 
@@ -379,7 +344,11 @@ hilog -v time/color/epoch/monotonic/usec/nsec/year/zone/wrap
    11-15 16:36:21.802  2809  2831 E C02D06/XCollie: Send kick,foundation to hungtask Successful
    11-15 16:36:21.911   882  3016 I C01F0B/TelephonyVSim: state machine ProcessEvent Id: 125
    11-15 16:36:21.911   882  3016 I C01F0B/TelephonyVSim: StateProcess
+   ```
 
+以纳秒为单位显示时间。
+
+   ```shell
    $ hilog -v nsec
    11-15 16:37:09.010658555  1134  1723 I C02B01/HrilExt: [BoosterRawInd-(hril_booster.cpp:296)] RilExt: BoosterRawInd
    11-15 16:37:09.010676263  1134  1723 I C02B01/HrilExt: [BoosterRawInd-(hril_booster.cpp:328)] check need notify to satellite:indType 6
@@ -392,17 +361,13 @@ hilog -v time/color/epoch/monotonic/usec/nsec/year/zone/wrap
 
 ## 查看和设置落盘任务
 
-
 **查看落盘任务**
-
 
 ```shell
 hilog -w query
 ```
 
-
 当前不存在落盘任务：
-
 
 ```shell
 $ hilog -w query
@@ -410,9 +375,7 @@ Persist task query failed
 No running persistent task [CODE: -63]
 ```
 
-
 当前存在落盘任务：
-
 
 ```shell
 $ hilog -w query
@@ -420,50 +383,38 @@ $ hilog -w query
 2 kmsg zlib /data/log/hilog/hilog_kmsg 4.0M 100
 ```
 
-
 **设置落盘任务**
-
 
 > **说明：**
 >
 > 当前没有落盘任务时，才能开启落盘任务，如果已经存在落盘任务，需要先停止落盘任务。
 
-
 开启hilog落盘任务，并且设置落盘文件数量为1000个：
-
 
 ```shell
 $ hilog -w start -n 1000
 Persist task [jobid:1][fileNum:1000][fileSize:4194304] start successfully
 ```
 
-
 开启kmsglog落盘任务，并且设置落盘文件数量为100个：
-
 
 ```shell
 $ hilog -w start -n 100 -t kmsg
 Persist task [jobid:2][fileNum:100][fileSize:4194304] start successfully
 ```
 
-
 开启落盘任务时可以自定义落盘规则，其中压缩方式可以为zlib、zstd、none。
 
-
 以设置落盘文件名为kmsglog，大小为2M，数量为100个，其压缩方式为zlib压缩为例，命令行为：
-
 
 ```shell
 $ hilog -w start -t kmsg -f kmsglog -l 2M -n 100 -m zlib
 Persist task [jobid:2][fileNum:100][fileSize:2097152] start successfully
 ```
 
-
 **关闭落盘任务**
 
-
 停止当前落盘任务：
-
 
 ```shell
 $ hilog -w stop
@@ -471,12 +422,9 @@ Persist task [jobid:1] stop successfully
 Persist task [jobid:2] stop successfully
 ```
 
-
 ## 查看和设置日志级别
 
-
 **查看全局日志级别**
-
 
 ```shell
 $ param get hilog.loggable.global
@@ -490,7 +438,7 @@ I
 ## 设置日志级别
 
    ```text
-   // 设置全局日志级别
+   // 设置全局日志级别，重启后失效
    hilog -b D/I/W/E/F
 
    // 设置全局日志级别，重启仍生效
@@ -521,9 +469,7 @@ I
    ```
 <!--RP16End-->
 
-
 ## 其他常用命令
-
 
 ### 查看日志缓冲区大小
 
@@ -541,7 +487,6 @@ Log type core buffer size is 16.0M
 Log type only_prerelease buffer size is 16.0M
 ```
 
-
 ### 修改日志缓冲区大小
 
 ```shell
@@ -558,7 +503,6 @@ Set log type core buffer size to 16.0M successfully
 Set log type only_prerelease buffer size to 16.0M successfully
 ```
 
-
 ### 清除缓冲区日志
 
 ```shell
@@ -571,7 +515,6 @@ hilog -r
 $ hilog -r
 Log type core,app,only_prerelease buffer clear successfully
 ```
-
 
 ### 内核日志读取开关控制
 
@@ -588,7 +531,6 @@ Set hilogd storing kmsg log on successfully
 $ hilog -k off
 Set hilogd storing kmsg log off successfully
 ```
-
 
 ### 查询统计信息
 
@@ -632,7 +574,6 @@ LENGTH：  统计周期内的总字节数。
 DROPPED： 统计周期内丢失的行数。
 ```
 
-
 ### 清除统计信息
 
 ```shell
@@ -645,7 +586,6 @@ hilog -S
 $ hilog -S
 Statistic info clear successfully
 ```
-
 
 ### 进程超限开关
 
@@ -669,7 +609,6 @@ $ hilog -Q pidoff
 Set flow control by process to disabled successfully
 ```
 
-
 ### domain超限开关
 
 ```shell
@@ -692,13 +631,11 @@ $ hilog -Q domainoff
 Set flow control by domain to disabled successfully
 ```
 
-
 ## hilog超限机制介绍
 
 日志打印量过大时，会触发hilog超限管控机制。触发后，超出部分的日志会被丢弃，并且打印超限提示日志。debug应用默认关闭此机制。
 
 超限机制介绍如下：
-
 
 ### 应用日志
 
@@ -747,7 +684,7 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 
 ### LOGLIMIT
 
-含义：日志打印超限，该进程或者domainID被管控。属于领域日志量超出hilog规格后的主动管控，需要领域对日志进行精简和整改。提示日志示例如下：
+**含义**：日志打印超限，该进程或者domainID被管控。属于领域日志量超出hilog规格后的主动管控，需要领域对日志进行精简和整改。提示日志示例如下：
 
 <!--RP13-->
 ```text
@@ -755,18 +692,18 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 ```
 <!--RP13End-->
 
-处理方式：可参考[hilog超限机制介绍](#hilog超限机制介绍)，关闭对应管控机制。
+**处理方式**：可参考[hilog超限机制介绍](#hilog超限机制介绍)，关闭对应管控机制。
 
 
 ### Slow reader missed
 
-含义：打印时间点前后日志量太大，hilog buffer中的日志还未落盘已经被循环覆盖了。提示日志示例如下：
+**含义**：打印时间点前后日志量太大，hilog buffer中的日志还未落盘已经被循环覆盖了。提示日志示例如下：
 
 ```text
 04-19 17:02:34.219     0     0 I C00000/HiLog: ========Slow reader missed log lines: 137
 ```
 
-原因：以下任意一种情况，均有可能导致全局日志丢失。
+**原因**：以下任意一种情况，均有可能导致全局日志丢失。
 
 - 日志级别设置为D。
 
@@ -774,7 +711,7 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 
 - 有模块在循环打印日志。
 
-处理方式：
+**处理方式**：
 
 - 通过hilog -g命令查询buffer大小（hilog buffer大小默认是256KB）。
 
@@ -784,12 +721,12 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
   hilog -G 16M
   ```
 
-- 同时查看是否后台有领域频繁打印日志。若发现某个领域日志频繁打印，影响正常日志读取，可参考“"write socket failed”的规避方式，通过命令关闭其领域的日志打印。
+- 同时查看是否后台有领域频繁打印日志。若发现某个领域日志频繁打印，影响正常日志读取，可参考“write socket failed”的规避方式，通过命令关闭其领域的日志打印。
 
 
 ### write socket failed
 
-含义：日志写入socket失败，出现丢包问题。提示日志示例如下：
+**含义**：日志写入socket失败，出现丢包问题。提示日志示例如下：
 
 <!--RP14-->
 ```text
@@ -797,7 +734,7 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 ```
 <!--RP14End-->
 
-原因：以下任意一种情况，均有可能导致进程日志丢失。
+**原因**：以下任意一种情况，均有可能导致进程日志丢失。
 
 - 日志级别设置为D。
 
@@ -807,7 +744,7 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 
 - 存在高负载问题，如果出现CPU高负载或者低内存问题，会导致socket服务端处理日志过慢，socket通道中日志堆积严重，也会导致客户端写入socket数据失败。
 
-处理方式：关闭其他领域的日志打印，只打印本模块的日志。
+**处理方式**：关闭其他领域的日志打印，只打印本模块的日志。
 
 - 关闭其他领域日志：
 

@@ -67,7 +67,7 @@ OpenHarmony系统采用ELF文件格式作为全系统的二进制文件格式，
 
 ```json
 {
-    "abiType": 'stageMode',
+    "abiType": "stageMode",
     "buildOption": {
         "externalNativeOptions": {
             "path": "./src/main/cpp/CMakeLists.txt",

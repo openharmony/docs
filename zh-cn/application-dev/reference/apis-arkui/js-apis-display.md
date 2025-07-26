@@ -201,25 +201,25 @@ import { display } from '@kit.ArkUI';
 
 ## Position<sup>20+</sup>
 
-坐标位置。全局坐标系时，以主屏左上角为原点。
+坐标位置：在全局坐标系中，以主屏左上角为原点。在相对坐标系中，以指定屏幕左上角为原点。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称      | 类型 | 只读 | 可选 | 说明                       |
 | --------- | -------- | ---- | ---- |--------------------------|
-| x     | number   | 否   | 否   | 相对原点的横坐标，单位为px，该参数应为32位有符号整数。 |
-| y     | number   | 否   | 否   | 相对原点的纵坐标，单位为px，该参数应为32位有符号整数。 |
+| x     | number   | 否   | 否   | 相对原点的横坐标，单位为px，该参数应为32位有符号整数，输入浮点数时向下取整。 |
+| y     | number   | 否   | 否   | 相对原点的纵坐标，单位为px，该参数应为32位有符号整数，输入浮点数时向下取整。 |
 
 ## RelativePosition<sup>20+</sup>
 
-坐标位置。全局坐标系时，以主屏左上角为原点。
+相对坐标系下的坐标位置，以displayId对应的屏幕左上角为原点。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称      | 类型 | 只读 | 可选 | 说明                       |
 | --------- | -------- | ---- | ---- |--------------------------|
-| displayId | number   | 否   | 否   | 相对坐标相对的屏幕ID，64位无符号整数，-1表示无效Id。 |
-| position  | [Position](#position20) | 否   | 否   | 相对于displayId的坐标值。 |
+| displayId | number   | 否   | 否   | 相对坐标所对应的屏幕ID，仅支持整数输入，且需大于等于0。 |
+| position  | [Position](#position20) | 否   | 否   | 以displayId所指定屏幕左上角为原点的坐标值。 |
 
 ## display.getDisplayByIdSync<sup>12+</sup>
 
@@ -1367,7 +1367,7 @@ display.makeUnique(screenId).then(() => {
 
 convertRelativeToGlobalCoordinate(relativePosition: RelativePosition): Position
 
-将相对坐标系转换成全局坐标系。
+将指定屏幕左上角为原点的相对坐标转换成主屏左上角为原点的全局坐标，仅支持主屏和扩展屏的坐标转换。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -1385,13 +1385,13 @@ convertRelativeToGlobalCoordinate(relativePosition: RelativePosition): Position
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 801     | Capability not supported. |
 | 1400003 | This display manager service works abnormally. |
-| 1400004 | Parameter error. Possible cause: 1. Invalid parameter range. |
+| 1400004 | Parameter error. Possible cause: 1.Invalid parameter range. |
 
 **示例：**
 
@@ -1418,7 +1418,7 @@ try {
 
 convertGlobalToRelativeCoordinate(position: Position, displayId?: number): RelativePosition
 
-将全局坐标系转换成相对于入参diplayId的坐标系，若不传入displayId，则默认转换成全局坐标所在屏幕的相对坐标系。
+将主屏左上角为原点的全局坐标转换成displayId指定屏幕左上角为原点的相对坐标。若未传入displayId，默认转换为全局坐标所在屏幕的相对坐标系。若全局坐标不在任何屏幕上，默认转换成主屏的相对坐标。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -1427,7 +1427,7 @@ convertGlobalToRelativeCoordinate(position: Position, displayId?: number): Relat
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
 | position  | [Position](#position20) | 是 | 需要转化为相对坐标的全局坐标。 |
-| displayId | number | 否 | 相对坐标系相对的屏幕的ID，传递该参数表示以指定屏幕左上角为原点转换相对坐标，不指定则不传参。 |
+| displayId | number | 否 | 相对坐标系原点所在的屏幕ID，传递该参数表示以指定屏幕左上角为原点转换相对坐标。不指定则不传参，默认转换成全局坐标所在屏幕的相对坐标，若全局坐标不在任何屏幕上，则默认转换成主屏的相对坐标。 |
 
 **返回值：**
 
@@ -1437,13 +1437,13 @@ convertGlobalToRelativeCoordinate(position: Position, displayId?: number): Relat
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)、[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 801     | Capability not supported. |
 | 1400003 | This display manager service works abnormally. |
-| 1400004 | Parameter error. Possible cause: 1. Invalid parameter range. |
+| 1400004 | Parameter error. Possible cause: 1.Invalid parameter range. |
 
 **示例：**
 
@@ -1711,5 +1711,42 @@ try {
   displayClass.off("availableAreaChange", callback);
 } catch (exception) {
   console.error(`Failed to unregister callback. Code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### getLiveCreaseRegion<sup>20+</sup>
+getLiveCreaseRegion(): FoldCreaseRegion
+
+获取当前显示模式下的实时折痕区域。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| [FoldCreaseRegion](#foldcreaseregion10) | 返回设备在当前显示模式下的折叠折痕区域。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { display } from '@kit.ArkUI';
+
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  let data: display.FoldCreaseRegion = displayClass.getLiveCreaseRegion();
+  console.info('Succeeded in getting the live crease region. Data: ' + JSON.stringify(data));
+} catch (exception) {
+  console.error(`Failed to get the live crease region. Code: ${exception.code}, message: ${exception.message}`);
 }
 ```

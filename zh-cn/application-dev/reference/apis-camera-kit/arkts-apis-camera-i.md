@@ -289,3 +289,16 @@
 | 名称     | 类型        |   只读   |   可选   | 说明       |
 | -------- | ---------- | -------- | -------- | ---------- |
 | duration |   number   |   否     |    否    | 平滑变焦总时长，单位ms。 |
+
+## ControlCenterStatusInfo<sup>20+</sup>
+
+相机控制器效果激活状态信息。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称     | 类型        |   只读   |   可选   | 说明       |
+| -------- | ---------- | -------- | -------- | ---------- |
+| effectType | [ControlCenterEffectType](arkts-apis-camera-e.md#controlcentereffecttype20) |   是    |    否    | 相机控制器效果类型。 |
+| isActive | boolean | 是| 否| 相机控制器效果激活状态。true表示已激活，false表示未激活。 |

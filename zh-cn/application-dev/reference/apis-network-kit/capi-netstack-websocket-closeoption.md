@@ -1,8 +1,8 @@
-# WebSocket_CloseResult
+# WebSocket_CloseOption
 
 ## 概述
 
-websocket客户端来自服务端关闭的参数。
+websocket客户端主动关闭的参数。
 
 **起始版本：** 11
 

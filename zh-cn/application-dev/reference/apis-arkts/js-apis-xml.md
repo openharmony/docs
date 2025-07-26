@@ -444,11 +444,11 @@ console.info(result); // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
 
 ## XmlDynamicSerializer<sup>20+</sup>
 
-XmlDynamicSerializer类用于生成XML字符串。当无法确定XML内容长度时，推荐使用该类。
+XmlDynamicSerializer类用于动态生成XML字符串。当无法确定XML内容长度时，推荐使用该类。
 
 > **说明：**
 >
-> 使用该类构造的对象无需自行创建ArrayBuffer，可以不断添加XML元素，最终序列化结果字符串长度上限为100000。
+> 使用该类构造的对象无需自行创建ArrayBuffer，程序动态扩容，可以不断添加XML元素，最终序列化结果字符串长度上限为100000。
 
 ### constructor<sup>20+</sup>
 
@@ -1094,19 +1094,18 @@ type AttributeWithTagCb = (tagName: string, key: string, value: string) => boole
 
 XML解析选项。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang。
 
 
 | 名称                           | 类型                                                         | 必填 | 说明                                    |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------------- |
-| supportDoctype                 | boolean                                                      | 否   | 是否解析文档类型，false表示不解析文档类型，true表示解析文档类型，默认值false。 |
-| ignoreNameSpace                | boolean                                                      | 否   | 是否忽略命名空间，忽略命名空间后，将不会对其进行解析。true表示忽略命名空间，false表示不忽略命名空间，默认值false。 |
-| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 解析开始标签、标签值和结束标签，默认值undefined，表示不解析。 |
-| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 解析属性和属性值，默认值undefined，表示不解析。 |
-| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 解析元素事件类型([EventType](#eventtype))和[ParseInfo](#parseinfo)属性，默认值undefined，表示不解析。 |
-| attributeWithTagCallbackFunction<sup>20+</sup> | [AttributeWithTagCb](#attributewithtagcb20) | 否 | 解析标签名称、属性名称及属性的值，默认值为undefined，表示不执行解析。 |
+| supportDoctype                 | boolean                                                      | 否   | 是否解析文档类型，false表示不解析文档类型，true表示解析文档类型，默认值false。  <br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| ignoreNameSpace                | boolean                                                      | 否   | 是否忽略命名空间，忽略命名空间后，将不会对其进行解析。true表示忽略命名空间，false表示不忽略命名空间，默认值false。 <br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 解析开始标签、标签值和结束标签，默认值undefined，表示不解析。 <br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 解析属性和属性值，默认值undefined，表示不解析。 <br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 解析元素事件类型([EventType](#eventtype))和[ParseInfo](#parseinfo)属性，默认值undefined，表示不解析。 <br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| attributeWithTagCallbackFunction<sup>20+</sup> | [AttributeWithTagCb](#attributewithtagcb20) | 否 | 解析标签名称、属性名称及属性的值，默认值为undefined，表示不执行解析。 <br/>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## ParseInfo
 

@@ -716,11 +716,12 @@ static addMonitor(target: object, path: string | string[], monitorCallback: Moni
 
 
 **错误码：**
+以下错误码的详细介绍请参见[状态管理错误码](./errorcode-stateManagement.md)。
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-|130000|target不满足以下情况：</br>\@ObservedV2装饰的class且该class至少有一个\@Trace装饰的变量。</br>\@ComponentV2装饰的自定义组件的实例。|
-|130001|path不是string或者不是数组类型。|
-|130002|monitorCallback不是function类型，或者是匿名function。|
+|130000|The target is not an instance of @ObservedV2 (with at least one @Trace, @Computed, or @Monitor inside) or @ComponentV2.|
+|130001|The path is invalid.|
+|130002|monitorCallback is not a function or an anonymous function.|
 
 **示例：**
 下面的示例：
@@ -786,11 +787,12 @@ static clearMonitor(target: object, path: string | string[], monitorCallback?: M
 | monitorCallback | [MonitorCallback](#monitorcallback20)   | 否   | 指定被删除的监听函数。</br>当开发者不传此参数时，将删除path对应变量注册的所有监听函数。</br>对于不支持的类型，会抛出运行时错误，错误码见表格。 |
 
 **错误码：**
+以下错误码的详细介绍请参见[状态管理错误码](./errorcode-stateManagement.md)。
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-|130000|target不满足以下情况：</br>\@ObservedV2装饰的class且该class至少有一个\@Trace装饰的变量。</br>\@ComponentV2装饰的自定义组件的实例。|
-|130001|path不是string或者不是数组类型。|
-|130002|monitorCallback不是function，或者是匿名function。|
+|130000|The target is not an instance of @ObservedV2 (with at least one @Trace, @Computed, or @Monitor inside) or @ComponentV2.|
+|130001|The path is invalid.|
+|130002|monitorCallback is not a function or an anonymous function.|
 
 **示例：**
 在下面的示例中：
@@ -848,6 +850,8 @@ struct Index {
 ## MonitorOptions<sup>20+</sup>
 
 [addMonitor](#addmonitor20)的可选参数，用于配置回调类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1249,7 +1253,7 @@ struct CompV2 {
           () => this.number2, // GetterCallback
           (val: number) => {
             this.number2 = val;
-          }) // SetterCallback
+          }) // SetterCallback 必须提供，否则触发时会造成运行时错误
       )
     }
   }
@@ -1323,7 +1327,7 @@ struct CompV2 {
 ### value<sup>20+</sup>
 set value(newValue: T): void
 
-提供set访问器，用于设置当前绑定值的值。
+提供set访问器，用于设置当前绑定值的值。构造MutableBinding类实例时必须提供set访问器，否则触发set访问器会造成运行时错误。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1382,7 +1386,7 @@ struct CompV2 {
           () => this.number2, // GetterCallback
           (val: number) => {
             this.number2 = val;
-          }) // SetterCallback
+          }) // SetterCallback 必须提供，否则触发时会造成运行时错误
       )
     }
   }

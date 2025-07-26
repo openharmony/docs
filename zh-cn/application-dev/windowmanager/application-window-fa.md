@@ -180,10 +180,10 @@
    window.getLastWindow(context, (err: BusinessError, data) => {
      let errCode: number = err.code;
      if (errCode) {
-       console.error('Failed to get the subWindow. Cause: ' + JSON.stringify(err));
+       console.error('Failed to get the mainWindow. Cause: ' + JSON.stringify(err));
        return;
      }
-     console.info('Succeeded in getting subWindow. Data: ' + JSON.stringify(data));
+     console.info('Succeeded in getting mainWindow. Data: ' + JSON.stringify(data));
      mainWindowClass = data;
    });
    ```

@@ -51,7 +51,7 @@
 | 名称            | 类型                                   | 必填 | 说明                               |
 | ----------------| ------------------------------------- | ---- | ---------------------------------- |
 | bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 实况通知的包信息。|
-| notificationKey | [NotificationKey](js-apis-notificationSubscribe-sys.md#notificationkey) | 是   | 通知信息，包含通知ID和通知标签。   |
+| notificationKey | [notificationSubscribe.NotificationKey](js-apis-notificationSubscribe-sys.md#notificationkey) | 是   | 通知信息，包含通知ID和通知标签。   |
 | extraInfoKeys   | Array\<string>                        | 否   | 筛选附加信息的键值列表。不填表示查询所有的附加信息。|
 
 
@@ -65,8 +65,8 @@
 
 | 名称          | 类型                                                       | 必填 | 说明              |
 | --------------| --------------------------------------------------------- | ---- | ----------------- |
-| contentType   | [ContentType](js-apis-notificationManager.md#contenttype) | 是   | 通知类型。         |
-| slotType      | [SlotType](js-apis-notificationManager.md#slottype)       | 是   | 渠道类型。         |
+| contentType   | [notificationManager.ContentType](js-apis-notificationManager.md#contenttype) | 是   | 通知类型。         |
+| slotType      | [notificationManager.SlotType](js-apis-notificationManager.md#slottype)       | 是   | 渠道类型。         |
 | extraInfoKeys | Array\<string>                                            | 是   | 实况通知的附加信息。|
 
 ## UnifiedGroupInfo<sup>12+</sup>

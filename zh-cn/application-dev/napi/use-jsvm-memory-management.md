@@ -17,7 +17,7 @@ JSVM-API提供了一组用于管理JavaScript虚拟机内存的API，可以更�
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
+JSVM-API接口开发流程请参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)。本文仅展示接口对应C++及ArkTS相关代码。
 
 ### OH_JSVM_AdjustExternalMemory
 
@@ -72,7 +72,7 @@ JSVM Allocate memory size: 1048576
 ```
 ### OH_JSVM_MemoryPressureNotification
 
-通知虚拟机系统内存不足并有选择地触发垃圾回收
+使用OH_JSVM_MemoryPressureNotification通知虚拟机系统内存不足并有选择地触发垃圾回收。
 
 cpp部分代码：
 

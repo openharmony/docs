@@ -31,7 +31,7 @@ Web组件为开发者提供了丰富的控制Web页面能力。包括：
 
 ## 约束与限制
 
-- 可依据ArkWeb内核版本在相关网站查询W3C标准的支持情况。例如：https://developer.mozilla.org/en-US/ 和 https://webassembly.org/features/。
+- 可依据ArkWeb内核版本在相关网站查询W3C标准的支持情况。例如：https://developer.mozilla.org/en-US/ 和 https://webassembly.org/features/ 。
 
 - Web内核版本：ArkWeb基于谷歌Chromium内核开发，使用的Chromium版本为：
 

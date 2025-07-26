@@ -82,7 +82,7 @@ for (int i = 0; i < 100000; i++)
 **错误示例**：
 
 ```c++
-// 线程1执行，在env1创建string对象，值为"value1"、
+// 线程1执行，在env1创建string对象，值为"value1"
 OH_JSVM_CreateStringUtf8(env1, "value1", JSVM_AUTO_LENGTH , &string);
 // 线程2执行，在env2创建object对象，并将上述的string对象设置到object对象中
 JSVM_Status status = OH_JSVM_CreateObject(env2, &object);
@@ -109,9 +109,9 @@ if (status != JSVM_OK)
 1. `OH_JSVM_IsLocked`的结果为**当前线程**是否持有引擎实例的锁，无需设置循环等待其他线程释放锁；
 2. `OH_JSVM_AcquireLock`在同一线程中嵌套使用不会造成死锁；
 3. 使用`OH_JSVM_ReleaseLock`时需判断是否在最外层，避免同一线程中嵌套使用`OH_JSVM_AcquireLock`的场景下内层释放了整个线程的锁；
-4. `OH_JSVM_AcquireLock`后需调用`OH_JSVM_OpenHandleScope`让引擎实例进入线程；`OH_JSVM_ReleaseLock`后需调用`OH_JSVM_ReleaseLock`让引擎实例退出线程；
+4. `OH_JSVM_AcquireLock`后需调用`OH_JSVM_OpenHandleScope`让引擎实例进入线程；`OH_JSVM_ReleaseLock`前需调用`OH_JSVM_CloseHandleScope`让引擎实例退出线程；
 5. 不同线程禁止嵌套使用引擎实例，如需临时切换线程使用引擎实例，请确保`JSVM_Value`已保存为`JSVM_Ref`，释放锁后对`JSVM_Value`将不可访问；
-6. 需注意资源获取的顺序为：锁 -> VMScope -> EnvScope -> HandleScope，释放资源的顺序正好相反，错误的顺序可能导致程序崩溃。
+6. 需注意资源获取的顺序为：锁 -> VMScope -> EnvScope -> HandleScope，资源释放的顺序正好相反，错误的顺序可能导致程序崩溃。
 
 **C++使用封装**：
 
@@ -390,7 +390,7 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
 
 ## 上下文绑定对象
 
-**【规则】**：调用JSVM-API生成的JS函数、对象需绑定到上下文中才能从JS侧访问，`OH_JSVM_CreateFunction`接口中的`const char *`参数为创建函数的属性`name`，不代表上下文中指向该函数的函数名。调用JSVM-API生成的类、对象同理。
+**【规则】**：调用JSVM-API生成的JS函数、对象需绑定到上下文中才能从JS侧访问，`OH_JSVM_CreateFunction`接口中的`const char *`参数为创建函数的属性`name`，不代表上下文中指向该函数的名称。调用JSVM-API生成的类、对象同理。
 
 **示例**：
 

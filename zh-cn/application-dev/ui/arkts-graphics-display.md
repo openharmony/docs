@@ -325,11 +325,11 @@ struct Index {
 
 ## 显示矢量图
 
-Image组件可显示矢量图（svg格式的图片），svg标签文档请参考[svg说明](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-svg.md)。
+Image组件可显示矢量图（SVG格式的图片），SVG标签文档请参考[SVG标签说明](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-svg.md)。
 
-如果SVG图片没有原始大小，需要给Image组件设置宽高，否则不显示。SVG图片不支持通过image标签引用svg格式和gif格式的本地其他图片。
+如果SVG图片没有原始大小，需要给Image组件设置宽高，否则不显示。SVG图片不支持通过image标签引用SVG格式和gif格式的本地其他图片。
 
-svg格式的图片可以使用fillColor属性改变图片的绘制颜色。
+SVG格式的图片可以使用fillColor属性改变图片的绘制颜色。
 
 
 ```ts
@@ -342,22 +342,22 @@ Image($r('app.media.cloud'))
 
 ![屏幕截图_20230223_141141](figures/屏幕截图_20230223_141141.png)
 
-  **图4** 设置绘制颜色后的svg图片  
+  **图4** 设置绘制颜色后的SVG图片  
 
 ![屏幕截图_20230223_141404](figures/屏幕截图_20230223_141404.png)
 
 ### 矢量图引用位图
 
-如果Image加载的Svg图源中包含对本地位图的引用，则Svg图源的路径应当设置为以ets为根目录的工程路径，同时，本地位图的路径应设置为与Svg图源同级的相对路径。
+如果Image加载的SVG图源中包含对本地位图的引用，则SVG图源的路径应当设置为以ets为根目录的工程路径，同时，本地位图的路径应设置为与SVG图源同级的相对路径。
 
-Image加载的Svg图源路径设置方法如下所示：
+Image加载的SVG图源路径设置方法如下所示：
 
 ```ts
 Image("images/icon.svg")
   .width(50)
   .height(50)
 ```
-Svg图源通过`<image>`标签的`xlink:href`属性指定本地位图路径，本地位图路径设置为跟Svg图源同级的相对路径：
+SVG图源通过`<image>`标签的`xlink:href`属性指定本地位图路径，本地位图路径设置为跟SVG图源同级的相对路径：
 
 ```
 <svg width="200" height="200">

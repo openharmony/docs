@@ -24,20 +24,20 @@
      src:
        main:
          cpp:
-           - json:
-               - json.h
-               - json-forwards.h
-           - types:
-               libentry:
-                 - index.d.ts
+           json:
+             - json.h
+             - json-forwards.h
+           types:
+             libentry:
+               - index.d.ts
            - CMakeLists.txt
-           - napi_init.cpp
            - jsoncpp.cpp
+           - napi_init.cpp
          ets:
-           - entryability:
-               - EntryAbility.ets
-           - pages:
-               - Index.ets
+           entryability:
+             - EntryAbility.ets
+           pages:
+             - Index.ets
    ```
 
 2. 编辑“CMakeLists.txt”文件，添加源文件及动态库。
@@ -93,12 +93,12 @@
                           auto uuid = params["uuid"].asString();
                           auto exception = writer.write(params["exception"]);
                           auto hilogSize = params["hilog"].size();
-                          auto handleSize =  params["event_handler"].size();
-                          auto handleSize3s =  params["event_handler_size_3s"].asString();
-                          auto handleSize6s =  params["event_handler_size_6s"].asString();
-                          auto peerBindSize =  params["peer_binder"].size();
-                          auto threadSize =  params["threads"].size();
-                          auto memory =  writer.write(params["memory"]);
+                          auto handleSize = params["event_handler"].size();
+                          auto handleSize3s = params["event_handler_size_3s"].asString();
+                          auto handleSize6s = params["event_handler_size_6s"].asString();
+                          auto peerBindSize = params["peer_binder"].size();
+                          auto threadSize = params["threads"].size();
+                          auto memory = writer.write(params["memory"]);
                           auto externalLog = writer.write(params["external_log"]);
                           auto logOverLimit = params["log_over_limit"].asBool();
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);

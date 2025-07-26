@@ -262,6 +262,14 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    <!--RP4-->
    <!--RP4End-->
 
+   API20新增[采样率范围](../../reference/apis-avcodec-kit/_a_v_capability.md#oh_avcapability_getaudiosupportedsamplerateranges)能力查询，以下几种音频解码类型支持对范围内的任意采样率进行解码（API20之后）：
+
+   | 音频解码类型 |    采样率(Hz)   |
+   | ----------- | --------------- |
+   | Flac        | 8000 ~ 384000   |
+   | Vorbis      | 8000 ~ 192000   |
+   | APE         | 1 ~ 2147483647  |
+
    ```cpp
    // 配置音频采样率（必须）。
    constexpr uint32_t DEFAULT_SAMPLERATE = 44100;

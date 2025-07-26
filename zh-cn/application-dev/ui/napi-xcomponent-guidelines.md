@@ -33,12 +33,14 @@ XComponent组件负责创建Surface，并通过回调将Surface的相关信息�
 > 2. 对于使用[typeNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#typenode12)创建的SURFACE或TEXTURE类型的XComponent组件，由于typeNode组件的生命周期与声明式组件存在差异，组件在创建后的缓冲区尺寸为未设置状态，因此在开始绘制内容之前，应调用[OH_NativeWindow_NativeWindowHandleOpt](../reference/apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowhandleopt)接口进行缓冲区尺寸设置。
 > 
 > 3. 多个XComponent开发时，缓存Native侧资源需要保证key是唯一的，key推荐使用id+随机数或者surfaceId。
+> 
+> 4. 在onSurfaceCreated回调触发后，才能获取到有效的surfaceId。
 
 **生命周期**：
 
 - onSurfaceCreated回调
 
-  触发时刻：XComponent准备好Surface后触发。
+  触发时刻：XComponent创建完成且创建好Surface后触发。
 
   ArkTS侧onSurfaceCreated的时序如下图：
 
@@ -520,7 +522,7 @@ Native侧
 
 - OnSurfaceCreated回调    	
 
-  触发时刻：XComponent准备好Surface后达成以下两个条件中的一个触发。
+  触发时刻：XComponent创建完成且创建好Surface后达成以下两个条件中的一个触发。
   1. 组件上树且autoInitialize = true。
   2. 调用OH_ArkUI_XComponent_Initialize。
 
@@ -1472,7 +1474,7 @@ Native侧
 
 - OnSurfaceCreated回调    	
 
-  触发时刻：XComponent准备好Surface后触发。
+  触发时刻：XComponent创建完成且创建好Surface后触发。
 
   Native侧OnSurfaceCreated的时序如下图：
 

@@ -8043,7 +8043,7 @@ let creator: image.ImageCreator = image.createImageCreator(8192, 8, image.ImageF
 
 ## ImageCreator<sup>9+</sup>
 
-图像创建模块，用于请求图像原生数据区域，并开放给应用编译原生图像数据的能力。
+图像创建模块，用于请求图像数据区域，并开放给应用编译图像数据的能力。
 在调用以下方法前需要先创建[ImageCreator](#imagecreator9)实例，ImageCreator不支持多线程。
 
 ### 属性

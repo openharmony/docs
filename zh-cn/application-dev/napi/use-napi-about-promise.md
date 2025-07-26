@@ -94,7 +94,7 @@ napi_create_promise用于创建一个Promise对象。
 2. 使用`napi_create_promise`后未判断返回值是否为`napi_ok`，之后使用了无效的`deferred`和`promise`会导致应用崩溃。
 
 ```c++
-napi_value NapiPromiseDemo(napi_env env, napi_callback_info)
+napi_value NapiPromiseDemo(napi_env env, napi_callback_info info)
 {
     napi_deferred deferred = nullptr;
     napi_value promise = nullptr;

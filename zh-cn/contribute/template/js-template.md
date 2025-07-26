@@ -384,10 +384,83 @@ type Xxx = number | string | 'xxx'
 | aaa | string | 是 | 属性描述。 | 
 | bbb | number | 否 | 属性描述。 | 
 
+## API参考写作FAQ
+### 问题1：带二级模块的父模块如何写作
+> **带二级模块的父模块写作要求：**
+>
+> 1、在模块概述处，写明本模块的定义/功能。
+>
+> 2、按正常API模块要求提供API level等相关说明。
+>
+> 3、以section列举其下包含的二级模块，并提供二级模块定义/功能（注意与二级模块页面的概述保持一致），链接到二级模块。
+>
+> 4、每个二级模块（section）下，提供d.ts定义中对应的“系统能力”（@syscap）字段。工具链基于该字段为该topic打device-type属性。
+>
+> 以下为样例。
+####  @ohos.arkui.node 
+Node将自定义节点的二级模块API组织在一起，方便开发者进行导出使用。
+
+> **说明：**
+>
+> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 当前不支持在预览器中使用自定义节点。
+
+##### BuilderNode
+
+[BuilderNode](./js-apis-arkui-builderNode.md#buildernode)模块提供能够挂载系统组件的自定义节点BuilderNode。不建议将BuilderNode作为子节点挂载到其他自定义节点上。<br/>
+**系统能力**：ohos.xxx
+
+##### FrameNode
+
+[FrameNode](./js-apis-arkui-frameNode.md#framenode)模块提供自定义节点FrameNode，表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeController.md#nodecontroller)可通过[BuilderNode](./js-apis-arkui-builderNode.md#buildernode)持有的FrameNode将其挂载到[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)上，也可通过FrameNode获取[RenderNode](./js-apis-arkui-renderNode.md#rendernode)，挂载到其他FrameNode上。<br/>
+**系统能力**：ohos.xxx
+
+### 问题2：Class是继承的，只有一个导入模块，这种情况下的SysCap应该写在哪里
+>
+> 声明方式形如：[EmbeddableUIAbilityContext.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/application/EmbeddableUIAbilityContext.d.ts)，参考如下样例写作。<br/>
+>
+
+#### EmbeddableUIAbilityContext
+
+EmbeddableUIAbilityContext是需要保存状态的[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)所对应的context，继承自[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)。<br/>
+EmbeddableUIAbilityContext提供EmbeddableUIAbility的相关配置信息以及操作EmbeddableUIAbility和ServiceExtensionAbility的方法，如启动EmbeddableUIAbility，停止当前EmbeddableUIAbilityContext所属的EmbeddableUIAbility，启动、停止、连接、断开连接ServiceExtensionAbility等。
+
+> **说明：**
+>
+>  - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>  - 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
+
+##### 导入模块
+
+```ts
+import { common } from '@kit.AbilityKit';
+```
+**模型约束**：此接口仅可在Stage模型下使用。<br/>
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core<br/>
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+### 问题3：接口存在已知bug的写法
+>
+> 1、对于此类情况，首先需要在《版本说明书》中体现“已知问题”。
+>
+> 2、在API参考的“接口描述”处，采用固定句式描述接口已知bug"本接口存在已知问题，详情请参见“已知问题”。"
+>
+> 3、在接口bug修复后，针对所有涉及该接口的文档，统一搜索上述固定句式，删除。
+>
+#### getStringSync
+
+getStringSync(resId: number, ...args: Array<string | number>): string
+
+获取指定资源ID对应的字符串，并根据args参数对字符串进行格式化，使用同步方式返回。
+本接口存在已知问题，详情请参见“已知问题”（链接到《版本说明书》对应的已知问题处）。
+
+
 ## 变更日志
 
 | 变更说明                                                                 | 日期         |
 | ----------------------------------------------------------------------- | ------------ |
+| 新增“API参考写作FAQ”章节，提供特殊场景的API参考写法及常见问题说明。 | 2025/07/22|
 | 精简Promise\<void>固定句式。新写作内容使用新句式；存量内容无需主动整改，表意无问题。 | 2025/06/10 |
 | 补充“关于匿名对象整改@since版本号情况的说明”固定句式。 | 2025/06/03 |
 | 优化权限的写作规范，可覆盖多种类型的权限描述，适配扫描工具需求。 | 2025/03/12 |

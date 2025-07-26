@@ -6,7 +6,7 @@
 
 ## 基本概念
 
-在使用JSVM操作JavaScript对象时，有一些基本概念需要了解：
+在使用JSVM操作JavaScript对象时，需要了解一些基本概念：
 
 - **JavaScript值到C/C++类型的转换：** 在JSVM模块中，可以使用JSVM函数将JavaScript值转换为C/C++的数据类型，如将JavaScript数值转换为C/C++的整数、将JavaScript字符串转换为C/C++的字符数组等。同样，也可以将C/C++的数据类型转换为JavaScript值，以便将结果返回给JavaScript代码。
 
@@ -26,7 +26,7 @@
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)。本文仅展示接口对应的C++相关代码。
 
 ### OH_JSVM_CoerceToBool
 
@@ -330,7 +330,7 @@ JSVM OH_JSVM_GetValueBool success:0
 
 ### OH_JSVM_GetGlobal
 
-用于获取全局JavaScript对象。该函数的主要作用是获取表示JavaScript全局对象的JSVM_Value，使得JSVM模块能够与JavaScript运行时的全局对象进行交互。
+用于获取全局JavaScript对象。该函数的主要作用是获取表示JavaScript全局对象的JSVM_Value，使JSVM模块能够与JavaScript运行时的全局对象进行交互。
 
 cpp 部分代码：
 
@@ -376,7 +376,7 @@ JSVM OH_JSVM_GetGlobal success
 
 ### OH_JSVM_GetNull
 
-用于获取 JavaScript null 对象
+用于获取 JavaScript null 对象。
 
 cpp 部分代码：
 
@@ -417,7 +417,7 @@ JSVM OH_JSVM_GetNull success
 
 ### OH_JSVM_GetUndefined
 
-用于获取 JavaScript undefined 对象
+用于获取 JavaScript undefined 对象。
 
 cpp 部分代码：
 

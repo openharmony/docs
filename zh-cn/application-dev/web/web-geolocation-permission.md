@@ -26,7 +26,6 @@ Web组件提供位置权限管理能力（<!--RP1-->[隐私保护说明](../../d
 
   ```html
   <!DOCTYPE html>
-  <html>
   <html lang="en">
   <head>
       <meta charset="UTF-8">
@@ -72,6 +71,10 @@ Web组件提供位置权限管理能力（<!--RP1-->[隐私保护说明](../../d
 
     aboutToAppear(): void {
       let context : Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
+      if (!context) {
+        console.error("context is undefined");
+        return;
+      }
       // 向用户请求位置权限设置。
       atManager.requestPermissionsFromUser(context, ["ohos.permission.APPROXIMATELY_LOCATION"]).then((data) => {
         console.info('data:' + JSON.stringify(data));

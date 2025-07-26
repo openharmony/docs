@@ -53,11 +53,11 @@
        // 创建订阅者信息
        CommonEvent_SubscribeInfo* info = OH_CommonEvent_CreateSubscribeInfo(events, eventsNum);
 
-       // 设置订阅者权限
+       // 设置发布者权限
        ret = OH_CommonEvent_SetPublisherPermission(info, permission);
        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetPublisherPermission ret <%{public}d>.", ret);
        
-       // 设置订阅者包名称
+       // 设置发布者包名称
        ret = OH_CommonEvent_SetPublisherBundleName(info, bundleName);
        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetPublisherBundleName ret <%{public}d>.", ret);
        return info;

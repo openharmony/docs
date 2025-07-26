@@ -4928,7 +4928,7 @@
 
 **支持设备**：General
 
-**起始版本**：20
+**起始版本**：19
 
 ## ohos.permission.MANAGE_FILE_ENCRYPTION
 

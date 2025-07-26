@@ -136,7 +136,7 @@ TS通过启用编译选项`strictNullChecks`实现此特性。虽然TS被编译�
 根据工程的compatibleSdkVersion，具体策略如下：
 
   - compatibleSdkVersion >= 10 为标准模式。在该模式下，对.ets文件，违反ArkTS语法规则的代码会导致工程编译失败，需要完全适配ArkTS语法后方可编译成功。
-  - compatibleSdkVersion < 10 为兼容模式。在该模式下，对.ets文件以warning形式提示违反ArkTS语法规则的所有代码。尽管违反ArkTS语法规则的工程在兼容模式下仍可编译成功，但需完全适配ArkTS语法后方可在标准模式下编译成功。
+  - compatibleSdkVersion < 10 为兼容模式。在该模式下，对.ets文件中的违反ArkTS语法规则的代码将以warning形式提示。尽管违反ArkTS语法规则的工程在兼容模式下仍可编译成功，但需完全适配ArkTS语法后方可在标准模式下编译成功。
 
 ## 支持与TS/JS的交互
 
@@ -187,4 +187,4 @@ foo(c);
 
 **与标准TS/JS的差异**
 
-在标准的TS/JS中，JSON的数字格式要求小数点后必须跟随数字，例如 `2.e3` 这类科学计数法不被允许，会导致`SyntaxError`。而在方舟运行时中，支持这类科学计数法
+在标准的TS/JS中，JSON的数字格式要求小数点后必须跟随数字，例如 `2.e3` 这类科学计数法不被允许，会导致 `SyntaxError`。方舟运行时则支持这类科学计数法。

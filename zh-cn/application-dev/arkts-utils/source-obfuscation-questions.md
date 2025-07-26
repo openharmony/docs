@@ -3,22 +3,22 @@
 ## 如何排查功能异常
 
 ### 排查功能异常步骤
-1. 在`obfuscation-rules.txt`中配置`-disable-obfuscation`选项以关闭混淆，确认问题是否由混淆引起。
-2. 若确认开启混淆后功能出现异常，请先阅读文档，了解混淆规则的能力和需要配置白名单的语法场景，以确保应用功能正常。下文简要介绍默认开启的四项选项功能，详情请参阅对应选项的完整描述。
+1. 在`obfuscation-rules.txt`中配置`-disable-obfuscation`选项关闭混淆，确认问题是否由混淆引起。
+2. 若确认开启混淆后功能出现异常，请先阅读文档，了解模块已配置的混淆规则的能力和需要配置白名单的语法场景，以确保应用功能正常。下文简要介绍默认开启的四项选项功能，详情请参阅对应选项的完整描述。
     1. [-enable-toplevel-obfuscation](source-obfuscation.md#-enable-toplevel-obfuscation)为顶层作用域名称混淆开关。
 
-    2. [-enable-property-obfuscation](source-obfuscation.md#-enable-property-obfuscation)为属性混淆开关，配置白名单的主要场景包括网络数据访问、json字段访问、动态属性访问、调用so库接口等。需要使用[-keep-property-name](source-obfuscation.md#-keep-property-name)来保留指定的属性名称。
+    2. [-enable-property-obfuscation](source-obfuscation.md#-enable-property-obfuscation)为属性混淆开关。配置白名单的主要场景包括网络数据访问、json字段访问、动态属性访问、调用so库接口等。需要使用[-keep-property-name](source-obfuscation.md#-keep-property-name)来保留指定的属性名称。
 
-    3. [-enable-export-obfuscation](source-obfuscation.md#-enable-export-obfuscation)为导入/导出名称混淆，一般与`-enable-toplevel-obfuscation`和`-enable-property-obfuscation`选项配合使用。配置白名单的主要场景为模块对外接口不能混淆，需要使用[-keep-global-name](source-obfuscation.md#-keep-global-name)来保留指定的导入/导出名称。
+    3. [-enable-export-obfuscation](source-obfuscation.md#-enable-export-obfuscation)为导入/导出名称混淆。一般与`-enable-toplevel-obfuscation`和`-enable-property-obfuscation`选项配合使用。配置白名单的主要场景为模块对外接口不能混淆。需要使用[-keep-global-name](source-obfuscation.md#-keep-global-name)来保留指定的导出/导入名称。
 
-    4. [-enable-filename-obfuscation](source-obfuscation.md#-enable-filename-obfuscation)为文件名混淆，配置白名单的主要场景为动态import或运行时直接加载的文件路径。需要使用[-keep-file-name](source-obfuscation.md#-keep-file-name)来保留这些文件路径及名称。
-3. 参考以下报错案例，遇到相似场景时，可参照对应解决方法快速处理。
-4. 若以下报错案例中未找到相似场景，建议根据各项配置功能正向定位。如不需要相应功能，可删除对应配置项。
-5. 分析应用运行时崩溃的方法：
-    1. 打开应用运行日志，或在DevEco Studio中点击Crash弹窗，找到运行时崩溃栈。
-    2. 应用运行时崩溃栈中的行号对应[编译产物](source-obfuscation-guide.md#查看混淆效果)中的行号，方法名可能为混淆后的名称。因此，排查时建议直接根据崩溃栈查看编译产物，分析哪些名称不能被混淆，然后将其配置到白名单中。
-6. 应用在运行时未崩溃但出现功能异常（例如白屏、数据加载失败等）的分析方法如下：
-    1. 打开应用运行日志：选择HiLog，检索与功能异常相关的日志，定位问题发生的上下文。
+    4. [-enable-filename-obfuscation](source-obfuscation.md#-enable-filename-obfuscation)为文件名混淆。配置白名单的主要场景为动态import或运行时直接加载的文件路径。需要使用[-keep-file-name](source-obfuscation.md#-keep-file-name)来保留这些文件路径及名称。
+3. 参考以下典型报错案例，若遇到相似场景，可参照对应解决方法快速处理。
+4. 若以下报错案例中未找到相似场景，建议依据各项配置功能正向定位（若不需要相应功能，可删除对应配置项）。
+5. 应用运行时崩溃分析方法：
+    1. 打开应用运行日志，或点击DevEco Studio中出现的Crash弹窗，找到运行时崩溃栈。
+    2. 应用运行时异常栈中的行号为[编译产物](source-obfuscation-guide.md#查看混淆效果)的行号，方法名也可能为混淆后名称；因此排查时建议直接根据异常栈查看编译产物，进而分析哪些名称不能被混淆，然后将其配置到白名单中。
+6. 应用在运行时未崩溃但出现功能异常（如白屏）的分析方法：
+    1. 打开应用运行日志：选择HiLog，检索与功能异常直接相关的日志，定位问题发生的上下文。
 
     2. 定位异常代码段：分析日志，找到引发功能异常的代码块。
 
@@ -32,7 +32,7 @@
 若出现预期外的混淆效果，检查是否由于依赖的本地模块或三方库开启了某些混淆选项。
 
 示例：
-假设当前模块未配置`-compact`，但是混淆的中间产物中代码都被压缩成一行，可按照以下步骤排查混淆选项：
+假设当前模块未配置`-compact`，但混淆的中间产物中代码都被压缩成一行，可按照以下步骤排查混淆选项：
 
 1. 查看当前模块的oh-package.json5中的dependencies，此字段记录了当前模块的依赖信息。
 2. 在依赖的模块/三方库中的混淆配置文件内检索"-compact"：
@@ -43,7 +43,7 @@
 
 > **说明**：
 > 
-> 三方库中的`consumer-rules.txt`不建议配置以下开关选项。这些选项在主模块开启混淆时会生效，可能导致意外的混淆效果，甚至应用运行时崩溃。如果发现三方库的`obfuscation.txt`文件包含以下开关选项，建议联系发布团队删除并重新打包发布。   
+> 三方库中的`consumer-rules.txt`不建议配置以下开关选项。这些选项在主模块开启混淆时会生效，可能导致意外的混淆效果，甚至应用运行时崩溃。如果发现三方库的`obfuscation.txt`文件中包含以下开关选项，建议联系发布该三方库的团队删除这些选项并重新打包发布。 
 > -enable-property-obfuscation  
 > -enable-string-property-obfuscation  
 > -enable-toplevel-obfuscation  
@@ -292,7 +292,7 @@ n();
 
 **问题原因**
 
-当同时开启`-enable-toplevel-export`和`-enable-export-obfuscation`选项时，主模块与被调用模块的混淆情况如下：
+当同时开启`-enable-toplevel-obfuscation`和`-enable-export-obfuscation`选项时，主模块与被调用模块的混淆情况如下：
 
 | 主模块 | 依赖模块 | 导入与导出的名称混淆情况 |
 | ------- | ------- | ----------------------------|
@@ -467,7 +467,7 @@ person["b"] = 22;
 
 从`API19`开始，主模块默认不会被三方库的混淆规则所影响，因此不会有这种情况。但如果API版本低于19，可参考以下两种解决方案。
 
-方案一：确认依赖模块是否开启了字符串属性名混淆。若开启，会影响主模块，需将其关闭。参考[排查非预期的混淆能力](source-obfuscation-questions.md#排查非预期的混淆能力)。  
+方案一：确认依赖模块是否开启了字符串属性名混淆。若开启，会影响主模块，需将其关闭。参考[排查非预期的混淆能力](source-obfuscation-questions.md#排查非预期的混淆能力)。
 方案二：若工程复杂无法找到开启了该混淆配置选项的模块，可以将属性名直接配置到白名单中。
 
 ### 数据库相关的字段被混淆后导致功能异常

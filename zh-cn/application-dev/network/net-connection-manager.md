@@ -345,14 +345,15 @@ function socketTest() {
       // 判断网络是否可以访问互联网。
       if (cap?.includes(connection.NetCap.NET_CAPABILITY_CHECKING_CONNECTIVITY)) {
         // 正在验证网络连通性，请稍后重试。
-        console.info("default network is checking， please try again later");
-      }
-      if (cap?.includes(connection.NetCap.NET_CAPABILITY_VALIDATED)) {
-        // 网络连通性验证成功，当前默认网络可以访问互联网。
-        console.info("default network is validated");
+        console.info("default network is checking, please try again later");
       } else {
-        // 网络连通性验证失败，当前默认网络不可以访问互联网。
-        console.info("default network is not validated");
+        if (cap?.includes(connection.NetCap.NET_CAPABILITY_VALIDATED)) {
+          // 网络连通性验证成功，当前默认网络可以访问互联网。
+          console.info("default network is validated");
+        } else {
+          // 网络连通性验证失败，当前默认网络不可以访问互联网。
+          console.info("default network is not validated");
+        }
       }
     }
     ```

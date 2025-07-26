@@ -150,7 +150,7 @@ end:
     }
     
     // 加密。
-    ret = OH_CryptoSymCipher_Create("AES128|CBC|PKCS7", &encCtx);
+    ret = OH_CryptoSymCipher_Create("3DES192|CBC|PKCS7", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
