@@ -1322,7 +1322,7 @@ export default class EntryAbility extends UIAbility {
           return;
         }
         console.info('setMissionIcon succeed');
-      })
+      });
     }).catch((err: BusinessError) => {
       console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
     });
