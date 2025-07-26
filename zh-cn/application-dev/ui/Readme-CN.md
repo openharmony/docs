@@ -64,7 +64,6 @@
         - [PersistenceV2: 持久化存储UI状态](state-management/arkts-new-persistencev2.md)
         - [!!语法：双向绑定](state-management/arkts-new-binding.md)
         - [自定义组件冻结功能](state-management/arkts-custom-components-freezeV2.md)
-        - [Repeat：可复用的循环渲染](state-management/arkts-new-rendering-control-repeat.md)
         - [getTarget接口：获取状态管理框架代理前的原始对象](state-management/arkts-new-getTarget.md)
         - [makeObserved接口：将非观察数据变为可观察数据](state-management/arkts-new-makeObserved.md)
         - [addMonitor/clearMonitor接口：动态添加/取消监听](state-management/arkts-new-addMonitor-clearMonitor.md)
@@ -78,6 +77,8 @@
       - [if/else：条件渲染](state-management/arkts-rendering-control-ifelse.md)
       - [ForEach：循环渲染](state-management/arkts-rendering-control-foreach.md)
       - [LazyForEach：数据懒加载](state-management/arkts-rendering-control-lazyforeach.md)
+      - [Repeat：可复用的循环渲染](state-management/arkts-new-rendering-control-repeat.md)
+      - [LazyForEach迁移Repeat指导文档](state-management/arkts-lazyForEach-repeat-migration-guide.md)
       - [ContentSlot：混合开发](state-management/arkts-rendering-control-contentslot.md)
   - 设置组件导航和页面路由<!--arkts-set-navigation-routing-->
     - [组件导航和页面路由概述](arkts-navigation-introduction.md)
