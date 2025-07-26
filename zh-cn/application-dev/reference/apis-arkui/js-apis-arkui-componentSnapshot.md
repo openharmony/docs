@@ -511,10 +511,10 @@ type SnapshotRegionType =  SnapshotRegion | LocalizedSnapshotRegion
 
 | 名称   | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
-| left   | number | 是   | 截图区域矩形左上角的x轴坐标，单位为px。 |
-| top    | number | 是   | 截图区域矩形左上角的y轴坐标，单位为px。 |
-| right  | number | 是   | 截图区域矩形右下角的x轴坐标，单位为px。 |
-| bottom | number | 是   | 截图区域矩形右下角的y轴坐标，单位为px。 |
+| left   | number | 是   | 截图区域矩形左上角的x轴坐标。<br>单位：px <br>取值范围：[0, 组件宽度] |
+| top    | number | 是   | 截图区域矩形左上角的y轴坐标。<br>单位：px <br>取值范围：[0, 组件高度] |
+| right  | number | 是   | 截图区域矩形右下角的x轴坐标。<br>单位：px <br>取值范围：[0, 组件宽度] |
+| bottom | number | 是   | 截图区域矩形右下角的y轴坐标。<br>单位：px <br>取值范围：[0, 组件高度] |
 
 ## LocalizedSnapshotRegion<sup>15+</sup>
 
@@ -526,7 +526,7 @@ type SnapshotRegionType =  SnapshotRegion | LocalizedSnapshotRegion
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| start  | number | 是   | 布局方向为LTR时表示截图区域矩形左上角的x轴坐标，布局方向为RTL时表示截图区域矩形右下角的x轴坐标，单位为px。 |
-| top    | number | 是   | 布局方向为LTR时表示截图区域矩形左上角的y轴坐标，布局方向为RTL时表示截图区域矩形右下角的y轴坐标，单位为px。 |
-| end    | number | 是   | 布局方向为LTR时表示截图区域矩形右上角的x轴坐标，布局方向为RTL时表示截图区域矩形左下角的x轴坐标，单位为px。 |
-| bottom | number | 是   | 布局方向为LTR时表示截图区域矩形右上角的y轴坐标，布局方向为RTL时表示截图区域矩形左下角的y轴坐标，单位为px。 |
+| start  | number | 是   | 布局方向为LTR时表示截图区域矩形左上角的x轴坐标，布局方向为RTL时表示截图区域矩形右下角的x轴坐标。<br>单位：px <br>取值范围：[0, 组件宽度] |
+| top    | number | 是   | 布局方向为LTR时表示截图区域矩形左上角的y轴坐标，布局方向为RTL时表示截图区域矩形右下角的y轴坐标。<br>单位：px <br>取值范围：[0, 组件高度] |
+| end    | number | 是   | 布局方向为LTR时表示截图区域矩形右上角的x轴坐标，布局方向为RTL时表示截图区域矩形左下角的x轴坐标。<br>单位：px <br>取值范围：[0, 组件宽度] |
+| bottom | number | 是   | 布局方向为LTR时表示截图区域矩形右上角的y轴坐标，布局方向为RTL时表示截图区域矩形左下角的y轴坐标。<br>单位：px <br>取值范围：[0, 组件高度] |
