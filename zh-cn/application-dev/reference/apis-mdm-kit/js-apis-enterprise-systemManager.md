@@ -639,7 +639,7 @@ try {
 
 setAutoUnlockAfterReboot(admin: Want, isAllowed: boolean): void
 
-设置重启自动解锁，仅针对无锁屏密码设备生效，当前仅支持PC/2in1设备使用。
+设置设备重启自动解锁，仅针对无锁屏密码设备生效，当前仅支持PC/2in1设备使用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -652,7 +652,7 @@ setAutoUnlockAfterReboot(admin: Want, isAllowed: boolean): void
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
-| isAllowed | boolean | 是 | true表示开启重启自动解锁，false表示不开启重启自动解锁。 |
+| isAllowed | boolean | 是 | true表示设备重启后自动解锁，false表示设备重启后不自动解锁。 |
 
 **错误码**：
 
@@ -688,7 +688,7 @@ try {
 
 getAutoUnlockAfterReboot(admin: Want): boolean
 
-获取是否开启重启自动解锁，当前仅支持PC/2in1设备使用。
+获取设备是否重启自动解锁，当前仅支持PC/2in1设备使用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -706,7 +706,7 @@ getAutoUnlockAfterReboot(admin: Want): boolean
 
 | 类型   | 说明                                |
 | ------ | ----------------------------------- |
-| boolean | 返回true表示已开启重启自动解锁，返回false表示未开启重启自动解锁。 |
+| boolean | 返回true表示设备重启后自动解锁，返回false表示设备重启后不自动解锁。 |
 
 **错误码**：
 
