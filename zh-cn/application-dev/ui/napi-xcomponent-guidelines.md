@@ -617,7 +617,9 @@ Native侧
                             .id(this.xcomponentId)
                             .onAttach(() => {
                                 let node = this.getUIContext().getFrameNodeById(this.xcomponentId)
-                                native.bindNode(this.xcomponentId, node)
+                                if (node) {
+                                    native.bindNode(this.xcomponentId, node)
+                                }
                             })
                             .onDetach(() => {
                                 native.unbindNode(this.xcomponentId)
@@ -1116,7 +1118,7 @@ Native侧
     }
 
     GLuint LoadShader(GLenum type, const char *shaderSrc) {
-        if ((type <= 0) || (shaderSrc == nullptr)) {
+        if ((type == 0) || (shaderSrc == nullptr)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLRender", "glCreateShader type or shaderSrc error");
             return PROGRAM_ERROR;
         }
@@ -1719,30 +1721,30 @@ Native侧
     void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
         // ...
         // 初始化环境与绘制背景
-        auto *pluginManger = PluginManager::GetInstance();
-        pluginManger->OnSurfaceCreated(component, window);
+        auto *pluginManager = PluginManager::GetInstance();
+        pluginManager->OnSurfaceCreated(component, window);
     }
    
     // 定义一个函数OnSurfaceChangedCB()
     void OnSurfaceChangedCB(OH_NativeXComponent *component, void *window) {
         // ...
-        auto *pluginManger = PluginManager::GetInstance();
+        auto *pluginManager = PluginManager::GetInstance();
         // 封装OnSurfaceChanged方法
-        pluginManger->OnSurfaceChanged(component, window);
+        pluginManager->OnSurfaceChanged(component, window);
     }
    
     // 定义一个函数OnSurfaceDestroyedCB()，将PluginRender类内释放资源的方法Release()封装在其中
     void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
         // ...
-        auto *pluginManger = PluginManager::GetInstance();
-        pluginManger->OnSurfaceDestroyed(component, window);
+        auto *pluginManager = PluginManager::GetInstance();
+        pluginManager->OnSurfaceDestroyed(component, window);
     }
    
     // 定义一个函数DispatchTouchEventCB()，响应触摸事件时触发该回调
     void DispatchTouchEventCB(OH_NativeXComponent *component, void *window) {
         // ...
-        auto *pluginManger = PluginManager::GetInstance();
-        pluginManger->DispatchTouchEvent(component, window);
+        auto *pluginManager = PluginManager::GetInstance();
+        pluginManager->DispatchTouchEvent(component, window);
     }
     ```
 
@@ -1759,6 +1761,7 @@ Native侧
         napi_value args[2] = { nullptr, nullptr };
         if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "CreateNativeNode napi_get_cb_info failed");
+            return nullptr;
         }
         if (argCnt != ARG_CNT) {
             napi_throw_type_error(env, NULL, "Wrong number of arguments");
@@ -1859,9 +1862,9 @@ Native侧
             return nullptr;
         }
 
-        auto *pluginManger = PluginManager::GetInstance();
+        auto *pluginManager = PluginManager::GetInstance();
         // 调用绘制方法
-        pluginManger->eglcore_->Draw(hasDraw_);
+        pluginManager->eglcore_->Draw(hasDraw_);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginManager", "render->eglCore_->Draw() executed");
         
         return nullptr;
@@ -2001,7 +2004,7 @@ Native侧
     }
     
     GLuint EGLCore::LoadShader(GLenum type, const char* shaderSrc) {
-        if ((type <= 0) || (shaderSrc == nullptr)) {
+        if ((type == 0) || (shaderSrc == nullptr)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "glCreateShader type or shaderSrc error");
             return PROGRAM_ERROR;
         }
