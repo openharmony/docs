@@ -78,6 +78,8 @@ getFont(): Font
 
 **示例：**
 
+完整示例请参考[Font](#font)中的示例。
+
 <!--code_no_check-->
 ```ts
 uiContext.getFont();
@@ -1548,6 +1550,8 @@ getMeasureUtils(): MeasureUtils
 
 **示例：**
 
+完整示例请参考[MeasureUtils](#measureutils12)中的示例。
+
 <!--code_no_check-->
 ```ts
 uiContext.getMeasureUtils();
@@ -2960,6 +2964,8 @@ registerFont(options: font.FontOptions): void
 
 在字体管理中注册自定义字体。
 
+该接口为异步接口，不支持并发调用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -2974,13 +2980,32 @@ registerFont(options: font.FontOptions): void
 
 <!--code_no_check-->
 ```ts
+// xxx.ets
 import { Font } from '@kit.ArkUI';
 
-let font:Font = uiContext.getFont();
-font.registerFont({
-  familyName: 'medium',
-  familySrc: '/font/medium.ttf'
-});
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  private uiContext: UIContext = this.getUIContext();
+  private font: Font = this.uiContext.getFont();
+
+  aboutToAppear() {
+    this.font.registerFont({
+      familyName: 'medium',
+      familySrc: '/font/medium.ttf' // font文件夹与pages目录同级
+    })
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .align(Alignment.Center)
+        .fontSize(20)
+        .fontFamily('medium') // medium：注册自定义字体的名字（$r('app.string.mediumFamilyName')、'mediumRawFile'等已注册字体也能正常使用）
+    }.width('100%')
+  }
+}
 ```
 ### getSystemFontList
 
@@ -3006,11 +3031,27 @@ getSystemFontList(): Array\<string>
 
 <!--code_no_check-->
 ```ts
+// xxx.ets
 import { Font } from '@kit.ArkUI';
 
-let font: Font | undefined = uiContext.getFont();
-if (font) {
-  font.getSystemFontList();
+@Entry
+@Component
+struct Index {
+  private uiContext: UIContext = this.getUIContext();
+  private font: Font = this.uiContext.getFont();
+  fontList: Array<string> = new Array<string>();
+
+  build() {
+    Column() {
+      Button("getSystemFontList")
+        .width('60%')
+        .height('6%')
+        .onClick(() => {
+          this.fontList = this.font.getSystemFontList();
+          console.log('getSystemFontList', JSON.stringify(this.fontList))
+        })
+    }.width('100%')
+  }
 }
 ```
 
@@ -3040,11 +3081,36 @@ getFontByName(fontName: string): font.FontInfo
 
 <!--code_no_check-->
 ```ts
-import { Font } from '@kit.ArkUI';
+// xxx.ets
+import { Font, font } from '@kit.ArkUI';
 
-let font: Font | undefined = uiContext.getFont();
-if (font) {
-  font.getFontByName('Sans Italic');
+@Entry
+@Component
+struct Index {
+  private uiContext: UIContext = this.getUIContext();
+  private font: Font = this.uiContext.getFont();
+  fontInfo: font.FontInfo = this.font.getFontByName('')
+
+  build() {
+    Column() {
+      Button("getFontByName")
+        .width('60%')
+        .height('6%')
+        .onClick(() => {
+          this.fontInfo = this.font.getFontByName('HarmonyOS Sans Italic');
+          console.info("getFontByName(): path = " + this.fontInfo.path);
+          console.info("getFontByName(): postScriptName = " + this.fontInfo.postScriptName);
+          console.info("getFontByName(): fullName = " + this.fontInfo.fullName);
+          console.info("getFontByName(): Family = " + this.fontInfo.family);
+          console.info("getFontByName(): Subfamily = " + this.fontInfo.subfamily);
+          console.info("getFontByName(): weight = " + this.fontInfo.weight);
+          console.info("getFontByName(): width = " + this.fontInfo.width);
+          console.info("getFontByName(): italic = " + this.fontInfo.italic);
+          console.info("getFontByName(): monoSpace = " + this.fontInfo.monoSpace);
+          console.info("getFontByName(): symbolic = " + this.fontInfo.symbolic);
+        })
+    }.width('100%')
+  }
 }
 ```
 
