@@ -890,7 +890,7 @@ type ColorFilterType = ColorFilter | DrawingColorFilter
 | value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  | 设置图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>size的默认值与objectFit的值有关，不同的objectFit的值对应size的默认值不同。比如当objectFit的值为Cover时，图片高度为组件高度减去组件上下的内边距，图片宽度为组件宽度减去组件左右的内边距。 |
 | verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 否   | 设置图片基于文本的对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageSpanAlignment.BOTTOM |
-| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageFit.Cover |
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型，当前枚举类型不支持ImageFit.MATRIX。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageFit.Cover |
 | layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) | 否   | 设置图片布局。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | colorFilter<sup>15+</sup>  | [ColorFilterType](#colorfiltertype15) |  否  | 设置属性字符串的图片颜色滤镜效果。**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
@@ -919,7 +919,7 @@ ResourceStr类型图片设置项。
 | resourceValue | Optional<[ResourceStr](ts-types.md#resourcestr)> |  是  | 设置图片数据源。 |
 | size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 |
 | verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 否   | 设置图片基于文本的对齐方式。<br/>默认值：ImageSpanAlignment.BOTTOM |
-| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover |
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型，当前枚举类型不支持ImageFit.MATRIX。<br/>默认值：ImageFit.Cover |
 | layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) | 否   | 设置图片布局。 |
 | colorFilter  | [ColorFilterType](#colorfiltertype15) |  否  | 设置属性字符串的图片颜色滤镜效果。 |
 | syncLoad  | boolean |  否  | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false |
@@ -1181,7 +1181,7 @@ constructor(url: string)
 // xxx.ets
 @Entry
 @Component
-struct styled_string_demo1 {
+struct styled_string_process_demo {
   @State height1: number = 450;
   @State fontSize1: number = 16;
   @State fontWeight1: number = 400;
@@ -1357,7 +1357,7 @@ struct styled_string_demo1 {
 // xxx.ets
 @Entry
 @Component
-struct styled_string_demo2 {
+struct styled_string_bind_events_demo {
   scroll: Scroller = new Scroller();
   fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
   private uiContext: UIContext = this.getUIContext();
@@ -1446,7 +1446,7 @@ import { LengthMetrics, LengthUnit } from '@kit.ArkUI';
 
 @Entry
 @Component
-struct styled_string_demo3 {
+struct styled_string_set_text_style_demo {
   fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
   fontStyleAttr2: TextStyle = new TextStyle({
     fontColor: Color.Orange,
@@ -1633,7 +1633,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
-struct styled_string_demo4 {
+struct styled_string_set_image_demo {
   @State message: string = 'Hello World';
   imagePixelMap: image.PixelMap | undefined = undefined;
   @State imagePixelMap3: image.PixelMap | undefined = undefined;
@@ -1789,7 +1789,7 @@ class LeadingMarginCreator {
 }
 @Entry
 @Component
-struct Index {
+struct styled_string_set_lineheight_paragraphstyle_demo {
   private leadingMarkCreatorInstance = LeadingMarginCreator.instance;
   leadingMarginPlaceholder1: LeadingMarginPlaceholder = {
     pixelMap: this.leadingMarkCreatorInstance.genSquareMark(24),
@@ -1972,7 +1972,7 @@ class MyCustomSpan extends CustomSpan {
 
 @Entry
 @Component
-struct styled_string_demo6 {
+struct styled_string_set_customspan_demo {
   customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 80, 10);
   customSpan2: MyCustomSpan = new MyCustomSpan("World", 80, 40);
   style: MutableStyledString = new MutableStyledString(this.customSpan1);
@@ -2057,7 +2057,7 @@ class MyUserDataSpan extends UserDataSpan {
 
 @Entry
 @Component
-struct styled_string_demo7 {
+struct styled_string_set_userdataspan_demo {
   @State name: string = "world";
   @State age: number = 10;
   controller: TextController = new TextController();
@@ -2101,7 +2101,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
-struct styled_string_demo8 {
+struct styled_string_html_convert_demo {
   imagePixelMap: image.PixelMap | undefined = undefined;
   @State html: string | undefined = undefined;
   @State styledString: StyledString | undefined = undefined;
@@ -2176,7 +2176,7 @@ struct styled_string_demo8 {
 // xxx.ets
 @Entry
 @Component
-struct styled_string_demo9 {
+struct styled_string_set_urlstyle_demo {
   urlString: UrlStyle = new UrlStyle("https://www.example.com");
   mutableStyledString: MutableStyledString = new MutableStyledString("Hello World", [{
     start: 0,
@@ -2214,7 +2214,7 @@ import { drawing, common2D } from '@kit.ArkGraphics2D';
 
 @Entry
 @Component
-struct styled_string_demo10 {
+struct styled_string_set_image_colorfilter_demo {
   @State message: string = 'Hello World';
   mutableStr: MutableStyledString = new MutableStyledString('origin image:');
   mutableStr2: MutableStyledString = new MutableStyledString('with filter:');
@@ -2280,7 +2280,7 @@ struct styled_string_demo10 {
 // xxx.ets
 @Entry
 @Component
-struct styled_string_demo11 {
+struct styled_string_modify_demo {
   @State message: string = 'Hello World';
   mutableStr: MutableStyledString = new MutableStyledString('123456', [{
     start: 0,
